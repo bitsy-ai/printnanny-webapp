@@ -21,9 +21,20 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <!-- <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a> -->
-    <!-- Your Stuff: Custom user template urls -->
+    
+    <form>
+        <div class="input-group">
+          <input type="text" class="form-control"
+              value="{{ object.token }}" id="copy-input" readonly>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="copy-button"
+                data-toggle="tooltip" data-placement="button"
+                title="Copy to Clipboard">
+              Copy
+            </button>
+          </span>
+        </div>
+      </form>
   </div>
 
 </div>
