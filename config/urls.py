@@ -6,6 +6,8 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.schemas import get_schema_view
+
 
 from print_nanny_webapp.users.views import (
     user_token_view
@@ -28,9 +30,11 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 # API URLS
+schema_view = get_schema_view(title="Print Nanny API")
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
+    path("api/schema/", schema_view),    
     # DRF auth token
     path("auth-token/", obtain_auth_token),
 ]
