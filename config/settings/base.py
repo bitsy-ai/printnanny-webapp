@@ -311,5 +311,25 @@ REST_FRAMEWORK = {
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
+from corsheaders.defaults import default_methods
+CORS_ALLOWED_ORIGINS=[
+    'http://localhost:5000',
+    'https://print-nanny.com'
+]
+CORS_ALLOW_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+    },
+}
+
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# django-rest-swagger
+INSTALLED_APPS += ["drf_yasg"]
