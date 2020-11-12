@@ -71,11 +71,13 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
-    "corsheaders",
 ]
 
 LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
+    "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
+    "print_nanny_webapp.client_events.apps.ClientEventsConfig",
+
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -308,15 +310,6 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
-
-# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-CORS_URLS_REGEX = r"^/api/.*$"
-from corsheaders.defaults import default_methods
-CORS_ALLOWED_ORIGINS=[
-    'http://localhost:5000',
-    'https://print-nanny.com'
-]
-CORS_ALLOW_CREDENTIALS = True
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
