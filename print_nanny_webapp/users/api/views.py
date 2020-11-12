@@ -22,7 +22,7 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
         return self.queryset.filter(id=self.request.user.id)
 
     @swagger_auto_schema(
-        operation_id='getMe', 
+        operation_id='me', 
         type=openapi.TYPE_OBJECT,
         operation_description="GET /users/me/")
     @action(detail=False, methods=["GET"])
