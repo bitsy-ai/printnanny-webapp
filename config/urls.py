@@ -7,10 +7,11 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.permissions import AllowAny
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+#from drf_yasg.views import get_schema_view
+#from drf_yasg import openapi
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-from config.api_schema import CustomOpenAPISchemaGenerator
+#from config.api_schema import CustomOpenAPISchemaGenerator
 from print_nanny_webapp.users.views import (
     user_token_view
 )
@@ -34,29 +35,34 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 # API URLS
-schema_view = get_schema_view(
-   openapi.Info(
-      title="https://print-nanny.com/api/",
-      default_version='v1',
-      description="Bitsy Print Nanny API",
-      terms_of_service="https://print-nanny.com/terms/",
-      contact=openapi.Contact(email="support@print-nanny.com"),
-      license=openapi.License(name="MIT"),
-   ),
-   public=True,
-   permission_classes=(AllowAny,),
-   generator_class=CustomOpenAPISchemaGenerator
-)
+# schema_view = get_schema_view(
+#    openapi.Info(
+#       title="https://print-nanny.com/api/",
+#       default_version='v1',
+#       description="Bitsy Print Nanny API",
+#       terms_of_service="https://print-nanny.com/terms/",
+#       contact=openapi.Contact(email="support@print-nanny.com"),
+#       license=openapi.License(name="MIT"),
+#    ),
+#    public=True,
+#    permission_classes=(AllowAny,),
+#    generator_class=CustomOpenAPISchemaGenerator
+# )
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
     # DRF auth token
     path("api/auth-token/", obtain_auth_token),
 
-    re_path(r'api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    # @todo enable for swagger / redoc uis
-    re_path(r'api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # re_path(r'api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    # # @todo enable for swagger / redoc uis
+    # re_path(r'api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     #re_path(r'api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
 
 if settings.DEBUG:

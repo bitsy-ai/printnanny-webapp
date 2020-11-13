@@ -1,7 +1,15 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 
 from ..models import OctoPrintEvent, PredictEvent
+
+@extend_schema_field(OpenApiTypes.STR)  # also takes basic python types
+class JSONField(serializers.JSONField):
+    pass
+    # def to_representation(self, value):
+
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +23,7 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
 
 class PredictEventSerializer(serializers.ModelSerializer):
 
+    event_data = JSONField()
     class Meta:
         model = PredictEvent
         fields = '__all__'
