@@ -24,22 +24,22 @@ class PrinterProfile(models.Model):
     axes_z_speed = models.IntegerField()
 
     extruder_count = models.IntegerField()
-    extruder_nozzleDiameter = models.FloatField()
+    extruder_nozzle_diameter = models.FloatField()
 
     extruder_offsets = ArrayField(
         models.FloatField()
     )
-    extruder_sharedNozzle = models.BooleanField()
+    extruder_shared_nozzle = models.BooleanField()
 
-    heatedBed = models.BooleanField()
-    heatedChamber = models.BooleanField()
+    heated_bed = models.BooleanField()
+    heated_chamber = models.BooleanField()
 
     model = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
 
-    volume_customBox = models.BooleanField()
+    volume_custom_box = models.BooleanField()
     volume_depth = models.FloatField()
-    volume_formFactor = models.CharField(max_length=255)
+    volume_formfactor = models.CharField(max_length=255)
     volume_height = models.FloatField()
     volume_origin = models.CharField(max_length=255)
     volume_width = models.FloatField
@@ -83,6 +83,5 @@ class OctoPrintEvent(models.Model):
     event_type = models.CharField(max_length=30)
     event_data = models.JSONField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    print_job = models.ForeignKey(PrintJob, null=True, on_delete=models.CASCADE)
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)
