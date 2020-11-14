@@ -412,8 +412,6 @@ class PrinterProfileRequest(object):
         :param extruder_offsets: The extruder_offsets of this PrinterProfileRequest.  # noqa: E501
         :type extruder_offsets: list[float]
         """
-        if self.local_vars_configuration.client_side_validation and extruder_offsets is None:  # noqa: E501
-            raise ValueError("Invalid value for `extruder_offsets`, must not be `None`")  # noqa: E501
 
         self._extruder_offsets = extruder_offsets
 

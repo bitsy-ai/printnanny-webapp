@@ -131,8 +131,7 @@ class PatchedPrinterProfileRequest(object):
             self.extruder_count = extruder_count
         if extruder_nozzle_diameter is not None:
             self.extruder_nozzle_diameter = extruder_nozzle_diameter
-        if extruder_offsets is not None:
-            self.extruder_offsets = extruder_offsets
+        self.extruder_offsets = extruder_offsets
         if extruder_shared_nozzle is not None:
             self.extruder_shared_nozzle = extruder_shared_nozzle
         if heated_bed is not None:
