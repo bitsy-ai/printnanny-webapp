@@ -7,6 +7,8 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 #from drf_yasg import openapi
 from rest_framework.views import APIView
 from rest_framework.parsers  import MultiPartParser, FormParser, JSONParser, FileUploadParser
+import django_filters.rest_framework
+from drf_spectacular.utils import extend_schema
 
 from .serializers import OctoPrintEventSerializer, PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer
 
@@ -20,6 +22,7 @@ class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
     
+    @extend_schema(operation_id='printer_profiles_update_or_create')
     @action(methods=['post'], detail=False)
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -66,10 +69,13 @@ class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upd
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
     queryset = GcodeFile.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ('name', 'file_hash')
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-        
+
+    @extend_schema(operation_id='gcode_files_update_or_create')
     @action(methods=['post'], detail=False)
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)

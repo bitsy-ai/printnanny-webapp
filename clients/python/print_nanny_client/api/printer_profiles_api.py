@@ -647,17 +647,17 @@ class PrinterProfilesApi(object):
             callable=__printer_profiles_update
         )
 
-        def __printer_profiles_update_or_create_create(
+        def __printer_profiles_update_or_create(
             self,
             printer_profile_request,
             **kwargs
         ):
-            """printer_profiles_update_or_create_create  # noqa: E501
+            """printer_profiles_update_or_create  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.printer_profiles_update_or_create_create(printer_profile_request, async_req=True)
+            >>> thread = api.printer_profiles_update_or_create(printer_profile_request, async_req=True)
             >>> result = thread.get()
 
             Args:
@@ -712,7 +712,7 @@ class PrinterProfilesApi(object):
                 printer_profile_request
             return self.call_with_http_info(**kwargs)
 
-        self.printer_profiles_update_or_create_create = Endpoint(
+        self.printer_profiles_update_or_create = Endpoint(
             settings={
                 'response_type': (PrinterProfile,),
                 'auth': [
@@ -720,7 +720,7 @@ class PrinterProfilesApi(object):
                     'tokenAuth'
                 ],
                 'endpoint_path': '/api/printer_profiles/update_or_create/',
-                'operation_id': 'printer_profiles_update_or_create_create',
+                'operation_id': 'printer_profiles_update_or_create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -766,5 +766,5 @@ class PrinterProfilesApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__printer_profiles_update_or_create_create
+            callable=__printer_profiles_update_or_create
         )

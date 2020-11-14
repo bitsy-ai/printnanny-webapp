@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**printer_profiles_partial_update**](PrinterProfilesApi.md#printer_profiles_partial_update) | **PATCH** /api/printer_profiles/{id}/ | 
 [**printer_profiles_retrieve**](PrinterProfilesApi.md#printer_profiles_retrieve) | **GET** /api/printer_profiles/{id}/ | 
 [**printer_profiles_update**](PrinterProfilesApi.md#printer_profiles_update) | **PUT** /api/printer_profiles/{id}/ | 
-[**printer_profiles_update_or_create_create**](PrinterProfilesApi.md#printer_profiles_update_or_create_create) | **POST** /api/printer_profiles/update_or_create/ | 
+[**printer_profiles_update_or_create**](PrinterProfilesApi.md#printer_profiles_update_or_create) | **POST** /api/printer_profiles/update_or_create/ | 
 
 
 # **printer_profiles_create**
@@ -477,8 +477,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **printer_profiles_update_or_create_create**
-> PrinterProfile printer_profiles_update_or_create_create(printer_profile_request)
+# **printer_profiles_update_or_create**
+> PrinterProfile printer_profiles_update_or_create(printer_profile_request)
 
 
 
@@ -546,10 +546,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.printer_profiles_update_or_create_create(printer_profile_request)
+        api_response = api_instance.printer_profiles_update_or_create(printer_profile_request)
         pprint(api_response)
     except print_nanny_client.ApiException as e:
-        print("Exception when calling PrinterProfilesApi->printer_profiles_update_or_create_create: %s\n" % e)
+        print("Exception when calling PrinterProfilesApi->printer_profiles_update_or_create: %s\n" % e)
 ```
 
 ### Parameters

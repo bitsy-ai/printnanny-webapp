@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**gcode_files_partial_update**](GcodeFilesApi.md#gcode_files_partial_update) | **PATCH** /api/gcode_files/{id}/ | 
 [**gcode_files_retrieve**](GcodeFilesApi.md#gcode_files_retrieve) | **GET** /api/gcode_files/{id}/ | 
 [**gcode_files_update**](GcodeFilesApi.md#gcode_files_update) | **PUT** /api/gcode_files/{id}/ | 
-[**gcode_files_update_or_create_create**](GcodeFilesApi.md#gcode_files_update_or_create_create) | **POST** /api/gcode_files/update_or_create/ | 
+[**gcode_files_update_or_create**](GcodeFilesApi.md#gcode_files_update_or_create) | **POST** /api/gcode_files/update_or_create/ | 
 
 
 # **gcode_files_create**
@@ -134,17 +134,24 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = gcode_files_api.GcodeFilesApi(api_client)
+    file_hash = "file_hash_example" # str | file_hash (optional)
+    name = "name_example" # str | name (optional)
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
-        api_response = api_instance.gcode_files_list()
+        api_response = api_instance.gcode_files_list(file_hash=file_hash, name=name)
         pprint(api_response)
     except print_nanny_client.ApiException as e:
         print("Exception when calling GcodeFilesApi->gcode_files_list: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file_hash** | **str**| file_hash | [optional]
+ **name** | **str**| name | [optional]
 
 ### Return type
 
@@ -417,8 +424,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **gcode_files_update_or_create_create**
-> GcodeFile gcode_files_update_or_create_create(name, file, file_hash)
+# **gcode_files_update_or_create**
+> GcodeFile gcode_files_update_or_create(name, file, file_hash)
 
 
 
@@ -464,10 +471,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.gcode_files_update_or_create_create(name, file, file_hash)
+        api_response = api_instance.gcode_files_update_or_create(name, file, file_hash)
         pprint(api_response)
     except print_nanny_client.ApiException as e:
-        print("Exception when calling GcodeFilesApi->gcode_files_update_or_create_create: %s\n" % e)
+        print("Exception when calling GcodeFilesApi->gcode_files_update_or_create: %s\n" % e)
 ```
 
 ### Parameters

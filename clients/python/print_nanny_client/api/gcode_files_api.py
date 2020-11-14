@@ -201,6 +201,8 @@ class GcodeFilesApi(object):
 
 
             Keyword Args:
+                file_hash (str): file_hash. [optional]
+                name (str): name. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -261,6 +263,8 @@ class GcodeFilesApi(object):
             },
             params_map={
                 'all': [
+                    'file_hash',
+                    'name',
                 ],
                 'required': [],
                 'nullable': [
@@ -276,10 +280,18 @@ class GcodeFilesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'file_hash':
+                        (str,),
+                    'name':
+                        (str,),
                 },
                 'attribute_map': {
+                    'file_hash': 'file_hash',
+                    'name': 'name',
                 },
                 'location_map': {
+                    'file_hash': 'query',
+                    'name': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -721,19 +733,19 @@ class GcodeFilesApi(object):
             callable=__gcode_files_update
         )
 
-        def __gcode_files_update_or_create_create(
+        def __gcode_files_update_or_create(
             self,
             name,
             file,
             file_hash,
             **kwargs
         ):
-            """gcode_files_update_or_create_create  # noqa: E501
+            """gcode_files_update_or_create  # noqa: E501
 
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.gcode_files_update_or_create_create(name, file, file_hash, async_req=True)
+            >>> thread = api.gcode_files_update_or_create(name, file, file_hash, async_req=True)
             >>> result = thread.get()
 
             Args:
@@ -794,7 +806,7 @@ class GcodeFilesApi(object):
                 file_hash
             return self.call_with_http_info(**kwargs)
 
-        self.gcode_files_update_or_create_create = Endpoint(
+        self.gcode_files_update_or_create = Endpoint(
             settings={
                 'response_type': (GcodeFile,),
                 'auth': [
@@ -802,7 +814,7 @@ class GcodeFilesApi(object):
                     'tokenAuth'
                 ],
                 'endpoint_path': '/api/gcode_files/update_or_create/',
-                'operation_id': 'gcode_files_update_or_create_create',
+                'operation_id': 'gcode_files_update_or_create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -868,5 +880,5 @@ class GcodeFilesApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__gcode_files_update_or_create_create
+            callable=__gcode_files_update_or_create
         )

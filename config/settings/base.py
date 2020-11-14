@@ -309,16 +309,21 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# django-rest-swagger
+# drf-spectacular
 INSTALLED_APPS += ['drf_spectacular']
 SPECTACULAR_SETTINGS = {
     'SCHEMA_PATH_PREFIX': r'api/',
     'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True
 }
+
+
+# django-filters
+INSTALLED_APPS += ['django_filters']
