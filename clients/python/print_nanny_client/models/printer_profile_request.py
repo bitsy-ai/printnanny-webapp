@@ -52,7 +52,8 @@ class PrinterProfileRequest(object):
         'volume_depth': 'float',
         'volume_formfactor': 'str',
         'volume_height': 'float',
-        'volume_origin': 'str'
+        'volume_origin': 'str',
+        'volume_width': 'float'
     }
 
     attribute_map = {
@@ -76,10 +77,11 @@ class PrinterProfileRequest(object):
         'volume_depth': 'volume_depth',
         'volume_formfactor': 'volume_formfactor',
         'volume_height': 'volume_height',
-        'volume_origin': 'volume_origin'
+        'volume_origin': 'volume_origin',
+        'volume_width': 'volume_width'
     }
 
-    def __init__(self, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_offsets=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_offsets=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, local_vars_configuration=None):  # noqa: E501
         """PrinterProfileRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -106,6 +108,7 @@ class PrinterProfileRequest(object):
         self._volume_formfactor = None
         self._volume_height = None
         self._volume_origin = None
+        self._volume_width = None
         self.discriminator = None
 
         self.axes_e_inverted = axes_e_inverted
@@ -129,6 +132,7 @@ class PrinterProfileRequest(object):
         self.volume_formfactor = volume_formfactor
         self.volume_height = volume_height
         self.volume_origin = volume_origin
+        self.volume_width = volume_width
 
     @property
     def axes_e_inverted(self):
@@ -654,6 +658,29 @@ class PrinterProfileRequest(object):
             raise ValueError("Invalid value for `volume_origin`, length must be less than or equal to `255`")  # noqa: E501
 
         self._volume_origin = volume_origin
+
+    @property
+    def volume_width(self):
+        """Gets the volume_width of this PrinterProfileRequest.  # noqa: E501
+
+
+        :return: The volume_width of this PrinterProfileRequest.  # noqa: E501
+        :rtype: float
+        """
+        return self._volume_width
+
+    @volume_width.setter
+    def volume_width(self, volume_width):
+        """Sets the volume_width of this PrinterProfileRequest.
+
+
+        :param volume_width: The volume_width of this PrinterProfileRequest.  # noqa: E501
+        :type volume_width: float
+        """
+        if self.local_vars_configuration.client_side_validation and volume_width is None:  # noqa: E501
+            raise ValueError("Invalid value for `volume_width`, must not be `None`")  # noqa: E501
+
+        self._volume_width = volume_width
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

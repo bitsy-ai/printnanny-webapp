@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **volume_formfactor** | **str** |  | 
 **volume_height** | **float** |  | 
 **volume_origin** | **str** |  | 
+**volume_width** | **float** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

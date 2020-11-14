@@ -43,7 +43,7 @@ class PrinterProfile(models.Model):
     volume_formfactor = models.CharField(max_length=255)
     volume_height = models.FloatField()
     volume_origin = models.CharField(max_length=255)
-    volume_width = models.FloatField
+    volume_width = models.FloatField()
 
 class GcodeFile(models.Model):
     class Meta:
