@@ -28,7 +28,13 @@ class GcodeFileSerializer(serializers.ModelSerializer):
 
 
     def update_or_create(self, validated_data, user):
-        return GcodeFile.objects.update_or_create(**validated_data, user=user)
+        unique_together = ('user', 'file_hash')
+        defaults = {k:v for k,v in validated_data.items() if k not in unique_together }
+        unique_together_fields = { k:v for k,v in validated_data.items() if k in unique_together }
+        return GcodeFile.objects.filter(
+            **unique_together_fields,
+            user=user
+        ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
 
 class PrintJobSerializer(serializers.ModelSerializer):
 

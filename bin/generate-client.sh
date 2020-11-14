@@ -5,7 +5,7 @@ docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli
 
 docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i http://localhost:8000/api/schema \
-    -g python-experimental \
+    -g python \
     -o /local/clients/python \
     -c /local/clients/python.yaml \
     #--verbose
