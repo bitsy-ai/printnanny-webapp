@@ -13,14 +13,6 @@ from .serializers import OctoPrintEventSerializer, PredictEventSerializer, Print
 
 from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile
 
-class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
-    serializer_class = GcodeFileSerializer
-    queryset = GcodeFile.objects.all()
-
-    def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(user_id=self.request.user.id)
-
-
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrinterProfileSerializer
     queryset = PrinterProfile.objects.all()
@@ -68,4 +60,23 @@ class PredictEventViewSet(CreateModelMixin, GenericViewSet):
         #printer = 
         serializer.save(
             user=self.request.user
-        ) 
+        )
+
+class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+    parser_classes = (MultiPartParser, FormParser)
+    serializer_class = GcodeFileSerializer
+    queryset = GcodeFile.objects.all()
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+        
+    @action(methods=['post'], detail=False)
+    def update_or_create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(serializer.validated_data, request.user)
+            if not created:
+                return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

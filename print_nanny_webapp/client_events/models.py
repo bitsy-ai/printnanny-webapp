@@ -55,14 +55,14 @@ class GcodeFile(models.Model):
 
 class PrintJob(models.Model):
     class Meta:
-        unique_together = ('user', 'gcode_file_hash', 'dt')
+        unique_together = ('user', 'name', 'dt')
 
     dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.RESTRICT)
     name = models.CharField(max_length=255)
-    gcode_file_hash = models.CharField(max_length=255)
-    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.RESTRICT)
+    gcode_file_hash = models.CharField(max_length=255, null=True)
+    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.RESTRICT, null=True)
         
 class PredictEvent(models.Model):
     dt = models.DateTimeField()
