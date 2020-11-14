@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **axes_e_inverted** | **bool** |  | 
 **axes_e_speed** | **int** |  | 
 **axes_x_speed** | **int** |  | 
+**axes_x_inverted** | **bool** |  | 
 **axes_y_inverted** | **bool** |  | 
 **axes_y_speed** | **int** |  | 
 **axes_z_inverted** | **bool** |  | 

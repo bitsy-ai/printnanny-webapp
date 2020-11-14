@@ -16,6 +16,7 @@ class PrinterProfile(models.Model):
     axes_e_speed = models.IntegerField()
 
     axes_x_speed = models.IntegerField()
+    axes_x_inverted = models.BooleanField()
 
     axes_y_inverted = models.BooleanField()
     axes_y_speed = models.IntegerField()

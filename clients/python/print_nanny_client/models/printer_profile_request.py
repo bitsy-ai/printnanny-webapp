@@ -35,6 +35,7 @@ class PrinterProfileRequest(object):
         'axes_e_inverted': 'bool',
         'axes_e_speed': 'int',
         'axes_x_speed': 'int',
+        'axes_x_inverted': 'bool',
         'axes_y_inverted': 'bool',
         'axes_y_speed': 'int',
         'axes_z_inverted': 'bool',
@@ -58,6 +59,7 @@ class PrinterProfileRequest(object):
         'axes_e_inverted': 'axes_e_inverted',
         'axes_e_speed': 'axes_e_speed',
         'axes_x_speed': 'axes_x_speed',
+        'axes_x_inverted': 'axes_x_inverted',
         'axes_y_inverted': 'axes_y_inverted',
         'axes_y_speed': 'axes_y_speed',
         'axes_z_inverted': 'axes_z_inverted',
@@ -77,7 +79,7 @@ class PrinterProfileRequest(object):
         'volume_origin': 'volume_origin'
     }
 
-    def __init__(self, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_offsets=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_offsets=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, name=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, local_vars_configuration=None):  # noqa: E501
         """PrinterProfileRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -86,6 +88,7 @@ class PrinterProfileRequest(object):
         self._axes_e_inverted = None
         self._axes_e_speed = None
         self._axes_x_speed = None
+        self._axes_x_inverted = None
         self._axes_y_inverted = None
         self._axes_y_speed = None
         self._axes_z_inverted = None
@@ -108,6 +111,7 @@ class PrinterProfileRequest(object):
         self.axes_e_inverted = axes_e_inverted
         self.axes_e_speed = axes_e_speed
         self.axes_x_speed = axes_x_speed
+        self.axes_x_inverted = axes_x_inverted
         self.axes_y_inverted = axes_y_inverted
         self.axes_y_speed = axes_y_speed
         self.axes_z_inverted = axes_z_inverted
@@ -206,6 +210,29 @@ class PrinterProfileRequest(object):
             raise ValueError("Invalid value for `axes_x_speed`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._axes_x_speed = axes_x_speed
+
+    @property
+    def axes_x_inverted(self):
+        """Gets the axes_x_inverted of this PrinterProfileRequest.  # noqa: E501
+
+
+        :return: The axes_x_inverted of this PrinterProfileRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._axes_x_inverted
+
+    @axes_x_inverted.setter
+    def axes_x_inverted(self, axes_x_inverted):
+        """Sets the axes_x_inverted of this PrinterProfileRequest.
+
+
+        :param axes_x_inverted: The axes_x_inverted of this PrinterProfileRequest.  # noqa: E501
+        :type axes_x_inverted: bool
+        """
+        if self.local_vars_configuration.client_side_validation and axes_x_inverted is None:  # noqa: E501
+            raise ValueError("Invalid value for `axes_x_inverted`, must not be `None`")  # noqa: E501
+
+        self._axes_x_inverted = axes_x_inverted
 
     @property
     def axes_y_inverted(self):
