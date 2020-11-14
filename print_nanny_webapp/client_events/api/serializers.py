@@ -18,6 +18,8 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('user',)
 
+    
+
 
 class GcodeFileSerializer(serializers.ModelSerializer):
 
@@ -54,7 +56,7 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
         unique_together = ('user', 'name',)
         defaults = {k:v for k,v in validated_data.items() if k not in unique_together }
         unique_together_fields = { k:v for k,v in validated_data.items() if k in unique_together }
-        return GcodeFile.objects.filter(
+        return PrinterProfile.objects.filter(
             **unique_together_fields,
             user=user
         ).update_or_create(**unique_together_fields, user=user, defaults=defaults)

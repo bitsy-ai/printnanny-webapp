@@ -28,7 +28,7 @@ class PrinterProfile(models.Model):
     extruder_nozzle_diameter = models.FloatField()
 
     extruder_offsets = ArrayField(
-        models.FloatField(),
+        ArrayField(models.FloatField(), size=2),
         null=True
     )
     extruder_shared_nozzle = models.BooleanField()

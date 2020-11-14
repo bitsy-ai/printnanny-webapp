@@ -21,7 +21,9 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-        
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)   
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
@@ -49,11 +51,20 @@ class PredictEventViewSet(CreateModelMixin, GenericViewSet):
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrinterProfileSerializer
     queryset = PrinterProfile.objects.all()
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ('user', 'name')
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
     
-    @extend_schema(operation_id='printer_profiles_update_or_create')
+    @extend_schema(
+        operation_id='printer_profiles_update_or_create',
+        responses={
+            400: PrinterProfileSerializer,
+            202: PrinterProfileSerializer,
+            201: PrinterProfileSerializer
+        }
+    )
     @action(methods=['post'], detail=False)
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -65,17 +76,23 @@ class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
     queryset = GcodeFile.objects.all()
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filterset_fields = ('name', 'file_hash')
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
-    @extend_schema(operation_id='gcode_files_update_or_create')
+    @extend_schema(
+        operation_id='gcode_files_update_or_create',
+        responses={
+            400: PrinterProfileSerializer,
+            202: PrinterProfileSerializer,
+            201: PrinterProfileSerializer
+        })
     @action(methods=['post'], detail=False)
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -86,3 +103,6 @@ class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upd
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
