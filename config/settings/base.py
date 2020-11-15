@@ -127,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -306,23 +305,26 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
+        "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-}
-
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-      'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header'
-      }
-    },
+    "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 25
 }
 
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# django-rest-swagger
-INSTALLED_APPS += ["drf_yasg"]
+# drf-spectacular
+INSTALLED_APPS += ['drf_spectacular']
+SPECTACULAR_SETTINGS = {
+    'SCHEMA_PATH_PREFIX': r'api/',
+    'COMPONENT_NO_READ_ONLY_REQUIRED': True,
+    'COMPONENT_SPLIT_REQUEST': True
+}
+
+
+# django-filters
+INSTALLED_APPS += ['django_filters']
