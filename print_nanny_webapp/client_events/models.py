@@ -81,9 +81,11 @@ class PredictEvent(models.Model):
     octoprint_version = models.CharField(max_length=30)
 
 class OctoPrintEvent(models.Model):
-    dt = models.DateTimeField()
-    event_type = models.CharField(max_length=30)
+
+
+    dt = models.DateTimeField(db_index=True)
+    event_type = models.CharField(max_length=30, db_index=True)
     event_data = models.JSONField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)

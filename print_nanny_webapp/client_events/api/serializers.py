@@ -17,7 +17,9 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         model = OctoPrintEvent
         fields = '__all__'
         read_only_fields = ('user',)
-
+        extra_kwargs = {
+            'url': {'view_name': 'octoprint_events_list', 'lookup_field': 'id'},
+        }
     
 
 
