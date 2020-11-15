@@ -89,3 +89,11 @@ services:
     ports:
       - "5555:5555"
     command: /start-flower
+
+  notebook:
+    <<: *django
+    image: print_nanny_webapp_local_notebook
+    container_name: notebook
+    ports:
+      - "8888:8888"
+    command: /start-notebook

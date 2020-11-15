@@ -38,6 +38,10 @@ COPY ./compose/local/django/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
 
+COPY ./compose/local/django/notebook /start-notebook
+RUN sed -i 's/\r$//g' /start-notebook
+RUN chmod +x /start-notebook
+
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint"]
