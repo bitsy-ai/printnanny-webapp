@@ -70,14 +70,16 @@ class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(serializer.validated_data, request.user)
+            response_serializer = self.get_serializer(instance)
             if not created:
-                return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
 class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
@@ -89,18 +91,21 @@ class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upd
     @extend_schema(
         operation_id='gcode_files_update_or_create',
         responses={
-            400: PrinterProfileSerializer,
-            202: PrinterProfileSerializer,
-            201: PrinterProfileSerializer
-        })
+            400: GcodeFileSerializer,
+            202: GcodeFileSerializer,
+            201: GcodeFileSerializer
+        }
+    )
     @action(methods=['post'], detail=False)
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             instance, created = serializer.update_or_create(serializer.validated_data, request.user)
+            response_serializer = self.get_serializer(instance)
+
             if not created:
-                return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
