@@ -5,11 +5,11 @@ from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 
-from ..models import OctoPrintEvent, PredictEvent, GcodeFile, PrintJob, PrinterProfile
+from ..models import OctoPrintEvent, PredictEvent, GcodeFile, PrintJob, PrinterProfile, PredictEventFile
 
-@extend_schema_field(OpenApiTypes.STR)  # also takes basic python types
-class JSONField(serializers.JSONField):
-    pass
+# @extend_schema_field(OpenApiTypes.OBJECT)  # also takes basic python types
+# class JSONField(serializers.JSONField):
+#     pass
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
 
@@ -64,16 +64,21 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
         ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
 
 
+class PredictEventFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PredictEventFile
+        fields = '__all__'
+
+        
+
 class PredictEventSerializer(serializers.ModelSerializer):
 
-    event_data = JSONField()
+    #event_data = JSONField()
 
     class Meta:
         model = PredictEvent
-        fields = (
-            'dt', 'original_image', 'annotated_image', 'event_data', 'plugin_version', 'octoprint_version',
-            'user', 'print_job'
-        )
+        fields = '__all__'
 
         read_only_fields = ('user',)
         

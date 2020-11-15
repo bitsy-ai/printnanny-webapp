@@ -8,9 +8,12 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.views import APIView
 from rest_framework.parsers  import MultiPartParser, FormParser, JSONParser, FileUploadParser
 import django_filters.rest_framework
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, extend_schema_view
 
-from .serializers import OctoPrintEventSerializer, PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer
+from .serializers import (
+    OctoPrintEventSerializer, 
+    PredictEventFileSerializer,
+    PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer)
 
 
 from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile
@@ -23,7 +26,8 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
         return self.queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)   
+        serializer.save(user=self.request.user)
+           
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
@@ -32,21 +36,30 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class PredictEventViewSet(CreateModelMixin, GenericViewSet):
+
+class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+    parser_classes = (MultiPartParser, FormParser)
+    serializer_class = PredictEventFileSerializer
+    queryset = PredictEvent.objects.all()
+
+  
+@extend_schema_view(
+    list=extend_schema(
+        responses={
+        201: PredictEventSerializer,
+        202: PredictEventSerializer
+        })
+)
+class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     # MultiPartParser AND FormParser
     # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
     # "You will typically want to use both FormParser and MultiPartParser
     # together in order to fully support HTML form data."
-    parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventSerializer
     queryset = PredictEvent.objects.all()
 
-
-    def preform_create(self, serializer):
-        #printer = 
-        serializer.save(
-            user=self.request.user
-        )
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrinterProfileSerializer

@@ -3,7 +3,9 @@ from rest_framework.routers import DefaultRouter, SimpleRouter
 from django.conf.urls import url
 
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
-from print_nanny_webapp.client_events.api.views import OctoPrintEventViewSet, OctoPrintEventViewSet, PredictEventViewSet, GcodeFileViewSet, PrinterProfileViewSet, PrintJobViewSet
+from print_nanny_webapp.client_events.api.views import (OctoPrintEventViewSet, OctoPrintEventViewSet, 
+    PredictEventFileViewSet,
+    PredictEventViewSet, GcodeFileViewSet, PrinterProfileViewSet, PrintJobViewSet)
 if settings.DEBUG:
     router = DefaultRouter()
 else:
@@ -11,6 +13,8 @@ else:
 
 router.register("users", UserViewSet)
 router.register(f"events/predict", PredictEventViewSet)
+router.register(f"events/predict/files", PredictEventFileViewSet)
+
 router.register(f"events/octoprint", OctoPrintEventViewSet)
 
 router.register(f"printer_profiles", PrinterProfileViewSet)

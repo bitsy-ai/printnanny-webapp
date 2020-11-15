@@ -8,10 +8,10 @@ docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli
     -g python-experimental \
     -o /local/clients/python \
     -c /local/clients/python.yaml \
-    --global-property debugOperations
+    # --global-property debugOperations
     # --global-property OpenAPI 
 
-    #--verbose
 
-rsync -r clients/python octoprint.local:~/projects/octoprint-nanny-plugin/print_nanny/clients
+
+rsync -r clients/ octoprint.local:~/projects/octoprint-nanny-plugin/print_nanny/clients
 

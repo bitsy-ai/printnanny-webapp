@@ -9,7 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.permissions import AllowAny
 #from drf_yasg.views import get_schema_view
 #from drf_yasg import openapi
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 #from config.api_schema import CustomOpenAPISchemaGenerator
 from print_nanny_webapp.users.views import (
@@ -59,7 +59,7 @@ urlpatterns += [
     # re_path(r'api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     #re_path(r'api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/', SpectacularJSONAPIView.as_view(), name='schema'),
     # Optional UI:
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),

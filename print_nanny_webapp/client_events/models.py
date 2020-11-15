@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils import timezone
+
 from django.contrib.postgres.fields import ArrayField
 
 User = get_user_model()
@@ -59,29 +61,49 @@ class PrintJob(models.Model):
     class Meta:
         unique_together = ('user', 'name', 'dt')
 
+
+    class StatusChoices(models.TextChoices):
+        STARTED = 'STARTED', 'Started'
+        DONE = 'DONE', 'Done'
+        FAILED = 'FAILED', 'Failed'
+        CANCELLING = 'CANCELLING', 'Cancelling'
+        PAUSED = 'CANCELLED', 'Cancelled'
+        RESUMED = 'RESUMED', 'Resumed'
+
     dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.RESTRICT)
     name = models.CharField(max_length=255)
     gcode_file_hash = models.CharField(max_length=255, null=True)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.RESTRICT, null=True)
-        
-class PredictEvent(models.Model):
-    dt = models.DateTimeField()
-    #model = models.ForeignKey(TFLiteModel)
-    original_image = models.ImageField()
+    last_status = models.CharField(
+        max_length=12,
+        choices=StatusChoices.choices,
+        default=StatusChoices.STARTED
+    )
+
+class PredictEventFile(models.Model):
+
     annotated_image = models.ImageField()
-    event_data = models.JSONField()
+    hash = models.CharField(max_length=255)
+    original_image = models.ImageField()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class PredictEvent(models.Model):
+
+    dt = models.DateTimeField(db_index=True, default=timezone.now)
+    #model = models.ForeignKey(TFLiteModel)
+    event_data = models.JSONField(null=True)
+    predict_data = models.JSONField()
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE)
     print_job = models.ForeignKey(PrintJob, null=True, on_delete=models.SET_NULL)
-
 
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)
 
 class OctoPrintEvent(models.Model):
-
 
     dt = models.DateTimeField(db_index=True)
     event_type = models.CharField(max_length=30, db_index=True)
@@ -89,3 +111,4 @@ class OctoPrintEvent(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)
+    print_job = models.ForeignKey(PrintJob, null=True, on_delete=models.SET_NULL, db_index=True)
