@@ -67,7 +67,7 @@ class PrintJob(models.Model):
         DONE = 'DONE', 'Done'
         FAILED = 'FAILED', 'Failed'
         CANCELLING = 'CANCELLING', 'Cancelling'
-        PAUSED = 'CANCELLED', 'Cancelled'
+        PAUSED = 'PAUSED', 'Paused'
         RESUMED = 'RESUMED', 'Resumed'
 
     dt = models.DateTimeField()
@@ -81,6 +81,7 @@ class PrintJob(models.Model):
         choices=StatusChoices.choices,
         default=StatusChoices.STARTED
     )
+    last_seen = models.DateTimeField(auto_now=True)
 
 class PredictEventFile(models.Model):
 
