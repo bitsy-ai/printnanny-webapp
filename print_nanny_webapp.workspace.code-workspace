@@ -3,5 +3,8 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"jupyter.jupyterServerType": "remote"
+	}
 }

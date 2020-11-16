@@ -26,5 +26,6 @@ djangorestframework==3.12.2  # https://github.com/encode/django-rest-framework
 drf-spectacular==0.11.0 # https://github.com/tfranzel/drf-spectacular
 django-filter==2.4.0
 
-notebook
-ipython
+jupyterlab
+pandas
+matplotlib

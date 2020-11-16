@@ -3,6 +3,9 @@ FROM python:3.8-slim-buster
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
+ENV JUPYTER_DATA_DIR /data
+ENV JUPYTER_CONFIG_DIR /data
+
 RUN apt-get update \
   # dependencies for building Python packages
   && apt-get install -y build-essential \
@@ -42,6 +45,8 @@ COPY ./compose/local/django/notebook /start-notebook
 RUN sed -i 's/\r$//g' /start-notebook
 RUN chmod +x /start-notebook
 
+RUN mkdir /data
+RUN chmod 777 /data
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint"]
