@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.apps import apps
 from django.utils import timezone
 import logging
+import json
 
 import timeit
 
@@ -16,8 +17,21 @@ EVERY_N_SECONDS = 60.0
 
 CONFIDENCE_THRESHOLD = 0.5
 
+LABELS = {
+    1: 'nozzle',
+    2: 'adhesion',
+    3: 'spaghetti',
+    4: 'print',
+    5: 'raft',
+}
 
-def dict_to_pd_series(data):
+FAILURES = {
+    2: 'adhesion',
+    3: 'spaghetti',  
+}
+
+
+def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
 
 @celery_app.task()
@@ -25,20 +39,35 @@ def analyze_predictions_over_window(print_job, start, stop):
     '''
         notify-exploration.ipynb
     '''
-    predict_events = PredictEvent.objects.all().order_by('-dt').values('id','predict_data')
 
-    
+    predict_events = PredictEvent.objects.filter(
+        print_job=print_job.id,
+        dt__range=(start, stop)
+    ).order_by('-dt').values('id','predict_data')
+
+    # project predict_data JSONField to Series columns
     df = pd.DataFrame.from_records(predict_events, index='id')
-    # drop null
     df = df.dropna()
-    # project hierarchal data to series
     df = df['predict_data'].apply(json_to_series)
-    # explode num_detections dimension
-    df = df[['detection_classes', 'detection_scores']]
-    df = df.explode('detection_classes')
 
-    loss = loss(df)
-    
+    NUM_DETECTIONS_PER_FRAME = len(df['detection_scores'].iloc[0])
+
+    df = df[['detection_classes', 'detection_scores']]
+    df = df.reset_index()
+    df = df.rename(columns={'id': 'frame_id' })
+    NUM_FRAMES = len(df)
+
+    # explode detection_classes and detection_scores together
+    df = df.set_index(['frame_id']).apply(pd.Series.explode).reset_index()
+    assert len(df) == NUM_FRAMES * NUM_DETECTIONS_PER_FRAME
+ 
+    # add string labels
+    df['label'] = df['detection_classes'].map(LABELS)
+
+    # create a hierarchal index
+    df = df.set_index(['frame_id', 'label'])
+
+
 
 @celery_app.task()
 def schedule_active_jobs_analysis():
