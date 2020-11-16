@@ -17,23 +17,25 @@ EVERY_N_SECONDS = 60.0
 CONFIDENCE_THRESHOLD = 0.5
 
 
+def dict_to_pd_series(data):
+    return pd.Series(data.values(), index=data.keys())
 
 @celery_app.task()
 def analyze_predictions_over_window(print_job, start, stop):
+    '''
+        notify-exploration.ipynb
+    '''
+    predict_events = PredictEvent.objects.all().order_by('-dt').values('id','predict_data')
 
-    def calc_loss(df):
-        frames = predict_events.count()
-        # detections = predict_events.
-        # n_print_frames = df.
-
-
-
-    predict_events = PredictEvent.objects.filter(
-        dt__range=(start, stop),
-        print_job=print_job.id
-    ).order_by('-dt')
-
-    df = pd.dataframe(predict_events.select('predict_data'), index=predict_events.select('id'))
+    
+    df = pd.DataFrame.from_records(predict_events, index='id')
+    # drop null
+    df = df.dropna()
+    # project hierarchal data to series
+    df = df['predict_data'].apply(json_to_series)
+    # explode num_detections dimension
+    df = df[['detection_classes', 'detection_scores']]
+    df = df.explode('detection_classes')
 
     loss = loss(df)
     
