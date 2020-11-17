@@ -54,6 +54,9 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('user',)
 
+        extra_kwargs = {
+            "url": {"view_name": "api:printer-profile-detail", "lookup_field": "id"}
+        }
     def update_or_create(self, validated_data, user):
         unique_together = ('user', 'name',)
         defaults = {k:v for k,v in validated_data.items() if k not in unique_together }

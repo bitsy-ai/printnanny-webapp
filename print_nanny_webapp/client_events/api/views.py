@@ -36,7 +36,7 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
 
     def perform_update(self, serializer):
         instance = serializer.save()
-        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status.value)
+        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status)
 
 
            

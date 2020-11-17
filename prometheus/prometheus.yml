@@ -11,4 +11,4 @@ scrape_configs:
     static_configs:
       - targets:
           - 'prometheus:9090'
-          - '0.0.0.0:8001'
+          - 'django:8001'

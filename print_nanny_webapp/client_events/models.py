@@ -29,16 +29,13 @@ class PrinterProfile(models.Model):
     extruder_count = models.IntegerField()
     extruder_nozzle_diameter = models.FloatField()
 
-    extruder_offsets = ArrayField(
-        ArrayField(models.FloatField(), size=2),
-        null=True
-    )
+    extruder_offsets = models.JSONField(null=True)
     extruder_shared_nozzle = models.BooleanField()
 
     heated_bed = models.BooleanField()
     heated_chamber = models.BooleanField()
 
-    model = models.CharField(max_length=255, null=True)
+    model = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
 
     volume_custom_box = models.BooleanField()

@@ -15,6 +15,7 @@ services:
     depends_on:
       - postgres
       - mailhog
+      - prometheus
     volumes:
       - .:/app:z
     env_file:
@@ -119,6 +120,7 @@ services:
     image: prom/prometheus
     ports:
       - 9000:9090
+
     volumes:
       - ./prometheus:/etc/prometheus
       - local_prometheus_data:/prometheus
