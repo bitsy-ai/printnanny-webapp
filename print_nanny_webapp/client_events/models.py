@@ -29,7 +29,12 @@ class PrinterProfile(models.Model):
     extruder_count = models.IntegerField()
     extruder_nozzle_diameter = models.FloatField()
 
-    extruder_offsets = models.JSONField(null=True)
+    extruder_offsets = ArrayField(
+        ArrayField(
+            models.FloatField(),
+        ),
+        null=True
+    )
     extruder_shared_nozzle = models.BooleanField()
 
     heated_bed = models.BooleanField()
@@ -64,6 +69,7 @@ class PrintJob(models.Model):
         DONE = 'DONE', 'Done'
         FAILED = 'FAILED', 'Failed'
         CANCELLING = 'CANCELLING', 'Cancelling'
+        CANCELLED = 'CANCELLED', 'Cancelled'
         PAUSED = 'PAUSED', 'Paused'
         RESUMED = 'RESUMED', 'Resumed'
 
