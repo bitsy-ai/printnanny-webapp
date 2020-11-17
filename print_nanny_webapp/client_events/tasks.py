@@ -3,6 +3,8 @@ from django.apps import apps
 from django.utils import timezone
 import logging
 import json
+from prometheus_client import Info
+from prometheus_client import Counter
 
 import timeit
 
@@ -30,9 +32,14 @@ FAILURES = {
     3: 'spaghetti',  
 }
 
+i = Info('my_build_version', 'Description of info')
+i.info({'version': '1.2.3', 'buildhost': 'foo@bar'})
 
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
+
+def publish_metrics(print_job):
+    i = Info('my_build_version', 'Description of info')
 
 @celery_app.task()
 def analyze_predictions_over_window(print_job, start, stop):

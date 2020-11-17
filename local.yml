@@ -3,6 +3,7 @@ version: '3'
 volumes:
   local_postgres_data: {}
   local_postgres_data_backups: {}
+  local_prometheus_data: {}
 
 services:
   django: &django
@@ -11,7 +12,6 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     image: print_nanny_webapp_local_django
     container_name: django
-    user: 1000:1000
     depends_on:
       - postgres
       - mailhog
@@ -22,6 +22,7 @@ services:
       - ./.envs/.local/.postgres
     ports:
       - "8000:8000"
+      - "8001:8001"
     command: /start
 
   postgres:
@@ -38,7 +39,6 @@ services:
       - ./.envs/.local/.postgres
 
   docs:
-    user: 1000:1000
 
     image: print_nanny_webapp_local_docs
     container_name: docs
@@ -63,7 +63,6 @@ services:
       - "8025:8025"
 
   redis:
-    user: 1000:1000
 
     image: redis:5.0
     container_name: redis
@@ -114,3 +113,13 @@ services:
     command: /start-notebook
     volumes:
       - .:/app:z
+
+  prometheus:
+
+    image: prom/prometheus
+    ports:
+      - 9000:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - local_prometheus_data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml

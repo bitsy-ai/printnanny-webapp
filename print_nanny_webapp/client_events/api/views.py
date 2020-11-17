@@ -10,23 +10,35 @@ from rest_framework.parsers  import MultiPartParser, FormParser, JSONParser, Fil
 import django_filters.rest_framework
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
+import prometheus_client
+
+
+
 from .serializers import (
     OctoPrintEventSerializer, 
     PredictEventFileSerializer,
     PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer)
 
-
+import print_nanny_webapp.client_events.metrics
 from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile
 
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrintJobSerializer
     queryset = PrintJob.objects.all()
 
+
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        instance = serializer.save(user=self.request.user)
+        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status.value)
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status.value)
+
+
            
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     serializer_class = OctoPrintEventSerializer
@@ -34,7 +46,7 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        instance = serializer.save(user=self.request.user)
 
 
 class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):

@@ -38,7 +38,7 @@ class PrinterProfile(models.Model):
     heated_bed = models.BooleanField()
     heated_chamber = models.BooleanField()
 
-    model = models.CharField(max_length=255)
+    model = models.CharField(max_length=255, null=True)
     name = models.CharField(max_length=255)
 
     volume_custom_box = models.BooleanField()
