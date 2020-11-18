@@ -274,11 +274,11 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-accept_content
-CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_ACCEPT_CONTENT = ["json", "pickle"]
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-task_serializer
-CELERY_TASK_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "pickle"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_serializer
-CELERY_RESULT_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "pickle"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-time-limit
 # TODO: set to whatever value is adequate in your circumstances
 CELERY_TASK_TIME_LIMIT = 5 * 60

@@ -2,9 +2,13 @@ from django.contrib.auth import get_user_model
 from django.apps import apps
 from django.utils import timezone
 import logging
+import datetime
 import json
 from prometheus_client import Info
 from prometheus_client import Counter
+from celery import shared_task
+from celery import group, chain
+import pandas as pd
 
 import timeit
 
@@ -13,11 +17,18 @@ from .models import PredictEvent, PrintJob
 User = get_user_model()
 
 
+from print_nanny_webapp.client_events import metrics
+
 logger = logging.getLogger(__name__)
 
 EVERY_N_SECONDS = 60.0
 
+# minimum confidence score for detection to be accepted for post-processing
 CONFIDENCE_THRESHOLD = 0.5
+# minimum ratio of failed:neutral detections required to send email
+FAILURE_NOTIFY_THRESHOLD = 0.5
+# small number added to ratio denominator
+FAILURE_EPSILON = 1e-7
 
 LABELS = {
     1: 'nozzle',
@@ -38,11 +49,8 @@ i.info({'version': '1.2.3', 'buildhost': 'foo@bar'})
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
 
-def publish_metrics(print_job):
-    i = Info('my_build_version', 'Description of info')
-
-@celery_app.task()
-def analyze_predictions_over_window(print_job, start, stop):
+@shared_task
+def prediction_dataframe(print_job, start, stop):
     '''
         notify-exploration.ipynb
     '''
@@ -50,12 +58,18 @@ def analyze_predictions_over_window(print_job, start, stop):
     predict_events = PredictEvent.objects.filter(
         print_job=print_job.id,
         dt__range=(start, stop)
-    ).order_by('-dt').values('id','predict_data')
+    ).order_by('-dt').values('id','predict_data').all()
+
+    if predict_events.count() == 0:
+        logger.error(f'0 predict_events for print_job {print_job_id}')
+        return
+
+    logger.info(f'Analyzing {predict_events.count()} predict_events for print_job {print_job_id}')
 
     # project predict_data JSONField to Series columns
     df = pd.DataFrame.from_records(predict_events, index='id')
     df = df.dropna()
-    df = df['predict_data'].apply(json_to_series)
+    df = df['predict_data'].apply(dict_to_series)
 
     NUM_DETECTIONS_PER_FRAME = len(df['detection_scores'].iloc[0])
 
@@ -73,26 +87,99 @@ def analyze_predictions_over_window(print_job, start, stop):
 
     # create a hierarchal index
     df = df.set_index(['frame_id', 'label'])
+    return df
+
+@shared_task
+def send_email_failure_notification(ratio, print_job):
+    pass
 
 
+@shared_task
+def log_metrics(df, print_job, notify_callback=None):
+    """
+        df - prediction_dataframe()
+    """
 
-@celery_app.task()
+    NUM_FRAMES = len(df.groupby('frame_id').count().index)
+    metrics.predict_frames_per_minute.observe(NUM_FRAMES)
+
+    confident_df = df[df['detection_scores'] > CONFIDENCE_THRESHOLD]
+    mask = (df['detection_scores'] > CONFIDENCE_THRESHOLD) & (df['detection_classes'].isin(FAILURES))
+    fail_df = df[mask]
+
+    mask = (df['detection_scores'] > CONFIDENCE_THRESHOLD) & (~df['detection_classes'].isin(FAILURES))
+    neutral_df = df[mask]
+
+    # at least 1 neutral detection in the frame
+    num_neutral = len(neutral_df.groupby('frame_id'))
+    # at least 1 failed detection in the frame
+    num_failed = len(fail_df.groupby('frame_id'))
+
+    # compare failed:neutral detection ratio
+    ratio = num_failed / (num_neutral + FAILURE_EPSILON)
+    metrics.detections_failure_ratio.observe(ratio)
+    if ratio > FAILURE_NOTIFY_THRESHOLD:
+        logging.info(f'Calling {notify_callback} in worker thread')
+        if notify_callback:
+            notify_callback(ratio)
+
+
+    ### Log metrics
+
+    for label, num_detections in confident_df.groupby(level='label').size().items():
+        metrics.detections_per_minute.observe(num_detections, label=label)
+    
+    for (frame_id, label), num_detections in confident_df.groupby(['frame_id', 'label']).size().items():
+        metrics.detections_per_frame.observe(num_detections, label=label)
+ 
+    for row in confident_df.items():
+        metrics.detections_confidence_per_label.observe(row['detection_score'], label=row['label'])
+
+    logging.info(f'Finished log_metrics_and_notify for {print_job_id}')
+    
+
+@shared_task
+def debug_jobs_analysis():
+    """schedules ananlysis job for each recently-ish seen print job. Useful for debugging analyze task"""
+
+    now = timezone.now()
+    earlier = now - datetime.timedelta(seconds=EVERY_N_SECONDS*1000)
+    print_jobs = PrintJob.objects.filter(
+        last_seen__range=(earlier,now)
+    )
+
+    workflow_per_print_job = [
+        chain(
+            prediction_dataframe.si(print_job.id,earlier, now),
+            log_metrics.s(
+                print_job, 
+                notify_callback=send_email_failure_notification.s(print_job, user)
+            )
+        )
+        for print_job in print_jobs
+    ]
+    logger.info(f'Scheduling analysis for {print_jobs.count()} active print jobs')
+    job = group(workflow_per_print_job)
+    return job()
+
+@shared_task
 def schedule_active_jobs_analysis():
     """schedules ananlysis job for each active print job"""
 
     now = timezone.now()
     earlier = now - datetime.timedelta(seconds=EVERY_N_SECONDS)
     active_print_jobs = PrintJob.objects.filter(
-        status=PrintJob.StatusChoices.STARTED,
+        last_status=PrintJob.StatusChoices.STARTED,
         last_seen__range=(earlier,now)
     )
 
     logger.info(f'Scheduling analysis for {active_print_jobs.count()} active print jobs')
     job = group([
-        
-    ])
+        prediction_dataframe.si(print_job.id,earlier, now)
+    ] for print_job in active_print_jobs)
+    return job()
 
-@celery_app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
+# @celery_app.on_after_configure.connect
+# def setup_periodic_tasks(sender, **kwargs):
 
-    sender.add_periodic_task(EVERY_N_SECONDS, schedule_active_jobs_analysis.s(), name='active job analysis')
+#     sender.add_periodic_task(EVERY_N_SECONDS, schedule_active_jobs_analysis.s(), name='active job analysis')
