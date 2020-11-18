@@ -28,13 +28,6 @@ class PrinterProfile(models.Model):
 
     extruder_count = models.IntegerField()
     extruder_nozzle_diameter = models.FloatField()
-
-    extruder_offsets = ArrayField(
-        ArrayField(
-            models.FloatField(),
-        ),
-        null=True
-    )
     extruder_shared_nozzle = models.BooleanField()
 
     heated_bed = models.BooleanField()
@@ -164,7 +157,7 @@ class AlertMessage(models.Model):
 
     tags = ArrayField(
         models.CharField(max_length=255),
-        default=["default-alert-message"]
+        default=list(["default-alert-message"])
     )
 
     dataframe = models.JSONField()

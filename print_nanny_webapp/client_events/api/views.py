@@ -20,12 +20,14 @@ from .serializers import (
     PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer)
 
 import print_nanny_webapp.client_events.metrics
-from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile
+from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile, PredictEventFile
 
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrintJobSerializer
     queryset = PrintJob.objects.all()
-
+    lookup_field = "id"
+    basename = "print-job" # users for view name generation e.g. "print-job-detail"
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
@@ -43,6 +45,8 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
+    lookup_field = "id"
+
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
     def perform_create(self, serializer):
@@ -52,7 +56,8 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
 class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventFileSerializer
-    queryset = PredictEvent.objects.all()
+    queryset = PredictEventFile.objects.all()
+    lookup_field = "id"
 
   
 @extend_schema_view(
@@ -69,6 +74,7 @@ class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
     # together in order to fully support HTML form data."
     serializer_class = PredictEventSerializer
     queryset = PredictEvent.objects.all()
+    lookup_field = "id"
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -78,6 +84,7 @@ class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin
     queryset = PrinterProfile.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ('user', 'name')
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
@@ -109,6 +116,7 @@ class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upd
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
     queryset = GcodeFile.objects.all()
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
