@@ -14,7 +14,7 @@ services:
     container_name: django
     depends_on:
       - postgres
-      - mailhog
+      - ngrok
       - prometheus
     volumes:
       - .:/app:z
@@ -54,6 +54,16 @@ services:
       - ./print_nanny_webapp:/app/print_nanny_webapp:z
     ports:
       - "7000:7000"
+
+  ngrok:
+
+    image: wernight/ngrok
+    container_name: ngrok
+    environment:
+      NGROK_PROTOCOL: http
+      NGROK_PORT: django:8000  
+    ports:
+      - "4040:4040"
   redis:
 
     image: redis:5.0
@@ -66,7 +76,7 @@ services:
     depends_on:
       - redis
       - postgres
-      - mailhog
+      - ngrok
     ports: []
     command: /start-celeryworker
 
@@ -79,7 +89,7 @@ services:
     depends_on:
       - redis
       - postgres
-      - mailhog
+      - ngrok
     ports: []
     command: /start-celerybeat
 
