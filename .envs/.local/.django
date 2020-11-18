@@ -9,9 +9,20 @@ REDIS_URL=redis://redis:6379/0
 # Celery
 # ------------------------------------------------------------------------------
 CELERY_BROKER_URL=REDIS_URL 
+C_FORCE_ROOT=1
 
 # Flower
 CELERY_FLOWER_USER=debug
 CELERY_FLOWER_PASSWORD=debug
 
-C_FORCE_ROOT=1
+
+
+# Mailgun dev sandbox
+MAILGUN_API_KEY=b6ec480cddb9c0bc334a1717ded9ac04-2af183ba-0630c101
+MAILGUN_DOMAIN=sandbox78e1489f1fd04a58881d1ec4ea099d6f.mailgun.org
+MAILGUN_API_URL=https://api.mailgun.net/v3
+
+# smtp settings
+#EMAIL_HOST=smtp.mailgun.org
+
+DJANGO_DEFAULT_FROM_EMAIL="Print Nanny <hey@print-nanny.com>"

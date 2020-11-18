@@ -344,3 +344,5 @@ PROMETHEUS_METRICS_EXPORT_PORT = 8001
 PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
 # https://github.com/korfuri/django-prometheus/issues/252
 PROMETHEUS_EXPORT_MIGRATIONS = False
+
+PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'

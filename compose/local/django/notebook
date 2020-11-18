@@ -1,3 +1,5 @@
 #!/bin/bash
 
-DJANGO_ALLOW_ASYNC_UNSAFE=true python manage.py shell_plus --notebook --no-browser -- --notebook-dir=/app --ip=0.0.0.0
+DJANGO_ALLOW_ASYNC_UNSAFE=true python manage.py \
+    shell_plus --notebook --no-browser \
+    -- --notebook-dir=/app --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.disable_check_xsrf=True

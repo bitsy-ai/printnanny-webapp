@@ -63,7 +63,6 @@ class PrintJob(models.Model):
     class Meta:
         unique_together = ('user', 'name', 'dt')
 
-
     class StatusChoices(models.TextChoices):
         STARTED = 'STARTED', 'Started'
         DONE = 'DONE', 'Done'
@@ -116,3 +115,14 @@ class OctoPrintEvent(models.Model):
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)
     print_job = models.ForeignKey(PrintJob, null=True, on_delete=models.SET_NULL, db_index=True)
+
+class EmailNotification(models.Model):
+
+    class StatusChoices(models.TextChoices):
+        SENT = 'SENT', 'Sent'
+        DONE = 'DONE', 'Done'
+        FAILED = 'FAILED', 'Failed'
+        CANCELLING = 'CANCELLING', 'Cancelling'
+        CANCELLED = 'CANCELLED', 'Cancelled'
+        PAUSED = 'PAUSED', 'Paused'
+        RESUMED = 'RESUMED', 'Resumed'

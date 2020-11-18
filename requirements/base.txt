@@ -32,3 +32,4 @@ django-prometheus==2.1.0
 jupyterlab
 pandas
 matplotlib
+imageio==2.9.0
