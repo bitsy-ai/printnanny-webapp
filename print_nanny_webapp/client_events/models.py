@@ -56,7 +56,9 @@ class GcodeFile(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    file = models.FileField()
+
+
+    file = models.FileField(upload_to='uploads/gcode_file/%Y/%m/%d/')
     file_hash = models.CharField(max_length=255)
 
 class PrintJob(models.Model):
@@ -87,9 +89,9 @@ class PrintJob(models.Model):
 
 class PredictEventFile(models.Model):
 
-    annotated_image = models.ImageField()
+    annotated_image = models.ImageField('uploads/predict_event/%Y/%m/%d/')
     hash = models.CharField(max_length=255)
-    original_image = models.ImageField()
+    original_image = models.ImageField('uploads/predict_event/%Y/%m/%d/')
 
 
 class PredictEvent(models.Model):
@@ -126,3 +128,68 @@ class EmailNotification(models.Model):
         CANCELLED = 'CANCELLED', 'Cancelled'
         PAUSED = 'PAUSED', 'Paused'
         RESUMED = 'RESUMED', 'Resumed'
+
+
+class AlertMessage(models.Model):
+    """
+        outgoing message to user
+    """
+    class Backend(models.TextChoices):
+        EMAIL = 'EMAIL', 'Email'
+    
+
+    # subsequent alerts will be paused if message exists in the following state:
+
+    # Row created (PENDING) ->
+    # Email enqueued for send (SENT) ->
+    # Email opened (READ) ->
+
+    class ActionChoices(models.TextChoices):
+        WAITING = 'WAITING', 'Waiting'
+        RESUMED = 'RESUMED', 'Resumed'
+        STOPPED = 'STOPPED', 'Stopped'
+    
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
+    video = models.ImageField(upload_to='uploads/alert/%Y/%m/%d/')
+    provider_id = models.CharField(max_length=255, null=True, db_index=True)
+    last_action = models.CharField(
+        max_length=12,
+        choices=ActionChoices.choices,
+        default=ActionChoices.WAITING
+    )
+
+    tags = ArrayField(
+        models.CharField(max_length=255),
+        default=["default-alert-message"]
+    )
+
+    dataframe = models.JSONField()
+
+
+class AlertEvent(models.Model):
+    """
+        inbound alert events, like open and click on an email
+    """
+
+    class AnymailStatusChoices(models.TextChoices):
+        DELIVERED = 'DELIEVERED', 'Delivered'
+        REJECTED = 'REJECTED', 'Rejected'
+        BOUNCED = 'BOUNCED', 'Bounced',
+        COMPLAINED = 'COMPLAINED','Complained',
+        UNSUBSCRIBED = 'UNSUBSCRIBED', 'Unsubscribed'
+        OPENED = 'OPENED', 'Opened',
+        CLICKED = 'CLICKED', 'Clicked'
+
+    event_type = models.CharField(
+        max_length=12,
+        choices=AnymailStatusChoices.choices,
+    )
+    dt = models.DateTimeField(db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    alert_message = models.ForeignKey(AlertMessage, on_delete=models.CASCADE)
+    provider_id = models.CharField(max_length=255)
+    event_data = models.JSONField()

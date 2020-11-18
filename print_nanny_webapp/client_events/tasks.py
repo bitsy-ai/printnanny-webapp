@@ -4,6 +4,7 @@ from django.utils import timezone
 import logging
 import datetime
 import json
+import io
 from prometheus_client import Info
 from prometheus_client import Counter
 from celery import shared_task
@@ -12,7 +13,7 @@ import pandas as pd
 import socket
 import imageio
 
-import timeit
+from anymail.message import AnymailMessage
 
 from config import celery_app
 from .models import PredictEvent, PrintJob
@@ -95,12 +96,28 @@ def prediction_dataframe(print_job_id, start, stop):
     return df
 
 @shared_task
+def download_annotated_image(url):
+    return imageio.imread(url)
+
+@shared_task
 def send_email_failure_notification(fail_df):
 
     frame_ids = [frame_id for frame_id, _ in fail_df.index]
     predict_events = PredictEvent.objects.filter(
         id__in=frame_ids 
     ).order_by('dt').all()
+
+
+    images = [ 
+        imageio.imread(event.file.annotated_image.file.url)
+    ]
+
+    buff = BytesIO
+    gif = imageio.imsave(ima)
+
+
+
+    # 
 
 
 @shared_task

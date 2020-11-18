@@ -67,7 +67,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa F405
 GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
-GS_DEFAULT_ACL = "publicRead"
+# GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
