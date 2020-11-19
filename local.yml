@@ -20,6 +20,7 @@ services:
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
+
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
