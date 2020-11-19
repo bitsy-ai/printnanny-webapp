@@ -15,12 +15,21 @@ import prometheus_client
 
 
 from .serializers import (
+    AlertMessageSerializer,
     OctoPrintEventSerializer, 
     PredictEventFileSerializer,
-    PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer)
+    PredictEventSerializer, 
+    PrinterProfileSerializer, 
+    PrintJobSerializer, 
+    GcodeFileSerializer
+)
 
 import print_nanny_webapp.client_events.metrics
-from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile, PredictEventFile
+from print_nanny_webapp.client_events.models import (
+    OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile, PredictEventFile,
+    AlertMessage
+    
+)
 
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrintJobSerializer
@@ -45,6 +54,16 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+    def perform_create(self, serializer):
+        instance = serializer.save(user=self.request.user)
+
+class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = AlertMessageSerializer
+    queryset = AlertMessage.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):

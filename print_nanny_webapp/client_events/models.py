@@ -2,11 +2,11 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
+from urllib.parse import urljoin
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
-
-#TFLiteModel = apps.get_model('ml_ops', 'TFLiteModel')
 
 class PrinterProfile(models.Model):
 
@@ -127,6 +127,8 @@ class AlertMessage(models.Model):
     """
         outgoing message to user
     """
+
+    # action_basename = 'feedback'
     class Backend(models.TextChoices):
         EMAIL = 'EMAIL', 'Email'
     
@@ -138,9 +140,9 @@ class AlertMessage(models.Model):
     # Email opened (READ) ->
 
     class ActionChoices(models.TextChoices):
-        WAITING = 'WAITING', 'Waiting'
-        RESUMED = 'RESUMED', 'Resumed'
-        STOPPED = 'STOPPED', 'Stopped'
+        PENDING = 'PENDING', 'Pending User Action'
+        ALERT_RESUMED = 'ALERT_RESUMED', 'Alerts Resumed for Print Job'
+        PRINT_CANCELLED = 'PRINT_CANCELLED', 'Print Job Cancelled'
     
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -151,9 +153,9 @@ class AlertMessage(models.Model):
     video = models.ImageField(upload_to='uploads/alert/%Y/%m/%d/')
     provider_id = models.CharField(max_length=255, null=True, db_index=True)
     last_action = models.CharField(
-        max_length=12,
+        max_length=16,
         choices=ActionChoices.choices,
-        default=ActionChoices.WAITING
+        default=ActionChoices.PENDING
     )
 
     tags = ArrayField(
@@ -162,7 +164,6 @@ class AlertMessage(models.Model):
     )
 
     dataframe = models.JSONField()
-
 
 class AlertEvent(models.Model):
     """

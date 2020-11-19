@@ -13,6 +13,7 @@ import pandas as pd
 import socket
 import imageio
 import uuid
+from django.db.models import Q
 
 from anymail.message import AnymailMessage
 
@@ -116,25 +117,70 @@ def download_annotated_image(url):
     return imageio.imread(url)
 
 @shared_task
-def send_email_failure_notification(fail_df):
+def send_email_notification(df, ratio=FAILURE_NOTIFY_THRESHOLD):
+    frame_ids = [frame_id for frame_id, _ in df.index]
 
-    frame_ids = [frame_id for frame_id, _ in fail_df.index]
     predict_events = PredictEvent.objects.filter(
-        id__in=frame_ids 
+        id__in=frame_ids,
+        print_job=4        
     ).order_by('dt').all()
 
+    print_job = predict_events[0].print_job
 
-    images = [ 
-        imageio.imread(event.file.annotated_image.file.url)
-    ]
+    # assert no previous alert messages, or all alert messages are in the "RESUMED" state 
+    last_alert_message = AlertMessage.objects.filter(
+        print_job=print_job.id,
+    ).order_by('-created_dt').first()
+    if last_alert_message is not None:
+        logging.warning('Alert for print job {print_job} already sent at {alert_message.created_dt}, skipping')
+        return
 
-    buff = BytesIO
-    gif = imageio.imsave(buff, )
+    # images = [ 
+    #     imageio.imread(event.files.annotated_image.file.location)
+    #     for event in predict_events
+    # ]
 
+    images = []
 
+    for i, event in enumerate(predict_events):
+        images.append(imageio.imread(event.files.annotated_image.file))
+        print(f'finished {i}/{len(predict_events)}')
+    buff = io.BytesIO()
+    imageio.mimwrite(buff, images, fps=20, format='GIF-PIL')
+    buff.seek(0)
+    
+    filename= f'print_job_{print_job.id}_alert_message_{predict_events[0].dt}_{predict_events[len(predict_events)-1].dt}'
+    img_file = ImageFile(buff, name=filename)
+    alert_message = AlertMessage.objects.create(
+        user=print_job.user,
+        print_job=print_job,
+        video=img_file,
+        dataframe=df.to_json(orient='records')
+    )
+    
+    
+    merge_data = {
+        'RATIO': '{:.2%}'.format(ratio),
+        'GCODE_FILE': print_job.gcode_file.name,
+        'VIDEO_URL': alert_message.video.url,
+        'STOP_URL': f'http://localhost/feedback/{alert_message.id}?action=stop_print',
+        'SILENCE_URL': f'http://localhost/feedback/{alert_message.id}?action=silence',
+        'RESUME_URL': f'http://localhost/feedback/{alert_message.id}?action=resume',
+        'FIRST_NAME': print_job.user.first_name or 'Maker',
+    }
 
-    # 
+    subject = render_to_string("email/print_alert_message_subject.txt", merge_data).strip()
+    text_body = render_to_string("email/print_alert_message_body.txt", merge_data)
+    html_body = render_to_string("email/print_alert_message_body.html", merge_data)
 
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[predict_events[0].user.email],
+        tags=["default-print-alert"],  # Anymail extra in constructor
+    )
+    message.attach_alternative(html_body, 'text/html')
+    return message.send()
 
 @shared_task
 def log_metrics(df, print_job, notify_callback=None):
