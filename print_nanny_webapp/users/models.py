@@ -16,8 +16,8 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
     last_login = models.DateTimeField(default=timezone.now)
-    first_name = models.CharField(blank=True, null=True, max_length=30),
-    last_name = models.CharField(blank=True, null=True, max_length=30),
+    first_name = models.CharField(blank=True, null=True, max_length=30)
+    last_name = models.CharField(blank=True, null=True, max_length=30)
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'

@@ -17,7 +17,7 @@ router.register("users", UserViewSet)
 router.register(f"predict_events", PredictEventViewSet, basename='predict-event')
 router.register(f"predict_event_files", PredictEventFileViewSet, basename='predict-event-file')
 
-router.register(f"octoprint_events", OctoPrintEventViewSet, basename='octoprint-events')
+router.register(f"octoprint_events", OctoPrintEventViewSet, basename='octoprint-event')
 
 router.register(f"printer_profiles", PrinterProfileViewSet, basename='printer-profile')
 router.register(f"print_jobs", PrintJobViewSet, basename='print-job')

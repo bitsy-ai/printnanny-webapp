@@ -1,16 +1,16 @@
-Hey {% FIRST_NAME %},
+Hey {{FIRST_NAME }},
 
-Is your print ok? By my recokoning, {% RATIO %} of the frames in this video contain a defect. 😬
+Is your print ok? By my recokoning, {{RATIO }} of the frames in this video contain a defect. 😬
 
-{% VIDEO_URL %}
-Filename: {% GCODE_FILE %}
+{{VIDEO_URL }}
+Filename: {{GCODE_FILE }}
 
 What should I do next?
 
 Stop the print job:
-{% STOP_URL %}
+{{STOP_URL }}
 
 Continue watching and sending updates:
-{% RESUME_URL %}
+{{RESUME_URL }}
 
 Your feedback helps Print Nanny learn new tricks and support more printers. Thank you!

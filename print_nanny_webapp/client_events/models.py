@@ -82,9 +82,9 @@ class PrintJob(models.Model):
 
 class PredictEventFile(models.Model):
 
-    annotated_image = models.ImageField('uploads/predict_event/%Y/%m/%d/')
+    annotated_image = models.ImageField(upload_to='uploads/predict_event/%Y/%m/%d/')
     hash = models.CharField(max_length=255)
-    original_image = models.ImageField('uploads/predict_event/%Y/%m/%d/')
+    original_image = models.ImageField(upload_to='uploads/predict_event/%Y/%m/%d/')
 
 
 class PredictEvent(models.Model):
@@ -146,6 +146,7 @@ class AlertMessage(models.Model):
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
     video = models.ImageField(upload_to='uploads/alert/%Y/%m/%d/')
     provider_id = models.CharField(max_length=255, null=True, db_index=True)

@@ -42,7 +42,7 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
 
 
            
-class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
     lookup_field = "id"
@@ -53,7 +53,7 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
         instance = serializer.save(user=self.request.user)
 
 
-class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventFileSerializer
     queryset = PredictEventFile.objects.all()
@@ -67,7 +67,7 @@ class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
         202: PredictEventSerializer
         })
 )
-class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     # MultiPartParser AND FormParser
     # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
     # "You will typically want to use both FormParser and MultiPartParser
