@@ -26,3 +26,4 @@ MAILGUN_API_URL=https://api.mailgun.net/v3
 #EMAIL_HOST=smtp.mailgun.org
 
 DJANGO_DEFAULT_FROM_EMAIL="Print Nanny <hey@print-nanny.com>"
+DJANGO_GCP_STORAGE_BUCKET_NAME="print-nanny-test"
