@@ -12,6 +12,7 @@ from celery import group, chain
 import pandas as pd
 import socket
 import imageio
+import uuid
 
 from anymail.message import AnymailMessage
 
@@ -56,15 +57,30 @@ def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
 
 @shared_task
-def prediction_dataframe(print_job_id, start, stop):
+def predict_events_dataframe(print_job_id, start=None, stop=None):
     '''
         notify-exploration.ipynb
     '''
 
-    predict_events = PredictEvent.objects.filter(
-        print_job=print_job_id,
-        dt__range=(start, stop)
-    ).order_by('-dt').values('id','predict_data').all()
+    if start and stop:
+        predict_events = PredictEvent.objects.filter(
+            print_job=print_job_id,
+            dt__range=(start, stop)
+        ).order_by('-dt').values('id','predict_data').all()
+    elif start:
+        predict_events = PredictEvent.objects.filter(
+            print_job=print_job_id,
+            dt__gte=start
+        ).order_by('-dt').values('id','predict_data').all()
+    elif stop:
+        predict_events = PredictEvent.objects.filter(
+            print_job=print_job_id,
+            dt__gte=start
+        ).order_by('-dt').values('id','predict_data').all()
+    else:
+        predict_events = PredictEvent.objects.filter(
+            print_job=print_job_id,
+        ).order_by('-dt').values('id','predict_data').all()   
 
     if predict_events.count() == 0:
         logger.error(f'0 predict_events for print_job {print_job_id}')
@@ -113,7 +129,7 @@ def send_email_failure_notification(fail_df):
     ]
 
     buff = BytesIO
-    gif = imageio.imsave(ima)
+    gif = imageio.imsave(buff, )
 
 
 
@@ -177,7 +193,7 @@ def debug_jobs_analysis():
 
     workflow_per_print_job = [
         chain(
-            prediction_dataframe.si(print_job.id,earlier, now),
+            predict_events_dataframe.si(print_job.id,start=earlier, stop=now),
             log_metrics.s(
                 print_job, 
                 notify_callback=send_email_failure_notification.s()
