@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Alerts | Print Nanny{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+        {% for o in object %}
+            {{ o }}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% block content %}
+

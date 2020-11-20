@@ -141,8 +141,8 @@ class AlertMessage(models.Model):
 
     class ActionChoices(models.TextChoices):
         PENDING = 'PENDING', 'Pending User Action'
-        ALERT_RESUMED = 'ALERT_RESUMED', 'Alerts Resumed for Print Job'
-        PRINT_CANCELLED = 'PRINT_CANCELLED', 'Print Job Cancelled'
+        RESUME_ALERTS = 'RESUME_ALERTS', 'Resume for Print Job'
+        CANCEL_PRINT = 'CANCEL_PRINT', 'Cancel Print Job Cancel'
     
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
