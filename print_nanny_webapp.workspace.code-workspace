@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../Hyper_v3.4.0"
 		}
 	],
 	"settings": {
