@@ -23,12 +23,11 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    #path("dashboard/", view=home_dashboard_view, name="dashboard"),
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    
     # Your stuff: custom urls includes go here
     # hyper templates
-
     path("form/",
          include("print_nanny_webapp.form.urls", namespace="form"), ),
     path("pages/",

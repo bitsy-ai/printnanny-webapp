@@ -1,5 +1,7 @@
+from django.apps import apps
 import prometheus_client
-from .models import PrintJob
+
+PrintJob = apps.get_model('remote_control', 'PrintJob')
 
 
 print_job_status = prometheus_client.Enum(

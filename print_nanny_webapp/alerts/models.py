@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.apps import apps
 
 User = get_user_model()
 
-PrintJob = models.get_model('print_nanny_webapp.remote_control', PrintJob)
+PrintJob = apps.get_model('remote_control', PrintJob)
 
 class AlertMessage(models.Model):
     """

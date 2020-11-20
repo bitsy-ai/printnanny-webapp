@@ -5,6 +5,6 @@ class ClientEventsConfig(AppConfig):
     name = 'print_nanny_webapp.client_events'
     def ready(self):
         try:
-            import print_nanny_webapp.users.signals  # noqa F401
+            import print_nanny_webapp.client_events.signals  # noqa F401
         except ImportError:
             pass
