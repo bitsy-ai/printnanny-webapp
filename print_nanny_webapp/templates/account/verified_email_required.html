@@ -1,24 +1,47 @@
 {% extends "account/base.html" %}
 
-{% load i18n %}
+{% load static i18n %}
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock head_title %}
 
-{% block inner %}
-<h1>{% trans "Verify Your E-mail Address" %}</h1>
+{% block content %}
+  <div class="account-pages mt-5 mb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card">
+            <!-- Logo-->
+            <div class="card-header pt-4 pb-4 text-center bg-primary">
+              <a href="/">
+                <span><img src="{% static 'images/logo.png' %}" alt="" height="18"></span>
+              </a>
+            </div>
 
-{% url 'account_email' as email_url %}
+            <div class="card-body p-4">
 
-<p>{% blocktrans %}This part of the site requires us to verify that
-you are who you claim to be. For this purpose, we require that you
-verify ownership of your e-mail address. {% endblocktrans %}</p>
+              <div class="text-center m-auto">
+                <h4 class="text-dark-50 text-center mt-4 font-weight-bold">
+                  {% trans "Verify Your E-mail Address" %}
+                </h4>
 
-<p>{% blocktrans %}We have sent an e-mail to you for
-verification. Please click on the link inside this e-mail. Please
-contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+                {% url 'account_email' as email_url %}
+                <p class="text-muted mb-4">
+                <p>{% blocktrans %}This part of the site requires us to verify that
+                  you are who you claim to be. For this purpose, we require that you
+                  verify ownership of your e-mail address. {% endblocktrans %}</p>
 
-<p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
+                <p>{% blocktrans %}We have sent an e-mail to you for
+                  verification. Please click on the link inside this e-mail. Please
+                  contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
 
-
+                <p>{% blocktrans %}<strong>Note:</strong> you can still
+                  <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
+              </div>
+            </div> <!-- end card-body-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 

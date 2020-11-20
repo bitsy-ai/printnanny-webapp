@@ -13,23 +13,35 @@ import django_prometheus
 from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 #from config.api_schema import CustomOpenAPISchemaGenerator
-from print_nanny_webapp.users.views import (
-    user_token_view
-)
 
 # Webapp urls
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("me/", view=user_token_view, name="me"),
+    #path("dashboard/", view=home_dashboard_view, name="dashboard"),
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    # hyper templates
+
+    path("form/",
+         include("print_nanny_webapp.form.urls", namespace="form"), ),
+    path("pages/",
+         include("print_nanny_webapp.pages.urls", namespace="pages"), ),
+    path("apps/",
+         include("print_nanny_webapp.apps.urls", namespace="apps"), ),
+    path("components/",
+         include("print_nanny_webapp.components.urls", namespace="components"), ),
+    path("layouts/",
+         include("print_nanny_webapp.layouts.urls", namespace="layouts"), ),
+    path("",
+         include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
@@ -53,6 +65,9 @@ urlpatterns += [
 
 
 ]
+
+
+
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

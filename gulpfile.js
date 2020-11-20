@@ -222,18 +222,18 @@ function imgCompression() {
 
 
 // Run django server
-function runServer(cb) {
-    var cmd = spawn('python', ['manage.py', 'runserver'], { stdio: 'inherit' });
-    cmd.on('close', function (code) {
-        console.log('runServer exited with code ' + code);
-        cb(code);
-    });
-}
+// function runServer(cb) {
+//     var cmd = spawn('python', ['manage.py', 'runserver'], { stdio: 'inherit' });
+//     cmd.on('close', function (code) {
+//         console.log('runServer exited with code ' + code);
+//         cb(code);
+//     });
+// }
 
 // live browser loading
 function initBrowserSync(done) {
     browsersync.init({
-        proxy: "127.0.0.1:8000"
+        proxy: "localhost:8000"
     });
     done();
 }
@@ -254,7 +254,7 @@ function watchFiles() {
 
 
 // tasks
-gulp.task("dev", gulp.parallel(runServer, initBrowserSync, watchFiles));
+gulp.task("dev", gulp.parallel(initBrowserSync, watchFiles));
 
 // default
 gulp.task('default', gulp.series(gulp.parallel(

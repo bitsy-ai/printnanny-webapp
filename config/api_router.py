@@ -4,7 +4,6 @@ from django.conf.urls import url
 
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
-    AlertMessageViewSet,
     OctoPrintEventViewSet, 
     OctoPrintEventViewSet, 
     PredictEventFileViewSet,
@@ -14,9 +13,16 @@ from print_nanny_webapp.client_events.api.views import (
     PrintJobViewSet,
 )
 
+from print_nanny_webapp.alerts.api.views import (
+    AlertMessageViewSet,
+    AlertEventViewSet
+)
+
 
 router = DefaultRouter()
-router.register('alert_message', AlertMessageViewSet, basename='alert-message')
+router.register('alert_messages', AlertMessageViewSet, basename='alert-message', namespace='alerts')
+router.register('alert_events', AlertEventViewSet, basename='alert-event', namespace='alerts')
+
 router.register("users", UserViewSet)
 router.register(f"predict_events", PredictEventViewSet, basename='predict-event')
 router.register(f"predict_event_files", PredictEventFileViewSet, basename='predict-event-file')

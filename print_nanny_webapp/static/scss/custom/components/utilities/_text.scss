@@ -1,0 +1,13 @@
+//
+// text.scss
+// 
+
+// Weight
+
+.font-weight-semibold  { font-weight: $font-weight-semibold !important; }
+
+.link-disabled {
+    color: currentColor;
+    cursor: not-allowed;
+    text-decoration: none;
+}
