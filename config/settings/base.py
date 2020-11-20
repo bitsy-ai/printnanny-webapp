@@ -40,9 +40,15 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-DATABASES = {"default": env.db("DATABASE_URL")}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+db_config = env.db("DATABASE_URL")
+db_config["ENGINE"] = 'django_prometheus.db.backends.postgresql'
+DATABASES = {
+    "default": db_config,
+
+}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES["default"]["ENGINE"]
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -126,6 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -136,6 +143,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
+
 ]
 
 # STATIC
@@ -191,6 +200,21 @@ TEMPLATES = [
     }
 ]
 
+# STORAGES
+# ------------------------------------------------------------------------------
+# https://django-storages.readthedocs.io/en/latest/#installation
+INSTALLED_APPS += ["storages"]  # noqa F405
+GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+# GS_DEFAULT_ACL = "publicRead"
+# STATIC
+# ------------------------
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# MEDIA
+# ------------------------------------------------------------------------------
+DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
@@ -221,6 +245,32 @@ EMAIL_BACKEND = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
+
+DEFAULT_FROM_EMAIL = env(
+    "DJANGO_DEFAULT_FROM_EMAIL", default="Print Nanny <hey@print-nanny.com>"
+)
+# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+EMAIL_SUBJECT_PREFIX = env(
+    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[Print Nanny]"
+)
+
+# Anymail
+# ------------------------------------------------------------------------------
+# https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
+INSTALLED_APPS += ["anymail"]  # noqa F405
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+# https://anymail.readthedocs.io/en/stable/esps/mailgun/
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+ANYMAIL = {
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+    #"WEBHOOK_SECRET": env("MAILGUN_WEBHOOK_SECRET")
+}
+
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -265,11 +315,11 @@ CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-accept_content
-CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_ACCEPT_CONTENT = ["json", "pickle"]
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-task_serializer
-CELERY_TASK_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "pickle"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_serializer
-CELERY_RESULT_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "pickle"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-time-limit
 # TODO: set to whatever value is adequate in your circumstances
 CELERY_TASK_TIME_LIMIT = 5 * 60
@@ -325,6 +375,15 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True
 }
 
-
 # django-filters
 INSTALLED_APPS += ['django_filters']
+
+# django-prometheus
+INSTALLED_APPS += ['django_prometheus']
+
+PROMETHEUS_METRICS_EXPORT_PORT = 8001
+PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
+# https://github.com/korfuri/django-prometheus/issues/252
+PROMETHEUS_EXPORT_MIGRATIONS = False
+
+PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'

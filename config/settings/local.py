@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="dsgQKRAGB8mqGmMfYYq6wkqJtvulQz0PnqkRXfuIXZL7THCK5zGlp1xC5gyxksvj",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "9c99269ffb46.ngrok.io"]
 # CACHES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -21,13 +21,6 @@ CACHES = {
         "LOCATION": "",
     }
 }
-
-# EMAIL
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = env("EMAIL_HOST", default="mailhog")
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-port
-EMAIL_PORT = 1025
 
 # WhiteNoise
 # ------------------------------------------------------------------------------

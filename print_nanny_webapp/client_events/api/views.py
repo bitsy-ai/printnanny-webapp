@@ -8,39 +8,65 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.views import APIView
 from rest_framework.parsers  import MultiPartParser, FormParser, JSONParser, FileUploadParser
 import django_filters.rest_framework
-from drf_spectacular.utils import extend_schema, extend_schema_view
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
+
+import prometheus_client
+
+
 
 from .serializers import (
+    AlertMessageSerializer,
     OctoPrintEventSerializer, 
     PredictEventFileSerializer,
-    PredictEventSerializer, PrinterProfileSerializer, PrintJobSerializer, GcodeFileSerializer)
+    PredictEventSerializer, 
+    PrinterProfileSerializer, 
+    PrintJobSerializer, 
+    GcodeFileSerializer
+)
 
-
-from ..models import OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile
+import print_nanny_webapp.client_events.metrics
+from print_nanny_webapp.client_events.models import (
+    OctoPrintEvent, PredictEvent, PrinterProfile, PrintJob, GcodeFile, PredictEventFile,
+    AlertMessage
+    
+)
 
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrintJobSerializer
     queryset = PrintJob.objects.all()
+    lookup_field = "id"
+    basename = "print-job" # users for view name generation e.g. "print-job-detail"
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        instance = serializer.save(user=self.request.user)
+        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status.value)
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status)
+
+
            
-class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
+    lookup_field = "id"
+
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        instance = serializer.save(user=self.request.user)
 
 
-class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventFileSerializer
-    queryset = PredictEvent.objects.all()
+    queryset = PredictEventFile.objects.all()
+    lookup_field = "id"
 
   
 @extend_schema_view(
@@ -50,22 +76,62 @@ class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
         202: PredictEventSerializer
         })
 )
-class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin):
+class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     # MultiPartParser AND FormParser
     # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
     # "You will typically want to use both FormParser and MultiPartParser
     # together in order to fully support HTML form data."
     serializer_class = PredictEventSerializer
     queryset = PredictEvent.objects.all()
+    lookup_field = "id"
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = AlertMessageSerializer
+    queryset = AlertMessage.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+    def perform_create(self, serializer):
+        instance = serializer.save(user=self.request.user)
+
+    @extend_schema(
+        operation_id='alert_message_cancel_print',
+        responses={
+            400: AlertMessageSerializer,
+            200: AlertMessageSerializer,
+        },
+        parameters=[OpenApiParameter(
+            'action',
+            enum=AlertMessage.ActionChoices,
+            required=True
+        )]
+    )
+    @action(methods=['GET'], detail=True)
+    def feedback(self, request, *args, **kwargs):
+        action = self.request.query_params.get('action', None)
+        if action is None:
+            return Response(f'Please specify action={list(AlertMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
+        action = action.upper()
+        if action not in AlertMessage.ActionChoices:
+            return Response(f'Please specify action={list(AlertMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
+
+        data = { 'last_action': AlertMessage.ActionChoices[action] }
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+        
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrinterProfileSerializer
     queryset = PrinterProfile.objects.all()
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_fields = ('user', 'name')
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
@@ -97,6 +163,7 @@ class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upd
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
     queryset = GcodeFile.objects.all()
+    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
