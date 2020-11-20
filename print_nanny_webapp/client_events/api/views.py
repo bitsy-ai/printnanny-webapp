@@ -14,13 +14,11 @@ from .serializers import (
     PredictEventFileSerializer,
     PredictEventSerializer, 
 )
-
-import print_nanny_webapp.client_events.metrics
 from print_nanny_webapp.client_events.models import (
     OctoPrintEvent, PredictEvent, PredictEventFile
 )
 
-  
+@extend_schema(tags=['events'])
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
@@ -31,14 +29,14 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, Re
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
 
-
+@extend_schema(tags=['events'])
 class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventFileSerializer
     queryset = PredictEventFile.objects.all()
     lookup_field = "id"
 
-  
+@extend_schema(tags=['events'])
 @extend_schema_view(
     list=extend_schema(
         responses={

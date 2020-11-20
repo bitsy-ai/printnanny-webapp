@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from ..models import (
+from print_nanny_webapp.client_events.models import (
     OctoPrintEvent, 
     PredictEvent, 
     PredictEventFile

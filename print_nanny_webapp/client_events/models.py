@@ -6,9 +6,9 @@ from django.utils import timezone
 from urllib.parse import urljoin
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.sites.shortcuts import get_current_site
+from print_nanny_webapp.remote_control.models import PrintJob
 
 User = get_user_model()
-PrintJob = apps.get_model('remote_control', 'PrintJob')
 
 
 class PredictEventFile(models.Model):

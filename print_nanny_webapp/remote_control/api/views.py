@@ -12,12 +12,13 @@ from .serializers import (
     GcodeFileSerializer
 )
 
-from ..models import (
+from print_nanny_webapp.remote_control.models import (
     PrinterProfile, PrintJob, GcodeFile
 )
 
 import print_nanny_webapp.utils.prometheus_metrics
 
+@extend_schema(tags=['remote-control'])
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrintJobSerializer
     queryset = PrintJob.objects.all()
@@ -36,6 +37,7 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
         instance = serializer.save()
         print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status)
 
+@extend_schema(tags=['remote-control'])
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = PrinterProfileSerializer
     queryset = PrinterProfile.objects.all()
@@ -68,7 +70,8 @@ class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-      
+
+@extend_schema(tags=['remote-control'])   
 class GcodeFileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer

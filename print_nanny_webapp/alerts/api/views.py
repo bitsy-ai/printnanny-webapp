@@ -8,6 +8,7 @@ from ..models import (
     AlertMessage, AlertEvent
 )
 
+@extend_schema(tags=['alerts'])   
 class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = AlertMessageSerializer
     queryset = AlertMessage.objects.all()
@@ -46,6 +47,7 @@ class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         serializer.save()
         return Response(serializer.data)
 
+@extend_schema(tags=['alerts'])
 class AlertEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = AlertEventeSerializer
     queryset = AlertMessage.objects.all()

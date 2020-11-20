@@ -1,10 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
+from django.contrib.postgres.fields import ArrayField
+
+from print_nanny_webapp.remote_control.models import PrintJob
 
 User = get_user_model()
 
-PrintJob = apps.get_model('remote_control', PrintJob)
 
 class AlertMessage(models.Model):
     """
