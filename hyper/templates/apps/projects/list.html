@@ -1,0 +1,123 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block head_title %}{% trans "Projects" %}{% endblock head_title %}
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+    
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
+                            <li class="breadcrumb-item active">Projects</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Projects</h4>
+                </div>
+            </div>
+        </div>     
+        <!-- end page title --> 
+
+        <div class="row mb-2">
+            <div class="col-sm-4">
+                <a href="apps-projects-add.html" class="btn btn-danger btn-rounded mb-3"><i class="mdi mdi-plus"></i> Create Project</a>
+            </div>
+            <div class="col-sm-8">
+                <div class="text-sm-right">
+                    <div class="btn-group mb-3">
+                        <button type="button" class="btn btn-primary">All</button>
+                    </div>
+                    <div class="btn-group mb-3 ml-1">
+                        <button type="button" class="btn btn-light">Ongoing</button>
+                        <button type="button" class="btn btn-light">Finished</button>
+                    </div>
+                    <div class="btn-group mb-3 ml-2 d-none d-sm-inline-block">
+                        <button type="button" class="btn btn-secondary"><i class="dripicons-view-apps"></i></button>
+                    </div>
+                    <div class="btn-group mb-3 d-none d-sm-inline-block">
+                        <button type="button" class="btn btn-link text-muted"><i class="dripicons-checklist"></i></button>
+                    </div>
+                </div>
+            </div><!-- end col-->
+        </div> 
+        <!-- end row-->
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with title='App design and development' status='Finished' description='With supporting text below as a natural lead-in to additional contenposuere erat a ante...' noTasks=21 noComments=741 friendsAvatar1='/static/images/users/avatar-6.jpg' friendsAvatar2='/static/images/users/avatar-7.jpg' friendsAvatar3='/static/images/users/avatar-8.jpg' moreFriends=7 progress=100 %}
+                    {% include 'apps/projects/item.html' %}
+                {% endwith %}
+                
+            </div> <!-- end col -->
+
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with title='Coffee detail page - Main Page' status='Ongoing' description='Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid...' noTasks=81 noComments=103 friendsAvatar1='/static/images/users/avatar-1.jpg' friendsAvatar2='/static/images/users/avatar-2.jpg' friendsAvatar3='/static/images/users/avatar-3.jpg' moreFriends=3 progress=28 %}
+                    {% include 'apps/projects/item.html' %}
+                {% endwith %}
+                
+            </div> <!-- end col -->
+
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with title='Poster illustation design' status='Ongoing' description='Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid...' noTasks=12 noComments=482 friendsAvatar1='/static/images/users/avatar-4.jpg' friendsAvatar2='/static/images/users/avatar-5.jpg' progress=63 %}
+                    {% include 'apps/projects/item.html' %}
+                {% endwith %}
+            </div> <!-- end col -->
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with title='Drinking bottle graphics' status='Finished' description='Some quick example text to build on the card title and make up the bulk of the card s content...' noTasks=50 noComments=280 friendsAvatar1='/static/images/users/avatar-10.jpg' friendsAvatar2='/static/images/users/avatar-5.jpg' friendsAvatar3='/static/images/users/avatar-6.jpg' moreFriends=2 progress=100 %}
+                    {% include 'apps/projects/item.html' %}
+                {% endwith %}
+
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with projectImg='/static/images/projects/project-1.jpg' title='Company logo design' status='Ongoing' noTasks=11 noComments=254 friendsAvatar1='/static/images/users/avatar-3.jpg' friendsAvatar2='/static/images/users/avatar-5.jpg' friendsAvatar3='/static/images/users/avatar-9.jpg' moreFriends=0 progress=45 %}
+                    {% include 'apps/projects/item-img.html' %}
+                {% endwith %}
+
+            </div> <!-- end col -->
+
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+
+                {% with projectImg='/static/images/projects/project-2.jpg' title='Landing page design - Home' status='Finished' noTasks=3 noComments=104 friendsAvatar1='/static/images/users/avatar-10.jpg' friendsAvatar2='/static/images/users/avatar-5.jpg' friendsAvatar3='/static/images/users/avatar-7.jpg' moreFriends=2 progress=100  %}
+                    {% include 'apps/projects/item-img.html' %}
+                {% endwith %}
+                
+            </div> <!-- end col -->
+
+            <div class="col-md-6 col-xl-3">
+
+                <!-- project card -->
+                {% with projectImg='/static/images/projects/project-3.jpg' title='Product page redesign' status='Ongoing' noTasks=21 noComments=668 friendsAvatar1='/static/images/users/avatar-6.jpg' friendsAvatar2='/static/images/users/avatar-7.jpg' friendsAvatar3='/static/images/users/avatar-8.jpg' moreFriends=5 progress=71  %}
+                    {% include 'apps/projects/item-img.html' %}
+                {% endwith %}
+    
+            </div> <!-- end col -->
+
+            <div class="col-md-6 col-xl-3">
+                <!-- project card -->
+                {% with projectImg='/static/images/projects/project-4.jpg' title='Coffee detail page - Main Page' status='Ongoing' noTasks=18 noComments=259 friendsAvatar1='/static/images/users/avatar-2.jpg' friendsAvatar2='/static/images/users/avatar-3.jpg' moreFriends=0 progress=52  %}
+                    {% include 'apps/projects/item-img.html' %}
+                {% endwith %}
+            
+            </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+        
+    </div> <!-- container -->
+{% endblock %}

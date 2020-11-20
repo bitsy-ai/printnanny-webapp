@@ -1,0 +1,574 @@
+{% load static i18n %}
+
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu">
+
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-light">
+        <span class="logo-lg">
+            <img src="{% static 'images/logo.png' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm.png' %}" alt="" height="16">
+        </span>
+    </a>
+
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-dark">
+        <span class="logo-lg">
+            <img src="{% static 'images/logo-dark.png' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm_dark.png' %}" alt="" height="16">
+        </span>
+    </a>
+    
+    <div class="h-100" id="left-side-menu-container" data-simplebar>
+
+        <!--- Sidemenu -->
+        <ul class="metismenu side-nav">
+
+            <li class="side-nav-title side-nav-item">{% trans "Navigation" %}</li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span class="badge badge-success float-right">4</span>
+                    <span> {% trans "Dashboards" %} </span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'analytics' %}active{% endif %}">
+                        <a href="{% url 'dashboard:analytics' %}">{% trans "Analytics" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'crm' %}active{% endif %}">
+                        <a href="{% url 'dashboard:crm' %}">{% trans "CRM" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
+                        <a href="{% url 'dashboard:ecommerce' %}">{% trans "Ecommerce" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'analytics' %}active{% endif %}">
+                        <a href="{% url 'dashboard:projects' %}">{% trans "Projects" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-title side-nav-item">{% trans "Apps" %}</li>
+
+            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps.calendar' %}active{% endif %}">
+                <a href="{% url 'apps:calendar' %}" class="side-nav-link">
+                    <i class="uil-calender"></i>
+                    <span> {% trans "Calendar" %} </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps.chat' %}active{% endif %}">
+                <a href="{% url 'apps:chat' %}" class="side-nav-link">
+                    <i class="uil-comments-alt"></i>
+                    <span> {% trans "Chat" %} </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> {% trans "Ecommerce" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.products' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.products' %}">{% trans "Products" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.products-details' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.products-details' %}">{% trans "Products Details" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.orders' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.orders' %}">{% trans "Orders" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.orders-details' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.orders-details' %}">{% trans "Order Details" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.customers' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.customers' %}">{% trans "Customers" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.products' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.shopping-cart' %}">{% trans "Shopping Cart" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.checkout' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.checkout' %}">{% trans "Checkout" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.ecommerce.sellers' %}active{% endif %}">
+                        <a href="{% url 'apps:ecommerce.sellers' %}">{% trans "Sellers" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-envelope"></i>
+                    <span> {% trans "Email" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'apps.email.indox' %}active{% endif %}">
+                        <a href="{% url 'apps:email.indox' %}">{% trans "Inbox" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.email.read' %}active{% endif %}">
+                        <a href="{% url 'apps:email.read' %}">{% trans "Read Email" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-briefcase"></i>
+                    <span> {% trans "Projects" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'apps.projects.list' %}active{% endif %}">
+                        <a href="{% url 'apps:projects.list' %}">{% trans "List" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.projects.details' %}active{% endif %}">
+                        <a href="{% url 'apps:projects.details' %}">{% trans "Details" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.projects.gantt' %}active{% endif %}">
+                        <a href="{% url 'apps:projects.gantt' %}">{% trans "Gantt" %} <span class="badge badge-pill badge-light-lighten font-10 float-right">{% trans "New" %}</span></a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.projects.add' %}active{% endif %}">
+                        <a href="{% url 'apps:projects.add' %}">{% trans "Create Project" %} <span class="badge badge-pill badge-success-lighten font-10 float-right">{% trans "New" %}</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'apps:social.feed' %}" class="side-nav-link">
+                    <i class="uil-rss"></i>
+                    <span> {% trans "Social Feed" %} </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-clipboard-alt"></i>
+                    <span> {% trans "Tasks" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'apps.tasks.list' %}active{% endif %}">
+                        <a href="{% url 'apps:tasks.list' %}">{% trans "List" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.tasks.details' %}active{% endif %}">
+                        <a href="{% url 'apps:tasks.details' %}">{% trans "Details" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'apps.tasks.kanban' %}active{% endif %}">
+                        <a href="{% url 'apps:tasks.kanban' %}">{% trans "Kanban Board" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-title side-nav-item">{% trans "Custom" %}</li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-copy-alt"></i>
+                    <span> {% trans "Pages" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'pages:profile' %}active{% endif %}">
+                        <a href="{% url 'pages:profile' %}">{% trans "Profile" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'pages:profile-2' %}active{% endif %}">
+                        <a href="{% url 'pages:profile-2' %}">{% trans "Profile 2" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'pages:invoice' %}active{% endif %}">
+                        <a href="{% url 'pages:invoice' %}">{% trans "Invoice" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'pages:faq' %}active{% endif %}">
+                        <a href="{% url 'pages:faq' %}">{% trans "FAQ" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'pages:pricing' %}active{% endif %}">
+                        <a href="{% url 'pages:pricing' %}">{% trans "Pricing" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'pages:maintenance' %}active{% endif %}">
+                        <a href="{% url 'pages:maintenance' %}">{% trans "Maintenance" %}</a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" aria-expanded="false">{% trans "Error" %}
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="side-nav-third-level" aria-expanded="false">
+                            <li class="{% if request.resolver_match.url_name == 'pages:404' %}active{% endif %}">
+                                <a href="{% url 'pages:404' %}">{% trans "Error 404" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'pages:404-alt' %}active{% endif %}">
+                                <a href="{% url 'pages:404-alt' %}">{% trans "Error 404-alt" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'pages:500' %}active{% endif %}">
+                                <a href="{% url 'pages:500' %}">{% trans "Error 500" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'custom.pages.starter' %}active{% endif %}">
+                        <a href="{% url 'pages:starter' %}">{% trans "Starter Page" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'custom.pages.timeline' %}active{% endif %}">
+                        <a href="{% url 'pages:timeline' %}">{% trans "Timeline" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'pages:landing' %}" target="_blank" class="side-nav-link">
+                    <i class="uil-globe"></i>
+                    <span class="badge badge-light float-right">{% trans "New" %}</span>
+                    <span> {% trans "Landing" %} </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-window"></i>
+                    <span> {% trans "Layouts" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'layouts.horizontal' %}active{% endif %}">
+                        <a href="{% url 'layouts:layouts.horizontal' %}">{% trans "Horizontal" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
+                        <a href="{% url 'dashboard:ecommerce' %}">{% trans "Vertical" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'layouts.detached' %}active{% endif %}">
+                        <a href="{% url 'layouts:layouts.detached' %}">{% trans "Detached" %}</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="side-nav-title side-nav-item mt-1">{% trans "Components" %}</li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-box"></i>
+                    <span> {% trans "Base UI" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.accordions' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.accordions' %}">{% trans "Accordions" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.alerts' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.alerts' %}">{% trans "Alerts" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.avatars' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.avatars' %}">{% trans "Avatars" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.badges' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.badges' %}">{% trans "Badges" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.breadcrumb' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.breadcrumb' %}">{% trans "Breadcrumb" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.buttons' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.buttons' %}">{% trans "Buttons" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.cards' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.cards' %}">{% trans "Cards" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.carousel' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.carousel' %}">{% trans "Carousel" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.dropdowns' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.dropdowns' %}">{% trans "Dropdowns" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.embed-video' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.embed-video' %}">{% trans "Embed Video" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.grid' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.grid' %}">{% trans "Grid" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.list-group' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.list-group' %}">{% trans "List Group" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.media-object' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.media-object' %}">{% trans "Media Object" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.modals' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.modals' %}">{% trans "Modals" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.notifications' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.notifications' %}">{% trans "Notifications" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.pagination' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.pagination' %}">{% trans "Pagination" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.accordions' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.popovers' %}">{% trans "Popovers" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.progress' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.progress' %}">{% trans "Progress" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.ribbons' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.ribbons' %}">{% trans "Ribbons" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.spinners' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.spinners' %}">{% trans "Spinners" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.tabs' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.tabs' %}">{% trans "Tabs" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.tooltips' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.tooltips' %}">{% trans "Tooltips" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.base_ui.typography' %}active{% endif %}">
+                        <a href="{% url 'components:components.base_ui.typography' %}">{% trans "Typography" %}</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-package"></i>
+                    <span> {% trans "Extended UI" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'components.extended.dragula' %}active{% endif %}">
+                        <a href="{% url 'components:components.extended.dragula' %}">{% trans "Dragula" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.extended.range-slider' %}active{% endif %}">
+                        <a href="{% url 'components:components.extended.range-slider' %}">{% trans "Range Slider" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.extended.ratings' %}active{% endif %}">
+                        <a href="{% url 'components:components.extended.ratings' %}">{% trans "Ratings" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.extended.scrollbar' %}active{% endif %}">
+                        <a href="{% url 'components:components.extended.scrollbar' %}">{% trans "Scrollbar" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.extended.scrollspy' %}active{% endif %}">
+                        <a href="{% url 'components:components.extended.scrollspy' %}">{% trans "Scrollspy" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'components:components.widgets' %}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span> {% trans "Widgets" %} </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-streering"></i>
+                    <span> {% trans "Icons" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'components.icons.dripicons' %}active{% endif %}">
+                        <a href="{% url 'components:components.icons.dripicons' %}">{% trans "Dripicons" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.icons.mdi' %}active{% endif %}">
+                        <a href="{% url 'components:components.icons.mdi' %}">{% trans "Material Design" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.icons.unicons' %}active{% endif %}">
+                        <a href="{% url 'components:components.icons.unicons' %}">{% trans "Unicons" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-document-layout-center"></i>
+                    <span> {% trans "Forms" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'form.elements' %}active{% endif %}">
+                        <a href="{% url 'form:form.elements' %}">{% trans "Basic Elements" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'form.advanced' %}active{% endif %}">
+                        <a href="{% url 'form:form.advanced' %}">{% trans "Form Advanced" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'form.validation' %}active{% endif %}">
+                        <a href="{% url 'form:form.validation' %}">{% trans "Validation" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'form.wizard' %}active{% endif %}">
+                        <a href="{% url 'form:form.wizard' %}">{% trans "Wizard" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'form.fileuploads' %}active{% endif %}">
+                        <a href="{% url 'form:form.fileuploads' %}">{% trans "File Uploads" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'form.editors' %}active{% endif %}">
+                        <a href="{% url 'form:form.editors' %}">{% trans "Editors" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-chart"></i>
+                    <span> {% trans "Charts" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" aria-expanded="false">Apex Charts
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="side-nav-third-level" aria-expanded="false">
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.area' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.area' %}">{% trans "Area" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.bar' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.bar' %}">{% trans "Bar" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.bubble' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.bubble' %}">{% trans "Bubble" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.candlestick' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.candlestick' %}">{% trans "Candlestick" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.column' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.column' %}">{% trans "Column" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.heatmap' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.heatmap' %}">{% trans "Heatmap" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.line' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.line' %}">{% trans "Line" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.mixed' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.mixed' %}">{% trans "Mixed" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.pie' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.pie' %}">{% trans "Pie" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.radar' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.radar' %}">{% trans "Radar" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.radialbar' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.radialbar' %}">{% trans "RadialBar" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.scatter' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.scatter' %}">{% trans "Scatter" %}</a>
+                            </li>
+                            <li class="{% if request.resolver_match.url_name == 'components.charts.apex.sparklines' %}active{% endif %}">
+                                <a href="{% url 'components:components.charts.apex.sparklines' %}">{% trans "Sparklines" %}</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.charts.brite' %}active{% endif %}">
+                        <a href="{% url 'components:components.charts.brite' %}">{% trans "Britecharts" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.charts.chartjs' %}active{% endif %}">
+                        <a href="{% url 'components:components.charts.chartjs' %}">{% trans "Chartjs" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.charts.sparkline' %}active{% endif %}">
+                        <a href="{% url 'components:components.charts.sparkline' %}">{% trans "Sparklines" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-table"></i>
+                    <span> {% trans "Tables" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'components.tables.basic' %}active{% endif %}">
+                        <a href="{% url 'components:components.tables.basic' %}">{% trans "Basic Tables" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.tables.datatable' %}active{% endif %}">
+                        <a href="{% url 'components:components.tables.datatable' %}">{% trans "Data Tables" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-location-point"></i>
+                    <span> {% trans "Maps" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="{% if request.resolver_match.url_name == 'components.maps.google' %}active{% endif %}">
+                        <a href="{% url 'components:components.maps.google' %}">{% trans "Google Maps" %}</a>
+                    </li>
+                    <li class="{% if request.resolver_match.url_name == 'components.maps.vector' %}active{% endif %}">
+                        <a href="{% url 'components:components.maps.vector' %}">{% trans "Vector Maps" %}</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="uil-folder-plus"></i>
+                    <span> {% trans "Multi Level" %} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" aria-expanded="false">{% trans "Second Level" %}
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="side-nav-third-level" aria-expanded="false">
+                            <li>
+                                <a href="javascript: void(0);">{% trans "Item 1" %}</a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);">{% trans "Item 2" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="javascript: void(0);" aria-expanded="false">{% trans "Third Level" %}
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="side-nav-third-level" aria-expanded="false">
+                            <li>
+                                <a href="javascript: void(0);">{% trans "Item 1" %}</a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a href="javascript: void(0);" aria-expanded="false">{% trans "Item 2" %}
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="side-nav-forth-level" aria-expanded="false">
+                                    <li>
+                                        <a href="javascript: void(0);">{% trans "Item 2.1" %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);">{% trans "Item 2.2" %}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            
+        </ul>
+
+        <!-- Help Box -->
+        <div class="help-box text-white text-center">
+            <a href="javascript: void(0);" class="float-right close-btn text-white">
+                <i class="mdi mdi-close"></i>
+            </a>
+            <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" />
+            <h5 class="mt-3">{% trans "Unlimited Access" %}</h5>
+            <p class="mb-3">{% trans "Upgrade to plan to get access to unlimited reports" %}</p>
+            <a href="javascript: void(0);" class="btn btn-outline-light btn-sm">{% trans "Upgrade" %}</a>
+        </div>
+        <!-- end Help Box -->
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

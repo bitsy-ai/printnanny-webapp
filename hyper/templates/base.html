@@ -1,0 +1,60 @@
+{% load static i18n %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block head_title %}{% endblock head_title %} | Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <![endif]-->
+
+        <link rel="icon" href="{% static 'images/favicon.ico' %}">
+        
+        {% block css %}
+                
+            <!-- Your stuff: Third-party CSS libraries go here -->
+            <!-- This file stores project-specific CSS -->
+            <!-- App css -->
+            <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'css/app.min.css' %}" rel="stylesheet" type="text/css" id="light-style" />
+            <link href="{% static 'css/app-dark.min.css' %}" rel="stylesheet" type="text/css" id="dark-style" disabled />
+
+            <!-- for creative demo uncomment these lines and comment above -->
+            <!-- <link href="{% static 'css/app-creative.min.css' %}" rel="stylesheet" type="text/css" id="light-style" />
+            <link href="{% static 'css/app-creative-dark.min.css' %}" rel="stylesheet" type="text/css" id="dark-style" disabled /> -->
+
+            <!-- for modern demo uncomment these lines and comment above -->
+            <!-- <link href="{% static 'css/app-modern.min.css' %}" rel="stylesheet" type="text/css" id="light-style" />
+            <link href="{% static 'css/app-modern-dark.min.css' %}" rel="stylesheet" type="text/css" id="dark-style" disabled /> -->
+
+
+        {% endblock %}
+
+        {% block extra_css %}
+        {% endblock %}
+
+    </head>
+
+    <body {% block body_extra %}{% endblock %}>
+        {% block page_content %}{% endblock %}
+    </body>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+        <!-- bundle -->
+        <script src="{% static 'js/vendor.min.js' %}"></script>
+        <script src="{% static 'js/app.min.js' %}"></script>
+    {% endblock javascript %}
+
+    {% block extra_javascript %}{% endblock %}
+</html>

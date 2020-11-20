@@ -1,0 +1,598 @@
+{% load static i18n %}
+
+
+<!-- Topbar Start -->
+<div class="navbar-custom topnav-navbar">
+    <div class="container-fluid">
+
+        <!-- LOGO -->
+        <a href="" class="topnav-logo">
+            <span class="topnav-logo-lg">
+                <img src="{% static 'images/logo-light.png' %}" alt="" height="16">
+            </span>
+            <span class="topnav-logo-sm">
+                <img src="{% static 'images/logo_sm_dark.png' %}" alt="" height="16">
+            </span>
+        </a>
+
+        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+            <li class="dropdown notification-list d-lg-none">
+                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="dripicons-search noti-icon"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                    <form class="p-3">
+                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                    </form>
+                </div>
+            </li>
+            
+            <li class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" id="topbar-languagedrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img src="{% static 'images/flags/us.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span> <i class="mdi mdi-chevron-down align-middle"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu" aria-labelledby="topbar-languagedrop">
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="{% static 'images/flags/germany.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="{% static 'images/flags/italy.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
+                    </a>
+                    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="{% static 'images/flags/spain.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="{% static 'images/flags/russia.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
+                    </a>
+    
+                </div>
+            </li>
+    
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" id="topbar-notifydrop" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="dripicons-bell noti-icon"></i>
+                    <span class="noti-icon-badge"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg" aria-labelledby="topbar-notifydrop">
+    
+                    <!-- item-->
+                    <div class="dropdown-item noti-title">
+                        <h5 class="m-0">
+                            <span class="float-right">
+                                <a href="javascript: void(0);" class="text-dark">
+                                    <small>{% trans "Clear All" %}</small>
+                                </a>
+                            </span>{% trans "Notification" %}
+                        </h5>
+                    </div>
+    
+                    <div style="max-height: 230px;" data-simplebar>
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">{% trans "Caleb Flakelar commented on Admin" %}
+                                <small class="text-muted">{% trans "1 min ago" %}</small>
+                            </p>
+                        </a>
+    
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info">
+                                <i class="mdi mdi-account-plus"></i>
+                            </div>
+                            <p class="notify-details">{% trans "New user registered." %}
+                                <small class="text-muted">{% trans "5 hours ago" %}</small>
+                            </p>
+                        </a>
+    
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="{% static 'images/users/avatar-2.jpg' %}" class="img-fluid rounded-circle" alt="" /> </div>
+                            <p class="notify-details">{% trans "Cristina Pride" %}</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>{% trans "Hi, How are you? What about our next meeting" %}</small>
+                            </p>
+                        </a>
+    
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">{% trans "Caleb Flakelar commented on Admin" %}
+                                <small class="text-muted">{% trans "4 days ago" %}</small>
+                            </p>
+                        </a>
+    
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="{% static 'images/users/avatar-4.jpg' %}" class="img-fluid rounded-circle" alt="" /> </div>
+                            <p class="notify-details">{% trans "Karen Robinson" %}</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>{% trans "Wow ! this admin looks good and awesome design" %}</small>
+                            </p>
+                        </a>
+    
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info">
+                                <i class="mdi mdi-heart"></i>
+                            </div>
+                            <p class="notify-details">{% trans "Carlos Crouch liked" %}
+                                <b>{% trans "Admin" %}</b>
+                                <small class="text-muted">{% trans "13 days ago" %}</small>
+                            </p>
+                        </a>
+                    </div>
+    
+                    <!-- All-->
+                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                        {% trans "View All" %}
+                    </a>
+    
+                </div>
+            </li>
+
+            <li class="dropdown notification-list d-none d-sm-inline-block">
+                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="dripicons-view-apps noti-icon"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg p-0">
+    
+                    <div class="p-2">
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/slack.png' %}" alt="slack">
+                                    <span>{% trans "Slack" %}</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/github.png' %}" alt="Github">
+                                    <span>{% trans "GitHub" %}</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/dribbble.png' %}" alt="dribbble">
+                                    <span>{% trans "Dribbble" %}</span>
+                                </a>
+                            </div>
+                        </div>
+    
+                        <div class="row no-gutters">
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/bitbucket.png' %}" alt="bitbucket">
+                                    <span>{% trans "Bitbucket" %}</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/dropbox.png' %}" alt="dropbox">
+                                    <span>{% trans "Dropbox" %}</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="#">
+                                    <img src="{% static 'images/brands/g-suite.png' %}" alt="G Suite">
+                                    <span>{% trans "G Suite" %}</span>
+                                </a>
+                            </div>
+                
+                        </div>
+                    </div>
+    
+                </div>
+            </li>
+
+            <li class="notification-list">
+                <a class="nav-link right-bar-toggle" href="javascript: void(0);">
+                    <i class="dripicons-gear noti-icon"></i>
+                </a>
+            </li>
+    
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="account-user-avatar"> 
+                        <img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-image" class="rounded-circle">
+                    </span>
+                    <span>
+                        <span class="account-user-name">{% trans "Dominic Keller" %}</span>
+                        <span class="account-position">{% trans "Founder" %}</span>
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop">
+                    <!-- item-->
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">{% trans "Welcome !" %}</h6>
+                    </div>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="mdi mdi-account-circle mr-1"></i>
+                        <span>{% trans "My Account" %}</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="mdi mdi-account-edit mr-1"></i>
+                        <span>{% trans "Settings" %}</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="mdi mdi-lifebuoy mr-1"></i>
+                        <span>{% trans "Support" %}</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="mdi mdi-lock-outline mr-1"></i>
+                        <span>{% trans "Lock Screen" %}</span>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="mdi mdi-logout mr-1"></i>
+                        <span>{% trans "Logout" %}</span>
+                    </a>
+    
+                </div>
+            </li>
+
+        </ul>
+        <a class="navbar-toggle"  data-toggle="collapse" data-target="#topnav-menu-content">
+            <div class="lines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </a>
+        <div class="app-search dropdown">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." id="top-search">
+                    <span class="mdi mdi-magnify search-icon"></span>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">{% trans "Search" %}</button>
+                    </div>
+                </div>
+                 
+            </form>
+
+            <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
+                <!-- item-->
+                <div class="dropdown-header noti-title">
+                    <h5 class="text-overflow mb-2">{% trans "Found" %} <span class="text-danger">17</span> {% trans "results" %}</h5>
+                </div>
+    
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="uil-notes font-16 mr-1"></i>
+                    <span>{% trans "Analytics Report" %}</span>
+                </a>
+    
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="uil-life-ring font-16 mr-1"></i>
+                    <span>{% trans "How can I help you?" %}</span>
+                </a>
+    
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="uil-cog font-16 mr-1"></i>
+                    <span>{% trans "User profile settings" %}</span>
+                </a>
+    
+                <!-- item-->
+                <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow mb-2 text-uppercase">{% trans "Users" %}</h6>
+                </div>
+    
+                <div class="notification-list">
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="media">
+                            <img class="d-flex mr-2 rounded-circle" src="{% static 'images/users/avatar-2.jpg' %}" alt="Generic placeholder image" height="32">
+                            <div class="media-body">
+                                <h5 class="m-0 font-14">{% trans "Erwin Brown" %}</h5>
+                                <span class="font-12 mb-0">{% trans "UI Designer" %}</span>
+                            </div>
+                        </div>
+                    </a>
+    
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="media">
+                            <img class="d-flex mr-2 rounded-circle" src="{% static 'images/users/avatar-5.jpg' %}" alt="Generic placeholder image" height="32">
+                            <div class="media-body">
+                                <h5 class="m-0 font-14">{% trans "Jacob Deo" %}</h5>
+                                <span class="font-12 mb-0">{% trans "Developer" %}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- end Topbar -->
+
+<div class="topnav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark navbar-expand-lg topnav-menu">
+        
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboards" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-dashboard mr-1"></i>{% trans "Dashboards" %} <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-dashboards">
+                            <a href="{% url 'dashboard:analytics' %}" class="dropdown-item">{% trans "Analytics" %}</a>
+                            <a href="{% url 'dashboard:crm' %}" class="dropdown-item">{% trans "CRM" %}</a>
+                            <a href="{% url 'dashboard:ecommerce' %}" class="dropdown-item">{% trans "Ecommerce" %}</a>
+                            <a href="{% url 'dashboard:projects' %}" class="dropdown-item">{% trans "Projects" %}</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-apps" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-apps mr-1"></i>Apps <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-apps">
+                            <a href="{% url 'apps:calendar' %}" class="dropdown-item">{% trans "Calendar" %}</a>
+                            <a href="{% url 'apps:chat' %}" class="dropdown-item">{% trans "Chat" %}</a>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Ecommerce <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+                                    <a href="{% url 'apps:ecommerce.products' %}" class="dropdown-item">{% trans "Products" %}</a>
+                                    <a href="{% url 'apps:ecommerce.products-details' %}" class="dropdown-item">{% trans "Products Details" %}</a>
+                                    <a href="{% url 'apps:ecommerce.orders' %}" class="dropdown-item">{% trans "Orders" %}</a>
+                                    <a href="{% url 'apps:ecommerce.orders-details' %}" class="dropdown-item">{% trans "Order Details" %}</a>
+                                    <a href="{% url 'apps:ecommerce.customers' %}" class="dropdown-item">{% trans "Customers" %}</a>
+                                    <a href="{% url 'apps:ecommerce.shopping-cart' %}" class="dropdown-item">{% trans "Shopping Cart" %}</a>
+                                    <a href="{% url 'apps:ecommerce.checkout' %}" class="dropdown-item">{% trans "Checkout" %}</a>
+                                    <a href="{% url 'apps:ecommerce.sellers' %}" class="dropdown-item">{% trans "Sellers" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-email" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Email" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-email">
+                                    <a href="{% url 'apps:email.indox' %}" class="dropdown-item">{% trans "Inbox" %}</a>
+                                    <a href="{% url 'apps:email.read' %}" class="dropdown-item">{% trans "Read Email" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-project" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Projects" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-project">
+                                    <a href="{% url 'apps:projects.list' %}" class="dropdown-item">{% trans "List" %}</a>
+                                    <a href="{% url 'apps:projects.details' %}" class="dropdown-item">{% trans "Details" %}</a>
+                                    <a href="{% url 'apps:projects.gantt' %}" class="dropdown-item">{% trans "Gantt" %}</a>
+                                    <a href="{% url 'apps:projects.add' %}" class="dropdown-item">{% trans "Create Project" %}</a>
+                                </div>
+                            </div>
+                            <a href="{% url 'apps:social.feed' %}" class="dropdown-item">{% trans "Social Feed" %}</a>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-tasks" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tasks <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-tasks">
+                                    <a href="{% url 'apps:tasks.list' %}" class="dropdown-item">{% trans "List" %}</a>
+                                    <a href="{% url 'apps:tasks.details' %}" class="dropdown-item">{% trans "Details" %}</a>
+                                    <a href="{% url 'apps:tasks.kanban' %}" class="dropdown-item">{% trans "Kanban Board" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-copy-alt mr-1"></i>{% trans "Pages" %} <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-auth" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Authenitication <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-auth">
+                                    <a href="{{'login_url'}}" class="dropdown-item">{% trans "Login" %}</a>
+                                    <a href="{% url 'pages:login-2' %}" class="dropdown-item">{% trans "Login 2" %}</a>
+                                    <a href="{{'signup_url'}}" class="dropdown-item">{% trans "Register" %}</a>
+                                    <a href="{% url 'pages:register-2' %}" class="dropdown-item">{% trans "Register 2" %}</a>
+                                    <a href="{% url 'pages:logout' %}" class="dropdown-item">{% trans "Logout" %}</a>
+                                    <a href="{% url 'pages:logout-2' %}" class="dropdown-item">{% trans "Logout 2" %}</a>
+                                    <a href="{% url 'account_reset_password' %}" class="dropdown-item">{% trans "Recover Password" %}</a>
+                                    <a href="{% url 'pages:recoverpw-2' %}" class="dropdown-item">{% trans "Recover Password 2" %}</a>
+                                    <a href="{% url 'pages:lock-screen' %}" class="dropdown-item">{% trans "Lock Screen" %}</a>
+                                    <a href="{% url 'pages:lock-screen-2' %}" class="dropdown-item">{% trans "Lock Screen 2" %}</a>
+                                    <a href="{% url 'pages:confirm-mail' %}" class="dropdown-item">{% trans "Confirm Mail" %}</a>
+                                    <a href="{% url 'pages:confirm-mail-2' %}" class="dropdown-item">{% trans "Confirm Mail 2" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-error" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Error" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-error">
+                                    <a href="{% url 'pages:404' %}" class="dropdown-item">{% trans "Error 404" %}</a>
+                                    <a href="{% url 'pages:404-alt' %}" class="dropdown-item">{% trans "Error 404-alt" %}</a>
+                                    <a href="{% url 'pages:500' %}" class="dropdown-item">{% trans "Error 500" %}</a>
+                                </div>
+                            </div>
+                            <a href="{% url 'pages:starter' %}" class="dropdown-item">{% trans "Starter Page" %}</a>
+                            <a href="{% url 'pages:preloader' %}" class="dropdown-item">{% trans "With Preloader" %}</a>
+                            <a href="{% url 'pages:profile' %}" class="dropdown-item">{% trans "Profile" %}</a>
+                            <a href="{% url 'pages:profile-2' %}" class="dropdown-item">{% trans "Profile 2" %}</a>
+                            <a href="{% url 'pages:invoice' %}" class="dropdown-item">{% trans "Invoice" %}</a>
+                            <a href="{% url 'pages:faq' %}" class="dropdown-item">{% trans "FAQ" %}</a>
+                            <a href="{% url 'pages:pricing' %}" class="dropdown-item">{% trans "Pricing" %}</a>
+                            <a href="{% url 'pages:maintenance' %}" class="dropdown-item">{% trans "Maintenance" %}<</a>
+                            <a href="{% url 'pages:timeline' %}" class="dropdown-item">{% trans "Timeline" %}</a>
+                            <a href="{% url 'pages:landing' %}" class="dropdown-item">{% trans "Landing" %}</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-package mr-1"></i>{% trans "Components" %} <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-components">
+                            <a href="{% url 'components:components.widgets' %}" class="dropdown-item">{% trans "Widgets" %}</a>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ui-kit" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Base UI 1" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-ui-kit">
+                                    <a href="{% url 'components:components.base_ui.accordions' %}" class="dropdown-item">{% trans "Accordions" %}</a>
+                                    <a href="{% url 'components:components.base_ui.alerts' %}" class="dropdown-item">{% trans "Alerts" %}</a>
+                                    <a href="{% url 'components:components.base_ui.avatars' %}" class="dropdown-item">{% trans "Avatars" %}</a>
+                                    <a href="{% url 'components:components.base_ui.badges' %}" class="dropdown-item">{% trans "Badges" %}</a>
+                                    <a href="{% url 'components:components.base_ui.breadcrumb' %}" class="dropdown-item">{% trans "Breadcrumb" %}</a>
+                                    <a href="{% url 'components:components.base_ui.buttons' %}" class="dropdown-item">{% trans "Buttons" %}</a>
+                                    <a href="{% url 'components:components.base_ui.cards' %}" class="dropdown-item">{% trans "Cards" %}</a>
+                                    <a href="{% url 'components:components.base_ui.carousel' %}" class="dropdown-item">{% trans "Carousel" %}</a>
+                                    <a href="{% url 'components:components.base_ui.dropdowns' %}" class="dropdown-item">{% trans "Dropdowns" %}</a>
+                                    <a href="{% url 'components:components.base_ui.embed-video' %}" class="dropdown-item">{% trans "Embed Video" %}</a>
+                                    <a href="{% url 'components:components.base_ui.grid' %}" class="dropdown-item">{% trans "Grid" %}</a>
+                                    <a href="{% url 'components:components.base_ui.list-group' %}" class="dropdown-item">{% trans "List Group" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ui-kit2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Base UI 2" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-ui-kit2">
+                                    <a href="{% url 'components:components.base_ui.media-object' %}" class="dropdown-item">{% trans "Media Object" %}</a>
+                                    <a href="{% url 'components:components.base_ui.modals' %}" class="dropdown-item">{% trans "Modals" %}</a>
+                                    <a href="{% url 'components:components.base_ui.notifications' %}" class="dropdown-item">{% trans "Notifications" %}</a>
+                                    <a href="{% url 'components:components.base_ui.pagination' %}" class="dropdown-item">{% trans "Pagination" %}</a>
+                                    <a href="{% url 'components:components.base_ui.popovers' %}" class="dropdown-item">{% trans "Popovers" %}</a>
+                                    <a href="{% url 'components:components.base_ui.progress' %}" class="dropdown-item">{% trans "Progress" %}</a>
+                                    <a href="{% url 'components:components.base_ui.ribbons' %}" class="dropdown-item">{% trans "Ribbons" %}</a>
+                                    <a href="{% url 'components:components.base_ui.spinners' %}" class="dropdown-item">{% trans "Spinners" %}</a>
+                                    <a href="{% url 'components:components.base_ui.tabs' %}" class="dropdown-item">{% trans "Tabs" %}</a>
+                                    <a href="{% url 'components:components.base_ui.tooltips' %}" class="dropdown-item">{% trans "Tooltips" %}</a>
+                                    <a href="{% url 'components:components.base_ui.typography' %}" class="dropdown-item">{% trans "Typography" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-extended-ui" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Extended UI <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-extended-ui">
+                                    <a href="{% url 'components:components.extended.dragula' %}" class="dropdown-item">{% trans "Dragula" %}</a>
+                                    <a href="{% url 'components:components.extended.range-slider' %}" class="dropdown-item">{% trans "Range Slider" %}</a>
+                                    <a href="{% url 'components:components.extended.ratings' %}" class="dropdown-item">{% trans "Ratings" %}</a>
+                                    <a href="{% url 'components:components.extended.scrollbar' %}" class="dropdown-item">{% trans "Scrollbar" %}</a>
+                                    <a href="{% url 'components:components.extended.scrollspy' %}" class="dropdown-item">{% trans "Scrollspy" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-charts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Charts" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-charts">
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-apex-charts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {% trans "Apex Charts" %} <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-apex-charts">
+                                            <a href="{% url 'components:components.charts.apex.area' %}" class="dropdown-item">{% trans "Area" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.bar' %}" class="dropdown-item">{% trans "Bar" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.bubble' %}" class="dropdown-item">{% trans "Bubble" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.candlestick' %}" class="dropdown-item">{% trans "Candlestick" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.column' %}" class="dropdown-item">{% trans "Column" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.heatmap' %}" class="dropdown-item">{% trans "Heatmap" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.line' %}" class="dropdown-item">{% trans "Line" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.mixed' %}" class="dropdown-item">{% trans "Mixed" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.pie' %}" class="dropdown-item">{% trans "Pie" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.radar' %}" class="dropdown-item">{% trans "Radar" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.radialbar' %}" class="dropdown-item">{% trans "RadialBar" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.scatter' %}" class="dropdown-item">{% trans "Scatter" %}</a>
+                                            <a href="{% url 'components:components.charts.apex.sparklines' %}" class="dropdown-item">{% trans "Sparklines" %}</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'components:components.charts.chartjs' %}" class="dropdown-item">{% trans "Chartjs" %}</a>
+                                    <a href="{% url 'components:components.charts.brite' %}" class="dropdown-item">{% trans "Britecharts" %}</a>
+                                    <a href="{% url 'components:components.charts.sparkline' %}" class="dropdown-item">{% trans "Sparklines" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-forms" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Forms" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-forms">
+                                    <a href="{% url 'form:form.elements' %}" class="dropdown-item">{% trans "Basic Elements" %}</a>
+                                    <a href="{% url 'form:form.advanced' %}" class="dropdown-item">{% trans "Form Advanced" %}</a>
+                                    <a href="{% url 'form:form.validation' %}" class="dropdown-item">{% trans "Validation" %}</a>
+                                    <a href="{% url 'form:form.wizard' %}" class="dropdown-item">{% trans "Wizard" %}</a>
+                                    <a href="{% url 'form:form.fileuploads' %}" class="dropdown-item">{% trans "File Uploads" %}</a>
+                                    <a href="{% url 'form:form.editors' %}" class="dropdown-item">{% trans "Editors" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-tables" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Tables" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-tables">
+                                    <a href="{% url 'components:components.tables.basic' %}" class="dropdown-item">{% trans "Basic Tables" %}</a>
+                                    <a href="{% url 'components:components.tables.datatable' %}" class="dropdown-item">{% trans "Data Tables" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-icons" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% trans "Icons" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-icons">
+                                    <a href="{% url 'components:components.icons.dripicons' %}" class="dropdown-item">{% trans "Dripicons" %}</a>
+                                    <a href="{% url 'components:components.icons.mdi' %}" class="dropdown-item">{% trans "Material Design" %}</a>
+                                    <a href="{% url 'components:components.icons.unicons' %}" class="dropdown-item">{% trans "Unicons" %}</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-maps" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    {% trans "Maps" %} <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-maps">
+                                    <a href="{% url 'components:components.maps.google' %}" class="dropdown-item">{% trans "Google Maps" %}</a>
+                                    <a href="{% url 'components:components.maps.vector' %}" class="dropdown-item">{% trans "Vector Maps" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layouts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="uil-window mr-1"></i>Layouts <div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-layouts">
+                            <a href="{% url 'dashboard:ecommerce' %}" class="dropdown-item">{% trans "Vertical" %}</a>
+                            <a href="{% url 'layouts:layouts.detached' %}" class="dropdown-item">{% trans "Detached" %}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+
+
+{% block extra_css %}{% endblock %}
+
+{% block body_extra %}
+class="loading" data-layout="detached" data-layout-config='{"layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'
+{% endblock %}
+
+{% block page_content %}
+    {% block topbar_dark %}
+        {% include 'partials/topbar-dark.html' %}
+    {% endblock %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- Begin page -->
+        <div class="wrapper">
+            {% block detached_left_sidebar %}
+                {% include 'partials/detached-left-sidebar.html' %}
+            {% endblock %}
+     
+
+            <div class="content-page">
+                {% block content %}
+
+                {% endblock %}
+                {% block footer %}
+                    {% include 'partials/footer.html' %}
+                {% endblock %}
+
+            </div>
+            <!-- content-page -->
+        </div>
+        <!-- END wrapper -->
+    </div>
+    <!-- END Container -->
+    
+    {% block right_sidebar %}
+        {% include 'partials/right-sidebar.html' %}
+    {% endblock %}
+
+{% endblock %}
+
+{% block extra_javascript %}{% endblock %}
