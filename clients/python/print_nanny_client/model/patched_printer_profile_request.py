@@ -117,11 +117,10 @@ class PatchedPrinterProfileRequest(ModelNormal):
             'axes_z_speed': (int,),  # noqa: E501
             'extruder_count': (int,),  # noqa: E501
             'extruder_nozzle_diameter': (float,),  # noqa: E501
-            'extruder_offsets': ([[float]], none_type,),  # noqa: E501
             'extruder_shared_nozzle': (bool,),  # noqa: E501
             'heated_bed': (bool,),  # noqa: E501
             'heated_chamber': (bool,),  # noqa: E501
-            'model': (str,),  # noqa: E501
+            'model': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'volume_custom_box': (bool,),  # noqa: E501
             'volume_depth': (float,),  # noqa: E501
@@ -147,7 +146,6 @@ class PatchedPrinterProfileRequest(ModelNormal):
         'axes_z_speed': 'axes_z_speed',  # noqa: E501
         'extruder_count': 'extruder_count',  # noqa: E501
         'extruder_nozzle_diameter': 'extruder_nozzle_diameter',  # noqa: E501
-        'extruder_offsets': 'extruder_offsets',  # noqa: E501
         'extruder_shared_nozzle': 'extruder_shared_nozzle',  # noqa: E501
         'heated_bed': 'heated_bed',  # noqa: E501
         'heated_chamber': 'heated_chamber',  # noqa: E501
@@ -217,11 +215,10 @@ class PatchedPrinterProfileRequest(ModelNormal):
             axes_z_speed (int): [optional]  # noqa: E501
             extruder_count (int): [optional]  # noqa: E501
             extruder_nozzle_diameter (float): [optional]  # noqa: E501
-            extruder_offsets ([[float]], none_type): [optional]  # noqa: E501
             extruder_shared_nozzle (bool): [optional]  # noqa: E501
             heated_bed (bool): [optional]  # noqa: E501
             heated_chamber (bool): [optional]  # noqa: E501
-            model (str): [optional]  # noqa: E501
+            model (str, none_type): [optional]  # noqa: E501
             name (str): [optional]  # noqa: E501
             volume_custom_box (bool): [optional]  # noqa: E501
             volume_depth (float): [optional]  # noqa: E501

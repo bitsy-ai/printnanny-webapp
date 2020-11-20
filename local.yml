@@ -3,6 +3,8 @@ version: '3'
 volumes:
   local_postgres_data: {}
   local_postgres_data_backups: {}
+  local_prometheus_data: {}
+  local_file_data: {}
 
 services:
   django: &django
@@ -13,29 +15,35 @@ services:
     container_name: django
     depends_on:
       - postgres
-      - mailhog
+      - ngrok
+      - prometheus
     volumes:
       - .:/app:z
+      - local_file_data:/tmp:z
+
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
     ports:
       - "8000:8000"
+      - "8001:8001"
     command: /start
 
   postgres:
+
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: print_nanny_webapp_production_postgres
     container_name: postgres
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data:Z
+      - local_postgres_data:/var/lib/postgresql/data:z
       - local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
 
   docs:
+
     image: print_nanny_webapp_local_docs
     container_name: docs
     build:
@@ -50,13 +58,17 @@ services:
     ports:
       - "7000:7000"
 
-  mailhog:
-    image: mailhog/mailhog:v1.0.0
-    container_name: mailhog
-    ports:
-      - "8025:8025"
+  ngrok:
 
+    image: wernight/ngrok
+    container_name: ngrok
+    environment:
+      NGROK_PROTOCOL: http
+      NGROK_PORT: django:8000  
+    ports:
+      - "4040:4040"
   redis:
+
     image: redis:5.0
     container_name: redis
 
@@ -67,25 +79,51 @@ services:
     depends_on:
       - redis
       - postgres
-      - mailhog
+      - ngrok
     ports: []
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
+    user: 1000:1000
+
     image: print_nanny_webapp_local_celerybeat
     container_name: celerybeat
     depends_on:
       - redis
       - postgres
-      - mailhog
+      - ngrok
     ports: []
     command: /start-celerybeat
 
   flower:
     <<: *django
+    user: 1000:1000
+
     image: print_nanny_webapp_local_flower
     container_name: flower
     ports:
       - "5555:5555"
     command: /start-flower
+
+  notebook:
+    <<: *django
+    image: print_nanny_webapp_local_notebook
+
+    user: 1000:1000
+
+    container_name: notebook
+    ports:
+      - "8888:8888"
+    command: /start-notebook
+
+  prometheus:
+
+    image: prom/prometheus
+    ports:
+      - 9000:9090
+
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - local_prometheus_data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml

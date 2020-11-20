@@ -99,6 +99,10 @@ With MailHog running, to view messages that are sent by your application, open y
 .. _mailhog: https://github.com/mailhog/MailHog
 
 
+Google Cloud Storage
+^^^^^^^^^^^^^^^^^^^^^
+
+* Create a bucket and service account authorized to acceess bucket
 
 Sentry
 ^^^^^^
