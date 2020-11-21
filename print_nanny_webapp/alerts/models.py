@@ -17,13 +17,6 @@ class AlertMessage(models.Model):
     class Backend(models.TextChoices):
         EMAIL = 'EMAIL', 'Email'
     
-
-    # subsequent alerts will be paused if message exists in the following state:
-
-    # Row created (PENDING) ->
-    # Email enqueued for send (SENT) ->
-    # Email opened (READ) ->
-
     class ActionChoices(models.TextChoices):
         PENDING = 'PENDING', 'Pending User Action'
         RESUME_ALERTS = 'RESUME_ALERTS', 'Resume for Print Job'

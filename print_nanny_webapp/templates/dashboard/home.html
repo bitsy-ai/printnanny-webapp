@@ -20,21 +20,35 @@
 <!-- Action buttons -->
 <div class="row">
 
-  <div class="col-sm-12">
-    
-    <form>
-        <div class="input-group">
-          <input type="text" class="form-control"
-              value="{{ object.token }}" id="copy-input" readonly>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" id="copy-button"
-                data-toggle="tooltip" data-placement="button"
-                title="Copy to Clipboard">
-              Copy
-            </button>
-          </span>
-        </div>
-      </form>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">API Token</h4>
+        <p class="text-muted font-14">
+          Your API token is used to connect OctoPrint to Print Nanny. Treat this token like a password; do not share or publish it online. 
+          You can regenerate this token in your <a href="{% url 'users:detail' %}">settings.</a>
+          </p>
+        <form>
+            <div class="input-group">
+              <input id="token" type="password" class="form-control"
+                  value="{{ object.token }}" id="copy-input" readonly>
+              <div class="input-group-append" data-password="false">
+              <div class="input-group-text">
+                  <span class="password-eye"></span>
+              </div>
+              </div>
+              <span class="input-group-btn">
+
+                <button class="btn btn-default" type="button" id="copy-button"
+                    data-toggle="token" data-placement="button"
+                    title="Copy to Clipboard">
+                  Copy
+                </button>
+              </span>
+            </div>
+          </form>
+      </div>
+    </div> 
   </div>
 
 </div>
