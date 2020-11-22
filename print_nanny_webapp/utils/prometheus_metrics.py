@@ -18,19 +18,19 @@ predict_frames_per_minute = prometheus_client.Summary(
 detections_per_minute = prometheus_client.Summary(
     'detections_per_minute',
     'Number of detections above confidence threshold. Calculated via schedule_active_jobs_analysis() periodic run',
-    ['detection_class']
+    ['alert_type', 'detection_class']
 )
 
 detections_per_frame = prometheus_client.Summary(
     'detections_per_frame',
     'Number of detections above confidence threshold. Calculated via schedule_active_jobs_analysis() periodic run',
-    ['detection_class']   
+    ['alert_type','detection_class']   
 )
 
 detections_confidence_per_label = prometheus_client.Summary(
     'confidence_per_label',
     'Raw confidence score per detection per label',
-    ['detection_class']
+    ['alert_type','detection_class']
 )
 
 detections_failure_ratio = prometheus_client.Summary(
