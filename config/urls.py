@@ -24,6 +24,8 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
+    # path("remote-control/", include("print_nanny_webapp.remote_control.urls", namespace="remote-control")),
+
     path("accounts/", include("allauth.urls")),
     
     # Your stuff: custom urls includes go here

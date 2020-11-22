@@ -14,7 +14,9 @@
                 </form>
             </div>
         </li>
-        <li class="dropdown notification-list topbar-dropdown">
+
+        {% comment %} Localization drop-down {% endcomment %}
+        {% comment %} <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <img src="{% static 'images/flags/us.jpg' %}" alt="user-image" class="mr-0 mr-sm-1" height="12"> 
                 <span class="align-middle d-none d-sm-inline-block">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
@@ -42,9 +44,10 @@
                 </a>
 
             </div>
-        </li>
-
-        <li class="dropdown notification-list">
+        </li> {% endcomment %}
+        
+        {% comment %} notification dropdown menu {% endcomment %}
+        {% comment %} <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
                 <span class="noti-icon-badge"></span>
@@ -132,9 +135,11 @@
                 </a>
 
             </div>
-        </li>
+        </li> {% endcomment %}
 
-        <li class="dropdown notification-list d-none d-sm-inline-block">
+        {% comment %} app block dropdown menu {% endcomment %}
+
+        {% comment %} <li class="dropdown notification-list d-none d-sm-inline-block">
             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-view-apps noti-icon"></i>
             </a>
@@ -186,23 +191,23 @@
                 </div>
 
             </div>
-        </li>
+        </li> {% endcomment %}
 
-        <li class="notification-list">
+        {% comment %} <li class="notification-list">
             <a class="nav-link right-bar-toggle" href="javascript: void(0);">
-                <i class="dripicons-gear noti-icon"></i>
+                <i class="dripicons-brightness-medium noti-icon"></i> Toggle Dark/Light
             </a>
-        </li>
+        </li> {% endcomment %}
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                 aria-expanded="false">
-                <span class="account-user-avatar"> 
-                    <img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-image" class="rounded-circle">
+                <span class="account-user-settings"> 
+                    <i class="dripicons-gear noti-icon"></i>
                 </span>
                 <span>
-                    <span class="account-user-name">{% trans "Dominic Keller" %}</span>
-                    <span class="account-position">{% trans "Founder" %}</span>
+                    <span class="account-user-name">{{ object.email }}</span>
+                    <span class="account-position">{% trans "Beta Tester" %}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -262,7 +267,9 @@
     <button class="button-menu-mobile open-left disable-btn">
         <i class="mdi mdi-menu"></i>
     </button>
-    <div class="app-search dropdown d-none d-lg-block">
+
+    {% comment %} Search bar {% endcomment %}
+    {% comment %} <div class="app-search dropdown d-none d-lg-block">
         <form>
             <div class="input-group">
                 <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
@@ -327,6 +334,6 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 </div>
 <!-- end Topbar -->

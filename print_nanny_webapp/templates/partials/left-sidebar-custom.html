@@ -42,6 +42,15 @@
                 </a>
             </li>
 
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:timelapse' %}" class="side-nav-link">
+                    <i class="uil-video"></i>
+                    <span> {% trans "Timelapse Videos" %} </span>
+
+                </a>
+            </li>
+            
+
             <li class="side-nav-title side-nav-item">{% trans "Apps - Coming Soon!" %}</li>
 
             <li class="side-nav-item {% if request.resolver_match.url_name == 'apps:coming-soon-remote-control' %}active{% endif %}">

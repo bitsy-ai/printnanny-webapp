@@ -77,4 +77,3 @@ class PrintJob(models.Model):
         default=StatusChoices.STARTED
     )
     last_seen = models.DateTimeField(auto_now=True)
-
