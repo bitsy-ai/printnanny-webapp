@@ -245,7 +245,7 @@ function reloadBrowserSync(done) {
 }
 
 function watchFiles() {
-    gulp.watch(paths.app + '/**/*.py', gulp.series(reloadBrowserSync));
+    // gulp.watch(paths.app + '/**/*.py', gulp.series(reloadBrowserSync));
     gulp.watch(paths.templates + '/**/*', gulp.series(reloadBrowserSync));
     gulp.watch(paths.sass + '/**/*', gulp.series(copyVendorStyles, styles, reloadBrowserSync));
     gulp.watch(paths.js + '/src/**/*', gulp.series(scripts, reloadBrowserSync));
