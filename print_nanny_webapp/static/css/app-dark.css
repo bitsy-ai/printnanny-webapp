@@ -8890,6 +8890,10 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
   border: 1px solid #404954;
   border-width: 0 1px;
   min-height: 70px; }
+  .nav-user .account-user-settings {
+    position: absolute;
+    top: 0;
+    left: 15px; }
   .nav-user .account-user-avatar {
     position: absolute;
     top: calc(38px / 2);

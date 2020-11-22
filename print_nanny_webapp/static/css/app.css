@@ -8889,6 +8889,10 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
   border: 1px solid #f1f3fa;
   border-width: 0 1px;
   min-height: 70px; }
+  .nav-user .account-user-settings {
+    position: absolute;
+    top: 0;
+    left: 15px; }
   .nav-user .account-user-avatar {
     position: absolute;
     top: calc(38px / 2);
@@ -12789,6 +12793,29 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
     width: 100%; }
   .bootstrap-timepicker .dropdown-menu {
     width: 100%; } }
+
+.bootstrap-touchspin .input-group-btn-vertical {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  z-index: 11; }
+
+.bootstrap-touchspin .input-group-btn-vertical > .btn {
+  position: absolute;
+  right: 0;
+  height: 50%;
+  padding: 0;
+  width: 2em;
+  text-align: center;
+  line-height: 1; }
+
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up {
+  border-radius: 0 4px 0 0;
+  top: 0; }
+
+.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
+  border-radius: 0 0 4px 0;
+  bottom: 0; }
 
 .apex-charts {
   min-height: 10px !important; }

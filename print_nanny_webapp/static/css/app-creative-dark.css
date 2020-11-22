@@ -60,7 +60,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #aab8c5;
@@ -331,7 +331,7 @@ h6, .h6 {
   font-size: 0.75rem; }
 
 .lead {
-  font-size: 1.09375rem;
+  font-size: 1.25rem;
   font-weight: 300; }
 
 .display-1 {
@@ -389,7 +389,7 @@ mark,
 
 .blockquote {
   margin-bottom: 1.5rem;
-  font-size: 1.09375rem; }
+  font-size: 1.25rem; }
 
 .blockquote-footer {
   display: block;
@@ -1755,9 +1755,9 @@ pre {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(2.2125rem + 2px);
+  height: calc(2.4rem + 2px);
   padding: 0.45rem 0.9rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #e3eaef;
@@ -1846,7 +1846,7 @@ select.form-control:focus::-ms-value {
   width: 100%;
   padding: 0.45rem 0;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: #aab8c5;
   background-color: transparent;
@@ -1957,7 +1957,7 @@ textarea.form-control {
 
 .was-validated .form-control:valid, .form-control.is-valid {
   border-color: #42d29d;
-  padding-right: 2.2125rem;
+  padding-right: 2.4rem;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2342d29d' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right calc(0.375em + 0.1875rem) center;
@@ -1968,7 +1968,7 @@ textarea.form-control {
             box-shadow: 0 0 0 0.2rem rgba(66, 210, 157, 0.25); }
 
 .was-validated textarea.form-control:valid, textarea.form-control.is-valid {
-  padding-right: 2.2125rem;
+  padding-right: 2.4rem;
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem); }
 
 .was-validated .custom-select:valid, .custom-select.is-valid {
@@ -2042,7 +2042,7 @@ textarea.form-control {
 
 .was-validated .form-control:invalid, .form-control.is-invalid {
   border-color: #fa6767;
-  padding-right: 2.2125rem;
+  padding-right: 2.4rem;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fa6767' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23fa6767' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
   background-repeat: no-repeat;
   background-position: right calc(0.375em + 0.1875rem) center;
@@ -2053,7 +2053,7 @@ textarea.form-control {
             box-shadow: 0 0 0 0.2rem rgba(250, 103, 103, 0.25); }
 
 .was-validated textarea.form-control:invalid, textarea.form-control.is-invalid {
-  padding-right: 2.2125rem;
+  padding-right: 2.4rem;
   background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem); }
 
 .was-validated .custom-select:invalid, .custom-select.is-invalid {
@@ -2188,7 +2188,7 @@ textarea.form-control {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.45rem 0.9rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.15rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -2713,7 +2713,7 @@ input[type="button"].btn-block {
   min-width: 10rem;
   padding: 0.25rem 0;
   margin: 0.125rem 0 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #aab8c5;
   text-align: left;
   list-style: none;
@@ -3089,7 +3089,7 @@ input[type="button"].btn-block {
           align-items: center;
   padding: 0.45rem 0.9rem;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #e3eaef;
@@ -3158,7 +3158,7 @@ input[type="button"].btn-block {
   position: relative;
   z-index: 1;
   display: block;
-  min-height: 1.3125rem;
+  min-height: 1.5rem;
   padding-left: 1.5rem;
   -webkit-print-color-adjust: exact;
           color-adjust: exact; }
@@ -3174,7 +3174,7 @@ input[type="button"].btn-block {
   left: 0;
   z-index: -1;
   width: 1rem;
-  height: 1.15625rem;
+  height: 1.25rem;
   opacity: 0; }
   .custom-control-input:checked ~ .custom-control-label::before {
     color: #3688fc;
@@ -3200,7 +3200,7 @@ input[type="button"].btn-block {
   vertical-align: top; }
   .custom-control-label::before {
     position: absolute;
-    top: 0.15625rem;
+    top: 0.25rem;
     left: -1.5rem;
     display: block;
     width: 1rem;
@@ -3211,7 +3211,7 @@ input[type="button"].btn-block {
     border: #525d6b solid 1px; }
   .custom-control-label::after {
     position: absolute;
-    top: 0.15625rem;
+    top: 0.25rem;
     left: -1.5rem;
     display: block;
     width: 1rem;
@@ -3255,7 +3255,7 @@ input[type="button"].btn-block {
     pointer-events: all;
     border-radius: 0.5rem; }
   .custom-switch .custom-control-label::after {
-    top: calc(0.15625rem + 2px);
+    top: calc(0.25rem + 2px);
     left: calc(-2.25rem + 2px);
     width: calc(1rem - 4px);
     height: calc(1rem - 4px);
@@ -3279,9 +3279,9 @@ input[type="button"].btn-block {
 .custom-select {
   display: inline-block;
   width: 100%;
-  height: calc(2.2125rem + 2px);
+  height: calc(2.4rem + 2px);
   padding: 0.45rem 1.9rem 0.45rem 0.9rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #e3eaef;
@@ -3331,14 +3331,14 @@ input[type="button"].btn-block {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: calc(2.2125rem + 2px);
+  height: calc(2.4rem + 2px);
   margin-bottom: 0; }
 
 .custom-file-input {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: calc(2.2125rem + 2px);
+  height: calc(2.4rem + 2px);
   margin: 0;
   opacity: 0; }
   .custom-file-input:focus ~ .custom-file-label {
@@ -3359,7 +3359,7 @@ input[type="button"].btn-block {
   right: 0;
   left: 0;
   z-index: 1;
-  height: calc(2.2125rem + 2px);
+  height: calc(2.4rem + 2px);
   padding: 0.45rem 0.9rem;
   font-weight: 400;
   line-height: 1.5;
@@ -3374,7 +3374,7 @@ input[type="button"].btn-block {
     bottom: 0;
     z-index: 3;
     display: block;
-    height: 2.2125rem;
+    height: 2.4rem;
     padding: 0.45rem 0.9rem;
     line-height: 1.5;
     color: #e3eaef;
@@ -4382,7 +4382,7 @@ input[type="button"].btn-block {
   font-weight: 700; }
 
 .alert-dismissible {
-  padding-right: 3.8125rem; }
+  padding-right: 4rem; }
   .alert-dismissible .close {
     position: absolute;
     top: 0;
@@ -4787,7 +4787,7 @@ input[type="button"].btn-block {
 
 .close {
   float: right;
-  font-size: 1.3125rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
   color: #e3eaef;
@@ -5236,7 +5236,7 @@ a.close.disabled {
 .popover-header {
   padding: 0.7rem 0.8rem;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #37404a;
   background-color: #e5e8eb;
   border-bottom: 1px solid #d7dce1;
@@ -8890,6 +8890,10 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
   border: 1px solid #404954;
   border-width: 0 1px;
   min-height: 70px; }
+  .nav-user .account-user-settings {
+    position: absolute;
+    top: 0;
+    left: 15px; }
   .nav-user .account-user-avatar {
     position: absolute;
     top: calc(38px / 2);
@@ -9244,7 +9248,7 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
     margin-top: 0;
     border-radius: 0 0 0.25rem 0.25rem;
     min-width: calc(10rem + 1.5rem);
-    font-size: calc(0.875rem - 0.01rem); }
+    font-size: calc(1rem - 0.01rem); }
     .topnav .dropdown .dropdown-menu .arrow-down::after {
       right: 15px;
       -webkit-transform: rotate(-135deg) translateY(-50%);
@@ -9571,7 +9575,7 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin-top: 0; }
   .card .card-drop {
     font-size: 20px;
@@ -9830,7 +9834,7 @@ input.form-control[type="range"] {
           box-shadow: none !important; }
 
 select.form-control:not([size]):not([multiple]) {
-  height: calc(2.2125rem + 2px); }
+  height: calc(2.4rem + 2px); }
 
 select.form-control-sm:not([size]):not([multiple]) {
   height: calc(1.8725rem + 2px); }
@@ -13294,7 +13298,7 @@ div.dt-button-info {
   background: #e3eaef;
   color: #404954;
   font-family: "Nunito", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   padding: 5px 8px; }
 
 .metismenu {
@@ -13400,7 +13404,7 @@ body[data-leftbar-theme="dark"] .side-nav .side-nav-forth-level li.active > a {
   width: 100% !important; }
   .select2-container .select2-selection--single {
     border: 1px solid #47515d;
-    height: calc(2.2125rem + 2px);
+    height: calc(2.4rem + 2px);
     background-color: #404954;
     outline: none; }
     .select2-container .select2-selection--single .select2-selection__rendered {
@@ -13448,7 +13452,7 @@ body[data-leftbar-theme="dark"] .side-nav .side-nav-forth-level li.active > a {
     color: #fff; }
 
 .select2-container .select2-selection--multiple {
-  min-height: calc(2.2125rem + 2px);
+  min-height: calc(2.4rem + 2px);
   border: 1px solid #47515d !important;
   background-color: #404954; }
   .select2-container .select2-selection--multiple .select2-selection__rendered {
@@ -13698,7 +13702,7 @@ body[data-leftbar-theme="dark"] .side-nav .side-nav-forth-level li.active > a {
   .jq-toast-single h2 {
     font-family: "Nunito", sans-serif; }
   .jq-toast-single a {
-    font-size: 0.875rem; }
+    font-size: 1rem; }
     .jq-toast-single a:hover {
       color: #fff; }
 

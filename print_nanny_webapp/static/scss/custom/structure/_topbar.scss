@@ -187,6 +187,11 @@
     border-width: 0 1px;
     min-height: $topbar-height;
 
+    .account-user-settings {
+        position: absolute;
+        top: 0;
+        left: 15px;
+    }
     .account-user-avatar {
         position: absolute;
         top: calc(#{$topbar-height - 32px} / 2);
