@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.apps import apps
 from django.utils import timezone
+from django.core.files.images import ImageFile
 import logging
 import datetime
 import json
@@ -11,10 +12,13 @@ from prometheus_client import Counter
 from celery import shared_task
 from celery import group, chain, chord
 import pandas as pd
+import numpy as np
 import socket
 import imageio
 import uuid
+import os
 from django.db.models import Q
+from skimage.io import imread_collection
 
 from anymail.message import AnymailMessage
 
@@ -59,6 +63,10 @@ metrics.build_version.info({
     'FAILURE_NOTIFY_THRESHOLD': str(FAILURE_NOTIFY_THRESHOLD),
     'HOSTNAME': socket.gethostname(),
 })
+
+def dict_to_series(data):
+    return pd.Series(data.values(), index=data.keys())
+
 
 @shared_task
 def predict_events_dataframe(print_job_id, start=None, stop=None):
@@ -119,48 +127,6 @@ def download_annotated_image(url):
     return imageio.imread(url)
 
 @shared_task
-def send_timelapse_upload_email_notification(annotated_video, timelapse_alert_id, ratio, fps):
-
-    # https://github.com/imageio/imageio-ffmpeg/issues/28
-    # ffmpeg is opened in a subprocess, which does not support io.BytesIO()
-    # with tempfile.NamedTemporaryFile() as f:
-
-    #     imageio.mimwrite(f, annotated_images, fps=fps, format='FFMPEG')
-    #     f.seek(0)
-    #     img_file = ImageFile(f, name=buff.name)
-
-    alert_message = TimelapseAlert.objects.filter(
-            id=timelapse_alert_id
-        ).update(
-            annotated_video = annotated_video,
-            ratio = ratio, 
-            dataframe = df.to_json(orient='records')
-    )
-
-    merge_data = {
-        'RATIO': '{:.2%}'.format(ratio),
-        'ORIGINAL_VIDEO': alert_message.original_video.url,
-        'VIDEO_URL': alert_message.annotated_video.url,
-        # 'FEEDBACK_POSITIVE': reverse('view_name', 
-        # 'FEEDBACK_NEGATIVE': 
-        'FIRST_NAME': print_job.user.first_name or 'Maker',
-    }
-
-    subject = render_to_string("email/print_alert_message_subject.txt", merge_data).strip()
-    text_body = render_to_string("email/print_alert_message_body.txt", merge_data)
-    html_body = render_to_string("email/print_alert_message_body.html", merge_data)
-
-    message = AnymailMessage(
-        subject=subject,
-        body=text_body,
-        to=[predict_events[0].user.email],
-        tags=["default-print-alert"],  # Anymail extra in constructor
-    )
-    message.attach_alternative(html_body, 'text/html')
-    return message.send()
-
-
-@shared_task
 def send_print_job_failure_notification(df, ratio):
     if ratio <= FAILURE_NOTIFY_THRESHOLD:
         return
@@ -207,11 +173,8 @@ def send_print_job_failure_notification(df, ratio):
         'GCODE_FILE': print_job.gcode_file.name,
         'VIDEO_URL': alert_message.video.url,
         'STOP_URL': f'http://localhost/feedback/{alert_message.id}?action=stop_print',
-        'RESUME_URL': f'http://localhost/feedback/{alert_message.id}?action=resume',
-        'FIRST_NAME': print_job.user.first_name or 'Maker',
+        'RESUME_URL': f'http://loctask_id=str(uuid4())ail/print_alert_message_subject.txt", merge_data).strip()'
     }
-
-    subject = render_to_string("email/print_alert_message_subject.txt", merge_data).strip()
     text_body = render_to_string("email/print_alert_message_body.txt", merge_data)
     html_body = render_to_string("email/print_alert_message_body.html", merge_data)
 
@@ -225,18 +188,40 @@ def send_print_job_failure_notification(df, ratio):
     return message.send()
 
 
-@shared_task
-def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
-    """
-        df - prediction_dataframe()
-    """
+def calc_metrics(df, framerate):
+
+    def _seconds(value):
+        if isinstance(value, str):  # value seems to be a timestamp
+            _zip_ft = zip((3600, 60, 1, 1/framerate), value.split(':'))
+            return sum(f * float(t) for f,t in _zip_ft)
+        elif isinstance(value, (int, float)):  # frames
+            return value / framerate
+        else:
+            return 0
+
+    def _timecode(seconds):
+        return '{h:02d}:{m:02d}:{s:02d}:{f:02d}' \
+                .format(h=int(seconds/3600),
+                        m=int(seconds/60%60),
+                        s=int(seconds%60),
+                        f=round((seconds-int(seconds))*framerate))
+
+
+    def _frames(seconds):
+        return seconds * framerate
+
+    def timecode_to_frames(timecode, fps):
+        return _frames(_seconds(timecode) - _seconds(start))
+
+    def frames_to_timecode(frames, start=None):
+        return _timecode(_seconds(frames) + _seconds(start))
 
     NUM_DETECTIONS_PER_FRAME = len(df['detection_scores'].iloc[0])
     df = df[['detection_classes', 'detection_scores']]
     df = df.reset_index()
     df = df.rename(columns={'id': 'frame_id' })
     NUM_FRAMES = len(df)
-
+    df['timecode'] = df['frame_id'].apply(frames_to_timecode)
     # explode detection_classes and detection_scores together
     df = df.set_index(['frame_id']).apply(pd.Series.explode).reset_index()
     assert len(df) == NUM_FRAMES * NUM_DETECTIONS_PER_FRAME
@@ -267,6 +252,15 @@ def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
     metrics.detections_failure_ratio.observe(ratio)
     logging.info(f'num_failed:num_neutral ratio {ratio}')
 
+    return df, fail_df, confident_df, ratio
+
+@shared_task
+def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
+    """
+        df - prediction_dataframe()
+    """
+
+    fail_df, confident_df, ratio 
     if notify_callback is not None:
         logging.info(f'Calling {notify_callback} in worker thread')
         notify_callback(fail_df, ratio=ratio)
@@ -293,79 +287,93 @@ def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
     return fail_df, ratio
 
 @shared_task
-def predict_postprocess_frame(frame_id, frame):
-    predictor = ThreadLocalPredictor()
-    predict_data = predictor.predict(frame)
-    predict_data['annotated_image'] = predictor.postprocess(frame, predict_data)
-    return {'predict_data': predict_data, 'id': frame_id }
+def send_timelapse_upload_email_notification(df, timelapse_alert_id, temp_dir):
+    seq = imread_collection(temp_dir + "/*")
 
-@shared_task
-def save_annotated_video(df, timelapse_alert_id):
+    imageio.mimwrite(buff, seq, format='GIF-PIL')
+    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.mpeg'
 
-    buff = io.BytesIO()
-    imageio.mimwrite(buff, df['annotated_images'], format='GIF-PIL')
-    buff.seek(0)
-    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.gif'
-    img_file = ImageFile(buff, name=filename)
-    return TimelapseAlert.objects.filter(id=timelapse_alert_id).update(
-        annotated_video=img_file
+    _, _, ratio = calc_metrics(df)
+
+    with open(os.join(temp_dir, filename)) as f:
+        imageio.mimwrite(f, annotated_images, fps=5, format='FFMPEG')
+
+        timelapse_alert = TimelapseAlert.objects.filter(
+                id=timelapse_alert_id
+            ).update(
+                annotated_video = f,
+                ratio = ratio, 
+                dataframe = df.to_json(orient='records')
+        )
+
+    merge_data = {
+        'RATIO': '{:.2%}'.format(ratio),
+        #'VIDEO_URL': alert_message.annotated_video.url,
+        # 'FEEDBACK_POSITIVE': reverse('view_name', 
+        # 'FEEDBACK_NEGATIVE': 
+        'ALERT_ID': timelapse_alert_id,
+        'FIRST_NAME': print_job.user.first_name or 'Maker',
+        'ORIGINAL_FILENAME': timelapse_alert.original_file.name
+    }
+
+    if ratio >= FAILURE_NOTIFY_THRESHOLD:
+        html_body = render_to_string("email/timelapse_alert_success_body.html", merge_data)
+        subject = render_to_string("email/timelapse_alert_success_subject.txt", merge_data).strip()
+        text_body = render_to_string("email/timelapse_alert_success_body.txt", merge_data)
+    else:
+        html_body = render_to_string("email/timelapse_alert_fail_body.html", merge_data)
+        subject = render_to_string("email/timelapse_alert_fail_subject.txt", merge_data).strip()
+        text_body = render_to_string("email/timelapse_alert_fail_body.txt", merge_data)
+
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[predict_events[0].user.email],
+        tags=["default-print-alert"],  # Anymail extra in constructor
     )
+    message.attach_alternative(html_body, 'text/html')
+    return message.send()
 
 @shared_task
 def prediction_dicts_to_dataframe(predict_dicts):
-    logger.info(predict_dicts)
+    predict_dicts = np.array(predict_dicts, dtype=np.object)
+    predict_dicts = np.hstack(predict_dicts)
     df = pd.DataFrame.from_records(predict_dicts, index='id')
     df = df.dropna()
     df = df['predict_data'].apply(dict_to_series)
+
     return df
 
+@shared_task
+def predict_postprocess_frame(frame_id, frame, temp_dir):
+    predictor = ThreadLocalPredictor()
+    predict_data = predictor.predict(frame)
+    annotated_image = predictor.postprocess(frame, predict_data)
+    imageio.imwrite(os.path.join(
+        temp_dir, str(frame_id) + '.jpg'
+    ), annotated_image)
+    return {'predict_data': predict_data, 'id': frame_id }
 
 @shared_task(soft_time_limit=300, time_limit=400)
 def analyze_timelapse_video(timelapse_alert_id, file_path):
-    reader = imageio.get_reader(file_path)
+    
+    reader = imageio.get_reader(file_path, fps=5)
     fps = reader.get_meta_data()['fps']
 
-    logger.info(reader.get_meta_data())
-
-    # https://github.com/imageio/imageio-ffmpeg/issues/28
-    # ffmpeg is opened in a subprocess, which does not support io.BytesIO()
-
-    # df_workflow = chord(
-    #     predict_postprocess_frame.chunks(enumerate(reader),5),
-    #     prediction_dicts_to_dataframe.s()
-    # )
-    return group(
-        predict_postprocess_frame.si(i, frame) for i, frame in enumerate(reader)
-    )
-
-    # return chain(
-    #     prediction_dicts_s,
-    #     prediction_dicts_to_dataframe.s(),
-    #     group(
-    #         save_annotated_video.s(timelapse_alert_id),
-    #         log_metrics.s(notify_callback=None, alert_cls=TimelapseAlert)
-    #     )
-    # )()
-
-    # with tempfile.NamedTemporaryFile() as f:
-    #     with imageio.get_writer(f, format='GIF-PIL', fps=fps) as w:
-    #         predictor = ThreadLocalPredictor()
-    #         prediction_data = [
-    #             predict_postprocess_frame(i, image)
-    #             for i, image in enumerate(reader)
-    #         ]
-    #         img_file = ImageFile(f)
-
-    # df = predict_events_to_dataframe(prediction_data)
+    CHUNKS = 5
 
 
-    # fail_df, ratio = log_metrics(
-    #     df, 
-    #     notify_callback=None,
-    #     alert_cls=TimelapseAlert
-    # )
+    temp_dir = tempfile.mkdtemp()
 
-    #send_timelapse_upload_email_notification(img_file, timelapse_alert_id, ratio, fps)
+    grouped = predict_postprocess_frame.chunks( 
+        ((i, frame, temp_dir) for i, frame in enumerate(reader))
+        , CHUNKS).group() 
+    
+
+    chord1 = chord(grouped, prediction_dicts_to_dataframe.s())
+    chord1.link(send_timelapse_upload_email_notification.s(timelapse_alert_id, temp_dir))
+
+    return chord1()
 
 @shared_task
 def debug_jobs_analysis():

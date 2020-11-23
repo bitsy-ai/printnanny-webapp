@@ -329,9 +329,12 @@ CELERY_TASK_TIME_LIMIT = 6 * 60
 CELERY_TASK_SOFT_TIME_LIMIT = 5 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {
-    'result_chord_ordered': True
-}
+# CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {
+#     'result_chord_ordered': True
+# }
+CELERY_BROKER_CONNECTION_TIMEOUT=8.0
+CELERY_BROKER_POOL_LIMIT=None
+
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)

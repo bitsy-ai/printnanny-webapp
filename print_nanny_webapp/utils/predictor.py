@@ -19,6 +19,10 @@ except:
     from typing_extensions import TypedDict
     from typing import Optional
 
+# Set CPU as available physical device
+my_devices = tf.config.experimental.list_physical_devices(device_type='CPU')
+tf.config.experimental.set_visible_devices(devices= my_devices, device_type='CPU')
+
 logger = logging.getLogger(__name__)
 class Prediction(TypedDict):
     num_detections: int

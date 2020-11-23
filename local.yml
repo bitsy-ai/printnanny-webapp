@@ -69,7 +69,9 @@ services:
       - "4040:4040"
   redis:
 
-    image: redis:5.0
+    build:
+      context: .
+      dockerfile: ./compose/local/redis/Dockerfile
     container_name: redis
 
   celeryworker:
