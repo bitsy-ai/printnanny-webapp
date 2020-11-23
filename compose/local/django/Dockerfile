@@ -15,6 +15,7 @@ RUN apt-get update \
   && apt-get install -y gettext \
   # postgres client (dbshell)
   && apt-get install -y postgresql \
+  && apt-get -y install wget \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
@@ -26,6 +27,9 @@ RUN pip install -r /requirements/local.txt
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
+
+RUN wget https://github.com/plotly/orca/releases/download/v1.3.1/orca-1.3.1.AppImage -o /usr/local/bin/orca
+RUN chmod +x /usr/local/bin/orca
 
 COPY ./compose/local/django/start /start
 RUN sed -i 's/\r$//g' /start
