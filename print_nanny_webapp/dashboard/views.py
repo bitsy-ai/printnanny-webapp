@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.apps import apps
-from django.views.generic import TemplateView, DetailView, FormView
+from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import TimelapseUploadForm
@@ -11,7 +11,7 @@ from print_nanny_webapp.alerts.tasks import analyze_timelapse_video
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
-
+AlertMessage = apps.get_model('alerts', 'AlertMessage')
 logger = logging.getLogger(__name__)
 
 
@@ -28,7 +28,7 @@ class HomeDashboardView(LoginRequiredMixin, DetailView, FormView):
 
     model = User
     template_name = 'dashboard/home.html'
-    success_url = 'videos/'
+    success_url = 'report-cards'
 
     form_class = TimelapseUploadForm
 
@@ -83,9 +83,21 @@ class DemoDashboardView(LoginRequiredMixin, DetailView):
 demo_dashboard_view = DemoDashboardView.as_view()
 
 
-class VideoDashboardView(LoginRequiredMixin, DetailView):
+class VideoDashboardView(LoginRequiredMixin, ListView):
 
-    model = User
+    model = AlertMessage
+    template_name = 'dashboard/video.html'
+    def get_context_data(self):
+        return {'alerts': AlertMessage.objects.filter(user=self.request.user.id).all() }
+
+video_dashboard_list_view = VideoDashboardView.as_view()
+
+
+class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
+
+    model = AlertMessage
+    slug_field = "id"
+    slug_url_kwarg = "id"
     template_name = 'dashboard/video.html'
     def get_object(self):
         token, created = Token.objects.get_or_create(user=self.request.user)
@@ -93,4 +105,5 @@ class VideoDashboardView(LoginRequiredMixin, DetailView):
         self.request.user.active_alerts = self.request.user.alertmessage_set.filter(last_action=AlertMessage.ActionChoices.PENDING)
         return self.request.user
 
-video_dashboard_view = VideoDashboardView.as_view()
+video_dashboard_detail_view = VideoDashboardDetailView.as_view()
+

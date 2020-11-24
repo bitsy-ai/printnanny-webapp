@@ -17,8 +17,14 @@ import socket
 import imageio
 import uuid
 import os
+from django.urls import reverse
 from django.db.models import Q
 from skimage.io import imread_collection
+import plotly.express as px
+import plotly.graph_objects as go
+
+from scipy import signal
+import sys
 
 from anymail.message import AnymailMessage
 
@@ -29,12 +35,15 @@ from print_nanny_webapp.utils.predictor import ThreadLocalPredictor, predict_eve
 
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
 DefectAlert = apps.get_model('alerts', 'DefectAlert')
+AlertPlot = apps.get_model('alerts', 'AlertPlot')
+
 PredictEvent = apps.get_model('client_events', 'PredictEvent')
 PrintJob = apps.get_model('remote_control', 'PrintJob')
 
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
+pd.options.plotting.backend = "plotly"
 
 EVERY_N_SECONDS = 60.0
 
@@ -206,7 +215,6 @@ def calc_metrics(df, framerate):
                         s=int(seconds%60),
                         f=round((seconds-int(seconds))*framerate))
 
-
     def _frames(seconds):
         return seconds * framerate
 
@@ -232,35 +240,21 @@ def calc_metrics(df, framerate):
     # create a hierarchal index
     df = df.set_index(['frame_id', 'label'])
 
-    NUM_FRAMES = len(df.groupby('frame_id').count().index)
-    metrics.predict_frames_per_minute.observe(NUM_FRAMES)
 
     confident_df = df[df['detection_scores'] > CONFIDENCE_THRESHOLD]
     mask = (df['detection_scores'] > CONFIDENCE_THRESHOLD) & (df['detection_classes'].isin(FAILURES))
     fail_df = df[mask]
 
-    mask = (df['detection_scores'] > CONFIDENCE_THRESHOLD) & (~df['detection_classes'].isin(FAILURES))
-    neutral_df = df[mask]
-
-    # at least 1 neutral detection in the frame
-    num_neutral = len(neutral_df.groupby('frame_id'))
-    # at least 1 failed detection in the frame
-    num_failed = len(fail_df.groupby('frame_id'))
-
-    # compare failed:neutral detection ratio
-    ratio = num_failed / (num_neutral + FAILURE_EPSILON)
-    metrics.detections_failure_ratio.observe(ratio)
-    logging.info(f'num_failed:num_neutral ratio {ratio}')
-
-    return df, fail_df, confident_df, ratio
+    return df, fail_df, confident_df
 
 @shared_task
 def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
     """
         df - prediction_dataframe()
     """
+    NUM_FRAMES = len(df.groupby('frame_id').count().index)
+    metrics.predict_frames_per_minute.observe(NUM_FRAMES)
 
-    fail_df, confident_df, ratio 
     if notify_callback is not None:
         logging.info(f'Calling {notify_callback} in worker thread')
         notify_callback(fail_df, ratio=ratio)
@@ -287,43 +281,302 @@ def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
     return fail_df, ratio
 
 @shared_task
-def send_timelapse_upload_email_notification(df, timelapse_alert_id, temp_dir):
-    seq = imread_collection(temp_dir + "/*")
+def create_box_plot(confident_df, multi_df, timelapse_alert_id, temp_dir):
 
-    imageio.mimwrite(buff, seq, format='GIF-PIL')
-    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.mpeg'
+    boxplot_filename = f'{timelapse_alert_id}_boxplot'
+    boxplot_fig = confident_df.reset_index().plot(
+        x='label',
+        y='detection_scores',
+        kind='box',
+        title="Print Nanny's Confidence Distribution by Label",
+        color='label'
+    )
 
-    _, _, ratio = calc_metrics(df)
-
-    with open(os.join(temp_dir, filename)) as f:
-        imageio.mimwrite(f, annotated_images, fps=5, format='FFMPEG')
-
-        timelapse_alert = TimelapseAlert.objects.filter(
-                id=timelapse_alert_id
-            ).update(
-                annotated_video = f,
-                ratio = ratio, 
-                dataframe = df.to_json(orient='records')
+    boxplot_html = os.path.join(temp_dir, f'{boxplot_filename}.html')
+    with open(boxplot_html, 'w+') as f:
+        boxplot_fig.write_html(
+            f,
+            include_plotlyjs=False,
+            full_html=False
         )
 
+    boxplot_png = os.path.join(temp_dir, f'{boxplot_filename}.png')
+    boxplot_fig.write_image(boxplot_png)
+    
+    boxplot_csv = os.path.join(temp_dir, f'{boxplot_filename}.csv')
+    with open(boxplot_csv, 'w+') as f:
+        multi_df.to_csv(f)
+    alert_plot = AlertPlot.objects.create(
+        dataframe=boxplot_csv,
+        image=boxplot_png,
+        html=boxplot_html,
+        function=sys._getframe().f_code.co_name,
+        title='Confidence Distribution',
+        description='boxplot',
+        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    )
+
+    return alert_plot
+
+@shared_task
+def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
+    g = confident_df.reset_index()
+
+    window = min([int(fps), len(g.index)])
+    if window % 2 == 0:
+        window -= 1
+    
+    polyorder = min([3, len(g.index)-1])
+    y = signal.savgol_filter(g['detection_scores'], window, polyorder)
+
+    fig = px.line(
+        g, x='frame_id', y=y, color='label', facet_col='label', line_group='label',
+        height=800, width=800, facet_col_wrap=1, facet_col_spacing=0.05
+    )
+
+    fig.update_yaxes(title_text='Confidence')
+    fig.update_layout(
+        overwrite=True,
+        title_text="Confidence over Time, Breakout by Detection Type",
+        xaxis_title='Time (frame id)',
+        legend_title='Detection'
+    )
+
+    filename = f'{timelapse_alert_id}_lines_subplot'
+    html = os.path.join(temp_dir, f'{filename}.html')
+    with open(html, 'w+') as f:
+        fig.write_html(
+            f,
+            include_plotlyjs=False,
+            full_html=False
+        )
+
+    png = os.path.join(temp_dir, f'{filename}.png')
+    fig.write_image(_png)
+    
+    csv = os.path.join(temp_dir, f'{filename}.csv')
+    with open(csv, 'w+') as f:
+        multi_df.to_csv(f)
+
+    alert_plot = AlertPlot.objects.create(
+        dataframe=csv,
+        image=png,
+        html=html,
+        function=sys._getframe().f_code.co_name,
+        title='Confidence over Time',
+        description='Breakout by Detection Type',
+        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    )
+
+    return alert_plot
+
+@shared_task()
+def create_health_abs_plot(confident_df, fail_df, fps):
+    g = confident_df.reset_index()
+
+    fig = go.Figure()
+
+    print_trace = g[g['label'] == 'print']
+    fail_trace = fail_df.reset_index()
+
+    window = min([int(fps), len(print_trace['frame_id'])])
+    if window % 2 == 0:
+        window -= 1
+
+    polyorder = min([3, len(print_trace.index)-1])
+
+    fig.add_trace(go.Scatter(
+        x=print_trace['frame_id'], 
+        y=signal.savgol_filter(print_trace['detection_scores'],window, polyorder),
+        fill=None,
+        mode='lines',
+        name='print'
+
+    ))
+
+    polyorder = min([3, len(fail_trace.index)-1])
+    window = min([int(fps), len(fail_trace['frame_id']) ])
+    if window % 2 == 0:
+        window -= 1
+    fig.add_trace(go.Scatter(
+        x=fail_trace['frame_id'], 
+        y=signal.savgol_filter(
+            fail_trace['detection_scores'], window, polyorder),
+        fill=None,
+        mode='lines',
+        name='defects',    
+    ))
+
+    fig.update_layout(
+        overwrite=True,
+        title_text="Print Health Scores (Absolute)",
+        xaxis_title='Time (frame id)',
+        yaxis_title='Health Score'
+    )
+
+
+    filename = f'{timelapse_alert_id}_health_abs_plot'
+    html = os.path.join(temp_dir, f'{filename}.html')
+    with open(html, 'w+') as f:
+        fig.write_html(
+            f,
+            include_plotlyjs=False,
+            full_html=False
+        )
+
+    png = os.path.join(temp_dir, f'{filename}.png')
+    fig.write_image(png)
+    
+    csv = os.path.join(temp_dir, f'{filename}.csv')
+    with open(csv, 'w+') as f:
+        multi_df.to_csv(f)
+
+    alert_plot = AlertPlot.objects.create(
+        dataframe=csv,
+        image=png,
+        html=html,
+        function=sys._getframe().f_code.co_name,
+        title='Print Health Scores (Absolute)',
+        description='Health score over time, breakout by print vs all defects',
+        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    )
+
+    return alert_plot
+
+@shared_task()
+def create_health_rel_plot(confident_df, fail_df, fps):
+    g = confident_df.reset_index()
+    print_trace = g[g['label'] == 'print']
+    fail_trace = fail_df.reset_index()
+    split_df = pd.concat({'fail': fail_trace, 'print': print_trace}).reset_index()
+
+    mask = split_df.level_0 == 'fail'
+
+    y = split_df[~mask].groupby('timecode')['detection_scores'].sum().subtract(
+        split_df[mask].groupby('timecode')['detection_scores'].sum(),
+        fill_value=0
+    )
+    fig = go.Figure(go.Waterfall(
+        orientation = "v",
+        x = y.index,
+        y =  y,
+    ))
+
+    alert_offset = int(fps/2)
+    fig.update_layout(
+        overwrite=True,
+        title_text="Change in Print Health Over Time",
+        xaxis_title='Time (relative)',
+        yaxis_title='Health Score'
+    )
+
+    fig.update_xaxes(
+        nticks=20
+    )
+
+    fig.add_annotation(
+        x=y[y < 0].index[alert_offset],
+        y=1,
+        text="Print Nanny alerts you at this time",
+        showarrow=True,
+        arrowhead=1
+    )
+
+    fig.add_vrect(
+        x0=y[y < 0].index[alert_offset], x1=y[y < 0].index[-1],
+        fillcolor="LightSalmon", opacity=0.5,
+        layer="below", line_width=0,
+    )
+
+    filename = f'{timelapse_alert_id}_health_rel_plot'
+    html = os.path.join(temp_dir, f'{filename}.html')
+    with open(html, 'w+') as f:
+        fig.write_html(
+            f,
+            include_plotlyjs=False,
+            full_html=False
+        )
+
+    png = os.path.join(temp_dir, f'{filename}.png')
+    fig.write_image(_png)
+    
+    csv = os.path.join(temp_dir, f'{filename}.csv')
+    with open(csv, 'w+') as f:
+        multi_df.to_csv(f)
+
+    alert_plot = AlertPlot.objects.create(
+        dataframe=csv,
+        image=png,
+        html=html,
+        function=sys._getframe().f_code.co_name,
+        title='Change in Print Health Over Time',
+        description='Relative change (waterfall) health scores over time',
+        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    )
+
+    return alert_plot
+
+@shared_task
+def create_report_card(df, timelapse_alert_id, temp_dir, fps):
+
+    multi_df, fail_df, confident_df = calc_metrics(df, fps)
+
+    workflow = group([
+        create_box_plot.si(confident_df, multi_df, timelapse_alert_id, temp_dir),
+        create_line_subplots.si(confident_df, timelapse_alert_id, temp_dir, fps),
+        create_health_abs_plot.si(confident_df, fail_df, fps),
+        create_health_rel_plot.si(confident_df, fail_df, fps)
+    ]) | send_timelapse_upload_email_notification.si(timelapse_alert_id, temp_dir)
+
+    
+    return workflow()
+
+
+# @shared_task
+# def render_annotated_gif(timelapse_alert_id, temp_dir, fps):
+#     annotated_images = imread_collection(temp_dir + "/*.jpg")
+#     buff =  io.BytesIO()
+#     filename = f'timelapse_alert_{timelapse_alert_id}_annotated.gif'
+#     buff.name = filename
+#     imageio.mimwrite(buff, annotated_images, format='GIF-PIL', fps=5)
+#     logging.info(f'Finished writing {buff.name} to buffer')
+
+#     video_file = ImageFile(buff, name=filename)
+#     timelapse_alert = TimelapseAlert.objects.filter(
+#             id=timelapse_alert_id
+#         ).update(annotated_gif = video_file)
+#     logging.info(f'Updated {timelapse_alert_id} with {filename}')
+#     return timelapse_alert
+
+@shared_task
+def render_annotated_video(timelapse_alert_id, temp_dir, fps):
+    annotated_images = imread_collection(temp_dir + "/*.jpg")
+    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.mpeg'
+    file_path = os.path.join(temp_dir, filename)
+    imageio.mimwrite(file_path, annotated_images, fps=fps, format='FFMPEG')
+    timelapse_alert = TimelapseAlert.objects.filter(
+            id=timelapse_alert_id
+        ).update(
+            annotated_video = file_path
+    )
+
+    logging.info(f'Updated {timelapse_alert_id} with {filename}')
+    return timelapse_alert
+
+@shared_task
+def send_timelapse_upload_email_notification(timelapse_alert_id, temp_dir):
+
+    timelapse_alert = TimelapseAlert.objects.get(id=timelapse_alert_id)
+
     merge_data = {
-        'RATIO': '{:.2%}'.format(ratio),
-        #'VIDEO_URL': alert_message.annotated_video.url,
-        # 'FEEDBACK_POSITIVE': reverse('view_name', 
-        # 'FEEDBACK_NEGATIVE': 
-        'ALERT_ID': timelapse_alert_id,
-        'FIRST_NAME': print_job.user.first_name or 'Maker',
+        'REPORT_URL': reverse('dashboard:report-cards:detail', kwargs={'id': timelapse_alert_id}),
+        'FIRST_NAME': timelapse_alert.user.first_name or 'Maker',
         'ORIGINAL_FILENAME': timelapse_alert.original_file.name
     }
 
-    if ratio >= FAILURE_NOTIFY_THRESHOLD:
-        html_body = render_to_string("email/timelapse_alert_success_body.html", merge_data)
-        subject = render_to_string("email/timelapse_alert_success_subject.txt", merge_data).strip()
-        text_body = render_to_string("email/timelapse_alert_success_body.txt", merge_data)
-    else:
-        html_body = render_to_string("email/timelapse_alert_fail_body.html", merge_data)
-        subject = render_to_string("email/timelapse_alert_fail_subject.txt", merge_data).strip()
-        text_body = render_to_string("email/timelapse_alert_fail_body.txt", merge_data)
+    text_body = render_to_string("email/print_alert_message_body.txt", merge_data)
+    html_body = render_to_string("email/print_alert_message_body.html", merge_data)
+    subject_body = render_to_string("email/print_alert_message_body.html", merge_data)
 
     message = AnymailMessage(
         subject=subject,
@@ -357,21 +610,23 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 @shared_task(soft_time_limit=300, time_limit=400)
 def analyze_timelapse_video(timelapse_alert_id, file_path):
     
-    reader = imageio.get_reader(file_path, fps=5)
+    reader = imageio.get_reader(file_path)
     fps = reader.get_meta_data()['fps']
 
-    CHUNKS = 5
-
-
+    CHUNKS = int(fps) # process 3s chunks of video
     temp_dir = tempfile.mkdtemp()
-
     grouped = predict_postprocess_frame.chunks( 
         ((i, frame, temp_dir) for i, frame in enumerate(reader))
         , CHUNKS).group() 
-    
-
     chord1 = chord(grouped, prediction_dicts_to_dataframe.s())
-    chord1.link(send_timelapse_upload_email_notification.s(timelapse_alert_id, temp_dir))
+
+    report_card_tasks = group([
+        #render_annotated_gif.si(timelapse_alert_id, temp_dir, fps),
+        render_annotated_video.si(timelapse_alert_id, temp_dir, fps),
+        create_report_card.s(timelapse_alert_id, temp_dir, fps)
+    ])
+
+    chord1.link(report_card_tasks)
 
     return chord1()
 

@@ -6,7 +6,7 @@ argon2-cffi==20.1.0  # https://github.com/hynek/argon2_cffi
 whitenoise==5.2.0  # https://github.com/evansd/whitenoise
 redis==3.5.3  # https://github.com/andymccurdy/redis-py
 hiredis==1.1.0  # https://github.com/redis/hiredis-py
-celery==4.4.7  # https://github.com/celery/celery
+celery[redis]==4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.1.0  # https://github.com/celery/django-celery-beat
 flower==0.9.5  # https://github.com/mher/flower
 uvicorn==0.12.2  # https://github.com/encode/uvicorn
@@ -35,3 +35,8 @@ matplotlib
 imageio==2.9.0
 tensorflow==2.4.0-rc2
 imageio-ffmpeg==0.4.2
+scikit-image==0.17.2
+plotly==4.12.0
+psutil==5.7.3
+kaleido==0.0.3.post1
+django-google-analytics-app==4.4.2

@@ -1,14 +1,8 @@
 Hey {{FIRST_NAME }},
 
-I squinted at your print, but I couldn't detect any defects. Here's what I saw:
+I squinted at your print, but I couldn't detect any defects.
 
-{{ GIF_URL }}
-
-Filename: {{GCODE_FILE }}
-
-What should I do next?
-
-Can you do me a favor? If I'm wrong, let me know by hitting the 👎 button in the Report Card below.
+Can you do me a favor? I'm wrong, let me know by hitting the 👎 button in the Report Card below.
 
 {{ REPORT_URL }}
 

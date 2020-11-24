@@ -26,9 +26,7 @@ class AnnotatedVideo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
-    dataframe = models.JSONField(null=True)
-    summary = models.JSONField(null=True)
-    feedback = models.BooleanField(null=True)
+    annotated_gif = models.FileField(upload_to=_upload_to, null=True)
     class Meta:
         abstract = True
 
@@ -41,10 +39,9 @@ class AlertMessage(PolymorphicModel):
         EMAIL = 'EMAIL', 'Email'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
+    feedback = models.BooleanField(null=True)
     provider_id = models.CharField(max_length=255, null=True, db_index=True)
     seen = models.BooleanField(default=False)
-
 
 class DefectAlert(AlertMessage, AnnotatedVideo):
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
@@ -83,6 +80,15 @@ class TimelapseAlert(AlertMessage, AnnotatedVideo):
         models.CharField(max_length=255),
         default=list(["timelapse-alert"])
     )
+
+class AlertPlot(models.Model):
+    dataframe = models.FileField(upload_to='uploads/alert_plot/%Y/%m/%d/')
+    image = models.ImageField(upload_to='uploads/alert_plot/%Y/%m/%d/')
+    html = models.FileField(upload_to='uploads/alert_plot/%Y/%m/%d/')
+    title = models.CharField(max_length=65)
+    description = models.CharField(max_length=255)
+    function = models.CharField(max_length=65)
+    alert = models.ForeignKey(AlertMessage, on_delete=models.RESTRICT)
 
 # class AlertEvent(models.Model):
 #     """
