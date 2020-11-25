@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import TimelapseUploadForm
-from print_nanny_webapp.alerts.tasks import create_analyze_video_task
+from print_nanny_webapp.alerts.tasks import create_analyze_video_task, annotate_job_error
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
@@ -44,15 +44,17 @@ class HomeDashboardView(LoginRequiredMixin, DetailView, FormView):
         if isinstance(video_file, InMemoryUploadedFile):
             logging.info(f'File processed asInMemoryUploadedFile')
             logging.info(f'File info {timelapse_alert.original_video}')
-            create_analyze_video_task.delay(
-                timelapse_alert.id, 
-                timelapse_alert.original_video.url
+            create_analyze_video_task.apply_async(
+                (timelapse_alert.id, 
+                timelapse_alert.original_video.url),
+                link_error=annotate_job_error.si(timelapse_alert.id)
             )
         elif isinstance(video_file, TemporaryUploadedFile):
             logging.info(f'File processed as TemporaryUploadedFile')
-            create_analyze_video_task.delay(
-                timelapse_alert.id, 
-                self.request.FILES['video_file'].temporary_file_path()
+            create_analyze_video_task.apply_async(
+                (timelapse_alert.id, 
+                self.request.FILES['video_file'].temporary_file_path()),
+                link_error=annotate_job_error.si(timelapse_alert.id)
             )
         return super().form_valid(form)
 
@@ -83,13 +85,51 @@ class DemoDashboardView(LoginRequiredMixin, DetailView):
 demo_dashboard_view = DemoDashboardView.as_view()
 
 
-class VideoDashboardView(LoginRequiredMixin, ListView):
+class VideoDashboardView(LoginRequiredMixin, ListView, FormView):
+    success_url = 'report-cards'
+
+    form_class = TimelapseUploadForm
 
     model = AlertMessage
     template_name = 'dashboard/video-list.html'
+
+    def form_valid(self, form):
+
+        failed_job = self.request.POST.get('timelapse_alert_id')
+        if failed_job is not None:
+            logger.warning('Deleting TimelapseAlert with id {failed_job} (tombstones are disabled)')
+            TimelapseAlert.objects.filter(id=failed_job).delete()
+
+        timelapse_alert = TimelapseAlert.objects.create(
+            user=self.request.user,
+            original_video=self.request.FILES['video_file'],
+        )
+
+        video_file = self.request.FILES['video_file']
+
+        if isinstance(video_file, InMemoryUploadedFile):
+            logging.info(f'File processed asInMemoryUploadedFile')
+            logging.info(f'File info {timelapse_alert.original_video}')
+            create_analyze_video_task.apply_async(
+                (timelapse_alert.id, 
+                timelapse_alert.original_video.url),
+                link_error=annotate_job_error.si(timelapse_alert.id)
+            )
+        elif isinstance(video_file, TemporaryUploadedFile):
+            logging.info(f'File processed as TemporaryUploadedFile')
+            create_analyze_video_task.apply_async(
+                (timelapse_alert.id, 
+                self.request.FILES['video_file'].temporary_file_path()),
+                link_error=annotate_job_error.si(timelapse_alert.id)
+            )
+        return super().form_valid(form)
+
     def get_context_data(self):
-        logger.info(AlertMessage.objects.filter(user=self.request.user.id).all())
-        return {'alerts': AlertMessage.objects.filter(user=self.request.user.id).all() }
+        context = {}
+        context['form'] = TimelapseUploadForm()
+        context['alerts'] = AlertMessage.objects.filter(user=self.request.user.id).all()
+        logger.info(TimelapseAlert.objects.filter(user=self.request.user.id).order_by('-created_dt').all())
+        return context
 
 video_dashboard_list_view = VideoDashboardView.as_view()
 

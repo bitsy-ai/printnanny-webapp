@@ -30,7 +30,7 @@ class AnnotatedVideo(models.Model):
     '''
     class JobStatusChoices(models.TextChoices):
         PROCESSING = 'Processing', 'Processing'
-        SUCESS = 'SUCCESS', 'Success'
+        SUCCESS = 'SUCCESS', 'Success'
         FAILURE = 'FAILURE', 'Failure'
     
     job_status = models.CharField(max_length=32, choices=JobStatusChoices.choices, default=JobStatusChoices.PROCESSING)

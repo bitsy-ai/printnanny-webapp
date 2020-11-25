@@ -628,20 +628,21 @@ def annotate_job_success(alert_id):
 
 @shared_task
 def annotate_job_error(alert_id):
+    logger.error(f'Marking TimelapseAlert {alert_id} as FAILURE')
     alert = TimelapseAlert.objects.filter(id=alert_id).update(
         job_status=TimelapseAlert.JobStatusChoices.FAILURE
     )
 
-@shared_task(soft_time_limit=300, time_limit=400)
+@shared_task()
 def create_analyze_video_task(timelapse_alert_id, file_path):
     '''
 
     '''
-    
+
     reader = imageio.get_reader(file_path)
     fps = reader.get_meta_data()['fps']
 
-    CHUNKS = int(fps*5) # process 5s chunks of video
+    CHUNKS = int(fps//2) 
     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
     grouped = predict_postprocess_frame.chunks( 
         ((i, frame, temp_dir) for i, frame in enumerate(reader))
