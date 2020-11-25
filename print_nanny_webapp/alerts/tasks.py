@@ -451,8 +451,8 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
 
     mask = split_df.level_0 == 'fail'
 
-    y = split_df[~mask].groupby('timecode')['detection_scores'].sum().subtract(
-        split_df[mask].groupby('timecode')['detection_scores'].sum(),
+    y = split_df[mask].groupby('timecode')['detection_scores'].apply(pd.Series.cumsum).subtract(
+        split_df[~mask].groupby('timecode')['detection_scores'].apply(pd.Series.cumsum),
         fill_value=0
     )
     fig = go.Figure(go.Waterfall(
