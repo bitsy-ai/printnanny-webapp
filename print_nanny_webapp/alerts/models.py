@@ -1,4 +1,6 @@
 import os 
+import logging
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
@@ -9,21 +11,29 @@ from polymorphic.models import PolymorphicModel
 from print_nanny_webapp.remote_control.models import PrintJob
 
 User = get_user_model()
-    
+logger = logging.getLogger(__name__)
+
+def _upload_to(instance, filename):
+    datesegment = dateformat.format(timezone.now(), 'Y/M/d/')
+    path = os.path.join(
+        f'uploads/{instance.__class__.__name__}',
+        datesegment,
+        filename
+    )
+    logger.info('Uploading to path')
+    return path
+ 
 
 class AnnotatedVideo(models.Model):
     '''
         Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     '''
-    def _upload_to(self, filename):
-        return os.path.join(
-           dateformat.format(timezone.now(), 'uploads/annotated_video/%Y/%m/%d/'),
-           filename
-        )
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    dataframe = models.FileField(upload_to=_upload_to, null=True)    
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_gif = models.FileField(upload_to=_upload_to, null=True)
@@ -55,12 +65,6 @@ class DefectAlert(AlertMessage, AnnotatedVideo):
         choices=ActionChoices.choices,
         default=ActionChoices.PENDING
     )
- 
-    def _upload_to(self, filename):
-        return os.path.join(
-           dateformat.format(timezone.now(), 'uploads/defect_alert/%Y/%m/%d/'),
-           filename
-        )
 
     tags = ArrayField(
         models.CharField(max_length=255),
@@ -71,20 +75,15 @@ class TimelapseAlert(AlertMessage, AnnotatedVideo):
     """
         outgoing message to user indicating timelapse video is done
     """
-    def _upload_to(self, filename):
-        return os.path.join(
-           dateformat.format(timezone.now(), 'uploads/timelapse_alert/%Y/%m/%d/'),
-           filename
-        )
+
     tags = ArrayField(
         models.CharField(max_length=255),
         default=list(["timelapse-alert"])
     )
 
 class AlertPlot(models.Model):
-    dataframe = models.FileField(upload_to='uploads/alert_plot/%Y/%m/%d/')
-    image = models.ImageField(upload_to='uploads/alert_plot/%Y/%m/%d/')
-    html = models.FileField(upload_to='uploads/alert_plot/%Y/%m/%d/')
+    image = models.ImageField(upload_to=_upload_to)
+    html = models.FileField(upload_to=_upload_to)
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
     function = models.CharField(max_length=65)

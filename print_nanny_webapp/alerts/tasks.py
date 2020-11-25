@@ -22,6 +22,7 @@ from django.db.models import Q
 from skimage.io import imread_collection
 import plotly.express as px
 import plotly.graph_objects as go
+import shutil
 
 from scipy import signal
 import sys
@@ -280,8 +281,30 @@ def log_metrics(df, notify_callback=None, alert_cls=DefectAlert):
 
     return fail_df, ratio
 
+def savgol_filter(x, fps):
+    logger.info(type(x))
+    # assert x > window
+    if len(x) <= fps:
+        window = len(x)//8
+    else:
+        window = int(fps)
+    
+    # window must be an odd number
+    if window % 2 == 0:
+        window += 1
+    
+    # assert polyorder < window
+    if window <= 3:
+        return x
+    
+    return signal.savgol_filter(
+        x,
+        window,
+        1
+    )
+
 @shared_task
-def create_box_plot(confident_df, multi_df, timelapse_alert_id, temp_dir):
+def create_box_plot(confident_df, timelapse_alert_id, temp_dir):
 
     boxplot_filename = f'{timelapse_alert_id}_boxplot'
     boxplot_fig = confident_df.reset_index().plot(
@@ -304,10 +327,7 @@ def create_box_plot(confident_df, multi_df, timelapse_alert_id, temp_dir):
     boxplot_fig.write_image(boxplot_png)
     
     boxplot_csv = os.path.join(temp_dir, f'{boxplot_filename}.csv')
-    with open(boxplot_csv, 'w+') as f:
-        multi_df.to_csv(f)
     alert_plot = AlertPlot.objects.create(
-        dataframe=boxplot_csv,
         image=boxplot_png,
         html=boxplot_html,
         function=sys._getframe().f_code.co_name,
@@ -322,12 +342,7 @@ def create_box_plot(confident_df, multi_df, timelapse_alert_id, temp_dir):
 def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
     g = confident_df.reset_index()
 
-    window = min([int(fps), len(g.index)])
-    if window % 2 == 0:
-        window -= 1
-    
-    polyorder = min([3, len(g.index)-1])
-    y = signal.savgol_filter(g['detection_scores'], window, polyorder)
+    y = savgol_filter(g['detection_scores'], fps)
 
     fig = px.line(
         g, x='frame_id', y=y, color='label', facet_col='label', line_group='label',
@@ -352,14 +367,9 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
         )
 
     png = os.path.join(temp_dir, f'{filename}.png')
-    fig.write_image(_png)
-    
-    csv = os.path.join(temp_dir, f'{filename}.csv')
-    with open(csv, 'w+') as f:
-        multi_df.to_csv(f)
+    fig.write_image(png)
 
     alert_plot = AlertPlot.objects.create(
-        dataframe=csv,
         image=png,
         html=html,
         function=sys._getframe().f_code.co_name,
@@ -371,7 +381,7 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
     return alert_plot
 
 @shared_task()
-def create_health_abs_plot(confident_df, fail_df, fps):
+def create_health_abs_plot(confident_df, fail_df, timelapse_alert_id, temp_dir, fps):
     g = confident_df.reset_index()
 
     fig = go.Figure()
@@ -379,29 +389,20 @@ def create_health_abs_plot(confident_df, fail_df, fps):
     print_trace = g[g['label'] == 'print']
     fail_trace = fail_df.reset_index()
 
-    window = min([int(fps), len(print_trace['frame_id'])])
-    if window % 2 == 0:
-        window -= 1
-
-    polyorder = min([3, len(print_trace.index)-1])
+    window = int(fps)
 
     fig.add_trace(go.Scatter(
         x=print_trace['frame_id'], 
-        y=signal.savgol_filter(print_trace['detection_scores'],window, polyorder),
+        y=savgol_filter(print_trace['detection_scores'],fps),
         fill=None,
         mode='lines',
         name='print'
 
     ))
 
-    polyorder = min([3, len(fail_trace.index)-1])
-    window = min([int(fps), len(fail_trace['frame_id']) ])
-    if window % 2 == 0:
-        window -= 1
     fig.add_trace(go.Scatter(
         x=fail_trace['frame_id'], 
-        y=signal.savgol_filter(
-            fail_trace['detection_scores'], window, polyorder),
+        y=savgol_filter(fail_trace['detection_scores'], fps),
         fill=None,
         mode='lines',
         name='defects',    
@@ -427,12 +428,8 @@ def create_health_abs_plot(confident_df, fail_df, fps):
     png = os.path.join(temp_dir, f'{filename}.png')
     fig.write_image(png)
     
-    csv = os.path.join(temp_dir, f'{filename}.csv')
-    with open(csv, 'w+') as f:
-        multi_df.to_csv(f)
 
     alert_plot = AlertPlot.objects.create(
-        dataframe=csv,
         image=png,
         html=html,
         function=sys._getframe().f_code.co_name,
@@ -444,7 +441,7 @@ def create_health_abs_plot(confident_df, fail_df, fps):
     return alert_plot
 
 @shared_task()
-def create_health_rel_plot(confident_df, fail_df, fps):
+def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, fps):
     g = confident_df.reset_index()
     print_trace = g[g['label'] == 'print']
     fail_trace = fail_df.reset_index()
@@ -462,7 +459,8 @@ def create_health_rel_plot(confident_df, fail_df, fps):
         y =  y,
     ))
 
-    alert_offset = int(fps/2)
+
+    alert_offset = max(int(fps/2), 0)
     fig.update_layout(
         overwrite=True,
         title_text="Change in Print Health Over Time",
@@ -498,14 +496,9 @@ def create_health_rel_plot(confident_df, fail_df, fps):
         )
 
     png = os.path.join(temp_dir, f'{filename}.png')
-    fig.write_image(_png)
+    fig.write_image(png)
     
-    csv = os.path.join(temp_dir, f'{filename}.csv')
-    with open(csv, 'w+') as f:
-        multi_df.to_csv(f)
-
     alert_plot = AlertPlot.objects.create(
-        dataframe=csv,
         image=png,
         html=html,
         function=sys._getframe().f_code.co_name,
@@ -521,32 +514,23 @@ def create_report_card(df, timelapse_alert_id, temp_dir, fps):
 
     multi_df, fail_df, confident_df = calc_metrics(df, fps)
 
+    filename = f'timelapse_alert_{timelapse_alert_id}_dataframe.csv'
+    csv = os.path.join(temp_dir, filename)
+    with open(csv, 'w+') as f:
+        multi_df.to_csv(f)
+    TimelapseAlert.objects.filter(id=timelapse_alert_id).update(
+        dataframe=csv
+    )
+
     workflow = group([
-        create_box_plot.si(confident_df, multi_df, timelapse_alert_id, temp_dir),
+        create_box_plot.si(confident_df, timelapse_alert_id, temp_dir),
         create_line_subplots.si(confident_df, timelapse_alert_id, temp_dir, fps),
-        create_health_abs_plot.si(confident_df, fail_df, fps),
-        create_health_rel_plot.si(confident_df, fail_df, fps)
+        create_health_abs_plot.si(confident_df, fail_df, timelapse_alert_id, temp_dir, fps),
+        create_health_rel_plot.si(confident_df, fail_df, timelapse_alert_id, temp_dir, fps)
     ]) | send_timelapse_upload_email_notification.si(timelapse_alert_id, temp_dir)
 
     
     return workflow()
-
-
-# @shared_task
-# def render_annotated_gif(timelapse_alert_id, temp_dir, fps):
-#     annotated_images = imread_collection(temp_dir + "/*.jpg")
-#     buff =  io.BytesIO()
-#     filename = f'timelapse_alert_{timelapse_alert_id}_annotated.gif'
-#     buff.name = filename
-#     imageio.mimwrite(buff, annotated_images, format='GIF-PIL', fps=5)
-#     logging.info(f'Finished writing {buff.name} to buffer')
-
-#     video_file = ImageFile(buff, name=filename)
-#     timelapse_alert = TimelapseAlert.objects.filter(
-#             id=timelapse_alert_id
-#         ).update(annotated_gif = video_file)
-#     logging.info(f'Updated {timelapse_alert_id} with {filename}')
-#     return timelapse_alert
 
 @shared_task
 def render_annotated_video(timelapse_alert_id, temp_dir, fps):
@@ -585,7 +569,10 @@ def send_timelapse_upload_email_notification(timelapse_alert_id, temp_dir):
         tags=["default-print-alert"],  # Anymail extra in constructor
     )
     message.attach_alternative(html_body, 'text/html')
-    return message.send()
+    message.send()
+
+    shutil.rmtree(temp_dir)
+    return message.id
 
 @shared_task
 def prediction_dicts_to_dataframe(predict_dicts):
