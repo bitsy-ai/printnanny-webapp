@@ -315,7 +315,7 @@ def create_box_plot(confident_df, timelapse_alert_id, temp_dir):
         x='label',
         y='detection_scores',
         kind='box',
-        title="Print Nanny's Confidence Distribution by Label",
+        title="Confidence Distribution by Label",
         color='label'
     )
 
@@ -349,7 +349,7 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
 
     fig = px.line(
         g, x='frame_id', y=y, color='label', facet_col='label', line_group='label',
-        height=800, width=800, facet_col_wrap=1, facet_col_spacing=0.05
+        facet_col_wrap=1, facet_col_spacing=0.05
     )
 
     fig.update_yaxes(title_text='Confidence')
@@ -357,7 +357,8 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
         overwrite=True,
         title_text="Confidence over Time, Breakout by Detection Type",
         xaxis_title='Time (frame id)',
-        legend_title='Detection'
+        legend_title='Detection',
+        height=800
     )
 
     filename = f'{timelapse_alert_id}_lines_subplot'
@@ -413,7 +414,7 @@ def create_health_abs_plot(confident_df, fail_df, timelapse_alert_id, temp_dir, 
 
     fig.update_layout(
         overwrite=True,
-        title_text="Print Health Scores (Absolute)",
+        title_text="Print Health Scores over Time (Absolute)",
         xaxis_title='Time (frame id)',
         yaxis_title='Health Score'
     )
@@ -435,7 +436,7 @@ def create_health_abs_plot(confident_df, fail_df, timelapse_alert_id, temp_dir, 
         filename,
         temp_dir,
         sys._getframe().f_code.co_name,
-        'Change in Print Health Over Time',
+        'Change in Print Health Over Time (Relative)',
         'Health score over time, breakout by print vs all defects',
         timelapse_alert_id
     )

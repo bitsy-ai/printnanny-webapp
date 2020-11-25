@@ -15,10 +15,10 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                           
-                            <li class="breadcrumb-item active">Report Cards</li>
+                            <li class="breadcrumb-item active">Timelapse Reports</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Starter</h4>
+                    <h4 class="page-title">Timelapse Reports</h4>
                 </div>
             </div>
         </div>     
@@ -62,18 +62,41 @@
                   </div>
 
                   <div class="card-body">
-                    Filename: <h2 class="header-title"><pre>{{alert.original_filename}}</pre>            
-                    </h2>
-          
-                      <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
-                        <button class="btn btn-primary btn-block btn-lg" type="button" >View Full Report</button>
-          
-                      </a>
+                    <dl class="row mb-0">
+                      <dt class="col-sm-3">Filename</dt>
+                      <dd class="col-sm-9">{{alert.original_filename}}</dd>
+                              
+                      <dt class="col-sm-3">Verdict</dt>
+                      {% if alert.notify_timecode %}
+
+                        <dd class="col-sm-9">Print Nanny failure warning at {{alert.notify_timecode}} ⚠️ </dd>
+                      {% else %}
+                        <dd class="col-sm-9">No critical failures in your print.</dd>
+                      {% endif %}
+
+                      <dt class="col-sm-3">Feedback </dt>
+                      <dd class="col-sm-9">
+                        <p>
+                          <button class="btn btn-lg btn-success">👍</button> 
+                          <button class="btn btn-lg btn-danger">👎</button> 
+                        </p>
+                      </dd>
+                  </dl>
+
+                    <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
+                      <p>
+                        
+                        <button class="btn btn-primary btn-block" type="button" >View Full Report
+
+                        </button>
+                      </p>
+        
+                    </a>
                     </div>
                   </div> 
               </div>
               {% elif  alert.job_status == alert.JobStatusChoices.FAILURE %}
-              
+
                 <div class="card">
           
                 <div class="card-body">
