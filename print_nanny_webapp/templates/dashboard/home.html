@@ -49,8 +49,10 @@
           <h2 class="header-title">Printer Status</h2>
 
           {% if object.printerprofile_set.count == 0 %}
-            <p class="text-muted font-14">No printers found.</p>
-            <p>Don't worry! When you use a printer for the first time, Print Nanny will automatically add the profile to your account.</p>
+            <p class="text-muted font-14">OctoPrint Disconnected</p>
+            <p>Hey! Your OctoPrint installtion could not be detected. </p>
+            <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p>
+
           {% else %}
           {% endif %}
       </div>

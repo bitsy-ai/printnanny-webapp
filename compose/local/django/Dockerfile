@@ -50,6 +50,7 @@ RUN sed -i 's/\r$//g' /start-notebook
 RUN chmod +x /start-notebook
 
 RUN mkdir /data
+RUN mkdir -p /tmp/print_nanny_webapp
 RUN chmod 777 /data
 WORKDIR /app
 

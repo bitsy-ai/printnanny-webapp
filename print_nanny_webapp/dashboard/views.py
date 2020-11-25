@@ -86,8 +86,9 @@ demo_dashboard_view = DemoDashboardView.as_view()
 class VideoDashboardView(LoginRequiredMixin, ListView):
 
     model = AlertMessage
-    template_name = 'dashboard/video.html'
+    template_name = 'dashboard/video-list.html'
     def get_context_data(self):
+        logger.info(AlertMessage.objects.filter(user=self.request.user.id).all())
         return {'alerts': AlertMessage.objects.filter(user=self.request.user.id).all() }
 
 video_dashboard_list_view = VideoDashboardView.as_view()
@@ -98,7 +99,7 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
     model = AlertMessage
     slug_field = "id"
     slug_url_kwarg = "id"
-    template_name = 'dashboard/video.html'
+    template_name = 'dashboard/video-detail.html'
     def get_object(self):
         token, created = Token.objects.get_or_create(user=self.request.user)
         self.request.user.token = token

@@ -9,6 +9,7 @@ REDIS_URL=redis://redis:6379/0
 # Celery
 # ------------------------------------------------------------------------------
 CELERY_BROKER_URL=REDIS_URL 
+CELERY_EXPORTER_BROKER_URL=REDIS_URL
 C_FORCE_ROOT=1
 
 # Flower

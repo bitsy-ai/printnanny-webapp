@@ -28,7 +28,12 @@ class AnnotatedVideo(models.Model):
     '''
         Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     '''
-
+    class JobStatusChoices(models.TextChoices):
+        PROCESSING = 'Processing', 'Processing'
+        SUCESS = 'SUCCESS', 'Success'
+        FAILURE = 'FAILURE', 'Failure'
+    
+    job_status = models.CharField(max_length=32, choices=JobStatusChoices, default=JobStatusChoices.PROCESSING)
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
@@ -36,9 +41,21 @@ class AnnotatedVideo(models.Model):
     dataframe = models.FileField(upload_to=_upload_to, null=True)    
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
-    annotated_gif = models.FileField(upload_to=_upload_to, null=True)
+
     class Meta:
         abstract = True
+
+
+    def original_filename(self):
+        return os.path.basename(self.original_video.name)
+    
+    def annotated_video_url(self):
+        logger.info(self.original_video)
+        logger.info(self.annotated_video)
+        # if self.annotated_video is not None:
+        #     return self.annotated_video.storage.url(
+        #         self.annotated_video.name
+        #     )
 
 class AlertMessage(PolymorphicModel):
     """
@@ -87,7 +104,7 @@ class AlertPlot(models.Model):
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
     function = models.CharField(max_length=65)
-    alert = models.ForeignKey(AlertMessage, on_delete=models.RESTRICT)
+    alert = models.ForeignKey(AlertMessage, on_delete=models.CASCADE)
 
 # class AlertEvent(models.Model):
 #     """

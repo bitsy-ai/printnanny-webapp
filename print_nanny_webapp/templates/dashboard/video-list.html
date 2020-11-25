@@ -1,0 +1,57 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}User: {{ object.email }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+<!-- Action buttons -->
+<div class="row">
+
+  {% for alert in alerts %}
+    <div class="col-sm-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          {% if not alert.annotated_video %}
+          <h2 class="header-title">Your video is being analyzed</h2>
+          <p>You'll get an email when Print Nanny's report is ready.</p>
+          <pre>{{alert.original_filename}}</pre>
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+            Processing...
+          </button>
+
+          {% else %}
+            <!-- Border Spinner -->
+            <h2 class="header-title">          <pre>{{alert.original_filename}}</pre>            </h2>
+
+            <div class="embed-responsive embed-responsive-4by3">
+              <video class="embed-responsive-item" controls>
+                <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+              </video>
+            </div>
+          {% endif %}
+
+        </div>
+      </div> 
+    </div>
+  {% endfor %}
+
+
+
+</div>
+
+<!-- End Action buttons -->
+
+
+</div>
+
+<!-- plugin js -->
+<script src="{% static 'js/vendor/dropzone.min.js' %}"></script>
+<!-- init js -->
+<script src="{% static 'js/ui/component.fileupload.js' %}"></script>
+
+{% endblock content %}
+

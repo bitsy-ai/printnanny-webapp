@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.apps import apps
 from django.utils import timezone
-from django.core.files.images import ImageFile
+from django.core.files.images import ImageFile, File
+from django.template.loader import render_to_string
+from django.conf import settings
+
 import logging
 import datetime
 import json
@@ -11,6 +14,7 @@ from prometheus_client import Info
 from prometheus_client import Counter
 from celery import shared_task
 from celery import group, chain, chord
+
 import pandas as pd
 import numpy as np
 import socket
@@ -306,8 +310,8 @@ def savgol_filter(x, fps):
 @shared_task
 def create_box_plot(confident_df, timelapse_alert_id, temp_dir):
 
-    boxplot_filename = f'{timelapse_alert_id}_boxplot'
-    boxplot_fig = confident_df.reset_index().plot(
+    filename = f'{timelapse_alert_id}_boxplot'
+    fig = confident_df.reset_index().plot(
         x='label',
         y='detection_scores',
         kind='box',
@@ -315,25 +319,24 @@ def create_box_plot(confident_df, timelapse_alert_id, temp_dir):
         color='label'
     )
 
-    boxplot_html = os.path.join(temp_dir, f'{boxplot_filename}.html')
-    with open(boxplot_html, 'w+') as f:
-        boxplot_fig.write_html(
+    html = os.path.join(temp_dir, f'{filename}.html')
+    with open(html, 'w+') as f:
+        fig.write_html(
             f,
             include_plotlyjs=False,
             full_html=False
         )
 
-    boxplot_png = os.path.join(temp_dir, f'{boxplot_filename}.png')
-    boxplot_fig.write_image(boxplot_png)
+    png = os.path.join(temp_dir, f'{filename}.png')
+    fig.write_image(png)
     
-    boxplot_csv = os.path.join(temp_dir, f'{boxplot_filename}.csv')
-    alert_plot = AlertPlot.objects.create(
-        image=boxplot_png,
-        html=boxplot_html,
-        function=sys._getframe().f_code.co_name,
-        title='Confidence Distribution',
-        description='boxplot',
-        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    alert_plot = create_alert_plot(
+        filename,
+        temp_dir,
+        sys._getframe().f_code.co_name,
+        'Confidence Distribution',
+        'boxplot',
+        timelapse_alert_id
     )
 
     return alert_plot
@@ -369,13 +372,13 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
     png = os.path.join(temp_dir, f'{filename}.png')
     fig.write_image(png)
 
-    alert_plot = AlertPlot.objects.create(
-        image=png,
-        html=html,
-        function=sys._getframe().f_code.co_name,
-        title='Confidence over Time',
-        description='Breakout by Detection Type',
-        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    alert_plot = create_alert_plot(
+        filename,
+        temp_dir,
+        sys._getframe().f_code.co_name,
+        'Confidence over Time',
+        'Breakout by Detection Type',
+        timelapse_alert_id
     )
 
     return alert_plot
@@ -427,15 +430,14 @@ def create_health_abs_plot(confident_df, fail_df, timelapse_alert_id, temp_dir, 
 
     png = os.path.join(temp_dir, f'{filename}.png')
     fig.write_image(png)
-    
 
-    alert_plot = AlertPlot.objects.create(
-        image=png,
-        html=html,
-        function=sys._getframe().f_code.co_name,
-        title='Print Health Scores (Absolute)',
-        description='Health score over time, breakout by print vs all defects',
-        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    alert_plot = create_alert_plot(
+        filename,
+        temp_dir,
+        sys._getframe().f_code.co_name,
+        'Change in Print Health Over Time',
+        'Health score over time, breakout by print vs all defects',
+        timelapse_alert_id
     )
 
     return alert_plot
@@ -459,8 +461,6 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
         y =  y,
     ))
 
-
-    alert_offset = max(int(fps/2), 0)
     fig.update_layout(
         overwrite=True,
         title_text="Change in Print Health Over Time",
@@ -472,21 +472,28 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
         nticks=20
     )
 
-    fig.add_annotation(
-        x=y[y < 0].index[alert_offset],
-        y=1,
-        text="Print Nanny alerts you at this time",
-        showarrow=True,
-        arrowhead=1
-    )
+    if len(y[y < 0]) >= (fps/2):
+        alert_offset = int(fps/2)
 
-    fig.add_vrect(
-        x0=y[y < 0].index[alert_offset], x1=y[y < 0].index[-1],
-        fillcolor="LightSalmon", opacity=0.5,
-        layer="below", line_width=0,
-    )
+        fig.add_annotation(
+            x=y[y < 0].index[alert_offset],
+            y=1,
+            text="Print Nanny alerts you at this time",
+            showarrow=True,
+            arrowhead=1
+        )
+
+        fig.add_vrect(
+            x0=y[y < 0].index[alert_offset], x1=y[y < 0].index[-1],
+            fillcolor="LightSalmon", opacity=0.5,
+            layer="below", line_width=0,
+        )
 
     filename = f'{timelapse_alert_id}_health_rel_plot'
+
+    png = os.path.join(temp_dir, f'{filename}.png')
+    fig.write_image(png)
+
     html = os.path.join(temp_dir, f'{filename}.html')
     with open(html, 'w+') as f:
         fig.write_html(
@@ -495,20 +502,34 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
             full_html=False
         )
 
-    png = os.path.join(temp_dir, f'{filename}.png')
-    fig.write_image(png)
-    
-    alert_plot = AlertPlot.objects.create(
-        image=png,
-        html=html,
-        function=sys._getframe().f_code.co_name,
-        title='Change in Print Health Over Time',
-        description='Relative change (waterfall) health scores over time',
-        alert=TimelapseAlert.objects.get(id=timelapse_alert_id)
+    alert_plot = create_alert_plot(
+        filename,
+        temp_dir,
+        sys._getframe().f_code.co_name,
+        'Change in Print Health Over Time',
+        'Relative change (waterfall) health scores over time',
+        timelapse_alert_id
     )
 
     return alert_plot
 
+def create_alert_plot(filename, tmp_dir, function, title, description, alert_id):
+    
+    with open(os.path.join(tmp_dir, filename + '.png'), 'rb') as png_f:
+        wrapped_png = ImageFile(png_f)
+        with open(os.path.join(tmp_dir, filename + '.html'), 'rb') as html_f:
+            wrapped_html = File(html_f)
+            alert_plot = AlertPlot(
+                function=function,
+                title=title,
+                description=description,
+                alert=TimelapseAlert.objects.get(id=alert_id)
+            )
+            alert_plot.image.save(filename + '.png', wrapped_png)
+            alert_plot.html.save(filename + '.html', wrapped_html)
+            alert_plot.save()
+            return alert_plot
+        
 @shared_task
 def create_report_card(df, timelapse_alert_id, temp_dir, fps):
 
@@ -535,16 +556,18 @@ def create_report_card(df, timelapse_alert_id, temp_dir, fps):
 @shared_task
 def render_annotated_video(timelapse_alert_id, temp_dir, fps):
     annotated_images = imread_collection(temp_dir + "/*.jpg")
-    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.mpeg'
+    filename = f'timelapse_alert_{timelapse_alert_id}_annotated.mp4'
     file_path = os.path.join(temp_dir, filename)
     imageio.mimwrite(file_path, annotated_images, fps=fps, format='FFMPEG')
-    timelapse_alert = TimelapseAlert.objects.filter(
-            id=timelapse_alert_id
-        ).update(
-            annotated_video = file_path
-    )
 
-    logging.info(f'Updated {timelapse_alert_id} with {filename}')
+    with open(file_path, 'rb') as f:
+        wrapped_file = File(f)
+        timelapse_alert = TimelapseAlert.objects.get(
+                id=timelapse_alert_id
+        )
+        timelapse_alert.annotated_video.save(filename, wrapped_file)
+
+    logging.info(f'Updated {timelapse_alert_id} with {file_path}')
     return timelapse_alert
 
 @shared_task
@@ -555,24 +578,23 @@ def send_timelapse_upload_email_notification(timelapse_alert_id, temp_dir):
     merge_data = {
         'REPORT_URL': reverse('dashboard:report-cards:detail', kwargs={'id': timelapse_alert_id}),
         'FIRST_NAME': timelapse_alert.user.first_name or 'Maker',
-        'ORIGINAL_FILENAME': timelapse_alert.original_file.name
+        'ORIGINAL_FILENAME': timelapse_alert.original_filename
     }
 
-    text_body = render_to_string("email/print_alert_message_body.txt", merge_data)
-    html_body = render_to_string("email/print_alert_message_body.html", merge_data)
-    subject_body = render_to_string("email/print_alert_message_body.html", merge_data)
+    text_body = render_to_string("email/timelapse_alert_body.txt", merge_data)
+    html_body = render_to_string("email/timelapse_alert_body.html", merge_data)
+    subject = render_to_string("email/timelapse_alert_subject.txt", merge_data)
 
     message = AnymailMessage(
         subject=subject,
         body=text_body,
-        to=[predict_events[0].user.email],
+        to=[timelapse_alert.user.email],
         tags=["default-print-alert"],  # Anymail extra in constructor
     )
     message.attach_alternative(html_body, 'text/html')
     message.send()
 
-    shutil.rmtree(temp_dir)
-    return message.id
+    return message
 
 @shared_task
 def prediction_dicts_to_dataframe(predict_dicts):
@@ -594,6 +616,10 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
     ), annotated_image)
     return {'predict_data': predict_data, 'id': frame_id }
 
+@shared_task
+def rm_tmp_dir(temp_dir):
+    return shutil.rmtree(temp_dir)
+
 @shared_task(soft_time_limit=300, time_limit=400)
 def analyze_timelapse_video(timelapse_alert_id, file_path):
     
@@ -601,7 +627,7 @@ def analyze_timelapse_video(timelapse_alert_id, file_path):
     fps = reader.get_meta_data()['fps']
 
     CHUNKS = int(fps) # process 3s chunks of video
-    temp_dir = tempfile.mkdtemp()
+    temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
     grouped = predict_postprocess_frame.chunks( 
         ((i, frame, temp_dir) for i, frame in enumerate(reader))
         , CHUNKS).group() 
@@ -613,7 +639,9 @@ def analyze_timelapse_video(timelapse_alert_id, file_path):
         create_report_card.s(timelapse_alert_id, temp_dir, fps)
     ])
 
+
     chord1.link(report_card_tasks)
+    report_card_tasks.link(rm_tmp_dir.si(temp_dir))
 
     return chord1()
 
