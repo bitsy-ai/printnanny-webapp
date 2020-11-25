@@ -12,3 +12,4 @@ scrape_configs:
       - targets:
           - 'prometheus:9090'
           - 'django:8001'
+          - 'celery-exporter:9540'

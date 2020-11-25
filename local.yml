@@ -129,3 +129,8 @@ services:
       - ./prometheus:/etc/prometheus
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
+  celery-exporter:
+    image: ovalmoney/celery-exporter
+    ports:
+      - 9540:9540
