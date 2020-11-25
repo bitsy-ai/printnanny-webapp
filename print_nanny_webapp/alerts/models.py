@@ -42,6 +42,10 @@ class AnnotatedVideo(models.Model):
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
 
+    feedback = models.BooleanField(null=True)
+    length = models.FloatField(null=True)
+    fps = models.FloatField(null=True)
+
     class Meta:
         abstract = True
 
@@ -66,7 +70,6 @@ class AlertMessage(PolymorphicModel):
         EMAIL = 'EMAIL', 'Email'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    feedback = models.BooleanField(null=True)
     provider_id = models.CharField(max_length=255, null=True, db_index=True)
     seen = models.BooleanField(default=False)
 
@@ -92,7 +95,8 @@ class TimelapseAlert(AlertMessage, AnnotatedVideo):
     """
         outgoing message to user indicating timelapse video is done
     """
-
+    notify_seconds = models.IntegerField(null=True)
+    notify_timecode = models.CharField(max_length=32, null=True)
     tags = ArrayField(
         models.CharField(max_length=255),
         default=list(["timelapse-alert"])

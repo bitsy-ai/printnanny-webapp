@@ -201,40 +201,40 @@ def send_print_job_failure_notification(df, ratio):
     message.attach_alternative(html_body, 'text/html')
     return message.send()
 
+def _seconds(value, framerate):
+    if isinstance(value, str):  # value seems to be a timestamp
+        _zip_ft = zip((3600, 60, 1, 1/framerate), value.split(':'))
+        return sum(f * float(t) for f,t in _zip_ft)
+    elif isinstance(value, (int, float)):  # frames
+        return value / framerate
+    else:
+        return 0
+
+def _timecode(seconds, framerate):
+    return '{h:02d}:{m:02d}:{s:02d}:{f:02d}' \
+            .format(h=int(seconds/3600),
+                    m=int(seconds/60%60),
+                    s=int(seconds%60),
+                    f=round((seconds-int(seconds))*framerate))
+
+def _frames(seconds, framerate):
+    return seconds * framerate
+
+def timecode_to_frames(timecode, framerate):
+    return _frames(_seconds(timecode) - _seconds(start, framerate), framerate)
+
+def frames_to_timecode(frames, framerate, start=None):
+    return _timecode(_seconds(frames, framerate) + _seconds(start, framerate), framerate)
 
 def calc_metrics(df, framerate):
 
-    def _seconds(value):
-        if isinstance(value, str):  # value seems to be a timestamp
-            _zip_ft = zip((3600, 60, 1, 1/framerate), value.split(':'))
-            return sum(f * float(t) for f,t in _zip_ft)
-        elif isinstance(value, (int, float)):  # frames
-            return value / framerate
-        else:
-            return 0
-
-    def _timecode(seconds):
-        return '{h:02d}:{m:02d}:{s:02d}:{f:02d}' \
-                .format(h=int(seconds/3600),
-                        m=int(seconds/60%60),
-                        s=int(seconds%60),
-                        f=round((seconds-int(seconds))*framerate))
-
-    def _frames(seconds):
-        return seconds * framerate
-
-    def timecode_to_frames(timecode, fps):
-        return _frames(_seconds(timecode) - _seconds(start))
-
-    def frames_to_timecode(frames, start=None):
-        return _timecode(_seconds(frames) + _seconds(start))
 
     NUM_DETECTIONS_PER_FRAME = len(df['detection_scores'].iloc[0])
     df = df[['detection_classes', 'detection_scores']]
     df = df.reset_index()
     df = df.rename(columns={'id': 'frame_id' })
     NUM_FRAMES = len(df)
-    df['timecode'] = df['frame_id'].apply(frames_to_timecode)
+    df['timecode'] = df['frame_id'].apply(lambda x: frames_to_timecode(x, framerate))
     # explode detection_classes and detection_scores together
     df = df.set_index(['frame_id']).apply(pd.Series.explode).reset_index()
     assert len(df) == NUM_FRAMES * NUM_DETECTIONS_PER_FRAME
@@ -476,6 +476,14 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
         alert_offset = int(fps/2)
         x0 = np.polynomial.Polynomial.fit(y.reset_index().index, y.reset_index()['detection_scores'], 2)
         intercept = (list(x0)[-1])
+
+        notify_timecode = y[y<=intercept].index[alert_offset]
+        notify_seconds = int(_seconds(notify_timecode, framerate))
+
+        TimelapseAlert.objects.filter(id=timelapse_alert_id).update(
+            notify_seconds=notify_seconds,
+            notify_timecode=notify_timecode
+        )
         fig.add_annotation(
             x=y[y<=intercept].index[alert_offset],
             y=y.reset_index()['detection_scores'].cumsum().min(),
@@ -643,7 +651,11 @@ def create_analyze_video_task(timelapse_alert_id, file_path):
     '''
 
     reader = imageio.get_reader(file_path)
-    fps = reader.get_meta_data()['fps']
+    metadata = reader.get_meta_data()
+    
+    fps = metadata['fps']
+
+    TimelapseAlert.objects.filter(id=timelapse_alert_id).update(fps=fps, length=metadata['duration'])
 
     CHUNKS = int(fps//2) 
     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
