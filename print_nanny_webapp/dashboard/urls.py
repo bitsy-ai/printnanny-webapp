@@ -14,8 +14,8 @@ app_name = "dashboard"
 
 
 report_cards_urls = [
-    path("", video_dashboard_list_view, name="list"),
-    path("/<slug:id>", video_dashboard_detail_view, name="detail")
+    path("/", video_dashboard_list_view, name="list"),
+    path("/<int:pk>", video_dashboard_detail_view, name="detail")
 
 ]
 

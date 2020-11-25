@@ -127,8 +127,7 @@ class VideoDashboardView(LoginRequiredMixin, ListView, FormView):
     def get_context_data(self):
         context = {}
         context['form'] = TimelapseUploadForm()
-        context['alerts'] = AlertMessage.objects.filter(user=self.request.user.id).all()
-        logger.info(TimelapseAlert.objects.filter(user=self.request.user.id).order_by('-created_dt').all())
+        context['alerts'] = TimelapseAlert.objects.filter(user=self.request.user.id).order_by('-created_dt').all()
         return context
 
 video_dashboard_list_view = VideoDashboardView.as_view()
@@ -137,14 +136,11 @@ video_dashboard_list_view = VideoDashboardView.as_view()
 class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
     model = AlertMessage
-    slug_field = "id"
-    slug_url_kwarg = "id"
+    # slug_field = "id"
+    # slug_url_kwarg = "id"
     template_name = 'dashboard/video-detail.html'
-    def get_object(self):
-        token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
-        self.request.user.active_alerts = self.request.user.alertmessage_set.filter(last_action=AlertMessage.ActionChoices.PENDING)
-        return self.request.user
+    # def get_object(self):
+        # logger.info(self.request)
 
 video_dashboard_detail_view = VideoDashboardDetailView.as_view()
 

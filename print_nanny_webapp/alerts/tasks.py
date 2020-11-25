@@ -323,8 +323,8 @@ def create_box_plot(confident_df, timelapse_alert_id, temp_dir):
     with open(html, 'w+') as f:
         fig.write_html(
             f,
-            include_plotlyjs=False,
-            full_html=False
+            include_plotlyjs='cdn',
+            full_html=True
         )
 
     png = os.path.join(temp_dir, f'{filename}.png')
@@ -365,8 +365,8 @@ def create_line_subplots(confident_df, timelapse_alert_id, temp_dir, fps):
     with open(html, 'w+') as f:
         fig.write_html(
             f,
-            include_plotlyjs=False,
-            full_html=False
+            include_plotlyjs='cdn',
+            full_html=True
         )
 
     png = os.path.join(temp_dir, f'{filename}.png')
@@ -424,8 +424,8 @@ def create_health_abs_plot(confident_df, fail_df, timelapse_alert_id, temp_dir, 
     with open(html, 'w+') as f:
         fig.write_html(
             f,
-            include_plotlyjs=False,
-            full_html=False
+            include_plotlyjs='cdn',
+            full_html=True
         )
 
     png = os.path.join(temp_dir, f'{filename}.png')
@@ -498,8 +498,8 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
     with open(html, 'w+') as f:
         fig.write_html(
             f,
-            include_plotlyjs=False,
-            full_html=False
+            include_plotlyjs='cdn',
+            full_html=True
         )
 
     alert_plot = create_alert_plot(

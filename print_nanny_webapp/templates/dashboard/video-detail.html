@@ -1,0 +1,80 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block head_title %}{% trans "Starter Page" %}{% endblock head_title %}
+{% block extra_css %}                
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock extra_css %}
+
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                          
+                            <li class="breadcrumb-item active">Report Cards</li>
+                            <li class="breadcrumb-item active">{{ object.original_filename }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Analsis of {{ object.original_filename }}</h4>
+                </div>
+            </div>
+        </div>     
+        <!-- end page title --> 
+
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="header-title">Feedback</h2>
+                        <p></p>
+                        <button class="btn btn-lg btn-success">👍 Upvote Report</button>
+                        <button class="btn btn-lg btn-danger">👎 Downvote Report</button>      
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="header-title">Annotated Video</h2>
+
+                        <div class="card-img-top embed-responsive embed-responsive-16by9">
+                            <video id="report-card-video" class="embed-responsive-item" controls>
+                              <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+        <div class="row">
+
+            {% for plot in object.alertplot_set.all %}
+
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                        <div class="embed-responsive embed-responsive-21by9">
+
+                        <iframe class="embed-responsive-item" src="{{plot.html.url}}"></iframe>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+
+    </div> <!-- container -->
+{% endblock %}

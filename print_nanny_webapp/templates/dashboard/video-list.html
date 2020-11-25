@@ -1,94 +1,104 @@
 {% extends "vertical_base.html" %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% load static i18n crispy_forms_tags %}
 
-
-{% block title %}User: {{ object.email }}{% endblock %}
+{% block head_title %}{% trans "Report Card List" %}{% endblock head_title %}
 
 {% block content %}
-<div class="container-fluid">
-<!-- Action buttons -->
-<div class="row">
+    <!-- Start Content-->
+    <div class="container-fluid">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                          
+                            <li class="breadcrumb-item active">Report Cards</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Starter</h4>
+                </div>
+            </div>
+        </div>     
+        <!-- end page title --> 
+  
 
-  {% for alert in alerts %}
-
-    <!-- Border Spinner -->
-    <div class="col-sm-12 col-md-6">
-
-    {% if alert.job_status == alert.JobStatusChoices.PROCESSING %}
-       <div class="card">
-          <div class="card-body">
-          <h2 class="header-title">Your video is being analyzed</h2>
-          <p>You'll get an email when Print Nanny's report is ready.</p>
-          <pre>{{alert.original_filename}}</pre>
-          <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
-            Processing...
-          </button>
-
-
+        <div class="container-fluid">
+          <!-- Action buttons -->
+          <div class="row">
+          
+            {% for alert in alerts %}
+          
+              <!-- Border Spinner -->
+              <div class="col-sm-12 col-md-6">
+          
+              {% if alert.job_status == alert.JobStatusChoices.PROCESSING %}
+                 <div class="card">
+                    <div class="card-body">
+                    <h2 class="header-title">Your video is being analyzed</h2>
+                    <p>You'll get an email when Print Nanny's report is ready.</p>
+                    <pre>{{alert.original_filename}}</pre>
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                      Processing...
+                    </button>
+          
+          
+                    </div>
+                  </div> 
+                </div>
+              {% elif  alert.job_status == alert.JobStatusChoices.SUCCESS %}
+                <div class="card-img-top embed-responsive embed-responsive-16by9">
+                  <video class="embed-responsive-item" controls>
+                    <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                  </video>
+                </div>
+                <div class="card">
+          
+                  <div class="card-body">
+                    Filename: <h2 class="header-title"><pre>{{alert.original_filename}}</pre>            
+                    </h2>
+          
+                      <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
+                        <button class="btn btn-primary btn-block btn-lg" type="button" >View Full Report</button>
+          
+                      </a>
+                    </div>
+                  </div> 
+              </div>
+              {% elif  alert.job_status == alert.JobStatusChoices.FAILURE %}
+                <div class="card">
+          
+                <div class="card-body">
+          
+          
+                  <h2 class="header-title">Job Failed</h2>
+          
+                    <p>Something went wrong while analyzing file: <pre>{{alert.original_filename}}</pre>
+                    </p>
+                      <p>Could you try that again?</p>
+                      <!-- File Upload -->
+                      <form enctype="multipart/form-data" method="post">
+                        <input type="hidden" value="{{ alert.id }}" name="timelapse_alert_id">
+          
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-primary" type="submit">Analyze Video</button>
+                      </form>
+          
+                  </div>
+                </div> 
+              {% endif %}
+          
+            {% endfor %}
+          
+          
+          
           </div>
-        </div> 
-      </div>
-    {% elif  alert.job_status == alert.JobStatusChoices.SUCCESS %}
-      <div class="card-img-top embed-responsive embed-responsive-16by9">
-        <video class="embed-responsive-item" controls>
-          <source src="{{ alert.annotated_video.url }}" type="video/mp4">
-        </video>
-      </div>
-      <div class="card">
-
-        <div class="card-body">
+    </div> <!-- container -->
+{% endblock %}
 
 
-            Filename: <h2 class="header-title"><pre>{{alert.original_filename}}</pre>            </h2>
-
-
-            <button class="btn btn-primary btn-block btn-lg" type="button" >View Full Report</button>
-
-
-          </div>
-        </div> 
-    </div>
-    {% elif  alert.job_status == alert.JobStatusChoices.FAILURE %}
-      <div class="card">
-
-      <div class="card-body">
-
-
-        <h2 class="header-title">Job Failed</h2>
-
-          <p>Something went wrong while analyzing file: <pre>{{alert.original_filename}}</pre>
-          </p>
-            <p>Could you try that again?</p>
-            <!-- File Upload -->
-            <form enctype="multipart/form-data" method="post">
-              <input type="hidden" value="{{ alert.id }}" name="timelapse_alert_id">
-
-              {% csrf_token %}
-              {{ form|crispy }}
-              <button class="btn btn-primary" type="submit">Analyze Video</button>
-            </form>
-
-        </div>
-      </div> 
-    {% endif %}
-
-  {% endfor %}
-
-
-
-</div>
-
-<!-- End Action buttons -->
-
-
-</div>
-
-<!-- plugin js -->
-<script src="{% static 'js/vendor/dropzone.min.js' %}"></script>
-<!-- init js -->
-<script src="{% static 'js/ui/component.fileupload.js' %}"></script>
-
-{% endblock content %}
 
