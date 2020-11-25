@@ -620,13 +620,28 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 def rm_tmp_dir(temp_dir):
     return shutil.rmtree(temp_dir)
 
+@shared_task
+def annotate_job_success(alert_id):
+    alert = TimelapseAlert.objects.filter(id=alert_id).update(
+        job_status=TimelapseAlert.JobStatusChoices.SUCCESS
+    )
+
+@shared_task
+def annotate_job_error(alert_id):
+    alert = TimelapseAlert.objects.filter(id=alert_id).update(
+        job_status=TimelapseAlert.JobStatusChoices.FAILURE
+    )
+
 @shared_task(soft_time_limit=300, time_limit=400)
-def analyze_timelapse_video(timelapse_alert_id, file_path):
+def create_analyze_video_task(timelapse_alert_id, file_path):
+    '''
+
+    '''
     
     reader = imageio.get_reader(file_path)
     fps = reader.get_meta_data()['fps']
 
-    CHUNKS = int(fps) # process 3s chunks of video
+    CHUNKS = int(fps*5) # process 5s chunks of video
     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
     grouped = predict_postprocess_frame.chunks( 
         ((i, frame, temp_dir) for i, frame in enumerate(reader))
@@ -641,7 +656,11 @@ def analyze_timelapse_video(timelapse_alert_id, file_path):
 
 
     chord1.link(report_card_tasks)
+    chord1.link_error(annotate_job_error.si(timelapse_alert_id))
+
     report_card_tasks.link(rm_tmp_dir.si(temp_dir))
+    report_card_tasks.link(annotate_job_success.si(timelapse_alert_id))
+    report_card_tasks.link_error(annotate_job_error.si(timelapse_alert_id))
 
     return chord1()
 

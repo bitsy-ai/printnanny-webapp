@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import TimelapseUploadForm
-from print_nanny_webapp.alerts.tasks import analyze_timelapse_video
+from print_nanny_webapp.alerts.tasks import create_analyze_video_task
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
@@ -44,13 +44,13 @@ class HomeDashboardView(LoginRequiredMixin, DetailView, FormView):
         if isinstance(video_file, InMemoryUploadedFile):
             logging.info(f'File processed asInMemoryUploadedFile')
             logging.info(f'File info {timelapse_alert.original_video}')
-            analyze_timelapse_video.delay(
+            create_analyze_video_task.delay(
                 timelapse_alert.id, 
                 timelapse_alert.original_video.url
             )
         elif isinstance(video_file, TemporaryUploadedFile):
             logging.info(f'File processed as TemporaryUploadedFile')
-            analyze_timelapse_video.delay(
+            create_analyze_video_task.delay(
                 timelapse_alert.id, 
                 self.request.FILES['video_file'].temporary_file_path()
             )

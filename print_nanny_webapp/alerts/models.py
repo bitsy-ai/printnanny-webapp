@@ -33,7 +33,7 @@ class AnnotatedVideo(models.Model):
         SUCESS = 'SUCCESS', 'Success'
         FAILURE = 'FAILURE', 'Failure'
     
-    job_status = models.CharField(max_length=32, choices=JobStatusChoices, default=JobStatusChoices.PROCESSING)
+    job_status = models.CharField(max_length=32, choices=JobStatusChoices.choices, default=JobStatusChoices.PROCESSING)
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 

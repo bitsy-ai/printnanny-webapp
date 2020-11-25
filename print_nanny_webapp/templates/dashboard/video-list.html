@@ -11,10 +11,13 @@
 <div class="row">
 
   {% for alert in alerts %}
+
+    <!-- Border Spinner -->
     <div class="col-sm-12 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          {% if not alert.annotated_video %}
+
+    {% if alert.job_status == alert.JobStatusChoices.PROCESSING %}
+       <div class="card">
+          <div class="card-body">
           <h2 class="header-title">Your video is being analyzed</h2>
           <p>You'll get an email when Print Nanny's report is ready.</p>
           <pre>{{alert.original_filename}}</pre>
@@ -23,20 +26,32 @@
             Processing...
           </button>
 
-          {% else %}
-            <!-- Border Spinner -->
-            <h2 class="header-title">          <pre>{{alert.original_filename}}</pre>            </h2>
 
-            <div class="embed-responsive embed-responsive-4by3">
-              <video class="embed-responsive-item" controls>
-                <source src="{{ alert.annotated_video.url }}" type="video/mp4">
-              </video>
-            </div>
-          {% endif %}
+          </div>
+        </div> 
+      </div>
+    {% else %}
+      <div class="card-img-top embed-responsive embed-responsive-16by9">
+        <video class="embed-responsive-item" controls>
+          <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+        </video>
+      </div>
+      <div class="card">
 
-        </div>
-      </div> 
+        <div class="card-body">
+
+
+            Filename: <h2 class="header-title"><pre>{{alert.original_filename}}</pre>            </h2>
+
+
+            <button class="btn btn-primary btn-block btn-lg" type="button" >View Full Report</button>
+
+
+          </div>
+        </div> 
     </div>
+    {% endif %}
+
   {% endfor %}
 
 
