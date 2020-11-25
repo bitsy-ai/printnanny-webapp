@@ -3,6 +3,7 @@
 
 {% block head_title %}{% trans "Report Card List" %}{% endblock head_title %}
 
+
 {% block content %}
     <!-- Start Content-->
     <div class="container-fluid">
@@ -53,8 +54,8 @@
               </div>
               {% elif  alert.job_status == alert.JobStatusChoices.SUCCESS %}
 
-
                 <div class="card">
+
                   <div class="card-img-top embed-responsive embed-responsive-16by9">
                     <video class="embed-responsive-item" controls>
                       <source src="{{ alert.annotated_video.url }}" type="video/mp4">

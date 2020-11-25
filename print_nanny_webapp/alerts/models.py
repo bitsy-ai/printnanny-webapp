@@ -28,11 +28,16 @@ class AnnotatedVideo(models.Model):
     '''
         Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     '''
+    # class SourceChoices(models.TextChoices):
+    #     WEB_UPLOAD = 'WEB_UPLOAD', 'Uploaded manually'
+    #     OCTOPRINT = 'OCTOPRINT', 'Sent by OctoPrint'
+    
+    # source = models.CharField(max_length=32, choices=SourceChoices.choices)
     class JobStatusChoices(models.TextChoices):
         PROCESSING = 'Processing', 'Processing'
         SUCCESS = 'SUCCESS', 'Success'
         FAILURE = 'FAILURE', 'Failure'
-    
+
     job_status = models.CharField(max_length=32, choices=JobStatusChoices.choices, default=JobStatusChoices.PROCESSING)
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -95,6 +100,8 @@ class TimelapseAlert(AlertMessage, AnnotatedVideo):
     """
         outgoing message to user indicating timelapse video is done
     """
+
+
     notify_seconds = models.IntegerField(null=True)
     notify_timecode = models.CharField(max_length=32, null=True)
     tags = ArrayField(

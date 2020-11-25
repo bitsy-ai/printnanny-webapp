@@ -4,6 +4,7 @@
 <!-- Topbar Start -->
 <div class="navbar-custom">
     <ul class="list-unstyled topbar-right-menu float-right mb-0">
+        {% comment %}
         <li class="dropdown notification-list d-lg-none">
             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-search noti-icon"></i>
@@ -14,7 +15,7 @@
                 </form>
             </div>
         </li>
-
+        {% endcomment %}
         {% comment %} Localization drop-down {% endcomment %}
         {% comment %} <li class="dropdown notification-list topbar-dropdown">
             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -269,7 +270,10 @@
     </button>
 
     {% comment %} Search bar {% endcomment %}
-    {% comment %} <div class="app-search dropdown d-none d-lg-block">
+
+    {% comment %} 
+    <div class="app-search dropdown d-none d-lg-block">
+
         <form>
             <div class="input-group">
                 <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
