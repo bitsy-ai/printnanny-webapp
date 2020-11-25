@@ -86,7 +86,7 @@ demo_dashboard_view = DemoDashboardView.as_view()
 
 
 class VideoDashboardView(LoginRequiredMixin, ListView, FormView):
-    success_url = 'report-cards'
+    success_url = '/report-cards'
 
     form_class = TimelapseUploadForm
 

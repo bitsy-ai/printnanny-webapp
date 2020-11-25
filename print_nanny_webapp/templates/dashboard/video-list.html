@@ -13,7 +13,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                           
                             <li class="breadcrumb-item active">Report Cards</li>
                         </ol>
@@ -24,18 +24,19 @@
         </div>     
         <!-- end page title --> 
   
-
-        <div class="container-fluid">
-          <!-- Action buttons -->
+          <!-- videos -->
           <div class="row">
           
             {% for alert in alerts %}
           
-              <!-- Border Spinner -->
-              <div class="col-sm-12 col-md-6">
+              <!-- card wrapper -->
+              <div class="col-sm-12 col-md-3">
           
               {% if alert.job_status == alert.JobStatusChoices.PROCESSING %}
+                <!-- card -->
                  <div class="card">
+                    <!-- card body -->
+
                     <div class="card-body">
                     <h2 class="header-title">Your video is being analyzed</h2>
                     <p>You'll get an email when Print Nanny's report is ready.</p>
@@ -46,17 +47,20 @@
                     </button>
           
           
-                    </div>
-                  </div> 
-                </div>
+                    </div> <!-- card body -->
+
+                  </div> <!-- -->
+              </div>
               {% elif  alert.job_status == alert.JobStatusChoices.SUCCESS %}
-                <div class="card-img-top embed-responsive embed-responsive-16by9">
-                  <video class="embed-responsive-item" controls>
-                    <source src="{{ alert.annotated_video.url }}" type="video/mp4">
-                  </video>
-                </div>
+
+
                 <div class="card">
-          
+                  <div class="card-img-top embed-responsive embed-responsive-16by9">
+                    <video class="embed-responsive-item" controls>
+                      <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                    </video>
+                  </div>
+
                   <div class="card-body">
                     Filename: <h2 class="header-title"><pre>{{alert.original_filename}}</pre>            
                     </h2>
@@ -69,6 +73,7 @@
                   </div> 
               </div>
               {% elif  alert.job_status == alert.JobStatusChoices.FAILURE %}
+              
                 <div class="card">
           
                 <div class="card-body">
@@ -94,7 +99,7 @@
           
             {% endfor %}
           
-          
+    </div>
           
           </div>
     </div> <!-- container -->

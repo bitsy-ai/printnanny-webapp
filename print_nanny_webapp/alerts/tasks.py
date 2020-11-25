@@ -451,8 +451,8 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
 
     mask = split_df.level_0 == 'fail'
 
-    y = split_df[mask].groupby('timecode')['detection_scores'].apply(pd.Series.cumsum).subtract(
-        split_df[~mask].groupby('timecode')['detection_scores'].apply(pd.Series.cumsum),
+    y = split_df[~mask].groupby('timecode')['detection_scores'].sum().subtract(
+        np.log10(split_df[mask].groupby('timecode')['detection_scores'].sum().cumsum()),
         fill_value=0
     )
     fig = go.Figure(go.Waterfall(
@@ -474,20 +474,23 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
 
     if len(y[y < 0]) >= (fps/2):
         alert_offset = int(fps/2)
-
+        x0 = np.polynomial.Polynomial.fit(y.reset_index().index, y.reset_index()['detection_scores'], 2)
+        intercept = (list(x0)[-1])
         fig.add_annotation(
-            x=y[y < 0].index[alert_offset],
-            y=1,
+            x=y[y<=intercept].index[alert_offset],
+            y=y.reset_index()['detection_scores'].cumsum().min(),
             text="Print Nanny alerts you at this time",
             showarrow=True,
             arrowhead=1
         )
 
         fig.add_vrect(
-            x0=y[y < 0].index[alert_offset], x1=y[y < 0].index[-1],
+            x0=y[y<=intercept].index[alert_offset], 
+            x1=y[y < 0].index[-1],
             fillcolor="LightSalmon", opacity=0.5,
             layer="below", line_width=0,
         )
+
 
     filename = f'{timelapse_alert_id}_health_rel_plot'
 
