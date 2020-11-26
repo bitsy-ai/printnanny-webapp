@@ -15,6 +15,8 @@ RUN apt-get update \
   && apt-get install -y gettext \
   # postgres client (dbshell)
   && apt-get install -y postgresql \
+  # orca https://github.com/plotly/orca
+  && apt-get -y install wget xvfb xauth poppler-utils \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
@@ -48,6 +50,7 @@ RUN sed -i 's/\r$//g' /start-notebook
 RUN chmod +x /start-notebook
 
 RUN mkdir /data
+RUN mkdir -p /tmp/print_nanny_webapp
 RUN chmod 777 /data
 WORKDIR /app
 

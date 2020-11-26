@@ -83,7 +83,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
     "print_nanny_webapp.client_events.apps.ClientEventsConfig",
-
+    "print_nanny_webapp.alerts.apps.AlertsConfig",
+    "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -166,7 +167,8 @@ STATICFILES_FINDERS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
 MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = "/media/"
+
+#TMP_ROOT = str(ROOT_DIR / ".tmp")
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -322,12 +324,18 @@ CELERY_TASK_SERIALIZER = "pickle"
 CELERY_RESULT_SERIALIZER = "pickle"
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-time-limit
 # TODO: set to whatever value is adequate in your circumstances
-CELERY_TASK_TIME_LIMIT = 5 * 60
+CELERY_TASK_TIME_LIMIT = 10 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-soft-time-limit
 # TODO: set to whatever value is adequate in your circumstances
-CELERY_TASK_SOFT_TIME_LIMIT = 60
+CELERY_TASK_SOFT_TIME_LIMIT = 10 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#beat-scheduler
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_RESULT_BACKEND_TRANSPORT_OPTIONS = {
+    'result_chord_ordered': True
+}
+CELERY_BROKER_CONNECTION_TIMEOUT=8.0
+CELERY_BROKER_POOL_LIMIT=None
+
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
@@ -387,3 +395,10 @@ PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
 PROMETHEUS_EXPORT_MIGRATIONS = False
 
 PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'
+
+
+# django-polymorphic
+
+INSTALLED_APPS += [
+    'polymorphic',
+]

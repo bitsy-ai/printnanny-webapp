@@ -1,0 +1,94 @@
+//
+// summernote.scss
+//
+
+@font-face {
+    font-family: "summernote";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/summernote.eot");
+    src: url("../fonts/summernote.eot?#iefix") format("embedded-opentype"), url("../fonts/summernote.woff?") format("woff"), url("../fonts/summernote.ttf?") format("truetype")
+}
+
+.note-editor {
+    &.note-frame {
+        border: 1px solid $input-border-color;
+        box-shadow: none;
+        margin: 0;
+
+        .note-statusbar {
+            background-color: $input-bg;
+            border-top: 1px solid $input-border-color;
+        }
+
+        .note-editable {
+            border: none;
+            background-color: $input-bg !important;
+            color: $input-color !important;
+        }
+    }
+}
+
+.note-status-output {
+    display: none;
+}
+
+.note-placeholder {
+    color: $input-placeholder-color;
+}
+
+.note-toolbar {
+    padding: 3px 3px 8px 8px !important;
+}
+
+.note-editable {
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    padding: $input-padding-y $input-padding-x !important;
+    background-color: $input-bg !important;
+    color: $input-color !important;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.note-modal {
+    .modal-dialog {
+        box-shadow: none;
+    }
+}
+
+.note-btn-group {
+    .btn-light {
+        background-color: lighten($gray-300, 5%);
+        box-shadow: none;
+        border-color: lighten($gray-300, 5%);
+        color: $gray-800;
+    }
+}
+
+.note-popover .popover-content,
+.card-header.note-toolbar {
+    background: $card-cap-bg;
+}
+
+.note-hint-popover {
+    .popover-content {
+        .note-hint-group {
+            .note-hint-item{
+                &.active,
+                &:hover {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+}
+
+.note-editor.note-airframe,
+.note-editor.note-frame  {
+    .note-placeholder {
+        padding-left: $input-padding-x;
+    }
+}

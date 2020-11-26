@@ -22,17 +22,6 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 user_detail_view = UserDetailView.as_view()
 
-class UserTokenView(LoginRequiredMixin, DetailView):
-
-    model = User
-    template_name = 'users/user_token.html'
-    def get_object(self):
-        token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
-        return self.request.user
-
-user_token_view = UserTokenView.as_view()
-
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     model = User
@@ -60,7 +49,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"email": self.request.user.email})
+        return reverse("dashboard:home")
 
 
 user_redirect_view = UserRedirectView.as_view()

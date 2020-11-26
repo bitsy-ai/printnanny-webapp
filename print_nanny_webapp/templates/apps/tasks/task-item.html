@@ -1,0 +1,47 @@
+{% load static i18n %}
+
+<!-- task -->
+<div class="row justify-content-sm-between mt-2">
+    <div class="col-sm-6 mb-2 mb-sm-0">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="{{id}}">
+            <label class="custom-control-label" for="{{id}}">
+                {{title}}
+            </label>
+        </div> <!-- end checkbox -->
+    </div> <!-- end col -->
+    <div class="col-sm-6">
+        <div class="d-flex justify-content-between">
+            <div>
+                <img src="{{assigneeAvatar}}" alt="image"
+                class="avatar-xs rounded-circle mr-1" data-toggle="tooltip"
+                data-placement="bottom" title="Assigned to {{assignedTo}}" />
+            </div>
+            <div>
+                <ul class="list-inline font-13 text-right">
+                    <li class="list-inline-item">
+                        <i class='uil uil-schedule font-16 mr-1'></i> {{dueDate}}
+                    </li>
+                    <li class="list-inline-item ml-1">
+                        <i class='uil uil-align-alt font-16 mr-1'></i> {{noChecklists}}
+                    </li>
+                    <li class="list-inline-item ml-1">
+                        <i class='uil uil-comment-message font-16 mr-1'></i> {{noComments}}
+                    </li>
+                    <li class="list-inline-item ml-2">
+                        {% if priority == 'High' %}
+                        <span class="badge badge-danger-lighten p-1">{{priority}}</span>
+                        {% endif %}
+                        {% if priority == 'Medium' %}
+                        <span class="badge badge-info-lighten p-1">{{priority}}</span>
+                        {% endif %}
+                        {% if priority == 'Low' %}
+                        <span class="badge badge-success-lighten p-1">{{priority}}</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div> <!-- end .d-flex-->
+    </div> <!-- end col -->
+</div>
+<!-- end task -->

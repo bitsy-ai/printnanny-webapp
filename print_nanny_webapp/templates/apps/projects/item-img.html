@@ -1,0 +1,69 @@
+{% load static i18n %}
+
+
+<!-- project card -->
+<div class="card d-block">
+    <!-- project-thumbnail -->
+    <img class="card-img-top" src="{{projectImg}}" alt="project image cap">
+    <div class="card-img-overlay">
+
+        {% if status and status == 'Finished' %}
+            <div class="badge badge-success p-1">{{status}}</div>
+        {% endif %}
+
+        {% if status and status == 'Ongoing' %}
+            <div class="badge badge-secondary p-1">{{status}}</div>
+        {% endif %}
+
+        {% if status and status == 'Planned' %}
+            <div class="badge badge-info p-1">{{status}}</div>
+        {% endif %}
+
+    </div>
+
+    <div class="card-body position-relative">
+        <!-- project title-->
+        <h4 class="mt-0">
+            <a href="apps-projects-details.html" class="text-title">{{title}}</a>
+        </h4>
+
+        <!-- project detail-->
+        <p class="mb-3">
+            <span class="pr-2 text-nowrap">
+                <i class="mdi mdi-format-list-bulleted-type"></i>
+                <b>{{noTasks}}</b> Tasks
+            </span>
+            <span class="text-nowrap">
+                <i class="mdi mdi-comment-multiple-outline"></i>
+                <b>{{noComments}}</b> Comments
+            </span>
+        </p>
+        <div class="mb-3">
+            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" class="d-inline-block">
+                <img src="{{friendsAvatar1}}" class="rounded-circle avatar-xs" alt="friend">
+            </a>
+
+            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" class="d-inline-block">
+                <img src="{{friendsAvatar2}}" class="rounded-circle avatar-xs" alt="friend">
+            </a>
+
+            {% if friendsAvatar3 %}
+                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" class="d-inline-block">
+                    <img src="{{friendsAvatar3}}" class="rounded-circle avatar-xs" alt="friend">
+                </a>
+            {% endif %}
+            {% if moreFriends > 0 %}               
+                <a href="javascript:void(0);" class="d-inline-block text-muted font-weight-bold ml-2">
+                    +{{moreFriends}} more
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- project progress-->
+        <p class="mb-2 font-weight-bold">Progress <span class="float-right">{{progress}}%</span></p>
+        <div class="progress progress-sm">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            </div><!-- /.progress-bar -->
+        </div><!-- /.progress -->
+    </div> <!-- end card-body-->
+</div> <!-- end card-->

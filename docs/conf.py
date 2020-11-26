@@ -23,7 +23,7 @@ django.setup()
 
 # -- Project information -----------------------------------------------------
 
-project = "Print Nanny Webapp"
+project = "Print Nanny"
 copyright = """2020, Leigh Johnson"""
 author = "Leigh Johnson"
 

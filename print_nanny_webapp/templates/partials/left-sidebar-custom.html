@@ -1,0 +1,96 @@
+{% load static i18n %}
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu">
+
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-light">
+        <span class="logo-lg">
+            <img src="{% static 'images/logo-text-white.svg' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm.png' %}" alt="" height="16">
+        </span>
+    </a>
+
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-dark">
+        <span class="logo-lg">
+            <img src="{% static 'images/logo-dark.png' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm_dark.png' %}" alt="" height="16">
+        </span>
+    </a>
+    
+    <div class="h-100" id="left-side-menu-container" data-simplebar>
+
+        <!--- Sidemenu -->
+        <ul class="metismenu side-nav">
+
+            <li class="side-nav-title side-nav-item">{% trans "Navigation" %}</li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:home' %}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    {% if object.active_alerts.count > 0 %}
+                    <span class="badge badge-danger float-right"> {{ object.active_alerts.count }}</span>
+                    {% endif %}
+
+                    <span> {% trans "Dashboard" %} </span>
+
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
+                    <i class="uil-video"></i>
+                    <span> {% trans "Timelapse Reports" %} </span>
+
+                </a>
+            </li>
+            
+            <li class="side-nav-item">
+                <a href="{% url 'users:detail' %}" class="side-nav-link">
+                    <i class="dripicons-gear"></i>
+                    <span> {% trans "Settings" %} </span>
+
+                </a>
+            </li>
+
+
+
+
+        </ul>
+
+        <!-- Help Box -->
+        <div class="help-box text-white text-center">
+            <!-- <a href="javascript: void(0);" class="float-right close-btn text-white">
+                <i class="mdi mdi-close"></i>
+            </a> -->
+            <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
+            <h5 class="mt-3">{% trans "Discord Server" %}</h5>
+            <p class="mb-3">{% trans "Tell us what you think, get support, chill."%}</p>
+            <a href="https://discord.gg/YK7qnv5KjB" class="btn btn-outline-light btn-sm">{% trans "Join" %}</a>
+        </div>
+        <!-- end Help Box -->
+        <!-- Upgrade Box -->
+        <!-- <div class="help-box text-white text-center">
+            <a href="javascript: void(0);" class="float-right close-btn text-white">
+                <i class="mdi mdi-close"></i>
+            </a>
+            <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" />
+            <h5 class="mt-3">{% trans "Unlimited Access" %}</h5>
+            <p class="mb-3">{% trans "Upgrade to plan to get access to unlimited reports" %}</p>
+            <a href="javascript: void(0);" class="btn btn-outline-light btn-sm">{% trans "Upgrade" %}</a>
+        </div> -->
+        <!-- end Upgrade Box -->
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->
