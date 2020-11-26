@@ -18,7 +18,7 @@ from print_nanny_webapp.remote_control.models import (
     PrinterProfile, PrintJob, GcodeFile
 )
 
-import print_nanny_webapp.utils.prometheus_metrics
+from print_nanny_webapp.utils import prometheus_metrics
 
 @extend_schema(tags=['remote-control'])
 class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
@@ -31,13 +31,38 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
+    @extend_schema(
+        operation_id='print_jobs_create',
+        responses={
+            400: PrintJobSerializer,
+            201: PrintJobSerializer
+        }
+    )
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
-        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status.value)
+        prometheus_metrics.print_job_status.state(instance.last_status)
 
+    @extend_schema(
+        operation_id='print_jobs_update',
+        responses={
+            400: PrintJobSerializer,
+            201: PrintJobSerializer
+        }
+    )
     def perform_update(self, serializer):
         instance = serializer.save()
-        print_nanny_webapp.client_events.metrics.print_job_status.state(instance.last_status)
+        prometheus_metrics.print_job_status.state(instance.last_status)
+
+
+    @extend_schema(
+        operation_id='print_jobs_partial_update',
+        responses={
+            400: PrintJobSerializer,
+            201: PrintJobSerializer
+        }
+    )
+    def partial_update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
 
 @extend_schema(tags=['remote-control'])
 class PrinterProfileViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):

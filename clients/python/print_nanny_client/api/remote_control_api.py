@@ -1373,7 +1373,8 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PrintJob",
+            400: "PrintJob",
+            201: "PrintJob",
         }
 
         return self.api_client.call_api(
