@@ -1,0 +1,56 @@
+{% if alert.feedback is None %}
+<p>Did Print Nanny make a good call?</p>
+
+<form method="POST" class="d-inline-block" >
+
+    {% csrf_token %}
+    {{ forms.upvote.as_p }}
+    <input type="hidden" value="{{ alert.id }}" name="alert_id">
+
+    <button name="action" value="upvote" type="submit" class="btn btn-lg btn-light">👍</button> 
+ 
+  </form>
+  <form method="POST" class="d-inline-block" >
+    {% csrf_token %}
+    {{ forms.downvote.as_p }}
+    <input type="hidden" value="{{ alert.id }}" name="alert_id">
+        <button name="action" value="downvote" type="submit" class="btn btn-lg btn-light">👎</button> 
+
+</form>
+
+{% elif alert.feedback is True %}
+    <form method="POST" class="d-inline-block" >
+
+        {% csrf_token %}
+        {{ forms.upvote.as_p }}
+        <input type="hidden" value="{{ alert.id }}" name="alert_id">
+
+        <button disabled name="action" value="upvote" type="submit" class="btn btn-lg btn-dark">👍</button> 
+    
+    </form>
+    <form method="POST" class="d-inline-block" >
+        {% csrf_token %}
+        {{ forms.downvote.as_p }}
+        <input type="hidden" value="{{ alert.id }}" name="alert_id">
+            <button name="action" value="downvote" type="submit" class="btn btn-lg btn-light">👎</button> 
+
+    </form>
+
+{% elif alert.feedback is False %}
+    <form method="POST" class="d-inline-block" >
+
+        {% csrf_token %}
+        {{ forms.upvote.as_p }}
+        <input type="hidden" value="{{ alert.id }}" name="alert_id">
+
+        <button name="action" value="upvote" type="submit" class="btn btn-lg btn-light">👍</button> 
+
+    </form>
+    <form method="POST" class="d-inline-block" >
+        {% csrf_token %}
+        {{ forms.downvote.as_p }}
+        <input type="hidden" value="{{ alert.id }}" name="alert_id">
+            <button disabled name="action" value="downvote" type="submit" class="btn btn-lg btn-dark">👎</button> 
+
+    </form>
+{% endif %}

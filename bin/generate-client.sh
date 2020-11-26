@@ -1,9 +1,9 @@
 #!/bin/bash
 
-docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli validate \
+docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v4.1.3 validate \
     -i http://localhost:8000/api/schema --recommend
 
-docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v4.1.3 generate \
     -i http://localhost:8000/api/schema \
     -g python-experimental \
     -o /local/clients/python \

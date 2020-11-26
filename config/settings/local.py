@@ -60,4 +60,4 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # ------------------------------------------------------------------------------
 
 
-MEDIA_ROOT = "/tmp/print_nanny_webapp"
+MEDIA_ROOT = "/tmp"

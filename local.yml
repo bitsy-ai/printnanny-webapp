@@ -69,7 +69,9 @@ services:
       - "4040:4040"
   redis:
 
-    image: redis:5.0
+    build:
+      context: .
+      dockerfile: ./compose/local/redis/Dockerfile
     container_name: redis
 
   celeryworker:
@@ -127,3 +129,8 @@ services:
       - ./prometheus:/etc/prometheus
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
+  celery-exporter:
+    image: ovalmoney/celery-exporter
+    ports:
+      - 9540:9540
