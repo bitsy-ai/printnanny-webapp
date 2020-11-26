@@ -50,37 +50,17 @@
                 </a>
             </li>
             
+            <li class="side-nav-item">
+                <a href="{% url 'users:detail' %}" class="side-nav-link">
+                    <i class="dripicons-gear"></i>
+                    <span> {% trans "Settings" %} </span>
 
-            <li class="side-nav-title side-nav-item">{% trans "Apps - Coming Soon!" %}</li>
-
-            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps:coming-soon-remote-control' %}active{% endif %}">
-                <a href="{% url 'apps:coming-soon-remote-control' %}" class="side-nav-link">
-                    <i class="uil-globe"></i>
-                    <span> {% trans "Remote Control" %} </span>
                 </a>
             </li>
 
 
-            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps:coming-soon-print-library' %}active{% endif %}">
-                <a href="{% url 'apps:coming-soon-print-library' %}" class="side-nav-link">
-                    <i class="uil-books"></i>
-                    <span> {% trans "G-Code Library" %} </span>
-                </a>
-            </li>
 
-            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps:coming-soon-print-library' %}active{% endif %}">
-                <a href="{% url 'apps:coming-soon-print-library' %}" class="side-nav-link">
-                    <i class="uil-print"></i>
-                    <span> {% trans "Print Queue" %} </span>
-                </a>
-            </li>
 
-            <li class="side-nav-item {% if request.resolver_match.url_name == 'apps:coming-soon-webhooks' %}active{% endif %}">
-                <a href="{% url 'apps:coming-soon-webhooks' %}" class="side-nav-link">
-                    <i class="uil-share-alt"></i>
-                    <span> {% trans "Webhook Integrations" %} </span>
-                </a>
-            </li>
         </ul>
 
         <!-- Help Box -->
