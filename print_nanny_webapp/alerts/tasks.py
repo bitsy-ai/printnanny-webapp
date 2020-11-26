@@ -479,7 +479,7 @@ def create_health_rel_plot(confident_df, fail_df,timelapse_alert_id, temp_dir, f
         intercept = (list(x0)[-1])
 
         notify_timecode = y[y<=intercept].index[alert_offset]
-        notify_seconds = int(_seconds(notify_timecode, framerate))
+        notify_seconds = int(_seconds(notify_timecode, fps))
 
         TimelapseAlert.objects.filter(id=timelapse_alert_id).update(
             notify_seconds=notify_seconds,
