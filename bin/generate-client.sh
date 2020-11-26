@@ -1,11 +1,11 @@
 #!/bin/bash
 
-docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v4.1.3 validate \
+docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli validate \
     -i http://localhost:8000/api/schema --recommend
 
-docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:v4.1.3 generate \
+docker run --net=host --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i http://localhost:8000/api/schema \
-    -g python-experimental \
+    -g python-legacy \
     -o /local/clients/python \
     -c /local/clients/python.yaml \
     # --global-property debugOperations
