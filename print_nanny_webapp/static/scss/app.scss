@@ -13,6 +13,8 @@ File: Main Css File
 @import "config/saas/custom-variables";
 @import "./node_modules/bootstrap/scss/bootstrap";
 
+// utils
+@import "custom/custom.scss";
 
 // Structure
 @import "custom/structure/general";

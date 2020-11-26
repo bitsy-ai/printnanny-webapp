@@ -240,16 +240,16 @@ function initBrowserSync(done) {
 
 function reloadBrowserSync(done) {
     browsersync.reload();
-    // browsersync.stream({once: true})
+    browsersync.stream({once: true})
     done();
 }
 
 function watchFiles() {
     // gulp.watch(paths.app + '/**/*.py', gulp.series(reloadBrowserSync));
-    gulp.watch(paths.templates + '/**/*', gulp.series(reloadBrowserSync));
-    gulp.watch(paths.sass + '/**/*', gulp.series(copyVendorStyles, styles, reloadBrowserSync));
-    gulp.watch(paths.js + '/src/**/*', gulp.series(scripts, reloadBrowserSync));
-    gulp.watch(paths.images + '/**/*', gulp.series(imgCompression, reloadBrowserSync));
+    //gulp.watch(paths.templates + '/**/*', gulp.series(reloadBrowserSync));
+    gulp.watch(paths.sass + '/**/*.scss', gulp.series(copyVendorStyles, styles, reloadBrowserSync));
+    gulp.watch(paths.js + '/src/**/*.js', gulp.series(scripts, reloadBrowserSync));
+    //gulp.watch(paths.images + '/**/*', gulp.series(imgCompression, reloadBrowserSync));
 }
 
 

@@ -26,105 +26,139 @@
         <!-- end page title --> 
   
           <!-- videos -->
-          <div class="row">
-          
+          <div class="card-group">
             {% for alert in alerts %}
           
               <!-- card wrapper -->
-              <div class="col-sm-12 col-md-3">
-          
+              <div class="card col-sm-12 col-lg-3">
+
               {% if alert.job_status == alert.JobStatusChoices.PROCESSING %}
                 <!-- card -->
-                 <div class="card">
                     <!-- card body -->
-
                     <div class="card-body">
-                    <h2 class="header-title">Your video is being analyzed</h2>
-                    <p>You'll get an email when Print Nanny's report is ready.</p>
-                    <pre>{{alert.original_filename}}</pre>
-                    <button class="btn btn-primary" type="button" disabled>
-                      <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
-                      Processing...
-                    </button>
+                      <h2 class="header-title">Your video is being analyzed</h2>
+                      <p>You'll get an email when Print Nanny's report is ready.</p>
+                      <pre>{{alert.original_filename}}</pre>
+                      <button class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                        Processing...
+                      </button>
           
           
                     </div> <!-- card body -->
 
-                  </div> <!-- -->
-              </div>
-              {% elif  alert.job_status == alert.JobStatusChoices.SUCCESS %}
+                </div> <!-- -->
+              {% elif alert.job_status == alert.JobStatusChoices.SUCCESS %}
+                  <!-- critical failure detected -->
+                  {% if alert.notify_timecode %}
+                    <div class="card-body">
+                      <h2 class="card-title">Print Failed</h2>
 
-                <div class="card">
+                      <dl class="row mb-0">
+  
+  
+                        <dt class="col-sm-3">Filename</dt>
+                        <dd class="col-sm-9">{{alert.original_filename}}</dd>
+                                
+                        <dt class="col-sm-3">Verdict</dt>
+  
+                          <dd class="col-sm-9">Critical failure at <strong>{{alert.notify_timecode}}</strong> ⚠️ </dd>
+                      </dl>
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" controls>
+                          <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                        </video>
+                      </div>
 
-                  <div class="card-img-top embed-responsive embed-responsive-16by9">
-                    <video class="embed-responsive-item" controls>
-                      <source src="{{ alert.annotated_video.url }}" type="video/mp4">
-                    </video>
-                  </div>
-
-                  <div class="card-body">
-                    <dl class="row mb-0">
-                      <dt class="col-sm-3">Filename</dt>
-                      <dd class="col-sm-9">{{alert.original_filename}}</dd>
-                              
-                      <dt class="col-sm-3">Verdict</dt>
-                      {% if alert.notify_timecode %}
-
-                        <dd class="col-sm-9">Print Nanny failure warning at {{alert.notify_timecode}} ⚠️ </dd>
-                      {% else %}
-                        <dd class="col-sm-9">No critical failures in your print.</dd>
-                      {% endif %}
-
-                      <dt class="col-sm-3">Feedback </dt>
-                      <dd class="col-sm-9">
+                      <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
                         <p>
-                          <button class="btn btn-lg btn-success">👍</button> 
-                          <button class="btn btn-lg btn-danger">👎</button> 
+
+                          <button class="btn btn-primary btn-block" type="button" >View Full Report
+  
+                          </button>
                         </p>
-                      </dd>
-                  </dl>
+          
+                      </a>
+                      </div>
+                      <div class="card-footer">
+                        {% include "form/feedback.html" %}
 
-                    <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
-                      <p>
-                        
-                        <button class="btn btn-primary btn-block" type="button" >View Full Report
+                      </div>
+                  {% else %}
+                    <div class="card-body">
+                      <h2 class="card-title">No Issues Detected</h2>
 
-                        </button>
-                      </p>
-        
-                    </a>
-                    </div>
-                  </div> 
+                      <dl class="row mb-0">
+  
+  
+                        <dt class="col-sm-3">Filename</dt>
+                        <dd class="col-sm-9">{{alert.original_filename}}</dd>
+                                
+                        <dt class="col-sm-3">Verdict</dt>
+
+                          <dd class="col-sm-9">No critical failures in your print.</dd>
+  
+                      </dl>
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <video class="embed-responsive-item" controls>
+                          <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                        </video>
+                      </div>
+                      <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
+                        <p>
+
+                          <button class="btn btn-primary btn-block" type="button" >View Full Report
+  
+                          </button>
+                        </p>
+          
+                      </a>
+                      </div>
+                      <div class="card-footer">
+                        {% include "form/feedback.html" %}
+
+                      </div>
+                  <!-- no critical issues -->
+                  {% endif %}
+
               </div>
-              {% elif  alert.job_status == alert.JobStatusChoices.FAILURE %}
+              {% elif alert.job_status == alert.JobStatusChoices.FAILURE %}
 
-                <div class="card">
           
                 <div class="card-body">
-          
-          
-                  <h2 class="header-title">Job Failed</h2>
-          
-                    <p>Something went wrong while analyzing file: <pre>{{alert.original_filename}}</pre>
-                    </p>
-                      <p>Could you try that again?</p>
-                      <!-- File Upload -->
-                      <form enctype="multipart/form-data" method="post">
-                        <input type="hidden" value="{{ alert.id }}" name="timelapse_alert_id">
-          
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <button class="btn btn-primary" type="submit">Analyze Video</button>
-                      </form>
-          
+                  
+                  <img class="card-img opacity-1 w-50 float-right" src="{% static 'images/confused.svg'%}" alt="Card image">
+                    <div class="card-img-overlay">
+
+                    <h2 class="card-title">File Analysis Failed</h2>
+            
+                      <h3><pre>{{alert.original_filename}}</pre></h3>
+
+                        <h3>Could you try that again?</h3>
+                        <!-- File Upload -->
+                        <form enctype="multipart/form-data" method="post"></form>>
+                          <div class="form-group">
+                            {{ forms.upload.as_p }}
+
+                            <input type="hidden" value="{{ alert.id }}" name="alert_id">
+            
+                            {% csrf_token %}
+                            {{ reupload_form|crispy }}
+                            <button name="action" value="upload" class="btn btn-primary" type="submit">Analyze Video</button>
+                            <button class="btn btn-secondary">Dismiss</button>
+
+                          </div>
+
+                        </form>
+                    </div>
                   </div>
                 </div> 
+
               {% endif %}
           
             {% endfor %}
           
-    </div>
-          
+
           </div>
     </div> <!-- container -->
 {% endblock %}

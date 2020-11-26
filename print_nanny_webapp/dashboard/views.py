@@ -6,8 +6,10 @@ from django.apps import apps
 from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
-from .forms import TimelapseUploadForm
+from .forms import TimelapseUploadForm,TimelapseReuploadForm, FeedbackForm
 from print_nanny_webapp.alerts.tasks import create_analyze_video_task, annotate_job_error
+from print_nanny_webapp.utils.multiform import MultiFormsView
+from django.shortcuts import redirect
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
@@ -63,70 +65,80 @@ class HomeDashboardView(LoginRequiredMixin, DetailView, FormView):
         self.request.user.token = token
         self.request.user.active_alerts = self.request.user.alertmessage_set.filter(seen=False)
         return self.request.user
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super(HomeDashboardView, self).get_context_data(**kwargs)
-    #     context['timelapse_form'] = TimelapseUploadForm()
-    #     return context
 
 home_dashboard_view = HomeDashboardView.as_view()
 
 
-class DemoDashboardView(LoginRequiredMixin, DetailView):
 
-    model = User
-    template_name = 'dashboard/demo.html'
-    def get_object(self):
-        token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
-        self.request.user.active_alerts = self.request.user.alertmessage_set.filter(last_action=AlertMessage.ActionChoices.PENDING)
-        return self.request.user
-
-demo_dashboard_view = DemoDashboardView.as_view()
-
-
-class VideoDashboardView(LoginRequiredMixin, ListView, FormView):
+class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     success_url = '/report-cards'
 
-    form_class = TimelapseUploadForm
-
-    model = AlertMessage
+    form_classes = {
+        'upload': TimelapseReuploadForm,
+        'upvote': FeedbackForm,
+        'downvote': FeedbackForm
+    }
     template_name = 'dashboard/video-list.html'
 
-    def form_valid(self, form):
 
-        failed_job = self.request.POST.get('timelapse_alert_id')
+    def upvote_form_valid(self, form):
+
+        alert_id = self.request.POST.get('alert_id')
+        alert = TimelapseAlert.objects.filter(
+                id=alert_id
+            ).update(
+                feedback=True
+            )
+        
+        return redirect(self.get_success_url())
+
+    def downvote_form_valid(self, form):
+
+        alert_id = self.request.POST.get('alert_id')
+        alert = TimelapseAlert.objects.filter(
+                id=alert_id
+            ).update(
+                feedback=False
+            )
+        
+        return redirect(self.get_success_url())
+
+
+
+
+    def upload_form_valid(self, form):
+
+        failed_job = self.request.POST.get('alert_id')
         if failed_job is not None:
             logger.warning('Deleting TimelapseAlert with id {failed_job} (tombstones are disabled)')
             TimelapseAlert.objects.filter(id=failed_job).delete()
 
-        timelapse_alert = TimelapseAlert.objects.create(
-            user=self.request.user,
-            original_video=self.request.FILES['video_file'],
-        )
-
-        video_file = self.request.FILES['video_file']
-
-        if isinstance(video_file, InMemoryUploadedFile):
-            logging.info(f'File processed asInMemoryUploadedFile')
-            logging.info(f'File info {timelapse_alert.original_video}')
-            create_analyze_video_task.apply_async(
-                (timelapse_alert.id, 
-                timelapse_alert.original_video.url),
-                link_error=annotate_job_error.si(timelapse_alert.id)
+        video_file = self.request.FILES.get('video_file')
+        if video_file is not None:
+            timelapse_alert = TimelapseAlert.objects.create(
+                user=self.request.user,
+                original_video=self.request.FILES['video_file'],
             )
-        elif isinstance(video_file, TemporaryUploadedFile):
-            logging.info(f'File processed as TemporaryUploadedFile')
-            create_analyze_video_task.apply_async(
-                (timelapse_alert.id, 
-                self.request.FILES['video_file'].temporary_file_path()),
-                link_error=annotate_job_error.si(timelapse_alert.id)
+            if isinstance(video_file, InMemoryUploadedFile):
+                logging.info(f'File processed asInMemoryUploadedFile')
+                logging.info(f'File info {timelapse_alert.original_video}')
+                create_analyze_video_task.apply_async(
+                    (timelapse_alert.id, 
+                    timelapse_alert.original_video.url),
+                    link_error=annotate_job_error.si(timelapse_alert.id)
+                )
+            elif isinstance(video_file, TemporaryUploadedFile):
+                logging.info(f'File processed as TemporaryUploadedFile')
+                create_analyze_video_task.apply_async(
+                    (timelapse_alert.id, 
+                    self.request.FILES['video_file'].temporary_file_path()),
+                    link_error=annotate_job_error.si(timelapse_alert.id)
             )
-        return super().form_valid(form)
+        return form.upload(self.request, redirect_url=self.get_success_url())
 
-    def get_context_data(self):
-        context = {}
-        context['form'] = TimelapseUploadForm()
+    def get_context_data(self, *args, **kwargs):
+        context = super(VideoDashboardView, self).get_context_data(**kwargs)
+
         context['alerts'] = TimelapseAlert.objects.filter(user=self.request.user.id).order_by('-created_dt').all()
         return context
 
