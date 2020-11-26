@@ -31,49 +31,65 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.gcode_file import GcodeFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    name = "name_example" # str | 
-    file = open('/path/to/file', 'rb') # file_type | 
-    file_hash = "file_hash_example" # str | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.gcode_files_create(name, file, file_hash)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_create: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_create(name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
+
+try:
+    api_response = api_instance.gcode_files_create(name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -81,7 +97,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**|  |
- **file** | **file_type**|  |
+ **file** | **file**|  |
  **file_hash** | **str**|  |
 
 ### Return type
@@ -112,49 +128,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.paginated_gcode_file_list import PaginatedGcodeFileList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.gcode_files_list(limit=limit, offset=offset)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_list: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+
+try:
+    api_response = api_instance.gcode_files_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -192,58 +222,67 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.gcode_file import GcodeFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this gcode file.
-    name = "name_example" # str |  (optional)
-    file = open('/path/to/file', 'rb') # file_type |  (optional)
-    file_hash = "file_hash_example" # str |  (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
+name = 'name_example' # str |  (optional)
+file = '/path/to/file' # file |  (optional)
+file_hash = 'file_hash_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.gcode_files_partial_update(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_partial_update: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_partial_update(id, name=name, file=file, file_hash=file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_partial_update: %s\n" % e)
+```
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.gcode_files_partial_update(id, name=name, file=file, file_hash=file_hash)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_partial_update: %s\n" % e)
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
+name = 'name_example' # str |  (optional)
+file = '/path/to/file' # file |  (optional)
+file_hash = 'file_hash_example' # str |  (optional)
+
+try:
+    api_response = api_instance.gcode_files_partial_update(id, name=name, file=file, file_hash=file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -252,7 +291,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this gcode file. |
  **name** | **str**|  | [optional]
- **file** | **file_type**|  | [optional]
+ **file** | **file**|  | [optional]
  **file_hash** | **str**|  | [optional]
 
 ### Return type
@@ -283,47 +322,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.gcode_file import GcodeFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this gcode file.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.gcode_files_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
+
+try:
+    api_response = api_instance.gcode_files_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -360,50 +413,67 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.gcode_file import GcodeFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this gcode file.
-    name = "name_example" # str | 
-    file = open('/path/to/file', 'rb') # file_type | 
-    file_hash = "file_hash_example" # str | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.gcode_files_update(id, name, file, file_hash)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_update: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_update(id, name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_update: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this gcode file.
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
+
+try:
+    api_response = api_instance.gcode_files_update(id, name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -412,7 +482,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this gcode file. |
  **name** | **str**|  |
- **file** | **file_type**|  |
+ **file** | **file**|  |
  **file_hash** | **str**|  |
 
 ### Return type
@@ -443,49 +513,65 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.gcode_file import GcodeFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    name = "name_example" # str | 
-    file = open('/path/to/file', 'rb') # file_type | 
-    file_hash = "file_hash_example" # str | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.gcode_files_update_or_create(name, file, file_hash)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->gcode_files_update_or_create: %s\n" % e)
+try:
+    api_response = api_instance.gcode_files_update_or_create(name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_update_or_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+name = 'name_example' # str | 
+file = '/path/to/file' # file | 
+file_hash = 'file_hash_example' # str | 
+
+try:
+    api_response = api_instance.gcode_files_update_or_create(name, file, file_hash)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->gcode_files_update_or_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -493,7 +579,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**|  |
- **file** | **file_type**|  |
+ **file** | **file**|  |
  **file_hash** | **str**|  |
 
 ### Return type
@@ -526,55 +612,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.print_job import PrintJob
-from print_nanny_client.model.print_job_request import PrintJobRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    print_job_request = PrintJobRequest(
-        dt=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        printer_profile=1,
-        name="name_example",
-        gcode_file_hash="gcode_file_hash_example",
-        gcode_file=1,
-        last_status=LastStatusEnum("STARTED"),
-    ) # PrintJobRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.print_jobs_create(print_job_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
+try:
+    api_response = api_instance.print_jobs_create(print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
+
+try:
+    api_response = api_instance.print_jobs_create(print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -611,49 +703,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.paginated_print_job_list import PaginatedPrintJobList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.print_jobs_list(limit=limit, offset=offset)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
+try:
+    api_response = api_instance.print_jobs_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+
+try:
+    api_response = api_instance.print_jobs_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -691,64 +797,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.print_job import PrintJob
-from print_nanny_client.model.patched_print_job_request import PatchedPrintJobRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this print job.
-    patched_print_job_request = PatchedPrintJobRequest(
-        dt=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        printer_profile=1,
-        name="name_example",
-        gcode_file_hash="gcode_file_hash_example",
-        gcode_file=1,
-        last_status=LastStatusEnum("STARTED"),
-    ) # PatchedPrintJobRequest |  (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
+patched_print_job_request = print_nanny_client.PatchedPrintJobRequest() # PatchedPrintJobRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.print_jobs_partial_update(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
+try:
+    api_response = api_instance.print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
+```
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
+patched_print_job_request = print_nanny_client.PatchedPrintJobRequest() # PatchedPrintJobRequest |  (optional)
+
+try:
+    api_response = api_instance.print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -786,47 +891,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.print_job import PrintJob
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this print job.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.print_jobs_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.print_jobs_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
+
+try:
+    api_response = api_instance.print_jobs_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -863,56 +982,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.print_job import PrintJob
-from print_nanny_client.model.print_job_request import PrintJobRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this print job.
-    print_job_request = PrintJobRequest(
-        dt=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        printer_profile=1,
-        name="name_example",
-        gcode_file_hash="gcode_file_hash_example",
-        gcode_file=1,
-        last_status=LastStatusEnum("STARTED"),
-    ) # PrintJobRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
+print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.print_jobs_update(id, print_job_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
+try:
+    api_response = api_instance.print_jobs_update(id, print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this print job.
+print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
+
+try:
+    api_response = api_instance.print_jobs_update(id, print_job_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -950,70 +1076,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.printer_profile import PrinterProfile
-from print_nanny_client.model.printer_profile_request import PrinterProfileRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    printer_profile_request = PrinterProfileRequest(
-        axes_e_inverted=True,
-        axes_e_speed=-2147483648,
-        axes_x_speed=-2147483648,
-        axes_x_inverted=True,
-        axes_y_inverted=True,
-        axes_y_speed=-2147483648,
-        axes_z_inverted=True,
-        axes_z_speed=-2147483648,
-        extruder_count=-2147483648,
-        extruder_nozzle_diameter=3.14,
-        extruder_shared_nozzle=True,
-        heated_bed=True,
-        heated_chamber=True,
-        model="model_example",
-        name="name_example",
-        volume_custom_box=True,
-        volume_depth=3.14,
-        volume_formfactor="volume_formfactor_example",
-        volume_height=3.14,
-        volume_origin="volume_origin_example",
-        volume_width=3.14,
-    ) # PrinterProfileRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.printer_profiles_create(printer_profile_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_create: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_create(printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
+
+try:
+    api_response = api_instance.printer_profiles_create(printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -1050,51 +1167,67 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.paginated_printer_profile_list import PaginatedPrinterProfileList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    name = "name_example" # str | name (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
-    user = "user_example" # str | user (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+name = 'name_example' # str | name (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+user = 'user_example' # str | user (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.printer_profiles_list(limit=limit, name=name, offset=offset, user=user)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_list: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_list(limit=limit, name=name, offset=offset, user=user)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+name = 'name_example' # str | name (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+user = 'user_example' # str | user (optional)
+
+try:
+    api_response = api_instance.printer_profiles_list(limit=limit, name=name, offset=offset, user=user)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -1134,79 +1267,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.printer_profile import PrinterProfile
-from print_nanny_client.model.patched_printer_profile_request import PatchedPrinterProfileRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this printer profile.
-    patched_printer_profile_request = PatchedPrinterProfileRequest(
-        axes_e_inverted=True,
-        axes_e_speed=-2147483648,
-        axes_x_speed=-2147483648,
-        axes_x_inverted=True,
-        axes_y_inverted=True,
-        axes_y_speed=-2147483648,
-        axes_z_inverted=True,
-        axes_z_speed=-2147483648,
-        extruder_count=-2147483648,
-        extruder_nozzle_diameter=3.14,
-        extruder_shared_nozzle=True,
-        heated_bed=True,
-        heated_chamber=True,
-        model="model_example",
-        name="name_example",
-        volume_custom_box=True,
-        volume_depth=3.14,
-        volume_formfactor="volume_formfactor_example",
-        volume_height=3.14,
-        volume_origin="volume_origin_example",
-        volume_width=3.14,
-    ) # PatchedPrinterProfileRequest |  (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
+patched_printer_profile_request = print_nanny_client.PatchedPrinterProfileRequest() # PatchedPrinterProfileRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.printer_profiles_partial_update(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_partial_update: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_partial_update(id, patched_printer_profile_request=patched_printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_partial_update: %s\n" % e)
+```
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.printer_profiles_partial_update(id, patched_printer_profile_request=patched_printer_profile_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_partial_update: %s\n" % e)
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
+patched_printer_profile_request = print_nanny_client.PatchedPrinterProfileRequest() # PatchedPrinterProfileRequest |  (optional)
+
+try:
+    api_response = api_instance.printer_profiles_partial_update(id, patched_printer_profile_request=patched_printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -1244,47 +1361,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.printer_profile import PrinterProfile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this printer profile.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.printer_profiles_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
+
+try:
+    api_response = api_instance.printer_profiles_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -1321,71 +1452,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.printer_profile import PrinterProfile
-from print_nanny_client.model.printer_profile_request import PrinterProfileRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    id = 1 # int | A unique integer value identifying this printer profile.
-    printer_profile_request = PrinterProfileRequest(
-        axes_e_inverted=True,
-        axes_e_speed=-2147483648,
-        axes_x_speed=-2147483648,
-        axes_x_inverted=True,
-        axes_y_inverted=True,
-        axes_y_speed=-2147483648,
-        axes_z_inverted=True,
-        axes_z_speed=-2147483648,
-        extruder_count=-2147483648,
-        extruder_nozzle_diameter=3.14,
-        extruder_shared_nozzle=True,
-        heated_bed=True,
-        heated_chamber=True,
-        model="model_example",
-        name="name_example",
-        volume_custom_box=True,
-        volume_depth=3.14,
-        volume_formfactor="volume_formfactor_example",
-        volume_height=3.14,
-        volume_origin="volume_origin_example",
-        volume_width=3.14,
-    ) # PrinterProfileRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.printer_profiles_update(id, printer_profile_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_update: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_update(id, printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_update: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this printer profile.
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
+
+try:
+    api_response = api_instance.printer_profiles_update(id, printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -1423,70 +1546,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import remote_control_api
-from print_nanny_client.model.printer_profile import PrinterProfile
-from print_nanny_client.model.printer_profile_request import PrinterProfileRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = remote_control_api.RemoteControlApi(api_client)
-    printer_profile_request = PrinterProfileRequest(
-        axes_e_inverted=True,
-        axes_e_speed=-2147483648,
-        axes_x_speed=-2147483648,
-        axes_x_inverted=True,
-        axes_y_inverted=True,
-        axes_y_speed=-2147483648,
-        axes_z_inverted=True,
-        axes_z_speed=-2147483648,
-        extruder_count=-2147483648,
-        extruder_nozzle_diameter=3.14,
-        extruder_shared_nozzle=True,
-        heated_bed=True,
-        heated_chamber=True,
-        model="model_example",
-        name="name_example",
-        volume_custom_box=True,
-        volume_depth=3.14,
-        volume_formfactor="volume_formfactor_example",
-        volume_height=3.14,
-        volume_origin="volume_origin_example",
-        volume_width=3.14,
-    ) # PrinterProfileRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.printer_profiles_update_or_create(printer_profile_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling RemoteControlApi->printer_profiles_update_or_create: %s\n" % e)
+try:
+    api_response = api_instance.printer_profiles_update_or_create(printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_update_or_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.RemoteControlApi(print_nanny_client.ApiClient(configuration))
+printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterProfileRequest | 
+
+try:
+    api_response = api_instance.printer_profiles_update_or_create(printer_profile_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling RemoteControlApi->printer_profiles_update_or_create: %s\n" % e)
 ```
 
 ### Parameters

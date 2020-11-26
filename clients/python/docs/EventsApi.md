@@ -23,57 +23,61 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.octo_print_event_request import OctoPrintEventRequest
-from print_nanny_client.model.octo_print_event import OctoPrintEvent
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    octo_print_event_request = OctoPrintEventRequest(
-        dt=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        event_type="event_type_example",
-        event_data={
-            "key": None,
-        },
-        plugin_version="plugin_version_example",
-        octoprint_version="octoprint_version_example",
-        print_job=1,
-    ) # OctoPrintEventRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.octoprint_events_create(octo_print_event_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
+try:
+    api_response = api_instance.octoprint_events_create(octo_print_event_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
+
+try:
+    api_response = api_instance.octoprint_events_create(octo_print_event_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -110,49 +114,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.paginated_octo_print_event_list import PaginatedOctoPrintEventList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.octoprint_events_list(limit=limit, offset=offset)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_list: %s\n" % e)
+try:
+    api_response = api_instance.octoprint_events_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+
+try:
+    api_response = api_instance.octoprint_events_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -190,47 +208,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.octo_print_event import OctoPrintEvent
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    id = 1 # int | A unique integer value identifying this octo print event.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this octo print event.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.octoprint_events_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.octoprint_events_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this octo print event.
+
+try:
+    api_response = api_instance.octoprint_events_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->octoprint_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -267,58 +299,74 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.predict_event_file import PredictEventFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    annotated_image = open('/path/to/file', 'rb') # file_type | 
-    hash = "hash_example" # str | 
-    original_image = open('/path/to/file', 'rb') # file_type | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+annotated_image = '/path/to/file' # file | 
+hash = 'hash_example' # str | 
+original_image = '/path/to/file' # file | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.predict_event_files_create(annotated_image, hash, original_image)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_event_files_create: %s\n" % e)
+try:
+    api_response = api_instance.predict_event_files_create(annotated_image, hash, original_image)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+annotated_image = '/path/to/file' # file | 
+hash = 'hash_example' # str | 
+original_image = '/path/to/file' # file | 
+
+try:
+    api_response = api_instance.predict_event_files_create(annotated_image, hash, original_image)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **annotated_image** | **file_type**|  |
+ **annotated_image** | **file**|  |
  **hash** | **str**|  |
- **original_image** | **file_type**|  |
+ **original_image** | **file**|  |
 
 ### Return type
 
@@ -348,49 +396,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.paginated_predict_event_file_list import PaginatedPredictEventFileList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.predict_event_files_list(limit=limit, offset=offset)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_event_files_list: %s\n" % e)
+try:
+    api_response = api_instance.predict_event_files_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+
+try:
+    api_response = api_instance.predict_event_files_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -428,47 +490,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.predict_event_file import PredictEventFile
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    id = 1 # int | A unique integer value identifying this predict event file.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this predict event file.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.predict_event_files_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_event_files_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.predict_event_files_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this predict event file.
+
+try:
+    api_response = api_instance.predict_event_files_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_event_files_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -505,60 +581,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.predict_event import PredictEvent
-from print_nanny_client.model.predict_event_request import PredictEventRequest
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    predict_event_request = PredictEventRequest(
-        dt=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        event_data={
-            "key": None,
-        },
-        predict_data={
-            "key": None,
-        },
-        files=1,
-        print_job=1,
-        plugin_version="plugin_version_example",
-        octoprint_version="octoprint_version_example",
-    ) # PredictEventRequest | 
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+predict_event_request = print_nanny_client.PredictEventRequest() # PredictEventRequest | 
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.predict_events_create(predict_event_request)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_events_create: %s\n" % e)
+try:
+    api_response = api_instance.predict_events_create(predict_event_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+predict_event_request = print_nanny_client.PredictEventRequest() # PredictEventRequest | 
+
+try:
+    api_response = api_instance.predict_events_create(predict_event_request)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -595,49 +672,63 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.paginated_predict_event_list import PaginatedPredictEventList
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    limit = 1 # int | Number of results to return per page. (optional)
-    offset = 1 # int | The initial index from which to return the results. (optional)
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        api_response = api_instance.predict_events_list(limit=limit, offset=offset)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_events_list: %s\n" % e)
+try:
+    api_response = api_instance.predict_events_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_list: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+limit = 56 # int | Number of results to return per page. (optional)
+offset = 56 # int | The initial index from which to return the results. (optional)
+
+try:
+    api_response = api_instance.predict_events_list(limit=limit, offset=offset)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -676,47 +767,61 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (cookieAuth):
-* Bearer (Bearer) Authentication (tokenAuth):
 ```python
+from __future__ import print_function
 import time
 import print_nanny_client
-from print_nanny_client.api import events_api
-from print_nanny_client.model.predict_event import PredictEvent
+from print_nanny_client.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
+configuration = print_nanny_client.Configuration()
 # Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
+configuration.api_key['Session'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
 # Configure Bearer authorization (Bearer): tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
+configuration.access_token = 'YOUR_BEARER_TOKEN'
 
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = events_api.EventsApi(api_client)
-    id = 1 # int | A unique integer value identifying this predict event.
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this predict event.
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.predict_events_retrieve(id)
-        pprint(api_response)
-    except print_nanny_client.ApiException as e:
-        print("Exception when calling EventsApi->predict_events_retrieve: %s\n" % e)
+try:
+    api_response = api_instance.predict_events_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_retrieve: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+configuration = print_nanny_client.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['Session'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Session'] = 'Bearer'
+configuration = print_nanny_client.Configuration()
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration.access_token = 'YOUR_BEARER_TOKEN'
+
+# Defining host is optional and default to http://localhost
+configuration.host = "http://localhost"
+# Create an instance of the API class
+api_instance = print_nanny_client.EventsApi(print_nanny_client.ApiClient(configuration))
+id = 56 # int | A unique integer value identifying this predict event.
+
+try:
+    api_response = api_instance.predict_events_retrieve(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling EventsApi->predict_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
