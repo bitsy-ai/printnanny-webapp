@@ -18,6 +18,17 @@ from print_nanny_webapp.client_events.models import (
     OctoPrintEvent, PredictEvent, PredictEventFile
 )
 
+class TrackingEventsView(GenericViewSet):
+    @extend_schema(
+        tags=['events'],
+        operation_id='tracking_events_list',
+    )
+    def list(self, request):
+        return Response([x.value for x in OctoPrintEvent.EventTypeChoices.__members__.values()], status.HTTP_200_OK)
+    
+    def get_queryset(self, *args, **kwargs):
+        return [x.value for x in OctoPrintEvent.EventTypeChoices.__members__.values()]
+
 @extend_schema(tags=['events'])
 @extend_schema_view(
     create=extend_schema(
@@ -38,6 +49,9 @@ class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, Re
     def perform_create(self, serializer):
 
         event_data = serializer.data['event_data']
+        event_type= serializer.data['event_type']
+
+
         print_job = event_data.get('print_job', {}).get('id')
         instance = serializer.save(user=self.request.user, print_job=print_job)
 
