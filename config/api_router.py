@@ -7,7 +7,6 @@ from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet, 
     PredictEventFileViewSet,
     PredictEventViewSet, 
-    TrackingEventsView
 )
 
 from print_nanny_webapp.remote_control.api.views import (
@@ -28,7 +27,6 @@ router = DefaultRouter()
 
 router.register("users", UserViewSet)
 
-router.register(f"tracking-events", TrackingEventsView, basename='tracking-event')
 router.register(f"predict-events", PredictEventViewSet, basename='predict-event')
 router.register(f"predict-event-files", PredictEventFileViewSet, basename='predict-event-file')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
