@@ -19,17 +19,37 @@ from print_nanny_webapp.client_events.models import (
 )
 
 @extend_schema(tags=['events'])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+        201: OctoPrintEventSerializer,
+        400: OctoPrintEventSerializer
+    })
+)
 class OctoPrintEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
     lookup_field = "id"
 
+
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
+
     def perform_create(self, serializer):
-        instance = serializer.save(user=self.request.user)
+
+        event_data = serializer.data['event_data']
+        print_job = event_data.get('print_job', {}).get('id')
+        instance = serializer.save(user=self.request.user, print_job=print_job)
+
 
 @extend_schema(tags=['events'])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+        201: PredictEventFileSerializer,
+        400: PredictEventFileSerializer
+    })
+)
 class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = PredictEventFileSerializer
@@ -38,11 +58,11 @@ class PredictEventFileViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, 
 
 @extend_schema(tags=['events'])
 @extend_schema_view(
-    list=extend_schema(
+    create=extend_schema(
         responses={
         201: PredictEventSerializer,
-        202: PredictEventSerializer
-        })
+        400: PredictEventSerializer
+    })
 )
 class PredictEventViewSet(CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin):
     # MultiPartParser AND FormParser

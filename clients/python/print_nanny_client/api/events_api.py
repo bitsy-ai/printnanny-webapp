@@ -152,7 +152,8 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintEvent",
+            201: "OctoPrintEvent",
+            400: "OctoPrintEvent",
         }
 
         return self.api_client.call_api(
@@ -583,7 +584,8 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PredictEventFile",
+            201: "PredictEventFile",
+            400: "PredictEventFile",
         }
 
         return self.api_client.call_api(
@@ -989,7 +991,8 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PredictEvent",
+            201: "PredictEvent",
+            400: "PredictEvent",
         }
 
         return self.api_client.call_api(
@@ -1125,8 +1128,7 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            201: "PaginatedPredictEventList",
-            202: "PaginatedPredictEventList",
+            200: "PaginatedPredictEventList",
         }
 
         return self.api_client.call_api(
