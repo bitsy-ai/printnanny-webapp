@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **dt** | **datetime** |  | 
-**event_type** | **str** |  | 
+**event_type** | [**EventTypeEnum**](EventTypeEnum.md) |  | 
 **event_data** | **dict(str, object)** |  | 
 **plugin_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
