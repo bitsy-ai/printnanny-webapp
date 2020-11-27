@@ -67,10 +67,10 @@ class PrintJob(models.Model):
 
     dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.RESTRICT)
+    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gcode_file_hash = models.CharField(max_length=255, null=True)
-    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.RESTRICT, null=True)
+    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
     last_status = models.CharField(
         max_length=12,
         choices=StatusChoices.choices,
