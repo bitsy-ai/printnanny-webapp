@@ -233,7 +233,8 @@ function imgCompression() {
 // live browser loading
 function initBrowserSync(done) {
     browsersync.init({
-        proxy: "localhost:8000"
+        proxy: "localhost:8000",
+        notify: false
     });
     done();
 }
@@ -247,8 +248,8 @@ function reloadBrowserSync(done) {
 function watchFiles() {
     // gulp.watch(paths.app + '/**/*.py', gulp.series(reloadBrowserSync));
     //gulp.watch(paths.templates + '/**/*', gulp.series(reloadBrowserSync));
-    gulp.watch(paths.sass + '/**/*.scss', gulp.series(copyVendorStyles, styles, reloadBrowserSync));
-    gulp.watch(paths.js + '/src/**/*.js', gulp.series(scripts, reloadBrowserSync));
+    gulp.watch(paths.sass + '/**/*.scss', gulp.series(styles));
+    gulp.watch(paths.js + '/src/**/*.js', gulp.series(scripts));
     //gulp.watch(paths.images + '/**/*', gulp.series(imgCompression, reloadBrowserSync));
 }
 
