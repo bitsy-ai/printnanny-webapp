@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block head_title %}{% trans "Landing Page" %}{% endblock head_title %}
+{% block head_title %}{% trans "Remote 3D Printer Monitoring & Quality Control" %}{% endblock head_title %}
 
 {% block page_content %}
 
@@ -28,10 +28,13 @@
                             <a class="nav-link active" href="">Home</a>
                         </li>
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Features</a>
+                            <a class="nav-link" href="#live-monitoring">Live Monitoring</a>
                         </li>
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Pricing</a>
+                            <a class="nav-link" href="#remote-management">Remote Management</a>
+                        </li>
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="#automation">Automation</a>
                         </li>
                         <li class="nav-item mx-lg-1">
                             <a class="nav-link" href="">FAQs</a>
@@ -73,24 +76,23 @@
         <section class="hero-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-5">
-                        <div class="mt-md-4">
-                            <div>
-                                <span class="badge badge-danger badge-pill">New</span>
-                                <span class="text-white-50 ml-1">Welcome to new landing page</span>
-                            </div>
-                            <h2 class="text-white font-weight-normal mb-4 mt-3 hero-title">
-                                Responsive Web UI Kit & Dashboard Template
+                    <div class="col-md-6">
+                        <div class="mt-md-2">
+                            <h1 class="text-white hero-title">
+                                Sick of Babysitting your 3D Printer? 👶
+                            </h1>
+                            <h4 class="text-white">
+                                Maybe you should hire a nanny.
+                            </h4>
+
+                            <h2 class="text-white mb-4 mt-4 hero-title">
+                                Get notified of print defects, pause from anywhere, automate post-processing.
                             </h2>
 
-                            <p class="mb-4 font-16 text-white-50">Hyper is a fully featured dashboard and admin template
-                                comes with tones of well designed UI elements, components, widgets and pages.</p>
-
-                            <a href="" target="_blank" class="btn btn-success">Preview <i
-                                    class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Request Beta Invite</strong></a>
                         </div>
                     </div>
-                    <div class="col-md-5 offset-md-2">
+                    <div class="col-sm-6 col-md-4 offset-md-2">
                         <div class="text-md-right mt-3 mt-md-0">
                             <img src="{% static 'images/logo-square-white.svg' %}" alt="" class="img-fluid" />
                         </div>
@@ -101,338 +103,118 @@
         <!-- END HERO -->
 
         <!-- START SERVICES -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row py-4">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-infinity"></i></h1>
-                            <h3>The admin is fully <span class="text-primary">responsive</span> and easy to <span
-                                    class="text-primary">customize</span></h3>
-                            <p class="text-muted mt-2">The clean and well commented code allows easy customization of the
-                                theme.It's designed for
-                                <br>describing your app, agency or business.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-desktop text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Responsive Layouts</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-vector-square text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Based on Bootstrap UI</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-presentation text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Creative Design</h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-apps text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Multiple Applications</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-shopping-cart-alt text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Ecommerce Pages</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="text-center p-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-grids text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Multiple Layouts</h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
         <!-- END SERVICES -->
 
         <!-- START FEATURES 1 -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h3>Flexible <span class="text-primary">Layouts</span></h3>
-                            <p class="text-muted mt-2">There are three different layout options available to cater need for
-                                any <br /> modern web
-                                application.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center">
-                            <img src="{% static 'images/layouts/layout-1.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Vertical Layout</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="{% static 'images/layouts/layout-2.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Horizontal Layout</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="{% static 'images/layouts/layout-3.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Detached Layout</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-4">
-                    
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center">
-                            <img src="{% static 'images/layouts/layout-5.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Light Sidenav Layout</h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="{% static 'images/layouts/layout-6.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Boxed Layout</h5>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="{% static 'images/layouts/layout-4.png' %}" alt="demo-img"
-                                class="img-fluid shadow-sm rounded">
-                            <h5 class="mt-3 f-17">Semi Dark Layout</h5>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
         <!-- END FEATURES 1 -->
 
         <!-- START FEATURES 2 -->
         <section class="py-5">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h1 class="mt-0"><i class="mdi mdi-heart-multiple-outline"></i></h1>
-                            <h3>Features you'll <span class="text-danger">love</span></h3>
-                            <p class="text-muted mt-2">Hyper comes with next generation ui design and have multiple benefits
-                            </p>
+                            <h3>Spend <span class="text-primary">less time</span> fretting over your prints</h3>
+
+                            <h3>Automatic <span class="text-danger">safety hazard</span> and <span class="text-success">print quality</span> alerts</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-2 py-5 align-items-center">
                     <div class="col-lg-5">
-                        <img src="{% static 'images/features-1.svg' %}" class="img-fluid" alt="">
+                        <div class="card-img-top embed-responsive embed-responsive-16by9">
+
+                        <video id="report-card-video" class="embed-responsive-item" controls>
+                            <source src="{% static 'images/detection-demo.mp4' %}" type="video/mp4">
+                        </video>
+                        </div>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
-                        <h3 class="font-weight-normal">Inbuilt applications and pages</h3>
-                        <p class="text-muted mt-3">Hyper comes with a variety of ready-to-use applications and pages that help to speed up the development</p>
+                        <h1 id="live-monitoring" class="display-4">1. Live 3D Print Monitoring 🔮</h1>
+                        <p class="lead col-lg-7 text-muted"">
+                        Print Nanny will <strong class="text-primary">watch your job</strong>, so you can focus on other things. <br>
+                        She can spot common defects and quality issues like:
+                        </p>
+                        <div>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Print bed adhesion and layer warping</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Blisters, zits, and retraction issues</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Low filament supply<p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Clogged print nozzle<p>
 
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Projects & Tasks</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Ecommerce Application Pages</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Profile, pricing, invoice</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Login, signup, forget password</p>
+
                         </div>
-
-                        <a href="" class="btn btn-primary btn-rounded mt-3">Read More <i class="mdi mdi-arrow-right ml-1"></i></a>
+                        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
 
                     </div>
                 </div>
 
                 <div class="row pb-3 pt-5 align-items-center">
-                    <div class="col-lg-6">
-                        <h3 class="font-weight-normal">Simply beautiful design</h3>
-                        <p class="text-muted mt-3">The simplest and fastest way to build dashboard or admin panel. Hyper is built using the latest tech and tools and provide an easy way to customize anything, including an overall color schemes, layout, etc.</p>
+                    <div class="col-lg-4 offset-lg-1">
+                        <h1 id="remote-management" class="display-4">2. Remote Management 🌏</h1>
 
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Built with latest Bootstrap</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Extensive use of SCSS variables</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Well documented and structured code</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Detailed Documentation</p>
+                        <p class="lead text-muted"">Need <strong class="text-primary">more control?</strong><br>
+                        Print Nanny lets you manage your <strong>3D printer from anywhere.</strong>
+                        </p>
+
+                        <p class="lead text-muted"">What about <strong class="text-primary">internet failures?</strong><br>
+                            Happens all the time! Print Nanny <strong>works offline</strong>, so you're covered on the spottiest of connections.
+                        </p>
+                        <div>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Pause, resume, stop prints</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>No / low bandwidth monitoring</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>ROI tracking for micro print shops</p>
+                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Request Beta invite<i class="mdi mdi-arrow-right ml-1"></i></a>
                         </div>
-
-                        <a href="" class="btn btn-success btn-rounded mt-3">Read More <i class="mdi mdi-arrow-right ml-1"></i></a>
-
                     </div>
-                    <div class="col-lg-5 offset-lg-1">
-                        <img src="{% static 'images/features-2.svg' %}" class="img-fluid" alt="">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'images/dashboard-demo.png' %}">
                     </div>
                 </div>
 
+                <div class="row pb-3 pt-5 align-items-center">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'images/demo-workflow.png' %}">
+                    </div>
+                    <div class="col-lg-4 offset-lg-1">
+                        <h1 id="automation" class="display-4">3. Automate Boring Stuff<h1>
+
+                        <p class="lead text-muted"">Are you <strong>wasting time</strong> on routine tasks, like watermarking your timelapse videos?</p>
+                        <p class="lead text-muted"">Customize your print workflow at any scale, whether you're </p>
+
+                        <div>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Point and click workflow builder</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>2,000+ no-code tasks via 
+                                <a href="https://zapier.com/">Zapier</a> and <a href="https://ifttt.com/">IFTTT</a>.
+                            
+                            </p>
+
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Developer API (Swagger) and Webhooks</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Easy Raspberry Pi installation</p>
+                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        <!-- END FEATURES 2 -->
-
-        <!-- START PRICING -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-tag-multiple"></i></h1>
-                            <h3>Choose Simple <span class="text-primary">Pricing</span></h3>
-                            <p class="text-muted mt-2">The clean and well commented code allows easy customization of the
-                                theme.It's designed for
-                                <br>describing your app, agency or business.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-5 pt-3">
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-body text-center">
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Standard License </p>
-                                <i class="card-pricing-icon dripicons-user text-primary"></i>
-                                <h2 class="card-pricing-price">$49 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>10 GB Storage</li>
-                                    <li>500 GB Bandwidth</li>
-                                    <li>No Domain</li>
-                                    <li>1 User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-md-4">
-                        <div class="card card-pricing card-pricing-recommended">
-                            <div class="card-body text-center">
-                                <div class="card-pricing-plan-tag">Recommended</div>
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Multiple License</p>
-                                <i class="card-pricing-icon dripicons-briefcase text-primary"></i>
-                                <h2 class="card-pricing-price">$99 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>50 GB Storage</li>
-                                    <li>900 GB Bandwidth</li>
-                                    <li>2 Domain</li>
-                                    <li>10 User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-md-4">
-                        <div class="card card-pricing">
-                            <div class="card-body text-center">
-                                <p class="card-pricing-plan-name font-weight-bold text-uppercase">Extended License</p>
-                                <i class="card-pricing-icon dripicons-store text-primary"></i>
-                                <h2 class="card-pricing-price">$599 <span>/ License</span></h2>
-                                <ul class="card-pricing-features">
-                                    <li>100 GB Storege</li>
-                                    <li>Unlimited Bandwidth</li>
-                                    <li>10 Domain</li>
-                                    <li>Unlimited User</li>
-                                    <li>Email Support</li>
-                                    <li>24x7 Support</li>
-                                </ul>
-                                <button class="btn btn-primary mt-4 mb-2 btn-rounded">Choose Plan</button>
-                            </div>
-                        </div>
-                        <!-- end Pricing_card -->
-                    </div>
-                    <!-- end col -->
-
-                </div>
-
-            </div>
-        </section>
-        <!-- END PRICING -->
+    
 
         <!-- START FAQ -->
         <section class="py-5">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
+                            <h1 id="faq" class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
                             <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
-                            <p class="text-muted mt-2">Here are some of the basic types of questions for our customers. For more 
-                                <br>information please contact us.</p>
+
+                            <p class="text-muted mt-2">Do you have a question about Print Nanny?</p>
+                            <button href="https://discord.gg/YK7qnv5KjB" type="button" class="btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i> Ask on Discord</button>
 
                             <button type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
                             <button type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i> Send us a tweet</button>
+
                         </div>
                     </div>
                 </div>
@@ -442,38 +224,78 @@
                         <!-- Question/Answer -->
                         <div>
                             <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can I use this template for my client?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yup, the marketplace license allows you to use this theme
-                                in any end products.
-                                For more information on licenses, please refere <a href="https://themes.getbootstrap.com/licenses/" target="_blank">here</a>.</p>
+                            <h4 class="faq-question text-body">How does Print Nanny work?</h4>
+                            <p class="faq-answer mb-2 pb-1 text-muted">
+                                The defect detection system uses a <a href="https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html">neural network</a> to monitor your printer's webcam stream. 
+                                This state-of-the art computer vision model was developed at Google for use on mobile devices like the Pixel phone. 
+                                A compression technique called <strong>quantization</strong> reduces the footprint of the model, enabling real-time performance entirely on-device - <strong>no internet connection required.</strong>
+                            <p class="faq-answer mb-2 pb-1 text-muted">
+                                Print Nanny's detector model is deployed to a Raspberry Pi, and integrates directly with <strong>OctoPrint </strong> for printer control. 
+                                We engineered this system with <strong>reliability </strong> in mind. A 3D printer is a <strong>hazardous home appliance,</strong> 
+                                like a gas oven.
+                                
+
+                            </p>
+                            <p class="faq-answer mb-2 pb-1 text-muted">
+                                 You wouldn't trust a "smart" <strong>internet-connected stove</strong>, right? (please don't, see below for examples of what could happen 😬)
+                                
+
+                            </p>
+                            <img class="faq-answer img-fluid col-sm-5 mb-4" src="{% static 'images/iot-tweet-1.png' %}">
+                            <img class="img-fluid col-sm-5 mb-4" src="{% static 'images/iot-tweet-2.png' %}">
+
+
+
                         </div>
 
                         <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">How do I get help with the theme?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Use our dedicated support email (support@coderthemes.com) to send your issues or feedback. We are here to help anytime.</p>
-                        </div>
 
                     </div>
                     <!--/col-lg-5 -->
 
                     <div class="col-lg-5">
                         <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can this theme work with Wordpress?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">No. This is a HTML template. It won't directly with
-                                wordpress, though you can convert this into wordpress compatible theme.</p>
-                        </div>
-
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">Can you hurry up and invite me already?</h4>
+                        <p class="faq-answer text-muted">
+                            Working on it! Print Nanny is currently in a closed beta, so we can work directly with early adoptors to build the best possible tools. 
+                            These folks don't mind a few rough edges or bugs, 
+                            and they tend to be <strong>entrepeneurial</strong> themselves (e.g. running a tableshop miniature shop from their garage or <a target="_blank" href="https://www.youtube.com/channel/UCXRcs5H7Om8YbaNbaM5iOdg">managing a YouTube channel of satisfying timelapse videos</a>).
+                            Does this sound like you?
+                        </p>
+                        <p class="faq-answer mb-4 pb-1 text-muted">
+                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-rounded pt-1">Request an Invite<i class="mdi mdi-arrow-right ml-1"></i></a>
+                        </p>
+                        
                         <!-- Question/Answer -->
-                        <div>
+                        <!-- <div>
                             <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Will you regularly give updates of Hyper?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yes, We will update the Hyper regularly. All the
-                                future updates would be available without any cost.</p>
-                        </div>
+                            <h4 class="faq-question text-body">Wait, this service is not free?</h4>
+                            <p class="faq-answer mb-2 pb-1 text-muted">Good AI isn't cheap. Our mission: build a dead-simple automation system which saves you so much <strong>time and money </strong> that you would be silly not to use it.</p>
+                            <img class="faq-answer img-fluid col-sm-3 mb-4" src="{% static 'images/take-my-money.png' %}">
+
+                        </div> -->
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">I tinker and print occasionally as a hobby. Is Print Nanny for me?</h4>
+                        <p class="faq-answer mb-2 pb-1 text-muted">
+                            Same, honestly. Print Nanny was <a target="_blank" href="https://docs.google.com/presentation/d/15ysQld_xVW7QMdos8lYc-5O3xUpQnxuYG_NNRe9hEZU/edit?usp=sharing">created 
+                            by a tinker-maker type</a> who currently works at the intersection of <strong>Machine Learning</strong> and <strong>DevOps.</strong>
+
+                        <p class="faq-answer mb-2 pb-1 text-muted">
+                            3D printing, electronics, and prototyping are her hobbies - but <strong>hobbies should be fun!</strong>
+                            <strong>Do you know what isn't fun?</strong> 
+                            Stressing out about leaving a printer alone while you walk the dog (it's like leaving a gas oven on), 
+                            or losing a 40-hour print that <strong> have been saved by intervention</strong> at the right time.
+                        </p>
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">Will Print Nanny be Open Source?</h4>
+                        <p class="faq-answer mb-2 pb-1 text-muted">
+                            Yes! Source code and a self-guided development course will be published, so you can hack on the service yourself.
+                        </p>
+                        <p class="faq-answer mb-2 pb-1 text-muted">
+                            You can also <a target="_blank" href="http://bitsy.ai/tag/print-nanny/">follow the development of Print Nanny on the Bitsy.ai blog, if you are curious about how a computer vision AI is built.</a> 
+                        </p>
+                        <!-- Question/Answer -->
 
                     </div>
                     <!--/col-lg-5-->
@@ -483,144 +305,46 @@
             </div> <!-- end container-->
         </section>
         <!-- END FAQ -->
-
-        
-        <!-- START CONTACT -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h3>Get In <span class="text-primary">Touch</span></h3>
-                            <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly. For more 
-                                <br>information please contact us.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center mt-3">
-                    <div class="col-md-4">
-                        <p class="text-muted"><span class="font-weight-bold">Customer Support:</span><br> <span class="d-block mt-1">+1 234 56 7894</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Email Address:</span><br> <span class="d-block mt-1">info@gmail.com</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Office Address:</span><br> <span class="d-block mt-1">4461 Cedar Street Moro, AR 72368</span></p>
-                        <p class="text-muted mt-4"><span class="font-weight-bold">Office Time:</span><br> <span class="d-block mt-1">9:00AM To 6:00PM</span></p>
-                    </div>
-
-                    <div class="col-md-8">
-                        <form>
-                            <div class="row mt-4">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="fullname">Your Name</label>
-                                        <input class="form-control form-control-light" type="text" id="fullname" placeholder="Name...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="emailaddress">Your Email</label>
-                                        <input class="form-control form-control-light" type="email" required="" id="emailaddress" placeholder="Enter you email...">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="subject">Your Subject</label>
-                                        <input class="form-control form-control-light" type="text" id="subject" placeholder="Enter subject...">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="comments">Message</label>
-                                        <textarea id="comments" rows="4" class="form-control form-control-light" placeholder="Type your message here..."></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-2">
-                                <div class="col-12 text-right">
-                                    <button class="btn btn-primary">Send a Message <i
-                                        class="mdi mdi-telegram ml-1"></i> </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- END CONTACT -->
-
         <!-- START FOOTER -->
         <footer class="bg-dark py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" />
-                        <p class="text-white-50 mt-4">Hyper makes it easier to build better websites with
-                            <br> great speed. Save hundreds of hours of design
-                            <br> and development by using it.</p>
+                        <p class="text-white-50 mt-4">Print Nanny was created by Leigh Johnson. Read more about her at <a href="https://www.bitsy.ai/about/">bitsy.ai</a>.</p>
 
                         <ul class="social-list list-inline mt-3">
                             <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
+                                <a href="https://twitter.com/grepLeigh" class="social-list-item border-info text-info"><i class="uil uil-twitter"></i></a>
                             </li>
                             <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
+                                <a href="https://medium.com/@grepLeigh" class="social-list-item border-secondary text-secondary"><i class="uil uil-medium-m"></i></a>
                             </li>
                             <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github-circle"></i></a>
+                                <a href="https://github.com/bitsy-ai" class="social-list-item border-secondary text-secondary"><i class="uil uil-github"></i></a>
                             </li>
                         </ul>
 
                     </div>
 
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Company</h5>
-
-                        <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">About Us</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Documentation</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Blog</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Affiliate Program</a></li>
-                        </ul>
-
-                    </div>
 
                     <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Apps</h5>
+                        <h5 class="text-white">Features</h5>
 
                         <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Ecommerce Pages</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Email</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Social Feed</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Projects</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Tasks Management</a></li>
+                            <li class="mt-2"><a href="#live-monitoring" class="text-white-50">Live Monitoring</a></li>
+                            <li class="mt-2"><a href="#remote-management" class="text-white-50">Remote Management/a></li>
+                            <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li>
+                            <li class="mt-2"><a href="#faq" class="text-white-50">FAQ</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <h5 class="text-white">Discover</h5>
-
-                        <ul class="list-unstyled pl-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Help Center</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Our Products</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-white-50">Privacy</a></li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mt-5">
-                            <p class="text-white-50 mt-4 text-center mb-0">© 2018 - 2020 Hyper. Design and coded by
-                                Coderthemes</p>
+                            <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2020 Bitsy.ai </p>
                         </div>
                     </div>
                 </div>
