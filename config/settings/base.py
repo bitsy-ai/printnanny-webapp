@@ -402,3 +402,14 @@ PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'
 INSTALLED_APPS += [
     'polymorphic',
 ]
+
+# django-invitations
+
+INSTALLED_APPS += [
+    'invitations',
+]
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
+INVITATIONS_INVITATION_ONLY=True
+INVITATIONS_INVITATION_EXPIRY=30
+INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'

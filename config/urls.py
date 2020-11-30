@@ -10,6 +10,7 @@ from rest_framework.permissions import AllowAny
 import django_prometheus
 #from drf_yasg.views import get_schema_view
 #from drf_yasg import openapi
+from print_nanny_webapp.users.views import InviteRequestView, ThanksView
 from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 #from config.api_schema import CustomOpenAPISchemaGenerator
@@ -20,6 +21,9 @@ urlpatterns = [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
+    path("request-invite/", view=InviteRequestView.as_view(), name="request-invite"),
+    path("thanks/", view=ThanksView.as_view(), name="thanks"),
+
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
@@ -30,18 +34,20 @@ urlpatterns = [
     
     # Your stuff: custom urls includes go here
     # hyper templates
-    path("form/",
-         include("print_nanny_webapp.form.urls", namespace="form"), ),
-    path("pages/",
-         include("print_nanny_webapp.pages.urls", namespace="pages"), ),
-    path("apps/",
-         include("print_nanny_webapp.apps.urls", namespace="apps"), ),
-    path("components/",
-         include("print_nanny_webapp.components.urls", namespace="components"), ),
-    path("layouts/",
-         include("print_nanny_webapp.layouts.urls", namespace="layouts"), ),
+    # path("form/",
+    #      include("print_nanny_webapp.form.urls", namespace="form"), ),
+    # path("pages/",
+    #      include("print_nanny_webapp.pages.urls", namespace="pages"), ),
+    # path("apps/",
+    #      include("print_nanny_webapp.apps.urls", namespace="apps"), ),
+    # path("components/",
+    #      include("print_nanny_webapp.components.urls", namespace="components"), ),
+    # path("layouts/",
+    #      include("print_nanny_webapp.layouts.urls", namespace="layouts"), ),
     path("",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
+    re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

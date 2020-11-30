@@ -5,7 +5,7 @@
 {% block extra_css %}{% endblock %}
 
 {% block body_extra %}
-data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false,
+data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false,
 "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'
 {% endblock %}
 
@@ -14,7 +14,6 @@ data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebar
 <!-- Begin page -->
 <div class="wrapper">
     {% block left_sidebar %}
-    <!-- {% include 'partials/left-sidebar.html' %} -->
     {% include 'partials/left-sidebar-custom.html' %}
 
     {% endblock %}

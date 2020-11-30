@@ -1,0 +1,46 @@
+{% extends "account/base.html" %}
+
+{% load static i18n %}
+
+{% block head_title %}{% trans "Register" %}{% endblock head_title %}
+{% load crispy_forms_tags %}
+
+{% block body_extra %}
+class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'
+{% endblock body_extra %}
+
+{% block content %}
+
+            <div class="account-pages mt-5 mb-5">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <h1 class="display-4">Thank you!</h1>
+
+                        <p>Hey, thank you so much for slogging through that invitation form. 
+                            We don't waste your time with a version of Print Nanny that doesn't fit your needs. 
+
+                        </p>
+
+                        <p>If you're selected as a Beta tester, you'll receive an invitation by email. 
+                            We send invites out in small batches - thank you for your patience!
+                            
+                        </p>
+
+                        <p>Let us know if you have any questions.
+                        </p>
+                        <button target="_blank" href="https://discord.gg/YK7qnv5KjB" type="button" class="btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i> Ask on Discord</button>
+
+                        <button target="_blank" href="mailto:hi@print-nanny.com" type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
+                        <button target="_blank" type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i> Send a tweet</button>
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+
+{% endblock content %}
+

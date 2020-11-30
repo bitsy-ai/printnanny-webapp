@@ -2,8 +2,45 @@ from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django import forms
+from django.contrib.postgres.fields import ArrayField
 
+from print_nanny_webapp.users.models import InviteRequest
 User = get_user_model()
+
+
+class InviteRequestForm(forms.ModelForm):
+
+
+
+    worst = forms.CharField(
+        label='If you could wave a magic wand and change 1 thing about how you 3D print, what would that be?',
+        widget = forms.Textarea,
+        help_text='Or tell us the WORST part about 3D printing',
+        required=False
+    )
+
+    class Meta:
+        model = InviteRequest
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'referrer',
+
+            'usage',
+            'num_printers',
+            'business',
+            'num_employees',
+            'print_frequency',
+
+
+            'filament_type',
+            'printer_models',
+            'other',
+            'worst'
+        ]
+        
 
 
 class UserChangeForm(admin_forms.UserChangeForm):

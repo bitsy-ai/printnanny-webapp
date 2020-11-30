@@ -3,13 +3,22 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django import forms
 
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.views.generic import DetailView, RedirectView, UpdateView, CreateView, TemplateView
 from rest_framework.authtoken.models import Token
+
+from print_nanny_webapp.users.forms import InviteRequestForm
 
 User = get_user_model()
 
+class ThanksView(TemplateView):
+    template_name = 'users/thanks.html'
+class InviteRequestView(CreateView):
+    template_name ='users/inviterequest_form.html'
+    success_url = '/thanks/'
+    form_class = InviteRequestForm
 
 class UserDetailView(LoginRequiredMixin, DetailView):
 
