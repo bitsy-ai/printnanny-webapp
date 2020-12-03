@@ -49,14 +49,14 @@
 
                     <!-- right menu -->
                     <ul class="navbar-nav ml-auto align-items-center">
-                        <li class="nav-item mr-1">
-                            {% comment %} <a href="{% url 'account_signup' %}" class="nav-link d-lg-none">Register</a> {% endcomment %}
+                        <!-- <li class="nav-item mr-1">
+                            {% comment %} <a href="{% url 'request-invite' %}" class="nav-link d-lg-none">Register</a> {% endcomment %}
                             <a href="#" class="nav-link d-lg-none">Register</a>
-                            {% comment %} <a href="{% url 'account_signup' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
-                            <a href="{% url 'account_signup' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                            {% comment %} <a href="{% url 'request-invite' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
+                            <a href="{% url 'request-invite' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
                                 Register
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item mr-0">
                             {% comment %} <a href="{% url 'account_login' %}" class="nav-link d-lg-none">Login</a> {% endcomment %}
                             <a href="#" class="nav-link d-lg-none">Login</a>
@@ -89,7 +89,7 @@
                                 Get notified of print defects, pause from anywhere, automate post-processing.
                             </h2>
 
-                            <a href="" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Request Beta Invite</strong></a>
+                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Request Beta Invite</strong></a>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 offset-md-2">
@@ -144,7 +144,7 @@
 
 
                         </div>
-                        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
+                        <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
 
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Pause, resume, stop prints</p>
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>No / low bandwidth monitoring</p>
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>ROI tracking for micro print shops</p>
-                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Request Beta invite<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Request Beta invite<i class="mdi mdi-arrow-right ml-1"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -191,7 +191,7 @@
 
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Developer API (Swagger) and Webhooks</p>
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Easy Raspberry Pi installation</p>
-                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Sign up for Beta<i class="mdi mdi-arrow-right ml-1"></i></a>
 
                         </div>
                     </div>
@@ -218,7 +218,7 @@
                                 <button  type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
     
                             </a>
-                            <a target="_blank" href="http://twitter.com/grepLeigh">
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=Hey%20@grepLeigh%20-%20question%20about%20PrintNanny">
                                 <button  type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i> Send a tweet</button>
           
                             </a>
@@ -273,7 +273,7 @@
                             Does this sound like you?
                         </p>
                         <p class="faq-answer mb-4 pb-1 text-muted">
-                            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-rounded pt-1">Request an Invite<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-rounded pt-1">Request an Invite<i class="mdi mdi-arrow-right ml-1"></i></a>
                         </p>
                         
                         <!-- Question/Answer -->

@@ -14,7 +14,7 @@ class InviteRequestForm(forms.ModelForm):
 
 
     worst = forms.CharField(
-        label='If you could wave a magic wand and change 1 thing about how you 3D print, what would that be?',
+        label='If you could wave a magic wand and change ONE thing about 3D printing, what would that be?',
         widget = forms.Textarea,
         help_text='Or tell us the WORST part about 3D printing',
         required=False

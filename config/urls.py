@@ -21,8 +21,8 @@ urlpatterns = [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
-    path("request-invite/", view=InviteRequestView.as_view(), name="request-invite"),
-    path("thanks/", view=ThanksView.as_view(), name="thanks"),
+    path("request-invite/", InviteRequestView.as_view(), name="request-invite"),
+    path("thanks/", ThanksView.as_view(), name="thanks"),
 
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -44,7 +44,7 @@ urlpatterns = [
     #      include("print_nanny_webapp.components.urls", namespace="components"), ),
     # path("layouts/",
     #      include("print_nanny_webapp.layouts.urls", namespace="layouts"), ),
-    path("",
+    path("dashboard/",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
 
