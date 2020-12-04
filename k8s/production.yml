@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+      - name: django
+        image: print_nanny_webapp_production_django:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+          - configMapRef:
+            name: django
+          - configMapRef:
+            name: postgres
+
+
