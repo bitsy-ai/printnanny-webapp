@@ -9,7 +9,7 @@ hiredis==1.1.0  # https://github.com/redis/hiredis-py
 celery[redis]==4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.1.0  # https://github.com/celery/django-celery-beat
 flower==0.9.5  # https://github.com/mher/flower
-uvicorn==0.12.2  # https://github.com/encode/uvicorn
+uvicorn[standard]==0.12.3  # https://github.com/encode/uvicorn
 wsproto==0.15.0  # https://github.com/python-hyper/wsproto/
 
 # Django
