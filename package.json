@@ -88,6 +88,6 @@
   ],
   "scripts": {
     "dev": "gulp",
-    "build": "gulp generate-assets"
+    "build": "gulp build"
   }
 }
