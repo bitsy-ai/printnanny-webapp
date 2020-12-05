@@ -24,5 +24,4 @@ data:
   POSTGRES_DB: "print_nanny_prod"
   POSTGRES_USER: "webapp"
   POSTGRES_PASSWORD: "^Zu42V2GR7m5dBv"
-  COMPRESS_ENABLED: "False"
   DATABASE_URL: postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod

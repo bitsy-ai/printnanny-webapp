@@ -11,7 +11,7 @@ docker push us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
 
 #kubectl create configmap webapp --from-file=k8s/configmap.yml --dry-run -o yaml | kubectl apply -f -
 #kubectl create configmap postgres --from-file=.envs/.production/.postgres --dry-run -o yaml | kubectl apply -f -
-kubectl replace -f k8s/configmap.yml
+kubectl apply -f k8s/configmap.yml
 kubectl apply -f k8s/production.yml
 
 
