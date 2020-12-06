@@ -10,10 +10,14 @@ from .forms import TimelapseUploadForm,TimelapseReuploadForm, FeedbackForm
 from print_nanny_webapp.alerts.tasks import create_analyze_video_task, annotate_job_error
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from django.shortcuts import redirect
+from print_nanny_webapp.users.forms import UserSettingsForm
+from django.forms.models import model_to_dict
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
 AlertMessage = apps.get_model('alerts', 'AlertMessage')
+UserSettings = apps.get_model('users', 'UserSettings')
+
 logger = logging.getLogger(__name__)
 
 
@@ -26,45 +30,74 @@ analytics_dashboard_view = DashboardView.as_view(template_name="dashboard/analyt
 projects_dashboard_view = DashboardView.as_view(template_name="dashboard/projects.html")
 
 
-class HomeDashboardView(LoginRequiredMixin, DetailView, FormView):
+class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 
     model = User
     template_name = 'dashboard/home.html'
-    success_url = 'report-cards'
+    success_url = '/dashboard'
 
-    form_class = TimelapseUploadForm
+    form_classes = { 'upload': TimelapseUploadForm, 'user_settings': UserSettingsForm }
 
-    def form_valid(self, form):
 
-        timelapse_alert = TimelapseAlert.objects.create(
-            user=self.request.user,
-            original_video=self.request.FILES['video_file'],
-        )
+    def get_user_settings_initial(self):
+        settings = UserSettings.objects.get(user=self.request.user.id)
+        if settings:
+            return model_to_dict(settings)
+        return None
 
-        video_file = self.request.FILES['video_file']
+    def user_settings_form_valid(self, form):
 
-        if isinstance(video_file, InMemoryUploadedFile):
-            logging.info(f'File processed asInMemoryUploadedFile')
-            logging.info(f'File info {timelapse_alert.original_video}')
-            create_analyze_video_task.apply_async(
-                (timelapse_alert.id, 
-                timelapse_alert.original_video.url),
-                link_error=annotate_job_error.si(timelapse_alert.id)
+        if form.is_valid():
+            form.instance.user = self.request.user
+            settings = UserSettings.objects.get(user=self.request.user.id)
+            if settings:
+                form = UserSettingsForm(self.request.POST, instance=settings)
+            form.save()
+        return redirect(self.get_success_url())
+
+    def upload_form_valid(self, form):
+
+        video_file = self.request.FILES.get('video_file')
+        if video_file is not None:
+            timelapse_alert = TimelapseAlert.objects.create(
+                user=self.request.user,
+                original_video=self.request.FILES['video_file'],
             )
-        elif isinstance(video_file, TemporaryUploadedFile):
-            logging.info(f'File processed as TemporaryUploadedFile')
-            create_analyze_video_task.apply_async(
-                (timelapse_alert.id, 
-                self.request.FILES['video_file'].temporary_file_path()),
-                link_error=annotate_job_error.si(timelapse_alert.id)
+            if isinstance(video_file, InMemoryUploadedFile):
+                logging.info(f'File processed asInMemoryUploadedFile')
+                logging.info(f'File info {timelapse_alert.original_video}')
+                create_analyze_video_task.apply_async(
+                    (timelapse_alert.id, 
+                    timelapse_alert.original_video.url),
+                    link_error=annotate_job_error.si(timelapse_alert.id)
+                )
+            elif isinstance(video_file, TemporaryUploadedFile):
+                logging.info(f'File processed as TemporaryUploadedFile')
+                create_analyze_video_task.apply_async(
+                    (timelapse_alert.id, 
+                    self.request.FILES['video_file'].temporary_file_path()),
+                    link_error=annotate_job_error.si(timelapse_alert.id)
             )
-        return super().form_valid(form)
+        return form.upload(self.request, redirect_url=reverse('dashboard:report-cards'))
 
-    def get_object(self):
+
+    # def get_object(self):
+    #     token, created = Token.objects.get_or_create(user=self.request.user)
+    #     self.request.user.token = token
+    #     self.request.user.active_alerts = self.request.user.alertmessage_set.filter(seen=False)
+    #     return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomeDashboardView, self).get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
         self.request.user.token = token
         self.request.user.active_alerts = self.request.user.alertmessage_set.filter(seen=False)
-        return self.request.user
+
+        context['object'] = self.request.user
+
+        settings = UserSettings.objects.get(user=self.request.user.id)
+
+        return context
 
 home_dashboard_view = HomeDashboardView.as_view()
 

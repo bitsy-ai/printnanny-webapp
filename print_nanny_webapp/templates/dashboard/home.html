@@ -10,17 +10,18 @@
 
 {% if object == request.user %}
 <!-- Action buttons -->
-<div class="row">
+<div class="row mt-3">
 
   <div class="col-sm-12 col-md-6">
     <div class="card">
       <div class="card-body">
-        <h2 class="header-title">API Token</h2>
-        <p class="text-muted font-14">
-          Your API token is used to connect OctoPrint to Print Nanny. Treat this token like a password; do not share or publish it online. 
-          You can regenerate this token in your <a href="{% url 'users:detail' %}">settings.</a>
-          </p>
+        <h2 class="header-title">User Settings</h2>
+
         <form>
+          <label class="my-1 mr-2" for="token">API Token</label>
+          <p class="text-muted font-14">
+            Your API token is used to connect OctoPrint to Print Nanny. Treat this token like a password; do not share or publish it online. 
+          </p>
             <div class="input-group">
               <input id="token" type="password" class="form-control"
                   value="{{ object.token }}" id="copy-input" readonly>
@@ -29,16 +30,21 @@
                   <span class="password-eye"></span>
               </div>
               </div>
-              {% comment %} <span class="input-group-btn">
-
-                <button class="btn btn-default" type="button" id="copy-button"
-                    data-toggle="token" data-placement="button"
-                    title="Copy to Clipboard">
-                  Copy
-                </button>
-              </span> {% endcomment %}
             </div>
-          </form>
+        </form>
+
+        <h2 class="header-title mt-3">Notification Settings</h2>
+
+        <form method="POST">
+
+          {% csrf_token %}
+          {{ forms.user_settings | crispy }}
+
+          <button name="action" value="user_settings" type="submit" class="btn btn-lg btn-primary">Save</button> 
+
+        </form>
+
+        
       </div>
     </div> 
   </div>
@@ -50,8 +56,8 @@
 
           {% if object.printerprofile_set.count == 0 %}
             <p class="text-muted font-14">OctoPrint Disconnected</p>
-            <p>Hey! Your OctoPrint installtion could not be detected. </p>
-            <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p>
+            <p>Hey! Your OctoPrint installation wasn't found.</p>
+            <!-- <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p> -->
 
           {% else %}
           {% endif %}
@@ -70,12 +76,14 @@
             Recent Alerts
           </h2>
             <p class="text-muted font-14">
-              You'll also receive email notifications at <strong>{{ object.email }}</strong>.
+              You'll receive email notifications at <strong>{{ object.email }}</strong>.
             </p>
 
           {% if object.alertmessage_set.count == 0 %}
-          <p>Need help getting started? Run <a href="{% url 'dashboard:demo' %}">the demo</a> to see what Print Nanny can do. </p>
-          {% else %}
+          {% comment %}
+            Need help getting started? Run <a href="{% url 'dashboard:demo' %}">the demo</a> to see what Print Nanny can do. </p>
+          {% endcomment %}
+            {% else %}
           {% endif %}
       </div>
     </div>
