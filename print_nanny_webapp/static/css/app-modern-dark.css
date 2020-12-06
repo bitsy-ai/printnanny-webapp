@@ -9304,7 +9304,7 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
 @font-face {
   font-family: 'Nunito';
   src: url("../fonts/Nunito-Light.eot");
-  src: local("Nunito Light"), local("Nunito-Light"), url("../fonts/Nunito-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito-Light.woff") format("woff"), url("../fonts/Nunito-Light.ttf") format("truetype"), url("../fonts/Nunito-Light.svg#Roboto") format("svg");
+  src: local("Nunito Light"), local("Nunito-Light"), url("../fonts/Nunito-Light.woff") format("woff"), url("../fonts/Nunito-Light.ttf") format("truetype"), url("../fonts/Nunito-Light.svg#Roboto") format("svg");
   font-weight: 300;
   font-style: normal; }
 

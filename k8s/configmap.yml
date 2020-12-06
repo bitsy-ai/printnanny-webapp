@@ -1,0 +1,27 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: webapp
+data:
+  DJANGO_SETTINGS_MODULE: "config.settings.production"
+  DJANGO_SECRET_KEY: "0XCXs8HuwwpgF0qa52i9QfU4YyoDkRgZQG65BLZ3OSo828a2nwRV7qW7gBqjnb3F"
+  DJANGO_ADMIN_URL: "MIG0AFHqgyPy4Q72GU9RuVrDlkGiVhUf/"
+  DJANGO_ALLOWED_HOSTS: ".print-nanny.com"
+  DJANGO_SECURE_SSL_REDIRECT: "False"
+  MAILGUN_API_KEY: "b6ec480cddb9c0bc334a1717ded9ac04-2af183ba-0630c101"
+  MAILGUN_DOMAIN: "print-nanny.com"
+  MAILGUN_API_URL: "https://api.mailgun.net/v3"
+  DJANGO_GCP_STORAGE_BUCKET_NAME: "print-nanny-prod"
+  DJANGO_ACCOUNT_ALLOW_REGISTRATION: "False"
+  WEB_CONCURRENCY: "4"
+  SENTRY_DSN: "https://76231242f1494951a165aa04d78f83a2@o486109.ingest.sentry.io/5542384"
+  REDIS_URL: "redis://redis:6379/0"
+  CELERY_BROKER_URL: "redis://redis:6379/0"
+  CELERY_FLOWER_USER: "debug"
+  CELERY_FLOWER_PASSWORD: "debug"
+  POSTGRES_HOST: "127.0.0.1"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "print_nanny_prod"
+  POSTGRES_USER: "webapp"
+  POSTGRES_PASSWORD: "^Zu42V2GR7m5dBv"
+  DATABASE_URL: postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod
