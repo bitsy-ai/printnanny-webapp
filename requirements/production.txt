@@ -8,3 +8,5 @@ sentry-sdk==0.19.2  # https://github.com/getsentry/sentry-python
 
 # Django
 # ------------------------------------------------------------------------------
+
+django-allow-cidr==0.3.1

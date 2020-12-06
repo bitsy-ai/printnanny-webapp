@@ -62,12 +62,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
 )
 
-# STORAGES
-# ------------------------------------------------------------------------------
-# https://django-storages.readthedocs.io/en/latest/#installation
-INSTALLED_APPS += ["storages"]  # noqa F405
-GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
-# GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -101,19 +95,19 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_ENABLED
-COMPRESS_ENABLED = env.bool("COMPRESS_ENABLED", default=True)
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
-COMPRESS_URL = STATIC_URL  # noqa F405
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-COMPRESS_OFFLINE = True  # Offline compression is required when using Whitenoise
-# https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
-COMPRESS_FILTERS = {
-    "css": [
-        "compressor.filters.css_default.CssAbsoluteFilter",
-        "compressor.filters.cssmin.rCSSMinFilter",
-    ],
-    "js": ["compressor.filters.jsmin.JSMinFilter"],
-}
+# COMPRESS_ENABLED = env.bool("COMPRESS_ENABLED", default=True)
+# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_URL
+# COMPRESS_URL = STATIC_URL  # noqa F405
+# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
+# COMPRESS_OFFLINE = True  # Offline compression is required when using Whitenoise
+# # https://django-compressor.readthedocs.io/en/latest/settings/#django.conf.settings.COMPRESS_FILTERS
+# COMPRESS_FILTERS = {
+#     "css": [
+#         "compressor.filters.css_default.CssAbsoluteFilter",
+#         "compressor.filters.cssmin.rCSSMinFilter",
+#     ],
+#     "js": ["compressor.filters.jsmin.JSMinFilter"],
+# }
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -168,8 +162,19 @@ sentry_sdk.init(
     dsn=SENTRY_DSN,
     integrations=integrations,
     environment=env("SENTRY_ENVIRONMENT", default="production"),
-    traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
+    send_default_pii=True,
+    #traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
 )
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+GOOGLE_ANALYTICS =  'G-QKHED5DPGV'
+
+MIDDLEWARE += [ 'allow_cidr.middleware.AllowCIDRMiddleware']
+
+ALLOWED_CIDR_NETS = [
+'10.12.0.0/14',
+'10.16.0.0/20'
+]

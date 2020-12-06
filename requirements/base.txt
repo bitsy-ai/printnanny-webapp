@@ -9,7 +9,7 @@ hiredis==1.1.0  # https://github.com/redis/hiredis-py
 celery[redis]==4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.1.0  # https://github.com/celery/django-celery-beat
 flower==0.9.5  # https://github.com/mher/flower
-uvicorn==0.12.2  # https://github.com/encode/uvicorn
+uvicorn[standard]==0.12.3  # https://github.com/encode/uvicorn
 wsproto==0.15.0  # https://github.com/python-hyper/wsproto/
 
 # Django
@@ -27,6 +27,8 @@ drf-spectacular==0.11.0 # https://github.com/tfranzel/drf-spectacular
 django-filter==2.4.0
 django-storages[google]==1.10.1  # https://github.com/jschneier/django-storages
 
+django-anymail[mailgun]==8.1  # https://github.com/anymail/django-anymail
+
 django-prometheus==2.1.0
 django-polymorphic==3.0.0
 jupyterlab
@@ -39,4 +41,5 @@ scikit-image==0.17.2
 plotly==4.12.0
 psutil==5.7.3
 kaleido==0.0.3.post1
-django-google-analytics-app==4.4.2
+django-invitations==1.9.3
+
