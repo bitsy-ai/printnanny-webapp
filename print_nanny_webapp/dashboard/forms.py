@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 class TimelapseUploadForm(forms.Form):
 
-    video_file = forms.FileField(label="Select a video to upload", required=True)
+    video_file = forms.FileField(label="Select a video file (.mp4)", required=True)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -15,7 +15,7 @@ class TimelapseUploadForm(forms.Form):
 
 class TimelapseReuploadForm(forms.Form):
 
-    video_file = forms.FileField(label="Select the video to retry (or try a new one)", required=False)
+    video_file = forms.FileField(label="Select a video file (.mp4)", required=False)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

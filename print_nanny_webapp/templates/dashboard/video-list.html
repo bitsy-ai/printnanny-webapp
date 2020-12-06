@@ -16,11 +16,34 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                           
-                            <li class="breadcrumb-item active">Timelapse Uploads</li>
+                            <li class="breadcrumb-item active">Print Report Card</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Timelapse Uploads</h4>
+                    <h4 class="page-title">Print Quality Reports</h4>
                 </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                    <h2 class="header-title">
+                      ANAYZE MY VIDEO
+                    </h2>
+                      <p class="text-muted font-14">
+                       Let Print Nanny's evaluate one of your timelapse videos.   
+                      </p>
+                      <p class="text-muted font-14">
+                        When the report is ready, you'll receive an email.
+                      </p>
+          
+                      <!-- File Upload -->
+                      <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{ forms.upload | crispy }}
+          
+                        <button class="btn btn-primary" name="action" value="upload" type="submit">Analyze Video</button>
+                      </form>
+                </div>
+              </div>
             </div>
         </div>     
         <!-- end page title -->
