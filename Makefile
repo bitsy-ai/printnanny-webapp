@@ -26,10 +26,10 @@ clean-client: ## remove build artifacts
 	find . -name '*.egg' -exec rm -f {} +
 
 client: clean-client
-	docker run --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
-	docker run --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
 		-i http://localhost:8000/api/schema \
 		-g python-legacy \
 		-o /local/clients/python \
@@ -44,15 +44,11 @@ clean-pyc: ## remove Python file artifacts
 
 
 sdist: client ## builds source package
-	cd python/clients && python3 setup.py sdist
-	ls -l dist
-	cd -
+	cd clients/python && python3 setup.py sdist && ls -l dist
 
 bdist_wheel: client ## builds wheel package
-	cd python/clients && python3 setup.py bdist_wheel
-	ls -l dist
-	cd -
+	cd clients/python && python3 setup.py bdist_wheel && ls -l dist
 dist: sdist bdist_wheel
 
 client-release: dist ## package and upload a release
-	cd python/clients && twine upload dist/* && cd -
+	cd clients/python && twine upload dist/* && cd -
