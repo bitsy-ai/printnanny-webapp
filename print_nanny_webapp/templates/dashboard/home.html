@@ -105,8 +105,9 @@
             <!-- File Upload -->
             <form enctype="multipart/form-data" method="post">
               {% csrf_token %}
-              {{ form|crispy }}
-              <button class="btn btn-primary" type="submit">Analyze Video</button>
+              {{ forms.upload | crispy }}
+
+              <button class="btn btn-primary" name="action" value="upload" type="submit">Analyze Video</button>
             </form>
       </div>
     </div>
