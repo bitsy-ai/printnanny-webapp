@@ -67,8 +67,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
                 logging.info(f'File processed asInMemoryUploadedFile')
                 logging.info(f'File info {timelapse_alert.original_video}')
                 create_analyze_video_task.apply_async(
-                    (timelapse_alert.id, 
-                    timelapse_alert.original_video.url),
+                    (timelapse_alert.id,),
                     link_error=annotate_job_error.si(timelapse_alert.id)
                 )
             elif isinstance(video_file, TemporaryUploadedFile):
@@ -158,15 +157,13 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
                 logging.info(f'File processed asInMemoryUploadedFile')
                 logging.info(f'File info {timelapse_alert.original_video}')
                 create_analyze_video_task.apply_async(
-                    (timelapse_alert.id, 
-                    timelapse_alert.original_video.url),
+                    (timelapse_alert.id,),
                     link_error=annotate_job_error.si(timelapse_alert.id)
                 )
             elif isinstance(video_file, TemporaryUploadedFile):
                 logging.info(f'File processed as TemporaryUploadedFile')
                 create_analyze_video_task.apply_async(
-                    (timelapse_alert.id, 
-                    self.request.FILES['video_file'].temporary_file_path()),
+                    (timelapse_alert.id,),
                     link_error=annotate_job_error.si(timelapse_alert.id)
             )
         return redirect(self.get_success_url())

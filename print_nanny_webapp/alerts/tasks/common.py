@@ -267,6 +267,14 @@ def _timecode(seconds, framerate):
                     s=int(seconds%60),
                     f=round((seconds-int(seconds))*framerate))
 
+def _seconds(value, framerate):
+    if isinstance(value, str):  # value seems to be a timestamp
+        _zip_ft = zip((3600, 60, 1, 1/framerate), value.split(':'))
+        return sum(f * float(t) for f,t in _zip_ft)
+    elif isinstance(value, (int, float)):  # frames
+        return value / framerate
+    else:
+        return 0
 def _frames(seconds, framerate):
     return seconds * framerate
 
