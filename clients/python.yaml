@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: print_nanny_client
-packageVersion: '0.1.1'
+packageVersion: '0.1.0'
 templateDir: /local/clients/templates
 
 files:
