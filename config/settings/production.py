@@ -178,3 +178,7 @@ ALLOWED_CIDR_NETS = [
 '10.12.0.0/14',
 '10.16.0.0/20'
 ]
+
+
+# django-prometheus middleware must be last in middleware stack
+MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
