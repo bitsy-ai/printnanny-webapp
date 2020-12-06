@@ -44,13 +44,15 @@ clean-pyc: ## remove Python file artifacts
 
 
 sdist: client ## builds source package
-	python3 clients/python/setup.py sdist
+	cd python/clients && python3 setup.py sdist
 	ls -l dist
+	cd -
 
 bdist_wheel: client ## builds wheel package
-	python3 clients/python/setup.py bdist_wheel
+	cd python/clients && python3 setup.py bdist_wheel
 	ls -l dist
+	cd -
 dist: sdist bdist_wheel
 
 client-release: dist ## package and upload a release
-	twine upload dist/*
+	cd python/clients && twine upload dist/* && cd -
