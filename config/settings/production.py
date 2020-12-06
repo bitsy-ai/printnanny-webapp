@@ -170,4 +170,11 @@ sentry_sdk.init(
 # ------------------------------------------------------------------------------
 
 
-GOOGLE_ANALYTICS =  'G-QKHED5DPGV'
+GOOGLE_ANALYTICS =  'G-QKHED5DPGV']
+
+MIDDLEWARE += [ 'allow_cidr.middleware.AllowCIDRMiddleware']
+
+ALLOWED_CIDR_NETS = [
+'10.12.0.0/14',
+'10.16.0.0/20'
+]
