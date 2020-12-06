@@ -681,46 +681,24 @@ def create_analyze_video_task(timelapse_alert_id, file_path):
 
     return chord1()
 
-@shared_task
-def debug_jobs_analysis():
-    """schedules ananlysis job for each recently-ish seen print job. Useful for debugging analyze task"""
 
-    now = timezone.now()
-    earlier = now - datetime.timedelta(seconds=EVERY_N_SECONDS*10000)
-    print_jobs = PrintJob.objects.filter(
-        last_seen__range=(earlier,now)
-    )
-
-    workflow_per_print_job = [
-        chain(
-            predict_events_dataframe.si(print_job.id,start=earlier, stop=now),
-            log_metrics.s(
-                print_job, 
-                notify_callback=send_email_failure_notification
-            )
-        )
-        for print_job in print_jobs
-    ]
-    logger.info(f'Scheduling analysis for {print_jobs.count()} active print jobs')
-    job = group(workflow_per_print_job)
-    return job()
 
 @shared_task
 def schedule_active_jobs_analysis():
     """schedules ananlysis job for each active print job"""
-    pass
-    # now = timezone.now()
-    # earlier = now - datetime.timedelta(seconds=EVERY_N_SECONDS)
-    # active_print_jobs = PrintJob.objects.filter(
-    #     last_status=PrintJob.StatusChoices.STARTED,
-    #     last_seen__range=(earlier,now)
-    # )
+    now = timezone.now()
+    earlier = now - datetime.timedelta(seconds=EVERY_N_SECONDS)
 
-    # logger.info(f'Scheduling analysis for {active_print_jobs.count()} active print jobs')
-    # job = group([
-    #     prediction_dataframe.si(print_job.id,earlier, now)
-    # ] for print_job in active_print_jobs)
-    # return job()
+    active_print_jobs = PrintJob.objects.filter(
+        last_status=PrintJob.StatusChoices.STARTED,
+        last_seen__range=(earlier,now)
+    )
+
+    logger.info(f'Scheduling analysis for {active_print_jobs.count()} active print jobs')
+    job = group([
+        create_analyze_print_job_task(print_job.id)
+    ] for print_job in active_print_jobs)
+    return job()
 
 # @celery_app.on_after_configure.connect
 # def setup_periodic_tasks(sender, **kwargs):
