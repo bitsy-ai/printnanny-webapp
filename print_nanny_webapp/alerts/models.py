@@ -96,6 +96,16 @@ class DefectAlert(AlertMessage, AnnotatedVideo):
         default=list(["defect-alert"])
     )
 
+class ProgressAlert(AlertMessage, AnnotatedVideo):
+    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
+
+    tags = ArrayField(
+        models.CharField(max_length=255),
+        default=list(["progress-alert"])
+    )
+
+
+
 class TimelapseAlert(AlertMessage, AnnotatedVideo):
     """
         outgoing message to user indicating timelapse video is done
