@@ -64,10 +64,20 @@ spec:
     app: django
   ports:
     - protocol: TCP
-      port: 8000
+      port: 80
       targetPort: 8000
   type: NodePort
-
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: print-nanny-dot-com
+spec:
+  domains:
+    - print-nanny.com
+    - www.print-nanny.com
+    - api.print-nanny.com
+---
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
@@ -75,8 +85,8 @@ metadata:
   name: django
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "django-static-ip"
+    networking.gke.io/managed-certificates: print-nanny-dot-com
 spec:
   backend:
     serviceName: django
-    servicePort: 8000
-
+    servicePort: 80
