@@ -53,7 +53,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sql-webapp
-
+  annotations:
+    iam.gke.io/gcp-service-account: sql-webapp@print-nanny.iam.gserviceaccount.com
 ---
 apiVersion: v1
 kind: Service
@@ -77,7 +78,6 @@ spec:
     - print-nanny.com
     - www.print-nanny.com
     - api.print-nanny.com
----
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress

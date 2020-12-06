@@ -1,12 +1,23 @@
 #!/bin/bash
 
+##
+# app base image
+#
 docker tag print_nanny_webapp_production_django:latest \
     us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
 
-docker tag print_nanny_webapp_redis:latest \
-    us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
+docker tag print_nanny_webapp_production_django:latest \
+    us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev-parse HEAD)
 
 docker push us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
+docker push us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev-parse HEAD)
+
+##
+# redis
+##
+
+docker tag print_nanny_webapp_redis:latest \
+    us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
 docker push us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
 
 #kubectl create configmap webapp --from-file=k8s/configmap.yml --dry-run -o yaml | kubectl apply -f -
