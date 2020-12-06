@@ -25,6 +25,9 @@ docker push us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
 kubectl apply -f k8s/configmap.yml
 kubectl apply -f k8s/production.yml
 
+kubectl set image deployment/django django=us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev-parse HEAD) --record
+
+
 
 # gcloud iam service-accounts add-iam-policy-binding \
 #   --role roles/iam.workloadIdentityUser \
