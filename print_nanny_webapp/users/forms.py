@@ -5,14 +5,19 @@ from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.contrib.postgres.fields import ArrayField
 
-from print_nanny_webapp.users.models import InviteRequest
+from print_nanny_webapp.users.models import InviteRequest, UserSettings
 User = get_user_model()
 
 
+class UserSettingsForm(forms.ModelForm):
+
+    class Meta:
+        model = UserSettings
+        exclude = [
+            'user'
+        ]
+
 class InviteRequestForm(forms.ModelForm):
-
-
-
     worst = forms.CharField(
         label='If you could wave a magic wand and change ONE thing about 3D printing, what would that be?',
         widget = forms.Textarea,
@@ -41,8 +46,6 @@ class InviteRequestForm(forms.ModelForm):
             'worst'
         ]
         
-
-
 class UserChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
