@@ -6,7 +6,7 @@ from django.apps import apps
 from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
-from .forms import TimelapseUploadForm,TimelapseReuploadForm, FeedbackForm
+from .forms import TimelapseUploadForm,TimelapseCancelForm, FeedbackForm
 from print_nanny_webapp.alerts.tasks.timelapse_alert import create_analyze_video_task, annotate_job_error
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from django.shortcuts import redirect
@@ -15,7 +15,7 @@ from django.forms.models import model_to_dict
 
 User = get_user_model()
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
-AlertMessage = apps.get_model('alerts', 'AlertMessage')
+AlertVideoMessage = apps.get_model('alerts', 'AlertVideoMessage')
 UserSettings = apps.get_model('users', 'UserSettings')
 
 logger = logging.getLogger(__name__)
@@ -36,11 +36,14 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
     template_name = 'dashboard/home.html'
     success_url = '/dashboard'
 
-    form_classes = { 'upload': TimelapseUploadForm, 'user_settings': UserSettingsForm }
+    form_classes = {
+         'upload': TimelapseUploadForm, 
+         'user_settings': UserSettingsForm,
+        }
 
 
     def get_user_settings_initial(self):
-        settings = UserSettings.objects.get(user=self.request.user.id)
+        settings = UserSettings.objects.filter(user=self.request.user.id).first()
         if settings:
             return model_to_dict(settings)
         return None
@@ -49,7 +52,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 
         if form.is_valid():
             form.instance.user = self.request.user
-            settings = UserSettings.objects.get(user=self.request.user.id)
+            settings = UserSettings.objects.filter(user=self.request.user.id).first()
             if settings:
                 form = UserSettingsForm(self.request.POST, instance=settings)
             form.save()
@@ -78,23 +81,25 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
             )
         return redirect(reverse('dashboard:report-cards:list'))
 
-
     # def get_object(self):
     #     token, created = Token.objects.get_or_create(user=self.request.user)
     #     self.request.user.token = token
-    #     self.request.user.active_alerts = self.request.user.alertmessage_set.filter(seen=False)
+    #     self.request.user.active_alerts = self.request.user.AlertVideoMessage_set.filter(seen=False)
     #     return self.request.user
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeDashboardView, self).get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
         self.request.user.token = token
-        self.request.user.active_alerts = self.request.user.alertmessage_set.filter(seen=False)
+        # self.request.user.active_alerts = self.request.user.AlertVideoMessage_set.filter(
+        #     job_status__in=[
+        #         AlertVideoMessage.JobStatusChoices.FAILURE,
+        #         AlertVideoMessage.JobStatusChoices.SUCCESS,
+        #     ]
+        # ).exclude(seen=True)
 
         context['object'] = self.request.user
-
-        settings = UserSettings.objects.get(user=self.request.user.id)
-
+        
         return context
 
 home_dashboard_view = HomeDashboardView.as_view()
@@ -105,12 +110,34 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     success_url = '/dashboard/report-cards'
 
     form_classes = {
-        'upload': TimelapseReuploadForm,
+        'upload': TimelapseUploadForm,
         'upvote': FeedbackForm,
-        'downvote': FeedbackForm
+        'downvote': FeedbackForm,
+        'dismiss': TimelapseCancelForm,
+        'cancel': TimelapseCancelForm
+
     }
     template_name = 'dashboard/video-list.html'
 
+
+    def dismiss_form_valid(self, form):
+        failed_job = self.request.POST.get('alert_id')
+        if failed_job is not None:
+            TimelapseAlert.objects.filter(id=failed_job).update(
+                seen=True
+            )
+        
+        return redirect(reverse('dashboard:report-cards:list'))
+
+
+    def cancel_form_valid(self, form):
+        failed_job = self.request.POST.get('alert_id')
+        if failed_job is not None:
+            TimelapseAlert.objects.filter(id=failed_job).update(
+                job_status=TimelapseAlert.JobStatusChoices.CANCELLED
+            )
+        
+        return redirect(reverse('dashboard:report-cards:list'))
 
     def upvote_form_valid(self, form):
 
@@ -137,17 +164,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
 
     def upload_form_valid(self, form):
 
-        failed_job = self.request.POST.get('alert_id')
-        if failed_job is not None:
-            logger.warning('Deleting TimelapseAlert with id {failed_job} (tombstones are disabled)')
-            TimelapseAlert.objects.filter(id=failed_job).delete()
-        
-
-
         video_file = self.request.FILES.get('video_file')
-
-        if not video_file:
-            return redirect(self.get_success_url())
         if video_file is not None:
             timelapse_alert = TimelapseAlert.objects.create(
                 user=self.request.user,
@@ -166,7 +183,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
                     (timelapse_alert.id,),
                     link_error=annotate_job_error.si(timelapse_alert.id)
             )
-        return redirect(self.get_success_url())
+        return redirect(reverse('dashboard:report-cards:list'))
 
     def get_context_data(self, *args, **kwargs):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
@@ -177,7 +194,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
 
 
         context['alerts_failed'] = TimelapseAlert.objects\
-            .filter(user=self.request.user.id, job_status=TimelapseAlert.JobStatusChoices.FAILURE)\
+            .filter(user=self.request.user.id, job_status=TimelapseAlert.JobStatusChoices.FAILURE, seen=False)\
             .order_by('-created_dt').all()
 
         context['alerts_processing'] = TimelapseAlert.objects\
@@ -190,7 +207,7 @@ video_dashboard_list_view = VideoDashboardView.as_view()
 
 class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
-    model = AlertMessage
+    model = AlertVideoMessage
     # slug_field = "id"
     # slug_url_kwarg = "id"
     template_name = 'dashboard/video-detail.html'

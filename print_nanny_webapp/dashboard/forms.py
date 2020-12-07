@@ -13,9 +13,8 @@ class TimelapseUploadForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
 
-class TimelapseReuploadForm(forms.Form):
+class TimelapseCancelForm(forms.Form):
 
-    video_file = forms.FileField(label="Select a video file (.mp4)", required=False)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
