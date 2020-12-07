@@ -5,7 +5,7 @@ import sys
 
 from celery import shared_task, group
 from django.apps import apps
-from django.core.files.images import File
+from django.core.files.images import File, ImageFile
 import imageio
 from skimage.io import imread_collection
 
@@ -19,6 +19,7 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 AlertVideoMessage = apps.get_model('alerts', 'AlertVideoMessage')
+AlertPlot = apps.get_model('alerts', 'AlertPlot')
 
 # minimum confidence score for detection to be accepted for post-processing
 CONFIDENCE_THRESHOLD = 0.5
@@ -64,6 +65,24 @@ def savgol_filter(x, fps):
         window,
         1
     )
+
+def create_alert_plot(filename, tmp_dir, function, title, description, alert_id):
+    
+    with open(os.path.join(tmp_dir, filename + '.png'), 'rb') as png_f:
+        wrapped_png = ImageFile(png_f)
+        with open(os.path.join(tmp_dir, filename + '.html'), 'rb') as html_f:
+            wrapped_html = File(html_f)
+            alert_plot = AlertPlot(
+                function=function,
+                title=title,
+                description=description,
+                alert=AlertVideoMessage.objects.get(id=alert_id)
+            )
+            alert_plot.image.save(filename + '.png', wrapped_png)
+            alert_plot.html.save(filename + '.html', wrapped_html)
+            alert_plot.save()
+            return alert_plot
+        
 @shared_task
 def rm_tmp_dir(temp_dir):
     return shutil.rmtree(temp_dir)

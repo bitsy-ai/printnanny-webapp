@@ -51,7 +51,7 @@
         
           <!-- processing cards -->
           {% if alerts_processing.count > 0 %}
-            <h4 class="page-title">In-Progress</h4>
+            <h3 class="page-title mt-4 mb-1"">In-Progress</h3>
               <!-- videos -->
               <div class="card-group">
                 {% for alert in alerts_processing %}
@@ -90,7 +90,7 @@
           <!-- failed cards -->
 
           {% if alerts_failed.count > 0 %}
-            <h4 class="page-title">Processing Failed</h4>
+            <h3 class="page-title mt-4 mb-1"">Processing Failed</h3>
               <!-- videos -->
                 <div class="card-group">
                   {% for alert in alerts_failed %}
@@ -99,11 +99,10 @@
                           <h4 class="card-title">File Analysis Failed 
 
                             {% if not alert.seen %}
+                            <span class="badge badge-danger float-right">Oops! Please retry.</span>
 
-                            <span class="badge badge-danger">NEW</span>
-                            {% endif %}
-                          </h2>
-                  
+                          </h4>
+                          {% endif %}
                             <p>Failed to process: <strong>{{alert.original_filename}}</strong>.</p>
                                <!-- File Upload -->
                               <form enctype="multipart/form-data" method="post" class="form-group">
@@ -129,7 +128,7 @@
           <!-- done cards -->
 
           {% if alerts_success.count > 0 %}
-            <h4 class="page-title">Timelapse Reports</h4>
+            <h3 class="page-title mt-4 mb-1">Print Quality Reports</h3>
                     <!-- videos -->
                     <div class="row">
                       {% for alert in alerts_success %}
@@ -139,20 +138,23 @@
                             <!-- critical failure detected -->
                             {% if alert.notify_timecode %}
                               <div class="card-body">
-                                <h2 class="card-title">Print Failed                             
+                                <h4 class="card-title">Print Failure                             
                                   
                                   {% if not alert.seen %}
 
-                                  <span class="badge badge-info">NEW</span>
+                                  <span class="badge badge-danger">NEW REPORT</span>
                                   {% endif %}
-                                </h2>
+                                </h4>
           
                                 <dl class="row mb-0">
             
             
                                   <dt class="col-sm-3">Filename</dt>
                                   <dd class="col-sm-9">{{alert.original_filename}}</dd>
-                                          
+
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{alert.source_display_name}}</dd>
+
                                   <dt class="col-sm-3">Verdict</dt>
             
                                     <dd class="col-sm-9">Critical failure at <strong>{{alert.notify_timecode}}</strong> ⚠️ </dd>
@@ -179,14 +181,16 @@
                                 </div>
                             {% else %}
                               <div class="card-body">
-                                <h2 class="card-title">No Issues Detected</h2>
+                                <h4 class="card-title">No Critical Defects</h4>
           
                                 <dl class="row mb-0">
             
             
                                   <dt class="col-sm-3">Filename</dt>
                                   <dd class="col-sm-9">{{alert.original_filename}}</dd>
-                                          
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{alert.polymorphic_ctype}}</dd>
+
                                   <dt class="col-sm-3">Verdict</dt>
           
                                     <dd class="col-sm-9">No critical failures in your print.</dd>

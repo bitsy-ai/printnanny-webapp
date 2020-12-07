@@ -20,6 +20,7 @@ from .common import (
 
 logger = logging.getLogger(__name__)
 
+TimelapseAlert = apps.get_model('alerts', 'AlertPlot')
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
 
 @shared_task
@@ -86,7 +87,7 @@ def create_analyze_video_task(timelapse_alert_id):
     alert.length = metadata['duration']
     alert.save()
 
-    CHUNKS = int(fps//2) 
+    CHUNKS = int(fps) 
     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
 
     grouped = predict_postprocess_frame.chunks( 
