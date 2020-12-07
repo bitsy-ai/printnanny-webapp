@@ -94,7 +94,12 @@ class DefectAlert(AlertVideoMessage):
         return f'Print Job {self.print_job.id}'
 
 class ProgressAlert(AlertVideoMessage):
+
+    class Meta:
+        unique_together = ('print_job_id', 'progress')
+
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
+    progress = models.IntegerField(default=0)
 
     tags = ArrayField(
         models.CharField(max_length=255),
