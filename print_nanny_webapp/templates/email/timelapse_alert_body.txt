@@ -1,9 +1,14 @@
 Hey {{FIRST_NAME }},
 
-I squinted at your print, but I couldn't detect any defects.
+Your quality report for {{FILENAME}} is ready!
 
-Can you do me a favor? I'm wrong, let me know by hitting the 👎 button in the Report Card below.
+{% if NOTIFY_TIMECODE %}
+Is your print ok? I reckon things went downhill around {{NOTIFY_TIMECODE}}.
+{% else %}
+I didn't notice any critical defects or issues.
+{% endif %}
 
+Can you do me a favor? If I'm wrong, let me know by hitting the 👎 button in the report.
 {{ REPORT_URL }}
 
 Thanks,

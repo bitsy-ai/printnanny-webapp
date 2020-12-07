@@ -79,3 +79,8 @@ class PrintJob(models.Model):
     last_seen = models.DateTimeField(auto_now=True)
 
     progress = models.IntegerField(default=0)
+
+
+    @property
+    def filename(self):
+        return self.gcode_file.file.name

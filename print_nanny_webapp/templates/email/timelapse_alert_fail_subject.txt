@@ -1,1 +1,1 @@
-Report Card ready for print {{ ORIGINAL_FILENAME }}
+Quality Report Finished: {{ ORIGINAL_FILENAME }}
