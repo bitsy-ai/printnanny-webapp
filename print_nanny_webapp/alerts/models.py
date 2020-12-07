@@ -58,6 +58,8 @@ class AlertVideoMessage(PolymorphicModel):
     length = models.FloatField(null=True)
     fps = models.FloatField(null=True)
 
+    notify_seconds = models.IntegerField(null=True)
+    notify_timecode = models.CharField(max_length=32, null=True)
 
     def original_filename(self):
         return os.path.basename(self.original_video.name)
@@ -84,11 +86,12 @@ class DefectAlert(AlertVideoMessage):
         choices=ActionChoices.choices,
         default=ActionChoices.PENDING
     )
-
     tags = ArrayField(
         models.CharField(max_length=255),
         default=list(["defect-alert"])
     )
+    def source_display_name(self):
+        return f'Print Job {self.print_job.id}'
 
 class ProgressAlert(AlertVideoMessage):
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
@@ -104,14 +107,12 @@ class TimelapseAlert(AlertVideoMessage):
     """
         outgoing message to user indicating timelapse video is done
     """
-
-
-    notify_seconds = models.IntegerField(null=True)
-    notify_timecode = models.CharField(max_length=32, null=True)
     tags = ArrayField(
         models.CharField(max_length=255),
         default=list(["timelapse-alert"])
     )
+    def source_display_name(self):
+        return 'Web Upload'
 
 class AlertPlot(models.Model):
     image = models.ImageField(upload_to=_upload_to)

@@ -43,7 +43,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 
 
     def get_user_settings_initial(self):
-        settings = UserSettings.objects.filter(user=self.request.user.id).first()
+        sePttings = UserSettings.objects.filter(user=self.request.user.id).first()
         if settings:
             return model_to_dict(settings)
         return None
@@ -188,10 +188,9 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def get_context_data(self, *args, **kwargs):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
-        context['alerts_success'] = TimelapseAlert.objects\
-            .filter(user=self.request.user.id, job_status=TimelapseAlert.JobStatusChoices.SUCCESS)\
+        context['alerts_success'] = AlertVideoMessage.objects\
+            .filter(user=self.request.user.id, job_status=AlertVideoMessage.JobStatusChoices.SUCCESS)\
             .order_by('-created_dt').all()
-
 
         context['alerts_failed'] = TimelapseAlert.objects\
             .filter(user=self.request.user.id, job_status=TimelapseAlert.JobStatusChoices.FAILURE, seen=False)\
@@ -200,6 +199,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
         context['alerts_processing'] = TimelapseAlert.objects\
             .filter(user=self.request.user.id, job_status=TimelapseAlert.JobStatusChoices.PROCESSING)\
             .order_by('-created_dt').all()
+
         return context
 
 video_dashboard_list_view = VideoDashboardView.as_view()
@@ -211,8 +211,11 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
     # slug_field = "id"
     # slug_url_kwarg = "id"
     template_name = 'dashboard/video-detail.html'
-    # def get_object(self):
-        # logger.info(self.request)
+    def get_object(self):
+        obj = super().get_object()
+        obj.seen = True
+        obj.save()
+        return obj
 
 video_dashboard_detail_view = VideoDashboardDetailView.as_view()
 
