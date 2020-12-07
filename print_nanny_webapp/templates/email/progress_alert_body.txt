@@ -1,0 +1,9 @@
+Hey {{FIRST_NAME }},
+
+Your print {{FILENAME}} is {{PROGRESS}}% complete. 
+
+Click the report link below to view a timelapse and quality report of progress so far.
+{{ REPORT_URL }}
+
+Thanks,
+Print Nanny

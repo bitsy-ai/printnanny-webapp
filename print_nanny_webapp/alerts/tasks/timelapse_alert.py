@@ -5,7 +5,7 @@ import os
 import socket
 
 from anymail.message import AnymailMessage
-from celery import group, chord, shared_task, group
+from celery import group, chord, shared_task
 from django.apps import apps
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -20,7 +20,6 @@ from .common import (
 
 logger = logging.getLogger(__name__)
 
-TimelapseAlert = apps.get_model('alerts', 'AlertPlot')
 TimelapseAlert = apps.get_model('alerts', 'TimelapseAlert')
 
 @shared_task
@@ -44,7 +43,8 @@ def send_timelapse_upload_email_notification(timelapse_alert_id):
     merge_data = {
         'REPORT_URL': reverse('dashboard:report-cards:detail', kwargs={'id': timelapse_alert_id}),
         'FIRST_NAME': timelapse_alert.user.first_name or 'Maker',
-        'ORIGINAL_FILENAME': timelapse_alert.original_filename
+        'ORIGINAL_FILENAME': timelapse_alert.original_filename,
+        'NOTIFY_TIMECODE': timelapse_alert.notify_timecode
     }
 
     text_body = render_to_string("email/timelapse_alert_body.txt", merge_data)
@@ -74,7 +74,7 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 
 @shared_task()
 def create_analyze_video_task(timelapse_alert_id):
-    logger.info('Processing video for timelapse_alert_id {timelapse_alert_id}')
+    logger.info(f'Processing video for timelapse_alert_id {timelapse_alert_id}')
     alert = TimelapseAlert.objects.get(id=timelapse_alert_id)
 
     filename, ext = os.path.splitext(alert.original_video.name)
@@ -93,6 +93,7 @@ def create_analyze_video_task(timelapse_alert_id):
     grouped = predict_postprocess_frame.chunks( 
         ((i, frame, temp_dir) for i, frame in enumerate(reader))
         , CHUNKS).group() 
+    
     chord1 = chord(grouped, prediction_dicts_to_dataframe.s())
 
     report_card_tasks = group([

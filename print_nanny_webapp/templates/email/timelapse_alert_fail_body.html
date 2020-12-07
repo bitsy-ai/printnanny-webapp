@@ -69,8 +69,15 @@ color: #2d3436;
                     Hey {{ FIRST_NAME }},
                     </td>
                 </tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                    <p>Is your print ok? I reckon things started going downhill around {{ ALERT_TIMESTAMP }}. 😬
+                  <p>Your quality report for {{FILENAME}} is ready!</p>
+                  {% if NOTIFY_TIMECODE %}
+                    <p>Is your print ok? I reckon things started going downhill around {{NOTIFY_TIMECODE }}. 😬
                     </p>
+                  {% else %}
+
+                  <p>I didn't notice any critical defects or issues.
+                  </p>
+                  {% endif %}
                   </td>
                 </tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
                     <img src="{{ GIF_URL }}" alt="Timelapse of print job" />
@@ -78,10 +85,9 @@ color: #2d3436;
                 </tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
                     <p>Can you do me a favor? If I'm wrong, let me know by hitting the 👎 button in the Report Card below. </p>
     
-                    <a href="{{ THUMBS_DOWN }}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #ff7675; margin: 0; border-color: #ff7675; border-style: solid; border-width: 10px 20px;">👎 Downvote</a>
                     </td>
                 </tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                        <a href="{{ REPORT_CARD_URL }}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #74b9ff; margin: 0; border-color: #74b9ff; border-style: solid; border-width: 10px 20px;">View Report Card</a>
+                        <a href="{{ REPORT_URL }}" class="btn-primary" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #74b9ff; margin: 0; border-color: #74b9ff; border-style: solid; border-width: 10px 20px;">View Report Card</a>
                     </td>
 
                 </tr><tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
