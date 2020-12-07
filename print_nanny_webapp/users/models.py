@@ -147,7 +147,7 @@ class User(AbstractUser):
 
 class UserSettings(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=True)
 
     alert_on_defect = models.BooleanField(default=True, help_text='Receive low print quality and safety hazard notifications')
     alert_on_progress = models.BooleanField(default=True, help_text='Receive print progress notifications')
