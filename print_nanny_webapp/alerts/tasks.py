@@ -156,7 +156,7 @@
 #     print_job = predict_events[0].print_job
 
 #     # assert no previous alert messages, or all alert messages are in the "RESUMED" state 
-#     last_alert_message = AlertMessage.objects.filter(
+#     last_alert_message = AlertVideoMessage.objects.filter(
 #         print_job=print_job.id,
 #     ).order_by('-created_dt').first()
 #     if last_alert_message is not None:
@@ -174,7 +174,7 @@
     
 #     filename= f'print_job_{print_job.id}_alert_message_{predict_events[0].dt}_{predict_events[len(predict_events)-1].dt}'
 #     img_file = ImageFile(buff, name=filename)
-#     alert_message = AlertMessage.objects.create(
+#     alert_message = AlertVideoMessage.objects.create(
 #         user=print_job.user,
 #         print_job=print_job,
 #         video=img_file,

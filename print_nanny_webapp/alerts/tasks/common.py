@@ -1,18 +1,24 @@
 import logging
 import os
+import shutil
+import sys
 
-from celery import shared_task
+from celery import shared_task, group
 from django.apps import apps
 from django.core.files.images import File
-
+import imageio
 from skimage.io import imread_collection
 
+import plotly
+import plotly.express as px
+import plotly.graph_objects as go
+from scipy import signal
 import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-AlertMessage = apps.get_model('alerts', 'AlertMessage')
+AlertVideoMessage = apps.get_model('alerts', 'AlertVideoMessage')
 
 # minimum confidence score for detection to be accepted for post-processing
 CONFIDENCE_THRESHOLD = 0.5
@@ -37,6 +43,27 @@ FAILURES = {
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
 
+def savgol_filter(x, fps):
+    logger.info(type(x))
+    # assert x > window
+    if len(x) <= fps:
+        window = len(x)//8
+    else:
+        window = int(fps)
+    
+    # window must be an odd number
+    if window % 2 == 0:
+        window += 1
+    
+    # assert polyorder < window
+    if window <= 3:
+        return x
+    
+    return signal.savgol_filter(
+        x,
+        window,
+        1
+    )
 @shared_task
 def rm_tmp_dir(temp_dir):
     return shutil.rmtree(temp_dir)
@@ -55,7 +82,8 @@ def create_box_plot(confident_df, alert_id, temp_dir):
 
     html = os.path.join(temp_dir, f'{filename}.html')
     with open(html, 'w+') as f:
-        fig.write_html(
+        plotly.io.write_html(
+            fig,
             f,
             include_plotlyjs='cdn',
             full_html=True
@@ -216,7 +244,7 @@ def create_health_rel_plot(confident_df, fail_df, alert_id, temp_dir, fps):
         notify_timecode = y[y<=intercept].index[alert_offset]
         notify_seconds = int(_seconds(notify_timecode, fps))
 
-        AlertMessage.objects.filter(id=alert_id).update(
+        AlertVideoMessage.objects.filter(id=alert_id).update(
             notify_seconds=notify_seconds,
             notify_timecode=notify_timecode
         )
@@ -275,6 +303,7 @@ def _seconds(value, framerate):
         return value / framerate
     else:
         return 0
+
 def _frames(seconds, framerate):
     return seconds * framerate
 
@@ -318,9 +347,11 @@ def create_report_card(df, alert_id, temp_dir, fps, callback):
     csv = os.path.join(temp_dir, filename)
     with open(csv, 'w+') as f:
         multi_df.to_csv(f)
-    AlertMessage.objects.filter(id=alert_id).update(
-        dataframe=csv
-    )
+
+    alert = AlertVideoMessage.objects.get(id=alert_id)
+    
+    alert.annotated_video.dataframe = csv
+    alert.save()
 
     workflow = group([
         create_box_plot.si(confident_df, alert_id, temp_dir),
@@ -341,7 +372,7 @@ def render_alert_annotated_video(alert_id, temp_dir, fps):
 
     with open(file_path, 'rb') as f:
         wrapped_file = File(f)
-        alert = AlertMessage.objects.get(
+        alert = AlertVideoMessage.objects.get(
                 id=alert_id
         )
         alert.annotated_video.save(filename, wrapped_file)

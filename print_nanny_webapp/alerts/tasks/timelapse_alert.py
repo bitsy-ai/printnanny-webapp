@@ -5,7 +5,7 @@ import os
 import socket
 
 from anymail.message import AnymailMessage
-from celery import group, chord, shared_task
+from celery import group, chord, shared_task, group
 from django.apps import apps
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -73,7 +73,7 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 
 @shared_task()
 def create_analyze_video_task(timelapse_alert_id):
-
+    logger.info('Processing video for timelapse_alert_id {timelapse_alert_id}')
     alert = TimelapseAlert.objects.get(id=timelapse_alert_id)
 
     filename, ext = os.path.splitext(alert.original_video.name)
@@ -108,5 +108,6 @@ def create_analyze_video_task(timelapse_alert_id):
     report_card_tasks.link(annotate_job_success.si(timelapse_alert_id))
     report_card_tasks.link_error(annotate_job_error.si(timelapse_alert_id))
 
-    # chord1.set()
-    return chord1.apply_async(queue=socket.gethostname())
+    chord1.set(queue=socket.gethostname())
+    report_card_tasks.set(queue=socket.gethostname())
+    return chord1()

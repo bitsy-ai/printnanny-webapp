@@ -39,7 +39,7 @@
                       <form enctype="multipart/form-data" method="post">
                         {% csrf_token %}
                         {{ forms.upload | crispy }}
-          
+
                         <button class="btn btn-primary" name="action" value="upload" type="submit">Analyze Video</button>
                       </form>
                 </div>
@@ -68,12 +68,13 @@
                             <input type="hidden" value="{{ alert.id }}" name="alert_id">
             
                             {% csrf_token %}
-                            {{ reupload_form|crispy }}
+                            {{ forms.cancel |crispy }}
+
                             <button class="btn btn-primary" type="button" disabled>
                               <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
                               Processing...
                             </button>
-                            <button name="action" value="upload" class="btn btn-secondary">Cancel</button>
+                            <button name="action" value="cancel" class="btn btn-secondary">Cancel</button>
 
                           </form>
            
@@ -95,21 +96,24 @@
                   {% for alert in alerts_failed %}
                     <div class="card col-sm-12 col-lg-3">
                       <div class="card-body">
-                          <h4 class="card-title">File Analysis Failed</h2>
+                          <h4 class="card-title">File Analysis Failed 
+
+                            {% if not alert.seen %}
+
+                            <span class="badge badge-danger">NEW</span>
+                            {% endif %}
+                          </h2>
                   
                             <p>Failed to process: <strong>{{alert.original_filename}}</strong>.</p>
-                            <p><strong>Would you like to try again?</strong></p>     
                                <!-- File Upload -->
                               <form enctype="multipart/form-data" method="post" class="form-group">
-                                  {{ forms.upload.as_p }}
       
                                   <input type="hidden" value="{{ alert.id }}" name="alert_id">
                   
                                   {% csrf_token %}
-                                  {{ reupload_form|crispy }}
-                                  <button name="action" value="upload" class="btn btn-primary" type="submit">Analyze Video</button>
-                                  <button class="btn btn-secondary">Dismiss</button>
-      
+                                  {{ forms.dismiss|crispy }}
+                                  <button type="submit"  name="action" value="dismiss" class="btn btn-secondary">Dismiss</button>
+
       
                               </form>
                       </div>
@@ -127,7 +131,7 @@
           {% if alerts_success.count > 0 %}
             <h4 class="page-title">Timelapse Reports</h4>
                     <!-- videos -->
-                    <div class="card-group">
+                    <div class="row">
                       {% for alert in alerts_success %}
                     
                         <!-- card wrapper -->
@@ -135,7 +139,13 @@
                             <!-- critical failure detected -->
                             {% if alert.notify_timecode %}
                               <div class="card-body">
-                                <h2 class="card-title">Print Failed</h2>
+                                <h2 class="card-title">Print Failed                             
+                                  
+                                  {% if not alert.seen %}
+
+                                  <span class="badge badge-info">NEW</span>
+                                  {% endif %}
+                                </h2>
           
                                 <dl class="row mb-0">
             
@@ -207,7 +217,7 @@
                         </div>
                     
                   {% endfor %}
-          
+                      </div>  
           {% endif %}
 
     </div> <!-- container -->

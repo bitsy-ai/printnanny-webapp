@@ -24,7 +24,7 @@ def _upload_to(instance, filename):
     return path
  
 
-class AnnotatedVideo(models.Model):
+class AlertVideoMessage(PolymorphicModel):
     '''
         Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     '''
@@ -37,6 +37,13 @@ class AnnotatedVideo(models.Model):
         PROCESSING = 'Processing', 'Processing'
         SUCCESS = 'SUCCESS', 'Success'
         FAILURE = 'FAILURE', 'Failure'
+        CANCELLED = 'CANCELLED', 'Cancelled'
+
+    class Backend(models.TextChoices):
+        EMAIL = 'EMAIL', 'Email'
+
+    provider_id = models.CharField(max_length=255, null=True, db_index=True)
+    seen = models.BooleanField(default=False)
 
     job_status = models.CharField(max_length=32, choices=JobStatusChoices.choices, default=JobStatusChoices.PROCESSING)
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -51,9 +58,6 @@ class AnnotatedVideo(models.Model):
     length = models.FloatField(null=True)
     fps = models.FloatField(null=True)
 
-    class Meta:
-        abstract = True
-
 
     def original_filename(self):
         return os.path.basename(self.original_video.name)
@@ -66,19 +70,9 @@ class AnnotatedVideo(models.Model):
         #         self.annotated_video.name
         #     )
 
-class AlertMessage(PolymorphicModel):
-    """
-        outgoing message to user
-    """
-    # action_basename = 'feedback'
-    class Backend(models.TextChoices):
-        EMAIL = 'EMAIL', 'Email'
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    provider_id = models.CharField(max_length=255, null=True, db_index=True)
-    seen = models.BooleanField(default=False)
 
-class DefectAlert(AlertMessage, AnnotatedVideo):
+class DefectAlert(AlertVideoMessage):
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
 
     class ActionChoices(models.TextChoices):
@@ -96,7 +90,7 @@ class DefectAlert(AlertMessage, AnnotatedVideo):
         default=list(["defect-alert"])
     )
 
-class ProgressAlert(AlertMessage, AnnotatedVideo):
+class ProgressAlert(AlertVideoMessage):
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
 
     tags = ArrayField(
@@ -106,7 +100,7 @@ class ProgressAlert(AlertMessage, AnnotatedVideo):
 
 
 
-class TimelapseAlert(AlertMessage, AnnotatedVideo):
+class TimelapseAlert(AlertVideoMessage):
     """
         outgoing message to user indicating timelapse video is done
     """
@@ -125,7 +119,7 @@ class AlertPlot(models.Model):
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
     function = models.CharField(max_length=65)
-    alert = models.ForeignKey(AlertMessage, on_delete=models.CASCADE)
+    alert = models.ForeignKey(AlertVideoMessage, on_delete=models.CASCADE)
 
 # class AlertEvent(models.Model):
 #     """
@@ -147,6 +141,6 @@ class AlertPlot(models.Model):
 #     )
 #     dt = models.DateTimeField(db_index=True)
 #     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-#     alert_message = models.ForeignKey(AlertMessage, on_delete=models.CASCADE)
+#     alert_message = models.ForeignKey(AlertVideoMessage, on_delete=models.CASCADE)
 #     provider_id = models.CharField(max_length=255)
 #     event_data = models.JSONField()
