@@ -37,7 +37,8 @@ class PatchedPrintJobRequest(object):
         'name': 'str',
         'gcode_file_hash': 'str',
         'gcode_file': 'int',
-        'last_status': 'LastStatusEnum'
+        'last_status': 'LastStatusEnum',
+        'progress': 'int'
     }
 
     attribute_map = {
@@ -46,10 +47,11 @@ class PatchedPrintJobRequest(object):
         'name': 'name',
         'gcode_file_hash': 'gcode_file_hash',
         'gcode_file': 'gcode_file',
-        'last_status': 'last_status'
+        'last_status': 'last_status',
+        'progress': 'progress'
     }
 
-    def __init__(self, dt=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dt=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, progress=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintJobRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -61,6 +63,7 @@ class PatchedPrintJobRequest(object):
         self._gcode_file_hash = None
         self._gcode_file = None
         self._last_status = None
+        self._progress = None
         self.discriminator = None
 
         if dt is not None:
@@ -73,6 +76,8 @@ class PatchedPrintJobRequest(object):
         self.gcode_file = gcode_file
         if last_status is not None:
             self.last_status = last_status
+        if progress is not None:
+            self.progress = progress
 
     @property
     def dt(self):
@@ -205,6 +210,33 @@ class PatchedPrintJobRequest(object):
         """
 
         self._last_status = last_status
+
+    @property
+    def progress(self):
+        """Gets the progress of this PatchedPrintJobRequest.  # noqa: E501
+
+
+        :return: The progress of this PatchedPrintJobRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._progress
+
+    @progress.setter
+    def progress(self, progress):
+        """Sets the progress of this PatchedPrintJobRequest.
+
+
+        :param progress: The progress of this PatchedPrintJobRequest.  # noqa: E501
+        :type progress: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                progress is not None and progress > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `progress`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                progress is not None and progress < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `progress`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._progress = progress
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

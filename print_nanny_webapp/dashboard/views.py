@@ -43,7 +43,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 
 
     def get_user_settings_initial(self):
-        sePttings = UserSettings.objects.filter(user=self.request.user.id).first()
+        settings = UserSettings.objects.filter(user=self.request.user.id).first()
         if settings:
             return model_to_dict(settings)
         return None
