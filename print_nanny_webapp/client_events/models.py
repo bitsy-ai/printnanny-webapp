@@ -22,15 +22,12 @@ class PredictEvent(models.Model):
 
     dt = models.DateTimeField(db_index=True, default=timezone.now)
     #model = models.ForeignKey(TFLiteModel)
-    event_data = models.JSONField(null=True)
     predict_data = models.JSONField()
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE)
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE)
 
-    plugin_version = models.CharField(max_length=30)
-    octoprint_version = models.CharField(max_length=30)
 
 class OctoPrintEvent(models.Model):
 

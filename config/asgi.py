@@ -11,6 +11,7 @@ import os
 import sys
 from pathlib import Path
 
+
 from django.core.asgi import get_asgi_application
 
 # This allows easy placement of apps within the interior
@@ -28,8 +29,9 @@ django_application = get_asgi_application()
 # application = HelloWorldApplication(application)
 
 # Import websocket application here, so apps from django_application are loaded first
-from config.websocket import websocket_application  # noqa isort:skip
-
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
+import print_nanny_webapp.client_events.routing
 
 async def application(scope, receive, send):
     if scope["type"] == "http":
@@ -38,3 +40,12 @@ async def application(scope, receive, send):
         await websocket_application(scope, receive, send)
     else:
         raise NotImplementedError(f"Unknown scope type {scope['type']}")
+
+application = ProtocolTypeRouter({
+  "http": django_application,
+  "websocket": AuthMiddlewareStack(
+        URLRouter(
+            print_nanny_webapp.client_events.routing.websocket_urlpatterns
+        )
+    ),
+})
