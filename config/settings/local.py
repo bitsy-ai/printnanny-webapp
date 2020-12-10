@@ -63,3 +63,6 @@ CELERY_TASK_EAGER_PROPAGATES = True
 MEDIA_ROOT = "/tmp"
 
 GOOGLE_ANALYTICS = 'G-5BEYZM8WNZ'
+
+# django-prometheus middleware must be last in middleware stack
+MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']

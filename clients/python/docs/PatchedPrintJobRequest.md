@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **gcode_file_hash** | **str** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 
 **last_status** | [**LastStatusEnum**](LastStatusEnum.md) |  | [optional] 
+**progress** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
