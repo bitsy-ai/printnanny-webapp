@@ -16,13 +16,13 @@ from print_nanny_webapp.remote_control.api.views import (
 )
 
 # from print_nanny_webapp.alerts.api.views import (
-#     AlertMessageViewSet,
+#     AlertVideoMessageViewSet,
 #     AlertEventViewSet
 # )
 
 
 router = DefaultRouter()
-# router.register('alert-messages', AlertMessageViewSet, basename='alert-message', namespace='alerts')
+# router.register('alert-messages', AlertVideoMessageViewSet, basename='alert-message', namespace='alerts')
 # router.register('alert-events', AlertEventViewSet, basename='alert-event', namespace='alerts')
 
 router.register("users", UserViewSet)

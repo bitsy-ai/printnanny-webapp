@@ -40,7 +40,8 @@ class TestPatchedPrintJobRequest(unittest.TestCase):
                 name = '', 
                 gcode_file_hash = '', 
                 gcode_file = 56, 
-                last_status = 'STARTED'
+                last_status = 'STARTED', 
+                progress = -2147483648
             )
         else :
             return PatchedPrintJobRequest(

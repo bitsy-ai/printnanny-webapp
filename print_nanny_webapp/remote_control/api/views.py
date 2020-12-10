@@ -70,7 +70,11 @@ class PrintJobViewSet(CreateModelMixin, ListModelMixin, RetrieveModelMixin, Upda
         prometheus_metrics.print_job_status.state(instance.last_status)
 
     def perform_update(self, serializer):
+        
         instance = serializer.save()
+        if (instance.progress > 0 and 
+            instance % user.user_settings.alert_on_progress_percent == 0):
+            create_progress_video_task.delay(instance.id, instance.progress)
         prometheus_metrics.print_job_status.state(instance.last_status)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

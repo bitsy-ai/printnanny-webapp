@@ -1,17 +1,17 @@
 
 
 from .serializers import (
-    AlertMessageSerializer,
+    AlertVideoMessageSerializer,
     AlertEventSerializer
 )
 from ..models import (
-    AlertMessage, AlertEvent
+    AlertVideoMessage, AlertEvent
 )
 
 @extend_schema(tags=['alerts'])   
-class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = AlertMessageSerializer
-    queryset = AlertMessage.objects.all()
+class AlertVideoMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = AlertVideoMessageSerializer
+    queryset = AlertVideoMessage.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
@@ -22,12 +22,12 @@ class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     @extend_schema(
         operation_id='alert_message_cancel_print',
         responses={
-            400: AlertMessageSerializer,
-            200: AlertMessageSerializer,
+            400: AlertVideoMessageSerializer,
+            200: AlertVideoMessageSerializer,
         },
         parameters=[OpenApiParameter(
             'action',
-            enum=AlertMessage.ActionChoices,
+            enum=AlertVideoMessage.ActionChoices,
             required=True
         )]
     )
@@ -35,12 +35,12 @@ class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     def feedback(self, request, *args, **kwargs):
         action = self.request.query_params.get('action', None)
         if action is None:
-            return Response(f'Please specify action={list(AlertMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
+            return Response(f'Please specify action={list(AlertVideoMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
         action = action.upper()
-        if action not in AlertMessage.ActionChoices:
-            return Response(f'Please specify action={list(AlertMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
+        if action not in AlertVideoMessage.ActionChoices:
+            return Response(f'Please specify action={list(AlertVideoMessage.ActionChoices)}', status=status.HTTP_400_BAD_REQUEST)
 
-        data = { 'last_action': AlertMessage.ActionChoices[action] }
+        data = { 'last_action': AlertVideoMessage.ActionChoices[action] }
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=data, partial=True)
         serializer.is_valid(raise_exception=True)
@@ -50,5 +50,5 @@ class AlertMessageViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema(tags=['alerts'])
 class AlertEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = AlertEventeSerializer
-    queryset = AlertMessage.objects.all()
+    queryset = AlertVideoMessage.objects.all()
     lookup_field = "id"

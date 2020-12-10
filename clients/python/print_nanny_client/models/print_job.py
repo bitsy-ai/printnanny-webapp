@@ -41,6 +41,7 @@ class PrintJob(object):
         'gcode_file': 'int',
         'last_status': 'LastStatusEnum',
         'last_seen': 'datetime',
+        'progress': 'int',
         'url': 'str'
     }
 
@@ -54,10 +55,11 @@ class PrintJob(object):
         'gcode_file': 'gcode_file',
         'last_status': 'last_status',
         'last_seen': 'last_seen',
+        'progress': 'progress',
         'url': 'url'
     }
 
-    def __init__(self, id=None, dt=None, user=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, last_seen=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, dt=None, user=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, last_seen=None, progress=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintJob - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -72,6 +74,7 @@ class PrintJob(object):
         self._gcode_file = None
         self._last_status = None
         self._last_seen = None
+        self._progress = None
         self._url = None
         self.discriminator = None
 
@@ -88,6 +91,8 @@ class PrintJob(object):
             self.last_status = last_status
         if last_seen is not None:
             self.last_seen = last_seen
+        if progress is not None:
+            self.progress = progress
         if url is not None:
             self.url = url
 
@@ -291,6 +296,33 @@ class PrintJob(object):
         """
 
         self._last_seen = last_seen
+
+    @property
+    def progress(self):
+        """Gets the progress of this PrintJob.  # noqa: E501
+
+
+        :return: The progress of this PrintJob.  # noqa: E501
+        :rtype: int
+        """
+        return self._progress
+
+    @progress.setter
+    def progress(self, progress):
+        """Sets the progress of this PrintJob.
+
+
+        :param progress: The progress of this PrintJob.  # noqa: E501
+        :type progress: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                progress is not None and progress > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `progress`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                progress is not None and progress < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `progress`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._progress = progress
 
     @property
     def url(self):

@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django import forms
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 from .managers import CustomUserManager
 
@@ -142,3 +144,15 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"email": self.email})
+
+class UserSettings(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=True)
+
+    alert_on_defect = models.BooleanField(default=True, help_text='Receive low print quality and safety hazard notifications')
+    alert_on_progress = models.BooleanField(default=True, help_text='Receive print progress notifications')
+    alert_on_progress_percent = models.IntegerField(
+        default=25,
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        help_text='Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress'
+    )
