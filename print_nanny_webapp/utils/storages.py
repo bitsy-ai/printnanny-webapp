@@ -1,6 +1,7 @@
 from storages.backends.gcloud import GoogleCloudStorage
 from storages.utils import safe_join
 
+
 class StaticRootGoogleCloudStorage(GoogleCloudStorage):
     location = "static"
     default_acl = "publicRead"

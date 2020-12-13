@@ -1,4 +1,3 @@
-
 import logging
 import threading
 import os
@@ -8,7 +7,9 @@ import tensorflow as tf
 import json
 import pandas as pd
 
-from print_nanny_webapp.utils.visualization import visualize_boxes_and_labels_on_image_array
+from print_nanny_webapp.utils.visualization import (
+    visualize_boxes_and_labels_on_image_array,
+)
 
 # python 3.8
 try:
@@ -20,10 +21,12 @@ except:
     from typing import Optional
 
 # Set CPU as available physical device
-my_devices = tf.config.experimental.list_physical_devices(device_type='CPU')
-tf.config.experimental.set_visible_devices(devices= my_devices, device_type='CPU')
+my_devices = tf.config.experimental.list_physical_devices(device_type="CPU")
+tf.config.experimental.set_visible_devices(devices=my_devices, device_type="CPU")
 
 logger = logging.getLogger(__name__)
+
+
 class Prediction(TypedDict):
     num_detections: int
     detection_scores: np.ndarray
@@ -31,31 +34,32 @@ class Prediction(TypedDict):
     detection_classes: np.ndarray
     viz: Optional[PImage.Image]
 
+
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
 
+
 def predict_events_to_dataframe(predict_events):
-    df = pd.DataFrame.from_records(predict_events, index='id')
+    df = pd.DataFrame.from_records(predict_events, index="id")
     df = df.dropna()
-    df = df['predict_data'].apply(dict_to_series)
+    df = df["predict_data"].apply(dict_to_series)
     return df
 
 
-
 class ThreadLocalPredictor(threading.local):
-    base_path = '/app/data' 
+    base_path = "/app/data"
 
-    def __init__(self, 
-        min_score_thresh=0.66, 
-        max_boxes_to_draw=10, 
-        model_version='tflite-print3d_20201101015829-2020-11-16T05:40:41.306Z',
-        model_filename='model.tflite',
-        metadata_filename='tflite_metadata.json',
-        label_filename='dict.txt',
-
-        
-        *args, **kwargs
-        ):
+    def __init__(
+        self,
+        min_score_thresh=0.66,
+        max_boxes_to_draw=10,
+        model_version="tflite-print3d_20201101015829-2020-11-16T05:40:41.306Z",
+        model_filename="model.tflite",
+        metadata_filename="tflite_metadata.json",
+        label_filename="dict.txt",
+        *args,
+        **kwargs
+    ):
 
         self.model_version = model_version
         self.model_filename = model_filename
@@ -64,11 +68,11 @@ class ThreadLocalPredictor(threading.local):
 
         self.model_path = os.path.join(self.base_path, model_version, model_filename)
         self.label_path = os.path.join(self.base_path, model_version, label_filename)
-        self.metadata_path = os.path.join(self.base_path, model_version, metadata_filename)
-
-        self.tflite_interpreter = tf.lite.Interpreter(
-            model_path=self.model_path
+        self.metadata_path = os.path.join(
+            self.base_path, model_version, metadata_filename
         )
+
+        self.tflite_interpreter = tf.lite.Interpreter(model_path=self.model_path)
         self.tflite_interpreter.allocate_tensors()
         self.input_details = self.tflite_interpreter.get_input_details()
         self.output_details = self.tflite_interpreter.get_output_details()
@@ -78,36 +82,33 @@ class ThreadLocalPredictor(threading.local):
 
         with open(self.metadata_path) as f:
             self.metadata = json.load(f)
-        
+
         with open(self.label_path) as f:
             self.category_index = [l.strip() for l in f.readlines()]
-            self.category_index = {i:{'name': v, 'id': i } for i, v in enumerate(self.category_index)}
+            self.category_index = {
+                i: {"name": v, "id": i} for i, v in enumerate(self.category_index)
+            }
         self.input_shape = self.metadata["inputShape"]
 
     def load_url_buffer(self, url: str):
         res = requests.get(url)
         res.raise_for_status()
-        assert res.headers['content-type'] == 'image/jpeg'
+        assert res.headers["content-type"] == "image/jpeg"
         return io.BytesIO(res.content)
-    
+
     def load_image(self, bytes):
         return PImage.open(bytes)
 
-
     def load_file(self, filepath: str):
         return PImage.open(filepath)
-    
+
     def preprocess(self, image: PImage):
         image = np.asarray(image)
         image = tf.convert_to_tensor(image, dtype=tf.uint8)
-        image = tf.image.resize(
-            image,
-            self.input_shape[1:-1],
-            method='nearest'
-        )
+        image = tf.image.resize(image, self.input_shape[1:-1], method="nearest")
         image = image[tf.newaxis, ...]
         return image
-    
+
     def write_image(self, outfile: str, image_np: np.ndarray):
 
         img = PImage.fromarray(image_np)
@@ -119,36 +120,37 @@ class ThreadLocalPredictor(threading.local):
 
         viz = visualize_boxes_and_labels_on_image_array(
             image_np,
-            prediction['detection_boxes'],
-            prediction['detection_classes'],
-            prediction['detection_scores'],
+            prediction["detection_boxes"],
+            prediction["detection_classes"],
+            prediction["detection_scores"],
             self.category_index,
             use_normalized_coordinates=True,
             line_thickness=4,
             min_score_thresh=self.min_score_thresh,
-            max_boxes_to_draw=self.max_boxes_to_draw
+            max_boxes_to_draw=self.max_boxes_to_draw,
         )
         return viz
 
     def predict(self, image: PImage) -> Prediction:
         tensor = self.preprocess(image)
 
-        self.tflite_interpreter.set_tensor(
-            self.input_details[0]['index'], tensor
-        )
+        self.tflite_interpreter.set_tensor(self.input_details[0]["index"], tensor)
         self.tflite_interpreter.invoke()
 
-        box_data = tf.convert_to_tensor(self.tflite_interpreter.get_tensor(
-            self.output_details[0]['index']))
-        class_data = tf.convert_to_tensor(self.tflite_interpreter.get_tensor(
-            self.output_details[1]['index']))
-        score_data = tf.convert_to_tensor(self.tflite_interpreter.get_tensor(
-            self.output_details[2]['index']))
-        num_detections = tf.convert_to_tensor(self.tflite_interpreter.get_tensor(
-            self.output_details[3]['index']))
+        box_data = tf.convert_to_tensor(
+            self.tflite_interpreter.get_tensor(self.output_details[0]["index"])
+        )
+        class_data = tf.convert_to_tensor(
+            self.tflite_interpreter.get_tensor(self.output_details[1]["index"])
+        )
+        score_data = tf.convert_to_tensor(
+            self.tflite_interpreter.get_tensor(self.output_details[2]["index"])
+        )
+        num_detections = tf.convert_to_tensor(
+            self.tflite_interpreter.get_tensor(self.output_details[3]["index"])
+        )
 
-        class_data = tf.squeeze(
-            class_data, axis=[0]).numpy().astype(np.int64) + 1
+        class_data = tf.squeeze(class_data, axis=[0]).numpy().astype(np.int64) + 1
         box_data = tf.squeeze(box_data, axis=[0]).numpy()
         score_data = tf.squeeze(score_data, axis=[0]).numpy()
         num_detections = tf.squeeze(num_detections, axis=[0]).numpy()
@@ -157,5 +159,5 @@ class ThreadLocalPredictor(threading.local):
             detection_boxes=box_data,
             detection_classes=class_data,
             detection_scores=score_data,
-            num_detections=num_detections
+            num_detections=num_detections,
         )

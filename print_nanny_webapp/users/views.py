@@ -6,30 +6,43 @@ from django.urls import reverse
 from django import forms
 
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView, CreateView, TemplateView
+from django.views.generic import (
+    DetailView,
+    RedirectView,
+    UpdateView,
+    CreateView,
+    TemplateView,
+)
 from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.users.forms import InviteRequestForm
 
 User = get_user_model()
 
+
 class ThanksView(TemplateView):
-    template_name = 'users/thanks.html'
+    template_name = "users/thanks.html"
+
+
 class InviteRequestView(CreateView):
-    template_name ='users/inviterequest_form.html'
-    success_url = '/thanks/'
+    template_name = "users/inviterequest_form.html"
+    success_url = "/thanks/"
     form_class = InviteRequestForm
+
 
 class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
     slug_field = "email"
     slug_url_kwarg = "email"
+
     def get_object(self):
 
         return get_object_or_404(User, id=self.request.user.id)
 
+
 user_detail_view = UserDetailView.as_view()
+
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 

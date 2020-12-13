@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0002_auto_20201126_1453'),
+        ("remote_control", "0002_auto_20201126_1453"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printjob',
-            name='progress',
+            model_name="printjob",
+            name="progress",
             field=models.IntegerField(default=0),
         ),
     ]

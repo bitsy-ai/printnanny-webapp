@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0001_initial'),
+        ("ml_ops", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='tflitemodel',
-            name='version',
-            field=models.CharField(default='v1', max_length=255),
+            model_name="tflitemodel",
+            name="version",
+            field=models.CharField(default="v1", max_length=255),
             preserve_default=False,
         ),
     ]

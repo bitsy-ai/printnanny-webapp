@@ -9,18 +9,54 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UserSettings',
+            name="UserSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('alert_on_defect', models.BooleanField(default=True, help_text='Receive low print quality and safety hazard notifications')),
-                ('alert_on_progress', models.BooleanField(default=True, help_text='Receive print progress notifications')),
-                ('alert_on_progress_percent', models.IntegerField(default=25, help_text='Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress', validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(100)])),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "alert_on_defect",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Receive low print quality and safety hazard notifications",
+                    ),
+                ),
+                (
+                    "alert_on_progress",
+                    models.BooleanField(
+                        default=True, help_text="Receive print progress notifications"
+                    ),
+                ),
+                (
+                    "alert_on_progress_percent",
+                    models.IntegerField(
+                        default=25,
+                        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(100),
+                        ],
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        unique=True,
+                    ),
+                ),
             ],
         ),
     ]

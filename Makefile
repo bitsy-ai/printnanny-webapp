@@ -15,6 +15,8 @@ dev-up:
 deploy: build
 	k8s/push.sh
 
+lint:
+	black print_nanny_webapp
 
 clean-client: ## remove build artifacts
 	rm -fr build/

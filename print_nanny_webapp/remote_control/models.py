@@ -7,19 +7,24 @@ from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
 
+
 class GcodeFile(models.Model):
     class Meta:
-        unique_together = ('user', 'file_hash')
+        unique_together = ("user", "file_hash")
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    file = models.FileField(upload_to='uploads/gcode_file/%Y/%m/%d/')
+    file = models.FileField(upload_to="uploads/gcode_file/%Y/%m/%d/")
     file_hash = models.CharField(max_length=255)
 
-class PrinterProfile(models.Model):
 
+class PrinterProfile(models.Model):
     class Meta:
-        unique_together = ('user', 'name',)
+        unique_together = (
+            "user",
+            "name",
+        )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     axes_e_inverted = models.BooleanField()
@@ -54,16 +59,16 @@ class PrinterProfile(models.Model):
 
 class PrintJob(models.Model):
     class Meta:
-        unique_together = ('user', 'name', 'dt')
+        unique_together = ("user", "name", "dt")
 
     class StatusChoices(models.TextChoices):
-        STARTED = 'STARTED', 'Started'
-        DONE = 'DONE', 'Done'
-        FAILED = 'FAILED', 'Failed'
-        CANCELLING = 'CANCELLING', 'Cancelling'
-        CANCELLED = 'CANCELLED', 'Cancelled'
-        PAUSED = 'PAUSED', 'Paused'
-        RESUMED = 'RESUMED', 'Resumed'
+        STARTED = "STARTED", "Started"
+        DONE = "DONE", "Done"
+        FAILED = "FAILED", "Failed"
+        CANCELLING = "CANCELLING", "Cancelling"
+        CANCELLED = "CANCELLED", "Cancelled"
+        PAUSED = "PAUSED", "Paused"
+        RESUMED = "RESUMED", "Resumed"
 
     dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -72,14 +77,11 @@ class PrintJob(models.Model):
     gcode_file_hash = models.CharField(max_length=255, null=True)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
     last_status = models.CharField(
-        max_length=12,
-        choices=StatusChoices.choices,
-        default=StatusChoices.STARTED
+        max_length=12, choices=StatusChoices.choices, default=StatusChoices.STARTED
     )
     last_seen = models.DateTimeField(auto_now=True)
 
     progress = models.IntegerField(default=0)
-
 
     @property
     def filename(self):
