@@ -26,11 +26,11 @@ class PredictEventConsumer(WebsocketConsumer):
     def receive(self, text_data):
         data = json.loads(text_data)
 
-        if data.get("msg") == "ping":
+        if data.get("event_type") == "ping":
             return self.send(text_data="pong")
 
-        elif data.get("msg") == "predict":
-            print_job_id = self.scope["url_route"]["kwargs"]["print_job_id"]
+        elif data.get("event_type") == "predict":
+            print_job_id = data["print_job_id"]
 
             original_img = base64.b64decode(data["original_image"])
             imghash = hashlib.md5(original_img).hexdigest()
