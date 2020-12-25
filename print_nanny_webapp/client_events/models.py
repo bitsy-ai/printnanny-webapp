@@ -17,14 +17,20 @@ class PredictEventFile(models.Model):
     hash = models.CharField(max_length=255)
     original_image = models.ImageField(upload_to="uploads/predict_event/%Y/%m/%d/")
 
+class PredictSession(models.Model):
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    closed_dt = models.DateTimeField(db_index=True, auto_now=True)
+    closed = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
 
 class PredictEvent(models.Model):
 
-    dt = models.DateTimeField(db_index=True, default=timezone.now)
+    dt = models.DateTimeField(db_index=True, auto_now=True)
     # model = models.ForeignKey(TFLiteModel)
     predict_data = models.JSONField()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    predict_session = models.ForeignKey(PredictSession, on_delete=models.CASCADE, db_index=True)
     files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE, null=True)
     print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True)
 

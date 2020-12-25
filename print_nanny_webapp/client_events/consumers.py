@@ -25,13 +25,8 @@ class VideoConsumer(WebsocketConsumer):
         async_to_sync(self.channel_layer.group_discard)("video", self.channel_name)
 
 class MetricsConsumer(SyncConsumer):
-    def connect(self):
-        self.accept()
-        self.user = self.scope["user"]
-        async_to_sync(self.channel_layer.group_add)("metrics", self.channel_name)
 
-    def disconnect(self, close_code):
-        async_to_sync(self.channel_layer.group_discard)("chat", self.channel_name)
+    pass
 
 
 class PredictEventConsumer(WebsocketConsumer):
@@ -40,8 +35,11 @@ class PredictEventConsumer(WebsocketConsumer):
         self.user = self.scope["user"]
         async_to_sync(self.channel_layer.group_add)("predict", self.channel_name)
 
+        self.predict_session = PredictSession.objects.create(channel_name=self.channel_name, user=self.user)
+
     def disconnect(self, close_code):
-        pass
+        self.predict_session.closed = True
+        self.predict_session.save()
 
     def receive(self, text_data):
         data = json.loads(text_data)
@@ -52,11 +50,20 @@ class PredictEventConsumer(WebsocketConsumer):
 
         elif data.get("event_type") == "predict":
             annotated_image = base64.b64decode(data["annotated_image"])
-            self.channel_layer.group_send(
+
+            async_to_sync(self.channel_layer.group_send_json)(
                 'video',
                 {
                     'type': 'annotated_image',
-                    'text': annotated_image
+                    'data': data["annotated_image"]
+                })
+
+            async_to_sync(self.channel_layer.group_send_json)(
+                'metrics',
+                {
+                    'type': 'predict_data',
+                    'data': data["predict_data"],
+                    'user_id': self.user.id
                 }
             )
             print_job_id = data.get("print_job_id")
@@ -78,17 +85,10 @@ class PredictEventConsumer(WebsocketConsumer):
             else:
                 job = None
 
-            if job.user_id == self.user.id:
-
-                predict_event = PredictEvent.objects.create(
-                    dt=data["ts"],
-                    predict_data=data["predict_data"],
-                    user=self.user,
-                    files=files,
-                    print_job=job,
-                )
-
-            else:
-                logging.warning(
-                    f"user {self.user} tried to publish event to job {job.id}"
-                )
+            predict_event = PredictEvent.objects.create(
+                dt=data["ts"],
+                predict_data=data["predict_data"],
+                user=self.user,
+                files=files,
+                print_job=job,
+            )
