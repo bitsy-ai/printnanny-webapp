@@ -54,3 +54,6 @@ dist: sdist bdist_wheel
 
 client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
+
+cloudsql:
+	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433

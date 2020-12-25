@@ -91,5 +91,6 @@ TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack
 application = ProtocolTypeRouter({
   "http": django_application,
   "websocket": TokenAuthMiddlewareStack(
-      URLRouter(print_nanny_webapp.client_events.routing.websocket_urlpatterns))
+      URLRouter(print_nanny_webapp.client_events.routing.websocket_urlpatterns)),
+  #"metrics": 
 })

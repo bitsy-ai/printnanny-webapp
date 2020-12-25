@@ -101,3 +101,4 @@ spec:
   backend:
     serviceName: django
     servicePort: 80
+

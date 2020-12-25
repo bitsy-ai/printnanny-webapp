@@ -12,8 +12,10 @@ from asgiref.sync import async_to_sync
 
 logger = logging.getLogger(__name__)
 
+PredictSession = apps.get_model("client_events", "PredictSession")
 PrintJob = apps.get_model("remote_control", "PrintJob")
 User = get_user_model()
+
 
 class VideoConsumer(WebsocketConsumer):
     def connect(self):
@@ -23,6 +25,7 @@ class VideoConsumer(WebsocketConsumer):
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)("video", self.channel_name)
+
 
 class MetricsConsumer(SyncConsumer):
 
@@ -35,7 +38,9 @@ class PredictEventConsumer(WebsocketConsumer):
         self.user = self.scope["user"]
         async_to_sync(self.channel_layer.group_add)("predict", self.channel_name)
 
-        self.predict_session = PredictSession.objects.create(channel_name=self.channel_name, user=self.user)
+        self.predict_session = PredictSession.objects.create(
+            channel_name=self.channel_name, user=self.user
+        )
 
     def disconnect(self, close_code):
         self.predict_session.closed = True
@@ -43,7 +48,6 @@ class PredictEventConsumer(WebsocketConsumer):
 
     def receive(self, text_data):
         data = json.loads(text_data)
-        logger.info(data)
 
         if data.get("event_type") == "ping":
             return self.send(text_data="pong")
@@ -51,21 +55,18 @@ class PredictEventConsumer(WebsocketConsumer):
         elif data.get("event_type") == "predict":
             annotated_image = base64.b64decode(data["annotated_image"])
 
-            async_to_sync(self.channel_layer.group_send_json)(
-                'video',
-                {
-                    'type': 'annotated_image',
-                    'data': data["annotated_image"]
-                })
-
-            async_to_sync(self.channel_layer.group_send_json)(
-                'metrics',
-                {
-                    'type': 'predict_data',
-                    'data': data["predict_data"],
-                    'user_id': self.user.id
-                }
+            async_to_sync(self.channel_layer.group_send)(
+                "video", {"type": "annotated_image", "data": data["annotated_image"]}
             )
+
+            # async_to_sync(self.channel_layer.group_send)(
+            #     'metrics',
+            #     {
+            #         'type': 'predict_data',
+            #         'data': data["predict_data"],
+            #         'user_id': self.user.id
+            #     }
+            # )
             print_job_id = data.get("print_job_id")
 
             original_img = base64.b64decode(data["original_image"])
@@ -73,7 +74,8 @@ class PredictEventConsumer(WebsocketConsumer):
 
             files = PredictEventFile.objects.create(
                 annotated_image=SimpleUploadedFile(
-                    "annotated_image.jpg", annotated_image),
+                    "annotated_image.jpg", annotated_image
+                ),
                 hash=imghash,
                 original_image=SimpleUploadedFile(
                     "original_image.jpg", base64.b64decode(data["original_image"])
@@ -88,7 +90,7 @@ class PredictEventConsumer(WebsocketConsumer):
             predict_event = PredictEvent.objects.create(
                 dt=data["ts"],
                 predict_data=data["predict_data"],
-                user=self.user,
                 files=files,
                 print_job=job,
+                predict_session=self.predict_session,
             )

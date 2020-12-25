@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0003_printjob_progress'),
+        ("remote_control", "0003_printjob_progress"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printjob',
-            name='gcode_file_hash',
+            model_name="printjob",
+            name="gcode_file_hash",
         ),
     ]
