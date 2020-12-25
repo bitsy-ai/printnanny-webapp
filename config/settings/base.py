@@ -423,3 +423,5 @@ INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'
 INSTALLED_APPS += [
     'channels',
 ]
+
+APPEND_SLASH = True

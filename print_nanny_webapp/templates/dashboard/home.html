@@ -52,8 +52,13 @@
   <div class="col-sm-12 col-md-6">
     <div class="card">
       <div class="card-body">
-          <h2 class="header-title">Printer Status</h2>
+          <h2 class="header-title">Livestream</h2>
 
+          <div id="video-loading">
+            <p>Your web camera stream is either buffering or offline.</p>
+            <img src="{% static 'images/loading.svg' %}" class="img-responsive" />
+
+          </div>
           {% if object.printerprofile_set.count == 0 %}
             <p class="text-muted font-14">OctoPrint Disconnected</p>
             <p>Hey! Your OctoPrint installation wasn't found.</p>
@@ -61,6 +66,7 @@
 
           {% else %}
           {% endif %}
+          <video autoplay id="video"></video>
       </div>
     </div>
   </div>
@@ -126,6 +132,21 @@
 <script src="{% static 'js/vendor/dropzone.min.js' %}"></script>
 <!-- init js -->
 <script src="{% static 'js/ui/component.fileupload.js' %}"></script>
+<script>
+  const video = document.querySelector('video');
+  //video.srcObject = "{% static 'images/loading.svg' %}";
+  
+  const WS_URL = "{{ WS_BASE_URL }}/video/";
+  const ws = new WebSocket(WS_URL);
+
+  ws.onmessage = (msg) => {
+    console.log(msg)
+    video.srcObject = msg
+  }
+  ws.onopen = () => {
+    console.log(`Connected to ${WS_URL}`);
+  }
+</script>
 
 {% endblock content %}
 

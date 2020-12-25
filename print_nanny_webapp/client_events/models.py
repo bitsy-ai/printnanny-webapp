@@ -25,8 +25,8 @@ class PredictEvent(models.Model):
     predict_data = models.JSONField()
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE)
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE)
+    files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE, null=True)
+    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True)
 
 
 class OctoPrintEvent(models.Model):
