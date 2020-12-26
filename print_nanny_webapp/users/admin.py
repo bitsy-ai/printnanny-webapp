@@ -3,7 +3,7 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 
 from print_nanny_webapp.users.forms import UserChangeForm, UserCreationForm
-
+from print_nanny_webapp.users.models import InviteRequest
 User = get_user_model()
 
 
@@ -29,3 +29,8 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     search_fields = ("email",)
     ordering = ("email",)
+
+
+@admin.register(InviteRequest)
+class InviteRequestAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "invited", "last_name", "email", "created_dt", )

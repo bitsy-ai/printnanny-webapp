@@ -27,6 +27,7 @@ END
 #   python /app/manage.py compress
 # fi
 python manage.py migrate
-/usr/local/bin/gunicorn config.asgi --preload \
---bind 0.0.0.0:8000 -w 4 --chdir=/app -k uvicorn.workers.UvicornWorker
+# /usr/local/bin/gunicorn config.asgi --preload \
+# --bind 0.0.0.0:8000 -w 4 --chdir=/app -k uvicorn.workers.UvicornWorker
 
+daphne -b 0.0.0.0 -p 8000 config.asgi:application

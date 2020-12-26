@@ -3,7 +3,6 @@ version: '3'
 volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
-  production_traefik: {}
 
 services:
   django: &django
@@ -11,6 +10,8 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: print_nanny_webapp_production_django
+    ports:
+      - 8000:8000
     depends_on:
       - postgres
       - redis
@@ -38,19 +39,22 @@ services:
     container_name: redis
 
 
-  celeryworker:
-    <<: *django
-    image: print_nanny_webapp_production_celeryworker
-    command: /start-celeryworker
+  # celeryworker:
+  #   <<: *django
+  #   ports: []
+  #   image: print_nanny_webapp_production_celeryworker
+  #   command: /start-celeryworker
 
-  celerybeat:
-    <<: *django
-    image: print_nanny_webapp_production_celerybeat
-    command: /start-celerybeat
+  # celerybeat:
+  #   <<: *django
+  #   ports: []
+  #   image: print_nanny_webapp_production_celerybeat
+  #   command: /start-celerybeat
 
-  flower:
-    <<: *django
-    image: print_nanny_webapp_production_flower
-    command: /start-flower
+  # flower:
+  #   <<: *django
+  #   ports: []
+  #   image: print_nanny_webapp_production_flower
+  #   command: /start-flower
 
   
