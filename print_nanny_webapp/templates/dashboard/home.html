@@ -11,7 +11,27 @@
 {% if object == request.user %}
 <!-- Action buttons -->
 <div class="row mt-3">
+  <div class="col-sm-12 col-md-6">
+    <div class="card">
+      <div class="card-body">
+          <h2 class="header-title">Livestream</h2>
 
+          <div id="stream-loading">
+            <p>Your web camera stream is either buffering or offline.</p>
+            <img src="{% static 'images/loading.svg' %}" class="img-responsive" />
+
+          </div>
+          {% if object.printerprofile_set.count == 0 %}
+            <p class="text-muted font-14">OctoPrint Disconnected</p>
+            <p>Hey! Your OctoPrint installation wasn't found.</p>
+            <!-- <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p> -->
+
+          {% else %}
+          {% endif %}
+          <img id="stream" class="img-responsive">
+      </div>
+    </div>
+  </div>
   <div class="col-sm-12 col-md-6">
     <div class="card">
       <div class="card-body">
@@ -49,27 +69,6 @@
     </div> 
   </div>
 
-  <div class="col-sm-12 col-md-6">
-    <div class="card">
-      <div class="card-body">
-          <h2 class="header-title">Livestream</h2>
-
-          <div id="stream-loading">
-            <p>Your web camera stream is either buffering or offline.</p>
-            <img src="{% static 'images/loading.svg' %}" class="img-responsive" />
-
-          </div>
-          {% if object.printerprofile_set.count == 0 %}
-            <p class="text-muted font-14">OctoPrint Disconnected</p>
-            <p>Hey! Your OctoPrint installation wasn't found.</p>
-            <!-- <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p> -->
-
-          {% else %}
-          {% endif %}
-          <img id="stream" class="img-responsive">
-      </div>
-    </div>
-  </div>
 
 </div>
 
