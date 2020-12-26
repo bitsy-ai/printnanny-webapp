@@ -6,26 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0002_auto_20201206_1719'),
+        ("alerts", "0002_auto_20201206_1719"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='timelapsealert',
-            name='notify_seconds',
+            model_name="timelapsealert",
+            name="notify_seconds",
         ),
         migrations.RemoveField(
-            model_name='timelapsealert',
-            name='notify_timecode',
+            model_name="timelapsealert",
+            name="notify_timecode",
         ),
         migrations.AddField(
-            model_name='alertvideomessage',
-            name='notify_seconds',
+            model_name="alertvideomessage",
+            name="notify_seconds",
             field=models.IntegerField(null=True),
         ),
         migrations.AddField(
-            model_name='alertvideomessage',
-            name='notify_timecode',
+            model_name="alertvideomessage",
+            name="notify_timecode",
             field=models.CharField(max_length=32, null=True),
         ),
     ]

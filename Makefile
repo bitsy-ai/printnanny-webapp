@@ -15,6 +15,8 @@ dev-up:
 deploy: build
 	k8s/push.sh
 
+lint:
+	black print_nanny_webapp
 
 clean-client: ## remove build artifacts
 	rm -fr build/
@@ -52,3 +54,6 @@ dist: sdist bdist_wheel
 
 client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
+
+cloudsql:
+	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433

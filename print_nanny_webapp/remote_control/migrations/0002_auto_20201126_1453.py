@@ -7,18 +7,25 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0001_initial'),
+        ("remote_control", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='printjob',
-            name='gcode_file',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.gcodefile'),
+            model_name="printjob",
+            name="gcode_file",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.gcodefile",
+            ),
         ),
         migrations.AlterField(
-            model_name='printjob',
-            name='printer_profile',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.printerprofile'),
+            model_name="printjob",
+            name="printer_profile",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printerprofile",
+            ),
         ),
     ]
