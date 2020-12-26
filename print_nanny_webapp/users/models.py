@@ -93,6 +93,8 @@ class InviteRequest(models.Model):
         MONTHLY = "MONTHLY", "At least once per month"
         YEARLY = "YEARLY", "Occasionally, a few times a year"
 
+    created_dt = models.DateTimeField(auto_now_add=True)
+    invited = models.BooleanField(default=False)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
