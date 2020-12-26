@@ -82,14 +82,19 @@
                                 Sick of Babysitting your 3D Printer? 👶
                             </h1>
                             <h4 class="text-white">
-                                Maybe you should hire a nanny.
+                                Hire a nanny.
                             </h4>
 
-                            <h2 class="text-white mb-4 mt-4 hero-title">
-                                Get notified of print defects, pause from anywhere, automate post-processing.
-                            </h2>
-
-                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Request Beta Invite</strong></a>
+                            <h3 class="text-white mb-4 mt-4">
+                                Get notified of print defects 🔔
+                            </h3>
+                            <h3 class="text-white mb-4 mt-4">
+                                Pause from anywhere 🌎
+                            </h3>
+                            <h3 class="text-white mb-4 mt-4">
+                                Automate shipping & post-processing 🦾
+                            </h3>
+                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Sign Up for Beta</strong></a>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 offset-md-2">
@@ -114,7 +119,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-heart-multiple-outline"></i></h1>
+                            <h1 class="mt-2"><i class="mdi mdi-heart-multiple-outline"></i></h1>
                             <h3>Spend <span class="text-primary">less time</span> fretting over your prints</h3>
 
                             <h3>Automatic <span class="text-danger">safety hazard</span> and <span class="text-success">print quality</span> alerts</h3>
@@ -131,10 +136,13 @@
                         </div>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
-                        <h1 id="live-monitoring" class="display-4">1. Live 3D Print Monitoring 🔮</h1>
-                        <p class="lead col-lg-7 text-muted"">
+                        <h1 id="live-monitoring">🔮 Live Monitoring </h1>
+                        <p class="lead col-lg-7 text-muted">
                         Print Nanny will <strong class="text-primary">watch your job</strong>, so you can focus on other things. <br>
-                        She can spot common defects and quality issues like:
+                        
+                        </p>
+
+                        <p class="lead col-lg-7 text-muted"> You'll be <strong class="text-primary">automatically notified</strong>of common issues like:
                         </p>
                         <div>
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Print bed adhesion and layer warping</p>
@@ -149,21 +157,19 @@
                     </div>
                 </div>
 
-                <div class="row pb-3 pt-5 align-items-center">
+                <div class="row pb-3 pt-2 align-items-center">
                     <div class="col-lg-4 offset-lg-1">
-                        <h1 id="remote-management" class="display-4">2. Remote Management 🌏</h1>
+                        <h1 id="remote-management">🌏 Remote Control</h1>
 
                         <p class="lead text-muted"">Need <strong class="text-primary">more control?</strong><br>
                         Print Nanny lets you manage your <strong>3D printer from anywhere.</strong>
                         </p>
 
-                        <p class="lead text-muted"">What about <strong class="text-primary">internet failures?</strong><br>
-                            Happens all the time! Print Nanny <strong>works offline</strong>, so you're covered on the spottiest of connections.
-                        </p>
                         <div>
                             <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Pause, resume, stop prints</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>No / low bandwidth monitoring</p>
-                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>ROI tracking for micro print shops</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>No bandwidth limits</p>
+                            <p class="h2 py-1"><i class="mdi mdi-circle-medium text-primary"></i>Re-order low filament</p>
+
                             <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Request Beta invite<i class="mdi mdi-arrow-right ml-1"></i></a>
                         </div>
                     </div>
@@ -177,9 +183,9 @@
                         <img class="img-fluid" src="{% static 'images/demo-workflow.png' %}">
                     </div>
                     <div class="col-lg-4 offset-lg-1">
-                        <h1 id="automation" class="display-4">3. Automate Boring Stuff<h1>
+                        <h1 id="automation">🦾 Automated Workflows<h1>
 
-                        <p class="lead text-muted"">Are you <strong>wasting time</strong> on routine tasks, like watermarking your timelapse videos?</p>
+                        <p class="lead text-muted"">Are you <strong>wasting time</strong> on routine tasks, like <strong class="text-primary">watermarking your timelapse videos</strong> videos or  <strong class="text-primary">updating your in-stock products by hand?</strong></p>
                         <p class="lead text-muted"">Customize your print workflow at any scale, whether you're </p>
 
                         <div>
@@ -236,7 +242,7 @@
                             <h4 class="faq-question text-body">How does Print Nanny work?</h4>
                             <p class="faq-answer mb-2 pb-1 text-muted">
                                 The defect detection system uses a <a href="https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html">neural network</a> to monitor your printer's webcam stream. 
-                                This state-of-the art computer vision model was developed at Google for use on mobile devices like the Pixel phone. 
+                                This state-of-the art <strong>computer vision model</strong> was developed at Google for use on mobile devices like the Pixel phone. 
                                 A compression technique called <strong>quantization</strong> reduces the footprint of the model, enabling real-time performance entirely on-device - <strong>no internet connection required.</strong>
                             <p class="faq-answer mb-2 pb-1 text-muted">
                                 Print Nanny's detector model is deployed to a Raspberry Pi, and integrates directly with <strong>OctoPrint </strong> for printer control. 
@@ -342,7 +348,7 @@
 
                         <ul class="list-unstyled pl-0 mb-0 mt-3">
                             <li class="mt-2"><a href="#live-monitoring" class="text-white-50">Live Monitoring</a></li>
-                            <li class="mt-2"><a href="#remote-management" class="text-white-50">Remote Management/a></li>
+                            <li class="mt-2"><a href="#remote-management" class="text-white-50">Remote Management</a></li>
                             <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li>
                             <li class="mt-2"><a href="#faq" class="text-white-50">FAQ</a></li>
                         </ul>
