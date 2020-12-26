@@ -196,3 +196,6 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
+
+
+PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
