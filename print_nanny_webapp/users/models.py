@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -6,7 +7,10 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
+from rest_framework import serializers
+from anymail.message import AnymailMessage
 
+import json
 
 from .managers import CustomUserManager
 
@@ -130,6 +134,32 @@ class InviteRequest(models.Model):
         help_text="Alternatively, tell us the WORST part of 3D printing today",
     )
 
+    def _admin_email_notification(self):
+        """
+        Sends emails to admins in settings.BETA_NOTIFY_EMAIL = ['leigh+testing@bitsy.ai']
+        """
+
+        subject = "New invite request"
+        text_body = json.dumps(InviteRequestSerializer(self).data, indent=2)
+
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=settings.BETA_NOTIFY_EMAIL,
+            tags=["print-nanny-beta-request"],  # Anymail extra in constructor
+        )
+        return message.send()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self._admin_email_notification()
+
+
+class InviteRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InviteRequest
+        fields = "__all__"
+
 
 class User(AbstractUser):
     username = None
@@ -150,13 +180,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
-
-    @property
-    def channel_id(self):
-        """
-        Django channel layer name
-        """
-        return f"user_{self.id}"
 
     def get_absolute_url(self):
         """Get url for user's detail view.
