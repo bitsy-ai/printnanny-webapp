@@ -151,6 +151,13 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+    @property
+    def channel_id(self):
+        """
+        Django channel layer name
+        """
+        return f"user_{self.id}"
+
     def get_absolute_url(self):
         """Get url for user's detail view.
 

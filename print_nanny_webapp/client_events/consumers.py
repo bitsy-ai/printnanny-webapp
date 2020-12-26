@@ -21,10 +21,18 @@ class VideoConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
-        async_to_sync(self.channel_layer.group_add)("video", self.channel_name)
+        async_to_sync(self.channel_layer.group_add)(
+            f"video_{self.user.id}", self.channel_name
+        )
 
     def disconnect(self, close_code):
-        async_to_sync(self.channel_layer.group_discard)("video", self.channel_name)
+        async_to_sync(self.channel_layer.group_discard)(
+            f"video_{self.user.id}", self.channel_name
+        )
+
+    def video_frame(self, message):
+        logging.info("Received video message")
+        self.send(message["data"])
 
 
 class MetricsConsumer(SyncConsumer):
@@ -36,7 +44,6 @@ class PredictEventConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
-        async_to_sync(self.channel_layer.group_add)("predict", self.channel_name)
 
         self.predict_session = PredictSession.objects.create(
             channel_name=self.channel_name, user=self.user
@@ -56,7 +63,8 @@ class PredictEventConsumer(WebsocketConsumer):
             annotated_image = base64.b64decode(data["annotated_image"])
 
             async_to_sync(self.channel_layer.group_send)(
-                "video", {"type": "annotated_image", "data": data["annotated_image"]}
+                f"video_{self.user.id}",
+                {"type": "video.frame", "data": data["annotated_image"]},
             )
 
             # async_to_sync(self.channel_layer.group_send)(
