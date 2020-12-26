@@ -182,3 +182,15 @@ ALLOWED_CIDR_NETS = [
 
 # django-prometheus middleware must be last in middleware stack
 MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
+
+
+# Django channels
+WS_BASE_URL = 'wss://print-nanny.com:8080/ws'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [env("CELERY_BROKER_URL")],
+        },
+    },
+}

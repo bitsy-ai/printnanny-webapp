@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0001_initial'),
+        ("alerts", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alertvideomessage',
-            name='job_status',
-            field=models.CharField(choices=[('Processing', 'Processing'), ('SUCCESS', 'Success'), ('FAILURE', 'Failure'), ('CANCELLED', 'Cancelled')], default='Processing', max_length=32),
+            model_name="alertvideomessage",
+            name="job_status",
+            field=models.CharField(
+                choices=[
+                    ("Processing", "Processing"),
+                    ("SUCCESS", "Success"),
+                    ("FAILURE", "Failure"),
+                    ("CANCELLED", "Cancelled"),
+                ],
+                default="Processing",
+                max_length=32,
+            ),
         ),
     ]

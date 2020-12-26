@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (
     horizontal_layouts_view,
     detached_layouts_view,
-    )
+)
 
 app_name = "layouts"
 urlpatterns = [

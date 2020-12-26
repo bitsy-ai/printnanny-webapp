@@ -1,4 +1,5 @@
 from django.urls import path
+import base64
 
 from print_nanny_webapp.users.views import (
     user_detail_view,

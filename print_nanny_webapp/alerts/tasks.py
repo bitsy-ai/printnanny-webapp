@@ -69,7 +69,7 @@
 
 # FAILURES = {
 #     2: 'adhesion',
-#     3: 'spaghetti',  
+#     3: 'spaghetti',
 # }
 
 # metrics.build_version.info({
@@ -106,7 +106,7 @@
 #     else:
 #         predict_events = PredictEvent.objects.filter(
 #             print_job=print_job_id,
-#         ).order_by('-dt').values('id','predict_data').all()   
+#         ).order_by('-dt').values('id','predict_data').all()
 
 #     if predict_events.count() == 0:
 #         logger.error(f'0 predict_events for print_job {print_job_id}')
@@ -116,7 +116,7 @@
 
 #     # project predict_data JSONField to Series columns
 #     df = predict_events_to_dataframe(predict_events)
-    
+
 
 #     # NUM_DETECTIONS_PER_FRAME = len(df['detection_scores'].iloc[0])
 
@@ -128,7 +128,7 @@
 #     # # explode detection_classes and detection_scores together
 #     # df = df.set_index(['frame_id']).apply(pd.Series.explode).reset_index()
 #     # assert len(df) == NUM_FRAMES * NUM_DETECTIONS_PER_FRAME
- 
+
 #     # # add string labels
 #     # df['label'] = df['detection_classes'].map(LABELS)
 
@@ -150,12 +150,12 @@
 
 #     predict_events = PredictEvent.objects.filter(
 #         id__in=frame_ids,
-#         print_job=4        
+#         print_job=4
 #     ).order_by('dt').all()
 
 #     print_job = predict_events[0].print_job
 
-#     # assert no previous alert messages, or all alert messages are in the "RESUMED" state 
+#     # assert no previous alert messages, or all alert messages are in the "RESUMED" state
 #     last_alert_message = AlertVideoMessage.objects.filter(
 #         print_job=print_job.id,
 #     ).order_by('-created_dt').first()
@@ -171,7 +171,7 @@
 #     buff = io.BytesIO()
 #     imageio.mimwrite(buff, images, fps=20, format='GIF-PIL')
 #     buff.seek(0)
-    
+
 #     filename= f'print_job_{print_job.id}_alert_message_{predict_events[0].dt}_{predict_events[len(predict_events)-1].dt}'
 #     img_file = ImageFile(buff, name=filename)
 #     alert_message = AlertVideoMessage.objects.create(
@@ -180,8 +180,8 @@
 #         video=img_file,
 #         dataframe=df.to_json(orient='records')
 #     )
-    
-    
+
+
 #     merge_data = {
 #         'RATIO': '{:.2%}'.format(ratio),
 #         'GCODE_FILE': print_job.gcode_file.name,
@@ -238,7 +238,7 @@
 # #     # explode detection_classes and detection_scores together
 # #     df = df.set_index(['frame_id']).apply(pd.Series.explode).reset_index()
 # #     assert len(df) == NUM_FRAMES * NUM_DETECTIONS_PER_FRAME
- 
+
 # #     # add string labels
 # #     df['label'] = df['detection_classes'].map(LABELS)
 
@@ -270,13 +270,13 @@
 #             detection_class=label,
 #             alert_type=alert_cls.__name__
 #             ).observe(num_detections)
-    
+
 #     for (frame_id, label), num_detections in confident_df.groupby(['frame_id', 'label']).size().items():
 #         metrics.detections_per_frame.labels(
 #             detection_class=label,
 #             alert_type=alert_cls.__name__
 #             ).observe(num_detections)
- 
+
 #     for (frame_id, label), (_, score) in confident_df.iterrows():
 #         metrics.detections_confidence_per_label.labels(
 #             detection_class=label,
@@ -292,15 +292,15 @@
 #         window = len(x)//8
 #     else:
 #         window = int(fps)
-    
+
 #     # window must be an odd number
 #     if window % 2 == 0:
 #         window += 1
-    
+
 #     # assert polyorder < window
 #     if window <= 3:
 #         return x
-    
+
 #     return signal.savgol_filter(
 #         x,
 #         window,
@@ -329,7 +329,7 @@
 
 # #     png = os.path.join(temp_dir, f'{filename}.png')
 # #     fig.write_image(png)
-    
+
 # #     alert_plot = create_alert_plot(
 # #         filename,
 # #         temp_dir,
@@ -396,7 +396,7 @@
 # #     window = int(fps)
 
 # #     fig.add_trace(go.Scatter(
-# #         x=print_trace['frame_id'], 
+# #         x=print_trace['frame_id'],
 # #         y=savgol_filter(print_trace['detection_scores'],fps),
 # #         fill=None,
 # #         mode='lines',
@@ -405,11 +405,11 @@
 # #     ))
 
 # #     fig.add_trace(go.Scatter(
-# #         x=fail_trace['frame_id'], 
+# #         x=fail_trace['frame_id'],
 # #         y=savgol_filter(fail_trace['detection_scores'], fps),
 # #         fill=None,
 # #         mode='lines',
-# #         name='defects',    
+# #         name='defects',
 # #     ))
 
 # #     fig.update_layout(
@@ -494,7 +494,7 @@
 # #         )
 
 # #         fig.add_vrect(
-# #             x0=y[y<=intercept].index[alert_offset], 
+# #             x0=y[y<=intercept].index[alert_offset],
 # #             x1=y[y < 0].index[-1],
 # #             fillcolor="LightSalmon", opacity=0.5,
 # #             layer="below", line_width=0,
@@ -526,7 +526,7 @@
 # #     return alert_plot
 
 # def create_alert_plot(filename, tmp_dir, function, title, description, alert_id):
-    
+
 #     with open(os.path.join(tmp_dir, filename + '.png'), 'rb') as png_f:
 #         wrapped_png = ImageFile(png_f)
 #         with open(os.path.join(tmp_dir, filename + '.html'), 'rb') as html_f:
@@ -541,7 +541,7 @@
 #             alert_plot.html.save(filename + '.html', wrapped_html)
 #             alert_plot.save()
 #             return alert_plot
-        
+
 # # @shared_task
 # # def create_report_card(df, timelapse_alert_id, temp_dir, fps):
 
@@ -562,9 +562,8 @@
 # #         create_health_rel_plot.si(confident_df, fail_df, timelapse_alert_id, temp_dir, fps)
 # #     ]) | send_timelapse_upload_email_notification.si(timelapse_alert_id, temp_dir)
 
-    
-# #     return workflow()
 
+# #     return workflow()
 
 
 # @shared_task
@@ -638,16 +637,16 @@
 
 # #     reader = imageio.get_reader(file_path)
 # #     metadata = reader.get_meta_data()
-    
+
 # #     fps = metadata['fps']
 
 # #     TimelapseAlert.objects.filter(id=timelapse_alert_id).update(fps=fps, length=metadata['duration'])
 
-# #     CHUNKS = int(fps//2) 
+# #     CHUNKS = int(fps//2)
 # #     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
-# #     grouped = predict_postprocess_frame.chunks( 
+# #     grouped = predict_postprocess_frame.chunks(
 # #         ((i, frame, temp_dir) for i, frame in enumerate(reader))
-# #         , CHUNKS).group() 
+# #         , CHUNKS).group()
 # #     chord1 = chord(grouped, prediction_dicts_to_dataframe.s())
 
 # #     report_card_tasks = group([

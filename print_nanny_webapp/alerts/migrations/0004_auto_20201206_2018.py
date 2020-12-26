@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0003_printjob_progress'),
-        ('alerts', '0003_auto_20201206_1919'),
+        ("remote_control", "0003_printjob_progress"),
+        ("alerts", "0003_auto_20201206_1919"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='progressalert',
+            name="progressalert",
             options={},
         ),
         migrations.AddField(
-            model_name='progressalert',
-            name='progress',
+            model_name="progressalert",
+            name="progress",
             field=models.IntegerField(default=0),
         ),
         migrations.AlterUniqueTogether(
-            name='progressalert',
-            unique_together={('print_job_id', 'progress')},
+            name="progressalert",
+            unique_together={("print_job_id", "progress")},
         ),
     ]
