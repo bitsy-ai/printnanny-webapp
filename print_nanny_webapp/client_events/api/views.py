@@ -24,13 +24,13 @@ from django.apps import apps
 
 from .serializers import (
     OctoPrintEventSerializer,
-    PredictEventFileSerializer,
-    PredictEventSerializer,
+    # ObjectDetectEventFileSerializer,
+    # ObjectDetectEventSerializer,
 )
 from print_nanny_webapp.client_events.models import (
     OctoPrintEvent,
-    PredictEvent,
-    PredictEventFile,
+    # ObjectDetectEvent,
+    # ObjectDetectEventFile,
 )
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
@@ -81,44 +81,44 @@ class OctoPrintEventViewSet(
         instance = serializer.save(user=user, print_job=print_job)
 
 
-@extend_schema(tags=["events"])
-@extend_schema_view(
-    create=extend_schema(
-        responses={201: PredictEventFileSerializer, 400: PredictEventFileSerializer}
-    )
-)
-class PredictEventFileViewSet(
-    CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
-    parser_classes = (MultiPartParser, FormParser)
-    serializer_class = PredictEventFileSerializer
-    queryset = PredictEventFile.objects.all()
-    lookup_field = "id"
+# @extend_schema(tags=["events"])
+# @extend_schema_view(
+#     create=extend_schema(
+#         responses={201: ObjectDetectEventFileSerializer, 400: ObjectDetectEventFileSerializer}
+#     )
+# )
+# class ObjectDetectEventFileViewSet(
+#     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
+# ):
+#     parser_classes = (MultiPartParser, FormParser)
+#     serializer_class = ObjectDetectEventFileSerializer
+#     queryset = ObjectDetectEventFile.objects.all()
+#     lookup_field = "id"
 
 
-@extend_schema(tags=["events"])
-@extend_schema_view(
-    create=extend_schema(responses={201: OpenApiTypes.INT, 400: PredictEventSerializer})
-)
-class PredictEventViewSet(
-    CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
-    # MultiPartParser AND FormParser
-    # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
-    # "You will typically want to use both FormParser and MultiPartParser
-    # together in order to fully support HTML form data."
-    serializer_class = PredictEventSerializer
-    queryset = PredictEvent.objects.all()
-    lookup_field = "id"
+# @extend_schema(tags=["events"])
+# @extend_schema_view(
+#     create=extend_schema(responses={201: OpenApiTypes.INT, 400: ObjectDetectEventSerializer})
+# )
+# class ObjectDetectEventViewSet(
+#     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
+# ):
+#     # MultiPartParser AND FormParser
+#     # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
+#     # "You will typically want to use both FormParser and MultiPartParser
+#     # together in order to fully support HTML form data."
+#     serializer_class = ObjectDetectEventSerializer
+#     queryset = ObjectDetectEvent.objects.all()
+#     lookup_field = "id"
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data["id"], status=status.HTTP_201_CREATED, headers=headers
-        )
+#     def create(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         self.perform_create(serializer)
+#         headers = self.get_success_headers(serializer.data)
+#         return Response(
+#             serializer.data["id"], status=status.HTTP_201_CREATED, headers=headers
+#         )
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)

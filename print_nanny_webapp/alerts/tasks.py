@@ -42,7 +42,7 @@
 # DefectAlert = apps.get_model('alerts', 'DefectAlert')
 # AlertPlot = apps.get_model('alerts', 'AlertPlot')
 
-# PredictEvent = apps.get_model('client_events', 'PredictEvent')
+# ObjectDetectEvent = apps.get_model('client_events', 'ObjectDetectEvent')
 # PrintJob = apps.get_model('remote_control', 'PrintJob')
 
 
@@ -89,22 +89,22 @@
 #     '''
 
 #     if start and stop:
-#         predict_events = PredictEvent.objects.filter(
+#         predict_events = ObjectDetectEvent.objects.filter(
 #             print_job=print_job_id,
 #             dt__range=(start, stop)
 #         ).order_by('-dt').values('id','predict_data').all()
 #     elif start:
-#         predict_events = PredictEvent.objects.filter(
+#         predict_events = ObjectDetectEvent.objects.filter(
 #             print_job=print_job_id,
 #             dt__gte=start
 #         ).order_by('-dt').values('id','predict_data').all()
 #     elif stop:
-#         predict_events = PredictEvent.objects.filter(
+#         predict_events = ObjectDetectEvent.objects.filter(
 #             print_job=print_job_id,
 #             dt__gte=start
 #         ).order_by('-dt').values('id','predict_data').all()
 #     else:
-#         predict_events = PredictEvent.objects.filter(
+#         predict_events = ObjectDetectEvent.objects.filter(
 #             print_job=print_job_id,
 #         ).order_by('-dt').values('id','predict_data').all()
 
@@ -148,7 +148,7 @@
 
 #     frame_ids = [frame_id for frame_id, _ in df.index]
 
-#     predict_events = PredictEvent.objects.filter(
+#     predict_events = ObjectDetectEvent.objects.filter(
 #         id__in=frame_ids,
 #         print_job=4
 #     ).order_by('dt').all()

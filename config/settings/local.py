@@ -79,3 +79,7 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
+
+# pubsub
+
+PUBSUB_CLIENT_EVENT_INGEST = 'client-event-ingest-dev'

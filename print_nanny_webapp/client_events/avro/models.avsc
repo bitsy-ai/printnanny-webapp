@@ -1,0 +1,28 @@
+{
+ "namespace": "client_events.avro",
+ "type": "record",
+ "name": "ObjectDetectEvent",
+ "fields": [
+     {"name": "created_ts", "type": "long", "logicalType": "timestamp-millis"},
+     {"name": "gcs_path",  "type": ["string", "null"]},
+     {"name": "predict_session_id", "type": "int"},
+     {"name": "print_job_id", "type": ["int", "null"]},
+     {"name": "user_id", "type": "int"},
+     {"name": "object_detect_data", "type": 
+        { 
+            "namespace": "client_events.avro",
+            "type": "record",
+            "name": "ObjectDetectData",
+            "fields": [
+                {"name": "num_detections", "type": "int"},
+                {"name": "detection_boxes", "type": "array", "items": {
+                    "type": "array",
+                    "items": "int"
+                }},
+                {"name": "detection_classes", "type": "array", "items": "int"},
+                {"name": "detection_score", "type": "array", "items": "int"}
+            ]
+        }
+    }
+ ]
+}
