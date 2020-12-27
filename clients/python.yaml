@@ -3,7 +3,9 @@ library: asyncio
 packageName: print_nanny_client
 packageVersion: '0.1.4'
 templateDir: /local/clients/templates
-
+infoName: "Leigh Johnson"
+infoEmail: "leigh@bitsy.ai"
+license: "AGPL"
 files:
   api_client.mustache:
     templateType: SupportingFiles
