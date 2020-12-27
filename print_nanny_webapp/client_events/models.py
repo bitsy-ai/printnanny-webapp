@@ -11,27 +11,34 @@ from print_nanny_webapp.remote_control.models import PrintJob
 User = get_user_model()
 
 
-class PredictSession(models.Model):
+class OctoPrintDevice(models.Model):
+
+    class Meta:
+        unique_together = ('user', 'serial')
+
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    closed_dt = models.DateTimeField(db_index=True, auto_now=True)
-    closed = models.BooleanField(default=False)
-    channel_name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
+    private_key = models.FileField(upload_to="uploads/private_key/")
+    public_key = models.FileField(upload_to="uploads/public_key/")
 
-class ObjectDetectEvent(models.Model):
-    '''
-        prev: ObjectDetectEvent
+    model = models.CharField(max_length=255)
+    platform = models.CharField(max_length=255)
+    mac_address = models.CharField(max_length=255)
+    cpu_flags = ArrayField(models.CharField(max_length=255))
 
-    '''
+    hardware = models.CharField(max_length=255) # /cat/cpuinfo HARDWARE
+    revision = models.CharField(max_length=255) # /cat/cpuinfo REVISION
+    serial = models.CharField(max_length=255) # /cat/cpuinfo Serial
+    cores = models.IntegerField()
+    ram = models.IntegerField()
+    
+    python_version = models.CharField(max_length=255)
+    pip_version = models.CharField(max_length=255)
+    virtualenv = models.CharField(max_length=255)
 
-    created_dt = models.DateTimeField(db_index=True, auto_now=True)
-    gcs_path = models.CharField(max_length=255, null=True, db_index=True)
-    predict_session = models.ForeignKey(
-        PredictSession, on_delete=models.CASCADE, db_index=True
-    )
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True, db_index=True)
-
+    octoprint_version = models.CharField(max_length=255)
+    plugin_version = models.CharField(max_length=255)
 
 
 class OctoPrintEvent(models.Model):

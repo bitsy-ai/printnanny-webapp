@@ -1,3 +1,6 @@
+
+from Crypto.PublicKey import RSA
+
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.mixins import (
@@ -9,8 +12,6 @@ from rest_framework.mixins import (
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 
-# from drf_yasg.utils import swagger_auto_schema
-# from drf_yasg import openapi
 from rest_framework.views import APIView
 from rest_framework.parsers import (
     MultiPartParser,
@@ -24,20 +25,14 @@ from django.apps import apps
 
 from .serializers import (
     OctoPrintEventSerializer,
-    # ObjectDetectEventFileSerializer,
-    # ObjectDetectEventSerializer,
+    OctoPrintDeviceSerializer
 )
 from print_nanny_webapp.client_events.models import (
     OctoPrintEvent,
-    # ObjectDetectEvent,
-    # ObjectDetectEventFile,
+    OctoPrintDevice
 )
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
-
-# def get_queryset(self, *args, **kwargs):
-#     return [x.value for x in OctoPrintEvent.EventTypeChoices.__members__.values()]
-
 
 @extend_schema(tags=["events"])
 @extend_schema_view(
@@ -80,45 +75,26 @@ class OctoPrintEventViewSet(
             user = None
         instance = serializer.save(user=user, print_job=print_job)
 
+@extend_schema(tags=["devices"])
+@extend_schema_view(
+    create=extend_schema(responses={201: OctoPrintDeviceSerializer})
+)
+class OctoPrintDeviceViewSet(
+    CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+):
 
-# @extend_schema(tags=["events"])
-# @extend_schema_view(
-#     create=extend_schema(
-#         responses={201: ObjectDetectEventFileSerializer, 400: ObjectDetectEventFileSerializer}
-#     )
-# )
-# class ObjectDetectEventFileViewSet(
-#     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
-# ):
-#     parser_classes = (MultiPartParser, FormParser)
-#     serializer_class = ObjectDetectEventFileSerializer
-#     queryset = ObjectDetectEventFile.objects.all()
-#     lookup_field = "id"
+    serializer_class = OctoPrintDeviceSerializer
+    queryset = OctoPrintDevice.objects.all()
+    lookup_field = "id"
 
+    def perform_create(self, serializer):
 
-# @extend_schema(tags=["events"])
-# @extend_schema_view(
-#     create=extend_schema(responses={201: OpenApiTypes.INT, 400: ObjectDetectEventSerializer})
-# )
-# class ObjectDetectEventViewSet(
-#     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
-# ):
-#     # MultiPartParser AND FormParser
-#     # https://www.django-rest-framework.org/api-guide/parsers/#multipartparser
-#     # "You will typically want to use both FormParser and MultiPartParser
-#     # together in order to fully support HTML form data."
-#     serializer_class = ObjectDetectEventSerializer
-#     queryset = ObjectDetectEvent.objects.all()
-#     lookup_field = "id"
+        key = RSA.generate(2048)
 
-#     def create(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         self.perform_create(serializer)
-#         headers = self.get_success_headers(serializer.data)
-#         return Response(
-#             serializer.data["id"], status=status.HTTP_201_CREATED, headers=headers
-#         )
+        private_key = key.export_key()
+        public_key = key.publickey().export_key()
 
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
+        private_key_content = ContentFile(private_key)
+        public_key_content = ContentFile(public_key)
+
+        serializer.save(user=self.request.user, private_key=private_key_content, public_key=public_key_content)

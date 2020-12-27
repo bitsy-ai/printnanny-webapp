@@ -1,16 +1,11 @@
 from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 
 from print_nanny_webapp.client_events.models import (
     OctoPrintEvent,
-    ObjectDetectEvent,
-    ObjectDetectEventFile,
+    OctoPrintDevice
 )
-
-# @extend_schema_field(OpenApiTypes.OBJECT)  # also takes basic python types
-# class JSONField(serializers.JSONField):
-#     pass
-
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,25 +16,12 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         }
         read_only_fields = ("user",)
 
-
-class ObjectDetectEventFileSerializer(serializers.ModelSerializer):
+class  OctoPrintDeviceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ObjectDetectEventFile
-        fields = [field.name for field in ObjectDetectEventFile._meta.fields] + ["url"]
+        model = OctoPrintDevice
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
         extra_kwargs = {
-            "url": {"view_name": "api:predict-event-file-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"}
         }
 
-
-class ObjectDetectEventSerializer(serializers.ModelSerializer):
-
-    # event_data = JSONField()
-
-    class Meta:
-        model = ObjectDetectEvent
-        fields = [field.name for field in ObjectDetectEvent._meta.fields] + ["url"]
-        extra_kwargs = {
-            "url": {"view_name": "api:predict-event-detail", "lookup_field": "id"}
-        }
-
-        read_only_fields = ("user",)
+        read_only_fields = ("user", "private_key", "public_key")
