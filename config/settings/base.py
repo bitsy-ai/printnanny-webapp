@@ -218,7 +218,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/webapp/media/"
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
@@ -425,3 +425,9 @@ INSTALLED_APPS += [
 ]
 
 APPEND_SLASH = True
+
+# pubsub
+PUBSUB_CLIENT_EVENT_TOPIC = env('PUBSUB_CLIENT_EVENT_TOPIC')
+GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
+
+# django-pb-model (protobuf serializer for django models)

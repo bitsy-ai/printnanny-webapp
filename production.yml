@@ -38,7 +38,6 @@ services:
       dockerfile: ./compose/production/redis/Dockerfile
     container_name: redis
 
-
   # celeryworker:
   #   <<: *django
   #   ports: []

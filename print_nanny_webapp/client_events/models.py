@@ -11,13 +11,6 @@ from print_nanny_webapp.remote_control.models import PrintJob
 User = get_user_model()
 
 
-class PredictEventFile(models.Model):
-
-    annotated_image = models.ImageField(upload_to="uploads/predict_event/%Y/%m/%d/")
-    hash = models.CharField(max_length=255)
-    original_image = models.ImageField(upload_to="uploads/predict_event/%Y/%m/%d/")
-
-
 class PredictSession(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     closed_dt = models.DateTimeField(db_index=True, auto_now=True)
@@ -26,17 +19,19 @@ class PredictSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
 
-class PredictEvent(models.Model):
+class ObjectDetectEvent(models.Model):
+    '''
+        prev: ObjectDetectEvent
 
-    dt = models.DateTimeField(db_index=True, auto_now=True)
-    # model = models.ForeignKey(TFLiteModel)
-    predict_data = models.JSONField()
+    '''
 
+    created_dt = models.DateTimeField(db_index=True, auto_now=True)
+    gcs_path = models.CharField(max_length=255, null=True, db_index=True)
     predict_session = models.ForeignKey(
         PredictSession, on_delete=models.CASCADE, db_index=True
     )
-    files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE, null=True)
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True)
+    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True, db_index=True)
+
 
 
 class OctoPrintEvent(models.Model):
