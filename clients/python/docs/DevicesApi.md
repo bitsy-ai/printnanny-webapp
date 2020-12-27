@@ -1,17 +1,18 @@
-# print_nanny_client.EventsApi
+# print_nanny_client.DevicesApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**octoprint_events_create**](EventsApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
-[**octoprint_events_list**](EventsApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
-[**octoprint_events_retrieve**](EventsApi.md#octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
-[**octoprint_events_tracking_retrieve**](EventsApi.md#octoprint_events_tracking_retrieve) | **GET** /api/octoprint-events/tracking/ | 
+[**octoprint_devices_create**](DevicesApi.md#octoprint_devices_create) | **POST** /api/octoprint-devices/ | 
+[**octoprint_devices_list**](DevicesApi.md#octoprint_devices_list) | **GET** /api/octoprint-devices/ | 
+[**octoprint_devices_partial_update**](DevicesApi.md#octoprint_devices_partial_update) | **PATCH** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_retrieve**](DevicesApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_update**](DevicesApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
 
 
-# **octoprint_events_create**
-> OctoPrintEvent octoprint_events_create(octo_print_event_request)
+# **octoprint_devices_create**
+> OctoPrintDevice octoprint_devices_create(octo_print_device_request)
 
 
 
@@ -49,14 +50,14 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(octo_print_event_request)
+        api_response = api_instance.octoprint_devices_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_create: %s\n" % e)
 ```
 
 * Bearer (Bearer) Authentication (tokenAuth):
@@ -91,25 +92,25 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(octo_print_event_request)
+        api_response = api_instance.octoprint_devices_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_print_event_request** | [**OctoPrintEventRequest**](OctoPrintEventRequest.md)|  | 
+ **octo_print_device_request** | [**OctoPrintDeviceRequest**](OctoPrintDeviceRequest.md)|  | 
 
 ### Return type
 
-[**OctoPrintEvent**](OctoPrintEvent.md)
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -124,12 +125,11 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
-**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_events_list**
-> PaginatedOctoPrintEventList octoprint_events_list(limit=limit, offset=offset)
+# **octoprint_devices_list**
+> PaginatedOctoPrintDeviceList octoprint_devices_list(limit=limit, offset=offset)
 
 
 
@@ -167,15 +167,15 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
+    api_instance = print_nanny_client.DevicesApi(api_client)
     limit = 56 # int | Number of results to return per page. (optional)
 offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = api_instance.octoprint_events_list(limit=limit, offset=offset)
+        api_response = api_instance.octoprint_devices_list(limit=limit, offset=offset)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_list: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_list: %s\n" % e)
 ```
 
 * Bearer (Bearer) Authentication (tokenAuth):
@@ -210,15 +210,15 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
+    api_instance = print_nanny_client.DevicesApi(api_client)
     limit = 56 # int | Number of results to return per page. (optional)
 offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = api_instance.octoprint_events_list(limit=limit, offset=offset)
+        api_response = api_instance.octoprint_devices_list(limit=limit, offset=offset)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_list: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrintEventList**](PaginatedOctoPrintEventList.md)
+[**PaginatedOctoPrintDeviceList**](PaginatedOctoPrintDeviceList.md)
 
 ### Authorization
 
@@ -248,8 +248,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_events_retrieve**
-> OctoPrintEvent octoprint_events_retrieve(id)
+# **octoprint_devices_partial_update**
+> OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
 
 
 
@@ -287,14 +287,15 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print event.
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_events_retrieve(id)
+        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_partial_update: %s\n" % e)
 ```
 
 * Bearer (Bearer) Authentication (tokenAuth):
@@ -329,25 +330,27 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print event.
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_events_retrieve(id)
+        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_partial_update: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this octo print event. | 
+ **id** | **int**| A unique integer value identifying this octo print device. | 
+ **patched_octo_print_device_request** | [**PatchedOctoPrintDeviceRequest**](PatchedOctoPrintDeviceRequest.md)|  | [optional] 
 
 ### Return type
 
-[**OctoPrintEvent**](OctoPrintEvent.md)
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -355,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -365,8 +368,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_events_tracking_retrieve**
-> str octoprint_events_tracking_retrieve()
+# **octoprint_devices_retrieve**
+> OctoPrintDevice octoprint_devices_retrieve(id)
 
 
 
@@ -404,13 +407,14 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+
     try:
-        api_response = api_instance.octoprint_events_tracking_retrieve()
+        api_response = api_instance.octoprint_devices_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_tracking_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_retrieve: %s\n" % e)
 ```
 
 * Bearer (Bearer) Authentication (tokenAuth):
@@ -445,21 +449,25 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+
     try:
-        api_response = api_instance.octoprint_events_tracking_retrieve()
+        api_response = api_instance.octoprint_devices_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventsApi->octoprint_events_tracking_retrieve: %s\n" % e)
+        print("Exception when calling DevicesApi->octoprint_devices_retrieve: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this octo print device. | 
 
 ### Return type
 
-**str**
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -468,6 +476,126 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **octoprint_devices_update**
+> OctoPrintDevice octoprint_devices_update(id, octo_print_device_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
+
+    try:
+        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->octoprint_devices_update: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.DevicesApi(api_client)
+    id = 56 # int | A unique integer value identifying this octo print device.
+octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
+
+    try:
+        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling DevicesApi->octoprint_devices_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this octo print device. | 
+ **octo_print_device_request** | [**OctoPrintDeviceRequest**](OctoPrintDeviceRequest.md)|  | 
+
+### Return type
+
+[**OctoPrintDevice**](OctoPrintDevice.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

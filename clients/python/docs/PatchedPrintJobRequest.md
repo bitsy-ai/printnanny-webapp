@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 **dt** | **datetime** |  | [optional] 
 **printer_profile** | **int** |  | [optional] 
 **name** | **str** |  | [optional] 
-**gcode_file_hash** | **str** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 
 **last_status** | [**LastStatusEnum**](LastStatusEnum.md) |  | [optional] 
 **progress** | **int** |  | [optional] 
