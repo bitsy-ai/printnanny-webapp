@@ -35,7 +35,6 @@ class PatchedPrintJobRequest(object):
         'dt': 'datetime',
         'printer_profile': 'int',
         'name': 'str',
-        'gcode_file_hash': 'str',
         'gcode_file': 'int',
         'last_status': 'LastStatusEnum',
         'progress': 'int'
@@ -45,13 +44,12 @@ class PatchedPrintJobRequest(object):
         'dt': 'dt',
         'printer_profile': 'printer_profile',
         'name': 'name',
-        'gcode_file_hash': 'gcode_file_hash',
         'gcode_file': 'gcode_file',
         'last_status': 'last_status',
         'progress': 'progress'
     }
 
-    def __init__(self, dt=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, progress=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dt=None, printer_profile=None, name=None, gcode_file=None, last_status=None, progress=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintJobRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -60,7 +58,6 @@ class PatchedPrintJobRequest(object):
         self._dt = None
         self._printer_profile = None
         self._name = None
-        self._gcode_file_hash = None
         self._gcode_file = None
         self._last_status = None
         self._progress = None
@@ -72,7 +69,6 @@ class PatchedPrintJobRequest(object):
             self.printer_profile = printer_profile
         if name is not None:
             self.name = name
-        self.gcode_file_hash = gcode_file_hash
         self.gcode_file = gcode_file
         if last_status is not None:
             self.last_status = last_status
@@ -144,30 +140,6 @@ class PatchedPrintJobRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def gcode_file_hash(self):
-        """Gets the gcode_file_hash of this PatchedPrintJobRequest.  # noqa: E501
-
-
-        :return: The gcode_file_hash of this PatchedPrintJobRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._gcode_file_hash
-
-    @gcode_file_hash.setter
-    def gcode_file_hash(self, gcode_file_hash):
-        """Sets the gcode_file_hash of this PatchedPrintJobRequest.
-
-
-        :param gcode_file_hash: The gcode_file_hash of this PatchedPrintJobRequest.  # noqa: E501
-        :type gcode_file_hash: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                gcode_file_hash is not None and len(gcode_file_hash) > 255):
-            raise ValueError("Invalid value for `gcode_file_hash`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._gcode_file_hash = gcode_file_hash
 
     @property
     def gcode_file(self):

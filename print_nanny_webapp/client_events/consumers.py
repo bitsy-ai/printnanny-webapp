@@ -16,12 +16,8 @@ from print_nanny_webapp.utils.prometheus_metrics import (
 
 logger = logging.getLogger(__name__)
 
-PredictSession = apps.get_model("client_events", "PredictSession")
 PrintJob = apps.get_model("remote_control", "PrintJob")
 User = get_user_model()
-
-publisher = pubsub_v1.PublisherClient()
-pubsub_topic_path = publisher.topic_path(settings.GCP_PROJECT_ID, settings.PUBSUB_CLIENT_EVENT_TOPIC)
 
 
 class VideoConsumer(WebsocketConsumer):

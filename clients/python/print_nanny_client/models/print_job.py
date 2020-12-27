@@ -37,7 +37,6 @@ class PrintJob(object):
         'user': 'int',
         'printer_profile': 'int',
         'name': 'str',
-        'gcode_file_hash': 'str',
         'gcode_file': 'int',
         'last_status': 'LastStatusEnum',
         'last_seen': 'datetime',
@@ -51,7 +50,6 @@ class PrintJob(object):
         'user': 'user',
         'printer_profile': 'printer_profile',
         'name': 'name',
-        'gcode_file_hash': 'gcode_file_hash',
         'gcode_file': 'gcode_file',
         'last_status': 'last_status',
         'last_seen': 'last_seen',
@@ -59,7 +57,7 @@ class PrintJob(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, dt=None, user=None, printer_profile=None, name=None, gcode_file_hash=None, gcode_file=None, last_status=None, last_seen=None, progress=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, dt=None, user=None, printer_profile=None, name=None, gcode_file=None, last_status=None, last_seen=None, progress=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintJob - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -70,7 +68,6 @@ class PrintJob(object):
         self._user = None
         self._printer_profile = None
         self._name = None
-        self._gcode_file_hash = None
         self._gcode_file = None
         self._last_status = None
         self._last_seen = None
@@ -85,7 +82,6 @@ class PrintJob(object):
             self.user = user
         self.printer_profile = printer_profile
         self.name = name
-        self.gcode_file_hash = gcode_file_hash
         self.gcode_file = gcode_file
         if last_status is not None:
             self.last_status = last_status
@@ -209,30 +205,6 @@ class PrintJob(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def gcode_file_hash(self):
-        """Gets the gcode_file_hash of this PrintJob.  # noqa: E501
-
-
-        :return: The gcode_file_hash of this PrintJob.  # noqa: E501
-        :rtype: str
-        """
-        return self._gcode_file_hash
-
-    @gcode_file_hash.setter
-    def gcode_file_hash(self, gcode_file_hash):
-        """Sets the gcode_file_hash of this PrintJob.
-
-
-        :param gcode_file_hash: The gcode_file_hash of this PrintJob.  # noqa: E501
-        :type gcode_file_hash: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                gcode_file_hash is not None and len(gcode_file_hash) > 255):
-            raise ValueError("Invalid value for `gcode_file_hash`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._gcode_file_hash = gcode_file_hash
 
     @property
     def gcode_file(self):

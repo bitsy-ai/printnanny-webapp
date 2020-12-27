@@ -40,7 +40,6 @@ class TestPrintJob(unittest.TestCase):
                 user = 56, 
                 printer_profile = 56, 
                 name = '', 
-                gcode_file_hash = '', 
                 gcode_file = 56, 
                 last_status = 'STARTED', 
                 last_seen = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

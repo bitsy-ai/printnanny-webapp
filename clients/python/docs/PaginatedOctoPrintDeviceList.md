@@ -1,11 +1,12 @@
-# PredictEventFileRequest
+# PaginatedOctoPrintDeviceList
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotated_image** | **file** |  | 
-**hash** | **str** |  | 
-**original_image** | **file** |  | 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[OctoPrintDevice]**](OctoPrintDevice.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
