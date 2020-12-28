@@ -1,5 +1,6 @@
 
 from Crypto.PublicKey import RSA
+import logging
 
 from rest_framework import status
 from rest_framework.decorators import action
@@ -22,6 +23,8 @@ from rest_framework.parsers import (
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
 from django.apps import apps
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 from .serializers import (
     OctoPrintEventSerializer,
@@ -34,6 +37,7 @@ from print_nanny_webapp.client_events.models import (
 from google.cloud import iot_v1 as cloudiot_v1
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
+logger = logging.getLogger(__name__)
 
 
 @extend_schema(tags=["events"])
@@ -79,7 +83,7 @@ class OctoPrintEventViewSet(
 
 @extend_schema(tags=["devices"])
 @extend_schema_view(
-    create=extend_schema(responses={201: OctoPrintDeviceSerializer})
+    create=extend_schema(responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer})
 )
 class OctoPrintDeviceViewSet(
     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
@@ -95,32 +99,44 @@ class OctoPrintDeviceViewSet(
 
         private_key = key.export_key()
         public_key = key.publickey().export_key()
+        
+        # https://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
 
+        key = base64.b64decode(self.public_key.strip().split()[1].encode('ascii'))
+        fp_plain = hashlib.md5(key).hexdigest()
+        fingerprint = ':'.join(a+b for a,b in zip(fp_plain[::2], fp_plain[1::2]))
+        
         private_key_content = ContentFile(private_key)
         public_key_content = ContentFile(public_key)
         
         client = cloudiot_v1.DeviceManagerClient()
 
-        parent = client.registry_path(project_id, cloud_region, registry_id)
+
+        parent = client.registry_path(
+            settings.GCP_PROJECT_ID, 
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION, 
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY
+        )
 
         device = serializer.save(
             user=self.request.user, 
             private_key=private_key_content, 
-            public_key=public_key_content
+            public_key=public_key_content,
+            fingerprint=fingerprint
         )
+
         device_template = {
-            "id": device.id,
+            "id": device.fingerprint,
             "credentials": [
                 {
                     "public_key": {
-                        "format": iot_v1.PublicKeyFormat.RSA_X509_PEM,
-                        "key": public_key,
+                        "format": cloudiot_v1.PublicKeyFormat.RSA_X509_PEM,
+                        "key": public_key.encode(''),
                     }
                 }
             ],
         }
 
-        cloudiot_device = client.create_device(request={"parent": parent, "device": device_template})
+        cloudiot_device = client.create_device(parient, device_template)
         device.cloudiot_device = cloudiot_device
         device.save()
-

@@ -25,16 +25,11 @@ class OctoPrintDevice(models.Model):
 
     private_key = models.FileField(upload_to="uploads/private_key/")
     public_key = models.FileField(upload_to="uploads/public_key/")
+    fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField(default={})
     
-    @property 
-    def fingerprint(self):
-        '''
-            https://stackoverflow.com/questions/6682815/deriving-an-ssh-fingerprint-from-a-public-key-in-python
-        '''
-        key = base64.b64decode(self.public_key.strip().split()[1].encode('ascii'))
-        fp_plain = hashlib.md5(key).hexdigest()
-        return ':'.join(a+b for a,b in zip(fp_plain[::2], fp_plain[1::2]))
+
+        
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
