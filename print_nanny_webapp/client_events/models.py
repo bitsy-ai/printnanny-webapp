@@ -7,7 +7,7 @@ from django.apps import apps
 from django.utils import timezone
 
 from urllib.parse import urljoin
-from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
 from print_nanny_webapp.remote_control.models import PrintJob
 
@@ -25,6 +25,7 @@ class OctoPrintDevice(models.Model):
 
     private_key = models.FileField(upload_to="uploads/private_key/")
     public_key = models.FileField(upload_to="uploads/public_key/")
+    cloudiot_device = JSONField(default={})
     
     @property 
     def fingerprint(self):

@@ -427,7 +427,8 @@ INSTALLED_APPS += [
 APPEND_SLASH = True
 
 # pubsub
-PUBSUB_CLIENT_EVENT_TOPIC = env('PUBSUB_CLIENT_EVENT_TOPIC')
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
+GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = 'us-central1'
+GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-dev')
 
 # django-pb-model (protobuf serializer for django models)

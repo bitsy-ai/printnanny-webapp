@@ -31,8 +31,10 @@ from print_nanny_webapp.client_events.models import (
     OctoPrintEvent,
     OctoPrintDevice
 )
+from google.cloud import iot_v1 as cloudiot_v1
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
+
 
 @extend_schema(tags=["events"])
 @extend_schema_view(
@@ -96,5 +98,29 @@ class OctoPrintDeviceViewSet(
 
         private_key_content = ContentFile(private_key)
         public_key_content = ContentFile(public_key)
+        
+        client = cloudiot_v1.DeviceManagerClient()
 
-        serializer.save(user=self.request.user, private_key=private_key_content, public_key=public_key_content)
+        parent = client.registry_path(project_id, cloud_region, registry_id)
+
+        device = serializer.save(
+            user=self.request.user, 
+            private_key=private_key_content, 
+            public_key=public_key_content
+        )
+        device_template = {
+            "id": device.id,
+            "credentials": [
+                {
+                    "public_key": {
+                        "format": iot_v1.PublicKeyFormat.RSA_X509_PEM,
+                        "key": public_key,
+                    }
+                }
+            ],
+        }
+
+        cloudiot_device = client.create_device(request={"parent": parent, "device": device_template})
+        device.cloudiot_device = cloudiot_device
+        device.save()
+
