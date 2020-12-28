@@ -50,6 +50,7 @@ class OctoPrintDevice(models.Model):
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
+    print_nanny_client_version = models.CharField(max_length=255)
 
 
 class OctoPrintEvent(models.Model):
