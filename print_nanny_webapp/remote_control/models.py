@@ -22,10 +22,10 @@ class PrinterProfile(models.Model):
     class Meta:
         unique_together = (
             "user",
-            "name",
+            "octoprint_id",
         )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, index=True)
 
     axes_e_inverted = models.BooleanField()
     axes_e_speed = models.IntegerField()
@@ -48,6 +48,7 @@ class PrinterProfile(models.Model):
 
     model = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
+    octoprint_id = models.CharField(max_length=255, index=True)
 
     volume_custom_box = models.BooleanField()
     volume_depth = models.FloatField()
