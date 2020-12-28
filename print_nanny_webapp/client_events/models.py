@@ -20,6 +20,7 @@ class OctoPrintDevice(models.Model):
         unique_together = ('user', 'serial')
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
     private_key = models.FileField(upload_to="uploads/private_key/")
