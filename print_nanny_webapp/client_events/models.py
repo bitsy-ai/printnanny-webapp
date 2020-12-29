@@ -74,6 +74,8 @@ class OctoPrintDeviceManager(models.Manager):
                 logger.error(p.stderr)
 
             fingerprint = p.stdout
+            fingerprint = fingerprint.split('=')
+            fingerprint = fingerprint.strip()
 
             client = cloudiot_v1.DeviceManagerClient()
 
