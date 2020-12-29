@@ -67,7 +67,9 @@ def create_progress_video_task(print_job_id, user_id, progress, fps=10):
         print_job=print_job_id, user=user_id, progress=progress
     )
 
-    predict_events = ObjectDetectEvent.objects.filter(print_job=print_job_id).order_by("dt")
+    predict_events = ObjectDetectEvent.objects.filter(print_job=print_job_id).order_by(
+        "dt"
+    )
 
     temp_dir = tempfile.mkdtemp(dir=settings.MEDIA_ROOT)
 

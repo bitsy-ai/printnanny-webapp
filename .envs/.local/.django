@@ -31,4 +31,3 @@ DJANGO_GCP_STORAGE_BUCKET_NAME="print-nanny-dev"
 
 GCP_PROJECT_ID="print-nanny"
 GOOGLE_APPLICATION_CREDENTIALS=/app/.envs/.production/print-nanny-dataflow-owner.json
-PUBSUB_CLIENT_EVENT_TOPIC="client-event-ingest-prod"

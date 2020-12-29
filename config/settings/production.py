@@ -68,7 +68,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/webapp/media/"
 
 FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
@@ -199,6 +199,3 @@ BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
-
-# pubsub
-PUBSUB_CLIENT_EVENT_INGEST = 'client-event-ingest-prod'

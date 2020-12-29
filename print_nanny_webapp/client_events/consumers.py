@@ -10,7 +10,7 @@ from asgiref.sync import async_to_sync
 
 from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_publisher_connected_metric,
-    annotated_ws_consumer_connected_metric
+    annotated_ws_consumer_connected_metric,
 )
 
 
@@ -51,12 +51,10 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
 
         annotated_image_ws_connected_metric.inc()
 
-
     def disconnect(self, close_code):
 
         super().disconnect(close_code)
         annotated_image_ws_connected_metric.dec()
-
 
     def receive(self, text_data):
         data = json.loads(text_data)
@@ -85,7 +83,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
             # })
 
             # future = publisher.publish(
-            #     topic_path, 
+            #     topic_path,
             #     filelike.read(),
             #     print_job_id=print_job_id,
             #     user_id=self.scope.user.id,

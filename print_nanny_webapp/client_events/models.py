@@ -1,5 +1,8 @@
 import base64
 import hashlib
+import logging
+import subprocess
+import tempfile
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -7,17 +10,126 @@ from django.apps import apps
 from django.utils import timezone
 
 from urllib.parse import urljoin
+from google.cloud import iot_v1 as cloudiot_v1
+from google.protobuf.json_format import MessageToDict
+
+from django.conf import settings
+from django.core.files.base import ContentFile
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
 from print_nanny_webapp.remote_control.models import PrintJob
 
 User = get_user_model()
+logger = logging.getLogger(__name__)
+
+
+class OctoPrintDeviceManager(models.Manager):
+    def create(self, **kwargs):
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_private_key_filename = f"{tmp}/rsa_private.pem"
+            tmp_public_key_filename = f"{tmp}/rsa_public.pem"
+            p = subprocess.run(
+                [
+                    "openssl",
+                    "genpkey",
+                    "-algorithm",
+                    "RSA",
+                    "-out",
+                    tmp_private_key_filename,
+                    "-pkeyopt",
+                    "rsa_keygen_bits:2048",
+                ]
+            )
+            logger.debug(p.stdout)
+            if p.stderr:
+                logger.error(p.stderr)
+
+            p = subprocess.run(
+                [
+                    "openssl",
+                    "rsa",
+                    "-in",
+                    tmp_private_key_filename,
+                    "-pubout",
+                    "-out",
+                    tmp_public_key_filename,
+                ]
+            )
+            logger.debug(p.stdout)
+            if p.stderr:
+                logger.error(p.stderr)
+
+            p = subprocess.run(
+                [
+                    "openssl",
+                    "sha3-512",
+                    "-c",
+                    tmp_public_key_filename,
+                ],
+                capture_output=True,
+            )
+            logger.debug(p.stdout)
+            if p.stderr:
+                logger.error(p.stderr)
+
+            fingerprint = p.stdout
+
+            client = cloudiot_v1.DeviceManagerClient()
+
+            with open(tmp_public_key_filename) as pub_f:
+                public_key_content = pub_f.read()
+                public_key_file = ContentFile(public_key_content.encode())
+
+            with open(tmp_public_key_filename) as priv_f:
+                private_key_content = priv_f.read()
+                private_key_file = ContentFile(private_key_content.encode())
+
+            parent = client.registry_path(
+                settings.GCP_PROJECT_ID,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            )
+            serial = kwargs.get("serial")
+            device_template = {
+                "id": f"serial-{serial}",
+                "credentials": [
+                    {
+                        "public_key": {
+                            "format": cloudiot_v1.PublicKeyFormat.RSA_PEM,
+                            "key": public_key_content,
+                        }
+                    }
+                ],
+            }
+
+            cloudiot_device = client.create_device(
+                parent=parent, device=device_template
+            )
+
+            cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
+            logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
+
+            # @todo why aren't these fields uploading automagically?
+            device = super().create(
+                private_key=private_key_file,
+                public_key=public_key_file,
+                fingerprint=fingerprint,
+                cloudiot_device=cloudiot_device_dict,
+                cloudiot_device_num_id=cloudiot_device_dict.get("numId"),
+                **kwargs,
+            )
+            device.private_key.save(f"{serial}_private.pem", private_key_file)
+            device.public_key.save(f"{serial}_public.pem", public_key_file)
+            device.save()
+            return device
 
 
 class OctoPrintDevice(models.Model):
+    objects = OctoPrintDeviceManager()
 
     class Meta:
-        unique_together = ('user', 'serial')
+        unique_together = ("user", "serial")
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
@@ -26,21 +138,19 @@ class OctoPrintDevice(models.Model):
     private_key = models.FileField(upload_to="uploads/private_key/")
     public_key = models.FileField(upload_to="uploads/public_key/")
     fingerprint = models.CharField(max_length=255)
-    cloudiot_device = JSONField(default={})
-    
-
-        
+    cloudiot_device = JSONField()
+    cloudiot_device_num_id = models.BigIntegerField()
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
     cpu_flags = ArrayField(models.CharField(max_length=255))
 
-    hardware = models.CharField(max_length=255) # /cat/cpuinfo HARDWARE
-    revision = models.CharField(max_length=255) # /cat/cpuinfo REVISION
-    serial = models.CharField(max_length=255) # /cat/cpuinfo Serial
+    hardware = models.CharField(max_length=255)  # /cat/cpuinfo HARDWARE
+    revision = models.CharField(max_length=255)  # /cat/cpuinfo REVISION
+    serial = models.CharField(max_length=255)  # /cat/cpuinfo Serial
     cores = models.IntegerField()
     ram = models.IntegerField()
-    
+
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
