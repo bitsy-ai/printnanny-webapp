@@ -19,7 +19,7 @@ class UserSettingsForm(forms.ModelForm):
 class InviteRequestForm(forms.ModelForm):
     opt_in = forms.BooleanField(
         required=True,
-        label="I agree to receive email updates about Print Nanny development, patch notes, and upcoming features."
+        label="I agree to receive email updates about Print Nanny development, patch notes, and upcoming features.",
     )
     worst = forms.CharField(
         label="If you could wave a magic wand and change ONE thing about 3D printing, what would that be?",

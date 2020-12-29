@@ -211,6 +211,7 @@ TEMPLATES = [
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa F405
 GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+GS_FILE_OVERWRITE = True
 # GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
