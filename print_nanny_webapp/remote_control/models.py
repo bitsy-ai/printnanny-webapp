@@ -1,14 +1,25 @@
+import base64
+import hashlib
+import logging
+import subprocess
+import tempfile
+
 from django.contrib.auth import get_user_model
 
 from django.apps import apps
 from django.db import models
 from django.utils import timezone
 from urllib.parse import urljoin
+from django.core.files.base import ContentFile
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
+from google.cloud import iot_v1 as cloudiot_v1
+from google.protobuf.json_format import MessageToDict
 
 User = get_user_model()
 
+logger = logging.getLogger(__name__)
 
 class OctoPrintDeviceManager(models.Manager):
     def create(self, **kwargs):

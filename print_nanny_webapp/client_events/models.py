@@ -10,8 +10,6 @@ from django.apps import apps
 from django.utils import timezone
 
 from urllib.parse import urljoin
-from google.cloud import iot_v1 as cloudiot_v1
-from google.protobuf.json_format import MessageToDict
 
 from django.apps import apps
 from django.conf import settings

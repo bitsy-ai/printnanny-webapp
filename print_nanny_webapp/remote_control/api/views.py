@@ -33,6 +33,7 @@ from print_nanny_webapp.remote_control.models import (
     OctoPrintDevice,
 )
 
+import google.api_core.exceptions
 
 from print_nanny_webapp.utils import prometheus_metrics
 

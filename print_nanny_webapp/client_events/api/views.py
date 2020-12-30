@@ -22,8 +22,6 @@ from .serializers import OctoPrintEventSerializer
 import print_nanny_webapp.client_events.api.exceptions
 from print_nanny_webapp.client_events.models import OctoPrintEvent
 
-import google.api_core.exceptions
-
 PrintJob = apps.get_model("remote_control", "PrintJob")
 logger = logging.getLogger(__name__)
 
