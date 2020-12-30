@@ -8,18 +8,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('remote_control', '0004_remove_printjob_gcode_file_hash'),
+        ("remote_control", "0004_remove_printjob_gcode_file_hash"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printerprofile',
-            name='octoprint_id',
+            model_name="printerprofile",
+            name="octoprint_id",
             field=models.CharField(db_index=True, default=0, max_length=255),
             preserve_default=False,
         ),
         migrations.AlterUniqueTogether(
-            name='printerprofile',
-            unique_together={('user', 'octoprint_id')},
+            name="printerprofile",
+            unique_together={("user", "octoprint_id")},
         ),
     ]

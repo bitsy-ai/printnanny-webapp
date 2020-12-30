@@ -8,8 +8,6 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone, dateformat
 from polymorphic.models import PolymorphicModel
 
-from print_nanny_webapp.remote_control.models import PrintJob
-
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
@@ -76,7 +74,9 @@ class AlertVideoMessage(PolymorphicModel):
 
 
 class DefectAlert(AlertVideoMessage):
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
+    print_job = models.ForeignKey(
+        "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
+    )
 
     class ActionChoices(models.TextChoices):
         PENDING = "PENDING", "Pending User Action"
@@ -96,7 +96,9 @@ class ProgressAlert(AlertVideoMessage):
     class Meta:
         unique_together = ("print_job_id", "progress")
 
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, db_index=True)
+    print_job = models.ForeignKey(
+        "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
+    )
     progress = models.IntegerField(default=0)
 
     tags = ArrayField(

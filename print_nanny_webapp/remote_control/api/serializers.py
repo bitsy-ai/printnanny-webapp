@@ -5,7 +5,26 @@ from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     PrintJob,
     PrinterProfile,
+    OctoPrintDevice,
 )
+
+
+class OctoPrintDeviceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OctoPrintDevice
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
+        extra_kwargs = {
+            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"}
+        }
+
+        read_only_fields = (
+            "user",
+            "private_key",
+            "public_key",
+            "fingerprint",
+            "cloudiot_device_num_id",
+            "cloudiot_device",
+        )
 
 
 class GcodeFileSerializer(serializers.ModelSerializer):

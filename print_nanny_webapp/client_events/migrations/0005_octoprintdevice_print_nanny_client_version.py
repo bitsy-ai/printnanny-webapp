@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0004_remove_octoprintdevice_mac_address'),
+        ("client_events", "0004_remove_octoprintdevice_mac_address"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='print_nanny_client_version',
-            field=models.CharField(default='v0.1.6', max_length=255),
+            model_name="octoprintdevice",
+            name="print_nanny_client_version",
+            field=models.CharField(default="v0.1.6", max_length=255),
             preserve_default=False,
         ),
     ]

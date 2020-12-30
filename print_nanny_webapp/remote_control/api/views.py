@@ -23,9 +23,16 @@ from .serializers import (
     PrinterProfileSerializer,
     PrintJobSerializer,
     GcodeFileSerializer,
+    OctoPrintDeviceSerializer,
 )
 
-from print_nanny_webapp.remote_control.models import PrinterProfile, PrintJob, GcodeFile
+from print_nanny_webapp.remote_control.models import (
+    PrinterProfile,
+    PrintJob,
+    GcodeFile,
+    OctoPrintDevice,
+)
+
 
 from print_nanny_webapp.utils import prometheus_metrics
 
@@ -197,3 +204,37 @@ class GcodeFileViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+@extend_schema(tags=["remote_control"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer}
+    )
+)
+class OctoPrintDeviceViewSet(
+    CreateModelMixin,
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+
+    serializer_class = OctoPrintDeviceSerializer
+    queryset = OctoPrintDevice.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        try:
+            serializer.save(user=self.request.user)
+        # a device with this serial already exists
+        except google.api_core.exceptions.AlreadyExists as e:
+            exception = (
+                print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
+                    user=self.request.user.id,
+                    serial=self.request.data["serial"],
+                    parent_exception=e,
+                )
+            )
+            logger.error(f"{str(exception)} {str(exception.parent_exception)}")
+            raise exception

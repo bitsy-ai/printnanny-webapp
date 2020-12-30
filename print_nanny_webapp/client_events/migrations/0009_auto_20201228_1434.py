@@ -7,19 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0008_octoprintdevice_fingerprint'),
+        ("client_events", "0008_octoprintdevice_fingerprint"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='cloudiot_device_num_id',
+            model_name="octoprintdevice",
+            name="cloudiot_device_num_id",
             field=models.BigIntegerField(default=1),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='cloudiot_device',
+            model_name="octoprintdevice",
+            name="cloudiot_device",
             field=django.contrib.postgres.fields.jsonb.JSONField(),
         ),
     ]

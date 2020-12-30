@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0006_octoprintdevice_name'),
+        ("client_events", "0006_octoprintdevice_name"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='cloudiot_device',
+            model_name="octoprintdevice",
+            name="cloudiot_device",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
     ]

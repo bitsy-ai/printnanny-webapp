@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from print_nanny_webapp.client_events.models import OctoPrintEvent, OctoPrintDevice
+from print_nanny_webapp.client_events.models import OctoPrintEvent
 
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
@@ -13,21 +13,3 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:octoprint-event-detail", "lookup_field": "id"}
         }
         read_only_fields = ("user",)
-
-
-class OctoPrintDeviceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
-        extra_kwargs = {
-            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"}
-        }
-
-        read_only_fields = (
-            "user",
-            "private_key",
-            "public_key",
-            "fingerprint",
-            "cloudiot_device_num_id",
-            "cloudiot_device",
-        )
