@@ -25,6 +25,7 @@ data:
   POSTGRES_USER: "webapp"
   POSTGRES_PASSWORD: "^Zu42V2GR7m5dBv"
   DATABASE_URL: postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod
+  PUBSUB_CLIENT_EVENT_TOPIC: "client-event-ingest-prod"
 ---
 kind: ConfigMap
 apiVersion: v1

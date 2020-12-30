@@ -16,6 +16,7 @@ RUN apt-get update \
   # postgres client (dbshell)
   && apt-get install -y postgresql \
   # orca https://github.com/plotly/orca
+  && apt-get install -y openssh-server \
   && apt-get -y install wget xvfb xauth poppler-utils \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \

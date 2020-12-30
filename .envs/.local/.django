@@ -29,4 +29,5 @@ MAILGUN_API_URL=https://api.mailgun.net/v3
 DJANGO_DEFAULT_FROM_EMAIL="Print Nanny <hey@print-nanny.com>"
 DJANGO_GCP_STORAGE_BUCKET_NAME="print-nanny-dev"
 
-GOOGLE_APPLICATION_CREDENTIALS=/app/.envs/.production/print-nanny-storage-dev-ca2710cb0a1c.json
+GCP_PROJECT_ID="print-nanny"
+GOOGLE_APPLICATION_CREDENTIALS=/app/.envs/.production/print-nanny-dataflow-owner.json

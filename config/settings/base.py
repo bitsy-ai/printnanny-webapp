@@ -211,6 +211,7 @@ TEMPLATES = [
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa F405
 GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+GS_FILE_OVERWRITE = True
 # GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
@@ -218,7 +219,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/webapp/media/"
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
@@ -425,3 +426,10 @@ INSTALLED_APPS += [
 ]
 
 APPEND_SLASH = True
+
+# pubsub
+GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
+GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = 'us-central1'
+GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-dev')
+
+# django-pb-model (protobuf serializer for django models)

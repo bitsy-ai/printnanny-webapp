@@ -1,42 +1,24 @@
+import base64
+import hashlib
+import logging
+import subprocess
+import tempfile
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 from django.utils import timezone
 
 from urllib.parse import urljoin
-from django.contrib.postgres.fields import ArrayField
+
+from django.apps import apps
+from django.conf import settings
+from django.core.files.base import ContentFile
+from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
-from print_nanny_webapp.remote_control.models import PrintJob
 
 User = get_user_model()
-
-
-class PredictEventFile(models.Model):
-
-    annotated_image = models.ImageField(upload_to="uploads/predict_event/%Y/%m/%d/")
-    hash = models.CharField(max_length=255)
-    original_image = models.ImageField(upload_to="uploads/predict_event/%Y/%m/%d/")
-
-
-class PredictSession(models.Model):
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    closed_dt = models.DateTimeField(db_index=True, auto_now=True)
-    closed = models.BooleanField(default=False)
-    channel_name = models.CharField(max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
-
-class PredictEvent(models.Model):
-
-    dt = models.DateTimeField(db_index=True, auto_now=True)
-    # model = models.ForeignKey(TFLiteModel)
-    predict_data = models.JSONField()
-
-    predict_session = models.ForeignKey(
-        PredictSession, on_delete=models.CASCADE, db_index=True
-    )
-    files = models.ForeignKey(PredictEventFile, on_delete=models.CASCADE, null=True)
-    print_job = models.ForeignKey(PrintJob, on_delete=models.CASCADE, null=True)
+logger = logging.getLogger(__name__)
 
 
 class OctoPrintEvent(models.Model):
@@ -118,5 +100,5 @@ class OctoPrintEvent(models.Model):
     plugin_version = models.CharField(max_length=30)
     octoprint_version = models.CharField(max_length=30)
     print_job = models.ForeignKey(
-        PrintJob, null=True, on_delete=models.CASCADE, db_index=True
+        "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
     )

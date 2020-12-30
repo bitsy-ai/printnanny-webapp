@@ -15,6 +15,8 @@ RUN apt-get update \
   && apt-get install -y gettext \
   && apt-get install -y postgresql \
   && apt-get -y install wget xvfb xauth poppler-utils \
+  # required for ssh-keygen and signing
+  && apt-get install -y openssh-server \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*

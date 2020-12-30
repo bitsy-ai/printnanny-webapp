@@ -1,0 +1,36 @@
+{
+ "namespace": "com.octoprint_nanny.client_events.avro",
+ "type": "record",
+ "name": "ObjectDetectEvent",
+ "fields": [
+     {"name": "created_ts", "type": "long", "logicalType": "timestamp-millis"},
+     {"name": "gcs_path",  "type": ["string", "null"]},
+     {"name": "predict_session_id", "type": "int"},
+     {"name": "print_job_id", "type": ["int", "null"]},
+     {"name": "user_id", "type": "int"},
+     {"name": "object_detect_data", "type": 
+        { 
+            "namespace": "com.octoprint_nanny.client_events.avro",
+            "type": "record",
+            "name": "ObjectDetectData",
+            "fields": [
+                {"name": "num_detections", "type": "int"},
+                {"name": "detection_boxes",
+                 "type": {
+                     "name": "box_array",
+                     "type": "record",
+                     "fields": [{
+                         "name": "coordinates",
+                         "type": {"type": "array", "items": "float"}
+                     }]
+                 }
+                },
+                {"name": "detection_classes", "type": {"type": "array", "items": "int"}},
+                {"name": "detection_score", "type": {"type": "array", "items": "float"}}
+            ]
+        }
+    },
+    {"name": "original_image", "type": "bytes"},
+    {"name": "annotated_image", "type": "bytes"}
+ ]
+}
