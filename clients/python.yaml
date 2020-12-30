@@ -10,4 +10,7 @@ files:
   api_client.mustache:
     templateType: SupportingFiles
     destinationFilename: print_nanny_client/api_client.py
+  requirements.mustache:
+    templateType: SupportingFiles
+    destinationFilename: requirements.txt
 
