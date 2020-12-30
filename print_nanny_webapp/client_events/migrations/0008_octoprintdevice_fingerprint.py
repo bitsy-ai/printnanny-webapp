@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0007_octoprintdevice_cloudiot_device'),
+        ("client_events", "0007_octoprintdevice_cloudiot_device"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='fingerprint',
+            model_name="octoprintdevice",
+            name="fingerprint",
             field=models.CharField(default=1, max_length=255),
             preserve_default=False,
         ),

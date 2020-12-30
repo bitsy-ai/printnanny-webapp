@@ -18,9 +18,9 @@ from drf_spectacular.types import OpenApiTypes
 from django.apps import apps
 from django.conf import settings
 
-from .serializers import OctoPrintEventSerializer, OctoPrintDeviceSerializer
+from .serializers import OctoPrintEventSerializer
 import print_nanny_webapp.client_events.api.exceptions
-from print_nanny_webapp.client_events.models import OctoPrintEvent, OctoPrintDevice
+from print_nanny_webapp.client_events.models import OctoPrintEvent
 
 import google.api_core.exceptions
 
@@ -68,37 +68,3 @@ class OctoPrintEventViewSet(
         else:
             user = None
         instance = serializer.save(user=user, print_job=print_job)
-
-
-@extend_schema(tags=["devices"])
-@extend_schema_view(
-    create=extend_schema(
-        responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer}
-    )
-)
-class OctoPrintDeviceViewSet(
-    CreateModelMixin,
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
-
-    serializer_class = OctoPrintDeviceSerializer
-    queryset = OctoPrintDevice.objects.all()
-    lookup_field = "id"
-
-    def perform_create(self, serializer):
-        try:
-            serializer.save(user=self.request.user)
-        # a device with this serial already exists
-        except google.api_core.exceptions.AlreadyExists as e:
-            exception = (
-                print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
-                    user=self.request.user.id,
-                    serial=self.request.data["serial"],
-                    parent_exception=e,
-                )
-            )
-            logger.error(f"{str(exception)} {str(exception.parent_exception)}")
-            raise exception

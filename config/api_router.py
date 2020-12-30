@@ -5,13 +5,13 @@ from django.urls import include, path, re_path
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet, 
-    OctoPrintDeviceViewSet
 )
 
 from print_nanny_webapp.remote_control.api.views import (
     GcodeFileViewSet, 
     PrinterProfileViewSet, 
     PrintJobViewSet,
+    OctoPrintDeviceViewSet
 )
 
 # from print_nanny_webapp.alerts.api.views import (
