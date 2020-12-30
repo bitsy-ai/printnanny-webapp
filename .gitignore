@@ -7,6 +7,10 @@ __pycache__/
 # C extensions
 *.so
 
+## generated clients
+
+clients/python
+
 # Distribution / packaging
 .Python
 build/

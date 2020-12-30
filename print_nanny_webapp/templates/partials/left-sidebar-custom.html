@@ -43,6 +43,12 @@
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
                     <i class="uil-video"></i>
+                    <span> {% trans "Livestream" %} </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
+                    <i class="dripicons-graph-line"></i>
                     <span> {% trans "Quality Reports" %} </span>
                     {% if object.active_alerts.count > 0 %}
                     <span class="badge badge-danger float-right"> {{ object.active_alerts.count }}</span>
@@ -52,8 +58,8 @@
             
             <li class="side-nav-item">
                 <a href="{% url 'users:detail' %}" class="side-nav-link">
-                    <i class="dripicons-gear"></i>
-                    <span> {% trans "Settings" %} </span>
+                    <i class=" dripicons-print"></i>
+                    <span> {% trans "Printer Profiles" %} </span>
 
                 </a>
             </li>

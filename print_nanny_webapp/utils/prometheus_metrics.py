@@ -41,3 +41,12 @@ detections_failure_ratio = prometheus_client.Summary(
 build_version = prometheus_client.Info(
     "build_version", "key:value of deployment and build configuration"
 )
+
+annotated_ws_publisher_connected_metric = prometheus_client.Gauge(
+    "annotated_ws_publisher_connected",
+    "Number of clients publishing a stream of annotated images",
+)
+annotated_ws_consumer_connected_metric = prometheus_client.Gauge(
+    "annotated_ws_consumer_connected",
+    "Number of clients subscribed to a stream of annotated images",
+)

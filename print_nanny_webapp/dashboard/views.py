@@ -20,6 +20,7 @@ User = get_user_model()
 TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
 AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
 UserSettings = apps.get_model("users", "UserSettings")
+OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 
 logger = logging.getLogger(__name__)
 
@@ -98,14 +99,24 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
         context = super(HomeDashboardView, self).get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
         self.request.user.token = token
-        # self.request.user.active_alerts = self.request.user.AlertVideoMessage_set.filter(
-        #     job_status__in=[
-        #         AlertVideoMessage.JobStatusChoices.FAILURE,
-        #         AlertVideoMessage.JobStatusChoices.SUCCESS,
-        #     ]
-        # ).exclude(seen=True)
 
-        context["object"] = self.request.user
+        context["user"] = self.request.user
+        context["recent_alerts"] = (
+            AlertVideoMessage.objects.filter(
+                user=self.request.user,
+                job_status__in=[
+                    AlertVideoMessage.JobStatusChoices.FAILURE,
+                    AlertVideoMessage.JobStatusChoices.SUCCESS,
+                ],
+            )
+            .exclude(seen=True)
+            .all()
+        )
+
+        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
+            user=self.request.user
+        ).all()
+        # context["recent_alerts"] = self.request.user.AlertVideoMessage_set.filter(unseen=True).all()
 
         return context
 
