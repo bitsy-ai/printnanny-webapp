@@ -25,7 +25,7 @@ clean-client: ## remove build artifacts
 	rm -fr .eggs/
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
+	find . -name '*.egg' -exec rm -rf {} +
 
 client: clean-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
@@ -57,3 +57,6 @@ client-release: dist ## package and upload a release
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
+
+test:
+	docker-compose -f local.yml run --rm django pytest
