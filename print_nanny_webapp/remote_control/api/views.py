@@ -225,17 +225,44 @@ class OctoPrintDeviceViewSet(
     queryset = OctoPrintDevice.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        try:
-            serializer.save(user=self.request.user)
-        # a device with this serial already exists
-        except google.api_core.exceptions.AlreadyExists as e:
-            exception = (
-                print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
-                    user=self.request.user.id,
-                    serial=self.request.data["serial"],
-                    parent_exception=e,
-                )
+    # def perform_create(self, serializer):
+    #     try:
+    #         serializer.save(user=self.request.user)
+    #     # a device with this serial already exists
+    #     except google.api_core.exceptions.AlreadyExists as e:
+    #         exception = (
+    #             print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
+    #                 user=self.request.user.id,
+    #                 serial=self.request.data["serial"],
+    #                 parent_exception=e,
+    #             )
+    #         )
+    #         logger.error(f"{str(exception)} {str(exception.parent_exception)}")
+    #         raise exception
+
+
+    @extend_schema(
+        operation_id="octoprint_device_update_or_create",
+        responses={
+            400: OctoPrintDeviceSerializer,
+            200: OctoPrintDeviceSerializer,
+            201: OctoPrintDeviceSerializer,
+        },
+    )
+    @action(methods=["post"], detail=False)
+    def update_or_create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, request.user
             )
-            logger.error(f"{str(exception)} {str(exception.parent_exception)}")
-            raise exception
+            response_serializer = self.get_serializer(instance)
+
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

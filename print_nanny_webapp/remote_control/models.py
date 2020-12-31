@@ -16,6 +16,7 @@ from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
+import google.api_core.exceptions
 
 User = get_user_model()
 
@@ -23,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 
 class OctoPrintDeviceManager(models.Manager):
-    def create(self, **kwargs):
+    def update_or_create(self, **kwargs):
 
         with tempfile.TemporaryDirectory() as tmp:
             tmp_private_key_filename = f"{tmp}/rsa_private.pem"
@@ -106,36 +107,46 @@ class OctoPrintDeviceManager(models.Manager):
                 ],
             }
 
-            cloudiot_device = client.get_device(
-                os.path.join(
-                    parent,
-                    cloudiot_device_name
-                )
+            device_path = client.device_path(
+                settings.GCP_PROJECT_ID,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+                cloudiot_device_name
             )
 
-            logger.info(f'Queried device registry for serial and found {cloudiot_device}')
+            try:
+                cloudiot_device = client.delete_device(
+                    name=device_path
+                )
+                logger.info(f'Deleted existing device {device_path}')
+            except google.api_core.exceptions.NotFound:
+                pass
 
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
             )
+            cloudiot_device_created = True
+
+            logger.info(f'Created new deivce in registry {device_path}')
+
 
             cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
 
             cloudiot_device_num_id = cloudiot_device_dict.get("numId")
             # @todo why aren't these fields uploading automagically?
-            device, created = super().get_or_create(
-                defaults= {
-                    'private_key': private_key_file,
-                    'public_key': public_key_file,
-                    'fingerprint': fingerprint,
-                    'cloudiot_device_num_id': cloudiot_device_num_id,
-                    'cloudiot_device_name': cloudiot_device_name,
-                    'cloudiot_device': cloudiot_device_dict
-                },
-                **kwargs,
 
+
+            device, created = super().update_or_create(
+                private_key=private_key_file,
+                public_key=public_key_file,
+                fingerprint=fingerprint,
+                cloudiot_device_num_id=cloudiot_device_num_id,
+                cloudiot_device_name=cloudiot_device_name,
+                **kwargs,
             )
+            logging.info(f'Device created: {created} with id={device.id}')
+            device.cloudiot_device = cloudiot_device_dict
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)
             device.save()
