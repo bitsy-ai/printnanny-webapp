@@ -24,6 +24,7 @@ from .serializers import (
     PrintJobSerializer,
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
+    OctoPrintDeviceKeySerializer
 )
 
 from print_nanny_webapp.remote_control.models import (
@@ -210,7 +211,13 @@ class GcodeFileViewSet(
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer}
+        responses={
+            201: OctoPrintDeviceKeySerializer,
+            202: OctoPrintDeviceKeySerializer,
+            400: OctoPrintDeviceSerializer, 
+            200: OctoPrintDeviceSerializer,
+
+        }
     )
 )
 class OctoPrintDeviceViewSet(
@@ -221,7 +228,7 @@ class OctoPrintDeviceViewSet(
     UpdateModelMixin,
 ):
 
-    serializer_class = OctoPrintDeviceSerializer
+    serializer_class = OctoPrintDeviceKeySerializer
     queryset = OctoPrintDevice.objects.all()
     lookup_field = "id"
 
@@ -246,7 +253,8 @@ class OctoPrintDeviceViewSet(
         responses={
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
-            201: OctoPrintDeviceSerializer,
+            201: OctoPrintDeviceKeySerializer,
+            202: OctoPrintDeviceKeySerializer
         },
     )
     @action(methods=["post"], detail=False)
@@ -261,7 +269,7 @@ class OctoPrintDeviceViewSet(
             response_serializer = self.get_serializer()
 
             if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
+                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
