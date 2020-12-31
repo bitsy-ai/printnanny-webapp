@@ -41,7 +41,7 @@ class OctoPrintEventViewSet(
 
     @extend_schema(
         tags=["events"],
-        operation_id="octoprint_events_tracking_retrieve",
+        operation_id="octoprint_events_telemetry_retrieve",
         responses={200: OpenApiTypes.STR},
     )
     @action(methods=["GET"], detail=False)
