@@ -13,6 +13,7 @@ from print_nanny_webapp.remote_control.models import (
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
         }
