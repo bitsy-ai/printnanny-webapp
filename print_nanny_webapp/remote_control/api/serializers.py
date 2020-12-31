@@ -24,6 +24,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
+            "cloudiot_device_name"
         )
 
 

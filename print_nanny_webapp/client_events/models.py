@@ -91,6 +91,9 @@ class OctoPrintEvent(models.Model):
         # print progress
         PRINT_PROGRESS = "PrintProgress", "PrintProgress"
 
+        # pi throttle state
+        #PI_THROTTLE_STATE = ""
+
         # print job
         ERROR = "Error", "Error"
         PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
