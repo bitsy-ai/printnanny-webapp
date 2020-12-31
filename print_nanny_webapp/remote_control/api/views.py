@@ -207,7 +207,7 @@ class GcodeFileViewSet(
         serializer.save(user=self.request.user)
 
 
-@extend_schema(tags=["remote_control"])
+@extend_schema(tags=["remote-control"])
 @extend_schema_view(
     create=extend_schema(
         responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer}
