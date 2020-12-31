@@ -7,7 +7,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from asgiref.sync import async_to_sync
-from django.
+from django.core.files.base import ContentFile
 
 from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_publisher_connected_metric,
