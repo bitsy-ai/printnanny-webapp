@@ -21,6 +21,7 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
+
 class OctoPrintDeviceManager(models.Manager):
     def create(self, **kwargs):
 

@@ -52,13 +52,13 @@
 #     return jwt.encode(token, private_key, algorithm=algorithm)
 
 # class MQTTClient:
-    
 
-#     def __init__(self, 
-#         device_id: str, 
-#         private_key_file: str, 
 
-#         algorithm='RS256', 
+#     def __init__(self,
+#         device_id: str,
+#         private_key_file: str,
+
+#         algorithm='RS256',
 #         ca_certs=settings.GCP_ROOT_CA,
 #         mqtt_bridge_hostname=settings.GCP_MQTT_BRIDGE_HOSTNAME,
 #         mqtt_bridge_port=settings.GCP_MQTT_BRIDGE_PORT,
@@ -111,7 +111,7 @@
 #             # The topic that the device will receive commands on.
 #         self.mqtt_command_topic = f'/devices/{self.device_id}/commands/#'
 
-        
+
 #         # configure tls
 #         client.tls_set(ca_certs=ca_certs, tls_version=ssl.PROTOCOL_TLSv1_2)
 #         # With Google Cloud IoT Core, the username field is ignored, and the
@@ -120,7 +120,7 @@
 #             username='unused',
 #             password=create_jwt(
 #                     project_id, private_key_file, algorithm))
-    
+
 #     def connect(self):
 #         self.client.connect(self.mqtt_bridge_hostname, self.mqtt_bridge_port)
 
@@ -130,7 +130,7 @@
 #         # subscribe command topic (qos=2 message delivered exactly once)
 #         logging.info(f'Subscribing device_id={self.device_id} to topic {self.mqtt_command_topic}')
 #         self.client.subscribe(self.mqtt_command_topic, qos=2)
-    
+
 #     def publish(self, topic, payload, retain=False, qos=2):
 
 #         '''
@@ -150,43 +150,51 @@
 # https://github.com/xavierlesa/channels-asgi-mqtt
 # #
 
+
 async def mqtt_send(future, channel_layer, channel, event):
     result = await channel_layer.send(channel, event)
     future.set_result(result)
 
+
 async def mqtt_group_send(future, channel_layer, group, event):
-    result  = await channel_layer.group_send(group, event)
+    result = await channel_layer.group_send(group, event)
     future.set_result(result)
+
 
 # Only for groups
 async def mqtt_group_add(future, channel_layer, group):
-    channel_layer.channel_name = channel_layer.channel_name or await channel_layer.new_channel()
+    channel_layer.channel_name = (
+        channel_layer.channel_name or await channel_layer.new_channel()
+    )
     result = await channel_layer.group_add(group, channel_layer.channel_name)
     future.set_result(result)
+
 
 # Only for groups
 async def mqtt_group_discard(future, channel_layer, group):
     result = await channel_layer.group_discard(group, channel_layer.channel_name)
     future.set_result(result)
 
+
 class Server(object):
-    def __init__(self, channel,
-            algorithm='RS256', 
-            ca_certs=settings.GCP_ROOT_CA,
-            gateway_id=settings.GCP_CLOUD_IOT_GATEWAY, 
-            jwt_expires_minutes=settings.JWT_EXPIRES_MINUTES,
-            mqtt_bridge_hostname=settings.GCP_MQTT_BRIDGE_HOSTNAME,
-            mqtt_bridge_port=settings.GCP_MQTT_BRIDGE_PORT,
-            mqtt_channel_name = "mqtt", 
-            mqtt_channel_pub="mqtt.sub",
-            mqtt_channel_sub="mqtt.pub", 
-            gateway_private_key=settings.GCP_GCLOUD_IOT_GATEWAY_PRIVATE_KEY,
-            project_id=settings.GCP_PROJECT_ID,
-            registry_id=settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-            tls_version=ssl.PROTOCOL_TLSv1_2,
-            topics_subscription=[('#', 2)], 
-            
-        ):
+    def __init__(
+        self,
+        channel,
+        algorithm="RS256",
+        ca_certs=settings.GCP_ROOT_CA,
+        gateway_id=settings.GCP_CLOUD_IOT_GATEWAY,
+        jwt_expires_minutes=settings.JWT_EXPIRES_MINUTES,
+        mqtt_bridge_hostname=settings.GCP_MQTT_BRIDGE_HOSTNAME,
+        mqtt_bridge_port=settings.GCP_MQTT_BRIDGE_PORT,
+        mqtt_channel_name="mqtt",
+        mqtt_channel_pub="mqtt.sub",
+        mqtt_channel_sub="mqtt.pub",
+        gateway_private_key=settings.GCP_GCLOUD_IOT_GATEWAY_PRIVATE_KEY,
+        project_id=settings.GCP_PROJECT_ID,
+        registry_id=settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        tls_version=ssl.PROTOCOL_TLSv1_2,
+        topics_subscription=[("#", 2)],
+    ):
 
         self.channel = channel
 
@@ -205,7 +213,7 @@ class Server(object):
         self.registry_id = registry_id
         self.tls_version = tls_version
         self.topics_subscription = topics_subscription
-        
+
         # gateway client
         self.client = MQTTClient(
             gateway_id,
@@ -224,30 +232,29 @@ class Server(object):
         self.client.on_disconnect = self._on_disconnect
         self.client.on_message = self._on_message
 
-        assert isinstance(self.topics_subscription, list), "Topic subscription must be a list with (topic, qos)"
-
-
+        assert isinstance(
+            self.topics_subscription, list
+        ), "Topic subscription must be a list with (topic, qos)"
 
     def attach_device(self, device_id, auth):
-        '''
-            Attach device_id subscription to gateway server
-        '''
+        """
+        Attach device_id subscription to gateway server
+        """
 
         logging.info(f"Attaching device_id={device_id} to gateway_id={self.gateway_id}")
 
-        attach_topic = '/devices/{}/attach'.format(device_id)
+        attach_topic = "/devices/{}/attach".format(device_id)
         attach_payload = '{{"authorization" : "{}"}}'.format(auth)
         self.client.publish(attach_topic, attach_payload, qos=1)
         mqtt_client_connected_metric.inc()
 
     def detach_device(client, device_id):
         """Detach the device from the gateway."""
-        
-        detach_topic = '/devices/{}/detach'.format(device_id)
+
+        detach_topic = "/devices/{}/detach".format(device_id)
         logging.info(f"Detaching device_id={device_id} to gateway_id={self.gateway_id}")
-        self.client.publish(detach_topic, '{}', qos=1)
+        self.client.publish(detach_topic, "{}", qos=1)
         mqtt_client_connected_metric.dec()
-        
 
     def _on_connect(self, client, userdata, flags, rc):
         logger.info("Gateway device connected to MQTT broker with status {}".format(rc))
@@ -261,7 +268,9 @@ class Server(object):
             mqtt_gateway_retrying_metric.inc()
             j = 10
             for i in range(j):
-                logger.info("Gateway attempting to reconnect to MQTT broker (JWT probably expired)")
+                logger.info(
+                    "Gateway attempting to reconnect to MQTT broker (JWT probably expired)"
+                )
                 try:
                     # client.reconnect() not sure if reconnect supports modifying auth, re-instantiate client for now
                     self.client = MQTTClient(
@@ -288,7 +297,6 @@ class Server(object):
                         raise
         mqtt_gateway_retrying_metric.dec()
 
-
     def _on_message(self, client, userdata, message):
         logger.debug("Received message from topic {}".format(message.topic))
         payload = message.payload.decode("utf-8")
@@ -298,7 +306,7 @@ class Server(object):
         except:
             logger.debug("Payload is nos a JSON Serializable")
             pass
-        
+
         logger.debug("Raw message {}".format(payload))
 
         # Compose a message for Channel with raw data received from MQTT
@@ -314,15 +322,13 @@ class Server(object):
             # create a coroutine and send
             future = asyncio.Future()
             asyncio.ensure_future(
-                    mqtt_send(
-                        future, 
-                        self.channel, 
-                        self.mqtt_channel_name,
-                        {
-                            "type": self.mqtt_channel_sub,
-                            "text": msg
-                        })
+                mqtt_send(
+                    future,
+                    self.channel,
+                    self.mqtt_channel_name,
+                    {"type": self.mqtt_channel_sub, "text": msg},
                 )
+            )
 
             # attach callback for logs only
             future.add_done_callback(self._mqtt_send_got_result)
@@ -332,25 +338,24 @@ class Server(object):
             logger.exception(e)
 
     def _mqtt_receive(self, msg):
-        '''
-            Receive a message from Django channel (e.g. client connected to websocket)
-            and publish to MQTT broker
-        '''
+        """
+        Receive a message from Django channel (e.g. client connected to websocket)
+        and publish to MQTT broker
+        """
 
-        if msg['type'] == self.mqtt_channel_pub:
-            payload = msg['text']
+        if msg["type"] == self.mqtt_channel_pub:
+            payload = msg["text"]
             if not isinstance(payload, dict):
                 payload = json.loads(payload)
 
             logger.info("Receive a menssage with payload:\r\n%s", msg)
             self.client.publish(
-                    payload['topic'], 
-                    payload['payload'], 
-                    qos=payload.get('qos', 2), 
-                    retain=False)            
+                payload["topic"],
+                payload["payload"],
+                qos=payload.get("qos", 2),
+                retain=False,
+            )
 
 
-    
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     client.loop_forever()
