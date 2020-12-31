@@ -439,3 +439,10 @@ GCP_MQTT_BRIDGE_PORT = env('GCP_MQTT_BRIDGE_PORT', default=443)
 GCP_ROOT_CA = env('GCP_ROOT_CA', default='/app/data/google-ca-root-certas.pem')
 JWT_EXPIRES_MINUTES = env('JWT_EXPIRES_MINUTES', default=60)
 # django-pb-model (protobuf serializer for django models)
+
+
+GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default='projects/print-nanny/topics/telemetry-dev')
+GCP_PUBSUB_BOUNDING_BOXES_TOPIC = env('GCP_PUBSUB_BOUNDING_BOXES', default='projects/print-nanny/topics/bounding-boxes-dev')
+GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='projects/print-nanny/topics/octoprint-events-dev')
+
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', default='octoprint-events-webapp-dev')

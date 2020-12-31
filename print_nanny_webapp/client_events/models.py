@@ -3,6 +3,7 @@ import hashlib
 import logging
 import subprocess
 import tempfile
+import enum
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -21,6 +22,17 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
+class PrinterState(enum.Enum):
+    ERROR = "Error", "Error"
+    PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
+    PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
+    PRINT_DONE = "PrintDone", "PrintDone"
+    PRINT_FAILED = "PrintFailed", "PrintFailed"
+    PRINT_PAUSED = "PrintPaused", "PrintPaused"
+    PRINT_RESUMED = "PrintResumed", "PrintResumed"
+    PRINT_STARTED = "PrintStarted", "PrintStarted"
+
+
 class ObjectDetectEventImage(models.Model):
     created_dt = models.DateTimeField()
     uuid = models.CharField(max_length=255, db_index=True)
@@ -34,6 +46,7 @@ class ObjectDetectEventImage(models.Model):
 
 
 class OctoPrintEvent(models.Model):
+
     class EventTypeChoices(models.TextChoices):
         # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
         CLIENT_AUTHED = "ClientAuthed", "ClientAuthed"

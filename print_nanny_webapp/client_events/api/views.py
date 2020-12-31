@@ -26,6 +26,7 @@ PrintJob = apps.get_model("remote_control", "PrintJob")
 logger = logging.getLogger(__name__)
 
 
+
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
