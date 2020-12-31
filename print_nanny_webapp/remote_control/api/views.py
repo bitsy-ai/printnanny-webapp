@@ -242,7 +242,7 @@ class OctoPrintDeviceViewSet(
 
 
     @extend_schema(
-        operation_id="octoprint_device_update_or_create",
+        operation_id="octoprint_devices_update_or_create",
         responses={
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
