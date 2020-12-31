@@ -7,6 +7,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from asgiref.sync import async_to_sync
+from django.
 
 from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_publisher_connected_metric,
@@ -17,6 +18,8 @@ from print_nanny_webapp.utils.prometheus_metrics import (
 logger = logging.getLogger(__name__)
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
+ObjectDetectEventImage = apps.get_model("client_events", "ObjectDetectEventImage")
+
 User = get_user_model()
 
 
@@ -70,31 +73,16 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
                 {"type": "video.frame", "data": data["annotated_image"]},
             )
 
-            # filelike = io.BytesIO()
-            # writer = DataFileWriter(filelike, DatumWriter(), avro_schema)
-            # writer.append({
-            #     'created_ts': data['ts'].time,
-            #     'predict_session_id': self.scope.predict_session_id,
-            #     'user_id': self.scope.user.id,
-            #     'print_job_id': print_job_id,
-            #     'object_detect_data': data["predict_data"],
-            #     'annotated_image': base64.b64decode(data["annotated_image"]),
-            #     'original_image': base64.b64decode(data["original_image"])
-            # })
+            original_image = ContentFile(data["original_image"])
+            annotated_image = ContentFile(data["annotated_image"])
 
-            # future = publisher.publish(
-            #     topic_path,
-            #     filelike.read(),
-            #     print_job_id=print_job_id,
-            #     user_id=self.scope.user.id,
-            #     predict_session_id=self.scope.predict_session.id
-            # )
-            # future.result()
+            event = ObjectDetectEventImage.objects.create(
+                created_dt=data["ts"],
+                uuid=data["uuid"],
+                user=self.scope.user,
+                print_job=job,
+            )
 
-            # event = ObjectDetectEvent.objects.create(
-            #     created_dt=data["ts"],
-            #     predict_data=data["predict_data"],
-            #     files=files,
-            #     print_job=job,
-            #     predict_session=self.predict_session,
-            # )
+            event.annotated_image.save(f'{event.uuid}.jpg', annotated_image)
+            event.original_image.save(f'{event.uuid}.jpg', original_image)
+            event.save()
