@@ -253,10 +253,12 @@ class OctoPrintDeviceViewSet(
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+            validated_data = serializer.validated_data.copy()
+            del validated_data['serial']
             instance, created = serializer.update_or_create(
-                serializer.validated_data, request.user
+                request.user, serializer.validated_data.get('serial'), validated_data
             )
-            response_serializer = self.get_serializer(instance)
+            response_serializer = self.get_serializer()
 
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)
