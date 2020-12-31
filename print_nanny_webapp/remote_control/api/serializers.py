@@ -14,18 +14,20 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
         extra_kwargs = {
-            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
+            "private_key": {"write_only": True}
         }
 
         read_only_fields = (
             "user",
-            "private_key",
             "public_key",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
             "cloudiot_device_name"
         )
+
+
 
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
