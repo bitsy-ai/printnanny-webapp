@@ -20,13 +20,17 @@ from django.contrib.sites.shortcuts import get_current_site
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
+
 class ObjectDetectEventImage(models.Model):
     created_dt = models.DateTimeField()
     uuid = models.CharField(max_length=255, db_index=True)
     user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
-    original_image = models.ImageField(upload_to="uploads/predict_event_original_image/%Y/%m/%d/")
-    annotated_image = models.ImageField(upload_to="uploads/predict_annotated_image/%Y/%m/%d/")
-
+    original_image = models.ImageField(
+        upload_to="uploads/predict_event_original_image/%Y/%m/%d/"
+    )
+    annotated_image = models.ImageField(
+        upload_to="uploads/predict_annotated_image/%Y/%m/%d/"
+    )
 
 
 class OctoPrintEvent(models.Model):
