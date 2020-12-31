@@ -91,10 +91,12 @@ class OctoPrintEvent(models.Model):
         SLICING_PROFILE_MODIFIED = "SlicingProfileModified", "SlicingProfileModified"
         SLICING_STARTED = "SlicingStarted", "SlicingStarted"
 
-        # octoprint server <-> printer
+        # octoprint server <-> printer telemetry
         CONNECTED = "Connected", "Connected"
         DISCONNECTED = "Disconnected", "Disconnected"
         PRINTER_RESET = "PrinterReset", "PrinterReset"
+        PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
+        FIRMWARE_DATA = "FirmwareData", "FirmwareData"
 
         # printer profile
         PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
