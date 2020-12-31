@@ -3,7 +3,7 @@ import hashlib
 import logging
 import subprocess
 import tempfile
-
+import os
 from django.contrib.auth import get_user_model
 
 from django.apps import apps
@@ -91,9 +91,11 @@ class OctoPrintDeviceManager(models.Manager):
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
             )
+
             serial = kwargs.get("serial")
+            cloudiot_device_name = f"serial-{serial}"
             device_template = {
-                "id": f"serial-{serial}",
+                "id": cloudiot_device_name,
                 "credentials": [
                     {
                         "public_key": {
@@ -104,6 +106,15 @@ class OctoPrintDeviceManager(models.Manager):
                 ],
             }
 
+            cloudiot_device = client.get_device(
+                os.path.join(
+                    parent,
+                    cloudiot_device_name
+                )
+            )
+
+            logger.info(f'Queried device registry for serial and found {cloudiot_device}')
+
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
             )
@@ -111,14 +122,19 @@ class OctoPrintDeviceManager(models.Manager):
             cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
 
+            cloudiot_device_num_id = cloudiot_device_dict.get("numId")
             # @todo why aren't these fields uploading automagically?
-            device = super().create(
-                private_key=private_key_file,
-                public_key=public_key_file,
-                fingerprint=fingerprint,
-                cloudiot_device=cloudiot_device_dict,
-                cloudiot_device_num_id=cloudiot_device_dict.get("numId"),
+            device, created = super().get_or_create(
+                defaults= {
+                    'private_key': private_key_file,
+                    'public_key': public_key_file,
+                    'fingerprint': fingerprint,
+                    'cloudiot_device_num_id': cloudiot_device_num_id,
+                    'cloudiot_device_name': cloudiot_device_name,
+                    'cloudiot_device': cloudiot_device_dict
+                },
                 **kwargs,
+
             )
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)
@@ -140,6 +156,7 @@ class OctoPrintDevice(models.Model):
     public_key = models.FileField(upload_to="uploads/public_key/")
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
+    cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
 
     model = models.CharField(max_length=255)
