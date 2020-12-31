@@ -84,6 +84,9 @@ class OctoPrintEvent(models.Model):
         PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
         PRINTER_PROFILE_MODIFIED = "PrinterProfileModified", "PrinterProfileModified"
 
+        # print progress
+        PRINT_PROGRESS = "PrintProgress", "PrintProgress"
+
         # print job
         ERROR = "Error", "Error"
         PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
