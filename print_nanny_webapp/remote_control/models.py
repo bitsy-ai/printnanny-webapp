@@ -83,7 +83,7 @@ class OctoPrintDeviceManager(models.Manager):
                 public_key_content = pub_f.read()
                 public_key_file = ContentFile(public_key_content.encode())
 
-            with open(tmp_public_key_filename) as priv_f:
+            with open(tmp_private_key_filename) as priv_f:
                 private_key_content = priv_f.read()
                 private_key_file = ContentFile(private_key_content.encode())
 

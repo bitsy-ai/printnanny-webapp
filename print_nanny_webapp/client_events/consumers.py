@@ -31,7 +31,7 @@ class VideoConsumer(WebsocketConsumer):
             f"video_{self.user.id}", self.channel_name
         )
 
-        annotated_ws_consumer_connected_metric.inc()
+        annotated_ws_consumer_connected.inc()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
@@ -40,7 +40,7 @@ class VideoConsumer(WebsocketConsumer):
 
         super().disconnect(close_code)
 
-        annotated_ws_consumer_connected_metric.dec()
+        annotated_ws_consumer_connected.dec()
 
     def video_frame(self, message):
         logging.info("Received video message")
@@ -52,12 +52,12 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
         self.accept()
         self.user = self.scope["user"]
 
-        annotated_image_ws_connected_metric.inc()
+        annotated_ws_publisher_connected_metric.inc()
 
     def disconnect(self, close_code):
 
         super().disconnect(close_code)
-        annotated_image_ws_connected_metric.dec()
+        annotated_ws_publisher_connected_metric.dec()
 
     def receive(self, text_data):
         data = json.loads(text_data)
