@@ -39,7 +39,7 @@ def on_octoprint_event(message):
     data = json.loads(data)
 
     event_type = data["event_type"]
-    logger.info(f'Received {event_type} with data {data}')
+    logger.debug(f'Received {event_type} with data {data}')
 
     if event_type in OctoPrintEventCodes:
         OctoPrintEvent.objects.create(
