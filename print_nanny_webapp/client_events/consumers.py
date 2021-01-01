@@ -65,7 +65,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
         if data.get("event_type") == "ping":
             return self.send(text_data="pong")
 
-        elif data.get("event_type") == "predict":
+        elif data.get("event_type") == "annotated_image":
             annotated_image = base64.b64decode(data["annotated_image"])
 
             async_to_sync(self.channel_layer.group_send)(
@@ -73,16 +73,16 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
                 {"type": "video.frame", "data": data["annotated_image"]},
             )
 
-            original_image = ContentFile(data["original_image"])
-            annotated_image = ContentFile(data["annotated_image"])
+            # original_image = ContentFile(data["original_image"])
+            # annotated_image = ContentFile(data["annotated_image"])
 
-            event = ObjectDetectEventImage.objects.create(
-                created_dt=data["ts"],
-                uuid=data["uuid"],
-                user=self.scope.user,
-                print_job=job,
-            )
+            # event = ObjectDetectEventImage.objects.create(
+            #     created_dt=data["ts"],
+            #     uuid=data["uuid"],
+            #     user=self.scope.user,
+            #     print_job=job,
+            # )
 
-            event.annotated_image.save(f"{event.uuid}.jpg", annotated_image)
-            event.original_image.save(f"{event.uuid}.jpg", original_image)
-            event.save()
+            # event.annotated_image.save(f"{event.uuid}.jpg", annotated_image)
+            # event.original_image.save(f"{event.uuid}.jpg", original_image)
+            # event.save()

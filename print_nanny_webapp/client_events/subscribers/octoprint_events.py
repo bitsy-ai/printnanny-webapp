@@ -40,7 +40,14 @@ def on_octoprint_event(message):
 
     event_type = data["event_type"]
     logger.debug(f'Received {event_type} with data {data}')
-
+    if data.get("device_id") is None:
+        logger.warning(f'Received {event_type} without device_id {data}')
+        message.ack()
+        return
+    if data.get("user_id") is None:
+        logger.warning(f'Received {event_type} without user_id {data}')
+        message.ack()
+        return
     if event_type in OctoPrintEventCodes:
         OctoPrintEvent.objects.create(
             created_dt=data["created_dt"],
