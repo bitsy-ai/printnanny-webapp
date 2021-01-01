@@ -36,3 +36,14 @@ django-extensions==3.0.9  # https://github.com/django-extensions/django-extensio
 django-coverage-plugin==1.8.0  # https://github.com/nedbat/django_coverage_plugin
 pytest-django==4.1.0  # https://github.com/pytest-dev/pytest-django
 
+
+# client testing requirements
+
+certifi >= 14.05.14
+future; python_version<="2.7"
+six >= 1.10
+python_dateutil >= 2.5.3
+setuptools >= 21.0.0
+urllib3 >= 1.15.1
+aiohttp==3.7.3
+pytest-cov>=2.8.1
