@@ -44,24 +44,26 @@ def on_octoprint_event(message):
     if event_type in OctoPrintEventCodes:
         OctoPrintEvent.objects.create(
             created_dt=data["created_dt"],
-            event_type=event_type,
-            user_id=data["user_id"],
-            plugin_version=data["plugin_version"],
-            octoprint_version=data["octoprint_version"],
+            device_id=data["device_id"],
             event_data=data,
+            event_type=event_type,
+            octoprint_version=data["octoprint_version"],
+            plugin_version=data["plugin_version"],
+            user_id=data["user_id"],
         )
     elif event_type in PrintJobEvent:
         PrintJobEvent.objects.create(
             created_dt=data["created_dt"],
-            event_type=event_type,
-            user_id=data["user_id"],
-            plugin_version=data["plugin_version"],
-            octoprint_version=data["octoprint_version"],
-            event_data=data,
-            state=data["printer_data"]["state"],
             current_z=data["printer_data"]["currentZ"],
-            progress=data["printer_data"]["progress"],
+            device_id=data["device_id"],
+            event_data=data,
+            event_type=event_type,
             job_data_file=data["printer_data"]["job"]["file"],
+            octoprint_version=data["octoprint_version"],
+            plugin_version=data["plugin_version"],
+            progress=data["printer_data"]["progress"],
+            state=data["printer_data"]["state"],
+            user_id=data["user_id"],
         )
     else:
         logger.error(f"Unrecognized event_type={event_type} with data {data}")
