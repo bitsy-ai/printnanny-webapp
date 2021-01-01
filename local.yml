@@ -136,3 +136,10 @@ services:
     image: ovalmoney/celery-exporter
     ports:
       - 9540:9540
+  events:
+    container_name: events
+    <<: *django
+    ports: []
+    command: 
+      - python
+      - print_nanny_webapp/client_events/subscribers/octoprint_events.py

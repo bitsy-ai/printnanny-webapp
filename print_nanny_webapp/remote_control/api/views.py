@@ -24,6 +24,7 @@ from .serializers import (
     PrintJobSerializer,
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
+    OctoPrintDeviceKeySerializer,
 )
 
 from print_nanny_webapp.remote_control.models import (
@@ -207,10 +208,15 @@ class GcodeFileViewSet(
         serializer.save(user=self.request.user)
 
 
-@extend_schema(tags=["remote_control"])
+@extend_schema(tags=["remote-control"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: OctoPrintDeviceSerializer, 400: OctoPrintDeviceSerializer}
+        responses={
+            201: OctoPrintDeviceKeySerializer,
+            202: OctoPrintDeviceKeySerializer,
+            400: OctoPrintDeviceSerializer,
+            200: OctoPrintDeviceSerializer,
+        }
     )
 )
 class OctoPrintDeviceViewSet(
@@ -221,21 +227,52 @@ class OctoPrintDeviceViewSet(
     UpdateModelMixin,
 ):
 
-    serializer_class = OctoPrintDeviceSerializer
+    serializer_class = OctoPrintDeviceKeySerializer
     queryset = OctoPrintDevice.objects.all()
     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        try:
-            serializer.save(user=self.request.user)
-        # a device with this serial already exists
-        except google.api_core.exceptions.AlreadyExists as e:
-            exception = (
-                print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
-                    user=self.request.user.id,
-                    serial=self.request.data["serial"],
-                    parent_exception=e,
-                )
+    # def perform_create(self, serializer):
+    #     try:
+    #         serializer.save(user=self.request.user)
+    #     # a device with this serial already exists
+    #     except google.api_core.exceptions.AlreadyExists as e:
+    #         exception = (
+    #             print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
+    #                 user=self.request.user.id,
+    #                 serial=self.request.data["serial"],
+    #                 parent_exception=e,
+    #             )
+    #         )
+    #         logger.error(f"{str(exception)} {str(exception.parent_exception)}")
+    #         raise exception
+
+    @extend_schema(
+        operation_id="octoprint_devices_update_or_create",
+        responses={
+            400: OctoPrintDeviceSerializer,
+            200: OctoPrintDeviceSerializer,
+            201: OctoPrintDeviceKeySerializer,
+            202: OctoPrintDeviceKeySerializer,
+        },
+    )
+    @action(methods=["post"], detail=False)
+    def update_or_create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            validated_data = serializer.validated_data.copy()
+            del validated_data["serial"]
+            instance, created = serializer.update_or_create(
+                request.user, serializer.validated_data.get("serial"), validated_data
             )
-            logger.error(f"{str(exception)} {str(exception.parent_exception)}")
-            raise exception
+            response_serializer = self.get_serializer(instance)
+
+            if not created:
+                return Response(
+                    response_serializer.data, status=status.HTTP_202_ACCEPTED
+                )
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

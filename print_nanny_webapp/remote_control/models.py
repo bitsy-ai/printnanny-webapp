@@ -3,7 +3,7 @@ import hashlib
 import logging
 import subprocess
 import tempfile
-
+import os
 from django.contrib.auth import get_user_model
 
 from django.apps import apps
@@ -16,14 +16,20 @@ from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
+import google.api_core.exceptions
 
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
-class OctoPrintDeviceManager(models.Manager):
-    def create(self, **kwargs):
 
+class KeyPairProvisioning(Exception):
+    pass
+
+
+class OctoPrintDeviceManager(models.Manager):
+    def update_or_create(self, defaults=None, **kwargs):
+        logging.info(f"Defaults: {defaults} Kwargs: {kwargs}")
         with tempfile.TemporaryDirectory() as tmp:
             tmp_private_key_filename = f"{tmp}/rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/rsa_public.pem"
@@ -37,11 +43,13 @@ class OctoPrintDeviceManager(models.Manager):
                     tmp_private_key_filename,
                     "-pkeyopt",
                     "rsa_keygen_bits:2048",
-                ]
+                ],
+                capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr:
-                logger.error(p.stderr)
+            if p.stderr != b"":
+                logger.error(f"Error running openssl genpkey {p.stderr}")
+                # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
                 [
@@ -52,11 +60,13 @@ class OctoPrintDeviceManager(models.Manager):
                     "-pubout",
                     "-out",
                     tmp_public_key_filename,
-                ]
+                ],
+                capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr:
-                logger.error(p.stderr)
+            if p.stderr != b"":
+                logger.error(f"Error running openssl rsa {p.stderr}")
+                # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
                 [
@@ -68,8 +78,9 @@ class OctoPrintDeviceManager(models.Manager):
                 capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr:
+            if p.stderr != b"":
                 logger.error(p.stderr)
+                # raise KeyPairProvisioning(p.stderr)
 
             fingerprint = p.stdout
             fingerprint = fingerprint.decode().split("=")[-1]
@@ -78,11 +89,11 @@ class OctoPrintDeviceManager(models.Manager):
             client = cloudiot_v1.DeviceManagerClient()
 
             with open(tmp_public_key_filename) as pub_f:
-                public_key_content = pub_f.read()
+                public_key_content = pub_f.read().strip()
                 public_key_file = ContentFile(public_key_content.encode())
 
-            with open(tmp_public_key_filename) as priv_f:
-                private_key_content = priv_f.read()
+            with open(tmp_private_key_filename) as priv_f:
+                private_key_content = priv_f.read().strip()
                 private_key_file = ContentFile(private_key_content.encode())
 
             parent = client.registry_path(
@@ -90,9 +101,11 @@ class OctoPrintDeviceManager(models.Manager):
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
             )
+
             serial = kwargs.get("serial")
+            cloudiot_device_name = f"serial-{serial}"
             device_template = {
-                "id": f"serial-{serial}",
+                "id": cloudiot_device_name,
                 "credentials": [
                     {
                         "public_key": {
@@ -103,26 +116,52 @@ class OctoPrintDeviceManager(models.Manager):
                 ],
             }
 
+            device_path = client.device_path(
+                settings.GCP_PROJECT_ID,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+                cloudiot_device_name,
+            )
+
+            try:
+                cloudiot_device = client.delete_device(name=device_path)
+                logger.info(f"Deleted existing device {device_path}")
+            except google.api_core.exceptions.NotFound:
+                pass
+
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
             )
+            cloudiot_device_created = True
+
+            logger.info(f"Created new deivce in registry {device_path}")
 
             cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
 
-            # @todo why aren't these fields uploading automagically?
-            device = super().create(
+            cloudiot_device_num_id = cloudiot_device_dict.get("numId")
+
+            always_update = dict(
                 private_key=private_key_file,
                 public_key=public_key_file,
                 fingerprint=fingerprint,
+                cloudiot_device_num_id=cloudiot_device_num_id,
+                cloudiot_device_name=cloudiot_device_name,
                 cloudiot_device=cloudiot_device_dict,
-                cloudiot_device_num_id=cloudiot_device_dict.get("numId"),
-                **kwargs,
             )
+
+            defaults.update(always_update)
+
+            device, created = super().update_or_create(defaults=defaults, **kwargs)
+
+            for key, value in always_update.items():
+                setattr(device, key, value)
+            logging.info(f"Device created: {created} with id={device.id}")
+            device.cloudiot_device = cloudiot_device_dict
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)
             device.save()
-            return device
+            return device, created
 
 
 class OctoPrintDevice(models.Model):
@@ -139,6 +178,7 @@ class OctoPrintDevice(models.Model):
     public_key = models.FileField(upload_to="uploads/public_key/")
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
+    cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
 
     model = models.CharField(max_length=255)

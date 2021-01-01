@@ -20,7 +20,7 @@ from django.conf import settings
 
 from .serializers import OctoPrintEventSerializer
 import print_nanny_webapp.client_events.api.exceptions
-from print_nanny_webapp.client_events.models import OctoPrintEvent
+from print_nanny_webapp.client_events.models import OctoPrintEvent, TelemetryEventCodes
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
 logger = logging.getLogger(__name__)
@@ -41,13 +41,13 @@ class OctoPrintEventViewSet(
 
     @extend_schema(
         tags=["events"],
-        operation_id="octoprint_events_tracking_retrieve",
+        operation_id="octoprint_events_telemetry_retrieve",
         responses={200: OpenApiTypes.STR},
     )
     @action(methods=["GET"], detail=False)
     def tracking(self, *args, **kwargs):
         return Response(
-            [x.value for x in OctoPrintEvent.EventTypeChoices.__members__.values()],
+            TelemetryEventCodes,
             status.HTTP_200_OK,
         )
 

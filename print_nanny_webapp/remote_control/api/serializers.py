@@ -9,21 +9,67 @@ from print_nanny_webapp.remote_control.models import (
 )
 
 
-class OctoPrintDeviceSerializer(serializers.ModelSerializer):
+class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
         extra_kwargs = {
-            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
         }
 
         read_only_fields = (
             "user",
+            "public_key",
             "private_key",
+            "fingerprint",
+            "cloudiot_device_num_id",
+            "cloudiot_device",
+            "cloudiot_device_name",
+        )
+
+    def update_or_create(self, user, serial, validated_data):
+        unique_together = ("user", "serial")
+        defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
+        unique_together_fields = {
+            k: v for k, v in validated_data.items() if k in unique_together
+        }
+        # return OctoPrintDevice.objects.filter(
+        #     **unique_together_fields, user=user
+        # ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
+        return OctoPrintDevice.objects.update_or_create(
+            user=user, serial=serial, defaults=validated_data
+        )
+
+
+class OctoPrintDeviceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OctoPrintDevice
+        exclude = ("private_key",)
+        extra_kwargs = {
+            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
+            "private_key": {"write_only": True},
+        }
+
+        read_only_fields = (
+            "user",
             "public_key",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
+            "cloudiot_device_name",
+        )
+
+    def update_or_create(self, user, serial, validated_data):
+        unique_together = ("user", "serial")
+        defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
+        unique_together_fields = {
+            k: v for k, v in validated_data.items() if k in unique_together
+        }
+        # return OctoPrintDevice.objects.filter(
+        #     **unique_together_fields, user=user
+        # ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
+        return OctoPrintDevice.objects.update_or_create(
+            user=user, serial=serial, defaults=validated_data
         )
 
 

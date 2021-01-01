@@ -50,3 +50,21 @@ annotated_ws_consumer_connected_metric = prometheus_client.Gauge(
     "annotated_ws_consumer_connected",
     "Number of clients subscribed to a stream of annotated images",
 )
+
+##
+# the following metrics are only relevate if running in gateway mode
+##
+# mqtt_client_connected_metric = prometheus_client.Gauge(
+#     "mqtt_client_connected",
+#     "Number of client devices connected to gateway device/server"
+# )
+
+# mqtt_gateway_connected_metric = prometheus_client.Gauge(
+#     "mqtt_gateway_connected",
+#     "Number of gateway devices connected to MQTT bridge"
+# )
+
+# mqtt_gateway_retrying_metric = prometheus_client.Gauge(
+#     "mqtt_gateway_retrying",
+#     "Number of gateway devices attempting to reconnect to MQTT bridge (includes JWT refresh)"
+# )
