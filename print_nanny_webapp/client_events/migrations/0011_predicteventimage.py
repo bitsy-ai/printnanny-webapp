@@ -9,19 +9,43 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('client_events', '0010_delete_octoprintdevice'),
+        ("client_events", "0010_delete_octoprintdevice"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PredictEventImage',
+            name="PredictEventImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('dt', models.DateTimeField(auto_now_add=True)),
-                ('uuid', models.CharField(db_index=True, max_length=255)),
-                ('original_image', models.ImageField(upload_to='uploads/predict_event_original_image/%Y/%m/%d/')),
-                ('annotated_image', models.ImageField(upload_to='uploads/predict_annotated_image/%Y/%m/%d/')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("dt", models.DateTimeField(auto_now_add=True)),
+                ("uuid", models.CharField(db_index=True, max_length=255)),
+                (
+                    "original_image",
+                    models.ImageField(
+                        upload_to="uploads/predict_event_original_image/%Y/%m/%d/"
+                    ),
+                ),
+                (
+                    "annotated_image",
+                    models.ImageField(
+                        upload_to="uploads/predict_annotated_image/%Y/%m/%d/"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

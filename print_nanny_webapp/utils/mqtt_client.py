@@ -10,5 +10,3 @@
 #     mqtt_gateway_retrying_metric
 # )
 # from django.conf import settings
-
-

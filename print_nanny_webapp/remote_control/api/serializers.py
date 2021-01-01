@@ -9,7 +9,6 @@ from print_nanny_webapp.remote_control.models import (
 )
 
 
-
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
@@ -25,10 +24,8 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
-            "cloudiot_device_name"
+            "cloudiot_device_name",
         )
-
-
 
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
@@ -39,7 +36,10 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
         # return OctoPrintDevice.objects.filter(
         #     **unique_together_fields, user=user
         # ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
-        return OctoPrintDevice.objects.update_or_create(user=user, serial=serial, defaults=validated_data)
+        return OctoPrintDevice.objects.update_or_create(
+            user=user, serial=serial, defaults=validated_data
+        )
+
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,7 +47,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         exclude = ("private_key",)
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
-            "private_key": {"write_only": True}
+            "private_key": {"write_only": True},
         }
 
         read_only_fields = (
@@ -56,10 +56,8 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
-            "cloudiot_device_name"
+            "cloudiot_device_name",
         )
-
-
 
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
@@ -70,7 +68,9 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         # return OctoPrintDevice.objects.filter(
         #     **unique_together_fields, user=user
         # ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
-        return OctoPrintDevice.objects.update_or_create(user=user, serial=serial, defaults=validated_data)
+        return OctoPrintDevice.objects.update_or_create(
+            user=user, serial=serial, defaults=validated_data
+        )
 
 
 class GcodeFileSerializer(serializers.ModelSerializer):

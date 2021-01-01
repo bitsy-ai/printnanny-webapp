@@ -33,6 +33,7 @@ class PrintJobEventTypeChoices(models.TextChoices):
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
 
+
 class OctoPrintEventTypeChoices(models.TextChoices):
     # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
     CLIENT_AUTHED = "ClientAuthed", "ClientAuthed"
@@ -95,16 +96,21 @@ class OctoPrintEventTypeChoices(models.TextChoices):
 
     # pi throttle state
     # @todo (not sure why this event is formatted different by octoprint)
-    PI_THROTTLE_STATE = "plugin_pi_support_throttle_state", "plugin_pi_support_throttle_state"
+    PI_THROTTLE_STATE = (
+        "plugin_pi_support_throttle_state",
+        "plugin_pi_support_throttle_state",
+    )
 
     # octoprint server
     # CONNECTIVITY_CHANGED = "ConnectivityChanged"
     SHUTDOWN = "Shutdown", "Shutdown"
     STARTUP = "Startup", "Startup"
 
+
 OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
 PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
 TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes
+
 
 class ObjectDetectEventImage(models.Model):
     created_dt = models.DateTimeField()
@@ -135,7 +141,7 @@ class PrintJobEvent(models.Model):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=PrintJobEventTypeChoices.choices
     )
-    state = models.CharField(max_length=255),
+    state = models.CharField(max_length=255)
     current_z = models.FloatField()
     progress = models.FloatField()
     job_data_file = models.CharField(max_length=255)
@@ -149,4 +155,3 @@ class PrintJobEvent(models.Model):
 
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
-

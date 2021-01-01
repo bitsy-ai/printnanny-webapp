@@ -83,6 +83,6 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
                 print_job=job,
             )
 
-            event.annotated_image.save(f'{event.uuid}.jpg', annotated_image)
-            event.original_image.save(f'{event.uuid}.jpg', original_image)
+            event.annotated_image.save(f"{event.uuid}.jpg", annotated_image)
+            event.original_image.save(f"{event.uuid}.jpg", original_image)
             event.save()

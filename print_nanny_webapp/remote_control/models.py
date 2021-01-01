@@ -22,12 +22,14 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
+
 class KeyPairProvisioning(Exception):
     pass
 
+
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
-        logging.info(f'Defaults: {defaults} Kwargs: {kwargs}')
+        logging.info(f"Defaults: {defaults} Kwargs: {kwargs}")
         with tempfile.TemporaryDirectory() as tmp:
             tmp_private_key_filename = f"{tmp}/rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/rsa_public.pem"
@@ -42,12 +44,12 @@ class OctoPrintDeviceManager(models.Manager):
                     "-pkeyopt",
                     "rsa_keygen_bits:2048",
                 ],
-                capture_output=True
+                capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr != b'':
-                logger.error(f'Error running openssl genpkey {p.stderr}')
-                #raise KeyPairProvisioning(p.stderr)
+            if p.stderr != b"":
+                logger.error(f"Error running openssl genpkey {p.stderr}")
+                # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
                 [
@@ -59,12 +61,12 @@ class OctoPrintDeviceManager(models.Manager):
                     "-out",
                     tmp_public_key_filename,
                 ],
-                capture_output=True
+                capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr != b'':
-                logger.error(f'Error running openssl rsa {p.stderr}')
-                #raise KeyPairProvisioning(p.stderr)
+            if p.stderr != b"":
+                logger.error(f"Error running openssl rsa {p.stderr}")
+                # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
                 [
@@ -76,9 +78,9 @@ class OctoPrintDeviceManager(models.Manager):
                 capture_output=True,
             )
             logger.debug(p.stdout)
-            if p.stderr != b'':
+            if p.stderr != b"":
                 logger.error(p.stderr)
-                #raise KeyPairProvisioning(p.stderr)
+                # raise KeyPairProvisioning(p.stderr)
 
             fingerprint = p.stdout
             fingerprint = fingerprint.decode().split("=")[-1]
@@ -118,14 +120,12 @@ class OctoPrintDeviceManager(models.Manager):
                 settings.GCP_PROJECT_ID,
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
                 settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-                cloudiot_device_name
+                cloudiot_device_name,
             )
 
             try:
-                cloudiot_device = client.delete_device(
-                    name=device_path
-                )
-                logger.info(f'Deleted existing device {device_path}')
+                cloudiot_device = client.delete_device(name=device_path)
+                logger.info(f"Deleted existing device {device_path}")
             except google.api_core.exceptions.NotFound:
                 pass
 
@@ -134,8 +134,7 @@ class OctoPrintDeviceManager(models.Manager):
             )
             cloudiot_device_created = True
 
-            logger.info(f'Created new deivce in registry {device_path}')
-
+            logger.info(f"Created new deivce in registry {device_path}")
 
             cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
@@ -148,19 +147,16 @@ class OctoPrintDeviceManager(models.Manager):
                 fingerprint=fingerprint,
                 cloudiot_device_num_id=cloudiot_device_num_id,
                 cloudiot_device_name=cloudiot_device_name,
-                cloudiot_device=cloudiot_device_dict,    
+                cloudiot_device=cloudiot_device_dict,
             )
 
             defaults.update(always_update)
 
-            device, created = super().update_or_create(
-                defaults=defaults,
-                **kwargs
-            )
+            device, created = super().update_or_create(defaults=defaults, **kwargs)
 
             for key, value in always_update.items():
                 setattr(device, key, value)
-            logging.info(f'Device created: {created} with id={device.id}')
+            logging.info(f"Device created: {created} with id={device.id}")
             device.cloudiot_device = cloudiot_device_dict
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)

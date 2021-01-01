@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0007_auto_20201229_2309'),
+        ("remote_control", "0007_auto_20201229_2309"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='cloudiot_device_name',
-            field=models.CharField(default='serial-1234', max_length=255),
+            model_name="octoprintdevice",
+            name="cloudiot_device_name",
+            field=models.CharField(default="serial-1234", max_length=255),
             preserve_default=False,
         ),
     ]

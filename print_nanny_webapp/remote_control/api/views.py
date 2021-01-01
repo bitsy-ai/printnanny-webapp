@@ -24,7 +24,7 @@ from .serializers import (
     PrintJobSerializer,
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
-    OctoPrintDeviceKeySerializer
+    OctoPrintDeviceKeySerializer,
 )
 
 from print_nanny_webapp.remote_control.models import (
@@ -214,9 +214,8 @@ class GcodeFileViewSet(
         responses={
             201: OctoPrintDeviceKeySerializer,
             202: OctoPrintDeviceKeySerializer,
-            400: OctoPrintDeviceSerializer, 
+            400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
-
         }
     )
 )
@@ -247,14 +246,13 @@ class OctoPrintDeviceViewSet(
     #         logger.error(f"{str(exception)} {str(exception.parent_exception)}")
     #         raise exception
 
-
     @extend_schema(
         operation_id="octoprint_devices_update_or_create",
         responses={
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
             201: OctoPrintDeviceKeySerializer,
-            202: OctoPrintDeviceKeySerializer
+            202: OctoPrintDeviceKeySerializer,
         },
     )
     @action(methods=["post"], detail=False)
@@ -262,14 +260,16 @@ class OctoPrintDeviceViewSet(
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             validated_data = serializer.validated_data.copy()
-            del validated_data['serial']
+            del validated_data["serial"]
             instance, created = serializer.update_or_create(
-                request.user, serializer.validated_data.get('serial'), validated_data
+                request.user, serializer.validated_data.get("serial"), validated_data
             )
             response_serializer = self.get_serializer(instance)
 
             if not created:
-                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
+                return Response(
+                    response_serializer.data, status=status.HTTP_202_ACCEPTED
+                )
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
