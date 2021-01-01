@@ -131,6 +131,7 @@ class OctoPrintEvent(models.Model):
         max_length=255, db_index=True, choices=OctoPrintEventTypeChoices.choices
     )
     event_data = models.JSONField()
+    device = models.ForeignKey('remote_control.OctoPrintDevice', db_index=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
@@ -147,7 +148,7 @@ class PrintJobEvent(models.Model):
     job_data_file = models.CharField(max_length=255)
 
     event_data = models.JSONField()
-
+    device = models.ForeignKey('remote_control.OctoPrintDevice', db_index=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_job = models.ForeignKey(
         "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
