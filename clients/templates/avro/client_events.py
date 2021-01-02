@@ -1,11 +1,11 @@
 import io
-from fastavro import schemaless_writer, reader, parse_schema
+from fastavro import schemaless_writer, reader, load_schema
 from os import path
 
 basepath = path.dirname(__file__)
 
 filename = '{basepath}/client_events.avsc'.format(basepath=basepath)
-schema = parse_schema(open(filename, "rb"))
+schema = load_schema(filename)
 
 class ObjectDetectEventSerializer:
 
