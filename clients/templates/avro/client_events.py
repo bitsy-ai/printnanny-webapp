@@ -8,7 +8,7 @@ basepath = path.dirname(__file__)
 filename = '{basepath}/client_events.avsc'.format(basepath=basepath)
 schema = avro.schema.parse(open(filename, "rb").read())
 
-class ClientEventSerializer:
+class ObjectDetectEventSerializer:
 
     def __init__(self):
         self.writer = DatumWriter(schema)
