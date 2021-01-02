@@ -13,4 +13,15 @@ files:
   requirements.mustache:
     templateType: SupportingFiles
     destinationFilename: requirements.txt
-
+  avro/client_events.avsc:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_client/avro/client_events.avsc
+  avro/client_events.py:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_client/avro/client_events.py
+  avro/__init__.py:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_client/avro/__init__.py
+  MANIFEST.mustache:
+    templateType: SupportingFiles
+    destinationFilename: MANIFEST.in
