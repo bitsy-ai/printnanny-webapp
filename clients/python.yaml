@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: print_nanny_client
-packageVersion: '0.1.29'
+packageVersion: '0.1.30'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@bitsy.ai"
@@ -13,9 +13,9 @@ files:
   requirements.mustache:
     templateType: SupportingFiles
     destinationFilename: requirements.txt
-  avro/client_events.avsc:
+  avro/ObjectDetectEvent.avsc:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_client/avro/client_events.avsc
+    destinationFilename: print_nanny_client/avro/ObjectDetectEvent.avsc
   avro/client_events.py:
     templateType: SupportingFiles
     destinationFilename: print_nanny_client/avro/client_events.py
