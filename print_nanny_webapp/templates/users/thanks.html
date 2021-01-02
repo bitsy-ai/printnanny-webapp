@@ -51,3 +51,9 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
 {% endblock content %}
 
+{% block extra_javascript %}
+        <script>
+            gtag('event', 'beta_invite_request')
+        </script>
+{% endblock %}
+

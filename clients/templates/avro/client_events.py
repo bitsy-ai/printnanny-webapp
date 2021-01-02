@@ -25,3 +25,12 @@ class ObjectDetectEventSerializer:
         writer(fo, schema, raw_bytes)
         fo.seek(0)
         return [record for record in reader(fo)]
+    
+    def structure_object_detect_data(self, client_event):
+        '''
+            avro doesn't support nested lists
+        '''
+        event["object_detect_data"]["detection_boxes"] = [{"coordinates": x} for x in event["object_detect_data"]["detection_boxes"] ]
+        if event.get('event_type'):
+            del event['event_type']
+        return event
