@@ -5,7 +5,6 @@
  "fields": [
      {"name": "created_ts", "type": "long", "logicalType": "timestamp-millis"},
      {"name": "gcs_path",  "type": ["string", "null"]},
-     {"name": "predict_session_id", "type": "int"},
      {"name": "device_id", "type": "int"},
      {"name": "device_cloudiot_name", "type": "int"},
      {"name": "user_id", "type": "int"},
