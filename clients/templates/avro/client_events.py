@@ -6,7 +6,7 @@ from os import path
 basepath = path.dirname(__file__)
 
 filename = '{basepath}/client_events.avsc'.format(basepath=basepath)
-schema = avro.schema.parse(open(filename, "rb").read())
+schema = avro.schema.Parse(open(filename, "rb").read())
 
 class ObjectDetectEventSerializer:
 
