@@ -6,7 +6,7 @@
      {"name": "created_ts", "type": "long", "logicalType": "timestamp-millis"},
      {"name": "gcs_path",  "type": ["string", "null"]},
      {"name": "device_id", "type": "int"},
-     {"name": "device_cloudiot_name", "type": "int"},
+     {"name": "device_cloudiot_name", "type": "string"},
      {"name": "user_id", "type": "int"},
      {"name": "calibration", "type": {"type": "array", "items": "float"}},
      {"name": "object_detect_data", "type": 
