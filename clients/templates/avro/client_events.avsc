@@ -8,6 +8,7 @@
      {"name": "device_id", "type": "int"},
      {"name": "device_cloudiot_name", "type": "int"},
      {"name": "user_id", "type": "int"},
+     {"name": "calibration", "type": {"type": "array", "items": "float"}},
      {"name": "object_detect_data", "type": 
         { 
             "namespace": "com.octoprint_nanny.client_events.avro",
