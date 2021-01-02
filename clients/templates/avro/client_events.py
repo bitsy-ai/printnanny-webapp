@@ -24,4 +24,4 @@ class ObjectDetectEventSerializer:
         fo = BytesIO()
         writer(fo, schema, raw_bytes)
         fo.seek(0)
-        return record for record in reader(fo)    
+        return [record for record in reader(fo)]
