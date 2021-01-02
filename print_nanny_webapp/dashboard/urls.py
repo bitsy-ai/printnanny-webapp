@@ -8,6 +8,8 @@ from .views import (
     home_dashboard_view,
     video_dashboard_detail_view,
     video_dashboard_list_view,
+    app_dashboard_list_view,
+    octoprint_device_dashboard_list_view
 )
 
 app_name = "dashboard"
@@ -16,6 +18,14 @@ app_name = "dashboard"
 report_cards_urls = [
     path("/", video_dashboard_list_view, name="list"),
     path("/<slug:pk>", video_dashboard_detail_view, name="detail"),
+]
+
+app_cards_urls = [
+    path("/", app_dashboard_list_view, name="list"),
+]
+
+octoprint_devices_urls = [
+    path("/", octoprint_device_dashboard_list_view, name="list"),
 ]
 
 urlpatterns = [
@@ -27,5 +37,10 @@ urlpatterns = [
     path(
         "report-cards", include((report_cards_urls, app_name), namespace="report-cards")
     ),
-    path("", view=home_dashboard_view, name="ecommerce"),
+    path(
+        "apps", include((app_cards_urls, app_name), namespace="apps")
+    ),
+    path(
+        "octoprint-devices", include((octoprint_devices_urls, app_name), namespace="octoprint-devices")
+    ),    
 ]

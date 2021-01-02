@@ -124,6 +124,24 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 home_dashboard_view = HomeDashboardView.as_view()
 
 
+class AppDashboardListView(LoginRequiredMixin, TemplateView):
+    template_name = "dashboard/app-list.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(AppDashboardListView, self).get_context_data(**kwargs)
+        return context
+
+app_dashboard_list_view = AppDashboardListView.as_view()
+
+class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
+    template_name = "dashboard/app-list.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(OctoPrintDeviceListView, self).get_context_data(**kwargs)
+        return context
+
+octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
+
 class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     success_url = "/dashboard/report-cards"
 
