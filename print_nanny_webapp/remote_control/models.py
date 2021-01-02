@@ -104,6 +104,8 @@ class OctoPrintDeviceManager(models.Manager):
 
             serial = kwargs.get("serial")
             cloudiot_device_name = f"serial-{serial}"
+
+            string_kwargs = {k:str(v) for k, v in kwargs.items()}
             device_template = {
                 "id": cloudiot_device_name,
                 "credentials": [
@@ -114,6 +116,11 @@ class OctoPrintDeviceManager(models.Manager):
                         }
                     }
                 ],
+                'metadata': {
+                    'user_id': str(kwargs.get('user').id),
+                    'serial': kwargs.get('serial'),
+                    **string_kwargs
+                    }
             }
 
             device_path = client.device_path(
@@ -161,6 +168,8 @@ class OctoPrintDeviceManager(models.Manager):
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)
             device.save()
+            
+
             return device, created
 
 
