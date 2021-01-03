@@ -168,7 +168,21 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
 
 app_dashboard_list_view = AppDashboardListView.as_view()
 
+class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView):
+    model = OctoPrintDevice
+    # slug_field = "id"
+    # slug_url_kwarg = "id"
+    template_name = "dashboard/octoprint-devices-detail.html"
 
+    def get_object(self):
+        obj = super().get_object()
+        obj.seen = True
+        obj.save()
+        return obj
+
+
+
+octoprint_device_dashboard_detail_view = OctoPrintDevicesDetailView.as_view()
 class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/octoprint-devices-list.html"
 

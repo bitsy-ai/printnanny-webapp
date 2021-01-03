@@ -43,7 +43,7 @@
                         </div>
                     </td> -->
                     <td><i class="mdi mdi-circle {device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td>
-                    <td><button class="btn btn-sm btn-primary">Manage</button></td>
+                    <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-sm btn-primary">Manage</button></a></td>
                     <td>{{device.gcode_file}}</td>
   
                     <td scope="col" class="d-none d-md-table-cell">{{device.octoprint_version}}</td>
