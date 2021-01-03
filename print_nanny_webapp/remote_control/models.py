@@ -22,7 +22,6 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
-
 class KeyPairProvisioning(Exception):
     pass
 
@@ -208,6 +207,20 @@ class OctoPrintDevice(models.Model):
     print_nanny_client_version = models.CharField(max_length=255)
 
     @property
+    def cloudiot_device_status(self):
+        client = cloudiot_v1.DeviceManagerClient()
+        device_path = client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            self.cloudiot_device_name,
+        )
+        cloudiot_device = client.get_device(name=device_path)
+        cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
+        self.cloudiot_device = cloudiot_device_dict
+        self.save()
+        return cloudiot_device_dict
+    @property
     def print_job_status(self):
         PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
 
@@ -286,6 +299,7 @@ class PrinterProfile(models.Model):
     volume_width = models.FloatField()
 
 
+
 class PrintJob(models.Model):
     class Meta:
         unique_together = ("user", "name", "dt")
@@ -298,6 +312,7 @@ class PrintJob(models.Model):
         CANCELLED = "CANCELLED", "Cancelled"
         PAUSED = "PAUSED", "Paused"
         RESUMED = "RESUMED", "Resumed"
+
 
     dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -317,3 +332,33 @@ class PrintJob(models.Model):
     @property
     def filename(self):
         return self.gcode_file.file.name
+
+
+
+
+class RemoteControlAction(models.Model):
+
+    class ActionChoices(models.TextChoices):
+        STOP = "Stop", "Stop"
+        PAUSE = "Pause", "Pause"
+        RESUME = "Resume", "Resume"
+
+    VALID_PRINT_ACTIONS = {
+        PrintJob.StatusChoices.STARTED: [ActionChoices.STOP, ActionChoices.PAUSE],
+        PrintJob.StatusChoices.DONE: [],
+        PrintJob.StatusChoices.CANCELLED: [],
+        PrintJob.StatusChoices.CANCELLING: [],
+        PrintJob.StatusChoices.PAUSED: [ActionChoices.STOP,ActionChoices.RESUME],
+        PrintJob.StatusChoices.FAILED: []
+    }
+
+    ACTION_CSS_CLASSES = {
+        ActionChoices.STOP: "danger",
+        ActionChoices.PAUSE: "warning",
+        ActionChoices.RESUME: "info"
+    }
+    created_dt = models.DateTimeField(auto_now_add=True)
+    action = models.CharField(max_length=255, choices=ActionChoices.choices)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
+
