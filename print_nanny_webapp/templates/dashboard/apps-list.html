@@ -1,0 +1,52 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block blocktitle %}Apps{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                      
+                        <li class="breadcrumb-item active">Apps</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Apps & Integrations</h4>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="page-title mt-4 mb-1 col-12">Notifications</h3>
+
+    <div class="row">
+
+       {% for obj in notification_apps %}
+        {% include  'partials/app-notification-card.html' %}
+       {% endfor %}
+    </div>
+    <h3 class="page-title mt-4 mb-1 col-12">Ecommerce</h3>
+
+    <div class="row">
+        {% for obj in ecommerce_apps %}
+        {% include  'partials/app-notification-card.html' %}
+
+       {% endfor %}
+    </div>
+    <h3 class="page-title mt-4 mb-1 col-12">Automation</h3>
+
+    <div class="row">
+        {% for obj in automation_apps %}
+        {% include  'partials/app-notification-card.html' %}
+
+       {% endfor %}
+    </div>
+
+  
+</div>
+{% endblock content %}

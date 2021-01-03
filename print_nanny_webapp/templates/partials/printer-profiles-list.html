@@ -1,0 +1,48 @@
+
+<div class="row">
+
+    <div class="col-sm-12">
+      <h4 class="page-title">Printer Profiles</h4>
+
+      <div class="card">
+        <div class="card-body">
+            <h2 class="header-title">
+              Printer Profiles
+            </h2>
+            {% if printer_profiles.count > 0 %}
+  
+            <table class="table table-centered mb-0">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Model</th>
+                      <th>OctoPrint Device</th>
+                      <th>Nozzle Diameter</th>
+                      <th>Volume Depth</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                {% for obj in printer_profiles %}
+                <tr>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.model}}</td>
+
+                    <td>{{obj.device.name}}</td>
+
+                    <td>{{obj.extruder_nozzle_diameter}}</td>
+                    <td>{{obj.volume_depth}}</td>
+                </tr>
+              {% endfor %}
+  
+              </tbody>
+          </table>
+  
+          {% else %}
+          <p>You haven't registered any OctoPrint Devices yet. </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  
+  </div>
