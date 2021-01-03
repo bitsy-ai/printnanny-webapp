@@ -1,0 +1,34 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="col-sm-4 col-md-2">
+
+    <div class="card" >
+        {% if obj.static_image %}
+        <img src="{% static obj.static_image %}" class="card-img p-3" style="opacity: 20%;">
+        {% endif %}
+      <div class="card-img-overlay text-center">
+        <h2 class="mb-2">
+            <strong>{{obj.name}}</strong>
+          </h2>
+
+          {% if obj.watching == 0 %}
+          <form method="POST" class="d-inline-block" >
+
+            {% csrf_token %}
+            {{ forms.app_notification.as_p }}
+            <input type="hidden" value="{{ obj.id }}" name="app_id">
+            
+            <button class="btn btn-primary btn-lg p-2 mb-3 mx-auto" type="submit" value="app_notification">Notify When Available</button>
+
+            </form>
+          {% endif %}
+
+        <a href="{{obj.service_url}}"><button class="btn btn-secondary btn-small mx-auto">Learn More</button></a>
+        {% if obj.watching != 0 %}
+        <p class="lead mt-3"><strong>Thanks, you'll receive an email when this feature is ready!</strong></p>
+        {% endif %}
+
+      </div>
+    </div>
+</div>

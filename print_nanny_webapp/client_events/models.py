@@ -95,7 +95,6 @@ class OctoPrintEventTypeChoices(models.TextChoices):
     STARTUP = "Startup", "Startup"
 
 
-
 class ObjectDetectEventImage(models.Model):
     created_dt = models.DateTimeField()
     uuid = models.CharField(max_length=255, db_index=True)
@@ -115,10 +114,13 @@ class OctoPrintEvent(models.Model):
         max_length=255, db_index=True, choices=OctoPrintEventTypeChoices.choices
     )
     event_data = models.JSONField()
-    device = models.ForeignKey('remote_control.OctoPrintDevice', db_index=True, on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", db_index=True, on_delete=models.CASCADE
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
+
 
 class PrintJobEventTypeChoices(models.TextChoices):
     # print job
@@ -131,21 +133,24 @@ class PrintJobEventTypeChoices(models.TextChoices):
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
 
+
 OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
 PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
 TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes
+
+
 class PrintJobEvent(models.Model):
 
     JOB_EVENT_TYPE_CSS_CLASS = {
-        'Error': 'text-danger',
-        'PrintCancelled': 'text-danger',
-        'PrintCancelling': 'text-danger',
-        'PrintDone': 'text-success',
-        'PrintFailed': 'text-danger',
-        'PrintPaused': 'text-warning',
-        'PrintResumed': 'text-success',
-        'PrintStarted': 'text-success',
-        'Idle': 'text-warning'
+        "Error": "text-danger",
+        "PrintCancelled": "text-danger",
+        "PrintCancelling": "text-danger",
+        "PrintDone": "text-success",
+        "PrintFailed": "text-danger",
+        "PrintPaused": "text-warning",
+        "PrintResumed": "text-success",
+        "PrintStarted": "text-success",
+        "Idle": "text-warning",
     }
     created_dt = models.DateTimeField(db_index=True)
     event_type = models.CharField(
@@ -157,7 +162,9 @@ class PrintJobEvent(models.Model):
     job_data_file = models.CharField(max_length=255)
 
     event_data = models.JSONField()
-    device = models.ForeignKey('remote_control.OctoPrintDevice', db_index=True, on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", db_index=True, on_delete=models.CASCADE
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_job = models.ForeignKey(
         "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
