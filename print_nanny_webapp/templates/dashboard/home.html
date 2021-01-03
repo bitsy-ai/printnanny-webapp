@@ -70,6 +70,7 @@
 
 {% include "partials/octoprint-devices-list.html" %}
 
+{% include "partials/livestream.html" %}
 
 <!-- End Action buttons -->
 {% endif %}
@@ -83,3 +84,19 @@
 
 {% endblock content %}
 
+<script>
+  const loading = document.querySelector('#stream-loading');
+
+  const video = document.querySelector('#stream');
+  
+  const WS_URL = "{{ WS_BASE_URL }}/video/";
+  const ws = new WebSocket(WS_URL);
+
+  ws.onmessage = (msg) => {
+    video.src = "data:image/png;base64," + msg.data
+    loading.style.display = 'none';
+  }
+  ws.onopen = () => {
+    console.log(`Connected to ${WS_URL}`);
+  }
+</script>

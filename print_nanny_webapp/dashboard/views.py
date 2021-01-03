@@ -21,6 +21,7 @@ TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
 AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
+PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
 
 logger = logging.getLogger(__name__)
 
@@ -166,6 +167,10 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
 
         context["octoprint_devices"] = OctoPrintDevice.objects.filter(
             user=self.request.user
+        ).all()
+
+        context["printer_profiles"] = PrinterProfile.objects.filter(
+            user=self.request.user 
         ).all()
 
         return context
