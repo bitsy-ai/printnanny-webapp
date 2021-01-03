@@ -176,13 +176,15 @@ class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         obj = super().get_object()
-        obj.seen = True
-        obj.save()
+        logging.info(obj.cloudiot_device_status)
+
+
         return obj
 
 
 
 octoprint_device_dashboard_detail_view = OctoPrintDevicesDetailView.as_view()
+
 class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/octoprint-devices-list.html"
 
