@@ -22,6 +22,7 @@ AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
+AppCard = apps.get_model("dashboard", "AppCard")
 
 logger = logging.getLogger(__name__)
 
@@ -90,11 +91,6 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
                 )
         return redirect(reverse("dashboard:report-cards:list"))
 
-    # def get_object(self):
-    #     token, created = Token.objects.get_or_create(user=self.request.user)
-    #     self.request.user.token = token
-    #     self.request.user.active_alerts = self.request.user.AlertVideoMessage_set.filter(seen=False)
-    #     return self.request.user
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomeDashboardView, self).get_context_data(**kwargs)
@@ -130,26 +126,11 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)
-        token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
 
         context["user"] = self.request.user
-        context["recent_alerts"] = (
-            AlertVideoMessage.objects.filter(
-                user=self.request.user,
-                job_status__in=[
-                    AlertVideoMessage.JobStatusChoices.FAILURE,
-                    AlertVideoMessage.JobStatusChoices.SUCCESS,
-                ],
-            )
-            .exclude(seen=True)
-            .all()
-        )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
-        # context["recent_alerts"] = self.request.user.AlertVideoMessage_set.filter(unseen=True).all()
+        context["ecommerce_apps"] = AppCard.objects.filter(category="Ecommerce").all()
+        context["notification_apps"] = AppCard.objects.filter(category="Notifications").all()
+        context["automation_apps"] = AppCard.objects.filter(category="Automation").all()
 
         return context
 

@@ -4,6 +4,11 @@ from django.contrib.postgres.fields import ArrayField
 
 User = get_user_model()
 
+class AppCategoryChoices(models.TextChoices):
+    NOTIFICATIONS = "Notifcations", "Notifications"
+    ECOMMERCE = "Ecommerce", "Ecommerce"
+    AUTOMATION = "Automation", "Automation"
+
 class AppCard(models.Model):
 
     '''
@@ -12,11 +17,8 @@ class AppCard(models.Model):
 
     static_image = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    features = ArrayField(
-        models.CharField(max_length=255)
-    )
     service_url = models.CharField(max_length=255)
-
+    category = models.CharField(max_length=255, choices=AppCategoryChoices.choices)
 
 
 

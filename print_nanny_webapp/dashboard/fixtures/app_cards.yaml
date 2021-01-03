@@ -1,0 +1,63 @@
+- model: dashboard.AppCard
+  pk: 1
+  fields:
+    static_image: images/app-images/amazon-logo.png
+    name: Amazon
+    category: Ecommerce
+    service_url: https://sell.amazon.com/learn.html
+- model: dashboard.AppCard
+  pk: 2
+  fields:
+    static_image: images/app-images/shopify-logo.png
+    name: Shopify
+    category: Ecommerce
+    service_url: https://www.shopify.com/blog/start-online-store
+- model: dashboard.AppCard
+  pk: 3
+  fields:
+    static_image: images/app-images/etsy-logo.png
+    name: Etsy
+    category: Ecommerce
+    service_url: https://www.etsy.com/sell
+- model: dashboard.AppCard
+  pk: 4
+  fields:
+    static_image: images/app-images/slack-logo.png
+    name: Slack
+    category: Notifications
+    service_url: https://api.slack.com/start
+- model: dashboard.AppCard
+  pk: 5
+  fields:
+    static_image: images/app-images/discord-logo.png
+    name: Discord
+    category: Notifications
+    service_url: https://discord.com/
+- model: dashboard.AppCard
+  pk: 6
+  fields:
+    static_image: images/app-images/octoprint-logo.png
+    name: OctoPrint
+    category: Automation
+    service_url: https://octoprint.org/
+- model: dashboard.AppCard
+  pk: 7
+  fields:
+    static_image: images/app-images/zapier-logo.png
+    name: Zapier
+    category: Automation
+    service_url: https://zapier.com/
+- model: dashboard.AppCard
+  pk: 8
+  fields:
+    static_image: images/app-images/iftt-logo.png
+    name: IFTT
+    category: Automation
+    service_url: https://ifttt.com/
+- model: dashboard.AppCard
+  pk: 9
+  fields:
+    static_image: images/app-images/swagger-logo.png
+    name: IFTT
+    category: Automation
+    service_url: https://print-nanny.com/api/schema/swagger-ui/#/

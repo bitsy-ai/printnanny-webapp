@@ -371,7 +371,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated", "print_nanny_webapp.utils.permissions.IsPrivateAllowed"),
     "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',

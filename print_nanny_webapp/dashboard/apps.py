@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class DashboardConfig(AppConfig):
-    name = "dashboard"
+    name = "print_nanny_webapp.dashboard"
     verbose_name = _("Dashboard")
 
     def ready(self):
