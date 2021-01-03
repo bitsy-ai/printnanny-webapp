@@ -6,11 +6,18 @@ from django.apps import apps
 from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
-from .forms import TimelapseUploadForm, TimelapseCancelForm, FeedbackForm
+from .forms import (
+    TimelapseUploadForm,
+    TimelapseCancelForm,
+    FeedbackForm,
+    AppNotificationForm,
+)
 from print_nanny_webapp.alerts.tasks.timelapse_alert import (
     create_analyze_video_task,
     annotate_job_error,
 )
+from django.db.models import Q, Count
+
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from django.shortcuts import redirect
 from print_nanny_webapp.users.forms import UserSettingsForm
@@ -23,7 +30,7 @@ UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
 AppCard = apps.get_model("dashboard", "AppCard")
-
+AppNotification = apps.get_model("dashboard", "AppNotification")
 logger = logging.getLogger(__name__)
 
 
@@ -91,7 +98,6 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
                 )
         return redirect(reverse("dashboard:report-cards:list"))
 
-
     def get_context_data(self, *args, **kwargs):
         context = super(HomeDashboardView, self).get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
@@ -121,20 +127,47 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 home_dashboard_view = HomeDashboardView.as_view()
 
 
-class AppDashboardListView(LoginRequiredMixin, TemplateView):
+class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
     template_name = "dashboard/apps-list.html"
+    success_url = "/dashboard/apps/"
+
+    form_class = AppNotificationForm
+
+    def form_valid(self, form):
+
+        app_id = self.request.POST.get("app_id")
+
+        AppNotification.objects.get_or_create(user=self.request.user, app_id=app_id)
+        return redirect(self.get_success_url())
 
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        context["ecommerce_apps"] = AppCard.objects.filter(category="Ecommerce").all()
-        context["notification_apps"] = AppCard.objects.filter(category="Notifications").all()
-        context["automation_apps"] = AppCard.objects.filter(category="Automation").all()
+        context["ecommerce_apps"] = (
+            AppCard.objects.filter(category="Ecommerce")
+            .prefetch_related("appnotification_set")
+            .annotate(watching=Count(Q(appnotification__user=self.request.user)))
+        )
+
+        # context["notification_apps"] = AppCard.objects.filter(category="Notifications").prefetch_related('appnotification_set').filter(appnotification__user=self.request.user.id).all()
+        context["notification_apps"] = (
+            AppCard.objects.filter(category="Notifications")
+            .prefetch_related("appnotification_set")
+            .annotate(watching=Count(Q(appnotification__user=self.request.user)))
+        )
+
+        context["automation_apps"] = (
+            AppCard.objects.filter(category="Automation")
+            .prefetch_related("appnotification_set")
+            .annotate(watching=Count(Q(appnotification__user=self.request.user)))
+        )
 
         return context
 
+
 app_dashboard_list_view = AppDashboardListView.as_view()
+
 
 class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/octoprint-devices-list.html"
@@ -151,15 +184,17 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
         ).all()
 
         context["printer_profiles"] = PrinterProfile.objects.filter(
-            user=self.request.user 
+            user=self.request.user
         ).all()
 
         return context
 
+
 octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
+
 class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
-    success_url = "/dashboard/report-cards"
+    success_url = "/dashboard/report-cards/"
 
     form_classes = {
         "upload": TimelapseUploadForm,

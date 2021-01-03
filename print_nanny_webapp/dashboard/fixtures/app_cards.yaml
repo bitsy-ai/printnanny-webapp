@@ -34,23 +34,15 @@
     category: Notifications
     service_url: https://discord.com/
 - model: dashboard.AppCard
-  pk: 6
-  fields:
-    static_image: images/app-images/octoprint-logo.png
-    name: OctoPrint
-    category: Automation
-    service_url: https://octoprint.org/
-- model: dashboard.AppCard
   pk: 7
   fields:
-    static_image: images/app-images/zapier-logo.png
+    static_image: images/app-images/zapier-logo.svg
     name: Zapier
     category: Automation
     service_url: https://zapier.com/
 - model: dashboard.AppCard
   pk: 8
   fields:
-    static_image: images/app-images/iftt-logo.png
     name: IFTT
     category: Automation
     service_url: https://ifttt.com/
@@ -58,6 +50,6 @@
   pk: 9
   fields:
     static_image: images/app-images/swagger-logo.png
-    name: IFTT
+    name: Swagger API
     category: Automation
     service_url: https://print-nanny.com/api/schema/swagger-ui/#/

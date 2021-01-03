@@ -20,70 +20,30 @@
                 <h4 class="page-title">Apps & Integrations</h4>
             </div>
         </div>
-    
+    </div>
 
     <h3 class="page-title mt-4 mb-1 col-12">Notifications</h3>
 
     <div class="row">
 
-        {% for obj in notification_apps %}
-        <div class="col-sm-4 col-lg-4">
-
-            <div class="card">
-              <img src="{% static obj.static_image %}" class="card-img p-3" style="opacity: 30%;">
-
-              <div class="card-img-overlay text-center">
-                  <h2 class="mb-2 display-4">
-                    <strong>{{obj.name}}</strong>
-                  </h2>
-                    <button class="btn btn-primary btn-lg p-2 mb-3 mx-auto">Notify When Available</button>
-                    <button class="btn btn-secondary btn-small mx-auto">Learn More</button>
-                    {% include "form/notify-me.html" %}
-              </div>
-            </div>
-        </div>
+       {% for obj in notification_apps %}
+        {% include  'partials/app-notification-card.html' %}
        {% endfor %}
     </div>
     <h3 class="page-title mt-4 mb-1 col-12">Ecommerce</h3>
 
     <div class="row">
         {% for obj in ecommerce_apps %}
-        <div class="col-sm-3 col-lg-3">
+        {% include  'partials/app-notification-card.html' %}
 
-            <div class="card">
-              <img src="{% static obj.static_image %}" class="card-img p-3" style="opacity: 30%;">
-
-              <div class="card-img-overlay text-center">
-                  <h2 class="mb-2 display-4">
-                    <strong>{{obj.name}}</strong>
-                  </h2>
-                    <button class="btn btn-primary btn-lg p-2 mb-3 mx-auto">Notify When Available</button>
-                    <button class="btn btn-secondary btn-small mx-auto">Learn More</button>
-                    {% include "form/notify-me.html" %}
-              </div>
-            </div>
-        </div>
        {% endfor %}
     </div>
     <h3 class="page-title mt-4 mb-1 col-12">Automation</h3>
 
     <div class="row">
         {% for obj in automation_apps %}
-        <div class="col-sm-3 col-lg-3">
+        {% include  'partials/app-notification-card.html' %}
 
-            <div class="card">
-              <img src="{% static obj.static_image %}" class="card-img p-3" style="opacity: 30%;">
-
-              <div class="card-img-overlay text-center">
-                  <h2 class="mb-2 display-4">
-                    <strong>{{obj.name}}</strong>
-                  </h2>
-                    <button class="btn btn-primary btn-lg p-2 mb-3 mx-auto">Notify When Available</button>
-                    <button class="btn btn-secondary btn-small mx-auto">Learn More</button>
-                    {% include "form/notify-me.html" %}
-              </div>
-            </div>
-        </div>
        {% endfor %}
     </div>
 

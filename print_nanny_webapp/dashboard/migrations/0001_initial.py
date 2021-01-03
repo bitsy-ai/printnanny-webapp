@@ -16,22 +16,55 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='AppCard',
+            name="AppCard",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('static_image', models.CharField(max_length=255)),
-                ('name', models.CharField(max_length=255)),
-                ('features', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), size=None)),
-                ('service_url', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("static_image", models.CharField(max_length=255)),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "features",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=255), size=None
+                    ),
+                ),
+                ("service_url", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='AppNotification',
+            name="AppNotification",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('app', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.appcard')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                (
+                    "app",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="dashboard.appcard",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

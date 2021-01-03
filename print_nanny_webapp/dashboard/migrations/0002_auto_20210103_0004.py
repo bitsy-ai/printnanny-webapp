@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dashboard', '0001_initial'),
+        ("dashboard", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='appcard',
-            name='features',
+            model_name="appcard",
+            name="features",
         ),
         migrations.AddField(
-            model_name='appcard',
-            name='category',
-            field=models.CharField(choices=[('Notifcations', 'Notifications'), ('Ecommerce', 'Ecommerce'), ('Automation', 'Automation')], default='Notifications', max_length=255),
+            model_name="appcard",
+            name="category",
+            field=models.CharField(
+                choices=[
+                    ("Notifcations", "Notifications"),
+                    ("Ecommerce", "Ecommerce"),
+                    ("Automation", "Automation"),
+                ],
+                default="Notifications",
+                max_length=255,
+            ),
             preserve_default=False,
         ),
     ]
