@@ -129,15 +129,45 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)
+        token, created = Token.objects.get_or_create(user=self.request.user)
+        self.request.user.token = token
+
+        context["user"] = self.request.user
+        context["recent_alerts"] = (
+            AlertVideoMessage.objects.filter(
+                user=self.request.user,
+                job_status__in=[
+                    AlertVideoMessage.JobStatusChoices.FAILURE,
+                    AlertVideoMessage.JobStatusChoices.SUCCESS,
+                ],
+            )
+            .exclude(seen=True)
+            .all()
+        )
+
+        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
+            user=self.request.user
+        ).all()
+        # context["recent_alerts"] = self.request.user.AlertVideoMessage_set.filter(unseen=True).all()
+
         return context
 
 app_dashboard_list_view = AppDashboardListView.as_view()
 
 class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
-    template_name = "dashboard/app-list.html"
+    template_name = "dashboard/octoprint-devices-list.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(OctoPrintDeviceListView, self).get_context_data(**kwargs)
+        token, created = Token.objects.get_or_create(user=self.request.user)
+        self.request.user.token = token
+
+        context["user"] = self.request.user
+
+        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
+            user=self.request.user
+        ).all()
+
         return context
 
 octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
