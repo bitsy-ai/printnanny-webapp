@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 
-{% block title %}User: {{ user.email }}{% endblock %}
+{% block blocktitle %}Welcome back!{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
@@ -68,89 +68,7 @@
 
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body">
-          <h2 class="header-title">
-            OctoPrint Devices
-          </h2>
-          {% if octoprint_devices.count > 0 %}
-
-          <table class="table table-centered mb-0">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <!-- <th>Print Progress</th> -->
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-
-
-
-                {% for device in octoprint_devices %}
-                  <tr>
-                      <td>{{device.name}}</td>
-                      <!-- <td>
-                          <div class="progress progress-sm">
-                              <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                      </td> -->
-                      <td><i class="mdi mdi-circle text-success"></i> Delivered</td>
-                  </tr>
-                {% endfor %}
-
-<!-- 
-                <tr>
-                    <td>Marco Lightweight Shirt</td>
-                    <td>DHL</td>
-                    <td>
-                        <div class="progress progress-sm">
-                            <div class="progress-bar progress-lg bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </td>
-                    <td><i class="mdi mdi-circle text-warning"></i> Shipped</td>
-                </tr>
-                <tr class="bg-danger text-white">
-                    <td>Half Sleeve Shirt</td>
-                    <td>Bright</td>
-                    <td>
-                        <div class="progress progress-sm">
-                            <div class="progress-bar progress-lg bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </td>
-                    <td><i class="mdi mdi-circle text-info"></i> Order Received</td>
-                </tr>
-                <tr>
-                    <td>Lightweight Jacket</td>
-                    <td>FedEx</td>
-                    <td>
-                        <div class="progress progress-sm">
-                            <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </td>
-                    <td><i class="mdi mdi-circle text-success"></i> Delivered</td>
-                </tr> -->
-            </tbody>
-        </table>
-
-        {% else %}
-        <p>You haven't registered any OctoPrint Devices yet. </p>
-        {% endif %}
-
-          {% if user.AlertVideoMessage_set.count == 0 %}
-          {% comment %}
-            Need help getting started? Run <a href="{% url 'dashboard:demo' %}">the demo</a> to see what Print Nanny can do. </p>
-          {% endcomment %}
-            {% else %}
-          {% endif %}
-      </div>
-    </div>
-  </div>
-
-</div>
-
+{% include "partials/octoprint-devices-list.html" %}
 
 
 <!-- End Action buttons -->

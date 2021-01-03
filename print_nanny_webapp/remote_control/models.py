@@ -104,6 +104,8 @@ class OctoPrintDeviceManager(models.Manager):
 
             serial = kwargs.get("serial")
             cloudiot_device_name = f"serial-{serial}"
+
+            string_kwargs = {k:str(v) for k, v in defaults.items()}
             device_template = {
                 "id": cloudiot_device_name,
                 "credentials": [
@@ -114,6 +116,11 @@ class OctoPrintDeviceManager(models.Manager):
                         }
                     }
                 ],
+                'metadata': {
+                    'user_id': str(kwargs.get('user').id),
+                    'serial': kwargs.get('serial'),
+                    **string_kwargs
+                    }
             }
 
             device_path = client.device_path(
@@ -161,6 +168,8 @@ class OctoPrintDeviceManager(models.Manager):
             device.private_key.save(f"{serial}_private.pem", private_key_file)
             device.public_key.save(f"{serial}_public.pem", public_key_file)
             device.save()
+            
+
             return device, created
 
 
@@ -200,9 +209,27 @@ class OctoPrintDevice(models.Model):
     print_nanny_client_version = models.CharField(max_length=255)
 
     @property
-    def active_print_job(self):
-        pass
+    def print_job_status(self):
+        PrintJobEvent = apps.get_model('client_events', 'PrintJobEvent')
 
+        last_print_job_event = PrintJobEvent.objects.filter(device=self).order_by('-created_dt').first()
+        if last_print_job_event:
+            return last_print_job_event.event_type
+        else:
+            return 'Idle'
+    
+    @property
+    def print_job_gcode_file(self):
+        PrintJobEvent = apps.get_model('client_events', 'PrintJobEvent')
+
+        last_print_job_event = PrintJobEvent.objects.filter(device=self).order_by('-created_dt').first()
+        if last_print_job_event:
+            return last_print_job_event.job_data_file
+        else:
+            return ''
+    @property
+    def print_job_status_css_class(self):
+        return PrintJobEvent.JOB_EVENT_TYPE_CSS[self.print_job_status]
 
 class GcodeFile(models.Model):
     class Meta:
