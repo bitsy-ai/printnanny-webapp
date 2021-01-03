@@ -1,34 +1,30 @@
 {% load static %}
 
-<div class="row">
-      <div class="col-sm-12 col-md-6">
-          <div class="card">
-            <div class="card-body">
-                <h2 class="header-title">Livestream</h2>
-      
-                <div id="stream-loading">
-                  <p>Your web camera stream is either buffering or offline.</p>
-                  <img src="{% static 'images/loading.svg' %}" class="img-responsive" />
-      
-                </div>
-                {% if object.printerprofile_set.count == 0 %}
-                  <p class="text-muted font-14">OctoPrint Disconnected</p>
-                  <p>Hey! Your OctoPrint installation wasn't found.</p>
-                  <!-- <p>Is this your first time using Print Nanny? Follow these this guide to get setup: </p> -->
-      
-                {% else %}
-                {% endif %}
-                <img id="stream" class="img-responsive">
+<div class="col-12 col-md-4">
+  <div class="card">
+    <div class="card-body">
+        <h2 class="header-title"><i class="mdi mdi-printer-3d"></i>
+          <i class="mdi mdi-video-box-off"></i>{{obj.name}} livestream</h2>
+          <div id="stream-loading-{{obj.id}}" class="row">
+            <div class="alert alert-info col-12 col-md-5" role="alert">
+              <h4 class="alert-heading"><strong>{{obj.name}}</strong> web camera is <strong>offline.</strong></h4>
+              <p>Print Nanny couldn't find a live video stream for this device</p>
+              <p><button class="btn btn-primary">Troubleshooting Guide</button></p>
             </div>
-          </div>
-        </div>
-  </div>
-<script>
-    const loading = document.querySelector('#stream-loading');
+            <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="col-md-6 offset-md-1 d-none d-md-block img-fluid float-right"/>
   
-    const video = document.querySelector('#stream');
+          </div>
+
+        <img id="stream-{{obj.id}}" class="img-fluid">
+    </div>
+  </div>
+</div>
+<script>
+    const loading = document.querySelector('#stream-loading-{{obj.id}}');
+  
+    const video = document.querySelector('#stream-{{obj.id}}');
     
-    const WS_URL = "{{ WS_BASE_URL }}/video/";
+    const WS_URL = "{{ WS_BASE_URL }}/video/{{obj.serial}}/";
     const ws = new WebSocket(WS_URL);
   
     ws.onmessage = (msg) => {
