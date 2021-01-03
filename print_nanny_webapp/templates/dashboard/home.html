@@ -70,11 +70,14 @@
 
 {% include "partials/octoprint-devices-list.html" %}
 
-{% include "partials/livestream.html" %}
+<div class="row">
 
+{% for obj in octoprint_devices %}
+  {% include "partials/livestream.html" %}
+{% endfor %}
 <!-- End Action buttons -->
 {% endif %}
-
+</div>
 
 </div>
 

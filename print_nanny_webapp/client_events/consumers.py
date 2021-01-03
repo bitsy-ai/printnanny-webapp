@@ -27,20 +27,21 @@ class VideoConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
+        self.serial = self.scope["url_route"]["kwargs"]["serial"]
         async_to_sync(self.channel_layer.group_add)(
-            f"video_{self.user.id}", self.channel_name
+            f"video_{self.serial}", self.channel_name
         )
 
-        annotated_ws_consumer_connected.inc()
+        annotated_ws_consumer_connected_metric.inc()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
-            f"video_{self.user.id}", self.channel_name
+            f"video_{self.serial}", self.channel_name
         )
 
         super().disconnect(close_code)
 
-        annotated_ws_consumer_connected.dec()
+        annotated_ws_consumer_connected_metric.dec()
 
     def video_frame(self, message):
         logging.info("Received video message")
@@ -51,6 +52,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
+        self.serial = self.scope["url_route"]["kwargs"]["serial"]
 
         annotated_ws_publisher_connected_metric.inc()
 
@@ -69,7 +71,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
             annotated_image = base64.b64decode(data["annotated_image"])
 
             async_to_sync(self.channel_layer.group_send)(
-                f"video_{self.user.id}",
+                f"video_{self.serial}",
                 {"type": "video.frame", "data": data["annotated_image"]},
             )
 
