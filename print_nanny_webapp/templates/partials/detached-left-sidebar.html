@@ -30,7 +30,7 @@
                     <a href="{% url 'dashboard:crm' %}">{% trans "CRM" %}</a>
                 </li>
                 <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
-                    <a href="{% url 'dashboard:ecommerce' %}">{% trans "Ecommerce" %}</a>
+                    <a href="{% url 'dashboard:home' %}">{% trans "Ecommerce" %}</a>
                 </li>
                 <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
                     <a href="{% url 'dashboard:projects' %}">{% trans "Projects" %}</a>
@@ -269,7 +269,7 @@
                     <a href="{% url 'layouts:layouts.horizontal' %}">{% trans "Horizontal" %}</a>
                 </li>
                 <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
-                    <a href="{% url 'dashboard:ecommerce' %}">{% trans "Vertical" %}</a>
+                    <a href="{% url 'dashboard:home' %}">{% trans "Vertical" %}</a>
                 </li>
                 <li class="{% if request.resolver_match.url_name == 'layouts.detached' %}active{% endif %}">
                     <a href="{% url 'layouts:layouts.detached' %}">{% trans "Detached" %}</a>

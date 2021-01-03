@@ -22,18 +22,6 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class PrintJobEventTypeChoices(models.TextChoices):
-    # print job
-    ERROR = "Error", "Error"
-    PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
-    PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
-    PRINT_DONE = "PrintDone", "PrintDone"
-    PRINT_FAILED = "PrintFailed", "PrintFailed"
-    PRINT_PAUSED = "PrintPaused", "PrintPaused"
-    PRINT_RESUMED = "PrintResumed", "PrintResumed"
-    PRINT_STARTED = "PrintStarted", "PrintStarted"
-
-
 class OctoPrintEventTypeChoices(models.TextChoices):
     # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
     CLIENT_AUTHED = "ClientAuthed", "ClientAuthed"
@@ -107,10 +95,6 @@ class OctoPrintEventTypeChoices(models.TextChoices):
     STARTUP = "Startup", "Startup"
 
 
-OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
-PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
-TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes
-
 
 class ObjectDetectEventImage(models.Model):
     created_dt = models.DateTimeField()
@@ -136,8 +120,33 @@ class OctoPrintEvent(models.Model):
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
 
+class PrintJobEventTypeChoices(models.TextChoices):
+    # print job
+    ERROR = "Error", "Error"
+    PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
+    PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
+    PRINT_DONE = "PrintDone", "PrintDone"
+    PRINT_FAILED = "PrintFailed", "PrintFailed"
+    PRINT_PAUSED = "PrintPaused", "PrintPaused"
+    PRINT_RESUMED = "PrintResumed", "PrintResumed"
+    PRINT_STARTED = "PrintStarted", "PrintStarted"
 
+OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
+PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
+TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes
 class PrintJobEvent(models.Model):
+
+    JOB_EVENT_TYPE_CSS_CLASS = {
+        'Error': 'text-danger',
+        'PrintCancelled': 'text-danger',
+        'PrintCancelling': 'text-danger',
+        'PrintDone': 'text-success',
+        'PrintFailed': 'text-danger',
+        'PrintPaused': 'text-warning',
+        'PrintResumed': 'text-success',
+        'PrintStarted': 'text-success',
+        'Idle': 'text-warning'
+    }
     created_dt = models.DateTimeField(db_index=True)
     event_type = models.CharField(
         max_length=255, db_index=True, choices=PrintJobEventTypeChoices.choices
