@@ -9,9 +9,28 @@
 <div class="container-fluid">
 
 {% if user == request.user %}
-<!-- Action buttons -->
 <div class="row mt-3">
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12 col-md-2 d-flex align-items-stretch">
+    <div class="card">
+      <div class="card-body">
+          <h2 class="header-title">
+            Recent Alerts
+          </h2>
+            <p class="text-muted font-14">
+              Sending email notifications to <strong>{{ user.email }}</strong>.
+            </p>
+
+          {% if recent_alerts.count == 0 %}
+            <p class="font-14">
+              You're all caught up! Unread alerts will appear here.
+            </p>          
+          {% endif %}
+      </div>
+    </div>
+  </div>
+  {% include "partials/octoprint-devices-short-list.html" %}
+
+  <div class="col-sm-12 col-md-4 d-flex align-items-stretch">
     <div class="card">
       <div class="card-body">
         <h2 class="header-title">User Settings</h2>
@@ -47,32 +66,12 @@
       </div>
     </div> 
   </div>
-  <div class="col-sm-12 col-md-6">
-    <div class="card">
-      <div class="card-body">
-          <h2 class="header-title">
-            Recent Alerts
-          </h2>
-            <p class="text-muted font-14">
-              Sending email notifications to <strong>{{ user.email }}</strong>.
-            </p>
-
-          {% if recent_alerts.count == 0 %}
-            <p class="font-14">
-              You're all caught up! Unread alerts will appear here.
-            </p>          
-          {% endif %}
-      </div>
-    </div>
-  </div>
 
 </div>
 
-{% include "partials/octoprint-devices-list.html" %}
-
 <div class="row">
 
-{% for obj in octoprint_devices %}
+{% for object in octoprint_devices %}
   {% include "partials/livestream.html" %}
 {% endfor %}
 <!-- End Action buttons -->

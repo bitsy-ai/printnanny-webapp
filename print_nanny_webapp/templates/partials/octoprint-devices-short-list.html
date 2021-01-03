@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 d-flex align-items-stretch">
       <div class="card">
         <div class="card-body">
             <h2 class="header-title">
@@ -18,15 +18,7 @@
   
                       <th scope="col" class="d-none d-md-table-cell">OctoPrint Version</th>
                       <th scope="col" class="d-none d-md-table-cell">Print Nanny Version</th>
-                      <th scope="col" class="d-none d-md-table-cell">Python & Pip Version</th>
   
-                      <th scope="col" class="d-none d-md-table-cell">Model</th>
-                      <th scope="col" class="d-none d-lg-table-cell">Serial</th>
-                      <th scope="col" class="d-none d-lg-table-cell">Hardware & Revision</th>
-                      <th scope="col" class="d-none d-lg-table-cell">Platform</th>
-  
-                      <th scope="col" class="d-none d-lg-table-cell">Cores</th>
-                      <th scope="col" class="d-none d-lg-table-cell">Ram</th>
   
                   </tr>
               </thead>
@@ -48,16 +40,7 @@
   
                     <td scope="col" class="d-none d-md-table-cell">{{device.octoprint_version}}</td>
                     <td scope="col" class="d-none d-md-table-cell">{{device.plugin_version}}</td>
-                    <td scope="col" class="d-none d-md-table-cell">{{device.python_version}} (pip {{device.pip_version}}) </td>
-  
-                    <td scope="col" class="d-none d-md-table-cell">{{device.model}}</td>
-                    <td scope="col" class="d-none d-lg-table-cell">{{device.serial}}</td>
-                    <td scope="col" class="d-none d-lg-table-cell">{{device.hardware}} {{device.revision}}</td>
-                    <td scope="col" class="d-none d-lg-table-cell">{{device.platform}}</td>
-  
-                    <td scope="col" class="d-none d-lg-table-cell">{{device.cores}}</td>
-                    <td scope="col" class="d-none d-lg-table-cell">{{device.ram}} bytes</td>
-  
+
                 </tr>
               {% endfor %}
   

@@ -9,4 +9,5 @@ def settings_context(_request):
         "DEBUG": settings.DEBUG,
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
         "WS_BASE_URL": settings.WS_BASE_URL,
+        "DISCORD_URL": settings.DISCORD_URL
     }
