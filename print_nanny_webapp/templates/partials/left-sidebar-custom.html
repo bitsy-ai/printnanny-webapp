@@ -4,7 +4,7 @@
 <div class="left-side-menu">
 
     <!-- LOGO -->
-    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-light">
+    <a href="{% url 'dashboard:home' %}" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{% static 'images/logo-text-white.svg' %}" alt="" height="16">
         </span>
@@ -14,7 +14,7 @@
     </a>
 
     <!-- LOGO -->
-    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-dark">
+    <a href="{% url 'dashboard:home' %}" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{% static 'images/logo-dark.png' %}" alt="" height="16">
         </span>
@@ -42,24 +42,25 @@
 
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
-                    <i class="uil-video"></i>
-                    <span> {% trans "Livestream" %} </span>
-                </a>
-            </li>
-            <li class="side-nav-item">
-                <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
-                    <i class="dripicons-graph-line"></i>
+                    <i class="dripicons dripicons-graph-line"></i>
                     <span> {% trans "Quality Reports" %} </span>
                     {% if object.active_alerts.count > 0 %}
                     <span class="badge badge-danger float-right"> {{ object.active_alerts.count }}</span>
                     {% endif %}
                 </a>
             </li>
+
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:octoprint-devices:list' %}" class="side-nav-link">
+                    <i class="mdi mdi-printer-3d"></i>
+                    <span> {% trans "OctoPrint Devices" %} </span>
+                </a>
+            </li>
             
             <li class="side-nav-item">
-                <a href="{% url 'users:detail' %}" class="side-nav-link">
-                    <i class=" dripicons-print"></i>
-                    <span> {% trans "Printer Profiles" %} </span>
+                <a href="{% url 'dashboard:apps:list' %}" class="side-nav-link">
+                    <i class="dripicons dripicons-print"></i>
+                    <span> {% trans "Apps & Integrations" %} </span>
 
                 </a>
             </li>
@@ -77,7 +78,7 @@
             <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
             <h5 class="mt-3">{% trans "Discord Server" %}</h5>
             <p class="mb-3">{% trans "Tell us what you think, get support, hang out with other makers."%}</p>
-            <a href="https://discord.gg/sf23bk2hPr" class="btn btn-outline-light btn-sm">{% trans "Join" %}</a>
+            <a href="https://discord.gg/sf23bk2hPr" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Join" %}</a>
         </div>
         <!-- end Help Box -->
         <!-- Upgrade Box -->

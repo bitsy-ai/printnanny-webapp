@@ -1,0 +1,25 @@
+{% extends "vertical_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block blocktitle %}OctoPrint Devices{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                      
+                        <li class="breadcrumb-item active">OctoPrint Devices</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">OctoPrint Devices</h4>
+            </div>
+        </div>
+    {% include "partials/octoprint-devices-list.html" %}
+</div>
+{% endblock content %}

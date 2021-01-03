@@ -7,8 +7,10 @@
         <meta charset="utf-8" />
         <title>{% block head_title %}{% endblock head_title %} | Print Nanny - 3D Print Monitoring</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <meta content="{% block meta_description %}Automatic failure detection and quality monitoring for 3D printers. Control your printer from anywhere. Works with OctoPrint.{% endblock meta_description %}" name="description" />
+
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -58,7 +60,7 @@
         <!-- Global site tag (gtag.js) - Google Analytics -->
         {% if not DEBUG %}
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5BEYZM8WNZ"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

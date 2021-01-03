@@ -5,7 +5,7 @@
 <div class="left-side-menu">
 
     <!-- LOGO -->
-    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-light">
+    <a href="{% url 'dashboard:home' %}" class="logo text-center logo-light">
         <span class="logo-lg">
             <img src="{% static 'images/logo-text-white.svg' %}" alt="" height="16">
         </span>
@@ -15,7 +15,7 @@
     </a>
 
     <!-- LOGO -->
-    <a href="{% url 'dashboard:ecommerce' %}" class="logo text-center logo-dark">
+    <a href="{% url 'dashboard:home' %}" class="logo text-center logo-dark">
         <span class="logo-lg">
             <img src="{% static 'images/logo-dark.png' %}" alt="" height="16">
         </span>
@@ -45,7 +45,7 @@
                         <a href="{% url 'dashboard:crm' %}">{% trans "CRM" %}</a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
-                        <a href="{% url 'dashboard:ecommerce' %}">{% trans "Ecommerce" %}</a>
+                        <a href="{% url 'dashboard:home' %}">{% trans "Ecommerce" %}</a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'analytics' %}active{% endif %}">
                         <a href="{% url 'dashboard:projects' %}">{% trans "Projects" %}</a>
@@ -238,7 +238,7 @@
                         <a href="{% url 'layouts:layouts.horizontal' %}">{% trans "Horizontal" %}</a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'ecommerce' %}active{% endif %}">
-                        <a href="{% url 'dashboard:ecommerce' %}">{% trans "Vertical" %}</a>
+                        <a href="{% url 'dashboard:home' %}">{% trans "Vertical" %}</a>
                     </li>
                     <li class="{% if request.resolver_match.url_name == 'layouts.detached' %}active{% endif %}">
                         <a href="{% url 'layouts:layouts.detached' %}">{% trans "Detached" %}</a>
