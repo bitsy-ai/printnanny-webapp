@@ -126,7 +126,7 @@ home_dashboard_view = HomeDashboardView.as_view()
 
 
 class AppDashboardListView(LoginRequiredMixin, TemplateView):
-    template_name = "dashboard/app-list.html"
+    template_name = "dashboard/apps-list.html"
 
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)

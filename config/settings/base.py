@@ -85,6 +85,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.client_events.apps.ClientEventsConfig",
     "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
+    "print_nanny_webapp.dashboard.apps.DashboardConfig"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
