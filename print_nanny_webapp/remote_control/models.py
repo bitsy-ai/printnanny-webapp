@@ -6,6 +6,7 @@ import tempfile
 import os
 from django.contrib.auth import get_user_model
 
+import json
 from django.apps import apps
 from django.db import models
 from django.utils import timezone
@@ -202,10 +203,26 @@ class OctoPrintDevice(models.Model):
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
+    monitoring_active = models.BooleanField(default=False)
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
+
+    @property
+    def cloudiot_device_status(self):
+        client = cloudiot_v1.DeviceManagerClient()
+        device_path = client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            self.cloudiot_device_name,
+        )
+        cloudiot_device = client.get_device(name=device_path)
+        cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
+        self.cloudiot_device = cloudiot_device_dict
+        self.save()
+        return cloudiot_device_dict
 
     @property
     def print_job_status(self):
@@ -317,3 +334,81 @@ class PrintJob(models.Model):
     @property
     def filename(self):
         return self.gcode_file.file.name
+
+
+class RemoteControlCommandManager(models.Manager):
+    def create(self, **kwargs):
+        client = cloudiot_v1.DeviceManagerClient()
+
+        device = kwargs.get("device")
+        device_path = client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            device.cloudiot_device_name,
+        )
+
+        obj = super().create(
+            iotcore_response={},
+            **kwargs,
+        )
+
+        data = {
+            'remote_control_command_id': obj.id,
+            'command': kwargs.get('command'),
+        }
+        data = json.dumps(data).encode("utf-8")
+
+        # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
+        # for faster commands (without state / version checking)
+        response = client.send_command_to_device(
+            request={"name": device_path, "binary_data": data, 'subfolder': 'remote_control'}
+        )
+
+        dict_response = MessageToDict(response._pb)
+        obj.iotcore_response = dict_response
+        obj.save()
+
+
+class RemoteControlCommand(models.Model):
+    objects = RemoteControlCommandManager()
+
+
+    class CommandChoices(models.TextChoices):
+        STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
+        START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
+        START_PRINT = "StartPrint", "Start Print"
+        MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
+        STOP_PRINT = "StopPrint", "Stop Print"
+        PAUSE_PRINT = "PausePrint", "Pause Print"
+        RESUME_PRINT = "ResumePrint", "Resume Print"
+
+    COMMAND_CODES =  [x.value for x in CommandChoices.__members__.values()]
+
+    VALID_ACTIONS = {
+        PrintJob.StatusChoices.STARTED: [CommandChoices.STOP_PRINT, CommandChoices.PAUSE_PRINT],
+        PrintJob.StatusChoices.DONE: [CommandChoices.MOVE_NOZZLE],
+        PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE_NOZZLE],
+        PrintJob.StatusChoices.CANCELLING: [],
+        PrintJob.StatusChoices.PAUSED: [
+            CommandChoices.STOP_PRINT,
+            CommandChoices.RESUME_PRINT,
+            CommandChoices.MOVE_NOZZLE,
+        ],
+        PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
+        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING],
+
+    }
+
+    ACTION_CSS_CLASSES = {
+        CommandChoices.STOP_PRINT: "danger",
+        CommandChoices.PAUSE_PRINT: "warning",
+        CommandChoices.RESUME_PRINT: "info",
+    }
+    created_dt = models.DateTimeField(auto_now_add=True)
+    command = models.CharField(max_length=255, choices=CommandChoices.choices)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
+    received = models.BooleanField(default=False)
+    success = models.BooleanField(null=True)
+    iotcore_response = JSONField()

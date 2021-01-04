@@ -2,8 +2,9 @@
 
 .PHONY: build prod-up dev-up client clean-client-build
 
-build:
+ui:
 	npm run build
+build: ui
 	docker-compose -f production.yml build
 
 prod-up: build

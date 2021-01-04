@@ -36,7 +36,7 @@
 .content-page {
     margin-left: $leftbar-width;
     overflow: hidden;
-    padding: $topbar-height 12px 65px;
+    padding: $topbar-height 12px $footer-height;
     min-height: 100vh;
 }
 

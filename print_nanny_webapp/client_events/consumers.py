@@ -27,23 +27,26 @@ class VideoConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
+        self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
         async_to_sync(self.channel_layer.group_add)(
-            f"video_{self.user.id}", self.channel_name
+            f"video_{self.device_id}", self.channel_name
         )
 
-        annotated_ws_consumer_connected.inc()
+        logger.info(f'Consumer for {self.device_id} connected')
+
+
+        annotated_ws_consumer_connected_metric.inc()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
-            f"video_{self.user.id}", self.channel_name
+            f"video_{self.device_id}", self.channel_name
         )
 
         super().disconnect(close_code)
 
-        annotated_ws_consumer_connected.dec()
+        annotated_ws_consumer_connected_metric.dec()
 
     def video_frame(self, message):
-        logging.info("Received video message")
         self.send(message["data"])
 
 
@@ -51,6 +54,9 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
+        self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
+
+        logger.info(f'Publisher for {self.device_id} connected')
 
         annotated_ws_publisher_connected_metric.inc()
 
@@ -66,23 +72,9 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
             return self.send(text_data="pong")
 
         elif data.get("event_type") == "annotated_image":
+            
             annotated_image = base64.b64decode(data["annotated_image"])
-
             async_to_sync(self.channel_layer.group_send)(
-                f"video_{self.user.id}",
+                f"video_{self.device_id}",
                 {"type": "video.frame", "data": data["annotated_image"]},
             )
-
-            # original_image = ContentFile(data["original_image"])
-            # annotated_image = ContentFile(data["annotated_image"])
-
-            # event = ObjectDetectEventImage.objects.create(
-            #     created_dt=data["ts"],
-            #     uuid=data["uuid"],
-            #     user=self.scope.user,
-            #     print_job=job,
-            # )
-
-            # event.annotated_image.save(f"{event.uuid}.jpg", annotated_image)
-            # event.original_image.save(f"{event.uuid}.jpg", original_image)
-            # event.save()
