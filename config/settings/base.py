@@ -228,6 +228,11 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_CLASS_CONVERTERS = {
+    'select': "custom-select", 
+    'form-group': 'input-group'
+}
+
 
 # FIXTURES
 # ------------------------------------------------------------------------------
@@ -449,3 +454,5 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='
 GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', default='projects/print-nanny/subscriptions/octoprint-events-webapp-dev')
 
 DISCORD_URL="https://discord.gg/sf23bk2hPr"
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

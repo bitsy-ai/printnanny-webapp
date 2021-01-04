@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-body">
+        <h2 class="header-title">
+            <i class="mdi mdi-globe-model"></i> <strong>Command History</strong>
+        </h2>
+
+        <table class="table table-centered mb-0">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <!-- <th>Print Progress</th> -->
+                    <th>Time Sent</th>
+                    <th>Received</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for command in sent_commands %}
+                    <tr>
+                        <td><h3><span class="badge badge-light">{{command.command}}</span></h3></td>
+
+                        <td>{{command.created_dt}}</td>
+                        
+                        {% if command.received %}
+                            <td><i class="mdi mdi-check text-success"></i> Received</td>
+                        {% else %}
+                            <td><i class="mdi mdi-circle text-warning"></i> Pending</td>
+
+                        {% endif %}
+                        
+
+
+
+
+                    </tr>
+                {% endfor %}
+
+                
+            </tbody>
+        </table>
+    </div>
+</div>
