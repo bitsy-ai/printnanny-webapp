@@ -355,7 +355,7 @@ class RemoteControlCommandManager(models.Manager):
 
         data = {
             'remote_control_command_id': obj.id,
-            **kwargs
+            'command': kwargs.get('command'),
         }
         data = json.dumps(data).encode("utf-8")
 
@@ -375,7 +375,8 @@ class RemoteControlCommand(models.Model):
 
 
     class CommandChoices(models.TextChoices):
-        WAKE_PRINT_NANNY = "WakePrintNanny", "Wake Up Print Nanny"
+        STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
+        START_MONITORING = "StartMonitiroing", "Start Print Nanny Monitoring"
         START_PRINT = "StartPrint", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
         STOP_PRINT = "StopPrint", "Stop Print"
@@ -395,7 +396,8 @@ class RemoteControlCommand(models.Model):
             CommandChoices.MOVE_NOZZLE,
         ],
         PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [CommandChoices.WAKE_PRINT_NANNY],
+        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING],
+
     }
 
     ACTION_CSS_CLASSES = {
