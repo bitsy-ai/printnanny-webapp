@@ -37,6 +37,8 @@ def send_beta_invite(modeladmin, request, queryset):
     for invite_request in queryset:
         invite = Invitation.create(invite_request.email)
         invite.send_invitation(request)
+        invite_request.invited = True
+        invite_request.save()
 
 @admin.register(InviteRequest)
 class InviteRequestAdmin(admin.ModelAdmin):
