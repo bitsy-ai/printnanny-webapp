@@ -228,6 +228,11 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_CLASS_CONVERTERS = {
+    'select': "custom-select", 
+    'form-group': 'input-group'
+}
+
 
 # FIXTURES
 # ------------------------------------------------------------------------------
@@ -371,7 +376,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated", "print_nanny_webapp.utils.permissions.IsPrivateAllowed"),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -447,3 +452,8 @@ GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default='
 GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='projects/print-nanny/topics/octoprint-events-dev')
 
 GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', default='projects/print-nanny/subscriptions/octoprint-events-webapp-dev')
+
+DISCORD_URL="https://discord.gg/sf23bk2hPr"
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
