@@ -1,7 +1,13 @@
+import logging
 from django import forms
+from django.apps import apps
+
 from crispy_forms.helper import FormHelper
 
 from django.core.files.uploadedfile import SimpleUploadedFile
+
+logger = logging.getLogger(__name__)
+RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
 
 class TimelapseUploadForm(forms.Form):
@@ -33,3 +39,16 @@ class AppNotificationForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "post"
+
+
+class RemoteControlCommandForm(forms.Form):
+
+    command = forms.ChoiceField()
+
+    def __init__(self, *args, **kwargs):
+
+        # django metaclass magic to construct fields
+
+        command_choices = kwargs.pop("command_choices")
+        super().__init__(*args, **kwargs)
+        self.fields["command"].choices = [(x.label, x.value) for x in command_choices]

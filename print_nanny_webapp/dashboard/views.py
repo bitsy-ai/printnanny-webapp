@@ -11,17 +11,20 @@ from .forms import (
     TimelapseCancelForm,
     FeedbackForm,
     AppNotificationForm,
+    RemoteControlCommandForm,
 )
 from print_nanny_webapp.alerts.tasks.timelapse_alert import (
     create_analyze_video_task,
     annotate_job_error,
 )
 from django.db.models import Q, Count
+from django.contrib import messages
+from django.forms.models import model_to_dict
+from django.shortcuts import redirect
+import google.api_core.exceptions
 
 from print_nanny_webapp.utils.multiform import MultiFormsView
-from django.shortcuts import redirect
 from print_nanny_webapp.users.forms import UserSettingsForm
-from django.forms.models import model_to_dict
 
 User = get_user_model()
 TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
@@ -29,6 +32,7 @@ AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
+RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
 logger = logging.getLogger(__name__)
@@ -168,22 +172,61 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
 
 app_dashboard_list_view = AppDashboardListView.as_view()
 
-class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView):
+
+class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView, FormView):
     model = OctoPrintDevice
     # slug_field = "id"
     # slug_url_kwarg = "id"
+    form_class = RemoteControlCommandForm
+
     template_name = "dashboard/octoprint-devices-detail.html"
 
+    def form_valid(self, form):
+        device = self.get_object()
+        command = form.cleaned_data.get("command")
+        logger.info(f"****** {command}")
+
+        try:
+            RemoteControlCommand.objects.create(
+                user=self.request.user, device=device, command=command
+            )
+        except google.api_core.exceptions.FailedPrecondition:
+            messages.add_message(
+                self.request,
+                messages.ERROR,
+                "Command failed! Device received conflicting instructions. Refresh this page to try again.",
+            )
+        return redirect("dashboard:octoprint-devices:detail", pk=device.id)
+
     def get_object(self):
+        self.object = super().get_object()
+
+        return self.object
+
+    def get_context_data(self, *args, **kwargs):
+        self.get_object()
+        context = super(OctoPrintDevicesDetailView, self).get_context_data(**kwargs)
+        # context["valid_actions"] = RemoteControlCommand.VALID_ACTIONS[context["object"].print_job_status]
+
+        context["sent_commands"] = RemoteControlCommand.objects.filter(
+            user_id=self.request.user
+        ).order_by("-created_dt")[:5]
+
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(OctoPrintDevicesDetailView, self).get_form_kwargs()
+
         obj = super().get_object()
-        logging.info(obj.cloudiot_device_status)
 
-
-        return obj
-
+        kwargs["command_choices"] = RemoteControlCommand.VALID_ACTIONS[
+            obj.print_job_status
+        ]
+        return kwargs
 
 
 octoprint_device_dashboard_detail_view = OctoPrintDevicesDetailView.as_view()
+
 
 class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/octoprint-devices-list.html"
@@ -320,6 +363,7 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         obj = super().get_object()
+
         obj.seen = True
         obj.save()
         return obj
