@@ -16,6 +16,9 @@ dev-up:
 deploy: build
 	k8s/push.sh
 
+blog-deploy:
+	k8s/push-blog.sh
+
 lint:
 	black print_nanny_webapp
 

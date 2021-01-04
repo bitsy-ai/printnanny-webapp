@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ghost-content
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mailgun-basic-auth
+type: kubernetes.io/basic-auth
+stringData:
+  username: leigh@bitsy.ai
+  password: 2fDedT),muKUY^2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghost
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      serviceAccountName: sql-webapp
+      volumes:
+        - name: ghost-content
+          persistentVolumeClaim:
+            claimName: ghost-content
+      containers:
+      - name: ghost
+        image: ghost:latest
+        ports:
+        - containerPort: 2368
+        volumeMounts:
+        - name: ghost-content
+          mountPath: /var/lib/ghost/content
+        env:
+          - name: url
+            value: "https://blog.print-nanny.com"
+          - name: admin
+            value: "https://blog-admin.print-nanny.com"
+          - name: mail__transport
+            value: "SMTP"
+          - name: mail__host
+            value: "smtp.mailgun.org"
+          - name: mail__port
+            value: "557"
+          - name: mail__options__service
+            value: "Mailgun"
+          - name: mail__options__auth__user
+            valueFrom:
+              secretKeyRef:
+                name: mailgun-basic-auth
+                key: username
+          - name: mail__options__auth__password
+            valueFrom:
+              secretKeyRef:
+                name: mailgun-basic-auth
+                key: password
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: blog-dot-print-nanny-dot-com
+spec:
+  domains:
+    - blog.print-nanny.com
+    - blog-admin.print-nanny.com
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: http-to-https
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost
+spec:
+  selector: 
+    app: ghost
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 2368
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ghost
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "ghost-static-ip"
+    networking.gke.io/managed-certificates: blog-dot-print-nanny-dot-com
+spec:
+  backend:
+    serviceName: ghost
+    servicePort: 80
