@@ -62,17 +62,18 @@ class CommandViewSet(
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
-    # @extend_schema(
-    #     tags=["remote_control"],
-    #     operation_id="commands_retrieve",
-    #     responses={200: OpenApiTypes.STR},
-    # )
-    # @action(methods=["GET"], detail=False)
-    def list(self, *args, **kwargs):
+    @extend_schema(
+        tags=["remote_control"],
+        operation_id="valid_commands_retrieve",
+        responses={200: OpenApiTypes.STR},
+    )
+    @action(methods=["GET"], detail=False)
+    def valid(self, *args, **kwargs):
         return Response(
             RemoteControlCommand.COMMAND_CODES,
             status.HTTP_200_OK,
         )
+
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
