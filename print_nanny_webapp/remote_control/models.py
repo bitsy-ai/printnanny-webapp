@@ -376,7 +376,7 @@ class RemoteControlCommand(models.Model):
 
     class CommandChoices(models.TextChoices):
         STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
-        START_MONITORING = "StartMonitiroing", "Start Print Nanny Monitoring"
+        START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
         START_PRINT = "StartPrint", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
         STOP_PRINT = "StopPrint", "Stop Print"
