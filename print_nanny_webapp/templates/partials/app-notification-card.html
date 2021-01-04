@@ -1,7 +1,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<div class="col-sm-4 col-md-2">
+<div class="col-xs-12 col-lg-3 col-xl-2 align-items-stretch">
 
     <div class="card" >
         {% if obj.static_image %}
@@ -19,12 +19,12 @@
             {{ forms.app_notification.as_p }}
             <input type="hidden" value="{{ obj.id }}" name="app_id">
             
-            <button class="btn btn-primary btn-lg p-2 mb-3 mx-auto" type="submit" value="app_notification">Notify When Available</button>
+            <p><button class="btn btn-primary btn-lg p-2 mb-3 mx-auto" type="submit" value="app_notification">Notify Me</button></p>
 
             </form>
           {% endif %}
 
-        <a href="{{obj.service_url}}"><button class="btn btn-secondary btn-small mx-auto">Learn More</button></a>
+        <p><a href="{{obj.service_url}}"><button class="btn btn-secondary btn-small mx-auto">Learn More</button></a></p>
         {% if obj.watching != 0 %}
         <p class="lead mt-3"><strong>Thanks, you'll receive an email when this feature is ready!</strong></p>
         {% endif %}
