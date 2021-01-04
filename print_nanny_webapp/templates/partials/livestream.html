@@ -10,6 +10,8 @@
               <h4 class="alert-heading"><strong>{{object.name}}</strong> web camera is <strong>offline.</strong></h4>
               <p>Print Nanny couldn't find a live video stream for this device</p>
               <p><button class="btn btn-primary">Troubleshooting Guide</button></p>
+              <p><a href="{% url 'dashboard:octoprint-devices:detail' pk=object.id%}"><button class="btn btn-secondary">Send Wake Command</button></a></p>
+
             </div>
             <img src="{% static 'images/sleep.svg' %}" style="opacity: 30%" class="col-md-6 offset-md-1 d-none d-md-block img-fluid float-right"/>
   
@@ -24,7 +26,7 @@
   
     const video = document.querySelector('#stream-{{object.id}}');
     
-    const WS_URL = "{{ WS_BASE_URL }}/video/{{object.serial}}/";
+    const WS_URL = "{{ WS_BASE_URL }}/{{object.id}}/video/download/";
     const ws = new WebSocket(WS_URL);
   
     ws.onmessage = (msg) => {

@@ -10,7 +10,8 @@
                     <th>Command</th>
                     <!-- <th>Print Progress</th> -->
                     <th>Time Sent</th>
-                    <th>Received</th>
+                    <th>Command Received</th>
+                    <th>Command Success</th>
 
 
                 </tr>
@@ -28,7 +29,16 @@
                             <td><i class="mdi mdi-circle text-warning"></i> Pending</td>
 
                         {% endif %}
-                        
+                  
+                        {% if command.success == True %}
+                            <td><i class="mdi mdi-check text-success"></i> Success</td>
+                        {% elif command.success == False %}
+                             <td><i class="mdi mdi-alert text-danger"></i> Failure</td>
+
+                        {% else %}
+                            <td><i class="mdi mdi-circle text-warning"></i> Pending</td>
+
+                        {% endif %}
 
 
 
