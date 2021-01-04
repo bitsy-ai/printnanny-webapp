@@ -10,4 +10,5 @@ def settings_context(_request):
         "GOOGLE_ANALYTICS": settings.GOOGLE_ANALYTICS,
         "WS_BASE_URL": settings.WS_BASE_URL,
         "DISCORD_URL": settings.DISCORD_URL,
+        "GITHUB_ISSUE_URL": settings.GITHUB_ISSUE_URL
     }

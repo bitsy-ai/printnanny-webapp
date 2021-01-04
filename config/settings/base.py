@@ -456,3 +456,4 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBS
 DISCORD_URL="https://discord.gg/sf23bk2hPr"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
