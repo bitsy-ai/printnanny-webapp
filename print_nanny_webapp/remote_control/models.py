@@ -203,6 +203,7 @@ class OctoPrintDevice(models.Model):
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
+    monitoring_active = models.BooleanField(default=False)
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
