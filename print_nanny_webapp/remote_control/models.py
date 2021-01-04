@@ -347,9 +347,15 @@ class RemoteControlCommandManager(models.Manager):
             device.cloudiot_device_name,
         )
 
+        obj = super().create(
+            iotcore_response={},
+            **kwargs,
+        )
 
-        data = {}
-        data["command"] = kwargs.get("command")
+        data = {
+            'remote_control_command_id': obj.id,
+            **kwargs
+        }
         data = json.dumps(data).encode("utf-8")
 
         # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
@@ -359,10 +365,8 @@ class RemoteControlCommandManager(models.Manager):
         )
 
         dict_response = MessageToDict(response._pb)
-        return super().create(
-            iotcore_response=dict_response,
-            **kwargs,
-        )
+        obj.iotcore_response = dict_response
+        obj.save()
 
 
 class RemoteControlCommand(models.Model):
@@ -403,4 +407,5 @@ class RemoteControlCommand(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
     received = models.BooleanField(default=False)
+    success = models.BooleanField(null=True)
     iotcore_response = JSONField()
