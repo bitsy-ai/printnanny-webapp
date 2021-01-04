@@ -11,7 +11,8 @@ from print_nanny_webapp.remote_control.api.views import (
     GcodeFileViewSet, 
     PrinterProfileViewSet, 
     PrintJobViewSet,
-    OctoPrintDeviceViewSet
+    OctoPrintDeviceViewSet,
+    CommandViewSet
 )
 
 # from print_nanny_webapp.alerts.api.views import (
@@ -32,6 +33,7 @@ router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-
 router.register(r"printer-profiles", PrinterProfileViewSet, basename='printer-profile')
 router.register(r"print-jobs", PrintJobViewSet, basename='print-job')
 router.register(r"gcode-files", GcodeFileViewSet, basename='gcode-file')
+router.register(r"commands", CommandViewSet, basename='command')
 
 app_name = "api"
 urlpatterns = router.urls

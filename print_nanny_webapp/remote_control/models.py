@@ -347,30 +347,20 @@ class RemoteControlCommandManager(models.Manager):
             device.cloudiot_device_name,
         )
 
-        current_version = int(device.cloudiot_device["config"]["version"])
 
-        data = device.cloudiot_device["config"]
+        data = {}
         data["command"] = kwargs.get("command")
-
         data = json.dumps(data).encode("utf-8")
 
         # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
         # for faster commands (without state / version checking)
-        # response = client.send_command_to_device(
-        #     request={"name": device_path, "binary_data": data}
-        # )
-
-        response = client.modify_cloud_to_device_config(
-            request={
-                "name": device_path,
-                "binary_data": data,
-                "version_to_update": current_version,
-            }
+        response = client.send_command_to_device(
+            request={"name": device_path, "binary_data": data}
         )
+
         dict_response = MessageToDict(response._pb)
         return super().create(
             iotcore_response=dict_response,
-            config_version=dict_response["version"],
             **kwargs,
         )
 
@@ -378,32 +368,35 @@ class RemoteControlCommandManager(models.Manager):
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
+
     class CommandChoices(models.TextChoices):
-        WAKE = "Wake", "Wake Up Print Nanny"
-        START = "Start", "Start Print"
-        MOVE = "Move", "Move Nozzle"
-        STOP = "Stop", "Stop Print"
-        PAUSE = "Pause", "Pause Print"
-        RESUME = "Resume", "Resume Print"
+        WAKE_PRINT_NANNY = "WakePrintNanny", "Wake Up Print Nanny"
+        START_PRINT = "StartPrint", "Start Print"
+        MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
+        STOP_PRINT = "StopPrint", "Stop Print"
+        PAUSE_PRINT = "PausePrint", "Pause Print"
+        RESUME_PRINT = "ResumePrint", "Resume Print"
+
+    COMMAND_CODES =  [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJob.StatusChoices.STARTED: [CommandChoices.STOP, CommandChoices.PAUSE],
-        PrintJob.StatusChoices.DONE: [CommandChoices.MOVE],
-        PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE],
+        PrintJob.StatusChoices.STARTED: [CommandChoices.STOP_PRINT, CommandChoices.PAUSE_PRINT],
+        PrintJob.StatusChoices.DONE: [CommandChoices.MOVE_NOZZLE],
+        PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE_NOZZLE],
         PrintJob.StatusChoices.CANCELLING: [],
         PrintJob.StatusChoices.PAUSED: [
-            CommandChoices.STOP,
-            CommandChoices.RESUME,
-            CommandChoices.MOVE,
+            CommandChoices.STOP_PRINT,
+            CommandChoices.RESUME_PRINT,
+            CommandChoices.MOVE_NOZZLE,
         ],
-        PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE],
-        "Idle": [CommandChoices.WAKE],
+        PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
+        "Idle": [CommandChoices.WAKE_PRINT_NANNY],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.STOP: "danger",
-        CommandChoices.PAUSE: "warning",
-        CommandChoices.RESUME: "info",
+        CommandChoices.STOP_PRINT: "danger",
+        CommandChoices.PAUSE_PRINT: "warning",
+        CommandChoices.RESUME_PRINT: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
     command = models.CharField(max_length=255, choices=CommandChoices.choices)

@@ -11,6 +11,8 @@ from rest_framework import status
 
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from drf_spectacular.types import OpenApiTypes
+
 from rest_framework.parsers import (
     MultiPartParser,
     FormParser,
@@ -25,6 +27,7 @@ from .serializers import (
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
+    RemoteControlCommandSerializer,
 )
 
 from print_nanny_webapp.remote_control.models import (
@@ -32,12 +35,44 @@ from print_nanny_webapp.remote_control.models import (
     PrintJob,
     GcodeFile,
     OctoPrintDevice,
+    RemoteControlCommand,
 )
+
 
 import google.api_core.exceptions
 
 from print_nanny_webapp.utils import prometheus_metrics
 
+
+@extend_schema(tags=["remote-control"])
+@extend_schema_view(
+    create=extend_schema(responses={201: PrintJobSerializer, 400: PrintJobSerializer})
+)
+class CommandViewSet(
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    GenericViewSet,
+):
+    serializer_class = RemoteControlCommandSerializer
+    queryset = RemoteControlCommand.objects.all()
+    lookup_field = "id"
+    basename = "command"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
+    # @extend_schema(
+    #     tags=["remote_control"],
+    #     operation_id="commands_retrieve",
+    #     responses={200: OpenApiTypes.STR},
+    # )
+    # @action(methods=["GET"], detail=False)
+    def list(self, *args, **kwargs):
+        return Response(
+            RemoteControlCommand.COMMAND_CODES,
+            status.HTTP_200_OK,
+        )
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
@@ -54,7 +89,6 @@ class PrintJobViewSet(
     queryset = PrintJob.objects.all()
     lookup_field = "id"
     basename = "print-job"  # users for view name generation e.g. "print-job-detail"
-    lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
