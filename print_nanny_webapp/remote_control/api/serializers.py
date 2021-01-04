@@ -6,7 +6,17 @@ from print_nanny_webapp.remote_control.models import (
     PrintJob,
     PrinterProfile,
     OctoPrintDevice,
+    RemoteControlCommand,
 )
+
+
+class RemoteControlCommandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RemoteControlCommand
+        fields = [field.name for field in RemoteControlCommand._meta.fields] + ["url"]
+        extra_kwargs = {
+            "url": {"view_name": "api:command-detail", "lookup_field": "id"},
+        }
 
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):

@@ -51,4 +51,4 @@ class RemoteControlCommandForm(forms.Form):
 
         command_choices = kwargs.pop("command_choices")
         super().__init__(*args, **kwargs)
-        self.fields["command"].choices = [(x.label, x.value) for x in command_choices]
+        self.fields["command"].choices = [(x.value, x.label) for x in command_choices]
