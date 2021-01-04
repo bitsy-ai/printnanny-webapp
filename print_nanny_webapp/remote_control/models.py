@@ -355,7 +355,7 @@ class RemoteControlCommandManager(models.Manager):
         # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
         # for faster commands (without state / version checking)
         response = client.send_command_to_device(
-            request={"name": device_path, "binary_data": data}
+            request={"name": device_path, "binary_data": data, 'subfolder': 'remote_control'}
         )
 
         dict_response = MessageToDict(response._pb)
