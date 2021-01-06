@@ -1,0 +1,20 @@
+---
+ghostProtocol: http
+ghostHost: blog.print-nanny.com
+ghostBlogTitle: Print Nanny blog
+ghostEmail: leigh@bitsy.ai
+ghostUsername: leigh@bitsy.ai
+service:
+  type: NodePort
+  port: 80
+mariadb:
+  enabled: false
+  primary:
+    persistence:
+      enabled: false
+externalDatabase:
+  host: "127.0.0.1"
+  user: ghost
+  existingSecret: mysql-creds
+  database: print_nanny_ghost
+serviceAccountName: sql-webapp

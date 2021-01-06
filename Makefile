@@ -22,6 +22,12 @@ blog-deploy:
 lint:
 	black print_nanny_webapp
 
+helm-install:
+	helm install -f k8s/ghost-values.yml print-nanny-blog ./k8s/bitnami/ghost/ghost
+
+helm-delete:
+	helm delete print-nanny-blog 
+
 clean-client: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
