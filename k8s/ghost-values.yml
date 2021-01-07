@@ -1,12 +1,16 @@
 ---
-ghostProtocol: http
+ghostProtocol: https
 ghostHost: blog.print-nanny.com
 ghostBlogTitle: Print Nanny blog
 ghostEmail: leigh@bitsy.ai
 ghostUsername: leigh@bitsy.ai
+ghostPassword: noQZVMBBTJnpjhLKM10kZLVwUiAM
+ghostPort: 443
 service:
   type: NodePort
   port: 80
+  annotations:
+    cloud.google.com/neg: '{"ingress": false}'
 mariadb:
   enabled: false
   primary:
@@ -18,3 +22,16 @@ externalDatabase:
   existingSecret: mysql-creds
   database: print_nanny_ghost
 serviceAccountName: sql-webapp
+smtpPort: 465
+smtpUser: postmaster@print-nanny.com
+smtpHost: smtp.mailgun.org
+smtpService: Mailgun
+smtpFromAddress: leigh@bitsy.ai
+smtpPassword: 53c5ce6c2dc2b81289faa9d4a46bea7e-3d0809fb-f60ece28
+ingress:
+  enabled: true
+  hosts:
+    - name: blog.print-nanny.com
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "ghost-static-ip"
+    networking.gke.io/managed-certificates: print-nanny-blog-ghost
