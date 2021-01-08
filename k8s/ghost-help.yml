@@ -137,7 +137,8 @@ kind: Ingress
 metadata:
   name: print-nanny-help
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: help-ghost-static-ip
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: ghost-help-static-up
     networking.gke.io/managed-certificates: print-nanny-help
 spec:
   backend:
