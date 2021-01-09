@@ -48,7 +48,8 @@ def on_octoprint_event(message):
         message.ack()
         return
     if event_type in OctoPrintEventCodes:
-        OctoPrintEvent.objects.create(
+        try:
+            OctoPrintEvent.objects.create(
             created_dt=data["created_dt"],
             device_id=data["device_id"],
             event_data=data,
@@ -56,7 +57,10 @@ def on_octoprint_event(message):
             octoprint_version=data["octoprint_version"],
             plugin_version=data["plugin_version"],
             user_id=data["user_id"],
-        )
+            )
+        except Exception as e:
+            logger.error(e)
+            logger.error(data)
     elif event_type in PrintJobEvent:
         PrintJobEvent.objects.create(
             created_dt=data["created_dt"],
