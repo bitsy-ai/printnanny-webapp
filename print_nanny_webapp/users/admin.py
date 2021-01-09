@@ -4,9 +4,11 @@ from django.contrib.auth import get_user_model
 
 from print_nanny_webapp.users.forms import UserChangeForm, UserCreationForm
 from print_nanny_webapp.users.models import InviteRequest
+from invitations.utils import get_invitation_model
 
 User = get_user_model()
 
+Invitation = get_invitation_model()
 
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
@@ -31,6 +33,12 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
+def send_beta_invite(modeladmin, request, queryset):
+    for invite_request in queryset:
+        invite = Invitation.create(invite_request.email)
+        invite.send_invitation(request)
+        invite_request.invited = True
+        invite_request.save()
 
 @admin.register(InviteRequest)
 class InviteRequestAdmin(admin.ModelAdmin):
@@ -41,3 +49,5 @@ class InviteRequestAdmin(admin.ModelAdmin):
         "email",
         "created_dt",
     )
+
+    actions = [send_beta_invite]
