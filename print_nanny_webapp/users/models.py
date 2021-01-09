@@ -152,9 +152,9 @@ class InviteRequest(models.Model):
         )
         return message.send()
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self._admin_email_notification()
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+        #self._admin_email_notification()
 
 
 class InviteRequestSerializer(serializers.ModelSerializer):
