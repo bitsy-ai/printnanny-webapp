@@ -55,7 +55,7 @@ spec:
           - containerPort: 5432
       - name: dataflow-service-account
         secret:
-        secretName: dataflow-service-account
+          secretName: dataflow-service-account
 ---
 apiVersion: v1
 kind: ServiceAccount
