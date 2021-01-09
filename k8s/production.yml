@@ -25,14 +25,14 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
       - name: redis
         image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
         ports:
           - containerPort: 6379
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: "/etc/service-account"
-          readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!

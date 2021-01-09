@@ -29,7 +29,7 @@ data:
   PUBSUB_CLIENT_EVENT_TOPIC: "client-event-ingest-prod"
   HONEYCOMB_DATASET: "print_nanny_prod"
   HONEYCOMB_API_KEY: "9f2c7ba136e3800610c974dd3a07c3ca"
-  GOOGLE_APPLICATION_CREDENTIALS: "/etc/service/account/print-nanny-8aaacf0c58b7.json"
+  GOOGLE_APPLICATION_CREDENTIALS: "/etc/service-account/print-nanny-8aaacf0c58b7.json"
 ---
 kind: ConfigMap
 apiVersion: v1
