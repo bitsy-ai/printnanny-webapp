@@ -79,4 +79,3 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
-
