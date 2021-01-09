@@ -29,6 +29,10 @@ spec:
         image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
         ports:
           - containerPort: 6379
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: "/etc/service-account"
+          readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
@@ -49,6 +53,9 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 5432
+      - name: dataflow-service-account
+        secret:
+        secretName: dataflow-service-account
 ---
 apiVersion: v1
 kind: ServiceAccount
