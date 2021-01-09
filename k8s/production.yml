@@ -21,9 +21,14 @@ spec:
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         ports:
         - containerPort: 8000
+        - containerPort: 8001
         envFrom:
           - configMapRef:
               name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
       - name: redis
         image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
         ports:
@@ -48,6 +53,10 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 5432
+      volumes:
+        - name: dataflow-service-account
+          secret:
+            secretName: dataflow-service-account
 ---
 apiVersion: v1
 kind: ServiceAccount

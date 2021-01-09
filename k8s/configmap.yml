@@ -1,3 +1,4 @@
+---
 kind: ConfigMap 
 apiVersion: v1 
 metadata:
@@ -24,12 +25,16 @@ data:
   POSTGRES_DB: "print_nanny_prod"
   POSTGRES_USER: "webapp"
   POSTGRES_PASSWORD: "^Zu42V2GR7m5dBv"
-  DATABASE_URL: postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod
+  DATABASE_URL: "postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod"
   PUBSUB_CLIENT_EVENT_TOPIC: "client-event-ingest-prod"
+  HONEYCOMB_DATASET: "print_nanny_prod"
+  HONEYCOMB_API_KEY: "9f2c7ba136e3800610c974dd3a07c3ca"
+  GOOGLE_APPLICATION_CREDENTIALS: "/etc/service-account/print-nanny-8aaacf0c58b7.json"
 ---
 kind: ConfigMap
 apiVersion: v1
-metadata: prometheus
+metadata: 
+  name: prometheus
 data:
   prometheus.yml: |
     global:

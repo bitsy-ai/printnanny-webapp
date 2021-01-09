@@ -135,6 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    'beeline.middleware.django.HoneyMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -216,7 +217,7 @@ GS_FILE_OVERWRITE = True
 # GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
@@ -446,7 +447,6 @@ GCP_ROOT_CA = env('GCP_ROOT_CA', default='/app/data/google-ca-root-certas.pem')
 JWT_EXPIRES_MINUTES = env('JWT_EXPIRES_MINUTES', default=60)
 # django-pb-model (protobuf serializer for django models)
 
-
 GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default='projects/print-nanny/topics/telemetry-dev')
 GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default='projects/print-nanny/topics/bounding-boxes-dev')
 GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='projects/print-nanny/topics/octoprint-events-dev')
@@ -457,3 +457,8 @@ DISCORD_URL="https://discord.gg/sf23bk2hPr"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
+
+
+HONEYCOMB_DATASET = env('HONEYCOMB_DATASET')
+HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
+HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
