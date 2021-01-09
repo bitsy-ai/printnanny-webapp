@@ -266,21 +266,6 @@ class OctoPrintDeviceViewSet(
     queryset = OctoPrintDevice.objects.all()
     lookup_field = "id"
 
-    # def perform_create(self, serializer):
-    #     try:
-    #         serializer.save(user=self.request.user)
-    #     # a device with this serial already exists
-    #     except google.api_core.exceptions.AlreadyExists as e:
-    #         exception = (
-    #             print_nanny_webapp.client_events.api.exceptions.DeviceAlreadyExists(
-    #                 user=self.request.user.id,
-    #                 serial=self.request.data["serial"],
-    #                 parent_exception=e,
-    #             )
-    #         )
-    #         logger.error(f"{str(exception)} {str(exception.parent_exception)}")
-    #         raise exception
-
     @extend_schema(
         operation_id="octoprint_devices_update_or_create",
         responses={

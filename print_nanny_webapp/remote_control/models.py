@@ -49,7 +49,7 @@ class OctoPrintDeviceManager(models.Manager):
             )
             logger.debug(p.stdout)
             if p.stderr != b"":
-                logger.error(f"Error running openssl genpkey {p.stderr}")
+                logger.warning(f"Error running openssl genpkey {p.stderr}")
                 # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
@@ -66,7 +66,7 @@ class OctoPrintDeviceManager(models.Manager):
             )
             logger.debug(p.stdout)
             if p.stderr != b"":
-                logger.error(f"Error running openssl rsa {p.stderr}")
+                logger.warning(f"Error running openssl rsa {p.stderr}")
                 # raise KeyPairProvisioning(p.stderr)
 
             p = subprocess.run(
@@ -80,7 +80,7 @@ class OctoPrintDeviceManager(models.Manager):
             )
             logger.debug(p.stdout)
             if p.stderr != b"":
-                logger.error(p.stderr)
+                logger.warning(p.stderr)
                 # raise KeyPairProvisioning(p.stderr)
 
             fingerprint = p.stdout
@@ -142,7 +142,7 @@ class OctoPrintDeviceManager(models.Manager):
             )
             cloudiot_device_created = True
 
-            logger.info(f"Created new deivce in registry {device_path}")
+            logger.info(f"Created new device in registry {device_path}")
 
             cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
