@@ -16,6 +16,16 @@ spec:
     spec:
       serviceAccountName: sql-webapp
       containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
+          readOnly: true
+          name: nginx-conf
+        - mountPath: /var/log/nginx
+          name: log
       - name: cloud-sql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.17
         command:
@@ -29,8 +39,6 @@ spec:
         name: ghost
         env:
         - name: url
-          value: "http://help.print-nanny.com"
-        - name: admin__url
           value: "https://help.print-nanny.com"
         - name: mail__transport
           value: SMTP
@@ -88,6 +96,17 @@ spec:
           timeoutSeconds: 3
           successThreshold: 1
           failureThreshold: 6
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf # place ConfigMap `nginx-conf` on /etc/nginx
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+            - key: virtualhost.conf
+              path: virtualhost/virtualhost.conf # dig directory
+      - name: log
+        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: print-nanny-help-data
@@ -122,7 +141,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 2368
+      targetPort: 80
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
