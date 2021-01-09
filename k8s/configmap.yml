@@ -32,7 +32,8 @@ data:
 ---
 kind: ConfigMap
 apiVersion: v1
-metadata: prometheus
+metadata: 
+  name: prometheus
 data:
   prometheus.yml: |
     global:
