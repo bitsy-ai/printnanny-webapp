@@ -53,9 +53,10 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 5432
-      - name: dataflow-service-account
-        secret:
-          secretName: dataflow-service-account
+      volumes:
+        - name: dataflow-service-account
+          secret:
+            secretName: dataflow-service-account
 ---
 apiVersion: v1
 kind: ServiceAccount
