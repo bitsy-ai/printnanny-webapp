@@ -15,6 +15,18 @@ spec:
     spec:
       serviceAccountName: sql-webapp
       containers:
+      - name: octoprint-events
+        command: 
+          - python
+          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/basservice-account
+          readOnly: true
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
       - name: django
         livenessProbe:
           httpGet:
@@ -49,7 +61,7 @@ spec:
               name: webapp
         volumeMounts:
         - name: dataflow-service-account
-          mountPath: /etc/service-account
+          mountPath: /etc/basservice-account
           readOnly: true
       - name: redis
         image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
