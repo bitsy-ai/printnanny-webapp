@@ -272,35 +272,35 @@ class PrinterProfile(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
-    axes_e_inverted = models.BooleanField()
-    axes_e_speed = models.IntegerField()
+    axes_e_inverted = models.BooleanField(null=True)
+    axes_e_speed = models.IntegerField(null=True)
 
-    axes_x_speed = models.IntegerField()
-    axes_x_inverted = models.BooleanField()
+    axes_x_speed = models.IntegerField(null=True)
+    axes_x_inverted = models.BooleanField(null=True)
 
-    axes_y_inverted = models.BooleanField()
-    axes_y_speed = models.IntegerField()
+    axes_y_inverted = models.BooleanField(null=True)
+    axes_y_speed = models.IntegerField(null=True)
 
-    axes_z_inverted = models.BooleanField()
-    axes_z_speed = models.IntegerField()
+    axes_z_inverted = models.BooleanField(null=True)
+    axes_z_speed = models.IntegerField(null=True)
 
-    extruder_count = models.IntegerField()
-    extruder_nozzle_diameter = models.FloatField()
-    extruder_shared_nozzle = models.BooleanField()
+    extruder_count = models.IntegerField(null=True)
+    extruder_nozzle_diameter = models.FloatField(null=True)
+    extruder_shared_nozzle = models.BooleanField(null=True)
 
-    heated_bed = models.BooleanField()
-    heated_chamber = models.BooleanField()
+    heated_bed = models.BooleanField(null=True)
+    heated_chamber = models.BooleanField(null=True)
 
     model = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
     octoprint_id = models.CharField(max_length=255, db_index=True)
 
-    volume_custom_box = models.BooleanField()
-    volume_depth = models.FloatField()
-    volume_formfactor = models.CharField(max_length=255)
-    volume_height = models.FloatField()
-    volume_origin = models.CharField(max_length=255)
-    volume_width = models.FloatField()
+    volume_custom_box = models.BooleanField(null=True)
+    volume_depth = models.FloatField(null=True)
+    volume_formfactor = models.CharField(null=True, max_length=255)
+    volume_height = models.FloatField(null=True)
+    volume_origin = models.CharField(null=True, max_length=255)
+    volume_width = models.FloatField(null=True)
 
 
 class PrintJob(models.Model):
