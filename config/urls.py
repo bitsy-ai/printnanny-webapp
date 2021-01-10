@@ -5,6 +5,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
+
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.permissions import AllowAny
 import django_prometheus
@@ -17,6 +19,9 @@ from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, 
 
 # Webapp urls
 urlpatterns = [
+    re_path(r'^health/', include('health_check.urls')),
+
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico', permanent=True)),
     path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
@@ -50,6 +55,8 @@ urlpatterns = [
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
     urlpatterns += staticfiles_urlpatterns()
