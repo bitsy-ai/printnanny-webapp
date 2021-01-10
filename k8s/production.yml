@@ -16,6 +16,24 @@ spec:
       serviceAccountName: sql-webapp
       containers:
       - name: django
+        livenessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
         command: 
           - /start
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest

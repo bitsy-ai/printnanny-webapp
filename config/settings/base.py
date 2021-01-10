@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
-    'beeline.middleware.django.HoneyMiddleware',
+    'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -154,7 +154,7 @@ MIDDLEWARE = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = "/static/"
+STATIC_URL = "http://localhost:8000/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [ 
     ('css', str(APPS_DIR / "static/css")),
@@ -217,7 +217,8 @@ GS_FILE_OVERWRITE = True
 # GS_DEFAULT_ACL = "publicRead"
 # STATIC
 # ------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ('ico', 'jpg', 'jpeg', 'png', 'gif', 'webp','zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'swf', 'flv', 'woff', 'woff2')
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
@@ -462,3 +463,15 @@ GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/ne
 HONEYCOMB_DATASET = env('HONEYCOMB_DATASET')
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
+
+# django-health-check
+
+INSTALLED_APPS += [
+    'health_check',                             # required
+    'health_check.db',                          # stock Django health checkers
+    'health_check.cache',  
+    'health_check.contrib.migrations',
+
+    'health_check.contrib.celery',              # requires celery
+    'health_check.contrib.celery_ping',         # requires celery
+]
