@@ -55,6 +55,7 @@ services:
       - ./.envs/.local/.django
     volumes:
       - ./docs:/docs:z
+      - ./.envs/.production/print-nanny-dataflow-owner.json:/app/.envs/.production/print-nanny-dataflow-owner.json
       - ./config:/app/config:z
       - ./print_nanny_webapp:/app/print_nanny_webapp:z
     ports:
