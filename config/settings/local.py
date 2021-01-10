@@ -26,7 +26,7 @@ CACHES = {
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
 INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
-
+WHITENOISE_AUTOREFRESH = True
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
