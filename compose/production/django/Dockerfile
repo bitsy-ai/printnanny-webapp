@@ -52,7 +52,7 @@ COPY ./compose/production/django/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
 COPY --chown=django:django . /app
-
+RUN echo "/app" > /usr/local/lib/python3.8/site-packages/print_nanny_webapp.pth
 USER django
 
 WORKDIR /app
