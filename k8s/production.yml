@@ -18,7 +18,7 @@ spec:
       - name: django
         livenessProbe:
           httpGet:
-            path: /
+            path: /health/
             port: 8000
           initialDelaySeconds: 60
           periodSeconds: 15
@@ -27,7 +27,7 @@ spec:
           failureThreshold: 4
         readinessProbe:
           httpGet:
-            path: /
+            path: /health/
             port: 8000
           initialDelaySeconds: 60
           periodSeconds: 15
