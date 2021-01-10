@@ -43,6 +43,8 @@ def send_beta_invite(modeladmin, request, queryset):
 @admin.register(InviteRequest)
 class InviteRequestAdmin(admin.ModelAdmin):
 
+    list_filter("email")
+
     list_filters = ("invited", "email")
     list_display = (
         "first_name",

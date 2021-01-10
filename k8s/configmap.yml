@@ -16,8 +16,8 @@ data:
   DJANGO_ACCOUNT_ALLOW_REGISTRATION: "False"
   WEB_CONCURRENCY: "4"
   SENTRY_DSN: "https://76231242f1494951a165aa04d78f83a2@o486109.ingest.sentry.io/5542384"
-  REDIS_URL: "redis://redis:6379/0"
-  CELERY_BROKER_URL: "redis://redis:6379/0"
+  REDIS_URL: "redis://127.0.0.1:6379/0"
+  CELERY_BROKER_URL: "redis://127.0.0.1:6379/0"
   CELERY_FLOWER_USER: "debug"
   CELERY_FLOWER_PASSWORD: "debug"
   POSTGRES_HOST: "127.0.0.1"
@@ -52,3 +52,15 @@ data:
               - 'prometheus:9090'
               - 'django:8001'
               - 'celery-exporter:9540'
+---
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: metabase
+data:
+  MB_DB_TYPE: "postgres"
+  MB_DB_DBNAME: "metabase"
+  MB_DB_PORT: "5432"
+  MB_DB_USER: "metabase"
+  MB_DB_PASS: "moX2_.WQKNm@6y8-8W@e"
+  MB_DB_HOST: "127.0.0.1"

@@ -140,6 +140,11 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
+        'health-check': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': True,
+        }
     },
 }
 
