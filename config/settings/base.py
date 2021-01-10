@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
-    'beeline.middleware.django.HoneyMiddleware',
+    'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -463,3 +463,15 @@ GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/ne
 HONEYCOMB_DATASET = env('HONEYCOMB_DATASET')
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
+
+# django-health-check
+
+INSTALLED_APPS += [
+    'health_check',                             # required
+    'health_check.db',                          # stock Django health checkers
+    'health_check.cache',  
+    'health_check.contrib.migrations',
+
+    'health_check.contrib.celery',              # requires celery
+    'health_check.contrib.celery_ping',         # requires celery
+]
