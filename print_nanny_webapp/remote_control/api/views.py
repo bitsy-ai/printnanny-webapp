@@ -98,13 +98,13 @@ class CommandViewSet(
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
 
-        alert_type = RemoteControlCommandAlert.get_alert_type(request.data)
-        if alert_type is not None:
+        alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
+        if alert_subtype is not None:
 
             alert = RemoteControlCommandAlert.objects.create(
                 user=instance.user,
                 command=instance,
-                alert_type=alert_type,
+                alert_subtype=alert_subtype,
 
             )
             channel_layer = get_channel_layer()

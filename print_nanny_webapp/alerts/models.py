@@ -57,15 +57,15 @@ class RemoteControlCommandAlert(Alert):
         return Alert.AlertTypeChoices.COMMAND
 
     @classmethod
-    def get_alert_type(self, remote_control_command_data):
+    def get_alert_subtype(cls, remote_control_command_data):
         keys = remote_control_command_data.keys()
         if 'received' in keys:
-            return self.AlertSubtypeChoices.RECEIVED
+            return cls.AlertSubtypeChoices.RECEIVED
         if 'success' in keys:
             if remote_control_command_data.get('success') == True:
-                return self.AlertSubtypeChoices.SUCCESS
+                return cls.AlertSubtypeChoices.SUCCESS
             elif remote_control_command_data.get('success') == False:
-                return self.AlertSubtypeChoices.FAILED
+                return cls.AlertSubtypeChoices.FAILED
         
 
 
