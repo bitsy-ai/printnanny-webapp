@@ -1,5 +1,6 @@
 import logging
 
+import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer, SyncConsumer
 
@@ -26,7 +27,7 @@ class AlertConsumer(WebsocketConsumer):
 
 
     def alert_message(self, message):
-        self.send(message)
+        self.send(message["data"])
 
         logger.info(f'Received message {message}')
 

@@ -45,12 +45,22 @@ class RemoteControlCommandAlert(Alert):
         AlertSubtypeChoices.SUCCESS: "success",
         AlertSubtypeChoices.FAILED: "danger",
     }
+
+    ICON_CSS_CLASSES = {
+        AlertSubtypeChoices.RECEIVED: "mdi mdi-progress-upload",
+        AlertSubtypeChoices.SUCCESS: "mdi mdi-progress-check",
+        AlertSubtypeChoices.FAILED: "mdi mdi-progress-close",
+    }
+
     command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
     alert_subtype = models.CharField(max_length=255, choices=AlertSubtypeChoices.choices)
 
     @property
-    def css_class(self):
+    def css_color_class(self):
         return self.ACTION_CSS_CLASSES[self.alert_subtype]
+    @property
+    def css_icon_class(self):
+        return self.ICON_CSS_CLASSES[self.alert_subtype]
 
     @property
     def alert_type(self):
@@ -66,7 +76,7 @@ class RemoteControlCommandAlert(Alert):
                 return cls.AlertSubtypeChoices.SUCCESS
             elif remote_control_command_data.get('success') == False:
                 return cls.AlertSubtypeChoices.FAILED
-        
+
 
 
 class ManualVideoUploadAlert(Alert):

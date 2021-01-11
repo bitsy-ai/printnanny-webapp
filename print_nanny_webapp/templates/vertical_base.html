@@ -55,6 +55,11 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 
 
 {% block extra_javascript %}
-
-
+    <script src="{% static 'js/events/alerts.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            AlertWebsocket("{{ WS_BASE_URL }}");
+        });
+        
+    </script>
 {% endblock %}
