@@ -20,7 +20,7 @@ from .common import (
 
 logger = logging.getLogger(__name__)
 
-# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
 
 @shared_task
