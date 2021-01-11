@@ -39,20 +39,32 @@ logger = logging.getLogger(__name__)
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
-    pass
+    
+    def get_context_data(self, *args, **kwargs):
+        
+        context = super(DashboardView, self).get_context_data(**kwargs)
+
+        
+        context["user"] = self.request.user
+        context["recent_alerts"] = (
+            AlertVideoMessage.objects.filter(
+                user=self.request.user,
+                job_status__in=[
+                    AlertVideoMessage.JobStatusChoices.FAILURE,
+                    AlertVideoMessage.JobStatusChoices.SUCCESS,
+                ],
+            )
+            .exclude(seen=True)
+            .all()
+        )
+
+        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
+            user=self.request.user
+        ).all()
+        return context
 
 
-ecommerce_dashboard_view = DashboardView.as_view(
-    template_name="dashboard/ecommerce.html"
-)
-crm_dashboard_view = DashboardView.as_view(template_name="dashboard/crm.html")
-analytics_dashboard_view = DashboardView.as_view(
-    template_name="dashboard/analytics.html"
-)
-projects_dashboard_view = DashboardView.as_view(template_name="dashboard/projects.html")
-
-
-class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
+class HomeDashboardView(DashboardView):
 
     model = User
     template_name = "dashboard/home.html"
@@ -105,25 +117,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
     def get_context_data(self, *args, **kwargs):
         context = super(HomeDashboardView, self).get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
-
-        context["user"] = self.request.user
-        context["recent_alerts"] = (
-            AlertVideoMessage.objects.filter(
-                user=self.request.user,
-                job_status__in=[
-                    AlertVideoMessage.JobStatusChoices.FAILURE,
-                    AlertVideoMessage.JobStatusChoices.SUCCESS,
-                ],
-            )
-            .exclude(seen=True)
-            .all()
-        )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
-        # context["recent_alerts"] = self.request.user.AlertVideoMessage_set.filter(unseen=True).all()
+        context["user"].token = token
 
         return context
 
@@ -131,7 +125,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 home_dashboard_view = HomeDashboardView.as_view()
 
 
-class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
+class AppDashboardListView(DashboardView, FormView):
     template_name = "dashboard/apps-list.html"
     success_url = "/dashboard/apps/"
 
@@ -147,7 +141,6 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)
 
-        context["user"] = self.request.user
         context["ecommerce_apps"] = (
             AppCard.objects.filter(category="Ecommerce")
             .prefetch_related("appnotification_set")
@@ -173,7 +166,7 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
 app_dashboard_list_view = AppDashboardListView.as_view()
 
 
-class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView, FormView):
+class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
     model = OctoPrintDevice
     # slug_field = "id"
     # slug_url_kwarg = "id"

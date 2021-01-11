@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/dev/howto/deployment/asgi/
 """
 import os
 import sys
+import logging
 from pathlib import Path
 
 
@@ -32,10 +33,13 @@ django_application = get_asgi_application()
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.client_events.routing
+import print_nanny_webapp.remote_control.routing
+
 from rest_framework.authtoken.models import Token
 from channels.db import database_sync_to_async
 from django.contrib.auth.models import AnonymousUser
 
+logger = logging.getLogger(__name__)
 
 async def application(scope, receive, send):
     if scope["type"] == "http":
@@ -68,29 +72,17 @@ class TokenAuthMiddleware:
             scope['user'] = await get_user(headers)
         return await self.inner(scope, receive, send)
 
-class TokenAuthMiddlewareInstance:
-    """
-    Yeah, this is black magic:
-    https://github.com/django/channels/issues/1399
-    """
-    def __init__(self, scope, middleware):
-        self.middleware = middleware
-        self.scope = dict(scope)
-        self.inner = self.middleware.inner
-
-    async def __call__(self, receive, send):
-        headers = dict(self.scope['headers'])
-        if b'authorization' in headers:
-            self.scope['user'] = await get_user(headers)
-        inner = self.inner(self.scope)
-        return await inner(receive, send)
-
 
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
+websocket_urlpatterns = (
+    print_nanny_webapp.client_events.routing.websocket_urlpatterns +
+    print_nanny_webapp.remote_control.routing.websocket_urlpatterns
+)
+logging.info(f'Registering websocket urlpatterns {websocket_urlpatterns}')
 application = ProtocolTypeRouter({
   "http": django_application,
   "websocket": TokenAuthMiddlewareStack(
-      URLRouter(print_nanny_webapp.client_events.routing.websocket_urlpatterns)),
+      URLRouter(websocket_urlpatterns)),
   #"metrics": 
 })
