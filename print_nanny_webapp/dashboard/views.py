@@ -27,7 +27,6 @@ from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
-TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
 ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
@@ -97,7 +96,7 @@ class HomeDashboardView(DashboardView):
 
         video_file = self.request.FILES.get("video_file")
         if video_file is not None:
-            timelapse_alert = TimelapseAlert.objects.create(
+            timelapse_alert = ManualVideoUploadAlert.objects.create(
                 user=self.request.user,
                 original_video=self.request.FILES["video_file"],
             )
@@ -262,15 +261,15 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def dismiss_form_valid(self, form):
         failed_job = self.request.POST.get("alert_id")
         if failed_job is not None:
-            TimelapseAlert.objects.filter(id=failed_job).update(seen=True)
+            ManualVideoUploadAlert.objects.filter(id=failed_job).update(seen=True)
 
         return redirect(reverse("dashboard:report-cards:list"))
 
     def cancel_form_valid(self, form):
         failed_job = self.request.POST.get("alert_id")
         if failed_job is not None:
-            TimelapseAlert.objects.filter(id=failed_job).update(
-                job_status=TimelapseAlert.JobStatusChoices.CANCELLED
+            ManualVideoUploadAlert.objects.filter(id=failed_job).update(
+                job_status=ManualVideoUploadAlert.JobStatusChoices.CANCELLED
             )
 
         return redirect(reverse("dashboard:report-cards:list"))
@@ -278,14 +277,14 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def upvote_form_valid(self, form):
 
         alert_id = self.request.POST.get("alert_id")
-        alert = TimelapseAlert.objects.filter(id=alert_id).update(feedback=True)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=True)
 
         return redirect(self.get_success_url())
 
     def downvote_form_valid(self, form):
 
         alert_id = self.request.POST.get("alert_id")
-        alert = TimelapseAlert.objects.filter(id=alert_id).update(feedback=False)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=False)
 
         return redirect(self.get_success_url())
 
@@ -293,7 +292,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
 
         video_file = self.request.FILES.get("video_file")
         if video_file is not None:
-            timelapse_alert = TimelapseAlert.objects.create(
+            timelapse_alert = ManualVideoUploadAlert.objects.create(
                 user=self.request.user,
                 original_video=self.request.FILES["video_file"],
             )
@@ -324,24 +323,24 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
             .all()
         )
 
-        context["alerts_failed"] = (
-            TimelapseAlert.objects.filter(
-                user=self.request.user.id,
-                job_status=TimelapseAlert.JobStatusChoices.FAILURE,
-                seen=False,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
+        # context["alerts_failed"] = (
+        #     ManualVideoUploadAlert.objects.filter(
+        #         user=self.request.user.id,
+        #         job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
+        #         seen=False,
+        #     )
+        #     .order_by("-created_dt")
+        #     .all()
+        # )
 
-        context["alerts_processing"] = (
-            TimelapseAlert.objects.filter(
-                user=self.request.user.id,
-                job_status=TimelapseAlert.JobStatusChoices.PROCESSING,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
+        # context["alerts_processing"] = (
+        #     ManualVideoUploadAlert.objects.filter(
+        #         user=self.request.user.id,
+        #         job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
+        #     )
+        #     .order_by("-created_dt")
+        #     .all()
+        # )
 
         return context
 
