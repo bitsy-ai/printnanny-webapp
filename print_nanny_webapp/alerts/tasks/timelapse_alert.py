@@ -20,28 +20,28 @@ from .common import (
 
 logger = logging.getLogger(__name__)
 
-TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
+ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
 
 @shared_task
 def annotate_job_success(alert_id):
-    alert = TimelapseAlert.objects.filter(id=alert_id).update(
-        job_status=TimelapseAlert.JobStatusChoices.SUCCESS
+    alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
+        job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS
     )
 
 
 @shared_task
 def annotate_job_error(alert_id):
-    logger.error(f"Marking TimelapseAlert {alert_id} as FAILURE")
-    alert = TimelapseAlert.objects.filter(id=alert_id).update(
-        job_status=TimelapseAlert.JobStatusChoices.FAILURE
+    logger.error(f"Marking ManualVideoUploadAlert {alert_id} as FAILURE")
+    alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
+        job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE
     )
 
 
 @shared_task
 def send_timelapse_upload_email_notification(timelapse_alert_id):
 
-    timelapse_alert = TimelapseAlert.objects.get(id=timelapse_alert_id)
+    timelapse_alert = ManualVideoUploadAlert.objects.get(id=timelapse_alert_id)
 
     merge_data = {
         "REPORT_URL": reverse(
@@ -80,7 +80,7 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 @shared_task()
 def create_analyze_video_task(timelapse_alert_id):
     logger.info(f"Processing video for timelapse_alert_id {timelapse_alert_id}")
-    alert = TimelapseAlert.objects.get(id=timelapse_alert_id)
+    alert = ManualVideoUploadAlert.objects.get(id=timelapse_alert_id)
 
     filename, ext = os.path.splitext(alert.original_video.name)
     reader = imageio.get_reader(alert.original_video.read(), ext)

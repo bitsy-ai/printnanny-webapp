@@ -25,6 +25,20 @@ class Alert(PolymorphicModel):
     dismissed = models.BooleanField(default=True)
 
 
+class RemoteControlCommandAlert(Alert):
+
+    class AlertTypeChoices(models.TextChoices):
+        RECEIVED = "RECEIVED", "Command was received by Raspberry Pi"
+        SUCCESS = "SUCCESS", "Command executed sucessfully"
+        FAILED = "FAILED", "Command execution failed" 
+
+    ACTION_CSS_CLASSES = {
+        AlertTypeChoices.RECEIVED: "info",
+        AlertTypeChoices.SUCCESS: "success",
+        AlertTypeChoices.FAILED: "danger",
+    }
+    command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
+    alert_type = models.CharField(max_length=255, choices=AlertTypeChoices.choices,)
 
 
 class ManualVideoUploadAlert(Alert):
@@ -107,19 +121,6 @@ class ProgressAlert(Alert):
     tags = ArrayField(
         models.CharField(max_length=255), default=list(["progress-alert"])
     )
-
-
-class TimelapseAlert(ManualVideoUploadAlert):
-    """
-    outgoing message to user indicating timelapse video is done
-    """
-
-    tags = ArrayField(
-        models.CharField(max_length=255), default=list(["timelapse-alert"])
-    )
-
-    def source_display_name(self):
-        return "Web Upload"
 
 
 class AlertPlot(models.Model):
