@@ -24,7 +24,7 @@ spec:
               name: webapp
         volumeMounts:
         - name: dataflow-service-account
-          mountPath: /etc/basservice-account
+          mountPath: /etc/service-account
           readOnly: true
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
       - name: django
@@ -61,7 +61,7 @@ spec:
               name: webapp
         volumeMounts:
         - name: dataflow-service-account
-          mountPath: /etc/basservice-account
+          mountPath: /etc/service-account
           readOnly: true
       - name: redis
         image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
