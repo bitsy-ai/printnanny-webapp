@@ -27,7 +27,9 @@ from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
+Alert = apps.get_model("alerts", "Alert")
 ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
@@ -46,18 +48,14 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         
         context["user"] = self.request.user
         context["recent_alerts"] = (
-            ManualVideoUploadAlert.objects.filter(
+            Alert.objects.filter(
                 user=self.request.user,
-                job_status__in=[
-                    ManualVideoUploadAlert.JobStatusChoices.FAILURE,
-                    ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
-                ],
             )
             .exclude(dismissed=True)
+            .order_by('-created_dt')
             .all()
         )
 
-        unread_notifications
 
         context["octoprint_devices"] = OctoPrintDevice.objects.filter(
             user=self.request.user

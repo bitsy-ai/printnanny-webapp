@@ -1,5 +1,5 @@
-RemoteControlEventSubscription = function(base_url, device_id){
-    const WS_URL = `${base_url}/${device_id}/remote-control/`;
+AlertWebsocket = function(base_url){
+    const WS_URL = `${base_url}/alerts/`;
     const ws = new WebSocket(WS_URL);
     ws.onmessage = (msg) => {
         console.log(msg)

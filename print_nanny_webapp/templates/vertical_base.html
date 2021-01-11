@@ -55,11 +55,6 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 
 
 {% block extra_javascript %}
-<script src="{% static 'js/events/remote-control.js' %}"></script>
 
-{% for device in octoprint_devices %}
-    <script>;
-        RemoteControlEventSubscription("{{ WS_BASE_URL }}", "{{ device.id }}");
-    </script>
-{% endfor %}
+
 {% endblock %}
