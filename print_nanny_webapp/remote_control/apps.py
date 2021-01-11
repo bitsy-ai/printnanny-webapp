@@ -9,5 +9,5 @@ class RemoteControlConfig(AppConfig):
         except ImportError:
             pass
 
-        from print_nanny_webapp.utils.healthcheck import RemoteControlEventCheck
-        plugin_dir.register(RemoteControlEventCheck)
+        # from print_nanny_webapp.utils.healthcheck import RemoteControlEventCheck
+        # plugin_dir.register(RemoteControlEventCheck)

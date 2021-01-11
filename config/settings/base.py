@@ -146,6 +146,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_grip.GripMiddleware",
+
 
 ]
 
@@ -473,3 +475,16 @@ INSTALLED_APPS += [
     'health_check.cache',  
     'health_check.contrib.migrations',
 ]
+
+# django-eventstream
+
+INSTALLED_APPS += [
+    'django_eventstream',
+]
+
+EVENTSTREAM_STORAGE_CLASS = 'django_eventstream.storage.DjangoModelStorage'
+
+
+# help guides
+
+HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
