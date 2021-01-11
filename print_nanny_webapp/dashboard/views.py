@@ -28,7 +28,7 @@ from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
 TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
-AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
+ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
@@ -47,16 +47,18 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         
         context["user"] = self.request.user
         context["recent_alerts"] = (
-            AlertVideoMessage.objects.filter(
+            ManualVideoUploadAlert.objects.filter(
                 user=self.request.user,
                 job_status__in=[
-                    AlertVideoMessage.JobStatusChoices.FAILURE,
-                    AlertVideoMessage.JobStatusChoices.SUCCESS,
+                    ManualVideoUploadAlert.JobStatusChoices.FAILURE,
+                    ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
                 ],
             )
-            .exclude(seen=True)
+            .exclude(dismissed=True)
             .all()
         )
+
+        unread_notifications
 
         context["octoprint_devices"] = OctoPrintDevice.objects.filter(
             user=self.request.user
@@ -314,9 +316,9 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["alerts_success"] = (
-            AlertVideoMessage.objects.filter(
+            ManualVideoUploadAlert.objects.filter(
                 user=self.request.user.id,
-                job_status=AlertVideoMessage.JobStatusChoices.SUCCESS,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
             )
             .order_by("-created_dt")
             .all()
@@ -349,7 +351,7 @@ video_dashboard_list_view = VideoDashboardView.as_view()
 
 class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
-    model = AlertVideoMessage
+    model = ManualVideoUploadAlert
     # slug_field = "id"
     # slug_url_kwarg = "id"
     template_name = "dashboard/video-detail.html"

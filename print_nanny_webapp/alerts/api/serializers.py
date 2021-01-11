@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from ..models import AlertEvent, AlertVideoMessage
+from ..models import AlertEvent, ManualVideoUploadAlert
 
 
-class AlertVideoMessageSerializer(serializers.ModelSerializer):
+class ManualVideoUploadAlertSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AlertVideoMessage
-        fields = [field.name for field in AlertVideoMessage._meta.fields] + ["url"]
+        model = ManualVideoUploadAlert
+        fields = [field.name for field in ManualVideoUploadAlert._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:alert-message-detail", "lookup_field": "id"}
         }
@@ -16,7 +16,7 @@ class AlertVideoMessageSerializer(serializers.ModelSerializer):
 class AlertEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlertEvent
-        fields = [field.name for field in AlertVideoMessage._meta.fields] + ["url"]
+        fields = [field.name for field in ManualVideoUploadAlert._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:alert-message-detail", "lookup_field": "id"}
         }

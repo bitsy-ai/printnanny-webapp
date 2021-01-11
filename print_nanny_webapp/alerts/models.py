@@ -18,10 +18,18 @@ def _upload_to(instance, filename):
     logger.info("Uploading to path")
     return path
 
+class Alert(PolymorphicModel):
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    dismissed = models.BooleanField(default=True)
 
-class AlertVideoMessage(PolymorphicModel):
+
+
+
+class ManualVideoUploadAlert(Alert):
     """
-    Base class for a prediction alert .gif or timelapse mp4 / mjpeg
+        Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     """
 
     # class SourceChoices(models.TextChoices):
@@ -38,18 +46,12 @@ class AlertVideoMessage(PolymorphicModel):
     class Backend(models.TextChoices):
         EMAIL = "EMAIL", "Email"
 
-    provider_id = models.CharField(max_length=255, null=True, db_index=True)
-    seen = models.BooleanField(default=False)
-
     job_status = models.CharField(
         max_length=32,
         choices=JobStatusChoices.choices,
         default=JobStatusChoices.PROCESSING,
     )
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
@@ -73,7 +75,8 @@ class AlertVideoMessage(PolymorphicModel):
         #     )
 
 
-class DefectAlert(AlertVideoMessage):
+
+class DefectAlert(Alert):
     print_job = models.ForeignKey(
         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
     )
@@ -92,7 +95,7 @@ class DefectAlert(AlertVideoMessage):
         return f"Print Job {self.print_job.id}"
 
 
-class ProgressAlert(AlertVideoMessage):
+class ProgressAlert(Alert):
     class Meta:
         unique_together = ("print_job_id", "progress")
 
@@ -106,7 +109,7 @@ class ProgressAlert(AlertVideoMessage):
     )
 
 
-class TimelapseAlert(AlertVideoMessage):
+class TimelapseAlert(ManualVideoUploadAlert):
     """
     outgoing message to user indicating timelapse video is done
     """
@@ -125,7 +128,7 @@ class AlertPlot(models.Model):
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=255)
     function = models.CharField(max_length=65)
-    alert = models.ForeignKey(AlertVideoMessage, on_delete=models.CASCADE)
+    alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
 
 
 # class AlertEvent(models.Model):
@@ -148,6 +151,6 @@ class AlertPlot(models.Model):
 #     )
 #     dt = models.DateTimeField(db_index=True)
 #     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-#     alert_message = models.ForeignKey(AlertVideoMessage, on_delete=models.CASCADE)
+#     alert_message = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
 #     provider_id = models.CharField(max_length=255)
 #     event_data = models.JSONField()
