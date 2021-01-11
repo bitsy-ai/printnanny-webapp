@@ -22,7 +22,7 @@
             </h5>
         </div>
 
-        <div style="max-height: 230px;" data-simplebar>
+        <div id="alerts-container" style="max-height: 230px;" data-simplebar>
             <!-- item-->
             <a href="javascript:void(0);" class="dropdown-item notify-item">
                 <div class="notify-icon bg-primary">
@@ -94,9 +94,3 @@
     </div>
 </li>
 
-{% block extra_javascript %}
-<script src="{% static 'js/events/alerts.js' %}"></script>
-<script>
-    AlertWebsocket("{{ WS_BASE_URL }}");
-</script>
-{% endblock %}
