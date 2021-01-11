@@ -63,7 +63,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class HomeDashboardView(DashboardView):
+class HomeDashboardView(DashboardView, MultiFormsView):
 
     model = User
     template_name = "dashboard/home.html"
@@ -114,7 +114,7 @@ class HomeDashboardView(DashboardView):
         return redirect(reverse("dashboard:report-cards:list"))
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HomeDashboardView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         token, created = Token.objects.get_or_create(user=self.request.user)
         context["user"].token = token
 
@@ -321,24 +321,23 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
             .all()
         )
 
-        # context["alerts_failed"] = (
-        #     ManualVideoUploadAlert.objects.filter(
-        #         user=self.request.user.id,
-        #         job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
-        #         seen=False,
-        #     )
-        #     .order_by("-created_dt")
-        #     .all()
-        # )
+        context["alerts_failed"] = (
+            ManualVideoUploadAlert.objects.filter(
+                user=self.request.user.id,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
+            )
+            .order_by("-created_dt")
+            .all()
+        )
 
-        # context["alerts_processing"] = (
-        #     ManualVideoUploadAlert.objects.filter(
-        #         user=self.request.user.id,
-        #         job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
-        #     )
-        #     .order_by("-created_dt")
-        #     .all()
-        # )
+        context["alerts_processing"] = (
+            ManualVideoUploadAlert.objects.filter(
+                user=self.request.user.id,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
+            )
+            .order_by("-created_dt")
+            .all()
+        )
 
         return context
 
@@ -356,7 +355,7 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
     def get_object(self):
         obj = super().get_object()
 
-        obj.seen = True
+        #obj.seen = True
         obj.save()
         return obj
 
