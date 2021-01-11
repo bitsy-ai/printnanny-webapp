@@ -3,7 +3,11 @@
 <li class="dropdown notification-list">
     <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
         <i class="dripicons-bell noti-icon"></i>
-        <span class="noti-icon-badge"></span>
+        <span id="alerts-badge" class="noti-icon-badge" 
+        {% if recent_alerts.count == 0 %}
+        hidden
+        {% endif %}
+        ></span>
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
 
