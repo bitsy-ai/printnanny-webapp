@@ -1,3 +1,5 @@
+from asgiref.sync import async_to_sync
+
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -9,6 +11,7 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework import status
 
+from channels.layers import get_channel_layer
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
@@ -73,6 +76,15 @@ class CommandViewSet(
             RemoteControlCommand.COMMAND_CODES,
             status.HTTP_200_OK,
         )
+    
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        channel_layer = get_channel_layer()
+
+        async_to_sync(channel_layer.group_send)(
+            f"remote_control_command_{instance.device_id}", instance
+        )
+
 
 
 @extend_schema(tags=["remote-control"])

@@ -74,19 +74,6 @@
         </script>
         {% endif %}
 
-        <script src="{% static 'django_eventstream/eventsource.min.js' %}"></script>
-        <script src="{% static 'django_eventstream/reconnecting-eventsource.js' %}"></script>
-
-        <script>
-            var es = new ReconnectingEventSource('/ws/remote-control/');
-            es.addEventListener('message', function (e) {
-                console.log(e.data);
-            }, false);
-
-            es.addEventListener('stream-reset', function (e) {
-                // ... client fell behind, reinitialize ...
-            }, false);
-        </script>
     {% endblock javascript %}
 
     {% block extra_javascript %}{% endblock %}

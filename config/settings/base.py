@@ -136,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
-    "django.middleware.security.SecurityMiddleware",
+    "django.middleware.security.SecurityMiddleware",    
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -146,8 +146,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_grip.GripMiddleware",
-
 
 ]
 
@@ -478,11 +476,6 @@ INSTALLED_APPS += [
 
 # django-eventstream
 
-INSTALLED_APPS += [
-    'django_eventstream',
-]
-
-EVENTSTREAM_STORAGE_CLASS = 'django_eventstream.storage.DjangoModelStorage'
 
 
 # help guides
