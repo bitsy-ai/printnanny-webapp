@@ -18,8 +18,8 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-ManualVideoUploadAlert = apps.get_model('alerts', 'ManualVideoUploadAlert')
-AlertPlot = apps.get_model('alerts', 'AlertPlot')
+# ManualVideoUploadAlert = apps.get_model('alerts', 'ManualVideoUploadAlert')
+#AlertPlot = apps.get_model('alerts', 'AlertPlot')
 
 # minimum confidence score for detection to be accepted for post-processing
 CONFIDENCE_THRESHOLD = 0.5

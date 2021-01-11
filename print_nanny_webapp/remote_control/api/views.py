@@ -34,7 +34,7 @@ from .serializers import (
     RemoteControlCommandSerializer,
 )
 
-from print_nanny_webapp.alerts.api.serializers import RemoteControlCommandAlertSerializer
+#from print_nanny_webapp.alerts.api.serializers import RemoteControlCommandAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintJob,
@@ -50,7 +50,7 @@ from print_nanny_webapp.utils import prometheus_metrics
 
 logger = logging.getLogger(__name__)
 
-RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
+#RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
