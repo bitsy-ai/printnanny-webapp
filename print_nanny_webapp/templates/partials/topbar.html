@@ -48,95 +48,8 @@
         </li> {% endcomment %}
         
         {% comment %} notification dropdown menu {% endcomment %}
-        {% comment %} <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-bell noti-icon"></i>
-                <span class="noti-icon-badge"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+        {% include 'partials/alerts.html' %}
 
-                <!-- item-->
-                <div class="dropdown-item noti-title">
-                    <h5 class="m-0">
-                        <span class="float-right">
-                            <a href="javascript: void(0);" class="text-dark">
-                                <small>{% trans "Clear All" %}</small>
-                            </a>
-                        </span>{% trans "Notification" %}
-                    </h5>
-                </div>
-
-                <div style="max-height: 230px;" data-simplebar>
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">{% trans "Caleb Flakelar commented on Admin" %}
-                            <small class="text-muted">{% trans "1 min ago" %}</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info">
-                            <i class="mdi mdi-account-plus"></i>
-                        </div>
-                        <p class="notify-details">{% trans "New user registered." %}
-
-                            <small class="text-muted">{% trans "5 hours ago" %}</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon">
-                            <img src="{% static 'images/users/avatar-2.jpg' %}" class="img-fluid rounded-circle" alt="" /> </div>
-                        <p class="notify-details">{% trans "Cristina Pride" %}</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>{% trans "Hi, How are you? What about our next meeting" %}</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">{% trans "Caleb Flakelar commented on Admin" %}
-                            <small class="text-muted">{% trans "4 days ago" %}</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon">
-                            <img src="{% static 'images/users/avatar-4.jpg' %}" class="img-fluid rounded-circle" alt="" /> </div>
-                        <p class="notify-details">{% trans "Karen Robinson" %}</p>
-                        <p class="text-muted mb-0 user-msg">
-                            <small>{% trans "Wow ! this admin looks good and awesome design" %}</small>
-                        </p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info">
-                            <i class="mdi mdi-heart"></i>
-                        </div>
-                        <p class="notify-details">{% trans "Carlos Crouch liked" %}
-                            <b>{% trans "Admin" %}</b>
-                            <small class="text-muted">{% trans "13 days ago" %}</small>
-                        </p>
-                    </a>
-                </div>
-
-                <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                    {% trans "View All" %}
-                </a>
-
-            </div>
-        </li> {% endcomment %}
 
         {% comment %} app block dropdown menu {% endcomment %}
 
@@ -194,6 +107,8 @@
             </div>
         </li> {% endcomment %}
 
+        
+
         {% comment %} <li class="notification-list">
             <a class="nav-link right-bar-toggle" href="javascript: void(0);">
                 <i class="dripicons-brightness-medium noti-icon"></i> Toggle Dark/Light
@@ -207,7 +122,7 @@
                     <i class="dripicons-gear noti-icon"></i>
                 </span>
                 <span>
-                    <span class="account-user-name">{{ object.email }}</span>
+                    <span class="account-user-name">{{ user.email }}</span>
                     <span class="account-position">{% trans "Beta Tester" %}</span>
                 </span>
             </a>
@@ -263,6 +178,7 @@
 
             </div>
         </li>
+
 
     </ul>
     <button class="button-menu-mobile open-left disable-btn">
