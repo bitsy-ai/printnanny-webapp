@@ -89,3 +89,10 @@
 
     </div>
 </li>
+
+{% block extra_javascript %}
+<script src="{% static 'js/events/alerts.js' %}"></script>
+<script>
+    AlertWebsocket("{{ WS_BASE_URL }}");
+</script>
+{% endblock %}

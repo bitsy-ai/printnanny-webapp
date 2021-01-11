@@ -1,5 +1,6 @@
 from asgiref.sync import async_to_sync
-
+import logging
+from django.apps import apps
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -33,6 +34,7 @@ from .serializers import (
     RemoteControlCommandSerializer,
 )
 
+from print_nanny_webapp.alerts.api.serializers import RemoteControlCommandAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintJob,
@@ -45,6 +47,10 @@ from print_nanny_webapp.remote_control.models import (
 import google.api_core.exceptions
 
 from print_nanny_webapp.utils import prometheus_metrics
+
+logger = logging.getLogger(__name__)
+
+RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
@@ -77,13 +83,54 @@ class CommandViewSet(
             status.HTTP_200_OK,
         )
     
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        alert_type = RemoteControlCommandAlert.get_alert_type(request.data)
+        if alert_type is not None:
+
+            alert = RemoteControlCommandAlert.objects.create(
+                user=instance.user,
+                command=instance,
+                alert_type=alert_type,
+
+            )
+            # alert_serializer = RemoteControlCommandAlertSerializer(alert)
+            async_to_sync(channel_layer.group_send)(
+                f"alerts_{alert.user_id}", {
+                    "type": "alert.message",
+                    "data": alert_serializer
+                }
+            )
+
+        return Response(serializer.data)
     def perform_update(self, serializer):
+
+        #partial_data = serializer.data()
+
+        logger.info(f'****** {serializer.partial}')
         instance = serializer.save()
         channel_layer = get_channel_layer()
 
-        async_to_sync(channel_layer.group_send)(
-            f"remote_control_command_{instance.device_id}", instance
-        )
+         
+
+        # alert = RemoteControlCommandAlert.objects.create(
+        #     user=instance.user,
+        #     command=instance,
+
+        # )
+
+
 
 
 

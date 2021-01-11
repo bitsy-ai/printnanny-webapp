@@ -46,8 +46,8 @@ class VideoConsumer(WebsocketConsumer):
 
         annotated_ws_consumer_connected_metric.dec()
 
-    def video_frame(self, message):
-        self.send(message["data"])
+    def alert_message(self, message):
+        self.send(message)
 
 
 class ObjectDetectEventConsumer(WebsocketConsumer):

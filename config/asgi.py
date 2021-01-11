@@ -33,7 +33,7 @@ django_application = get_asgi_application()
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.client_events.routing
-import print_nanny_webapp.remote_control.routing
+import print_nanny_webapp.alerts.routing
 
 from rest_framework.authtoken.models import Token
 from channels.db import database_sync_to_async
@@ -77,7 +77,7 @@ TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack
 
 websocket_urlpatterns = (
     print_nanny_webapp.client_events.routing.websocket_urlpatterns +
-    print_nanny_webapp.remote_control.routing.websocket_urlpatterns
+    print_nanny_webapp.alerts.routing.websocket_urlpatterns
 )
 logging.info(f'Registering websocket urlpatterns {websocket_urlpatterns}')
 application = ProtocolTypeRouter({

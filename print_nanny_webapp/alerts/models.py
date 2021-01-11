@@ -29,8 +29,9 @@ class RemoteControlCommandAlert(Alert):
 
     class AlertTypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by Raspberry Pi"
-        SUCCESS = "SUCCESS", "Command executed sucessfully"
-        FAILED = "FAILED", "Command execution failed" 
+        SUCCESS = "SUCCESS", "Command succeeded"
+        FAILED = "FAILED", "Command failed" 
+    
 
     ACTION_CSS_CLASSES = {
         AlertTypeChoices.RECEIVED: "info",
@@ -39,6 +40,21 @@ class RemoteControlCommandAlert(Alert):
     }
     command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
     alert_type = models.CharField(max_length=255, choices=AlertTypeChoices.choices,)
+
+    def css_class(self):
+        return self.ACTION_CSS_CLASSES[self.alert_type]
+
+    @classmethod
+    def get_alert_type(self, remote_control_command_data):
+        keys = remote_control_command_data.keys()
+        if 'received' in keys:
+            return self.AlertTypeChoices.RECEIVED
+        if 'success' in keys:
+            if remote_control_command_data.get('success') == True:
+                return self.AlertTypeChoices.SUCCESS
+            elif remote_control_command_data.get('success') == False:
+                return self.AlertTypeChoices.FAILED
+        
 
 
 class ManualVideoUploadAlert(Alert):
