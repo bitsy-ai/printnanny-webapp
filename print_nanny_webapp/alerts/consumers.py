@@ -10,12 +10,11 @@ class AlertConsumer(WebsocketConsumer):
         self.accept()
 
         self.user = self.scope["user"]
-        # self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
         async_to_sync(self.channel_layer.group_add)(
             f"alerts_{self.user.id}", self.channel_name
         )
 
-        # logger.info(f'Consumer for {self.device_id} connected')
+        logger.info(f'Consumer for {self.user.id} connected')
 
 
     def disconnect(self, close_code):
@@ -26,5 +25,8 @@ class AlertConsumer(WebsocketConsumer):
         super().disconnect(close_code)
 
 
-    def alert(self, message):
+    def alert_message(self, message):
         self.send(message)
+
+        logger.info(f'Received message {message}')
+
