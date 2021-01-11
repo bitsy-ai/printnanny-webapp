@@ -106,37 +106,37 @@ class ManualVideoUploadAlert(Alert):
 
 
 
-class DefectAlert(Alert):
-    print_job = models.ForeignKey(
-        "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
-    )
+# class DefectAlert(Alert):
+#     print_job = models.ForeignKey(
+#         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
+#     )
 
-    class ActionChoices(models.TextChoices):
-        PENDING = "PENDING", "Pending User Action"
-        RESUME_ALERTS = "RESUME_ALERTS", "Resume for Print Job"
-        CANCEL_PRINT = "CANCEL_PRINT", "Cancel Print Job Cancel"
+#     class ActionChoices(models.TextChoices):
+#         PENDING = "PENDING", "Pending User Action"
+#         RESUME_ALERTS = "RESUME_ALERTS", "Resume for Print Job"
+#         CANCEL_PRINT = "CANCEL_PRINT", "Cancel Print Job Cancel"
 
-    last_action = models.CharField(
-        max_length=16, choices=ActionChoices.choices, default=ActionChoices.PENDING
-    )
-    tags = ArrayField(models.CharField(max_length=255), default=list(["defect-alert"]))
+#     last_action = models.CharField(
+#         max_length=16, choices=ActionChoices.choices, default=ActionChoices.PENDING
+#     )
+#     tags = ArrayField(models.CharField(max_length=255), default=list(["defect-alert"]))
 
-    def source_display_name(self):
-        return f"Print Job {self.print_job.id}"
+#     def source_display_name(self):
+#         return f"Print Job {self.print_job.id}"
 
 
-class ProgressAlert(Alert):
-    class Meta:
-        unique_together = ("print_job_id", "progress")
+# class ProgressAlert(Alert):
+#     class Meta:
+#         unique_together = ("print_job_id", "progress")
 
-    print_job = models.ForeignKey(
-        "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
-    )
-    progress = models.IntegerField(default=0)
+#     print_job = models.ForeignKey(
+#         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
+#     )
+#     progress = models.IntegerField(default=0)
 
-    tags = ArrayField(
-        models.CharField(max_length=255), default=list(["progress-alert"])
-    )
+#     tags = ArrayField(
+#         models.CharField(max_length=255), default=list(["progress-alert"])
+#     )
 
 
 class AlertPlot(models.Model):

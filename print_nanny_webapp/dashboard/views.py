@@ -28,7 +28,7 @@ from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
 Alert = apps.get_model("alerts", "Alert")
-ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
@@ -348,7 +348,7 @@ video_dashboard_list_view = VideoDashboardView.as_view()
 
 class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
-    model = ManualVideoUploadAlert
+    model = User
     # slug_field = "id"
     # slug_url_kwarg = "id"
     template_name = "dashboard/video-detail.html"
