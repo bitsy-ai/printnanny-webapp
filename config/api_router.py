@@ -12,10 +12,14 @@ from print_nanny_webapp.remote_control.api.views import (
     PrinterProfileViewSet, 
     PrintJobViewSet,
     OctoPrintDeviceViewSet,
-    CommandViewSet
+    CommandViewSet,
 )
 
+from print_nanny_webapp.alerts.api.views import AlertViewSet
+
 router = DefaultRouter()
+
+router.register("alerts", AlertViewSet)
 
 router.register("users", UserViewSet)
 

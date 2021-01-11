@@ -19,41 +19,53 @@ def _upload_to(instance, filename):
     return path
 
 class Alert(PolymorphicModel):
+
+    class AlertTypeChoices(models.TextChoices):
+        COMMAND = "COMMAND", "Remote control command alerts (received, success, error)"
+        MANUAL_VIDEO_UPLOAD = "MANUAL_VIDEO_UPLOAD", "Manually-uploaded video is ready for review"
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     dismissed = models.BooleanField(default=True)
 
+    @property
+    def alert_type(self):
+        return "ALERT"
 
 class RemoteControlCommandAlert(Alert):
 
-    class AlertTypeChoices(models.TextChoices):
+    class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by Raspberry Pi"
         SUCCESS = "SUCCESS", "Command succeeded"
         FAILED = "FAILED", "Command failed" 
     
 
     ACTION_CSS_CLASSES = {
-        AlertTypeChoices.RECEIVED: "info",
-        AlertTypeChoices.SUCCESS: "success",
-        AlertTypeChoices.FAILED: "danger",
+        AlertSubtypeChoices.RECEIVED: "info",
+        AlertSubtypeChoices.SUCCESS: "success",
+        AlertSubtypeChoices.FAILED: "danger",
     }
     command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
-    alert_type = models.CharField(max_length=255, choices=AlertTypeChoices.choices,)
+    alert_subtype = models.CharField(max_length=255, choices=AlertSubtypeChoices.choices)
 
+    @property
     def css_class(self):
-        return self.ACTION_CSS_CLASSES[self.alert_type]
+        return self.ACTION_CSS_CLASSES[self.alert_subtype]
+
+    @property
+    def alert_type(self):
+        return Alert.AlertTypeChoices.COMMAND
 
     @classmethod
     def get_alert_type(self, remote_control_command_data):
         keys = remote_control_command_data.keys()
         if 'received' in keys:
-            return self.AlertTypeChoices.RECEIVED
+            return self.AlertSubtypeChoices.RECEIVED
         if 'success' in keys:
             if remote_control_command_data.get('success') == True:
-                return self.AlertTypeChoices.SUCCESS
+                return self.AlertSubtypeChoices.SUCCESS
             elif remote_control_command_data.get('success') == False:
-                return self.AlertTypeChoices.FAILED
+                return self.AlertSubtypeChoices.FAILED
         
 
 
@@ -82,6 +94,10 @@ class ManualVideoUploadAlert(Alert):
         default=JobStatusChoices.PROCESSING,
     )
 
+    @property
+    def alert_type(self):
+        return Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
+
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
@@ -93,9 +109,11 @@ class ManualVideoUploadAlert(Alert):
     notify_seconds = models.IntegerField(null=True)
     notify_timecode = models.CharField(max_length=32, null=True)
 
+    @property
     def original_filename(self):
         return os.path.basename(self.original_video.name)
 
+    @property
     def annotated_video_url(self):
         logger.info(self.original_video)
         logger.info(self.annotated_video)

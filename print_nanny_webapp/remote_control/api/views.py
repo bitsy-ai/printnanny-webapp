@@ -17,6 +17,8 @@ from channels.layers import get_channel_layer
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
 
+from rest_framework.renderers import JSONRenderer
+
 from rest_framework.parsers import (
     MultiPartParser,
     FormParser,
@@ -34,7 +36,7 @@ from .serializers import (
     RemoteControlCommandSerializer,
 )
 
-#from print_nanny_webapp.alerts.api.serializers import RemoteControlCommandAlertSerializer
+from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintJob,
@@ -50,7 +52,7 @@ from print_nanny_webapp.utils import prometheus_metrics
 
 logger = logging.getLogger(__name__)
 
-#RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
+RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
@@ -105,31 +107,16 @@ class CommandViewSet(
                 alert_type=alert_type,
 
             )
-            # alert_serializer = RemoteControlCommandAlertSerializer(alert)
+            channel_layer = get_channel_layer()
+            alert_serializer = AlertPolymorphicSerializer(alert)
             async_to_sync(channel_layer.group_send)(
                 f"alerts_{alert.user_id}", {
                     "type": "alert.message",
-                    "data": alert_serializer
+                    "data": JSONRenderer().render(alert_serializer.data)
                 }
             )
 
         return Response(serializer.data)
-    def perform_update(self, serializer):
-
-        #partial_data = serializer.data()
-
-        logger.info(f'****** {serializer.partial}')
-        instance = serializer.save()
-        channel_layer = get_channel_layer()
-
-         
-
-        # alert = RemoteControlCommandAlert.objects.create(
-        #     user=instance.user,
-        #     command=instance,
-
-        # )
-
 
 
 

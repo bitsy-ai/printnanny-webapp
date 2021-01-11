@@ -23,7 +23,7 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 import google.api_core.exceptions
 
-from print_nanny_webapp.utils.multiform import MultiFormsView
+from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
@@ -43,7 +43,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     
     def get_context_data(self, *args, **kwargs):
         
-        context = super(DashboardView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
         
         context["user"] = self.request.user
@@ -114,7 +114,11 @@ class HomeDashboardView(DashboardView, MultiFormsView):
         return redirect(reverse("dashboard:report-cards:list"))
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
+        form_classes = self.get_form_classes()
+        forms = self.get_forms(form_classes)
+        context = super().get_context_data(forms=forms, **kwargs)
+        logger.info(context)
+        #logger.info(context)
         token, created = Token.objects.get_or_create(user=self.request.user)
         context["user"].token = token
 
