@@ -12,8 +12,9 @@ export default {
     }
   },
   async created () {
-    this.items = await alertService.list()
-    console.log(this.items)
+    const response = await alertService.list()
+    this.items = response.data.results
+    console.log('Loaded alerts:', this.items)
   }
 }
 </script>
@@ -53,25 +54,14 @@ export default {
         class="dropdown-item notify-item"
     >
         <div
-        v-if="item.icon"
         class="notify-icon"
-        :class="`bg-${item.iconColor}`"
+        :class="`bg-${item.color}`"
         >
         <i :class="`${item.icon}`"></i>
         </div>
-        <div
-        v-if="item.user"
-        class="notify-icon"
-        >
-        <img
-            :src="`${item.user}`"
-            class="img-fluid rounded-circle"
-            alt
-        />
-        </div>
-        <p class="notify-details">{{item.text}}</p>
+        <p class="notify-details">{{item.title}}</p>
         <p class="text-muted mb-0 user-msg">
-        <small>{{item.subText}}</small>
+        <small>{{item.alert_subtype}} {{item.naturaltime}}</small>
         </p>
     </a>
     </simplebar>

@@ -5,11 +5,10 @@ import Vuex from 'vuex'
 
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import AlertApp from './AlertApp'
 import router from './router'
+
+import './scss/app.scss'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)

@@ -1913,10 +1913,64 @@ export interface RemoteControlCommand {
 export interface RemoteControlCommandAlert {
     /**
      * 
+     * @type {AlertSubtypeEnum}
+     * @memberof RemoteControlCommandAlert
+     */
+    alert_subtype: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    alert_type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    color: string;
+    /**
+     * 
      * @type {string}
      * @memberof RemoteControlCommandAlert
      */
     created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    dashboard_url?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoteControlCommandAlert
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    icon: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    naturaltime?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    description: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    title: string;
     /**
      * 
      * @type {string}
@@ -1929,36 +1983,6 @@ export interface RemoteControlCommandAlert {
      * @memberof RemoteControlCommandAlert
      */
     user?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RemoteControlCommandAlert
-     */
-    dismissed?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlCommandAlert
-     */
-    alert_type?: string;
-    /**
-     * 
-     * @type {AlertSubtypeEnum}
-     * @memberof RemoteControlCommandAlert
-     */
-    alert_subtype: AlertSubtypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlCommandAlert
-     */
-    dashboard_url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlCommandAlert
-     */
-    naturaltime?: string;
 }
 /**
  * 
