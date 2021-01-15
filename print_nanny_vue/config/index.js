@@ -9,15 +9,16 @@ module.exports = {
 
     // Paths 
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/static/webpack',
-    proxyTable: {
-      '!/static/webpack/**/*': {
+    assetsPublicPath: '/static/webpack/',
+    proxyTable: [
+      {
         target: 'http://localhost:8000/', // points to django dev server
         changeOrigin: true,
+        context: ['**', '!/webpack-dev-server', '!/static/webpack/**']
       },
-    },
+    ],
 
-    contentBase: path.resolve(__dirname, '../print_nanny_webapp/static/webpack'),
+    contentBase: false,
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -40,7 +41,7 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-cheap-module-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
@@ -48,12 +49,8 @@ module.exports = {
     cacheBusting: true,
 
     cssSourceMap: true,
+    writeToDisk: true
 
-    output: {
-      path: '/home/leigh/projects/print_nanny_webapp/static/webpack',
-      filename: 'index.js',
-      publicPath: '/static/webpack'
-    }
   },
 
   build: {
@@ -61,9 +58,9 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../print_nanny_webapp/print_nanny_vue/print_nanny_webapp/static/webpack'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/static/webpack/',
 
     /**
      * Source Maps
@@ -85,5 +82,6 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+
   }
 }
