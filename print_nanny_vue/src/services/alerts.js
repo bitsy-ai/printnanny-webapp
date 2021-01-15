@@ -1,11 +1,10 @@
 import { AlertsApiFactory } from 'print-nanny-client/api'
+import { Configuration } from 'print-nanny-client/configuration'
 
-const alertsApi = AlertsApiFactory(
-  {
-    basePath: process.env.BASE_API_URL
-  }
-)
+const configuration = new Configuration({
+  basePath: process.env.BASE_API_URL
+})
 
 export default {
-  list: alertsApi.alertsRecentRetrieve()
+  list: AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsRecentRetrieve
 }

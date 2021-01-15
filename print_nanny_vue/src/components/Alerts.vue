@@ -6,8 +6,14 @@ import alertService from '../services/alerts'
 
 export default {
   components: { simplebar },
+  data: function () {
+    return {
+      items: []
+    }
+  },
   async created () {
     this.items = await alertService.list()
+    console.log(this.items)
   }
 }
 </script>
@@ -42,7 +48,7 @@ export default {
     </a>
     <simplebar style="max-height: 230px;">
     <a
-        v-for="item in notificationItems"
+        v-for="item in items"
         :key="item.id"
         class="dropdown-item notify-item"
     >
