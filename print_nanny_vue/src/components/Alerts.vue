@@ -1,11 +1,28 @@
 <script>
-import simplebar from 'simplebar-vue';
-import 'simplebar/dist/simplebar.min.css';
+import simplebar from 'simplebar-vue'
+import 'simplebar/dist/simplebar.min.css'
 
+import { Configuration } from 'print-nanny-client/configuration'
+import { AlertsApiFactory } from 'print-nanny-client/api'
+
+const alertsApi = AlertsApiFactory(
+  {
+    basePath: process.env.BASE_API_URL
+  }
+)
+
+export default {
+  components: { simplebar },
+  data () {
+    return {
+      notificationItems: []
+    }
+  }
+}
 </script>
 
 <template>
-    <div id="alerts">
+    <div>
         <b-nav-item-dropdown
             class="notification-list"
             right

@@ -30,10 +30,10 @@ const store = new Vuex.Store({
 /* eslint-disable no-new */
 export default {
   alerts: new Vue({
-      el: '#alerts',
-      router,
-      components: { AlertApp },
-      template: '<AlertApp/>',
-      store
+    el: '#alerts',
+    router,
+    components: { AlertApp },
+    template: '<AlertApp/>',
+    store
   })
 }

@@ -28,20 +28,13 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
     def get_naturaltime(self, obj):
         return naturaltime(obj.updated_dt)
 
-    alert_subtype = serializers.SerializerMethodField()
-    def alert_subtype_display(self, obj):
-        return self.alert_subtype_display()
-
     class Meta:
         model = RemoteControlCommandAlert
         fields = [
             "created_dt", "updated_dt", "user", "dismissed", "alert_type", 
-            "css_color_class", 
-            "css_icon_class",
             "alert_subtype",
             "dashboard_url",
             "naturaltime",
-            "alert_subtype"
         ] 
         read_only_fields = ("user",)
  
