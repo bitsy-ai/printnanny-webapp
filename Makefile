@@ -29,7 +29,10 @@ helm-delete:
 	helm delete print-nanny-blog 
 
 clean-ts-client:
+	find . -name '*.hot-update.js' -exec rm -fr {} +
+	find . -name '*.hot-update.json' -exec rm -fr {} +
 	sudo rm -rf clients/typescript
+
 ts-client: clean-ts-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
