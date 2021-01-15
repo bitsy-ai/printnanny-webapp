@@ -13,6 +13,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(BootstrapVue)
 
 /* eslint-disable no-new */
 const store = new Vuex.Store({
