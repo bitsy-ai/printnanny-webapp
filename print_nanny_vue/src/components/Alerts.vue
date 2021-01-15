@@ -2,27 +2,12 @@
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
-import { Provider } from '../providers/Provider'
-
-import { Configuration } from 'print-nanny-client/configuration'
-import { AlertsApiFactory } from 'print-nanny-client/api'
-
-const alertsApi = AlertsApiFactory(
-  {
-    basePath: process.env.BASE_API_URL
-  }
-)
+import alertService from '../services/alerts'
 
 export default {
   components: { simplebar },
-  props: {
-    provider: {
-      required: true,
-      type: Provider
-    }
-  },
-  created () {
-    this.provider.list()
+  async created () {
+    this.items = await alertService.list()
   }
 }
 </script>
