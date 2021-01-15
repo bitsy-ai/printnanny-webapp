@@ -66,6 +66,4 @@
         </a>
       </b-nav-item-dropdown>
 </div>
-
 </template>
-

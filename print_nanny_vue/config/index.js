@@ -7,15 +7,22 @@ const path = require('path')
 module.exports = {
   dev: {
 
-    // Paths
+    // Paths 
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
+    assetsPublicPath: '/static/webpack',
+    proxyTable: {
+      '!/static/webpack/**/*': {
+        target: 'http://localhost:8000/', // points to django dev server
+        changeOrigin: true,
+      },
+    },
+
+    contentBase: path.resolve(__dirname, '../print_nanny_webapp/static/webpack'),
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
@@ -40,7 +47,13 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+
+    output: {
+      path: '/home/leigh/projects/print_nanny_webapp/static/webpack',
+      filename: 'index.js',
+      publicPath: '/static/webpack'
+    }
   },
 
   build: {

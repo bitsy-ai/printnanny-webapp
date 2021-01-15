@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuex from 'vuex'
+
+// eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -24,11 +26,11 @@ const store = new Vuex.Store({
   }
 })
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#alerts',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store
 })
