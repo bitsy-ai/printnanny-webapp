@@ -1,7 +1,7 @@
 <template>
-  <div id="alerts">
+  <span id="alerts">
     <router-view/>
-  </div>
+  </span>
 </template>
 
 <script>
