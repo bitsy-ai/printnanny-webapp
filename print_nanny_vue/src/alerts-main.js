@@ -8,7 +8,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import App from './App'
+import AlertApp from './AlertApp'
 import router from './router'
 
 Vue.config.productionTip = false
@@ -27,10 +27,12 @@ const store = new Vuex.Store({
 })
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#alerts',
-  router,
-  components: { App },
-  template: '<App/>',
-  store
-})
+export default {
+  alerts: new Vue({
+      el: '#alerts',
+      router,
+      components: { AlertApp },
+      template: '<AlertApp/>',
+      store
+  })
+}
