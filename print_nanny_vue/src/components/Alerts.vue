@@ -1,21 +1,21 @@
 <script>
+import { mapActions } from 'vuex'
+
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
 
-import alertService from '../services/alerts'
-
 export default {
   components: { simplebar },
-  data: function () {
-    return {
-      items: []
-    }
-  },
   async created () {
-    const response = await alertService.list()
-    this.items = response.data.results
-    console.log('Loaded alerts:', this.items)
-  }
+    this.fetchRecentAlerts()
+  },
+  methods: { ...mapActions(['fetchRecentAlerts']) }
+  //   computed: {
+  //     items () {
+
+//        return this.$store.state.alerts.recent
+//     }
+//   }
 }
 </script>
 
@@ -28,7 +28,7 @@ export default {
 >
     <template slot="button-content">
     <i class="mdi mdi-bell-outline noti-icon"></i>
-    <span class="noti-icon-badge"></span>
+    <span class="noti-icon-badge" v-if="$store.state.alerts.recent.length"></span>
     </template>
 
     <!-- item-->
@@ -49,7 +49,7 @@ export default {
     </a>
     <simplebar style="max-height: 230px;">
     <a
-        v-for="item in items"
+        v-for="item in $store.state.alerts.recent"
         :key="item.id"
         class="dropdown-item notify-item"
     >

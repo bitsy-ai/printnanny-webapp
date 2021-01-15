@@ -28,6 +28,19 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     queryset = Alert.objects.all()
     lookup_field = "id"
 
+    @action(detail=False, methods=["POST"])
+    def dismiss(self, request):
+
+        updated_alerts = Alert.objects.filter(
+            user=request.user,
+            id__in=request.body
+        ).update(dismissed=True)
+
+    
+        serializer = self.get_serializer(updated_alerts, many=True)
+        return Response(serializer.data)   
+
+
     @action(detail=False)
     def recent(self, request):
         recent_alerts = Alert.objects.filter(
@@ -41,6 +54,7 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(recent_alerts, many=True)
+        
         return Response(serializer.data)
 
 

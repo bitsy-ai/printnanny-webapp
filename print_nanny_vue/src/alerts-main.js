@@ -7,6 +7,7 @@ import Vuex from 'vuex'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import AlertApp from './AlertApp'
 import router from './router'
+import _store from './store'
 
 import './scss/app.scss'
 
@@ -14,25 +15,14 @@ Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
 
-/* eslint-disable no-new */
-const store = new Vuex.Store({
-  state: {
-    alerts: []
-  },
-  mutations: {
-    dismissAlert (state) {
-      state.count++
-    }
-  }
-})
-
+const store = new Vuex.Store(_store)
 /* eslint-disable no-new */
 export default {
   alerts: new Vue({
     el: '#alerts',
     router,
+    store,
     components: { AlertApp },
-    template: '<AlertApp/>',
-    store
+    template: '<AlertApp/>'
   })
 }

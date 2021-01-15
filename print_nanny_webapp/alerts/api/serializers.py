@@ -44,6 +44,7 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
             "dashboard_url",
             "dismissed", 
             "icon",
+            "id",
             "naturaltime",
             "description",
             "title",
