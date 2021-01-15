@@ -6,6 +6,8 @@ from rest_framework.mixins import (
     UpdateModelMixin,
     CreateModelMixin,
 )
+from rest_framework.decorators import action
+
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 
@@ -25,6 +27,22 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = AlertPolymorphicSerializer
     queryset = Alert.objects.all()
     lookup_field = "id"
+
+    @action(detail=False)
+    def recent(self, request):
+        recent_alerts = Alert.objects.filter(
+            user=request.user,
+            dismissed=False
+        ).order_by('-updated_dt')
+
+        page = self.paginate_queryset(recent_alerts)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(recent_alerts, many=True)
+        return Response(serializer.data)
+
 
 # @extend_schema(tags=["alerts"])
 # class ManualVideoUploadAlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
