@@ -4,6 +4,7 @@ import logging
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone, dateformat
 from django.utils.text import capfirst
@@ -12,21 +13,23 @@ from polymorphic.models import PolymorphicModel
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
-
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
     logger.info("Uploading to path")
     return path
 
-
 class Alert(PolymorphicModel):
     class AlertTypeChoices(models.TextChoices):
-        COMMAND = "COMMAND", "Remote control command alerts (received, success, error)"
+        COMMAND = "COMMAND", "Remote command status updates"
+        PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
         MANUAL_VIDEO_UPLOAD = (
             "MANUAL_VIDEO_UPLOAD",
             "Manually-uploaded video is ready for review",
         )
+        DEFECT = "DEFECT", "Defect detected in print"
+
+    alert_type = models.CharField(choices=AlertTypeChoices.choices)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -37,9 +40,79 @@ class Alert(PolymorphicModel):
     @property
     def alert_type(self):
         return "ALERT"
+    
 
+class AlertSettings(PolymorphicModel):
+
+    class AlertMethodChoices(models.TextChoices):
+        UI = "UI", "Receive notifications in Print Nanny UI"
+        EMAIL = "EMAIL", "Receive email notifications"
+
+    class Meta:
+        unique_together = ('user', 'alert_type', 'alert_method')
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+
+    alert_type = models.CharField(choices=Alert.AlertTypeChoices.choices, max_length=255)
+    alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE
+    )
+    enabled = models.BooleanField(default=True, help_text="Enable or disable all alerts of this type")
+
+class ProgressAlertSettings(AlertSettings):
+
+
+    on_progress_percent = models.IntegerField(
+        default=25,
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+    )
+    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
+
+ProgressAlertSettings._meta.get_field('alert_type').default = Alert.AlertTypeChoices.PROGRESS
+
+class DefectAlertSettings(AlertSettings):
+
+    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
+
+DefectAlertSettings._meta.get_field('alert_type').default = Alert.AlertTypeChoices.DEFECT
+
+
+class ProgressAlert(Alert):
+    '''
+        Fires on print job progress
+    '''
+
+    progress_percent = models.IntegerField(
+        default=25,
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+    )
+    alert_type = models.CharField(default=Alert.AlertTypeChoices.PROGRESS, max_length=255)
+
+    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
+    @property
+    def title(self):
+        unformatted = f"{self.progress_percent}% complete: {capfirst(self.command.device.name)}"
+        return unformatted
+
+    @property
+    def description(self):
+        return f"{str(self.get_alert_display())} {self.command.device.name}"
+
+    @property
+    def color(self):
+        return self.COLOR_CSS[self.alert_subtype]
+
+    @property
+    def icon(self):
+        return self.ICON_CSS[self.alert_subtype]
 
 class RemoteControlCommandAlert(Alert):
+    '''
+        Fires on remote control events
+    '''
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
         SUCCESS = "SUCCESS", "Command succeeded"
@@ -60,6 +133,7 @@ class RemoteControlCommandAlert(Alert):
     command = models.ForeignKey(
         "remote_control.RemoteControlCommand", on_delete=models.CASCADE
     )
+    alert_type = models.CharField(default=Alert.AlertTypeChoices.COMMAND, max_length=255)
     alert_subtype = models.CharField(
         max_length=255, choices=AlertSubtypeChoices.choices
     )
@@ -80,11 +154,6 @@ class RemoteControlCommandAlert(Alert):
     @property
     def icon(self):
         return self.ICON_CSS[self.alert_subtype]
-
-    @property
-    def alert_type(self):
-        return Alert.AlertTypeChoices.COMMAND
-
     @classmethod
     def get_alert_subtype(cls, remote_control_command_data):
         keys = remote_control_command_data.keys()
