@@ -107,11 +107,16 @@ class CommandViewSet(
             )
             channel_layer = get_channel_layer()
             alert_serializer = AlertPolymorphicSerializer(alert)
+
+            data = alert_serializer.data
+            # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+            data["namespace"] = "alerts"
+            data["action"] = "alertMessage"
             async_to_sync(channel_layer.group_send)(
                 f"alerts_{alert.user_id}",
                 {
                     "type": "alert.message",
-                    "data": JSONRenderer().render(alert_serializer.data),
+                    "data": JSONRenderer().render(data),
                 },
             )
 

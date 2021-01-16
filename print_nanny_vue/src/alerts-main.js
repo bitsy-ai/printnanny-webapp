@@ -3,12 +3,13 @@
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import Vuex from 'vuex'
+import VueNativeSock from 'vue-native-websocket'
 
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import AlertApp from './AlertApp'
 import router from './router'
-import _store from './store'
+import storeConfig from './store'
 
 import './scss/app.scss'
 
@@ -17,7 +18,10 @@ Vue.use(Vuex)
 Vue.use(VueCookies)
 Vue.use(BootstrapVue)
 
-const store = new Vuex.Store(_store)
+const store = new Vuex.Store(storeConfig)
+
+Vue.use(VueNativeSock, process.env.ALERTS_WEBSOCKET, { store: store, format: 'json', reconnection: true })
+
 /* eslint-disable no-new */
 export default {
   alerts: new Vue({

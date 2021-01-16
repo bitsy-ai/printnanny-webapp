@@ -46,7 +46,8 @@
     "simplemde": "^1.11.2",
     "summernote": "0.8.16",
     "twitter-bootstrap-wizard": "^1.2.0",
-    "typeahead.js": "^0.11.1"
+    "typeahead.js": "^0.11.1",
+    "vue-native-websocket": "^2.0.14"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.7",
