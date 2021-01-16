@@ -7,7 +7,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from ..models import ManualVideoUploadAlert, RemoteControlCommandAlert, Alert
+from ..models import ManualVideoUploadAlert, RemoteControlCommandAlert, Alert, ProgressAlert, DefectAlert
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +16,17 @@ class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
         fields = ["created_dt", "updated_dt", "user", "dismissed"]
+        read_only_fields = ("user",)
+
+
+class ProgressAlertSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProgressAlert
+        read_only_fields = ("user",)
+
+class DefectAlertSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DefectAlert
         read_only_fields = ("user",)
 
 
@@ -90,6 +101,8 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         Alert: AlertSerializer,
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
+        DefectAlert: DefectAlertSerializer,
+        ProgressAlert: ProgressAlertSerializer
     }
 
     def to_resource_type(self, model_or_instance):
