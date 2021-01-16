@@ -17,15 +17,6 @@ from .serializers import (ManualVideoUploadAlertSerializer, AlertPolymorphicSeri
 )
 from ..models import ManualVideoUploadAlert, Alert
 
-
-        
-# @extend_schema(tags=["alerts"], responses={
-#     200: PolymorphicProxySerializer(
-#         component_name='Alert',
-#         serializers=[AlertSerializer, RemoteControlCommandAlertSerializer, ManualVideoUploadAlertSerializer],
-#         resource_type_field_name='type',
-#     ),
-# })
 class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = AlertPolymorphicSerializer
     queryset = Alert.objects.all()
@@ -33,6 +24,7 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateMod
 
     @extend_schema(tags=["alerts"],
     request=RemoteControlCommandUnreadSerializer,
+    operation_id='alerts_dismiss',
     responses={
         200: AlertPolymorphicSerializer,
         202: AlertPolymorphicSerializer
@@ -45,7 +37,25 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateMod
             id__in=request.data.ids
         ).update(dismissed=True, seen=True)
         serializer = self.get_serializer(updated_alerts, many=True)
-        return Response(serializer.data)   
+        return Response(serializer.data)
+
+    @extend_schema(tags=["alerts"],
+    request=RemoteControlCommandUnreadSerializer,
+    operation_id='alerts_seen',
+    responses={
+        200: AlertPolymorphicSerializer,
+        202: AlertPolymorphicSerializer
+    })
+    @action(detail=False, methods=["POST"])
+    def seen(self, request):
+
+        updated_alerts = Alert.objects.filter(
+            user=request.user,
+            id__in=request.data.ids
+        ).update(seen=True)
+        serializer = self.get_serializer(updated_alerts, many=True)
+        return Response(serializer.data)
+
 
     @action(detail=False)
     def recent(self, request):

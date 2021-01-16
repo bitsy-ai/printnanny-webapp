@@ -1087,6 +1087,25 @@ export interface PaginatedUserList {
     results?: Array<User>;
 }
 /**
+ * @type PatchedAlertPolymorphicRequest
+ * @export
+ */
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedManualVideoUploadAlertRequest | PatchedRemoteControlCommandAlertRequest;
+
+/**
+ * 
+ * @export
+ * @interface PatchedAlertRequest
+ */
+export interface PatchedAlertRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedAlertRequest
+     */
+    dismissed?: boolean;
+}
+/**
  * 
  * @export
  * @interface PatchedGcodeFileRequest
@@ -1110,6 +1129,19 @@ export interface PatchedGcodeFileRequest {
      * @memberof PatchedGcodeFileRequest
      */
     file_hash?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedManualVideoUploadAlertRequest
+ */
+export interface PatchedManualVideoUploadAlertRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedManualVideoUploadAlertRequest
+     */
+    dismissed?: boolean;
 }
 /**
  * 
@@ -1401,6 +1433,55 @@ export interface PatchedPrinterProfileRequest {
      * @memberof PatchedPrinterProfileRequest
      */
     volume_width?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedRemoteControlCommandAlertRequest
+ */
+export interface PatchedRemoteControlCommandAlertRequest {
+    /**
+     * 
+     * @type {AlertSubtypeEnum}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    color?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    icon?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    title?: string;
 }
 /**
  * 
@@ -2121,6 +2202,19 @@ export interface RemoteControlCommandRequest {
     iotcore_response: { [key: string]: any; };
 }
 /**
+ * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+ * @export
+ * @interface RemoteControlCommandUnreadRequest
+ */
+export interface RemoteControlCommandUnreadRequest {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof RemoteControlCommandUnreadRequest
+     */
+    ids: Array<number>;
+}
+/**
  * 
  * @export
  * @interface User
@@ -2167,11 +2261,15 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsDismissCreate: async (alertPolymorphicRequest?: AlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+        alertsDismiss: async (remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'remoteControlCommandUnreadRequest' is not null or undefined
+            if (remoteControlCommandUnreadRequest === null || remoteControlCommandUnreadRequest === undefined) {
+                throw new RequiredError('remoteControlCommandUnreadRequest','Required parameter remoteControlCommandUnreadRequest was null or undefined when calling alertsDismiss.');
+            }
             const localVarPath = `/api/alerts/dismiss/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -2209,13 +2307,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof alertPolymorphicRequest !== 'string';
+            const nonString = typeof remoteControlCommandUnreadRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(alertPolymorphicRequest !== undefined ? alertPolymorphicRequest : {})
-                : (alertPolymorphicRequest || "");
+                ? JSON.stringify(remoteControlCommandUnreadRequest !== undefined ? remoteControlCommandUnreadRequest : {})
+                : (remoteControlCommandUnreadRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -2273,6 +2371,69 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsPartialUpdate: async (id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsPartialUpdate.');
+            }
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedAlertPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedAlertPolymorphicRequest !== undefined ? patchedAlertPolymorphicRequest : {})
+                : (patchedAlertPolymorphicRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -2381,6 +2542,67 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsSeen: async (remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'remoteControlCommandUnreadRequest' is not null or undefined
+            if (remoteControlCommandUnreadRequest === null || remoteControlCommandUnreadRequest === undefined) {
+                throw new RequiredError('remoteControlCommandUnreadRequest','Required parameter remoteControlCommandUnreadRequest was null or undefined when calling alertsSeen.');
+            }
+            const localVarPath = `/api/alerts/seen/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof remoteControlCommandUnreadRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(remoteControlCommandUnreadRequest !== undefined ? remoteControlCommandUnreadRequest : {})
+                : (remoteControlCommandUnreadRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -2426,6 +2648,69 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUpdate: async (id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsUpdate.');
+            }
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof alertPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(alertPolymorphicRequest !== undefined ? alertPolymorphicRequest : {})
+                : (alertPolymorphicRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2437,12 +2722,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsDismissCreate(alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsDismissCreate(alertPolymorphicRequest, options);
+        async alertsDismiss(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsDismiss(remoteControlCommandUnreadRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2457,6 +2742,20 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          */
         async alertsList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertPolymorphicList>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(limit, offset, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2489,11 +2788,38 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsSeen(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsSeen(remoteControlCommandUnreadRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async alertsUnreadRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUnreadRetrieve(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUpdate(id, alertPolymorphicRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2510,12 +2836,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsDismissCreate(alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
-            return AlertsApiFp(configuration).alertsDismissCreate(alertPolymorphicRequest, options).then((request) => request(axios, basePath));
+        alertsDismiss(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsDismiss(remoteControlCommandUnreadRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2526,6 +2852,16 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          */
         alertsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList> {
             return AlertsApiFp(configuration).alertsList(limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2546,11 +2882,30 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
+         * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsSeen(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsSeen(remoteControlCommandUnreadRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         alertsUnreadRetrieve(options?: any): AxiosPromise<AlertPolymorphic> {
             return AlertsApiFp(configuration).alertsUnreadRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2563,12 +2918,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
 export interface AlertsApiInterface {
     /**
      * 
-     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsDismissCreate(alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+    alertsDismiss(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): AxiosPromise<AlertPolymorphic>;
 
     /**
      * 
@@ -2579,6 +2934,16 @@ export interface AlertsApiInterface {
      * @memberof AlertsApiInterface
      */
     alertsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
 
     /**
      * 
@@ -2599,11 +2964,30 @@ export interface AlertsApiInterface {
 
     /**
      * 
+     * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsSeen(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
     alertsUnreadRetrieve(options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
 
 }
 
@@ -2616,13 +3000,13 @@ export interface AlertsApiInterface {
 export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
-     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsDismissCreate(alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any) {
-        return AlertsApiFp(this.configuration).alertsDismissCreate(alertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public alertsDismiss(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsDismiss(remoteControlCommandUnreadRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2635,6 +3019,18 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public alertsList(limit?: number, offset?: number, options?: any) {
         return AlertsApiFp(this.configuration).alertsList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2660,12 +3056,35 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
+     * @param {RemoteControlCommandUnreadRequest} remoteControlCommandUnreadRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsSeen(remoteControlCommandUnreadRequest: RemoteControlCommandUnreadRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsSeen(remoteControlCommandUnreadRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
     public alertsUnreadRetrieve(options?: any) {
         return AlertsApiFp(this.configuration).alertsUnreadRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
