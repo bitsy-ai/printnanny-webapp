@@ -2284,53 +2284,6 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsNewRetrieve: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/alerts/new/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         alertsRecentRetrieve: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/recent/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2426,6 +2379,53 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUnreadRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/unread/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2467,18 +2467,6 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsNewRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsNewRetrieve(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async alertsRecentRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRecentRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -2494,6 +2482,18 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          */
         async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsUnreadRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUnreadRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2532,14 +2532,6 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsNewRetrieve(options?: any): AxiosPromise<AlertPolymorphic> {
-            return AlertsApiFp(configuration).alertsNewRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         alertsRecentRetrieve(options?: any): AxiosPromise<AlertPolymorphic> {
             return AlertsApiFp(configuration).alertsRecentRetrieve(options).then((request) => request(axios, basePath));
         },
@@ -2551,6 +2543,14 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          */
         alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic> {
             return AlertsApiFp(configuration).alertsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUnreadRetrieve(options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsUnreadRetrieve(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2586,14 +2586,6 @@ export interface AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsNewRetrieve(options?: any): AxiosPromise<AlertPolymorphic>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
     alertsRecentRetrieve(options?: any): AxiosPromise<AlertPolymorphic>;
 
     /**
@@ -2604,6 +2596,14 @@ export interface AlertsApiInterface {
      * @memberof AlertsApiInterface
      */
     alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsUnreadRetrieve(options?: any): AxiosPromise<AlertPolymorphic>;
 
 }
 
@@ -2643,16 +2643,6 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsNewRetrieve(options?: any) {
-        return AlertsApiFp(this.configuration).alertsNewRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
     public alertsRecentRetrieve(options?: any) {
         return AlertsApiFp(this.configuration).alertsRecentRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
@@ -2666,6 +2656,16 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public alertsRetrieve(id: number, options?: any) {
         return AlertsApiFp(this.configuration).alertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsUnreadRetrieve(options?: any) {
+        return AlertsApiFp(this.configuration).alertsUnreadRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

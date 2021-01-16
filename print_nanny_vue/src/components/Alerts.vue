@@ -7,15 +7,10 @@ import 'simplebar/dist/simplebar.min.css'
 export default {
   components: { simplebar },
   async created () {
+    this.fetchUnreadAlerts()
     this.fetchRecentAlerts()
   },
-  methods: { ...mapActions(['fetchRecentAlerts']) }
-  //   computed: {
-  //     items () {
-
-//        return this.$store.state.alerts.recent
-//     }
-//   }
+  methods: { ...mapActions(['fetchRecentAlerts', 'fetchNewAlerts', 'dismissAll', 'markAllRead']) }
 }
 </script>
 
@@ -28,7 +23,7 @@ export default {
 >
     <template slot="button-content">
     <i class="mdi mdi-bell-outline noti-icon"></i>
-    <span class="noti-icon-badge" v-if="$store.state.alerts.recent.length"></span>
+    <span class="noti-icon-badge" v-if="$store.state.alerts.unread.length"></span>
     </template>
 
     <!-- item-->

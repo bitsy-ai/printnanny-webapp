@@ -17,7 +17,18 @@ class AlertSerializer(serializers.ModelSerializer):
         fields = ["created_dt", "updated_dt", "user", "dismissed"] 
         read_only_fields = ("user",)
 
+class RemoteControlCommandUnreadSerializer(serializers.ModelSerializer):
+    '''
+        Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+    '''
 
+    ids = serializers.ListField(child=serializers.IntegerField())
+    class Meta:
+        model = RemoteControlCommandAlert
+        fields = [
+            "ids"
+        ] 
+        
 class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
 
     dashboard_url = serializers.SerializerMethodField()

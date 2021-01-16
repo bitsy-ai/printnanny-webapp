@@ -11,7 +11,10 @@ from rest_framework.decorators import action
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 
-from .serializers import ManualVideoUploadAlertSerializer, AlertPolymorphicSerializer, AlertSerializer, RemoteControlCommandAlertSerializer
+from .serializers import (ManualVideoUploadAlertSerializer, AlertPolymorphicSerializer, AlertSerializer,
+    RemoteControlCommandUnreadSerializer,
+    RemoteControlCommandAlertSerializer
+)
 from ..models import ManualVideoUploadAlert, Alert
 
 
@@ -23,23 +26,26 @@ from ..models import ManualVideoUploadAlert, Alert
 #         resource_type_field_name='type',
 #     ),
 # })
-class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin):
     serializer_class = AlertPolymorphicSerializer
     queryset = Alert.objects.all()
     lookup_field = "id"
 
+    @extend_schema(tags=["alerts"],
+    request=RemoteControlCommandUnreadSerializer,
+    responses={
+        200: AlertPolymorphicSerializer,
+        202: AlertPolymorphicSerializer
+    })
     @action(detail=False, methods=["POST"])
     def dismiss(self, request):
 
         updated_alerts = Alert.objects.filter(
             user=request.user,
-            id__in=request.body
-        ).update(dismissed=True)
-
-    
+            id__in=request.data.ids
+        ).update(dismissed=True, seen=True)
         serializer = self.get_serializer(updated_alerts, many=True)
         return Response(serializer.data)   
-
 
     @action(detail=False)
     def recent(self, request):
@@ -58,7 +64,7 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         return Response(serializer.data)
 
     @action(detail=False)
-    def new(self, request):
+    def unread(self, request):
         recent_alerts = Alert.objects.filter(
             user=request.user,
             dismissed=False,
