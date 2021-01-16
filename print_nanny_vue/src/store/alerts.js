@@ -50,14 +50,14 @@ export default {
       const request = { ids: state.recent.map(a => a.id) }
       console.log('Marking seen', request)
       await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsSeen(request)
-      await dispatch('alerts/fetchRecentAlerts')
-      await dispatch('alerts/fetchUnreadAlerts')
+      await dispatch('fetchRecentAlerts')
+      await dispatch('fetchUnreadAlerts')
     },
     async dismissAll ({ dispatch, commit, state }) {
       const request = { ids: state.recent.map(a => a.id) }
       await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsDismiss(request)
-      await dispatch('alerts/fetchRecentAlerts')
-      await dispatch('alerts/fetchUnreadAlerts')
+      await dispatch('fetchRecentAlerts')
+      await dispatch('fetchUnreadAlerts')
     }
   }
 }
