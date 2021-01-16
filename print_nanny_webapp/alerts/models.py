@@ -78,6 +78,8 @@ class DefectAlertSettings(AlertSettings):
 
 DefectAlertSettings._meta.get_field('alert_type').default = Alert.AlertTypeChoices.DEFECT
 
+class DefectAlert(Alert):
+    pass
 
 class ProgressAlert(Alert):
     '''
