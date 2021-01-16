@@ -11,7 +11,6 @@ from print_nanny_webapp.remote_control.models import (
 
 
 class RemoteControlCommandSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = RemoteControlCommand
         fields = [field.name for field in RemoteControlCommand._meta.fields] + ["url"]

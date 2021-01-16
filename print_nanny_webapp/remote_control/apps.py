@@ -1,8 +1,10 @@
 from django.apps import AppConfig
 from health_check.plugins import plugin_dir
 
+
 class RemoteControlConfig(AppConfig):
     name = "print_nanny_webapp.remote_control"
+
     def ready(self):
         try:
             import print_nanny_webapp.remote_control.signals  # noqa F401

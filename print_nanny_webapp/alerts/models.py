@@ -19,11 +19,15 @@ def _upload_to(instance, filename):
     logger.info("Uploading to path")
     return path
 
-class Alert(PolymorphicModel):
 
+class Alert(PolymorphicModel):
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote control command alerts (received, success, error)"
-        MANUAL_VIDEO_UPLOAD = "MANUAL_VIDEO_UPLOAD", "Manually-uploaded video is ready for review"
+        MANUAL_VIDEO_UPLOAD = (
+            "MANUAL_VIDEO_UPLOAD",
+            "Manually-uploaded video is ready for review",
+        )
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
@@ -34,13 +38,12 @@ class Alert(PolymorphicModel):
     def alert_type(self):
         return "ALERT"
 
-class RemoteControlCommandAlert(Alert):
 
+class RemoteControlCommandAlert(Alert):
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
         SUCCESS = "SUCCESS", "Command succeeded"
-        FAILED = "FAILED", "Command failed" 
-    
+        FAILED = "FAILED", "Command failed"
 
     COLOR_CSS = {
         AlertSubtypeChoices.RECEIVED: "info",
@@ -54,21 +57,26 @@ class RemoteControlCommandAlert(Alert):
         AlertSubtypeChoices.FAILED: "mdi mdi-close",
     }
 
-    command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
-    alert_subtype = models.CharField(max_length=255, choices=AlertSubtypeChoices.choices)
+    command = models.ForeignKey(
+        "remote_control.RemoteControlCommand", on_delete=models.CASCADE
+    )
+    alert_subtype = models.CharField(
+        max_length=255, choices=AlertSubtypeChoices.choices
+    )
 
     @property
     def title(self):
-        unformatted = f'{self.command.command}: {capfirst(self.command.device.name)}'
+        unformatted = f"{self.command.command}: {capfirst(self.command.device.name)}"
         return unformatted
 
     @property
     def description(self):
-        return f'{str(self.get_alert_subtype_display())} {self.command.device.name}'
-        
+        return f"{str(self.get_alert_subtype_display())} {self.command.device.name}"
+
     @property
     def color(self):
         return self.COLOR_CSS[self.alert_subtype]
+
     @property
     def icon(self):
         return self.ICON_CSS[self.alert_subtype]
@@ -80,19 +88,18 @@ class RemoteControlCommandAlert(Alert):
     @classmethod
     def get_alert_subtype(cls, remote_control_command_data):
         keys = remote_control_command_data.keys()
-        if 'received' in keys:
+        if "received" in keys:
             return cls.AlertSubtypeChoices.RECEIVED
-        if 'success' in keys:
-            if remote_control_command_data.get('success') == True:
+        if "success" in keys:
+            if remote_control_command_data.get("success") == True:
                 return cls.AlertSubtypeChoices.SUCCESS
-            elif remote_control_command_data.get('success') == False:
+            elif remote_control_command_data.get("success") == False:
                 return cls.AlertSubtypeChoices.FAILED
-
 
 
 class ManualVideoUploadAlert(Alert):
     """
-        Base class for a prediction alert .gif or timelapse mp4 / mjpeg
+    Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     """
 
     # class SourceChoices(models.TextChoices):
@@ -142,7 +149,6 @@ class ManualVideoUploadAlert(Alert):
         #     return self.annotated_video.storage.url(
         #         self.annotated_video.name
         #     )
-
 
 
 # class DefectAlert(Alert):
