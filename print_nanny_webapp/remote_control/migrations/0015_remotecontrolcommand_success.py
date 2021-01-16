@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0014_auto_20210103_1922'),
+        ("remote_control", "0014_auto_20210103_1922"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='remotecontrolcommand',
-            name='success',
+            model_name="remotecontrolcommand",
+            name="success",
             field=models.BooleanField(null=True),
         ),
     ]

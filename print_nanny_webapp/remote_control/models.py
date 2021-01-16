@@ -354,15 +354,19 @@ class RemoteControlCommandManager(models.Manager):
         )
 
         data = {
-            'remote_control_command_id': obj.id,
-            'command': kwargs.get('command'),
+            "remote_control_command_id": obj.id,
+            "command": kwargs.get("command"),
         }
         data = json.dumps(data).encode("utf-8")
 
         # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
         # for faster commands (without state / version checking)
         response = client.send_command_to_device(
-            request={"name": device_path, "binary_data": data, 'subfolder': 'remote_control'}
+            request={
+                "name": device_path,
+                "binary_data": data,
+                "subfolder": "remote_control",
+            }
         )
 
         dict_response = MessageToDict(response._pb)
@@ -373,7 +377,6 @@ class RemoteControlCommandManager(models.Manager):
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
-
     class CommandChoices(models.TextChoices):
         STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
         START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
@@ -383,10 +386,13 @@ class RemoteControlCommand(models.Model):
         PAUSE_PRINT = "PausePrint", "Pause Print"
         RESUME_PRINT = "ResumePrint", "Resume Print"
 
-    COMMAND_CODES =  [x.value for x in CommandChoices.__members__.values()]
+    COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJob.StatusChoices.STARTED: [CommandChoices.STOP_PRINT, CommandChoices.PAUSE_PRINT],
+        PrintJob.StatusChoices.STARTED: [
+            CommandChoices.STOP_PRINT,
+            CommandChoices.PAUSE_PRINT,
+        ],
         PrintJob.StatusChoices.DONE: [CommandChoices.MOVE_NOZZLE],
         PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE_NOZZLE],
         PrintJob.StatusChoices.CANCELLING: [],
@@ -397,7 +403,6 @@ class RemoteControlCommand(models.Model):
         ],
         PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
         "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING],
-
     }
 
     ACTION_CSS_CLASSES = {

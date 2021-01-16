@@ -50,13 +50,13 @@ def on_octoprint_event(message):
     if event_type in OctoPrintEventCodes:
         try:
             OctoPrintEvent.objects.create(
-            created_dt=data["created_dt"],
-            device_id=data["device_id"],
-            event_data=data,
-            event_type=event_type,
-            octoprint_version=data["octoprint_version"],
-            plugin_version=data["plugin_version"],
-            user_id=data["user_id"],
+                created_dt=data["created_dt"],
+                device_id=data["device_id"],
+                event_data=data,
+                event_type=event_type,
+                octoprint_version=data["octoprint_version"],
+                plugin_version=data["plugin_version"],
+                user_id=data["user_id"],
             )
         except Exception as e:
             logger.error(e)

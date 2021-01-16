@@ -11,53 +11,85 @@ from ..models import ManualVideoUploadAlert, RemoteControlCommandAlert, Alert
 
 logger = logging.getLogger(__name__)
 
+
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "dismissed"] 
+        fields = ["created_dt", "updated_dt", "user", "dismissed"]
         read_only_fields = ("user",)
+
+
+class AlertBulkRequestSerializer(serializers.Serializer):
+    """
+    Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+    """
+
+    ids = serializers.ListField(child=serializers.IntegerField())
+
+
+class AlertBulkResponseSerializer(serializers.Serializer):
+    """
+    Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+    """
+
+    received = serializers.IntegerField()
+    updated = serializers.IntegerField()
 
 
 class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
 
     dashboard_url = serializers.SerializerMethodField()
+
     def get_dashboard_url(self, obj):
-        return reverse("dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id})
+        return reverse(
+            "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
+        )
 
     naturaltime = serializers.SerializerMethodField()
+
     def get_naturaltime(self, obj):
         return naturaltime(obj.updated_dt)
 
-    alert_subtype = serializers.SerializerMethodField()
-    def alert_subtype_display(self, obj):
-        return self.alert_subtype_display()
+    icon = serializers.CharField()
+    description = serializers.CharField()
+    color = serializers.CharField()
+    title = serializers.CharField()
 
     class Meta:
         model = RemoteControlCommandAlert
         fields = [
-            "created_dt", "updated_dt", "user", "dismissed", "alert_type", 
-            "css_color_class", 
-            "css_icon_class",
             "alert_subtype",
+            "alert_type",
+            "color",
+            "created_dt",
             "dashboard_url",
+            "dismissed",
+            "icon",
+            "id",
             "naturaltime",
-            "alert_subtype"
-        ] 
+            "description",
+            "seen",
+            "title",
+            "updated_dt",
+            "user",
+        ]
         read_only_fields = ("user",)
- 
+
+
 class ManualVideoUploadAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManualVideoUploadAlert
         fields = ["created_dt", "updated_dt", "user", "dismissed", "alert_type"]
         read_only_fields = ("user",)
 
+
 class AlertPolymorphicSerializer(PolymorphicSerializer):
-    resource_type_field_name = 'type'
+    resource_type_field_name = "type"
 
     model_serializer_mapping = {
         Alert: AlertSerializer,
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
-        ManualVideoUploadAlert: ManualVideoUploadAlertSerializer
+        ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
     }
 
     def to_resource_type(self, model_or_instance):

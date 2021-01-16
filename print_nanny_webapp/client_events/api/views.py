@@ -15,6 +15,7 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 

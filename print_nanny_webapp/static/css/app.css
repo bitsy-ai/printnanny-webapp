@@ -8879,7 +8879,8 @@ body[data-leftbar-theme="dark"][data-leftbar-compact-mode="condensed"] .side-nav
       text-align: center;
       margin-right: 10px;
       border-radius: 50%;
-      color: #fff; }
+      color: #fff;
+      font-size: 2em; }
     .notification-list .notify-item .notify-details {
       margin-bottom: 0;
       overflow: hidden;

@@ -52,7 +52,7 @@ from print_nanny_webapp.utils import prometheus_metrics
 
 logger = logging.getLogger(__name__)
 
-RemoteControlCommandAlert = apps.get_model('alerts', "RemoteControlCommandAlert")
+RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
@@ -84,16 +84,15 @@ class CommandViewSet(
             RemoteControlCommand.COMMAND_CODES,
             status.HTTP_200_OK,
         )
-    
 
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+        partial = kwargs.pop("partial", False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        if getattr(instance, '_prefetched_objects_cache', None):
+        if getattr(instance, "_prefetched_objects_cache", None):
             # If 'prefetch_related' has been applied to a queryset, we need to
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
@@ -105,20 +104,18 @@ class CommandViewSet(
                 user=instance.user,
                 command=instance,
                 alert_subtype=alert_subtype,
-
             )
             channel_layer = get_channel_layer()
             alert_serializer = AlertPolymorphicSerializer(alert)
             async_to_sync(channel_layer.group_send)(
-                f"alerts_{alert.user_id}", {
+                f"alerts_{alert.user_id}",
+                {
                     "type": "alert.message",
-                    "data": JSONRenderer().render(alert_serializer.data)
-                }
+                    "data": JSONRenderer().render(alert_serializer.data),
+                },
             )
 
         return Response(serializer.data)
-
-
 
 
 @extend_schema(tags=["remote-control"])
@@ -330,7 +327,9 @@ class OctoPrintDeviceViewSet(
             instance, created = serializer.update_or_create(
                 request.user, serializer.validated_data.get("serial"), validated_data
             )
-            response_serializer = OctoPrintDeviceKeySerializer(instance=instance, context=self.get_serializer_context())
+            response_serializer = OctoPrintDeviceKeySerializer(
+                instance=instance, context=self.get_serializer_context()
+            )
 
             if not created:
                 return Response(

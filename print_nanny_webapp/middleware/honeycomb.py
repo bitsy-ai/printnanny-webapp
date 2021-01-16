@@ -6,11 +6,16 @@ from beeline.middleware.django import HoneyMiddlewareBase, HoneyDBWrapper
 
 class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
 
-    ignored = ['health', 'static']
-    
+    ignored = ["health", "static"]
+
     def __call__(self, request):
 
-        if any([ignored_path in request.get_full_path_info() for ignored_path in self.ignored]):
+        if any(
+            [
+                ignored_path in request.get_full_path_info()
+                for ignored_path in self.ignored
+            ]
+        ):
             return self.get_response(request)
         try:
             db_wrapper = HoneyDBWrapper()

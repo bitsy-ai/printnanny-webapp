@@ -1,6 +1,6 @@
 
 
-.PHONY: build prod-up dev-up client clean-client-build
+.PHONY: build prod-up dev-up python-client clean-python-client-build
 
 ui:
 	npm run build
@@ -28,7 +28,22 @@ helm-install:
 helm-delete:
 	helm delete print-nanny-blog 
 
-clean-client: ## remove build artifacts
+clean-ts-client:
+	find . -name '*.hot-update.js' -exec rm -fr {} +
+	find . -name '*.hot-update.json' -exec rm -fr {} +
+	sudo rm -rf clients/typescript
+
+ts-client: clean-ts-client
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+		-i http://localhost:8000/api/schema --recommend
+
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+		-i http://localhost:8000/api/schema \
+		-g typescript-axios \
+		-o /local/clients/typescript \
+		-c /local/clients/typescript.yaml \
+
+clean-python-client: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
 	sudo rm -fr clients/python
@@ -37,7 +52,7 @@ clean-client: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -rf {} +
 
-client: clean-client
+python-client: clean-python-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
@@ -55,14 +70,14 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '__pycache__' -exec rm -fr {} +
 
 
-sdist: client ## builds source package
+sdist: python-client ## builds source package
 	cd clients/python && python3 setup.py sdist && ls -l dist
 
-bdist_wheel: client ## builds wheel package
+bdist_wheel: python-client ## builds wheel package
 	cd clients/python && python3 setup.py bdist_wheel && ls -l dist
 dist: sdist bdist_wheel
 
-client-release: dist ## package and upload a release
+python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 cloudsql:
@@ -70,3 +85,5 @@ cloudsql:
 
 test:
 	docker-compose -f local.yml run --rm django pytest
+
+ghost-push:
