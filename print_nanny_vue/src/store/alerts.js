@@ -1,7 +1,6 @@
 
 import { AlertsApiFactory } from 'print-nanny-client/api'
 import { Configuration } from 'print-nanny-client/configuration'
-import axiosConfig from '../utils/axiosConfig'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
@@ -15,6 +14,7 @@ const configuration = new Configuration({
 // const alertService = AlertsApiFactory(configuration, process.env.BASE_API_URL)
 
 export default {
+  namespaced: true,
   state: () => ({
     recent: [],
     unread: []
@@ -25,9 +25,18 @@ export default {
     },
     FETCH_UNREAD_ALERTS (state, unread) {
       state.unread = unread
+    },
+    RECEIVED_ALERT (state, data) {
+      state.recent.concat(data)
+      state.unread.concat(data)
     }
   },
   actions: {
+    // https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+    async alertCreated ({ context, commit }) {
+      console.log(context)
+      commit('RECEIVED_ALERT', context)
+    },
     async fetchRecentAlerts ({ commit }) {
       const response = await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsRecentRetrieve()
       commit('FETCH_RECENT_ALERTS', response.data.results)

@@ -11,7 +11,7 @@ export default {
     this.fetchRecentAlerts()
   },
   methods: {
-    ...mapActions([
+    ...mapActions('alerts', [
       'fetchRecentAlerts', 'fetchUnreadAlerts', 'dismissAll', 'seenAll'
 
     ])
