@@ -6,6 +6,7 @@ from channels.generic.websocket import WebsocketConsumer, SyncConsumer
 
 logger = logging.getLogger(__name__)
 
+
 class AlertConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
@@ -15,8 +16,7 @@ class AlertConsumer(WebsocketConsumer):
             f"alerts_{self.user.id}", self.channel_name
         )
 
-        logger.info(f'Consumer for {self.user.id} connected')
-
+        logger.info(f"Consumer for {self.user.id} connected")
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
@@ -25,9 +25,7 @@ class AlertConsumer(WebsocketConsumer):
 
         super().disconnect(close_code)
 
-
     def alert_message(self, message):
         self.send(message["data"])
 
-        logger.info(f'Received message {message}')
-
+        logger.info(f"Received message {message}")

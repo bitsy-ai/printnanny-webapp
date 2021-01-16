@@ -6,6 +6,7 @@ from django.db import models
 from django.apps import apps
 from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone, dateformat
+from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
 
 User = get_user_model()
@@ -18,49 +19,67 @@ def _upload_to(instance, filename):
     logger.info("Uploading to path")
     return path
 
-class Alert(PolymorphicModel):
 
+class Alert(PolymorphicModel):
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote control command alerts (received, success, error)"
-        MANUAL_VIDEO_UPLOAD = "MANUAL_VIDEO_UPLOAD", "Manually-uploaded video is ready for review"
+        MANUAL_VIDEO_UPLOAD = (
+            "MANUAL_VIDEO_UPLOAD",
+            "Manually-uploaded video is ready for review",
+        )
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    dismissed = models.BooleanField(default=True)
+    seen = models.BooleanField(default=False)
+    dismissed = models.BooleanField(default=False)
 
     @property
     def alert_type(self):
         return "ALERT"
 
+
 class RemoteControlCommandAlert(Alert):
-
     class AlertSubtypeChoices(models.TextChoices):
-        RECEIVED = "RECEIVED", "Command was received by Raspberry Pi"
+        RECEIVED = "RECEIVED", "Command was received by"
         SUCCESS = "SUCCESS", "Command succeeded"
-        FAILED = "FAILED", "Command failed" 
-    
+        FAILED = "FAILED", "Command failed"
 
-    ACTION_CSS_CLASSES = {
+    COLOR_CSS = {
         AlertSubtypeChoices.RECEIVED: "info",
         AlertSubtypeChoices.SUCCESS: "success",
         AlertSubtypeChoices.FAILED: "danger",
     }
 
-    ICON_CSS_CLASSES = {
-        AlertSubtypeChoices.RECEIVED: "mdi mdi-progress-upload",
-        AlertSubtypeChoices.SUCCESS: "mdi mdi-progress-check",
-        AlertSubtypeChoices.FAILED: "mdi mdi-progress-close",
+    ICON_CSS = {
+        AlertSubtypeChoices.RECEIVED: "mdi mdi-upload",
+        AlertSubtypeChoices.SUCCESS: "mdi mdi-check",
+        AlertSubtypeChoices.FAILED: "mdi mdi-close",
     }
 
-    command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE)
-    alert_subtype = models.CharField(max_length=255, choices=AlertSubtypeChoices.choices)
+    command = models.ForeignKey(
+        "remote_control.RemoteControlCommand", on_delete=models.CASCADE
+    )
+    alert_subtype = models.CharField(
+        max_length=255, choices=AlertSubtypeChoices.choices
+    )
 
     @property
-    def css_color_class(self):
-        return self.ACTION_CSS_CLASSES[self.alert_subtype]
+    def title(self):
+        unformatted = f"{self.command.command}: {capfirst(self.command.device.name)}"
+        return unformatted
+
     @property
-    def css_icon_class(self):
-        return self.ICON_CSS_CLASSES[self.alert_subtype]
+    def description(self):
+        return f"{str(self.get_alert_subtype_display())} {self.command.device.name}"
+
+    @property
+    def color(self):
+        return self.COLOR_CSS[self.alert_subtype]
+
+    @property
+    def icon(self):
+        return self.ICON_CSS[self.alert_subtype]
 
     @property
     def alert_type(self):
@@ -69,19 +88,18 @@ class RemoteControlCommandAlert(Alert):
     @classmethod
     def get_alert_subtype(cls, remote_control_command_data):
         keys = remote_control_command_data.keys()
-        if 'received' in keys:
+        if "received" in keys:
             return cls.AlertSubtypeChoices.RECEIVED
-        if 'success' in keys:
-            if remote_control_command_data.get('success') == True:
+        if "success" in keys:
+            if remote_control_command_data.get("success") == True:
                 return cls.AlertSubtypeChoices.SUCCESS
-            elif remote_control_command_data.get('success') == False:
+            elif remote_control_command_data.get("success") == False:
                 return cls.AlertSubtypeChoices.FAILED
-
 
 
 class ManualVideoUploadAlert(Alert):
     """
-        Base class for a prediction alert .gif or timelapse mp4 / mjpeg
+    Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     """
 
     # class SourceChoices(models.TextChoices):
@@ -131,7 +149,6 @@ class ManualVideoUploadAlert(Alert):
         #     return self.annotated_video.storage.url(
         #         self.annotated_video.name
         #     )
-
 
 
 # class DefectAlert(Alert):

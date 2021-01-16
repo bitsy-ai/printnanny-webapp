@@ -1,4 +1,7 @@
 import logging
+
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
@@ -40,22 +43,23 @@ logger = logging.getLogger(__name__)
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
-    
+    @method_decorator(ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
-        
+
         context = super().get_context_data(**kwargs)
 
-        
         context["user"] = self.request.user
         context["recent_alerts"] = (
             Alert.objects.filter(
                 user=self.request.user,
             )
             .exclude(dismissed=True)
-            .order_by('-created_dt')
+            .order_by("-created_dt")
             .all()
         )
-
 
         context["octoprint_devices"] = OctoPrintDevice.objects.filter(
             user=self.request.user
@@ -118,7 +122,7 @@ class HomeDashboardView(DashboardView, MultiFormsView):
         forms = self.get_forms(form_classes)
         context = super().get_context_data(forms=forms, **kwargs)
         logger.info(context)
-        #logger.info(context)
+        # logger.info(context)
         token, created = Token.objects.get_or_create(user=self.request.user)
         context["user"].token = token
 
@@ -286,7 +290,9 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def downvote_form_valid(self, form):
 
         alert_id = self.request.POST.get("alert_id")
-        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=False)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
+            feedback=False
+        )
 
         return redirect(self.get_success_url())
 
@@ -359,7 +365,7 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
     def get_object(self):
         obj = super().get_object()
 
-        #obj.seen = True
+        # obj.seen = True
         obj.save()
         return obj
 

@@ -10,6 +10,7 @@ User = get_user_model()
 
 Invitation = get_invitation_model()
 
+
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
@@ -33,12 +34,14 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
+
 def send_beta_invite(modeladmin, request, queryset):
     for invite_request in queryset:
         invite = Invitation.create(invite_request.email)
         invite.send_invitation(request)
         invite_request.invited = True
         invite_request.save()
+
 
 @admin.register(InviteRequest)
 class InviteRequestAdmin(admin.ModelAdmin):

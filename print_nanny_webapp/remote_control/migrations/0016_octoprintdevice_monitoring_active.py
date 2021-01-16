@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0015_remotecontrolcommand_success'),
+        ("remote_control", "0015_remotecontrolcommand_success"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='monitoring_active',
+            model_name="octoprintdevice",
+            name="monitoring_active",
             field=models.BooleanField(default=False),
         ),
     ]

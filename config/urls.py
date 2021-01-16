@@ -19,7 +19,7 @@ from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, 
 
 # Webapp urls
 urlpatterns = [
-    re_path(r'^health/', include('health_check.urls')),
+    re_path(r'^health/', include('health_check.urls'), name='health'),
 
     re_path(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico', permanent=True)),
     path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
@@ -37,18 +37,7 @@ urlpatterns = [
 
     path("accounts/", include("allauth.urls")),
     
-    # Your stuff: custom urls includes go here
-    # hyper templates
-    # path("form/",
-    #      include("print_nanny_webapp.form.urls", namespace="form"), ),
-    # path("pages/",
-    #      include("print_nanny_webapp.pages.urls", namespace="pages"), ),
-    # path("apps/",
-    #      include("print_nanny_webapp.apps.urls", namespace="apps"), ),
-    # path("components/",
-    #      include("print_nanny_webapp.components.urls", namespace="components"), ),
-    # path("layouts/",
-    #      include("print_nanny_webapp.layouts.urls", namespace="layouts"), ),
+
     path("dashboard/",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
