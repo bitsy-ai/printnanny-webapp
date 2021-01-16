@@ -17,17 +17,21 @@ class AlertSerializer(serializers.ModelSerializer):
         fields = ["created_dt", "updated_dt", "user", "dismissed"] 
         read_only_fields = ("user",)
 
-class RemoteControlCommandUnreadSerializer(serializers.ModelSerializer):
+class AlertBulkRequestSerializer(serializers.Serializer):
     '''
         Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
     '''
 
     ids = serializers.ListField(child=serializers.IntegerField())
-    class Meta:
-        model = RemoteControlCommandAlert
-        fields = [
-            "ids"
-        ] 
+
+class AlertBulkResponseSerializer(serializers.Serializer):
+    '''
+        Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+    '''
+
+    received = serializers.IntegerField()
+    updated = serializers.IntegerField()
+
         
 class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
 

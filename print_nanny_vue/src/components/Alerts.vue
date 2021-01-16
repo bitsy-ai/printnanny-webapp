@@ -10,7 +10,12 @@ export default {
     this.fetchUnreadAlerts()
     this.fetchRecentAlerts()
   },
-  methods: { ...mapActions(['fetchRecentAlerts', 'fetchNewAlerts', 'dismissAll', 'markAllRead']) }
+  methods: {
+    ...mapActions([
+      'fetchRecentAlerts', 'fetchUnreadAlerts', 'dismissAll', 'seenAll'
+
+    ])
+  }
 }
 </script>
 
@@ -20,10 +25,11 @@ export default {
     right
     menu-class="dropdown-menu-animated dropdown-lg"
     toggle-class="nav-link arrow-none"
+    v-on:toggle="seenAll"
 >
-    <template slot="button-content">
-    <i class="mdi mdi-bell-outline noti-icon"></i>
-    <span class="noti-icon-badge" v-if="$store.state.alerts.unread.length"></span>
+    <template slot="button-content" >
+        <i class="mdi mdi-bell-outline noti-icon"></i>
+        <span class="noti-icon-badge" v-if="$store.state.alerts.unread.length"></span>
     </template>
 
     <!-- item-->
@@ -34,14 +40,20 @@ export default {
     <h5 class="m-0">
         <span class="float-right">
         <a
-            href
             class="text-dark"
+            v-on:click="dismissAll"
+            v-if="$store.state.alerts.recent.length"
         >
             <small>Clear All</small>
         </a>
         </span>Notification
     </h5>
     </a>
+
+    <simplebar style="max-height: 230px;" v-if="!$store.state.alerts.recent.length">
+       <p class="text-muted mb-0 user-msg"><center>You're all caught up!</center></p>
+    </simplebar>
+
     <simplebar style="max-height: 230px;">
     <a
         v-for="item in $store.state.alerts.recent"
@@ -62,10 +74,10 @@ export default {
     </simplebar>
 
     <a
-    href="javascript:void(0);"
+    href="/dashboard/octoprint-devices/"
     class="dropdown-item text-center text-primary notify-item notify-all"
     >
-    View all
+    View history
     <i class="fi-arrow-right"></i>
     </a>
 </b-nav-item-dropdown>
