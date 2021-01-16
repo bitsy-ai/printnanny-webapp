@@ -14,6 +14,7 @@ const configuration = new Configuration({
 // const alertService = AlertsApiFactory(configuration, process.env.BASE_API_URL)
 
 export default {
+  namespaced: true,
   state: () => ({
     recent: [],
     unread: []
@@ -24,9 +25,18 @@ export default {
     },
     FETCH_UNREAD_ALERTS (state, unread) {
       state.unread = unread
+    },
+    RECEIVED_ALERT (state, data) {
+      state.recent.concat(data)
+      state.unread.concat(data)
     }
   },
   actions: {
+    // https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+    async alertCreated ({ context, commit }) {
+      console.log(context)
+      commit('RECEIVED_ALERT', context)
+    },
     async fetchRecentAlerts ({ commit }) {
       const response = await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsRecentRetrieve()
       commit('FETCH_RECENT_ALERTS', response.data.results)
@@ -40,14 +50,14 @@ export default {
       const request = { ids: state.recent.map(a => a.id) }
       console.log('Marking seen', request)
       await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsSeen(request)
-      await dispatch('fetchRecentAlerts')
-      await dispatch('fetchUnreadAlerts')
+      await dispatch('alerts/fetchRecentAlerts')
+      await dispatch('alerts/fetchUnreadAlerts')
     },
     async dismissAll ({ dispatch, commit, state }) {
       const request = { ids: state.recent.map(a => a.id) }
       await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsDismiss(request)
-      await dispatch('fetchRecentAlerts')
-      await dispatch('fetchUnreadAlerts')
+      await dispatch('alerts/fetchRecentAlerts')
+      await dispatch('alerts/fetchUnreadAlerts')
     }
   }
 }

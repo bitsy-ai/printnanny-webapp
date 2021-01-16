@@ -26,7 +26,10 @@ helm-install:
 	helm install -f k8s/ghost-values.yml print-nanny-blog ./k8s/bitnami/ghost/ghost
 
 helm-delete:
-	helm delete print-nanny-blog 
+	helm delete print-nanny-blog
+
+vue-dev:
+	cd print_nanny_vue && npm run dev
 
 clean-ts-client:
 	find . -name '*.hot-update.js' -exec rm -fr {} +

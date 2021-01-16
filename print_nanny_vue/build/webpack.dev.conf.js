@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 const HOST = process.env.HOST
@@ -51,10 +52,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
+    new CleanWebpackPlugin({dangerouslyAllowCleanPatternsOutsideProject: true, dry: false }),
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }),
-    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new VueLoaderPlugin()
