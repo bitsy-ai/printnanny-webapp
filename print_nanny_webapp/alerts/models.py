@@ -27,6 +27,7 @@ class Alert(PolymorphicModel):
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
 
     @property

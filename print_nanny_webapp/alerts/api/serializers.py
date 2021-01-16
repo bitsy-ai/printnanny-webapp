@@ -47,6 +47,7 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
             "id",
             "naturaltime",
             "description",
+            "seen",
             "title",
             "updated_dt", 
             "user", 

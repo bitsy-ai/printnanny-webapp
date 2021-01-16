@@ -57,6 +57,22 @@ class AlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         
         return Response(serializer.data)
 
+    @action(detail=False)
+    def new(self, request):
+        recent_alerts = Alert.objects.filter(
+            user=request.user,
+            dismissed=False,
+            seen=False
+        ).order_by('-updated_dt')
+
+        page = self.paginate_queryset(recent_alerts)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(recent_alerts, many=True)
+        
+        return Response(serializer.data)
 
 # @extend_schema(tags=["alerts"])
 # class ManualVideoUploadAlertViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
