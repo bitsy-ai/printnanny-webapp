@@ -4,20 +4,23 @@ import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import Vuex from 'vuex'
 import VueNativeSock from 'vue-native-websocket'
+// import { PaginationPlugin } from 'vuex-pagination'
 
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+import './scss/app.scss'
 import storeConfig from './store'
 
-import './scss/app.scss'
-
 Vue.config.productionTip = false
+
 Vue.use(Vuex)
-Vue.use(VueCookies)
-Vue.use(BootstrapVue)
+// Vue.use(PaginationPlugin)
 
 const store = new Vuex.Store(storeConfig)
+
+Vue.use(VueCookies)
+Vue.use(BootstrapVue)
 
 Vue.use(VueNativeSock, process.env.ALERTS_WEBSOCKET, { store: store, format: 'json', reconnection: true })
 

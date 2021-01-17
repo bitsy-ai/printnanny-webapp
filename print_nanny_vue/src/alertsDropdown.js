@@ -1,6 +1,6 @@
 import { Vue, store } from './appFactory'
 import AlertsDropdown from './widgets/AlertsDropdown'
-import router from './router'
+// import router from './router'
 
 /* eslint-disable no-new */
 

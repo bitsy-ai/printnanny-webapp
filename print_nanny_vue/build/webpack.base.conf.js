@@ -24,7 +24,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     alertsDropdown: './src/alertsDropdown.js',
-    alertsHistory: './src/alertsHistory.js'
+    alertsTable: './src/alertsTable.js'
   },
   output: {
     path: config.build.assetsRoot,
