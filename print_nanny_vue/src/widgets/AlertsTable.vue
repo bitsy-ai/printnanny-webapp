@@ -48,7 +48,9 @@ export default {
       </b-col>
       <b-col>
 
-        <b-pagination-nav :number-of-pages="pagination.totalPages"></b-pagination-nav>
+        <b-pagination-nav :number-of-pages="pagination.totalPages" use-router>
+
+        </b-pagination-nav>
       </b-col>
     </b-row>
     <b-row>
