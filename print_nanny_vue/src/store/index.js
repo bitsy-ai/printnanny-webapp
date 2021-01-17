@@ -34,5 +34,4 @@ export default {
       state.socket.reconnectError = true
     }
   }
-  // plugins: [createWebSocketPlugin()]
 }

@@ -6,15 +6,15 @@ import 'simplebar/dist/simplebar.min.css'
 
 export default {
   components: { simplebar },
-  async created () {
-    this.fetchUnreadAlerts()
-    this.fetchRecentAlerts()
-  },
   methods: {
     ...mapActions('alerts', [
       'fetchRecentAlerts', 'fetchUnreadAlerts', 'dismissAll', 'seenAll'
 
     ])
+  },
+  async mounted () {
+    await this.fetchUnreadAlerts()
+    await this.fetchRecentAlerts()
   }
 }
 </script>
@@ -32,7 +32,6 @@ export default {
         <span class="noti-icon-badge" v-if="$store.state.alerts.unread.length"></span>
     </template>
 
-    <!-- item-->
     <a
     href="javascript: void(0);"
     class="dropdown-item noti-title"
