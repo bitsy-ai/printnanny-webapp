@@ -2,6 +2,8 @@
 import { AlertsApiFactory } from 'print-nanny-client/api'
 import { Configuration } from 'print-nanny-client/configuration'
 
+// import { createResource } from 'vuex-pagination'
+
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
   baseOptions: {
@@ -11,13 +13,22 @@ const configuration = new Configuration({
   }
 })
 
-// const alertService = AlertsApiFactory(configuration, process.env.BASE_API_URL)
+async function fetchAlerts (opts) {
+  const response = await AlertsApiFactory(configuration, process.env.BASE_API_URL).alertsList(opts.pageSize, opts.page)
+  return {
+    total: response.count,
+    data: response.data
+  }
+}
+
+// export { createResources }
 
 export default {
   namespaced: true,
   state: () => ({
     recent: [],
-    unread: []
+    unread: [],
+    page: []
   }),
   mutations: {
     FETCH_RECENT_ALERTS (state, recent) {
@@ -25,6 +36,10 @@ export default {
     },
     FETCH_UNREAD_ALERTS (state, unread) {
       state.unread = unread
+    },
+    FETCH_PAGINATED_ALERTS (state, alerts) {
+      console.log('Loaded alerts', alerts)
+      state.page = alerts
     },
     RECEIVED_ALERT (state, data) {
       state.recent.concat(data)

@@ -13,20 +13,27 @@ logger = logging.getLogger(__name__)
 
 
 class AlertSerializer(serializers.ModelSerializer):
+
+    time = serializers.SerializerMethodField()
+    def get_time(self, obj):
+        return naturaltime(obj.updated_dt)
+
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "dismissed"]
+        fields = ["created_dt", "updated_dt", "user", "dismissed", "time"]
         read_only_fields = ("user",)
 
 
-class ProgressAlertSerializer(serializers.ModelSerializer):
+class ProgressAlertSerializer(AlertSerializer):
     class Meta:
         model = ProgressAlert
+        fields = "__all__"
         read_only_fields = ("user",)
 
-class DefectAlertSerializer(serializers.ModelSerializer):
+class DefectAlertSerializer(AlertSerializer):
     class Meta:
         model = DefectAlert
+        fields = "__all__"
         read_only_fields = ("user",)
 
 
@@ -47,19 +54,13 @@ class AlertBulkResponseSerializer(serializers.Serializer):
     updated = serializers.IntegerField()
 
 
-class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
+class RemoteControlCommandAlertSerializer(AlertSerializer):
 
     dashboard_url = serializers.SerializerMethodField()
-
     def get_dashboard_url(self, obj):
         return reverse(
             "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
         )
-
-    naturaltime = serializers.SerializerMethodField()
-
-    def get_naturaltime(self, obj):
-        return naturaltime(obj.updated_dt)
 
     icon = serializers.CharField()
     description = serializers.CharField()
@@ -77,7 +78,7 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
             "dismissed",
             "icon",
             "id",
-            "naturaltime",
+            "time",
             "description",
             "seen",
             "title",

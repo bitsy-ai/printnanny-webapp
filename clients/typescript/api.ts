@@ -49,6 +49,12 @@ export interface Alert {
      * @memberof Alert
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    time?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -73,13 +79,13 @@ export interface AlertBulkResponse {
  * @type AlertPolymorphic
  * @export
  */
-export type AlertPolymorphic = Alert | ManualVideoUploadAlert | RemoteControlCommandAlert;
+export type AlertPolymorphic = Alert | DefectAlert | ManualVideoUploadAlert | ProgressAlert | RemoteControlCommandAlert;
 
 /**
  * @type AlertPolymorphicRequest
  * @export
  */
-export type AlertPolymorphicRequest = AlertRequest | ManualVideoUploadAlertRequest | RemoteControlCommandAlertRequest;
+export type AlertPolymorphicRequest = AlertRequest | DefectAlertRequest | ManualVideoUploadAlertRequest | ProgressAlertRequest | RemoteControlCommandAlertRequest;
 
 /**
  * 
@@ -103,6 +109,18 @@ export enum AlertSubtypeEnum {
     Received = 'RECEIVED',
     Success = 'SUCCESS',
     Failed = 'FAILED'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum AlertTypeEnum {
+    Command = 'COMMAND',
+    PrintProgress = 'PRINT_PROGRESS',
+    ManualVideoUpload = 'MANUAL_VIDEO_UPLOAD',
+    Defect = 'DEFECT'
 }
 
 /**
@@ -152,6 +170,92 @@ export enum CommandEnum {
     ResumePrint = 'ResumePrint'
 }
 
+/**
+ * 
+ * @export
+ * @interface DefectAlert
+ */
+export interface DefectAlert {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof DefectAlert
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlert
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlert
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlert
+     */
+    user?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DefectAlertRequest
+ */
+export interface DefectAlertRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof DefectAlertRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlertRequest
+     */
+    dismissed?: boolean;
+}
 /**
  * 
  * @export
@@ -318,10 +422,10 @@ export interface ManualVideoUploadAlert {
     dismissed?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {AlertTypeEnum}
      * @memberof ManualVideoUploadAlert
      */
-    alert_type?: string;
+    alert_type: AlertTypeEnum;
 }
 /**
  * 
@@ -335,6 +439,12 @@ export interface ManualVideoUploadAlertRequest {
      * @memberof ManualVideoUploadAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof ManualVideoUploadAlertRequest
+     */
+    alert_type: AlertTypeEnum;
 }
 /**
  * 
@@ -1122,7 +1232,7 @@ export interface PatchedAlertBulkRequestRequest {
  * @type PatchedAlertPolymorphicRequest
  * @export
  */
-export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedManualVideoUploadAlertRequest | PatchedRemoteControlCommandAlertRequest;
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedDefectAlertRequest | PatchedManualVideoUploadAlertRequest | PatchedProgressAlertRequest | PatchedRemoteControlCommandAlertRequest;
 
 /**
  * 
@@ -1134,6 +1244,31 @@ export interface PatchedAlertRequest {
      * 
      * @type {boolean}
      * @memberof PatchedAlertRequest
+     */
+    dismissed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedDefectAlertRequest
+ */
+export interface PatchedDefectAlertRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedDefectAlertRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDefectAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDefectAlertRequest
      */
     dismissed?: boolean;
 }
@@ -1174,6 +1309,12 @@ export interface PatchedManualVideoUploadAlertRequest {
      * @memberof PatchedManualVideoUploadAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedManualVideoUploadAlertRequest
+     */
+    alert_type?: AlertTypeEnum;
 }
 /**
  * 
@@ -1469,6 +1610,43 @@ export interface PatchedPrinterProfileRequest {
 /**
  * 
  * @export
+ * @interface PatchedProgressAlertRequest
+ */
+export interface PatchedProgressAlertRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedProgressAlertRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedProgressAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedProgressAlertRequest
+     */
+    dismissed?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof PatchedProgressAlertRequest
+     */
+    progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedProgressAlertRequest
+     */
+    device?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedRemoteControlCommandAlertRequest
  */
 export interface PatchedRemoteControlCommandAlertRequest {
@@ -1478,6 +1656,12 @@ export interface PatchedRemoteControlCommandAlertRequest {
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
     alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    alert_type?: AlertTypeEnum;
     /**
      * 
      * @type {string}
@@ -1992,6 +2176,116 @@ export interface PrinterProfileRequest {
 /**
  * 
  * @export
+ * @interface ProgressAlert
+ */
+export interface ProgressAlert {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgressAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof ProgressAlert
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgressAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgressAlert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlert
+     */
+    dismissed?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof ProgressAlert
+     */
+    progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlert
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlert
+     */
+    device: number;
+}
+/**
+ * 
+ * @export
+ * @interface ProgressAlertRequest
+ */
+export interface ProgressAlertRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof ProgressAlertRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlertRequest
+     */
+    dismissed?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof ProgressAlertRequest
+     */
+    progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlertRequest
+     */
+    device: number;
+}
+/**
+ * 
+ * @export
  * @interface RemoteControlCommand
  */
 export interface RemoteControlCommand {
@@ -2064,10 +2358,10 @@ export interface RemoteControlCommandAlert {
     alert_subtype: AlertSubtypeEnum;
     /**
      * 
-     * @type {string}
+     * @type {AlertTypeEnum}
      * @memberof RemoteControlCommandAlert
      */
-    alert_type?: string;
+    alert_type: AlertTypeEnum;
     /**
      * 
      * @type {string}
@@ -2109,7 +2403,7 @@ export interface RemoteControlCommandAlert {
      * @type {string}
      * @memberof RemoteControlCommandAlert
      */
-    naturaltime?: string;
+    time?: string;
     /**
      * 
      * @type {string}
@@ -2153,6 +2447,12 @@ export interface RemoteControlCommandAlertRequest {
      * @memberof RemoteControlCommandAlertRequest
      */
     alert_subtype: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof RemoteControlCommandAlertRequest
+     */
+    alert_type: AlertTypeEnum;
     /**
      * 
      * @type {string}
