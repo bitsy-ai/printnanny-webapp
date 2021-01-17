@@ -8,9 +8,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/alerts/',
+      path: '/alerts/:page?', // the ? makes page an optional param
+      alias: '/alerts/',
       name: 'AlertsTable',
-      component: AlertsTable
+      component: AlertsTable,
+      props: true
     }
   ]
 })

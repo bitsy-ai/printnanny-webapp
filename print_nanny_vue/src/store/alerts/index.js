@@ -1,19 +1,17 @@
 import state from './state'
 import actions from './actions'
 import mutations from './mutations'
-import getters from './getters'
 
-export const ALERTS_MODULE = 'alerts'
+export const ALERTS_DROPDOWN_MODULE = 'alerts_dropdown'
+export const ALERTS_TABLE_MODULE = 'alerts_table'
 
 export default {
   namespaced: true,
   state,
   actions,
-  mutations,
-  getters
+  mutations
 }
 
 export * from './state'
 export * from './actions'
 export * from './mutations'
-export * from './getters'

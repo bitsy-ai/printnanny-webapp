@@ -9328,6 +9328,17 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
     right: 15px;
     position: absolute; } }
 
+.table-icon {
+  float: left;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2em; }
+
 @font-face {
   font-family: 'Nunito';
   src: url("/static/fonts/Nunito-Light.eot");
