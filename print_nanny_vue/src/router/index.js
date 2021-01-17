@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AlertsTable from '@/widgets/AlertsTable'
+import AlertsTable from '@/components/AlertsTable'
 
 Vue.use(Router)
 

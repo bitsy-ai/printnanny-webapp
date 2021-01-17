@@ -6,9 +6,6 @@ import mutations from './mutations'
 
 Vue.use(Vuex)
 
-console.log(ALERTS_MODULE)
-console.log(alerts)
-
 export default new Vuex.Store({
   strict: !process.env === 'production',
   modules: {
