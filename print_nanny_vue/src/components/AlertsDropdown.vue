@@ -1,12 +1,12 @@
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import {
   FETCH_ALERTS,
   SEEN_ALL,
   DISMISS_ALL,
   UNREAD_ALERTS,
   ALERTS_MODULE,
-  ALERTS
+  UNDISMISSED_ALERTS
 } from '@/store/alerts'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
@@ -21,11 +21,9 @@ export default {
     })
   },
   computed: {
-    ...mapState(ALERTS_MODULE, {
-      alerts: ALERTS
-    }),
     ...mapGetters(ALERTS_MODULE, {
-      unreadAlerts: UNREAD_ALERTS
+      unreadAlerts: UNREAD_ALERTS,
+      alerts: UNDISMISSED_ALERTS
     })
   },
   created () {

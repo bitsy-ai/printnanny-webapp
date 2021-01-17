@@ -8,7 +8,6 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 import './scss/app.scss'
-import storeConfig from './store'
 
 Vue.config.productionTip = false
 
