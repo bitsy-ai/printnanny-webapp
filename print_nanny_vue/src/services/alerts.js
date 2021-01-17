@@ -13,8 +13,8 @@ const configuration = new Configuration({
 export default {
   async fetchAlerts (opts) {
     const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
-
-    const response = await instance.alertsList(opts.page)
+    const pageNum = opts ? opts.page : undefined
+    const response = await instance.alertsList(pageNum)
     console.log('fetchAlerts', response)
     return response
   },

@@ -1,12 +1,11 @@
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import {
   FETCH_ALERTS,
   SEEN_ALL,
   DISMISS_ALL,
-  UNREAD_ALERTS,
-  ALERTS_MODULE,
-  UNDISMISSED_ALERTS
+  ALERTS_DROPDOWN_MODULE,
+  ALERTS
 } from '@/store/alerts'
 import simplebar from 'simplebar-vue'
 import 'simplebar/dist/simplebar.min.css'
@@ -14,20 +13,23 @@ import 'simplebar/dist/simplebar.min.css'
 export default {
   components: { simplebar },
   methods: {
-    ...mapActions(ALERTS_MODULE, {
+    ...mapActions(ALERTS_DROPDOWN_MODULE, {
       fetchAlerts: FETCH_ALERTS,
       seenAll: SEEN_ALL,
       dismissAll: DISMISS_ALL
     })
   },
   computed: {
-    ...mapGetters(ALERTS_MODULE, {
-      unreadAlerts: UNREAD_ALERTS,
-      alerts: UNDISMISSED_ALERTS
-    })
+    ...mapState(ALERTS_DROPDOWN_MODULE, {
+      alerts: ALERTS
+    }),
+    unreadAlerts () {
+      console.log('this.$store.state', this.$store.state)
+      return this.$store.state[ALERTS_DROPDOWN_MODULE].data.results.filter(alert => !alert.seen)
+    }
   },
   created () {
-    this.fetchAlerts()
+    this.fetchAlerts({ page: '1', dismissed: false })
   }
 }
 </script>
@@ -62,13 +64,13 @@ export default {
     </h5>
     </a>
 
-    <simplebar style="max-height: 230px;" v-if="!alerts.length">
+    <simplebar style="max-height: 230px;" v-if="!alerts.results.length">
        <p class="text-muted mb-0 user-msg"><center>You're all caught up!</center></p>
     </simplebar>
 
     <simplebar style="max-height: 230px;">
     <a
-        v-for="item in alerts"
+        v-for="item in alerts.results"
         :key="item.id"
         class="dropdown-item notify-item"
     >

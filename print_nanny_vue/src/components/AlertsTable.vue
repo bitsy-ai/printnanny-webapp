@@ -2,37 +2,36 @@
 import { mapActions, mapState } from 'vuex'
 
 import {
-  ALERTS_MODULE,
+  ALERTS_TABLE_MODULE,
   FETCH_ALERTS,
   ALERTS,
   PAGINATION
 } from '@/store/alerts'
 
-console.log('ALERTS_MODULE', ALERTS_MODULE)
-console.log('FETCH_ALERTS', FETCH_ALERTS)
-console.log('ALERTS', ALERTS)
-console.log('PAGINATION', PAGINATION)
-
 export default {
+  props: {
+    page: String
+  },
   data: () => ({
     filter: '',
-    fields: ['alert_type', 'alert_subtype', 'icon', 'title', 'time'],
-    sortBy: '',
+    fields: ['status', 'event_type', 'title', 'description', 'time'],
+    sortBy: 'time',
     sortDesc: true
   }),
   methods: {
-    ...mapActions(ALERTS_MODULE, {
+    ...mapActions(ALERTS_TABLE_MODULE, {
       fetchAlerts: FETCH_ALERTS
     })
   },
   computed: {
-    ...mapState(ALERTS_MODULE, {
+    ...mapState(ALERTS_TABLE_MODULE, {
       alerts: ALERTS,
       pagination: PAGINATION
     })
   },
   created () {
-    this.fetchAlerts()
+    console.log(this.page)
+    this.fetchAlerts({ page: this.page })
   }
 }
 
@@ -55,20 +54,32 @@ export default {
           hover
           outlined
           :fields="fields"
-          :items="alerts"
+          :items="alerts.results"
+          primary-key="id"
           :filter="filter"
           :current-page="pagination.currentPage"
           :perPage="pagination.pageSize"
           :sortBy="sortBy"
           :sortDesc="sortDesc"
         >
+        <template #cell(status)="data">
+          <span :class="`badge badge-${data.item.color}`"><strong>{{ data.item.alert_subtype}}</strong></span>
+        </template>
+
+        <template #cell(event_type)="data">
+          {{ data.item.alert_type }}
+        </template>
+
         </b-table>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
 
-        <b-pagination-nav :number-of-pages="pagination.totalPages" use-router>
+        <b-pagination-nav
+        :link-gen="pagination.linkGen"
+        :number-of-pages="pagination.totalPages"
+        use-router>
 
         </b-pagination-nav>
       </b-col>
