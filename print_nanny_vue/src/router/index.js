@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Alerts from '@/components/Alerts'
+import AlertsDropdown from '@/components/AlertsDropdown'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Alerts',
-      component: Alerts
+      name: 'AlertsDropdown',
+      component: AlertsDropdown
     }
   ]
 })

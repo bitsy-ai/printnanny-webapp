@@ -106,6 +106,9 @@ class AlertViewSet(
 
         serializer = self.get_serializer(recent_alerts, many=True)
 
+        logger.info(serializer)
+        logger.info(f'serializer data {serializer.data}')
+
         return Response(serializer.data)
 
 

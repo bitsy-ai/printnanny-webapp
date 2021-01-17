@@ -29,7 +29,7 @@
   <div class="col-12 col-lg-6 d-flex align-items-stretch">
     <div class="card col-12">
       <div class="card-body">
-        <h2 class="header-title">User Settings</h2>
+        <h2 class="header-title">Authentication Info</h2>
 
         <form>
           <label class="my-1 mr-2" for="token">API Token</label>
@@ -47,16 +47,12 @@
             </div>
         </form>
 
-        <h2 class="header-title mt-3">Notification Settings</h2>
+        <h2 class="header-title mt-3">Other Settings</h2>
 
-        <form method="POST">
+        <a href="{% url 'alerts:settings' %} ">
+          <button class="btn btn-lg btn-primary">Notification Settings</button> 
+        </a>
 
-          {% csrf_token %}
-          {{ forms.user_settings | crispy }}
-
-          <button name="action" value="user_settings" type="submit" class="btn btn-lg btn-primary">Save</button> 
-
-        </form>
 
         
       </div>
