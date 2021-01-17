@@ -9,6 +9,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone, dateformat
 from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
+from polymorphic.managers import PolymorphicManager
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -24,6 +25,10 @@ def _upload_to(instance, filename):
 ##
 
 class Alert(PolymorphicModel):
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -33,17 +38,14 @@ class Alert(PolymorphicModel):
         )
         DEFECT = "DEFECT", "Defect detected in print"
 
-    alert_type = models.CharField(choices=AlertTypeChoices.choices)
+    alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
-
-    @property
-    def alert_type(self):
-        return "ALERT"
+   
     
 class AlertSettings(PolymorphicModel):
 
@@ -68,7 +70,6 @@ class AlertSettings(PolymorphicModel):
 ##
 
 class ProgressAlertSettings(AlertSettings):
-
     def __init__(self, *args, **kwargs):
         super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
 
@@ -77,7 +78,6 @@ class ProgressAlertSettings(AlertSettings):
         validators=[MinValueValidator(1), MaxValueValidator(100)],
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
-
 
 class DefectAlertSettings(AlertSettings):
     def __init__(self, *args, **kwargs):
@@ -95,16 +95,17 @@ class  RemoteControlCommandAlertSettings(AlertSettings):
 ##
 
 class DefectAlert(Alert):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+
 
 class ProgressAlert(Alert):
     '''
         Fires on print job progress
     '''
-
     def __init__(self, *args, **kwargs):
-
         super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
+
 
     progress_percent = models.IntegerField(
         default=25,
@@ -135,9 +136,9 @@ class RemoteControlCommandAlert(Alert):
     '''
         Fires on remote control events
     '''
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
@@ -190,64 +191,7 @@ class RemoteControlCommandAlert(Alert):
             elif remote_control_command_data.get("success") == False:
                 return cls.AlertSubtypeChoices.FAILED
 
-# class RemoteControlCommandAlert(Alert):
-#     '''
-#         Fires on remote control events
-#     '''
 
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-#     class AlertSubtypeChoices(models.TextChoices):
-#         RECEIVED = "RECEIVED", "Command was received by"
-#         SUCCESS = "SUCCESS", "Command succeeded"
-#         FAILED = "FAILED", "Command failed"
-
-#     COLOR_CSS = {
-#         AlertSubtypeChoices.RECEIVED: "info",
-#         AlertSubtypeChoices.SUCCESS: "success",
-#         AlertSubtypeChoices.FAILED: "danger",
-#     }
-
-#     ICON_CSS = {
-#         AlertSubtypeChoices.RECEIVED: "mdi mdi-upload",
-#         AlertSubtypeChoices.SUCCESS: "mdi mdi-check",
-#         AlertSubtypeChoices.FAILED: "mdi mdi-close",
-#     }
-
-#     command = models.ForeignKey(
-#         "remote_control.RemoteControlCommand", on_delete=models.CASCADE
-#     )
-#     alert_subtype = models.CharField(
-#         max_length=255, choices=AlertSubtypeChoices.choices
-#     )
-
-#     @property
-#     def title(self):
-#         unformatted = f"{self.command.command}: {capfirst(self.command.device.name)}"
-#         return unformatted
-
-#     @property
-#     def description(self):
-#         return f"{str(self.get_alert_subtype_display())} {self.command.device.name}"
-
-#     @property
-#     def color(self):
-#         return self.COLOR_CSS[self.alert_subtype]
-
-#     @property
-#     def icon(self):
-#         return self.ICON_CSS[self.alert_subtype]
-#     @classmethod
-#     def get_alert_subtype(cls, remote_control_command_data):
-#         keys = remote_control_command_data.keys()
-#         if "received" in keys:
-#             return cls.AlertSubtypeChoices.RECEIVED
-#         if "success" in keys:
-#             if remote_control_command_data.get("success") == True:
-#                 return cls.AlertSubtypeChoices.SUCCESS
-#             elif remote_control_command_data.get("success") == False:
-#                 return cls.AlertSubtypeChoices.FAILED
 
 
 class ManualVideoUploadAlert(Alert):
