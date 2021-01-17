@@ -1,8 +1,19 @@
-import alerts from './alerts'
 import Vue from 'vue'
+import Vuex from 'vuex'
 
-export default {
-  modules: { alerts },
+import alerts, { ALERTS_MODULE } from './alerts'
+import mutations from './mutations'
+
+Vue.use(Vuex)
+
+console.log(ALERTS_MODULE)
+console.log(alerts)
+
+export default new Vuex.Store({
+  strict: !process.env === 'production',
+  modules: {
+    [ALERTS_MODULE]: alerts
+  },
   state: () => ({
     socket: {
       isConnected: false,
@@ -10,28 +21,5 @@ export default {
       reconnectError: false
     }
   }),
-  mutations: {
-
-    SOCKET_ONOPEN (state, event) {
-      Vue.prototype.$socket = event.currentTarget
-      state.socket.isConnected = true
-    },
-    SOCKET_ONCLOSE (state, event) {
-      state.socket.isConnected = false
-    },
-    SOCKET_ONERROR (state, event) {
-      console.error(state, event)
-    },
-    // default handler called for all methods
-    SOCKET_ONMESSAGE (state, message) {
-      state.socket.message = message
-    },
-    // mutations for reconnect methods
-    SOCKET_RECONNECT (state, count) {
-      console.info(state, count)
-    },
-    SOCKET_RECONNECT_ERROR (state) {
-      state.socket.reconnectError = true
-    }
-  }
-}
+  mutations: mutations
+})
