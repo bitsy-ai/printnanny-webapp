@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
+                      
+                        <li class="breadcrumb-item active">Notification History</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Notification History</h4>
+                <a href="{% url 'alerts:settings' %]">
+                    <button>Configure Notifications</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% include "partials/alert-history-list.html" %}
+
+
+</div>
+{% endblock content %}

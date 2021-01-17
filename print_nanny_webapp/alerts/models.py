@@ -19,6 +19,10 @@ def _upload_to(instance, filename):
     logger.info("Uploading to path")
     return path
 
+##
+# Base Polymorphic models
+##
+
 class Alert(PolymorphicModel):
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
@@ -41,7 +45,6 @@ class Alert(PolymorphicModel):
     def alert_type(self):
         return "ALERT"
     
-
 class AlertSettings(PolymorphicModel):
 
     class AlertMethodChoices(models.TextChoices):
@@ -60,23 +63,36 @@ class AlertSettings(PolymorphicModel):
     )
     enabled = models.BooleanField(default=True, help_text="Enable or disable all alerts of this type")
 
+##
+# Alert Settings models
+##
+
 class ProgressAlertSettings(AlertSettings):
 
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
 
     on_progress_percent = models.IntegerField(
         default=25,
         validators=[MinValueValidator(1), MaxValueValidator(100)],
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
-    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
 
-ProgressAlertSettings._meta.get_field('alert_type').default = Alert.AlertTypeChoices.PROGRESS
 
 class DefectAlertSettings(AlertSettings):
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
-    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
 
-DefectAlertSettings._meta.get_field('alert_type').default = Alert.AlertTypeChoices.DEFECT
+class  RemoteControlCommandAlertSettings(AlertSettings):
+
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+
+
+##
+# Alert Models
+##
 
 class DefectAlert(Alert):
     pass
@@ -86,12 +102,15 @@ class ProgressAlert(Alert):
         Fires on print job progress
     '''
 
+    def __init__(self, *args, **kwargs):
+
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
+
     progress_percent = models.IntegerField(
         default=25,
         validators=[MinValueValidator(1), MaxValueValidator(100)],
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
-    alert_type = models.CharField(default=Alert.AlertTypeChoices.PROGRESS, max_length=255)
 
     device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
     @property
@@ -111,10 +130,15 @@ class ProgressAlert(Alert):
     def icon(self):
         return self.ICON_CSS[self.alert_subtype]
 
+
 class RemoteControlCommandAlert(Alert):
     '''
         Fires on remote control events
     '''
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
         SUCCESS = "SUCCESS", "Command succeeded"
@@ -135,7 +159,6 @@ class RemoteControlCommandAlert(Alert):
     command = models.ForeignKey(
         "remote_control.RemoteControlCommand", on_delete=models.CASCADE
     )
-    alert_type = models.CharField(default=Alert.AlertTypeChoices.COMMAND, max_length=255)
     alert_subtype = models.CharField(
         max_length=255, choices=AlertSubtypeChoices.choices
     )
@@ -167,11 +190,73 @@ class RemoteControlCommandAlert(Alert):
             elif remote_control_command_data.get("success") == False:
                 return cls.AlertSubtypeChoices.FAILED
 
+# class RemoteControlCommandAlert(Alert):
+#     '''
+#         Fires on remote control events
+#     '''
+
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+
+#     class AlertSubtypeChoices(models.TextChoices):
+#         RECEIVED = "RECEIVED", "Command was received by"
+#         SUCCESS = "SUCCESS", "Command succeeded"
+#         FAILED = "FAILED", "Command failed"
+
+#     COLOR_CSS = {
+#         AlertSubtypeChoices.RECEIVED: "info",
+#         AlertSubtypeChoices.SUCCESS: "success",
+#         AlertSubtypeChoices.FAILED: "danger",
+#     }
+
+#     ICON_CSS = {
+#         AlertSubtypeChoices.RECEIVED: "mdi mdi-upload",
+#         AlertSubtypeChoices.SUCCESS: "mdi mdi-check",
+#         AlertSubtypeChoices.FAILED: "mdi mdi-close",
+#     }
+
+#     command = models.ForeignKey(
+#         "remote_control.RemoteControlCommand", on_delete=models.CASCADE
+#     )
+#     alert_subtype = models.CharField(
+#         max_length=255, choices=AlertSubtypeChoices.choices
+#     )
+
+#     @property
+#     def title(self):
+#         unformatted = f"{self.command.command}: {capfirst(self.command.device.name)}"
+#         return unformatted
+
+#     @property
+#     def description(self):
+#         return f"{str(self.get_alert_subtype_display())} {self.command.device.name}"
+
+#     @property
+#     def color(self):
+#         return self.COLOR_CSS[self.alert_subtype]
+
+#     @property
+#     def icon(self):
+#         return self.ICON_CSS[self.alert_subtype]
+#     @classmethod
+#     def get_alert_subtype(cls, remote_control_command_data):
+#         keys = remote_control_command_data.keys()
+#         if "received" in keys:
+#             return cls.AlertSubtypeChoices.RECEIVED
+#         if "success" in keys:
+#             if remote_control_command_data.get("success") == True:
+#                 return cls.AlertSubtypeChoices.SUCCESS
+#             elif remote_control_command_data.get("success") == False:
+#                 return cls.AlertSubtypeChoices.FAILED
+
 
 class ManualVideoUploadAlert(Alert):
     """
     Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs)
 
     # class SourceChoices(models.TextChoices):
     #     WEB_UPLOAD = 'WEB_UPLOAD', 'Uploaded manually'
@@ -192,11 +277,8 @@ class ManualVideoUploadAlert(Alert):
         choices=JobStatusChoices.choices,
         default=JobStatusChoices.PROCESSING,
     )
-
-    @property
-    def alert_type(self):
-        return Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
-
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
@@ -221,7 +303,7 @@ class ManualVideoUploadAlert(Alert):
         #         self.annotated_video.name
         #     )
 
-
+#ManualVideoUploadAlert._meta.get_field('alert_type').default = Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
 # class DefectAlert(Alert):
 #     print_job = models.ForeignKey(
 #         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
