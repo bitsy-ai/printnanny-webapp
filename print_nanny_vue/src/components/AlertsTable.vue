@@ -46,12 +46,6 @@ export default {
       <b-col md="3">
         <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Type to Search"></b-form-input>
       </b-col>
-      <b-col>
-
-        <b-pagination-nav :number-of-pages="pagination.totalPages" use-router>
-
-        </b-pagination-nav>
-      </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -69,6 +63,14 @@ export default {
           :sortDesc="sortDesc"
         >
         </b-table>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+
+        <b-pagination-nav :number-of-pages="pagination.totalPages" use-router>
+
+        </b-pagination-nav>
       </b-col>
     </b-row>
   </div>
