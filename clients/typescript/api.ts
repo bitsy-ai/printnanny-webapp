@@ -2637,12 +2637,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        alertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -2666,12 +2665,8 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -3046,13 +3041,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertPolymorphicList>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(limit, offset, options);
+        async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertPolymorphicList>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -3156,13 +3150,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList> {
-            return AlertsApiFp(configuration).alertsList(limit, offset, options).then((request) => request(axios, basePath));
+        alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList> {
+            return AlertsApiFp(configuration).alertsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3238,13 +3231,12 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList>;
+    alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList>;
 
     /**
      * 
@@ -3322,14 +3314,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsList(limit?: number, offset?: number, options?: any) {
-        return AlertsApiFp(this.configuration).alertsList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public alertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).alertsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3628,12 +3619,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintEventsList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -3657,12 +3647,8 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -3807,13 +3793,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintEventsList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsList(limit, offset, options);
+        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -3864,13 +3849,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintEventsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
-            return EventsApiFp(configuration).octoprintEventsList(limit, offset, options).then((request) => request(axios, basePath));
+        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
+            return EventsApiFp(configuration).octoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3909,13 +3893,12 @@ export interface EventsApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    octoprintEventsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
+    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
 
     /**
      * 
@@ -3956,14 +3939,13 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public octoprintEventsList(limit?: number, offset?: number, options?: any) {
-        return EventsApiFp(this.configuration).octoprintEventsList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsList(page?: number, options?: any) {
+        return EventsApiFp(this.configuration).octoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3997,12 +3979,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        commandsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/commands/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -4026,12 +4007,8 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -4315,12 +4292,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -4344,12 +4320,8 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -4720,12 +4692,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -4749,12 +4720,8 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -5082,12 +5049,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        printJobsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/print-jobs/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -5111,12 +5077,8 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -5383,14 +5345,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
          * @param {string} [name] name
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {string} [user] user
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printerProfilesList: async (limit?: number, name?: string, offset?: number, user?: string, options: any = {}): Promise<RequestArgs> => {
+        printerProfilesList: async (name?: string, page?: number, user?: string, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/printer-profiles/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -5414,16 +5375,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
             if (name !== undefined) {
                 localVarQueryParameter['name'] = name;
             }
 
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
             if (user !== undefined) {
@@ -5750,13 +5707,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async commandsList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlCommandList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsList(limit, offset, options);
+        async commandsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlCommandList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5820,13 +5776,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGcodeFileList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesList(limit, offset, options);
+        async gcodeFilesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGcodeFileList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5907,13 +5862,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceKeyList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesList(limit, offset, options);
+        async octoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceKeyList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5988,13 +5942,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobsList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsList(limit, offset, options);
+        async printJobsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6056,15 +6009,14 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
          * @param {string} [name] name
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {string} [user] user
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printerProfilesList(limit?: number, name?: string, offset?: number, user?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesList(limit, name, offset, user, options);
+        async printerProfilesList(name?: string, page?: number, user?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesList(name, page, user, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6147,13 +6099,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        commandsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList> {
-            return RemoteControlApiFp(configuration).commandsList(limit, offset, options).then((request) => request(axios, basePath));
+        commandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList> {
+            return RemoteControlApiFp(configuration).commandsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6197,13 +6148,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedGcodeFileList> {
-            return RemoteControlApiFp(configuration).gcodeFilesList(limit, offset, options).then((request) => request(axios, basePath));
+        gcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList> {
+            return RemoteControlApiFp(configuration).gcodeFilesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6260,13 +6210,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList> {
-            return RemoteControlApiFp(configuration).octoprintDevicesList(limit, offset, options).then((request) => request(axios, basePath));
+        octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList> {
+            return RemoteControlApiFp(configuration).octoprintDevicesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6317,13 +6266,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedPrintJobList> {
-            return RemoteControlApiFp(configuration).printJobsList(limit, offset, options).then((request) => request(axios, basePath));
+        printJobsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobList> {
+            return RemoteControlApiFp(configuration).printJobsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6365,15 +6313,14 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
          * @param {string} [name] name
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {string} [user] user
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printerProfilesList(limit?: number, name?: string, offset?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
-            return RemoteControlApiFp(configuration).printerProfilesList(limit, name, offset, user, options).then((request) => request(axios, basePath));
+        printerProfilesList(name?: string, page?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
+            return RemoteControlApiFp(configuration).printerProfilesList(name, page, user, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6432,13 +6379,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
 export interface RemoteControlApiInterface {
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    commandsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList>;
+    commandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList>;
 
     /**
      * 
@@ -6482,13 +6428,12 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedGcodeFileList>;
+    gcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList>;
 
     /**
      * 
@@ -6545,13 +6490,12 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList>;
+    octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList>;
 
     /**
      * 
@@ -6602,13 +6546,12 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printJobsList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedPrintJobList>;
+    printJobsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobList>;
 
     /**
      * 
@@ -6650,15 +6593,14 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
      * @param {string} [name] name
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {string} [user] user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printerProfilesList(limit?: number, name?: string, offset?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
+    printerProfilesList(name?: string, page?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
 
     /**
      * 
@@ -6717,14 +6659,13 @@ export interface RemoteControlApiInterface {
 export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterface {
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public commandsList(limit?: number, offset?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).commandsList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public commandsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).commandsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6777,14 +6718,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesList(limit?: number, offset?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).gcodeFilesList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public gcodeFilesList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6852,14 +6792,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesList(limit?: number, offset?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6921,14 +6860,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printJobsList(limit?: number, offset?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public printJobsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).printJobsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6979,16 +6917,15 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
      * @param {string} [name] name
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {string} [user] user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printerProfilesList(limit?: number, name?: string, offset?: number, user?: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).printerProfilesList(limit, name, offset, user, options).then((request) => request(this.axios, this.basePath));
+    public printerProfilesList(name?: string, page?: number, user?: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).printerProfilesList(name, page, user, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7195,12 +7132,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        usersList: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        usersList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/users/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -7224,12 +7160,8 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
                 localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
             }
 
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -7491,13 +7423,12 @@ export const UsersApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async usersList(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedUserList>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersList(limit, offset, options);
+        async usersList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedUserList>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7567,13 +7498,12 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
-         * @param {number} [limit] Number of results to return per page.
-         * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        usersList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedUserList> {
-            return UsersApiFp(configuration).usersList(limit, offset, options).then((request) => request(axios, basePath));
+        usersList(page?: number, options?: any): AxiosPromise<PaginatedUserList> {
+            return UsersApiFp(configuration).usersList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7623,13 +7553,12 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
 export interface UsersApiInterface {
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    usersList(limit?: number, offset?: number, options?: any): AxiosPromise<PaginatedUserList>;
+    usersList(page?: number, options?: any): AxiosPromise<PaginatedUserList>;
 
     /**
      * 
@@ -7679,14 +7608,13 @@ export interface UsersApiInterface {
 export class UsersApi extends BaseAPI implements UsersApiInterface {
     /**
      * 
-     * @param {number} [limit] Number of results to return per page.
-     * @param {number} [offset] The initial index from which to return the results.
+     * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public usersList(limit?: number, offset?: number, options?: any) {
-        return UsersApiFp(this.configuration).usersList(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public usersList(page?: number, options?: any) {
+        return UsersApiFp(this.configuration).usersList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

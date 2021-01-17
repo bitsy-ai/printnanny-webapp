@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "print-nanny-client": "file:../clients/typescript",
     "simplebar-vue": "^1.6.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
+    "vue-native-websocket": "^2.0.14",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0"
   },
