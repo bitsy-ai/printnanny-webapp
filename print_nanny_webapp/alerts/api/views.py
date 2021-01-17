@@ -36,7 +36,7 @@ class AlertViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Alert.objects.filter(user=user).all()
+        return Alert.objects.filter(user=user).order_by('-seen','-updated_dt').all()
 
     @extend_schema(
         tags=["alerts"],
