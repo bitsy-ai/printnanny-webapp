@@ -45,7 +45,9 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 
 </div>
 <!-- END wrapper -->
-
+{% block extra_javascript %}
+    <script defer type="text/javascript" src="{% static 'js/vue/alerts.js' %}"></script>
+{% endblock %}
 {% block right_sidebar %}
 <div></div>
 {% include 'partials/right-sidebar.html' %}

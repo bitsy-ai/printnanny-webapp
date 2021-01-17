@@ -9,8 +9,7 @@ from .views import (
 app_name = "alerts"
 
 urlpatterns = [
-    path("/alerts/settings", AlertSettingsView.as_view(), name="settings"),
-
-    path("/alerts", AlertListView.as_view(), name="list")
+    path("/settings", AlertSettingsView.as_view(), name="settings"),
+    path("", AlertListView.as_view(), name="list")
 
 ]
