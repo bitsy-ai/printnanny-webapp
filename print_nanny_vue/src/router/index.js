@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import AlertsDropdown from '@/components/AlertsDropdown'
+import AlertsTable from '@/widgets/AlertsTable'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'AlertsDropdown',
-    //   component: AlertsDropdown
-    // }
+    {
+      path: '/alerts/',
+      name: 'AlertsTable',
+      component: AlertsTable
+    }
   ]
 })
