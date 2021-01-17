@@ -7,7 +7,9 @@ import VueNativeSock from 'vue-native-websocket'
 
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import AlertApp from './AlertApp'
+import AlertsDropdown from './widgets/AlertsDropdown'
+import AlertsHistory from './widgets/AlertsHistory'
+
 import router from './router'
 import storeConfig from './store'
 
@@ -24,11 +26,18 @@ Vue.use(VueNativeSock, process.env.ALERTS_WEBSOCKET, { store: store, format: 'js
 
 /* eslint-disable no-new */
 export default {
-  alerts: new Vue({
-    el: '#alerts',
+  alertsDropdown: new Vue({
+    el: '#alerts-dropdown-app',
     router,
     store,
-    components: { AlertApp },
-    template: '<AlertApp/>'
+    components: { AlertsDropdown },
+    template: '<AlertsDropdown/>'
+  }),
+  alertsHistory: new Vue({
+    el: '#alerts-history-app',
+    router,
+    store,
+    components: { AlertsHistory },
+    template: '<AlertsHistory />'
   })
 }

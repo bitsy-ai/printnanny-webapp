@@ -15,15 +15,20 @@
                         <li class="breadcrumb-item active">Notification History</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Notification History</h4>
-                <a href="{% url 'alerts:settings' %]">
-                    <button>Configure Notifications</button>
-                </a>
+                <h4 class="page-title d-inline-block">Notification History 
+                    <a href="{% url 'alerts:settings' %]">  &nbsp;  &nbsp; 
+                        <button class="btn btn-primary">Configure</button>
+                    </a>
+                </h4>
+
             </div>
         </div>
     </div>
-    {% include "partials/alert-history-list.html" %}
+    
+    <!--- vue app -->
+    <div id="alerts-history-app">
 
+    </div>
 
 </div>
 {% endblock content %}
