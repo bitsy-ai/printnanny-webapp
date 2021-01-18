@@ -241,14 +241,14 @@ class RemoteControlSnapshotViewSet(
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="snapshot_create",
+        operation_id="snapshots_create",
         responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)
 
     @extend_schema(
-        operation_id="snapshot_update_or_create",
+        operation_id="snapshots_update_or_create",
         responses={
             400: RemoteControlSnapshotSerializer,
             200: RemoteControlSnapshotSerializer,

@@ -102,10 +102,10 @@ class ProgressAlertSettings(AlertSettings):
         if progress % self.on_progress_percent == 0:
             command = RemoteControlCommand.objects.create(
                 command=RemoteControlCommand.CommandChoices.SNAPSHOT,
-                device=octoprint_event.octoprint_device,
+                device=octoprint_event.device,
                 user=octoprint_event.user,
             )
-            logger.info(f'ProgressAlertSettings.on_print_progress issued command {command.__dict__}')
+            logger.info(f'ProgressAlertSettings.on_print_progress issued command id={command.id}')
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
