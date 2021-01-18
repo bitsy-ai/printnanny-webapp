@@ -107,6 +107,14 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    snapshot = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on web camera <strong>Snapshot</strong> command",
+        default=(AlertSubTypeChoices.FAILED,AlertSubTypeChoices.SUCCESS),
+        blank=True,
+    )
+
     stop_monitoring = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>StopMonitoring<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
@@ -154,6 +162,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         default=(AlertSubTypeChoices.FAILED,),
         blank=True,
     )
+
 
 
 ##

@@ -380,6 +380,7 @@ class RemoteControlCommand(models.Model):
     class CommandChoices(models.TextChoices):
         STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
         START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
+        SNAPSHOT = "SNAPSHOT", "Capture a webcam snapshot"
         START_PRINT = "StartPrint", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
         STOP_PRINT = "StopPrint", "Stop Print"
@@ -402,7 +403,7 @@ class RemoteControlCommand(models.Model):
             CommandChoices.MOVE_NOZZLE,
         ],
         PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING],
+        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING, CommandChoices.SNAPSHOT],
     }
 
     ACTION_CSS_CLASSES = {
