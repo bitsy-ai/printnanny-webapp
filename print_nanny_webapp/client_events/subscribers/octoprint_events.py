@@ -28,6 +28,7 @@ from print_nanny_webapp.client_events.models import (
 
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
 PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -35,6 +36,7 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(octoprint_event):
     progress = octoprint_event.event_data.get('progress')
+    alert_settings = ProgressAlertSettings.get_or_create(user=octoprint_event.user)
     logger.info(f'print progress: {progress}')
 
 HANDLER_FNS = {
@@ -73,7 +75,7 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error(e)
             logger.error(data)
-    elif event_type in PrintJobEvent:
+    elif event_type in PrintJobEventCodes:
         PrintJobEvent.objects.create(
             created_dt=data["created_dt"],
             current_z=data["printer_data"]["currentZ"],
