@@ -13,6 +13,7 @@ export default {
   },
   // default handler called for all methods
   SOCKET_ONMESSAGE (state, message) {
+    console.log('Socket message received', message)
     state.socket.message = message
   },
   // mutations for reconnect methods

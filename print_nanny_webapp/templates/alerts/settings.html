@@ -12,15 +12,23 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
                       
-                        <li class="breadcrumb-item active">Notification History</li>
+                        <li class="breadcrumb-item active">Notification Settings</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Notification History</h4>
-                <button>Configure Notifications</button>
+                <h4 class="page-title">Notification Settings</h4>
             </div>
         </div>
     </div>
 
+    <div id="alert-settings-app">
+        
+    </div>
 
 </div>
 {% endblock content %}
+
+{% block extra_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/vue/alertsSettings.js' %}"></script>
+
+{% endblock %}

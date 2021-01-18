@@ -7,7 +7,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from ..models import ManualVideoUploadAlert, RemoteControlCommandAlert, Alert, ProgressAlert, DefectAlert
+from ..models import (ManualVideoUploadAlert, RemoteControlCommandAlert, Alert, ProgressAlert, DefectAlert, AlertSettings, ProgressAlertSettings, RemoteControlCommandAlertSettings, DefectAlertSettings)
 
 logger = logging.getLogger(__name__)
 
@@ -104,6 +104,47 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
         DefectAlert: DefectAlertSerializer,
         ProgressAlert: ProgressAlertSerializer
+    }
+
+    def to_resource_type(self, model_or_instance):
+        return model_or_instance._meta.object_name.lower()
+
+
+class AlertSettingsSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = AlertSettings
+        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method"]
+        read_only_fields = ("user",)
+
+class CommandAlertSettingsSerializer(AlertSettingsSerializer):
+    class Meta:
+        model = RemoteControlCommandAlertSettings
+        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        read_only_fields = ("user",)
+
+class DefectAlertSettingsSerializer(AlertSettingsSerializer):
+    class Meta:
+        model = DefectAlertSettings
+        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        read_only_fields = ("user",)
+
+class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
+    
+    class Meta:
+        model = ProgressAlertSettings
+        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        read_only_fields = ("user",)
+
+class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
+    resource_type_field_name = "type"
+
+    model_serializer_mapping = {
+        AlertSettings: AlertSettingsSerializer,
+        RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
+        DefectAlertSettings: DefectAlertSettings,
+        ProgressAlert: ProgressAlertSettingsSerializer
     }
 
     def to_resource_type(self, model_or_instance):
