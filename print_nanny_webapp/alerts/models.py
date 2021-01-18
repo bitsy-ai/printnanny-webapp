@@ -11,6 +11,8 @@ from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
 from polymorphic.managers import PolymorphicManager
 from channels.layers import get_channel_layer
+from rest_framework.renderers import JSONRenderer
+from anymail.message import AnymailMessage
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
@@ -243,27 +245,59 @@ class RemoteControlCommandAlert(Alert):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-    
-    # def send_alerts(self, alert_methods):
-    #     '''
-    #         alert_methods - RemoteControlCommandAlertSettings.alert_methods
-    #     '''
-    #     alert_serializer = AlertPolymorphicSerializer(self)
-    #     data = alert_serializer.data
-    #     if Alert.AlertMethodChoices.UI in alert_methods:
-    #         channel_layer = get_channel_layer()
+        self.alert_trigger_method_map = {
+            Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
+            Alert.AlertMethodChoices.EMAI: self.trigger_email_alert
+        }
+    def trigger_alert(self):
+        from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
 
-    #         # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
-    #         data["namespace"] = "alerts"
-    #         data["action"] = "alertMessage"
-    #         async_to_sync(channel_layer.group_send)(
-    #             f"alerts_{alert.user_id}",
-    #             {
-    #                 "type": "alert.message",
-    #                 "data": JSONRenderer().render(data),
-    #             },
-    #         )
-    #     if Alert.AlertMethodChoices.EMAIL in alert_methods:
+        alert_serializer = AlertPolymorphicSerializer(self)
+        data = alert_serializer.data
+        return self.alert_trigger_method_map[self.alert_method](data)
+    
+    def trigger_ui_alert(self, data):
+        channel_layer = get_channel_layer()
+
+        # vuex namespace
+        data["namespace"] = "alerts_dropdown"
+        # required by websocket message handler in vue app(s)
+        data["action"] = "alertMessage"
+
+        async_to_sync(channel_layer.group_send)(
+            f"alerts_{alert.user_id}",
+            {
+                "type": "alert.message",
+                # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+                "data": JSONRenderer().render(data),
+            },
+        )
+    
+    def trigger_email_alert(self):
+
+
+        merge_data = {
+            "SNAPSHOT_URL": self.command.command.snapshot.url,
+            "FIRST_NAME": self.user.first_name or "Maker",
+            "DEVICE_NAME": self.command.device.name,
+            "COMMAND": self.command.command,
+            "SUBTYPE": self.alert_subtype,
+            "PROGRESS": self.command.command.metadata.get('progress')
+        }
+
+        text_body = render_to_string("email/remote_control_command_body.txt", merge_data)
+        subject = render_to_string("email/remote_control_command_subject.txt", merge_data)
+
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=[self.user.email],
+            tags=["RemoteControlCommandAlert", self.command.command, self.alert_subtype]
+        )
+        message.send()
+
+        return message
+        
 
 
 
@@ -376,40 +410,6 @@ class ManualVideoUploadAlert(Alert):
         #     return self.annotated_video.storage.url(
         #         self.annotated_video.name
         #     )
-
-
-# ManualVideoUploadAlert._meta.get_field('alert_type').default = Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
-# class DefectAlert(Alert):
-#     print_job = models.ForeignKey(
-#         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
-#     )
-
-#     class ActionChoices(models.TextChoices):
-#         PENDING = "PENDING", "Pending User Action"
-#         RESUME_ALERTS = "RESUME_ALERTS", "Resume for Print Job"
-#         CANCEL_PRINT = "CANCEL_PRINT", "Cancel Print Job Cancel"
-
-#     last_action = models.CharField(
-#         max_length=16, choices=ActionChoices.choices, default=ActionChoices.PENDING
-#     )
-#     tags = ArrayField(models.CharField(max_length=255), default=list(["defect-alert"]))
-
-#     def source_display_name(self):
-#         return f"Print Job {self.print_job.id}"
-
-
-# class ProgressAlert(Alert):
-#     class Meta:
-#         unique_together = ("print_job_id", "progress")
-
-#     print_job = models.ForeignKey(
-#         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
-#     )
-#     progress = models.IntegerField(default=0)
-
-#     tags = ArrayField(
-#         models.CharField(max_length=255), default=list(["progress-alert"])
-#     )
 
 
 class AlertPlot(models.Model):
