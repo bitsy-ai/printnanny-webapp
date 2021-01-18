@@ -11,6 +11,7 @@ from print_nanny_webapp.remote_control.models import (
 
 
 class RemoteControlCommandSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = RemoteControlCommand
         fields = [field.name for field in RemoteControlCommand._meta.fields] + ["url"]
@@ -20,6 +21,10 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
+
+    # https://github.com/aio-libs/aiohttp/issues/3652
+    # octoprint_device is accepted as a string and deserialized to an integer
+    octoprint_device = serializers.CharField()
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
