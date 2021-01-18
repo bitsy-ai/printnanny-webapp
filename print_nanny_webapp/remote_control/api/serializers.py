@@ -86,10 +86,6 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         )
 
 class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
-    command = serializers.CharField()
-    # https://github.com/aio-libs/aiohttp/issues/3652
-    # octoprint_device is accepted as a string and deserialized to an integer
-    octoprint_device = serializers.CharField()
     class Meta:
         model = RemoteControlSnapshot
         read_only_fields = ("user",)
