@@ -6,21 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0013_defectalert'),
+        ("alerts", "0013_defectalert"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='progressalert',
-            name='alert_type',
+            model_name="progressalert",
+            name="alert_type",
         ),
         migrations.RemoveField(
-            model_name='remotecontrolcommandalert',
-            name='alert_type',
+            model_name="remotecontrolcommandalert",
+            name="alert_type",
         ),
         migrations.AlterField(
-            model_name='alertsettings',
-            name='alert_type',
-            field=models.CharField(choices=[('COMMAND', 'Remote command status updates'), ('PRINT_PROGRESS', 'Percentage-based print progress'), ('MANUAL_VIDEO_UPLOAD', 'Manually-uploaded video is ready for review'), ('DEFECT', 'Defect detected in print')], max_length=255),
+            model_name="alertsettings",
+            name="alert_type",
+            field=models.CharField(
+                choices=[
+                    ("COMMAND", "Remote command status updates"),
+                    ("PRINT_PROGRESS", "Percentage-based print progress"),
+                    (
+                        "MANUAL_VIDEO_UPLOAD",
+                        "Manually-uploaded video is ready for review",
+                    ),
+                    ("DEFECT", "Defect detected in print"),
+                ],
+                max_length=255,
+            ),
         ),
     ]

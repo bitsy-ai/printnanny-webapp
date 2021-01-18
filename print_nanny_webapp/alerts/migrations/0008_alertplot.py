@@ -8,20 +8,44 @@ import print_nanny_webapp.alerts.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0007_remotecontrolcommandalert'),
+        ("alerts", "0007_remotecontrolcommandalert"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AlertPlot',
+            name="AlertPlot",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to=print_nanny_webapp.alerts.models._upload_to)),
-                ('html', models.FileField(upload_to=print_nanny_webapp.alerts.models._upload_to)),
-                ('title', models.CharField(max_length=65)),
-                ('description', models.CharField(max_length=255)),
-                ('function', models.CharField(max_length=65)),
-                ('alert', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='alerts.manualvideouploadalert')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to=print_nanny_webapp.alerts.models._upload_to
+                    ),
+                ),
+                (
+                    "html",
+                    models.FileField(
+                        upload_to=print_nanny_webapp.alerts.models._upload_to
+                    ),
+                ),
+                ("title", models.CharField(max_length=65)),
+                ("description", models.CharField(max_length=255)),
+                ("function", models.CharField(max_length=65)),
+                (
+                    "alert",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="alerts.manualvideouploadalert",
+                    ),
+                ),
             ],
         ),
     ]

@@ -7,22 +7,48 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0019_auto_20210109_2034'),
-        ('alerts', '0006_manualvideouploadalert'),
+        ("remote_control", "0019_auto_20210109_2034"),
+        ("alerts", "0006_manualvideouploadalert"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='RemoteControlCommandAlert',
+            name="RemoteControlCommandAlert",
             fields=[
-                ('alert_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='alerts.alert')),
-                ('alert_type', models.CharField(choices=[('RECEIVED', 'Command was received by Raspberry Pi'), ('SUCCESS', 'Command succeeded'), ('FAILED', 'Command failed')], max_length=255)),
-                ('command', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.remotecontrolcommand')),
+                (
+                    "alert_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="alerts.alert",
+                    ),
+                ),
+                (
+                    "alert_type",
+                    models.CharField(
+                        choices=[
+                            ("RECEIVED", "Command was received by Raspberry Pi"),
+                            ("SUCCESS", "Command succeeded"),
+                            ("FAILED", "Command failed"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "command",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.remotecontrolcommand",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('alerts.alert',),
+            bases=("alerts.alert",),
         ),
     ]

@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.core import exceptions
 from django import forms
 
+
 class ChoiceArrayField(ArrayField):
     """
     A postgres ArrayField that supports the choices property.

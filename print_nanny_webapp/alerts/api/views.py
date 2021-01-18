@@ -22,7 +22,7 @@ from .serializers import (
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
     RemoteControlCommandAlertSerializer,
-    AlertMethodSerializer
+    AlertMethodSerializer,
 )
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings
 
@@ -30,7 +30,10 @@ logger = logging.getLogger(__name__)
 
 
 class AlertViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin,
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
 ):
     serializer_class = AlertPolymorphicSerializer
     queryset = Alert.objects.all()
@@ -38,7 +41,7 @@ class AlertViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Alert.objects.filter(user=user).order_by('-seen','-updated_dt').all()
+        return Alert.objects.filter(user=user).order_by("-seen", "-updated_dt").all()
 
     @extend_schema(
         tags=["alerts"],
@@ -113,31 +116,29 @@ class AlertViewSet(
         serializer = self.get_serializer(recent_alerts, many=True)
 
         logger.info(serializer)
-        logger.info(f'serializer data {serializer.data}')
+        logger.info(f"serializer data {serializer.data}")
 
         return Response(serializer.data)
 
-@extend_schema(
-    tags=["alert_settings"]
-)
+
+@extend_schema(tags=["alert_settings"])
 class AlertSettingsViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin,
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
 ):
 
     serializer_class = AlertSettingsPolymorphicSerializer
     queryset = AlertSettings.objects.all()
     lookup_field = "id"
 
-    @extend_schema(
-        tags=["alert_settings"],
-        responses={
-            200: AlertMethodSerializer
-        }
-    )
+    @extend_schema(tags=["alert_settings"], responses={200: AlertMethodSerializer})
     @action(detail=False)
     def alert_methods(self, request):
         data = [
-            {'label': label, 'value': value } for label, value in AlertSettings.AlertMethodChoices.choices
+            {"label": label, "value": value}
+            for label, value in AlertSettings.AlertMethodChoices.choices
         ]
         serializer = AlertMethodSerializer(data=data, many=True)
         serializer.is_valid()

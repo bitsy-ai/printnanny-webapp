@@ -17,7 +17,6 @@ import json
 from .managers import CustomUserManager
 
 
-
 class InviteRequest(models.Model):
     class PrinterBrand(models.TextChoices):
         PRUSA = "PRUSA", "Prusa"
