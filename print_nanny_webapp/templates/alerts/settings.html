@@ -19,8 +19,7 @@
             </div>
         </div>
     </div>
-    <h4 class="page-title">Print Job Progress</h4>
-    <p>Receive snapshots of your print job's progress.</p>
+
     <div class="row">
 
         <div class="col-12 col-md-6">
@@ -28,91 +27,59 @@
 
                 <div class="card-body">
                     <div class="card-title">
-                        <h4>UI Notifications</h4>
-                        <p>The following settings apply to notifications received through <strong>Print Nanny's web UI.</strong></p>
+                        <h4 class="page-title">Print Job Progress</h4>
+                        <p>Receive snapshots of your print job's progress.</p>
                     </div>
                     <div class="form-group">
-                        <form method="post">
+                        <form method="post" id="progress-alert-settings">
                             {% csrf_token %}
-                            {{ forms.progress__ui | crispy }}
+                            {{ forms.progress | crispy }}
+                            <button type="submit"  name="action" value="progress" class="btn btn-primary">Save</button>
+
                         </form>
-                        <button type="submit"  name="action" value="progress__ui" class="btn btn-primary">Save</button>
 
                     </div>
+                </div>
+            </div>
+            <div class="card">
 
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Defect Detector</h4>
+                        <p>Receive notifications when Print Nanny <strong>detects a defect</strong> in your print job.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post" id="defect-alert-settings">
+                            {% csrf_token %}
+                            {{ forms.defect | crispy }}
+                            <button type="submit"  name="action" value="defect" class="btn btn-primary">Save</button>
 
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="card">
+
                 <div class="card-body">
                     <div class="card-title">
-                        <h4>Email</h4>
-                        <p>The following settings apply to email notifications sent to <strong>{{user.email}}</strong></p>
+                        <h4 class="page-title">Remote Control Commands</h4>
+                        <p>Receive status updates for <strong>remote device commands</strong>.</p>
                     </div>
                     <div class="form-group">
-                        <form method="post">
+                        <form method="post" id="command-alert-settings">
                             {% csrf_token %}
-                            {{ forms.progress__email | crispy }}
+                            {{ forms.command | crispy }}
+                            <button type="submit"  name="action" value="command" class="btn btn-primary">Save</button>
+
                         </form>
-                        <button type="submit"  name="action" value="progress__email" class="btn btn-primary">Save</button>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <h4 class="page-title">Remote Control Commands</h4>
-    <p>Receive status updates for <strong>remote device commands</strong>.</p>
-    <div class="row">
-
-        <div class="col-12 col-md-6">
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="card-title">
-                        <h4>UI Notifications</h4>
-                        <p>The following settings apply to notifications received through <strong>Print Nanny's web UI.</strong></p>
-                    </div>
-                    <div class="form-group">
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ forms.command__ui | crispy }}
-                        </form>
-                        <button type="submit"  name="action" value="progress__ui" class="btn btn-primary">Save</button>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h4>Email</h4>
-                        <p>The following settings apply to email notifications sent to <strong>{{user.email}}</strong></p>
-                    </div>
-                    <div class="form-group">
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ forms.command__email | crispy }}
-                        </form>
-                        <button type="submit"  name="action" value="progress__email" class="btn btn-primary">Save</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 {% endblock content %}
-
-{% block extra_javascript %}
-{{ block.super }}
-<script type="text/javascript" src="{% static 'js/vue/alertsSettings.js' %}"></script>
-
-{% endblock %}
