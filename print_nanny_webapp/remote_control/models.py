@@ -261,7 +261,7 @@ class GcodeFile(models.Model):
     name = models.CharField(max_length=255)
     file = models.FileField(upload_to="uploads/gcode_file/%Y/%m/%d/")
     file_hash = models.CharField(max_length=255)
-    octoprint_device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE, null=True)
+    octoprint_device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
 
 
 class PrinterProfile(models.Model):
