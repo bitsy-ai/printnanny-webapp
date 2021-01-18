@@ -89,6 +89,17 @@ class ProgressAlertSettings(AlertSettings):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
+    def on_print_progress(self, octoprint_event):
+        RemoteControlCommand = apps.get_model('remote_control', 'RemoteControlCommand')
+
+        progress = octoprint_event.event_data.get('progress')
+        if progress % self.on_progress_percent == 0:
+            command = RemoteControlCommand.objects.create(
+                command=RemoteControlCommand.SNAPSHOT,
+                device=octoprint_event.octoprint_device,
+                user=octoprint_event.user,
+            )
+            logger.info(f'ProgressAlertSettings.on_print_progress issued command {command.__dict__}')
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
