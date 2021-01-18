@@ -11,6 +11,8 @@ from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
 from polymorphic.managers import PolymorphicManager
 
+from print_nanny_webapp.utils.fields import ChoiceArrayField
+
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
@@ -45,7 +47,6 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
-   
     
 class AlertSettings(PolymorphicModel):
 
@@ -54,16 +55,17 @@ class AlertSettings(PolymorphicModel):
         EMAIL = "EMAIL", "Receive email notifications"
 
     class Meta:
-        unique_together = ('user', 'alert_type', 'alert_method')
+        unique_together = ('user', 'alert_type')
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
     alert_type = models.CharField(choices=Alert.AlertTypeChoices.choices, max_length=255)
-    alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
+    alert_methods = ChoiceArrayField(models.CharField(choices=AlertMethodChoices.choices, max_length=255))
     user = models.OneToOneField(
         User, on_delete=models.CASCADE
     )
-    enabled = models.BooleanField(default=True, help_text="Enable or disable all alerts of this type")
+    enabled = models.BooleanField(default=True, help_text="Enable or disable this alert channel")
 
     @property
     def alert_methods(self):
@@ -90,37 +92,55 @@ class DefectAlertSettings(AlertSettings):
 
 class  RemoteControlCommandAlertSettings(AlertSettings):
 
+    class AlertSubTypeChoices(models.TextChoices):
+        RECEVIED = "RECEIVED", "Command was acknowledged by device"
+        FAILED = "FAILED", "Command failed"
+        SUCCESS = "SUCCESS", "Command succeeded"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-    stop_monitoring_success = models.BooleanField(default=False)
-    stop_monitoring_failed = models.BooleanField(default=True)
-    stop_monitoring_received = models.BooleanField(default=False)
     
-    start_monitoring_success = models.BooleanField(default=False)
-    start_monitoring_failed = models.BooleanField(default=True)
-    start_monitoring_received = models.BooleanField(default=False)
+    stop_monitoring = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires when StopMonitoring command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
-    start_print_success = models.BooleanField(default=False)
-    start_print_failed = models.BooleanField(default=True)
-    start_print_received = models.BooleanField(default=False)
+    start_monitoring = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on SartMonitoring command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
-    stop_print_success = models.BooleanField(default=False)
-    stop_print_failed = models.BooleanField(default=True)
-    stop_print_received = models.BooleanField(default=False)
+    stop_print = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on StopPrint command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
-    move_nozzle_success = models.BooleanField(default=False)
-    move_nozzle_failed = models.BooleanField(default=True)
-    move_nozzle_recived = models.BooleanField(default=False)
+    start_print = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on SartPrint command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
-    pause_print_success = models.BooleanField(default=False)
-    pause_print_failed = models.BooleanField(default=True)
-    pause_print_received = models.BooleanField(default=False)
+    move_nozzle = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on MoveNozzle command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
-    resume_print_success = models.BooleanField(default=False)
-    resume_print_failed = models.BooleanField(default=True)
-    resume_print_received = models.BooleanField(default=False)
+    pause_print = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on PausePrint command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 
+    resume_print = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on ResumePrint command status changes",
+        default=((AlertSubTypeChoices.FAILED,))
+    )
 ##
 # Alert Models
 ##
