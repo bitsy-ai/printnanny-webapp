@@ -16,13 +16,14 @@ from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 
 from .serializers import (
     ManualVideoUploadAlertSerializer,
+    AlertSettingsPolymorphicSerializer,
     AlertPolymorphicSerializer,
     AlertSerializer,
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
     RemoteControlCommandAlertSerializer,
 )
-from ..models import ManualVideoUploadAlert, Alert
+from ..models import ManualVideoUploadAlert, Alert, AlertSettings
 
 logger = logging.getLogger(__name__)
 
@@ -114,3 +115,12 @@ class AlertViewSet(
         logger.info(f'serializer data {serializer.data}')
 
         return Response(serializer.data)
+
+
+class AlertSettingsViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin,
+):
+
+    serializer_class = AlertSettingsPolymorphicSerializer
+    queryset = AlertSettings.objects.all()
+    lookup_field = "id"

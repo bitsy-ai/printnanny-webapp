@@ -65,6 +65,9 @@ class AlertSettings(PolymorphicModel):
     )
     enabled = models.BooleanField(default=True, help_text="Enable or disable all alerts of this type")
 
+    @property
+    def alert_methods(self):
+        return self.AlertMethodChoices.choices
 ##
 # Alert Settings models
 ##
@@ -80,6 +83,7 @@ class ProgressAlertSettings(AlertSettings):
     )
 
 class DefectAlertSettings(AlertSettings):
+
     def __init__(self, *args, **kwargs):
         super().__init(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
@@ -89,6 +93,33 @@ class  RemoteControlCommandAlertSettings(AlertSettings):
     def __init__(self, *args, **kwargs):
         super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
+    stop_monitoring_success = models.BooleanField(default=False)
+    stop_monitoring_failed = models.BooleanField(default=True)
+    stop_monitoring_received = models.BooleanField(default=False)
+    
+    start_monitoring_success = models.BooleanField(default=False)
+    start_monitoring_failed = models.BooleanField(default=True)
+    start_monitoring_received = models.BooleanField(default=False)
+
+    start_print_success = models.BooleanField(default=False)
+    start_print_failed = models.BooleanField(default=True)
+    start_print_received = models.BooleanField(default=False)
+
+    stop_print_success = models.BooleanField(default=False)
+    stop_print_failed = models.BooleanField(default=True)
+    stop_print_received = models.BooleanField(default=False)
+
+    move_nozzle_success = models.BooleanField(default=False)
+    move_nozzle_failed = models.BooleanField(default=True)
+    move_nozzle_recived = models.BooleanField(default=False)
+
+    pause_print_success = models.BooleanField(default=False)
+    pause_print_failed = models.BooleanField(default=True)
+    pause_print_received = models.BooleanField(default=False)
+
+    resume_print_success = models.BooleanField(default=False)
+    resume_print_failed = models.BooleanField(default=True)
+    resume_print_received = models.BooleanField(default=False)
 
 ##
 # Alert Models
