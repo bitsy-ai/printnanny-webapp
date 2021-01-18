@@ -20,16 +20,18 @@ def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
 
     created_alerts = []
     if alert_subtype in alert_settings_attr:
-        instance = super().create(*args, **kwargs)
-        instance.send_alerts(alert_settings.alert_methods)
+
+        for alert_method in alert_settings.alert_methods:
+            instance = RemoteControlCommandAlert.create(
+                alert_method=alert_method,
+                user=user,
+                command=command,
+                alert_subtype=alert_subtype
+            )
+            instance.trigger_alert()
+            created_alerts.append(instance)
         
-        return instance
-    alerts = RemoteControlCommandAlert.objects.create(
-        user_id=user_id,
-        command_id=command_id,
-        alert_subtype=alert_subtype,
-    )
-    return created_alerts
+    return [alert.id for alert in created_alerts]
 
 
 

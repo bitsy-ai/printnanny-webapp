@@ -330,7 +330,7 @@ class PrintJob(models.Model):
     )
     last_seen = models.DateTimeField(auto_now=True)
 
-    progress = models.IntegerField(default=0)
+    progress = JSONField(default={})
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
     )
@@ -423,9 +423,10 @@ class RemoteControlCommand(models.Model):
     device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
-    iotcore_response = JSONField()
-    metadata = JSONField(null=True)
+    iotcore_response = JSONField(default={})
+    metadata = JSONField(default={})
 
     snapshot = models.OneToOneField('remote_control.RemoteControlSnapshot', db_index=True, related_name="command", on_delete=models.CASCADE, null=True)
+
 
 
