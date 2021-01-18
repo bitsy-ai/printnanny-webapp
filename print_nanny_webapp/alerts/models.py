@@ -10,6 +10,7 @@ from django.utils import timezone, dateformat
 from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
 from polymorphic.managers import PolymorphicManager
+from channels.layers import get_channel_layer
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
@@ -43,6 +44,11 @@ class Alert(PolymorphicModel):
         )
         DEFECT = "DEFECT", "Defect detected in print"
 
+    class AlertMethodChoices(models.TextChoices):
+        UI = "UI", "Recive Print Nanny UI notifations"
+        EMAIL = "EMAIL", "Receive email notifications"
+
+    alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -53,9 +59,7 @@ class Alert(PolymorphicModel):
 
 
 class AlertSettings(PolymorphicModel):
-    class AlertMethodChoices(models.TextChoices):
-        UI = "UI", "Recive Print Nanny UI notifations"
-        EMAIL = "EMAIL", "Receive email notifications"
+
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -64,9 +68,9 @@ class AlertSettings(PolymorphicModel):
         choices=Alert.AlertTypeChoices.choices, max_length=255
     )
     alert_methods = ChoiceArrayField(
-        models.CharField(choices=AlertMethodChoices.choices, max_length=255),
+        models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255),
         blank=True,
-        default=(AlertMethodChoices.UI,),
+        default=(Alert.AlertMethodChoices.UI,),
     )
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"
@@ -232,23 +236,36 @@ class ProgressAlert(Alert):
         return self.ICON_CSS[self.alert_subtype]
 
 
-class RemoteControlCommandAlert(models.Manager):
-    def create(self, *args, **kwargs):
-        instance = super().create(*args, **kwargs)
         
-        alert_settings = RemoteControlCommandAlertSettings(user=instance.user)
-        alert_settings_attr = alert_settings.command_to_attr(instance.command.command)
-        if instance.alert_subtype in alert_settings_attr:
-            instance.send_alerts(alert_settings.alert_methods)
-        return instance
-
 class RemoteControlCommandAlert(Alert):
     """
     Fires on remote control events
     """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+    
+    # def send_alerts(self, alert_methods):
+    #     '''
+    #         alert_methods - RemoteControlCommandAlertSettings.alert_methods
+    #     '''
+    #     alert_serializer = AlertPolymorphicSerializer(self)
+    #     data = alert_serializer.data
+    #     if Alert.AlertMethodChoices.UI in alert_methods:
+    #         channel_layer = get_channel_layer()
+
+    #         # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
+    #         data["namespace"] = "alerts"
+    #         data["action"] = "alertMessage"
+    #         async_to_sync(channel_layer.group_send)(
+    #             f"alerts_{alert.user_id}",
+    #             {
+    #                 "type": "alert.message",
+    #                 "data": JSONRenderer().render(data),
+    #             },
+    #         )
+    #     if Alert.AlertMethodChoices.EMAIL in alert_methods:
+
+
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
