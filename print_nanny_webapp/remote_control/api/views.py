@@ -278,7 +278,8 @@ class GcodeFileViewSet(
         if serializer.is_valid():
             # https://github.com/aio-libs/aiohttp/issues/3652
             # octoprint_device is accepted as a string and deserialized to an integer
-            serializer.validated_data["octoprint_device"] = int(serializer.validated_data["octoprint_device"])
+            octoprint_device = OctoPrintDevice.objects.get(id=int(serializer.validated_data["octoprint_device"]))
+            serializer.validated_data["octoprint_device"] = octoprint_device
             instance, created = serializer.update_or_create(
                 serializer.validated_data, request.user
             )

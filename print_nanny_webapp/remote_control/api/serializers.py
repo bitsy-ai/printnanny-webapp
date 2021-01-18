@@ -22,9 +22,6 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
-    # https://github.com/aio-libs/aiohttp/issues/3652
-    # octoprint_device is accepted as a string and deserialized to an integer
-    octoprint_device = serializers.CharField()
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
@@ -89,6 +86,10 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
 
 class GcodeFileSerializer(serializers.ModelSerializer):
+
+    # https://github.com/aio-libs/aiohttp/issues/3652
+    # octoprint_device is accepted as a string and deserialized to an integer
+    octoprint_device = serializers.CharField()
     class Meta:
         model = GcodeFile
         read_only_fields = ("user",)
