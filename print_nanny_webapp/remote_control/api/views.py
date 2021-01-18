@@ -12,8 +12,6 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework import status
 
-from channels.layers import get_channel_layer
-
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
 
@@ -102,25 +100,8 @@ class CommandViewSet(
         alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
         if alert_subtype is not None:
 
-            alert = RemoteControlCommandAlert.objects.create(
-                user=instance.user,
-                command=instance,
-                alert_subtype=alert_subtype,
-            )
-            channel_layer = get_channel_layer()
-            alert_serializer = AlertPolymorphicSerializer(alert)
-
-            data = alert_serializer.data
-            # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
-            data["namespace"] = "alerts"
-            data["action"] = "alertMessage"
-            async_to_sync(channel_layer.group_send)(
-                f"alerts_{alert.user_id}",
-                {
-                    "type": "alert.message",
-                    "data": JSONRenderer().render(data),
-                },
-            )
+            task = create_remote_control_command_alerts.delay(user.id, command.id, alert_subtype)
+            logger.info(f'Created create_remote_control_command_alerts task {task}')
 
         return Response(serializer.data)
 

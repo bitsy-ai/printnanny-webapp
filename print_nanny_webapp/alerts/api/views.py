@@ -138,7 +138,7 @@ class AlertSettingsViewSet(
     def alert_methods(self, request):
         data = [
             {"label": label, "value": value}
-            for label, value in AlertSettings.AlertMethodChoices.choices
+            for label, value in Alert.AlertMethodChoices.choices
         ]
         serializer = AlertMethodSerializer(data=data, many=True)
         serializer.is_valid()
