@@ -35,7 +35,7 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(octoprint_event):
-    alert_settings = ProgressAlertSettings.get_or_create(user=octoprint_event.user)
+    alert_settings = ProgressAlertSettings.objects.get_or_create(user=octoprint_event.user)
     return alert_settings.on_print_progress(octoprint_event)
 
 
