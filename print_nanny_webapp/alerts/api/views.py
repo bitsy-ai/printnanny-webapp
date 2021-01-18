@@ -22,6 +22,7 @@ from .serializers import (
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
     RemoteControlCommandAlertSerializer,
+    AlertMethodSerializer
 )
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings
 
@@ -116,7 +117,9 @@ class AlertViewSet(
 
         return Response(serializer.data)
 
-
+@extend_schema(
+    tags=["alert_settings"]
+)
 class AlertSettingsViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin, UpdateModelMixin,
 ):
@@ -124,3 +127,18 @@ class AlertSettingsViewSet(
     serializer_class = AlertSettingsPolymorphicSerializer
     queryset = AlertSettings.objects.all()
     lookup_field = "id"
+
+    @extend_schema(
+        tags=["alert_settings"],
+        responses={
+            200: AlertMethodSerializer
+        }
+    )
+    @action(detail=False)
+    def alert_methods(self, request):
+        data = [
+            {'label': label, 'value': value } for label, value in AlertSettings.AlertMethodChoices.choices
+        ]
+        serializer = AlertMethodSerializer(data=data, many=True)
+        serializer.is_valid()
+        return Response(serializer.data)
