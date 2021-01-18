@@ -98,10 +98,10 @@ class ProgressAlertSettings(AlertSettings):
     def on_print_progress(self, octoprint_event):
         RemoteControlCommand = apps.get_model('remote_control', 'RemoteControlCommand')
 
-        progress = octoprint_event.event_data.get('progress')
+        progress = octoprint_event.event_data.get('event_data').get('progress')
         if progress % self.on_progress_percent == 0:
             command = RemoteControlCommand.objects.create(
-                command=RemoteControlCommand.SNAPSHOT,
+                command=RemoteControlCommand.CommandChoices.SNAPSHOT,
                 device=octoprint_event.octoprint_device,
                 user=octoprint_event.user,
             )
