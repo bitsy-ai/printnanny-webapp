@@ -377,6 +377,16 @@ class RemoteControlCommandManager(models.Manager):
         obj.iotcore_response = dict_response
         obj.save()
 
+class RemoteControlSnapshotManager(models.Manager):
+    def create(self, **kwargs):
+        # check user's alert settings
+        pass
+
+
+class RemoteControlSnapshot(models.Model):
+    objects = RemoteControlSnapshotManager()
+    command = models.OneToOneField('remote_control.RemoteControlCommand', db_index=True, related_name="snapshot", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/")
 
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
@@ -422,3 +432,4 @@ class RemoteControlCommand(models.Model):
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
     iotcore_response = JSONField()
+
