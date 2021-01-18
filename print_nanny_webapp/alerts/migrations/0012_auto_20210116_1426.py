@@ -9,71 +9,195 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0019_auto_20210109_2034'),
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("remote_control", "0019_auto_20210109_2034"),
+        ("contenttypes", "0002_remove_content_type_name"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0011_auto_20210115_1600'),
+        ("alerts", "0011_auto_20210115_1600"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AlertSettings',
+            name="AlertSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('alert_type', models.CharField(choices=[('COMMAND', 'Remote command status updates'), ('PRINT_PROGRESS', 'Percentage-based print progress'), ('MANUAL_VIDEO_UPLOAD', 'Manually-uploaded video is ready for review'), ('DEFECT', 'Defect detected in print')], default='DEFECT', max_length=255)),
-                ('alert_method', models.CharField(choices=[('UI', 'Receive notifications in Print Nanny UI'), ('EMAIL', 'Receive email notifications')], max_length=255)),
-                ('enabled', models.BooleanField(default=True, help_text='Enable or disable all alerts of this type')),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_alerts.alertsettings_set+', to='contenttypes.contenttype')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                (
+                    "alert_type",
+                    models.CharField(
+                        choices=[
+                            ("COMMAND", "Remote command status updates"),
+                            ("PRINT_PROGRESS", "Percentage-based print progress"),
+                            (
+                                "MANUAL_VIDEO_UPLOAD",
+                                "Manually-uploaded video is ready for review",
+                            ),
+                            ("DEFECT", "Defect detected in print"),
+                        ],
+                        default="DEFECT",
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "alert_method",
+                    models.CharField(
+                        choices=[
+                            ("UI", "Receive notifications in Print Nanny UI"),
+                            ("EMAIL", "Receive email notifications"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "enabled",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Enable or disable all alerts of this type",
+                    ),
+                ),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_alerts.alertsettings_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('user', 'alert_type', 'alert_method')},
+                "unique_together": {("user", "alert_type", "alert_method")},
             },
         ),
         migrations.AddField(
-            model_name='remotecontrolcommandalert',
-            name='alert_type',
-            field=models.CharField(default='COMMAND', max_length=255),
+            model_name="remotecontrolcommandalert",
+            name="alert_type",
+            field=models.CharField(default="COMMAND", max_length=255),
         ),
         migrations.CreateModel(
-            name='ProgressAlert',
+            name="ProgressAlert",
             fields=[
-                ('alert_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='alerts.alert')),
-                ('progress_percent', models.IntegerField(default=25, help_text='Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress', validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(100)])),
-                ('alert_type', models.CharField(default='PRINT_PROGRESS', max_length=255)),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "alert_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="alerts.alert",
+                    ),
+                ),
+                (
+                    "progress_percent",
+                    models.IntegerField(
+                        default=25,
+                        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(100),
+                        ],
+                    ),
+                ),
+                (
+                    "alert_type",
+                    models.CharField(default="PRINT_PROGRESS", max_length=255),
+                ),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('alerts.alert',),
+            bases=("alerts.alert",),
         ),
         migrations.CreateModel(
-            name='ProgressAlertSettings',
+            name="ProgressAlertSettings",
             fields=[
-                ('alertsettings_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='alerts.alertsettings')),
-                ('on_progress_percent', models.IntegerField(default=25, help_text='Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress', validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(100)])),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "alertsettings_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="alerts.alertsettings",
+                    ),
+                ),
+                (
+                    "on_progress_percent",
+                    models.IntegerField(
+                        default=25,
+                        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(100),
+                        ],
+                    ),
+                ),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('alerts.alertsettings',),
+            bases=("alerts.alertsettings",),
         ),
         migrations.CreateModel(
-            name='DefectAlertSettings',
+            name="DefectAlertSettings",
             fields=[
-                ('alertsettings_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='alerts.alertsettings')),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "alertsettings_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="alerts.alertsettings",
+                    ),
+                ),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('alerts.alertsettings',),
+            bases=("alerts.alertsettings",),
         ),
     ]

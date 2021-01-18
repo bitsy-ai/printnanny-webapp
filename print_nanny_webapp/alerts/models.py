@@ -16,15 +16,18 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
+
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
     logger.info("Uploading to path")
     return path
 
+
 ##
 # Base Polymorphic models
 ##
+
 
 class Alert(PolymorphicModel):
 
@@ -47,9 +50,9 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
-    
-class AlertSettings(PolymorphicModel):
 
+
+class AlertSettings(PolymorphicModel):
     class AlertMethodChoices(models.TextChoices):
         UI = "UI", "Recive Print Nanny UI notifations"
         EMAIL = "EMAIL", "Receive email notifications"
@@ -57,36 +60,44 @@ class AlertSettings(PolymorphicModel):
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
-    alert_type = models.CharField(choices=Alert.AlertTypeChoices.choices, max_length=255)
-    alert_methods = ChoiceArrayField(models.CharField(choices=AlertMethodChoices.choices, max_length=255), blank=True, default=(AlertMethodChoices.UI,))
-    enabled = models.BooleanField(default=True, help_text="Enable or disable this alert channel")
+    alert_type = models.CharField(
+        choices=Alert.AlertTypeChoices.choices, max_length=255
+    )
+    alert_methods = ChoiceArrayField(
+        models.CharField(choices=AlertMethodChoices.choices, max_length=255),
+        blank=True,
+        default=(AlertMethodChoices.UI,),
+    )
+    enabled = models.BooleanField(
+        default=True, help_text="Enable or disable this alert channel"
+    )
+
 
 ##
 # Alert Settings models
 ##
 
+
 class ProgressAlertSettings(AlertSettings):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE
-    )
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     on_progress_percent = models.IntegerField(
         default=25,
         validators=[MinValueValidator(1), MaxValueValidator(100)],
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
+
 class DefectAlertSettings(AlertSettings):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
 
-class  RemoteControlCommandAlertSettings(AlertSettings):
-
+class RemoteControlCommandAlertSettings(AlertSettings):
     class AlertSubTypeChoices(models.TextChoices):
         RECEVIED = "RECEIVED", "Command was acknowledged by device"
         FAILED = "FAILED", "Command failed"
@@ -95,59 +106,60 @@ class  RemoteControlCommandAlertSettings(AlertSettings):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     stop_monitoring = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>StopMonitoring<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
         blank=True,
-        default=(AlertSubTypeChoices.FAILED,)
+        default=(AlertSubTypeChoices.FAILED,),
     )
 
     start_monitoring = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
         blank=True,
-        default=(AlertSubTypeChoices.FAILED,)
+        default=(AlertSubTypeChoices.FAILED,),
     )
 
     stop_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. ",
         blank=True,
-        default=(AlertSubTypeChoices.FAILED,)
+        default=(AlertSubTypeChoices.FAILED,),
     )
 
     start_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>SartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.",
         blank=True,
-        default=(AlertSubTypeChoices.FAILED,)
+        default=(AlertSubTypeChoices.FAILED,),
     )
 
     move_nozzle = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint",
         blank=True,
-        default=(AlertSubTypeChoices.FAILED,)
+        default=(AlertSubTypeChoices.FAILED,),
     )
     pause_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
         default=(AlertSubTypeChoices.FAILED,),
-        blank=True    
+        blank=True,
     )
 
     resume_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
         default=(AlertSubTypeChoices.FAILED,),
-        blank=True
+        blank=True,
     )
+
+
 ##
 # Alert Models
 ##
+
 
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
@@ -155,12 +167,12 @@ class DefectAlert(Alert):
 
 
 class ProgressAlert(Alert):
-    '''
-        Fires on print job progress
-    '''
+    """
+    Fires on print job progress
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
-
 
     progress_percent = models.IntegerField(
         default=25,
@@ -168,10 +180,15 @@ class ProgressAlert(Alert):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
-    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
+    )
+
     @property
     def title(self):
-        unformatted = f"{self.progress_percent}% complete: {capfirst(self.command.device.name)}"
+        unformatted = (
+            f"{self.progress_percent}% complete: {capfirst(self.command.device.name)}"
+        )
         return unformatted
 
     @property
@@ -188,12 +205,12 @@ class ProgressAlert(Alert):
 
 
 class RemoteControlCommandAlert(Alert):
-    '''
-        Fires on remote control events
-    '''
+    """
+    Fires on remote control events
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
@@ -235,6 +252,7 @@ class RemoteControlCommandAlert(Alert):
     @property
     def icon(self):
         return self.ICON_CSS[self.alert_subtype]
+
     @classmethod
     def get_alert_subtype(cls, remote_control_command_data):
         keys = remote_control_command_data.keys()
@@ -247,15 +265,15 @@ class RemoteControlCommandAlert(Alert):
                 return cls.AlertSubtypeChoices.FAILED
 
 
-
-
 class ManualVideoUploadAlert(Alert):
     """
     Base class for a prediction alert .gif or timelapse mp4 / mjpeg
     """
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs)
+        super().__init__(
+            *args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs
+        )
 
     # class SourceChoices(models.TextChoices):
     #     WEB_UPLOAD = 'WEB_UPLOAD', 'Uploaded manually'
@@ -276,8 +294,10 @@ class ManualVideoUploadAlert(Alert):
         choices=JobStatusChoices.choices,
         default=JobStatusChoices.PROCESSING,
     )
+
     def __init__(self, *args, **kwargs):
         super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)
     annotated_video = models.FileField(upload_to=_upload_to, null=True)
@@ -302,7 +322,8 @@ class ManualVideoUploadAlert(Alert):
         #         self.annotated_video.name
         #     )
 
-#ManualVideoUploadAlert._meta.get_field('alert_type').default = Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
+
+# ManualVideoUploadAlert._meta.get_field('alert_type').default = Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD
 # class DefectAlert(Alert):
 #     print_job = models.ForeignKey(
 #         "remote_control.PrintJob", on_delete=models.CASCADE, db_index=True
@@ -343,4 +364,3 @@ class AlertPlot(models.Model):
     description = models.CharField(max_length=255)
     function = models.CharField(max_length=65)
     alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
-

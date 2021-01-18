@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0008_alertplot'),
+        ("alerts", "0008_alertplot"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='remotecontrolcommandalert',
-            old_name='alert_type',
-            new_name='alert_subtype',
+            model_name="remotecontrolcommandalert",
+            old_name="alert_type",
+            new_name="alert_subtype",
         ),
     ]
