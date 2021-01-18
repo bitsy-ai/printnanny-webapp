@@ -9,7 +9,7 @@ from .views import (
 app_name = "alerts"
 
 urlpatterns = [
-    path("/settings", AlertSettingsView.as_view(), name="settings"),
+    path("settings", AlertSettingsView.as_view(), name="settings"),
     path("", AlertListView.as_view(), name="list"),
     re_path("^(\d+)/$", AlertListView.as_view(), name="list")
 
