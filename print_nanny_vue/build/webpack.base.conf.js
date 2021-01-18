@@ -25,7 +25,6 @@ module.exports = {
   entry: {
     alertsDropdown: './src/alertsDropdown.js',
     alertsTable: './src/alertsTable.js',
-    alertsSettings: './src/alertsSettings.js'
   },
   output: {
     path: config.build.assetsRoot,
