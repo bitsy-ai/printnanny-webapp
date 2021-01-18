@@ -115,26 +115,27 @@ class AlertSettingsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AlertSettings
-        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method"]
+        fields = "__all__"
         read_only_fields = ("user",)
 
 class CommandAlertSettingsSerializer(AlertSettingsSerializer):
     class Meta:
         model = RemoteControlCommandAlertSettings
-        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        fields = "__all__"
         read_only_fields = ("user",)
 
 class DefectAlertSettingsSerializer(AlertSettingsSerializer):
     class Meta:
         model = DefectAlertSettings
-        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        fields = "__all__"
         read_only_fields = ("user",)
 
 class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
     
+    
     class Meta:
         model = ProgressAlertSettings
-        fields = ["created_dt", "updated_dt", "user", "enabled", "alert_type", "alert_method", "on_progress_percent"]
+        fields = "__all__"
         read_only_fields = ("user",)
 
 class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
@@ -143,9 +144,14 @@ class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         AlertSettings: AlertSettingsSerializer,
         RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
-        DefectAlertSettings: DefectAlertSettings,
+        DefectAlertSettings: DefectAlertSettingsSerializer,
         ProgressAlert: ProgressAlertSettingsSerializer
     }
 
     def to_resource_type(self, model_or_instance):
         return model_or_instance._meta.object_name.lower()
+
+class AlertMethodSerializer(serializers.Serializer):
+
+    label = serializers.CharField()
+    value = serializers.CharField()

@@ -74,7 +74,7 @@ class AlertSettings(PolymorphicModel):
 
 class ProgressAlertSettings(AlertSettings):
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
 
     on_progress_percent = models.IntegerField(
         default=25,
@@ -85,13 +85,13 @@ class ProgressAlertSettings(AlertSettings):
 class DefectAlertSettings(AlertSettings):
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
 
 class  RemoteControlCommandAlertSettings(AlertSettings):
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
     stop_monitoring_success = models.BooleanField(default=False)
     stop_monitoring_failed = models.BooleanField(default=True)
@@ -127,7 +127,7 @@ class  RemoteControlCommandAlertSettings(AlertSettings):
 
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
 
 class ProgressAlert(Alert):
@@ -135,7 +135,7 @@ class ProgressAlert(Alert):
         Fires on print job progress
     '''
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
 
 
     progress_percent = models.IntegerField(
@@ -320,27 +320,3 @@ class AlertPlot(models.Model):
     function = models.CharField(max_length=65)
     alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
 
-
-# class AlertEvent(models.Model):
-#     """
-#         inbound alert events, like open and click on an email
-#     """
-
-#     class AnymailStatusChoices(models.TextChoices):
-#         DELIVERED = 'DELIEVERED', 'Delivered'
-#         REJECTED = 'REJECTED', 'Rejected'
-#         BOUNCED = 'BOUNCED', 'Bounced',
-#         COMPLAINED = 'COMPLAINED','Complained',
-#         UNSUBSCRIBED = 'UNSUBSCRIBED', 'Unsubscribed'
-#         OPENED = 'OPENED', 'Opened',
-#         CLICKED = 'CLICKED', 'Clicked'
-
-#     event_type = models.CharField(
-#         max_length=12,
-#         choices=AnymailStatusChoices.choices,
-#     )
-#     dt = models.DateTimeField(db_index=True)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-#     alert_message = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
-#     provider_id = models.CharField(max_length=255)
-#     event_data = models.JSONField()

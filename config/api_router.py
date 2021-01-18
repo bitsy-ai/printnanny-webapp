@@ -15,11 +15,12 @@ from print_nanny_webapp.remote_control.api.views import (
     CommandViewSet,
 )
 
-from print_nanny_webapp.alerts.api.views import AlertViewSet
+from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet
 
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
+router.register("alert_settings", AlertSettingsViewSet)
 
 router.register("users", UserViewSet)
 
