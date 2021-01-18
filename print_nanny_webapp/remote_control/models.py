@@ -432,4 +432,5 @@ class RemoteControlCommand(models.Model):
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
     iotcore_response = JSONField()
+    metadata = JSONField(null=True)
 
