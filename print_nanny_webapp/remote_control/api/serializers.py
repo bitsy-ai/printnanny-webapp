@@ -95,7 +95,7 @@ class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
         fields = [field.name for field in RemoteControlSnapshot._meta.fields] + ["url"]
         extra_kwargs = {
-            "url": {"view_name": "api:remote-control-snapshot-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
 class GcodeFileSerializer(serializers.ModelSerializer):
 

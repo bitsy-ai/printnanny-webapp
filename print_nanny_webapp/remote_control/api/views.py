@@ -44,6 +44,7 @@ from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
+    RemoteControlSnapshot
 )
 
 
