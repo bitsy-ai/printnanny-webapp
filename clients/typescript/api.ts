@@ -76,6 +76,35 @@ export interface AlertBulkResponse {
     updated: number;
 }
 /**
+ * 
+ * @export
+ * @interface AlertMethod
+ */
+export interface AlertMethod {
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertMethod
+     */
+    label: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertMethod
+     */
+    value: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum AlertMethodEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
+/**
  * @type AlertPolymorphic
  * @export
  */
@@ -99,6 +128,98 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     dismissed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface AlertSettings
+ */
+export interface AlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertSettings
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AlertSettings
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof AlertSettings
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof AlertSettings
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof AlertSettings
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertSettings
+     */
+    user?: number;
+}
+/**
+ * @type AlertSettingsPolymorphic
+ * @export
+ */
+export type AlertSettingsPolymorphic = AlertSettings | CommandAlertSettings | DefectAlertSettings | ProgressAlertSettings;
+
+/**
+ * @type AlertSettingsPolymorphicRequest
+ * @export
+ */
+export type AlertSettingsPolymorphicRequest = AlertSettingsRequest | CommandAlertSettingsRequest | DefectAlertSettingsRequest | ProgressAlertSettingsRequest;
+
+/**
+ * 
+ * @export
+ * @interface AlertSettingsRequest
+ */
+export interface AlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof AlertSettingsRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof AlertSettingsRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof AlertSettingsRequest
+     */
+    enabled?: boolean;
 }
 /**
  * 
@@ -154,6 +275,338 @@ export interface AuthTokenRequest {
      * @memberof AuthTokenRequest
      */
     password: string;
+}
+/**
+ * 
+ * @export
+ * @interface CommandAlertSettings
+ */
+export interface CommandAlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof CommandAlertSettings
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommandAlertSettings
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CommandAlertSettings
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof CommandAlertSettings
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof CommandAlertSettings
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    start_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    stop_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    move_nozzle_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    move_nozzle_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    move_nozzle_recived?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    pause_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    pause_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    pause_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    resume_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    resume_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettings
+     */
+    resume_print_received?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommandAlertSettings
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CommandAlertSettings
+     */
+    user?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CommandAlertSettingsRequest
+ */
+export interface CommandAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof CommandAlertSettingsRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof CommandAlertSettingsRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    start_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    stop_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    move_nozzle_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    move_nozzle_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    move_nozzle_recived?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    pause_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    pause_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    pause_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    resume_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    resume_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CommandAlertSettingsRequest
+     */
+    resume_print_received?: boolean;
 }
 /**
  * 
@@ -255,6 +708,86 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     dismissed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface DefectAlertSettings
+ */
+export interface DefectAlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertSettings
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlertSettings
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlertSettings
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof DefectAlertSettings
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof DefectAlertSettings
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof DefectAlertSettings
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertSettings
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertSettings
+     */
+    user?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DefectAlertSettingsRequest
+ */
+export interface DefectAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof DefectAlertSettingsRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof DefectAlertSettingsRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof DefectAlertSettingsRequest
+     */
+    enabled?: boolean;
 }
 /**
  * 
@@ -1001,6 +1534,37 @@ export interface PaginatedAlertPolymorphicList {
 /**
  * 
  * @export
+ * @interface PaginatedAlertSettingsPolymorphicList
+ */
+export interface PaginatedAlertSettingsPolymorphicList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedAlertSettingsPolymorphicList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAlertSettingsPolymorphicList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAlertSettingsPolymorphicList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<AlertSettingsPolymorphic>}
+     * @memberof PaginatedAlertSettingsPolymorphicList
+     */
+    results?: Array<AlertSettingsPolymorphic>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedGcodeFileList
  */
 export interface PaginatedGcodeFileList {
@@ -1248,6 +1812,188 @@ export interface PatchedAlertRequest {
     dismissed?: boolean;
 }
 /**
+ * @type PatchedAlertSettingsPolymorphicRequest
+ * @export
+ */
+export type PatchedAlertSettingsPolymorphicRequest = PatchedAlertSettingsRequest | PatchedCommandAlertSettingsRequest | PatchedDefectAlertSettingsRequest | PatchedProgressAlertSettingsRequest;
+
+/**
+ * 
+ * @export
+ * @interface PatchedAlertSettingsRequest
+ */
+export interface PatchedAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof PatchedAlertSettingsRequest
+     */
+    enabled?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedCommandAlertSettingsRequest
+ */
+export interface PatchedCommandAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    enabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_monitoring_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_monitoring_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_monitoring_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    start_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    stop_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    move_nozzle_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    move_nozzle_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    move_nozzle_recived?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    pause_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    pause_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    pause_print_received?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    resume_print_success?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    resume_print_failed?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    resume_print_received?: boolean;
+}
+/**
  * 
  * @export
  * @interface PatchedDefectAlertRequest
@@ -1271,6 +2017,31 @@ export interface PatchedDefectAlertRequest {
      * @memberof PatchedDefectAlertRequest
      */
     dismissed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedDefectAlertSettingsRequest
+ */
+export interface PatchedDefectAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedDefectAlertSettingsRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedDefectAlertSettingsRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof PatchedDefectAlertSettingsRequest
+     */
+    enabled?: boolean;
 }
 /**
  * 
@@ -1643,6 +2414,37 @@ export interface PatchedProgressAlertRequest {
      * @memberof PatchedProgressAlertRequest
      */
     device?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedProgressAlertSettingsRequest
+ */
+export interface PatchedProgressAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PatchedProgressAlertSettingsRequest
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedProgressAlertSettingsRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof PatchedProgressAlertSettingsRequest
+     */
+    enabled?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof PatchedProgressAlertSettingsRequest
+     */
+    on_progress_percent?: number;
 }
 /**
  * 
@@ -2286,6 +3088,98 @@ export interface ProgressAlertRequest {
 /**
  * 
  * @export
+ * @interface ProgressAlertSettings
+ */
+export interface ProgressAlertSettings {
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlertSettings
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgressAlertSettings
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProgressAlertSettings
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof ProgressAlertSettings
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof ProgressAlertSettings
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof ProgressAlertSettings
+     */
+    enabled?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof ProgressAlertSettings
+     */
+    on_progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlertSettings
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlertSettings
+     */
+    user?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ProgressAlertSettingsRequest
+ */
+export interface ProgressAlertSettingsRequest {
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof ProgressAlertSettingsRequest
+     */
+    alert_type: AlertTypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof ProgressAlertSettingsRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * Enable or disable all alerts of this type
+     * @type {boolean}
+     * @memberof ProgressAlertSettingsRequest
+     */
+    enabled?: boolean;
+    /**
+     * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
+     * @type {number}
+     * @memberof ProgressAlertSettingsRequest
+     */
+    on_progress_percent?: number;
+}
+/**
+ * 
+ * @export
  * @interface RemoteControlCommand
  */
 export interface RemoteControlCommand {
@@ -2571,6 +3465,542 @@ export interface UserRequest {
      */
     email: string;
 }
+
+/**
+ * AlertSettingsApi - axios parameter creator
+ * @export
+ */
+export const AlertSettingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsAlertMethodsRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert_settings/alert_methods/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alert_settings/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsPolymorphicRequest} [patchedAlertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate: async (id: number, patchedAlertSettingsPolymorphicRequest?: PatchedAlertSettingsPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertSettingsPartialUpdate.');
+            }
+            const localVarPath = `/api/alert_settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedAlertSettingsPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedAlertSettingsPolymorphicRequest !== undefined ? patchedAlertSettingsPolymorphicRequest : {})
+                : (patchedAlertSettingsPolymorphicRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertSettingsRetrieve.');
+            }
+            const localVarPath = `/api/alert_settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsPolymorphicRequest} [alertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate: async (id: number, alertSettingsPolymorphicRequest?: AlertSettingsPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertSettingsUpdate.');
+            }
+            const localVarPath = `/api/alert_settings/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof alertSettingsPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(alertSettingsPolymorphicRequest !== undefined ? alertSettingsPolymorphicRequest : {})
+                : (alertSettingsPolymorphicRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - functional programming interface
+ * @export
+ */
+export const AlertSettingsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsAlertMethodsRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertMethod>> {
+            const localVarAxiosArgs = await AlertSettingsApiAxiosParamCreator(configuration).alertSettingsAlertMethodsRetrieve(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertSettingsPolymorphicList>> {
+            const localVarAxiosArgs = await AlertSettingsApiAxiosParamCreator(configuration).alertSettingsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsPolymorphicRequest} [patchedAlertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsPartialUpdate(id: number, patchedAlertSettingsPolymorphicRequest?: PatchedAlertSettingsPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettingsPolymorphic>> {
+            const localVarAxiosArgs = await AlertSettingsApiAxiosParamCreator(configuration).alertSettingsPartialUpdate(id, patchedAlertSettingsPolymorphicRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettingsPolymorphic>> {
+            const localVarAxiosArgs = await AlertSettingsApiAxiosParamCreator(configuration).alertSettingsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsPolymorphicRequest} [alertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertSettingsUpdate(id: number, alertSettingsPolymorphicRequest?: AlertSettingsPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertSettingsPolymorphic>> {
+            const localVarAxiosArgs = await AlertSettingsApiAxiosParamCreator(configuration).alertSettingsUpdate(id, alertSettingsPolymorphicRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * AlertSettingsApi - factory interface
+ * @export
+ */
+export const AlertSettingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsAlertMethodsRetrieve(options?: any): AxiosPromise<AlertMethod> {
+            return AlertSettingsApiFp(configuration).alertSettingsAlertMethodsRetrieve(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsList(page?: number, options?: any): AxiosPromise<PaginatedAlertSettingsPolymorphicList> {
+            return AlertSettingsApiFp(configuration).alertSettingsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {PatchedAlertSettingsPolymorphicRequest} [patchedAlertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsPartialUpdate(id: number, patchedAlertSettingsPolymorphicRequest?: PatchedAlertSettingsPolymorphicRequest, options?: any): AxiosPromise<AlertSettingsPolymorphic> {
+            return AlertSettingsApiFp(configuration).alertSettingsPartialUpdate(id, patchedAlertSettingsPolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsRetrieve(id: number, options?: any): AxiosPromise<AlertSettingsPolymorphic> {
+            return AlertSettingsApiFp(configuration).alertSettingsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert settings.
+         * @param {AlertSettingsPolymorphicRequest} [alertSettingsPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertSettingsUpdate(id: number, alertSettingsPolymorphicRequest?: AlertSettingsPolymorphicRequest, options?: any): AxiosPromise<AlertSettingsPolymorphic> {
+            return AlertSettingsApiFp(configuration).alertSettingsUpdate(id, alertSettingsPolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AlertSettingsApi - interface
+ * @export
+ * @interface AlertSettingsApi
+ */
+export interface AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsAlertMethodsRetrieve(options?: any): AxiosPromise<AlertMethod>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsList(page?: number, options?: any): AxiosPromise<PaginatedAlertSettingsPolymorphicList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsPolymorphicRequest} [patchedAlertSettingsPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsPartialUpdate(id: number, patchedAlertSettingsPolymorphicRequest?: PatchedAlertSettingsPolymorphicRequest, options?: any): AxiosPromise<AlertSettingsPolymorphic>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsRetrieve(id: number, options?: any): AxiosPromise<AlertSettingsPolymorphic>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsPolymorphicRequest} [alertSettingsPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApiInterface
+     */
+    alertSettingsUpdate(id: number, alertSettingsPolymorphicRequest?: AlertSettingsPolymorphicRequest, options?: any): AxiosPromise<AlertSettingsPolymorphic>;
+
+}
+
+/**
+ * AlertSettingsApi - object-oriented interface
+ * @export
+ * @class AlertSettingsApi
+ * @extends {BaseAPI}
+ */
+export class AlertSettingsApi extends BaseAPI implements AlertSettingsApiInterface {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsAlertMethodsRetrieve(options?: any) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsAlertMethodsRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsList(page?: number, options?: any) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {PatchedAlertSettingsPolymorphicRequest} [patchedAlertSettingsPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsPartialUpdate(id: number, patchedAlertSettingsPolymorphicRequest?: PatchedAlertSettingsPolymorphicRequest, options?: any) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsPartialUpdate(id, patchedAlertSettingsPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsRetrieve(id: number, options?: any) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert settings.
+     * @param {AlertSettingsPolymorphicRequest} [alertSettingsPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertSettingsApi
+     */
+    public alertSettingsUpdate(id: number, alertSettingsPolymorphicRequest?: AlertSettingsPolymorphicRequest, options?: any) {
+        return AlertSettingsApiFp(this.configuration).alertSettingsUpdate(id, alertSettingsPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * AlertsApi - axios parameter creator

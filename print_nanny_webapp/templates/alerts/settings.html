@@ -15,13 +15,97 @@
                         <li class="breadcrumb-item active">Notification Settings</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Notification Settings</h4>
+                <h3 class="page-title">Notification Settings</h4>
             </div>
         </div>
     </div>
+    <h4 class="page-title">Print Job Progress</h4>
+    <p>Receive snapshots of your print job's progress.</p>
+    <div class="row">
 
-    <div id="alert-settings-app">
-        
+        <div class="col-12 col-md-6">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>UI Notifications</h4>
+                        <p>The following settings apply to notifications received through <strong>Print Nanny's web UI.</strong></p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ forms.progress__ui | crispy }}
+                        </form>
+                        <button type="submit"  name="action" value="progress__ui" class="btn btn-primary">Save</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>Email</h4>
+                        <p>The following settings apply to email notifications sent to <strong>{{user.email}}</strong></p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ forms.progress__email | crispy }}
+                        </form>
+                        <button type="submit"  name="action" value="progress__email" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="page-title">Remote Control Commands</h4>
+    <p>Receive status updates for <strong>remote device commands</strong>.</p>
+    <div class="row">
+
+        <div class="col-12 col-md-6">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>UI Notifications</h4>
+                        <p>The following settings apply to notifications received through <strong>Print Nanny's web UI.</strong></p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ forms.command__ui | crispy }}
+                        </form>
+                        <button type="submit"  name="action" value="progress__ui" class="btn btn-primary">Save</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4>Email</h4>
+                        <p>The following settings apply to email notifications sent to <strong>{{user.email}}</strong></p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ forms.command__email | crispy }}
+                        </form>
+                        <button type="submit"  name="action" value="progress__email" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
