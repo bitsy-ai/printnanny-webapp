@@ -34,8 +34,13 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(octoprint_event):
-    # get print progress settings
-    pass
+    progress = octoprint_event.event_data.get('progress')
+    logger.info(f'print progress: {progress}')
+
+HANDLER_FNS = {
+    OctoPrintEventTypeChoices.PRINT_PROGRESS: handle_print_progress
+
+}
 
 def on_octoprint_event(message):
     data = message.data.decode("utf-8")
@@ -62,8 +67,9 @@ def on_octoprint_event(message):
                 plugin_version=data["plugin_version"],
                 user_id=data["user_id"],
             )
-            if event_type == OctoPrintEventTypeChoices.PRINT_PROGRESS:
-                handle_print_progress(event)
+            handler_fn = HANDLER_FNS.get(event_type)
+            if handler_fn is not None:
+                handler_fn(event)
         except Exception as e:
             logger.error(e)
             logger.error(data)
