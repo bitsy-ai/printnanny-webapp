@@ -116,6 +116,14 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+    
+
+    def command_to_attr(self, command_str):
+        # shamelessly ripped from https://www.geeksforgeeks.org/python-program-to-convert-camel-case-string-to-snake-case/
+        snake_cased = ''.join(['_'+i.lower() if i.isupper()  
+               else i for i in command_str]).lstrip('_')
+        return getattr(self, snake_cased)
+
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -223,6 +231,16 @@ class ProgressAlert(Alert):
     def icon(self):
         return self.ICON_CSS[self.alert_subtype]
 
+
+class RemoteControlCommandAlert(models.Manager):
+    def create(self, *args, **kwargs):
+        instance = super().create(*args, **kwargs)
+        
+        alert_settings = RemoteControlCommandAlertSettings(user=instance.user)
+        alert_settings_attr = alert_settings.command_to_attr(instance.command.command)
+        if instance.alert_subtype in alert_settings_attr:
+            instance.send_alerts(alert_settings.alert_methods)
+        return instance
 
 class RemoteControlCommandAlert(Alert):
     """
