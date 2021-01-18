@@ -59,7 +59,6 @@ class AlertSettings(PolymorphicModel):
 
     alert_type = models.CharField(choices=Alert.AlertTypeChoices.choices, max_length=255)
     alert_methods = ChoiceArrayField(models.CharField(choices=AlertMethodChoices.choices, max_length=255), blank=True, default=(AlertMethodChoices.UI,))
-
     enabled = models.BooleanField(default=True, help_text="Enable or disable this alert channel")
 
 ##
