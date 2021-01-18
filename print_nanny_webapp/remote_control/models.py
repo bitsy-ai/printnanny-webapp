@@ -330,6 +330,7 @@ class PrintJob(models.Model):
     )
     last_seen = models.DateTimeField(auto_now=True)
 
+    # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
     progress = JSONField(default={})
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
