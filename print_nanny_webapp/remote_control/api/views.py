@@ -259,7 +259,7 @@ class GcodeFileViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="gcode_files_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
+        responses={400: GcodeFileSerializer, 201: GcodeFileSerializer },
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)
