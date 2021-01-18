@@ -307,7 +307,7 @@ class PrinterProfile(models.Model):
 
 class PrintJob(models.Model):
     class Meta:
-        unique_together = ("user", "name", "dt")
+        unique_together = ("user", "name", "created_dt")
 
     class StatusChoices(models.TextChoices):
         STARTED = "STARTED", "Started"
@@ -318,7 +318,9 @@ class PrintJob(models.Model):
         PAUSED = "PAUSED", "Paused"
         RESUMED = "RESUMED", "Resumed"
 
-    dt = models.DateTimeField()
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
