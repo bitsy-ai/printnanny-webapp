@@ -423,7 +423,6 @@ class RemoteControlCommand(models.Model):
     iotcore_response = JSONField(default={})
 
     metadata = JSONField(default={})
-    snapshot = models.OneToOneField('remote_control.RemoteControlSnapshot', db_index=True, related_name="command", on_delete=models.CASCADE, null=True)
 
 
 
