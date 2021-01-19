@@ -9334,7 +9334,7 @@ body[data-layout="topnav"] .container-fluid, body[data-layout="topnav"] .contain
   width: 36px;
   line-height: 36px;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 16px;
   border-radius: 50%;
   color: #fff;
   font-size: 2em; }
@@ -12832,29 +12832,6 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
     width: 100%; }
   .bootstrap-timepicker .dropdown-menu {
     width: 100%; } }
-
-.bootstrap-touchspin .input-group-btn-vertical {
-  position: absolute;
-  right: 0;
-  height: 100%;
-  z-index: 11; }
-
-.bootstrap-touchspin .input-group-btn-vertical > .btn {
-  position: absolute;
-  right: 0;
-  height: 50%;
-  padding: 0;
-  width: 2em;
-  text-align: center;
-  line-height: 1; }
-
-.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up {
-  border-radius: 0 4px 0 0;
-  top: 0; }
-
-.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down {
-  border-radius: 0 0 4px 0;
-  bottom: 0; }
 
 .apex-charts {
   min-height: 10px !important; }

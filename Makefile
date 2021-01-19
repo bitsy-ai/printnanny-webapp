@@ -7,7 +7,8 @@ ui:
 
 vue:
 	cd print_nanny_vue && npm run build
-build: ui
+
+build: vue ui
 	docker-compose -f production.yml build
 
 prod-up: build

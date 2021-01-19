@@ -58,7 +58,7 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../print_nanny_webapp/static/js/vue'),
+    assetsRoot: path.resolve(__dirname, '../../print_nanny_webapp/static/vue'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/static/webpack/',
 

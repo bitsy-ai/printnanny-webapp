@@ -3,10 +3,13 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 const createLintingRule = () => ({
   test: /\.(js|vue)$/,
@@ -28,7 +31,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: 'js/[name].js',
   },
   optimization: {
     moduleIds: 'named'
@@ -82,17 +85,6 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [
-      //     // Creates `style` nodes from JS strings
-      //     "style-loader",
-      //     // Translates CSS into CommonJS
-      //     "css-loader",
-      //     // Compiles Sass to CSS
-      //     "sass-loader",
-      //   ],
-      // },
     ]
   },
   node: {
