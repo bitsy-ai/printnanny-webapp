@@ -398,7 +398,12 @@ class RemoteControlCommand(models.Model):
             CommandChoices.STOP_PRINT,
             CommandChoices.PAUSE_PRINT,
         ],
-        PrintJobEventTypeChoices.PRINT_DONE: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_DONE: [
+            CommandChoices.MOVE_NOZZLE,
+            CommandChoices.START_MONITORING,
+            CommandChoices.STOP_MONITORING,
+            CommandChoices.SNAPSHOT
+        ],
         PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
         PrintJobEventTypeChoices.PRINT_CANCELLING: [],
         PrintJobEventTypeChoices.PRINT_PAUSED: [

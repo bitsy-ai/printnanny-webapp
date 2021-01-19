@@ -14,9 +14,9 @@ export default {
   },
   data: () => ({
     filter: '',
-    fields: ['status', 'event_type', 'title', 'description', 'time', 'snapshot', 'metadata'],
+    fields: ['status', 'title', 'description', 'time', 'snapshot', 'metadata'],
     sortBy: 'time',
-    sortDesc: true
+    sortDesc: false
   }),
   methods: {
     ...mapActions(ALERTS_TABLE_MODULE, {
@@ -64,10 +64,9 @@ export default {
         >
         <template #cell(status)="data">
           <span :class="`badge badge-${data.item.color}`"><strong>{{ data.item.alert_subtype}}</strong></span>
-        </template>
+          <span :class="`badge badge-secondary`"><strong>{{ data.item.alert_method}}</strong></span>
+          <span v-if="data.item.unseen" :class="`badge badge-info`"><strong>New</strong></span>
 
-        <template #cell(event_type)="data">
-          {{ data.item.alert_type }}
         </template>
 
         <template #cell(snapshot)="data">
