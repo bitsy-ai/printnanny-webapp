@@ -13,6 +13,8 @@ from polymorphic.managers import PolymorphicManager
 from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
+from asgiref.sync import async_to_sync
+
 import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
@@ -265,7 +267,7 @@ class RemoteControlCommandAlert(Alert):
         data["action"] = "alertMessage"
 
         async_to_sync(channel_layer.group_send)(
-            f"alerts_{alert.user_id}",
+            f"alerts_{self.user.id}",
             {
                 "type": "alert.message",
                 # https://github.com/nathantsoi/vue-native-websocket#with-format-json-enabled
@@ -273,11 +275,11 @@ class RemoteControlCommandAlert(Alert):
             },
         )
     
-    def trigger_email_alert(self):
+    def trigger_email_alert(self, data):
 
-
+        snapshot = self.command.snapshots.order_by('-created_date').first()
         merge_data = {
-            "SNAPSHOT_URL": self.command.command.snapshot.url,
+            "SNAPSHOT_URL": snapshot.url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.command.device.name,
             "COMMAND": self.command.command,
