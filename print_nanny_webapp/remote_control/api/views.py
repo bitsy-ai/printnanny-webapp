@@ -242,6 +242,8 @@ class RemoteControlSnapshotViewSet(
         responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
     )
     def create(self, *args, **kwargs):
+        # command_id = kwargs.get('command')
+        # metadata = kwargs.get('metadata')
         return super().create(*args, **kwargs)
 
 

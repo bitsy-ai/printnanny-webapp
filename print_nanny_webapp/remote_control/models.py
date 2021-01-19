@@ -376,6 +376,7 @@ class RemoteControlSnapshot(models.Model):
     image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/")
     command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE, related_name='snapshots')
 
+
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
@@ -420,8 +421,8 @@ class RemoteControlCommand(models.Model):
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
     iotcore_response = JSONField(default={})
-    metadata = JSONField(default={})
 
+    metadata = JSONField(default={})
     snapshot = models.OneToOneField('remote_control.RemoteControlSnapshot', db_index=True, related_name="command", on_delete=models.CASCADE, null=True)
 
 
