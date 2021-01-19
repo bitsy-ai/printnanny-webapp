@@ -18,7 +18,7 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-AlertVideoMessage = apps.get_model('alerts', 'AlertVideoMessage')
+ManualVideoUploadAlert = apps.get_model('alerts', 'ManualVideoUploadAlert')
 AlertPlot = apps.get_model('alerts', 'AlertPlot')
 
 # minimum confidence score for detection to be accepted for post-processing
@@ -76,7 +76,7 @@ def create_alert_plot(filename, tmp_dir, function, title, description, alert_id)
                 function=function,
                 title=title,
                 description=description,
-                alert=AlertVideoMessage.objects.get(id=alert_id)
+                alert=ManualVideoUploadAlert.objects.get(id=alert_id)
             )
             alert_plot.image.save(filename + '.png', wrapped_png)
             alert_plot.html.save(filename + '.html', wrapped_html)
@@ -263,7 +263,7 @@ def create_health_rel_plot(confident_df, fail_df, alert_id, temp_dir, fps):
         notify_timecode = y[y<=intercept].index[alert_offset]
         notify_seconds = int(_seconds(notify_timecode, fps))
 
-        AlertVideoMessage.objects.filter(id=alert_id).update(
+        ManualVideoUploadAlert.objects.filter(id=alert_id).update(
             notify_seconds=notify_seconds,
             notify_timecode=notify_timecode
         )
@@ -367,7 +367,7 @@ def create_report_card(df, alert_id, temp_dir, fps, callback):
     with open(csv, 'w+') as f:
         multi_df.to_csv(f)
 
-    alert = AlertVideoMessage.objects.get(id=alert_id)
+    alert = ManualVideoUploadAlert.objects.get(id=alert_id)
     
     alert.annotated_video.dataframe = csv
     alert.save()
@@ -391,7 +391,7 @@ def render_alert_annotated_video(alert_id, temp_dir, fps):
 
     with open(file_path, 'rb') as f:
         wrapped_file = File(f)
-        alert = AlertVideoMessage.objects.get(
+        alert = ManualVideoUploadAlert.objects.get(
                 id=alert_id
         )
         alert.annotated_video.save(filename, wrapped_file)

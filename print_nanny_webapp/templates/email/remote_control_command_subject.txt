@@ -1,0 +1,1 @@
+🔔 [{{DEVICE_NAME}}] {{ COMMAND }} {{ SUBTYPE }} {% if PROGRESS %} {{PROGRESS}}% {% endif %}

@@ -1,10 +1,6 @@
 from django.urls import path, include
 
 from .views import (
-    ecommerce_dashboard_view,
-    crm_dashboard_view,
-    analytics_dashboard_view,
-    projects_dashboard_view,
     home_dashboard_view,
     video_dashboard_detail_view,
     video_dashboard_list_view,

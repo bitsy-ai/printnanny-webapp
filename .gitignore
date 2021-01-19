@@ -4,6 +4,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Webpack crap
+
+*.hot-update*
+
 # C extensions
 *.so
 
@@ -30,6 +34,8 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+
+!print_nanny_vue/build
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

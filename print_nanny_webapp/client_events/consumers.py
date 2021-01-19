@@ -14,7 +14,6 @@ from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_consumer_connected_metric,
 )
 
-
 logger = logging.getLogger(__name__)
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
@@ -32,8 +31,7 @@ class VideoConsumer(WebsocketConsumer):
             f"video_{self.device_id}", self.channel_name
         )
 
-        logger.info(f'Consumer for {self.device_id} connected')
-
+        logger.info(f"Consumer for {self.device_id} connected")
 
         annotated_ws_consumer_connected_metric.inc()
 
@@ -56,7 +54,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
         self.user = self.scope["user"]
         self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
 
-        logger.info(f'Publisher for {self.device_id} connected')
+        logger.info(f"Publisher for {self.device_id} connected")
 
         annotated_ws_publisher_connected_metric.inc()
 
@@ -72,7 +70,7 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
             return self.send(text_data="pong")
 
         elif data.get("event_type") == "annotated_image":
-            
+
             annotated_image = base64.b64decode(data["annotated_image"])
             async_to_sync(self.channel_layer.group_send)(
                 f"video_{self.device_id}",
