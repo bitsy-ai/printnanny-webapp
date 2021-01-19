@@ -404,7 +404,9 @@ class RemoteControlCommand(models.Model):
             CommandChoices.STOP_MONITORING,
             CommandChoices.SNAPSHOT
         ],
-        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_CANCELLED: [
+            CommandChoices.MOVE_NOZZLE
+        ],
         PrintJobEventTypeChoices.PRINT_CANCELLING: [],
         PrintJobEventTypeChoices.PRINT_PAUSED: [
             CommandChoices.STOP_PRINT,

@@ -28,6 +28,7 @@ spec:
           readOnly: true
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
       - name: django
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         livenessProbe:
           httpGet:
             path: /health/
