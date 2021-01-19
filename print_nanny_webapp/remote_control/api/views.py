@@ -1,6 +1,8 @@
 from asgiref.sync import async_to_sync
 import logging
 from django.apps import apps
+from django.core.files.base import ContentFile
+
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -244,9 +246,23 @@ class RemoteControlSnapshotViewSet(
         responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
     )
     def create(self, *args, **kwargs):
-        # command_id = kwargs.get('command')
-        # metadata = kwargs.get('metadata')
-        return super().create(*args, **kwargs)
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # https://github.com/aio-libs/aiohttp/issues/3652
+            # octoprint_device is accepted as a string and deserialized to an integer
+            command = RemoteControlCommand.objects.get(id=int(serializer.validated_data["command"]))
+            serializer.validated_data["command"] = command
+            instance, created = serializer.update_or_create(
+                serializer.validated_data, request.user
+            )
+            response_serializer = self.get_serializer(instance)
+
+            if not created:
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @extend_schema(tags=["remote-control"])
