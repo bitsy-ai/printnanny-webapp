@@ -1,0 +1,5 @@
+---
+npmName: print-nanny-client
+npmRepostiry: print-nanny
+npmVersion: '0.3.0'
+withInterfaces: true

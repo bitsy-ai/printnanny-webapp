@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-sm-12 d-flex align-items-stretch">
-      <div class="card">
+    <div class="col-12 col-xl-6 d-flex align-items-stretch">
+      <div class="card col-12">
         <div class="card-body">
             <h2 class="header-title">
               <i class="mdi mdi-printer-3d"></i> OctoPrint Devices
@@ -48,7 +48,7 @@
           </table>
   
           {% else %}
-          <p>You haven't registered any OctoPrint Devices yet. </p>
+          <p>You haven't registered any OctoPrint Devices yet. Please follow <a href={{settings.HELP_OCTOPRINT_PLUGIN_SETUP}}>this guide</a> to install the OctoPrint Nanny plugin and register your device.</p>
           {% endif %}
         </div>
       </div>

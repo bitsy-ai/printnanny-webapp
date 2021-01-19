@@ -41,6 +41,27 @@
             </li>
 
             <li class="side-nav-item">
+                <a hhref="javascript: void(0);" class="side-nav-link">
+                    <i class="mdi mdi-bell"></i>
+                    <span> {% trans "Notifications" %} </span>
+                    {% if object.unread_alerts.count > 0 %}
+                    <span class="badge badge-danger float-right"> {{ object.unread_alerts.count }}</span>
+                    {% endif %}
+                </a>
+
+                <ul class="side-nav-second-level mm-collapse mm-show" aria-expanded="false" style="">
+                    <li>
+                        <a href="{% url 'alerts:list' %}">View History</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'alerts:settings' %}">Change Settings</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+            <li class="side-nav-item">
                 <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
                     <i class="dripicons dripicons-graph-line"></i>
                     <span> {% trans "Quality Reports" %} </span>
@@ -85,9 +106,9 @@
                 <i class="mdi mdi-close"></i>
             </a> -->
             <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
-            <h3 class="mt-3">Welcome to the Beta</h3>
+            <h3 class="mt-3">Beta Test</h3>
             <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p>
-            <p class="mb-3">{% trans "Report bugs or let us know what you think by opening a Github Issue"%}</p>
+            <p class="mb-3">{% trans "Report bugs by opening a Github Issue."%}</p>
 
             <a href="{{GITHUB_ISSUE_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Open Github Issue" %}</a>
         </div>

@@ -15,7 +15,19 @@ spec:
     spec:
       serviceAccountName: sql-webapp
       containers:
+      - name: celery-worker
+        command: 
+          - /start-celeryworker
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
       - name: django
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         livenessProbe:
           httpGet:
             path: /health/
@@ -36,6 +48,17 @@ spec:
           failureThreshold: 4
         command: 
           - /start
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
+      - name: octoprint-events
+        command: 
+          - python
+          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         ports:
         - containerPort: 8000

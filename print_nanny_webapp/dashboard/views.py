@@ -1,4 +1,7 @@
 import logging
+
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
@@ -23,12 +26,13 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 import google.api_core.exceptions
 
-from print_nanny_webapp.utils.multiform import MultiFormsView
+from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
 
 User = get_user_model()
-TimelapseAlert = apps.get_model("alerts", "TimelapseAlert")
-AlertVideoMessage = apps.get_model("alerts", "AlertVideoMessage")
+Alert = apps.get_model("alerts", "Alert")
+ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
@@ -39,20 +43,31 @@ logger = logging.getLogger(__name__)
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
-    pass
+    @method_decorator(ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["user"] = self.request.user
+        context["recent_alerts"] = (
+            Alert.objects.filter(
+                user=self.request.user,
+            )
+            .exclude(dismissed=True)
+            .order_by("-created_dt")
+            .all()
+        )
+
+        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
+            user=self.request.user
+        ).all()
+        return context
 
 
-ecommerce_dashboard_view = DashboardView.as_view(
-    template_name="dashboard/ecommerce.html"
-)
-crm_dashboard_view = DashboardView.as_view(template_name="dashboard/crm.html")
-analytics_dashboard_view = DashboardView.as_view(
-    template_name="dashboard/analytics.html"
-)
-projects_dashboard_view = DashboardView.as_view(template_name="dashboard/projects.html")
-
-
-class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
+class HomeDashboardView(DashboardView, MultiFormsView):
 
     model = User
     template_name = "dashboard/home.html"
@@ -83,7 +98,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 
         video_file = self.request.FILES.get("video_file")
         if video_file is not None:
-            timelapse_alert = TimelapseAlert.objects.create(
+            timelapse_alert = ManualVideoUploadAlert.objects.create(
                 user=self.request.user,
                 original_video=self.request.FILES["video_file"],
             )
@@ -103,27 +118,13 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
         return redirect(reverse("dashboard:report-cards:list"))
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HomeDashboardView, self).get_context_data(**kwargs)
+        form_classes = self.get_form_classes()
+        forms = self.get_forms(form_classes)
+        context = super().get_context_data(forms=forms, **kwargs)
+        logger.info(context)
+        # logger.info(context)
         token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
-
-        context["user"] = self.request.user
-        context["recent_alerts"] = (
-            AlertVideoMessage.objects.filter(
-                user=self.request.user,
-                job_status__in=[
-                    AlertVideoMessage.JobStatusChoices.FAILURE,
-                    AlertVideoMessage.JobStatusChoices.SUCCESS,
-                ],
-            )
-            .exclude(seen=True)
-            .all()
-        )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
-        # context["recent_alerts"] = self.request.user.AlertVideoMessage_set.filter(unseen=True).all()
+        context["user"].token = token
 
         return context
 
@@ -131,7 +132,7 @@ class HomeDashboardView(LoginRequiredMixin, MultiFormsView):
 home_dashboard_view = HomeDashboardView.as_view()
 
 
-class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
+class AppDashboardListView(DashboardView, FormView):
     template_name = "dashboard/apps-list.html"
     success_url = "/dashboard/apps/"
 
@@ -147,7 +148,6 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
     def get_context_data(self, *args, **kwargs):
         context = super(AppDashboardListView, self).get_context_data(**kwargs)
 
-        context["user"] = self.request.user
         context["ecommerce_apps"] = (
             AppCard.objects.filter(category="Ecommerce")
             .prefetch_related("appnotification_set")
@@ -173,7 +173,7 @@ class AppDashboardListView(LoginRequiredMixin, TemplateView, FormView):
 app_dashboard_list_view = AppDashboardListView.as_view()
 
 
-class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView, FormView):
+class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
     model = OctoPrintDevice
     # slug_field = "id"
     # slug_url_kwarg = "id"
@@ -184,7 +184,6 @@ class OctoPrintDevicesDetailView(LoginRequiredMixin, DetailView, FormView):
     def form_valid(self, form):
         device = self.get_object()
         command = form.cleaned_data.get("command")
-        logger.info(f"****** {command}")
 
         try:
             RemoteControlCommand.objects.create(
@@ -267,15 +266,15 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def dismiss_form_valid(self, form):
         failed_job = self.request.POST.get("alert_id")
         if failed_job is not None:
-            TimelapseAlert.objects.filter(id=failed_job).update(seen=True)
+            ManualVideoUploadAlert.objects.filter(id=failed_job).update(seen=True)
 
         return redirect(reverse("dashboard:report-cards:list"))
 
     def cancel_form_valid(self, form):
         failed_job = self.request.POST.get("alert_id")
         if failed_job is not None:
-            TimelapseAlert.objects.filter(id=failed_job).update(
-                job_status=TimelapseAlert.JobStatusChoices.CANCELLED
+            ManualVideoUploadAlert.objects.filter(id=failed_job).update(
+                job_status=ManualVideoUploadAlert.JobStatusChoices.CANCELLED
             )
 
         return redirect(reverse("dashboard:report-cards:list"))
@@ -283,14 +282,16 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def upvote_form_valid(self, form):
 
         alert_id = self.request.POST.get("alert_id")
-        alert = TimelapseAlert.objects.filter(id=alert_id).update(feedback=True)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=True)
 
         return redirect(self.get_success_url())
 
     def downvote_form_valid(self, form):
 
         alert_id = self.request.POST.get("alert_id")
-        alert = TimelapseAlert.objects.filter(id=alert_id).update(feedback=False)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
+            feedback=False
+        )
 
         return redirect(self.get_success_url())
 
@@ -298,7 +299,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
 
         video_file = self.request.FILES.get("video_file")
         if video_file is not None:
-            timelapse_alert = TimelapseAlert.objects.create(
+            timelapse_alert = ManualVideoUploadAlert.objects.create(
                 user=self.request.user,
                 original_video=self.request.FILES["video_file"],
             )
@@ -321,28 +322,27 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["alerts_success"] = (
-            AlertVideoMessage.objects.filter(
+            ManualVideoUploadAlert.objects.filter(
                 user=self.request.user.id,
-                job_status=AlertVideoMessage.JobStatusChoices.SUCCESS,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
             )
             .order_by("-created_dt")
             .all()
         )
 
         context["alerts_failed"] = (
-            TimelapseAlert.objects.filter(
+            ManualVideoUploadAlert.objects.filter(
                 user=self.request.user.id,
-                job_status=TimelapseAlert.JobStatusChoices.FAILURE,
-                seen=False,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
             )
             .order_by("-created_dt")
             .all()
         )
 
         context["alerts_processing"] = (
-            TimelapseAlert.objects.filter(
+            ManualVideoUploadAlert.objects.filter(
                 user=self.request.user.id,
-                job_status=TimelapseAlert.JobStatusChoices.PROCESSING,
+                job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
             )
             .order_by("-created_dt")
             .all()
@@ -356,7 +356,7 @@ video_dashboard_list_view = VideoDashboardView.as_view()
 
 class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
 
-    model = AlertVideoMessage
+    model = ManualVideoUploadAlert
     # slug_field = "id"
     # slug_url_kwarg = "id"
     template_name = "dashboard/video-detail.html"
@@ -364,7 +364,7 @@ class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
     def get_object(self):
         obj = super().get_object()
 
-        obj.seen = True
+        # obj.seen = True
         obj.save()
         return obj
 

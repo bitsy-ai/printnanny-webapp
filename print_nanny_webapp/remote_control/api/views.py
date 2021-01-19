@@ -1,3 +1,8 @@
+from asgiref.sync import async_to_sync
+import logging
+from django.apps import apps
+from django.core.files.base import ContentFile
+
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
@@ -9,9 +14,10 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework import status
 
-
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
+
+from rest_framework.renderers import JSONRenderer
 
 from rest_framework.parsers import (
     MultiPartParser,
@@ -28,20 +34,29 @@ from .serializers import (
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
     RemoteControlCommandSerializer,
+    RemoteControlSnapshotSerializer
 )
 
+from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintJob,
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
+    RemoteControlSnapshot
 )
+
+from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (create_remote_control_command_alerts)
 
 
 import google.api_core.exceptions
 
 from print_nanny_webapp.utils import prometheus_metrics
+
+logger = logging.getLogger(__name__)
+
+RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
@@ -73,6 +88,26 @@ class CommandViewSet(
             RemoteControlCommand.COMMAND_CODES,
             status.HTTP_200_OK,
         )
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop("partial", False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, "_prefetched_objects_cache", None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
+        if alert_subtype is not None:
+
+            task = create_remote_control_command_alerts.delay(request.user.id, instance.id, alert_subtype.value)
+            logger.info(f'Created create_remote_control_command_alerts task {task}')
+
+        return Response(serializer.data)
 
 
 @extend_schema(tags=["remote-control"])
@@ -193,6 +228,39 @@ class PrinterProfileViewSet(
 
 
 @extend_schema(tags=["remote-control"])
+class RemoteControlSnapshotViewSet(
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    GenericViewSet,
+):
+    parser_classes = (MultiPartParser, FormParser)
+    serializer_class = RemoteControlSnapshotSerializer
+    queryset = RemoteControlSnapshot.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        tags=["remote-control"],
+        operation_id="snapshots_create",
+        responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
+    )
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # https://github.com/aio-libs/aiohttp/issues/3652
+            # octoprint_device is accepted as a string and deserialized to an integer
+            instance = serializer.create(
+                serializer.validated_data
+            )
+            response_serializer = self.get_serializer(instance)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(tags=["remote-control"])
 class GcodeFileViewSet(
     CreateModelMixin,
     ListModelMixin,
@@ -211,7 +279,7 @@ class GcodeFileViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="gcode_files_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
+        responses={400: GcodeFileSerializer, 201: GcodeFileSerializer },
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)
@@ -228,6 +296,10 @@ class GcodeFileViewSet(
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+            # https://github.com/aio-libs/aiohttp/issues/3652
+            # octoprint_device is accepted as a string and deserialized to an integer
+            octoprint_device = OctoPrintDevice.objects.get(id=int(serializer.validated_data["octoprint_device"]))
+            serializer.validated_data["octoprint_device"] = octoprint_device
             instance, created = serializer.update_or_create(
                 serializer.validated_data, request.user
             )
@@ -284,7 +356,9 @@ class OctoPrintDeviceViewSet(
             instance, created = serializer.update_or_create(
                 request.user, serializer.validated_data.get("serial"), validated_data
             )
-            response_serializer = OctoPrintDeviceKeySerializer(instance=instance, context=self.get_serializer_context())
+            response_serializer = OctoPrintDeviceKeySerializer(
+                instance=instance, context=self.get_serializer_context()
+            )
 
             if not created:
                 return Response(

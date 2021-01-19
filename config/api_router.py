@@ -12,21 +12,20 @@ from print_nanny_webapp.remote_control.api.views import (
     PrinterProfileViewSet, 
     PrintJobViewSet,
     OctoPrintDeviceViewSet,
-    CommandViewSet
+    CommandViewSet,
+    RemoteControlSnapshotViewSet
 )
 
-# from print_nanny_webapp.alerts.api.views import (
-#     AlertVideoMessageViewSet,
-#     AlertEventViewSet
-# )
-
+from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet
 
 router = DefaultRouter()
-# router.register('alert-messages', AlertVideoMessageViewSet, basename='alert-message', namespace='alerts')
-# router.register('alert-events', AlertEventViewSet, basename='alert-event', namespace='alerts')
+
+router.register("alerts", AlertViewSet)
+router.register("alert_settings", AlertSettingsViewSet)
 
 router.register("users", UserViewSet)
 
+router.register(f"snapshots", RemoteControlSnapshotViewSet, basename='snapshot')
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
 

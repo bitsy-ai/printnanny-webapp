@@ -1,0 +1,31 @@
+Hey {{ FIRST_NAME }},
+
+Quick update on the {{COMMAND}} command you sent to {{DEVICE_NAME}}!
+
+Status: {{ SUBTYPE }}
+Command: {{ COMMAND }}
+Device: {{ DEVICE_NAME }}
+{% if PROGRESS %}
+Progress: {{PROGRESS}}% complete
+{% endif %}
+
+Click the following link to view a web camera snapshot:
+
+{{ SNAPSHOT_URL }}
+
+Was this alert not helpful? You can unsubscribe in Print Nanny's alert settings dashboard:
+
+https://www.print-nanny.com/alerts/settings
+
+Did you notice an issue with this alert? Open a Github Issue to report a bug. 
+
+https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new
+
+Join Discord to hang out with some really cool makers. 🦾✨
+
+https://discord.gg/sf23bk2hPr
+
+
+
+
+

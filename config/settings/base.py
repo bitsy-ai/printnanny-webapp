@@ -65,7 +65,7 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
 ]
@@ -136,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
-    "django.middleware.security.SecurityMiddleware",
+    "django.middleware.security.SecurityMiddleware",    
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -154,13 +154,14 @@ MIDDLEWARE = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = "http://localhost:8000/static/"
+STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [ 
     ('css', str(APPS_DIR / "static/css")),
     ('fonts', str(APPS_DIR / "static/fonts")),
     ('images', str(APPS_DIR / "static/images")),
-    ('js', str(APPS_DIR / "static/js"))
+    ('js', str(APPS_DIR / "static/js")),
+    ('vue', str(APPS_DIR / "static/vue")),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -244,9 +245,9 @@ FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 # SECURITY
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
-SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
-CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
 SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
@@ -373,6 +374,8 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+
+PAGE_SIZE = 20
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
@@ -381,8 +384,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 25
+    'DEFAULT_PAGINATION_CLASS': 'print_nanny_webapp.utils.pagination.PageNumberPagination',
+    'PAGE_SIZE': PAGE_SIZE
 }
 
 # Your stuff...
@@ -426,7 +429,7 @@ INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
 INVITATIONS_INVITATION_ONLY=True
 INVITATIONS_INVITATION_EXPIRY=30
 INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'
-
+INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP=True
 # channels
 
 INSTALLED_APPS += [
@@ -436,6 +439,7 @@ INSTALLED_APPS += [
 APPEND_SLASH = True
 
 # pubsub and cloud iot
+GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
 GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = 'us-central1'
 GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-dev')
@@ -471,4 +475,22 @@ INSTALLED_APPS += [
     'health_check.db',                          # stock Django health checkers
     'health_check.cache',  
     'health_check.contrib.migrations',
+]
+
+# django-eventstream
+
+
+
+# help guides
+
+HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
+
+# setting the default in axios config isn't working, so adjust to axios default
+# CSRF_COOKIE_NAME = "XSRF-TOKEN"
+# CSRF_USE_SESSIONS = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',
+    'http://localhost:8080',
+    'https://print-nanny.com'
 ]
