@@ -45,6 +45,8 @@ from print_nanny_webapp.remote_control.models import (
     RemoteControlSnapshot
 )
 
+from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (create_remote_control_command_alerts)
+
 
 import google.api_core.exceptions
 
@@ -100,7 +102,7 @@ class CommandViewSet(
         alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
         if alert_subtype is not None:
 
-            task = create_remote_control_command_alerts.delay(user.id, command.id, alert_subtype)
+            task = create_remote_control_command_alerts.delay(request.user.id, instance.id, alert_subtype)
             logger.info(f'Created create_remote_control_command_alerts task {task}')
 
         return Response(serializer.data)
