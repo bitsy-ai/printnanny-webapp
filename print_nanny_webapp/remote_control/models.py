@@ -374,6 +374,7 @@ class RemoteControlCommandManager(models.Manager):
 
 class RemoteControlSnapshot(models.Model):
     image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/")
+    command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE, related_name='snapshots')
 
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
