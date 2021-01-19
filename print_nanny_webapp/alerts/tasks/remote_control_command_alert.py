@@ -13,12 +13,12 @@ logger = logging.getLogger(__name__)
 @shared_task
 def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
 
-
+    logging.info(f'Processing {alert_subtype} alerts for command_id={command_id} user_id={user_id}')
     user = User.objects.get(id=user_id)
     command = RemoteControlCommand(id=command_id)
 
     alert_settings = RemoteControlCommandAlertSettings(user=user)
-    alert_settings_attr = alert_settings.command_to_attr(command.command)
+    alert_settings_attr = alert_settings.command_to_attr(command.command.value)
 
     created_alerts = []
     logging.info(f'Checking alert_subtype={alert_subtype} in {alert_settings_attr}')

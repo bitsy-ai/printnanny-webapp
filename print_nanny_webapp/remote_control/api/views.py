@@ -104,7 +104,7 @@ class CommandViewSet(
         alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
         if alert_subtype is not None:
 
-            task = create_remote_control_command_alerts.delay(request.user.id, instance.id, alert_subtype)
+            task = create_remote_control_command_alerts.delay(request.user.id, instance.id, alert_subtype.value)
             logger.info(f'Created create_remote_control_command_alerts task {task}')
 
         return Response(serializer.data)
@@ -255,9 +255,6 @@ class RemoteControlSnapshotViewSet(
                 serializer.validated_data
             )
             response_serializer = self.get_serializer(instance)
-
-            if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
