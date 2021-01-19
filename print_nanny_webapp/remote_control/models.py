@@ -19,6 +19,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 
+from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
@@ -309,15 +310,6 @@ class PrintJob(models.Model):
     class Meta:
         unique_together = ("user", "name", "created_dt")
 
-    class StatusChoices(models.TextChoices):
-        STARTED = "STARTED", "Started"
-        DONE = "DONE", "Done"
-        FAILED = "FAILED", "Failed"
-        CANCELLING = "CANCELLING", "Cancelling"
-        CANCELLED = "CANCELLED", "Cancelled"
-        PAUSED = "PAUSED", "Paused"
-        RESUMED = "RESUMED", "Resumed"
-
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
 
@@ -325,8 +317,9 @@ class PrintJob(models.Model):
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+
     last_status = models.CharField(
-        max_length=12, choices=StatusChoices.choices, default=StatusChoices.STARTED
+        max_length=56, choices=PrintJobEventTypeChoices.choices, default=PrintJobEventTypeChoices.PRINT_STARTED
     )
     last_seen = models.DateTimeField(auto_now=True)
 
@@ -377,6 +370,7 @@ class RemoteControlCommandManager(models.Manager):
         dict_response = MessageToDict(response._pb)
         obj.iotcore_response = dict_response
         obj.save()
+        return obj
 
 class RemoteControlSnapshot(models.Model):
     image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/")
@@ -397,19 +391,19 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJob.StatusChoices.STARTED: [
+        PrintJobEventTypeChoices.PRINT_STARTED: [
             CommandChoices.STOP_PRINT,
             CommandChoices.PAUSE_PRINT,
         ],
-        PrintJob.StatusChoices.DONE: [CommandChoices.MOVE_NOZZLE],
-        PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE_NOZZLE],
-        PrintJob.StatusChoices.CANCELLING: [],
-        PrintJob.StatusChoices.PAUSED: [
+        PrintJobEventTypeChoices.PRINT_DONE: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_CANCELLING: [],
+        PrintJobEventTypeChoices.PRINT_PAUSED: [
             CommandChoices.STOP_PRINT,
             CommandChoices.RESUME_PRINT,
             CommandChoices.MOVE_NOZZLE,
         ],
-        PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
         "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING, CommandChoices.SNAPSHOT],
     }
 

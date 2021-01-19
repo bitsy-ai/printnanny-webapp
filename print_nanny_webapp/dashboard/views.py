@@ -184,7 +184,6 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
     def form_valid(self, form):
         device = self.get_object()
         command = form.cleaned_data.get("command")
-        logger.info(f"****** {command}")
 
         try:
             RemoteControlCommand.objects.create(
