@@ -88,11 +88,12 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = RemoteControlSnapshot
-        read_only_fields = ("user",)
         fields = [field.name for field in RemoteControlSnapshot._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
+
+        
 class GcodeFileSerializer(serializers.ModelSerializer):
 
     # https://github.com/aio-libs/aiohttp/issues/3652
