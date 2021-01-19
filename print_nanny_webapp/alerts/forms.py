@@ -27,6 +27,7 @@ class CommandAlertSettingsForm(ModelForm):
         fields = (
             "enabled",
             "alert_methods",
+            "snapshot",
             "start_print",
             "stop_print",
             "pause_print",

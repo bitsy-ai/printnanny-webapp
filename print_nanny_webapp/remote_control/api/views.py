@@ -245,16 +245,14 @@ class RemoteControlSnapshotViewSet(
         operation_id="snapshots_create",
         responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
     )
-    def create(self, *args, **kwargs):
+    def create(self, request):
         serializer = self.get_serializer(data=request.data)
 
         if serializer.is_valid():
             # https://github.com/aio-libs/aiohttp/issues/3652
             # octoprint_device is accepted as a string and deserialized to an integer
-            command = RemoteControlCommand.objects.get(id=int(serializer.validated_data["command"]))
-            serializer.validated_data["command"] = command
-            instance, created = serializer.update_or_create(
-                serializer.validated_data, request.user
+            instance = serializer.create(
+                serializer.validated_data
             )
             response_serializer = self.get_serializer(instance)
 

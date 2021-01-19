@@ -163,7 +163,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     start_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>SartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.",
+        help_text="Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
@@ -247,7 +247,7 @@ class RemoteControlCommandAlert(Alert):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
         self.alert_trigger_method_map = {
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
-            Alert.AlertMethodChoices.EMAI: self.trigger_email_alert
+            Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert
         }
     def trigger_alert(self):
         from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
