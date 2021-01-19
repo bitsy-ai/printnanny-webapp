@@ -12,7 +12,7 @@ RemoteControlCommandAlertSettings = apps.get_model('alerts', 'RemoteControlComma
 def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
 
 
-    user = Users.get(id=user_id)
+    user = User.objects.get(id=user_id)
     command = RemoteControlCommand(id=command_id)
 
     alert_settings = RemoteControlCommandAlertSettings(user=user)

@@ -13,6 +13,7 @@ from polymorphic.managers import PolymorphicManager
 from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
+import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
@@ -126,8 +127,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     def command_to_attr(self, command_str):
         # shamelessly ripped from https://www.geeksforgeeks.org/python-program-to-convert-camel-case-string-to-snake-case/
-        snake_cased = ''.join(['_'+i.lower() if i.isupper()  
-               else i for i in command_str]).lstrip('_')
+        snake_cased = stringcase.snakecase(command_str)
         return getattr(self, snake_cased)
 
 
