@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='printerprofile',
             name='octoprint_device',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
+            field=models.ForeignKey(default=3, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
             preserve_default=False,
         ),
         migrations.AlterUniqueTogether(

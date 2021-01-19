@@ -15,10 +15,9 @@ spec:
     spec:
       serviceAccountName: sql-webapp
       containers:
-      - name: octoprint-events
+      - name: celery-worker
         command: 
-          - python
-          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+          - /start-celeryworker
         envFrom:
           - configMapRef:
               name: webapp
@@ -49,6 +48,13 @@ spec:
           failureThreshold: 4
         command: 
           - /start
+        envFrom:
+          - configMapRef:
+              name: webapp
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
       - name: octoprint-events
         command: 
           - python

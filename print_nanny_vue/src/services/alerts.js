@@ -11,8 +11,8 @@ const configuration = new Configuration({
 })
 
 export default {
-  async fetchAlertMethods (opts){
-    
+  async fetchAlertMethods (opts) {
+
   },
   async fetchAlerts (opts) {
     const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
