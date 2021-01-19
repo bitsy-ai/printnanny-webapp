@@ -1,8 +1,20 @@
-import alerts from './alerts'
 import Vue from 'vue'
+import Vuex from 'vuex'
 
-export default {
-  modules: { alerts },
+import alerts, { ALERTS_DROPDOWN_MODULE, ALERTS_TABLE_MODULE } from './alerts'
+import settings, { SETTINGS_MODULE } from './settings'
+
+import mutations from './mutations'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  strict: !process.env === 'production',
+  modules: {
+    [ALERTS_DROPDOWN_MODULE]: alerts,
+    [ALERTS_TABLE_MODULE]: alerts,
+    [SETTINGS_MODULE]: settings
+  },
   state: () => ({
     socket: {
       isConnected: false,
@@ -10,29 +22,5 @@ export default {
       reconnectError: false
     }
   }),
-  mutations: {
-
-    SOCKET_ONOPEN (state, event) {
-      Vue.prototype.$socket = event.currentTarget
-      state.socket.isConnected = true
-    },
-    SOCKET_ONCLOSE (state, event) {
-      state.socket.isConnected = false
-    },
-    SOCKET_ONERROR (state, event) {
-      console.error(state, event)
-    },
-    // default handler called for all methods
-    SOCKET_ONMESSAGE (state, message) {
-      state.socket.message = message
-    },
-    // mutations for reconnect methods
-    SOCKET_RECONNECT (state, count) {
-      console.info(state, count)
-    },
-    SOCKET_RECONNECT_ERROR (state) {
-      state.socket.reconnectError = true
-    }
-  }
-  // plugins: [createWebSocketPlugin()]
-}
+  mutations: mutations
+})

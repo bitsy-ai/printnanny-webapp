@@ -40,6 +40,8 @@ urlpatterns = [
 
     path("dashboard/",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
+    
+    path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
 
 

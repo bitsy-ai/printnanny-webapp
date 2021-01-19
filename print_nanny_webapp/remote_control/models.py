@@ -19,6 +19,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 
+from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
@@ -261,16 +262,18 @@ class GcodeFile(models.Model):
     name = models.CharField(max_length=255)
     file = models.FileField(upload_to="uploads/gcode_file/%Y/%m/%d/")
     file_hash = models.CharField(max_length=255)
+    octoprint_device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
 
 
 class PrinterProfile(models.Model):
     class Meta:
         unique_together = (
             "user",
-            "octoprint_id",
+            "octoprint_key",
         )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    octoprint_device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE, db_index=True)
 
     axes_e_inverted = models.BooleanField(null=True)
     axes_e_speed = models.IntegerField(null=True)
@@ -293,7 +296,7 @@ class PrinterProfile(models.Model):
 
     model = models.CharField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=255)
-    octoprint_id = models.CharField(max_length=255, db_index=True)
+    octoprint_key = models.CharField(max_length=255, db_index=True)
 
     volume_custom_box = models.BooleanField(null=True)
     volume_depth = models.FloatField(null=True)
@@ -305,28 +308,23 @@ class PrinterProfile(models.Model):
 
 class PrintJob(models.Model):
     class Meta:
-        unique_together = ("user", "name", "dt")
+        unique_together = ("user", "name", "created_dt")
 
-    class StatusChoices(models.TextChoices):
-        STARTED = "STARTED", "Started"
-        DONE = "DONE", "Done"
-        FAILED = "FAILED", "Failed"
-        CANCELLING = "CANCELLING", "Cancelling"
-        CANCELLED = "CANCELLED", "Cancelled"
-        PAUSED = "PAUSED", "Paused"
-        RESUMED = "RESUMED", "Resumed"
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
 
-    dt = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+
     last_status = models.CharField(
-        max_length=12, choices=StatusChoices.choices, default=StatusChoices.STARTED
+        max_length=56, choices=PrintJobEventTypeChoices.choices, default=PrintJobEventTypeChoices.PRINT_STARTED
     )
     last_seen = models.DateTimeField(auto_now=True)
 
-    progress = models.IntegerField(default=0)
+    # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
+    progress = JSONField(default={})
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
     )
@@ -372,6 +370,12 @@ class RemoteControlCommandManager(models.Manager):
         dict_response = MessageToDict(response._pb)
         obj.iotcore_response = dict_response
         obj.save()
+        return obj
+
+class RemoteControlSnapshot(models.Model):
+    created_dt = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/")
+    command = models.ForeignKey('remote_control.RemoteControlCommand', on_delete=models.CASCADE, related_name='snapshots')
 
 
 class RemoteControlCommand(models.Model):
@@ -380,6 +384,7 @@ class RemoteControlCommand(models.Model):
     class CommandChoices(models.TextChoices):
         STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
         START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
+        SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
         START_PRINT = "StartPrint", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
         STOP_PRINT = "StopPrint", "Stop Print"
@@ -389,20 +394,25 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJob.StatusChoices.STARTED: [
+        PrintJobEventTypeChoices.PRINT_STARTED: [
             CommandChoices.STOP_PRINT,
             CommandChoices.PAUSE_PRINT,
         ],
-        PrintJob.StatusChoices.DONE: [CommandChoices.MOVE_NOZZLE],
-        PrintJob.StatusChoices.CANCELLED: [CommandChoices.MOVE_NOZZLE],
-        PrintJob.StatusChoices.CANCELLING: [],
-        PrintJob.StatusChoices.PAUSED: [
+        PrintJobEventTypeChoices.PRINT_DONE: [
+            CommandChoices.MOVE_NOZZLE,
+            CommandChoices.START_MONITORING,
+            CommandChoices.STOP_MONITORING,
+            CommandChoices.SNAPSHOT
+        ],
+        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
+        PrintJobEventTypeChoices.PRINT_CANCELLING: [],
+        PrintJobEventTypeChoices.PRINT_PAUSED: [
             CommandChoices.STOP_PRINT,
             CommandChoices.RESUME_PRINT,
             CommandChoices.MOVE_NOZZLE,
         ],
-        PrintJob.StatusChoices.FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING],
+        PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
+        "Idle": [CommandChoices.START_MONITORING, CommandChoices.STOP_MONITORING, CommandChoices.SNAPSHOT],
     }
 
     ACTION_CSS_CLASSES = {
@@ -416,4 +426,9 @@ class RemoteControlCommand(models.Model):
     device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
-    iotcore_response = JSONField()
+    iotcore_response = JSONField(default={})
+
+    metadata = JSONField(default={})
+
+
+

@@ -23,14 +23,12 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    alerts: './src/alerts-main.js'
+    alertsDropdown: './src/alertsDropdown.js',
+    alertsTable: './src/alertsTable.js',
   },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    // publicPath: process.env.NODE_ENV === 'production'
-    //   ? config.build.assetsPublicPath
-    //   : config.dev.assetsPublicPath
   },
   optimization: {
     moduleIds: 'named'

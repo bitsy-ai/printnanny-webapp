@@ -1,0 +1,85 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
+                      
+                        <li class="breadcrumb-item active">Notification Settings</li>
+                    </ol>
+                </div>
+                <h3 class="page-title">Notification Settings</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 col-md-6">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Print Job Progress</h4>
+                        <p>Receive snapshots of your print job's progress.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post" id="progress-alert-settings">
+                            {% csrf_token %}
+                            {{ forms.progress | crispy }}
+                            <button type="submit"  name="action" value="progress" class="btn btn-primary">Save</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Defect Detector</h4>
+                        <p>Receive notifications when Print Nanny <strong>detects a defect</strong> in your print job.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post" id="defect-alert-settings">
+                            {% csrf_token %}
+                            {{ forms.defect | crispy }}
+                            <button type="submit"  name="action" value="defect" class="btn btn-primary">Save</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Remote Control Commands</h4>
+                        <p>Receive status updates for <strong>remote device commands</strong>.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="post" id="command-alert-settings">
+                            {% csrf_token %}
+                            {{ forms.command | crispy }}
+                            <button type="submit"  name="action" value="command" class="btn btn-primary">Save</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

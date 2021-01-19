@@ -8,72 +8,95 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
+        ("contenttypes", "0002_remove_content_type_name"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0004_auto_20201206_2018'),
+        ("alerts", "0004_auto_20201206_2018"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Alert',
+            name="Alert",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('dismissed', models.BooleanField(default=True)),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_alerts.alert_set+', to='contenttypes.contenttype')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                ("dismissed", models.BooleanField(default=True)),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_alerts.alert_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
         ),
         migrations.RemoveField(
-            model_name='alertvideomessage',
-            name='polymorphic_ctype',
+            model_name="alertvideomessage",
+            name="polymorphic_ctype",
         ),
         migrations.RemoveField(
-            model_name='alertvideomessage',
-            name='user',
+            model_name="alertvideomessage",
+            name="user",
         ),
         migrations.RemoveField(
-            model_name='defectalert',
-            name='alertvideomessage_ptr',
+            model_name="defectalert",
+            name="alertvideomessage_ptr",
         ),
         migrations.RemoveField(
-            model_name='defectalert',
-            name='print_job',
+            model_name="defectalert",
+            name="print_job",
         ),
         migrations.AlterUniqueTogether(
-            name='progressalert',
+            name="progressalert",
             unique_together=None,
         ),
         migrations.RemoveField(
-            model_name='progressalert',
-            name='alertvideomessage_ptr',
+            model_name="progressalert",
+            name="alertvideomessage_ptr",
         ),
         migrations.RemoveField(
-            model_name='progressalert',
-            name='print_job',
+            model_name="progressalert",
+            name="print_job",
         ),
         migrations.RemoveField(
-            model_name='timelapsealert',
-            name='alertvideomessage_ptr',
+            model_name="timelapsealert",
+            name="alertvideomessage_ptr",
         ),
         migrations.DeleteModel(
-            name='AlertPlot',
+            name="AlertPlot",
         ),
         migrations.DeleteModel(
-            name='AlertVideoMessage',
+            name="AlertVideoMessage",
         ),
         migrations.DeleteModel(
-            name='DefectAlert',
+            name="DefectAlert",
         ),
         migrations.DeleteModel(
-            name='ProgressAlert',
+            name="ProgressAlert",
         ),
         migrations.DeleteModel(
-            name='TimelapseAlert',
+            name="TimelapseAlert",
         ),
     ]

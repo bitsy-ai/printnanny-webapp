@@ -6,18 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0010_auto_20210115_1047'),
+        ("alerts", "0010_auto_20210115_1047"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alert',
-            name='seen',
+            model_name="alert",
+            name="seen",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalert',
-            name='alert_subtype',
-            field=models.CharField(choices=[('RECEIVED', 'Command was received by'), ('SUCCESS', 'Command succeeded'), ('FAILED', 'Command failed')], max_length=255),
+            model_name="remotecontrolcommandalert",
+            name="alert_subtype",
+            field=models.CharField(
+                choices=[
+                    ("RECEIVED", "Command was received by"),
+                    ("SUCCESS", "Command succeeded"),
+                    ("FAILED", "Command failed"),
+                ],
+                max_length=255,
+            ),
         ),
     ]

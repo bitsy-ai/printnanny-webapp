@@ -7,15 +7,45 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from ..models import ManualVideoUploadAlert, RemoteControlCommandAlert, Alert
+from ..models import (
+    ManualVideoUploadAlert,
+    RemoteControlCommandAlert,
+    Alert,
+    ProgressAlert,
+    DefectAlert,
+    AlertSettings,
+    ProgressAlertSettings,
+    RemoteControlCommandAlertSettings,
+    DefectAlertSettings,
+)
 
 logger = logging.getLogger(__name__)
 
 
 class AlertSerializer(serializers.ModelSerializer):
+
+    time = serializers.SerializerMethodField()
+
+    def get_time(self, obj):
+        return naturaltime(obj.updated_dt)
+
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "dismissed"]
+        fields = ["created_dt", "updated_dt", "user", "dismissed", "time"]
+        read_only_fields = ("user",)
+
+
+class ProgressAlertSerializer(AlertSerializer):
+    class Meta:
+        model = ProgressAlert
+        fields = "__all__"
+        read_only_fields = ("user",)
+
+
+class DefectAlertSerializer(AlertSerializer):
+    class Meta:
+        model = DefectAlert
+        fields = "__all__"
         read_only_fields = ("user",)
 
 
@@ -36,7 +66,7 @@ class AlertBulkResponseSerializer(serializers.Serializer):
     updated = serializers.IntegerField()
 
 
-class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
+class RemoteControlCommandAlertSerializer(AlertSerializer):
 
     dashboard_url = serializers.SerializerMethodField()
 
@@ -45,10 +75,13 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
             "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
         )
 
-    naturaltime = serializers.SerializerMethodField()
+    snapshot_url = serializers.SerializerMethodField()
+    def get_snapshot_url(self, obj):
+        return obj.command.snapshots.order_by('-created_dt').first().image.url
 
-    def get_naturaltime(self, obj):
-        return naturaltime(obj.updated_dt)
+    metadata = serializers.SerializerMethodField()
+    def get_metadata(self, obj):
+        return obj.command.metadata
 
     icon = serializers.CharField()
     description = serializers.CharField()
@@ -59,16 +92,19 @@ class RemoteControlCommandAlertSerializer(serializers.ModelSerializer):
         model = RemoteControlCommandAlert
         fields = [
             "alert_subtype",
+            "alert_method",
             "alert_type",
             "color",
             "created_dt",
             "dashboard_url",
             "dismissed",
+            "metadata",
             "icon",
             "id",
-            "naturaltime",
+            "time",
             "description",
             "seen",
+            "snapshot_url",
             "title",
             "updated_dt",
             "user",
@@ -90,7 +126,57 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         Alert: AlertSerializer,
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
+        DefectAlert: DefectAlertSerializer,
+        ProgressAlert: ProgressAlertSerializer,
     }
 
     def to_resource_type(self, model_or_instance):
         return model_or_instance._meta.object_name.lower()
+
+
+class AlertSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlertSettings
+        fields = "__all__"
+        read_only_fields = ("user",)
+
+
+class CommandAlertSettingsSerializer(AlertSettingsSerializer):
+    class Meta:
+        model = RemoteControlCommandAlertSettings
+        fields = "__all__"
+        read_only_fields = ("user",)
+
+
+class DefectAlertSettingsSerializer(AlertSettingsSerializer):
+    class Meta:
+        model = DefectAlertSettings
+        fields = "__all__"
+        read_only_fields = ("user",)
+
+
+class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
+    class Meta:
+        model = ProgressAlertSettings
+        fields = "__all__"
+        read_only_fields = ("user",)
+
+
+class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
+    resource_type_field_name = "type"
+
+    model_serializer_mapping = {
+        AlertSettings: AlertSettingsSerializer,
+        RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
+        DefectAlertSettings: DefectAlertSettingsSerializer,
+        ProgressAlert: ProgressAlertSettingsSerializer,
+    }
+
+    def to_resource_type(self, model_or_instance):
+        return model_or_instance._meta.object_name.lower()
+
+
+class AlertMethodSerializer(serializers.Serializer):
+
+    label = serializers.CharField()
+    value = serializers.CharField()
