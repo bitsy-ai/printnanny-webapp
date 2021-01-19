@@ -160,7 +160,8 @@ STATICFILES_DIRS = [
     ('css', str(APPS_DIR / "static/css")),
     ('fonts', str(APPS_DIR / "static/fonts")),
     ('images', str(APPS_DIR / "static/images")),
-    ('js', str(APPS_DIR / "static/js"))
+    ('js', str(APPS_DIR / "static/js")),
+    ('vue', str(APPS_DIR / "static/vue")),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [

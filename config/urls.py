@@ -21,7 +21,7 @@ from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, 
 urlpatterns = [
     re_path(r'^health/', include('health_check.urls'), name='health'),
 
-    re_path(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico', permanent=True)),
+    re_path(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'images/favicon.ico', permanent=True)),
     path("", TemplateView.as_view(template_name="landing/landing.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
