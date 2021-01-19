@@ -71,16 +71,17 @@ export default {
         </template>
 
         <template #cell(snapshot)="data">
-            <b-button v-if="data.snapshot" v-b-modal.snapshot-modal>View Snapshot</b-button>
-            <b-modal v-if="data.snapshot" id="snapshot-modal" :title="data.item.alert_subtype">
-              <b-img :src="data.snapshot_url" fluid alt="Fluid image"></b-img>
+            <b-button v-if="data.item.snapshot_url" v-b-modal="'snapshot-modal'+data.item.id" >View Snapshot</b-button>
+            <b-modal cancel-disabled v-if="data.item.snapshot_url" :id="'snapshot-modal'+data.item.id" :title="data.item.alert_subtype">
+              <b-img :src="data.item.snapshot_url" fluid alt="Fluid image"></b-img>
+
             </b-modal>
         </template>
 
         <template #cell(metadata)="data">
-            <b-button v-if="data.metadata" v-b-modal.metadata-modal>View Metadata</b-button>
-            <b-modal  v-if="data.metadata" id="metadata-modal"  :title="data.item.alert_subtype">
-              <code>{{data.metadata}}</code>
+            <b-button v-if="data.item.metadata" v-b-modal="'metadata-modal'+data.item.id" >View Metadata</b-button>
+            <b-modal  cancel-disabled v-if="data.item.metadata" :id="'metadata-modal'+data.item.id" :title="data.item.alert_subtype">
+              <code>{{data.item.metadata}}</code>
             </b-modal>
         </template>
         </b-table>
