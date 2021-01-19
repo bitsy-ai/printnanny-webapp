@@ -14,7 +14,7 @@ export default {
   },
   data: () => ({
     filter: '',
-    fields: ['status', 'event_type', 'title', 'description', 'time'],
+    fields: ['status', 'event_type', 'title', 'description', 'time', 'snapshot', 'metadata'],
     sortBy: 'time',
     sortDesc: true
   }),
@@ -70,6 +70,19 @@ export default {
           {{ data.item.alert_type }}
         </template>
 
+        <template #cell(snapshot)="data">
+            <b-button v-if="data.snapshot" v-b-modal.snapshot-modal>View Snapshot</b-button>
+            <b-modal v-if="data.snapshot" id="snapshot-modal" :title="data.item.alert_subtype">
+              <b-img :src="data.snapshot_url" fluid alt="Fluid image"></b-img>
+            </b-modal>
+        </template>
+
+        <template #cell(metadata)="data">
+            <b-button v-if="data.metadata" v-b-modal.metadata-modal>View Metadata</b-button>
+            <b-modal  v-if="data.metadata" id="metadata-modal"  :title="data.item.alert_subtype">
+              <code>{{data.metadata}}</code>
+            </b-modal>
+        </template>
         </b-table>
       </b-col>
     </b-row>

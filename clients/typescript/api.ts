@@ -161,12 +161,12 @@ export interface AlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof AlertSettings
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertSettingsAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof AlertSettings
      */
@@ -177,13 +177,17 @@ export interface AlertSettings {
      * @memberof AlertSettings
      */
     polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof AlertSettings
-     */
-    user?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum AlertSettingsAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * @type AlertSettingsPolymorphic
  * @export
@@ -210,17 +214,27 @@ export interface AlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof AlertSettingsRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof AlertSettingsRequest
      */
     enabled?: boolean;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum AlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -308,142 +322,64 @@ export interface CommandAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<CommandAlertSettingsAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof CommandAlertSettings
      */
     enabled?: boolean;
     /**
-     * 
-     * @type {boolean}
+     * Fires on web camera <strong>Snapshot</strong> command
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    stop_monitoring_success?: boolean;
+    snapshot?: Array<CommandAlertSettingsSnapshotEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    stop_monitoring_failed?: boolean;
+    stop_monitoring?: Array<CommandAlertSettingsStopMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    stop_monitoring_received?: boolean;
+    start_monitoring?: Array<CommandAlertSettingsStartMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    start_monitoring_success?: boolean;
+    stop_print?: Array<CommandAlertSettingsStopPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    start_monitoring_failed?: boolean;
+    start_print?: Array<CommandAlertSettingsStartPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    start_monitoring_received?: boolean;
+    move_nozzle?: Array<CommandAlertSettingsMoveNozzleEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    start_print_success?: boolean;
+    pause_print?: Array<CommandAlertSettingsPausePrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
-    start_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    start_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    stop_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    stop_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    stop_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    move_nozzle_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    move_nozzle_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    move_nozzle_recived?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    pause_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    pause_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    pause_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    resume_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    resume_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettings
-     */
-    resume_print_received?: boolean;
+    resume_print?: Array<CommandAlertSettingsResumePrintEnum>;
     /**
      * 
      * @type {number}
@@ -457,6 +393,88 @@ export interface CommandAlertSettings {
      */
     user?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsSnapshotEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsStopMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsStartMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsStopPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsStartPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsMoveNozzleEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsPausePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsResumePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
@@ -471,143 +489,147 @@ export interface CommandAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<CommandAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof CommandAlertSettingsRequest
      */
     enabled?: boolean;
     /**
-     * 
-     * @type {boolean}
+     * Fires on web camera <strong>Snapshot</strong> command
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_monitoring_success?: boolean;
+    snapshot?: Array<CommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_monitoring_failed?: boolean;
+    stop_monitoring?: Array<CommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_monitoring_received?: boolean;
+    start_monitoring?: Array<CommandAlertSettingsRequestStartMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_monitoring_success?: boolean;
+    stop_print?: Array<CommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_monitoring_failed?: boolean;
+    start_print?: Array<CommandAlertSettingsRequestStartPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_monitoring_received?: boolean;
+    move_nozzle?: Array<CommandAlertSettingsRequestMoveNozzleEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_print_success?: boolean;
+    pause_print?: Array<CommandAlertSettingsRequestPausePrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    start_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    stop_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    stop_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    stop_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    move_nozzle_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    move_nozzle_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    move_nozzle_recived?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    pause_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    pause_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    pause_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    resume_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    resume_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CommandAlertSettingsRequest
-     */
-    resume_print_received?: boolean;
+    resume_print?: Array<CommandAlertSettingsRequestResumePrintEnum>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestSnapshotEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestStopMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestStartMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestStopPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestStartPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestMoveNozzleEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestPausePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CommandAlertSettingsRequestResumePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
@@ -616,6 +638,7 @@ export interface CommandAlertSettingsRequest {
 export enum CommandEnum {
     StopMonitoring = 'StopMonitoring',
     StartMonitoring = 'StartMonitoring',
+    Snapshot = 'Snapshot',
     StartPrint = 'StartPrint',
     MoveNozzle = 'MoveNozzle',
     StopPrint = 'StopPrint',
@@ -641,6 +664,12 @@ export interface DefectAlert {
      * @memberof DefectAlert
      */
     time?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof DefectAlert
+     */
+    alert_method: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -692,6 +721,12 @@ export interface DefectAlert {
 export interface DefectAlertRequest {
     /**
      * 
+     * @type {AlertMethodEnum}
+     * @memberof DefectAlertRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
      * @type {AlertTypeEnum}
      * @memberof DefectAlertRequest
      */
@@ -741,12 +776,12 @@ export interface DefectAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof DefectAlertSettings
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<DefectAlertSettingsAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof DefectAlertSettings
      */
@@ -764,6 +799,16 @@ export interface DefectAlertSettings {
      */
     user?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DefectAlertSettingsAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -778,17 +823,27 @@ export interface DefectAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof DefectAlertSettingsRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<DefectAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof DefectAlertSettingsRequest
      */
     enabled?: boolean;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum DefectAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -881,6 +936,12 @@ export interface GcodeFile {
      * @type {string}
      * @memberof GcodeFile
      */
+    octoprint_device: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GcodeFile
+     */
     url?: string;
 }
 /**
@@ -907,6 +968,12 @@ export interface GcodeFileRequest {
      * @memberof GcodeFileRequest
      */
     file_hash: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GcodeFileRequest
+     */
+    octoprint_device: string;
 }
 /**
  * 
@@ -914,13 +981,14 @@ export interface GcodeFileRequest {
  * @enum {string}
  */
 export enum LastStatusEnum {
-    Started = 'STARTED',
-    Done = 'DONE',
-    Failed = 'FAILED',
-    Cancelling = 'CANCELLING',
-    Cancelled = 'CANCELLED',
-    Paused = 'PAUSED',
-    Resumed = 'RESUMED'
+    Error = 'Error',
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
 }
 
 /**
@@ -1751,6 +1819,37 @@ export interface PaginatedRemoteControlCommandList {
 /**
  * 
  * @export
+ * @interface PaginatedRemoteControlSnapshotList
+ */
+export interface PaginatedRemoteControlSnapshotList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedRemoteControlSnapshotList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteControlSnapshotList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteControlSnapshotList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<RemoteControlSnapshot>}
+     * @memberof PaginatedRemoteControlSnapshotList
+     */
+    results?: Array<RemoteControlSnapshot>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedUserList
  */
 export interface PaginatedUserList {
@@ -1831,17 +1930,27 @@ export interface PatchedAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof PatchedAlertSettingsRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<PatchedAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof PatchedAlertSettingsRequest
      */
     enabled?: boolean;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -1856,149 +1965,159 @@ export interface PatchedCommandAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<PatchedCommandAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof PatchedCommandAlertSettingsRequest
      */
     enabled?: boolean;
     /**
-     * 
-     * @type {boolean}
+     * Fires on web camera <strong>Snapshot</strong> command
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_monitoring_success?: boolean;
+    snapshot?: Array<PatchedCommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_monitoring_failed?: boolean;
+    stop_monitoring?: Array<PatchedCommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_monitoring_received?: boolean;
+    start_monitoring?: Array<PatchedCommandAlertSettingsRequestStartMonitoringEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_monitoring_success?: boolean;
+    stop_print?: Array<PatchedCommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_monitoring_failed?: boolean;
+    start_print?: Array<PatchedCommandAlertSettingsRequestStartPrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_monitoring_received?: boolean;
+    move_nozzle?: Array<PatchedCommandAlertSettingsRequestMoveNozzleEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_print_success?: boolean;
+    pause_print?: Array<PatchedCommandAlertSettingsRequestPausePrintEnum>;
     /**
-     * 
-     * @type {boolean}
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    start_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    stop_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    stop_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    stop_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    move_nozzle_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    move_nozzle_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    move_nozzle_recived?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    pause_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    pause_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    pause_print_received?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    resume_print_success?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    resume_print_failed?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    resume_print_received?: boolean;
+    resume_print?: Array<PatchedCommandAlertSettingsRequestResumePrintEnum>;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestSnapshotEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestStopMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestStartMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestStopPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestStartPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestMoveNozzleEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestPausePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedCommandAlertSettingsRequestResumePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
  * @interface PatchedDefectAlertRequest
  */
 export interface PatchedDefectAlertRequest {
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedDefectAlertRequest
+     */
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -2032,17 +2151,27 @@ export interface PatchedDefectAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof PatchedDefectAlertSettingsRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<PatchedDefectAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof PatchedDefectAlertSettingsRequest
      */
     enabled?: boolean;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedDefectAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -2067,6 +2196,12 @@ export interface PatchedGcodeFileRequest {
      * @memberof PatchedGcodeFileRequest
      */
     file_hash?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedGcodeFileRequest
+     */
+    octoprint_device?: string;
 }
 /**
  * 
@@ -2198,12 +2333,6 @@ export interface PatchedOctoPrintDeviceKeyRequest {
 export interface PatchedPrintJobRequest {
     /**
      * 
-     * @type {string}
-     * @memberof PatchedPrintJobRequest
-     */
-    dt?: string;
-    /**
-     * 
      * @type {number}
      * @memberof PatchedPrintJobRequest
      */
@@ -2228,10 +2357,10 @@ export interface PatchedPrintJobRequest {
     last_status?: LastStatusEnum;
     /**
      * 
-     * @type {number}
+     * @type {{ [key: string]: any; }}
      * @memberof PatchedPrintJobRequest
      */
-    progress?: number;
+    progress?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -2245,6 +2374,12 @@ export interface PatchedPrintJobRequest {
  * @interface PatchedPrinterProfileRequest
  */
 export interface PatchedPrinterProfileRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    octoprint_device?: number;
     /**
      * 
      * @type {boolean}
@@ -2340,7 +2475,7 @@ export interface PatchedPrinterProfileRequest {
      * @type {string}
      * @memberof PatchedPrinterProfileRequest
      */
-    octoprint_id?: string;
+    octoprint_key?: string;
     /**
      * 
      * @type {boolean}
@@ -2386,6 +2521,12 @@ export interface PatchedPrinterProfileRequest {
 export interface PatchedProgressAlertRequest {
     /**
      * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedProgressAlertRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * 
      * @type {AlertTypeEnum}
      * @memberof PatchedProgressAlertRequest
      */
@@ -2429,12 +2570,12 @@ export interface PatchedProgressAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof PatchedProgressAlertSettingsRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<PatchedProgressAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof PatchedProgressAlertSettingsRequest
      */
@@ -2446,6 +2587,16 @@ export interface PatchedProgressAlertSettingsRequest {
      */
     on_progress_percent?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PatchedProgressAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -2458,6 +2609,12 @@ export interface PatchedRemoteControlCommandAlertRequest {
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
     alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedRemoteControlCommandAlertRequest
+     */
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -2543,6 +2700,31 @@ export interface PatchedRemoteControlCommandRequest {
      * @memberof PatchedRemoteControlCommandRequest
      */
     iotcore_response?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedRemoteControlCommandRequest
+     */
+    metadata?: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface PatchedRemoteControlSnapshotRequest
+ */
+export interface PatchedRemoteControlSnapshotRequest {
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedRemoteControlSnapshotRequest
+     */
+    image?: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedRemoteControlSnapshotRequest
+     */
+    command?: number;
 }
 /**
  * 
@@ -2574,7 +2756,13 @@ export interface PrintJob {
      * @type {string}
      * @memberof PrintJob
      */
-    dt: string;
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintJob
+     */
+    updated_dt?: string;
     /**
      * 
      * @type {number}
@@ -2613,10 +2801,10 @@ export interface PrintJob {
     last_seen?: string;
     /**
      * 
-     * @type {number}
+     * @type {{ [key: string]: any; }}
      * @memberof PrintJob
      */
-    progress?: number;
+    progress?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -2636,12 +2824,6 @@ export interface PrintJob {
  * @interface PrintJobRequest
  */
 export interface PrintJobRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobRequest
-     */
-    dt: string;
     /**
      * 
      * @type {number}
@@ -2668,10 +2850,10 @@ export interface PrintJobRequest {
     last_status?: LastStatusEnum;
     /**
      * 
-     * @type {number}
+     * @type {{ [key: string]: any; }}
      * @memberof PrintJobRequest
      */
-    progress?: number;
+    progress?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -2697,6 +2879,12 @@ export interface PrinterProfile {
      * @memberof PrinterProfile
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    octoprint_device: number;
     /**
      * 
      * @type {boolean}
@@ -2792,7 +2980,7 @@ export interface PrinterProfile {
      * @type {string}
      * @memberof PrinterProfile
      */
-    octoprint_id: string;
+    octoprint_key: string;
     /**
      * 
      * @type {boolean}
@@ -2844,6 +3032,12 @@ export interface PrinterProfile {
 export interface PrinterProfileRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof PrinterProfileRequest
      */
@@ -2937,7 +3131,7 @@ export interface PrinterProfileRequest {
      * @type {string}
      * @memberof PrinterProfileRequest
      */
-    octoprint_id: string;
+    octoprint_key: string;
     /**
      * 
      * @type {boolean}
@@ -2993,6 +3187,12 @@ export interface ProgressAlert {
      * @memberof ProgressAlert
      */
     time?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof ProgressAlert
+     */
+    alert_method: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3056,6 +3256,12 @@ export interface ProgressAlert {
 export interface ProgressAlertRequest {
     /**
      * 
+     * @type {AlertMethodEnum}
+     * @memberof ProgressAlertRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
      * @type {AlertTypeEnum}
      * @memberof ProgressAlertRequest
      */
@@ -3117,12 +3323,12 @@ export interface ProgressAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof ProgressAlertSettings
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<ProgressAlertSettingsAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof ProgressAlertSettings
      */
@@ -3146,6 +3352,16 @@ export interface ProgressAlertSettings {
      */
     user?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ProgressAlertSettingsAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -3160,12 +3376,12 @@ export interface ProgressAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<string>}
      * @memberof ProgressAlertSettingsRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<ProgressAlertSettingsRequestAlertMethodsEnum>;
     /**
-     * Enable or disable all alerts of this type
+     * Enable or disable this alert channel
      * @type {boolean}
      * @memberof ProgressAlertSettingsRequest
      */
@@ -3177,6 +3393,16 @@ export interface ProgressAlertSettingsRequest {
      */
     on_progress_percent?: number;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ProgressAlertSettingsRequestAlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
 /**
  * 
  * @export
@@ -3230,7 +3456,13 @@ export interface RemoteControlCommand {
      * @type {{ [key: string]: any; }}
      * @memberof RemoteControlCommand
      */
-    iotcore_response: { [key: string]: any; };
+    iotcore_response?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteControlCommand
+     */
+    metadata?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -3250,6 +3482,12 @@ export interface RemoteControlCommandAlert {
      * @memberof RemoteControlCommandAlert
      */
     alert_subtype: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof RemoteControlCommandAlert
+     */
+    alert_method: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3285,6 +3523,12 @@ export interface RemoteControlCommandAlert {
      * @type {string}
      * @memberof RemoteControlCommandAlert
      */
+    metadata?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
     icon: string;
     /**
      * 
@@ -3310,6 +3554,12 @@ export interface RemoteControlCommandAlert {
      * @memberof RemoteControlCommandAlert
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommandAlert
+     */
+    snapshot_url?: string;
     /**
      * 
      * @type {string}
@@ -3341,6 +3591,12 @@ export interface RemoteControlCommandAlertRequest {
      * @memberof RemoteControlCommandAlertRequest
      */
     alert_subtype: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof RemoteControlCommandAlertRequest
+     */
+    alert_method: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3425,7 +3681,69 @@ export interface RemoteControlCommandRequest {
      * @type {{ [key: string]: any; }}
      * @memberof RemoteControlCommandRequest
      */
-    iotcore_response: { [key: string]: any; };
+    iotcore_response?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteControlCommandRequest
+     */
+    metadata?: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface RemoteControlSnapshot
+ */
+export interface RemoteControlSnapshot {
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteControlSnapshot
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlSnapshot
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlSnapshot
+     */
+    image: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteControlSnapshot
+     */
+    command: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlSnapshot
+     */
+    url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RemoteControlSnapshotRequest
+ */
+export interface RemoteControlSnapshotRequest {
+    /**
+     * 
+     * @type {any}
+     * @memberof RemoteControlSnapshotRequest
+     */
+    image: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteControlSnapshotRequest
+     */
+    command: number;
 }
 /**
  * 
@@ -5647,10 +5965,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesCreate: async (name: string, file: any, fileHash: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             if (name === null || name === undefined) {
                 throw new RequiredError('name','Required parameter name was null or undefined when calling gcodeFilesCreate.');
@@ -5662,6 +5981,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'fileHash' is not null or undefined
             if (fileHash === null || fileHash === undefined) {
                 throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesCreate.');
+            }
+            // verify required parameter 'octoprintDevice' is not null or undefined
+            if (octoprintDevice === null || octoprintDevice === undefined) {
+                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesCreate.');
             }
             const localVarPath = `/api/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -5698,6 +6021,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             if (fileHash !== undefined) { 
                 localVarFormParams.append('file_hash', fileHash as any);
+            }
+    
+            if (octoprintDevice !== undefined) { 
+                localVarFormParams.append('octoprint_device', octoprintDevice as any);
             }
     
     
@@ -5778,10 +6105,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
+         * @param {string} [octoprintDevice] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate: async (id: number, name?: string, file?: any, fileHash?: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesPartialUpdate: async (id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesPartialUpdate.');
@@ -5822,6 +6150,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             if (fileHash !== undefined) { 
                 localVarFormParams.append('file_hash', fileHash as any);
+            }
+    
+            if (octoprintDevice !== undefined) { 
+                localVarFormParams.append('octoprint_device', octoprintDevice as any);
             }
     
     
@@ -5903,10 +6235,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate: async (id: number, name: string, file: any, fileHash: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesUpdate: async (id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesUpdate.');
@@ -5922,6 +6255,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'fileHash' is not null or undefined
             if (fileHash === null || fileHash === undefined) {
                 throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesUpdate.');
+            }
+            // verify required parameter 'octoprintDevice' is not null or undefined
+            if (octoprintDevice === null || octoprintDevice === undefined) {
+                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesUpdate.');
             }
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -5961,6 +6298,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
                 localVarFormParams.append('file_hash', fileHash as any);
             }
     
+            if (octoprintDevice !== undefined) { 
+                localVarFormParams.append('octoprint_device', octoprintDevice as any);
+            }
+    
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
@@ -5986,10 +6327,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdateOrCreate: async (name: string, file: any, fileHash: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesUpdateOrCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             if (name === null || name === undefined) {
                 throw new RequiredError('name','Required parameter name was null or undefined when calling gcodeFilesUpdateOrCreate.');
@@ -6001,6 +6343,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'fileHash' is not null or undefined
             if (fileHash === null || fileHash === undefined) {
                 throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesUpdateOrCreate.');
+            }
+            // verify required parameter 'octoprintDevice' is not null or undefined
+            if (octoprintDevice === null || octoprintDevice === undefined) {
+                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesUpdateOrCreate.');
             }
             const localVarPath = `/api/gcode-files/update_or_create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6037,6 +6383,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             if (fileHash !== undefined) { 
                 localVarFormParams.append('file_hash', fileHash as any);
+            }
+    
+            if (octoprintDevice !== undefined) { 
+                localVarFormParams.append('octoprint_device', octoprintDevice as any);
             }
     
     
@@ -7081,6 +7431,322 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsCreate: async (image: any, command: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'image' is not null or undefined
+            if (image === null || image === undefined) {
+                throw new RequiredError('image','Required parameter image was null or undefined when calling snapshotsCreate.');
+            }
+            // verify required parameter 'command' is not null or undefined
+            if (command === null || command === undefined) {
+                throw new RequiredError('command','Required parameter command was null or undefined when calling snapshotsCreate.');
+            }
+            const localVarPath = `/api/snapshots/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+            if (image !== undefined) { 
+                localVarFormParams.append('image', image as any);
+            }
+    
+            if (command !== undefined) { 
+                localVarFormParams.append('command', command as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/snapshots/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} [image] 
+         * @param {number} [command] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsPartialUpdate: async (id: number, image?: any, command?: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsPartialUpdate.');
+            }
+            const localVarPath = `/api/snapshots/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+            if (image !== undefined) { 
+                localVarFormParams.append('image', image as any);
+            }
+    
+            if (command !== undefined) { 
+                localVarFormParams.append('command', command as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsRetrieve.');
+            }
+            const localVarPath = `/api/snapshots/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsUpdate: async (id: number, image: any, command: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsUpdate.');
+            }
+            // verify required parameter 'image' is not null or undefined
+            if (image === null || image === undefined) {
+                throw new RequiredError('image','Required parameter image was null or undefined when calling snapshotsUpdate.');
+            }
+            // verify required parameter 'command' is not null or undefined
+            if (command === null || command === undefined) {
+                throw new RequiredError('command','Required parameter command was null or undefined when calling snapshotsUpdate.');
+            }
+            const localVarPath = `/api/snapshots/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+            if (image !== undefined) { 
+                localVarFormParams.append('image', image as any);
+            }
+    
+            if (command !== undefined) { 
+                localVarFormParams.append('command', command as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7194,11 +7860,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesCreate(name: string, file: any, fileHash: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesCreate(name, file, fileHash, options);
+        async gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesCreate(name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7223,11 +7890,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
+         * @param {string} [octoprintDevice] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, options);
+        async gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7252,11 +7920,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdate(id, name, file, fileHash, options);
+        async gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7267,11 +7936,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, options);
+        async gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7508,6 +8178,76 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async snapshotsCreate(image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsCreate(image, command, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async snapshotsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlSnapshotList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} [image] 
+         * @param {number} [command] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsPartialUpdate(id, image, command, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async snapshotsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async snapshotsUpdate(id: number, image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsUpdate(id, image, command, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7570,11 +8310,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesCreate(name: string, file: any, fileHash: string, options?: any): AxiosPromise<PrintJob> {
-            return RemoteControlApiFp(configuration).gcodeFilesCreate(name, file, fileHash, options).then((request) => request(axios, basePath));
+        gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+            return RemoteControlApiFp(configuration).gcodeFilesCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7591,11 +8332,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
+         * @param {string} [octoprintDevice] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, options).then((request) => request(axios, basePath));
+        gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
+            return RemoteControlApiFp(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7612,22 +8354,24 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesUpdate(id, name, file, fileHash, options).then((request) => request(axios, basePath));
+        gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+            return RemoteControlApiFp(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
+         * @param {string} octoprintDevice 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, options).then((request) => request(axios, basePath));
+        gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+            return RemoteControlApiFp(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7792,6 +8536,56 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
+            return RemoteControlApiFp(configuration).snapshotsCreate(image, command, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlSnapshotList> {
+            return RemoteControlApiFp(configuration).snapshotsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} [image] 
+         * @param {number} [command] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
+            return RemoteControlApiFp(configuration).snapshotsPartialUpdate(id, image, command, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
+            return RemoteControlApiFp(configuration).snapshotsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote control snapshot.
+         * @param {any} image 
+         * @param {number} command 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        snapshotsUpdate(id: number, image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
+            return RemoteControlApiFp(configuration).snapshotsUpdate(id, image, command, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7850,11 +8644,12 @@ export interface RemoteControlApiInterface {
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesCreate(name: string, file: any, fileHash: string, options?: any): AxiosPromise<PrintJob>;
+    gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -7871,11 +8666,12 @@ export interface RemoteControlApiInterface {
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
+     * @param {string} [octoprintDevice] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -7892,22 +8688,24 @@ export interface RemoteControlApiInterface {
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -8072,6 +8870,56 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
+     * @param {any} image 
+     * @param {number} command 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    snapshotsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlSnapshotList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {any} [image] 
+     * @param {number} [command] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    snapshotsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {any} image 
+     * @param {number} command 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    snapshotsUpdate(id: number, image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
+
+    /**
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
@@ -8138,12 +8986,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesCreate(name: string, file: any, fileHash: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).gcodeFilesCreate(name, file, fileHash, options).then((request) => request(this.axios, this.basePath));
+    public gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8163,12 +9012,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
+     * @param {string} [octoprintDevice] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, options).then((request) => request(this.axios, this.basePath));
+    public gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8188,12 +9038,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).gcodeFilesUpdate(id, name, file, fileHash, options).then((request) => request(this.axios, this.basePath));
+    public gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8201,12 +9052,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
+     * @param {string} octoprintDevice 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, options).then((request) => request(this.axios, this.basePath));
+    public gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8402,6 +9254,66 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public printerProfilesUpdateOrCreate(printerProfileRequest: PrinterProfileRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).printerProfilesUpdateOrCreate(printerProfileRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {any} image 
+     * @param {number} command 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public snapshotsCreate(image: any, command: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).snapshotsCreate(image, command, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public snapshotsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).snapshotsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {any} [image] 
+     * @param {number} [command] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).snapshotsPartialUpdate(id, image, command, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public snapshotsRetrieve(id: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).snapshotsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote control snapshot.
+     * @param {any} image 
+     * @param {number} command 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public snapshotsUpdate(id: number, image: any, command: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).snapshotsUpdate(id, image, command, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -75,6 +75,14 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
             "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
         )
 
+    snapshot_url = serializers.SerializerMethodField()
+    def get_snapshot_url(self, obj):
+        return self.command.snapshots.order_by('-created_dt').first().url
+
+    metadata = serializers.SerializerMethodField()
+    def get_metadata(self, obj):
+        return self.command.metadata
+        
     icon = serializers.CharField()
     description = serializers.CharField()
     color = serializers.CharField()
@@ -84,16 +92,19 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
         model = RemoteControlCommandAlert
         fields = [
             "alert_subtype",
+            "alert_method",
             "alert_type",
             "color",
             "created_dt",
             "dashboard_url",
             "dismissed",
+            "metadata",
             "icon",
             "id",
             "time",
             "description",
             "seen",
+            "snapshot_url",
             "title",
             "updated_dt",
             "user",

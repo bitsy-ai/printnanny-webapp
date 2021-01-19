@@ -88,7 +88,7 @@ export default {
     </simplebar>
 
     <a
-    href="/dashboard/octoprint-devices/"
+    href="/dashboard/alerts/"
     class="dropdown-item text-center text-primary notify-item notify-all"
     >
     View history

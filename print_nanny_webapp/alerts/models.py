@@ -6,6 +6,7 @@ from django.db import models
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.postgres.fields import ArrayField
+from django.template.loader import render_to_string
 from django.utils import timezone, dateformat
 from django.utils.text import capfirst
 from polymorphic.models import PolymorphicModel
@@ -277,14 +278,14 @@ class RemoteControlCommandAlert(Alert):
     
     def trigger_email_alert(self, data):
 
-        snapshot = self.command.snapshots.order_by('-created_date').first()
+        snapshot = self.command.snapshots.order_by('-created_dt').first()
         merge_data = {
-            "SNAPSHOT_URL": snapshot.url,
+            "SNAPSHOT_URL": snapshot.image.url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.command.device.name,
             "COMMAND": self.command.command,
             "SUBTYPE": self.alert_subtype,
-            "PROGRESS": self.command.command.metadata.get('progress')
+            "PROGRESS": self.command.metadata.get('progress')
         }
 
         text_body = render_to_string("email/remote_control_command_body.txt", merge_data)
@@ -294,7 +295,7 @@ class RemoteControlCommandAlert(Alert):
             subject=subject,
             body=text_body,
             to=[self.user.email],
-            tags=["RemoteControlCommandAlert", self.command.command, self.alert_subtype]
+            tags=["RemoteControlCommandAlert", self.command.command, self.alert_subtype, f"User:{self.user.id}"]
         )
         message.send()
 
