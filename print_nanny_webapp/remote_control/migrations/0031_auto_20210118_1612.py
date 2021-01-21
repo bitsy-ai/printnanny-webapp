@@ -6,13 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0030_printjob_progress'),
+        ("remote_control", "0030_printjob_progress"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='printjob',
-            name='last_status',
-            field=models.CharField(choices=[('Error', 'Error'), ('PrintCancelled', 'PrintCancelled'), ('PrintCancelling', 'PrintCancelling'), ('PrintDone', 'PrintDone'), ('PrintFailed', 'PrintFailed'), ('PrintPaused', 'PrintPaused'), ('PrintResumed', 'PrintResumed'), ('PrintStarted', 'PrintStarted')], default='PrintStarted', max_length=56),
+            model_name="printjob",
+            name="last_status",
+            field=models.CharField(
+                choices=[
+                    ("Error", "Error"),
+                    ("PrintCancelled", "PrintCancelled"),
+                    ("PrintCancelling", "PrintCancelling"),
+                    ("PrintDone", "PrintDone"),
+                    ("PrintFailed", "PrintFailed"),
+                    ("PrintPaused", "PrintPaused"),
+                    ("PrintResumed", "PrintResumed"),
+                    ("PrintStarted", "PrintStarted"),
+                ],
+                default="PrintStarted",
+                max_length=56,
+            ),
         ),
     ]

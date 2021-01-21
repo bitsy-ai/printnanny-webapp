@@ -5,15 +5,17 @@ from django.db import models
 
 logger = logging.getLogger(__name__)
 
+
 class InviteRequestManager(models.Manager):
     def create(self, **kwargs):
         from .tasks import create_ghost_members
 
         instance = super().create(**kwargs)
         task = create_ghost_members.delay([instance.to_ghost_member()])
-        logger.info(f'Submitted create_ghost_members with task.id={task.id}')
+        logger.info(f"Submitted create_ghost_members with task.id={task.id}")
 
         return instance
+
 
 class CustomUserManager(BaseUserManager):
     """
@@ -34,7 +36,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         # task = create_ghost_members.delay([user.to_ghost_member()])
-        #logger.info(f'Submitted create_ghost_members with task.id={task.id}')
+        # logger.info(f'Submitted create_ghost_members with task.id={task.id}')
         return user
 
     def create_superuser(self, email, password, **extra_fields):

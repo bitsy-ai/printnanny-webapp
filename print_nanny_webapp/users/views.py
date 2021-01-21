@@ -17,6 +17,7 @@ from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.users.forms import InviteRequestForm
 from .tasks import create_ghost_member
+
 User = get_user_model()
 
 

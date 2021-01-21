@@ -14,7 +14,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 import json
 
-from .managers import CustomUserManager,InviteRequestManager
+from .managers import CustomUserManager, InviteRequestManager
 
 
 class InviteRequest(models.Model):
@@ -149,7 +149,6 @@ class User(AbstractUser):
             "subscribed": True,
         }
 
-
     def __str__(self):
         return self.email
 
@@ -169,15 +168,14 @@ class UserSettings(models.Model):
         User, on_delete=models.CASCADE, unique=True, primary_key=True
     )
 
+
 class GhostMember(models.Model):
-    '''
-        Periodically synced with Ghost's user/member API @ help.print-nanny.com
-    '''
+    """
+    Periodically synced with Ghost's user/member API @ help.print-nanny.com
+    """
 
     email = models.EmailField()
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, unique=True, null=True
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True)
     invite_request = models.OneToOneField(
         InviteRequest, on_delete=models.CASCADE, unique=True, null=True
     )
