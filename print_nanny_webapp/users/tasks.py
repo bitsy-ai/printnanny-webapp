@@ -21,8 +21,8 @@ InviteRequest = apps.get_model('users', 'InviteRequest')
 
 logger = logging.getLogger(__name__)
 @shared_task
-def create_ghost_members(ghost_members):
-    logger.info(f'create_ghost_members task called with ghost_members={ghost_members}')
+def create_ghost_member(ghost_member):
+    logger.info(f'create_ghost_members task called with ghost_members={ghost_member}')
     # Split the key into ID and SECRET
     api_id, secret = settings.GHOST_ADMIN_API_KEY.split(':')
 
@@ -42,31 +42,35 @@ def create_ghost_members(ghost_members):
     # Make an authenticated request to create a post
     url = 'https://help.print-nanny.com/ghost/api/v3/admin/members/'
     headers = {'Authorization': 'Ghost {}'.format(token)}
-    body = {'members': ghost_members}
+    body = {'members': [ghost_member]}
     r = requests.post(url, json=body, headers=headers)
 
     # if user already exists, raises
     # celeryworker       | requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://help.print-nanny.com/ghost/api/v3/admin/members/
-    r.raise_for_status()
-
+    try:
+        r.raise_for_status()
+    except Exception as e:
+        logger.error(e)
+        return r
     data = r.json()
 
     for member in data.get('members'):
 
         user = User.objects.filter(email=member["email"]).first()
         invite_request = InviteRequest.objects.filter(email=member["email"]).first()
-        obj, created = GhostMember.objects.update_or_create(
-            email=member["email"],
-            uuid=member["uuid"],
-            user=user,
-            invite_request=invite_request,
-            email_count=member["email_count"],
-            email_open_rate=member["email_open_rate"],
-            email_opened_count=member["email_opened_count"]
-        )
-
-        action = 'Created' if created else 'Updated'
-        logger.info(f'{action} GhostMember id={obj.id}')
+        try:
+            created = GhostMember.objects.create(
+                email=member["email"],
+                uuid=member["uuid"],
+                user=user,
+                invite_request=invite_request,
+                email_count=member["email_count"],
+                email_open_rate=member["email_open_rate"],
+                email_opened_count=member["email_opened_count"]
+            )
+            logger.info(f'Created GhostMember id={obj.id}')
+        except Exception as e:
+            logger.error(e)
     return r.json()
 
 @shared_task
@@ -78,6 +82,8 @@ def push_ghost_members():
     
     invite_requests = InviteRequest.objects.all()
 
-    create_tasks = create_ghost_members.chunks([
-        i.to_ghost_member() for i in invite_requests()
+    create_tasks = group([
+        create_ghost_member.si(i.to_ghost_member()) for i in invite_requests
     ])
+
+    return create_tasks()
