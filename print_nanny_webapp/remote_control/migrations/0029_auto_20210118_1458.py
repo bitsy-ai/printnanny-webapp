@@ -7,22 +7,22 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0028_auto_20210118_1245'),
+        ("remote_control", "0028_auto_20210118_1245"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printjob',
-            name='progress',
+            model_name="printjob",
+            name="progress",
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='iotcore_response',
+            model_name="remotecontrolcommand",
+            name="iotcore_response",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='metadata',
+            model_name="remotecontrolcommand",
+            name="metadata",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
     ]

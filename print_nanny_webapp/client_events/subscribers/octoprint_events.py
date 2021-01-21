@@ -23,7 +23,7 @@ from django.apps import apps
 from print_nanny_webapp.client_events.models import (
     OctoPrintEventCodes,
     PrintJobEventCodes,
-    OctoPrintEventTypeChoices
+    OctoPrintEventTypeChoices,
 )
 
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
@@ -34,15 +34,16 @@ logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
+
 def handle_print_progress(octoprint_event):
-    alert_settings, created = ProgressAlertSettings.objects.get_or_create(user=octoprint_event.user)
+    alert_settings, created = ProgressAlertSettings.objects.get_or_create(
+        user=octoprint_event.user
+    )
     return alert_settings.on_print_progress(octoprint_event)
 
 
-HANDLER_FNS = {
-    OctoPrintEventTypeChoices.PRINT_PROGRESS: handle_print_progress
+HANDLER_FNS = {OctoPrintEventTypeChoices.PRINT_PROGRESS: handle_print_progress}
 
-}
 
 def on_octoprint_event(message):
     data = message.data.decode("utf-8")

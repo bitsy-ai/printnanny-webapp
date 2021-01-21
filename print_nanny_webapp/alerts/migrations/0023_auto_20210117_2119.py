@@ -10,20 +10,20 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0022_auto_20210117_2038'),
+        ("alerts", "0022_auto_20210117_2038"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='alertsettings',
-            options={'base_manager_name': 'objects'},
+            name="alertsettings",
+            options={"base_manager_name": "objects"},
         ),
         migrations.AlterUniqueTogether(
-            name='alertsettings',
+            name="alertsettings",
             unique_together=set(),
         ),
         migrations.RemoveField(
-            model_name='alertsettings',
-            name='user',
+            model_name="alertsettings",
+            name="user",
         ),
     ]

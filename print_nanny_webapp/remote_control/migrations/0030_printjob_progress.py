@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0029_auto_20210118_1458'),
+        ("remote_control", "0029_auto_20210118_1458"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printjob',
-            name='progress',
+            model_name="printjob",
+            name="progress",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
     ]

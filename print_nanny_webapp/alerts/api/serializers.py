@@ -76,10 +76,12 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
         )
 
     snapshot_url = serializers.SerializerMethodField()
+
     def get_snapshot_url(self, obj):
-        return obj.command.snapshots.order_by('-created_dt').first().image.url
+        return obj.command.snapshots.order_by("-created_dt").first().image.url
 
     metadata = serializers.SerializerMethodField()
+
     def get_metadata(self, obj):
         return obj.command.metadata
 

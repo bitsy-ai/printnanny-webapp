@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0020_printjobevent_progress'),
+        ("client_events", "0020_printjobevent_progress"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='printjobevent',
-            name='current_z',
+            model_name="printjobevent",
+            name="current_z",
             field=models.FloatField(null=True),
         ),
     ]

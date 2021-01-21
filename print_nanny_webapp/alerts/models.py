@@ -66,7 +66,6 @@ class Alert(PolymorphicModel):
 
 class AlertSettings(PolymorphicModel):
 
-
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
 
@@ -100,16 +99,19 @@ class ProgressAlertSettings(AlertSettings):
     )
 
     def on_print_progress(self, octoprint_event):
-        RemoteControlCommand = apps.get_model('remote_control', 'RemoteControlCommand')
+        RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
-        progress = octoprint_event.event_data.get('event_data').get('progress')
+        progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
             command = RemoteControlCommand.objects.create(
                 command=RemoteControlCommand.CommandChoices.SNAPSHOT,
                 device=octoprint_event.device,
                 user=octoprint_event.user,
             )
-            logger.info(f'ProgressAlertSettings.on_print_progress issued command id={command.id}')
+            logger.info(
+                f"ProgressAlertSettings.on_print_progress issued command id={command.id}"
+            )
+
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -126,20 +128,18 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-    
 
     def command_to_attr(self, command_str):
         # shamelessly ripped from https://www.geeksforgeeks.org/python-program-to-convert-camel-case-string-to-snake-case/
         snake_cased = stringcase.snakecase(command_str)
         return getattr(self, snake_cased)
 
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     snapshot = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on web camera <strong>Snapshot</strong> command",
-        default=(AlertSubTypeChoices.FAILED,AlertSubTypeChoices.SUCCESS),
+        default=(AlertSubTypeChoices.FAILED, AlertSubTypeChoices.SUCCESS),
         blank=True,
     )
 
@@ -192,7 +192,6 @@ class RemoteControlCommandAlertSettings(AlertSettings):
     )
 
 
-
 ##
 # Alert Models
 ##
@@ -241,24 +240,25 @@ class ProgressAlert(Alert):
         return self.ICON_CSS[self.alert_subtype]
 
 
-        
 class RemoteControlCommandAlert(Alert):
     """
     Fires on remote control events
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
         self.alert_trigger_method_map = {
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
-            Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert
+            Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert,
         }
+
     def trigger_alert(self):
         from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
 
         alert_serializer = AlertPolymorphicSerializer(self)
         data = alert_serializer.data
         return self.alert_trigger_method_map[self.alert_method](data)
-    
+
     def trigger_ui_alert(self, data):
         channel_layer = get_channel_layer()
 
@@ -275,34 +275,40 @@ class RemoteControlCommandAlert(Alert):
                 "data": JSONRenderer().render(data),
             },
         )
-    
+
     def trigger_email_alert(self, data):
 
-        snapshot = self.command.snapshots.order_by('-created_dt').first()
+        snapshot = self.command.snapshots.order_by("-created_dt").first()
         merge_data = {
             "SNAPSHOT_URL": snapshot.image.url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.command.device.name,
             "COMMAND": self.command.command,
             "SUBTYPE": self.alert_subtype,
-            "PROGRESS": self.command.metadata.get('progress')
+            "PROGRESS": self.command.metadata.get("progress"),
         }
 
-        text_body = render_to_string("email/remote_control_command_body.txt", merge_data)
-        subject = render_to_string("email/remote_control_command_subject.txt", merge_data)
+        text_body = render_to_string(
+            "email/remote_control_command_body.txt", merge_data
+        )
+        subject = render_to_string(
+            "email/remote_control_command_subject.txt", merge_data
+        )
 
         message = AnymailMessage(
             subject=subject,
             body=text_body,
             to=[self.user.email],
-            tags=["RemoteControlCommandAlert", self.command.command, self.alert_subtype, f"User:{self.user.id}"]
+            tags=[
+                "RemoteControlCommandAlert",
+                self.command.command,
+                self.alert_subtype,
+                f"User:{self.user.id}",
+            ],
         )
         message.send()
 
         return message
-        
-
-
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"

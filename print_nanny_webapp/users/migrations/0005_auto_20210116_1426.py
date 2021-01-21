@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_auto_20201225_2119'),
+        ("users", "0004_auto_20201225_2119"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='usersettings',
-            name='alert_on_defect',
+            model_name="usersettings",
+            name="alert_on_defect",
         ),
         migrations.RemoveField(
-            model_name='usersettings',
-            name='alert_on_progress',
+            model_name="usersettings",
+            name="alert_on_progress",
         ),
         migrations.RemoveField(
-            model_name='usersettings',
-            name='alert_on_progress_percent',
+            model_name="usersettings",
+            name="alert_on_progress_percent",
         ),
     ]

@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0022_gcodefile_octoprint_device'),
+        ("remote_control", "0022_gcodefile_octoprint_device"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gcodefile',
-            name='octoprint_device',
-            field=models.ForeignKey(default=3, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
+            model_name="gcodefile",
+            name="octoprint_device",
+            field=models.ForeignKey(
+                default=3,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.octoprintdevice",
+            ),
             preserve_default=False,
         ),
     ]

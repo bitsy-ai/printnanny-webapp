@@ -6,13 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0019_auto_20210109_2034'),
+        ("remote_control", "0019_auto_20210109_2034"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='command',
-            field=models.CharField(choices=[('StopMonitoring', 'Stop Print Nanny Monitoring'), ('StartMonitoring', 'Start Print Nanny Monitoring'), ('SNAPSHOT', 'Capture a webcam snapshot'), ('StartPrint', 'Start Print'), ('MoveNozzle', 'Move Nozzle'), ('StopPrint', 'Stop Print'), ('PausePrint', 'Pause Print'), ('ResumePrint', 'Resume Print')], max_length=255),
+            model_name="remotecontrolcommand",
+            name="command",
+            field=models.CharField(
+                choices=[
+                    ("StopMonitoring", "Stop Print Nanny Monitoring"),
+                    ("StartMonitoring", "Start Print Nanny Monitoring"),
+                    ("SNAPSHOT", "Capture a webcam snapshot"),
+                    ("StartPrint", "Start Print"),
+                    ("MoveNozzle", "Move Nozzle"),
+                    ("StopPrint", "Stop Print"),
+                    ("PausePrint", "Pause Print"),
+                    ("ResumePrint", "Resume Print"),
+                ],
+                max_length=255,
+            ),
         ),
     ]

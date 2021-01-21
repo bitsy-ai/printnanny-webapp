@@ -8,14 +8,17 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0032_auto_20210118_1729'),
+        ("remote_control", "0032_auto_20210118_1729"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='remotecontrolsnapshot',
-            name='created_dt',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2021, 1, 19, 4, 15, 19, 171717, tzinfo=utc)),
+            model_name="remotecontrolsnapshot",
+            name="created_dt",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(2021, 1, 19, 4, 15, 19, 171717, tzinfo=utc),
+            ),
             preserve_default=False,
         ),
     ]

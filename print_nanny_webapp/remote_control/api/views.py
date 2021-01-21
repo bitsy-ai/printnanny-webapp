@@ -34,7 +34,7 @@ from .serializers import (
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
     RemoteControlCommandSerializer,
-    RemoteControlSnapshotSerializer
+    RemoteControlSnapshotSerializer,
 )
 
 from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
@@ -44,10 +44,12 @@ from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
-    RemoteControlSnapshot
+    RemoteControlSnapshot,
 )
 
-from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (create_remote_control_command_alerts)
+from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (
+    create_remote_control_command_alerts,
+)
 
 
 import google.api_core.exceptions
@@ -104,8 +106,10 @@ class CommandViewSet(
         alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
         if alert_subtype is not None:
 
-            task = create_remote_control_command_alerts.delay(request.user.id, instance.id, alert_subtype.value)
-            logger.info(f'Created create_remote_control_command_alerts task {task}')
+            task = create_remote_control_command_alerts.delay(
+                request.user.id, instance.id, alert_subtype.value
+            )
+            logger.info(f"Created create_remote_control_command_alerts task {task}")
 
         return Response(serializer.data)
 
@@ -243,7 +247,10 @@ class RemoteControlSnapshotViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="snapshots_create",
-        responses={400: RemoteControlSnapshotSerializer, 201: RemoteControlSnapshotSerializer },
+        responses={
+            400: RemoteControlSnapshotSerializer,
+            201: RemoteControlSnapshotSerializer,
+        },
     )
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -251,9 +258,7 @@ class RemoteControlSnapshotViewSet(
         if serializer.is_valid():
             # https://github.com/aio-libs/aiohttp/issues/3652
             # octoprint_device is accepted as a string and deserialized to an integer
-            instance = serializer.create(
-                serializer.validated_data
-            )
+            instance = serializer.create(serializer.validated_data)
             response_serializer = self.get_serializer(instance)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
@@ -279,7 +284,7 @@ class GcodeFileViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="gcode_files_create",
-        responses={400: GcodeFileSerializer, 201: GcodeFileSerializer },
+        responses={400: GcodeFileSerializer, 201: GcodeFileSerializer},
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)
@@ -298,7 +303,9 @@ class GcodeFileViewSet(
         if serializer.is_valid():
             # https://github.com/aio-libs/aiohttp/issues/3652
             # octoprint_device is accepted as a string and deserialized to an integer
-            octoprint_device = OctoPrintDevice.objects.get(id=int(serializer.validated_data["octoprint_device"]))
+            octoprint_device = OctoPrintDevice.objects.get(
+                id=int(serializer.validated_data["octoprint_device"])
+            )
             serializer.validated_data["octoprint_device"] = octoprint_device
             instance, created = serializer.update_or_create(
                 serializer.validated_data, request.user

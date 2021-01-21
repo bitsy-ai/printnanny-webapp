@@ -14,7 +14,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 import json
 
-from .managers import CustomUserManager
+from .managers import CustomUserManager, InviteRequestManager
 
 
 class InviteRequest(models.Model):
@@ -111,9 +111,12 @@ class InviteRequest(models.Model):
         )
         return message.send()
 
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-    # self._admin_email_notification()
+    def to_ghost_member(self):
+        return {
+            "name": f"{self.first_name} {self.last_name}",
+            "email": self.email,
+            "subscribed": True,
+        }
 
 
 class InviteRequestSerializer(serializers.ModelSerializer):
@@ -139,6 +142,13 @@ class User(AbstractUser):
 
     objects = CustomUserManager()
 
+    def to_ghost_member(self):
+        return {
+            "name": f"{self.first_name} {self.last_name}",
+            "email": self.email,
+            "subscribed": True,
+        }
+
     def __str__(self):
         return self.email
 
@@ -157,3 +167,21 @@ class UserSettings(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, unique=True, primary_key=True
     )
+
+
+class GhostMember(models.Model):
+    """
+    Periodically synced with Ghost's user/member API @ help.print-nanny.com
+    """
+
+    email = models.EmailField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True)
+    invite_request = models.OneToOneField(
+        InviteRequest, on_delete=models.CASCADE, unique=True, null=True
+    )
+
+    uuid = models.CharField(max_length=255)
+    email_count = models.IntegerField()
+    email_opened_count = models.IntegerField()
+    email_open_rate = models.FloatField(null=True)
+    subscribed = models.BooleanField(default=True)

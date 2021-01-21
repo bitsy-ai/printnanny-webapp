@@ -9,23 +9,27 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('remote_control', '0020_auto_20210117_2151'),
+        ("remote_control", "0020_auto_20210117_2151"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='printerprofile',
-            old_name='octoprint_id',
-            new_name='octoprint_key',
+            model_name="printerprofile",
+            old_name="octoprint_id",
+            new_name="octoprint_key",
         ),
         migrations.AddField(
-            model_name='printerprofile',
-            name='octoprint_device',
-            field=models.ForeignKey(default=3, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
+            model_name="printerprofile",
+            name="octoprint_device",
+            field=models.ForeignKey(
+                default=3,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.octoprintdevice",
+            ),
             preserve_default=False,
         ),
         migrations.AlterUniqueTogether(
-            name='printerprofile',
-            unique_together={('user', 'octoprint_key')},
+            name="printerprofile",
+            unique_together={("user", "octoprint_key")},
         ),
     ]
