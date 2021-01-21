@@ -175,6 +175,7 @@ class GhostMember(models.Model):
         Periodically synced with Ghost's user/member API @ help.print-nanny.com
     '''
 
+    email = models.EmailField()
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, unique=True, null=True
     )

@@ -22,7 +22,7 @@ InviteRequest = apps.get_model('users', 'InviteRequest')
 logger = logging.getLogger(__name__)
 @shared_task
 def create_ghost_members(ghost_members):
-    logger.info(f'create_ghost_members task called with ghost_members={}')
+    logger.info(f'create_ghost_members task called with ghost_members={ghost_members}')
     # Split the key into ID and SECRET
     api_id, secret = settings.GHOST_ADMIN_API_KEY.split(':')
 
@@ -41,24 +41,24 @@ def create_ghost_members(ghost_members):
 
     # Make an authenticated request to create a post
     url = 'https://help.print-nanny.com/ghost/api/v3/admin/members/'
-    headers = {'Authorization': 'Ghost {}'.format(token.decode())}
+    headers = {'Authorization': 'Ghost {}'.format(token)}
     body = {'members': ghost_members}
     r = requests.post(url, json=body, headers=headers)
     r.raise_for_status()
 
     data = r.json()
 
-    for member in in data.get('members'):
+    for member in data.get('members'):
 
-        user = User.objects.get(email=member["email"])
-        invite_request = InviteRequest.objects.get(email=member["email"])
+        user = User.objects.filter(email=member["email"]).first()
+        invite_request = InviteRequest.objects.filter(email=member["email"]).first()
         obj, created = GhostMember.objects.update_or_create(
             email=member["email"],
             uuid=member["uuid"],
             user=user,
             invite_request=invite_request,
             email_count=member["email_count"],
-            email_open_rate=member["email_opened_rate"],
+            email_open_rate=member["email_open_rate"],
             email_opened_count=member["email_opened_count"]
         )
 
