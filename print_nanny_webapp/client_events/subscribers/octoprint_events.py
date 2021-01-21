@@ -77,7 +77,8 @@ def on_octoprint_event(message):
             logger.error(e, exc_info=True)
             logger.error(data)
     elif event_type in PrintJobEventCodes:
-        PrintJobEvent.objects.create(
+        try:
+            PrintJobEvent.objects.create(
             created_dt=data["created_dt"],
             current_z=data["printer_data"]["currentZ"],
             device_id=data["device_id"],
@@ -89,7 +90,9 @@ def on_octoprint_event(message):
             progress=data["printer_data"]["progress"],
             state=data["printer_data"]["state"],
             user_id=data["user_id"],
-        )
+            )
+        except Exception as e:
+            logger.error({'error': e, 'data': data})
     else:
         logger.error(f"Unrecognized event_type={event_type} with data {data}")
     message.ack()
