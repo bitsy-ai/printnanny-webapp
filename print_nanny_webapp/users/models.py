@@ -14,11 +14,10 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 import json
 
-from .managers import CustomUserManager, InviteRquestManager
+from .managers import CustomUserManager,InviteRequestManager
 
 
 class InviteRequest(models.Model):
-    objects = InviteRquestManager()
     class PrinterBrand(models.TextChoices):
         PRUSA = "PRUSA", "Prusa"
         CREALITY = "CREALITY", "Creality"

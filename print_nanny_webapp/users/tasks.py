@@ -44,6 +44,9 @@ def create_ghost_members(ghost_members):
     headers = {'Authorization': 'Ghost {}'.format(token)}
     body = {'members': ghost_members}
     r = requests.post(url, json=body, headers=headers)
+
+    # if user already exists, raises
+    # celeryworker       | requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://help.print-nanny.com/ghost/api/v3/admin/members/
     r.raise_for_status()
 
     data = r.json()
@@ -67,5 +70,14 @@ def create_ghost_members(ghost_members):
     return r.json()
 
 @shared_task
-def sync_ghost_member_list():
-    pass
+def push_ghost_members():
+    """
+        One-time only task to create ghost members
+        user / invite request manager should handle this going forward
+    """
+    
+    invite_requests = InviteRequest.objects.all()
+
+    create_tasks = create_ghost_members.chunks([
+        i.to_ghost_member() for i in invite_requests()
+    ])

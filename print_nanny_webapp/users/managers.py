@@ -5,7 +5,7 @@ from django.db import models
 
 logger = logging.getLogger(__name__)
 
-class InviteRquestManager(models.Manager):
+class InviteRequestManager(models.Manager):
     def create(self, **kwargs):
         from .tasks import create_ghost_members
 
@@ -25,7 +25,7 @@ class CustomUserManager(BaseUserManager):
         """
         Create and save a User with the given email and password.
         """
-        from .tasks import create_ghost_members
+        # from .tasks import create_ghost_members
 
         if not email:
             raise ValueError(_("The Email must be set"))
@@ -33,8 +33,8 @@ class CustomUserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
-        task = create_ghost_members.delay([user.to_ghost_member()])
-        logger.info(f'Submitted create_ghost_members with task.id={task.id}')
+        # task = create_ghost_members.delay([user.to_ghost_member()])
+        #logger.info(f'Submitted create_ghost_members with task.id={task.id}')
         return user
 
     def create_superuser(self, email, password, **extra_fields):
