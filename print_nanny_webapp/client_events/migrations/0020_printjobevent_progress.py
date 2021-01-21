@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0019_remove_printjobevent_progress'),
+        ("client_events", "0019_remove_printjobevent_progress"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printjobevent',
-            name='progress',
+            model_name="printjobevent",
+            name="progress",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
     ]

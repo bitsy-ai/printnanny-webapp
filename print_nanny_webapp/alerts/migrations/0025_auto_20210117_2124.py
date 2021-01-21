@@ -9,26 +9,32 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0024_auto_20210117_2123'),
+        ("alerts", "0024_auto_20210117_2123"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='defectalertsettings',
-            name='user',
-            field=models.OneToOneField(default=1, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
+            model_name="defectalertsettings",
+            name="user",
+            field=models.OneToOneField(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to="users.user"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='progressalertsettings',
-            name='user',
-            field=models.OneToOneField(default=1, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
+            model_name="progressalertsettings",
+            name="user",
+            field=models.OneToOneField(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to="users.user"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='remotecontrolcommandalertsettings',
-            name='user',
-            field=models.OneToOneField(default=1, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
+            model_name="remotecontrolcommandalertsettings",
+            name="user",
+            field=models.OneToOneField(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to="users.user"
+            ),
             preserve_default=False,
         ),
     ]

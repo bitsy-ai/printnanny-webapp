@@ -7,12 +7,11 @@ from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     OctoPrintDevice,
     RemoteControlCommand,
-    RemoteControlSnapshot
+    RemoteControlSnapshot,
 )
 
 
 class RemoteControlCommandSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = RemoteControlCommand
         fields = [field.name for field in RemoteControlCommand._meta.fields] + ["url"]
@@ -22,7 +21,6 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
@@ -85,6 +83,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             user=user, serial=serial, defaults=validated_data
         )
 
+
 class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = RemoteControlSnapshot
@@ -93,12 +92,13 @@ class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
 
-        
+
 class GcodeFileSerializer(serializers.ModelSerializer):
 
     # https://github.com/aio-libs/aiohttp/issues/3652
     # octoprint_device is accepted as a string and deserialized to an integer
     octoprint_device = serializers.CharField()
+
     class Meta:
         model = GcodeFile
         read_only_fields = ("user",)

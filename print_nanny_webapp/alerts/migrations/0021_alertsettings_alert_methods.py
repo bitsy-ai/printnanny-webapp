@@ -7,14 +7,24 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0020_auto_20210117_2006'),
+        ("alerts", "0020_auto_20210117_2006"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alertsettings',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive notifications in Print Nanny UI'), ('EMAIL', 'Receive email notifications')], max_length=255), default=('EMAIL',), size=None),
+            model_name="alertsettings",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive notifications in Print Nanny UI"),
+                        ("EMAIL", "Receive email notifications"),
+                    ],
+                    max_length=255,
+                ),
+                default=("EMAIL",),
+                size=None,
+            ),
             preserve_default=False,
         ),
     ]

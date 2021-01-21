@@ -16,6 +16,7 @@ from django.views.generic import (
 from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.users.forms import InviteRequestForm
+from .tasks import create_ghost_member
 
 User = get_user_model()
 
@@ -28,6 +29,11 @@ class InviteRequestView(CreateView):
     template_name = "users/inviterequest_form.html"
     success_url = "/thanks/"
     form_class = InviteRequestForm
+
+    def form_valid(self, form):
+        res = super().form_valid(form)
+        task = create_ghost_member.delay(self.object.to_ghost_member())
+        return res
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

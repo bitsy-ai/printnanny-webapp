@@ -494,3 +494,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
     'https://print-nanny.com'
 ]
+
+GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
+GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
