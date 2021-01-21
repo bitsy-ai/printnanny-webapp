@@ -21,6 +21,8 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+        environment:
+          HONEYCOMB_SERVICE_NAME: celery-worker
         volumeMounts:
         - name: dataflow-service-account
           mountPath: /etc/service-account
@@ -66,6 +68,8 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+        environment:
+          HONEYCOMB_SERVICE_NAME: octoprint-events
         volumeMounts:
         - name: dataflow-service-account
           mountPath: /etc/service-account
