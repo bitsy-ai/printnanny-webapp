@@ -2,6 +2,80 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      serviceAccountName: sql-webapp
+      containers:
+      - name: celery-worker
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
+        command: 
+          - /start-celeryworker
+        envFrom:
+          - configMapRef:
+              name: webapp
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: celery-worker
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
+      volumes:
+        - name: dataflow-service-account
+          secret:
+            secretName: dataflow-service-account
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      serviceAccountName: sql-webapp
+      containers:
+      - name: octoprint-events
+        command: 
+          - python
+          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
+        envFrom:
+          - configMapRef:
+              name: webapp
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: octoprint-events
+        volumeMounts:
+        - name: dataflow-service-account
+          mountPath: /etc/service-account
+          readOnly: true
+      volumes:
+        - name: dataflow-service-account
+          secret:
+            secretName: dataflow-service-account
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: django
 spec:
   replicas: 1
@@ -15,19 +89,6 @@ spec:
     spec:
       serviceAccountName: sql-webapp
       containers:
-      - name: celery-worker
-        command: 
-          - /start-celeryworker
-        envFrom:
-          - configMapRef:
-              name: webapp
-        environment:
-          HONEYCOMB_SERVICE_NAME: celery-worker
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: /etc/service-account
-          readOnly: true
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
       - name: django
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         livenessProbe:
@@ -57,27 +118,6 @@ spec:
         - name: dataflow-service-account
           mountPath: /etc/service-account
           readOnly: true
-      - name: octoprint-events
-        command: 
-          - python
-          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
-        ports:
-        - containerPort: 8000
-        - containerPort: 8001
-        envFrom:
-          - configMapRef:
-              name: webapp
-        environment:
-          HONEYCOMB_SERVICE_NAME: octoprint-events
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: /etc/service-account
-          readOnly: true
-      - name: redis
-        image: us.gcr.io/print-nanny/print_nanny_webapp_redis:latest
-        ports:
-          - containerPort: 6379
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!

@@ -50,8 +50,10 @@ def create_ghost_member(ghost_member):
     try:
         r.raise_for_status()
     except Exception as e:
-        logger.error(e)
-        return r
+        logger.warning({ 'msg':'Attempting to retreive user after POST /ghost/api/v3/admin/members/', 'error': e })
+        r = requests.get(url, headers=headers, params={
+            'search': body.get('email')
+        })
     data = r.json()
 
     for member in data.get("members"):
@@ -59,16 +61,28 @@ def create_ghost_member(ghost_member):
         user = User.objects.filter(email=member["email"]).first()
         invite_request = InviteRequest.objects.filter(email=member["email"]).first()
         try:
-            obj = GhostMember.objects.create(
-                email=member["email"],
-                uuid=member["uuid"],
-                user=user,
-                invite_request=invite_request,
-                email_count=member["email_count"],
-                email_open_rate=member["email_open_rate"],
-                email_opened_count=member["email_opened_count"],
-            )
-            logger.info(f"Created GhostMember id={obj.id}")
+            obj = GhostMember.objects.filter(email=member["email"])
+
+            if obj is not None:
+                obj.email = member["email"]
+                obj.uuid = member["uuid"]
+                obj.user = user
+                obj.invite_request = invite_request
+                obj.email_count = member["email_count"]
+                obj.email_open_rate = member["email_open_rate"]
+                obj.email_opened_count = member["email_opened_count"]
+                obj.save()
+            else:
+                obj = GhostMember.objects.create(
+                    email=member["email"],
+                    uuid=member["uuid"],
+                    user=user,
+                    invite_request=invite_request,
+                    email_count=member["email_count"],
+                    email_open_rate=member["email_open_rate"],
+                    email_opened_count=member["email_opened_count"],
+                )
+                logger.info(f"Created GhostMember id={obj.id}")
         except Exception as e:
             logger.error(e)
     return r.json()

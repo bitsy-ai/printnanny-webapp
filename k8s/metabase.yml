@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app: metabase
-  serviceName: metabase
   template:
     metadata:
       labels:
@@ -30,6 +29,24 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
 ---
 apiVersion: v1
 kind: Service
@@ -37,8 +54,6 @@ metadata:
   name: metabase
   labels:
     app: metabase
-  annotations:
-    cloud.google.com/backend-config: '{"default": "metabase"}'
 spec:
   selector:
     app: metabase
@@ -46,7 +61,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000
 ---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
@@ -54,7 +69,7 @@ metadata:
   name: metabase
 spec:
   domains:
-    - blog.print-nanny.com
+    - metabase.print-nanny.com
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -62,7 +77,7 @@ metadata:
   name: metabase
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: ghost-static-ip
+    kubernetes.io/ingress.global-static-ip-name: metabase
     networking.gke.io/managed-certificates: metabase
 spec:
   backend:
