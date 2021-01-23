@@ -59,7 +59,7 @@ def create_ghost_member(ghost_member):
         user = User.objects.filter(email=member["email"]).first()
         invite_request = InviteRequest.objects.filter(email=member["email"]).first()
         try:
-            created = GhostMember.objects.create(
+            obj = GhostMember.objects.create(
                 email=member["email"],
                 uuid=member["uuid"],
                 user=user,
