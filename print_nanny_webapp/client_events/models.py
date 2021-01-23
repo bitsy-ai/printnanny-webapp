@@ -156,7 +156,7 @@ class PrintJobEvent(models.Model):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=PrintJobEventTypeChoices.choices
     )
-    state = models.CharField(max_length=255)
+    state = JSONField(default={})
     current_z = models.FloatField(null=True)
 
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
