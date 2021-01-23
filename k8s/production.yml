@@ -16,6 +16,7 @@ spec:
       serviceAccountName: sql-webapp
       containers:
       - name: celery-worker
+        imagePullPolicy: Always
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         command: 
           - /start-celeryworker
@@ -72,6 +73,7 @@ spec:
       serviceAccountName: sql-webapp
       containers:
       - name: octoprint-events
+        imagePullPolicy: Always
         command: 
           - python
           - print_nanny_webapp/client_events/subscribers/octoprint_events.py
@@ -131,6 +133,7 @@ spec:
       serviceAccountName: sql-webapp
       containers:
       - name: django
+        imagePullPolicy: Always
         image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
         livenessProbe:
           httpGet:
