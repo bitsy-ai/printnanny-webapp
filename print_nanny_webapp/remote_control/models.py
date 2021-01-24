@@ -74,7 +74,7 @@ class OctoPrintDeviceManager(models.Manager):
             p = subprocess.run(
                 [
                     "openssl",
-                    "sha3-512",
+                    "sha3-256",
                     "-c",
                     tmp_public_key_filename,
                 ],
@@ -83,7 +83,6 @@ class OctoPrintDeviceManager(models.Manager):
             logger.debug(p.stdout)
             if p.stderr != b"":
                 logger.warning(p.stderr)
-                # raise KeyPairProvisioning(p.stderr)
 
             fingerprint = p.stdout
             fingerprint = fingerprint.decode().split("=")[-1]
@@ -136,13 +135,12 @@ class OctoPrintDeviceManager(models.Manager):
             try:
                 cloudiot_device = client.delete_device(name=device_path)
                 logger.info(f"Deleted existing device {device_path}")
-            except google.api_core.exceptions.NotFound:
-                pass
+            except google.api_core.exceptions.NotFound as e:
+                logger.warning({"error": e, "msg": f"No existing device found with name {cloudiot_device_name}"})
 
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
             )
-            cloudiot_device_created = True
 
             logger.info(f"Created new device in registry {device_path}")
 

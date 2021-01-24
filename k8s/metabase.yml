@@ -29,6 +29,8 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
+          - configMapRef:
+              name: metabase
         livenessProbe:
           httpGet:
             path: /
