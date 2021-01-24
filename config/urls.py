@@ -6,6 +6,7 @@ from django.urls import include, path, re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
+from django.urls import reverse
 
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.permissions import AllowAny
@@ -35,8 +36,10 @@ urlpatterns = [
     path("users/", include("print_nanny_webapp.users.urls", namespace="users")),
     # path("remote-control/", include("print_nanny_webapp.remote_control.urls", namespace="remote-control")),
 
+
     path("accounts/", include("allauth.urls")),
     
+    path("signin/", RedirectView.as_view(url="/accounts/login/", permanent=True)),
 
     path("dashboard/",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
