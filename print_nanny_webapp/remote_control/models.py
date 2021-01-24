@@ -121,6 +121,7 @@ class OctoPrintDeviceManager(models.Manager):
                 "metadata": {
                     "user_id": str(kwargs.get("user").id),
                     "serial": kwargs.get("serial"),
+                    "fingerprint": fingerprint,
                     **string_kwargs,
                 },
             }
