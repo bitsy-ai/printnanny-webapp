@@ -139,7 +139,7 @@ from print_nanny_webapp.remote_control.models import RemoteControlCommand
 OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
 PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
 RemoteControlCommandCodes = [
-    x.value for x in RemoteControlCommand.CommandChoices.__members__.values()
+    RemoteControlCommand.PLUGIN_EVENT_PREFIX + x.value for x in RemoteControlCommand.CommandChoices.__members__.values()
 ]
 TelemetryEventCodes = (
     OctoPrintEventCodes + PrintJobEventCodes + RemoteControlCommandCodes
