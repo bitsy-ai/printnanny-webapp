@@ -421,7 +421,7 @@ class RemoteControlCommand(models.Model):
     VALID_ACTIONS = {
         PrintJobEventTypeChoices.PRINT_STARTED: [
             CommandChoices.PRINT_STOP,
-            CommandChoices.PAUSE_PRINT,
+            CommandChoices.PRINT_PAUSE,
         ],
         PrintJobEventTypeChoices.PRINT_DONE: [
             CommandChoices.MOVE_NOZZLE,
@@ -433,7 +433,7 @@ class RemoteControlCommand(models.Model):
         PrintJobEventTypeChoices.PRINT_CANCELLING: [],
         PrintJobEventTypeChoices.PRINT_PAUSED: [
             CommandChoices.PRINT_STOP,
-            CommandChoices.RESUME_PRINT,
+            CommandChoices.PRINT_RESUME,
             CommandChoices.MOVE_NOZZLE,
         ],
         PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
@@ -446,8 +446,8 @@ class RemoteControlCommand(models.Model):
 
     ACTION_CSS_CLASSES = {
         CommandChoices.PRINT_STOP: "danger",
-        CommandChoices.PAUSE_PRINT: "warning",
-        CommandChoices.RESUME_PRINT: "info",
+        CommandChoices.PRINT_PAUSE: "warning",
+        CommandChoices.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
     command = models.CharField(max_length=255, choices=CommandChoices.choices)
