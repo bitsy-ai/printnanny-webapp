@@ -18,6 +18,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
+import stringcase
 
 from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 
@@ -427,6 +428,9 @@ class RemoteControlCommand(models.Model):
         PRINT_PAUSE = "PrintPause", "Pause Print"
         PRINT_RESUME = "PrintResume", "Resume Print"
 
+    @classmethod
+    def to_octoprint_events(cls):
+        return [ cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES ]
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
