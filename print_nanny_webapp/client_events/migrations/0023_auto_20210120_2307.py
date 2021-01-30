@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 import json
 from django.db import migrations
 from print_nanny_webapp.client_events.models import PrintJobEvent
+
+
 class Migration(migrations.Migration):
     def forward_data_migration(apps, schema):
         for event in PrintJobEvent.objects.all():
@@ -11,17 +13,15 @@ class Migration(migrations.Migration):
                 event.temp_state = json.loads(event.state)
                 event.save()
             except json.decoder.JSONDecodeError as e:
-                print('Cannot convert {} object'.format(event.pk))
+                print("Cannot convert {} object".format(event.pk))
 
     def revert_migration(apps, schema):
         pass
+
     dependencies = [
-        ('client_events', '0022_printjobevent_temp_state'),
+        ("client_events", "0022_printjobevent_temp_state"),
     ]
 
     operations = [
-        migrations.RunPython(
-            code=forward_data_migration,
-            reverse_code=revert_migration
-        )
+        migrations.RunPython(code=forward_data_migration, reverse_code=revert_migration)
     ]
