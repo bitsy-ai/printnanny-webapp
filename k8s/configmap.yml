@@ -27,7 +27,7 @@ data:
   POSTGRES_PASSWORD: "^Zu42V2GR7m5dBv"
   DATABASE_URL: "postgres://webapp:^Zu42V2GR7m5dBv@127.0.0.1:5432/print_nanny_prod"
   PUBSUB_CLIENT_EVENT_TOPIC: "client-event-ingest-prod"
-  HONEYCOMB_DATASET: "print_nanny_cloud_prod"
+  HONEYCOMB_DATASET: "print_nanny_prod"
   HONEYCOMB_API_KEY: "9f2c7ba136e3800610c974dd3a07c3ca"
   GOOGLE_APPLICATION_CREDENTIALS: "/etc/service-account/print-nanny-8aaacf0c58b7.json"
   GHOST_ADMIN_API_KEY: "600bb4a4d65cdc0001dcf016:9c0d870c36c703c08b591266eb8098e6a6fb0a074599ea8155a3eb32eb0166d2"

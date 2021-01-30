@@ -177,6 +177,10 @@ class OctoPrintDeviceManager(models.Manager):
 class OctoPrintDevice(models.Model):
     objects = OctoPrintDeviceManager()
 
+    MONITORING_ACTIVE_CSS = {
+        True: "text-success",
+        False: "text-secondary",
+    }
     class Meta:
         unique_together = ("user", "serial")
 
@@ -210,6 +214,10 @@ class OctoPrintDevice(models.Model):
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
 
+    def to_json(self):
+        from print_nanny_webapp.remote_control.api.serializers import OctoPrintDeviceSerializer
+        serializer = OctoPrintDeviceSerializer(instance=self)
+        return json.dumps(serializer.data, sort_keys=True, indent=2)
     @property
     def cloudiot_device_status(self):
         client = cloudiot_v1.DeviceManagerClient()
@@ -251,7 +259,13 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status_css_class(self):
+        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+
         return PrintJobEvent.JOB_EVENT_TYPE_CSS[self.print_job_status]
+
+    @property
+    def monitoring_active_css_class(self):
+        return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
 
 
 class GcodeFile(models.Model):
@@ -393,45 +407,45 @@ class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
     class CommandChoices(models.TextChoices):
-        STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
-        START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
+        MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
+        MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
         SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
-        START_PRINT = "StartPrint", "Start Print"
+        PRINT_START = "PrintStart", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
-        STOP_PRINT = "StopPrint", "Stop Print"
-        PAUSE_PRINT = "PausePrint", "Pause Print"
-        RESUME_PRINT = "ResumePrint", "Resume Print"
+        PRINT_STOP = "PrintStop", "Stop Print"
+        PRINT_PAUSE = "PrintPause", "Pause Print"
+        PRINT_RESUME = "PrintResume", "Resume Print"
 
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
         PrintJobEventTypeChoices.PRINT_STARTED: [
-            CommandChoices.STOP_PRINT,
+            CommandChoices.PRINT_STOP,
             CommandChoices.PAUSE_PRINT,
         ],
         PrintJobEventTypeChoices.PRINT_DONE: [
             CommandChoices.MOVE_NOZZLE,
-            CommandChoices.START_MONITORING,
-            CommandChoices.STOP_MONITORING,
+            CommandChoices.MONITORING_START,
+            CommandChoices.MONITORING_STOP,
             CommandChoices.SNAPSHOT,
         ],
         PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
         PrintJobEventTypeChoices.PRINT_CANCELLING: [],
         PrintJobEventTypeChoices.PRINT_PAUSED: [
-            CommandChoices.STOP_PRINT,
+            CommandChoices.PRINT_STOP,
             CommandChoices.RESUME_PRINT,
             CommandChoices.MOVE_NOZZLE,
         ],
         PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
         "Idle": [
-            CommandChoices.START_MONITORING,
-            CommandChoices.STOP_MONITORING,
+            CommandChoices.MONITORING_START,
+            CommandChoices.MONITORING_STOP,
             CommandChoices.SNAPSHOT,
         ],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.STOP_PRINT: "danger",
+        CommandChoices.PRINT_STOP: "danger",
         CommandChoices.PAUSE_PRINT: "warning",
         CommandChoices.RESUME_PRINT: "info",
     }

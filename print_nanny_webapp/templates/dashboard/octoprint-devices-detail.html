@@ -37,10 +37,10 @@
         
         
                         <dt class="col-sm-3">Print Job Status</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {device.print_job_status_css_class}}"></i> {{object.print_job_status}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{object.print_job_status}}</dd>
 
                         <dt class="col-sm-3">Monitoring Status</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {device.print_job_status_css_class}}"></i> {{object.monitoring_active}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{object.monitoring_active}}</dd>
 
                         <dt class="col-sm-3">Last Telemetry</dt>
                         <dd class="col-sm-9">{{ object.cloudiot_device_status.lastEventTime }}</dd>
