@@ -137,7 +137,12 @@ class OctoPrintDeviceManager(models.Manager):
                 cloudiot_device = client.delete_device(name=device_path)
                 logger.info(f"Deleted existing device {device_path}")
             except google.api_core.exceptions.NotFound as e:
-                logger.warning({"error": e, "msg": f"No existing device found with name {cloudiot_device_name}"})
+                logger.warning(
+                    {
+                        "error": e,
+                        "msg": f"No existing device found with name {cloudiot_device_name}",
+                    }
+                )
 
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
@@ -181,6 +186,7 @@ class OctoPrintDevice(models.Model):
         True: "text-success",
         False: "text-secondary",
     }
+
     class Meta:
         unique_together = ("user", "serial")
 
@@ -215,9 +221,13 @@ class OctoPrintDevice(models.Model):
     print_nanny_client_version = models.CharField(max_length=255)
 
     def to_json(self):
-        from print_nanny_webapp.remote_control.api.serializers import OctoPrintDeviceSerializer
+        from print_nanny_webapp.remote_control.api.serializers import (
+            OctoPrintDeviceSerializer,
+        )
+
         serializer = OctoPrintDeviceSerializer(instance=self)
         return json.dumps(serializer.data, sort_keys=True, indent=2)
+
     @property
     def cloudiot_device_status(self):
         client = cloudiot_v1.DeviceManagerClient()

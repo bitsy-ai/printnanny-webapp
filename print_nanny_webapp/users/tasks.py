@@ -50,10 +50,13 @@ def create_ghost_member(ghost_member):
     try:
         r.raise_for_status()
     except Exception as e:
-        logger.warning({ 'msg':'Attempting to retreive user after POST /ghost/api/v3/admin/members/', 'error': e })
-        r = requests.get(url, headers=headers, params={
-            'search': body.get('email')
-        })
+        logger.warning(
+            {
+                "msg": "Attempting to retreive user after POST /ghost/api/v3/admin/members/",
+                "error": e,
+            }
+        )
+        r = requests.get(url, headers=headers, params={"search": body.get("email")})
     data = r.json()
 
     for member in data.get("members"):

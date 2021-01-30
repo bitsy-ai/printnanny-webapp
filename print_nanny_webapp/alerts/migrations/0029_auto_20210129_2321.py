@@ -7,23 +7,62 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0028_auto_20210118_2015'),
+        ("alerts", "0028_auto_20210118_2015"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='start_monitoring',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="start_monitoring",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='start_print',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="start_print",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='stop_monitoring',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="stop_monitoring",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
+                size=None,
+            ),
         ),
     ]
