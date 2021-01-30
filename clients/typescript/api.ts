@@ -339,13 +339,13 @@ export interface CommandAlertSettings {
      */
     snapshot?: Array<CommandAlertSettingsSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
     stop_monitoring?: Array<CommandAlertSettingsStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
@@ -357,7 +357,7 @@ export interface CommandAlertSettings {
      */
     stop_print?: Array<CommandAlertSettingsStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
@@ -506,13 +506,13 @@ export interface CommandAlertSettingsRequest {
      */
     snapshot?: Array<CommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
     stop_monitoring?: Array<CommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -524,7 +524,7 @@ export interface CommandAlertSettingsRequest {
      */
     stop_print?: Array<CommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -636,14 +636,14 @@ export enum CommandAlertSettingsRequestResumePrintEnum {
  * @enum {string}
  */
 export enum CommandEnum {
-    StopMonitoring = 'StopMonitoring',
-    StartMonitoring = 'StartMonitoring',
+    MonitoringStop = 'MonitoringStop',
+    MonitoringStart = 'MonitoringStart',
     Snapshot = 'Snapshot',
-    StartPrint = 'StartPrint',
+    PrintStart = 'PrintStart',
     MoveNozzle = 'MoveNozzle',
-    StopPrint = 'StopPrint',
-    PausePrint = 'PausePrint',
-    ResumePrint = 'ResumePrint'
+    PrintStop = 'PrintStop',
+    PrintPause = 'PrintPause',
+    PrintResume = 'PrintResume'
 }
 
 /**
@@ -1982,13 +1982,13 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     snapshot?: Array<PatchedCommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
     stop_monitoring?: Array<PatchedCommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2000,7 +2000,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     stop_print?: Array<PatchedCommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
