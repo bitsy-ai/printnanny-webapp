@@ -2478,10 +2478,10 @@ export interface PatchedPrinterProfileRequest {
     octoprint_key?: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PatchedPrinterProfileRequest
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -2983,10 +2983,10 @@ export interface PrinterProfile {
     octoprint_key: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PrinterProfile
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -3134,10 +3134,10 @@ export interface PrinterProfileRequest {
     octoprint_key: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PrinterProfileRequest
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
