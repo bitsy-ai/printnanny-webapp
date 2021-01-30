@@ -133,10 +133,12 @@ class PrintJobEventTypeChoices(models.TextChoices):
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
 
+from print_nanny_webapp.remote_control.models import RemoteControlCommand
 
 OctoPrintEventCodes = [x.value for x in OctoPrintEventTypeChoices.__members__.values()]
 PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.values()]
-TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes
+RemoteControlCommandCodes = [x.value for x in RemoteControlCommand.CommandChoices.__members__.values()]
+TelemetryEventCodes = OctoPrintEventCodes + PrintJobEventCodes + RemoteControlCommandCodes
 
 
 class PrintJobEvent(models.Model):
