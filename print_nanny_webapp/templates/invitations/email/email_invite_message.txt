@@ -10,14 +10,17 @@ Thank you for volunteering to Beta test Print Nanny!
 
 🦾 Follow the OctoPrint Plugin Setup guide to get started.
 
-https://help.print-nanny.com/installation-setup/
+https://help.print-nanny.com/octoprint-plugin-setup/
 
 🚧 Print Nanny is a work-in-progress! New features are rolled out weekly. Your feedback helps me build the future of fully-automated 3D printing. 
 
-Open a Github to report bugs, or join Discord to hang out with other cool makers. You can also shoot me an email at leigh@print-nanny.com if that's more your style.
+Please open a Github issue to report bugs.
+
+https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new
+
+Join Discord to hang out with other cool makers. You can also email me at leigh@print-nanny.com if you have any questions.
 
 https://discord.gg/sf23bk2hPr
-https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new
 
 Thanks,
 Leigh
