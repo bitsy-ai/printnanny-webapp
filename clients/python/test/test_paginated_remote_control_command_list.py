@@ -54,7 +54,8 @@ class TestPaginatedRemoteControlCommandList(unittest.TestCase):
                         metadata = {
                             'key' : null
                             }, 
-                        url = '', )
+                        url = '', 
+                        octoprint_event_type = '', )
                     ]
             )
         else :

@@ -42,7 +42,8 @@ class RemoteControlCommand(object):
         'success': 'bool',
         'iotcore_response': 'dict(str, object)',
         'metadata': 'dict(str, object)',
-        'url': 'str'
+        'url': 'str',
+        'octoprint_event_type': 'str'
     }
 
     attribute_map = {
@@ -55,10 +56,11 @@ class RemoteControlCommand(object):
         'success': 'success',
         'iotcore_response': 'iotcore_response',
         'metadata': 'metadata',
-        'url': 'url'
+        'url': 'url',
+        'octoprint_event_type': 'octoprint_event_type'
     }
 
-    def __init__(self, id=None, created_dt=None, command=None, user=None, device=None, received=None, success=None, iotcore_response=None, metadata=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, command=None, user=None, device=None, received=None, success=None, iotcore_response=None, metadata=None, url=None, octoprint_event_type=None, local_vars_configuration=None):  # noqa: E501
         """RemoteControlCommand - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -74,6 +76,7 @@ class RemoteControlCommand(object):
         self._iotcore_response = None
         self._metadata = None
         self._url = None
+        self._octoprint_event_type = None
         self.discriminator = None
 
         if id is not None:
@@ -92,6 +95,8 @@ class RemoteControlCommand(object):
             self.metadata = metadata
         if url is not None:
             self.url = url
+        if octoprint_event_type is not None:
+            self.octoprint_event_type = octoprint_event_type
 
     @property
     def id(self):
@@ -308,6 +313,27 @@ class RemoteControlCommand(object):
         """
 
         self._url = url
+
+    @property
+    def octoprint_event_type(self):
+        """Gets the octoprint_event_type of this RemoteControlCommand.  # noqa: E501
+
+
+        :return: The octoprint_event_type of this RemoteControlCommand.  # noqa: E501
+        :rtype: str
+        """
+        return self._octoprint_event_type
+
+    @octoprint_event_type.setter
+    def octoprint_event_type(self, octoprint_event_type):
+        """Sets the octoprint_event_type of this RemoteControlCommand.
+
+
+        :param octoprint_event_type: The octoprint_event_type of this RemoteControlCommand.  # noqa: E501
+        :type octoprint_event_type: str
+        """
+
+        self._octoprint_event_type = octoprint_event_type
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

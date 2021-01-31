@@ -3469,6 +3469,12 @@ export interface RemoteControlCommand {
      * @memberof RemoteControlCommand
      */
     url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommand
+     */
+    octoprint_event_type?: string;
 }
 /**
  * 
