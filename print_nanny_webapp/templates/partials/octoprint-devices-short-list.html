@@ -38,7 +38,7 @@
                     </td> -->
                     <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td>
 
-                    <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.print_job_status}}</td>
+                    <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td>
                     <td>{{device.gcode_file}}</td>
 
                     <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage</button></a></td>
