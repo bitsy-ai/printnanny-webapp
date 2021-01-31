@@ -1,4 +1,4 @@
-# OctoPrintDeviceKeyRequest
+# OctoPrintDeviceRequest
 
 ## Properties
 Name | Type | Description | Notes

@@ -1261,7 +1261,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_create**
-> OctoPrintDevice octoprint_devices_create(octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_create(octo_print_device_request)
 
 
 
@@ -1300,10 +1300,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_create(octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_create: %s\n" % e)
@@ -1342,10 +1342,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_create(octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_create: %s\n" % e)
@@ -1355,7 +1355,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_print_device_key_request** | [**OctoPrintDeviceKeyRequest**](OctoPrintDeviceKeyRequest.md)|  | 
+ **octo_print_device_request** | [**OctoPrintDeviceRequest**](OctoPrintDeviceRequest.md)|  | 
 
 ### Return type
 
@@ -1381,7 +1381,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_list**
-> PaginatedOctoPrintDeviceKeyList octoprint_devices_list(page=page)
+> PaginatedOctoPrintDeviceList octoprint_devices_list(page=page)
 
 
 
@@ -1479,7 +1479,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrintDeviceKeyList**](PaginatedOctoPrintDeviceKeyList.md)
+[**PaginatedOctoPrintDeviceList**](PaginatedOctoPrintDeviceList.md)
 
 ### Authorization
 
@@ -1498,7 +1498,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_partial_update**
-> OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_key_request=patched_octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
 
 
 
@@ -1538,10 +1538,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print device.
-patched_octo_print_device_key_request = print_nanny_client.PatchedOctoPrintDeviceKeyRequest() # PatchedOctoPrintDeviceKeyRequest |  (optional)
+patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_key_request=patched_octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_partial_update: %s\n" % e)
@@ -1581,10 +1581,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print device.
-patched_octo_print_device_key_request = print_nanny_client.PatchedOctoPrintDeviceKeyRequest() # PatchedOctoPrintDeviceKeyRequest |  (optional)
+patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_key_request=patched_octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_partial_update: %s\n" % e)
@@ -1595,7 +1595,7 @@ patched_octo_print_device_key_request = print_nanny_client.PatchedOctoPrintDevic
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this octo print device. | 
- **patched_octo_print_device_key_request** | [**PatchedOctoPrintDeviceKeyRequest**](PatchedOctoPrintDeviceKeyRequest.md)|  | [optional] 
+ **patched_octo_print_device_request** | [**PatchedOctoPrintDeviceRequest**](PatchedOctoPrintDeviceRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1620,7 +1620,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_retrieve**
-> OctoPrintDeviceKey octoprint_devices_retrieve(id)
+> OctoPrintDevice octoprint_devices_retrieve(id)
 
 
 
@@ -1718,7 +1718,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OctoPrintDeviceKey**](OctoPrintDeviceKey.md)
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -1737,7 +1737,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_update**
-> OctoPrintDevice octoprint_devices_update(id, octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_update(id, octo_print_device_request)
 
 
 
@@ -1777,10 +1777,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print device.
-octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update(id, octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_update: %s\n" % e)
@@ -1820,10 +1820,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
     id = 56 # int | A unique integer value identifying this octo print device.
-octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update(id, octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_update: %s\n" % e)
@@ -1834,7 +1834,7 @@ octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() #
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this octo print device. | 
- **octo_print_device_key_request** | [**OctoPrintDeviceKeyRequest**](OctoPrintDeviceKeyRequest.md)|  | 
+ **octo_print_device_request** | [**OctoPrintDeviceRequest**](OctoPrintDeviceRequest.md)|  | 
 
 ### Return type
 
@@ -1859,7 +1859,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_update_or_create**
-> OctoPrintDevice octoprint_devices_update_or_create(octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_update_or_create(octo_print_device_request)
 
 
 
@@ -1898,10 +1898,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update_or_create(octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_update_or_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_update_or_create: %s\n" % e)
@@ -1940,10 +1940,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    octo_print_device_key_request = print_nanny_client.OctoPrintDeviceKeyRequest() # OctoPrintDeviceKeyRequest | 
+    octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update_or_create(octo_print_device_key_request)
+        api_response = api_instance.octoprint_devices_update_or_create(octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->octoprint_devices_update_or_create: %s\n" % e)
@@ -1953,7 +1953,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **octo_print_device_key_request** | [**OctoPrintDeviceKeyRequest**](OctoPrintDeviceKeyRequest.md)|  | 
+ **octo_print_device_request** | [**OctoPrintDeviceRequest**](OctoPrintDeviceRequest.md)|  | 
 
 ### Return type
 
