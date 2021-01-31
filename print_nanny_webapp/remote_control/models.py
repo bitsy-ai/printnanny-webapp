@@ -385,6 +385,7 @@ class RemoteControlCommandManager(models.Manager):
         data = {
             "remote_control_command_id": obj.id,
             "command": kwargs.get("command"),
+            "octoprint_event_type": obj.octoprint_event_type
         }
         data = json.dumps(data).encode("utf-8")
 

@@ -1860,7 +1860,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintDeviceKey
+        :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
         return self.octoprint_devices_partial_update_with_http_info(id, **kwargs)  # noqa: E501
@@ -1898,7 +1898,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintDeviceKey, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(OctoPrintDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1958,7 +1958,9 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintDeviceKey",
+            400: "OctoPrintDevice",
+            200: "OctoPrintDevice",
+            202: "OctoPrintDevice",
         }
 
         return self.api_client.call_api(
@@ -2137,7 +2139,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintDeviceKey
+        :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
         return self.octoprint_devices_update_with_http_info(id, octo_print_device_key_request, **kwargs)  # noqa: E501
@@ -2175,7 +2177,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintDeviceKey, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(OctoPrintDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2239,7 +2241,9 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintDeviceKey",
+            400: "OctoPrintDevice",
+            200: "OctoPrintDevice",
+            202: "OctoPrintDevice",
         }
 
         return self.api_client.call_api(

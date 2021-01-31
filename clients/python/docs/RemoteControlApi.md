@@ -1498,7 +1498,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_partial_update**
-> OctoPrintDeviceKey octoprint_devices_partial_update(id, patched_octo_print_device_key_request=patched_octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_key_request=patched_octo_print_device_key_request)
 
 
 
@@ -1599,7 +1599,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OctoPrintDeviceKey**](OctoPrintDeviceKey.md)
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -1613,7 +1613,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**400** |  |  -  |
 **200** |  |  -  |
+**202** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1735,7 +1737,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_devices_update**
-> OctoPrintDeviceKey octoprint_devices_update(id, octo_print_device_key_request)
+> OctoPrintDevice octoprint_devices_update(id, octo_print_device_key_request)
 
 
 
@@ -1836,7 +1838,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OctoPrintDeviceKey**](OctoPrintDeviceKey.md)
+[**OctoPrintDevice**](OctoPrintDevice.md)
 
 ### Authorization
 
@@ -1850,7 +1852,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**400** |  |  -  |
 **200** |  |  -  |
+**202** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
