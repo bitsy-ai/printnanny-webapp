@@ -473,3 +473,7 @@ class RemoteControlCommand(models.Model):
     iotcore_response = JSONField(default={})
 
     metadata = JSONField(default={})
+
+    @property
+    def octoprint_event_type(self):
+        return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)
