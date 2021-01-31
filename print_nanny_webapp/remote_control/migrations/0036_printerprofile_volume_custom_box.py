@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0035_remove_printerprofile_volume_custom_box'),
+        ("remote_control", "0035_remove_printerprofile_volume_custom_box"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printerprofile',
-            name='volume_custom_box',
+            model_name="printerprofile",
+            name="volume_custom_box",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
     ]

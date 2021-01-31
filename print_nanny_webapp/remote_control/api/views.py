@@ -382,7 +382,7 @@ class OctoPrintDeviceViewSet(
             200: OctoPrintDeviceSerializer,
             202: OctoPrintDeviceSerializer,
         },
-    ) 
+    )
     def update(self, *args, **kwargs):
         return super().update(*args, **kwargs)
 

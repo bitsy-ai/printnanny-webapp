@@ -385,7 +385,7 @@ class RemoteControlCommandManager(models.Manager):
         data = {
             "remote_control_command_id": obj.id,
             "command": kwargs.get("command"),
-            "octoprint_event_type": obj.octoprint_event_type
+            "octoprint_event_type": obj.octoprint_event_type,
         }
         data = json.dumps(data).encode("utf-8")
 
@@ -419,6 +419,7 @@ class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
     PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
+
     class CommandChoices(models.TextChoices):
         MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
         MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
@@ -431,7 +432,10 @@ class RemoteControlCommand(models.Model):
 
     @classmethod
     def to_octoprint_events(cls):
-        return [ cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES ]
+        return [
+            cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES
+        ]
+
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
