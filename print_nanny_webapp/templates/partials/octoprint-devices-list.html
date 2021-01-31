@@ -12,7 +12,7 @@
                   <tr>
                       <th>Name</th>
                       <!-- <th>Print Progress</th> -->
-                      <th>Monitoring Status</th>
+                      <th>Monitoring Active</th>
                       <th>Print Job Status</th>
                       <th>Gcode File</th>
                       <th>Remote Control</th>
@@ -44,7 +44,7 @@
                             <div class="progress-bar progress-lg bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </td> -->
-                    <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td>
+                    <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.monitoring_active}}</td>
                     <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.print_job_status}}</td>
 
                     <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-sm btn-primary">Manage</button></a></td>

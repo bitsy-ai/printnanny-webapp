@@ -272,7 +272,7 @@ class OctoPrintDevice(models.Model):
     def print_job_status_css_class(self):
         PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
 
-        return PrintJobEvent.JOB_EVENT_TYPE_CSS[self.print_job_status]
+        return PrintJobEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
