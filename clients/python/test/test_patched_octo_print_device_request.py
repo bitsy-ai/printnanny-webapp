@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_device_key_request import OctoPrintDeviceKeyRequest  # noqa: E501
+from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintDeviceKeyRequest(unittest.TestCase):
-    """OctoPrintDeviceKeyRequest unit test stubs"""
+class TestPatchedOctoPrintDeviceRequest(unittest.TestCase):
+    """PatchedOctoPrintDeviceRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,13 +29,13 @@ class TestOctoPrintDeviceKeyRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintDeviceKeyRequest
+        """Test PatchedOctoPrintDeviceRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_device_key_request.OctoPrintDeviceKeyRequest()  # noqa: E501
+        # model = print_nanny_client.models.patched_octo_print_device_request.PatchedOctoPrintDeviceRequest()  # noqa: E501
         if include_optional :
-            return OctoPrintDeviceKeyRequest(
+            return PatchedOctoPrintDeviceRequest(
                 name = '', 
                 model = '', 
                 platform = '', 
@@ -56,28 +56,11 @@ class TestOctoPrintDeviceKeyRequest(unittest.TestCase):
                 print_nanny_client_version = ''
             )
         else :
-            return OctoPrintDeviceKeyRequest(
-                name = '',
-                model = '',
-                platform = '',
-                cpu_flags = [
-                    ''
-                    ],
-                hardware = '',
-                revision = '',
-                serial = '',
-                cores = -2147483648,
-                ram = -2147483648,
-                python_version = '',
-                pip_version = '',
-                virtualenv = '',
-                octoprint_version = '',
-                plugin_version = '',
-                print_nanny_client_version = '',
+            return PatchedOctoPrintDeviceRequest(
         )
 
-    def testOctoPrintDeviceKeyRequest(self):
-        """Test OctoPrintDeviceKeyRequest"""
+    def testPatchedOctoPrintDeviceRequest(self):
+        """Test PatchedOctoPrintDeviceRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -1565,17 +1565,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_devices_create(self, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_create(self, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_create(octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_create(octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1592,19 +1592,19 @@ class RemoteControlApi(object):
         :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_devices_create_with_http_info(octo_print_device_key_request, **kwargs)  # noqa: E501
+        return self.octoprint_devices_create_with_http_info(octo_print_device_request, **kwargs)  # noqa: E501
 
-    def octoprint_devices_create_with_http_info(self, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_create_with_http_info(self, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_create_with_http_info(octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_create_with_http_info(octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1631,7 +1631,7 @@ class RemoteControlApi(object):
         local_var_params = locals()
 
         all_params = [
-            'octo_print_device_key_request'
+            'octo_print_device_request'
         ]
         all_params.extend(
             [
@@ -1651,10 +1651,10 @@ class RemoteControlApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_device_key_request' is set
-        if self.api_client.client_side_validation and ('octo_print_device_key_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_device_key_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_device_key_request` when calling `octoprint_devices_create`")  # noqa: E501
+        # verify the required parameter 'octo_print_device_request' is set
+        if self.api_client.client_side_validation and ('octo_print_device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['octo_print_device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octo_print_device_request` when calling `octoprint_devices_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1668,8 +1668,8 @@ class RemoteControlApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'octo_print_device_key_request' in local_var_params:
-            body_params = local_var_params['octo_print_device_key_request']
+        if 'octo_print_device_request' in local_var_params:
+            body_params = local_var_params['octo_print_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1682,8 +1682,8 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            201: "OctoPrintDeviceKey",
-            202: "OctoPrintDeviceKey",
+            201: "OctoPrintDevice",
+            202: "OctoPrintDevice",
             400: "OctoPrintDevice",
             200: "OctoPrintDevice",
         }
@@ -1729,7 +1729,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedOctoPrintDeviceKeyList
+        :rtype: PaginatedOctoPrintDeviceList
         """
         kwargs['_return_http_data_only'] = True
         return self.octoprint_devices_list_with_http_info(**kwargs)  # noqa: E501
@@ -1765,7 +1765,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedOctoPrintDeviceKeyList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedOctoPrintDeviceList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1814,7 +1814,7 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedOctoPrintDeviceKeyList",
+            200: "PaginatedOctoPrintDeviceList",
         }
 
         return self.api_client.call_api(
@@ -1845,8 +1845,8 @@ class RemoteControlApi(object):
 
         :param id: A unique integer value identifying this octo print device. (required)
         :type id: int
-        :param patched_octo_print_device_key_request:
-        :type patched_octo_print_device_key_request: PatchedOctoPrintDeviceKeyRequest
+        :param patched_octo_print_device_request:
+        :type patched_octo_print_device_request: PatchedOctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1876,8 +1876,8 @@ class RemoteControlApi(object):
 
         :param id: A unique integer value identifying this octo print device. (required)
         :type id: int
-        :param patched_octo_print_device_key_request:
-        :type patched_octo_print_device_key_request: PatchedOctoPrintDeviceKeyRequest
+        :param patched_octo_print_device_request:
+        :type patched_octo_print_device_request: PatchedOctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1905,7 +1905,7 @@ class RemoteControlApi(object):
 
         all_params = [
             'id',
-            'patched_octo_print_device_key_request'
+            'patched_octo_print_device_request'
         ]
         all_params.extend(
             [
@@ -1944,8 +1944,8 @@ class RemoteControlApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'patched_octo_print_device_key_request' in local_var_params:
-            body_params = local_var_params['patched_octo_print_device_key_request']
+        if 'patched_octo_print_device_request' in local_var_params:
+            body_params = local_var_params['patched_octo_print_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2004,7 +2004,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintDeviceKey
+        :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
         return self.octoprint_devices_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -2040,7 +2040,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintDeviceKey, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(OctoPrintDevice, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2093,7 +2093,7 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintDeviceKey",
+            200: "OctoPrintDevice",
         }
 
         return self.api_client.call_api(
@@ -2113,19 +2113,19 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_devices_update(self, id, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_update(self, id, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_update(id, octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_update(id, octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print device. (required)
         :type id: int
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2142,21 +2142,21 @@ class RemoteControlApi(object):
         :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_devices_update_with_http_info(id, octo_print_device_key_request, **kwargs)  # noqa: E501
+        return self.octoprint_devices_update_with_http_info(id, octo_print_device_request, **kwargs)  # noqa: E501
 
-    def octoprint_devices_update_with_http_info(self, id, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_update_with_http_info(self, id, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_update_with_http_info(id, octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_update_with_http_info(id, octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print device. (required)
         :type id: int
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2184,7 +2184,7 @@ class RemoteControlApi(object):
 
         all_params = [
             'id',
-            'octo_print_device_key_request'
+            'octo_print_device_request'
         ]
         all_params.extend(
             [
@@ -2208,10 +2208,10 @@ class RemoteControlApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `octoprint_devices_update`")  # noqa: E501
-        # verify the required parameter 'octo_print_device_key_request' is set
-        if self.api_client.client_side_validation and ('octo_print_device_key_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_device_key_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_device_key_request` when calling `octoprint_devices_update`")  # noqa: E501
+        # verify the required parameter 'octo_print_device_request' is set
+        if self.api_client.client_side_validation and ('octo_print_device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['octo_print_device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octo_print_device_request` when calling `octoprint_devices_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2227,8 +2227,8 @@ class RemoteControlApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'octo_print_device_key_request' in local_var_params:
-            body_params = local_var_params['octo_print_device_key_request']
+        if 'octo_print_device_request' in local_var_params:
+            body_params = local_var_params['octo_print_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2263,17 +2263,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_devices_update_or_create(self, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_update_or_create(self, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_update_or_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_update_or_create(octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_update_or_create(octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2290,19 +2290,19 @@ class RemoteControlApi(object):
         :rtype: OctoPrintDevice
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_devices_update_or_create_with_http_info(octo_print_device_key_request, **kwargs)  # noqa: E501
+        return self.octoprint_devices_update_or_create_with_http_info(octo_print_device_request, **kwargs)  # noqa: E501
 
-    def octoprint_devices_update_or_create_with_http_info(self, octo_print_device_key_request, **kwargs):  # noqa: E501
+    def octoprint_devices_update_or_create_with_http_info(self, octo_print_device_request, **kwargs):  # noqa: E501
         """octoprint_devices_update_or_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_devices_update_or_create_with_http_info(octo_print_device_key_request, async_req=True)
+        >>> thread = api.octoprint_devices_update_or_create_with_http_info(octo_print_device_request, async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_device_key_request: (required)
-        :type octo_print_device_key_request: OctoPrintDeviceKeyRequest
+        :param octo_print_device_request: (required)
+        :type octo_print_device_request: OctoPrintDeviceRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2329,7 +2329,7 @@ class RemoteControlApi(object):
         local_var_params = locals()
 
         all_params = [
-            'octo_print_device_key_request'
+            'octo_print_device_request'
         ]
         all_params.extend(
             [
@@ -2349,10 +2349,10 @@ class RemoteControlApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_device_key_request' is set
-        if self.api_client.client_side_validation and ('octo_print_device_key_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_device_key_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_device_key_request` when calling `octoprint_devices_update_or_create`")  # noqa: E501
+        # verify the required parameter 'octo_print_device_request' is set
+        if self.api_client.client_side_validation and ('octo_print_device_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['octo_print_device_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octo_print_device_request` when calling `octoprint_devices_update_or_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2366,8 +2366,8 @@ class RemoteControlApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'octo_print_device_key_request' in local_var_params:
-            body_params = local_var_params['octo_print_device_key_request']
+        if 'octo_print_device_request' in local_var_params:
+            body_params = local_var_params['octo_print_device_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
