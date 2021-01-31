@@ -18,6 +18,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
+import stringcase
 
 from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 
@@ -137,7 +138,12 @@ class OctoPrintDeviceManager(models.Manager):
                 cloudiot_device = client.delete_device(name=device_path)
                 logger.info(f"Deleted existing device {device_path}")
             except google.api_core.exceptions.NotFound as e:
-                logger.warning({"error": e, "msg": f"No existing device found with name {cloudiot_device_name}"})
+                logger.warning(
+                    {
+                        "error": e,
+                        "msg": f"No existing device found with name {cloudiot_device_name}",
+                    }
+                )
 
             cloudiot_device = client.create_device(
                 parent=parent, device=device_template
@@ -177,6 +183,11 @@ class OctoPrintDeviceManager(models.Manager):
 class OctoPrintDevice(models.Model):
     objects = OctoPrintDeviceManager()
 
+    MONITORING_ACTIVE_CSS = {
+        True: "text-success",
+        False: "text-secondary",
+    }
+
     class Meta:
         unique_together = ("user", "serial")
 
@@ -209,6 +220,14 @@ class OctoPrintDevice(models.Model):
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
+
+    def to_json(self):
+        from print_nanny_webapp.remote_control.api.serializers import (
+            OctoPrintDeviceSerializer,
+        )
+
+        serializer = OctoPrintDeviceSerializer(instance=self)
+        return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property
     def cloudiot_device_status(self):
@@ -251,7 +270,13 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status_css_class(self):
-        return PrintJobEvent.JOB_EVENT_TYPE_CSS[self.print_job_status]
+        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+
+        return PrintJobEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+
+    @property
+    def monitoring_active_css_class(self):
+        return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
 
 
 class GcodeFile(models.Model):
@@ -302,7 +327,7 @@ class PrinterProfile(models.Model):
     name = models.CharField(max_length=255)
     octoprint_key = models.CharField(max_length=255, db_index=True)
 
-    volume_custom_box = models.BooleanField(null=True)
+    volume_custom_box = JSONField(default={})
     volume_depth = models.FloatField(null=True)
     volume_formfactor = models.CharField(null=True, max_length=255)
     volume_height = models.FloatField(null=True)
@@ -360,6 +385,7 @@ class RemoteControlCommandManager(models.Manager):
         data = {
             "remote_control_command_id": obj.id,
             "command": kwargs.get("command"),
+            "octoprint_event_type": obj.octoprint_event_type,
         }
         data = json.dumps(data).encode("utf-8")
 
@@ -392,48 +418,56 @@ class RemoteControlSnapshot(models.Model):
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
+    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
+
     class CommandChoices(models.TextChoices):
-        STOP_MONITORING = "StopMonitoring", "Stop Print Nanny Monitoring"
-        START_MONITORING = "StartMonitoring", "Start Print Nanny Monitoring"
+        MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
+        MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
         SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
-        START_PRINT = "StartPrint", "Start Print"
+        PRINT_START = "PrintStart", "Start Print"
         MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
-        STOP_PRINT = "StopPrint", "Stop Print"
-        PAUSE_PRINT = "PausePrint", "Pause Print"
-        RESUME_PRINT = "ResumePrint", "Resume Print"
+        PRINT_STOP = "PrintStop", "Stop Print"
+        PRINT_PAUSE = "PrintPause", "Pause Print"
+        PRINT_RESUME = "PrintResume", "Resume Print"
+
+    @classmethod
+    def to_octoprint_events(cls):
+        return [
+            cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES
+        ]
 
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 
     VALID_ACTIONS = {
         PrintJobEventTypeChoices.PRINT_STARTED: [
-            CommandChoices.STOP_PRINT,
-            CommandChoices.PAUSE_PRINT,
+            CommandChoices.PRINT_STOP,
+            CommandChoices.PRINT_PAUSE,
         ],
         PrintJobEventTypeChoices.PRINT_DONE: [
             CommandChoices.MOVE_NOZZLE,
-            CommandChoices.START_MONITORING,
-            CommandChoices.STOP_MONITORING,
+            CommandChoices.MONITORING_START,
+            CommandChoices.MONITORING_STOP,
             CommandChoices.SNAPSHOT,
         ],
         PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
         PrintJobEventTypeChoices.PRINT_CANCELLING: [],
         PrintJobEventTypeChoices.PRINT_PAUSED: [
-            CommandChoices.STOP_PRINT,
-            CommandChoices.RESUME_PRINT,
+            CommandChoices.PRINT_STOP,
+            CommandChoices.PRINT_RESUME,
             CommandChoices.MOVE_NOZZLE,
         ],
         PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
         "Idle": [
-            CommandChoices.START_MONITORING,
-            CommandChoices.STOP_MONITORING,
+            CommandChoices.MONITORING_START,
+            CommandChoices.MONITORING_STOP,
             CommandChoices.SNAPSHOT,
         ],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.STOP_PRINT: "danger",
-        CommandChoices.PAUSE_PRINT: "warning",
-        CommandChoices.RESUME_PRINT: "info",
+        CommandChoices.PRINT_STOP: "danger",
+        CommandChoices.PRINT_PAUSE: "warning",
+        CommandChoices.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
     command = models.CharField(max_length=255, choices=CommandChoices.choices)
@@ -444,3 +478,7 @@ class RemoteControlCommand(models.Model):
     iotcore_response = JSONField(default={})
 
     metadata = JSONField(default={})
+
+    @property
+    def octoprint_event_type(self):
+        return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)

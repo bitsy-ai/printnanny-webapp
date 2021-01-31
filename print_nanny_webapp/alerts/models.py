@@ -145,14 +145,14 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     stop_monitoring = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StopMonitoring<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
+        help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
 
     start_monitoring = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
+        help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
@@ -166,7 +166,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     start_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.",
+        help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )

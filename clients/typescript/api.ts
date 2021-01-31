@@ -339,13 +339,13 @@ export interface CommandAlertSettings {
      */
     snapshot?: Array<CommandAlertSettingsSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
     stop_monitoring?: Array<CommandAlertSettingsStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
@@ -357,7 +357,7 @@ export interface CommandAlertSettings {
      */
     stop_print?: Array<CommandAlertSettingsStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettings
      */
@@ -506,13 +506,13 @@ export interface CommandAlertSettingsRequest {
      */
     snapshot?: Array<CommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
     stop_monitoring?: Array<CommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -524,7 +524,7 @@ export interface CommandAlertSettingsRequest {
      */
     stop_print?: Array<CommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -636,14 +636,14 @@ export enum CommandAlertSettingsRequestResumePrintEnum {
  * @enum {string}
  */
 export enum CommandEnum {
-    StopMonitoring = 'StopMonitoring',
-    StartMonitoring = 'StartMonitoring',
+    MonitoringStop = 'MonitoringStop',
+    MonitoringStart = 'MonitoringStart',
     Snapshot = 'Snapshot',
-    StartPrint = 'StartPrint',
+    PrintStart = 'PrintStart',
     MoveNozzle = 'MoveNozzle',
-    StopPrint = 'StopPrint',
-    PausePrint = 'PausePrint',
-    ResumePrint = 'ResumePrint'
+    PrintStop = 'PrintStop',
+    PrintPause = 'PrintPause',
+    PrintResume = 'PrintResume'
 }
 
 /**
@@ -1364,103 +1364,103 @@ export interface OctoPrintDeviceKey {
 /**
  * 
  * @export
- * @interface OctoPrintDeviceKeyRequest
+ * @interface OctoPrintDeviceRequest
  */
-export interface OctoPrintDeviceKeyRequest {
+export interface OctoPrintDeviceRequest {
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     model: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     platform: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     cpu_flags: Array<string>;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     hardware: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     revision: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     serial: string;
     /**
      * 
      * @type {number}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     cores: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     ram: number;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     python_version: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     pip_version: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     virtualenv: string;
     /**
      * 
      * @type {boolean}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     monitoring_active?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     octoprint_version: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     plugin_version: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoPrintDeviceKeyRequest
+     * @memberof OctoPrintDeviceRequest
      */
     print_nanny_client_version: string;
 }
@@ -1664,33 +1664,33 @@ export interface PaginatedGcodeFileList {
 /**
  * 
  * @export
- * @interface PaginatedOctoPrintDeviceKeyList
+ * @interface PaginatedOctoPrintDeviceList
  */
-export interface PaginatedOctoPrintDeviceKeyList {
+export interface PaginatedOctoPrintDeviceList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedOctoPrintDeviceKeyList
+     * @memberof PaginatedOctoPrintDeviceList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedOctoPrintDeviceKeyList
+     * @memberof PaginatedOctoPrintDeviceList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedOctoPrintDeviceKeyList
+     * @memberof PaginatedOctoPrintDeviceList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<OctoPrintDeviceKey>}
-     * @memberof PaginatedOctoPrintDeviceKeyList
+     * @type {Array<OctoPrintDevice>}
+     * @memberof PaginatedOctoPrintDeviceList
      */
-    results?: Array<OctoPrintDeviceKey>;
+    results?: Array<OctoPrintDevice>;
 }
 /**
  * 
@@ -1982,13 +1982,13 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     snapshot?: Array<PatchedCommandAlertSettingsRequestSnapshotEnum>;
     /**
-     * Fires on <strong>StopMonitoring<strong> updates.   Helps debug unexpected Print Nanny crashes.
+     * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
     stop_monitoring?: Array<PatchedCommandAlertSettingsRequestStopMonitoringEnum>;
     /**
-     * Fires on <strong>StopMonitoring</strong> updates. Helpful if you want to confirm monitoring started without a problem.
+     * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2000,7 +2000,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     stop_print?: Array<PatchedCommandAlertSettingsRequestStopPrintEnum>;
     /**
-     * Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.
+     * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
      * @type {Array<string>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2225,103 +2225,103 @@ export interface PatchedManualVideoUploadAlertRequest {
 /**
  * 
  * @export
- * @interface PatchedOctoPrintDeviceKeyRequest
+ * @interface PatchedOctoPrintDeviceRequest
  */
-export interface PatchedOctoPrintDeviceKeyRequest {
+export interface PatchedOctoPrintDeviceRequest {
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     model?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     platform?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     cpu_flags?: Array<string>;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     hardware?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     revision?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     serial?: string;
     /**
      * 
      * @type {number}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     cores?: number;
     /**
      * 
      * @type {number}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     ram?: number;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     python_version?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     pip_version?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     virtualenv?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     monitoring_active?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     octoprint_version?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     plugin_version?: string;
     /**
      * 
      * @type {string}
-     * @memberof PatchedOctoPrintDeviceKeyRequest
+     * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
 }
@@ -2478,10 +2478,10 @@ export interface PatchedPrinterProfileRequest {
     octoprint_key?: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PatchedPrinterProfileRequest
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -2983,10 +2983,10 @@ export interface PrinterProfile {
     octoprint_key: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PrinterProfile
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -3134,10 +3134,10 @@ export interface PrinterProfileRequest {
     octoprint_key: string;
     /**
      * 
-     * @type {boolean}
+     * @type {{ [key: string]: any; }}
      * @memberof PrinterProfileRequest
      */
-    volume_custom_box?: boolean | null;
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -3469,6 +3469,12 @@ export interface RemoteControlCommand {
      * @memberof RemoteControlCommand
      */
     url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlCommand
+     */
+    octoprint_event_type?: string;
 }
 /**
  * 
@@ -6411,14 +6417,14 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesCreate: async (octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'octoPrintDeviceKeyRequest' is not null or undefined
-            if (octoPrintDeviceKeyRequest === null || octoPrintDeviceKeyRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceKeyRequest','Required parameter octoPrintDeviceKeyRequest was null or undefined when calling octoprintDevicesCreate.');
+        octoprintDevicesCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
+            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
+                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesCreate.');
             }
             const localVarPath = `/api/octoprint-devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6457,13 +6463,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceKeyRequest !== 'string';
+            const nonString = typeof octoPrintDeviceRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceKeyRequest !== undefined ? octoPrintDeviceKeyRequest : {})
-                : (octoPrintDeviceKeyRequest || "");
+                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
+                : (octoPrintDeviceRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6525,11 +6531,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {PatchedOctoPrintDeviceKeyRequest} [patchedOctoPrintDeviceKeyRequest] 
+         * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesPartialUpdate: async (id: number, patchedOctoPrintDeviceKeyRequest?: PatchedOctoPrintDeviceKeyRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintDevicesPartialUpdate: async (id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling octoprintDevicesPartialUpdate.');
@@ -6572,13 +6578,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedOctoPrintDeviceKeyRequest !== 'string';
+            const nonString = typeof patchedOctoPrintDeviceRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedOctoPrintDeviceKeyRequest !== undefined ? patchedOctoPrintDeviceKeyRequest : {})
-                : (patchedOctoPrintDeviceKeyRequest || "");
+                ? JSON.stringify(patchedOctoPrintDeviceRequest !== undefined ? patchedOctoPrintDeviceRequest : {})
+                : (patchedOctoPrintDeviceRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6641,18 +6647,18 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdate: async (id: number, octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintDevicesUpdate: async (id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling octoprintDevicesUpdate.');
             }
-            // verify required parameter 'octoPrintDeviceKeyRequest' is not null or undefined
-            if (octoPrintDeviceKeyRequest === null || octoPrintDeviceKeyRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceKeyRequest','Required parameter octoPrintDeviceKeyRequest was null or undefined when calling octoprintDevicesUpdate.');
+            // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
+            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
+                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesUpdate.');
             }
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -6692,13 +6698,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceKeyRequest !== 'string';
+            const nonString = typeof octoPrintDeviceRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceKeyRequest !== undefined ? octoPrintDeviceKeyRequest : {})
-                : (octoPrintDeviceKeyRequest || "");
+                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
+                : (octoPrintDeviceRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6707,14 +6713,14 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdateOrCreate: async (octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'octoPrintDeviceKeyRequest' is not null or undefined
-            if (octoPrintDeviceKeyRequest === null || octoPrintDeviceKeyRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceKeyRequest','Required parameter octoPrintDeviceKeyRequest was null or undefined when calling octoprintDevicesUpdateOrCreate.');
+        octoprintDevicesUpdateOrCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
+            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
+                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesUpdateOrCreate.');
             }
             const localVarPath = `/api/octoprint-devices/update_or_create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6753,13 +6759,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceKeyRequest !== 'string';
+            const nonString = typeof octoPrintDeviceRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceKeyRequest !== undefined ? octoPrintDeviceKeyRequest : {})
-                : (octoPrintDeviceKeyRequest || "");
+                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
+                : (octoPrintDeviceRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -7949,12 +7955,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesCreate(octoPrintDeviceKeyRequest, options);
+        async octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7966,7 +7972,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceKeyList>> {
+        async octoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceList>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7976,12 +7982,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {PatchedOctoPrintDeviceKeyRequest} [patchedOctoPrintDeviceKeyRequest] 
+         * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceKeyRequest?: PatchedOctoPrintDeviceKeyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDeviceKey>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceKeyRequest, options);
+        async octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7993,7 +7999,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDeviceKey>> {
+        async octoprintDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8003,12 +8009,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesUpdate(id: number, octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDeviceKey>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdate(id, octoPrintDeviceKeyRequest, options);
+        async octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -8016,12 +8022,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest, options);
+        async octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -8375,12 +8381,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesCreate(octoPrintDeviceKeyRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return RemoteControlApiFp(configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8388,18 +8394,18 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList> {
+        octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList> {
             return RemoteControlApiFp(configuration).octoprintDevicesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {PatchedOctoPrintDeviceKeyRequest} [patchedOctoPrintDeviceKeyRequest] 
+         * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceKeyRequest?: PatchedOctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDeviceKey> {
-            return RemoteControlApiFp(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceKeyRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return RemoteControlApiFp(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8407,27 +8413,27 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDeviceKey> {
+        octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice> {
             return RemoteControlApiFp(configuration).octoprintDevicesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} id A unique integer value identifying this octo print device.
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdate(id: number, octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDeviceKey> {
-            return RemoteControlApiFp(configuration).octoprintDevicesUpdate(id, octoPrintDeviceKeyRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return RemoteControlApiFp(configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return RemoteControlApiFp(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8709,12 +8715,12 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+    octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -8723,17 +8729,17 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceKeyList>;
+    octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList>;
 
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print device.
-     * @param {PatchedOctoPrintDeviceKeyRequest} [patchedOctoPrintDeviceKeyRequest] 
+     * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceKeyRequest?: PatchedOctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDeviceKey>;
+    octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -8742,26 +8748,26 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDeviceKey>;
+    octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print device.
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesUpdate(id: number, octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDeviceKey>;
+    octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+    octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -9063,13 +9069,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesCreate(octoPrintDeviceKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9086,13 +9092,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print device.
-     * @param {PatchedOctoPrintDeviceKeyRequest} [patchedOctoPrintDeviceKeyRequest] 
+     * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceKeyRequest?: PatchedOctoPrintDeviceKeyRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9109,24 +9115,24 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
     /**
      * 
      * @param {number} id A unique integer value identifying this octo print device.
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesUpdate(id: number, octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdate(id, octoPrintDeviceKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {OctoPrintDeviceKeyRequest} octoPrintDeviceKeyRequest 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest: OctoPrintDeviceKeyRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceKeyRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

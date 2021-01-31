@@ -20,6 +20,7 @@ from print_nanny_webapp.alerts.tasks.timelapse_alert import (
     create_analyze_video_task,
     annotate_job_error,
 )
+
 from django.db.models import Q, Count
 from django.contrib import messages
 from django.forms.models import model_to_dict

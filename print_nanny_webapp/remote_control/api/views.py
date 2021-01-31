@@ -326,8 +326,8 @@ class GcodeFileViewSet(
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: OctoPrintDeviceKeySerializer,
-            202: OctoPrintDeviceKeySerializer,
+            201: OctoPrintDeviceSerializer,
+            202: OctoPrintDeviceSerializer,
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
         }
@@ -341,7 +341,7 @@ class OctoPrintDeviceViewSet(
     UpdateModelMixin,
 ):
 
-    serializer_class = OctoPrintDeviceKeySerializer
+    serializer_class = OctoPrintDeviceSerializer
     queryset = OctoPrintDevice.objects.all()
     lookup_field = "id"
 
@@ -374,6 +374,28 @@ class OctoPrintDeviceViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @extend_schema(
+        operation_id="octoprint_devices_update",
+        responses={
+            400: OctoPrintDeviceSerializer,
+            200: OctoPrintDeviceSerializer,
+            202: OctoPrintDeviceSerializer,
+        },
+    )
+    def update(self, *args, **kwargs):
+        return super().update(*args, **kwargs)
+
+    @extend_schema(
+        operation_id="octoprint_devices_partial_update",
+        responses={
+            400: OctoPrintDeviceSerializer,
+            200: OctoPrintDeviceSerializer,
+            202: OctoPrintDeviceSerializer,
+        },
+    )
+    def partial_update(self, *args, **kwargs):
+        return super().partial_update(*args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
