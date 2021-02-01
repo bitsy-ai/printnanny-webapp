@@ -1,6 +1,6 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy
 
 ui:
 	npm run build
@@ -25,12 +25,6 @@ blog-deploy:
 
 lint:
 	black print_nanny_webapp
-
-helm-install:
-	helm install -f k8s/ghost-values.yml print-nanny-blog ./k8s/bitnami/ghost/ghost
-
-helm-delete:
-	helm delete print-nanny-blog
 
 vue-dev:
 	cd print_nanny_vue && npm run dev
@@ -88,10 +82,9 @@ python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 clients-release: python-client-release ts-client
+
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
 
 test:
 	docker-compose -f local.yml run --rm django pytest
-
-ghost-push:
