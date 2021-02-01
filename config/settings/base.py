@@ -391,6 +391,9 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
+# redis is used as a request cache and brokers celery tasks
+REDIS_URL = env("REDIS_URL")
+
 # drf-spectacular
 INSTALLED_APPS += ['drf_spectacular']
 SPECTACULAR_SETTINGS = {
@@ -489,6 +492,9 @@ INSTALLED_APPS += [
     'health_check.db',                          # stock Django health checkers
     'health_check.cache',  
     'health_check.contrib.migrations',
+    'health_check.contrib.celery',              # requires celery
+    'health_check.contrib.celery_ping',         # requires celery
+    'health_check.contrib.redis',               # requires Redis broker
 ]
 
 # help guides
