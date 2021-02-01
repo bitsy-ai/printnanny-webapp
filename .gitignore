@@ -282,6 +282,8 @@ print_nanny_webapp/media/
 
 
 .ipython/
-.env
-.envs/*
+# .envs/*
+.envs/.local/.secrets
+.envs/.production/
+# !.envs/.local/.postgres
 k8s/configmap.yml

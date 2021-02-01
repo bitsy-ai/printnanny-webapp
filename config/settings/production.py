@@ -200,12 +200,9 @@ BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
 
+# Resources created prior to Terraform cutover
+GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
 GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-prod')
-
-GCP_MQTT_BRIDGE_HOSTNAME = env('GCP_MQTT_BRIDGE_HOSTNAME', default='mqtt.googleapis.com')
-GCP_MQTT_BRIDGE_PORT = env('GCP_MQTT_BRIDGE_PORT', default=443)
-GCP_ROOT_CA = env('GCP_ROOT_CA', default='/app/data/google-ca-root-certas.pem')
-JWT_EXPIRES_MINUTES = env('JWT_EXPIRES_MINUTES', default=60)
 
 GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default='projects/print-nanny/topics/telemetry-prod')
 GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default='projects/print-nanny/topics/bounding-boxes-prod')
