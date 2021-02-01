@@ -11,7 +11,7 @@ API and webapp for Octoprint Print Nanny plugin by Bitsy.ai
      :alt: Black code style
 
 
-:License: MIT
+:License: AGPLv3
 
 
 Settings
