@@ -213,7 +213,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
 INSTALLED_APPS += ["storages"]  # noqa F405
-GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
+GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME", default="print-nanny-sandbox")
 GS_FILE_OVERWRITE = True
 # GS_DEFAULT_ACL = "publicRead"
 # STATIC
@@ -440,23 +440,37 @@ APPEND_SLASH = True
 
 # pubsub and cloud iot
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
-GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
+
+GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")
+
 GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION = 'us-central1'
-GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-dev')
-GCP_CLOUD_IOT_GATEWAY = env('GCP_CLOUD_IOT_GATEWAY', default='gateway-dev')
-# GCP_CLOUD_IOT_GATEWAY_PRIVATE_KEY = env('GCP_GCLOUD_IOT_GATEWAY_PRIVATE_KEY')
-# GCP_CLOUD_IOT_GATEWAY_PUBLIC_KEY = env('GCP_GCLOUD_IOT_GATEWAY_PUBLIC_KEY')
-GCP_MQTT_BRIDGE_HOSTNAME = env('GCP_MQTT_BRIDGE_HOSTNAME', default='mqtt.googleapis.com')
-GCP_MQTT_BRIDGE_PORT = env('GCP_MQTT_BRIDGE_PORT', default=443)
-GCP_ROOT_CA = env('GCP_ROOT_CA', default='/app/data/google-ca-root-certas.pem')
-JWT_EXPIRES_MINUTES = env('JWT_EXPIRES_MINUTES', default=60)
-# django-pb-model (protobuf serializer for django models)
+GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='octoprint-devices')
 
-GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default='projects/print-nanny/topics/telemetry-dev')
-GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default='projects/print-nanny/topics/bounding-boxes-dev')
-GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='projects/print-nanny/topics/octoprint-events-dev')
+GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default=os.path.join(
+    'projects',
+    GCP_PROJECT_ID,
+    'topics/default-telemetry'
+))
 
-GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', default='projects/print-nanny/subscriptions/octoprint-events-webapp-dev')
+GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default=os.path.join(
+    'projects',
+    GCP_PROJECT_ID,
+    'topics/bounding-box-telemetry'
+))
+
+GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default=os.path.join(
+    'projects',
+    GCP_PROJECT_ID,
+    'topics/octoprint-events'
+))
+
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', 
+    default=os.path.join(
+        'projects',
+        GCP_PROJECT_ID,
+        'subscriptions/octoprint-events-pull'
+    )
+)
 
 DISCORD_URL="https://discord.gg/sf23bk2hPr"
 
@@ -477,10 +491,6 @@ INSTALLED_APPS += [
     'health_check.contrib.migrations',
 ]
 
-# django-eventstream
-
-
-
 # help guides
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
@@ -491,7 +501,6 @@ HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-set
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
-    'http://localhost:8080',
     'https://print-nanny.com'
 ]
 
