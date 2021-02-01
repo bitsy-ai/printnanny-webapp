@@ -79,8 +79,3 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
-
-INSTALLED_APPS += [
-    'health_check.contrib.celery',              # requires celery
-    'health_check.contrib.celery_ping',         # requires celery
-]
