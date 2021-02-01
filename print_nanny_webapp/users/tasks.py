@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @shared_task
 def create_ghost_member(ghost_member):
-    logger.info(f"create_ghost_members task called with ghost_members={ghost_member}")
+    logger.info(f"create_ghost_member task called with ghost_members={ghost_member}")
     # Split the key into ID and SECRET
     api_id, secret = settings.GHOST_ADMIN_API_KEY.split(":")
 
