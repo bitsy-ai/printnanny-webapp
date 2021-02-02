@@ -26,11 +26,16 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     private_key = serializers.SerializerMethodField()
+
     def get_private_key(self, obj):
         return getattr(obj, default=None)
+
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url", "private_key"]
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + [
+            "url",
+            "private_key",
+        ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
         }

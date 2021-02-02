@@ -11,6 +11,7 @@ class MediaRootGoogleCloudStorage(GoogleCloudStorage):
     location = "media"
     file_overwrite = True
     default_acl = "projectPrivate"
+
     def _normalize_name(self, name):
         """
         Normalizes the name so that paths like /path/to/ignored/../something.txt
