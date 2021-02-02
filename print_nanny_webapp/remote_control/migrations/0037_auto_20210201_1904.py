@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0036_printerprofile_volume_custom_box'),
+        ("remote_control", "0036_printerprofile_volume_custom_box"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='octoprintdevice',
-            name='private_key',
+            model_name="octoprintdevice",
+            name="private_key",
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='public_key',
+            model_name="octoprintdevice",
+            name="public_key",
             field=models.TextField(),
         ),
     ]

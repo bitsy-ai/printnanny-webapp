@@ -35,6 +35,7 @@ from .serializers import (
     OctoPrintDeviceKeySerializer,
     RemoteControlCommandSerializer,
     RemoteControlSnapshotSerializer,
+    RemoteControlSnapshotCreateResponseSerializer,
 )
 
 from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
@@ -249,7 +250,7 @@ class RemoteControlSnapshotViewSet(
         operation_id="snapshots_create",
         responses={
             400: RemoteControlSnapshotSerializer,
-            201: RemoteControlSnapshotSerializer,
+            201: RemoteControlSnapshotCreateResponseSerializer,
         },
     )
     def create(self, request):
@@ -259,7 +260,9 @@ class RemoteControlSnapshotViewSet(
             # https://github.com/aio-libs/aiohttp/issues/3652
             # octoprint_device is accepted as a string and deserialized to an integer
             instance = serializer.create(serializer.validated_data)
-            response_serializer = self.get_serializer(instance)
+            response_serializer = RemoteControlSnapshotCreateResponseSerializer(
+                instance=instance, context={"request": self.request}
+            )
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

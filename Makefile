@@ -1,7 +1,9 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials
 
+sandbox-credentials:
+	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
 ui:
 	npm run build
 

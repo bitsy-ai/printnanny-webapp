@@ -1197,12 +1197,6 @@ export interface OctoPrintDevice {
      * @memberof OctoPrintDevice
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDevice
-     */
-    url?: string;
 }
 /**
  * 
@@ -3737,6 +3731,31 @@ export interface RemoteControlSnapshot {
      * @memberof RemoteControlSnapshot
      */
     url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RemoteControlSnapshotCreateResponse
+ */
+export interface RemoteControlSnapshotCreateResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlSnapshotCreateResponse
+     */
+    url?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteControlSnapshotCreateResponse
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteControlSnapshotCreateResponse
+     */
+    created_dt?: string;
 }
 /**
  * 
@@ -8195,7 +8214,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async snapshotsCreate(image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
+        async snapshotsCreate(image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshotCreateResponse>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsCreate(image, command, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8553,7 +8572,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
+        snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshotCreateResponse> {
             return RemoteControlApiFp(configuration).snapshotsCreate(image, command, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8888,7 +8907,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
+    snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshotCreateResponse>;
 
     /**
      * 

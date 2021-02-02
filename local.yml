@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/app:z
       - local_file_data:/tmp:z
-      - ~/.config/gcloud/application_default_credentials.json:/tmp/keys/keyfile.json:ro
+      - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
 
     env_file:
       - ./.envs/.local/.django
@@ -61,7 +61,7 @@ services:
       - ./.envs/.production/print-nanny-dataflow-owner.json:/app/.envs/.production/print-nanny-dataflow-owner.json
       - ./config:/app/config:z
       - ./print_nanny_webapp:/app/print_nanny_webapp:z
-      - ~/.config/gcloud/application_default_credentials.json:/tmp/keys/keyfile.json:ro
+      - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
 
     ports:
       - "7000:7000"

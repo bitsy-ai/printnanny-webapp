@@ -63,8 +63,7 @@ class TestOctoPrintDevice(unittest.TestCase):
                 monitoring_active = True, 
                 octoprint_version = '', 
                 plugin_version = '', 
-                print_nanny_client_version = '', 
-                url = ''
+                print_nanny_client_version = ''
             )
         else :
             return OctoPrintDevice(

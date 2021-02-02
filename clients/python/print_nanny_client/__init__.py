@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.4.8"
+__version__ = "0.4.9"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -110,6 +110,7 @@ from print_nanny_client.models.remote_control_command_alert import RemoteControl
 from print_nanny_client.models.remote_control_command_alert_request import RemoteControlCommandAlertRequest
 from print_nanny_client.models.remote_control_command_request import RemoteControlCommandRequest
 from print_nanny_client.models.remote_control_snapshot import RemoteControlSnapshot
+from print_nanny_client.models.remote_control_snapshot_create_response import RemoteControlSnapshotCreateResponse
 from print_nanny_client.models.remote_control_snapshot_request import RemoteControlSnapshotRequest
 from print_nanny_client.models.user import User
 from print_nanny_client.models.user_request import UserRequest

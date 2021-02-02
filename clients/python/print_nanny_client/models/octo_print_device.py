@@ -56,8 +56,7 @@ class OctoPrintDevice(object):
         'monitoring_active': 'bool',
         'octoprint_version': 'str',
         'plugin_version': 'str',
-        'print_nanny_client_version': 'str',
-        'url': 'str'
+        'print_nanny_client_version': 'str'
     }
 
     attribute_map = {
@@ -84,11 +83,10 @@ class OctoPrintDevice(object):
         'monitoring_active': 'monitoring_active',
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
-        'print_nanny_client_version': 'print_nanny_client_version',
-        'url': 'url'
+        'print_nanny_client_version': 'print_nanny_client_version'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -118,7 +116,6 @@ class OctoPrintDevice(object):
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
-        self._url = None
         self.discriminator = None
 
         if id is not None:
@@ -154,8 +151,6 @@ class OctoPrintDevice(object):
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        if url is not None:
-            self.url = url
 
     @property
     def id(self):
@@ -738,27 +733,6 @@ class OctoPrintDevice(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
-
-    @property
-    def url(self):
-        """Gets the url of this OctoPrintDevice.  # noqa: E501
-
-
-        :return: The url of this OctoPrintDevice.  # noqa: E501
-        :rtype: str
-        """
-        return self._url
-
-    @url.setter
-    def url(self, url):
-        """Sets the url of this OctoPrintDevice.
-
-
-        :param url: The url of this OctoPrintDevice.  # noqa: E501
-        :type url: str
-        """
-
-        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -63,7 +63,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] 
+        fields = [field.name for field in OctoPrintDevice._meta.fields]
 
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -96,6 +96,15 @@ class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
     class Meta:
         model = RemoteControlSnapshot
         fields = [field.name for field in RemoteControlSnapshot._meta.fields] + ["url"]
+        extra_kwargs = {
+            "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
+        }
+
+
+class RemoteControlSnapshotCreateResponseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RemoteControlSnapshot
+        fields = ["url", "id", "created_dt"]
         extra_kwargs = {
             "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
