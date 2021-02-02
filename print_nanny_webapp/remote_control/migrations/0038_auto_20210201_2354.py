@@ -7,13 +7,16 @@ import print_nanny_webapp.utils.storages
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0037_auto_20210201_1904'),
+        ("remote_control", "0037_auto_20210201_1904"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='remotecontrolsnapshot',
-            name='image',
-            field=models.ImageField(storage=print_nanny_webapp.utils.storages.PublicGoogleCloudStorage(), upload_to='uploads/remote_control_snapshot/%Y/%m/%d/'),
+            model_name="remotecontrolsnapshot",
+            name="image",
+            field=models.ImageField(
+                storage=print_nanny_webapp.utils.storages.PublicGoogleCloudStorage(),
+                upload_to="uploads/remote_control_snapshot/%Y/%m/%d/",
+            ),
         ),
     ]

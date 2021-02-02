@@ -191,10 +191,10 @@ class OctoPrintDevice(models.Model):
     def last_snapshot(self):
         if self.last_command:
             return self.last_command.last_snapshot
-    
+
     @property
     def last_command(self):
-        return self.commands.order_by('-created_dt').first()
+        return self.commands.order_by("-created_dt").first()
 
     class Meta:
         unique_together = ("user", "serial")
@@ -444,9 +444,9 @@ class RemoteControlCommand(models.Model):
 
     @property
     def last_snapshot(self):
-        last_snapshot = self.snapshots.order_by('-created_dt').first()
+        last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
-        
+
     @classmethod
     def to_octoprint_events(cls):
         return [
@@ -489,7 +489,9 @@ class RemoteControlCommand(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)
     command = models.CharField(max_length=255, choices=CommandChoices.choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, related_name="commands")
+    device = models.ForeignKey(
+        OctoPrintDevice, on_delete=models.CASCADE, related_name="commands"
+    )
     received = models.BooleanField(default=False)
     success = models.BooleanField(null=True)
     iotcore_response = JSONField(default={})

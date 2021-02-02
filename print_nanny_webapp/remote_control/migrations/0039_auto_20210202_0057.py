@@ -7,13 +7,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0038_auto_20210201_2354'),
+        ("remote_control", "0038_auto_20210201_2354"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='device',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='commands', to='remote_control.octoprintdevice'),
+            model_name="remotecontrolcommand",
+            name="device",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="commands",
+                to="remote_control.octoprintdevice",
+            ),
         ),
     ]
