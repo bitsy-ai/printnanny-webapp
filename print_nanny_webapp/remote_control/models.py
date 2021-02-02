@@ -402,10 +402,15 @@ class RemoteControlCommandManager(models.Manager):
         obj.save()
         return obj
 
+
 public_storage = PublicGoogleCloudStorage()
+
+
 class RemoteControlSnapshot(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage)
+    image = models.ImageField(
+        upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage
+    )
     command = models.ForeignKey(
         "remote_control.RemoteControlCommand",
         on_delete=models.CASCADE,

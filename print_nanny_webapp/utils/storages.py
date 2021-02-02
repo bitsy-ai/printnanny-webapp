@@ -1,8 +1,12 @@
 from storages.backends.gcloud import GoogleCloudStorage
 from storages.utils import (
-    check_location, clean_name, get_available_overwrite_name, safe_join,
+    check_location,
+    clean_name,
+    get_available_overwrite_name,
+    safe_join,
     setting,
 )
+
 
 class StaticRootGoogleCloudStorage(GoogleCloudStorage):
     location = "static"
@@ -25,6 +29,7 @@ class MediaRootGoogleCloudStorage(GoogleCloudStorage):
             return safe_join(self.location, name)
         except ValueError:
             pass
+
     def url(self, name, version="v4"):
         """
         Return public url or a signed url for the Blob.
@@ -69,6 +74,7 @@ class PublicGoogleCloudStorage(GoogleCloudStorage):
             return safe_join(self.location, name)
         except ValueError:
             pass
+
     def url(self, name, version="v4"):
         """
         Return public url or a signed url for the Blob.
