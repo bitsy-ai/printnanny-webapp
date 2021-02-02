@@ -287,3 +287,13 @@ print_nanny_webapp/media/
 .envs/.production/
 # !.envs/.local/.postgres
 k8s/configmap.yml
+
+# ignore generated vue files
+print_nanny_webapp/static/vue/
+
+# ignore generated css files
+print_nanny_webapp/static/css/*.css*
+
+# except vendored css
+!print_nanny_webapp/static/css/vendor/
+!print_nanny_webapp/static/css/vendor/*
