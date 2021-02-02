@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="row">
     <div class="col-12 d-flex align-items-stretch">
       <div class="card col-12">
@@ -15,6 +16,8 @@
 
                       <th>Print Job Status</th>
                       <th>Gcode File</th>
+                      <th>Last Snapshot</th>
+
                       <th>Remote Control</th>
                       <th>Metadata</th>
 
@@ -40,8 +43,35 @@
 
                     <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td>
                     <td>{{device.gcode_file}}</td>
+                    
+                    <td>
+                      {% if device.monitoring_active %}
+                      <a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Live Stream</button></a>
 
-                    <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage</button></a></td>
+                      {% elif device.last_snapshot %}
+
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#octoprint-device-snapshot-modal-{{device.id}}">View Snapshot</button>
+                        <!--  Modal content for the Large example -->
+                        <div class="modal fade" id="octoprint-device-snapshot-modal-{{device.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title">{{device.last_snapshot.created_dt | naturaltime }}</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                  </div>
+                                  <img class="modal-body img-responsive" src="{{device.last_snapshot.image.url}}">
+                              </div><!-- /.modal-content -->
+                          </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                      
+                      {% else %}
+
+                        No snapshots found
+                      {% endif %}
+
+                    </td>
+
+                    <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>
                     <td>
                       <button class="btn btn-primary" data-toggle="modal" data-target="#octoprint-device-metadata-modal-{{device.id}}">View Metadata</button>
                         <!--  Modal content for the Large example -->
@@ -49,7 +79,7 @@
                           <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                   <div class="modal-header">
-                                      <h4 class="modal-title" id="myLargeModalLabel">{{device.name}} Metadata</h4>
+                                      <h4 class="modal-title">{{device.name}} Metadata</h4>
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                   </div>
                                   <div class="modal-body">
