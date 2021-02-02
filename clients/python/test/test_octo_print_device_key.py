@@ -40,7 +40,6 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 user = 56, 
-                private_key = '', 
                 public_key = '', 
                 fingerprint = '', 
                 cloudiot_device = {
@@ -65,7 +64,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 octoprint_version = '', 
                 plugin_version = '', 
                 print_nanny_client_version = '', 
-                url = ''
+                url = '', 
+                private_key = ''
             )
         else :
             return OctoPrintDeviceKey(

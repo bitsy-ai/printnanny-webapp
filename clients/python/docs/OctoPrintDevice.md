@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
+**user** | **int** |  | [optional] [readonly] 
 **public_key** | **str** |  | [optional] [readonly] 
 **fingerprint** | **str** |  | [optional] [readonly] 
 **cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**user** | **int** |  | [optional] [readonly] 
+**url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
