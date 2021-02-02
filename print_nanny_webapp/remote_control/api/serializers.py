@@ -100,7 +100,7 @@ class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
 
-class RemoteControlResponseSnapshotSerializer(serializers.ModelSerializer):
+class RemoteControlSnapshotCreateResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = RemoteControlSnapshot
         fields = [

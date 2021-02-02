@@ -84,6 +84,7 @@ docs/RemoteControlCommandAlert.md
 docs/RemoteControlCommandAlertRequest.md
 docs/RemoteControlCommandRequest.md
 docs/RemoteControlSnapshot.md
+docs/RemoteControlSnapshotCreateResponse.md
 docs/RemoteControlSnapshotRequest.md
 docs/SchemaApi.md
 docs/User.md
@@ -181,6 +182,7 @@ print_nanny_client/models/remote_control_command_alert.py
 print_nanny_client/models/remote_control_command_alert_request.py
 print_nanny_client/models/remote_control_command_request.py
 print_nanny_client/models/remote_control_snapshot.py
+print_nanny_client/models/remote_control_snapshot_create_response.py
 print_nanny_client/models/remote_control_snapshot_request.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
@@ -270,6 +272,7 @@ test/test_remote_control_command_alert.py
 test/test_remote_control_command_alert_request.py
 test/test_remote_control_command_request.py
 test/test_remote_control_snapshot.py
+test/test_remote_control_snapshot_create_response.py
 test/test_remote_control_snapshot_request.py
 test/test_schema_api.py
 test/test_user.py

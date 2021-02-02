@@ -3287,7 +3287,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **snapshots_create**
-> RemoteControlSnapshot snapshots_create(image, command)
+> RemoteControlSnapshotCreateResponse snapshots_create(image, command)
 
 
 
@@ -3388,7 +3388,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RemoteControlSnapshot**](RemoteControlSnapshot.md)
+[**RemoteControlSnapshotCreateResponse**](RemoteControlSnapshotCreateResponse.md)
 
 ### Authorization
 

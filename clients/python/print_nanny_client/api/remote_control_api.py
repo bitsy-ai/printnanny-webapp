@@ -3965,7 +3965,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: RemoteControlSnapshot
+        :rtype: RemoteControlSnapshotCreateResponse
         """
         kwargs['_return_http_data_only'] = True
         return self.snapshots_create_with_http_info(image, command, **kwargs)  # noqa: E501
@@ -4003,7 +4003,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(RemoteControlSnapshot, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(RemoteControlSnapshotCreateResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -4068,7 +4068,7 @@ class RemoteControlApi(object):
         
         response_types_map = {
             400: "RemoteControlSnapshot",
-            201: "RemoteControlSnapshot",
+            201: "RemoteControlSnapshotCreateResponse",
         }
 
         return self.api_client.call_api(
