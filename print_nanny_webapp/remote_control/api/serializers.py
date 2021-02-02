@@ -100,6 +100,19 @@ class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
         }
 
+class RemoteControlResponseSnapshotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RemoteControlSnapshot
+        fields = [
+            "url",
+            "id",
+            "created_dt"
+        ]
+        extra_kwargs = {
+            "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
+        }
+
+
 
 class GcodeFileSerializer(serializers.ModelSerializer):
 
