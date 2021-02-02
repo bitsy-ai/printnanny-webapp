@@ -323,16 +323,6 @@ class GcodeFileViewSet(
 
 
 @extend_schema(tags=["remote-control"])
-@extend_schema_view(
-    create=extend_schema(
-        responses={
-            201: OctoPrintDeviceSerializer,
-            202: OctoPrintDeviceSerializer,
-            400: OctoPrintDeviceSerializer,
-            200: OctoPrintDeviceSerializer,
-        }
-    )
-)
 class OctoPrintDeviceViewSet(
     CreateModelMixin,
     GenericViewSet,
@@ -363,8 +353,12 @@ class OctoPrintDeviceViewSet(
             instance, created = serializer.update_or_create(
                 request.user, serializer.validated_data.get("serial"), validated_data
             )
+
+            context = {"request": self.request}
+            context.update(self.get_serializer_context())
+
             response_serializer = OctoPrintDeviceKeySerializer(
-                instance=instance, context=self.get_serializer_context()
+                instance=instance, context=context
             )
 
             if not created:

@@ -1073,6 +1073,12 @@ export interface OctoPrintDevice {
     name: string;
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintDevice
+     */
+    user?: number;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -1193,10 +1199,10 @@ export interface OctoPrintDevice {
     print_nanny_client_version: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof OctoPrintDevice
      */
-    user?: number;
+    url?: string;
 }
 /**
  * 
@@ -1228,12 +1234,6 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    private_key?: string;
     /**
      * 
      * @type {string}
@@ -1360,6 +1360,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    private_key?: string;
 }
 /**
  * 

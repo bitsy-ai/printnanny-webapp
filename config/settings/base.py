@@ -215,7 +215,7 @@ TEMPLATES = [
 INSTALLED_APPS += ["storages"]  # noqa F405
 GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME", default="print-nanny-sandbox")
 GS_FILE_OVERWRITE = True
-# GS_DEFAULT_ACL = "publicRead"
+GS_DEFAULT_ACL = "projectPrivate"
 # STATIC
 # ------------------------
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

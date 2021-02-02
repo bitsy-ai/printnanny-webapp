@@ -37,7 +37,6 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'datetime',
         'name': 'str',
         'user': 'int',
-        'private_key': 'str',
         'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
@@ -58,7 +57,8 @@ class OctoPrintDeviceKey(object):
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
-        'url': 'str'
+        'url': 'str',
+        'private_key': 'str'
     }
 
     attribute_map = {
@@ -66,7 +66,6 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'created_dt',
         'name': 'name',
         'user': 'user',
-        'private_key': 'private_key',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
@@ -87,10 +86,11 @@ class OctoPrintDeviceKey(object):
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
-        'url': 'url'
+        'url': 'url',
+        'private_key': 'private_key'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, private_key=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -100,7 +100,6 @@ class OctoPrintDeviceKey(object):
         self._created_dt = None
         self._name = None
         self._user = None
-        self._private_key = None
         self._public_key = None
         self._fingerprint = None
         self._cloudiot_device = None
@@ -122,6 +121,7 @@ class OctoPrintDeviceKey(object):
         self._plugin_version = None
         self._print_nanny_client_version = None
         self._url = None
+        self._private_key = None
         self.discriminator = None
 
         if id is not None:
@@ -131,8 +131,6 @@ class OctoPrintDeviceKey(object):
         self.name = name
         if user is not None:
             self.user = user
-        if private_key is not None:
-            self.private_key = private_key
         if public_key is not None:
             self.public_key = public_key
         if fingerprint is not None:
@@ -161,6 +159,8 @@ class OctoPrintDeviceKey(object):
         self.print_nanny_client_version = print_nanny_client_version
         if url is not None:
             self.url = url
+        if private_key is not None:
+            self.private_key = private_key
 
     @property
     def id(self):
@@ -250,27 +250,6 @@ class OctoPrintDeviceKey(object):
         """
 
         self._user = user
-
-    @property
-    def private_key(self):
-        """Gets the private_key of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The private_key of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: str
-        """
-        return self._private_key
-
-    @private_key.setter
-    def private_key(self, private_key):
-        """Sets the private_key of this OctoPrintDeviceKey.
-
-
-        :param private_key: The private_key of this OctoPrintDeviceKey.  # noqa: E501
-        :type private_key: str
-        """
-
-        self._private_key = private_key
 
     @property
     def public_key(self):
@@ -785,6 +764,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._url = url
+
+    @property
+    def private_key(self):
+        """Gets the private_key of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The private_key of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._private_key
+
+    @private_key.setter
+    def private_key(self, private_key):
+        """Sets the private_key of this OctoPrintDeviceKey.
+
+
+        :param private_key: The private_key of this OctoPrintDeviceKey.  # noqa: E501
+        :type private_key: str
+        """
+
+        self._private_key = private_key
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

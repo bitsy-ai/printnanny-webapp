@@ -67,7 +67,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "print_nanny_webapp.utils.storages.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/webapp/media/"
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------

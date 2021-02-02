@@ -59,14 +59,10 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-
-MEDIA_ROOT = "/tmp"
-
-GOOGLE_ANALYTICS = 'G-5BEYZM8WNZ'
+GOOGLE_ANALYTICS=""
 
 # django-prometheus middleware must be last in middleware stack
 MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
-
 # django channels
 WS_BASE_URL = 'ws://localhost:8000/ws'
 CHANNEL_LAYERS = {
