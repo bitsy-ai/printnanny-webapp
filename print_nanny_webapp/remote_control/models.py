@@ -223,7 +223,7 @@ class OctoPrintDevice(models.Model):
             OctoPrintDeviceSerializer,
         )
 
-        serializer = OctoPrintDeviceSerializer(instance=self, context={'request': self.request})
+        serializer = OctoPrintDeviceSerializer(instance=self)
         return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property

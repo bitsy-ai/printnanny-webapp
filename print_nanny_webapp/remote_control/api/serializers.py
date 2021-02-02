@@ -63,7 +63,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
+        fields = [field.name for field in OctoPrintDevice._meta.fields] 
 
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
