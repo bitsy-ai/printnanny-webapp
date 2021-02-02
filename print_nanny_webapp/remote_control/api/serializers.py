@@ -24,9 +24,13 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
+
+    private_key = serializers.SerializerMethodField()
+    def get_private_key(self, obj):
+        return getattr(obj, default=None)
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url", "private_key"]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
         }
@@ -34,7 +38,6 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
         read_only_fields = (
             "user",
             "public_key",
-            "private_key",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
@@ -47,9 +50,6 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
         unique_together_fields = {
             k: v for k, v in validated_data.items() if k in unique_together
         }
-        # return OctoPrintDevice.objects.filter(
-        #     **unique_together_fields, user=user
-        # ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )
@@ -58,10 +58,10 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
-        exclude = ("private_key",)
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + ["url"]
+
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
-            "private_key": {"write_only": True},
         }
 
         read_only_fields = (

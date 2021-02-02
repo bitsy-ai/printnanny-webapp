@@ -11,7 +11,7 @@ from django.apps import apps
 from django.db import models
 from django.utils import timezone
 from urllib.parse import urljoin
-from django.core.files.base import ContentFile
+from django.core.files.base import ContentFile, File
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
@@ -35,8 +35,8 @@ class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
         logging.info(f"Defaults: {defaults} Kwargs: {kwargs}")
         with tempfile.TemporaryDirectory() as tmp:
-            tmp_private_key_filename = f"{tmp}/rsa_private.pem"
-            tmp_public_key_filename = f"{tmp}/rsa_public.pem"
+            tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
+            tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
             p = subprocess.run(
                 [
                     "openssl",
@@ -93,11 +93,9 @@ class OctoPrintDeviceManager(models.Manager):
 
             with open(tmp_public_key_filename) as pub_f:
                 public_key_content = pub_f.read().strip()
-                public_key_file = ContentFile(public_key_content.encode())
 
-            with open(tmp_private_key_filename) as priv_f:
-                private_key_content = priv_f.read().strip()
-                private_key_file = ContentFile(private_key_content.encode())
+            with open(tmp_public_key_filename) as pub_f:
+                private_key_content = pub_f.read().strip()
 
             parent = client.registry_path(
                 settings.GCP_PROJECT_ID,
@@ -157,8 +155,7 @@ class OctoPrintDeviceManager(models.Manager):
             cloudiot_device_num_id = cloudiot_device_dict.get("numId")
 
             always_update = dict(
-                private_key=private_key_file,
-                public_key=public_key_file,
+                public_key=public_key_content,
                 fingerprint=fingerprint,
                 cloudiot_device_num_id=cloudiot_device_num_id,
                 cloudiot_device_name=cloudiot_device_name,
@@ -173,8 +170,7 @@ class OctoPrintDeviceManager(models.Manager):
                 setattr(device, key, value)
             logging.info(f"Device created: {created} with id={device.id}")
             device.cloudiot_device = cloudiot_device_dict
-            device.private_key.save(f"{serial}_private.pem", private_key_file)
-            device.public_key.save(f"{serial}_public.pem", public_key_file)
+            device.private_key = private_key_content
             device.save()
 
             return device, created
@@ -195,8 +191,7 @@ class OctoPrintDevice(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
-    private_key = models.FileField(upload_to="uploads/private_key/")
-    public_key = models.FileField(upload_to="uploads/public_key/")
+    public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
     cloudiot_device_name = models.CharField(max_length=255)
