@@ -33,7 +33,9 @@ class KeyPairProvisioning(Exception):
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
-        logging.info(f"Defaults: {defaults} Kwargs: {kwargs}")
+        serial = kwargs.get("serial")
+        logging.info(f"Creating keypair for device serial={serial}")
+
         with tempfile.TemporaryDirectory() as tmp:
             tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
@@ -91,11 +93,11 @@ class OctoPrintDeviceManager(models.Manager):
 
             client = cloudiot_v1.DeviceManagerClient()
 
-            with open(tmp_public_key_filename) as pub_f:
-                public_key_content = pub_f.read().strip()
+            with open(tmp_public_key_filename) as f:
+                public_key_content = f.read().strip()
 
-            with open(tmp_public_key_filename) as pub_f:
-                private_key_content = pub_f.read().strip()
+            with open(tmp_private_key_filename) as f:
+                private_key_content = f.read().strip()
 
             parent = client.registry_path(
                 settings.GCP_PROJECT_ID,

@@ -354,8 +354,9 @@ class OctoPrintDeviceViewSet(
                 request.user, serializer.validated_data.get("serial"), validated_data
             )
 
-            context = { 'request': self.request } ** self.get_serializer_context()
-        
+            context = {"request": self.request}
+            context.update(self.get_serializer_context())
+
             response_serializer = OctoPrintDeviceKeySerializer(
                 instance=instance, context=context
             )

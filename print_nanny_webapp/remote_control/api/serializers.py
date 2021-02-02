@@ -28,7 +28,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     private_key = serializers.SerializerMethodField()
 
     def get_private_key(self, obj):
-        return getattr(obj, default=None)
+        return getattr(obj, "private_key", None)
 
     class Meta:
         model = OctoPrintDevice
