@@ -36,7 +36,7 @@ export default {
         <CommandAlertSettings v-for="item in alert_methods" :key="item.value">
 
         </CommandAlertSettings>
-        <DiscordAlertSettings v-for="item in methods" :key="item.value">
+        <DiscordAlertSettings>
 
         </DiscordAlertSettings>
     </div>

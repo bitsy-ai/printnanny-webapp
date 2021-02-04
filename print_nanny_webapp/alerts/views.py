@@ -60,6 +60,14 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         else:
             return DefectAlertSettingsForm(**kwargs)
 
+    def defect_form_valid(self, form):
+        form.user = self.request.user
+        form.alert_type = Alert.AlertTypeChoices.DEFECT
+        form.save()
+
+        success_url = self.get_success_url()
+        return HttpResponseRedirect(success_url)
+
     def create_discord_form(self, **kwargs):
         instance, created = DiscordMethodSettings.objects.get_or_create(
             user=self.request.user,
@@ -69,10 +77,11 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         else:
             return DiscordMethodSettingsForm(**kwargs)
 
-    def defect_form_valid(self, form):
-        form.user = self.request.user
-        form.alert_type = Alert.AlertTypeChoices.DEFECT
-        form.save()
+    def discord_form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.method = Alert.AlertMethodChoices.DISCORD
+        obj.save()
 
         success_url = self.get_success_url()
         return HttpResponseRedirect(success_url)

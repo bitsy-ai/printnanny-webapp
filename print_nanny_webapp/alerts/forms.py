@@ -42,5 +42,4 @@ class CommandAlertSettingsForm(ModelForm):
 class DiscordMethodSettingsForm(ModelForm):
     class Meta:
         model = DiscordMethodSettings
-
-        fields = ("enabled",)
+        fields = ("enabled", "channel_id")

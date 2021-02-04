@@ -15,6 +15,7 @@ from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
+from discord import Client as discordC
 
 import stringcase
 
@@ -22,6 +23,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
+discord = discordC()
 
 
 def _upload_to(instance, filename):
@@ -100,6 +102,17 @@ class MethodSettings(PolymorphicModel):
 
 
 class DiscordMethodSettings(MethodSettings):
+    # Channel ID is where to send a message if you're not going for event-driven
+    # Channel IDs are of "snowflake" type
+    # Snowflakes are 64 bit unsigned integers represented as decimal strings
+    # so max 21 characters - 24 to be "safe"
+    # https://discord.com/developers/docs/reference#snowflakes
+    # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
+    channel_id = models.CharField(
+        help_text="Channel ID to send notifications to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
+        max_length=24, null=True
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, method=MethodSettings.MethodChoices.DISCORD, **kwargs)
 
@@ -272,6 +285,7 @@ class RemoteControlCommandAlert(Alert):
         self.alert_trigger_method_map = {
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
             Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert,
+            Alert.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
         }
 
     def trigger_alert(self):
@@ -331,6 +345,12 @@ class RemoteControlCommandAlert(Alert):
         message.send()
 
         return message
+
+    def trigger_discord_alert(self, data):
+        logger.info("Sending alert to discord")
+
+        target = discord.get_channel(self.alert_method.channel_id)
+        target.send(data)
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
