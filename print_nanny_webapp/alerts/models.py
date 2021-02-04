@@ -51,8 +51,9 @@ class Alert(PolymorphicModel):
         DEFECT = "DEFECT", "Defect detected in print"
 
     class AlertMethodChoices(models.TextChoices):
-        UI = "UI", "Recive Print Nanny UI notifations"
+        UI = "UI", "Recive Print Nanny UI notifications"
         EMAIL = "EMAIL", "Receive email notifications"
+        DISCORD = "DISCORD", "Receive notifications through Discord"
 
     alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
@@ -80,6 +81,27 @@ class AlertSettings(PolymorphicModel):
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"
     )
+
+
+class MethodSettings(PolymorphicModel):
+    MethodChoices = Alert.AlertMethodChoices
+    method = models.CharField(choices=MethodChoices.choices, max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    enabled = models.BooleanField(
+        default=True, help_text="Enable or disable this alert delivery method"
+    )
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+
+
+##
+# Method Settings models
+##
+
+
+class DiscordMethodSettings(MethodSettings):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, method=MethodSettings.MethodChoices.DISCORD, **kwargs)
 
 
 ##

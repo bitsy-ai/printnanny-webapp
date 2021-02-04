@@ -8,12 +8,14 @@ from .forms import (
     ProgressAlertSettingsForm,
     DefectAlertSettingsForm,
     CommandAlertSettingsForm,
+    DiscordMethodSettingsForm,
 )
 from .models import (
     Alert,
     ProgressAlertSettings,
     DefectAlertSettings,
     RemoteControlCommandAlertSettings,
+    DiscordMethodSettings,
 )
 
 logger = logging.getLogger(__name__)
@@ -26,6 +28,7 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         "progress": ProgressAlertSettingsForm,
         "defect": DefectAlertSettingsForm,
         "command": CommandAlertSettingsForm,
+        "discord": DiscordMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
 
@@ -56,6 +59,15 @@ class AlertSettingsView(DashboardView, MultiFormsView):
             return DefectAlertSettingsForm(instance=instance, **kwargs)
         else:
             return DefectAlertSettingsForm(**kwargs)
+
+    def create_discord_form(self, **kwargs):
+        instance, created = DiscordMethodSettings.objects.get_or_create(
+            user=self.request.user,
+        )
+        if instance is not None:
+            return DiscordMethodSettingsForm(instance=instance, **kwargs)
+        else:
+            return DiscordMethodSettingsForm(**kwargs)
 
     def defect_form_valid(self, form):
         form.user = self.request.user

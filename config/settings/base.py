@@ -136,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
-    "django.middleware.security.SecurityMiddleware",    
+    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -156,7 +156,7 @@ STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [ 
+STATICFILES_DIRS = [
     ('css', str(APPS_DIR / "static/css")),
     ('fonts', str(APPS_DIR / "static/fonts")),
     ('images', str(APPS_DIR / "static/images")),
@@ -232,7 +232,7 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_CLASS_CONVERTERS = {
-    'select': "custom-select", 
+    'select': "custom-select",
     'form-group': 'input-group'
 }
 
@@ -286,6 +286,12 @@ ANYMAIL = {
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
     #"WEBHOOK_SECRET": env("MAILGUN_WEBHOOK_SECRET")
 }
+
+# Discord
+# ------------------------------------------------------------------------------
+DISCORD_TOKEN = env("DISCORD_TOKEN")
+# Under the application bot settings, there's a tool at the bottom that calculates this
+DISCORD_PERMISSIONS = 2048 # Send Messages
 
 
 # ADMIN
@@ -467,7 +473,7 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default=o
     'topics/octoprint-events'
 ))
 
-GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', 
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION',
     default=os.path.join(
         'projects',
         GCP_PROJECT_ID,
@@ -490,7 +496,7 @@ HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
 INSTALLED_APPS += [
     'health_check',                             # required
     'health_check.db',                          # stock Django health checkers
-    'health_check.cache',  
+    'health_check.cache',
     'health_check.contrib.migrations',
     'health_check.contrib.celery',              # requires celery
     'health_check.contrib.celery_ping',         # requires celery
