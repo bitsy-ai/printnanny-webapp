@@ -164,6 +164,7 @@ class OctoPrintDeviceManager(models.Manager):
                 cloudiot_device_num_id=cloudiot_device_num_id,
                 cloudiot_device_name=cloudiot_device_name,
                 cloudiot_device=cloudiot_device_dict,
+                cloudiot_device_path=device_path
             )
 
             defaults.update(always_update)
@@ -232,6 +233,7 @@ class OctoPrintDevice(models.Model):
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
     cloudiot_device_name = models.CharField(max_length=255)
+    cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
     configs = models.JSONField(default=[])
 

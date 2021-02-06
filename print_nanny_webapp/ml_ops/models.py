@@ -45,6 +45,10 @@ class Experiment(models.Model):
         self.save()
         return self.active
 
+class ExperimentDeviceConfigManager(models.Manager):
+
+    def create(self, **kwargs):
+        obj = super().create(**kwargs)
 
 class ExperimentDeviceConfig(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
