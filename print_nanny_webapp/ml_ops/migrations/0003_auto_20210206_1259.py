@@ -8,23 +8,46 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0002_tflitemodel_version'),
+        ("ml_ops", "0002_tflitemodel_version"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ModelArtifact',
+            name="ModelArtifact",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('version', models.CharField(max_length=255)),
-                ('labels', models.FileField(upload_to='')),
-                ('artifacts', models.FileField(upload_to='')),
-                ('artifact_types', print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('TFLITE', 'TensorFlow Lite Flatbuffer'), ('TF1', 'TensorFlow v1 SavedModel format (legacy)'), ('TF2_SAVED_MODEL', 'TensorFlow v2 SavedModel format'), ('TF2_HDF5', 'TensorFlow v2 Keras H5 format')], max_length=255), default=('TFLITE',), size=None)),
-                ('metadata', django.contrib.postgres.fields.jsonb.JSONField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("version", models.CharField(max_length=255)),
+                ("labels", models.FileField(upload_to="")),
+                ("artifacts", models.FileField(upload_to="")),
+                (
+                    "artifact_types",
+                    print_nanny_webapp.utils.fields.ChoiceArrayField(
+                        base_field=models.CharField(
+                            choices=[
+                                ("TFLITE", "TensorFlow Lite Flatbuffer"),
+                                ("TF1", "TensorFlow v1 SavedModel format (legacy)"),
+                                ("TF2_SAVED_MODEL", "TensorFlow v2 SavedModel format"),
+                                ("TF2_HDF5", "TensorFlow v2 Keras H5 format"),
+                            ],
+                            max_length=255,
+                        ),
+                        default=("TFLITE",),
+                        size=None,
+                    ),
+                ),
+                ("metadata", django.contrib.postgres.fields.jsonb.JSONField()),
             ],
         ),
         migrations.DeleteModel(
-            name='TFLiteModel',
+            name="TFLiteModel",
         ),
     ]

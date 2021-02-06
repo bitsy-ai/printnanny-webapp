@@ -27,8 +27,10 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
+
 def generate_keypair(private_key_filename, tmp_public_key_filename):
     pass
+
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -39,7 +41,6 @@ class OctoPrintDeviceManager(models.Manager):
             tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
 
-            
             p = subprocess.run(
                 [
                     "openssl",
@@ -176,14 +177,18 @@ class OctoPrintDeviceManager(models.Manager):
             device.private_key = private_key_content
             device.save()
 
-            from print_nanny_webapp.ml_ops.models import Experiment, ExperimentDeviceConfig
+            from print_nanny_webapp.ml_ops.models import (
+                Experiment,
+                ExperimentDeviceConfig,
+            )
+
             active_experiment = Experiment.objects.filter(active=True).first()
             if active_experiment is not None:
                 experiment_group = active_experiment.randomize_group()
                 experiment_device_config = ExperimentDeviceConfig(
                     device=device,
                     experiment=active_experiment,
-                    experiment_group=experiment_group
+                    experiment_group=experiment_group,
                 )
                 experiment_device_config.save()
 
@@ -201,7 +206,10 @@ class OctoPrintDevice(models.Model):
     @property
     def active_config(self):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
-        active_config = ExperimentDeviceConfig.objects.filter(device=self, experiment__active=True).first()
+
+        active_config = ExperimentDeviceConfig.objects.filter(
+            device=self, experiment__active=True
+        ).first()
         return active_config
 
     @property
@@ -256,9 +264,9 @@ class OctoPrintDevice(models.Model):
 
     @property
     def cloudiot_device_configs(self):
-        '''
-            Lists the last 10 device configurations
-        '''
+        """
+        Lists the last 10 device configurations
+        """
         client = cloudiot_v1.DeviceManagerClient()
         device_path = client.device_path(
             settings.GCP_PROJECT_ID,

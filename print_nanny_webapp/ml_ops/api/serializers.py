@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from print_nanny_webapp.ml_ops.models import ModelArtifact
 
+
 class ModelArtifactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModelArtifact
