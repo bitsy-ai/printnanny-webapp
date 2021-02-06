@@ -214,7 +214,7 @@ class PrinterProfileViewSet(
             201: PrinterProfileSerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -300,7 +300,7 @@ class GcodeFileViewSet(
             201: GcodeFileSerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -347,7 +347,7 @@ class OctoPrintDeviceViewSet(
             202: OctoPrintDeviceKeySerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
