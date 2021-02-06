@@ -27,10 +27,8 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
-
-class KeyPairProvisioning(Exception):
+def generate_keypair(private_key_filename, tmp_public_key_filename):
     pass
-
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -40,6 +38,8 @@ class OctoPrintDeviceManager(models.Manager):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
+
+            
             p = subprocess.run(
                 [
                     "openssl",
@@ -176,6 +176,17 @@ class OctoPrintDeviceManager(models.Manager):
             device.private_key = private_key_content
             device.save()
 
+            from print_nanny_webapp.ml_ops.models import Experiment, ExperimentDeviceConfig
+            active_experiment = Experiment.objects.filter(active=True).first()
+            if active_experiment is not None:
+                experiment_group = active_experiment.randomize_group()
+                experiment_device_config = ExperimentDeviceConfig(
+                    device=device,
+                    experiment=active_experiment,
+                    experiment_group=experiment_group
+                )
+                experiment_device_config.save()
+
             return device, created
 
 
@@ -186,6 +197,12 @@ class OctoPrintDevice(models.Model):
         True: "text-success",
         False: "text-secondary",
     }
+
+    @property
+    def active_config(self):
+        from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
+        active_config = ExperimentDeviceConfig.objects.filter(device=self, experiment__active=True).first()
+        return active_config
 
     @property
     def last_snapshot(self):
@@ -208,6 +225,7 @@ class OctoPrintDevice(models.Model):
     cloudiot_device = JSONField()
     cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
+    configs = models.JSONField(default=[])
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
@@ -235,6 +253,24 @@ class OctoPrintDevice(models.Model):
 
         serializer = OctoPrintDeviceSerializer(instance=self)
         return json.dumps(serializer.data, sort_keys=True, indent=2)
+
+    @property
+    def cloudiot_device_configs(self):
+        '''
+            Lists the last 10 device configurations
+        '''
+        client = cloudiot_v1.DeviceManagerClient()
+        device_path = client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            self.cloudiot_device_name,
+        )
+        device_configs = client.list_device_config_versions(name=device_path)
+        configs_dict = MessageToDict(device_configs._pb)
+        self.configs = configs_dict
+        self.save()
+        return cloudiot_device_dict
 
     @property
     def cloudiot_device_status(self):
