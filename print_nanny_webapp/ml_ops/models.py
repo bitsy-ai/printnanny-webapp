@@ -49,8 +49,8 @@ class Experiment(models.Model):
         self.save()
         return self.active
 
-class ExperimentDeviceConfigManager(models.Manager):
 
+class ExperimentDeviceConfigManager(models.Manager):
     def create(self, **kwargs):
         obj = super().create(**kwargs)
 
@@ -64,15 +64,17 @@ class ExperimentDeviceConfig(models.Model):
     experiment_group = models.IntegerField()
 
     def publish(self):
-        from print_nanny_webapp.ml_ops.api.serializers import ExperimentDeviceConfigSerializer
+        from print_nanny_webapp.ml_ops.api.serializers import (
+            ExperimentDeviceConfigSerializer,
+        )
+
         serializer = ExperimentDeviceConfigSerializer(instance=self)
         client = cloudiot_v1.DeviceManagerClient()
-        data = json.dumps(serializer.data, sort_keys=True).encode('utf-8')
+        data = json.dumps(serializer.data, sort_keys=True).encode("utf-8")
         return client.modify_cloud_to_device_config(
             request={
                 "name": self.device.cloudiot_device_path,
                 "binary_data": data,
-                "version_to_update": 0 # a value of 0 will always update the last version seen
+                "version_to_update": 0,  # a value of 0 will always update the last version seen
             }
         )
-

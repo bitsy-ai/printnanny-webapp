@@ -14,6 +14,7 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
 
         read_only_fields = [field.name for field in ModelArtifact._meta.fields]
 
+
 class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperimentDeviceConfig
@@ -23,4 +24,3 @@ class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "url": {"view_name": "api:command-detail", "lookup_field": "id"},
         }
-

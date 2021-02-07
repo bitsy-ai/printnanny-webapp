@@ -1,4 +1,3 @@
-
 import logging
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
@@ -7,6 +6,7 @@ import google.api_core.exceptions
 import subprocess
 
 logger = logging.getLogger(__name__)
+
 
 def generate_keypair(private_key_filename, public_key_filename):
     p = subprocess.run(
@@ -53,10 +53,14 @@ def generate_keypair(private_key_filename, public_key_filename):
         private_key_content = f.read().strip()
     return fingerprint, public_key_content, private_key_content
 
+
 def delete_and_recreate_cloudiot_device(
-        serial: str, user_id: int, metadata: dict, fingerprint: str,
-        public_key_content: str,
-    ):
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_content: str,
+):
     client = cloudiot_v1.DeviceManagerClient()
 
     parent = client.registry_path(
@@ -80,7 +84,7 @@ def delete_and_recreate_cloudiot_device(
         ],
         "metadata": {
             "user_id": str(user_id),
-            "serial":serial,
+            "serial": serial,
             "fingerprint": fingerprint,
             **string_kwargs,
         },
@@ -104,9 +108,7 @@ def delete_and_recreate_cloudiot_device(
             }
         )
 
-    cloudiot_device = client.create_device(
-        parent=parent, device=device_template
-    )
+    cloudiot_device = client.create_device(parent=parent, device=device_template)
 
     logger.info(f"Created new device in registry {device_path}")
 

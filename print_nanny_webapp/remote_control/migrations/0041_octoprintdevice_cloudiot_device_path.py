@@ -4,8 +4,9 @@ from django.db import migrations, models
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
 
+
 def set_cloudiot_device_path(apps, schema_editor):
-    OctoPrintDevice = apps.get_model('remote_control', 'OctoPrintDevice')
+    OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
     client = cloudiot_v1.DeviceManagerClient()
 
     for device in OctoPrintDevice.objects.all().iterator():
@@ -18,25 +19,27 @@ def set_cloudiot_device_path(apps, schema_editor):
         device.cloudiot_device_path = device_path
         device.save()
 
+
 def reverse_cloudiot_device_path(apps, schema_editor):
     pass
+
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0040_octoprintdevice_configs'),
+        ("remote_control", "0040_octoprintdevice_configs"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='cloudiot_device_path',
+            model_name="octoprintdevice",
+            name="cloudiot_device_path",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.RunPython(set_cloudiot_device_path, reverse_cloudiot_device_path),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='cloudiot_device_path',
+            model_name="octoprintdevice",
+            name="cloudiot_device_path",
             field=models.CharField(max_length=255),
-        )
+        ),
     ]
