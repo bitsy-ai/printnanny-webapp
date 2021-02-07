@@ -1,5 +1,9 @@
 from rest_framework import serializers
-from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig
+from django.apps import apps
+
+ModelArtifact = apps.get_model('ml_ops', 'ModelArtifact')
+
+ExperimentDeviceConfig = apps.get_model('ml_ops', 'ExperimentDeviceConfig')
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
@@ -9,7 +13,7 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
             "url",
         ]
         extra_kwargs = {
-            "url": {"view_name": "api:command-detail", "lookup_field": "id"},
+            "url": {"view_name": "api:model-artifact-detail", "lookup_field": "id"},
         }
 
         read_only_fields = [field.name for field in ModelArtifact._meta.fields]
@@ -18,9 +22,9 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
 class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperimentDeviceConfig
-        fields = [field.name for field in ExperimentDeviceConfig._meta.fields] + [
-            "url",
+        fields = [
+            "id",
+            "created_dt",
+            "experiment"
         ]
-        extra_kwargs = {
-            "url": {"view_name": "api:command-detail", "lookup_field": "id"},
-        }
+        depth = 2

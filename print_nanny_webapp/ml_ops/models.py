@@ -1,3 +1,4 @@
+import json
 import random
 
 from google.cloud import iot_v1 as cloudiot_v1
@@ -37,22 +38,17 @@ class Experiment(models.Model):
     control = models.ForeignKey(
         ModelArtifact, on_delete=models.CASCADE, related_name="control"
     )
-    treatments = models.ManyToManyField(ModelArtifact, related_name="treatment", null=True)
+    treatments = models.ManyToManyField(ModelArtifact, related_name="treatment", null=True, blank=True)
 
     def randomize_group(self):
-        num_groups = len(self.treatments) + 1
+        num_groups = len(self.treatments.all()) + 1
         return random.randrange(num_groups)
 
     def activate(self):
-        self.objects.all().update(active=False)
+        self.__class__.objects.all().update(active=False)
         self.active = True
         self.save()
         return self.active
-
-
-class ExperimentDeviceConfigManager(models.Manager):
-    def create(self, **kwargs):
-        obj = super().create(**kwargs)
 
 
 class ExperimentDeviceConfig(models.Model):

@@ -1,8 +1,9 @@
+from django.apps import apps
 from django.contrib import admin
 
-
-from .models import ModelArtifact, Experiment, ExperimentDeviceConfig
-
+ModelArtifact = apps.get_model('ml_ops', 'ModelArtifact')
+ExperimentDeviceConfig = apps.get_model('ml_ops', 'ExperimentDeviceConfig')
+Experiment = apps.get_model('ml_ops', 'Experiment')
 
 @admin.register(ModelArtifact)
 class ModelArtifactAdmin(admin.ModelAdmin):
@@ -17,6 +18,7 @@ class ModelArtifactAdmin(admin.ModelAdmin):
 
 
 def activate_experiment(modeladmin, request, queryset):
+    OctoPrintDevice = apps.get_model('remote_control', 'OctoPrintDevice')
     if len(queryset) > 1:
         raise ValueError(
             f"You selected {len(queryset)} experiments, but only one experiment can be active at a time"
@@ -28,10 +30,10 @@ def activate_experiment(modeladmin, request, queryset):
 
     for device in OctoPrintDevice.objects.all().iterator():
         experiment_group = experiment.randomize_group()
-        config = ExperimentDeviceConfig(
-            device=device, experiment_group=experiment_group, experiment=exerpiment
+
+        config = ExperimentDeviceConfig.objects.create(
+            device=device, experiment_group=experiment_group, experiment=experiment
         )
-        config.save()
         config.publish()
 
 
@@ -51,7 +53,7 @@ class ExperimentAdmin(admin.ModelAdmin):
 
 
 @admin.register(ExperimentDeviceConfig)
-class ExperimentDeviceConfig(admin.ModelAdmin):
+class ExperimentDeviceConfigAdmin(admin.ModelAdmin):
     list_display = (
         "device",
         "created_dt",

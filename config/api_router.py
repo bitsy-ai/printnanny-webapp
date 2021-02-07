@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 from django.urls import include, path, re_path
 
-from print_nanny_webapp.ml_ops.api.views import ModelArtifactViewSet
+from print_nanny_webapp.ml_ops.api.views import ModelArtifactViewSet, ExperimentDeviceConfigViewSet
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet, 
@@ -35,6 +35,7 @@ router.register(r"print-jobs", PrintJobViewSet, basename='print-job')
 router.register(r"gcode-files", GcodeFileViewSet, basename='gcode-file')
 router.register(r"commands", CommandViewSet, basename='command')
 router.register(r"model-artifacts", ModelArtifactViewSet, basename='model-artifact')
+router.register(r"experiment-device-configs", ExperimentDeviceConfigViewSet, basename="experiment-device-config")
 
 app_name = "api"
 urlpatterns = router.urls
