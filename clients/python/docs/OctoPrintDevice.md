@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **fingerprint** | **str** |  | [optional] [readonly] 
 **cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
 **cloudiot_device_name** | **str** |  | [optional] [readonly] 
+**cloudiot_device_path** | **str** |  | 
 **cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
+**configs** | **dict(str, object)** |  | [optional] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | 

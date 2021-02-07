@@ -41,7 +41,9 @@ class OctoPrintDeviceKey(object):
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
         'cloudiot_device_name': 'str',
+        'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
+        'configs': 'dict(str, object)',
         'model': 'str',
         'platform': 'str',
         'cpu_flags': 'list[str]',
@@ -70,7 +72,9 @@ class OctoPrintDeviceKey(object):
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
         'cloudiot_device_name': 'cloudiot_device_name',
+        'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
+        'configs': 'configs',
         'model': 'model',
         'platform': 'platform',
         'cpu_flags': 'cpu_flags',
@@ -90,7 +94,7 @@ class OctoPrintDeviceKey(object):
         'private_key': 'private_key'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, configs=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -104,7 +108,9 @@ class OctoPrintDeviceKey(object):
         self._fingerprint = None
         self._cloudiot_device = None
         self._cloudiot_device_name = None
+        self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
+        self._configs = None
         self._model = None
         self._platform = None
         self._cpu_flags = None
@@ -139,8 +145,11 @@ class OctoPrintDeviceKey(object):
             self.cloudiot_device = cloudiot_device
         if cloudiot_device_name is not None:
             self.cloudiot_device_name = cloudiot_device_name
+        self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
+        if configs is not None:
+            self.configs = configs
         self.model = model
         self.platform = platform
         self.cpu_flags = cpu_flags
@@ -336,6 +345,32 @@ class OctoPrintDeviceKey(object):
         self._cloudiot_device_name = cloudiot_device_name
 
     @property
+    def cloudiot_device_path(self):
+        """Gets the cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._cloudiot_device_path
+
+    @cloudiot_device_path.setter
+    def cloudiot_device_path(self, cloudiot_device_path):
+        """Sets the cloudiot_device_path of this OctoPrintDeviceKey.
+
+
+        :param cloudiot_device_path: The cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+        :type cloudiot_device_path: str
+        """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
+            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._cloudiot_device_path = cloudiot_device_path
+
+    @property
     def cloudiot_device_num_id(self):
         """Gets the cloudiot_device_num_id of this OctoPrintDeviceKey.  # noqa: E501
 
@@ -355,6 +390,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._cloudiot_device_num_id = cloudiot_device_num_id
+
+    @property
+    def configs(self):
+        """Gets the configs of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The configs of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._configs
+
+    @configs.setter
+    def configs(self, configs):
+        """Sets the configs of this OctoPrintDeviceKey.
+
+
+        :param configs: The configs of this OctoPrintDeviceKey.  # noqa: E501
+        :type configs: dict(str, object)
+        """
+
+        self._configs = configs
 
     @property
     def model(self):

@@ -4,6 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
+**cloudiot_device_path** | **str** |  | 
+**configs** | **dict(str, object)** |  | [optional] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | 

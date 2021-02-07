@@ -37,6 +37,10 @@ class TestPatchedOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return PatchedOctoPrintDeviceRequest(
                 name = '', 
+                cloudiot_device_path = '', 
+                configs = {
+                    'key' : null
+                    }, 
                 model = '', 
                 platform = '', 
                 cpu_flags = [

@@ -46,7 +46,11 @@ class TestOctoPrintDevice(unittest.TestCase):
                     'key' : null
                     }, 
                 cloudiot_device_name = '', 
+                cloudiot_device_path = '', 
                 cloudiot_device_num_id = 56, 
+                configs = {
+                    'key' : null
+                    }, 
                 model = '', 
                 platform = '', 
                 cpu_flags = [
@@ -68,6 +72,7 @@ class TestOctoPrintDevice(unittest.TestCase):
         else :
             return OctoPrintDevice(
                 name = '',
+                cloudiot_device_path = '',
                 model = '',
                 platform = '',
                 cpu_flags = [

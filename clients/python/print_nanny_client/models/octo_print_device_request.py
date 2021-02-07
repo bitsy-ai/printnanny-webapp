@@ -34,6 +34,8 @@ class OctoPrintDeviceRequest(object):
     """
     openapi_types = {
         'name': 'str',
+        'cloudiot_device_path': 'str',
+        'configs': 'dict(str, object)',
         'model': 'str',
         'platform': 'str',
         'cpu_flags': 'list[str]',
@@ -53,6 +55,8 @@ class OctoPrintDeviceRequest(object):
 
     attribute_map = {
         'name': 'name',
+        'cloudiot_device_path': 'cloudiot_device_path',
+        'configs': 'configs',
         'model': 'model',
         'platform': 'platform',
         'cpu_flags': 'cpu_flags',
@@ -70,13 +74,15 @@ class OctoPrintDeviceRequest(object):
         'print_nanny_client_version': 'print_nanny_client_version'
     }
 
-    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, cloudiot_device_path=None, configs=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._cloudiot_device_path = None
+        self._configs = None
         self._model = None
         self._platform = None
         self._cpu_flags = None
@@ -95,6 +101,9 @@ class OctoPrintDeviceRequest(object):
         self.discriminator = None
 
         self.name = name
+        self.cloudiot_device_path = cloudiot_device_path
+        if configs is not None:
+            self.configs = configs
         self.model = model
         self.platform = platform
         self.cpu_flags = cpu_flags
@@ -137,6 +146,53 @@ class OctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
+
+    @property
+    def cloudiot_device_path(self):
+        """Gets the cloudiot_device_path of this OctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The cloudiot_device_path of this OctoPrintDeviceRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._cloudiot_device_path
+
+    @cloudiot_device_path.setter
+    def cloudiot_device_path(self, cloudiot_device_path):
+        """Sets the cloudiot_device_path of this OctoPrintDeviceRequest.
+
+
+        :param cloudiot_device_path: The cloudiot_device_path of this OctoPrintDeviceRequest.  # noqa: E501
+        :type cloudiot_device_path: str
+        """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
+            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._cloudiot_device_path = cloudiot_device_path
+
+    @property
+    def configs(self):
+        """Gets the configs of this OctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The configs of this OctoPrintDeviceRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._configs
+
+    @configs.setter
+    def configs(self, configs):
+        """Sets the configs of this OctoPrintDeviceRequest.
+
+
+        :param configs: The configs of this OctoPrintDeviceRequest.  # noqa: E501
+        :type configs: dict(str, object)
+        """
+
+        self._configs = configs
 
     @property
     def model(self):

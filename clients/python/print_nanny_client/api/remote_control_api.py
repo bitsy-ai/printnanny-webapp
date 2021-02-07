@@ -1549,7 +1549,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/gcode-files/update_or_create/', 'POST',
+            '/api/gcode-files/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -2384,7 +2384,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/octoprint-devices/update_or_create/', 'POST',
+            '/api/octoprint-devices/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -3923,7 +3923,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/printer-profiles/update_or_create/', 'POST',
+            '/api/printer-profiles/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,
