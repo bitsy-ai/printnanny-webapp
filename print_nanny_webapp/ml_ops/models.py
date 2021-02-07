@@ -37,7 +37,7 @@ class Experiment(models.Model):
     control = models.ForeignKey(
         ModelArtifact, on_delete=models.CASCADE, related_name="control"
     )
-    treatments = models.ManyToManyField(ModelArtifact, related_name="treatment")
+    treatments = models.ManyToManyField(ModelArtifact, related_name="treatment", null=True)
 
     def randomize_group(self):
         num_groups = len(self.treatments) + 1

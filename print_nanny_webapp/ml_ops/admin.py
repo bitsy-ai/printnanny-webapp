@@ -37,13 +37,14 @@ def activate_experiment(modeladmin, request, queryset):
 
 @admin.register(Experiment)
 class ExperimentAdmin(admin.ModelAdmin):
-    fields = (
-        "created_dt" "active",
+    list_display = (
+        "created_dt",
+        "active",
         "name",
         "hypothesis",
         "notion_url",
         "control",
-        "treatments",
+        # "treatments",
     )
 
     actions = [activate_experiment]
@@ -51,11 +52,9 @@ class ExperimentAdmin(admin.ModelAdmin):
 
 @admin.register(ExperimentDeviceConfig)
 class ExperimentDeviceConfig(admin.ModelAdmin):
-    fields = (
-        "artifacts",
-        "artifact_types",
-        "created_dt" "labels",
-        "metadata",
-        "model",
-        "version",
+    list_display = (
+        "device",
+        "created_dt",
+        "experiment",
+        "experiment_group",
     )
