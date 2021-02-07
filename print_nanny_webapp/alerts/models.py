@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.template.loader import render_to_string
 from django.utils import timezone, dateformat
@@ -15,7 +16,7 @@ from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
-from discord import Client as discordC
+from discord import Client as discordClient
 
 import stringcase
 
@@ -23,7 +24,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
-discord = discordC()
+discord = discordClient()
 
 
 def _upload_to(instance, filename):
@@ -286,6 +287,7 @@ class RemoteControlCommandAlert(Alert):
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
             Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert,
             Alert.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
+            # Alert.AlertMethodChoices.DISCORD: lambda x: async_to_sync(self.trigger_discord_alert)(x),
         }
 
     def trigger_alert(self):
@@ -347,10 +349,21 @@ class RemoteControlCommandAlert(Alert):
         return message
 
     def trigger_discord_alert(self, data):
-        logger.info("Sending alert to discord")
+        logger.warn("Sending alert to discord")
 
-        target = discord.get_channel(self.alert_method.channel_id)
-        target.send(data)
+        # if not discord.user:
+        #     async_to_sync(discord.login)(settings.DISCORD_TOKEN, bot=True)
+        #     logger.info("Logged in!")
+        #     # await discord.connect(reconnect=True)
+        #     logger.info("Connected!")
+
+        channel = DiscordMethodSettings.objects.get(user=self.user).channel_id
+        logger.info(f"Channel: {channel}")
+        # target = async_to_sync(discord.fetch_channel)(channel)
+        # logger.warn([x for x in discord.get_all_channels()])
+        target = discord.get_channel(channel)
+        logger.info(f"Target: {target}")
+        async_to_sync(target.send)(data)
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
