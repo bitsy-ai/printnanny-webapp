@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from print_nanny_webapp.ml_ops.models import ModelArtifact
+from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
@@ -13,3 +13,14 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
         }
 
         read_only_fields = [field.name for field in ModelArtifact._meta.fields]
+
+class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExperimentDeviceConfig
+        fields = [field.name for field in ExperimentDeviceConfig._meta.fields] + [
+            "url",
+        ]
+        extra_kwargs = {
+            "url": {"view_name": "api:command-detail", "lookup_field": "id"},
+        }
+

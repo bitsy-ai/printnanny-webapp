@@ -6,12 +6,12 @@ from .models import ModelArtifact, Experiment, ExperimentDeviceConfig
 
 @admin.register(ModelArtifact)
 class ModelArtifactAdmin(admin.ModelAdmin):
-    fields = (
+    list_display = (
+        "created_dt",
         "artifacts",
         "artifact_types",
-        "created_dt" "labels",
+        "labels",
         "metadata",
-        "model",
         "version",
     )
 
@@ -21,7 +21,20 @@ def activate_experiment(modeladmin, request, queryset):
         raise ValueError(
             f"You selected {len(queryset)} experiments, but only one experiment can be active at a time"
         )
-    return queryset.first().activate()
+    # de-activate all experiments, activate selected experiment
+    experiment = queryset.first()
+    experiment.activate()
+    # initialize device configs
+
+    for device in OctoPrintDevice.objects.all().iterator():
+        experiment_group = experiment.randomize_group()
+        config = ExperimentDeviceConfig(
+            device=device,
+            experiment_group=experiment_group,
+            experiment=exerpiment
+        )
+        config.save()
+        config.publish()
 
 
 @admin.register(Experiment)

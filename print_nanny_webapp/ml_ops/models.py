@@ -1,7 +1,11 @@
 import random
 
+from google.cloud import iot_v1 as cloudiot_v1
+from google.protobuf.json_format import MessageToDict
+
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 
@@ -50,6 +54,7 @@ class ExperimentDeviceConfigManager(models.Manager):
     def create(self, **kwargs):
         obj = super().create(**kwargs)
 
+
 class ExperimentDeviceConfig(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
     device = models.ForeignKey(
@@ -57,3 +62,17 @@ class ExperimentDeviceConfig(models.Model):
     )
     experiment = models.ForeignKey(Experiment, db_index=True, on_delete=models.CASCADE)
     experiment_group = models.IntegerField()
+
+    def publish(self):
+        from print_nanny_webapp.ml_ops.api.serializers import ExperimentDeviceConfigSerializer
+        serializer = ExperimentDeviceConfigSerializer(instance=self)
+        client = cloudiot_v1.DeviceManagerClient()
+        data = json.dumps(serializer.data, sort_keys=True).encode('utf-8')
+        return client.modify_cloud_to_device_config(
+            request={
+                "name": self.device.cloudiot_device_path,
+                "binary_data": data,
+                "version_to_update": 0 # a value of 0 will always update the last version seen
+            }
+        )
+
