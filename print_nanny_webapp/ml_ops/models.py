@@ -58,6 +58,7 @@ class ExperimentDeviceConfig(models.Model):
     )
     experiment = models.ForeignKey(Experiment, db_index=True, on_delete=models.CASCADE)
     experiment_group = models.IntegerField()
+    artifact = models.ForeignKey(ModelArtifact, db_index=True, on_delete=models.CASCADE)
 
     def publish(self):
         from print_nanny_webapp.ml_ops.api.serializers import (

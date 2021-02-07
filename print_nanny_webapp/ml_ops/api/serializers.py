@@ -25,6 +25,7 @@ class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "created_dt",
-            "experiment"
+            "experiment",
+            "artifact"
         ]
-        depth = 2
+        depth = 1
