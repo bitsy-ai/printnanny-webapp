@@ -1,7 +1,4 @@
-import base64
-import hashlib
 import logging
-import subprocess
 import tempfile
 import os
 from django.contrib.auth import get_user_model
@@ -22,14 +19,10 @@ import stringcase
 
 from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
-
+from print_nanny_webapp.remote_control.utils import delete_and_recreate_cloudiot_device, generate_keypair
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-
-
-def generate_keypair(private_key_filename, tmp_public_key_filename):
-    pass
 
 
 class OctoPrintDeviceManager(models.Manager):
@@ -41,119 +34,16 @@ class OctoPrintDeviceManager(models.Manager):
             tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
             tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
 
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "genpkey",
-                    "-algorithm",
-                    "RSA",
-                    "-out",
-                    tmp_private_key_filename,
-                    "-pkeyopt",
-                    "rsa_keygen_bits:2048",
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(f"Error running openssl genpkey {p.stderr}")
-                # raise KeyPairProvisioning(p.stderr)
-
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "rsa",
-                    "-in",
-                    tmp_private_key_filename,
-                    "-pubout",
-                    "-out",
-                    tmp_public_key_filename,
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(f"Error running openssl rsa {p.stderr}")
-                # raise KeyPairProvisioning(p.stderr)
-
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "sha3-256",
-                    "-c",
-                    tmp_public_key_filename,
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(p.stderr)
-
-            fingerprint = p.stdout
-            fingerprint = fingerprint.decode().split("=")[-1]
-            fingerprint = fingerprint.strip()
-
-            client = cloudiot_v1.DeviceManagerClient()
-
-            with open(tmp_public_key_filename) as f:
-                public_key_content = f.read().strip()
-
-            with open(tmp_private_key_filename) as f:
-                private_key_content = f.read().strip()
-
-            parent = client.registry_path(
-                settings.GCP_PROJECT_ID,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            fingerprint, public_key_content, private_key_content = generate_keypair(private_key_filename, public_key_filename)
+            
+            cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
+                serial=kwargs.get("serial"),
+                user_id=kwargs.get("user").id,
+                metadata=kwargs,
+                fingerprint=fingerprint,
+                public_key_content=public_key_content
             )
 
-            serial = kwargs.get("serial")
-            cloudiot_device_name = f"serial-{serial}"
-
-            string_kwargs = {k: str(v) for k, v in defaults.items()}
-            device_template = {
-                "id": cloudiot_device_name,
-                "credentials": [
-                    {
-                        "public_key": {
-                            "format": cloudiot_v1.PublicKeyFormat.RSA_PEM,
-                            "key": public_key_content,
-                        }
-                    }
-                ],
-                "metadata": {
-                    "user_id": str(kwargs.get("user").id),
-                    "serial": kwargs.get("serial"),
-                    "fingerprint": fingerprint,
-                    **string_kwargs,
-                },
-            }
-
-            device_path = client.device_path(
-                settings.GCP_PROJECT_ID,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-                cloudiot_device_name,
-            )
-
-            try:
-                cloudiot_device = client.delete_device(name=device_path)
-                logger.info(f"Deleted existing device {device_path}")
-            except google.api_core.exceptions.NotFound as e:
-                logger.warning(
-                    {
-                        "error": e,
-                        "msg": f"No existing device found with name {cloudiot_device_name}",
-                    }
-                )
-
-            cloudiot_device = client.create_device(
-                parent=parent, device=device_template
-            )
-
-            logger.info(f"Created new device in registry {device_path}")
-
-            cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
             logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
 
             cloudiot_device_num_id = cloudiot_device_dict.get("numId")
