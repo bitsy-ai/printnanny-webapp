@@ -1,6 +1,6 @@
 {
   "name": "print-nanny-client",
-  "version": "0.5.0-dev1",
+  "version": "0.5.0-dev2",
   "description": "OpenAPI client for print-nanny-client",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [

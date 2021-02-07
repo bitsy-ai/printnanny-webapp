@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **hypothesis** | **str** |  | 
 **notion_url** | **str** |  | [optional] 
-**control** | [**Nested**](Nested.md) |  | [optional] [readonly] 
-**treatments** | [**list[Nested]**](Nested.md) |  | [optional] [readonly] 
+**control** | **int** |  | 
+**treatments** | **list[int]** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

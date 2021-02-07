@@ -42,32 +42,16 @@ class TestNested(unittest.TestCase):
                 name = '', 
                 hypothesis = '', 
                 notion_url = '', 
-                control = None, 
+                control = 56, 
                 treatments = [
-                    print_nanny_client.models.nested.Nested(
-                        id = 56, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        active = True, 
-                        name = '', 
-                        hypothesis = '', 
-                        notion_url = '', 
-                        control = null, 
-                        treatments = [
-                            print_nanny_client.models.nested.Nested(
-                                id = 56, 
-                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                active = True, 
-                                name = '', 
-                                hypothesis = '', 
-                                notion_url = '', 
-                                control = null, )
-                            ], )
+                    56
                     ]
             )
         else :
             return Nested(
                 name = '',
                 hypothesis = '',
+                control = 56,
         )
 
     def testNested(self):

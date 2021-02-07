@@ -919,6 +919,12 @@ export interface ExperimentDeviceConfig {
      * @memberof ExperimentDeviceConfig
      */
     experiment?: Nested;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof ExperimentDeviceConfig
+     */
+    artifact?: Nested;
 }
 /**
  * 
@@ -1183,16 +1189,16 @@ export interface Nested {
     notion_url?: string | null;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof Nested
      */
-    control?: Nested;
+    control: number;
     /**
      * 
-     * @type {Array<Nested>}
+     * @type {Array<number>}
      * @memberof Nested
      */
-    treatments?: Array<Nested>;
+    treatments?: Array<number>;
 }
 /**
  * 

@@ -39,8 +39,8 @@ class Nested(object):
         'name': 'str',
         'hypothesis': 'str',
         'notion_url': 'str',
-        'control': 'Nested',
-        'treatments': 'list[Nested]'
+        'control': 'int',
+        'treatments': 'list[int]'
     }
 
     attribute_map = {
@@ -79,8 +79,7 @@ class Nested(object):
         self.name = name
         self.hypothesis = hypothesis
         self.notion_url = notion_url
-        if control is not None:
-            self.control = control
+        self.control = control
         if treatments is not None:
             self.treatments = treatments
 
@@ -229,7 +228,7 @@ class Nested(object):
 
 
         :return: The control of this Nested.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._control
 
@@ -239,8 +238,10 @@ class Nested(object):
 
 
         :param control: The control of this Nested.  # noqa: E501
-        :type control: Nested
+        :type control: int
         """
+        if self.local_vars_configuration.client_side_validation and control is None:  # noqa: E501
+            raise ValueError("Invalid value for `control`, must not be `None`")  # noqa: E501
 
         self._control = control
 
@@ -250,7 +251,7 @@ class Nested(object):
 
 
         :return: The treatments of this Nested.  # noqa: E501
-        :rtype: list[Nested]
+        :rtype: list[int]
         """
         return self._treatments
 
@@ -260,7 +261,7 @@ class Nested(object):
 
 
         :param treatments: The treatments of this Nested.  # noqa: E501
-        :type treatments: list[Nested]
+        :type treatments: list[int]
         """
 
         self._treatments = treatments

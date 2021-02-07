@@ -35,16 +35,18 @@ class ExperimentDeviceConfig(object):
     openapi_types = {
         'id': 'int',
         'created_dt': 'datetime',
-        'experiment': 'Nested'
+        'experiment': 'Nested',
+        'artifact': 'Nested'
     }
 
     attribute_map = {
         'id': 'id',
         'created_dt': 'created_dt',
-        'experiment': 'experiment'
+        'experiment': 'experiment',
+        'artifact': 'artifact'
     }
 
-    def __init__(self, id=None, created_dt=None, experiment=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, experiment=None, artifact=None, local_vars_configuration=None):  # noqa: E501
         """ExperimentDeviceConfig - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -53,6 +55,7 @@ class ExperimentDeviceConfig(object):
         self._id = None
         self._created_dt = None
         self._experiment = None
+        self._artifact = None
         self.discriminator = None
 
         if id is not None:
@@ -61,6 +64,8 @@ class ExperimentDeviceConfig(object):
             self.created_dt = created_dt
         if experiment is not None:
             self.experiment = experiment
+        if artifact is not None:
+            self.artifact = artifact
 
     @property
     def id(self):
@@ -124,6 +129,27 @@ class ExperimentDeviceConfig(object):
         """
 
         self._experiment = experiment
+
+    @property
+    def artifact(self):
+        """Gets the artifact of this ExperimentDeviceConfig.  # noqa: E501
+
+
+        :return: The artifact of this ExperimentDeviceConfig.  # noqa: E501
+        :rtype: Nested
+        """
+        return self._artifact
+
+    @artifact.setter
+    def artifact(self, artifact):
+        """Sets the artifact of this ExperimentDeviceConfig.
+
+
+        :param artifact: The artifact of this ExperimentDeviceConfig.  # noqa: E501
+        :type artifact: Nested
+        """
+
+        self._artifact = artifact
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
