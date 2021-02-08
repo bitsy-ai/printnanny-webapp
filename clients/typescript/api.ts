@@ -1268,12 +1268,6 @@ export interface OctoPrintDevice {
     cloudiot_device_num_id?: number;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintDevice
-     */
-    configs?: { [key: string]: any; };
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -1362,6 +1356,12 @@ export interface OctoPrintDevice {
      * @memberof OctoPrintDevice
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDevice
+     */
+    cloudiot_device_configs?: string;
 }
 /**
  * 
@@ -1429,12 +1429,6 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     cloudiot_device_num_id?: number;
-    /**
-     * 
-     * @type {Array<any>}
-     * @memberof OctoPrintDeviceKey
-     */
-    configs: Array<any>;
     /**
      * 
      * @type {string}
@@ -1537,6 +1531,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     private_key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    cloudiot_device_configs?: string;
 }
 /**
  * 
