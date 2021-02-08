@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **cloudiot_device_name** | **str** |  | [optional] [readonly] 
 **cloudiot_device_path** | **str** |  | [optional] [readonly] 
 **cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
-**configs** | **list[object]** |  | 
+**configs** | **dict(str, object)** |  | [optional] [readonly] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | 

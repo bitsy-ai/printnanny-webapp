@@ -43,7 +43,7 @@ class OctoPrintDevice(object):
         'cloudiot_device_name': 'str',
         'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
-        'configs': 'list[object]',
+        'configs': 'dict(str, object)',
         'model': 'str',
         'platform': 'str',
         'cpu_flags': 'list[str]',
@@ -143,7 +143,8 @@ class OctoPrintDevice(object):
             self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
-        self.configs = configs
+        if configs is not None:
+            self.configs = configs
         self.model = model
         self.platform = platform
         self.cpu_flags = cpu_flags
@@ -382,7 +383,7 @@ class OctoPrintDevice(object):
 
 
         :return: The configs of this OctoPrintDevice.  # noqa: E501
-        :rtype: list[object]
+        :rtype: dict(str, object)
         """
         return self._configs
 
@@ -392,10 +393,8 @@ class OctoPrintDevice(object):
 
 
         :param configs: The configs of this OctoPrintDevice.  # noqa: E501
-        :type configs: list[object]
+        :type configs: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
 
         self._configs = configs
 

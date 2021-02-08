@@ -37,9 +37,6 @@ class TestPatchedOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return PatchedOctoPrintDeviceRequest(
                 name = '', 
-                configs = [
-                    null
-                    ], 
                 model = '', 
                 platform = '', 
                 cpu_flags = [

@@ -34,7 +34,6 @@ class OctoPrintDeviceRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'configs': 'list[object]',
         'model': 'str',
         'platform': 'str',
         'cpu_flags': 'list[str]',
@@ -54,7 +53,6 @@ class OctoPrintDeviceRequest(object):
 
     attribute_map = {
         'name': 'name',
-        'configs': 'configs',
         'model': 'model',
         'platform': 'platform',
         'cpu_flags': 'cpu_flags',
@@ -72,14 +70,13 @@ class OctoPrintDeviceRequest(object):
         'print_nanny_client_version': 'print_nanny_client_version'
     }
 
-    def __init__(self, name=None, configs=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
-        self._configs = None
         self._model = None
         self._platform = None
         self._cpu_flags = None
@@ -98,7 +95,6 @@ class OctoPrintDeviceRequest(object):
         self.discriminator = None
 
         self.name = name
-        self.configs = configs
         self.model = model
         self.platform = platform
         self.cpu_flags = cpu_flags
@@ -141,29 +137,6 @@ class OctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def configs(self):
-        """Gets the configs of this OctoPrintDeviceRequest.  # noqa: E501
-
-
-        :return: The configs of this OctoPrintDeviceRequest.  # noqa: E501
-        :rtype: list[object]
-        """
-        return self._configs
-
-    @configs.setter
-    def configs(self, configs):
-        """Sets the configs of this OctoPrintDeviceRequest.
-
-
-        :param configs: The configs of this OctoPrintDeviceRequest.  # noqa: E501
-        :type configs: list[object]
-        """
-        if self.local_vars_configuration.client_side_validation and configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `configs`, must not be `None`")  # noqa: E501
-
-        self._configs = configs
 
     @property
     def model(self):

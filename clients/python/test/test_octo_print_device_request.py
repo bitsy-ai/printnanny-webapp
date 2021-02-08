@@ -37,9 +37,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return OctoPrintDeviceRequest(
                 name = '', 
-                configs = [
-                    null
-                    ], 
                 model = '', 
                 platform = '', 
                 cpu_flags = [
@@ -61,9 +58,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         else :
             return OctoPrintDeviceRequest(
                 name = '',
-                configs = [
-                    null
-                    ],
                 model = '',
                 platform = '',
                 cpu_flags = [

@@ -1268,10 +1268,10 @@ export interface OctoPrintDevice {
     cloudiot_device_num_id?: number;
     /**
      * 
-     * @type {Array<any>}
+     * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDevice
      */
-    configs: Array<any>;
+    configs?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -1550,12 +1550,6 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     name: string;
-    /**
-     * 
-     * @type {Array<any>}
-     * @memberof OctoPrintDeviceRequest
-     */
-    configs: Array<any>;
     /**
      * 
      * @type {string}
@@ -2479,12 +2473,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     name?: string;
-    /**
-     * 
-     * @type {Array<any>}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    configs?: Array<any>;
     /**
      * 
      * @type {string}

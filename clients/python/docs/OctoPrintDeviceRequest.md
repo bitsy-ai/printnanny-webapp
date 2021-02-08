@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**configs** | **list[object]** |  | 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | 

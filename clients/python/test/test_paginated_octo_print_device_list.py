@@ -53,9 +53,9 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                         cloudiot_device_name = '', 
                         cloudiot_device_path = '', 
                         cloudiot_device_num_id = 56, 
-                        configs = [
-                            null
-                            ], 
+                        configs = {
+                            'key' : null
+                            }, 
                         model = '', 
                         platform = '', 
                         cpu_flags = [
