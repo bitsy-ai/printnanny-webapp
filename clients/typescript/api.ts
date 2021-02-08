@@ -1422,7 +1422,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_path: string;
+    cloudiot_device_path?: string;
     /**
      * 
      * @type {number}
