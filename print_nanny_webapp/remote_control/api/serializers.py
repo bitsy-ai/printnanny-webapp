@@ -26,7 +26,7 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     private_key = serializers.SerializerMethodField()
-    configs = serializers.ListSerializerField(allow_empty=True)
+    configs = serializers.ListField(allow_empty=True)
 
     def get_private_key(self, obj):
         return getattr(obj, "private_key", None)
@@ -65,7 +65,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
-    configs = serializers.ListSerializerField(allow_empty=True)
+    configs = serializers.ListField(allow_empty=True)
 
     class Meta:
         model = OctoPrintDevice
