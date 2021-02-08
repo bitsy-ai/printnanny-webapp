@@ -41,6 +41,7 @@ class OctoPrintDeviceKey(object):
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
         'cloudiot_device_name': 'str',
+        'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
         'model': 'str',
         'platform': 'str',
@@ -58,7 +59,8 @@ class OctoPrintDeviceKey(object):
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'url': 'str',
-        'private_key': 'str'
+        'private_key': 'str',
+        'cloudiot_device_configs': 'str'
     }
 
     attribute_map = {
@@ -70,6 +72,7 @@ class OctoPrintDeviceKey(object):
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
         'cloudiot_device_name': 'cloudiot_device_name',
+        'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
         'model': 'model',
         'platform': 'platform',
@@ -87,10 +90,11 @@ class OctoPrintDeviceKey(object):
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'url': 'url',
-        'private_key': 'private_key'
+        'private_key': 'private_key',
+        'cloudiot_device_configs': 'cloudiot_device_configs'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, cloudiot_device_configs=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -104,6 +108,7 @@ class OctoPrintDeviceKey(object):
         self._fingerprint = None
         self._cloudiot_device = None
         self._cloudiot_device_name = None
+        self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
         self._model = None
         self._platform = None
@@ -122,6 +127,7 @@ class OctoPrintDeviceKey(object):
         self._print_nanny_client_version = None
         self._url = None
         self._private_key = None
+        self._cloudiot_device_configs = None
         self.discriminator = None
 
         if id is not None:
@@ -139,6 +145,8 @@ class OctoPrintDeviceKey(object):
             self.cloudiot_device = cloudiot_device
         if cloudiot_device_name is not None:
             self.cloudiot_device_name = cloudiot_device_name
+        if cloudiot_device_path is not None:
+            self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
         self.model = model
@@ -161,6 +169,8 @@ class OctoPrintDeviceKey(object):
             self.url = url
         if private_key is not None:
             self.private_key = private_key
+        if cloudiot_device_configs is not None:
+            self.cloudiot_device_configs = cloudiot_device_configs
 
     @property
     def id(self):
@@ -334,6 +344,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._cloudiot_device_name = cloudiot_device_name
+
+    @property
+    def cloudiot_device_path(self):
+        """Gets the cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._cloudiot_device_path
+
+    @cloudiot_device_path.setter
+    def cloudiot_device_path(self, cloudiot_device_path):
+        """Sets the cloudiot_device_path of this OctoPrintDeviceKey.
+
+
+        :param cloudiot_device_path: The cloudiot_device_path of this OctoPrintDeviceKey.  # noqa: E501
+        :type cloudiot_device_path: str
+        """
+
+        self._cloudiot_device_path = cloudiot_device_path
 
     @property
     def cloudiot_device_num_id(self):
@@ -785,6 +816,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._private_key = private_key
+
+    @property
+    def cloudiot_device_configs(self):
+        """Gets the cloudiot_device_configs of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The cloudiot_device_configs of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._cloudiot_device_configs
+
+    @cloudiot_device_configs.setter
+    def cloudiot_device_configs(self, cloudiot_device_configs):
+        """Sets the cloudiot_device_configs of this OctoPrintDeviceKey.
+
+
+        :param cloudiot_device_configs: The cloudiot_device_configs of this OctoPrintDeviceKey.  # noqa: E501
+        :type cloudiot_device_configs: str
+        """
+
+        self._cloudiot_device_configs = cloudiot_device_configs
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

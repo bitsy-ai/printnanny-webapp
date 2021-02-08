@@ -28,14 +28,14 @@ class TestAlertSettingsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_alert_settings_alert_methods_retrieve(self):
-        """Test case for alert_settings_alert_methods_retrieve
+    def test_alert_settings_list(self):
+        """Test case for alert_settings_list
 
         """
         pass
 
-    def test_alert_settings_list(self):
-        """Test case for alert_settings_list
+    def test_alert_settings_methods_retrieve(self):
+        """Test case for alert_settings_methods_retrieve
 
         """
         pass

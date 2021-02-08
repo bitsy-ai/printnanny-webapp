@@ -14,7 +14,7 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from rest_framework.decorators import action
 from rest_framework import status
 
-from drf_spectacular.utils import extend_schema, extend_schema_view
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
 
 from rest_framework.renderers import JSONRenderer
@@ -214,7 +214,7 @@ class PrinterProfileViewSet(
             201: PrinterProfileSerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -300,7 +300,7 @@ class GcodeFileViewSet(
             201: GcodeFileSerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -347,7 +347,7 @@ class OctoPrintDeviceViewSet(
             202: OctoPrintDeviceKeySerializer,
         },
     )
-    @action(methods=["post"], detail=False)
+    @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -374,6 +374,9 @@ class OctoPrintDeviceViewSet(
 
     @extend_schema(
         operation_id="octoprint_devices_update",
+        parameters = [
+
+        ],
         responses={
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,

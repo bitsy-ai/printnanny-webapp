@@ -46,6 +46,7 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                     'key' : null
                     }, 
                 cloudiot_device_name = '', 
+                cloudiot_device_path = '', 
                 cloudiot_device_num_id = 56, 
                 model = '', 
                 platform = '', 
@@ -65,7 +66,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 plugin_version = '', 
                 print_nanny_client_version = '', 
                 url = '', 
-                private_key = ''
+                private_key = '', 
+                cloudiot_device_configs = ''
             )
         else :
             return OctoPrintDeviceKey(

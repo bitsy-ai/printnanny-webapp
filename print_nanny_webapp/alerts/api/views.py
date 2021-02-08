@@ -121,7 +121,7 @@ class AlertViewSet(
         return Response(serializer.data)
 
 
-@extend_schema(tags=["alert_settings"])
+@extend_schema(tags=["alert-settings"])
 class AlertSettingsViewSet(
     GenericViewSet,
     ListModelMixin,
@@ -135,7 +135,7 @@ class AlertSettingsViewSet(
 
     @extend_schema(tags=["alert_settings"], responses={200: AlertMethodSerializer})
     @action(detail=False)
-    def alert_methods(self, request):
+    def methods(self, request):
         data = [
             {"label": label, "value": value}
             for label, value in Alert.AlertMethodChoices.choices
