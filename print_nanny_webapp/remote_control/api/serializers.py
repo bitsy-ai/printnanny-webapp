@@ -47,6 +47,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cloudiot_device_num_id",
             "cloudiot_device",
             "cloudiot_device_name",
+            "cloudiot_device_path"
         )
 
     def update_or_create(self, user, serial, validated_data):
