@@ -29,16 +29,8 @@ def activate_experiment(modeladmin, request, queryset):
     # initialize device configs
 
     for device in OctoPrintDevice.objects.all().iterator():
-        experiment_group = experiment.randomize_group()
-
-        if experiment_group == 0:
-            artifact = experiment.control
-        else:
-            artifact = list(experiment.treatments.all())[experiment_group-1]
-
         config = ExperimentDeviceConfig.objects.create(
-            device=device, experiment_group=experiment_group, experiment=experiment,
-            artifact=artifact
+            device=device,experiment=experiment,
         )
         config.publish()
 

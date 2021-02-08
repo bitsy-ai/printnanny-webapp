@@ -55,6 +55,7 @@ def generate_keypair(private_key_filename, public_key_filename):
 
 
 def delete_and_recreate_cloudiot_device(
+    name: str,
     serial: str,
     user_id: int,
     metadata: dict,
@@ -69,11 +70,10 @@ def delete_and_recreate_cloudiot_device(
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
     )
 
-    cloudiot_device_name = f"serial-{serial}"
 
     string_kwargs = {k: str(v) for k, v in metadata.items()}
     device_template = {
-        "id": cloudiot_device_name,
+        "id": name,
         "credentials": [
             {
                 "public_key": {
@@ -94,7 +94,7 @@ def delete_and_recreate_cloudiot_device(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-        cloudiot_device_name,
+        name,
     )
 
     try:
@@ -104,7 +104,7 @@ def delete_and_recreate_cloudiot_device(
         logger.warning(
             {
                 "error": e,
-                "msg": f"No existing device found with name {cloudiot_device_name}",
+                "msg": f"No existing device found with name {name}",
             }
         )
 
@@ -113,4 +113,4 @@ def delete_and_recreate_cloudiot_device(
     logger.info(f"Created new device in registry {device_path}")
 
     cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
-    return cloudiot_device, device_path
+    return cloudiot_device_dict, device_path

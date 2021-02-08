@@ -35,15 +35,17 @@ class OctoPrintDeviceManager(models.Manager):
         logging.info(f"Creating keypair for device serial={serial}")
 
         with tempfile.TemporaryDirectory() as tmp:
-            tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
-            tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
+            private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
+            public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
 
             fingerprint, public_key_content, private_key_content = generate_keypair(
                 private_key_filename, public_key_filename
             )
-
+            serial = kwargs.get("serial")
+            cloudiot_device_name = f'serial-{serial}'
             cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
-                serial=kwargs.get("serial"),
+                name=cloudiot_device_name,
+                serial=serial,
                 user_id=kwargs.get("user").id,
                 metadata=kwargs,
                 fingerprint=fingerprint,
@@ -81,13 +83,10 @@ class OctoPrintDeviceManager(models.Manager):
 
             active_experiment = Experiment.objects.filter(active=True).first()
             if active_experiment is not None:
-                experiment_group = active_experiment.randomize_group()
-                experiment_device_config = ExperimentDeviceConfig(
+                experiment_device_config = ExperimentDeviceConfig.objects.create(
                     device=device,
                     experiment=active_experiment,
-                    experiment_group=experiment_group,
                 )
-                experiment_device_config.save()
 
             return device, created
 
