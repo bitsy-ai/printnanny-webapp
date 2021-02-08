@@ -37,7 +37,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return OctoPrintDeviceRequest(
                 name = '', 
-                cloudiot_device_path = '', 
                 configs = {
                     'key' : null
                     }, 
@@ -62,7 +61,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         else :
             return OctoPrintDeviceRequest(
                 name = '',
-                cloudiot_device_path = '',
                 model = '',
                 platform = '',
                 cpu_flags = [

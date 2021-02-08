@@ -139,7 +139,8 @@ class OctoPrintDevice(object):
             self.cloudiot_device = cloudiot_device
         if cloudiot_device_name is not None:
             self.cloudiot_device_name = cloudiot_device_name
-        self.cloudiot_device_path = cloudiot_device_path
+        if cloudiot_device_path is not None:
+            self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
         if configs is not None:
@@ -352,11 +353,6 @@ class OctoPrintDevice(object):
         :param cloudiot_device_path: The cloudiot_device_path of this OctoPrintDevice.  # noqa: E501
         :type cloudiot_device_path: str
         """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cloudiot_device_path = cloudiot_device_path
 

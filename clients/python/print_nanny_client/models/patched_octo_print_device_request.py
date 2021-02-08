@@ -34,7 +34,6 @@ class PatchedOctoPrintDeviceRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'cloudiot_device_path': 'str',
         'configs': 'dict(str, object)',
         'model': 'str',
         'platform': 'str',
@@ -55,7 +54,6 @@ class PatchedOctoPrintDeviceRequest(object):
 
     attribute_map = {
         'name': 'name',
-        'cloudiot_device_path': 'cloudiot_device_path',
         'configs': 'configs',
         'model': 'model',
         'platform': 'platform',
@@ -74,14 +72,13 @@ class PatchedOctoPrintDeviceRequest(object):
         'print_nanny_client_version': 'print_nanny_client_version'
     }
 
-    def __init__(self, name=None, cloudiot_device_path=None, configs=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, configs=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
-        self._cloudiot_device_path = None
         self._configs = None
         self._model = None
         self._platform = None
@@ -102,8 +99,6 @@ class PatchedOctoPrintDeviceRequest(object):
 
         if name is not None:
             self.name = name
-        if cloudiot_device_path is not None:
-            self.cloudiot_device_path = cloudiot_device_path
         if configs is not None:
             self.configs = configs
         if model is not None:
@@ -160,30 +155,6 @@ class PatchedOctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def cloudiot_device_path(self):
-        """Gets the cloudiot_device_path of this PatchedOctoPrintDeviceRequest.  # noqa: E501
-
-
-        :return: The cloudiot_device_path of this PatchedOctoPrintDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloudiot_device_path
-
-    @cloudiot_device_path.setter
-    def cloudiot_device_path(self, cloudiot_device_path):
-        """Sets the cloudiot_device_path of this PatchedOctoPrintDeviceRequest.
-
-
-        :param cloudiot_device_path: The cloudiot_device_path of this PatchedOctoPrintDeviceRequest.  # noqa: E501
-        :type cloudiot_device_path: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._cloudiot_device_path = cloudiot_device_path
 
     @property
     def configs(self):

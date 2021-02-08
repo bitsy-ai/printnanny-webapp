@@ -72,7 +72,6 @@ class TestOctoPrintDevice(unittest.TestCase):
         else :
             return OctoPrintDevice(
                 name = '',
-                cloudiot_device_path = '',
                 model = '',
                 platform = '',
                 cpu_flags = [
