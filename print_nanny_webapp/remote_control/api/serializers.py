@@ -65,7 +65,6 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
-    configs = serializers.ListField(allow_empty=True)
 
     class Meta:
         model = OctoPrintDevice
