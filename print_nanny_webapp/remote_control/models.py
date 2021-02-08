@@ -130,7 +130,6 @@ class OctoPrintDevice(models.Model):
     cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
-    configs = models.JSONField(default=list, null=True)
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
@@ -173,9 +172,7 @@ class OctoPrintDevice(models.Model):
         )
         device_configs = client.list_device_config_versions(name=device_path)
         configs_dict = MessageToDict(device_configs._pb)
-        self.configs = configs_dict
-        self.save()
-        return cloudiot_device_dict
+        return configs_dict
 
     @property
     def cloudiot_device_status(self):

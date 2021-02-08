@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **cloudiot_device_name** | **str** |  | [optional] [readonly] 
 **cloudiot_device_path** | **str** |  | [optional] [readonly] 
 **cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
-**configs** | **list[object]** |  | 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | 
@@ -31,6 +30,7 @@ Name | Type | Description | Notes
 **print_nanny_client_version** | **str** |  | 
 **url** | **str** |  | [optional] [readonly] 
 **private_key** | **str** |  | [optional] [readonly] 
+**cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

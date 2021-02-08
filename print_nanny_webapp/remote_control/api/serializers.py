@@ -26,6 +26,9 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     private_key = serializers.SerializerMethodField()
+    cloudiot_device_configs = serializers.SerializerMethodField()
+    def get_cloudiot_device_configs(self, obj):
+        return obj.cloudiot_device_configs
 
     def get_private_key(self, obj):
         return getattr(obj, "private_key", None)
@@ -35,6 +38,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
             "url",
             "private_key",
+            "cloudiot_device_configs"
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -48,7 +52,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cloudiot_device",
             "cloudiot_device_name",
             "cloudiot_device_path",
-            "configs"
+            "cloudiot_device_configs"
         )
 
     def update_or_create(self, user, serial, validated_data):
@@ -64,9 +68,15 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
+    cloudiot_device_configs = serializers.SerializerMethodField()
+    def get_cloudiot_device_configs(self, obj):
+        return obj.cloudiot_device_configs
+
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields]
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + [
+            "cloudiot_device_configs"
+        ]
 
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -80,7 +90,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             "cloudiot_device",
             "cloudiot_device_name",
             "cloudiot_device_path",
-            "configs"
+            "cloudiot_device_configs"
         )
 
     def update_or_create(self, user, serial, validated_data):
