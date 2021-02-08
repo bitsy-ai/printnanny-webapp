@@ -130,7 +130,7 @@ class OctoPrintDevice(models.Model):
     cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
-    configs = models.JSONField(default={})
+    configs = models.JSONField(default=[])
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
