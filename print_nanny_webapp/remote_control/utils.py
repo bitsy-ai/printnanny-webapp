@@ -105,7 +105,7 @@ def delete_and_recreate_cloudiot_device(
             {
                 "public_key": {
                     "format": cloudiot_v1.PublicKeyFormat.RSA_PEM,
-                    "key": public_key_content,
+                    "key": public_key_content.strip(),
                 }
             }
         ],

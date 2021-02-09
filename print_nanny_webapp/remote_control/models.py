@@ -44,7 +44,7 @@ class OctoPrintDeviceManager(models.Manager):
             user_id=kwargs.get("user").id,
             metadata=kwargs,
             fingerprint=rsa_keypair["fingerprint"],
-            public_key_content=rsa_keypair["public_key_content"],
+            public_key_content=rsa_keypair["public_key_content"].strip(),
         )
 
         logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
