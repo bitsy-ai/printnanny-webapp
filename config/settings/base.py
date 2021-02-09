@@ -290,8 +290,6 @@ ANYMAIL = {
 # Discord
 # ------------------------------------------------------------------------------
 DISCORD_TOKEN = env("DISCORD_TOKEN")
-# Under the application bot settings, there's a tool at the bottom that calculates this
-DISCORD_PERMISSIONS = 2048 # Send Messages
 
 
 # ADMIN

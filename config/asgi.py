@@ -11,7 +11,6 @@ import os
 import sys
 import logging
 from pathlib import Path
-from django.conf import settings
 
 
 from django.core.asgi import get_asgi_application
@@ -39,7 +38,6 @@ import print_nanny_webapp.alerts.routing
 from rest_framework.authtoken.models import Token
 from channels.db import database_sync_to_async
 from django.contrib.auth.models import AnonymousUser
-from print_nanny_webapp.alerts.models import discord
 
 logger = logging.getLogger(__name__)
 
@@ -50,11 +48,6 @@ async def application(scope, receive, send):
         await websocket_application(scope, receive, send)
     else:
         raise NotImplementedError(f"Unknown scope type {scope['type']}")
-
-async def discord_bot(scope, receive, send):
-    print(scope)
-    await discord.login(settings.DISCORD_TOKEN)
-    await discord.connect()
 
 @database_sync_to_async
 def get_user(headers):
@@ -91,5 +84,5 @@ application = ProtocolTypeRouter({
   "http": django_application,
   "websocket": TokenAuthMiddlewareStack(
       URLRouter(websocket_urlpatterns)),
-  #"metrics":
+  #"metrics": 
 })

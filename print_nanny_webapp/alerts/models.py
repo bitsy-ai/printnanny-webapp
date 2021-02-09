@@ -1,5 +1,6 @@
 import os
 import logging
+import asyncio
 
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -25,6 +26,12 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 User = get_user_model()
 logger = logging.getLogger(__name__)
 discord = discordClient()
+# TODO: Call this from inside the trigger_discord_alert and check if it's not running
+try:
+    asyncio.create_task(discord.start(settings.DISCORD_TOKEN, bot=True))
+except RuntimeError as e:
+    # When imported from celery, there's no event loop
+    logger.error(e)
 
 
 def _upload_to(instance, filename):
@@ -287,7 +294,6 @@ class RemoteControlCommandAlert(Alert):
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
             Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert,
             Alert.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
-            # Alert.AlertMethodChoices.DISCORD: lambda x: async_to_sync(self.trigger_discord_alert)(x),
         }
 
     def trigger_alert(self):
@@ -349,21 +355,24 @@ class RemoteControlCommandAlert(Alert):
         return message
 
     def trigger_discord_alert(self, data):
-        logger.warn("Sending alert to discord")
-
-        # if not discord.user:
-        #     async_to_sync(discord.login)(settings.DISCORD_TOKEN, bot=True)
-        #     logger.info("Logged in!")
-        #     # await discord.connect(reconnect=True)
-        #     logger.info("Connected!")
 
         channel = DiscordMethodSettings.objects.get(user=self.user).channel_id
-        logger.info(f"Channel: {channel}")
-        # target = async_to_sync(discord.fetch_channel)(channel)
-        # logger.warn([x for x in discord.get_all_channels()])
-        target = discord.get_channel(channel)
-        logger.info(f"Target: {target}")
-        async_to_sync(target.send)(data)
+        logger.info(f"Sending Discord alert to channel: {channel}")
+
+        # XXX: This can block forever - add a timeout
+        async_to_sync(discord.wait_until_ready)()
+
+        # TODO: Store this as unsigned 64bit int maybe?
+        target = discord.get_channel(int(channel))
+        if target is None:
+            logger.error("Discord could not find channel!")
+            return
+
+        additional_text = ""
+        if data["snapshot_url"] is not None:
+            additional_text += "\n"+data["snapshot_url"]
+
+        async_to_sync(target.send)(f"{data['title']}: {data['description']}{additional_text}")
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
