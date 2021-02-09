@@ -74,7 +74,7 @@ def generate_keypair():
 
         return RSAKeyPair(
             private_key_content=private_key_content,
-            private_key_checksum=private_key_checksum
+            private_key_checksum=private_key_checksum,
             public_key_content=public_key_content,
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
