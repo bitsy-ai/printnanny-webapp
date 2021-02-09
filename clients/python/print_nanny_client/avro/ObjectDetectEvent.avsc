@@ -1,0 +1,36 @@
+{
+ "namespace": "com.octoprint_nanny.client_events",
+ "type": "record",
+ "name": "ObjectDetectEvent",
+ "fields": [
+     {"name": "created_ts", "type": "long", "logicalType": "timestamp-millis"},
+     {"name": "gcs_path",  "type": ["string", "null"]},
+     {"name": "device_id", "type": "int"},
+     {"name": "device_cloudiot_name", "type": "string"},
+     {"name": "user_id", "type": "int"},
+     {"name": "calibration", "type": {"type": "array", "items": "float"}},
+     {"name": "object_detect_data", "type": 
+        { 
+            "namespace": "com.octoprint_nanny.client_events.avro",
+            "type": "record",
+            "name": "ObjectDetectData",
+            "fields": [
+                {"name": "num_detections", "type": "int"},
+                {"name": "detection_boxes",
+                 "type": {
+                     "name": "BoundingBoxes",
+                     "type": "record",
+                     "fields": [{
+                         "name": "coordinates",
+                         "type": {"type": "array", "items": "float"}
+                     }]
+                 }
+                },
+                {"name": "detection_classes", "type": {"type": "array", "items": "int"}},
+                {"name": "detection_score", "type": {"type": "array", "items": "float"}}
+            ]
+        }
+    },
+    {"name": "original_image", "type": "bytes"}
+ ]
+}
