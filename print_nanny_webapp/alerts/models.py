@@ -116,10 +116,14 @@ class DiscordMethodSettings(MethodSettings):
     # so max 21 characters - 24 to be "safe"
     # https://discord.com/developers/docs/reference#snowflakes
     # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
-    channel_id = models.CharField(
-        help_text="Channel ID to send notifications to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
-        max_length=24, null=True
-    )
+    channel_ids = ArrayField(models.CharField(
+        help_text="Channel IDs to send notifications to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
+        max_length=24
+    ), default=list, null=True)
+    user_ids = ArrayField(models.CharField(
+        help_text="User IDs to send notifications (as direct messages) to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
+        max_length=24
+    ), default=list, null=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, method=MethodSettings.MethodChoices.DISCORD, **kwargs)
@@ -356,23 +360,37 @@ class RemoteControlCommandAlert(Alert):
 
     def trigger_discord_alert(self, data):
 
-        channel = DiscordMethodSettings.objects.get(user=self.user).channel_id
-        logger.info(f"Sending Discord alert to channel: {channel}")
+        discord_settings = DiscordMethodSettings.objects.get(user=self.user)
+        channels = discord_settings.channel_ids
+        users = discord_settings.user_ids
+
+        logger.info(f"Sending Discord alert to channels: {channels} and users: {users}")
+
+        message = f"{data['title']}: {data['description']}"
+        if data["snapshot_url"] is not None:
+            message += "\n"+data["snapshot_url"]
 
         # XXX: This can block forever - add a timeout
         async_to_sync(discord.wait_until_ready)()
 
-        # TODO: Store this as unsigned 64bit int maybe?
-        target = discord.get_channel(int(channel))
-        if target is None:
-            logger.error("Discord could not find channel!")
-            return
+        for user in users:
+            # target = discord.get_user(int(user))
+            target = async_to_sync(discord.fetch_user)(int(user))
+            if target is None:
+                # TODO: Return an error
+                logger.error(f"Discord could not find user '{user}'!")
+                continue
 
-        additional_text = ""
-        if data["snapshot_url"] is not None:
-            additional_text += "\n"+data["snapshot_url"]
+            async_to_sync(target.send)(message)
 
-        async_to_sync(target.send)(f"{data['title']}: {data['description']}{additional_text}")
+        for channel in channels:
+            target = async_to_sync(discord.fetch_channel)(int(channel))
+            if target is None:
+                # TODO: Return an error
+                logger.error(f"Discord could not find channel '{channel}'!")
+                continue
+
+            async_to_sync(target.send)(message)
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
