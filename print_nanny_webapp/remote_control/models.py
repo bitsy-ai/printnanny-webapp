@@ -37,7 +37,7 @@ class OctoPrintDeviceManager(models.Manager):
         rsa_keypair = generate_keypair()
 
         serial = kwargs.get("serial")
-        cloudiot_device_name = f'serial-{serial}'
+        cloudiot_device_name = f"serial-{serial}"
         cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
             name=cloudiot_device_name,
             serial=serial,

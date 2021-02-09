@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0004_experiment_experimentdeviceconfig'),
+        ("ml_ops", "0004_experiment_experimentdeviceconfig"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='experiment',
-            name='treatments',
-            field=models.ManyToManyField(null=True, related_name='treatment', to='ml_ops.ModelArtifact'),
+            model_name="experiment",
+            name="treatments",
+            field=models.ManyToManyField(
+                null=True, related_name="treatment", to="ml_ops.ModelArtifact"
+            ),
         ),
     ]

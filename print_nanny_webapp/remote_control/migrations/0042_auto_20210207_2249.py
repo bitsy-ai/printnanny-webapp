@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0041_octoprintdevice_cloudiot_device_path'),
+        ("remote_control", "0041_octoprintdevice_cloudiot_device_path"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='configs',
+            model_name="octoprintdevice",
+            name="configs",
             field=models.JSONField(default={}),
         ),
     ]

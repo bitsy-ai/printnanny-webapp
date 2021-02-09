@@ -38,7 +38,9 @@ class Experiment(models.Model):
     control = models.ForeignKey(
         ModelArtifact, on_delete=models.CASCADE, related_name="control"
     )
-    treatments = models.ManyToManyField(ModelArtifact, related_name="treatment", null=True, blank=True)
+    treatments = models.ManyToManyField(
+        ModelArtifact, related_name="treatment", null=True, blank=True
+    )
 
     def randomize_group(self):
         num_groups = len(self.treatments.all()) + 1
@@ -50,8 +52,8 @@ class Experiment(models.Model):
         self.save()
         return self.active
 
-class ExperimentDeviceConfigManager(models.Manager):
 
+class ExperimentDeviceConfigManager(models.Manager):
     def create(self, *args, **kwargs):
         experiment = kwargs.pop("experiment")
         experiment_group = kwargs.get("experiment_group")
@@ -62,13 +64,14 @@ class ExperimentDeviceConfigManager(models.Manager):
         if experiment_group == 0:
             artifact = experiment.control
         else:
-            artifact = list(experiment.treatments.all())[experiment_group-1]
+            artifact = list(experiment.treatments.all())[experiment_group - 1]
         return super().create(
             artifact=artifact,
             experiment_group=experiment_group,
             experiment=experiment,
             **kwargs
-        )    
+        )
+
 
 class ExperimentDeviceConfig(models.Model):
     objects = ExperimentDeviceConfigManager()

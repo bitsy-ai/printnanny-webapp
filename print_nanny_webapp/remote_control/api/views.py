@@ -374,9 +374,7 @@ class OctoPrintDeviceViewSet(
 
     @extend_schema(
         operation_id="octoprint_devices_update",
-        parameters = [
-
-        ],
+        parameters=[],
         responses={
             400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,

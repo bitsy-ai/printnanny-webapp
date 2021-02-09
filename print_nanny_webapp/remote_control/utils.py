@@ -11,6 +11,7 @@ import subprocess
 
 logger = logging.getLogger(__name__)
 
+
 class RSAKeyPair(TypedDict):
     private_key_content: str
     private_key_checksum: str
@@ -21,8 +22,8 @@ class RSAKeyPair(TypedDict):
 
 def generate_keypair():
     with tempfile.TemporaryDirectory() as tmp:
-        private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
-        public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
+        private_key_filename = f"{tmp}/rsa_private.pem"
+        public_key_filename = f"{tmp}/rsa_public.pem"
 
         p = subprocess.run(
             [
@@ -61,7 +62,7 @@ def generate_keypair():
         fingerprint = p.stdout
         fingerprint = fingerprint.decode().split("=")[-1]
         fingerprint = fingerprint.strip()
-        
+
         with open(public_key_filename) as f:
             public_key_content = f.read()
             f.seek(0)
@@ -78,7 +79,6 @@ def generate_keypair():
             public_key_content=public_key_content,
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
-
         )
 
 
@@ -97,7 +97,6 @@ def delete_and_recreate_cloudiot_device(
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
     )
-
 
     string_kwargs = {k: str(v) for k, v in metadata.items()}
     device_template = {

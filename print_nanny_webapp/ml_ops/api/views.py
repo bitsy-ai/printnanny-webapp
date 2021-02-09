@@ -12,6 +12,7 @@ class ModelArtifactViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = ModelArtifact.objects.all()
     lookup_field = "id"
 
+
 @extend_schema(tags=["ml-ops"])
 class ExperimentDeviceConfigViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = ExperimentDeviceConfigSerializer
