@@ -63,15 +63,15 @@ def generate_keypair():
         fingerprint = fingerprint.decode().split("=")[-1]
         fingerprint = fingerprint.strip()
 
-        with open(public_key_filename) as f:
+        with open(public_key_filename, "r") as f:
             public_key_content = f.read()
             f.seek(0)
-            public_key_checksum = hashlib.sha256(f.read()).hexdigest()
+            public_key_checksum = hashlib.sha256(f.read().encode("utf-8")).hexdigest()
 
-        with open(private_key_filename) as f:
+        with open(private_key_filename, "r") as f:
             private_key_content = f.read()
             f.seek(0)
-            private_key_checksum = hashlib.sha256(f.read()).hexdigest()
+            private_key_checksum = hashlib.sha256(f.read().encode("utf-8")).hexdigest()
 
         return RSAKeyPair(
             private_key_content=private_key_content,
