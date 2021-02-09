@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from django.apps import apps
 
-ModelArtifact = apps.get_model('ml_ops', 'ModelArtifact')
+ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 
-ExperimentDeviceConfig = apps.get_model('ml_ops', 'ExperimentDeviceConfig')
+ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
@@ -22,10 +22,5 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
 class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperimentDeviceConfig
-        fields = [
-            "id",
-            "created_dt",
-            "experiment",
-            "artifact"
-        ]
+        fields = ["id", "created_dt", "experiment", "artifact"]
         depth = 1

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0042_auto_20210207_2249'),
+        ("remote_control", "0042_auto_20210207_2249"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='configs',
+            model_name="octoprintdevice",
+            name="configs",
             field=models.JSONField(default=list),
         ),
     ]

@@ -34,61 +34,58 @@ class OctoPrintDeviceManager(models.Manager):
         serial = kwargs.get("serial")
         logging.info(f"Creating keypair for device serial={serial}")
 
-        with tempfile.TemporaryDirectory() as tmp:
-            private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
-            public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
+        rsa_keypair = generate_keypair()
 
-            fingerprint, public_key_content, private_key_content = generate_keypair(
-                private_key_filename, public_key_filename
+        serial = kwargs.get("serial")
+        cloudiot_device_name = f"serial-{serial}"
+        cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
+            name=cloudiot_device_name,
+            serial=serial,
+            user_id=kwargs.get("user").id,
+            metadata=kwargs,
+            fingerprint=rsa_keypair["fingerprint"],
+            public_key_content=rsa_keypair["public_key_content"].strip(),
+        )
+
+        logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
+
+        cloudiot_device_num_id = cloudiot_device_dict.get("numId")
+
+        always_update = dict(
+            public_key=rsa_keypair["public_key_content"],
+            fingerprint=rsa_keypair["fingerprint"],
+            cloudiot_device_num_id=cloudiot_device_num_id,
+            cloudiot_device_name=cloudiot_device_name,
+            cloudiot_device=cloudiot_device_dict,
+            cloudiot_device_path=device_path,
+        )
+
+        defaults.update(always_update)
+
+        device, created = super().update_or_create(defaults=defaults, **kwargs)
+
+        for key, value in always_update.items():
+            setattr(device, key, value)
+        logging.info(f"Device created: {created} with id={device.id}")
+        device.cloudiot_device = cloudiot_device_dict
+        device.private_key = rsa_keypair["private_key_content"]
+        device.private_key_checksum = rsa_keypair["private_key_checksum"]
+        device.public_key_checksum = rsa_keypair["public_key_checksum"]
+        device.save()
+
+        from print_nanny_webapp.ml_ops.models import (
+            Experiment,
+            ExperimentDeviceConfig,
+        )
+
+        active_experiment = Experiment.objects.filter(active=True).first()
+        if active_experiment is not None:
+            experiment_device_config = ExperimentDeviceConfig.objects.create(
+                device=device,
+                experiment=active_experiment,
             )
-            serial = kwargs.get("serial")
-            cloudiot_device_name = f'serial-{serial}'
-            cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
-                name=cloudiot_device_name,
-                serial=serial,
-                user_id=kwargs.get("user").id,
-                metadata=kwargs,
-                fingerprint=fingerprint,
-                public_key_content=public_key_content,
-            )
 
-            logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
-
-            cloudiot_device_num_id = cloudiot_device_dict.get("numId")
-
-            always_update = dict(
-                public_key=public_key_content,
-                fingerprint=fingerprint,
-                cloudiot_device_num_id=cloudiot_device_num_id,
-                cloudiot_device_name=cloudiot_device_name,
-                cloudiot_device=cloudiot_device_dict,
-                cloudiot_device_path=device_path,
-            )
-
-            defaults.update(always_update)
-
-            device, created = super().update_or_create(defaults=defaults, **kwargs)
-
-            for key, value in always_update.items():
-                setattr(device, key, value)
-            logging.info(f"Device created: {created} with id={device.id}")
-            device.cloudiot_device = cloudiot_device_dict
-            device.private_key = private_key_content
-            device.save()
-
-            from print_nanny_webapp.ml_ops.models import (
-                Experiment,
-                ExperimentDeviceConfig,
-            )
-
-            active_experiment = Experiment.objects.filter(active=True).first()
-            if active_experiment is not None:
-                experiment_device_config = ExperimentDeviceConfig.objects.create(
-                    device=device,
-                    experiment=active_experiment,
-                )
-
-            return device, created
+        return device, created
 
 
 class OctoPrintDevice(models.Model):

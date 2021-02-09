@@ -67,6 +67,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 print_nanny_client_version = '', 
                 url = '', 
                 private_key = '', 
+                private_key_checksum = '', 
+                public_key_checksum = '', 
                 cloudiot_device_configs = ''
             )
         else :

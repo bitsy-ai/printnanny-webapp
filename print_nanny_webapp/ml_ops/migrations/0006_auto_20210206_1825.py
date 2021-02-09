@@ -7,18 +7,27 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0005_auto_20210206_1657'),
+        ("ml_ops", "0005_auto_20210206_1657"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='experimentdeviceconfig',
-            name='artifact',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ml_ops.modelartifact'),
+            model_name="experimentdeviceconfig",
+            name="artifact",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="ml_ops.modelartifact",
+            ),
         ),
         migrations.AlterField(
-            model_name='experiment',
-            name='treatments',
-            field=models.ManyToManyField(blank=True, null=True, related_name='treatment', to='ml_ops.ModelArtifact'),
+            model_name="experiment",
+            name="treatments",
+            field=models.ManyToManyField(
+                blank=True,
+                null=True,
+                related_name="treatment",
+                to="ml_ops.ModelArtifact",
+            ),
         ),
     ]

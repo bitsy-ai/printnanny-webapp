@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0043_auto_20210207_2332'),
+        ("remote_control", "0043_auto_20210207_2332"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='octoprintdevice',
-            name='configs',
+            model_name="octoprintdevice",
+            name="configs",
         ),
     ]
