@@ -67,7 +67,7 @@
                         <p>Configure the Discord notification bot</p>
                     </div>
                     <div class="form-group">
-                        <form method="post" id="defect-alert-settings">
+                        <form method="post" id="discord-method-settings">
                             {% csrf_token %}
                             {{ forms.discord | crispy }}
                             <button type="submit"  name="action" value="discord" class="btn btn-primary">Save</button>

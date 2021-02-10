@@ -2,13 +2,12 @@
 import ProgressAlertSettings from '@/components/ProgressAlertSettings'
 import DefectAlertSettings from '@/components/DefectAlertSettings'
 import CommandAlertSettings from '@/components/CommandAlertSettings'
-import DiscordAlertSettings from '@/components/DiscordAlertSettings'
 import { mapState, mapActions } from 'vuex'
 
 import { FETCH_ALERT_METHODS, SETTINGS_MODULE, ALERT_METHODS } from '@/store/settings'
 export default {
   name: 'AlertSettingsApp',
-  components: { ProgressAlertSettings, DefectAlertSettings, CommandAlertSettings, DiscordAlertSettings },
+  components: { ProgressAlertSettings, DefectAlertSettings, CommandAlertSettings },
   methods: {
     ...mapActions(SETTINGS_MODULE, {
       fetchAlertMethods: FETCH_ALERT_METHODS
@@ -36,8 +35,5 @@ export default {
         <CommandAlertSettings v-for="item in alert_methods" :key="item.value">
 
         </CommandAlertSettings>
-        <DiscordAlertSettings>
-
-        </DiscordAlertSettings>
     </div>
 </template>
