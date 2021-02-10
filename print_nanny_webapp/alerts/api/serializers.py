@@ -184,17 +184,3 @@ class AlertMethodSerializer(serializers.Serializer):
 
     label = serializers.CharField()
     value = serializers.CharField()
-
-
-class MethodSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MethodSettings
-        fields = "__all__"
-        read_only_fields = ("user",)
-
-
-class DiscordMethodSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DiscordMethodSettings
-        fields = "__all__"
-        read_only_fields = ("user", "method")

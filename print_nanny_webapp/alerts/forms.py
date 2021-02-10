@@ -38,7 +38,6 @@ class CommandAlertSettingsForm(ModelForm):
             "stop_monitoring",
         )
 
-# Should we have all the integration settings in a single form class?
 class DiscordMethodSettingsForm(ModelForm):
     class Meta:
         model = DiscordMethodSettings
