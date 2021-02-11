@@ -20,7 +20,6 @@ from .models import (
     DefectAlertSettings,
     RemoteControlCommandAlertSettings,
     DiscordMethodSettings,
-    discord
 )
 
 logger = logging.getLogger(__name__)
@@ -85,17 +84,17 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     def discord_form_valid(self, form):
         obj = form.save(commit=False)
 
-        if discord.is_ready():
-            for user in obj.user_ids:
-                try:
-                    async_to_sync(discord.fetch_user)(int(user))
-                except (InvalidData, HTTPException, NotFound, Forbidden) as e:
-                    raise ValidationError(_("During '%(value)s' user addition, the following error occurred: %(error)s"), params={"value": int(user), "error": e})
-            for channel in obj.channel_ids:
-                try:
-                    async_to_sync(discord.fetch_channel)(int(channel))
-                except (InvalidData, HTTPException, NotFound, Forbidden) as e:
-                    raise ValidationError(_("During '%(value)s' channel addition, the following error occurred: %(error)s"), params={"value": int(channel), "error": e})
+        # if discord.is_ready():
+        #     for user in obj.user_ids:
+        #         try:
+        #             async_to_sync(discord.fetch_user)(int(user))
+        #         except (InvalidData, HTTPException, NotFound, Forbidden) as e:
+        #             raise ValidationError(_("During '%(value)s' user addition, the following error occurred: %(error)s"), params={"value": int(user), "error": e})
+        #     for channel in obj.channel_ids:
+        #         try:
+        #             async_to_sync(discord.fetch_channel)(int(channel))
+        #         except (InvalidData, HTTPException, NotFound, Forbidden) as e:
+        #             raise ValidationError(_("During '%(value)s' channel addition, the following error occurred: %(error)s"), params={"value": int(channel), "error": e})
 
         obj.user = self.request.user
         obj.method = Alert.AlertMethodChoices.DISCORD

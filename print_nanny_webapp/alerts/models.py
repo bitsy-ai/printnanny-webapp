@@ -17,7 +17,6 @@ from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
-from discord import Client as discordClient
 
 import stringcase
 
@@ -25,13 +24,6 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
-discord = discordClient()
-# TODO: Call this from inside the trigger_discord_alert and check if it's not running
-try:
-    asyncio.create_task(discord.start(settings.DISCORD_TOKEN, bot=True))
-except RuntimeError as e:
-    # When imported from celery, there's no event loop
-    logger.error(e)
 
 
 def _upload_to(instance, filename):
@@ -61,7 +53,7 @@ class Alert(PolymorphicModel):
         DEFECT = "DEFECT", "Defect detected in print"
 
     class AlertMethodChoices(models.TextChoices):
-        UI = "UI", "Recive Print Nanny UI notifications"
+        UI = "UI", "Receive Print Nanny UI notifications"
         EMAIL = "EMAIL", "Receive email notifications"
         DISCORD = "DISCORD", "Receive notifications through Discord"
 
@@ -93,40 +85,30 @@ class AlertSettings(PolymorphicModel):
     )
 
 
-class MethodSettings(PolymorphicModel):
-    MethodChoices = Alert.AlertMethodChoices
-    method = models.CharField(choices=MethodChoices.choices, max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    enabled = models.BooleanField(
-        default=True, help_text="Enable or disable this alert delivery method"
-    )
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
-
-
 ##
 # Method Settings models
 ##
 
 
-class DiscordMethodSettings(MethodSettings):
+class DiscordMethodSettings(models.Model):
+    class TargetIDTypeChoices(models.TextChoices):
+        USER = "USER", "User"
+        CHANNEL = "CHANNEL", "Channel"
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
     # Channel ID is where to send a message if you're not going for event-driven
     # Channel IDs are of "snowflake" type
     # Snowflakes are 64 bit unsigned integers represented as decimal strings
     # so max 21 characters - 24 to be "safe"
     # https://discord.com/developers/docs/reference#snowflakes
     # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
-    channel_ids = ArrayField(models.CharField(
-        help_text="Channel IDs to send notifications to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
-        max_length=24
-    ), default=list, null=True)
-    user_ids = ArrayField(models.CharField(
-        help_text="User IDs to send notifications (as direct messages) to\nTo get your channel ID, enable developer mode on under Discord Settings -> Appearance and right click the channel and \"Copy ID\"",
-        max_length=24
-    ), default=list, null=True)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, method=MethodSettings.MethodChoices.DISCORD, **kwargs)
+    target_id = models.CharField(
+        help_text="ID to send notifications to\nTo get an item's ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and \"Copy ID\"",
+        max_length=24, db_index=True)
+    target_id_type = models.CharField(max_length=255, choices=TargetIDTypeChoices.choices, db_index=True)
 
 
 ##
@@ -206,7 +188,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     stop_print = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. ",
+        help_text="Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
@@ -360,37 +342,33 @@ class RemoteControlCommandAlert(Alert):
 
     def trigger_discord_alert(self, data):
 
-        discord_settings = DiscordMethodSettings.objects.get(user=self.user)
-        channels = discord_settings.channel_ids
-        users = discord_settings.user_ids
+        discord_settings = DiscordMethodSettings.objects.filter(user=self.user)
 
-        logger.info(f"Sending Discord alert to channels: {channels} and users: {users}")
+        channel_ids = []
+        user_ids = []
+
+        for setting in discord_settings:
+            if setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.USER:
+                user_ids.append(setting.target_id)
+            elif setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.CHANNEL:
+                channel_ids.append(setting.target_id)
+
+        logger.info(f"Sending Discord alert to channels: {channel_ids} and users: {user_ids}")
 
         message = f"{data['title']}: {data['description']}"
         if data["snapshot_url"] is not None:
             message += "\n"+data["snapshot_url"]
 
-        # XXX: This can block forever - add a timeout
-        async_to_sync(discord.wait_until_ready)()
-
-        for user in users:
-            # target = discord.get_user(int(user))
-            target = async_to_sync(discord.fetch_user)(int(user))
-            if target is None:
-                # TODO: Return an error
-                logger.error(f"Discord could not find user '{user}'!")
-                continue
-
-            async_to_sync(target.send)(message)
-
-        for channel in channels:
-            target = async_to_sync(discord.fetch_channel)(int(channel))
-            if target is None:
-                # TODO: Return an error
-                logger.error(f"Discord could not find channel '{channel}'!")
-                continue
-
-            async_to_sync(target.send)(message)
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.send)(
+            "discord", {
+                "type": "trigger.alert",
+                "data": {
+                    "user_ids": user_ids,
+                    "channel_ids": channel_ids,
+                    "message": message,
+                }
+        })
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"

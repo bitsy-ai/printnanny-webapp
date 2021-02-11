@@ -31,7 +31,7 @@ django_application = get_asgi_application()
 
 # Import websocket application here, so apps from django_application are loaded first
 from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.routing import ChannelNameRouter, ProtocolTypeRouter, URLRouter
 import print_nanny_webapp.client_events.routing
 import print_nanny_webapp.alerts.routing
 
@@ -84,5 +84,8 @@ application = ProtocolTypeRouter({
   "http": django_application,
   "websocket": TokenAuthMiddlewareStack(
       URLRouter(websocket_urlpatterns)),
-  #"metrics": 
+  #"metrics":
+  "channel": ChannelNameRouter({
+      "discord": print_nanny_webapp.alerts.routing.DiscordConsumer.as_asgi()
+  })
 })

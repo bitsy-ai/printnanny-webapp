@@ -8,7 +8,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_polymorphic.serializers import PolymorphicSerializer
 
 from ..models import (
-    DiscordMethodSettings, ManualVideoUploadAlert, MethodSettings,
+    ManualVideoUploadAlert,
     RemoteControlCommandAlert,
     Alert,
     ProgressAlert,

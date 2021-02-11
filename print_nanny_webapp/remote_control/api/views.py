@@ -113,33 +113,10 @@ class CommandViewSet(
 
         alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
         if alert_subtype is not None:
-
-            user = User.objects.get(id=request.user.id)
-            command = RemoteControlCommand.objects.get(id=instance.id)
-
-            if command is None:
-                return
-
-            alert_settings = RemoteControlCommandAlertSettings.objects.get(user=user)
-            alert_settings_attr = alert_settings.command_to_attr(command.command)
-
-            if alert_subtype in alert_settings_attr and "DISCORD" in alert_settings.alert_methods:
-                rcca = RemoteControlCommandAlert.objects.create(
-                    alert_method="DISCORD",
-                    user=user,
-                    command=command,
-                    alert_subtype=alert_subtype,
-                )
-                logging.info(
-                    f"Created discord alert instance id={rcca.id} alert_method=DISCORD"
-                )
-
-                rcca.trigger_alert()
-            else:
-                task = create_remote_control_command_alerts.delay(
-                    request.user.id, instance.id, alert_subtype.value
-                )
-                logger.info(f"Created create_remote_control_command_alerts task {task}")
+            task = create_remote_control_command_alerts.delay(
+                request.user.id, instance.id, alert_subtype.value
+            )
+            logger.info(f"Created create_remote_control_command_alerts task {task}")
 
         return Response(serializer.data)
 

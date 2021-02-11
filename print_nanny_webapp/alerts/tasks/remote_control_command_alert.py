@@ -39,9 +39,6 @@ def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
     logging.info(f"Checking alert_subtype={alert_subtype} in {alert_settings_attr}")
     if alert_subtype in alert_settings_attr:
         for alert_method in alert_settings.alert_methods:
-            if alert_method == "DISCORD":
-                continue
-
             instance = RemoteControlCommandAlert.objects.create(
                 alert_method=alert_method,
                 user=user,
