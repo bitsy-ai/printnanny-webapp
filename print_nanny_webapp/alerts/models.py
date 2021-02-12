@@ -363,11 +363,9 @@ class RemoteControlCommandAlert(Alert):
         async_to_sync(channel_layer.send)(
             "discord", {
                 "type": "trigger.alert",
-                "data": {
-                    "user_ids": user_ids,
-                    "channel_ids": channel_ids,
-                    "message": message,
-                }
+                "user_ids": user_ids,
+                "channel_ids": channel_ids,
+                "message": message,
         })
 
     class AlertSubtypeChoices(models.TextChoices):

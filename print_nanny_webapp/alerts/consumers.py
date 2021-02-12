@@ -1,10 +1,9 @@
 from asyncio.events import new_event_loop
 import logging
 
-import json
 import asyncio
 from asgiref.sync import async_to_sync
-from channels.generic.websocket import WebsocketConsumer, SyncConsumer, AsyncConsumer
+from channels.generic.websocket import WebsocketConsumer, AsyncConsumer
 from discord import Client as DiscordClient
 from django.conf import settings
 
@@ -13,10 +12,11 @@ logger = logging.getLogger(__name__)
 # Initialize discord client on the main thread's event loop
 discord_client = DiscordClient()
 try:
-    asyncio.create_task(discord_client.start(settings.DISCORD_TOKEN))
+    asyncio.get_running_loop()
 except RuntimeError:
-    print("nope")
-    pass
+    loop = asyncio.get_event_loop()
+    loop.create_task(discord_client.start(settings.DISCORD_TOKEN))
+    logger.info("Started discord loop")
 
 
 class AlertConsumer(WebsocketConsumer):
@@ -44,11 +44,8 @@ class AlertConsumer(WebsocketConsumer):
 
 
 class DiscordConsumer(AsyncConsumer):
-    # async def __init__(self, *args, **kwargs) -> None:
-    #     super().__init__(*args, **kwargs)
-
-    # receives { "type": "trigger.alert" } messages from channel layer (Redis)
     async def trigger_alert(self, data):
+        logger.info(f"Received message for user_ids {data['user_ids']} and channel_ids {data['channel_ids']}")
         await discord_client.wait_until_ready()
 
         for user in data["user_ids"]:
