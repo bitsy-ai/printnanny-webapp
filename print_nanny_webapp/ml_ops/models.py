@@ -9,10 +9,13 @@ from django.contrib.postgres.fields import JSONField
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
+
 class DeviceCalibration(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
     updated_dt = models.fields.DateTimeField(auto_now=True)
-    device = models.ForeignKey('remote_control.OctoPrintDevice', on_delete=models.CASCADE)
+    device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
+    )
     mask = JSONField(null=True)
 
 

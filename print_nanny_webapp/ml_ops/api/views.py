@@ -3,10 +3,17 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateMode
 from drf_spectacular.utils import extend_schema
 
 from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig
-from .serializers import ModelArtifactSerializer, ExperimentDeviceConfigSerializer, DeviceCalibrationSerializer
+from .serializers import (
+    ModelArtifactSerializer,
+    ExperimentDeviceConfigSerializer,
+    DeviceCalibrationSerializer,
+)
+
 
 @extend_schema(tags=["ml-ops"])
-class DeviceCalibrationViewSet(UpdateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet):
+class DeviceCalibrationViewSet(
+    UpdateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
+):
     serializer_class = DeviceCalibrationSerializer
     queryset = DeviceCalibration.objects.all()
     lookup_field = "id"
@@ -14,6 +21,7 @@ class DeviceCalibrationViewSet(UpdateModelMixin, ListModelMixin, RetrieveModelMi
     def get_queryset(self):
         user = self.request.user
         return ExperimentDeviceConfig.objects.filter(device__user=user).all()
+
 
 @extend_schema(tags=["ml-ops"])
 class ModelArtifactViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
