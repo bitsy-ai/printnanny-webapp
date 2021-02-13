@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**device_calibration_update_or_create**](MlOpsApi.md#device_calibration_update_or_create) | **POST** /api/device-calibrations/update-or-create/ | 
 [**device_calibrations_list**](MlOpsApi.md#device_calibrations_list) | **GET** /api/device-calibrations/ | 
 [**device_calibrations_partial_update**](MlOpsApi.md#device_calibrations_partial_update) | **PATCH** /api/device-calibrations/{id}/ | 
 [**device_calibrations_retrieve**](MlOpsApi.md#device_calibrations_retrieve) | **GET** /api/device-calibrations/{id}/ | 
@@ -13,6 +14,125 @@ Method | HTTP request | Description
 [**model_artifacts_list**](MlOpsApi.md#model_artifacts_list) | **GET** /api/model-artifacts/ | 
 [**model_artifacts_retrieve**](MlOpsApi.md#model_artifacts_retrieve) | **GET** /api/model-artifacts/{id}/ | 
 
+
+# **device_calibration_update_or_create**
+> DeviceCalibration device_calibration_update_or_create(device_calibration_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.MlOpsApi(api_client)
+    device_calibration_request = print_nanny_client.DeviceCalibrationRequest() # DeviceCalibrationRequest | 
+
+    try:
+        api_response = api_instance.device_calibration_update_or_create(device_calibration_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MlOpsApi->device_calibration_update_or_create: %s\n" % e)
+```
+
+* Bearer (Bearer) Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization (Bearer): tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.MlOpsApi(api_client)
+    device_calibration_request = print_nanny_client.DeviceCalibrationRequest() # DeviceCalibrationRequest | 
+
+    try:
+        api_response = api_instance.device_calibration_update_or_create(device_calibration_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling MlOpsApi->device_calibration_update_or_create: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **device_calibration_request** | [**DeviceCalibrationRequest**](DeviceCalibrationRequest.md)|  | 
+
+### Return type
+
+[**DeviceCalibration**](DeviceCalibration.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** |  |  -  |
+**200** |  |  -  |
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **device_calibrations_list**
 > PaginatedDeviceCalibrationList device_calibrations_list(page=page)

@@ -6163,6 +6163,67 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationUpdateOrCreate: async (deviceCalibrationRequest: DeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceCalibrationRequest' is not null or undefined
+            if (deviceCalibrationRequest === null || deviceCalibrationRequest === undefined) {
+                throw new RequiredError('deviceCalibrationRequest','Required parameter deviceCalibrationRequest was null or undefined when calling deviceCalibrationUpdateOrCreate.');
+            }
+            const localVarPath = `/api/device-calibrations/update-or-create/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof deviceCalibrationRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(deviceCalibrationRequest !== undefined ? deviceCalibrationRequest : {})
+                : (deviceCalibrationRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6617,6 +6678,19 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
+            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6732,6 +6806,15 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
+            return MlOpsApiFp(configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6815,6 +6898,15 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
 export interface MlOpsApiInterface {
     /**
      * 
+     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
+
+    /**
+     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6896,6 +6988,17 @@ export interface MlOpsApiInterface {
  * @extends {BaseAPI}
  */
 export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
+    /**
+     * 
+     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {number} [page] A page number within the paginated result set.
