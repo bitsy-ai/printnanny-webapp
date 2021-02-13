@@ -1,4 +1,3 @@
-import base64
 import hashlib
 import logging
 import tempfile
@@ -17,7 +16,6 @@ class RSAKeyPair(TypedDict):
     private_key_content: str
     private_key_checksum: str
     public_key_content: str
-    public_key_b64: str
     public_key_checksum: str
     fingerprint: str
 
@@ -80,7 +78,6 @@ def generate_keypair():
             private_key_content=private_key_content,
             private_key_checksum=private_key_checksum,
             public_key_content=public_key_content,
-            public_key_b64=base64.b64encode(public_key_content),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
         )
@@ -92,7 +89,7 @@ def create_cloudiot_device(
     user_id: int,
     metadata: dict,
     fingerprint: str,
-    public_key_b64: str,
+    public_key_content: str,
 ):
     client = cloudiot_v1.DeviceManagerClient()
     parent = client.registry_path(
@@ -108,7 +105,7 @@ def create_cloudiot_device(
             {
                 "public_key": {
                     "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                    "key": public_key_b64,
+                    "key": public_key_content,
                 }
             }
         ],
@@ -129,21 +126,15 @@ def update_cloudiot_device(
     user_id: int,
     metadata: dict,
     fingerprint: str,
-    public_key_b64: str,
+    public_key_content: str,
 ):
     client = cloudiot_v1.DeviceManagerClient()
-    parent = client.registry_path(
-        settings.GCP_PROJECT_ID,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-    )
-
     string_kwargs = {k: str(v) for k, v in metadata.items()}
     device.credentials = [
         {
             "public_key": {
                 "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                "key": public_key_b64,
+                "key": public_key_content,
             }
         }
     ]
@@ -153,7 +144,11 @@ def update_cloudiot_device(
         "fingerprint": fingerprint,
         **string_kwargs,
     }
-    return client.update_device(parent=parent, device=device)
+    del device.id
+    del device.num_id
+    return client.update_device(
+        device=device, update_mask={"paths": ["credentials", "metadata"]}
+    )
 
 
 def update_or_create_cloudiot_device(
@@ -162,7 +157,7 @@ def update_or_create_cloudiot_device(
     user_id: int,
     metadata: dict,
     fingerprint: str,
-    public_key_b64: str,
+    public_key_content: str,
 ):
     client = cloudiot_v1.DeviceManagerClient()
 
@@ -182,11 +177,11 @@ def update_or_create_cloudiot_device(
             user_id,
             metadata,
             fingerprint,
-            public_key_b64,
+            public_key_content,
         )
     except google.api_core.exceptions.NotFound as e:
         cloudiot_device = create_cloudiot_device(
-            name, serial, user_id, metadata, fingerprint, public_key_b64
+            name, serial, user_id, metadata, fingerprint, public_key_content
         )
 
     cloudiot_device_dict = MessageToDict(cloudiot_device._pb)

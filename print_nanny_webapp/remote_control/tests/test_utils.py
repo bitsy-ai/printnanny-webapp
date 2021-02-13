@@ -28,7 +28,7 @@ def test_update_cloudiot_device(mocker):
     user_id = 1
     metadata = {"meta": "data"}
     fingerprint = "fingerprint"
-    public_key_b64 = "publickeyb64"
+    public_key_content = "publickeyb64"
 
     mock_cloudiot = mocker.patch(
         "print_nanny_webapp.remote_control.utils.cloudiot_v1.DeviceManagerClient"
@@ -40,7 +40,7 @@ def test_update_cloudiot_device(mocker):
         user_id=user_id,
         metadata=metadata,
         fingerprint=fingerprint,
-        public_key_b64=public_key_b64,
+        public_key_content=public_key_content,
     )
 
     assert mock_cloudiot.return_value.get_device.call_count == 1
@@ -55,7 +55,7 @@ def test_create_cloudiot_device(mocker):
     user_id = 1
     metadata = {"meta": "data"}
     fingerprint = "fingerprint"
-    public_key_b64 = "publickeyb64"
+    public_key_content = "publickeyb64"
 
     mock_cloudiot = mocker.patch(
         "print_nanny_webapp.remote_control.utils.cloudiot_v1.DeviceManagerClient"
@@ -71,7 +71,7 @@ def test_create_cloudiot_device(mocker):
         user_id=user_id,
         metadata=metadata,
         fingerprint=fingerprint,
-        public_key_b64=public_key_b64,
+        public_key_content=public_key_content,
     )
 
     assert mock_cloudiot.return_value.get_device.call_count == 1
