@@ -50,7 +50,7 @@ def check_ca_certs():
         )
     with open("primary_ca.pem", "rb") as f:
         primary_ca_content = f.read()
-        primary_ca_checksum = hashlib.sha256(f.read()).hexdigest()
+        primary_ca_checksum = hashlib.sha256(primary_ca_content).hexdigest()
 
     if not os.path.exists("backup_ca.pem"):
         with open("backup_ca.crt", "wb+") as f:
@@ -71,11 +71,11 @@ def check_ca_certs():
         )
     with open("backup_ca.pem", "rb") as f:
         backup_ca_content = f.read()
-        backup_ca_checksum = hashlib.sha256(f.read()).hexdigest()
+        backup_ca_checksum = hashlib.sha256(backup_ca_content).hexdigest()
 
     return CACerts(
-        primary=primary_ca_content,
-        backup=backup_ca_content,
+        primary=primary_ca_content.decode("utf8"),
+        backup=backup_ca_content.decode("utf8"),
         primary_checksum=primary_ca_checksum,
         backup_checksum=backup_ca_checksum,
     )
@@ -130,13 +130,11 @@ def generate_keypair():
 
         with open(public_key_filename, "rb") as f:
             public_key_content = f.read()
-            f.seek(0)
-            public_key_checksum = hashlib.sha256(f.read()).hexdigest()
+            public_key_checksum = hashlib.sha256(public_key_content).hexdigest()
 
         with open(keypair_filename, "rb") as f:
             private_key_content = f.read()
-            f.seek(0)
-            private_key_checksum = hashlib.sha256(f.read()).hexdigest()
+            private_key_checksum = hashlib.sha256(private_key_content).hexdigest()
 
         return KeyPair(
             private_key_content=private_key_content.decode("utf8"),

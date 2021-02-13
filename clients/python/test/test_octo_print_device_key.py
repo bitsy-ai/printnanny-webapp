@@ -70,7 +70,9 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 private_key_checksum = '', 
                 public_key_checksum = '', 
                 cloudiot_device_configs = '', 
-                ca_certs = ''
+                ca_certs = {
+                    'key' : ''
+                    }
             )
         else :
             return OctoPrintDeviceKey(
@@ -91,6 +93,10 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 octoprint_version = '',
                 plugin_version = '',
                 print_nanny_client_version = '',
+                public_key_checksum = '',
+                ca_certs = {
+                    'key' : ''
+                    },
         )
 
     def testOctoPrintDeviceKey(self):

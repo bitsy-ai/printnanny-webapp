@@ -11,16 +11,27 @@ from print_nanny_webapp.remote_control.utils import (
 
 
 def test_generate_keypair():
-    rsa_keypair = generate_keypair()
+    keypair = generate_keypair()
 
     public_key_checksum = hashlib.sha256(
-        rsa_keypair["public_key_content"].encode("utf8")
+        keypair["public_key_content"].encode("utf8")
     ).hexdigest()
-    assert public_key_checksum == rsa_keypair["public_key_checksum"]
+    assert public_key_checksum == keypair["public_key_checksum"]
+
     private_key_checksum = hashlib.sha256(
-        rsa_keypair["private_key_content"].encode("utf8")
+        keypair["private_key_content"].encode("utf8")
     ).hexdigest()
-    assert private_key_checksum == rsa_keypair["private_key_checksum"]
+    assert private_key_checksum == keypair["private_key_checksum"]
+
+    primary_ca_checksum = hashlib.sha256(
+        keypair["ca_certs"]["primary"].encode("utf8")
+    ).hexdigest()
+    assert primary_ca_checksum == keypair["ca_certs"]["primary_checksum"]
+
+    backup_ca_checksum = hashlib.sha256(
+        keypair["ca_certs"]["backup"].encode("utf8")
+    ).hexdigest()
+    assert backup_ca_checksum == keypair["ca_certs"]["backup_checksum"]
 
 
 def test_update_cloudiot_device(mocker):

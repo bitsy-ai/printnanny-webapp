@@ -63,7 +63,7 @@ class OctoPrintDeviceKey(object):
         'private_key_checksum': 'str',
         'public_key_checksum': 'str',
         'cloudiot_device_configs': 'str',
-        'ca_certs': 'str'
+        'ca_certs': 'dict(str, str)'
     }
 
     attribute_map = {
@@ -180,12 +180,10 @@ class OctoPrintDeviceKey(object):
             self.private_key = private_key
         if private_key_checksum is not None:
             self.private_key_checksum = private_key_checksum
-        if public_key_checksum is not None:
-            self.public_key_checksum = public_key_checksum
+        self.public_key_checksum = public_key_checksum
         if cloudiot_device_configs is not None:
             self.cloudiot_device_configs = cloudiot_device_configs
-        if ca_certs is not None:
-            self.ca_certs = ca_certs
+        self.ca_certs = ca_certs
 
     @property
     def id(self):
@@ -871,6 +869,8 @@ class OctoPrintDeviceKey(object):
         :param public_key_checksum: The public_key_checksum of this OctoPrintDeviceKey.  # noqa: E501
         :type public_key_checksum: str
         """
+        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
 
         self._public_key_checksum = public_key_checksum
 
@@ -901,7 +901,7 @@ class OctoPrintDeviceKey(object):
 
 
         :return: The ca_certs of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: str
+        :rtype: dict(str, str)
         """
         return self._ca_certs
 
@@ -911,8 +911,10 @@ class OctoPrintDeviceKey(object):
 
 
         :param ca_certs: The ca_certs of this OctoPrintDeviceKey.  # noqa: E501
-        :type ca_certs: str
+        :type ca_certs: dict(str, str)
         """
+        if self.local_vars_configuration.client_side_validation and ca_certs is None:  # noqa: E501
+            raise ValueError("Invalid value for `ca_certs`, must not be `None`")  # noqa: E501
 
         self._ca_certs = ca_certs
 
