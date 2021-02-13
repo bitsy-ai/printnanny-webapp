@@ -7,7 +7,7 @@ from print_nanny_webapp.dashboard.views import DashboardView
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
-from discord import InvalidData, HTTPException, NotFound, Forbidden
+from channels.layers import get_channel_layer
 from .forms import (
     ProgressAlertSettingsForm,
     DefectAlertSettingsForm,
@@ -84,17 +84,19 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     def discord_form_valid(self, form):
         obj = form.save(commit=False)
 
-        # if discord.is_ready():
-        #     for user in obj.user_ids:
-        #         try:
-        #             async_to_sync(discord.fetch_user)(int(user))
-        #         except (InvalidData, HTTPException, NotFound, Forbidden) as e:
-        #             raise ValidationError(_("During '%(value)s' user addition, the following error occurred: %(error)s"), params={"value": int(user), "error": e})
-        #     for channel in obj.channel_ids:
-        #         try:
-        #             async_to_sync(discord.fetch_channel)(int(channel))
-        #         except (InvalidData, HTTPException, NotFound, Forbidden) as e:
-        #             raise ValidationError(_("During '%(value)s' channel addition, the following error occurred: %(error)s"), params={"value": int(channel), "error": e})
+        channel_layer = get_channel_layer()
+        res = async_to_sync(channel_layer.send)(
+            "discord", {
+                "type": "validate.id",
+                "target_id": obj.target_id,
+                "target_id_type": obj.target_id_type,
+        })
+
+        if res is None:
+            raise ValidationError("Could not validate Discord ID - Maybe Discord is down?")
+
+        if not res["is_valid"]:
+            raise ValidationError(res["error"])
 
         obj.user = self.request.user
         obj.method = Alert.AlertMethodChoices.DISCORD

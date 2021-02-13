@@ -359,8 +359,7 @@ class RemoteControlCommandAlert(Alert):
         if data["snapshot_url"] is not None:
             message += "\n"+data["snapshot_url"]
 
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.send)(
+        async_to_sync(self.channel_layer.send)(
             "discord", {
                 "type": "trigger.alert",
                 "user_ids": user_ids,
