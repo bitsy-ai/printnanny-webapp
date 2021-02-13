@@ -37,6 +37,7 @@ class DeviceCalibration(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'device': 'int',
+        'fpm': 'int',
         'mask': 'dict(str, object)',
         'url': 'str'
     }
@@ -46,11 +47,12 @@ class DeviceCalibration(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'device': 'device',
+        'fpm': 'fpm',
         'mask': 'mask',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, fpm=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -60,6 +62,7 @@ class DeviceCalibration(object):
         self._created_dt = None
         self._updated_dt = None
         self._device = None
+        self._fpm = None
         self._mask = None
         self._url = None
         self.discriminator = None
@@ -71,6 +74,7 @@ class DeviceCalibration(object):
         if updated_dt is not None:
             self.updated_dt = updated_dt
         self.device = device
+        self.fpm = fpm
         self.mask = mask
         if url is not None:
             self.url = url
@@ -160,6 +164,33 @@ class DeviceCalibration(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def fpm(self):
+        """Gets the fpm of this DeviceCalibration.  # noqa: E501
+
+
+        :return: The fpm of this DeviceCalibration.  # noqa: E501
+        :rtype: int
+        """
+        return self._fpm
+
+    @fpm.setter
+    def fpm(self, fpm):
+        """Sets the fpm of this DeviceCalibration.
+
+
+        :param fpm: The fpm of this DeviceCalibration.  # noqa: E501
+        :type fpm: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                fpm is not None and fpm > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `fpm`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fpm is not None and fpm < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `fpm`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._fpm = fpm
 
     @property
     def mask(self):

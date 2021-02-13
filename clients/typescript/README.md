@@ -1,4 +1,4 @@
-## print-nanny-client@0.5.0-dev12
+## print-nanny-client@0.5.0-dev13
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install print-nanny-client@0.5.0-dev12 --save
+npm install print-nanny-client@0.5.0-dev13 --save
 ```
 
 _unPublished (not recommended):_

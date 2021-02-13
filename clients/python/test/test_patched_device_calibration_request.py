@@ -37,6 +37,7 @@ class TestPatchedDeviceCalibrationRequest(unittest.TestCase):
         if include_optional :
             return PatchedDeviceCalibrationRequest(
                 device = 56, 
+                fpm = -2147483648, 
                 mask = {
                     'key' : null
                     }

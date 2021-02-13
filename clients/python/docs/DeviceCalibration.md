@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **device** | **int** |  | 
+**fpm** | **int** |  | [optional] 
 **mask** | **dict(str, object)** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 

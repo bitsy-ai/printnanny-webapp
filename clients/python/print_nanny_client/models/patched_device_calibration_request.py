@@ -34,26 +34,30 @@ class PatchedDeviceCalibrationRequest(object):
     """
     openapi_types = {
         'device': 'int',
+        'fpm': 'int',
         'mask': 'dict(str, object)'
     }
 
     attribute_map = {
         'device': 'device',
+        'fpm': 'fpm',
         'mask': 'mask'
     }
 
-    def __init__(self, device=None, mask=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, device=None, fpm=None, mask=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceCalibrationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._device = None
+        self._fpm = None
         self._mask = None
         self.discriminator = None
 
         if device is not None:
             self.device = device
+        self.fpm = fpm
         self.mask = mask
 
     @property
@@ -76,6 +80,33 @@ class PatchedDeviceCalibrationRequest(object):
         """
 
         self._device = device
+
+    @property
+    def fpm(self):
+        """Gets the fpm of this PatchedDeviceCalibrationRequest.  # noqa: E501
+
+
+        :return: The fpm of this PatchedDeviceCalibrationRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._fpm
+
+    @fpm.setter
+    def fpm(self, fpm):
+        """Sets the fpm of this PatchedDeviceCalibrationRequest.
+
+
+        :param fpm: The fpm of this PatchedDeviceCalibrationRequest.  # noqa: E501
+        :type fpm: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                fpm is not None and fpm > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `fpm`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fpm is not None and fpm < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `fpm`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._fpm = fpm
 
     @property
     def mask(self):

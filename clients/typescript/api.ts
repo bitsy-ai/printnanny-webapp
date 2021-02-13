@@ -876,6 +876,12 @@ export interface DeviceCalibration {
     device: number;
     /**
      * 
+     * @type {number}
+     * @memberof DeviceCalibration
+     */
+    fpm?: number | null;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof DeviceCalibration
      */
@@ -899,6 +905,12 @@ export interface DeviceCalibrationRequest {
      * @memberof DeviceCalibrationRequest
      */
     device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceCalibrationRequest
+     */
+    fpm?: number | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2534,6 +2546,12 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     device?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceCalibrationRequest
+     */
+    fpm?: number | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
