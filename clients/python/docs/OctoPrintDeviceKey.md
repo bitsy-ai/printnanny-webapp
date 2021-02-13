@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **private_key_checksum** | **str** |  | [optional] [readonly] 
 **public_key_checksum** | **str** |  | [optional] [readonly] 
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
+**ca_certs** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1549,6 +1549,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     cloudiot_device_configs?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    ca_certs?: string;
 }
 /**
  * 

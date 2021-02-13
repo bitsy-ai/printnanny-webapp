@@ -69,7 +69,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 private_key = '', 
                 private_key_checksum = '', 
                 public_key_checksum = '', 
-                cloudiot_device_configs = ''
+                cloudiot_device_configs = '', 
+                ca_certs = ''
             )
         else :
             return OctoPrintDeviceKey(

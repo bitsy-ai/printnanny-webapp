@@ -47,7 +47,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     ca_certs = serializers.SerializerMethodField()
 
-    def get_ca_certa(self, obj):
+    def get_ca_certs(self, obj):
         return getattr(obj, "ca_certs", None)
 
     class Meta:
