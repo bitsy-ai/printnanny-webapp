@@ -36,7 +36,7 @@ def generate_keypair():
                 "prime256v1",
                 "-noout",
                 "-out",
-                keypair_filename
+                keypair_filename,
             ],
             capture_output=True,
         )
@@ -121,6 +121,7 @@ def create_cloudiot_device(
     }
     return client.create_device(parent=parent, device=device_template)
 
+
 def update_cloudiot_device(
     device: cloudiot_v1.types.Device,
     name: str,
@@ -139,20 +140,21 @@ def update_cloudiot_device(
 
     string_kwargs = {k: str(v) for k, v in metadata.items()}
     device.credentials = [
-            {
-                "public_key": {
-                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                    "key": public_key_b64,
-                }
+        {
+            "public_key": {
+                "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                "key": public_key_b64,
             }
-        ]
-    device.metadata =  {
-            "user_id": str(user_id),
-            "serial": serial,
-            "fingerprint": fingerprint,
-            **string_kwargs,
         }
+    ]
+    device.metadata = {
+        "user_id": str(user_id),
+        "serial": serial,
+        "fingerprint": fingerprint,
+        **string_kwargs,
+    }
     return client.update_device(parent=parent, device=device)
+
 
 def update_or_create_cloudiot_device(
     name: str,
@@ -173,9 +175,19 @@ def update_or_create_cloudiot_device(
 
     try:
         cloudiot_device = client.get_device(name=device_path)
-        cloudiot_device = update_cloudiot_device(cloudiot_device, name, serial, user_id, metadata, fingerprint, public_key_b64)
+        cloudiot_device = update_cloudiot_device(
+            cloudiot_device,
+            name,
+            serial,
+            user_id,
+            metadata,
+            fingerprint,
+            public_key_b64,
+        )
     except google.api_core.exceptions.NotFound as e:
-        cloudiot_device = create_cloudiot_device(name, serial, user_id, metadata, fingerprint, public_key_b64)
+        cloudiot_device = create_cloudiot_device(
+            name, serial, user_id, metadata, fingerprint, public_key_b64
+        )
 
     cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
     return cloudiot_device_dict, device_path
