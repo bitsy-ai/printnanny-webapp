@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **device** | **int** |  | 
 **fpm** | **int** |  | [optional] 
+**coordinates** | **dict(str, object)** |  | [optional] 
 **mask** | **dict(str, object)** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 

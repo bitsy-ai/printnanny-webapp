@@ -38,6 +38,9 @@ class TestPatchedDeviceCalibrationRequest(unittest.TestCase):
             return PatchedDeviceCalibrationRequest(
                 device = 56, 
                 fpm = -2147483648, 
+                coordinates = {
+                    'key' : null
+                    }, 
                 mask = {
                     'key' : null
                     }

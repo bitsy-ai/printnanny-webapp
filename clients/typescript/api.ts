@@ -885,6 +885,12 @@ export interface DeviceCalibration {
      * @type {{ [key: string]: any; }}
      * @memberof DeviceCalibration
      */
+    coordinates?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceCalibration
+     */
     mask?: { [key: string]: any; } | null;
     /**
      * 
@@ -911,6 +917,12 @@ export interface DeviceCalibrationRequest {
      * @memberof DeviceCalibrationRequest
      */
     fpm?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof DeviceCalibrationRequest
+     */
+    coordinates?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2552,6 +2564,12 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     fpm?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedDeviceCalibrationRequest
+     */
+    coordinates?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}

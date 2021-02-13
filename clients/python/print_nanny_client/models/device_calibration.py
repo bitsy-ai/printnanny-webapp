@@ -38,6 +38,7 @@ class DeviceCalibration(object):
         'updated_dt': 'datetime',
         'device': 'int',
         'fpm': 'int',
+        'coordinates': 'dict(str, object)',
         'mask': 'dict(str, object)',
         'url': 'str'
     }
@@ -48,11 +49,12 @@ class DeviceCalibration(object):
         'updated_dt': 'updated_dt',
         'device': 'device',
         'fpm': 'fpm',
+        'coordinates': 'coordinates',
         'mask': 'mask',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, fpm=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, fpm=None, coordinates=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -63,6 +65,7 @@ class DeviceCalibration(object):
         self._updated_dt = None
         self._device = None
         self._fpm = None
+        self._coordinates = None
         self._mask = None
         self._url = None
         self.discriminator = None
@@ -75,6 +78,7 @@ class DeviceCalibration(object):
             self.updated_dt = updated_dt
         self.device = device
         self.fpm = fpm
+        self.coordinates = coordinates
         self.mask = mask
         if url is not None:
             self.url = url
@@ -191,6 +195,27 @@ class DeviceCalibration(object):
             raise ValueError("Invalid value for `fpm`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._fpm = fpm
+
+    @property
+    def coordinates(self):
+        """Gets the coordinates of this DeviceCalibration.  # noqa: E501
+
+
+        :return: The coordinates of this DeviceCalibration.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._coordinates
+
+    @coordinates.setter
+    def coordinates(self, coordinates):
+        """Sets the coordinates of this DeviceCalibration.
+
+
+        :param coordinates: The coordinates of this DeviceCalibration.  # noqa: E501
+        :type coordinates: dict(str, object)
+        """
+
+        self._coordinates = coordinates
 
     @property
     def mask(self):

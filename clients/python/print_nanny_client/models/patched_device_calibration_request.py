@@ -35,16 +35,18 @@ class PatchedDeviceCalibrationRequest(object):
     openapi_types = {
         'device': 'int',
         'fpm': 'int',
+        'coordinates': 'dict(str, object)',
         'mask': 'dict(str, object)'
     }
 
     attribute_map = {
         'device': 'device',
         'fpm': 'fpm',
+        'coordinates': 'coordinates',
         'mask': 'mask'
     }
 
-    def __init__(self, device=None, fpm=None, mask=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, device=None, fpm=None, coordinates=None, mask=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceCalibrationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -52,12 +54,14 @@ class PatchedDeviceCalibrationRequest(object):
 
         self._device = None
         self._fpm = None
+        self._coordinates = None
         self._mask = None
         self.discriminator = None
 
         if device is not None:
             self.device = device
         self.fpm = fpm
+        self.coordinates = coordinates
         self.mask = mask
 
     @property
@@ -107,6 +111,27 @@ class PatchedDeviceCalibrationRequest(object):
             raise ValueError("Invalid value for `fpm`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._fpm = fpm
+
+    @property
+    def coordinates(self):
+        """Gets the coordinates of this PatchedDeviceCalibrationRequest.  # noqa: E501
+
+
+        :return: The coordinates of this PatchedDeviceCalibrationRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._coordinates
+
+    @coordinates.setter
+    def coordinates(self, coordinates):
+        """Sets the coordinates of this PatchedDeviceCalibrationRequest.
+
+
+        :param coordinates: The coordinates of this PatchedDeviceCalibrationRequest.  # noqa: E501
+        :type coordinates: dict(str, object)
+        """
+
+        self._coordinates = coordinates
 
     @property
     def mask(self):
