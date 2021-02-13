@@ -46,8 +46,7 @@ class TestDeviceCalibration(unittest.TestCase):
                     }, 
                 mask = {
                     'key' : null
-                    }, 
-                url = ''
+                    }
             )
         else :
             return DeviceCalibration(

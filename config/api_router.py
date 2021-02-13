@@ -26,7 +26,7 @@ router.register("alert_settings", AlertSettingsViewSet)
 
 router.register("users", UserViewSet)
 
-router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibrations")
+router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
 router.register(f"snapshots", RemoteControlSnapshotViewSet, basename='snapshot')
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
