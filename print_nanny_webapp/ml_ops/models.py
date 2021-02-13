@@ -16,6 +16,7 @@ class DeviceCalibration(models.Model):
     device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
+    fpm = models.IntegerField(null=True)
     mask = JSONField(null=True)
 
 
