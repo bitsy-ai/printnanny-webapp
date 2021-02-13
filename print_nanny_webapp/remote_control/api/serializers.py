@@ -45,6 +45,11 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     def get_public_key_checksum(self, obj):
         return getattr(obj, "public_key_checksum", None)
 
+    ca_certs = serializers.SerializerMethodField()
+
+    def get_ca_certa(self, obj):
+        return getattr(obj, "ca_certs", None)
+
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
@@ -53,6 +58,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "private_key_checksum",
             "public_key_checksum",
             "cloudiot_device_configs",
+            "ca_certs",
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},

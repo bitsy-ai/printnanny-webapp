@@ -1,7 +1,8 @@
 import hashlib
 import logging
 import tempfile
-
+import requests
+import os
 from typing import TypedDict
 from django.conf import settings
 from google.cloud import iot_v1 as cloudiot_v1
@@ -12,15 +13,78 @@ import subprocess
 logger = logging.getLogger(__name__)
 
 
-class RSAKeyPair(TypedDict):
+class CACerts(TypedDict):
+    primary: str
+    primary_checksum: str
+    backup: str
+    backup_checksum: str
+
+
+class KeyPair(TypedDict):
     private_key_content: str
     private_key_checksum: str
     public_key_content: str
     public_key_checksum: str
     fingerprint: str
+    ca: CACerts
+
+
+def check_ca_certs():
+
+    if not os.path.exists("primary_ca.pem"):
+        with open("primary_ca.crt", "wb+") as f:
+            res = requests.get(settings.GCP_LTS_CA_PRIMARY)
+            f.write(res.content)
+        subprocess.run(
+            [
+                "openssl",
+                "x509",
+                "-inform",
+                "DER",
+                "-in",
+                "primary_ca.crt",
+                "-out",
+                "primary_ca.pem",
+            ],
+            capture_output=True,
+        )
+    with open("primary_ca.pem", "rb") as f:
+        primary_ca_content = f.read()
+        primary_ca_checksum = hashlib.sha256(f.read()).hexdigest()
+
+    if not os.path.exists("backup_ca.pem"):
+        with open("backup_ca.crt", "wb+") as f:
+            res = requests.get(settings.GCP_LTS_CA_BACKUP)
+            f.write(res.content)
+        subprocess.run(
+            [
+                "openssl",
+                "x509",
+                "-inform",
+                "DER",
+                "-in",
+                "backup_ca.crt",
+                "-out",
+                "backup_ca.pem",
+            ],
+            capture_output=True,
+        )
+    with open("backup_ca.pem", "rb") as f:
+        backup_ca_content = f.read()
+        backup_ca_checksum = hashlib.sha256(f.read()).hexdigest()
+
+    return CACerts(
+        primary=primary_ca_content,
+        backup=backup_ca_content,
+        primary_checksum=primary_ca_checksum,
+        backup_checksum=backup_ca_checksum,
+    )
 
 
 def generate_keypair():
+
+    ca = check_ca_certs()
+
     with tempfile.TemporaryDirectory() as tmp:
         keypair_filename = f"{tmp}/ec256_keypair.pem"
         public_key_filename = f"{tmp}/ec_public.pem"
@@ -74,12 +138,13 @@ def generate_keypair():
             f.seek(0)
             private_key_checksum = hashlib.sha256(f.read()).hexdigest()
 
-        return RSAKeyPair(
-            private_key_content=private_key_content,
+        return KeyPair(
+            private_key_content=private_key_content.decode("utf8"),
             private_key_checksum=private_key_checksum,
-            public_key_content=public_key_content,
+            public_key_content=public_key_content.decode("utf8"),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
+            ca=ca,
         )
 
 

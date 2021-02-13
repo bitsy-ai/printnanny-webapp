@@ -298,3 +298,6 @@ print_nanny_webapp/static/css/*.css*
 # except vendored css
 !print_nanny_webapp/static/css/vendor/
 !print_nanny_webapp/static/css/vendor/*
+
+*.crt
+*.pem

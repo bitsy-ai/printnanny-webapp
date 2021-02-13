@@ -13,10 +13,12 @@ from print_nanny_webapp.remote_control.utils import (
 def test_generate_keypair():
     rsa_keypair = generate_keypair()
 
-    public_key_checksum = hashlib.sha256(rsa_keypair["public_key_content"]).hexdigest()
+    public_key_checksum = hashlib.sha256(
+        rsa_keypair["public_key_content"].encode("utf8")
+    ).hexdigest()
     assert public_key_checksum == rsa_keypair["public_key_checksum"]
     private_key_checksum = hashlib.sha256(
-        rsa_keypair["private_key_content"]
+        rsa_keypair["private_key_content"].encode("utf8")
     ).hexdigest()
     assert private_key_checksum == rsa_keypair["private_key_checksum"]
 
