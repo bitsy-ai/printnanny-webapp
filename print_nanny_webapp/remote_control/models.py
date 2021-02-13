@@ -20,7 +20,7 @@ import stringcase
 from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.remote_control.utils import (
-    delete_and_recreate_cloudiot_device,
+    update_or_create_cloudiot_device,
     generate_keypair,
 )
 
@@ -38,13 +38,13 @@ class OctoPrintDeviceManager(models.Manager):
 
         serial = kwargs.get("serial")
         cloudiot_device_name = f"serial-{serial}"
-        cloudiot_device_dict, device_path = delete_and_recreate_cloudiot_device(
+        cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
             name=cloudiot_device_name,
             serial=serial,
             user_id=kwargs.get("user").id,
             metadata=kwargs,
             fingerprint=rsa_keypair["fingerprint"],
-            public_key_content=rsa_keypair["public_key_content"].strip(),
+            public_key_b64=rsa_keypair["public_key_b64"],
         )
 
         logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
@@ -52,7 +52,7 @@ class OctoPrintDeviceManager(models.Manager):
         cloudiot_device_num_id = cloudiot_device_dict.get("numId")
 
         always_update = dict(
-            public_key=rsa_keypair["public_key_content"],
+            public_key=rsa_keypair["public_key_b64"],
             fingerprint=rsa_keypair["fingerprint"],
             cloudiot_device_num_id=cloudiot_device_num_id,
             cloudiot_device_name=cloudiot_device_name,

@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import logging
 import tempfile
@@ -16,34 +17,36 @@ class RSAKeyPair(TypedDict):
     private_key_content: str
     private_key_checksum: str
     public_key_content: str
+    public_key_b64: str
     public_key_checksum: str
     fingerprint: str
 
 
 def generate_keypair():
     with tempfile.TemporaryDirectory() as tmp:
-        private_key_filename = f"{tmp}/rsa_private.pem"
-        public_key_filename = f"{tmp}/rsa_public.pem"
+        keypair_filename = f"{tmp}/ec256_keypair.pem"
+        public_key_filename = f"{tmp}/ec_public.pem"
 
         p = subprocess.run(
             [
                 "openssl",
-                "genpkey",
-                "-algorithm",
-                "RSA",
+                "ecparam",
+                "-genkey",
+                "-name",
+                "prime256v1",
+                "-noout",
                 "-out",
-                private_key_filename,
-                "-pkeyopt",
-                "rsa_keygen_bits:2048",
+                keypair_filename
             ],
             capture_output=True,
         )
+
         p = subprocess.run(
             [
                 "openssl",
-                "rsa",
+                "ec",
                 "-in",
-                private_key_filename,
+                keypair_filename,
                 "-pubout",
                 "-out",
                 public_key_filename,
@@ -63,35 +66,35 @@ def generate_keypair():
         fingerprint = fingerprint.decode().split("=")[-1]
         fingerprint = fingerprint.strip()
 
-        with open(public_key_filename, "r") as f:
+        with open(public_key_filename, "rb") as f:
             public_key_content = f.read()
             f.seek(0)
-            public_key_checksum = hashlib.sha256(f.read().encode("utf-8")).hexdigest()
+            public_key_checksum = hashlib.sha256(f.read()).hexdigest()
 
-        with open(private_key_filename, "r") as f:
+        with open(keypair_filename, "rb") as f:
             private_key_content = f.read()
             f.seek(0)
-            private_key_checksum = hashlib.sha256(f.read().encode("utf-8")).hexdigest()
+            private_key_checksum = hashlib.sha256(f.read()).hexdigest()
 
         return RSAKeyPair(
             private_key_content=private_key_content,
             private_key_checksum=private_key_checksum,
             public_key_content=public_key_content,
+            public_key_b64=base64.b64encode(public_key_content),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
         )
 
 
-def delete_and_recreate_cloudiot_device(
+def create_cloudiot_device(
     name: str,
     serial: str,
     user_id: int,
     metadata: dict,
     fingerprint: str,
-    public_key_content: str,
+    public_key_b64: str,
 ):
     client = cloudiot_v1.DeviceManagerClient()
-
     parent = client.registry_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
@@ -104,8 +107,8 @@ def delete_and_recreate_cloudiot_device(
         "credentials": [
             {
                 "public_key": {
-                    "format": cloudiot_v1.PublicKeyFormat.RSA_PEM,
-                    "key": public_key_content.strip(),
+                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                    "key": public_key_b64,
                 }
             }
         ],
@@ -116,6 +119,50 @@ def delete_and_recreate_cloudiot_device(
             **string_kwargs,
         },
     }
+    return client.create_device(parent=parent, device=device_template)
+
+def update_cloudiot_device(
+    device: cloudiot_v1.types.Device,
+    name: str,
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_b64: str,
+):
+    client = cloudiot_v1.DeviceManagerClient()
+    parent = client.registry_path(
+        settings.GCP_PROJECT_ID,
+        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+    )
+
+    string_kwargs = {k: str(v) for k, v in metadata.items()}
+    device.credentials = [
+            {
+                "public_key": {
+                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                    "key": public_key_b64,
+                }
+            }
+        ]
+    device.metadata =  {
+            "user_id": str(user_id),
+            "serial": serial,
+            "fingerprint": fingerprint,
+            **string_kwargs,
+        }
+    return client.update_device(parent=parent, device=device)
+
+def update_or_create_cloudiot_device(
+    name: str,
+    serial: str,
+    user_id: int,
+    metadata: dict,
+    fingerprint: str,
+    public_key_b64: str,
+):
+    client = cloudiot_v1.DeviceManagerClient()
 
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
@@ -125,19 +172,10 @@ def delete_and_recreate_cloudiot_device(
     )
 
     try:
-        cloudiot_device = client.delete_device(name=device_path)
-        logger.info(f"Deleted existing device {device_path}")
+        cloudiot_device = client.get_device(name=device_path)
+        cloudiot_device = update_cloudiot_device(cloudiot_device, name, serial, user_id, metadata, fingerprint, public_key_b64)
     except google.api_core.exceptions.NotFound as e:
-        logger.warning(
-            {
-                "error": e,
-                "msg": f"No existing device found with name {name}",
-            }
-        )
-
-    cloudiot_device = client.create_device(parent=parent, device=device_template)
-
-    logger.info(f"Created new device in registry {device_path}")
+        cloudiot_device = create_cloudiot_device(name, serial, user_id, metadata, fingerprint, public_key_b64)
 
     cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
     return cloudiot_device_dict, device_path
