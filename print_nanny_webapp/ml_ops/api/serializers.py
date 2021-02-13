@@ -5,20 +5,16 @@ DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
 
+
 class DeviceCalibrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceCalibration
-        fields = [field.name for field in DeviceCalibration._meta.fields] + [
-            "url",
-        ]
-        extra_kwargs = {
-            "url": {"view_name": "api:device-calibration-detail", "lookup_field": "id"},
-        }
+        fields = [field.name for field in DeviceCalibration._meta.fields]
 
-    def update_or_create(self, validated_data, user):
-        return DeviceCalibration.objects.update_or_create(
-            user=user, defaults=validated_data
-        )
+
+    def update_or_create(self, validated_data):
+        return DeviceCalibration.objects.update_or_create(defaults=validated_data)
+
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
     class Meta:

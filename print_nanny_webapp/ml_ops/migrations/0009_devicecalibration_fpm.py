@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0008_devicecalibration'),
+        ("ml_ops", "0008_devicecalibration"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='devicecalibration',
-            name='fpm',
+            model_name="devicecalibration",
+            name="fpm",
             field=models.IntegerField(null=True),
         ),
     ]

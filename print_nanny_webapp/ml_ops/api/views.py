@@ -3,8 +3,13 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateMode
 from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
+from rest_framework.response import Response
 
-from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig, DeviceCalibration
+from print_nanny_webapp.ml_ops.models import (
+    ModelArtifact,
+    ExperimentDeviceConfig,
+    DeviceCalibration,
+)
 from .serializers import (
     ModelArtifactSerializer,
     ExperimentDeviceConfigSerializer,
@@ -37,9 +42,7 @@ class DeviceCalibrationViewSet(
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            instance, created = serializer.update_or_create(
-                serializer.validated_data, request.user
-            )
+            instance, created = serializer.update_or_create(serializer.validated_data)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(response_serializer.data, status=status.HTTP_200_OK)

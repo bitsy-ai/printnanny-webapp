@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0009_devicecalibration_fpm'),
+        ("ml_ops", "0009_devicecalibration_fpm"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='devicecalibration',
-            name='coordinates',
+            model_name="devicecalibration",
+            name="coordinates",
             field=django.contrib.postgres.fields.jsonb.JSONField(null=True),
         ),
     ]
