@@ -28,6 +28,30 @@ class TestMlOpsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_device_calibrations_list(self):
+        """Test case for device_calibrations_list
+
+        """
+        pass
+
+    def test_device_calibrations_partial_update(self):
+        """Test case for device_calibrations_partial_update
+
+        """
+        pass
+
+    def test_device_calibrations_retrieve(self):
+        """Test case for device_calibrations_retrieve
+
+        """
+        pass
+
+    def test_device_calibrations_update(self):
+        """Test case for device_calibrations_update
+
+        """
+        pass
+
     def test_experiment_device_configs_list(self):
         """Test case for experiment_device_configs_list
 

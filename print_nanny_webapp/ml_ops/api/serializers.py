@@ -5,8 +5,7 @@ DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
 
-
-class DeviceCalibration(serializers.ModelSerializer):
+class DeviceCalibrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeviceCalibration
         fields = [field.name for field in DeviceCalibration._meta.fields] + [
@@ -15,7 +14,6 @@ class DeviceCalibration(serializers.ModelSerializer):
         extra_kwargs = {
             "url": {"view_name": "api:device-calibration-detail", "lookup_field": "id"},
         }
-
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
     class Meta:

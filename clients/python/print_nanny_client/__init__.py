@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev11"
+__version__ = "0.5.0-dev12"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -58,6 +58,8 @@ from print_nanny_client.models.defect_alert import DefectAlert
 from print_nanny_client.models.defect_alert_request import DefectAlertRequest
 from print_nanny_client.models.defect_alert_settings import DefectAlertSettings
 from print_nanny_client.models.defect_alert_settings_request import DefectAlertSettingsRequest
+from print_nanny_client.models.device_calibration import DeviceCalibration
+from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.event_type_enum import EventTypeEnum
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
@@ -74,6 +76,7 @@ from print_nanny_client.models.octo_print_event import OctoPrintEvent
 from print_nanny_client.models.octo_print_event_request import OctoPrintEventRequest
 from print_nanny_client.models.paginated_alert_polymorphic_list import PaginatedAlertPolymorphicList
 from print_nanny_client.models.paginated_alert_settings_polymorphic_list import PaginatedAlertSettingsPolymorphicList
+from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
 from print_nanny_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
@@ -92,6 +95,7 @@ from print_nanny_client.models.patched_alert_settings_request import PatchedAler
 from print_nanny_client.models.patched_command_alert_settings_request import PatchedCommandAlertSettingsRequest
 from print_nanny_client.models.patched_defect_alert_request import PatchedDefectAlertRequest
 from print_nanny_client.models.patched_defect_alert_settings_request import PatchedDefectAlertSettingsRequest
+from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
 from print_nanny_client.models.patched_gcode_file_request import PatchedGcodeFileRequest
 from print_nanny_client.models.patched_manual_video_upload_alert_request import PatchedManualVideoUploadAlertRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest

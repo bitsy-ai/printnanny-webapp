@@ -2,7 +2,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from drf_spectacular.utils import extend_schema
 
-from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig
+from print_nanny_webapp.ml_ops.models import ModelArtifact, ExperimentDeviceConfig, DeviceCalibration
 from .serializers import (
     ModelArtifactSerializer,
     ExperimentDeviceConfigSerializer,

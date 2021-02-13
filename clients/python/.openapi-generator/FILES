@@ -29,6 +29,8 @@ docs/DefectAlert.md
 docs/DefectAlertRequest.md
 docs/DefectAlertSettings.md
 docs/DefectAlertSettingsRequest.md
+docs/DeviceCalibration.md
+docs/DeviceCalibrationRequest.md
 docs/EventTypeEnum.md
 docs/EventsApi.md
 docs/ExperimentDeviceConfig.md
@@ -47,6 +49,7 @@ docs/OctoPrintEvent.md
 docs/OctoPrintEventRequest.md
 docs/PaginatedAlertPolymorphicList.md
 docs/PaginatedAlertSettingsPolymorphicList.md
+docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedModelArtifactList.md
@@ -65,6 +68,7 @@ docs/PatchedAlertSettingsRequest.md
 docs/PatchedCommandAlertSettingsRequest.md
 docs/PatchedDefectAlertRequest.md
 docs/PatchedDefectAlertSettingsRequest.md
+docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedGcodeFileRequest.md
 docs/PatchedManualVideoUploadAlertRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -136,6 +140,8 @@ print_nanny_client/models/defect_alert.py
 print_nanny_client/models/defect_alert_request.py
 print_nanny_client/models/defect_alert_settings.py
 print_nanny_client/models/defect_alert_settings_request.py
+print_nanny_client/models/device_calibration.py
+print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/event_type_enum.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
@@ -152,6 +158,7 @@ print_nanny_client/models/octo_print_event.py
 print_nanny_client/models/octo_print_event_request.py
 print_nanny_client/models/paginated_alert_polymorphic_list.py
 print_nanny_client/models/paginated_alert_settings_polymorphic_list.py
+print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
 print_nanny_client/models/paginated_model_artifact_list.py
@@ -170,6 +177,7 @@ print_nanny_client/models/patched_alert_settings_request.py
 print_nanny_client/models/patched_command_alert_settings_request.py
 print_nanny_client/models/patched_defect_alert_request.py
 print_nanny_client/models/patched_defect_alert_settings_request.py
+print_nanny_client/models/patched_device_calibration_request.py
 print_nanny_client/models/patched_gcode_file_request.py
 print_nanny_client/models/patched_manual_video_upload_alert_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
@@ -229,6 +237,8 @@ test/test_defect_alert.py
 test/test_defect_alert_request.py
 test/test_defect_alert_settings.py
 test/test_defect_alert_settings_request.py
+test/test_device_calibration.py
+test/test_device_calibration_request.py
 test/test_event_type_enum.py
 test/test_events_api.py
 test/test_experiment_device_config.py
@@ -247,6 +257,7 @@ test/test_octo_print_event.py
 test/test_octo_print_event_request.py
 test/test_paginated_alert_polymorphic_list.py
 test/test_paginated_alert_settings_polymorphic_list.py
+test/test_paginated_device_calibration_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_model_artifact_list.py
@@ -265,6 +276,7 @@ test/test_patched_alert_settings_request.py
 test/test_patched_command_alert_settings_request.py
 test/test_patched_defect_alert_request.py
 test/test_patched_defect_alert_settings_request.py
+test/test_patched_device_calibration_request.py
 test/test_patched_gcode_file_request.py
 test/test_patched_manual_video_upload_alert_request.py
 test/test_patched_octo_print_device_request.py
