@@ -366,7 +366,7 @@ class RemoteControlSnapshot(models.Model):
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
-    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
+    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_rc"
 
     class CommandChoices(models.TextChoices):
         MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"

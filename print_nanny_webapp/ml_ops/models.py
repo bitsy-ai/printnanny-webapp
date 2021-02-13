@@ -17,6 +17,7 @@ class DeviceCalibration(models.Model):
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
     fpm = models.IntegerField(null=True)
+    coordinates = JSONField(null=True)
     mask = JSONField(null=True)
 
 
