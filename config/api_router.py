@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 from django.urls import include, path, re_path
 
-from print_nanny_webapp.ml_ops.api.views import ModelArtifactViewSet, ExperimentDeviceConfigViewSet
+from print_nanny_webapp.ml_ops.api.views import ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet, 
@@ -26,6 +26,7 @@ router.register("alert_settings", AlertSettingsViewSet)
 
 router.register("users", UserViewSet)
 
+router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibrations")
 router.register(f"snapshots", RemoteControlSnapshotViewSet, basename='snapshot')
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
