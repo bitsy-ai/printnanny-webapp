@@ -26,7 +26,7 @@ class KeyPair(TypedDict):
     public_key_content: str
     public_key_checksum: str
     fingerprint: str
-    ca: CACerts
+    ca_certs: CACerts
 
 
 def check_ca_certs():
@@ -83,7 +83,7 @@ def check_ca_certs():
 
 def generate_keypair():
 
-    ca = check_ca_certs()
+    ca_certs = check_ca_certs()
 
     with tempfile.TemporaryDirectory() as tmp:
         keypair_filename = f"{tmp}/ec256_keypair.pem"
@@ -144,7 +144,7 @@ def generate_keypair():
             public_key_content=public_key_content.decode("utf8"),
             public_key_checksum=public_key_checksum,
             fingerprint=fingerprint,
-            ca=ca,
+            ca_certs=ca_certs,
         )
 
 

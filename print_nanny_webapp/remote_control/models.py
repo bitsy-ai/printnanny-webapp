@@ -34,7 +34,7 @@ class OctoPrintDeviceManager(models.Manager):
         serial = kwargs.get("serial")
         logging.info(f"Creating keypair for device serial={serial}")
 
-        rsa_keypair = generate_keypair()
+        keypair = generate_keypair()
 
         serial = kwargs.get("serial")
         cloudiot_device_name = f"serial-{serial}"
@@ -43,8 +43,8 @@ class OctoPrintDeviceManager(models.Manager):
             serial=serial,
             user_id=kwargs.get("user").id,
             metadata=kwargs,
-            fingerprint=rsa_keypair["fingerprint"],
-            public_key_content=rsa_keypair["public_key_content"].strip(),
+            fingerprint=keypair["fingerprint"],
+            public_key_content=keypair["public_key_content"].strip(),
         )
 
         logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
@@ -52,8 +52,8 @@ class OctoPrintDeviceManager(models.Manager):
         cloudiot_device_num_id = cloudiot_device_dict.get("numId")
 
         always_update = dict(
-            public_key=rsa_keypair["public_key_content"],
-            fingerprint=rsa_keypair["fingerprint"],
+            public_key=keypair["public_key_content"],
+            fingerprint=keypair["fingerprint"],
             cloudiot_device_num_id=cloudiot_device_num_id,
             cloudiot_device_name=cloudiot_device_name,
             cloudiot_device=cloudiot_device_dict,
@@ -68,9 +68,10 @@ class OctoPrintDeviceManager(models.Manager):
             setattr(device, key, value)
         logging.info(f"Device created: {created} with id={device.id}")
         device.cloudiot_device = cloudiot_device_dict
-        device.private_key = rsa_keypair["private_key_content"]
-        device.private_key_checksum = rsa_keypair["private_key_checksum"]
-        device.public_key_checksum = rsa_keypair["public_key_checksum"]
+        device.private_key = keypair["private_key_content"]
+        device.private_key_checksum = keypair["private_key_checksum"]
+        device.public_key_checksum = keypair["public_key_checksum"]
+        device.ca_certs = keypair["ca_certs"]
         device.save()
 
         from print_nanny_webapp.ml_ops.models import (

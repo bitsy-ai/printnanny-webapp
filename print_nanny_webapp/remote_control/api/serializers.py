@@ -22,7 +22,6 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:command-detail", "lookup_field": "id"},
         }
 
-
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     cloudiot_device_configs = serializers.SerializerMethodField()
@@ -40,15 +39,15 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     def get_private_key_checksum(self, obj):
         return getattr(obj, "private_key_checksum", None)
 
-    public_key_checksum = serializers.SerializerMethodField()
+    public_key_checksum = serializers.CharField()
 
-    def get_public_key_checksum(self, obj):
-        return getattr(obj, "public_key_checksum", None)
+    # def get_public_key_checksum(self, obj):
+    #     return getattr(obj, "public_key_checksum", None)
 
-    ca_certs = serializers.SerializerMethodField()
+    ca_certs = serializers.DictField(child=serializers.CharField())
 
-    def get_ca_certs(self, obj):
-        return getattr(obj, "ca_certs", None)
+    # def get_ca_certs(self, obj):
+    #     return getattr(obj, "ca_certs", None)
 
     class Meta:
         model = OctoPrintDevice
