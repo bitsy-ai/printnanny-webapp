@@ -15,6 +15,11 @@ class DeviceCalibrationSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:device-calibration-detail", "lookup_field": "id"},
         }
 
+    def update_or_create(self, validated_data, user):
+        return DeviceCalibration.objects.update_or_create(
+            user=user, defaults=validated_data
+        )
+
 class ModelArtifactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModelArtifact
