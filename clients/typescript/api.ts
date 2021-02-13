@@ -1542,13 +1542,19 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    public_key_checksum?: string;
+    public_key_checksum: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
     cloudiot_device_configs?: string;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof OctoPrintDeviceKey
+     */
+    ca_certs: { [key: string]: string; };
 }
 /**
  * 
