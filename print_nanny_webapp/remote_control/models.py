@@ -221,7 +221,6 @@ class OctoPrintDevice(models.Model):
     def monitoring_active_css_class(self):
         return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
 
-
 class GcodeFile(models.Model):
     class Meta:
         unique_together = ("user", "file_hash")
