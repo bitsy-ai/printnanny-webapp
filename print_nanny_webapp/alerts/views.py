@@ -84,19 +84,19 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     def discord_form_valid(self, form):
         obj = form.save(commit=False)
 
-        channel_layer = get_channel_layer()
-        res = async_to_sync(channel_layer.send)(
-            "discord", {
-                "type": "validate.id",
-                "target_id": obj.target_id,
-                "target_id_type": obj.target_id_type,
-        })
+        # channel_layer = get_channel_layer()
+        # res = async_to_sync(channel_layer.send)(
+        #     "discord", {
+        #         "type": "validate.id",
+        #         "target_id": obj.target_id,
+        #         "target_id_type": obj.target_id_type,
+        # })
 
-        if res is None:
-            raise ValidationError("Could not validate Discord ID - Maybe Discord is down?")
+        # if res is None:
+        #     raise ValidationError("Could not validate Discord ID - Maybe Discord is down?")
 
-        if not res["is_valid"]:
-            raise ValidationError(res["error"])
+        # if not res["is_valid"]:
+        #     raise ValidationError(res["error"])
 
         obj.user = self.request.user
         obj.method = Alert.AlertMethodChoices.DISCORD
