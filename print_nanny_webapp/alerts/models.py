@@ -342,6 +342,7 @@ class RemoteControlCommandAlert(Alert):
 
     def trigger_discord_alert(self, data):
 
+        channel_layer = get_channel_layer()
         discord_settings = DiscordMethodSettings.objects.filter(user=self.user)
 
         channel_ids = []
@@ -359,7 +360,7 @@ class RemoteControlCommandAlert(Alert):
         if data["snapshot_url"] is not None:
             message += "\n"+data["snapshot_url"]
 
-        async_to_sync(self.channel_layer.send)(
+        async_to_sync(channel_layer.send)(
             "discord", {
                 "type": "trigger.alert",
                 "user_ids": user_ids,
