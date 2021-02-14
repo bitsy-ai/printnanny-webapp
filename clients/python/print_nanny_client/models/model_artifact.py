@@ -38,7 +38,7 @@ class ModelArtifact(object):
         'version': 'str',
         'labels': 'str',
         'artifacts': 'str',
-        'artifact_types': 'list[str]',
+        'artifact_types': 'list[ArtifactTypesEnum]',
         'metadata': 'dict(str, object)',
         'url': 'str'
     }
@@ -198,7 +198,7 @@ class ModelArtifact(object):
 
 
         :return: The artifact_types of this ModelArtifact.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[ArtifactTypesEnum]
         """
         return self._artifact_types
 
@@ -208,16 +208,8 @@ class ModelArtifact(object):
 
 
         :param artifact_types: The artifact_types of this ModelArtifact.  # noqa: E501
-        :type artifact_types: list[str]
+        :type artifact_types: list[ArtifactTypesEnum]
         """
-        allowed_values = ["TFLITE", "TF1", "TF2_SAVED_MODEL", "TF2_HDF5"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(artifact_types).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `artifact_types` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(artifact_types) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._artifact_types = artifact_types
 

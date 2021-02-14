@@ -78,9 +78,6 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
         defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
-        unique_together_fields = {
-            k: v for k, v in validated_data.items() if k in unique_together
-        }
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )

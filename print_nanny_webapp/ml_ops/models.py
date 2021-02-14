@@ -10,6 +10,17 @@ from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 
+class DeviceCalibration(models.Model):
+    created_dt = models.fields.DateTimeField(auto_now_add=True)
+    updated_dt = models.fields.DateTimeField(auto_now=True)
+    octoprint_device = models.OneToOneField(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
+    )
+    fpm = models.IntegerField(null=True)
+    coordinates = JSONField(null=True)
+    mask = JSONField(null=True)
+
+
 class ModelArtifact(models.Model):
     class ArtifactTypes(models.TextChoices):
         TFLITE = "TFLITE", "TensorFlow Lite Flatbuffer"

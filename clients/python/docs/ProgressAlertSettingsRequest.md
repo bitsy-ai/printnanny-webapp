@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
-**alert_methods** | **list[str]** |  | [optional] 
+**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
 **enabled** | **bool** | Enable or disable this alert channel | [optional] 
 **on_progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 
