@@ -158,7 +158,8 @@ class PrintJobViewSet(
 
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
-        prometheus_metrics.print_job_status.state(instance.last_status)
+        # prometheus_metrics.print_job_status.state(instance.last_status)
+        return Response(serializer.data, status=status.HTTP_201_OK)
 
     def perform_update(self, serializer):
 

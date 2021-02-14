@@ -25,7 +25,18 @@ class DeviceCalibrationSerializer(serializers.ModelSerializer):
         }
 
     def update_or_create(self, validated_data):
-        return DeviceCalibration.objects.update_or_create(defaults=validated_data)
+        unique_together = ("octoprint_device",)
+        defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
+        unique_together_fields = {
+            k: v for k, v in validated_data.items() if k in unique_together
+        }
+
+        return DeviceCalibration.objects.filter(
+            **unique_together_fields
+        ).update_or_create(
+            **unique_together_fields,
+            defaults=defaults
+        )
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):

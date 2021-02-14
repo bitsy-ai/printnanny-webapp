@@ -1,3 +1,4 @@
+import logging
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from drf_spectacular.utils import extend_schema
@@ -17,9 +18,15 @@ from .serializers import (
     DeviceCalibrationSerializer,
 )
 
+logger = logging.getLogger(__name__)
 
 @extend_schema(
-    tags=["ml-ops"]
+    tags=["ml-ops"],
+    responses={
+        400: DeviceCalibrationSerializer,
+        200: DeviceCalibrationSerializer,
+        201: DeviceCalibrationSerializer,
+    },
 )
 class DeviceCalibrationViewSet(
     UpdateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
@@ -38,7 +45,11 @@ class DeviceCalibrationViewSet(
     @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
 
-        serializer = self.get_serializer(data=request.data)
+        octoprint_device_id = request.data.get("octoprint_device")
+
+        instance = DeviceCalibration.objects.filter(octoprint_device=octoprint_device_id).first()
+        serializer = self.get_serializer(data=request.data, instance=instance)
+        
         if serializer.is_valid():
             instance, created = serializer.update_or_create(serializer.validated_data)
             response_serializer = self.get_serializer(instance)
@@ -47,9 +58,6 @@ class DeviceCalibrationViewSet(
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 @extend_schema(tags=["ml-ops"])
