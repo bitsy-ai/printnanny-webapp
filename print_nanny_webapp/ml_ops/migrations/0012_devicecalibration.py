@@ -8,21 +8,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0044_remove_octoprintdevice_configs'),
-        ('ml_ops', '0011_auto_20210213_1600'),
+        ("remote_control", "0044_remove_octoprintdevice_configs"),
+        ("ml_ops", "0011_auto_20210213_1600"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DeviceCalibration',
+            name="DeviceCalibration",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('fpm', models.IntegerField(null=True)),
-                ('coordinates', django.contrib.postgres.fields.jsonb.JSONField(null=True)),
-                ('mask', django.contrib.postgres.fields.jsonb.JSONField(null=True)),
-                ('octoprint_device', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                ("fpm", models.IntegerField(null=True)),
+                (
+                    "coordinates",
+                    django.contrib.postgres.fields.jsonb.JSONField(null=True),
+                ),
+                ("mask", django.contrib.postgres.fields.jsonb.JSONField(null=True)),
+                (
+                    "octoprint_device",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
         ),
     ]

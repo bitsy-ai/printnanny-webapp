@@ -20,6 +20,7 @@ from .serializers import (
 
 logger = logging.getLogger(__name__)
 
+
 @extend_schema(
     tags=["ml-ops"],
     responses={
@@ -39,22 +40,24 @@ class DeviceCalibrationViewSet(
         user = self.request.user
         return DeviceCalibration.objects.filter(octoprint_device__user=user).all()
 
-    @extend_schema(
-        operation_id="device_calibration_update_or_create"
-    )
+    @extend_schema(operation_id="device_calibration_update_or_create")
     @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
 
         octoprint_device_id = request.data.get("octoprint_device")
 
-        instance = DeviceCalibration.objects.filter(octoprint_device=octoprint_device_id).first()
+        instance = DeviceCalibration.objects.filter(
+            octoprint_device=octoprint_device_id
+        ).first()
         serializer = self.get_serializer(data=request.data, instance=instance)
-        
+
         if serializer.is_valid():
             instance, created = serializer.update_or_create(serializer.validated_data)
             response_serializer = self.get_serializer(instance)
             if not created:
-                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
+                return Response(
+                    response_serializer.data, status=status.HTTP_202_ACCEPTED
+                )
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

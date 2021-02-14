@@ -7,9 +7,10 @@ ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
 
 
-@extend_schema_field(field={'type': 'array', 'items': {'type': 'number'}})
+@extend_schema_field(field={"type": "array", "items": {"type": "number"}})
 class JSONArrayField(serializers.JSONField):
     pass
+
 
 class DeviceCalibrationSerializer(serializers.ModelSerializer):
 
@@ -33,10 +34,7 @@ class DeviceCalibrationSerializer(serializers.ModelSerializer):
 
         return DeviceCalibration.objects.filter(
             **unique_together_fields
-        ).update_or_create(
-            **unique_together_fields,
-            defaults=defaults
-        )
+        ).update_or_create(**unique_together_fields, defaults=defaults)
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):

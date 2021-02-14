@@ -6,15 +6,16 @@ import django.db.models.deletion
 
 DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0044_remove_octoprintdevice_configs'),
-        ('ml_ops', '0010_devicecalibration_coordinates'),
+        ("remote_control", "0044_remove_octoprintdevice_configs"),
+        ("ml_ops", "0010_devicecalibration_coordinates"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='devicecalibration',
+            name="devicecalibration",
         )
     ]
