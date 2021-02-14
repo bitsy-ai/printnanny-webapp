@@ -4,6 +4,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.response import Response
+from rest_framework import status
 
 from print_nanny_webapp.ml_ops.models import (
     ModelArtifact,

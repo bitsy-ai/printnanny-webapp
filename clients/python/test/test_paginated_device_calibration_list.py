@@ -51,7 +51,8 @@ class TestPaginatedDeviceCalibrationList(unittest.TestCase):
                             }, 
                         mask = {
                             'key' : null
-                            }, )
+                            }, 
+                        url = '', )
                     ]
             )
         else :

@@ -39,7 +39,8 @@ class DeviceCalibration(object):
         'device': 'int',
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
-        'mask': 'dict(str, object)'
+        'mask': 'dict(str, object)',
+        'url': 'str'
     }
 
     attribute_map = {
@@ -49,10 +50,11 @@ class DeviceCalibration(object):
         'device': 'device',
         'fpm': 'fpm',
         'coordinates': 'coordinates',
-        'mask': 'mask'
+        'mask': 'mask',
+        'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, fpm=None, coordinates=None, mask=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, device=None, fpm=None, coordinates=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -65,6 +67,7 @@ class DeviceCalibration(object):
         self._fpm = None
         self._coordinates = None
         self._mask = None
+        self._url = None
         self.discriminator = None
 
         if id is not None:
@@ -77,6 +80,8 @@ class DeviceCalibration(object):
         self.fpm = fpm
         self.coordinates = coordinates
         self.mask = mask
+        if url is not None:
+            self.url = url
 
     @property
     def id(self):
@@ -232,6 +237,27 @@ class DeviceCalibration(object):
         """
 
         self._mask = mask
+
+    @property
+    def url(self):
+        """Gets the url of this DeviceCalibration.  # noqa: E501
+
+
+        :return: The url of this DeviceCalibration.  # noqa: E501
+        :rtype: str
+        """
+        return self._url
+
+    @url.setter
+    def url(self, url):
+        """Sets the url of this DeviceCalibration.
+
+
+        :param url: The url of this DeviceCalibration.  # noqa: E501
+        :type url: str
+        """
+
+        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

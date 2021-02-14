@@ -13,7 +13,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 class DeviceCalibration(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
     updated_dt = models.fields.DateTimeField(auto_now=True)
-    device = models.ForeignKey(
+    octoprint_device = models.OneToOneField(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
     fpm = models.IntegerField(null=True)
