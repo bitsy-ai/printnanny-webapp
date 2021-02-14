@@ -105,6 +105,16 @@ export enum AlertMethodEnum {
 }
 
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum AlertMethodsEnum {
+    Ui = 'UI',
+    Email = 'EMAIL'
+}
+
+/**
  * @type AlertPolymorphic
  * @export
  */
@@ -161,10 +171,10 @@ export interface AlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof AlertSettings
      */
-    alert_methods?: Array<AlertSettingsAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -178,16 +188,6 @@ export interface AlertSettings {
      */
     polymorphic_ctype?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum AlertSettingsAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * @type AlertSettingsPolymorphic
  * @export
@@ -214,10 +214,10 @@ export interface AlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof AlertSettingsRequest
      */
-    alert_methods?: Array<AlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -225,16 +225,6 @@ export interface AlertSettingsRequest {
      */
     enabled?: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum AlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -256,6 +246,18 @@ export enum AlertTypeEnum {
     PrintProgress = 'PRINT_PROGRESS',
     ManualVideoUpload = 'MANUAL_VIDEO_UPLOAD',
     Defect = 'DEFECT'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum ArtifactTypesEnum {
+    Tflite = 'TFLITE',
+    Tf1 = 'TF1',
+    Tf2SavedModel = 'TF2_SAVED_MODEL',
+    Tf2Hdf5 = 'TF2_HDF5'
 }
 
 /**
@@ -322,10 +324,10 @@ export interface CommandAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof CommandAlertSettings
      */
-    alert_methods?: Array<CommandAlertSettingsAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -334,52 +336,52 @@ export interface CommandAlertSettings {
     enabled?: boolean;
     /**
      * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<string>}
+     * @type {Array<SnapshotEnum>}
      * @memberof CommandAlertSettings
      */
-    snapshot?: Array<CommandAlertSettingsSnapshotEnum>;
+    snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<string>}
+     * @type {Array<StopMonitoringEnum>}
      * @memberof CommandAlertSettings
      */
-    stop_monitoring?: Array<CommandAlertSettingsStopMonitoringEnum>;
+    stop_monitoring?: Array<StopMonitoringEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartMonitoringEnum>}
      * @memberof CommandAlertSettings
      */
-    start_monitoring?: Array<CommandAlertSettingsStartMonitoringEnum>;
+    start_monitoring?: Array<StartMonitoringEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<string>}
+     * @type {Array<StopPrintEnum>}
      * @memberof CommandAlertSettings
      */
-    stop_print?: Array<CommandAlertSettingsStopPrintEnum>;
+    stop_print?: Array<StopPrintEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartPrintEnum>}
      * @memberof CommandAlertSettings
      */
-    start_print?: Array<CommandAlertSettingsStartPrintEnum>;
+    start_print?: Array<StartPrintEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
-     * @type {Array<string>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    move_nozzle?: Array<CommandAlertSettingsMoveNozzleEnum>;
+    move_nozzle?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<string>}
+     * @type {Array<PausePrintEnum>}
      * @memberof CommandAlertSettings
      */
-    pause_print?: Array<CommandAlertSettingsPausePrintEnum>;
+    pause_print?: Array<PausePrintEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<string>}
+     * @type {Array<ResumePrintEnum>}
      * @memberof CommandAlertSettings
      */
-    resume_print?: Array<CommandAlertSettingsResumePrintEnum>;
+    resume_print?: Array<ResumePrintEnum>;
     /**
      * 
      * @type {number}
@@ -393,88 +395,6 @@ export interface CommandAlertSettings {
      */
     user?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsSnapshotEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsStopMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsStartMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsStopPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsStartPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsMoveNozzleEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsPausePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsResumePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
 /**
  * 
  * @export
@@ -489,10 +409,10 @@ export interface CommandAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    alert_methods?: Array<CommandAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -501,135 +421,53 @@ export interface CommandAlertSettingsRequest {
     enabled?: boolean;
     /**
      * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<string>}
+     * @type {Array<SnapshotEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    snapshot?: Array<CommandAlertSettingsRequestSnapshotEnum>;
+    snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<string>}
+     * @type {Array<StopMonitoringEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_monitoring?: Array<CommandAlertSettingsRequestStopMonitoringEnum>;
+    stop_monitoring?: Array<StopMonitoringEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartMonitoringEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_monitoring?: Array<CommandAlertSettingsRequestStartMonitoringEnum>;
+    start_monitoring?: Array<StartMonitoringEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<string>}
+     * @type {Array<StopPrintEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_print?: Array<CommandAlertSettingsRequestStopPrintEnum>;
+    stop_print?: Array<StopPrintEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartPrintEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_print?: Array<CommandAlertSettingsRequestStartPrintEnum>;
+    start_print?: Array<StartPrintEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
-     * @type {Array<string>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    move_nozzle?: Array<CommandAlertSettingsRequestMoveNozzleEnum>;
+    move_nozzle?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<string>}
+     * @type {Array<PausePrintEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    pause_print?: Array<CommandAlertSettingsRequestPausePrintEnum>;
+    pause_print?: Array<PausePrintEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<string>}
+     * @type {Array<ResumePrintEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    resume_print?: Array<CommandAlertSettingsRequestResumePrintEnum>;
+    resume_print?: Array<ResumePrintEnum>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestSnapshotEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestStopMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestStartMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestStopPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestStartPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestMoveNozzleEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestPausePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CommandAlertSettingsRequestResumePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
 /**
  * 
  * @export
@@ -776,10 +614,10 @@ export interface DefectAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof DefectAlertSettings
      */
-    alert_methods?: Array<DefectAlertSettingsAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -799,16 +637,6 @@ export interface DefectAlertSettings {
      */
     user?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DefectAlertSettingsAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -823,10 +651,10 @@ export interface DefectAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof DefectAlertSettingsRequest
      */
-    alert_methods?: Array<DefectAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -834,16 +662,6 @@ export interface DefectAlertSettingsRequest {
      */
     enabled?: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum DefectAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -888,10 +706,10 @@ export interface DeviceCalibration {
     coordinates?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<number>}
      * @memberof DeviceCalibration
      */
-    mask?: { [key: string]: any; } | null;
+    mask: Array<number>;
     /**
      * 
      * @type {string}
@@ -925,10 +743,10 @@ export interface DeviceCalibrationRequest {
     coordinates?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<number>}
      * @memberof DeviceCalibrationRequest
      */
-    mask?: { [key: string]: any; } | null;
+    mask: Array<number>;
 }
 /**
  * 
@@ -1202,10 +1020,10 @@ export interface ModelArtifact {
     artifacts?: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<ArtifactTypesEnum>}
      * @memberof ModelArtifact
      */
-    artifact_types?: Array<ModelArtifactArtifactTypesEnum>;
+    artifact_types?: Array<ArtifactTypesEnum>;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1219,16 +1037,15 @@ export interface ModelArtifact {
      */
     url?: string;
 }
-
 /**
-    * @export
-    * @enum {string}
-    */
-export enum ModelArtifactArtifactTypesEnum {
-    Tflite = 'TFLITE',
-    Tf1 = 'TF1',
-    Tf2SavedModel = 'TF2_SAVED_MODEL',
-    Tf2Hdf5 = 'TF2_HDF5'
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum MoveNozzleEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
 }
 
 /**
@@ -2304,10 +2121,10 @@ export interface PatchedAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedAlertSettingsRequest
      */
-    alert_methods?: Array<PatchedAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -2315,16 +2132,6 @@ export interface PatchedAlertSettingsRequest {
      */
     enabled?: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -2339,10 +2146,10 @@ export interface PatchedCommandAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    alert_methods?: Array<PatchedCommandAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -2351,135 +2158,53 @@ export interface PatchedCommandAlertSettingsRequest {
     enabled?: boolean;
     /**
      * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<string>}
+     * @type {Array<SnapshotEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    snapshot?: Array<PatchedCommandAlertSettingsRequestSnapshotEnum>;
+    snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<string>}
+     * @type {Array<StopMonitoringEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_monitoring?: Array<PatchedCommandAlertSettingsRequestStopMonitoringEnum>;
+    stop_monitoring?: Array<StopMonitoringEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartMonitoringEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_monitoring?: Array<PatchedCommandAlertSettingsRequestStartMonitoringEnum>;
+    start_monitoring?: Array<StartMonitoringEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<string>}
+     * @type {Array<StopPrintEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_print?: Array<PatchedCommandAlertSettingsRequestStopPrintEnum>;
+    stop_print?: Array<StopPrintEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<string>}
+     * @type {Array<StartPrintEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_print?: Array<PatchedCommandAlertSettingsRequestStartPrintEnum>;
+    start_print?: Array<StartPrintEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
-     * @type {Array<string>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    move_nozzle?: Array<PatchedCommandAlertSettingsRequestMoveNozzleEnum>;
+    move_nozzle?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<string>}
+     * @type {Array<PausePrintEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    pause_print?: Array<PatchedCommandAlertSettingsRequestPausePrintEnum>;
+    pause_print?: Array<PausePrintEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<string>}
+     * @type {Array<ResumePrintEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    resume_print?: Array<PatchedCommandAlertSettingsRequestResumePrintEnum>;
+    resume_print?: Array<ResumePrintEnum>;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestSnapshotEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestStopMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestStartMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestStopPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestStartPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestMoveNozzleEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestPausePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedCommandAlertSettingsRequestResumePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
 /**
  * 
  * @export
@@ -2525,10 +2250,10 @@ export interface PatchedDefectAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedDefectAlertSettingsRequest
      */
-    alert_methods?: Array<PatchedDefectAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -2536,16 +2261,6 @@ export interface PatchedDefectAlertSettingsRequest {
      */
     enabled?: boolean;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedDefectAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -2572,10 +2287,10 @@ export interface PatchedDeviceCalibrationRequest {
     coordinates?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<number>}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    mask?: { [key: string]: any; } | null;
+    mask?: Array<number>;
 }
 /**
  * 
@@ -2975,10 +2690,10 @@ export interface PatchedProgressAlertSettingsRequest {
     alert_type?: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedProgressAlertSettingsRequest
      */
-    alert_methods?: Array<PatchedProgressAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -2992,16 +2707,6 @@ export interface PatchedProgressAlertSettingsRequest {
      */
     on_progress_percent?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum PatchedProgressAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -3144,6 +2849,17 @@ export interface PatchedUserRequest {
      */
     email?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PausePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
@@ -3728,10 +3444,10 @@ export interface ProgressAlertSettings {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof ProgressAlertSettings
      */
-    alert_methods?: Array<ProgressAlertSettingsAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -3757,16 +3473,6 @@ export interface ProgressAlertSettings {
      */
     user?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ProgressAlertSettingsAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -3781,10 +3487,10 @@ export interface ProgressAlertSettingsRequest {
     alert_type: AlertTypeEnum;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof ProgressAlertSettingsRequest
      */
-    alert_methods?: Array<ProgressAlertSettingsRequestAlertMethodsEnum>;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * Enable or disable this alert channel
      * @type {boolean}
@@ -3798,16 +3504,6 @@ export interface ProgressAlertSettingsRequest {
      */
     on_progress_percent?: number;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum ProgressAlertSettingsRequestAlertMethodsEnum {
-    Ui = 'UI',
-    Email = 'EMAIL'
-}
-
 /**
  * 
  * @export
@@ -4181,6 +3877,72 @@ export interface RemoteControlSnapshotRequest {
      */
     command: number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum ResumePrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum SnapshotEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum StartMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum StartPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum StopMonitoringEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum StopPrintEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
@@ -8497,13 +8259,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {string} [name] name
+         * @param {string} [name] 
          * @param {number} [page] A page number within the paginated result set.
-         * @param {string} [user] user
+         * @param {number} [user] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printerProfilesList: async (name?: string, page?: number, user?: string, options: any = {}): Promise<RequestArgs> => {
+        printerProfilesList: async (name?: string, page?: number, user?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/printer-profiles/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -9481,13 +9243,13 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} [name] name
+         * @param {string} [name] 
          * @param {number} [page] A page number within the paginated result set.
-         * @param {string} [user] user
+         * @param {number} [user] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printerProfilesList(name?: string, page?: number, user?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
+        async printerProfilesList(name?: string, page?: number, user?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesList(name, page, user, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -9859,13 +9621,13 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {string} [name] name
+         * @param {string} [name] 
          * @param {number} [page] A page number within the paginated result set.
-         * @param {string} [user] user
+         * @param {number} [user] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printerProfilesList(name?: string, page?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
+        printerProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
             return RemoteControlApiFp(configuration).printerProfilesList(name, page, user, options).then((request) => request(axios, basePath));
         },
         /**
@@ -10193,14 +9955,14 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {string} [name] name
+     * @param {string} [name] 
      * @param {number} [page] A page number within the paginated result set.
-     * @param {string} [user] user
+     * @param {number} [user] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printerProfilesList(name?: string, page?: number, user?: string, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
+    printerProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
 
     /**
      * 
@@ -10571,14 +10333,14 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {string} [name] name
+     * @param {string} [name] 
      * @param {number} [page] A page number within the paginated result set.
-     * @param {string} [user] user
+     * @param {number} [user] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printerProfilesList(name?: string, page?: number, user?: string, options?: any) {
+    public printerProfilesList(name?: string, page?: number, user?: number, options?: any) {
         return RemoteControlApiFp(this.configuration).printerProfilesList(name, page, user, options).then((request) => request(this.axios, this.basePath));
     }
 

@@ -49,9 +49,9 @@ class TestPaginatedDeviceCalibrationList(unittest.TestCase):
                         coordinates = {
                             'key' : null
                             }, 
-                        mask = {
-                            'key' : null
-                            }, 
+                        mask = [
+                            1.337
+                            ], 
                         url = '', )
                     ]
             )

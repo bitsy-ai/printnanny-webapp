@@ -39,7 +39,7 @@ class DeviceCalibration(object):
         'octoprint_device': 'int',
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
-        'mask': 'dict(str, object)',
+        'mask': 'list[float]',
         'url': 'str'
     }
 
@@ -223,7 +223,7 @@ class DeviceCalibration(object):
 
 
         :return: The mask of this DeviceCalibration.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: list[float]
         """
         return self._mask
 
@@ -233,8 +233,10 @@ class DeviceCalibration(object):
 
 
         :param mask: The mask of this DeviceCalibration.  # noqa: E501
-        :type mask: dict(str, object)
+        :type mask: list[float]
         """
+        if self.local_vars_configuration.client_side_validation and mask is None:  # noqa: E501
+            raise ValueError("Invalid value for `mask`, must not be `None`")  # noqa: E501
 
         self._mask = mask
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
-**alert_methods** | **list[str]** |  | [optional] 
+**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
 **enabled** | **bool** | Enable or disable this alert channel | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 

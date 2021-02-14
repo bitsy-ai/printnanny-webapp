@@ -36,7 +36,7 @@ class PatchedDeviceCalibrationRequest(object):
         'octoprint_device': 'int',
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
-        'mask': 'dict(str, object)'
+        'mask': 'list[float]'
     }
 
     attribute_map = {
@@ -62,7 +62,8 @@ class PatchedDeviceCalibrationRequest(object):
             self.octoprint_device = octoprint_device
         self.fpm = fpm
         self.coordinates = coordinates
-        self.mask = mask
+        if mask is not None:
+            self.mask = mask
 
     @property
     def octoprint_device(self):
@@ -139,7 +140,7 @@ class PatchedDeviceCalibrationRequest(object):
 
 
         :return: The mask of this PatchedDeviceCalibrationRequest.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: list[float]
         """
         return self._mask
 
@@ -149,7 +150,7 @@ class PatchedDeviceCalibrationRequest(object):
 
 
         :param mask: The mask of this PatchedDeviceCalibrationRequest.  # noqa: E501
-        :type mask: dict(str, object)
+        :type mask: list[float]
         """
 
         self._mask = mask

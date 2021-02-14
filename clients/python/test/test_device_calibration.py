@@ -44,14 +44,17 @@ class TestDeviceCalibration(unittest.TestCase):
                 coordinates = {
                     'key' : null
                     }, 
-                mask = {
-                    'key' : null
-                    }, 
+                mask = [
+                    1.337
+                    ], 
                 url = ''
             )
         else :
             return DeviceCalibration(
                 octoprint_device = 56,
+                mask = [
+                    1.337
+                    ],
         )
 
     def testDeviceCalibration(self):

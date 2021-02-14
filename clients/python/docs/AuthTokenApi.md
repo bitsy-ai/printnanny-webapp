@@ -38,7 +38,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -57,7 +57,7 @@ password = 'password_example' # str |
         print("Exception when calling AuthTokenApi->auth_token_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -81,7 +81,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )

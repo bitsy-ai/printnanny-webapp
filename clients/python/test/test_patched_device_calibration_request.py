@@ -41,9 +41,9 @@ class TestPatchedDeviceCalibrationRequest(unittest.TestCase):
                 coordinates = {
                     'key' : null
                     }, 
-                mask = {
-                    'key' : null
-                    }
+                mask = [
+                    1.337
+                    ]
             )
         else :
             return PatchedDeviceCalibrationRequest(

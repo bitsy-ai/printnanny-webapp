@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **version** | **str** |  | [optional] [readonly] 
 **labels** | **str** |  | [optional] [readonly] 
 **artifacts** | **str** |  | [optional] [readonly] 
-**artifact_types** | **list[str]** |  | [optional] [readonly] 
+**artifact_types** | [**list[ArtifactTypesEnum]**](ArtifactTypesEnum.md) |  | [optional] [readonly] 
 **metadata** | **dict(str, object)** |  | [optional] [readonly] 
 **url** | **str** |  | [optional] [readonly] 
 

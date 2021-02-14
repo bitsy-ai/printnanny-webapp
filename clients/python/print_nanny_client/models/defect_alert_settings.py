@@ -37,7 +37,7 @@ class DefectAlertSettings(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'alert_type': 'AlertTypeEnum',
-        'alert_methods': 'list[str]',
+        'alert_methods': 'list[AlertMethodsEnum]',
         'enabled': 'bool',
         'polymorphic_ctype': 'int',
         'user': 'int'
@@ -178,7 +178,7 @@ class DefectAlertSettings(object):
 
 
         :return: The alert_methods of this DefectAlertSettings.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[AlertMethodsEnum]
         """
         return self._alert_methods
 
@@ -188,16 +188,8 @@ class DefectAlertSettings(object):
 
 
         :param alert_methods: The alert_methods of this DefectAlertSettings.  # noqa: E501
-        :type alert_methods: list[str]
+        :type alert_methods: list[AlertMethodsEnum]
         """
-        allowed_values = ["UI", "EMAIL"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(alert_methods).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `alert_methods` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(alert_methods) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._alert_methods = alert_methods
 

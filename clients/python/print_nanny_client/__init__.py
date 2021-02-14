@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev18"
+__version__ = "0.5.0-dev19"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -40,6 +40,7 @@ from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_method import AlertMethod
 from print_nanny_client.models.alert_method_enum import AlertMethodEnum
+from print_nanny_client.models.alert_methods_enum import AlertMethodsEnum
 from print_nanny_client.models.alert_polymorphic import AlertPolymorphic
 from print_nanny_client.models.alert_polymorphic_request import AlertPolymorphicRequest
 from print_nanny_client.models.alert_request import AlertRequest
@@ -49,6 +50,7 @@ from print_nanny_client.models.alert_settings_polymorphic_request import AlertSe
 from print_nanny_client.models.alert_settings_request import AlertSettingsRequest
 from print_nanny_client.models.alert_subtype_enum import AlertSubtypeEnum
 from print_nanny_client.models.alert_type_enum import AlertTypeEnum
+from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.auth_token import AuthToken
 from print_nanny_client.models.auth_token_request import AuthTokenRequest
 from print_nanny_client.models.command_alert_settings import CommandAlertSettings
@@ -68,6 +70,7 @@ from print_nanny_client.models.last_status_enum import LastStatusEnum
 from print_nanny_client.models.manual_video_upload_alert import ManualVideoUploadAlert
 from print_nanny_client.models.manual_video_upload_alert_request import ManualVideoUploadAlertRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
+from print_nanny_client.models.move_nozzle_enum import MoveNozzleEnum
 from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
@@ -107,6 +110,7 @@ from print_nanny_client.models.patched_remote_control_command_alert_request impo
 from print_nanny_client.models.patched_remote_control_command_request import PatchedRemoteControlCommandRequest
 from print_nanny_client.models.patched_remote_control_snapshot_request import PatchedRemoteControlSnapshotRequest
 from print_nanny_client.models.patched_user_request import PatchedUserRequest
+from print_nanny_client.models.pause_print_enum import PausePrintEnum
 from print_nanny_client.models.print_job import PrintJob
 from print_nanny_client.models.print_job_request import PrintJobRequest
 from print_nanny_client.models.printer_profile import PrinterProfile
@@ -122,6 +126,12 @@ from print_nanny_client.models.remote_control_command_request import RemoteContr
 from print_nanny_client.models.remote_control_snapshot import RemoteControlSnapshot
 from print_nanny_client.models.remote_control_snapshot_create_response import RemoteControlSnapshotCreateResponse
 from print_nanny_client.models.remote_control_snapshot_request import RemoteControlSnapshotRequest
+from print_nanny_client.models.resume_print_enum import ResumePrintEnum
+from print_nanny_client.models.snapshot_enum import SnapshotEnum
+from print_nanny_client.models.start_monitoring_enum import StartMonitoringEnum
+from print_nanny_client.models.start_print_enum import StartPrintEnum
+from print_nanny_client.models.stop_monitoring_enum import StopMonitoringEnum
+from print_nanny_client.models.stop_print_enum import StopPrintEnum
 from print_nanny_client.models.user import User
 from print_nanny_client.models.user_request import UserRequest
 

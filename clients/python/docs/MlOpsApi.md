@@ -46,7 +46,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -64,7 +64,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->device_calibration_update_or_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -88,7 +88,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -128,9 +128,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**400** |  |  -  |
 **200** |  |  -  |
-**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -165,7 +163,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -183,7 +181,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->device_calibrations_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -207,7 +205,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -282,7 +280,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -301,7 +299,7 @@ patched_device_calibration_request = print_nanny_client.PatchedDeviceCalibration
         print("Exception when calling MlOpsApi->device_calibrations_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -325,7 +323,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -402,7 +400,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -420,7 +418,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->device_calibrations_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -444,7 +442,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -519,7 +517,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -538,7 +536,7 @@ device_calibration_request = print_nanny_client.DeviceCalibrationRequest() # Dev
         print("Exception when calling MlOpsApi->device_calibrations_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -562,7 +560,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -639,7 +637,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -657,7 +655,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->experiment_device_configs_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -681,7 +679,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -756,7 +754,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -774,7 +772,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->experiment_device_configs_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -798,7 +796,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -873,7 +871,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -891,7 +889,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->model_artifacts_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -915,7 +913,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -990,7 +988,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1008,7 +1006,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling MlOpsApi->model_artifacts_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1032,7 +1030,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )

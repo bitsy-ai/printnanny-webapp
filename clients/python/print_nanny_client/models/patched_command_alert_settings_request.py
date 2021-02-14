@@ -34,16 +34,16 @@ class PatchedCommandAlertSettingsRequest(object):
     """
     openapi_types = {
         'alert_type': 'AlertTypeEnum',
-        'alert_methods': 'list[str]',
+        'alert_methods': 'list[AlertMethodsEnum]',
         'enabled': 'bool',
-        'snapshot': 'list[str]',
-        'stop_monitoring': 'list[str]',
-        'start_monitoring': 'list[str]',
-        'stop_print': 'list[str]',
-        'start_print': 'list[str]',
-        'move_nozzle': 'list[str]',
-        'pause_print': 'list[str]',
-        'resume_print': 'list[str]'
+        'snapshot': 'list[SnapshotEnum]',
+        'stop_monitoring': 'list[StopMonitoringEnum]',
+        'start_monitoring': 'list[StartMonitoringEnum]',
+        'stop_print': 'list[StopPrintEnum]',
+        'start_print': 'list[StartPrintEnum]',
+        'move_nozzle': 'list[MoveNozzleEnum]',
+        'pause_print': 'list[PausePrintEnum]',
+        'resume_print': 'list[ResumePrintEnum]'
     }
 
     attribute_map = {
@@ -129,7 +129,7 @@ class PatchedCommandAlertSettingsRequest(object):
 
 
         :return: The alert_methods of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[AlertMethodsEnum]
         """
         return self._alert_methods
 
@@ -139,16 +139,8 @@ class PatchedCommandAlertSettingsRequest(object):
 
 
         :param alert_methods: The alert_methods of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type alert_methods: list[str]
+        :type alert_methods: list[AlertMethodsEnum]
         """
-        allowed_values = ["UI", "EMAIL"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(alert_methods).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `alert_methods` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(alert_methods) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._alert_methods = alert_methods
 
@@ -182,7 +174,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on web camera <strong>Snapshot</strong> command  # noqa: E501
 
         :return: The snapshot of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[SnapshotEnum]
         """
         return self._snapshot
 
@@ -193,16 +185,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on web camera <strong>Snapshot</strong> command  # noqa: E501
 
         :param snapshot: The snapshot of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type snapshot: list[str]
+        :type snapshot: list[SnapshotEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(snapshot).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `snapshot` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(snapshot) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._snapshot = snapshot
 
@@ -213,7 +197,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
         :return: The stop_monitoring of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[StopMonitoringEnum]
         """
         return self._stop_monitoring
 
@@ -224,16 +208,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
         :param stop_monitoring: The stop_monitoring of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type stop_monitoring: list[str]
+        :type stop_monitoring: list[StopMonitoringEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(stop_monitoring).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `stop_monitoring` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(stop_monitoring) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._stop_monitoring = stop_monitoring
 
@@ -244,7 +220,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
         :return: The start_monitoring of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[StartMonitoringEnum]
         """
         return self._start_monitoring
 
@@ -255,16 +231,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
         :param start_monitoring: The start_monitoring of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type start_monitoring: list[str]
+        :type start_monitoring: list[StartMonitoringEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(start_monitoring).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `start_monitoring` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(start_monitoring) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._start_monitoring = start_monitoring
 
@@ -275,7 +243,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
 
         :return: The stop_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[StopPrintEnum]
         """
         return self._stop_print
 
@@ -286,16 +254,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
 
         :param stop_print: The stop_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type stop_print: list[str]
+        :type stop_print: list[StopPrintEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(stop_print).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `stop_print` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(stop_print) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._stop_print = stop_print
 
@@ -306,7 +266,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
         :return: The start_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[StartPrintEnum]
         """
         return self._start_print
 
@@ -317,16 +277,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
         :param start_print: The start_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type start_print: list[str]
+        :type start_print: list[StartPrintEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(start_print).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `start_print` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(start_print) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._start_print = start_print
 
@@ -337,7 +289,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint  # noqa: E501
 
         :return: The move_nozzle of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._move_nozzle
 
@@ -348,16 +300,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint  # noqa: E501
 
         :param move_nozzle: The move_nozzle of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type move_nozzle: list[str]
+        :type move_nozzle: list[MoveNozzleEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(move_nozzle).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `move_nozzle` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(move_nozzle) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._move_nozzle = move_nozzle
 
@@ -368,7 +312,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
 
         :return: The pause_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[PausePrintEnum]
         """
         return self._pause_print
 
@@ -379,16 +323,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
 
         :param pause_print: The pause_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type pause_print: list[str]
+        :type pause_print: list[PausePrintEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(pause_print).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `pause_print` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(pause_print) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._pause_print = pause_print
 
@@ -399,7 +335,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
 
         :return: The resume_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[str]
+        :rtype: list[ResumePrintEnum]
         """
         return self._resume_print
 
@@ -410,16 +346,8 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
 
         :param resume_print: The resume_print of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type resume_print: list[str]
+        :type resume_print: list[ResumePrintEnum]
         """
-        allowed_values = ["RECEIVED", "FAILED", "SUCCESS"]  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                not set(resume_print).issubset(set(allowed_values))):  # noqa: E501
-            raise ValueError(
-                "Invalid values for `resume_print` [{0}], must be a subset of [{1}]"  # noqa: E501
-                .format(", ".join(map(str, set(resume_print) - set(allowed_values))),  # noqa: E501
-                        ", ".join(map(str, allowed_values)))
-            )
 
         self._resume_print = resume_print
 
