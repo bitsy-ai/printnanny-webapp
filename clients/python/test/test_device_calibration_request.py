@@ -36,7 +36,7 @@ class TestDeviceCalibrationRequest(unittest.TestCase):
         # model = print_nanny_client.models.device_calibration_request.DeviceCalibrationRequest()  # noqa: E501
         if include_optional :
             return DeviceCalibrationRequest(
-                device = 56, 
+                octoprint_device = 56, 
                 fpm = -2147483648, 
                 coordinates = {
                     'key' : null
@@ -47,7 +47,7 @@ class TestDeviceCalibrationRequest(unittest.TestCase):
             )
         else :
             return DeviceCalibrationRequest(
-                device = 56,
+                octoprint_device = 56,
         )
 
     def testDeviceCalibrationRequest(self):

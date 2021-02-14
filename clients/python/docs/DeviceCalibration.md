@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
-**device** | **int** |  | 
+**octoprint_device** | **int** |  | 
 **fpm** | **int** |  | [optional] 
 **coordinates** | **dict(str, object)** |  | [optional] 
 **mask** | **dict(str, object)** |  | [optional] 

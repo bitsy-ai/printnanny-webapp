@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**device** | **int** |  | 
+**octoprint_device** | **int** |  | 
 **fpm** | **int** |  | [optional] 
 **coordinates** | **dict(str, object)** |  | [optional] 
 **mask** | **dict(str, object)** |  | [optional] 

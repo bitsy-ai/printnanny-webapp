@@ -33,58 +33,58 @@ class DeviceCalibrationRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'device': 'int',
+        'octoprint_device': 'int',
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
         'mask': 'dict(str, object)'
     }
 
     attribute_map = {
-        'device': 'device',
+        'octoprint_device': 'octoprint_device',
         'fpm': 'fpm',
         'coordinates': 'coordinates',
         'mask': 'mask'
     }
 
-    def __init__(self, device=None, fpm=None, coordinates=None, mask=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, fpm=None, coordinates=None, mask=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibrationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._device = None
+        self._octoprint_device = None
         self._fpm = None
         self._coordinates = None
         self._mask = None
         self.discriminator = None
 
-        self.device = device
+        self.octoprint_device = octoprint_device
         self.fpm = fpm
         self.coordinates = coordinates
         self.mask = mask
 
     @property
-    def device(self):
-        """Gets the device of this DeviceCalibrationRequest.  # noqa: E501
+    def octoprint_device(self):
+        """Gets the octoprint_device of this DeviceCalibrationRequest.  # noqa: E501
 
 
-        :return: The device of this DeviceCalibrationRequest.  # noqa: E501
+        :return: The octoprint_device of this DeviceCalibrationRequest.  # noqa: E501
         :rtype: int
         """
-        return self._device
+        return self._octoprint_device
 
-    @device.setter
-    def device(self, device):
-        """Sets the device of this DeviceCalibrationRequest.
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this DeviceCalibrationRequest.
 
 
-        :param device: The device of this DeviceCalibrationRequest.  # noqa: E501
-        :type device: int
+        :param octoprint_device: The octoprint_device of this DeviceCalibrationRequest.  # noqa: E501
+        :type octoprint_device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_device is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_device`, must not be `None`")  # noqa: E501
 
-        self._device = device
+        self._octoprint_device = octoprint_device
 
     @property
     def fpm(self):

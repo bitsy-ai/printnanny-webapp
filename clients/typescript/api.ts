@@ -873,7 +873,7 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    device: number;
+    octoprint_device: number;
     /**
      * 
      * @type {number}
@@ -910,7 +910,7 @@ export interface DeviceCalibrationRequest {
      * @type {number}
      * @memberof DeviceCalibrationRequest
      */
-    device: number;
+    octoprint_device: number;
     /**
      * 
      * @type {number}
@@ -2557,7 +2557,7 @@ export interface PatchedDeviceCalibrationRequest {
      * @type {number}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    device?: number;
+    octoprint_device?: number;
     /**
      * 
      * @type {number}

@@ -1,12 +1,20 @@
 from rest_framework import serializers
 from django.apps import apps
+from drf_spectacular.utils import extend_schema_field
 
 DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
 
 
+@extend_schema_field(field={'type': 'array', 'items': {'type': 'number'}})
+class JSONArrayField(serializers.JSONField):
+    pass
+
 class DeviceCalibrationSerializer(serializers.ModelSerializer):
+
+    mask = JSONArrayField()
+
     class Meta:
         model = DeviceCalibration
         fields = [field.name for field in DeviceCalibration._meta.fields] + [

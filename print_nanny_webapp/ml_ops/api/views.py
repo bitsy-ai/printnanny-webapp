@@ -18,7 +18,9 @@ from .serializers import (
 )
 
 
-@extend_schema(tags=["ml-ops"])
+@extend_schema(
+    tags=["ml-ops"]
+)
 class DeviceCalibrationViewSet(
     UpdateModelMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
 ):
@@ -28,15 +30,10 @@ class DeviceCalibrationViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return ExperimentDeviceConfig.objects.filter(device__user=user).all()
+        return DeviceCalibration.objects.filter(octoprint_device__user=user).all()
 
     @extend_schema(
-        operation_id="device_calibration_update_or_create",
-        responses={
-            400: DeviceCalibrationSerializer,
-            200: DeviceCalibrationSerializer,
-            201: DeviceCalibrationSerializer,
-        },
+        operation_id="device_calibration_update_or_create"
     )
     @action(methods=["post"], detail=False, url_path="update-or-create")
     def update_or_create(self, request):
@@ -46,7 +43,7 @@ class DeviceCalibrationViewSet(
             instance, created = serializer.update_or_create(serializer.validated_data)
             response_serializer = self.get_serializer(instance)
             if not created:
-                return Response(response_serializer.data, status=status.HTTP_200_OK)
+                return Response(response_serializer.data, status=status.HTTP_202_ACCEPTED)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

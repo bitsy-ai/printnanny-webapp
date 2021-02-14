@@ -44,7 +44,7 @@ class TestPaginatedDeviceCalibrationList(unittest.TestCase):
                         id = 56, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        device = 56, 
+                        octoprint_device = 56, 
                         fpm = -2147483648, 
                         coordinates = {
                             'key' : null
