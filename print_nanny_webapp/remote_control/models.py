@@ -97,6 +97,10 @@ class OctoPrintDevice(models.Model):
         False: "text-secondary",
     }
 
+    class MonitoringMode(models.TextChoices):
+        ACTIVE_LEARNING = "active_learning", "Active Learning"
+        LITE = "lite", "Lite"
+
     @property
     def active_config(self):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
@@ -121,7 +125,7 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
+    
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
@@ -142,7 +146,9 @@ class OctoPrintDevice(models.Model):
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
+
     monitoring_active = models.BooleanField(default=False)
+    monitoring_mode = models.CharField(max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE)
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
