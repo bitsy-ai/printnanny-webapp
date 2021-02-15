@@ -43,6 +43,7 @@ docs/ManualVideoUploadAlert.md
 docs/ManualVideoUploadAlertRequest.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
+docs/MonitoringModeEnum.md
 docs/MoveNozzleEnum.md
 docs/Nested.md
 docs/OctoPrintDevice.md
@@ -162,6 +163,7 @@ print_nanny_client/models/last_status_enum.py
 print_nanny_client/models/manual_video_upload_alert.py
 print_nanny_client/models/manual_video_upload_alert_request.py
 print_nanny_client/models/model_artifact.py
+print_nanny_client/models/monitoring_mode_enum.py
 print_nanny_client/models/move_nozzle_enum.py
 print_nanny_client/models/nested.py
 print_nanny_client/models/octo_print_device.py
@@ -271,6 +273,7 @@ test/test_manual_video_upload_alert.py
 test/test_manual_video_upload_alert_request.py
 test/test_ml_ops_api.py
 test/test_model_artifact.py
+test/test_monitoring_mode_enum.py
 test/test_move_nozzle_enum.py
 test/test_nested.py
 test/test_octo_print_device.py
