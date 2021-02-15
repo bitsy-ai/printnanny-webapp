@@ -48,7 +48,7 @@ class VideoConsumer(WebsocketConsumer):
         self.send(message["data"])
 
 
-class ObjectDetectEventConsumer(WebsocketConsumer):
+class MonitoringFrameConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
@@ -69,10 +69,9 @@ class ObjectDetectEventConsumer(WebsocketConsumer):
         if data.get("event_type") == "ping":
             return self.send(text_data="pong")
 
-        elif data.get("event_type") == "annotated_image":
+        elif data.get("event_type") == "monitoring_frame":
 
-            annotated_image = base64.b64decode(data["annotated_image"])
             async_to_sync(self.channel_layer.group_send)(
                 f"video_{self.device_id}",
-                {"type": "video.frame", "data": data["annotated_image"]},
+                {"type": "video.frame", **data},
             )
