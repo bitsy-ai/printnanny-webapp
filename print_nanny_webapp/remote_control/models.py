@@ -315,6 +315,7 @@ class PrintJob(models.Model):
 
 
 class RemoteControlCommandManager(models.Manager):
+
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
 
@@ -358,6 +359,7 @@ public_storage = PublicGoogleCloudStorage()
 
 
 class RemoteControlSnapshot(models.Model):
+
     created_dt = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage
@@ -370,6 +372,9 @@ class RemoteControlSnapshot(models.Model):
 
 
 class RemoteControlCommand(models.Model):
+
+    PLUGIN_EVENT_PREFIX = 'octoprint_nanny_'
+
     objects = RemoteControlCommandManager()
 
     class CommandChoices(models.TextChoices):
