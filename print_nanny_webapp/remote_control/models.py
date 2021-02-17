@@ -372,8 +372,6 @@ class RemoteControlSnapshot(models.Model):
 class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
-    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_rc"
-
     class CommandChoices(models.TextChoices):
         MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
         MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
@@ -388,12 +386,6 @@ class RemoteControlCommand(models.Model):
     def last_snapshot(self):
         last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
-
-    @classmethod
-    def to_octoprint_events(cls):
-        return [
-            cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES
-        ]
 
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 

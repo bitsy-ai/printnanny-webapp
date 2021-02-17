@@ -2,13 +2,14 @@ import json
 import logging
 import base64
 import hashlib
-from channels.generic.websocket import WebsocketConsumer, SyncConsumer
+from channels.generic.websocket import WebsocketConsumer, SyncConsumer, JsonWebsocketConsumer
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from asgiref.sync import async_to_sync
 from django.core.files.base import ContentFile
 
+from print_nanny_webapp.utils.constants import PluginEvents
 from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_publisher_connected_metric,
     annotated_ws_consumer_connected_metric,
@@ -22,7 +23,7 @@ ObjectDetectEventImage = apps.get_model("client_events", "ObjectDetectEventImage
 User = get_user_model()
 
 
-class VideoConsumer(WebsocketConsumer):
+class MonitoringFramePublisher(JsonWebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
@@ -45,10 +46,10 @@ class VideoConsumer(WebsocketConsumer):
         annotated_ws_consumer_connected_metric.dec()
 
     def video_frame(self, message):
-        self.send(message["data"])
+        self.send_json(message)
 
 
-class MonitoringFrameConsumer(WebsocketConsumer):
+class MonitoringFrameReceiver(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
@@ -69,8 +70,7 @@ class MonitoringFrameConsumer(WebsocketConsumer):
         if data.get("event_type") == "ping":
             return self.send(text_data="pong")
 
-        elif data.get("event_type") == "monitoring_frame":
-
+        elif data.get("event_type") == PluginEvents.MONITORING_FRAME_DONE.value:
             async_to_sync(self.channel_layer.group_send)(
                 f"video_{self.device_id}",
                 {"type": "video.frame", **data},
