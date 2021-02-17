@@ -373,7 +373,7 @@ class RemoteControlSnapshot(models.Model):
 
 class RemoteControlCommand(models.Model):
 
-    PLUGIN_EVENT_PREFIX = 'octoprint_nanny_'
+    PLUGIN_EVENT_PREFIX = 'plugin_octoprint_nanny_'
 
     objects = RemoteControlCommandManager()
 

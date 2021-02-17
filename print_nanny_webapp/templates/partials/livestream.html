@@ -31,8 +31,8 @@
   
     ws.onmessage = (msg) => {
       console.log(msg)
-      data = JSON.parse(msg.data)
-      video.src = "data:image/png;base64," + data.img
+
+      video.src = "data:image/jpeg;base64," + msg.data
       loading.style.display = 'none';
     }
     ws.onopen = () => {

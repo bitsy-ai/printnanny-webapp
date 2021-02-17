@@ -23,7 +23,7 @@ ObjectDetectEventImage = apps.get_model("client_events", "ObjectDetectEventImage
 User = get_user_model()
 
 
-class MonitoringFramePublisher(JsonWebsocketConsumer):
+class MonitoringFramePublisher(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
@@ -46,7 +46,7 @@ class MonitoringFramePublisher(JsonWebsocketConsumer):
         annotated_ws_consumer_connected_metric.dec()
 
     def video_frame(self, message):
-        self.send_json(message)
+        self.send(base64.b64encode(message["image"]).decode())
 
 
 class MonitoringFrameReceiver(WebsocketConsumer):
@@ -64,14 +64,8 @@ class MonitoringFrameReceiver(WebsocketConsumer):
         super().disconnect(close_code)
         annotated_ws_publisher_connected_metric.dec()
 
-    def receive(self, text_data):
-        data = json.loads(text_data)
-
-        if data.get("event_type") == "ping":
-            return self.send(text_data="pong")
-
-        elif data.get("event_type") == PluginEvents.MONITORING_FRAME_DONE.value:
-            async_to_sync(self.channel_layer.group_send)(
-                f"video_{self.device_id}",
-                {"type": "video.frame", **data},
-            )
+    def receive(self, bytes_data):
+        async_to_sync(self.channel_layer.group_send)(
+            f"video_{self.device_id}",
+            {"type": "video.frame", "image": bytes_data},
+        )
