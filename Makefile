@@ -64,7 +64,16 @@ python-client: clean-python-client
 		-g python-legacy \
 		-o /local/clients/python \
 		-c /local/clients/python.yaml \
-	
+
+messages-python-client: clean-python-client
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+		-i http://localhost:8000/api/schema --recommend
+
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+		-i http://localhost:8000/api/schema \
+		-g custom-python-legacy \
+		-o /local/clients/python \
+		-c /local/clients/python.yaml \
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
