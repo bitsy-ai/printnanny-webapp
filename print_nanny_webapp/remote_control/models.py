@@ -97,6 +97,10 @@ class OctoPrintDevice(models.Model):
         False: "text-secondary",
     }
 
+    class MonitoringMode(models.TextChoices):
+        ACTIVE_LEARNING = "active_learning", "Active Learning"
+        LITE = "lite", "Lite"
+
     @property
     def active_config(self):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
@@ -121,7 +125,7 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
+    
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
@@ -142,7 +146,9 @@ class OctoPrintDevice(models.Model):
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
+
     monitoring_active = models.BooleanField(default=False)
+    monitoring_mode = models.CharField(max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE)
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
@@ -309,6 +315,7 @@ class PrintJob(models.Model):
 
 
 class RemoteControlCommandManager(models.Manager):
+
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
 
@@ -352,6 +359,7 @@ public_storage = PublicGoogleCloudStorage()
 
 
 class RemoteControlSnapshot(models.Model):
+
     created_dt = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage
@@ -364,9 +372,10 @@ class RemoteControlSnapshot(models.Model):
 
 
 class RemoteControlCommand(models.Model):
-    objects = RemoteControlCommandManager()
 
-    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_rc"
+    PLUGIN_EVENT_PREFIX = 'plugin_octoprint_nanny_'
+
+    objects = RemoteControlCommandManager()
 
     class CommandChoices(models.TextChoices):
         MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
@@ -382,12 +391,6 @@ class RemoteControlCommand(models.Model):
     def last_snapshot(self):
         last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
-
-    @classmethod
-    def to_octoprint_events(cls):
-        return [
-            cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES
-        ]
 
     COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
 

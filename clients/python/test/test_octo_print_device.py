@@ -62,6 +62,7 @@ class TestOctoPrintDevice(unittest.TestCase):
                 pip_version = '', 
                 virtualenv = '', 
                 monitoring_active = True, 
+                monitoring_mode = 'active_learning', 
                 octoprint_version = '', 
                 plugin_version = '', 
                 print_nanny_client_version = '', 

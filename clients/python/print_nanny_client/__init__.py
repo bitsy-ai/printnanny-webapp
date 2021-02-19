@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev19"
+__version__ = "0.5.0-dev20"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -70,6 +70,7 @@ from print_nanny_client.models.last_status_enum import LastStatusEnum
 from print_nanny_client.models.manual_video_upload_alert import ManualVideoUploadAlert
 from print_nanny_client.models.manual_video_upload_alert_request import ManualVideoUploadAlertRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
+from print_nanny_client.models.monitoring_mode_enum import MonitoringModeEnum
 from print_nanny_client.models.move_nozzle_enum import MoveNozzleEnum
 from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice

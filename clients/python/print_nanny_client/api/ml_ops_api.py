@@ -153,7 +153,9 @@ class MlOpsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
+            400: "DeviceCalibration",
             200: "DeviceCalibration",
+            201: "DeviceCalibration",
         }
 
         return self.api_client.call_api(
@@ -282,7 +284,9 @@ class MlOpsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
+            400: "PaginatedDeviceCalibrationList",
             200: "PaginatedDeviceCalibrationList",
+            201: "PaginatedDeviceCalibrationList",
         }
 
         return self.api_client.call_api(
@@ -426,7 +430,9 @@ class MlOpsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
+            400: "DeviceCalibration",
             200: "DeviceCalibration",
+            201: "DeviceCalibration",
         }
 
         return self.api_client.call_api(
@@ -559,7 +565,9 @@ class MlOpsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
+            400: "DeviceCalibration",
             200: "DeviceCalibration",
+            201: "DeviceCalibration",
         }
 
         return self.api_client.call_api(
@@ -707,7 +715,9 @@ class MlOpsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
+            400: "DeviceCalibration",
             200: "DeviceCalibration",
+            201: "DeviceCalibration",
         }
 
         return self.api_client.call_api(

@@ -141,7 +141,7 @@ PrintJobEventCodes = [x.value for x in PrintJobEventTypeChoices.__members__.valu
 TelemetryEventCodes = (
     OctoPrintEventCodes
     + PrintJobEventCodes
-    + RemoteControlCommand.to_octoprint_events()
+    # + RemoteControlCommand.to_octoprint_events()
 )
 
 

@@ -55,6 +55,7 @@ class OctoPrintDeviceKey(object):
         'pip_version': 'str',
         'virtualenv': 'str',
         'monitoring_active': 'bool',
+        'monitoring_mode': 'MonitoringModeEnum',
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
@@ -89,6 +90,7 @@ class OctoPrintDeviceKey(object):
         'pip_version': 'pip_version',
         'virtualenv': 'virtualenv',
         'monitoring_active': 'monitoring_active',
+        'monitoring_mode': 'monitoring_mode',
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
@@ -100,7 +102,7 @@ class OctoPrintDeviceKey(object):
         'ca_certs': 'ca_certs'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -128,6 +130,7 @@ class OctoPrintDeviceKey(object):
         self._pip_version = None
         self._virtualenv = None
         self._monitoring_active = None
+        self._monitoring_mode = None
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
@@ -171,6 +174,8 @@ class OctoPrintDeviceKey(object):
         self.virtualenv = virtualenv
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
+        if monitoring_mode is not None:
+            self.monitoring_mode = monitoring_mode
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
@@ -709,6 +714,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._monitoring_active = monitoring_active
+
+    @property
+    def monitoring_mode(self):
+        """Gets the monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: MonitoringModeEnum
+        """
+        return self._monitoring_mode
+
+    @monitoring_mode.setter
+    def monitoring_mode(self, monitoring_mode):
+        """Sets the monitoring_mode of this OctoPrintDeviceKey.
+
+
+        :param monitoring_mode: The monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
+        :type monitoring_mode: MonitoringModeEnum
+        """
+
+        self._monitoring_mode = monitoring_mode
 
     @property
     def octoprint_version(self):

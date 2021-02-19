@@ -1042,6 +1042,16 @@ export interface ModelArtifact {
  * @export
  * @enum {string}
  */
+export enum MonitoringModeEnum {
+    ActiveLearning = 'active_learning',
+    Lite = 'lite'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 export enum MoveNozzleEnum {
     Received = 'RECEIVED',
     Failed = 'FAILED',
@@ -1243,6 +1253,12 @@ export interface OctoPrintDevice {
     monitoring_active?: boolean;
     /**
      * 
+     * @type {MonitoringModeEnum}
+     * @memberof OctoPrintDevice
+     */
+    monitoring_mode?: MonitoringModeEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -1406,6 +1422,12 @@ export interface OctoPrintDeviceKey {
     monitoring_active?: boolean;
     /**
      * 
+     * @type {MonitoringModeEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    monitoring_mode?: MonitoringModeEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
@@ -1543,6 +1565,12 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     monitoring_active?: boolean;
+    /**
+     * 
+     * @type {MonitoringModeEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}
@@ -2426,6 +2454,12 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     monitoring_active?: boolean;
+    /**
+     * 
+     * @type {MonitoringModeEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}
