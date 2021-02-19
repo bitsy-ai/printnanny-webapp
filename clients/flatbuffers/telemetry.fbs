@@ -1,4 +1,4 @@
-namespace PrintNannyMessages.Telemetry;
+namespace PrintNannyMessage.Telemetry;
 
 enum PluginEvent:byte {
     bounding_box_predict_done = 0,
