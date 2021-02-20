@@ -35,7 +35,6 @@ struct Box {
 table Image {
     width: int16;
     height: int16;
-    bpp: int8;
     data: [byte];
 }
 

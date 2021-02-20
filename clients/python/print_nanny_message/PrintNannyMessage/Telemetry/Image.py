@@ -35,15 +35,8 @@ class Image(object):
         return 0
 
     # Image
-    def Bpp(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
-        return 0
-
-    # Image
     def Data(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Int8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
@@ -51,28 +44,27 @@ class Image(object):
 
     # Image
     def DataAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int8Flags, o)
         return 0
 
     # Image
     def DataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # Image
     def DataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
-def ImageStart(builder): builder.StartObject(4)
+def ImageStart(builder): builder.StartObject(3)
 def ImageAddWidth(builder, width): builder.PrependInt16Slot(0, width, 0)
 def ImageAddHeight(builder, height): builder.PrependInt16Slot(1, height, 0)
-def ImageAddBpp(builder, bpp): builder.PrependInt8Slot(2, bpp, 0)
-def ImageAddData(builder, data): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
+def ImageAddData(builder, data): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
 def ImageStartDataVector(builder, numElems): return builder.StartVector(1, numElems, 1)
 def ImageEnd(builder): return builder.EndObject()
 
@@ -87,7 +79,6 @@ class ImageT(object):
     def __init__(self):
         self.width = 0  # type: int
         self.height = 0  # type: int
-        self.bpp = 0  # type: int
         self.data = None  # type: List[int]
 
     @classmethod
@@ -108,7 +99,6 @@ class ImageT(object):
             return
         self.width = image.Width()
         self.height = image.Height()
-        self.bpp = image.Bpp()
         if not image.DataIsNone():
             if np is None:
                 self.data = []
@@ -130,7 +120,6 @@ class ImageT(object):
         ImageStart(builder)
         ImageAddWidth(builder, self.width)
         ImageAddHeight(builder, self.height)
-        ImageAddBpp(builder, self.bpp)
         if self.data is not None:
             ImageAddData(builder, data)
         image = ImageEnd(builder)
