@@ -60,7 +60,7 @@ clean-python-flatbuffer:
 
 
 python-flatbuffer: clean-python-flatbuffer
-	~/projects/flatbuffers/flatc --rust  --gen-object-api -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
+	~/projects/flatbuffers/flatc --rust --gen-object-api -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
 
 python-client: clean-python-client python-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \

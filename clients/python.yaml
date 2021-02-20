@@ -20,3 +20,9 @@ files:
   MANIFEST.mustache:
     templateType: SupportingFiles
     destinationFilename: MANIFEST.in
+  rust/Cargo.toml.mustache:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_message/Cargo.toml
+  rust/lib.rs.mustache:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_message/lib.rs
