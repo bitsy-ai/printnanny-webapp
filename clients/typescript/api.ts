@@ -342,46 +342,46 @@ export interface CommandAlertSettings {
     snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<StopMonitoringEnum>}
+     * @type {Array<MonitoringStopEnum>}
      * @memberof CommandAlertSettings
      */
-    stop_monitoring?: Array<StopMonitoringEnum>;
+    monitoring_stop?: Array<MonitoringStopEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<StartMonitoringEnum>}
+     * @type {Array<MonitoringStartEnum>}
      * @memberof CommandAlertSettings
      */
-    start_monitoring?: Array<StartMonitoringEnum>;
+    monitoring_start?: Array<MonitoringStartEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<StopPrintEnum>}
+     * @type {Array<PrintStartEnum>}
      * @memberof CommandAlertSettings
      */
-    stop_print?: Array<StopPrintEnum>;
+    print_start?: Array<PrintStartEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<StartPrintEnum>}
+     * @type {Array<PrintStopEnum>}
      * @memberof CommandAlertSettings
      */
-    start_print?: Array<StartPrintEnum>;
+    print_stop?: Array<PrintStopEnum>;
+    /**
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<PrintPauseEnum>}
+     * @memberof CommandAlertSettings
+     */
+    print_pause?: Array<PrintPauseEnum>;
+    /**
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<PrintResumeEnum>}
+     * @memberof CommandAlertSettings
+     */
+    print_resume?: Array<PrintResumeEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
     move_nozzle?: Array<MoveNozzleEnum>;
-    /**
-     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PausePrintEnum>}
-     * @memberof CommandAlertSettings
-     */
-    pause_print?: Array<PausePrintEnum>;
-    /**
-     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<ResumePrintEnum>}
-     * @memberof CommandAlertSettings
-     */
-    resume_print?: Array<ResumePrintEnum>;
     /**
      * 
      * @type {number}
@@ -427,46 +427,46 @@ export interface CommandAlertSettingsRequest {
     snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<StopMonitoringEnum>}
+     * @type {Array<MonitoringStopEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_monitoring?: Array<StopMonitoringEnum>;
+    monitoring_stop?: Array<MonitoringStopEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<StartMonitoringEnum>}
+     * @type {Array<MonitoringStartEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_monitoring?: Array<StartMonitoringEnum>;
+    monitoring_start?: Array<MonitoringStartEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<StopPrintEnum>}
+     * @type {Array<PrintStartEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    stop_print?: Array<StopPrintEnum>;
+    print_start?: Array<PrintStartEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<StartPrintEnum>}
+     * @type {Array<PrintStopEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    start_print?: Array<StartPrintEnum>;
+    print_stop?: Array<PrintStopEnum>;
+    /**
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<PrintPauseEnum>}
+     * @memberof CommandAlertSettingsRequest
+     */
+    print_pause?: Array<PrintPauseEnum>;
+    /**
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<PrintResumeEnum>}
+     * @memberof CommandAlertSettingsRequest
+     */
+    print_resume?: Array<PrintResumeEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
     move_nozzle?: Array<MoveNozzleEnum>;
-    /**
-     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PausePrintEnum>}
-     * @memberof CommandAlertSettingsRequest
-     */
-    pause_print?: Array<PausePrintEnum>;
-    /**
-     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<ResumePrintEnum>}
-     * @memberof CommandAlertSettingsRequest
-     */
-    resume_print?: Array<ResumePrintEnum>;
 }
 /**
  * 
@@ -1045,6 +1045,28 @@ export interface ModelArtifact {
 export enum MonitoringModeEnum {
     ActiveLearning = 'active_learning',
     Lite = 'lite'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum MonitoringStartEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum MonitoringStopEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
 }
 
 /**
@@ -2192,46 +2214,46 @@ export interface PatchedCommandAlertSettingsRequest {
     snapshot?: Array<SnapshotEnum>;
     /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<StopMonitoringEnum>}
+     * @type {Array<MonitoringStopEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_monitoring?: Array<StopMonitoringEnum>;
+    monitoring_stop?: Array<MonitoringStopEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<StartMonitoringEnum>}
+     * @type {Array<MonitoringStartEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_monitoring?: Array<StartMonitoringEnum>;
+    monitoring_start?: Array<MonitoringStartEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
-     * @type {Array<StopPrintEnum>}
+     * @type {Array<PrintStartEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    stop_print?: Array<StopPrintEnum>;
+    print_start?: Array<PrintStartEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<StartPrintEnum>}
+     * @type {Array<PrintStopEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    start_print?: Array<StartPrintEnum>;
+    print_stop?: Array<PrintStopEnum>;
+    /**
+     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
+     * @type {Array<PrintPauseEnum>}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    print_pause?: Array<PrintPauseEnum>;
+    /**
+     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
+     * @type {Array<PrintResumeEnum>}
+     * @memberof PatchedCommandAlertSettingsRequest
+     */
+    print_resume?: Array<PrintResumeEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
     move_nozzle?: Array<MoveNozzleEnum>;
-    /**
-     * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PausePrintEnum>}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    pause_print?: Array<PausePrintEnum>;
-    /**
-     * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<ResumePrintEnum>}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    resume_print?: Array<ResumePrintEnum>;
 }
 /**
  * 
@@ -2886,17 +2908,6 @@ export interface PatchedUserRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum PausePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
  * @interface PrintJob
  */
 export interface PrintJob {
@@ -3016,6 +3027,50 @@ export interface PrintJobRequest {
      */
     octoprint_device?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintPauseEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintResumeEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintStartEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintStopEnum {
+    Received = 'RECEIVED',
+    Failed = 'FAILED',
+    Success = 'SUCCESS'
+}
+
 /**
  * 
  * @export
@@ -3916,62 +3971,7 @@ export interface RemoteControlSnapshotRequest {
  * @export
  * @enum {string}
  */
-export enum ResumePrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
 export enum SnapshotEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum StartMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum StartPrintEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum StopMonitoringEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum StopPrintEnum {
     Received = 'RECEIVED',
     Failed = 'FAILED',
     Success = 'SUCCESS'
