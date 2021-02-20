@@ -44,7 +44,8 @@ def TelemetryMessageEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.BoundingBoxes
 import PrintNannyMessage.Telemetry.MessageType
-import PrintNannyMessage.Telemetry.MonitoringFrame
+import PrintNannyMessage.Telemetry.MonitoringFramePost
+import PrintNannyMessage.Telemetry.MonitoringFrameRaw
 try:
     from typing import Union
 except:
@@ -55,7 +56,7 @@ class TelemetryMessageT(object):
     # TelemetryMessageT
     def __init__(self):
         self.messageType = 0  # type: int
-        self.message = None  # type: Union[None, PrintNannyMessage.Telemetry.MonitoringFrame.MonitoringFrameT, PrintNannyMessage.Telemetry.BoundingBoxes.BoundingBoxesT]
+        self.message = None  # type: Union[None, PrintNannyMessage.Telemetry.MonitoringFrameRaw.MonitoringFrameRawT, PrintNannyMessage.Telemetry.MonitoringFramePost.MonitoringFramePostT, PrintNannyMessage.Telemetry.BoundingBoxes.BoundingBoxesT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):

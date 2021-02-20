@@ -36,7 +36,7 @@ class TestPatchedRemoteControlCommandRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_remote_control_command_request.PatchedRemoteControlCommandRequest()  # noqa: E501
         if include_optional :
             return PatchedRemoteControlCommandRequest(
-                command = 'MonitoringStop', 
+                command = 'monitoring_stop', 
                 user = 56, 
                 device = 56, 
                 received = True, 

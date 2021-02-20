@@ -3,12 +3,13 @@
 # namespace: Telemetry
 
 class PluginEvent(object):
-    bounding_box_predict_done = 0
-    monitoring_frame_done = 1
-    device_register_start = 2
-    device_register_done = 3
-    device_register_failed = 4
-    printer_profile_sync_start = 5
-    printer_profile_sync_done = 6
-    printer_profile_sync_failed = 7
+    bounding_box_predict = 0
+    monitoring_frame_raw = 1
+    monitoring_frame_post = 2
+    device_register_start = 3
+    device_register_done = 4
+    device_register_failed = 5
+    printer_profile_sync_start = 6
+    printer_profile_sync_done = 7
+    printer_profile_sync_failed = 9
 

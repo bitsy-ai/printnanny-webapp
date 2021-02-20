@@ -4,17 +4,21 @@
 
 class MessageType(object):
     NONE = 0
-    MonitoringFrame = 1
-    BoundingBoxes = 2
+    MonitoringFrameRaw = 1
+    MonitoringFramePost = 2
+    BoundingBoxes = 3
 
 
 def MessageTypeCreator(unionType, table):
     from flatbuffers.table import Table
     if not isinstance(table, Table):
         return None
-    if unionType == MessageType().MonitoringFrame:
-        import PrintNannyMessage.Telemetry.MonitoringFrame
-        return PrintNannyMessage.Telemetry.MonitoringFrame.MonitoringFrameT.InitFromBuf(table.Bytes, table.Pos)
+    if unionType == MessageType().MonitoringFrameRaw:
+        import PrintNannyMessage.Telemetry.MonitoringFrameRaw
+        return PrintNannyMessage.Telemetry.MonitoringFrameRaw.MonitoringFrameRawT.InitFromBuf(table.Bytes, table.Pos)
+    if unionType == MessageType().MonitoringFramePost:
+        import PrintNannyMessage.Telemetry.MonitoringFramePost
+        return PrintNannyMessage.Telemetry.MonitoringFramePost.MonitoringFramePostT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == MessageType().BoundingBoxes:
         import PrintNannyMessage.Telemetry.BoundingBoxes
         return PrintNannyMessage.Telemetry.BoundingBoxes.BoundingBoxesT.InitFromBuf(table.Bytes, table.Pos)
