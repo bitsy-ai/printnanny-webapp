@@ -378,14 +378,14 @@ class RemoteControlCommand(models.Model):
     objects = RemoteControlCommandManager()
 
     class CommandChoices(models.TextChoices):
-        MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
-        MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
-        SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
-        PRINT_START = "PrintStart", "Start Print"
-        MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
-        PRINT_STOP = "PrintStop", "Stop Print"
-        PRINT_PAUSE = "PrintPause", "Pause Print"
-        PRINT_RESUME = "PrintResume", "Resume Print"
+        MONITORING_STOP = "monitoring_stop", "Stop Print Nanny Monitoring"
+        MONITORING_START = "monitoring_start", "Start Print Nanny Monitoring"
+        SNAPSHOT = "snapshot", "Capture a webcam snapshot"
+        PRINT_START = "print_start", "Start Print"
+        PRINT_STOP = "print_stop", "Stop Print"
+        PRINT_PAUSE = "print_pause", "Pause Print"
+        PRINT_RESUME = "print_resume", "Resume Print"
+        MOVE_NOZZLE = "move_nozzle", "Move Nozzle"
 
     @property
     def last_snapshot(self):
