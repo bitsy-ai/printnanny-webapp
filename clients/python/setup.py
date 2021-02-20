@@ -21,7 +21,7 @@ VERSION = "0.5.0-dev20"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil", "fastavro>=1.2.3"]
+REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil"]
 REQUIRES.append("aiohttp >= 3.7.0")
 setup(
     name=NAME,

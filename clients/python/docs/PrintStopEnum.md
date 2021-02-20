@@ -1,4 +1,4 @@
-# StopPrintEnum
+# PrintStopEnum
 
 ## Properties
 Name | Type | Description | Notes

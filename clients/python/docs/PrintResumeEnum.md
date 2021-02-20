@@ -1,4 +1,4 @@
-# PausePrintEnum
+# PrintResumeEnum
 
 ## Properties
 Name | Type | Description | Notes

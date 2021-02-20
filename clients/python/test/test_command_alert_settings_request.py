@@ -44,25 +44,25 @@ class TestCommandAlertSettingsRequest(unittest.TestCase):
                 snapshot = [
                     'RECEIVED'
                     ], 
-                stop_monitoring = [
+                monitoring_stop = [
                     'RECEIVED'
                     ], 
-                start_monitoring = [
+                monitoring_start = [
                     'RECEIVED'
                     ], 
-                stop_print = [
+                print_start = [
                     'RECEIVED'
                     ], 
-                start_print = [
+                print_stop = [
+                    'RECEIVED'
+                    ], 
+                print_pause = [
+                    'RECEIVED'
+                    ], 
+                print_resume = [
                     'RECEIVED'
                     ], 
                 move_nozzle = [
-                    'RECEIVED'
-                    ], 
-                pause_print = [
-                    'RECEIVED'
-                    ], 
-                resume_print = [
                     'RECEIVED'
                     ]
             )

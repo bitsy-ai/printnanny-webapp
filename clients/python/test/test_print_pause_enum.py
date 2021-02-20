@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.stop_print_enum import StopPrintEnum  # noqa: E501
+from print_nanny_client.models.print_pause_enum import PrintPauseEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestStopPrintEnum(unittest.TestCase):
-    """StopPrintEnum unit test stubs"""
+class TestPrintPauseEnum(unittest.TestCase):
+    """PrintPauseEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestStopPrintEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test StopPrintEnum
+        """Test PrintPauseEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.stop_print_enum.StopPrintEnum()  # noqa: E501
+        # model = print_nanny_client.models.print_pause_enum.PrintPauseEnum()  # noqa: E501
         if include_optional :
-            return StopPrintEnum(
+            return PrintPauseEnum(
             )
         else :
-            return StopPrintEnum(
+            return PrintPauseEnum(
         )
 
-    def testStopPrintEnum(self):
-        """Test StopPrintEnum"""
+    def testPrintPauseEnum(self):
+        """Test PrintPauseEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

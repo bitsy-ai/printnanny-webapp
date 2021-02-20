@@ -1,4 +1,4 @@
-# StopMonitoringEnum
+# PrintPauseEnum
 
 ## Properties
 Name | Type | Description | Notes

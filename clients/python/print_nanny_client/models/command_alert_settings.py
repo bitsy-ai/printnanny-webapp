@@ -40,13 +40,13 @@ class CommandAlertSettings(object):
         'alert_methods': 'list[AlertMethodsEnum]',
         'enabled': 'bool',
         'snapshot': 'list[SnapshotEnum]',
-        'stop_monitoring': 'list[StopMonitoringEnum]',
-        'start_monitoring': 'list[StartMonitoringEnum]',
-        'stop_print': 'list[StopPrintEnum]',
-        'start_print': 'list[StartPrintEnum]',
+        'monitoring_stop': 'list[MonitoringStopEnum]',
+        'monitoring_start': 'list[MonitoringStartEnum]',
+        'print_start': 'list[PrintStartEnum]',
+        'print_stop': 'list[PrintStopEnum]',
+        'print_pause': 'list[PrintPauseEnum]',
+        'print_resume': 'list[PrintResumeEnum]',
         'move_nozzle': 'list[MoveNozzleEnum]',
-        'pause_print': 'list[PausePrintEnum]',
-        'resume_print': 'list[ResumePrintEnum]',
         'polymorphic_ctype': 'int',
         'user': 'int'
     }
@@ -59,18 +59,18 @@ class CommandAlertSettings(object):
         'alert_methods': 'alert_methods',
         'enabled': 'enabled',
         'snapshot': 'snapshot',
-        'stop_monitoring': 'stop_monitoring',
-        'start_monitoring': 'start_monitoring',
-        'stop_print': 'stop_print',
-        'start_print': 'start_print',
+        'monitoring_stop': 'monitoring_stop',
+        'monitoring_start': 'monitoring_start',
+        'print_start': 'print_start',
+        'print_stop': 'print_stop',
+        'print_pause': 'print_pause',
+        'print_resume': 'print_resume',
         'move_nozzle': 'move_nozzle',
-        'pause_print': 'pause_print',
-        'resume_print': 'resume_print',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, snapshot=None, stop_monitoring=None, start_monitoring=None, stop_print=None, start_print=None, move_nozzle=None, pause_print=None, resume_print=None, polymorphic_ctype=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, polymorphic_ctype=None, user=None, local_vars_configuration=None):  # noqa: E501
         """CommandAlertSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -83,13 +83,13 @@ class CommandAlertSettings(object):
         self._alert_methods = None
         self._enabled = None
         self._snapshot = None
-        self._stop_monitoring = None
-        self._start_monitoring = None
-        self._stop_print = None
-        self._start_print = None
+        self._monitoring_stop = None
+        self._monitoring_start = None
+        self._print_start = None
+        self._print_stop = None
+        self._print_pause = None
+        self._print_resume = None
         self._move_nozzle = None
-        self._pause_print = None
-        self._resume_print = None
         self._polymorphic_ctype = None
         self._user = None
         self.discriminator = None
@@ -107,20 +107,20 @@ class CommandAlertSettings(object):
             self.enabled = enabled
         if snapshot is not None:
             self.snapshot = snapshot
-        if stop_monitoring is not None:
-            self.stop_monitoring = stop_monitoring
-        if start_monitoring is not None:
-            self.start_monitoring = start_monitoring
-        if stop_print is not None:
-            self.stop_print = stop_print
-        if start_print is not None:
-            self.start_print = start_print
+        if monitoring_stop is not None:
+            self.monitoring_stop = monitoring_stop
+        if monitoring_start is not None:
+            self.monitoring_start = monitoring_start
+        if print_start is not None:
+            self.print_start = print_start
+        if print_stop is not None:
+            self.print_stop = print_stop
+        if print_pause is not None:
+            self.print_pause = print_pause
+        if print_resume is not None:
+            self.print_resume = print_resume
         if move_nozzle is not None:
             self.move_nozzle = move_nozzle
-        if pause_print is not None:
-            self.pause_print = pause_print
-        if resume_print is not None:
-            self.resume_print = resume_print
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
@@ -280,96 +280,142 @@ class CommandAlertSettings(object):
         self._snapshot = snapshot
 
     @property
-    def stop_monitoring(self):
-        """Gets the stop_monitoring of this CommandAlertSettings.  # noqa: E501
+    def monitoring_stop(self):
+        """Gets the monitoring_stop of this CommandAlertSettings.  # noqa: E501
 
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
-        :return: The stop_monitoring of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[StopMonitoringEnum]
+        :return: The monitoring_stop of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[MonitoringStopEnum]
         """
-        return self._stop_monitoring
+        return self._monitoring_stop
 
-    @stop_monitoring.setter
-    def stop_monitoring(self, stop_monitoring):
-        """Sets the stop_monitoring of this CommandAlertSettings.
+    @monitoring_stop.setter
+    def monitoring_stop(self, monitoring_stop):
+        """Sets the monitoring_stop of this CommandAlertSettings.
 
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
-        :param stop_monitoring: The stop_monitoring of this CommandAlertSettings.  # noqa: E501
-        :type stop_monitoring: list[StopMonitoringEnum]
+        :param monitoring_stop: The monitoring_stop of this CommandAlertSettings.  # noqa: E501
+        :type monitoring_stop: list[MonitoringStopEnum]
         """
 
-        self._stop_monitoring = stop_monitoring
+        self._monitoring_stop = monitoring_stop
 
     @property
-    def start_monitoring(self):
-        """Gets the start_monitoring of this CommandAlertSettings.  # noqa: E501
+    def monitoring_start(self):
+        """Gets the monitoring_start of this CommandAlertSettings.  # noqa: E501
 
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
-        :return: The start_monitoring of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[StartMonitoringEnum]
+        :return: The monitoring_start of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[MonitoringStartEnum]
         """
-        return self._start_monitoring
+        return self._monitoring_start
 
-    @start_monitoring.setter
-    def start_monitoring(self, start_monitoring):
-        """Sets the start_monitoring of this CommandAlertSettings.
+    @monitoring_start.setter
+    def monitoring_start(self, monitoring_start):
+        """Sets the monitoring_start of this CommandAlertSettings.
 
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
-        :param start_monitoring: The start_monitoring of this CommandAlertSettings.  # noqa: E501
-        :type start_monitoring: list[StartMonitoringEnum]
+        :param monitoring_start: The monitoring_start of this CommandAlertSettings.  # noqa: E501
+        :type monitoring_start: list[MonitoringStartEnum]
         """
 
-        self._start_monitoring = start_monitoring
+        self._monitoring_start = monitoring_start
 
     @property
-    def stop_print(self):
-        """Gets the stop_print of this CommandAlertSettings.  # noqa: E501
+    def print_start(self):
+        """Gets the print_start of this CommandAlertSettings.  # noqa: E501
 
         Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
 
-        :return: The stop_print of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[StopPrintEnum]
+        :return: The print_start of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[PrintStartEnum]
         """
-        return self._stop_print
+        return self._print_start
 
-    @stop_print.setter
-    def stop_print(self, stop_print):
-        """Sets the stop_print of this CommandAlertSettings.
+    @print_start.setter
+    def print_start(self, print_start):
+        """Sets the print_start of this CommandAlertSettings.
 
         Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
 
-        :param stop_print: The stop_print of this CommandAlertSettings.  # noqa: E501
-        :type stop_print: list[StopPrintEnum]
+        :param print_start: The print_start of this CommandAlertSettings.  # noqa: E501
+        :type print_start: list[PrintStartEnum]
         """
 
-        self._stop_print = stop_print
+        self._print_start = print_start
 
     @property
-    def start_print(self):
-        """Gets the start_print of this CommandAlertSettings.  # noqa: E501
+    def print_stop(self):
+        """Gets the print_stop of this CommandAlertSettings.  # noqa: E501
 
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
-        :return: The start_print of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[StartPrintEnum]
+        :return: The print_stop of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[PrintStopEnum]
         """
-        return self._start_print
+        return self._print_stop
 
-    @start_print.setter
-    def start_print(self, start_print):
-        """Sets the start_print of this CommandAlertSettings.
+    @print_stop.setter
+    def print_stop(self, print_stop):
+        """Sets the print_stop of this CommandAlertSettings.
 
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
-        :param start_print: The start_print of this CommandAlertSettings.  # noqa: E501
-        :type start_print: list[StartPrintEnum]
+        :param print_stop: The print_stop of this CommandAlertSettings.  # noqa: E501
+        :type print_stop: list[PrintStopEnum]
         """
 
-        self._start_print = start_print
+        self._print_stop = print_stop
+
+    @property
+    def print_pause(self):
+        """Gets the print_pause of this CommandAlertSettings.  # noqa: E501
+
+        Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
+
+        :return: The print_pause of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[PrintPauseEnum]
+        """
+        return self._print_pause
+
+    @print_pause.setter
+    def print_pause(self, print_pause):
+        """Sets the print_pause of this CommandAlertSettings.
+
+        Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
+
+        :param print_pause: The print_pause of this CommandAlertSettings.  # noqa: E501
+        :type print_pause: list[PrintPauseEnum]
+        """
+
+        self._print_pause = print_pause
+
+    @property
+    def print_resume(self):
+        """Gets the print_resume of this CommandAlertSettings.  # noqa: E501
+
+        Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
+
+        :return: The print_resume of this CommandAlertSettings.  # noqa: E501
+        :rtype: list[PrintResumeEnum]
+        """
+        return self._print_resume
+
+    @print_resume.setter
+    def print_resume(self, print_resume):
+        """Sets the print_resume of this CommandAlertSettings.
+
+        Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
+
+        :param print_resume: The print_resume of this CommandAlertSettings.  # noqa: E501
+        :type print_resume: list[PrintResumeEnum]
+        """
+
+        self._print_resume = print_resume
 
     @property
     def move_nozzle(self):
@@ -393,52 +439,6 @@ class CommandAlertSettings(object):
         """
 
         self._move_nozzle = move_nozzle
-
-    @property
-    def pause_print(self):
-        """Gets the pause_print of this CommandAlertSettings.  # noqa: E501
-
-        Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
-
-        :return: The pause_print of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[PausePrintEnum]
-        """
-        return self._pause_print
-
-    @pause_print.setter
-    def pause_print(self, pause_print):
-        """Sets the pause_print of this CommandAlertSettings.
-
-        Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
-
-        :param pause_print: The pause_print of this CommandAlertSettings.  # noqa: E501
-        :type pause_print: list[PausePrintEnum]
-        """
-
-        self._pause_print = pause_print
-
-    @property
-    def resume_print(self):
-        """Gets the resume_print of this CommandAlertSettings.  # noqa: E501
-
-        Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
-
-        :return: The resume_print of this CommandAlertSettings.  # noqa: E501
-        :rtype: list[ResumePrintEnum]
-        """
-        return self._resume_print
-
-    @resume_print.setter
-    def resume_print(self, resume_print):
-        """Sets the resume_print of this CommandAlertSettings.
-
-        Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
-
-        :param resume_print: The resume_print of this CommandAlertSettings.  # noqa: E501
-        :type resume_print: list[ResumePrintEnum]
-        """
-
-        self._resume_print = resume_print
 
     @property
     def polymorphic_ctype(self):
