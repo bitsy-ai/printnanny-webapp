@@ -48,12 +48,14 @@ table MonitoringFrameRaw {
 table MonitoringFramePost {
     ts: uint32;
     image: Image;
+    raw: MonitoringFrameRaw;
     event_type: PluginEvent = monitoring_frame_post;
 }
 
 table BoundingBoxes {
     ts: uint32;
-    image: Image;
+    original_image: Image;
+    post_image: Image;
     boxes: [Box];
     event_type: PluginEvent = bounding_box_predict;
 }

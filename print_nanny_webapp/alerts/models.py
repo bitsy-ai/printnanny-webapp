@@ -38,9 +38,6 @@ def _upload_to(instance, filename):
 
 class Alert(PolymorphicModel):
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -104,7 +101,7 @@ class ProgressAlertSettings(AlertSettings):
         progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
             command = RemoteControlCommand.objects.create(
-                command=RemoteControlCommand.CommandChoices.SNAPSHOT,
+                command=RemoteControlCommand.Command.SNAPSHOT,
                 device=octoprint_event.device,
                 user=octoprint_event.user,
             )

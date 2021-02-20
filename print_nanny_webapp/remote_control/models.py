@@ -17,7 +17,6 @@ from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
 
-from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.remote_control.utils import (
     update_or_create_cloudiot_device,
@@ -27,7 +26,7 @@ from print_nanny_webapp.remote_control.utils import (
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-
+# from print_nanny_webapp.client_events.models import PrintJobEvent
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -296,11 +295,11 @@ class PrintJob(models.Model):
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
 
-    last_status = models.CharField(
-        max_length=56,
-        choices=PrintJobEventTypeChoices.choices,
-        default=PrintJobEventTypeChoices.PRINT_STARTED,
-    )
+    # last_status = models.CharField(
+    #     max_length=56,
+    #     choices=PrintJobEvent.EventType.choices,
+    #     default=PrintJobEvent.EventType.PRINT_STARTED,
+    # )
     last_seen = models.DateTimeField(auto_now=True)
 
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
@@ -377,7 +376,7 @@ class RemoteControlCommand(models.Model):
 
     objects = RemoteControlCommandManager()
 
-    class CommandChoices(models.TextChoices):
+    class Command(models.TextChoices):
         MONITORING_STOP = "monitoring_stop", "Stop Print Nanny Monitoring"
         MONITORING_START = "monitoring_start", "Start Print Nanny Monitoring"
         SNAPSHOT = "snapshot", "Capture a webcam snapshot"
@@ -392,41 +391,41 @@ class RemoteControlCommand(models.Model):
         last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
 
-    COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
+    COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJobEventTypeChoices.PRINT_STARTED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_PAUSE,
-        ],
-        PrintJobEventTypeChoices.PRINT_DONE: [
-            CommandChoices.MOVE_NOZZLE,
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
-        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
-        PrintJobEventTypeChoices.PRINT_CANCELLING: [],
-        PrintJobEventTypeChoices.PRINT_PAUSED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_RESUME,
-            CommandChoices.MOVE_NOZZLE,
-        ],
-        PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
+        # PrintJobEvent.EventType.PRINT_STARTED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_PAUSE,
+        # ],
+        # PrintJobEvent.EventType.PRINT_DONE: [
+        #     Command.MOVE_NOZZLE,
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
+        # PrintJobEvent.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
+        # PrintJobEvent.EventType.PRINT_CANCELLING: [],
+        # PrintJobEvent.EventType.PRINT_PAUSED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_RESUME,
+        #     Command.MOVE_NOZZLE,
+        # ],
+        # PrintJobEvent.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
+        # "Idle": [
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.PRINT_STOP: "danger",
-        CommandChoices.PRINT_PAUSE: "warning",
-        CommandChoices.PRINT_RESUME: "info",
+        Command.PRINT_STOP: "danger",
+        Command.PRINT_PAUSE: "warning",
+        Command.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
-    command = models.CharField(max_length=255, choices=CommandChoices.choices)
+    command = models.CharField(max_length=255, choices=Command.choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     device = models.ForeignKey(
         OctoPrintDevice, on_delete=models.CASCADE, related_name="commands"

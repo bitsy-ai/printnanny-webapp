@@ -18,7 +18,6 @@ from print_nanny_webapp.utils.prometheus_metrics import (
 logger = logging.getLogger(__name__)
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
-ObjectDetectEventImage = apps.get_model("client_events", "ObjectDetectEventImage")
 
 User = get_user_model()
 
@@ -69,3 +68,4 @@ class MonitoringFrameReceiver(WebsocketConsumer):
             f"video_{self.device_id}",
             {"type": "video.frame", "image": bytes_data},
         )
+/
