@@ -66,7 +66,7 @@ python-flatbuffer: clean-messages-lib
 	~/projects/flatbuffers/flatc --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry.fbs
 
 
-python-client: clean-python-client python-flatbuffer rust-flatbuffer
+python-client: clean-python-client python-flatbuffer #rust-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
