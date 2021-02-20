@@ -247,7 +247,7 @@ print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
 print_nanny_client/rest.py
 print_nanny_message/rust/Cargo.toml
-print_nanny_message/rust/lib.rs
+print_nanny_message/rust/src/lib.rs
 requirements.txt
 setup.cfg
 setup.py
