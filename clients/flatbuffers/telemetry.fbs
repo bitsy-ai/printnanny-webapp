@@ -28,8 +28,6 @@ struct Box {
     ymax:float;
     xmin:float;
     xmax:float;
-    score:float;
-    class_index:int8;
 }
 
 table Image {
@@ -55,6 +53,9 @@ table BoundingBoxes {
     ts: uint32;
     original_image: Image;
     post_image: Image;
+    scores: [float];
+    classes: [int8];
+    num_detections: int8;
     boxes: [Box];
     event_type: PluginEvent = bounding_box_predict;
 }
