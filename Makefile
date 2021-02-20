@@ -58,11 +58,12 @@ clean-python-client: ## remove build artifacts
 clean-python-flatbuffer:
 	rm -rf clients/python/print_nanny_message
 
-python-flatbuffer: clean-python-flatbuffer
-	~/projects/flatbuffer/flatc --python clients/flatbuffers/telemetry.fbs -o clients/python/print_nanny_message
-	
 
-python-client: clean-python-client
+python-flatbuffer: clean-python-flatbuffer
+	~/projects/flatbuffers/flatc --python  -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
+	touch clients/python/print_nanny_message/__init__.py
+
+python-client: clean-python-client python-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
