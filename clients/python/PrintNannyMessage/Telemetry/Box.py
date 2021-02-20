@@ -16,17 +16,17 @@ class Box(object):
     # Box
     def Ymin(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
     # Box
-    def Ymax(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(4))
+    def Xmin(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(4))
     # Box
-    def Xmin(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(8))
+    def Ymax(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(8))
     # Box
     def Xmax(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(12))
 
-def CreateBox(builder, ymin, ymax, xmin, xmax):
+def CreateBox(builder, ymin, xmin, ymax, xmax):
     builder.Prep(4, 16)
     builder.PrependFloat32(xmax)
-    builder.PrependFloat32(xmin)
     builder.PrependFloat32(ymax)
+    builder.PrependFloat32(xmin)
     builder.PrependFloat32(ymin)
     return builder.Offset()
 
@@ -36,8 +36,8 @@ class BoxT(object):
     # BoxT
     def __init__(self):
         self.ymin = 0.0  # type: float
-        self.ymax = 0.0  # type: float
         self.xmin = 0.0  # type: float
+        self.ymax = 0.0  # type: float
         self.xmax = 0.0  # type: float
 
     @classmethod
@@ -57,10 +57,10 @@ class BoxT(object):
         if box is None:
             return
         self.ymin = box.Ymin()
-        self.ymax = box.Ymax()
         self.xmin = box.Xmin()
+        self.ymax = box.Ymax()
         self.xmax = box.Xmax()
 
     # BoxT
     def Pack(self, builder):
-        return CreateBox(builder, self.ymin, self.ymax, self.xmin, self.xmax)
+        return CreateBox(builder, self.ymin, self.xmin, self.ymax, self.xmax)
