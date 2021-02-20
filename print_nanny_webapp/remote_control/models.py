@@ -26,7 +26,7 @@ from print_nanny_webapp.remote_control.utils import (
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-# from print_nanny_webapp.client_events.models import PrintJobEvent
+# from print_nanny_webapp.client_events.models import PrintJobState
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -194,10 +194,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.event_type
@@ -206,10 +206,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_gcode_file(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.job_data_file
@@ -218,9 +218,9 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status_css_class(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
-        return PrintJobEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+        return PrintJobState.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -297,8 +297,8 @@ class PrintJob(models.Model):
 
     # last_status = models.CharField(
     #     max_length=56,
-    #     choices=PrintJobEvent.EventType.choices,
-    #     default=PrintJobEvent.EventType.PRINT_STARTED,
+    #     choices=PrintJobState.EventType.choices,
+    #     default=PrintJobState.EventType.PRINT_STARTED,
     # )
     last_seen = models.DateTimeField(auto_now=True)
 
@@ -394,24 +394,24 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     VALID_ACTIONS = {
-        # PrintJobEvent.EventType.PRINT_STARTED: [
+        # PrintJobState.EventType.PRINT_STARTED: [
         #     Command.PRINT_STOP,
         #     Command.PRINT_PAUSE,
         # ],
-        # PrintJobEvent.EventType.PRINT_DONE: [
+        # PrintJobState.EventType.PRINT_DONE: [
         #     Command.MOVE_NOZZLE,
         #     Command.MONITORING_START,
         #     Command.MONITORING_STOP,
         #     Command.SNAPSHOT,
         # ],
-        # PrintJobEvent.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
-        # PrintJobEvent.EventType.PRINT_CANCELLING: [],
-        # PrintJobEvent.EventType.PRINT_PAUSED: [
+        # PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
+        # PrintJobState.EventType.PRINT_CANCELLING: [],
+        # PrintJobState.EventType.PRINT_PAUSED: [
         #     Command.PRINT_STOP,
         #     Command.PRINT_RESUME,
         #     Command.MOVE_NOZZLE,
         # ],
-        # PrintJobEvent.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
+        # PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
         # "Idle": [
         #     Command.MONITORING_START,
         #     Command.MONITORING_STOP,

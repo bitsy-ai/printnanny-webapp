@@ -19,13 +19,13 @@
 # from django.apps import apps
 # from django.conf import settings
 
-# from .serializers import OctoPrintEventSerializer, PluginEventSerializer, PrintJobEventSerializer
+# from .serializers import OctoPrintEventSerializer, PluginEventSerializer, PrintJobStateSerializer
 # import print_nanny_webapp.client_events.api.exceptions
 
 # PrintJob = apps.get_model("remote_control", "PrintJob")
 # PluginEvent = apps.get_model("client_events", "PluginEvent")
 # OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-# PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+# PrintJobState = apps.get_model("client_events", "PrintJobState")
 # logger = logging.getLogger(__name__)
 
 # @extend_schema(tags=["events"])
@@ -113,14 +113,14 @@
 # @extend_schema(tags=["events"])
 # @extend_schema_view(
 #     create=extend_schema(
-#         responses={201:PrintJobEventSerializer, 400: PrintJobEventSerializer}
+#         responses={201:PrintJobStateSerializer, 400: PrintJobStateSerializer}
 #     )
 # )
-# class PrintJobEventViewSet(
+# class PrintJobStateViewSet(
 #     GenericViewSet, ListModelMixin, RetrieveModelMixin
 # ):
-#     serializer_class = PrintJobEventSerializer
-#     queryset = PrintJobEvent.objects.all()
+#     serializer_class = PrintJobStateSerializer
+#     queryset = PrintJobState.objects.all()
 #     lookup_field = "id"
 
 #     @extend_schema(
@@ -131,7 +131,7 @@
 #     @action(methods=["GET"], detail=False)
 #     def enum(self, *args, **kwargs):
 #         return Response(
-#             PrintJobEvent.event_codes,
+#             PrintJobState.event_codes,
 #             status.HTTP_200_OK,
 #         )
 

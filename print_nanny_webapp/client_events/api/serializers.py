@@ -2,7 +2,7 @@
 
 # from rest_framework import serializers
 
-# from print_nanny_webapp.client_events.models import OctoPrintEvent, PrintJobEvent, PluginEvent
+# from print_nanny_webapp.client_events.models import OctoPrintEvent, PrintJobState, PluginEvent
 
 
 # class OctoPrintEventSerializer(serializers.ModelSerializer):
@@ -23,10 +23,10 @@
 #         }
 #         read_only_fields = ("user",)
 
-# class PrintJobEventSerializer(serializers.ModelSerializer):
+# class PrintJobStateSerializer(serializers.ModelSerializer):
 #     class Meta:
-#         model = PrintJobEvent
-#         fields = [field.name for field in PrintJobEvent._meta.fields] + ["url"]
+#         model = PrintJobState
+#         fields = [field.name for field in PrintJobState._meta.fields] + ["url"]
 #         extra_kwargs = {
 #             "url": {"view_name": "api:print-job-event-detail", "lookup_field": "id"}
 #         }

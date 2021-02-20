@@ -22,12 +22,12 @@ application = get_wsgi_application()
 from django.apps import apps
 from print_nanny_webapp.client_events.models import (
     OctoPrintEventCodes,
-    PrintJobEventCodes,
+    PrintJobStateCodes,
     OctoPrintEventTypeChoices,
 )
 
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+PrintJobState = apps.get_model("client_events", "PrintJobState")
 ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
 
 logger = logging.getLogger(__name__)
@@ -76,9 +76,9 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error(e, exc_info=True)
             logger.error(data)
-    elif event_type in PrintJobEventCodes:
+    elif event_type in PrintJobStateCodes:
         try:
-            PrintJobEvent.objects.create(
+            PrintJobState.objects.create(
                 created_dt=data["created_dt"],
                 current_z=data["printer_data"]["currentZ"],
                 device_id=data["device_id"],

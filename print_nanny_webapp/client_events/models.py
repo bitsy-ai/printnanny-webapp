@@ -151,7 +151,7 @@ class OctoPrintEvent(ClientEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
-class PrintJobEvent(ClientEvent):
+class PrintJobState(ClientEvent):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs)
 

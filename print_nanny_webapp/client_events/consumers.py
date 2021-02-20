@@ -68,4 +68,3 @@ class MonitoringFrameReceiver(WebsocketConsumer):
             f"video_{self.device_id}",
             {"type": "video.frame", "image": bytes_data},
         )
-/
