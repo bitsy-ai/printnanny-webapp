@@ -33,19 +33,12 @@ struct Box {
 table Image {
     width: int16;
     height: int16;
-    data: [byte];
+    data: [byte] (required);
 }
 
-table MonitoringFrameRaw {
+table MonitoringFrame {
     ts: uint32;
-    image: Image;
-    event_type: PluginEvent = monitoring_frame_raw;
-}
-
-table MonitoringFramePost {
-    ts: uint32;
-    image: Image;
-    raw: MonitoringFrameRaw;
+    image: Image (required);
     event_type: PluginEvent = monitoring_frame_post;
 }
 
@@ -53,16 +46,15 @@ table BoundingBoxes {
     ts: uint32;
     original_image: Image;
     post_image: Image;
-    scores: [float];
-    classes: [int8];
+    scores: [float] (required);
+    classes: [int8] (required);
     num_detections: int8;
-    boxes: [Box];
+    boxes: [Box] (required);
     event_type: PluginEvent = bounding_box_predict;
 }
 
 union MessageType {
-    MonitoringFrameRaw,
-    MonitoringFramePost,
+    MonitoringFrame,
     BoundingBoxes
 }
 
