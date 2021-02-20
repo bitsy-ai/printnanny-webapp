@@ -39,19 +39,32 @@ class MonitoringFramePost(object):
         return None
 
     # MonitoringFramePost
-    def EventType(self):
+    def Raw(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            from PrintNannyMessage.Telemetry.MonitoringFrameRaw import MonitoringFrameRaw
+            obj = MonitoringFrameRaw()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # MonitoringFramePost
+    def EventType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
         return 2
 
-def MonitoringFramePostStart(builder): builder.StartObject(3)
+def MonitoringFramePostStart(builder): builder.StartObject(4)
 def MonitoringFramePostAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
 def MonitoringFramePostAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-def MonitoringFramePostAddEventType(builder, eventType): builder.PrependInt8Slot(2, eventType, 2)
+def MonitoringFramePostAddRaw(builder, raw): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(raw), 0)
+def MonitoringFramePostAddEventType(builder, eventType): builder.PrependInt8Slot(3, eventType, 2)
 def MonitoringFramePostEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.Image
+import PrintNannyMessage.Telemetry.MonitoringFrameRaw
 try:
     from typing import Optional
 except:
@@ -63,6 +76,7 @@ class MonitoringFramePostT(object):
     def __init__(self):
         self.ts = 0  # type: int
         self.image = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
+        self.raw = None  # type: Optional[PrintNannyMessage.Telemetry.MonitoringFrameRaw.MonitoringFrameRawT]
         self.eventType = 2  # type: int
 
     @classmethod
@@ -84,16 +98,22 @@ class MonitoringFramePostT(object):
         self.ts = monitoringFramePost.Ts()
         if monitoringFramePost.Image() is not None:
             self.image = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(monitoringFramePost.Image())
+        if monitoringFramePost.Raw() is not None:
+            self.raw = PrintNannyMessage.Telemetry.MonitoringFrameRaw.MonitoringFrameRawT.InitFromObj(monitoringFramePost.Raw())
         self.eventType = monitoringFramePost.EventType()
 
     # MonitoringFramePostT
     def Pack(self, builder):
         if self.image is not None:
             image = self.image.Pack(builder)
+        if self.raw is not None:
+            raw = self.raw.Pack(builder)
         MonitoringFramePostStart(builder)
         MonitoringFramePostAddTs(builder, self.ts)
         if self.image is not None:
             MonitoringFramePostAddImage(builder, image)
+        if self.raw is not None:
+            MonitoringFramePostAddRaw(builder, raw)
         MonitoringFramePostAddEventType(builder, self.eventType)
         monitoringFramePost = MonitoringFramePostEnd(builder)
         return monitoringFramePost

@@ -39,7 +39,6 @@ class TestPatchedPrintJobRequest(unittest.TestCase):
                 printer_profile = 56, 
                 name = '', 
                 gcode_file = 56, 
-                last_status = 'Error', 
                 progress = {
                     'key' : null
                     }, 

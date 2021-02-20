@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.print_job_request import PrintJobRequest  # noqa: E501
+from print_nanny_client.models.plugin_event_event_type_enum import PluginEventEventTypeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPrintJobRequest(unittest.TestCase):
-    """PrintJobRequest unit test stubs"""
+class TestPluginEventEventTypeEnum(unittest.TestCase):
+    """PluginEventEventTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,29 +29,20 @@ class TestPrintJobRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PrintJobRequest
+        """Test PluginEventEventTypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.print_job_request.PrintJobRequest()  # noqa: E501
+        # model = print_nanny_client.models.plugin_event_event_type_enum.PluginEventEventTypeEnum()  # noqa: E501
         if include_optional :
-            return PrintJobRequest(
-                printer_profile = 56, 
-                name = '', 
-                gcode_file = 56, 
-                progress = {
-                    'key' : null
-                    }, 
-                octoprint_device = 56
+            return PluginEventEventTypeEnum(
             )
         else :
-            return PrintJobRequest(
-                printer_profile = 56,
-                name = '',
+            return PluginEventEventTypeEnum(
         )
 
-    def testPrintJobRequest(self):
-        """Test PrintJobRequest"""
+    def testPluginEventEventTypeEnum(self):
+        """Test PluginEventEventTypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

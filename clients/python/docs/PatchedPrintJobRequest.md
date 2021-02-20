@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 **printer_profile** | **int** |  | [optional] 
 **name** | **str** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 
-**last_status** | [**LastStatusEnum**](LastStatusEnum.md) |  | [optional] 
 **progress** | **dict(str, object)** |  | [optional] 
 **octoprint_device** | **int** |  | [optional] 
 

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_event import OctoPrintEvent  # noqa: E501
+from print_nanny_client.models.print_job_state_request import PrintJobStateRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintEvent(unittest.TestCase):
-    """OctoPrintEvent unit test stubs"""
+class TestPrintJobStateRequest(unittest.TestCase):
+    """PrintJobStateRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,30 +29,34 @@ class TestOctoPrintEvent(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintEvent
+        """Test PrintJobStateRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_event.OctoPrintEvent()  # noqa: E501
+        # model = print_nanny_client.models.print_job_state_request.PrintJobStateRequest()  # noqa: E501
         if include_optional :
-            return OctoPrintEvent(
-                id = 56, 
-                polymorphic_ctype = 56, 
+            return PrintJobStateRequest(
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 client_event_type = 'plugin', 
                 event_data = {
                     'key' : null
                     }, 
                 device = 56, 
-                user = 56, 
                 plugin_version = '', 
                 octoprint_version = '', 
-                clientevent_ptr = 56, 
-                event_type = 'ClientAuthed', 
-                url = ''
+                event_type = 'Error', 
+                state = {
+                    'key' : null
+                    }, 
+                current_z = 1.337, 
+                progress = {
+                    'key' : null
+                    }, 
+                job_data_file = '', 
+                print_job = 56
             )
         else :
-            return OctoPrintEvent(
+            return PrintJobStateRequest(
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 client_event_type = 'plugin',
                 event_data = {
@@ -61,11 +65,12 @@ class TestOctoPrintEvent(unittest.TestCase):
                 device = 56,
                 plugin_version = '',
                 octoprint_version = '',
-                event_type = 'ClientAuthed',
+                event_type = 'Error',
+                job_data_file = '',
         )
 
-    def testOctoPrintEvent(self):
-        """Test OctoPrintEvent"""
+    def testPrintJobStateRequest(self):
+        """Test PrintJobStateRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

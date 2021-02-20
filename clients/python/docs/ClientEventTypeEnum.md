@@ -1,4 +1,4 @@
-# LastStatusEnum
+# ClientEventTypeEnum
 
 ## Properties
 Name | Type | Description | Notes

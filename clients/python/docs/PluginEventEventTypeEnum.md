@@ -1,4 +1,4 @@
-# EventTypeEnum
+# PluginEventEventTypeEnum
 
 ## Properties
 Name | Type | Description | Notes

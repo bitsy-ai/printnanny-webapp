@@ -28,7 +28,7 @@ class BoundingBoxes(object):
         return 0
 
     # BoundingBoxes
-    def Image(self):
+    def OriginalImage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
@@ -39,8 +39,19 @@ class BoundingBoxes(object):
         return None
 
     # BoundingBoxes
-    def Boxes(self, j):
+    def PostImage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            from PrintNannyMessage.Telemetry.Image import Image
+            obj = Image()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # BoundingBoxes
+    def Boxes(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 24
@@ -52,29 +63,30 @@ class BoundingBoxes(object):
 
     # BoundingBoxes
     def BoxesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # BoundingBoxes
     def BoxesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         return o == 0
 
     # BoundingBoxes
     def EventType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
         return 0
 
-def BoundingBoxesStart(builder): builder.StartObject(4)
+def BoundingBoxesStart(builder): builder.StartObject(5)
 def BoundingBoxesAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
-def BoundingBoxesAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(boxes), 0)
+def BoundingBoxesAddOriginalImage(builder, originalImage): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(originalImage), 0)
+def BoundingBoxesAddPostImage(builder, postImage): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(postImage), 0)
+def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(boxes), 0)
 def BoundingBoxesStartBoxesVector(builder, numElems): return builder.StartVector(24, numElems, 4)
-def BoundingBoxesAddEventType(builder, eventType): builder.PrependInt8Slot(3, eventType, 0)
+def BoundingBoxesAddEventType(builder, eventType): builder.PrependInt8Slot(4, eventType, 0)
 def BoundingBoxesEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.Box
@@ -89,7 +101,8 @@ class BoundingBoxesT(object):
     # BoundingBoxesT
     def __init__(self):
         self.ts = 0  # type: int
-        self.image = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
+        self.originalImage = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
+        self.postImage = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
         self.boxes = None  # type: List[PrintNannyMessage.Telemetry.Box.BoxT]
         self.eventType = 0  # type: int
 
@@ -110,8 +123,10 @@ class BoundingBoxesT(object):
         if boundingBoxes is None:
             return
         self.ts = boundingBoxes.Ts()
-        if boundingBoxes.Image() is not None:
-            self.image = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(boundingBoxes.Image())
+        if boundingBoxes.OriginalImage() is not None:
+            self.originalImage = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(boundingBoxes.OriginalImage())
+        if boundingBoxes.PostImage() is not None:
+            self.postImage = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(boundingBoxes.PostImage())
         if not boundingBoxes.BoxesIsNone():
             self.boxes = []
             for i in range(boundingBoxes.BoxesLength()):
@@ -124,8 +139,10 @@ class BoundingBoxesT(object):
 
     # BoundingBoxesT
     def Pack(self, builder):
-        if self.image is not None:
-            image = self.image.Pack(builder)
+        if self.originalImage is not None:
+            originalImage = self.originalImage.Pack(builder)
+        if self.postImage is not None:
+            postImage = self.postImage.Pack(builder)
         if self.boxes is not None:
             BoundingBoxesStartBoxesVector(builder, len(self.boxes))
             for i in reversed(range(len(self.boxes))):
@@ -133,8 +150,10 @@ class BoundingBoxesT(object):
             boxes = builder.EndVector(len(self.boxes))
         BoundingBoxesStart(builder)
         BoundingBoxesAddTs(builder, self.ts)
-        if self.image is not None:
-            BoundingBoxesAddImage(builder, image)
+        if self.originalImage is not None:
+            BoundingBoxesAddOriginalImage(builder, originalImage)
+        if self.postImage is not None:
+            BoundingBoxesAddPostImage(builder, postImage)
         if self.boxes is not None:
             BoundingBoxesAddBoxes(builder, boxes)
         BoundingBoxesAddEventType(builder, self.eventType)

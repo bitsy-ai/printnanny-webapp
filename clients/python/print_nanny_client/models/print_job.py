@@ -40,7 +40,6 @@ class PrintJob(object):
         'printer_profile': 'int',
         'name': 'str',
         'gcode_file': 'int',
-        'last_status': 'LastStatusEnum',
         'last_seen': 'datetime',
         'progress': 'dict(str, object)',
         'octoprint_device': 'int',
@@ -55,14 +54,13 @@ class PrintJob(object):
         'printer_profile': 'printer_profile',
         'name': 'name',
         'gcode_file': 'gcode_file',
-        'last_status': 'last_status',
         'last_seen': 'last_seen',
         'progress': 'progress',
         'octoprint_device': 'octoprint_device',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, user=None, printer_profile=None, name=None, gcode_file=None, last_status=None, last_seen=None, progress=None, octoprint_device=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, user=None, printer_profile=None, name=None, gcode_file=None, last_seen=None, progress=None, octoprint_device=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintJob - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -75,7 +73,6 @@ class PrintJob(object):
         self._printer_profile = None
         self._name = None
         self._gcode_file = None
-        self._last_status = None
         self._last_seen = None
         self._progress = None
         self._octoprint_device = None
@@ -93,8 +90,6 @@ class PrintJob(object):
         self.printer_profile = printer_profile
         self.name = name
         self.gcode_file = gcode_file
-        if last_status is not None:
-            self.last_status = last_status
         if last_seen is not None:
             self.last_seen = last_seen
         if progress is not None:
@@ -256,27 +251,6 @@ class PrintJob(object):
         """
 
         self._gcode_file = gcode_file
-
-    @property
-    def last_status(self):
-        """Gets the last_status of this PrintJob.  # noqa: E501
-
-
-        :return: The last_status of this PrintJob.  # noqa: E501
-        :rtype: LastStatusEnum
-        """
-        return self._last_status
-
-    @last_status.setter
-    def last_status(self, last_status):
-        """Sets the last_status of this PrintJob.
-
-
-        :param last_status: The last_status of this PrintJob.  # noqa: E501
-        :type last_status: LastStatusEnum
-        """
-
-        self._last_status = last_status
 
     @property
     def last_seen(self):

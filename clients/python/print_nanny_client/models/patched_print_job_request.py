@@ -36,7 +36,6 @@ class PatchedPrintJobRequest(object):
         'printer_profile': 'int',
         'name': 'str',
         'gcode_file': 'int',
-        'last_status': 'LastStatusEnum',
         'progress': 'dict(str, object)',
         'octoprint_device': 'int'
     }
@@ -45,12 +44,11 @@ class PatchedPrintJobRequest(object):
         'printer_profile': 'printer_profile',
         'name': 'name',
         'gcode_file': 'gcode_file',
-        'last_status': 'last_status',
         'progress': 'progress',
         'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, printer_profile=None, name=None, gcode_file=None, last_status=None, progress=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, printer_profile=None, name=None, gcode_file=None, progress=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintJobRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,7 +57,6 @@ class PatchedPrintJobRequest(object):
         self._printer_profile = None
         self._name = None
         self._gcode_file = None
-        self._last_status = None
         self._progress = None
         self._octoprint_device = None
         self.discriminator = None
@@ -69,8 +66,6 @@ class PatchedPrintJobRequest(object):
         if name is not None:
             self.name = name
         self.gcode_file = gcode_file
-        if last_status is not None:
-            self.last_status = last_status
         if progress is not None:
             self.progress = progress
         self.octoprint_device = octoprint_device
@@ -140,27 +135,6 @@ class PatchedPrintJobRequest(object):
         """
 
         self._gcode_file = gcode_file
-
-    @property
-    def last_status(self):
-        """Gets the last_status of this PatchedPrintJobRequest.  # noqa: E501
-
-
-        :return: The last_status of this PatchedPrintJobRequest.  # noqa: E501
-        :rtype: LastStatusEnum
-        """
-        return self._last_status
-
-    @last_status.setter
-    def last_status(self, last_status):
-        """Sets the last_status of this PatchedPrintJobRequest.
-
-
-        :param last_status: The last_status of this PatchedPrintJobRequest.  # noqa: E501
-        :type last_status: LastStatusEnum
-        """
-
-        self._last_status = last_status
 
     @property
     def progress(self):
