@@ -55,14 +55,18 @@ clean-python-client: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -rf {} +
 
-clean-python-flatbuffer:
+clean-messages-lib:
 	rm -rf clients/python/print_nanny_message
 
 
-python-flatbuffer: clean-python-flatbuffer
-	~/projects/flatbuffers/flatc --rust --gen-object-api -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
+rust-flatbuffer: clean-messages-lib
+	~/projects/flatbuffers/flatc --rust --gen-object-api -o clients/python/print_nanny_message/rust/ clients/flatbuffers/telemetry.fbs
 
-python-client: clean-python-client python-flatbuffer
+python-flatbuffer: clean-messages-lib
+	~/projects/flatbuffers/flatc --python --gen-object-api -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
+
+
+python-client: clean-python-client python-flatbuffer rust-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 

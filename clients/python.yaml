@@ -22,7 +22,7 @@ files:
     destinationFilename: MANIFEST.in
   rust/Cargo.toml.mustache:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_message/Cargo.toml
+    destinationFilename: print_nanny_message/rust/Cargo.toml
   rust/lib.rs.mustache:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_message/lib.rs
+    destinationFilename: print_nanny_message/rust/lib.rs
