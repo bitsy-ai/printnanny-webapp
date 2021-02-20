@@ -21,16 +21,9 @@ class Box(object):
     def Xmin(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(8))
     # Box
     def Xmax(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(12))
-    # Box
-    def Score(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(16))
-    # Box
-    def ClassIndex(self): return self._tab.Get(flatbuffers.number_types.Int8Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(20))
 
-def CreateBox(builder, ymin, ymax, xmin, xmax, score, classIndex):
-    builder.Prep(4, 24)
-    builder.Pad(3)
-    builder.PrependInt8(classIndex)
-    builder.PrependFloat32(score)
+def CreateBox(builder, ymin, ymax, xmin, xmax):
+    builder.Prep(4, 16)
     builder.PrependFloat32(xmax)
     builder.PrependFloat32(xmin)
     builder.PrependFloat32(ymax)
@@ -46,8 +39,6 @@ class BoxT(object):
         self.ymax = 0.0  # type: float
         self.xmin = 0.0  # type: float
         self.xmax = 0.0  # type: float
-        self.score = 0.0  # type: float
-        self.classIndex = 0  # type: int
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -69,9 +60,7 @@ class BoxT(object):
         self.ymax = box.Ymax()
         self.xmin = box.Xmin()
         self.xmax = box.Xmax()
-        self.score = box.Score()
-        self.classIndex = box.ClassIndex()
 
     # BoxT
     def Pack(self, builder):
-        return CreateBox(builder, self.ymin, self.ymax, self.xmin, self.xmax, self.score, self.classIndex)
+        return CreateBox(builder, self.ymin, self.ymax, self.xmin, self.xmax)
