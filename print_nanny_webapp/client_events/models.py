@@ -21,6 +21,26 @@ from django.contrib.sites.shortcuts import get_current_site
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
+class PluginEventTypeChoices(models.TextChoices):
+    BOUNDING_BOX_PREDICT = "bounding_box_predict", "On-device bounding box prediction"
+    MONITORING_FRAME_RAW = "monitoring_frame_raw", "Raw frame buffer sample"
+    MONITORING_FRAME_POST = "monitoring_frame_post", "Post-processed frame buffer"
+
+    DEVICE_REGISTER_START = "device_register_start", "Device registration started"
+    DEVICE_REGISTER_DONE = "device_register_done", "Device registration succeeded"
+    DEVICE_REGISTER_FAILED = "device_register_failed", "Device registration failed"
+
+    PRINTER_PROFILE_SYNC_START = "printer_profile_sync_start", "Printer profile sync started"
+    PRINTER_PROFILE_SYNC_DONE = "printer_profile_sync_done", "Printer profile sync succeeded"
+    PRINTER_PROFILE_SYNC_FAILED = "printer_profile_sync_failed", "Printer profile sync failed"
+
+class PluginEvent(models.Model):
+    '''
+        This model exists for OpenAPI codegen purposes (PluginEventEnum)
+    '''
+    event_type = models.CharField(
+        max_length=255, db_index=True, choices=PluginEventTypeChoices.choices
+    )
 
 class OctoPrintEventTypeChoices(models.TextChoices):
     # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
@@ -106,8 +126,10 @@ class ObjectDetectEventImage(models.Model):
         upload_to="uploads/predict_annotated_image/%Y/%m/%d/"
     )
 
-
 class OctoPrintEvent(models.Model):
+    '''
+        Events emitted by OctoPrint core
+    '''
 
     created_dt = models.DateTimeField(db_index=True)
     event_type = models.CharField(
