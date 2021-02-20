@@ -50,3 +50,50 @@ def MonitoringFrameAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
 def MonitoringFrameAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
 def MonitoringFrameAddEventType(builder, eventType): builder.PrependInt8Slot(2, eventType, 1)
 def MonitoringFrameEnd(builder): return builder.EndObject()
+
+import PrintNannyMessage.Telemetry.Image
+try:
+    from typing import Optional
+except:
+    pass
+
+class MonitoringFrameT(object):
+
+    # MonitoringFrameT
+    def __init__(self):
+        self.ts = 0  # type: int
+        self.image = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
+        self.eventType = 1  # type: int
+
+    @classmethod
+    def InitFromBuf(cls, buf, pos):
+        monitoringFrame = MonitoringFrame()
+        monitoringFrame.Init(buf, pos)
+        return cls.InitFromObj(monitoringFrame)
+
+    @classmethod
+    def InitFromObj(cls, monitoringFrame):
+        x = MonitoringFrameT()
+        x._UnPack(monitoringFrame)
+        return x
+
+    # MonitoringFrameT
+    def _UnPack(self, monitoringFrame):
+        if monitoringFrame is None:
+            return
+        self.ts = monitoringFrame.Ts()
+        if monitoringFrame.Image() is not None:
+            self.image = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(monitoringFrame.Image())
+        self.eventType = monitoringFrame.EventType()
+
+    # MonitoringFrameT
+    def Pack(self, builder):
+        if self.image is not None:
+            image = self.image.Pack(builder)
+        MonitoringFrameStart(builder)
+        MonitoringFrameAddTs(builder, self.ts)
+        if self.image is not None:
+            MonitoringFrameAddImage(builder, image)
+        MonitoringFrameAddEventType(builder, self.eventType)
+        monitoringFrame = MonitoringFrameEnd(builder)
+        return monitoringFrame

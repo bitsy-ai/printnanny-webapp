@@ -76,3 +76,67 @@ def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(2
 def BoundingBoxesStartBoxesVector(builder, numElems): return builder.StartVector(24, numElems, 4)
 def BoundingBoxesAddEventType(builder, eventType): builder.PrependInt8Slot(3, eventType, 0)
 def BoundingBoxesEnd(builder): return builder.EndObject()
+
+import PrintNannyMessage.Telemetry.Box
+import PrintNannyMessage.Telemetry.Image
+try:
+    from typing import List, Optional
+except:
+    pass
+
+class BoundingBoxesT(object):
+
+    # BoundingBoxesT
+    def __init__(self):
+        self.ts = 0  # type: int
+        self.image = None  # type: Optional[PrintNannyMessage.Telemetry.Image.ImageT]
+        self.boxes = None  # type: List[PrintNannyMessage.Telemetry.Box.BoxT]
+        self.eventType = 0  # type: int
+
+    @classmethod
+    def InitFromBuf(cls, buf, pos):
+        boundingBoxes = BoundingBoxes()
+        boundingBoxes.Init(buf, pos)
+        return cls.InitFromObj(boundingBoxes)
+
+    @classmethod
+    def InitFromObj(cls, boundingBoxes):
+        x = BoundingBoxesT()
+        x._UnPack(boundingBoxes)
+        return x
+
+    # BoundingBoxesT
+    def _UnPack(self, boundingBoxes):
+        if boundingBoxes is None:
+            return
+        self.ts = boundingBoxes.Ts()
+        if boundingBoxes.Image() is not None:
+            self.image = PrintNannyMessage.Telemetry.Image.ImageT.InitFromObj(boundingBoxes.Image())
+        if not boundingBoxes.BoxesIsNone():
+            self.boxes = []
+            for i in range(boundingBoxes.BoxesLength()):
+                if boundingBoxes.Boxes(i) is None:
+                    self.boxes.append(None)
+                else:
+                    box_ = PrintNannyMessage.Telemetry.Box.BoxT.InitFromObj(boundingBoxes.Boxes(i))
+                    self.boxes.append(box_)
+        self.eventType = boundingBoxes.EventType()
+
+    # BoundingBoxesT
+    def Pack(self, builder):
+        if self.image is not None:
+            image = self.image.Pack(builder)
+        if self.boxes is not None:
+            BoundingBoxesStartBoxesVector(builder, len(self.boxes))
+            for i in reversed(range(len(self.boxes))):
+                self.boxes[i].Pack(builder)
+            boxes = builder.EndVector(len(self.boxes))
+        BoundingBoxesStart(builder)
+        BoundingBoxesAddTs(builder, self.ts)
+        if self.image is not None:
+            BoundingBoxesAddImage(builder, image)
+        if self.boxes is not None:
+            BoundingBoxesAddBoxes(builder, boxes)
+        BoundingBoxesAddEventType(builder, self.eventType)
+        boundingBoxes = BoundingBoxesEnd(builder)
+        return boundingBoxes

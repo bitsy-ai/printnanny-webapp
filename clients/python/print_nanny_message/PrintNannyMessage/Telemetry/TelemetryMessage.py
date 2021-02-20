@@ -41,3 +41,48 @@ def TelemetryMessageStart(builder): builder.StartObject(2)
 def TelemetryMessageAddMessageType(builder, messageType): builder.PrependUint8Slot(0, messageType, 0)
 def TelemetryMessageAddMessage(builder, message): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(message), 0)
 def TelemetryMessageEnd(builder): return builder.EndObject()
+
+import PrintNannyMessage.Telemetry.BoundingBoxes
+import PrintNannyMessage.Telemetry.MessageType
+import PrintNannyMessage.Telemetry.MonitoringFrame
+try:
+    from typing import Union
+except:
+    pass
+
+class TelemetryMessageT(object):
+
+    # TelemetryMessageT
+    def __init__(self):
+        self.messageType = 0  # type: int
+        self.message = None  # type: Union[None, PrintNannyMessage.Telemetry.MonitoringFrame.MonitoringFrameT, PrintNannyMessage.Telemetry.BoundingBoxes.BoundingBoxesT]
+
+    @classmethod
+    def InitFromBuf(cls, buf, pos):
+        telemetryMessage = TelemetryMessage()
+        telemetryMessage.Init(buf, pos)
+        return cls.InitFromObj(telemetryMessage)
+
+    @classmethod
+    def InitFromObj(cls, telemetryMessage):
+        x = TelemetryMessageT()
+        x._UnPack(telemetryMessage)
+        return x
+
+    # TelemetryMessageT
+    def _UnPack(self, telemetryMessage):
+        if telemetryMessage is None:
+            return
+        self.messageType = telemetryMessage.MessageType()
+        self.message = PrintNannyMessage.Telemetry.MessageType.MessageTypeCreator(self.messageType, telemetryMessage.Message())
+
+    # TelemetryMessageT
+    def Pack(self, builder):
+        if self.message is not None:
+            message = self.message.Pack(builder)
+        TelemetryMessageStart(builder)
+        TelemetryMessageAddMessageType(builder, self.messageType)
+        if self.message is not None:
+            TelemetryMessageAddMessage(builder, message)
+        telemetryMessage = TelemetryMessageEnd(builder)
+        return telemetryMessage

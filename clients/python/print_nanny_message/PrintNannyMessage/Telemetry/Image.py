@@ -75,3 +75,63 @@ def ImageAddBpp(builder, bpp): builder.PrependInt8Slot(2, bpp, 0)
 def ImageAddData(builder, data): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
 def ImageStartDataVector(builder, numElems): return builder.StartVector(1, numElems, 1)
 def ImageEnd(builder): return builder.EndObject()
+
+try:
+    from typing import List
+except:
+    pass
+
+class ImageT(object):
+
+    # ImageT
+    def __init__(self):
+        self.width = 0  # type: int
+        self.height = 0  # type: int
+        self.bpp = 0  # type: int
+        self.data = None  # type: List[int]
+
+    @classmethod
+    def InitFromBuf(cls, buf, pos):
+        image = Image()
+        image.Init(buf, pos)
+        return cls.InitFromObj(image)
+
+    @classmethod
+    def InitFromObj(cls, image):
+        x = ImageT()
+        x._UnPack(image)
+        return x
+
+    # ImageT
+    def _UnPack(self, image):
+        if image is None:
+            return
+        self.width = image.Width()
+        self.height = image.Height()
+        self.bpp = image.Bpp()
+        if not image.DataIsNone():
+            if np is None:
+                self.data = []
+                for i in range(image.DataLength()):
+                    self.data.append(image.Data(i))
+            else:
+                self.data = image.DataAsNumpy()
+
+    # ImageT
+    def Pack(self, builder):
+        if self.data is not None:
+            if np is not None and type(self.data) is np.ndarray:
+                data = builder.CreateNumpyVector(self.data)
+            else:
+                ImageStartDataVector(builder, len(self.data))
+                for i in reversed(range(len(self.data))):
+                    builder.PrependByte(self.data[i])
+                data = builder.EndVector(len(self.data))
+        ImageStart(builder)
+        ImageAddWidth(builder, self.width)
+        ImageAddHeight(builder, self.height)
+        ImageAddBpp(builder, self.bpp)
+        if self.data is not None:
+            ImageAddData(builder, data)
+        image = ImageEnd(builder)
+        return image

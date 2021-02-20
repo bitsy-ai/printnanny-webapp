@@ -60,7 +60,7 @@ clean-python-flatbuffer:
 
 
 python-flatbuffer: clean-python-flatbuffer
-	~/projects/flatbuffers/flatc --python  -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
+	~/projects/flatbuffers/flatc --python  --gen-object-api -o clients/python/print_nanny_message/ clients/flatbuffers/telemetry.fbs
 	touch clients/python/print_nanny_message/__init__.py
 
 python-client: clean-python-client python-flatbuffer

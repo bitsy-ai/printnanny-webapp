@@ -36,3 +36,42 @@ def CreateBox(builder, ymin, ymax, xmin, xmax, score, classIndex):
     builder.PrependFloat32(ymax)
     builder.PrependFloat32(ymin)
     return builder.Offset()
+
+
+class BoxT(object):
+
+    # BoxT
+    def __init__(self):
+        self.ymin = 0.0  # type: float
+        self.ymax = 0.0  # type: float
+        self.xmin = 0.0  # type: float
+        self.xmax = 0.0  # type: float
+        self.score = 0.0  # type: float
+        self.classIndex = 0  # type: int
+
+    @classmethod
+    def InitFromBuf(cls, buf, pos):
+        box = Box()
+        box.Init(buf, pos)
+        return cls.InitFromObj(box)
+
+    @classmethod
+    def InitFromObj(cls, box):
+        x = BoxT()
+        x._UnPack(box)
+        return x
+
+    # BoxT
+    def _UnPack(self, box):
+        if box is None:
+            return
+        self.ymin = box.Ymin()
+        self.ymax = box.Ymax()
+        self.xmin = box.Xmin()
+        self.xmax = box.Xmax()
+        self.score = box.Score()
+        self.classIndex = box.ClassIndex()
+
+    # BoxT
+    def Pack(self, builder):
+        return CreateBox(builder, self.ymin, self.ymax, self.xmin, self.xmax, self.score, self.classIndex)
