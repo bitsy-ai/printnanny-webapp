@@ -1,14 +1,15 @@
 namespace PrintNannyMessage.Telemetry;
 
 enum PluginEvent:byte {
-    bounding_box_predict_done = 0,
-    monitoring_frame_done = 1,
-    device_register_start = 2,
-    device_register_done = 3,
-    device_register_failed = 4,
-    printer_profile_sync_start = 5,
-    printer_profile_sync_done = 6,
-    printer_profile_sync_failed = 7
+    bounding_box_predict = 0,
+    monitoring_frame_raw = 1,
+    monitoring_frame_post = 2,
+    device_register_start = 3,
+    device_register_done = 4,
+    device_register_failed = 5,
+    printer_profile_sync_start = 6,
+    printer_profile_sync_done = 7,
+    printer_profile_sync_failed = 9
  }
 
 enum RemoteCommand:byte {
@@ -38,21 +39,28 @@ table Image {
     data: [byte];
 }
 
-table MonitoringFrame {
+table MonitoringFrameRaw {
     ts: uint32;
     image: Image;
-    event_type: PluginEvent = monitoring_frame_done;
+    event_type: PluginEvent = monitoring_frame_raw;
+}
+
+table MonitoringFramePost {
+    ts: uint32;
+    image: Image;
+    event_type: PluginEvent = monitoring_frame_post;
 }
 
 table BoundingBoxes {
     ts: uint32;
     image: Image;
     boxes: [Box];
-    event_type: PluginEvent = bounding_box_predict_done;
+    event_type: PluginEvent = bounding_box_predict;
 }
 
 union MessageType {
-    MonitoringFrame,
+    MonitoringFrameRaw,
+    MonitoringFramePost,
     BoundingBoxes
 }
 
