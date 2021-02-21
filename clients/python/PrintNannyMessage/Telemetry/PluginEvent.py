@@ -11,5 +11,5 @@ class PluginEvent(object):
     device_register_failed = 5
     printer_profile_sync_start = 6
     printer_profile_sync_done = 7
-    printer_profile_sync_failed = 9
+    printer_profile_sync_failed = 8
 

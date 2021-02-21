@@ -24,14 +24,14 @@ class Image(object):
     def Width(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
         return 0
 
     # Image
     def Height(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
         return 0
 
     # Image
@@ -62,8 +62,8 @@ class Image(object):
         return o == 0
 
 def ImageStart(builder): builder.StartObject(3)
-def ImageAddWidth(builder, width): builder.PrependInt16Slot(0, width, 0)
-def ImageAddHeight(builder, height): builder.PrependInt16Slot(1, height, 0)
+def ImageAddWidth(builder, width): builder.PrependUint32Slot(0, width, 0)
+def ImageAddHeight(builder, height): builder.PrependUint32Slot(1, height, 0)
 def ImageAddData(builder, data): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
 def ImageStartDataVector(builder, numElems): return builder.StartVector(1, numElems, 1)
 def ImageEnd(builder): return builder.EndObject()

@@ -37,12 +37,12 @@ pub enum PluginEvent {
   device_register_failed = 5,
   printer_profile_sync_start = 6,
   printer_profile_sync_done = 7,
-  printer_profile_sync_failed = 9,
+  printer_profile_sync_failed = 8,
 
 }
 
 pub const ENUM_MIN_PLUGIN_EVENT: i8 = 0;
-pub const ENUM_MAX_PLUGIN_EVENT: i8 = 9;
+pub const ENUM_MAX_PLUGIN_EVENT: i8 = 8;
 
 impl<'a> flatbuffers::Follow<'a> for PluginEvent {
   type Inner = Self;
@@ -89,7 +89,7 @@ pub const ENUM_VALUES_PLUGIN_EVENT:[PluginEvent; 9] = [
 ];
 
 #[allow(non_camel_case_types)]
-pub const ENUM_NAMES_PLUGIN_EVENT:[&'static str; 10] = [
+pub const ENUM_NAMES_PLUGIN_EVENT:[&'static str; 9] = [
     "bounding_box_predict",
     "monitoring_frame_raw",
     "monitoring_frame_post",
@@ -98,7 +98,6 @@ pub const ENUM_NAMES_PLUGIN_EVENT:[&'static str; 10] = [
     "device_register_failed",
     "printer_profile_sync_start",
     "printer_profile_sync_done",
-    "",
     "printer_profile_sync_failed"
 ];
 
@@ -360,12 +359,12 @@ impl<'a> Image<'a> {
     pub const VT_DATA: flatbuffers::VOffsetT = 8;
 
   #[inline]
-  pub fn width(&self) -> i16 {
-    self._tab.get::<i16>(Image::VT_WIDTH, Some(0)).unwrap()
+  pub fn width(&self) -> u32 {
+    self._tab.get::<u32>(Image::VT_WIDTH, Some(0)).unwrap()
   }
   #[inline]
-  pub fn height(&self) -> i16 {
-    self._tab.get::<i16>(Image::VT_HEIGHT, Some(0)).unwrap()
+  pub fn height(&self) -> u32 {
+    self._tab.get::<u32>(Image::VT_HEIGHT, Some(0)).unwrap()
   }
   #[inline]
   pub fn data(&self) -> &'a [i8] {
@@ -374,8 +373,8 @@ impl<'a> Image<'a> {
 }
 
 pub struct ImageArgs<'a> {
-    pub width: i16,
-    pub height: i16,
+    pub width: u32,
+    pub height: u32,
     pub data: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  i8>>>,
 }
 impl<'a> Default for ImageArgs<'a> {
@@ -394,12 +393,12 @@ pub struct ImageBuilder<'a: 'b, 'b> {
 }
 impl<'a: 'b, 'b> ImageBuilder<'a, 'b> {
   #[inline]
-  pub fn add_width(&mut self, width: i16) {
-    self.fbb_.push_slot::<i16>(Image::VT_WIDTH, width, 0);
+  pub fn add_width(&mut self, width: u32) {
+    self.fbb_.push_slot::<u32>(Image::VT_WIDTH, width, 0);
   }
   #[inline]
-  pub fn add_height(&mut self, height: i16) {
-    self.fbb_.push_slot::<i16>(Image::VT_HEIGHT, height, 0);
+  pub fn add_height(&mut self, height: u32) {
+    self.fbb_.push_slot::<u32>(Image::VT_HEIGHT, height, 0);
   }
   #[inline]
   pub fn add_data(&mut self, data: flatbuffers::WIPOffset<flatbuffers::Vector<'b , i8>>) {
@@ -552,48 +551,42 @@ impl<'a> BoundingBoxes<'a> {
         args: &'args BoundingBoxesArgs<'args>) -> flatbuffers::WIPOffset<BoundingBoxes<'bldr>> {
       let mut builder = BoundingBoxesBuilder::new(_fbb);
       if let Some(x) = args.boxes { builder.add_boxes(x); }
+      builder.add_num_detections(args.num_detections);
       if let Some(x) = args.classes { builder.add_classes(x); }
       if let Some(x) = args.scores { builder.add_scores(x); }
-      if let Some(x) = args.post_image { builder.add_post_image(x); }
-      if let Some(x) = args.original_image { builder.add_original_image(x); }
+      if let Some(x) = args.image { builder.add_image(x); }
       builder.add_ts(args.ts);
       builder.add_event_type(args.event_type);
-      builder.add_num_detections(args.num_detections);
       builder.finish()
     }
 
     pub const VT_TS: flatbuffers::VOffsetT = 4;
-    pub const VT_ORIGINAL_IMAGE: flatbuffers::VOffsetT = 6;
-    pub const VT_POST_IMAGE: flatbuffers::VOffsetT = 8;
-    pub const VT_SCORES: flatbuffers::VOffsetT = 10;
-    pub const VT_CLASSES: flatbuffers::VOffsetT = 12;
-    pub const VT_NUM_DETECTIONS: flatbuffers::VOffsetT = 14;
-    pub const VT_BOXES: flatbuffers::VOffsetT = 16;
-    pub const VT_EVENT_TYPE: flatbuffers::VOffsetT = 18;
+    pub const VT_IMAGE: flatbuffers::VOffsetT = 6;
+    pub const VT_SCORES: flatbuffers::VOffsetT = 8;
+    pub const VT_CLASSES: flatbuffers::VOffsetT = 10;
+    pub const VT_NUM_DETECTIONS: flatbuffers::VOffsetT = 12;
+    pub const VT_BOXES: flatbuffers::VOffsetT = 14;
+    pub const VT_EVENT_TYPE: flatbuffers::VOffsetT = 16;
 
   #[inline]
   pub fn ts(&self) -> u32 {
     self._tab.get::<u32>(BoundingBoxes::VT_TS, Some(0)).unwrap()
   }
   #[inline]
-  pub fn original_image(&self) -> Option<Image<'a>> {
-    self._tab.get::<flatbuffers::ForwardsUOffset<Image<'a>>>(BoundingBoxes::VT_ORIGINAL_IMAGE, None)
-  }
-  #[inline]
-  pub fn post_image(&self) -> Option<Image<'a>> {
-    self._tab.get::<flatbuffers::ForwardsUOffset<Image<'a>>>(BoundingBoxes::VT_POST_IMAGE, None)
+  pub fn image(&self) -> Option<Image<'a>> {
+    self._tab.get::<flatbuffers::ForwardsUOffset<Image<'a>>>(BoundingBoxes::VT_IMAGE, None)
   }
   #[inline]
   pub fn scores(&self) -> flatbuffers::Vector<'a, f32> {
     self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, f32>>>(BoundingBoxes::VT_SCORES, None).unwrap()
   }
   #[inline]
-  pub fn classes(&self) -> &'a [i8] {
-    self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, i8>>>(BoundingBoxes::VT_CLASSES, None).map(|v| v.safe_slice()).unwrap()
+  pub fn classes(&self) -> flatbuffers::Vector<'a, u32> {
+    self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, u32>>>(BoundingBoxes::VT_CLASSES, None).unwrap()
   }
   #[inline]
-  pub fn num_detections(&self) -> i8 {
-    self._tab.get::<i8>(BoundingBoxes::VT_NUM_DETECTIONS, Some(0)).unwrap()
+  pub fn num_detections(&self) -> u32 {
+    self._tab.get::<u32>(BoundingBoxes::VT_NUM_DETECTIONS, Some(0)).unwrap()
   }
   #[inline]
   pub fn boxes(&self) -> &'a [Box] {
@@ -607,11 +600,10 @@ impl<'a> BoundingBoxes<'a> {
 
 pub struct BoundingBoxesArgs<'a> {
     pub ts: u32,
-    pub original_image: Option<flatbuffers::WIPOffset<Image<'a >>>,
-    pub post_image: Option<flatbuffers::WIPOffset<Image<'a >>>,
+    pub image: Option<flatbuffers::WIPOffset<Image<'a >>>,
     pub scores: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  f32>>>,
-    pub classes: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  i8>>>,
-    pub num_detections: i8,
+    pub classes: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  u32>>>,
+    pub num_detections: u32,
     pub boxes: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a , Box>>>,
     pub event_type: PluginEvent,
 }
@@ -620,8 +612,7 @@ impl<'a> Default for BoundingBoxesArgs<'a> {
     fn default() -> Self {
         BoundingBoxesArgs {
             ts: 0,
-            original_image: None,
-            post_image: None,
+            image: None,
             scores: None, // required field
             classes: None, // required field
             num_detections: 0,
@@ -640,24 +631,20 @@ impl<'a: 'b, 'b> BoundingBoxesBuilder<'a, 'b> {
     self.fbb_.push_slot::<u32>(BoundingBoxes::VT_TS, ts, 0);
   }
   #[inline]
-  pub fn add_original_image(&mut self, original_image: flatbuffers::WIPOffset<Image<'b >>) {
-    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<Image>>(BoundingBoxes::VT_ORIGINAL_IMAGE, original_image);
-  }
-  #[inline]
-  pub fn add_post_image(&mut self, post_image: flatbuffers::WIPOffset<Image<'b >>) {
-    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<Image>>(BoundingBoxes::VT_POST_IMAGE, post_image);
+  pub fn add_image(&mut self, image: flatbuffers::WIPOffset<Image<'b >>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<Image>>(BoundingBoxes::VT_IMAGE, image);
   }
   #[inline]
   pub fn add_scores(&mut self, scores: flatbuffers::WIPOffset<flatbuffers::Vector<'b , f32>>) {
     self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(BoundingBoxes::VT_SCORES, scores);
   }
   #[inline]
-  pub fn add_classes(&mut self, classes: flatbuffers::WIPOffset<flatbuffers::Vector<'b , i8>>) {
+  pub fn add_classes(&mut self, classes: flatbuffers::WIPOffset<flatbuffers::Vector<'b , u32>>) {
     self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(BoundingBoxes::VT_CLASSES, classes);
   }
   #[inline]
-  pub fn add_num_detections(&mut self, num_detections: i8) {
-    self.fbb_.push_slot::<i8>(BoundingBoxes::VT_NUM_DETECTIONS, num_detections, 0);
+  pub fn add_num_detections(&mut self, num_detections: u32) {
+    self.fbb_.push_slot::<u32>(BoundingBoxes::VT_NUM_DETECTIONS, num_detections, 0);
   }
   #[inline]
   pub fn add_boxes(&mut self, boxes: flatbuffers::WIPOffset<flatbuffers::Vector<'b , Box>>) {
