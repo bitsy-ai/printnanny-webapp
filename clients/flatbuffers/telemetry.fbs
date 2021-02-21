@@ -57,8 +57,15 @@ union MessageType {
     BoundingBoxes
 }
 
+table Metadata {
+    user_id: uint32;
+    device_id: uint32;
+    device_cloudiot_id: uint64;
+}
+
 table TelemetryMessage {
     message: MessageType;
+    metadata: Metadata
 }
 
 root_type TelemetryMessage;
