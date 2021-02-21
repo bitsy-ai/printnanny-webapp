@@ -26,7 +26,7 @@ pub mod telemetry {
   use self::flatbuffers::EndianScalar;
 
 #[allow(non_camel_case_types)]
-#[repr(i8)]
+#[repr(u8)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub enum PluginEvent {
   bounding_box_predict = 0,
@@ -41,8 +41,8 @@ pub enum PluginEvent {
 
 }
 
-pub const ENUM_MIN_PLUGIN_EVENT: i8 = 0;
-pub const ENUM_MAX_PLUGIN_EVENT: i8 = 8;
+pub const ENUM_MIN_PLUGIN_EVENT: u8 = 0;
+pub const ENUM_MAX_PLUGIN_EVENT: u8 = 8;
 
 impl<'a> flatbuffers::Follow<'a> for PluginEvent {
   type Inner = Self;
@@ -55,14 +55,14 @@ impl<'a> flatbuffers::Follow<'a> for PluginEvent {
 impl flatbuffers::EndianScalar for PluginEvent {
   #[inline]
   fn to_little_endian(self) -> Self {
-    let n = i8::to_le(self as i8);
-    let p = &n as *const i8 as *const PluginEvent;
+    let n = u8::to_le(self as u8);
+    let p = &n as *const u8 as *const PluginEvent;
     unsafe { *p }
   }
   #[inline]
   fn from_little_endian(self) -> Self {
-    let n = i8::from_le(self as i8);
-    let p = &n as *const i8 as *const PluginEvent;
+    let n = u8::from_le(self as u8);
+    let p = &n as *const u8 as *const PluginEvent;
     unsafe { *p }
   }
 }
@@ -102,12 +102,12 @@ pub const ENUM_NAMES_PLUGIN_EVENT:[&'static str; 9] = [
 ];
 
 pub fn enum_name_plugin_event(e: PluginEvent) -> &'static str {
-  let index = e as i8;
+  let index = e as u8;
   ENUM_NAMES_PLUGIN_EVENT[index as usize]
 }
 
 #[allow(non_camel_case_types)]
-#[repr(i8)]
+#[repr(u8)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
 pub enum RemoteCommand {
   print_start = 0,
@@ -121,8 +121,8 @@ pub enum RemoteCommand {
 
 }
 
-pub const ENUM_MIN_REMOTE_COMMAND: i8 = 0;
-pub const ENUM_MAX_REMOTE_COMMAND: i8 = 7;
+pub const ENUM_MIN_REMOTE_COMMAND: u8 = 0;
+pub const ENUM_MAX_REMOTE_COMMAND: u8 = 7;
 
 impl<'a> flatbuffers::Follow<'a> for RemoteCommand {
   type Inner = Self;
@@ -135,14 +135,14 @@ impl<'a> flatbuffers::Follow<'a> for RemoteCommand {
 impl flatbuffers::EndianScalar for RemoteCommand {
   #[inline]
   fn to_little_endian(self) -> Self {
-    let n = i8::to_le(self as i8);
-    let p = &n as *const i8 as *const RemoteCommand;
+    let n = u8::to_le(self as u8);
+    let p = &n as *const u8 as *const RemoteCommand;
     unsafe { *p }
   }
   #[inline]
   fn from_little_endian(self) -> Self {
-    let n = i8::from_le(self as i8);
-    let p = &n as *const i8 as *const RemoteCommand;
+    let n = u8::from_le(self as u8);
+    let p = &n as *const u8 as *const RemoteCommand;
     unsafe { *p }
   }
 }
@@ -180,7 +180,7 @@ pub const ENUM_NAMES_REMOTE_COMMAND:[&'static str; 8] = [
 ];
 
 pub fn enum_name_remote_command(e: RemoteCommand) -> &'static str {
-  let index = e as i8;
+  let index = e as u8;
   ENUM_NAMES_REMOTE_COMMAND[index as usize]
 }
 
@@ -367,15 +367,15 @@ impl<'a> Image<'a> {
     self._tab.get::<u32>(Image::VT_HEIGHT, Some(0)).unwrap()
   }
   #[inline]
-  pub fn data(&self) -> &'a [i8] {
-    self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, i8>>>(Image::VT_DATA, None).map(|v| v.safe_slice()).unwrap()
+  pub fn data(&self) -> &'a [u8] {
+    self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, u8>>>(Image::VT_DATA, None).map(|v| v.safe_slice()).unwrap()
   }
 }
 
 pub struct ImageArgs<'a> {
     pub width: u32,
     pub height: u32,
-    pub data: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  i8>>>,
+    pub data: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a ,  u8>>>,
 }
 impl<'a> Default for ImageArgs<'a> {
     #[inline]
@@ -401,7 +401,7 @@ impl<'a: 'b, 'b> ImageBuilder<'a, 'b> {
     self.fbb_.push_slot::<u32>(Image::VT_HEIGHT, height, 0);
   }
   #[inline]
-  pub fn add_data(&mut self, data: flatbuffers::WIPOffset<flatbuffers::Vector<'b , i8>>) {
+  pub fn add_data(&mut self, data: flatbuffers::WIPOffset<flatbuffers::Vector<'b , u8>>) {
     self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(Image::VT_DATA, data);
   }
   #[inline]

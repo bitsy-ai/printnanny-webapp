@@ -39,14 +39,14 @@ class Image(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
         return 0
 
     # Image
     def DataAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int8Flags, o)
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
         return 0
 
     # Image
@@ -115,7 +115,7 @@ class ImageT(object):
             else:
                 ImageStartDataVector(builder, len(self.data))
                 for i in reversed(range(len(self.data))):
-                    builder.PrependByte(self.data[i])
+                    builder.PrependUint8(self.data[i])
                 data = builder.EndVector(len(self.data))
         ImageStart(builder)
         ImageAddWidth(builder, self.width)

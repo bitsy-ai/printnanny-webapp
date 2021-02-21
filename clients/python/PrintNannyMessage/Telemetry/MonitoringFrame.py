@@ -42,13 +42,13 @@ class MonitoringFrame(object):
     def EventType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 2
 
 def MonitoringFrameStart(builder): builder.StartObject(3)
 def MonitoringFrameAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
 def MonitoringFrameAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-def MonitoringFrameAddEventType(builder, eventType): builder.PrependInt8Slot(2, eventType, 2)
+def MonitoringFrameAddEventType(builder, eventType): builder.PrependUint8Slot(2, eventType, 2)
 def MonitoringFrameEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.Image

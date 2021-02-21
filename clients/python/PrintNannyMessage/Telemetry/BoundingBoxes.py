@@ -127,7 +127,7 @@ class BoundingBoxes(object):
     def EventType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
 def BoundingBoxesStart(builder): builder.StartObject(7)
@@ -140,7 +140,7 @@ def BoundingBoxesStartClassesVector(builder, numElems): return builder.StartVect
 def BoundingBoxesAddNumDetections(builder, numDetections): builder.PrependUint32Slot(4, numDetections, 0)
 def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(boxes), 0)
 def BoundingBoxesStartBoxesVector(builder, numElems): return builder.StartVector(16, numElems, 4)
-def BoundingBoxesAddEventType(builder, eventType): builder.PrependInt8Slot(6, eventType, 0)
+def BoundingBoxesAddEventType(builder, eventType): builder.PrependUint8Slot(6, eventType, 0)
 def BoundingBoxesEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.Box
