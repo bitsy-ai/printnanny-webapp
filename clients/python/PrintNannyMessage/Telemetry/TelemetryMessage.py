@@ -37,16 +37,29 @@ class TelemetryMessage(object):
             return obj
         return None
 
-def TelemetryMessageStart(builder): builder.StartObject(2)
+    # TelemetryMessage
+    def Metadata(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            from PrintNannyMessage.Telemetry.Metadata import Metadata
+            obj = Metadata()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def TelemetryMessageStart(builder): builder.StartObject(3)
 def TelemetryMessageAddMessageType(builder, messageType): builder.PrependUint8Slot(0, messageType, 0)
 def TelemetryMessageAddMessage(builder, message): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(message), 0)
+def TelemetryMessageAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
 def TelemetryMessageEnd(builder): return builder.EndObject()
 
 import PrintNannyMessage.Telemetry.BoundingBoxes
 import PrintNannyMessage.Telemetry.MessageType
+import PrintNannyMessage.Telemetry.Metadata
 import PrintNannyMessage.Telemetry.MonitoringFrame
 try:
-    from typing import Union
+    from typing import Optional, Union
 except:
     pass
 
@@ -56,6 +69,7 @@ class TelemetryMessageT(object):
     def __init__(self):
         self.messageType = 0  # type: int
         self.message = None  # type: Union[None, PrintNannyMessage.Telemetry.MonitoringFrame.MonitoringFrameT, PrintNannyMessage.Telemetry.BoundingBoxes.BoundingBoxesT]
+        self.metadata = None  # type: Optional[PrintNannyMessage.Telemetry.Metadata.MetadataT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -75,14 +89,20 @@ class TelemetryMessageT(object):
             return
         self.messageType = telemetryMessage.MessageType()
         self.message = PrintNannyMessage.Telemetry.MessageType.MessageTypeCreator(self.messageType, telemetryMessage.Message())
+        if telemetryMessage.Metadata() is not None:
+            self.metadata = PrintNannyMessage.Telemetry.Metadata.MetadataT.InitFromObj(telemetryMessage.Metadata())
 
     # TelemetryMessageT
     def Pack(self, builder):
         if self.message is not None:
             message = self.message.Pack(builder)
+        if self.metadata is not None:
+            metadata = self.metadata.Pack(builder)
         TelemetryMessageStart(builder)
         TelemetryMessageAddMessageType(builder, self.messageType)
         if self.message is not None:
             TelemetryMessageAddMessage(builder, message)
+        if self.metadata is not None:
+            TelemetryMessageAddMetadata(builder, metadata)
         telemetryMessage = TelemetryMessageEnd(builder)
         return telemetryMessage

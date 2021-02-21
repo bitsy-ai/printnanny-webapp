@@ -65,7 +65,7 @@ table Metadata {
 
 table TelemetryMessage {
     message: MessageType;
-    metadata: Metadata
+    metadata: Metadata;
 }
 
 root_type TelemetryMessage;

@@ -672,6 +672,106 @@ impl<'a: 'b, 'b> BoundingBoxesBuilder<'a, 'b> {
   }
 }
 
+pub enum MetadataOffset {}
+#[derive(Copy, Clone, Debug, PartialEq)]
+
+pub struct Metadata<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for Metadata<'a> {
+    type Inner = Metadata<'a>;
+    #[inline]
+    fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+        Self {
+            _tab: flatbuffers::Table { buf: buf, loc: loc },
+        }
+    }
+}
+
+impl<'a> Metadata<'a> {
+    #[inline]
+    pub fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+        Metadata {
+            _tab: table,
+        }
+    }
+    #[allow(unused_mut)]
+    pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr>(
+        _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr>,
+        args: &'args MetadataArgs) -> flatbuffers::WIPOffset<Metadata<'bldr>> {
+      let mut builder = MetadataBuilder::new(_fbb);
+      builder.add_device_cloudiot_id(args.device_cloudiot_id);
+      builder.add_device_id(args.device_id);
+      builder.add_user_id(args.user_id);
+      builder.finish()
+    }
+
+    pub const VT_USER_ID: flatbuffers::VOffsetT = 4;
+    pub const VT_DEVICE_ID: flatbuffers::VOffsetT = 6;
+    pub const VT_DEVICE_CLOUDIOT_ID: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub fn user_id(&self) -> u32 {
+    self._tab.get::<u32>(Metadata::VT_USER_ID, Some(0)).unwrap()
+  }
+  #[inline]
+  pub fn device_id(&self) -> u32 {
+    self._tab.get::<u32>(Metadata::VT_DEVICE_ID, Some(0)).unwrap()
+  }
+  #[inline]
+  pub fn device_cloudiot_id(&self) -> u64 {
+    self._tab.get::<u64>(Metadata::VT_DEVICE_CLOUDIOT_ID, Some(0)).unwrap()
+  }
+}
+
+pub struct MetadataArgs {
+    pub user_id: u32,
+    pub device_id: u32,
+    pub device_cloudiot_id: u64,
+}
+impl<'a> Default for MetadataArgs {
+    #[inline]
+    fn default() -> Self {
+        MetadataArgs {
+            user_id: 0,
+            device_id: 0,
+            device_cloudiot_id: 0,
+        }
+    }
+}
+pub struct MetadataBuilder<'a: 'b, 'b> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b> MetadataBuilder<'a, 'b> {
+  #[inline]
+  pub fn add_user_id(&mut self, user_id: u32) {
+    self.fbb_.push_slot::<u32>(Metadata::VT_USER_ID, user_id, 0);
+  }
+  #[inline]
+  pub fn add_device_id(&mut self, device_id: u32) {
+    self.fbb_.push_slot::<u32>(Metadata::VT_DEVICE_ID, device_id, 0);
+  }
+  #[inline]
+  pub fn add_device_cloudiot_id(&mut self, device_cloudiot_id: u64) {
+    self.fbb_.push_slot::<u64>(Metadata::VT_DEVICE_CLOUDIOT_ID, device_cloudiot_id, 0);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a>) -> MetadataBuilder<'a, 'b> {
+    let start = _fbb.start_table();
+    MetadataBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<Metadata<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
 pub enum TelemetryMessageOffset {}
 #[derive(Copy, Clone, Debug, PartialEq)]
 
@@ -699,8 +799,9 @@ impl<'a> TelemetryMessage<'a> {
     #[allow(unused_mut)]
     pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr>(
         _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr>,
-        args: &'args TelemetryMessageArgs) -> flatbuffers::WIPOffset<TelemetryMessage<'bldr>> {
+        args: &'args TelemetryMessageArgs<'args>) -> flatbuffers::WIPOffset<TelemetryMessage<'bldr>> {
       let mut builder = TelemetryMessageBuilder::new(_fbb);
+      if let Some(x) = args.metadata { builder.add_metadata(x); }
       if let Some(x) = args.message { builder.add_message(x); }
       builder.add_message_type(args.message_type);
       builder.finish()
@@ -708,6 +809,7 @@ impl<'a> TelemetryMessage<'a> {
 
     pub const VT_MESSAGE_TYPE: flatbuffers::VOffsetT = 4;
     pub const VT_MESSAGE: flatbuffers::VOffsetT = 6;
+    pub const VT_METADATA: flatbuffers::VOffsetT = 8;
 
   #[inline]
   pub fn message_type(&self) -> MessageType {
@@ -716,6 +818,10 @@ impl<'a> TelemetryMessage<'a> {
   #[inline]
   pub fn message(&self) -> Option<flatbuffers::Table<'a>> {
     self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Table<'a>>>(TelemetryMessage::VT_MESSAGE, None)
+  }
+  #[inline]
+  pub fn metadata(&self) -> Option<Metadata<'a>> {
+    self._tab.get::<flatbuffers::ForwardsUOffset<Metadata<'a>>>(TelemetryMessage::VT_METADATA, None)
   }
   #[inline]
   #[allow(non_snake_case)]
@@ -739,16 +845,18 @@ impl<'a> TelemetryMessage<'a> {
 
 }
 
-pub struct TelemetryMessageArgs {
+pub struct TelemetryMessageArgs<'a> {
     pub message_type: MessageType,
     pub message: Option<flatbuffers::WIPOffset<flatbuffers::UnionWIPOffset>>,
+    pub metadata: Option<flatbuffers::WIPOffset<Metadata<'a >>>,
 }
-impl<'a> Default for TelemetryMessageArgs {
+impl<'a> Default for TelemetryMessageArgs<'a> {
     #[inline]
     fn default() -> Self {
         TelemetryMessageArgs {
             message_type: MessageType::NONE,
             message: None,
+            metadata: None,
         }
     }
 }
@@ -764,6 +872,10 @@ impl<'a: 'b, 'b> TelemetryMessageBuilder<'a, 'b> {
   #[inline]
   pub fn add_message(&mut self, message: flatbuffers::WIPOffset<flatbuffers::UnionWIPOffset>) {
     self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(TelemetryMessage::VT_MESSAGE, message);
+  }
+  #[inline]
+  pub fn add_metadata(&mut self, metadata: flatbuffers::WIPOffset<Metadata<'b >>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<Metadata>>(TelemetryMessage::VT_METADATA, metadata);
   }
   #[inline]
   pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a>) -> TelemetryMessageBuilder<'a, 'b> {
