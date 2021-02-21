@@ -31,8 +31,8 @@ struct Box {
 }
 
 table Image {
-    width: int16;
-    height: int16;
+    width: uint32;
+    height: uint32;
     data: [byte] (required);
 }
 
@@ -44,11 +44,10 @@ table MonitoringFrame {
 
 table BoundingBoxes {
     ts: uint32;
-    original_image: Image;
-    post_image: Image;
+    image: Image;
     scores: [float] (required);
-    classes: [int8] (required);
-    num_detections: int8;
+    classes: [uint32] (required);
+    num_detections: uint32;
     boxes: [Box] (required);
     event_type: PluginEvent = bounding_box_predict;
 }
