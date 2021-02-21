@@ -3,6 +3,8 @@
 .openapi-generator-ignore
 .travis.yml
 MANIFEST.in
+PrintNannyMessage/rust/Cargo.toml
+PrintNannyMessage/rust/src/lib.rs
 README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
@@ -246,8 +248,6 @@ print_nanny_client/models/snapshot_enum.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
 print_nanny_client/rest.py
-print_nanny_message/rust/Cargo.toml
-print_nanny_message/rust/src/lib.rs
 requirements.txt
 setup.cfg
 setup.py
