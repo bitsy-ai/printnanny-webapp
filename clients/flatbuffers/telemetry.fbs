@@ -1,6 +1,6 @@
 namespace PrintNannyMessage.Telemetry;
 
-enum PluginEvent:byte {
+enum PluginEvent:ubyte {
     bounding_box_predict = 0,
     monitoring_frame_raw = 1,
     monitoring_frame_post = 2,
@@ -12,7 +12,7 @@ enum PluginEvent:byte {
     printer_profile_sync_failed = 8
  }
 
-enum RemoteCommand:byte {
+enum RemoteCommand:ubyte {
     print_start = 0,
     print_stop = 1,
     print_pause = 2,
@@ -33,7 +33,7 @@ struct Box {
 table Image {
     width: uint32;
     height: uint32;
-    data: [byte] (required);
+    data: [ubyte] (required);
 }
 
 table MonitoringFrame {
