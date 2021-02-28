@@ -394,7 +394,7 @@ class ManualVideoUploadAlert(Alert):
     )
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)

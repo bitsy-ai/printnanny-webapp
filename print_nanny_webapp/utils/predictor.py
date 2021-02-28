@@ -53,7 +53,7 @@ class ThreadLocalPredictor(threading.local):
         self,
         min_score_thresh=0.66,
         max_boxes_to_draw=10,
-        model_version="tflite-print3d_20201101015829-2020-11-16T05:40:41.306Z",
+        model_version="tflite-print3d_20201101015829-2021-02-24T05:16:05.082500Z",
         model_filename="model.tflite",
         metadata_filename="tflite_metadata.json",
         label_filename="dict.txt",
