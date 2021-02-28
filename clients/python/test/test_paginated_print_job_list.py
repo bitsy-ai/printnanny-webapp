@@ -48,7 +48,6 @@ class TestPaginatedPrintJobList(unittest.TestCase):
                         printer_profile = 56, 
                         name = '', 
                         gcode_file = 56, 
-                        last_status = 'Error', 
                         last_seen = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         progress = {
                             'key' : null

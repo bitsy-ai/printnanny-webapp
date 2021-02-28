@@ -9,7 +9,6 @@ from django.conf import settings
 from asgiref.sync import async_to_sync
 from django.core.files.base import ContentFile
 
-from print_nanny_webapp.utils.constants import PluginEvents
 from print_nanny_webapp.utils.prometheus_metrics import (
     annotated_ws_publisher_connected_metric,
     annotated_ws_consumer_connected_metric,
@@ -18,7 +17,6 @@ from print_nanny_webapp.utils.prometheus_metrics import (
 logger = logging.getLogger(__name__)
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
-ObjectDetectEventImage = apps.get_model("client_events", "ObjectDetectEventImage")
 
 User = get_user_model()
 

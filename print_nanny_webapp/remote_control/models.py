@@ -17,7 +17,6 @@ from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
 
-from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.remote_control.utils import (
     update_or_create_cloudiot_device,
@@ -27,7 +26,7 @@ from print_nanny_webapp.remote_control.utils import (
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-
+# from print_nanny_webapp.client_events.models import PrintJobState
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -195,10 +194,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.event_type
@@ -207,10 +206,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_gcode_file(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.job_data_file
@@ -219,9 +218,9 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status_css_class(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
-        return PrintJobEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+        return PrintJobState.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -296,11 +295,11 @@ class PrintJob(models.Model):
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
 
-    last_status = models.CharField(
-        max_length=56,
-        choices=PrintJobEventTypeChoices.choices,
-        default=PrintJobEventTypeChoices.PRINT_STARTED,
-    )
+    # last_status = models.CharField(
+    #     max_length=56,
+    #     choices=PrintJobState.EventType.choices,
+    #     default=PrintJobState.EventType.PRINT_STARTED,
+    # )
     last_seen = models.DateTimeField(auto_now=True)
 
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
@@ -377,56 +376,56 @@ class RemoteControlCommand(models.Model):
 
     objects = RemoteControlCommandManager()
 
-    class CommandChoices(models.TextChoices):
-        MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
-        MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
-        SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
-        PRINT_START = "PrintStart", "Start Print"
-        MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
-        PRINT_STOP = "PrintStop", "Stop Print"
-        PRINT_PAUSE = "PrintPause", "Pause Print"
-        PRINT_RESUME = "PrintResume", "Resume Print"
+    class Command(models.TextChoices):
+        MONITORING_STOP = "monitoring_stop", "Stop Print Nanny Monitoring"
+        MONITORING_START = "monitoring_start", "Start Print Nanny Monitoring"
+        SNAPSHOT = "snapshot", "Capture a webcam snapshot"
+        PRINT_START = "print_start", "Start Print"
+        PRINT_STOP = "print_stop", "Stop Print"
+        PRINT_PAUSE = "print_pause", "Pause Print"
+        PRINT_RESUME = "print_resume", "Resume Print"
+        MOVE_NOZZLE = "move_nozzle", "Move Nozzle"
 
     @property
     def last_snapshot(self):
         last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
 
-    COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
+    COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJobEventTypeChoices.PRINT_STARTED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_PAUSE,
-        ],
-        PrintJobEventTypeChoices.PRINT_DONE: [
-            CommandChoices.MOVE_NOZZLE,
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
-        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
-        PrintJobEventTypeChoices.PRINT_CANCELLING: [],
-        PrintJobEventTypeChoices.PRINT_PAUSED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_RESUME,
-            CommandChoices.MOVE_NOZZLE,
-        ],
-        PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
+        # PrintJobState.EventType.PRINT_STARTED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_PAUSE,
+        # ],
+        # PrintJobState.EventType.PRINT_DONE: [
+        #     Command.MOVE_NOZZLE,
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
+        # PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
+        # PrintJobState.EventType.PRINT_CANCELLING: [],
+        # PrintJobState.EventType.PRINT_PAUSED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_RESUME,
+        #     Command.MOVE_NOZZLE,
+        # ],
+        # PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
+        # "Idle": [
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.PRINT_STOP: "danger",
-        CommandChoices.PRINT_PAUSE: "warning",
-        CommandChoices.PRINT_RESUME: "info",
+        Command.PRINT_STOP: "danger",
+        Command.PRINT_PAUSE: "warning",
+        Command.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
-    command = models.CharField(max_length=255, choices=CommandChoices.choices)
+    command = models.CharField(max_length=255, choices=Command.choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     device = models.ForeignKey(
         OctoPrintDevice, on_delete=models.CASCADE, related_name="commands"
