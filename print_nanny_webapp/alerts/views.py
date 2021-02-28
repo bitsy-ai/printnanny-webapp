@@ -4,16 +4,22 @@ from django.http import HttpResponseRedirect
 
 from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.dashboard.views import DashboardView
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from .forms import (
     ProgressAlertSettingsForm,
     DefectAlertSettingsForm,
     CommandAlertSettingsForm,
+    DiscordMethodSettingsForm,
 )
 from .models import (
     Alert,
     ProgressAlertSettings,
     DefectAlertSettings,
     RemoteControlCommandAlertSettings,
+    DiscordMethodSettings,
 )
 
 logger = logging.getLogger(__name__)
@@ -26,6 +32,7 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         "progress": ProgressAlertSettingsForm,
         "defect": DefectAlertSettingsForm,
         "command": CommandAlertSettingsForm,
+        "discord": DiscordMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
 
@@ -61,6 +68,39 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         form.user = self.request.user
         form.alert_type = Alert.AlertTypeChoices.DEFECT
         form.save()
+
+        success_url = self.get_success_url()
+        return HttpResponseRedirect(success_url)
+
+    def create_discord_form(self, **kwargs):
+        instance, created = DiscordMethodSettings.objects.get_or_create(
+            user=self.request.user,
+        )
+        if instance is not None:
+            return DiscordMethodSettingsForm(instance=instance, **kwargs)
+        else:
+            return DiscordMethodSettingsForm(**kwargs)
+
+    def discord_form_valid(self, form):
+        obj = form.save(commit=False)
+
+        # channel_layer = get_channel_layer()
+        # res = async_to_sync(channel_layer.send)(
+        #     "discord", {
+        #         "type": "validate.id",
+        #         "target_id": obj.target_id,
+        #         "target_id_type": obj.target_id_type,
+        # })
+
+        # if res is None:
+        #     raise ValidationError("Could not validate Discord ID - Maybe Discord is down?")
+
+        # if not res["is_valid"]:
+        #     raise ValidationError(res["error"])
+
+        obj.user = self.request.user
+        obj.method = Alert.AlertMethodChoices.DISCORD
+        obj.save()
 
         success_url = self.get_success_url()
         return HttpResponseRedirect(success_url)

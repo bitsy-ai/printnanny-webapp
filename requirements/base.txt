@@ -52,3 +52,4 @@ django-health-check==3.16.2
 google-cloud-monitoring==2.0.0
 django-rest-polymorphic==0.1.9
 stringcase==1.2.0
+discord.py==1.6.0
