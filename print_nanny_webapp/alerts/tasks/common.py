@@ -6,6 +6,7 @@ import sys
 from celery import shared_task, group
 from django.apps import apps
 from django.core.files.images import File, ImageFile
+from django.core.files.base import ContentFile
 import imageio
 from skimage.io import imread_collection
 
@@ -75,7 +76,7 @@ def create_alert_plot(filename, tmp_dir, function, title, description, alert_id)
                 function=function,
                 title=title,
                 description=description,
-                alert=ManualVideoUploadAlert.objects.get(id=alert_id),
+                alert=ManualVideoUploadAlert.objects.filter(id=alert_id).first(),
             )
             alert_plot.image.save(filename + ".png", wrapped_png)
             alert_plot.html.save(filename + ".html", wrapped_html)
@@ -374,16 +375,13 @@ def calc_metrics(df, framerate):
 @shared_task
 def create_report_card(df, alert_id, temp_dir, fps, callback):
 
+    alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
+
     multi_df, fail_df, confident_df = calc_metrics(df, fps)
 
-    filename = f"alert_{alert_id}_dataframe.csv"
-    csv = os.path.join(temp_dir, filename)
-    with open(csv, "w+") as f:
-        multi_df.to_csv(f)
-
-    alert = ManualVideoUploadAlert.objects.get(id=alert_id)
-
-    alert.annotated_video.dataframe = csv
+    filename = f"alert_{alert_id}_dataframe.json"
+    outcontent = multi_df.reset_index().to_json().encode('utf-8')
+    alert.dataframe.save(filename, ContentFile(outcontent))
     alert.save()
 
     workflow = group(
@@ -409,7 +407,7 @@ def render_alert_annotated_video(alert_id, temp_dir, fps):
 
     with open(file_path, "rb") as f:
         wrapped_file = File(f)
-        alert = ManualVideoUploadAlert.objects.get(id=alert_id)
+        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
         alert.annotated_video.save(filename, wrapped_file)
 
     logger.info(f"Updated alert {alert_id} with {file_path}")
