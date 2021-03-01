@@ -17,12 +17,13 @@ from print_nanny_webapp.remote_control.api.views import (
     RemoteControlSnapshotViewSet
 )
 
-from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet
+from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet, DefectAlertViewSet
 
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("alert_settings", AlertSettingsViewSet)
+router.register("defect-alerts", DefectAlertViewSet)
 
 router.register("users", UserViewSet)
 
