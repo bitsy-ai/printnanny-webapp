@@ -39,13 +39,13 @@ def annotate_job_error(alert_id):
 
 
 @shared_task
-def send_timelapse_upload_email_notification(timelapse_alert_id):
+def send_timelapse_upload_email_notification(alert_id):
 
-    timelapse_alert = ManualVideoUploadAlert.objects.get(id=timelapse_alert_id)
+    timelapse_alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
 
     merge_data = {
         "REPORT_URL": reverse(
-            "dashboard:report-cards:detail", kwargs={"id": timelapse_alert_id}
+            "dashboard:report-cards:detail", kwargs={"id": alert_id}
         ),
         "FIRST_NAME": timelapse_alert.user.first_name or "Maker",
         "ORIGINAL_FILENAME": timelapse_alert.original_filename,
@@ -78,9 +78,9 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
 
 
 @shared_task()
-def create_analyze_video_task(timelapse_alert_id):
-    logger.info(f"Processing video for timelapse_alert_id {timelapse_alert_id}")
-    alert = ManualVideoUploadAlert.objects.get(id=timelapse_alert_id)
+def create_analyze_video_task(alert_id):
+    logger.info(f"Processing video for alert_id {alert_id}")
+    alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
 
     filename, ext = os.path.splitext(alert.original_video.name)
     reader = imageio.get_reader(alert.original_video.read(), ext)
@@ -103,10 +103,10 @@ def create_analyze_video_task(timelapse_alert_id):
 
     report_card_tasks = group(
         [
-            # render_annotated_gif.si(timelapse_alert_id, temp_dir, fps),
-            render_alert_annotated_video.si(timelapse_alert_id, temp_dir, fps),
+            # render_annotated_gif.si(alert_id, temp_dir, fps),
+            render_alert_annotated_video.si(alert_id, temp_dir, fps),
             create_report_card.s(
-                timelapse_alert_id,
+                alert_id,
                 temp_dir,
                 fps,
                 send_timelapse_upload_email_notification,
@@ -115,11 +115,11 @@ def create_analyze_video_task(timelapse_alert_id):
     )
 
     chord1.link(report_card_tasks)
-    chord1.link_error(annotate_job_error.si(timelapse_alert_id))
+    chord1.link_error(annotate_job_error.si(alert_id))
 
     report_card_tasks.link(rm_tmp_dir.si(temp_dir))
-    report_card_tasks.link(annotate_job_success.si(timelapse_alert_id))
-    report_card_tasks.link_error(annotate_job_error.si(timelapse_alert_id))
+    report_card_tasks.link(annotate_job_success.si(alert_id))
+    report_card_tasks.link_error(annotate_job_error.si(alert_id))
 
     chord1.set(queue=socket.gethostname())
     report_card_tasks.set(queue=socket.gethostname())
