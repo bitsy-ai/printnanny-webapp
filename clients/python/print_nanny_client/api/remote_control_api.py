@@ -1549,7 +1549,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/gcode-files/update_or_create/', 'POST',
+            '/api/gcode-files/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -1682,7 +1682,7 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintDevice",
+            201: "OctoPrintDevice",
         }
 
         return self.api_client.call_api(
@@ -2384,7 +2384,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/octoprint-devices/update_or_create/', 'POST',
+            '/api/octoprint-devices/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,
@@ -3241,12 +3241,12 @@ class RemoteControlApi(object):
         >>> thread = api.printer_profiles_list(async_req=True)
         >>> result = thread.get()
 
-        :param name: name
+        :param name:
         :type name: str
         :param page: A page number within the paginated result set.
         :type page: int
-        :param user: user
-        :type user: str
+        :param user:
+        :type user: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3274,12 +3274,12 @@ class RemoteControlApi(object):
         >>> thread = api.printer_profiles_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param name: name
+        :param name:
         :type name: str
         :param page: A page number within the paginated result set.
         :type page: int
-        :param user: user
-        :type user: str
+        :param user:
+        :type user: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3923,7 +3923,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/printer-profiles/update_or_create/', 'POST',
+            '/api/printer-profiles/update-or-create/', 'POST',
             path_params,
             query_params,
             header_params,

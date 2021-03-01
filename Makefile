@@ -55,7 +55,18 @@ clean-python-client: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -rf {} +
 
-python-client: clean-python-client
+clean-messages-lib:
+	rm -rf clients/python/PrintNannyMessage
+
+
+rust-flatbuffer: clean-messages-lib
+	~/projects/flatbuffers/flatc --rust --filename-suffix '' --gen-object-api -o clients/python/PrintNannyMessage/rust/src clients/flatbuffers/telemetry.fbs
+
+python-flatbuffer: clean-messages-lib
+	~/projects/flatbuffers/flatc --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry.fbs
+
+
+python-client: clean-python-client python-flatbuffer rust-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 
@@ -64,7 +75,7 @@ python-client: clean-python-client
 		-g python-legacy \
 		-o /local/clients/python \
 		-c /local/clients/python.yaml \
-	
+
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +

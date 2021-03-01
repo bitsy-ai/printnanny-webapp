@@ -448,6 +448,8 @@ INSTALLED_APPS += [
 APPEND_SLASH = True
 
 # pubsub and cloud iot
+GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
+GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
 
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny-sandbox")

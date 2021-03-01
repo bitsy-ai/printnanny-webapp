@@ -34,55 +34,69 @@ class OctoPrintEvent(object):
     """
     openapi_types = {
         'id': 'int',
+        'polymorphic_ctype': 'int',
         'created_dt': 'datetime',
-        'event_type': 'EventTypeEnum',
+        'client_event_type': 'ClientEventTypeEnum',
         'event_data': 'dict(str, object)',
         'device': 'int',
         'user': 'int',
         'plugin_version': 'str',
         'octoprint_version': 'str',
+        'clientevent_ptr': 'int',
+        'event_type': 'OctoPrintEventEventTypeEnum',
         'url': 'str'
     }
 
     attribute_map = {
         'id': 'id',
+        'polymorphic_ctype': 'polymorphic_ctype',
         'created_dt': 'created_dt',
-        'event_type': 'event_type',
+        'client_event_type': 'client_event_type',
         'event_data': 'event_data',
         'device': 'device',
         'user': 'user',
         'plugin_version': 'plugin_version',
         'octoprint_version': 'octoprint_version',
+        'clientevent_ptr': 'clientevent_ptr',
+        'event_type': 'event_type',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_type=None, event_data=None, device=None, user=None, plugin_version=None, octoprint_version=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, polymorphic_ctype=None, created_dt=None, client_event_type=None, event_data=None, device=None, user=None, plugin_version=None, octoprint_version=None, clientevent_ptr=None, event_type=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._polymorphic_ctype = None
         self._created_dt = None
-        self._event_type = None
+        self._client_event_type = None
         self._event_data = None
         self._device = None
         self._user = None
         self._plugin_version = None
         self._octoprint_version = None
+        self._clientevent_ptr = None
+        self._event_type = None
         self._url = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
         self.created_dt = created_dt
-        self.event_type = event_type
+        self.client_event_type = client_event_type
         self.event_data = event_data
         self.device = device
         if user is not None:
             self.user = user
         self.plugin_version = plugin_version
         self.octoprint_version = octoprint_version
+        if clientevent_ptr is not None:
+            self.clientevent_ptr = clientevent_ptr
+        self.event_type = event_type
         if url is not None:
             self.url = url
 
@@ -108,6 +122,27 @@ class OctoPrintEvent(object):
         self._id = id
 
     @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this OctoPrintEvent.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
+
+    @property
     def created_dt(self):
         """Gets the created_dt of this OctoPrintEvent.  # noqa: E501
 
@@ -131,27 +166,27 @@ class OctoPrintEvent(object):
         self._created_dt = created_dt
 
     @property
-    def event_type(self):
-        """Gets the event_type of this OctoPrintEvent.  # noqa: E501
+    def client_event_type(self):
+        """Gets the client_event_type of this OctoPrintEvent.  # noqa: E501
 
 
-        :return: The event_type of this OctoPrintEvent.  # noqa: E501
-        :rtype: EventTypeEnum
+        :return: The client_event_type of this OctoPrintEvent.  # noqa: E501
+        :rtype: ClientEventTypeEnum
         """
-        return self._event_type
+        return self._client_event_type
 
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this OctoPrintEvent.
+    @client_event_type.setter
+    def client_event_type(self, client_event_type):
+        """Sets the client_event_type of this OctoPrintEvent.
 
 
-        :param event_type: The event_type of this OctoPrintEvent.  # noqa: E501
-        :type event_type: EventTypeEnum
+        :param client_event_type: The client_event_type of this OctoPrintEvent.  # noqa: E501
+        :type client_event_type: ClientEventTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and client_event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `client_event_type`, must not be `None`")  # noqa: E501
 
-        self._event_type = event_type
+        self._client_event_type = client_event_type
 
     @property
     def event_data(self):
@@ -271,6 +306,50 @@ class OctoPrintEvent(object):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `60`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
+
+    @property
+    def clientevent_ptr(self):
+        """Gets the clientevent_ptr of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The clientevent_ptr of this OctoPrintEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._clientevent_ptr
+
+    @clientevent_ptr.setter
+    def clientevent_ptr(self, clientevent_ptr):
+        """Sets the clientevent_ptr of this OctoPrintEvent.
+
+
+        :param clientevent_ptr: The clientevent_ptr of this OctoPrintEvent.  # noqa: E501
+        :type clientevent_ptr: int
+        """
+
+        self._clientevent_ptr = clientevent_ptr
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The event_type of this OctoPrintEvent.  # noqa: E501
+        :rtype: OctoPrintEventEventTypeEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this OctoPrintEvent.
+
+
+        :param event_type: The event_type of this OctoPrintEvent.  # noqa: E501
+        :type event_type: OctoPrintEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def url(self):

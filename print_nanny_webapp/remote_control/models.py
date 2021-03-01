@@ -1,7 +1,4 @@
-import base64
-import hashlib
 import logging
-import subprocess
 import tempfile
 import os
 from django.contrib.auth import get_user_model
@@ -20,163 +17,75 @@ from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
 
-from print_nanny_webapp.client_events.models import PrintJobEventTypeChoices
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
+from print_nanny_webapp.remote_control.utils import (
+    update_or_create_cloudiot_device,
+    generate_keypair,
+)
 
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-
-
-class KeyPairProvisioning(Exception):
-    pass
-
+# from print_nanny_webapp.client_events.models import PrintJobState
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
         serial = kwargs.get("serial")
         logging.info(f"Creating keypair for device serial={serial}")
 
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_private_key_filename = f"{tmp}/{serial}_rsa_private.pem"
-            tmp_public_key_filename = f"{tmp}/{serial}_rsa_public.pem"
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "genpkey",
-                    "-algorithm",
-                    "RSA",
-                    "-out",
-                    tmp_private_key_filename,
-                    "-pkeyopt",
-                    "rsa_keygen_bits:2048",
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(f"Error running openssl genpkey {p.stderr}")
-                # raise KeyPairProvisioning(p.stderr)
+        keypair = generate_keypair()
 
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "rsa",
-                    "-in",
-                    tmp_private_key_filename,
-                    "-pubout",
-                    "-out",
-                    tmp_public_key_filename,
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(f"Error running openssl rsa {p.stderr}")
-                # raise KeyPairProvisioning(p.stderr)
+        serial = kwargs.get("serial")
+        cloudiot_device_name = f"serial-{serial}"
+        cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
+            name=cloudiot_device_name,
+            serial=serial,
+            user_id=kwargs.get("user").id,
+            metadata=kwargs,
+            fingerprint=keypair["fingerprint"],
+            public_key_content=keypair["public_key_content"].strip(),
+        )
 
-            p = subprocess.run(
-                [
-                    "openssl",
-                    "sha3-256",
-                    "-c",
-                    tmp_public_key_filename,
-                ],
-                capture_output=True,
-            )
-            logger.debug(p.stdout)
-            if p.stderr != b"":
-                logger.warning(p.stderr)
+        logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
 
-            fingerprint = p.stdout
-            fingerprint = fingerprint.decode().split("=")[-1]
-            fingerprint = fingerprint.strip()
+        cloudiot_device_num_id = cloudiot_device_dict.get("numId")
 
-            client = cloudiot_v1.DeviceManagerClient()
+        always_update = dict(
+            public_key=keypair["public_key_content"],
+            fingerprint=keypair["fingerprint"],
+            cloudiot_device_num_id=cloudiot_device_num_id,
+            cloudiot_device_name=cloudiot_device_name,
+            cloudiot_device=cloudiot_device_dict,
+            cloudiot_device_path=device_path,
+        )
 
-            with open(tmp_public_key_filename) as f:
-                public_key_content = f.read().strip()
+        defaults.update(always_update)
 
-            with open(tmp_private_key_filename) as f:
-                private_key_content = f.read().strip()
+        device, created = super().update_or_create(defaults=defaults, **kwargs)
 
-            parent = client.registry_path(
-                settings.GCP_PROJECT_ID,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        for key, value in always_update.items():
+            setattr(device, key, value)
+        logging.info(f"Device created: {created} with id={device.id}")
+        device.cloudiot_device = cloudiot_device_dict
+        device.private_key = keypair["private_key_content"]
+        device.private_key_checksum = keypair["private_key_checksum"]
+        device.public_key_checksum = keypair["public_key_checksum"]
+        device.ca_certs = keypair["ca_certs"]
+        device.save()
+
+        from print_nanny_webapp.ml_ops.models import (
+            Experiment,
+            ExperimentDeviceConfig,
+        )
+
+        active_experiment = Experiment.objects.filter(active=True).first()
+        if active_experiment is not None:
+            experiment_device_config = ExperimentDeviceConfig.objects.create(
+                device=device,
+                experiment=active_experiment,
             )
 
-            serial = kwargs.get("serial")
-            cloudiot_device_name = f"serial-{serial}"
-
-            string_kwargs = {k: str(v) for k, v in defaults.items()}
-            device_template = {
-                "id": cloudiot_device_name,
-                "credentials": [
-                    {
-                        "public_key": {
-                            "format": cloudiot_v1.PublicKeyFormat.RSA_PEM,
-                            "key": public_key_content,
-                        }
-                    }
-                ],
-                "metadata": {
-                    "user_id": str(kwargs.get("user").id),
-                    "serial": kwargs.get("serial"),
-                    "fingerprint": fingerprint,
-                    **string_kwargs,
-                },
-            }
-
-            device_path = client.device_path(
-                settings.GCP_PROJECT_ID,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-                settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-                cloudiot_device_name,
-            )
-
-            try:
-                cloudiot_device = client.delete_device(name=device_path)
-                logger.info(f"Deleted existing device {device_path}")
-            except google.api_core.exceptions.NotFound as e:
-                logger.warning(
-                    {
-                        "error": e,
-                        "msg": f"No existing device found with name {cloudiot_device_name}",
-                    }
-                )
-
-            cloudiot_device = client.create_device(
-                parent=parent, device=device_template
-            )
-
-            logger.info(f"Created new device in registry {device_path}")
-
-            cloudiot_device_dict = MessageToDict(cloudiot_device._pb)
-            logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
-
-            cloudiot_device_num_id = cloudiot_device_dict.get("numId")
-
-            always_update = dict(
-                public_key=public_key_content,
-                fingerprint=fingerprint,
-                cloudiot_device_num_id=cloudiot_device_num_id,
-                cloudiot_device_name=cloudiot_device_name,
-                cloudiot_device=cloudiot_device_dict,
-            )
-
-            defaults.update(always_update)
-
-            device, created = super().update_or_create(defaults=defaults, **kwargs)
-
-            for key, value in always_update.items():
-                setattr(device, key, value)
-            logging.info(f"Device created: {created} with id={device.id}")
-            device.cloudiot_device = cloudiot_device_dict
-            device.private_key = private_key_content
-            device.save()
-
-            return device, created
+        return device, created
 
 
 class OctoPrintDevice(models.Model):
@@ -186,6 +95,19 @@ class OctoPrintDevice(models.Model):
         True: "text-success",
         False: "text-secondary",
     }
+
+    class MonitoringMode(models.TextChoices):
+        ACTIVE_LEARNING = "active_learning", "Active Learning"
+        LITE = "lite", "Lite"
+
+    @property
+    def active_config(self):
+        from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
+
+        active_config = ExperimentDeviceConfig.objects.filter(
+            device=self, experiment__active=True
+        ).first()
+        return active_config
 
     @property
     def last_snapshot(self):
@@ -202,11 +124,12 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
+    
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
     cloudiot_device_name = models.CharField(max_length=255)
+    cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
 
     model = models.CharField(max_length=255)
@@ -222,7 +145,9 @@ class OctoPrintDevice(models.Model):
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255)
+
     monitoring_active = models.BooleanField(default=False)
+    monitoring_mode = models.CharField(max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE)
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
@@ -235,6 +160,22 @@ class OctoPrintDevice(models.Model):
 
         serializer = OctoPrintDeviceSerializer(instance=self)
         return json.dumps(serializer.data, sort_keys=True, indent=2)
+
+    @property
+    def cloudiot_device_configs(self):
+        """
+        Lists the last 10 device configurations
+        """
+        client = cloudiot_v1.DeviceManagerClient()
+        device_path = client.device_path(
+            settings.GCP_PROJECT_ID,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+            self.cloudiot_device_name,
+        )
+        device_configs = client.list_device_config_versions(name=device_path)
+        configs_dict = MessageToDict(device_configs._pb)
+        return configs_dict
 
     @property
     def cloudiot_device_status(self):
@@ -253,10 +194,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.event_type
@@ -265,10 +206,10 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_gcode_file(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
         last_print_job_event = (
-            PrintJobEvent.objects.filter(device=self).order_by("-created_dt").first()
+            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
         )
         if last_print_job_event:
             return last_print_job_event.job_data_file
@@ -277,9 +218,9 @@ class OctoPrintDevice(models.Model):
 
     @property
     def print_job_status_css_class(self):
-        PrintJobEvent = apps.get_model("client_events", "PrintJobEvent")
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
 
-        return PrintJobEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+        return PrintJobState.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -354,11 +295,11 @@ class PrintJob(models.Model):
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
 
-    last_status = models.CharField(
-        max_length=56,
-        choices=PrintJobEventTypeChoices.choices,
-        default=PrintJobEventTypeChoices.PRINT_STARTED,
-    )
+    # last_status = models.CharField(
+    #     max_length=56,
+    #     choices=PrintJobState.EventType.choices,
+    #     default=PrintJobState.EventType.PRINT_STARTED,
+    # )
     last_seen = models.DateTimeField(auto_now=True)
 
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
@@ -373,6 +314,7 @@ class PrintJob(models.Model):
 
 
 class RemoteControlCommandManager(models.Manager):
+
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
 
@@ -416,6 +358,7 @@ public_storage = PublicGoogleCloudStorage()
 
 
 class RemoteControlSnapshot(models.Model):
+
     created_dt = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage
@@ -428,66 +371,61 @@ class RemoteControlSnapshot(models.Model):
 
 
 class RemoteControlCommand(models.Model):
+
+    PLUGIN_EVENT_PREFIX = 'plugin_octoprint_nanny_'
+
     objects = RemoteControlCommandManager()
 
-    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
-
-    class CommandChoices(models.TextChoices):
-        MONITORING_STOP = "MonitoringStop", "Stop Print Nanny Monitoring"
-        MONITORING_START = "MonitoringStart", "Start Print Nanny Monitoring"
-        SNAPSHOT = "Snapshot", "Capture a webcam snapshot"
-        PRINT_START = "PrintStart", "Start Print"
-        MOVE_NOZZLE = "MoveNozzle", "Move Nozzle"
-        PRINT_STOP = "PrintStop", "Stop Print"
-        PRINT_PAUSE = "PrintPause", "Pause Print"
-        PRINT_RESUME = "PrintResume", "Resume Print"
+    class Command(models.TextChoices):
+        MONITORING_STOP = "monitoring_stop", "Stop Print Nanny Monitoring"
+        MONITORING_START = "monitoring_start", "Start Print Nanny Monitoring"
+        SNAPSHOT = "snapshot", "Capture a webcam snapshot"
+        PRINT_START = "print_start", "Start Print"
+        PRINT_STOP = "print_stop", "Stop Print"
+        PRINT_PAUSE = "print_pause", "Pause Print"
+        PRINT_RESUME = "print_resume", "Resume Print"
+        MOVE_NOZZLE = "move_nozzle", "Move Nozzle"
 
     @property
     def last_snapshot(self):
         last_snapshot = self.snapshots.order_by("-created_dt").first()
         return last_snapshot
 
-    @classmethod
-    def to_octoprint_events(cls):
-        return [
-            cls.PLUGIN_EVENT_PREFIX + stringcase.snakecase(x) for x in cls.COMMAND_CODES
-        ]
-
-    COMMAND_CODES = [x.value for x in CommandChoices.__members__.values()]
+    COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     VALID_ACTIONS = {
-        PrintJobEventTypeChoices.PRINT_STARTED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_PAUSE,
-        ],
-        PrintJobEventTypeChoices.PRINT_DONE: [
-            CommandChoices.MOVE_NOZZLE,
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
-        PrintJobEventTypeChoices.PRINT_CANCELLED: [CommandChoices.MOVE_NOZZLE],
-        PrintJobEventTypeChoices.PRINT_CANCELLING: [],
-        PrintJobEventTypeChoices.PRINT_PAUSED: [
-            CommandChoices.PRINT_STOP,
-            CommandChoices.PRINT_RESUME,
-            CommandChoices.MOVE_NOZZLE,
-        ],
-        PrintJobEventTypeChoices.PRINT_FAILED: [CommandChoices.MOVE_NOZZLE],
-        "Idle": [
-            CommandChoices.MONITORING_START,
-            CommandChoices.MONITORING_STOP,
-            CommandChoices.SNAPSHOT,
-        ],
+        # PrintJobState.EventType.PRINT_STARTED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_PAUSE,
+        # ],
+        # PrintJobState.EventType.PRINT_DONE: [
+        #     Command.MOVE_NOZZLE,
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
+        # PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
+        # PrintJobState.EventType.PRINT_CANCELLING: [],
+        # PrintJobState.EventType.PRINT_PAUSED: [
+        #     Command.PRINT_STOP,
+        #     Command.PRINT_RESUME,
+        #     Command.MOVE_NOZZLE,
+        # ],
+        # PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
+        # "Idle": [
+        #     Command.MONITORING_START,
+        #     Command.MONITORING_STOP,
+        #     Command.SNAPSHOT,
+        # ],
     }
 
     ACTION_CSS_CLASSES = {
-        CommandChoices.PRINT_STOP: "danger",
-        CommandChoices.PRINT_PAUSE: "warning",
-        CommandChoices.PRINT_RESUME: "info",
+        Command.PRINT_STOP: "danger",
+        Command.PRINT_PAUSE: "warning",
+        Command.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
-    command = models.CharField(max_length=255, choices=CommandChoices.choices)
+    command = models.CharField(max_length=255, choices=Command.choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     device = models.ForeignKey(
         OctoPrintDevice, on_delete=models.CASCADE, related_name="commands"

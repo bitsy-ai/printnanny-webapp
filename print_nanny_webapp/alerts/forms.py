@@ -29,13 +29,13 @@ class CommandAlertSettingsForm(ModelForm):
             "enabled",
             "alert_methods",
             "snapshot",
-            "start_print",
-            "stop_print",
-            "pause_print",
-            "resume_print",
+            "print_start",
+            "print_stop",
+            "print_pause",
+            "print_resume",
+            "monitoring_start",
+            "monitoring_stop",
             "move_nozzle",
-            "start_monitoring",
-            "stop_monitoring",
         )
 
 class DiscordMethodSettingsForm(ModelForm):

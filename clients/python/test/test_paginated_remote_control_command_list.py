@@ -43,7 +43,7 @@ class TestPaginatedRemoteControlCommandList(unittest.TestCase):
                     print_nanny_client.models.remote_control_command.RemoteControlCommand(
                         id = 56, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        command = 'MonitoringStop', 
+                        command = 'monitoring_stop', 
                         user = 56, 
                         device = 56, 
                         received = True, 

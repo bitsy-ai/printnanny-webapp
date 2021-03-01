@@ -51,6 +51,7 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                             'key' : null
                             }, 
                         cloudiot_device_name = '', 
+                        cloudiot_device_path = '', 
                         cloudiot_device_num_id = 56, 
                         model = '', 
                         platform = '', 
@@ -66,9 +67,11 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                         pip_version = '', 
                         virtualenv = '', 
                         monitoring_active = True, 
+                        monitoring_mode = 'active_learning', 
                         octoprint_version = '', 
                         plugin_version = '', 
-                        print_nanny_client_version = '', )
+                        print_nanny_client_version = '', 
+                        cloudiot_device_configs = '', )
                     ]
             )
         else :

@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: print_nanny_client
-packageVersion: '0.4.9'
+packageVersion: '0.5.0-dev29'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@bitsy.ai"
@@ -13,15 +13,15 @@ files:
   requirements.mustache:
     templateType: SupportingFiles
     destinationFilename: requirements.txt
-  avro/ObjectDetectEvent.avsc:
+  setup.mustache:
     templateType: SupportingFiles
-    destinationFilename: print_nanny_client/avro/ObjectDetectEvent.avsc
-  avro/client_events.py:
-    templateType: SupportingFiles
-    destinationFilename: print_nanny_client/avro/client_events.py
-  avro/__init__.py:
-    templateType: SupportingFiles
-    destinationFilename: print_nanny_client/avro/__init__.py
+    destinationFilename: setup.py
   MANIFEST.mustache:
     templateType: SupportingFiles
     destinationFilename: MANIFEST.in
+  rust/Cargo.toml.mustache:
+    templateType: SupportingFiles
+    destinationFilename: PrintNannyMessage/rust/Cargo.toml
+  rust/src/lib.rs.mustache:
+    templateType: SupportingFiles
+    destinationFilename: PrintNannyMessage/rust/src/lib.rs

@@ -25,16 +25,40 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
+    cloudiot_device_configs = serializers.SerializerMethodField()
+
+    def get_cloudiot_device_configs(self, obj):
+        return obj.cloudiot_device_configs
+
     private_key = serializers.SerializerMethodField()
 
     def get_private_key(self, obj):
         return getattr(obj, "private_key", None)
+
+    private_key_checksum = serializers.SerializerMethodField()
+
+    def get_private_key_checksum(self, obj):
+        return getattr(obj, "private_key_checksum", None)
+
+    public_key_checksum = serializers.CharField()
+
+    # def get_public_key_checksum(self, obj):
+    #     return getattr(obj, "public_key_checksum", None)
+
+    ca_certs = serializers.DictField(child=serializers.CharField())
+
+    # def get_ca_certs(self, obj):
+    #     return getattr(obj, "ca_certs", None)
 
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
             "url",
             "private_key",
+            "private_key_checksum",
+            "public_key_checksum",
+            "cloudiot_device_configs",
+            "ca_certs",
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -47,23 +71,30 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cloudiot_device_num_id",
             "cloudiot_device",
             "cloudiot_device_name",
+            "cloudiot_device_path",
+            "cloudiot_device_configs",
         )
 
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
         defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
-        unique_together_fields = {
-            k: v for k, v in validated_data.items() if k in unique_together
-        }
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )
 
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
+
+    cloudiot_device_configs = serializers.SerializerMethodField()
+
+    def get_cloudiot_device_configs(self, obj):
+        return obj.cloudiot_device_configs
+
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields]
+        fields = [field.name for field in OctoPrintDevice._meta.fields] + [
+            "cloudiot_device_configs"
+        ]
 
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -76,6 +107,8 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             "cloudiot_device_num_id",
             "cloudiot_device",
             "cloudiot_device_name",
+            "cloudiot_device_path",
+            "cloudiot_device_configs",
         )
 
     def update_or_create(self, user, serial, validated_data):

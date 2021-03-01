@@ -40,9 +40,6 @@ def _upload_to(instance, filename):
 
 class Alert(PolymorphicModel):
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -65,6 +62,7 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
+    octoprint_device = models.ForeignKey("remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE)
 
 
 class AlertSettings(PolymorphicModel):
@@ -133,7 +131,7 @@ class ProgressAlertSettings(AlertSettings):
         progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
             command = RemoteControlCommand.objects.create(
-                command=RemoteControlCommand.CommandChoices.SNAPSHOT,
+                command=RemoteControlCommand.Command.SNAPSHOT,
                 device=octoprint_event.device,
                 user=octoprint_event.user,
             )
@@ -159,7 +157,6 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
     def command_to_attr(self, command_str):
-        # shamelessly ripped from https://www.geeksforgeeks.org/python-program-to-convert-camel-case-string-to-snake-case/
         snake_cased = stringcase.snakecase(command_str)
         return getattr(self, snake_cased)
 
@@ -172,32 +169,46 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         blank=True,
     )
 
-    stop_monitoring = ChoiceArrayField(
+    monitoring_stop = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
 
-    start_monitoring = ChoiceArrayField(
+    monitoring_start = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
 
-    stop_print = ChoiceArrayField(
+    print_start = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
 
-    start_print = ChoiceArrayField(
+    print_stop = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
         help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
+    )
+
+    print_pause = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
+        default=(AlertSubTypeChoices.FAILED,),
+        blank=True,
+    )
+
+    print_resume = ChoiceArrayField(
+        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+        help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
+        default=(AlertSubTypeChoices.FAILED,),
+        blank=True,
     )
 
     move_nozzle = ChoiceArrayField(
@@ -206,20 +217,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
-    pause_print = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
-        default=(AlertSubTypeChoices.FAILED,),
-        blank=True,
-    )
-
-    resume_print = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
-        default=(AlertSubTypeChoices.FAILED,),
-        blank=True,
-    )
-
+    
 
 ##
 # Alert Models

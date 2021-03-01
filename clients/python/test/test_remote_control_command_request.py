@@ -36,7 +36,7 @@ class TestRemoteControlCommandRequest(unittest.TestCase):
         # model = print_nanny_client.models.remote_control_command_request.RemoteControlCommandRequest()  # noqa: E501
         if include_optional :
             return RemoteControlCommandRequest(
-                command = 'MonitoringStop', 
+                command = 'monitoring_stop', 
                 user = 56, 
                 device = 56, 
                 received = True, 
@@ -50,7 +50,7 @@ class TestRemoteControlCommandRequest(unittest.TestCase):
             )
         else :
             return RemoteControlCommandRequest(
-                command = 'MonitoringStop',
+                command = 'monitoring_stop',
                 user = 56,
                 device = 56,
         )

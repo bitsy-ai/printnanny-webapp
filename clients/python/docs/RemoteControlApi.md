@@ -13,13 +13,13 @@ Method | HTTP request | Description
 [**gcode_files_partial_update**](RemoteControlApi.md#gcode_files_partial_update) | **PATCH** /api/gcode-files/{id}/ | 
 [**gcode_files_retrieve**](RemoteControlApi.md#gcode_files_retrieve) | **GET** /api/gcode-files/{id}/ | 
 [**gcode_files_update**](RemoteControlApi.md#gcode_files_update) | **PUT** /api/gcode-files/{id}/ | 
-[**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **POST** /api/gcode-files/update_or_create/ | 
+[**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **POST** /api/gcode-files/update-or-create/ | 
 [**octoprint_devices_create**](RemoteControlApi.md#octoprint_devices_create) | **POST** /api/octoprint-devices/ | 
 [**octoprint_devices_list**](RemoteControlApi.md#octoprint_devices_list) | **GET** /api/octoprint-devices/ | 
 [**octoprint_devices_partial_update**](RemoteControlApi.md#octoprint_devices_partial_update) | **PATCH** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_retrieve**](RemoteControlApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update_or_create/ | 
+[**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
 [**print_jobs_create**](RemoteControlApi.md#print_jobs_create) | **POST** /api/print-jobs/ | 
 [**print_jobs_list**](RemoteControlApi.md#print_jobs_list) | **GET** /api/print-jobs/ | 
 [**print_jobs_partial_update**](RemoteControlApi.md#print_jobs_partial_update) | **PATCH** /api/print-jobs/{id}/ | 
@@ -30,7 +30,7 @@ Method | HTTP request | Description
 [**printer_profiles_partial_update**](RemoteControlApi.md#printer_profiles_partial_update) | **PATCH** /api/printer-profiles/{id}/ | 
 [**printer_profiles_retrieve**](RemoteControlApi.md#printer_profiles_retrieve) | **GET** /api/printer-profiles/{id}/ | 
 [**printer_profiles_update**](RemoteControlApi.md#printer_profiles_update) | **PUT** /api/printer-profiles/{id}/ | 
-[**printer_profiles_update_or_create**](RemoteControlApi.md#printer_profiles_update_or_create) | **POST** /api/printer-profiles/update_or_create/ | 
+[**printer_profiles_update_or_create**](RemoteControlApi.md#printer_profiles_update_or_create) | **POST** /api/printer-profiles/update-or-create/ | 
 [**snapshots_create**](RemoteControlApi.md#snapshots_create) | **POST** /api/snapshots/ | 
 [**snapshots_list**](RemoteControlApi.md#snapshots_list) | **GET** /api/snapshots/ | 
 [**snapshots_partial_update**](RemoteControlApi.md#snapshots_partial_update) | **PATCH** /api/snapshots/{id}/ | 
@@ -70,7 +70,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -88,7 +88,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->commands_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -112,7 +112,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -187,7 +187,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -206,7 +206,7 @@ patched_remote_control_command_request = print_nanny_client.PatchedRemoteControl
         print("Exception when calling RemoteControlApi->commands_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -230,7 +230,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -307,7 +307,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -325,7 +325,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->commands_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -349,7 +349,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -424,7 +424,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -443,7 +443,7 @@ remote_control_command_request = print_nanny_client.RemoteControlCommandRequest(
         print("Exception when calling RemoteControlApi->commands_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -467,7 +467,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -544,7 +544,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -565,7 +565,7 @@ octoprint_device = 'octoprint_device_example' # str |
         print("Exception when calling RemoteControlApi->gcode_files_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -589,7 +589,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -671,7 +671,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -689,7 +689,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->gcode_files_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -713,7 +713,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -788,7 +788,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -810,7 +810,7 @@ octoprint_device = 'octoprint_device_example' # str |  (optional)
         print("Exception when calling RemoteControlApi->gcode_files_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -834,7 +834,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -917,7 +917,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -935,7 +935,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->gcode_files_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -959,7 +959,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1034,7 +1034,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1056,7 +1056,7 @@ octoprint_device = 'octoprint_device_example' # str |
         print("Exception when calling RemoteControlApi->gcode_files_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1080,7 +1080,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1163,7 +1163,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1184,7 +1184,7 @@ octoprint_device = 'octoprint_device_example' # str |
         print("Exception when calling RemoteControlApi->gcode_files_update_or_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1208,7 +1208,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1291,7 +1291,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1309,7 +1309,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->octoprint_devices_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1333,7 +1333,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1373,7 +1373,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1408,7 +1408,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1426,7 +1426,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->octoprint_devices_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1450,7 +1450,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1525,7 +1525,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1544,7 +1544,7 @@ patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceReq
         print("Exception when calling RemoteControlApi->octoprint_devices_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1568,7 +1568,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1647,7 +1647,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1665,7 +1665,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->octoprint_devices_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1689,7 +1689,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1764,7 +1764,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1783,7 +1783,7 @@ octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPr
         print("Exception when calling RemoteControlApi->octoprint_devices_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1807,7 +1807,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1886,7 +1886,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -1904,7 +1904,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->octoprint_devices_update_or_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -1928,7 +1928,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2006,7 +2006,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2024,7 +2024,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2048,7 +2048,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2124,7 +2124,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2142,7 +2142,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2166,7 +2166,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2241,7 +2241,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2260,7 +2260,7 @@ patched_print_job_request = print_nanny_client.PatchedPrintJobRequest() # Patche
         print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2284,7 +2284,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2362,7 +2362,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2380,7 +2380,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2404,7 +2404,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2479,7 +2479,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2498,7 +2498,7 @@ print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest |
         print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2522,7 +2522,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2600,7 +2600,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2618,7 +2618,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->printer_profiles_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2642,7 +2642,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2718,7 +2718,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2727,9 +2727,9 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    name = 'name_example' # str | name (optional)
+    name = 'name_example' # str |  (optional)
 page = 56 # int | A page number within the paginated result set. (optional)
-user = 'user_example' # str | user (optional)
+user = 56 # int |  (optional)
 
     try:
         api_response = api_instance.printer_profiles_list(name=name, page=page, user=user)
@@ -2738,7 +2738,7 @@ user = 'user_example' # str | user (optional)
         print("Exception when calling RemoteControlApi->printer_profiles_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2762,7 +2762,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2771,9 +2771,9 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    name = 'name_example' # str | name (optional)
+    name = 'name_example' # str |  (optional)
 page = 56 # int | A page number within the paginated result set. (optional)
-user = 'user_example' # str | user (optional)
+user = 56 # int |  (optional)
 
     try:
         api_response = api_instance.printer_profiles_list(name=name, page=page, user=user)
@@ -2786,9 +2786,9 @@ user = 'user_example' # str | user (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name | [optional] 
+ **name** | **str**|  | [optional] 
  **page** | **int**| A page number within the paginated result set. | [optional] 
- **user** | **str**| user | [optional] 
+ **user** | **int**|  | [optional] 
 
 ### Return type
 
@@ -2841,7 +2841,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2860,7 +2860,7 @@ patched_printer_profile_request = print_nanny_client.PatchedPrinterProfileReques
         print("Exception when calling RemoteControlApi->printer_profiles_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -2884,7 +2884,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2961,7 +2961,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -2979,7 +2979,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->printer_profiles_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3003,7 +3003,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3078,7 +3078,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3097,7 +3097,7 @@ printer_profile_request = print_nanny_client.PrinterProfileRequest() # PrinterPr
         print("Exception when calling RemoteControlApi->printer_profiles_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3121,7 +3121,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3198,7 +3198,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3216,7 +3216,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->printer_profiles_update_or_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3240,7 +3240,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3317,7 +3317,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3336,7 +3336,7 @@ command = 56 # int |
         print("Exception when calling RemoteControlApi->snapshots_create: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3360,7 +3360,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3438,7 +3438,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3456,7 +3456,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->snapshots_list: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3480,7 +3480,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3555,7 +3555,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3575,7 +3575,7 @@ command = 56 # int |  (optional)
         print("Exception when calling RemoteControlApi->snapshots_partial_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3599,7 +3599,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3678,7 +3678,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3696,7 +3696,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->snapshots_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3720,7 +3720,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3795,7 +3795,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3815,7 +3815,7 @@ command = 56 # int |
         print("Exception when calling RemoteControlApi->snapshots_update: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3839,7 +3839,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3918,7 +3918,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )
@@ -3935,7 +3935,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
         print("Exception when calling RemoteControlApi->valid_commands_retrieve: %s\n" % e)
 ```
 
-* Bearer (Bearer) Authentication (tokenAuth):
+* Bearer Authentication (tokenAuth):
 ```python
 from __future__ import print_function
 import time
@@ -3959,7 +3959,7 @@ configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['cookieAuth'] = 'Bearer'
 
-# Configure Bearer authorization (Bearer): tokenAuth
+# Configure Bearer authorization: tokenAuth
 configuration = print_nanny_client.Configuration(
     access_token = 'YOUR_BEARER_TOKEN'
 )

@@ -19,36 +19,119 @@ from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 
-from .serializers import OctoPrintEventSerializer
+from .serializers import ClientEventPolymorphicSerializer
 import print_nanny_webapp.client_events.api.exceptions
-from print_nanny_webapp.client_events.models import OctoPrintEvent, TelemetryEventCodes
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
+PluginEvent = apps.get_model("client_events", "PluginEvent")
+OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
+PrintJobState = apps.get_model("client_events", "PrintJobState")
 logger = logging.getLogger(__name__)
-
 
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: OctoPrintEventSerializer, 400: OctoPrintEventSerializer}
+        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
     )
 )
 class OctoPrintEventViewSet(
     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
-    serializer_class = OctoPrintEventSerializer
+    serializer_class = ClientEventPolymorphicSerializer
     queryset = OctoPrintEvent.objects.all()
     lookup_field = "id"
 
     @extend_schema(
         tags=["events"],
-        operation_id="octoprint_events_telemetry_retrieve",
+        operation_id="octoprint_core_events_enum_retrieve",
         responses={200: OpenApiTypes.STR},
     )
     @action(methods=["GET"], detail=False)
-    def tracking(self, *args, **kwargs):
+    def enum(self, *args, **kwargs):
         return Response(
-            TelemetryEventCodes,
+            OctoPrintEvent.event_codes,
+            status.HTTP_200_OK,
+        )
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+
+        event_data = self.request.data["event_data"]
+
+        print_job = event_data.get("print_job")
+        if print_job is not None:
+            print_job = PrintJob.objects.get(id=print_job)
+        if self.request.user:
+            user = self.request.user
+        else:
+            user = None
+        instance = serializer.save(user=user, print_job=print_job)
+
+@extend_schema(tags=["events"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
+    )
+)
+class PluginEventViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin
+):
+    serializer_class = ClientEventPolymorphicSerializer
+    queryset = PluginEvent.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        tags=["events"],
+        operation_id="plugin_events_enum_retrieve",
+        responses={200: OpenApiTypes.STR},
+    )
+    @action(methods=["GET"], detail=False)
+    def enum(self, *args, **kwargs):
+        return Response(
+            PluginEvent.event_codes,
+            status.HTTP_200_OK,
+        )
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
+    def perform_create(self, serializer):
+
+        event_data = self.request.data["event_data"]
+
+        print_job = event_data.get("print_job")
+        if print_job is not None:
+            print_job = PrintJob.objects.get(id=print_job)
+        if self.request.user:
+            user = self.request.user
+        else:
+            user = None
+        instance = serializer.save(user=user, print_job=print_job)
+
+@extend_schema(tags=["events"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
+    )
+)
+class PrintJobStateViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin
+):
+    serializer_class = ClientEventPolymorphicSerializer
+    queryset = PrintJobState.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        tags=["events"],
+        operation_id="print_job_event_enum_retrieve",
+        responses={200: OpenApiTypes.STR},
+    )
+    @action(methods=["GET"], detail=False)
+    def enum(self, *args, **kwargs):
+        return Response(
+            PrintJobState.event_codes,
             status.HTTP_200_OK,
         )
 
