@@ -62,6 +62,7 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
+    octoprint_device = models.ForeignKey("remote_control.OctoPrintDevice", null=True)
 
 
 class AlertSettings(PolymorphicModel):
