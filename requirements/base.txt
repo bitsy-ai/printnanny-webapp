@@ -9,12 +9,12 @@ hiredis==1.1.0  # https://github.com/redis/hiredis-py
 celery[redis]==4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.1.0  # https://github.com/celery/django-celery-beat
 flower==0.9.5  # https://github.com/mher/flower
-uvicorn[standard]==0.12.3  # https://github.com/encode/uvicorn
+uvicorn[standard]==0.13.4  # https://github.com/encode/uvicorn
 wsproto==0.15.0  # https://github.com/python-hyper/wsproto/
 
 # Django
 # ------------------------------------------------------------------------------
-django==3.1.3  # pyup: < 3.2  # https://www.djangoproject.com/
+django==3.1.7  # pyup: < 3.2  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
 django-allauth==0.43.0  # https://github.com/pennersr/django-allauth
@@ -42,7 +42,7 @@ plotly==4.12.0
 psutil==5.7.3
 kaleido==0.0.3.post1
 django-invitations==1.9.3
-channels==3.0.2
+channels==3.0.3
 channels-redis==3.2.0
 google-cloud-pubsub==2.2.0
 pyarrow==2.0.0
@@ -53,3 +53,7 @@ google-cloud-monitoring==2.0.0
 django-rest-polymorphic==0.1.9
 stringcase==1.2.0
 discord.py==1.6.0
+
+# pin to twisted <=21.2.0
+# tracking https://twistedmatrix.com/trac/ticket/10039
+twisted==20.3.0
