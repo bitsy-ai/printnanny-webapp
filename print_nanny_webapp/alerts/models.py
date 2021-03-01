@@ -1,10 +1,12 @@
 import os
 import logging
+import asyncio
 
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.template.loader import render_to_string
 from django.utils import timezone, dateformat
@@ -48,8 +50,9 @@ class Alert(PolymorphicModel):
         DEFECT = "DEFECT", "Defect detected in print"
 
     class AlertMethodChoices(models.TextChoices):
-        UI = "UI", "Recive Print Nanny UI notifations"
+        UI = "UI", "Receive Print Nanny UI notifications"
         EMAIL = "EMAIL", "Receive email notifications"
+        DISCORD = "DISCORD", "Receive notifications through Discord"
 
     alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
@@ -77,6 +80,32 @@ class AlertSettings(PolymorphicModel):
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"
     )
+
+
+##
+# Method Settings models
+##
+
+
+class DiscordMethodSettings(models.Model):
+    class TargetIDTypeChoices(models.TextChoices):
+        USER = "USER", "User"
+        CHANNEL = "CHANNEL", "Channel"
+
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
+    # Channel ID is where to send a message if you're not going for event-driven
+    # Channel IDs are of "snowflake" type
+    # Snowflakes are 64 bit unsigned integers represented as decimal strings
+    # so max 21 characters - 24 to be "safe"
+    # https://discord.com/developers/docs/reference#snowflakes
+    # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
+    target_id = models.CharField(
+        help_text="ID to send notifications to\nTo get an item's ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and \"Copy ID\"",
+        max_length=24, db_index=True)
+    target_id_type = models.CharField(max_length=255, choices=TargetIDTypeChoices.choices, db_index=True)
 
 
 ##
@@ -155,7 +184,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     print_start = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. ",
+        help_text="Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
@@ -247,6 +276,7 @@ class RemoteControlCommandAlert(Alert):
         self.alert_trigger_method_map = {
             Alert.AlertMethodChoices.UI: self.trigger_ui_alert,
             Alert.AlertMethodChoices.EMAIL: self.trigger_email_alert,
+            Alert.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
         }
 
     def trigger_alert(self):
@@ -306,6 +336,34 @@ class RemoteControlCommandAlert(Alert):
         message.send()
 
         return message
+
+    def trigger_discord_alert(self, data):
+
+        channel_layer = get_channel_layer()
+        discord_settings = DiscordMethodSettings.objects.filter(user=self.user)
+
+        channel_ids = []
+        user_ids = []
+
+        for setting in discord_settings:
+            if setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.USER:
+                user_ids.append(setting.target_id)
+            elif setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.CHANNEL:
+                channel_ids.append(setting.target_id)
+
+        logger.info(f"Sending Discord alert to channels: {channel_ids} and users: {user_ids}")
+
+        message = f"{data['title']}: {data['description']}"
+        if data["snapshot_url"] is not None:
+            message += "\n"+data["snapshot_url"]
+
+        async_to_sync(channel_layer.send)(
+            "discord", {
+                "type": "trigger.alert",
+                "user_ids": user_ids,
+                "channel_ids": channel_ids,
+                "message": message,
+        })
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"
@@ -391,7 +449,7 @@ class ManualVideoUploadAlert(Alert):
     )
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
     dataframe = models.FileField(upload_to=_upload_to, null=True)
     original_video = models.FileField(upload_to=_upload_to, null=True)

@@ -72,7 +72,7 @@ services:
     container_name: ngrok
     environment:
       NGROK_PROTOCOL: http
-      NGROK_PORT: django:8000  
+      NGROK_PORT: django:8000
     ports:
       - "4040:4040"
   redis:
@@ -146,6 +146,15 @@ services:
     container_name: events
     <<: *django
     ports: []
-    command: 
+    command:
       - python
       - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+  discord:
+    container_name: discord
+    <<: *django
+    ports: []
+    command:
+      - python
+      - manage.py
+      - runworker
+      - discord

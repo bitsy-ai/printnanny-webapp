@@ -74,9 +74,8 @@ def on_octoprint_event(message):
             if handler_fn is not None:
                 handler_fn(event)
         except Exception as e:
-            logger.error(e, exc_info=True)
-            logger.error(data)
-    elif event_type in PrintJobStateCodes:
+            logger.error({"error": e, "data": data}, exc_info=True)
+    elif event_type in PrintJobEventCodes:
         try:
             PrintJobState.objects.create(
                 created_dt=data["created_dt"],

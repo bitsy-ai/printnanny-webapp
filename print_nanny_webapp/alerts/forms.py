@@ -4,6 +4,7 @@ from .models import (
     ProgressAlertSettings,
     DefectAlertSettings,
     RemoteControlCommandAlertSettings,
+    DiscordMethodSettings,
 )
 
 
@@ -36,3 +37,9 @@ class CommandAlertSettingsForm(ModelForm):
             "monitoring_stop",
             "move_nozzle",
         )
+
+class DiscordMethodSettingsForm(ModelForm):
+    class Meta:
+        model = DiscordMethodSettings
+        unique_together = ("user", "target_id", "target_id_type")
+        fields = ("target_id", "target_id_type")
