@@ -1,7 +1,7 @@
 
 [package]
 name = "print-nanny-rust"
-version = "0.5.0-dev30"
+version = "0.5.0-dev31"
 authors = ["Leigh Johnson <leigh@bitsy.ai>"]
 edition = "2018"
 publish = false
