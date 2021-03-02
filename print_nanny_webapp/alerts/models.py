@@ -227,6 +227,9 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+    
+    dataframe = models.FileField(upload_to=_upload_to, null=True)
+
 
 
 class ProgressAlert(Alert):
