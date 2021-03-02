@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **snapshot** | [**list[SnapshotEnum]**](SnapshotEnum.md) | Fires on web camera &lt;strong&gt;Snapshot&lt;/strong&gt; command | [optional] 
 **monitoring_stop** | [**list[MonitoringStopEnum]**](MonitoringStopEnum.md) | Fires on &lt;strong&gt;MonitoringStop&lt;strong&gt; updates.   Helps debug unexpected Print Nanny crashes. | [optional] 
 **monitoring_start** | [**list[MonitoringStartEnum]**](MonitoringStartEnum.md) | Fires on &lt;strong&gt;MonitoringStop&lt;/strong&gt; updates. Helpful if you want to confirm monitoring started without a problem. | [optional] 
-**print_start** | [**list[PrintStartEnum]**](PrintStartEnum.md) | Fires on &lt;strong&gt;StopPrint&lt;/strong&gt; updates. Get notifed as soon as a print job finishes.  | [optional] 
+**print_start** | [**list[PrintStartEnum]**](PrintStartEnum.md) | Fires on &lt;strong&gt;StopPrint&lt;/strong&gt; updates. Get notified as soon as a print job finishes.  | [optional] 
 **print_stop** | [**list[PrintStopEnum]**](PrintStopEnum.md) | Fires on &lt;strong&gt;PrintStart&lt;/strong&gt; command status changes. Helpful for verifying a print job started without a problem. | [optional] 
 **print_pause** | [**list[PrintPauseEnum]**](PrintPauseEnum.md) | Fires on &lt;strong&gt;PausePrint&lt;/strong&gt; command status changes. Helpful for verifying a print was paused successfully. | [optional] 
 **print_resume** | [**list[PrintResumeEnum]**](PrintResumeEnum.md) | Fires on &lt;strong&gt;ResumePrint&lt;/strong&gt; command status changes Helpful for verifying a print was resumed. | [optional] 

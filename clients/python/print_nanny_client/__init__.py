@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev29"
+__version__ = "0.5.0-dev30"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -87,6 +87,7 @@ from print_nanny_client.models.octo_print_event_request import OctoPrintEventReq
 from print_nanny_client.models.paginated_alert_polymorphic_list import PaginatedAlertPolymorphicList
 from print_nanny_client.models.paginated_alert_settings_polymorphic_list import PaginatedAlertSettingsPolymorphicList
 from print_nanny_client.models.paginated_client_event_polymorphic_list import PaginatedClientEventPolymorphicList
+from print_nanny_client.models.paginated_defect_alert_list import PaginatedDefectAlertList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList

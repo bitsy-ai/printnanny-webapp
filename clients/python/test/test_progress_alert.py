@@ -38,8 +38,8 @@ class TestProgressAlert(unittest.TestCase):
             return ProgressAlert(
                 id = 56, 
                 time = '', 
-                alert_method = 'UI', 
-                alert_type = 'COMMAND', 
+                alert_method = None, 
+                alert_type = None, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 seen = True, 
@@ -47,12 +47,11 @@ class TestProgressAlert(unittest.TestCase):
                 progress_percent = 1, 
                 polymorphic_ctype = 56, 
                 user = 56, 
+                octoprint_device = 56, 
                 device = 56
             )
         else :
             return ProgressAlert(
-                alert_method = 'UI',
-                alert_type = 'COMMAND',
                 device = 56,
         )
 
