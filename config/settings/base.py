@@ -79,6 +79,7 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
+    "djstripe",
 ]
 
 LOCAL_APPS = [
@@ -87,7 +88,8 @@ LOCAL_APPS = [
     "print_nanny_webapp.client_events.apps.ClientEventsConfig",
     "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
-    "print_nanny_webapp.dashboard.apps.DashboardConfig"
+    "print_nanny_webapp.dashboard.apps.DashboardConfig",
+    "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -520,3 +522,8 @@ CORS_ORIGIN_WHITELIST = [
 
 GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
 GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
+
+# dj-stripe
+# ------------------------------------------------------------------------------
+DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"

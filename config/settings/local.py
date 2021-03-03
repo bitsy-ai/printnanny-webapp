@@ -75,3 +75,9 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
+
+# dj-stripe
+# ------------------------------------------------------------------------------
+STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
+STRIPE_LIVE_MODE = False

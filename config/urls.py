@@ -38,13 +38,14 @@ urlpatterns = [
 
 
     path("accounts/", include("allauth.urls")),
-    
+
     path("signin/", RedirectView.as_view(url="/accounts/login/", permanent=True)),
 
     path("dashboard/",
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
-    
+
     path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
+    path("subscriptions/", include("print_nanny_webapp.subscriptions.urls", "subscriptions")),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
 
 
