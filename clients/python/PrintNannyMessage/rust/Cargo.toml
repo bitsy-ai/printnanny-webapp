@@ -1,0 +1,18 @@
+
+[package]
+name = "print-nanny-rust"
+version = "0.5.0-dev33"
+authors = ["Leigh Johnson <leigh@bitsy.ai>"]
+edition = "2018"
+publish = false
+
+[dependencies]
+pyo3 = { version = "0.13.2", features = ["extension-module"] }
+
+[lib]
+name = "print_nanny_rust"
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = "thin"
+overflow-checks = true
