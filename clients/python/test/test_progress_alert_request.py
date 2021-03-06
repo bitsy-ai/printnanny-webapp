@@ -36,17 +36,14 @@ class TestProgressAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.progress_alert_request.ProgressAlertRequest()  # noqa: E501
         if include_optional :
             return ProgressAlertRequest(
-                alert_method = 'UI', 
-                alert_type = 'COMMAND', 
                 seen = True, 
                 dismissed = True, 
                 progress_percent = 1, 
+                octoprint_device = 56, 
                 device = 56
             )
         else :
             return ProgressAlertRequest(
-                alert_method = 'UI',
-                alert_type = 'COMMAND',
                 device = 56,
         )
 

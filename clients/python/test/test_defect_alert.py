@@ -38,19 +38,19 @@ class TestDefectAlert(unittest.TestCase):
             return DefectAlert(
                 id = 56, 
                 time = '', 
-                alert_method = 'UI', 
-                alert_type = 'COMMAND', 
+                alert_method = None, 
+                alert_type = None, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 seen = True, 
                 dismissed = True, 
+                dataframe = '', 
                 polymorphic_ctype = 56, 
-                user = 56
+                user = 56, 
+                octoprint_device = 56
             )
         else :
             return DefectAlert(
-                alert_method = 'UI',
-                alert_type = 'COMMAND',
         )
 
     def testDefectAlert(self):

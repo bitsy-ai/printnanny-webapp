@@ -50,7 +50,9 @@ class AlertPolymorphic(object):
         'seen': 'bool',
         'snapshot_url': 'str',
         'title': 'str',
+        'dataframe': 'str',
         'polymorphic_ctype': 'int',
+        'octoprint_device': 'int',
         'progress_percent': 'int',
         'device': 'int'
     }
@@ -73,7 +75,9 @@ class AlertPolymorphic(object):
         'seen': 'seen',
         'snapshot_url': 'snapshot_url',
         'title': 'title',
+        'dataframe': 'dataframe',
         'polymorphic_ctype': 'polymorphic_ctype',
+        'octoprint_device': 'octoprint_device',
         'progress_percent': 'progress_percent',
         'device': 'device'
     }
@@ -81,7 +85,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, polymorphic_ctype=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, dataframe=None, polymorphic_ctype=None, octoprint_device=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -104,7 +108,9 @@ class AlertPolymorphic(object):
         self._seen = None
         self._snapshot_url = None
         self._title = None
+        self._dataframe = None
         self._polymorphic_ctype = None
+        self._octoprint_device = None
         self._progress_percent = None
         self._device = None
         self.discriminator = 'type'
@@ -136,8 +142,10 @@ class AlertPolymorphic(object):
         if snapshot_url is not None:
             self.snapshot_url = snapshot_url
         self.title = title
+        self.dataframe = dataframe
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
+        self.octoprint_device = octoprint_device
         if progress_percent is not None:
             self.progress_percent = progress_percent
         self.device = device
@@ -514,6 +522,27 @@ class AlertPolymorphic(object):
         self._title = title
 
     @property
+    def dataframe(self):
+        """Gets the dataframe of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The dataframe of this AlertPolymorphic.  # noqa: E501
+        :rtype: str
+        """
+        return self._dataframe
+
+    @dataframe.setter
+    def dataframe(self, dataframe):
+        """Sets the dataframe of this AlertPolymorphic.
+
+
+        :param dataframe: The dataframe of this AlertPolymorphic.  # noqa: E501
+        :type dataframe: str
+        """
+
+        self._dataframe = dataframe
+
+    @property
     def polymorphic_ctype(self):
         """Gets the polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
 
@@ -533,6 +562,27 @@ class AlertPolymorphic(object):
         """
 
         self._polymorphic_ctype = polymorphic_ctype
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The octoprint_device of this AlertPolymorphic.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this AlertPolymorphic.
+
+
+        :param octoprint_device: The octoprint_device of this AlertPolymorphic.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def progress_percent(self):

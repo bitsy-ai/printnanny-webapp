@@ -33,81 +33,37 @@ class PatchedDefectAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'alert_method': 'AlertMethodEnum',
-        'alert_type': 'AlertTypeEnum',
         'seen': 'bool',
-        'dismissed': 'bool'
+        'dismissed': 'bool',
+        'dataframe': 'file',
+        'octoprint_device': 'int'
     }
 
     attribute_map = {
-        'alert_method': 'alert_method',
-        'alert_type': 'alert_type',
         'seen': 'seen',
-        'dismissed': 'dismissed'
+        'dismissed': 'dismissed',
+        'dataframe': 'dataframe',
+        'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, alert_method=None, alert_type=None, seen=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, dismissed=None, dataframe=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._alert_method = None
-        self._alert_type = None
         self._seen = None
         self._dismissed = None
+        self._dataframe = None
+        self._octoprint_device = None
         self.discriminator = None
 
-        if alert_method is not None:
-            self.alert_method = alert_method
-        if alert_type is not None:
-            self.alert_type = alert_type
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-
-    @property
-    def alert_method(self):
-        """Gets the alert_method of this PatchedDefectAlertRequest.  # noqa: E501
-
-
-        :return: The alert_method of this PatchedDefectAlertRequest.  # noqa: E501
-        :rtype: AlertMethodEnum
-        """
-        return self._alert_method
-
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this PatchedDefectAlertRequest.
-
-
-        :param alert_method: The alert_method of this PatchedDefectAlertRequest.  # noqa: E501
-        :type alert_method: AlertMethodEnum
-        """
-
-        self._alert_method = alert_method
-
-    @property
-    def alert_type(self):
-        """Gets the alert_type of this PatchedDefectAlertRequest.  # noqa: E501
-
-
-        :return: The alert_type of this PatchedDefectAlertRequest.  # noqa: E501
-        :rtype: AlertTypeEnum
-        """
-        return self._alert_type
-
-    @alert_type.setter
-    def alert_type(self, alert_type):
-        """Sets the alert_type of this PatchedDefectAlertRequest.
-
-
-        :param alert_type: The alert_type of this PatchedDefectAlertRequest.  # noqa: E501
-        :type alert_type: AlertTypeEnum
-        """
-
-        self._alert_type = alert_type
+        self.dataframe = dataframe
+        self.octoprint_device = octoprint_device
 
     @property
     def seen(self):
@@ -150,6 +106,48 @@ class PatchedDefectAlertRequest(object):
         """
 
         self._dismissed = dismissed
+
+    @property
+    def dataframe(self):
+        """Gets the dataframe of this PatchedDefectAlertRequest.  # noqa: E501
+
+
+        :return: The dataframe of this PatchedDefectAlertRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._dataframe
+
+    @dataframe.setter
+    def dataframe(self, dataframe):
+        """Sets the dataframe of this PatchedDefectAlertRequest.
+
+
+        :param dataframe: The dataframe of this PatchedDefectAlertRequest.  # noqa: E501
+        :type dataframe: file
+        """
+
+        self._dataframe = dataframe
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this PatchedDefectAlertRequest.
+
+
+        :param octoprint_device: The octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

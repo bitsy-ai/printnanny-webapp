@@ -36,10 +36,10 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_defect_alert_request.PatchedDefectAlertRequest()  # noqa: E501
         if include_optional :
             return PatchedDefectAlertRequest(
-                alert_method = 'UI', 
-                alert_type = 'COMMAND', 
                 seen = True, 
-                dismissed = True
+                dismissed = True, 
+                dataframe = bytes(b'blah'), 
+                octoprint_device = 56
             )
         else :
             return PatchedDefectAlertRequest(

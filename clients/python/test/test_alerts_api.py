@@ -76,6 +76,36 @@ class TestAlertsApi(unittest.TestCase):
         """
         pass
 
+    def test_defect_alerts_create(self):
+        """Test case for defect_alerts_create
+
+        """
+        pass
+
+    def test_defect_alerts_list(self):
+        """Test case for defect_alerts_list
+
+        """
+        pass
+
+    def test_defect_alerts_partial_update(self):
+        """Test case for defect_alerts_partial_update
+
+        """
+        pass
+
+    def test_defect_alerts_retrieve(self):
+        """Test case for defect_alerts_retrieve
+
+        """
+        pass
+
+    def test_defect_alerts_update(self):
+        """Test case for defect_alerts_update
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
