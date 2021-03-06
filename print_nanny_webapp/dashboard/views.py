@@ -219,9 +219,7 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
 
         obj = super().get_object()
 
-        kwargs["command_choices"] = RemoteControlCommand.VALID_ACTIONS[
-            obj.print_job_status
-        ]
+        kwargs["command_choices"] = RemoteControlCommand.get_valid_actions(obj.print_job_status)
         return kwargs
 
 
