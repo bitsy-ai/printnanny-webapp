@@ -3,6 +3,46 @@
 {% load crispy_forms_tags %}
 
 
+{% block css %}
+{{ block.super }}
+
+<style>
+    /**
+     * The CSS shown here will not be introduced in the Quickstart guide, but shows
+     * how you can use CSS to style your Element's container.
+     */
+    .StripeElement {
+        box-sizing: border-box;
+
+        height: 40px;
+        width: 400px;
+
+        padding: 10px 12px;
+
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: white;
+
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <div class="row">
@@ -28,22 +68,27 @@
 
         <h1 class="is-size-3">Example Payment Intent Manual Configuration</h1>
 
-        <input id="cardholder-name" type="text" placeholder="Cardholder Name">
-        <p class="form-row">
-            <label for="card-element">
-                Credit or debit card
-            </label>
-        <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
-        </div>
+        <form action="{% url 'subscriptions:payment' %}" method="post" id="payment-form">
+            {% csrf_token %}
+            {{ forms.payment | crispy }}
+            <div class="form-row">
+                <label for="card-element">
+                    Credit or debit card
+                </label>
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
 
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-        <div id="card-success" role="alert">
-            <span id="success-message"></span>
-        </div>
+                <!-- Used to display form errors. -->
+                <div id="card-errors" role="alert"></div>
+                <div id="card-success" role="alert">
+                    <span id="success-message"></span>
+                </div>
+            </div>
 
-        <button id="card-button">Submit Payment</button>
+            <input type="hidden" name="stripe_source" value="" />
+            <button id="card-button">Submit Payment</button>
+        </form>
 
     </div>
 </section>
@@ -51,119 +96,75 @@
 <script>
 
     window.addEventListener('load', function () {
-    // Create a Stripe client.
-    var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+        // Create a Stripe client.
+        var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
 
-    // Create an instance of Elements.
-    var elements = stripe.elements();
+        // Create an instance of Elements.
+        var elements = stripe.elements();
 
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
-    var style = {
-        base: {
-            color: '#32325d',
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSmoothing: 'antialiased',
-            fontSize: '16px',
-            '::placeholder': {
-                color: '#aab7c4'
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
             }
-        },
-        invalid: {
-            color: '#fa755a',
-            iconColor: '#fa755a'
-        }
-    };
+        };
 
-    // Create an instance of the card Element.
-    var cardElement = elements.create('card', {style: style});
-    cardElement.mount('#card-element');
+        // Create an instance of the card Element.
+        const card = elements.create('card', {style: style});
 
-    var cardholderName = document.getElementById('cardholder-name');
-    var cardButton = document.getElementById('card-button');
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
 
-    cardButton.addEventListener('click', function (ev) {
-        stripe.createPaymentMethod('card', cardElement, {
-            billing_details: {name: cardholderName.value}
-        }).then(function (result) {
-            if (result.error) {
-                // Inform the user if there was an error.
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
+        // Handle real-time validation errors from the card Element.
+        card.on('change', function (event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
             } else {
-                // Otherwise send paymentMethod.id to your server.
-                fetch("{% url 'subscriptions:payment' %}", {
-                    method: 'POST',
-                    headers: {
-                        "X-CSRFToken": getCookie("csrftoken"),
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "X-Requested-With": "XMLHttpRequest"
-                    },
-                    body: JSON.stringify({'payment_method_id': result.paymentMethod.id})
-                }).then(function (result) {
-                    // Handle server response.
-                    result.json().then(function (json) {
-                        handleServerResponse(json);
-                    })
-                });
+                displayError.textContent = '';
             }
         });
-    });
 
-    function getCookie(name) {
-        if (!document.cookie) {
-            return null;
-        }
-        const xsrfCookies = document.cookie.split(';')
-            .map(c => c.trim())
-            .filter(c => c.startsWith(name + '='));
-        if (xsrfCookies.length === 0) {
-            return null;
-        }
-        return decodeURIComponent(xsrfCookies[0].split('=')[1]);
-    }
+        // Handle form submission.
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-    function handleServerResponse(response) {
-        if (response.error) {
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = response.error;
-        } else if (response.requires_action) {
-            // Use Stripe.js to handle required card action
-            stripe.handleCardAction(
-                response.payment_intent_client_secret
-            ).then(function (result) {
+            // Note - slightly different from the Stripe JS Quickstart because
+            // we use stripe.createSource instead of createToken
+            stripe.createSource(card).then(function (result) {
                 if (result.error) {
-                    // Show error in payment form
+                    // Inform the user if there was an error.
                     var errorElement = document.getElementById('card-errors');
                     errorElement.textContent = result.error.message;
                 } else {
-                    // The card action has been handled
-                    // The PaymentIntent can be confirmed again on the server
-                    //fetch("{ url 'djstripe_example:payment_intent' }", {
-                    fetch("", {
-                        method: 'POST',
-                        headers: {
-                            "X-CSRFToken": getCookie("csrftoken"),
-                            "Accept": "application/json",
-                            "Content-Type": "application/json",
-                            "X-Requested-With": "XMLHttpRequest"
-                        },
-                        body: JSON.stringify({payment_intent_id: result.paymentIntent.id})
-                    }).then(function (confirmResult) {
-                        confirmResult.json().then(function (json) {
-                            handleServerResponse(json)
-                        })
-                    });
+                    // Send the token to your server.
+                    stripeSourceHandler(result.source);
                 }
             });
-        } else {
-            // Show success message
-            document.getElementById('success-message').innerHTML = 'Success!!';
-        }
-    }
-    })
+        });
 
+        // Submit the form with the source ID.
+        function stripeSourceHandler(source) {
+            // Insert the source ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = form.elements["stripe_source"];
+            hiddenInput.setAttribute('value', source.id);
+            // Submit the form
+            form.submit();
+        }
+    })
 </script>
 {% endblock content %}
 
