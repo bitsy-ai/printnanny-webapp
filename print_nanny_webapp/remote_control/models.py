@@ -26,7 +26,7 @@ from print_nanny_webapp.remote_control.utils import (
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-# from print_nanny_webapp.client_events.models import PrintJobState
+from print_nanny_webapp.client_events.models import PrintJobState
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -394,29 +394,29 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     VALID_ACTIONS = {
-        # PrintJobState.EventType.PRINT_STARTED: [
-        #     Command.PRINT_STOP,
-        #     Command.PRINT_PAUSE,
-        # ],
-        # PrintJobState.EventType.PRINT_DONE: [
-        #     Command.MOVE_NOZZLE,
-        #     Command.MONITORING_START,
-        #     Command.MONITORING_STOP,
-        #     Command.SNAPSHOT,
-        # ],
-        # PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
-        # PrintJobState.EventType.PRINT_CANCELLING: [],
-        # PrintJobState.EventType.PRINT_PAUSED: [
-        #     Command.PRINT_STOP,
-        #     Command.PRINT_RESUME,
-        #     Command.MOVE_NOZZLE,
-        # ],
-        # PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
-        # "Idle": [
-        #     Command.MONITORING_START,
-        #     Command.MONITORING_STOP,
-        #     Command.SNAPSHOT,
-        # ],
+        PrintJobState.EventType.PRINT_STARTED: [
+            Command.PRINT_STOP,
+            Command.PRINT_PAUSE,
+        ],
+        PrintJobState.EventType.PRINT_DONE: [
+            Command.MOVE_NOZZLE,
+            Command.MONITORING_START,
+            Command.MONITORING_STOP,
+            Command.SNAPSHOT,
+        ],
+        PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
+        PrintJobState.EventType.PRINT_CANCELLING: [],
+        PrintJobState.EventType.PRINT_PAUSED: [
+            Command.PRINT_STOP,
+            Command.PRINT_RESUME,
+            Command.MOVE_NOZZLE,
+        ],
+        PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
+        "Idle": [
+            Command.MONITORING_START,
+            Command.MONITORING_STOP,
+            Command.SNAPSHOT,
+        ],
     }
 
     ACTION_CSS_CLASSES = {
