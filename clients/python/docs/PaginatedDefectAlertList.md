@@ -1,12 +1,12 @@
-# PatchedDefectAlertRequest
+# PaginatedDefectAlertList
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**seen** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
-**dataframe** | **file** |  | [optional] 
-**octoprint_device** | **int** |  | [optional] 
+**count** | **int** |  | [optional] 
+**next** | **str** |  | [optional] 
+**previous** | **str** |  | [optional] 
+**results** | [**list[DefectAlert]**](DefectAlert.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

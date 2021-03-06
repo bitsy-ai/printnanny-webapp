@@ -59,14 +59,14 @@ clean-messages-lib:
 	rm -rf clients/python/PrintNannyMessage
 
 
-rust-flatbuffer: clean-messages-lib
-	~/projects/flatbuffers/flatc --rust --filename-suffix '' --gen-object-api -o clients/python/PrintNannyMessage/rust/src clients/flatbuffers/telemetry.fbs
+# rust-flatbuffer: clean-messages-lib
+# 	~/projects/flatbuffers/flatc --rust --filename-suffix '' --gen-object-api -o clients/python/PrintNannyMessage/rust/src clients/flatbuffers/telemetry_event.fbs
 
 python-flatbuffer: clean-messages-lib
-	~/projects/flatbuffers/flatc --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry.fbs
+	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry_event.fbs
 
 
-python-client: clean-python-client python-flatbuffer rust-flatbuffer
+python-client: clean-python-client python-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
 

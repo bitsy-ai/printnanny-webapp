@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **dismissed** | **bool** |  | [optional] 
 **time** | **str** |  | [optional] [readonly] 
 **alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 
-**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
-**alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
+**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [readonly] 
+**alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [readonly] 
 **color** | **str** |  | 
 **dashboard_url** | **str** |  | [optional] [readonly] 
 **metadata** | **str** |  | [optional] [readonly] 
@@ -20,7 +20,9 @@ Name | Type | Description | Notes
 **seen** | **bool** |  | [optional] 
 **snapshot_url** | **str** |  | [optional] [readonly] 
 **title** | **str** |  | 
+**dataframe** | **str** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
+**octoprint_device** | **int** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **device** | **int** |  | 
 

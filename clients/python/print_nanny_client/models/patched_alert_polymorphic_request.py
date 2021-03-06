@@ -42,6 +42,8 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'str',
         'seen': 'bool',
         'title': 'str',
+        'dataframe': 'file',
+        'octoprint_device': 'int',
         'progress_percent': 'int',
         'device': 'int'
     }
@@ -56,6 +58,8 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'description',
         'seen': 'seen',
         'title': 'title',
+        'dataframe': 'dataframe',
+        'octoprint_device': 'octoprint_device',
         'progress_percent': 'progress_percent',
         'device': 'device'
     }
@@ -63,7 +67,7 @@ class PatchedAlertPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, dataframe=None, octoprint_device=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -78,6 +82,8 @@ class PatchedAlertPolymorphicRequest(object):
         self._description = None
         self._seen = None
         self._title = None
+        self._dataframe = None
+        self._octoprint_device = None
         self._progress_percent = None
         self._device = None
         self.discriminator = 'type'
@@ -100,6 +106,8 @@ class PatchedAlertPolymorphicRequest(object):
             self.seen = seen
         if title is not None:
             self.title = title
+        self.dataframe = dataframe
+        self.octoprint_device = octoprint_device
         if progress_percent is not None:
             self.progress_percent = progress_percent
         if device is not None:
@@ -293,6 +301,48 @@ class PatchedAlertPolymorphicRequest(object):
         """
 
         self._title = title
+
+    @property
+    def dataframe(self):
+        """Gets the dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._dataframe
+
+    @dataframe.setter
+    def dataframe(self, dataframe):
+        """Sets the dataframe of this PatchedAlertPolymorphicRequest.
+
+
+        :param dataframe: The dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type dataframe: file
+        """
+
+        self._dataframe = dataframe
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this PatchedAlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this PatchedAlertPolymorphicRequest.
+
+
+        :param octoprint_device: The octoprint_device of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def progress_percent(self):

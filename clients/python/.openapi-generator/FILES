@@ -62,6 +62,7 @@ docs/OctoPrintEventRequest.md
 docs/PaginatedAlertPolymorphicList.md
 docs/PaginatedAlertSettingsPolymorphicList.md
 docs/PaginatedClientEventPolymorphicList.md
+docs/PaginatedDefectAlertList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedGcodeFileList.md
@@ -189,6 +190,7 @@ print_nanny_client/models/octo_print_event_request.py
 print_nanny_client/models/paginated_alert_polymorphic_list.py
 print_nanny_client/models/paginated_alert_settings_polymorphic_list.py
 print_nanny_client/models/paginated_client_event_polymorphic_list.py
+print_nanny_client/models/paginated_defect_alert_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
@@ -309,6 +311,7 @@ test/test_octo_print_event_request.py
 test/test_paginated_alert_polymorphic_list.py
 test/test_paginated_alert_settings_polymorphic_list.py
 test/test_paginated_client_event_polymorphic_list.py
+test/test_paginated_defect_alert_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_gcode_file_list.py

@@ -101,7 +101,8 @@ export interface AlertMethod {
  */
 export enum AlertMethodEnum {
     Ui = 'UI',
-    Email = 'EMAIL'
+    Email = 'EMAIL',
+    Discord = 'DISCORD'
 }
 
 /**
@@ -111,7 +112,8 @@ export enum AlertMethodEnum {
  */
 export enum AlertMethodsEnum {
     Ui = 'UI',
-    Email = 'EMAIL'
+    Email = 'EMAIL',
+    Discord = 'DISCORD'
 }
 
 /**
@@ -486,7 +488,7 @@ export interface CommandAlertSettings {
      */
     monitoring_start?: Array<MonitoringStartEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<PrintStartEnum>}
      * @memberof CommandAlertSettings
      */
@@ -571,7 +573,7 @@ export interface CommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MonitoringStartEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<PrintStartEnum>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -640,13 +642,13 @@ export interface DefectAlert {
      * @type {AlertMethodEnum}
      * @memberof DefectAlert
      */
-    alert_method: AlertMethodEnum;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
      * @memberof DefectAlert
      */
-    alert_type: AlertTypeEnum;
+    alert_type?: AlertTypeEnum;
     /**
      * 
      * @type {string}
@@ -673,6 +675,12 @@ export interface DefectAlert {
     dismissed?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    dataframe?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof DefectAlert
      */
@@ -683,6 +691,12 @@ export interface DefectAlert {
      * @memberof DefectAlert
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlert
+     */
+    octoprint_device?: number | null;
 }
 /**
  * 
@@ -690,18 +704,6 @@ export interface DefectAlert {
  * @interface DefectAlertRequest
  */
 export interface DefectAlertRequest {
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof DefectAlertRequest
-     */
-    alert_method: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof DefectAlertRequest
-     */
-    alert_type: AlertTypeEnum;
     /**
      * 
      * @type {boolean}
@@ -714,6 +716,18 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {any}
+     * @memberof DefectAlertRequest
+     */
+    dataframe?: any | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertRequest
+     */
+    octoprint_device?: number | null;
 }
 /**
  * 
@@ -1953,6 +1967,37 @@ export interface PaginatedClientEventPolymorphicList {
 /**
  * 
  * @export
+ * @interface PaginatedDefectAlertList
+ */
+export interface PaginatedDefectAlertList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDefectAlertList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDefectAlertList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDefectAlertList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<DefectAlert>}
+     * @memberof PaginatedDefectAlertList
+     */
+    results?: Array<DefectAlert>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedDeviceCalibrationList
  */
 export interface PaginatedDeviceCalibrationList {
@@ -2366,7 +2411,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MonitoringStartEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes. 
+     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<PrintStartEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2404,18 +2449,6 @@ export interface PatchedCommandAlertSettingsRequest {
 export interface PatchedDefectAlertRequest {
     /**
      * 
-     * @type {AlertMethodEnum}
-     * @memberof PatchedDefectAlertRequest
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof PatchedDefectAlertRequest
-     */
-    alert_type?: AlertTypeEnum;
-    /**
-     * 
      * @type {boolean}
      * @memberof PatchedDefectAlertRequest
      */
@@ -2426,6 +2459,18 @@ export interface PatchedDefectAlertRequest {
      * @memberof PatchedDefectAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedDefectAlertRequest
+     */
+    dataframe?: any | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDefectAlertRequest
+     */
+    octoprint_device?: number | null;
 }
 /**
  * 
@@ -2832,18 +2877,6 @@ export interface PatchedPrinterProfileRequest {
 export interface PatchedProgressAlertRequest {
     /**
      * 
-     * @type {AlertMethodEnum}
-     * @memberof PatchedProgressAlertRequest
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof PatchedProgressAlertRequest
-     */
-    alert_type?: AlertTypeEnum;
-    /**
-     * 
      * @type {boolean}
      * @memberof PatchedProgressAlertRequest
      */
@@ -2860,6 +2893,12 @@ export interface PatchedProgressAlertRequest {
      * @memberof PatchedProgressAlertRequest
      */
     progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedProgressAlertRequest
+     */
+    octoprint_device?: number | null;
     /**
      * 
      * @type {number}
@@ -3874,13 +3913,13 @@ export interface ProgressAlert {
      * @type {AlertMethodEnum}
      * @memberof ProgressAlert
      */
-    alert_method: AlertMethodEnum;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
      * @memberof ProgressAlert
      */
-    alert_type: AlertTypeEnum;
+    alert_type?: AlertTypeEnum;
     /**
      * 
      * @type {string}
@@ -3928,6 +3967,12 @@ export interface ProgressAlert {
      * @type {number}
      * @memberof ProgressAlert
      */
+    octoprint_device?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlert
+     */
     device: number;
 }
 /**
@@ -3936,18 +3981,6 @@ export interface ProgressAlert {
  * @interface ProgressAlertRequest
  */
 export interface ProgressAlertRequest {
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof ProgressAlertRequest
-     */
-    alert_method: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof ProgressAlertRequest
-     */
-    alert_type: AlertTypeEnum;
     /**
      * 
      * @type {boolean}
@@ -3966,6 +3999,12 @@ export interface ProgressAlertRequest {
      * @memberof ProgressAlertRequest
      */
     progress_percent?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgressAlertRequest
+     */
+    octoprint_device?: number | null;
     /**
      * 
      * @type {number}
@@ -5469,6 +5508,294 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate: async (defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/defect-alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/defect-alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsPartialUpdate: async (id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsPartialUpdate.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedDefectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedDefectAlertRequest !== undefined ? patchedDefectAlertRequest : {})
+                : (patchedDefectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsRetrieve.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsUpdate: async (id: number, defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsUpdate.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -5582,6 +5909,73 @@ export const AlertsApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * 
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDefectAlertList>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsUpdate(id, defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -5663,6 +6057,53 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
             return AlertsApiFp(configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList> {
+            return AlertsApiFp(configuration).defectAlertsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsRetrieve(id: number, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -5743,6 +6184,53 @@ export interface AlertsApiInterface {
      * @memberof AlertsApiInterface
      */
     alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
+     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsRetrieve(id: number, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
 }
 
@@ -5839,6 +6327,63 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any) {
         return AlertsApiFp(this.configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsRetrieve(id: number, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
