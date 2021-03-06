@@ -21,14 +21,14 @@ class TelemetryEvent(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # TelemetryEvent
-    def EventType(self):
+    def EventDataType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # TelemetryEvent
-    def Event(self):
+    def EventData(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             from flatbuffers.table import Table
@@ -38,7 +38,7 @@ class TelemetryEvent(object):
         return None
 
     # TelemetryEvent
-    def Type(self):
+    def EventType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
@@ -56,13 +56,13 @@ class TelemetryEvent(object):
         return None
 
 def TelemetryEventStart(builder): builder.StartObject(4)
-def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(0, eventType, 0)
-def TelemetryEventAddEvent(builder, event): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(event), 0)
-def TelemetryEventAddType(builder, type): builder.PrependUint8Slot(2, type, 0)
+def TelemetryEventAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(0, eventDataType, 0)
+def TelemetryEventAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
+def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(2, eventType, 0)
 def TelemetryEventAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
 def TelemetryEventEnd(builder): return builder.EndObject()
 
-import PrintNannyEvent.TelemetrySchema.Event
+import PrintNannyEvent.TelemetrySchema.EventData
 import PrintNannyEvent.TelemetrySchema.Metadata
 import PrintNannyEvent.TelemetrySchema.MonitoringFrame
 try:
@@ -74,9 +74,9 @@ class TelemetryEventT(object):
 
     # TelemetryEventT
     def __init__(self):
+        self.eventDataType = 0  # type: int
+        self.eventData = None  # type: Union[None, PrintNannyEvent.TelemetrySchema.MonitoringFrame.MonitoringFrameT]
         self.eventType = 0  # type: int
-        self.event = None  # type: Union[None, PrintNannyEvent.TelemetrySchema.MonitoringFrame.MonitoringFrameT]
-        self.type = 0  # type: int
         self.metadata = None  # type: Optional[PrintNannyEvent.TelemetrySchema.Metadata.MetadataT]
 
     @classmethod
@@ -95,23 +95,23 @@ class TelemetryEventT(object):
     def _UnPack(self, telemetryEvent):
         if telemetryEvent is None:
             return
+        self.eventDataType = telemetryEvent.EventDataType()
+        self.eventData = PrintNannyEvent.TelemetrySchema.EventData.EventDataCreator(self.eventDataType, telemetryEvent.EventData())
         self.eventType = telemetryEvent.EventType()
-        self.event = PrintNannyEvent.TelemetrySchema.Event.EventCreator(self.eventType, telemetryEvent.Event())
-        self.type = telemetryEvent.Type()
         if telemetryEvent.Metadata() is not None:
             self.metadata = PrintNannyEvent.TelemetrySchema.Metadata.MetadataT.InitFromObj(telemetryEvent.Metadata())
 
     # TelemetryEventT
     def Pack(self, builder):
-        if self.event is not None:
-            event = self.event.Pack(builder)
+        if self.eventData is not None:
+            eventData = self.eventData.Pack(builder)
         if self.metadata is not None:
             metadata = self.metadata.Pack(builder)
         TelemetryEventStart(builder)
+        TelemetryEventAddEventDataType(builder, self.eventDataType)
+        if self.eventData is not None:
+            TelemetryEventAddEventData(builder, eventData)
         TelemetryEventAddEventType(builder, self.eventType)
-        if self.event is not None:
-            TelemetryEventAddEvent(builder, event)
-        TelemetryEventAddType(builder, self.type)
         if self.metadata is not None:
             TelemetryEventAddMetadata(builder, metadata)
         telemetryEvent = TelemetryEventEnd(builder)

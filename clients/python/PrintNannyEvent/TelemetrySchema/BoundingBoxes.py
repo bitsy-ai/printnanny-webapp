@@ -28,19 +28,8 @@ class BoundingBoxes(object):
         return 0
 
     # BoundingBoxes
-    def Image(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            from PrintNannyEvent.TelemetrySchema.Image import Image
-            obj = Image()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # BoundingBoxes
     def Scores(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Float32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -48,26 +37,26 @@ class BoundingBoxes(object):
 
     # BoundingBoxes
     def ScoresAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Float32Flags, o)
         return 0
 
     # BoundingBoxes
     def ScoresLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # BoundingBoxes
     def ScoresIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
     # BoundingBoxes
     def Classes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Uint32Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
@@ -75,33 +64,33 @@ class BoundingBoxes(object):
 
     # BoundingBoxes
     def ClassesAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint32Flags, o)
         return 0
 
     # BoundingBoxes
     def ClassesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # BoundingBoxes
     def ClassesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
     # BoundingBoxes
     def NumDetections(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
         return 0
 
     # BoundingBoxes
     def Boxes(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 16
@@ -113,32 +102,30 @@ class BoundingBoxes(object):
 
     # BoundingBoxes
     def BoxesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # BoundingBoxes
     def BoxesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
-def BoundingBoxesStart(builder): builder.StartObject(6)
+def BoundingBoxesStart(builder): builder.StartObject(5)
 def BoundingBoxesAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
-def BoundingBoxesAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-def BoundingBoxesAddScores(builder, scores): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(scores), 0)
+def BoundingBoxesAddScores(builder, scores): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(scores), 0)
 def BoundingBoxesStartScoresVector(builder, numElems): return builder.StartVector(4, numElems, 4)
-def BoundingBoxesAddClasses(builder, classes): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(classes), 0)
+def BoundingBoxesAddClasses(builder, classes): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(classes), 0)
 def BoundingBoxesStartClassesVector(builder, numElems): return builder.StartVector(4, numElems, 4)
-def BoundingBoxesAddNumDetections(builder, numDetections): builder.PrependUint32Slot(4, numDetections, 0)
-def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(boxes), 0)
+def BoundingBoxesAddNumDetections(builder, numDetections): builder.PrependUint32Slot(3, numDetections, 0)
+def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(boxes), 0)
 def BoundingBoxesStartBoxesVector(builder, numElems): return builder.StartVector(16, numElems, 4)
 def BoundingBoxesEnd(builder): return builder.EndObject()
 
 import PrintNannyEvent.TelemetrySchema.Box
-import PrintNannyEvent.TelemetrySchema.Image
 try:
-    from typing import List, Optional
+    from typing import List
 except:
     pass
 
@@ -147,7 +134,6 @@ class BoundingBoxesT(object):
     # BoundingBoxesT
     def __init__(self):
         self.ts = 0  # type: int
-        self.image = None  # type: Optional[PrintNannyEvent.TelemetrySchema.Image.ImageT]
         self.scores = None  # type: List[float]
         self.classes = None  # type: List[int]
         self.numDetections = 0  # type: int
@@ -170,8 +156,6 @@ class BoundingBoxesT(object):
         if boundingBoxes is None:
             return
         self.ts = boundingBoxes.Ts()
-        if boundingBoxes.Image() is not None:
-            self.image = PrintNannyEvent.TelemetrySchema.Image.ImageT.InitFromObj(boundingBoxes.Image())
         if not boundingBoxes.ScoresIsNone():
             if np is None:
                 self.scores = []
@@ -198,8 +182,6 @@ class BoundingBoxesT(object):
 
     # BoundingBoxesT
     def Pack(self, builder):
-        if self.image is not None:
-            image = self.image.Pack(builder)
         if self.scores is not None:
             if np is not None and type(self.scores) is np.ndarray:
                 scores = builder.CreateNumpyVector(self.scores)
@@ -223,8 +205,6 @@ class BoundingBoxesT(object):
             boxes = builder.EndVector(len(self.boxes))
         BoundingBoxesStart(builder)
         BoundingBoxesAddTs(builder, self.ts)
-        if self.image is not None:
-            BoundingBoxesAddImage(builder, image)
         if self.scores is not None:
             BoundingBoxesAddScores(builder, scores)
         if self.classes is not None:

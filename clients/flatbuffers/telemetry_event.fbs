@@ -1,6 +1,6 @@
 namespace PrintNannyEvent.TelemetrySchema;
 
-enum TelemetryEventType:ubyte {
+enum TelemetryEventEnum:ubyte {
     monitoring_frame_raw,
     monitoring_frame_post,
     device_register_start,
@@ -51,7 +51,7 @@ table MonitoringFrame {
     bounding_boxes: BoundingBoxes;
 }
 
-union Event {
+union EventData {
     MonitoringFrame,
 }
 
@@ -62,8 +62,8 @@ table Metadata {
 }
 
 table TelemetryEvent {
-    event: Event (required);
-    type: TelemetryEventType;
+    event_data: EventData (required);
+    event_type: TelemetryEventEnum;
     metadata: Metadata (required);
 }
 
