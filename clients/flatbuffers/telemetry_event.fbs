@@ -39,7 +39,6 @@ table Image {
 
 table BoundingBoxes {
     ts: uint32;
-    image: Image (required);
     scores: [float] (required);
     classes: [uint32] (required);
     num_detections: uint32;
