@@ -7,13 +7,15 @@ import print_nanny_webapp.alerts.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0033_auto_20210228_2210'),
+        ("alerts", "0033_auto_20210228_2210"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='defectalert',
-            name='dataframe',
-            field=models.FileField(null=True, upload_to=print_nanny_webapp.alerts.models._upload_to),
+            model_name="defectalert",
+            name="dataframe",
+            field=models.FileField(
+                null=True, upload_to=print_nanny_webapp.alerts.models._upload_to
+            ),
         ),
     ]

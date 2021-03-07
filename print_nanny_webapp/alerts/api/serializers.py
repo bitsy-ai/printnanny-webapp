@@ -39,14 +39,14 @@ class ProgressAlertSerializer(AlertSerializer):
     class Meta:
         model = ProgressAlert
         fields = "__all__"
-        read_only_fields = ("user" , "alert_method", "alert_type", "polymorphic_ctype")
+        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
 
 
 class DefectAlertSerializer(AlertSerializer):
     class Meta:
         model = DefectAlert
         fields = "__all__"
-        read_only_fields = ("user" , "alert_method", "alert_type", "polymorphic_ctype")
+        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):

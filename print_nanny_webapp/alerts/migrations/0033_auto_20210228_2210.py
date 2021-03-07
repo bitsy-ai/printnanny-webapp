@@ -7,19 +7,27 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0047_remove_printjob_last_status'),
-        ('alerts', '0032_merge_20210228_1735'),
+        ("remote_control", "0047_remove_printjob_last_status"),
+        ("alerts", "0032_merge_20210228_1735"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alert',
-            name='octoprint_device',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
+            model_name="alert",
+            name="octoprint_device",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.octoprintdevice",
+            ),
         ),
         migrations.AlterField(
-            model_name='discordmethodsettings',
-            name='target_id_type',
-            field=models.CharField(choices=[('USER', 'User'), ('CHANNEL', 'Channel')], db_index=True, max_length=255),
+            model_name="discordmethodsettings",
+            name="target_id_type",
+            field=models.CharField(
+                choices=[("USER", "User"), ("CHANNEL", "Channel")],
+                db_index=True,
+                max_length=255,
+            ),
         ),
     ]

@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0044_remove_octoprintdevice_configs'),
+        ("remote_control", "0044_remove_octoprintdevice_configs"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='monitoring_mode',
-            field=models.CharField(choices=[('active_learning', 'Active Learning'), ('lite', 'Lite')], default='lite', max_length=32),
+            model_name="octoprintdevice",
+            name="monitoring_mode",
+            field=models.CharField(
+                choices=[("active_learning", "Active Learning"), ("lite", "Lite")],
+                default="lite",
+                max_length=32,
+            ),
         ),
     ]

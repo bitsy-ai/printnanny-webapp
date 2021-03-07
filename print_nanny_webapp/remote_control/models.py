@@ -27,6 +27,7 @@ User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
+
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
         serial = kwargs.get("serial")
@@ -123,7 +124,7 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    
+
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
@@ -146,7 +147,9 @@ class OctoPrintDevice(models.Model):
     virtualenv = models.CharField(max_length=255)
 
     monitoring_active = models.BooleanField(default=False)
-    monitoring_mode = models.CharField(max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE)
+    monitoring_mode = models.CharField(
+        max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE
+    )
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
@@ -313,7 +316,6 @@ class PrintJob(models.Model):
 
 
 class RemoteControlCommandManager(models.Manager):
-
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
 
@@ -371,7 +373,7 @@ class RemoteControlSnapshot(models.Model):
 
 class RemoteControlCommand(models.Model):
 
-    PLUGIN_EVENT_PREFIX = 'plugin_octoprint_nanny_'
+    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
 
     objects = RemoteControlCommandManager()
 

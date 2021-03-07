@@ -3,7 +3,13 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from print_nanny_webapp.client_events.models import ClientEvent, OctoPrintEvent, PrintJobState, PluginEvent
+from print_nanny_webapp.client_events.models import (
+    ClientEvent,
+    OctoPrintEvent,
+    PrintJobState,
+    PluginEvent,
+)
+
 
 class ClientEventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,6 +17,7 @@ class ClientEventSerializer(serializers.ModelSerializer):
         fields = [field.name for field in ClientEvent._meta.fields] + ["url"]
 
         read_only_fields = ("user",)
+
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,6 +28,7 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         }
         read_only_fields = ("user",)
 
+
 class PluginEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = PluginEvent
@@ -29,6 +37,7 @@ class PluginEventSerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:plugin-event-detail", "lookup_field": "id"}
         }
         read_only_fields = ("user",)
+
 
 class PrintJobStateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,7 +56,7 @@ class ClientEventPolymorphicSerializer(PolymorphicSerializer):
         ClientEvent: ClientEventSerializer,
         PrintJobState: PrintJobStateSerializer,
         OctoPrintEvent: OctoPrintEventSerializer,
-        PluginEvent: PluginEventSerializer
+        PluginEvent: PluginEventSerializer,
     }
 
     def to_resource_type(self, model_or_instance):

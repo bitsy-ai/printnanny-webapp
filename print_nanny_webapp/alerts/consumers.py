@@ -4,7 +4,13 @@ import logging
 import asyncio
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer, AsyncConsumer
-from discord import InvalidData, HTTPException, NotFound, Forbidden, Client as DiscordClient
+from discord import (
+    InvalidData,
+    HTTPException,
+    NotFound,
+    Forbidden,
+    Client as DiscordClient,
+)
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -47,7 +53,9 @@ class DiscordConsumer(AsyncConsumer):
     groups = []
 
     async def trigger_alert(self, data):
-        logger.info(f"Received message for user IDs {data['user_ids']} and channel IDs {data['channel_ids']}")
+        logger.info(
+            f"Received message for user IDs {data['user_ids']} and channel IDs {data['channel_ids']}"
+        )
         await discord_client.wait_until_ready()
 
         for user in data["user_ids"]:
@@ -60,21 +68,17 @@ class DiscordConsumer(AsyncConsumer):
             await self._target_send(channel, target, data["message"])
 
     async def _target_send(self, _id, target, message):
-            if target is None:
-                # TODO: Return an error
-                logger.error(f"Discord could not find item '{_id}'!")
-                return None
+        if target is None:
+            # TODO: Return an error
+            logger.error(f"Discord could not find item '{_id}'!")
+            return None
 
-            return await target.send(message)
+        return await target.send(message)
 
     async def validate_id(self, data):
         logger.info(f"Validating {data['target_id_type']} ID {data['target_id']}")
         await discord_client.wait_until_ready()
-        res = {
-            "is_valid": True,
-            "value": data["target_id"],
-            "error": ""
-        }
+        res = {"is_valid": True, "value": data["target_id"], "error": ""}
 
         fetcher = None
         if data["target_id_type"] == "USER":
@@ -86,12 +90,13 @@ class DiscordConsumer(AsyncConsumer):
             res["error"] = "Unknown ID type"
             await self.base_send(res)
 
-
         try:
             await fetcher(int(data["target_id"]))
         except (InvalidData, HTTPException, NotFound, Forbidden) as e:
             res["is_valid"] = False
-            res["error"] = f"During '{data['target_id']}' {data['target_id_type']} validation, the following error occurred: {e}"
+            res[
+                "error"
+            ] = f"During '{data['target_id']}' {data['target_id_type']} validation, the following error occurred: {e}"
             await self.base_send(res)
 
         await self.base_send(res)
