@@ -241,7 +241,7 @@ class CommandAlertSettingsRequest(object):
     def print_start(self):
         """Gets the print_start of this CommandAlertSettingsRequest.  # noqa: E501
 
-        Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
+        Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :return: The print_start of this CommandAlertSettingsRequest.  # noqa: E501
         :rtype: list[PrintStartEnum]
@@ -252,7 +252,7 @@ class CommandAlertSettingsRequest(object):
     def print_start(self, print_start):
         """Sets the print_start of this CommandAlertSettingsRequest.
 
-        Fires on <strong>StopPrint</strong> updates. Get notifed as soon as a print job finishes.   # noqa: E501
+        Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :param print_start: The print_start of this CommandAlertSettingsRequest.  # noqa: E501
         :type print_start: list[PrintStartEnum]

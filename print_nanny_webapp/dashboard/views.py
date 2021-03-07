@@ -219,9 +219,9 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
 
         obj = super().get_object()
 
-        kwargs["command_choices"] = RemoteControlCommand.VALID_ACTIONS[
+        kwargs["command_choices"] = RemoteControlCommand.get_valid_actions(
             obj.print_job_status
-        ]
+        )
         return kwargs
 
 
@@ -267,7 +267,9 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
     def dismiss_form_valid(self, form):
         failed_job = self.request.POST.get("alert_id")
         if failed_job is not None:
-            ManualVideoUploadAlert.objects.filter(id=failed_job).update(seen=True, dismissed=True)
+            ManualVideoUploadAlert.objects.filter(id=failed_job).update(
+                seen=True, dismissed=True
+            )
 
         return redirect(reverse("dashboard:report-cards:list"))
 
@@ -335,7 +337,7 @@ class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
             ManualVideoUploadAlert.objects.filter(
                 user=self.request.user.id,
                 job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
-                dismissed=False
+                dismissed=False,
             )
             .order_by("-created_dt")
             .all()

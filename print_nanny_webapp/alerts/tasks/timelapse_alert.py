@@ -44,9 +44,7 @@ def send_timelapse_upload_email_notification(alert_id):
     timelapse_alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
 
     merge_data = {
-        "REPORT_URL": reverse(
-            "dashboard:report-cards:detail", kwargs={"id": alert_id}
-        ),
+        "REPORT_URL": reverse("dashboard:report-cards:detail", kwargs={"id": alert_id}),
         "FIRST_NAME": timelapse_alert.user.first_name or "Maker",
         "ORIGINAL_FILENAME": timelapse_alert.original_filename,
         "NOTIFY_TIMECODE": timelapse_alert.notify_timecode,

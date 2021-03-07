@@ -30,8 +30,9 @@ class AlertMethodEnum(object):
     """
     UI = "UI"
     EMAIL = "EMAIL"
+    DISCORD = "DISCORD"
 
-    allowable_values = [UI, EMAIL]  # noqa: E501
+    allowable_values = [UI, EMAIL, DISCORD]  # noqa: E501
 
     """
     Attributes:

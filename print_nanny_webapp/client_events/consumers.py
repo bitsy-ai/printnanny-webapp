@@ -2,7 +2,11 @@ import json
 import logging
 import base64
 import hashlib
-from channels.generic.websocket import WebsocketConsumer, SyncConsumer, JsonWebsocketConsumer
+from channels.generic.websocket import (
+    WebsocketConsumer,
+    SyncConsumer,
+    JsonWebsocketConsumer,
+)
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.conf import settings

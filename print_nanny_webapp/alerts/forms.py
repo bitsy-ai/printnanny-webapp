@@ -38,6 +38,7 @@ class CommandAlertSettingsForm(ModelForm):
             "move_nozzle",
         )
 
+
 class DiscordMethodSettingsForm(ModelForm):
     class Meta:
         model = DiscordMethodSettings

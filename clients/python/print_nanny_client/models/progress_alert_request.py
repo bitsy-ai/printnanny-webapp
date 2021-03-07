@@ -33,92 +33,42 @@ class ProgressAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'alert_method': 'AlertMethodEnum',
-        'alert_type': 'AlertTypeEnum',
         'seen': 'bool',
         'dismissed': 'bool',
         'progress_percent': 'int',
+        'octoprint_device': 'int',
         'device': 'int'
     }
 
     attribute_map = {
-        'alert_method': 'alert_method',
-        'alert_type': 'alert_type',
         'seen': 'seen',
         'dismissed': 'dismissed',
         'progress_percent': 'progress_percent',
+        'octoprint_device': 'octoprint_device',
         'device': 'device'
     }
 
-    def __init__(self, alert_method=None, alert_type=None, seen=None, dismissed=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, dismissed=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """ProgressAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._alert_method = None
-        self._alert_type = None
         self._seen = None
         self._dismissed = None
         self._progress_percent = None
+        self._octoprint_device = None
         self._device = None
         self.discriminator = None
 
-        self.alert_method = alert_method
-        self.alert_type = alert_type
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
         if progress_percent is not None:
             self.progress_percent = progress_percent
+        self.octoprint_device = octoprint_device
         self.device = device
-
-    @property
-    def alert_method(self):
-        """Gets the alert_method of this ProgressAlertRequest.  # noqa: E501
-
-
-        :return: The alert_method of this ProgressAlertRequest.  # noqa: E501
-        :rtype: AlertMethodEnum
-        """
-        return self._alert_method
-
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this ProgressAlertRequest.
-
-
-        :param alert_method: The alert_method of this ProgressAlertRequest.  # noqa: E501
-        :type alert_method: AlertMethodEnum
-        """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
-
-        self._alert_method = alert_method
-
-    @property
-    def alert_type(self):
-        """Gets the alert_type of this ProgressAlertRequest.  # noqa: E501
-
-
-        :return: The alert_type of this ProgressAlertRequest.  # noqa: E501
-        :rtype: AlertTypeEnum
-        """
-        return self._alert_type
-
-    @alert_type.setter
-    def alert_type(self, alert_type):
-        """Sets the alert_type of this ProgressAlertRequest.
-
-
-        :param alert_type: The alert_type of this ProgressAlertRequest.  # noqa: E501
-        :type alert_type: AlertTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and alert_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_type`, must not be `None`")  # noqa: E501
-
-        self._alert_type = alert_type
 
     @property
     def seen(self):
@@ -190,6 +140,27 @@ class ProgressAlertRequest(object):
             raise ValueError("Invalid value for `progress_percent`, must be a value greater than or equal to `1`")  # noqa: E501
 
         self._progress_percent = progress_percent
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this ProgressAlertRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this ProgressAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this ProgressAlertRequest.
+
+
+        :param octoprint_device: The octoprint_device of this ProgressAlertRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def device(self):

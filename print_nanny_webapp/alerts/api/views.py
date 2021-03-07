@@ -23,12 +23,11 @@ from .serializers import (
     AlertBulkResponseSerializer,
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
-    DefectAlertSerializer
+    DefectAlertSerializer,
 )
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
 logger = logging.getLogger(__name__)
-
 
 
 @extend_schema(
@@ -44,11 +43,10 @@ class DefectAlertViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    UpdateModelMixin
+    UpdateModelMixin,
 ):
     serializer_class = DefectAlertSerializer
     queryset = DefectAlert.objects.all()
-
 
     def get_queryset(self):
         user = self.request.user

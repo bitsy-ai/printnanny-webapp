@@ -26,7 +26,7 @@ from print_nanny_webapp.remote_control.utils import (
 User = get_user_model()
 
 logger = logging.getLogger(__name__)
-# from print_nanny_webapp.client_events.models import PrintJobState
+
 
 class OctoPrintDeviceManager(models.Manager):
     def update_or_create(self, defaults=None, **kwargs):
@@ -124,7 +124,7 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    
+
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
     cloudiot_device = JSONField()
@@ -147,7 +147,9 @@ class OctoPrintDevice(models.Model):
     virtualenv = models.CharField(max_length=255)
 
     monitoring_active = models.BooleanField(default=False)
-    monitoring_mode = models.CharField(max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE)
+    monitoring_mode = models.CharField(
+        max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE
+    )
 
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
@@ -314,7 +316,6 @@ class PrintJob(models.Model):
 
 
 class RemoteControlCommandManager(models.Manager):
-
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
 
@@ -372,7 +373,7 @@ class RemoteControlSnapshot(models.Model):
 
 class RemoteControlCommand(models.Model):
 
-    PLUGIN_EVENT_PREFIX = 'plugin_octoprint_nanny_'
+    PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
 
     objects = RemoteControlCommandManager()
 
@@ -393,31 +394,36 @@ class RemoteControlCommand(models.Model):
 
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
-    VALID_ACTIONS = {
-        # PrintJobState.EventType.PRINT_STARTED: [
-        #     Command.PRINT_STOP,
-        #     Command.PRINT_PAUSE,
-        # ],
-        # PrintJobState.EventType.PRINT_DONE: [
-        #     Command.MOVE_NOZZLE,
-        #     Command.MONITORING_START,
-        #     Command.MONITORING_STOP,
-        #     Command.SNAPSHOT,
-        # ],
-        # PrintJobState.EventType.PRINT_CANCELLED: [Command.MOVE_NOZZLE],
-        # PrintJobState.EventType.PRINT_CANCELLING: [],
-        # PrintJobState.EventType.PRINT_PAUSED: [
-        #     Command.PRINT_STOP,
-        #     Command.PRINT_RESUME,
-        #     Command.MOVE_NOZZLE,
-        # ],
-        # PrintJobState.EventType.PRINT_FAILED: [Command.MOVE_NOZZLE],
-        # "Idle": [
-        #     Command.MONITORING_START,
-        #     Command.MONITORING_STOP,
-        #     Command.SNAPSHOT,
-        # ],
-    }
+    @classmethod
+    def get_valid_actions(cls, print_job_status):
+        PrintJobState = apps.get_model("client_events", "PrintJobState")
+
+        valid_actions = {
+            PrintJobState.EventType.PRINT_STARTED: [
+                cls.Command.PRINT_STOP,
+                cls.Command.PRINT_PAUSE,
+            ],
+            PrintJobState.EventType.PRINT_DONE: [
+                cls.Command.MOVE_NOZZLE,
+                cls.Command.MONITORING_START,
+                cls.Command.MONITORING_STOP,
+                cls.Command.SNAPSHOT,
+            ],
+            PrintJobState.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintJobState.EventType.PRINT_CANCELLING: [],
+            PrintJobState.EventType.PRINT_PAUSED: [
+                cls.Command.PRINT_STOP,
+                cls.Command.PRINT_RESUME,
+                cls.Command.MOVE_NOZZLE,
+            ],
+            PrintJobState.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            "Idle": [
+                cls.Command.MONITORING_START,
+                cls.Command.MONITORING_STOP,
+                cls.Command.SNAPSHOT,
+            ],
+        }
+        return valid_actions[print_job_status]
 
     ACTION_CSS_CLASSES = {
         Command.PRINT_STOP: "danger",

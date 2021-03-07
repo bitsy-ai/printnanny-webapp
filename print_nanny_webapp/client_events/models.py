@@ -22,9 +22,10 @@ from django.contrib.sites.shortcuts import get_current_site
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
+
 class ClientEvent(PolymorphicModel):
     """
-        Base class for client-side events
+    Base class for client-side events
     """
 
     class ClientEventType(models.TextChoices):
@@ -44,15 +45,22 @@ class ClientEvent(PolymorphicModel):
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
 
+
 class PluginEvent(ClientEvent):
-    '''
-        Events emitted by OctoPrint Nanny plugin
-    '''
+    """
+    Events emitted by OctoPrint Nanny plugin
+    """
+
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, client_event_type=ClientEvent.ClientEventType.PLUGIN, **kwargs)
+        super().__init__(
+            *args, client_event_type=ClientEvent.ClientEventType.PLUGIN, **kwargs
+        )
 
     class EventType(models.TextChoices):
-        BOUNDING_BOX_PREDICT = "bounding_box_predict", "On-device bounding box prediction"
+        BOUNDING_BOX_PREDICT = (
+            "bounding_box_predict",
+            "On-device bounding box prediction",
+        )
         MONITORING_FRAME_RAW = "monitoring_frame_raw", "Raw frame buffer sample"
         MONITORING_FRAME_POST = "monitoring_frame_post", "Post-processed frame buffer"
 
@@ -60,21 +68,37 @@ class PluginEvent(ClientEvent):
         DEVICE_REGISTER_DONE = "device_register_done", "Device registration succeeded"
         DEVICE_REGISTER_FAILED = "device_register_failed", "Device registration failed"
 
-        PRINTER_PROFILE_SYNC_START = "printer_profile_sync_start", "Printer profile sync started"
-        PRINTER_PROFILE_SYNC_DONE = "printer_profile_sync_done", "Printer profile sync succeeded"
-        PRINTER_PROFILE_SYNC_FAILED = "printer_profile_sync_failed", "Printer profile sync failed"
+        PRINTER_PROFILE_SYNC_START = (
+            "printer_profile_sync_start",
+            "Printer profile sync started",
+        )
+        PRINTER_PROFILE_SYNC_DONE = (
+            "printer_profile_sync_done",
+            "Printer profile sync succeeded",
+        )
+        PRINTER_PROFILE_SYNC_FAILED = (
+            "printer_profile_sync_failed",
+            "Printer profile sync failed",
+        )
+
     event_codes = [x.value for x in EventType.__members__.values()]
 
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
 
+
 class OctoPrintEvent(ClientEvent):
     """
-        Events emitted by OctoPrint Core and plugins bundled with core
+    Events emitted by OctoPrint Core and plugins bundled with core
     """
+
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, client_event_type=ClientEvent.ClientEventType.OCTOPRINT_CORE, **kwargs)
+        super().__init__(
+            *args,
+            client_event_type=ClientEvent.ClientEventType.OCTOPRINT_CORE,
+            **kwargs
+        )
 
     class EventType(models.TextChoices):
         # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
@@ -147,13 +171,18 @@ class OctoPrintEvent(ClientEvent):
         # CONNECTIVITY_CHANGED = "ConnectivityChanged"
         SHUTDOWN = "Shutdown", "Shutdown"
         STARTUP = "Startup", "Startup"
+
     event_codes = [x.value for x in EventType.__members__.values()]
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
+
+
 class PrintJobState(ClientEvent):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs)
+        super().__init__(
+            *args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs
+        )
 
     class EventType(models.TextChoices):
         # print job
@@ -165,7 +194,7 @@ class PrintJobState(ClientEvent):
         PRINT_PAUSED = "PrintPaused", "PrintPaused"
         PRINT_RESUMED = "PrintResumed", "PrintResumed"
         PRINT_STARTED = "PrintStarted", "PrintStarted"
-    
+
     event_codes = [x.value for x in EventType.__members__.values()]
     JOB_EVENT_TYPE_CSS_CLASS = {
         "Error": "text-danger",

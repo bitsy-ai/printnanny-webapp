@@ -41,8 +41,10 @@ class DefectAlert(object):
         'updated_dt': 'datetime',
         'seen': 'bool',
         'dismissed': 'bool',
+        'dataframe': 'str',
         'polymorphic_ctype': 'int',
-        'user': 'int'
+        'user': 'int',
+        'octoprint_device': 'int'
     }
 
     attribute_map = {
@@ -54,11 +56,13 @@ class DefectAlert(object):
         'updated_dt': 'updated_dt',
         'seen': 'seen',
         'dismissed': 'dismissed',
+        'dataframe': 'dataframe',
         'polymorphic_ctype': 'polymorphic_ctype',
-        'user': 'user'
+        'user': 'user',
+        'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, polymorphic_ctype=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, dataframe=None, polymorphic_ctype=None, user=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -72,16 +76,20 @@ class DefectAlert(object):
         self._updated_dt = None
         self._seen = None
         self._dismissed = None
+        self._dataframe = None
         self._polymorphic_ctype = None
         self._user = None
+        self._octoprint_device = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
         if time is not None:
             self.time = time
-        self.alert_method = alert_method
-        self.alert_type = alert_type
+        if alert_method is not None:
+            self.alert_method = alert_method
+        if alert_type is not None:
+            self.alert_type = alert_type
         if created_dt is not None:
             self.created_dt = created_dt
         if updated_dt is not None:
@@ -90,10 +98,12 @@ class DefectAlert(object):
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
+        self.dataframe = dataframe
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
             self.user = user
+        self.octoprint_device = octoprint_device
 
     @property
     def id(self):
@@ -155,8 +165,6 @@ class DefectAlert(object):
         :param alert_method: The alert_method of this DefectAlert.  # noqa: E501
         :type alert_method: AlertMethodEnum
         """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
         self._alert_method = alert_method
 
@@ -178,8 +186,6 @@ class DefectAlert(object):
         :param alert_type: The alert_type of this DefectAlert.  # noqa: E501
         :type alert_type: AlertTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and alert_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_type`, must not be `None`")  # noqa: E501
 
         self._alert_type = alert_type
 
@@ -268,6 +274,27 @@ class DefectAlert(object):
         self._dismissed = dismissed
 
     @property
+    def dataframe(self):
+        """Gets the dataframe of this DefectAlert.  # noqa: E501
+
+
+        :return: The dataframe of this DefectAlert.  # noqa: E501
+        :rtype: str
+        """
+        return self._dataframe
+
+    @dataframe.setter
+    def dataframe(self, dataframe):
+        """Sets the dataframe of this DefectAlert.
+
+
+        :param dataframe: The dataframe of this DefectAlert.  # noqa: E501
+        :type dataframe: str
+        """
+
+        self._dataframe = dataframe
+
+    @property
     def polymorphic_ctype(self):
         """Gets the polymorphic_ctype of this DefectAlert.  # noqa: E501
 
@@ -308,6 +335,27 @@ class DefectAlert(object):
         """
 
         self._user = user
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this DefectAlert.  # noqa: E501
+
+
+        :return: The octoprint_device of this DefectAlert.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this DefectAlert.
+
+
+        :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

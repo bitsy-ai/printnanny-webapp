@@ -44,6 +44,7 @@ class ProgressAlert(object):
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
         'user': 'int',
+        'octoprint_device': 'int',
         'device': 'int'
     }
 
@@ -59,10 +60,11 @@ class ProgressAlert(object):
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
+        'octoprint_device': 'octoprint_device',
         'device': 'device'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, progress_percent=None, polymorphic_ctype=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, progress_percent=None, polymorphic_ctype=None, user=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """ProgressAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -79,6 +81,7 @@ class ProgressAlert(object):
         self._progress_percent = None
         self._polymorphic_ctype = None
         self._user = None
+        self._octoprint_device = None
         self._device = None
         self.discriminator = None
 
@@ -86,8 +89,10 @@ class ProgressAlert(object):
             self.id = id
         if time is not None:
             self.time = time
-        self.alert_method = alert_method
-        self.alert_type = alert_type
+        if alert_method is not None:
+            self.alert_method = alert_method
+        if alert_type is not None:
+            self.alert_type = alert_type
         if created_dt is not None:
             self.created_dt = created_dt
         if updated_dt is not None:
@@ -102,6 +107,7 @@ class ProgressAlert(object):
             self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
             self.user = user
+        self.octoprint_device = octoprint_device
         self.device = device
 
     @property
@@ -164,8 +170,6 @@ class ProgressAlert(object):
         :param alert_method: The alert_method of this ProgressAlert.  # noqa: E501
         :type alert_method: AlertMethodEnum
         """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
         self._alert_method = alert_method
 
@@ -187,8 +191,6 @@ class ProgressAlert(object):
         :param alert_type: The alert_type of this ProgressAlert.  # noqa: E501
         :type alert_type: AlertTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and alert_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_type`, must not be `None`")  # noqa: E501
 
         self._alert_type = alert_type
 
@@ -346,6 +348,27 @@ class ProgressAlert(object):
         """
 
         self._user = user
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this ProgressAlert.  # noqa: E501
+
+
+        :return: The octoprint_device of this ProgressAlert.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this ProgressAlert.
+
+
+        :param octoprint_device: The octoprint_device of this ProgressAlert.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def device(self):

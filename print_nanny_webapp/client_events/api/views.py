@@ -28,10 +28,14 @@ OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
 PrintJobState = apps.get_model("client_events", "PrintJobState")
 logger = logging.getLogger(__name__)
 
+
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
+        responses={
+            201: ClientEventPolymorphicSerializer,
+            400: ClientEventPolymorphicSerializer,
+        }
     )
 )
 class OctoPrintEventViewSet(
@@ -69,15 +73,17 @@ class OctoPrintEventViewSet(
             user = None
         instance = serializer.save(user=user, print_job=print_job)
 
+
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
+        responses={
+            201: ClientEventPolymorphicSerializer,
+            400: ClientEventPolymorphicSerializer,
+        }
     )
 )
-class PluginEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
+class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = ClientEventPolymorphicSerializer
     queryset = PluginEvent.objects.all()
     lookup_field = "id"
@@ -110,15 +116,17 @@ class PluginEventViewSet(
             user = None
         instance = serializer.save(user=user, print_job=print_job)
 
+
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201:ClientEventPolymorphicSerializer, 400: ClientEventPolymorphicSerializer}
+        responses={
+            201: ClientEventPolymorphicSerializer,
+            400: ClientEventPolymorphicSerializer,
+        }
     )
 )
-class PrintJobStateViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
+class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = ClientEventPolymorphicSerializer
     queryset = PrintJobState.objects.all()
     lookup_field = "id"

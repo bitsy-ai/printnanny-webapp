@@ -6,38 +6,38 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0029_auto_20210129_2321'),
+        ("alerts", "0029_auto_20210129_2321"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='start_monitoring',
-            new_name='monitoring_start',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="start_monitoring",
+            new_name="monitoring_start",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='stop_monitoring',
-            new_name='monitoring_stop',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="stop_monitoring",
+            new_name="monitoring_stop",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='pause_print',
-            new_name='print_pause',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="pause_print",
+            new_name="print_pause",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='resume_print',
-            new_name='print_resume',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="resume_print",
+            new_name="print_resume",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='stop_print',
-            new_name='print_start',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="stop_print",
+            new_name="print_start",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='start_print',
-            new_name='print_stop',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="start_print",
+            new_name="print_stop",
         ),
     ]

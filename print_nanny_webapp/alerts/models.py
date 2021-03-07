@@ -39,7 +39,6 @@ def _upload_to(instance, filename):
 
 
 class Alert(PolymorphicModel):
-
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -62,7 +61,9 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     dismissed = models.BooleanField(default=False)
-    octoprint_device = models.ForeignKey("remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE)
+    octoprint_device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
+    )
 
 
 class AlertSettings(PolymorphicModel):
@@ -104,9 +105,13 @@ class DiscordMethodSettings(models.Model):
     # https://discord.com/developers/docs/reference#snowflakes
     # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
     target_id = models.CharField(
-        help_text="ID to send notifications to\nTo get an item's ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and \"Copy ID\"",
-        max_length=24, db_index=True)
-    target_id_type = models.CharField(max_length=255, choices=TargetIDTypeChoices.choices, db_index=True)
+        help_text='ID to send notifications to\nTo get an item\'s ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and "Copy ID"',
+        max_length=24,
+        db_index=True,
+    )
+    target_id_type = models.CharField(
+        max_length=255, choices=TargetIDTypeChoices.choices, db_index=True
+    )
 
 
 ##
@@ -217,7 +222,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )
-    
+
 
 ##
 # Alert Models
@@ -227,6 +232,8 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+
+    dataframe = models.FileField(upload_to=_upload_to, null=True)
 
 
 class ProgressAlert(Alert):
@@ -349,22 +356,29 @@ class RemoteControlCommandAlert(Alert):
         for setting in discord_settings:
             if setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.USER:
                 user_ids.append(setting.target_id)
-            elif setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.CHANNEL:
+            elif (
+                setting.target_id_type
+                == DiscordMethodSettings.TargetIDTypeChoices.CHANNEL
+            ):
                 channel_ids.append(setting.target_id)
 
-        logger.info(f"Sending Discord alert to channels: {channel_ids} and users: {user_ids}")
+        logger.info(
+            f"Sending Discord alert to channels: {channel_ids} and users: {user_ids}"
+        )
 
         message = f"{data['title']}: {data['description']}"
         if data["snapshot_url"] is not None:
-            message += "\n"+data["snapshot_url"]
+            message += "\n" + data["snapshot_url"]
 
         async_to_sync(channel_layer.send)(
-            "discord", {
+            "discord",
+            {
                 "type": "trigger.alert",
                 "user_ids": user_ids,
                 "channel_ids": channel_ids,
                 "message": message,
-        })
+            },
+        )
 
     class AlertSubtypeChoices(models.TextChoices):
         RECEIVED = "RECEIVED", "Command was received by"

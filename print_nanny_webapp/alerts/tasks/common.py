@@ -380,7 +380,7 @@ def create_report_card(df, alert_id, temp_dir, fps, callback):
     multi_df, fail_df, confident_df = calc_metrics(df, fps)
 
     filename = f"alert_{alert_id}_dataframe.json"
-    outcontent = multi_df.reset_index().to_json().encode('utf-8')
+    outcontent = multi_df.reset_index().to_json().encode("utf-8")
     alert.dataframe.save(filename, ContentFile(outcontent))
     alert.save()
 
