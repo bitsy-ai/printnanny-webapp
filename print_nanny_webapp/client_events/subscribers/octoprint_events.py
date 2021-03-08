@@ -20,11 +20,6 @@ from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
 from django.apps import apps
-from print_nanny_webapp.client_events.models import (
-    OctoPrintEventCodes,
-    PrintJobStateCodes,
-    OctoPrintEventTypeChoices,
-)
 
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
 PrintJobState = apps.get_model("client_events", "PrintJobState")
@@ -42,7 +37,7 @@ def handle_print_progress(octoprint_event):
     return alert_settings.on_print_progress(octoprint_event)
 
 
-HANDLER_FNS = {OctoPrintEventTypeChoices.PRINT_PROGRESS: handle_print_progress}
+HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
 
 
 def on_octoprint_event(message):
@@ -59,7 +54,7 @@ def on_octoprint_event(message):
         logger.warning(f"Received {event_type} without user_id {data}")
         message.ack()
         return
-    if event_type in OctoPrintEventCodes:
+    if event_type in OctoPrintEvent.EventType:
         try:
             event = OctoPrintEvent.objects.create(
                 created_dt=data["created_dt"],
