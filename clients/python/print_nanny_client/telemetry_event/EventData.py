@@ -12,6 +12,6 @@ def EventDataCreator(unionType, table):
     if not isinstance(table, Table):
         return None
     if unionType == EventData().MonitoringFrame:
-        import telemetry_event.MonitoringFrame
-        return telemetry_event.MonitoringFrame.MonitoringFrameT.InitFromBuf(table.Bytes, table.Pos)
+        import print_nanny_client.telemetry_event.MonitoringFrame
+        return print_nanny_client.telemetry_event.MonitoringFrame.MonitoringFrameT.InitFromBuf(table.Bytes, table.Pos)
     return None

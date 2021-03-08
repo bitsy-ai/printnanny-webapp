@@ -57,7 +57,7 @@ clean-python-client: ## remove build artifacts
 
 
 python-flatbuffer:
-	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/print_nanny_client clients/flatbuffers/telemetry_event.fbs
+	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry_event.fbs
 
 
 python-client: clean-python-client python-flatbuffer
