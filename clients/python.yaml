@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: print_nanny_client
-packageVersion: '0.5.0-dev36'
+packageVersion: '0.5.0-dev37'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@bitsy.ai"
@@ -19,9 +19,4 @@ files:
   MANIFEST.mustache:
     templateType: SupportingFiles
     destinationFilename: MANIFEST.in
-  rust/Cargo.toml.mustache:
-    templateType: SupportingFiles
-    destinationFilename: PrintNannyMessage/rust/Cargo.toml
-  rust/src/lib.rs.mustache:
-    templateType: SupportingFiles
-    destinationFilename: PrintNannyMessage/rust/src/lib.rs
+  

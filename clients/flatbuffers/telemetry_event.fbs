@@ -1,4 +1,4 @@
-namespace PrintNannyEvent.TelemetrySchema;
+namespace telemetry_event;
 
 enum TelemetryEventEnum:ubyte {
     monitoring_frame_raw,
@@ -61,6 +61,7 @@ table Metadata {
 }
 
 table TelemetryEvent {
+    version:string;
     event_data: EventData (required);
     event_type: TelemetryEventEnum;
     metadata: Metadata (required);

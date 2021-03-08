@@ -317,13 +317,13 @@ export interface ClientEvent {
      * @type {string}
      * @memberof ClientEvent
      */
-    created_dt: string;
+    created_dt?: string;
     /**
      * 
      * @type {ClientEventTypeEnum}
      * @memberof ClientEvent
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -335,7 +335,7 @@ export interface ClientEvent {
      * @type {number}
      * @memberof ClientEvent
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {number}
@@ -381,16 +381,10 @@ export type ClientEventPolymorphicRequest = ClientEventRequest | OctoPrintEventR
 export interface ClientEventRequest {
     /**
      * 
-     * @type {string}
-     * @memberof ClientEventRequest
-     */
-    created_dt: string;
-    /**
-     * 
      * @type {ClientEventTypeEnum}
      * @memberof ClientEventRequest
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -402,7 +396,7 @@ export interface ClientEventRequest {
      * @type {number}
      * @memberof ClientEventRequest
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {string}
@@ -1715,13 +1709,13 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    created_dt: string;
+    created_dt?: string;
     /**
      * 
      * @type {ClientEventTypeEnum}
      * @memberof OctoPrintEvent
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1733,7 +1727,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {number}
@@ -1830,16 +1824,10 @@ export enum OctoPrintEventEventTypeEnum {
 export interface OctoPrintEventRequest {
     /**
      * 
-     * @type {string}
-     * @memberof OctoPrintEventRequest
-     */
-    created_dt: string;
-    /**
-     * 
      * @type {ClientEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1851,7 +1839,7 @@ export interface OctoPrintEventRequest {
      * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {string}
@@ -3102,13 +3090,13 @@ export interface PluginEvent {
      * @type {string}
      * @memberof PluginEvent
      */
-    created_dt: string;
+    created_dt?: string;
     /**
      * 
      * @type {ClientEventTypeEnum}
      * @memberof PluginEvent
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3120,7 +3108,7 @@ export interface PluginEvent {
      * @type {number}
      * @memberof PluginEvent
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {number}
@@ -3183,16 +3171,10 @@ export enum PluginEventEventTypeEnum {
 export interface PluginEventRequest {
     /**
      * 
-     * @type {string}
-     * @memberof PluginEventRequest
-     */
-    created_dt: string;
-    /**
-     * 
      * @type {ClientEventTypeEnum}
      * @memberof PluginEventRequest
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3204,7 +3186,7 @@ export interface PluginEventRequest {
      * @type {number}
      * @memberof PluginEventRequest
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {string}
@@ -3357,13 +3339,13 @@ export interface PrintJobState {
      * @type {string}
      * @memberof PrintJobState
      */
-    created_dt: string;
+    created_dt?: string;
     /**
      * 
      * @type {ClientEventTypeEnum}
      * @memberof PrintJobState
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3375,7 +3357,7 @@ export interface PrintJobState {
      * @type {number}
      * @memberof PrintJobState
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {number}
@@ -3467,16 +3449,10 @@ export enum PrintJobStateEventTypeEnum {
 export interface PrintJobStateRequest {
     /**
      * 
-     * @type {string}
-     * @memberof PrintJobStateRequest
-     */
-    created_dt: string;
-    /**
-     * 
      * @type {ClientEventTypeEnum}
      * @memberof PrintJobStateRequest
      */
-    client_event_type: ClientEventTypeEnum;
+    client_event_type?: ClientEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3488,7 +3464,7 @@ export interface PrintJobStateRequest {
      * @type {number}
      * @memberof PrintJobStateRequest
      */
-    device: number;
+    device?: number | null;
     /**
      * 
      * @type {string}

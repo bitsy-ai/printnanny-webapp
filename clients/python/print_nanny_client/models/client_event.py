@@ -80,8 +80,10 @@ class ClientEvent(object):
             self.id = id
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
-        self.created_dt = created_dt
-        self.client_event_type = client_event_type
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if client_event_type is not None:
+            self.client_event_type = client_event_type
         self.event_data = event_data
         self.device = device
         if user is not None:
@@ -151,8 +153,6 @@ class ClientEvent(object):
         :param created_dt: The created_dt of this ClientEvent.  # noqa: E501
         :type created_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -174,8 +174,6 @@ class ClientEvent(object):
         :param client_event_type: The client_event_type of this ClientEvent.  # noqa: E501
         :type client_event_type: ClientEventTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and client_event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `client_event_type`, must not be `None`")  # noqa: E501
 
         self._client_event_type = client_event_type
 
@@ -220,8 +218,6 @@ class ClientEvent(object):
         :param device: The device of this ClientEvent.  # noqa: E501
         :type device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 

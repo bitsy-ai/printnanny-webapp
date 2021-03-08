@@ -5,10 +5,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | 
-**client_event_type** | [**ClientEventTypeEnum**](ClientEventTypeEnum.md) |  | 
+**created_dt** | **datetime** |  | [optional] [readonly] 
+**client_event_type** | [**ClientEventTypeEnum**](ClientEventTypeEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | 
-**device** | **int** |  | 
+**device** | **int** |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **plugin_version** | **str** |  | 
 **octoprint_version** | **str** |  | 

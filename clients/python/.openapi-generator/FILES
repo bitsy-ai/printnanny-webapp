@@ -3,8 +3,6 @@
 .openapi-generator-ignore
 .travis.yml
 MANIFEST.in
-PrintNannyMessage/rust/Cargo.toml
-PrintNannyMessage/rust/src/lib.rs
 README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
