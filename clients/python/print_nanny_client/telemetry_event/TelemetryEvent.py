@@ -56,7 +56,7 @@ class TelemetryEvent(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from telemetry_event.Metadata import Metadata
+            from print_nanny_client.telemetry_event.Metadata import Metadata
             obj = Metadata()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -70,9 +70,9 @@ def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(3, 
 def TelemetryEventAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
 def TelemetryEventEnd(builder): return builder.EndObject()
 
-import telemetry_event.EventData
-import telemetry_event.Metadata
-import telemetry_event.MonitoringFrame
+import print_nanny_client.telemetry_event.EventData
+import print_nanny_client.telemetry_event.Metadata
+import print_nanny_client.telemetry_event.MonitoringFrame
 try:
     from typing import Optional, Union
 except:
@@ -84,9 +84,9 @@ class TelemetryEventT(object):
     def __init__(self):
         self.version = None  # type: str
         self.eventDataType = 0  # type: int
-        self.eventData = None  # type: Union[None, telemetry_event.MonitoringFrame.MonitoringFrameT]
+        self.eventData = None  # type: Union[None, print_nanny_client.telemetry_event.MonitoringFrame.MonitoringFrameT]
         self.eventType = 0  # type: int
-        self.metadata = None  # type: Optional[telemetry_event.Metadata.MetadataT]
+        self.metadata = None  # type: Optional[print_nanny_client.telemetry_event.Metadata.MetadataT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -106,10 +106,10 @@ class TelemetryEventT(object):
             return
         self.version = telemetryEvent.Version()
         self.eventDataType = telemetryEvent.EventDataType()
-        self.eventData = telemetry_event.EventData.EventDataCreator(self.eventDataType, telemetryEvent.EventData())
+        self.eventData = print_nanny_client.telemetry_event.EventData.EventDataCreator(self.eventDataType, telemetryEvent.EventData())
         self.eventType = telemetryEvent.EventType()
         if telemetryEvent.Metadata() is not None:
-            self.metadata = telemetry_event.Metadata.MetadataT.InitFromObj(telemetryEvent.Metadata())
+            self.metadata = print_nanny_client.telemetry_event.Metadata.MetadataT.InitFromObj(telemetryEvent.Metadata())
 
     # TelemetryEventT
     def Pack(self, builder):

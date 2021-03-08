@@ -1,4 +1,4 @@
-namespace telemetry_event;
+namespace print_nanny_client.telemetry_event;
 
 enum TelemetryEventEnum:ubyte {
     monitoring_frame_raw,

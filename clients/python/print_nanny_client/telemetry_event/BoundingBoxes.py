@@ -87,7 +87,7 @@ class BoundingBoxes(object):
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 16
-            from telemetry_event.Box import Box
+            from print_nanny_client.telemetry_event.Box import Box
             obj = Box()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -115,7 +115,7 @@ def BoundingBoxesAddBoxes(builder, boxes): builder.PrependUOffsetTRelativeSlot(3
 def BoundingBoxesStartBoxesVector(builder, numElems): return builder.StartVector(16, numElems, 4)
 def BoundingBoxesEnd(builder): return builder.EndObject()
 
-import telemetry_event.Box
+import print_nanny_client.telemetry_event.Box
 try:
     from typing import List
 except:
@@ -128,7 +128,7 @@ class BoundingBoxesT(object):
         self.scores = None  # type: List[float]
         self.classes = None  # type: List[int]
         self.numDetections = 0  # type: int
-        self.boxes = None  # type: List[telemetry_event.Box.BoxT]
+        self.boxes = None  # type: List[print_nanny_client.telemetry_event.Box.BoxT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -167,7 +167,7 @@ class BoundingBoxesT(object):
                 if boundingBoxes.Boxes(i) is None:
                     self.boxes.append(None)
                 else:
-                    box_ = telemetry_event.Box.BoxT.InitFromObj(boundingBoxes.Boxes(i))
+                    box_ = print_nanny_client.telemetry_event.Box.BoxT.InitFromObj(boundingBoxes.Boxes(i))
                     self.boxes.append(box_)
 
     # BoundingBoxesT
