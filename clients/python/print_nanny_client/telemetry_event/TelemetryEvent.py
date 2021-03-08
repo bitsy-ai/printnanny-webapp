@@ -24,7 +24,7 @@ class TelemetryEvent(object):
     def Version(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # TelemetryEvent
@@ -63,7 +63,7 @@ class TelemetryEvent(object):
         return None
 
 def TelemetryEventStart(builder): builder.StartObject(5)
-def TelemetryEventAddVersion(builder, version): builder.PrependInt8Slot(0, version, 0)
+def TelemetryEventAddVersion(builder, version): builder.PrependUint8Slot(0, version, 0)
 def TelemetryEventAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(1, eventDataType, 0)
 def TelemetryEventAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
 def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(3, eventType, 0)
