@@ -23,12 +23,11 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class ClientEvent(models.Model):
+class ClientEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
-    class Meta:
-        abstract = True
+
     class ClientEventType(models.TextChoices):
         PLUGIN = "plugin", "OctoPrint Nanny plugin events"
         OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
@@ -47,7 +46,7 @@ class ClientEvent(models.Model):
     # octoprint_version = models.CharField(max_length=60)
 
 
-class PluginEvent(ClientEvent):
+class PluginEvent(models.Model):
     """
     Events emitted by OctoPrint Nanny plugin
     """
@@ -89,7 +88,7 @@ class PluginEvent(ClientEvent):
     )
 
 
-class OctoPrintEvent(ClientEvent):
+class OctoPrintEvent(models.Model):
     """
     Events emitted by OctoPrint Core and plugins bundled with core
     """
@@ -179,7 +178,7 @@ class OctoPrintEvent(ClientEvent):
     )
 
 
-class PrintJobState(ClientEvent):
+class PrintJobState(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs
