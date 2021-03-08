@@ -24,8 +24,8 @@ class TelemetryEvent(object):
     def Version(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
     # TelemetryEvent
     def EventDataType(self):
@@ -63,7 +63,7 @@ class TelemetryEvent(object):
         return None
 
 def TelemetryEventStart(builder): builder.StartObject(5)
-def TelemetryEventAddVersion(builder, version): builder.PrependUint8Slot(0, version, 0)
+def TelemetryEventAddVersion(builder, version): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(version), 0)
 def TelemetryEventAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(1, eventDataType, 0)
 def TelemetryEventAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
 def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(3, eventType, 0)
@@ -82,7 +82,7 @@ class TelemetryEventT(object):
 
     # TelemetryEventT
     def __init__(self):
-        self.version = 0  # type: int
+        self.version = None  # type: str
         self.eventDataType = 0  # type: int
         self.eventData = None  # type: Union[None, print_nanny_client.telemetry_event.MonitoringFrame.MonitoringFrameT]
         self.eventType = 0  # type: int
@@ -113,12 +113,15 @@ class TelemetryEventT(object):
 
     # TelemetryEventT
     def Pack(self, builder):
+        if self.version is not None:
+            version = builder.CreateString(self.version)
         if self.eventData is not None:
             eventData = self.eventData.Pack(builder)
         if self.metadata is not None:
             metadata = self.metadata.Pack(builder)
         TelemetryEventStart(builder)
-        TelemetryEventAddVersion(builder, self.version)
+        if self.version is not None:
+            TelemetryEventAddVersion(builder, version)
         TelemetryEventAddEventDataType(builder, self.eventDataType)
         if self.eventData is not None:
             TelemetryEventAddEventData(builder, eventData)
