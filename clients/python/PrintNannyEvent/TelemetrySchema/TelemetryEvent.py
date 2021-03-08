@@ -21,15 +21,22 @@ class TelemetryEvent(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # TelemetryEvent
-    def EventDataType(self):
+    def Version(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # TelemetryEvent
+    def EventDataType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # TelemetryEvent
     def EventData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             from flatbuffers.table import Table
             obj = Table(bytearray(), 0)
@@ -39,14 +46,14 @@ class TelemetryEvent(object):
 
     # TelemetryEvent
     def EventType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # TelemetryEvent
     def Metadata(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             from PrintNannyEvent.TelemetrySchema.Metadata import Metadata
@@ -55,11 +62,12 @@ class TelemetryEvent(object):
             return obj
         return None
 
-def TelemetryEventStart(builder): builder.StartObject(4)
-def TelemetryEventAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(0, eventDataType, 0)
-def TelemetryEventAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
-def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(2, eventType, 0)
-def TelemetryEventAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
+def TelemetryEventStart(builder): builder.StartObject(5)
+def TelemetryEventAddVersion(builder, version): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(version), 0)
+def TelemetryEventAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(1, eventDataType, 0)
+def TelemetryEventAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
+def TelemetryEventAddEventType(builder, eventType): builder.PrependUint8Slot(3, eventType, 0)
+def TelemetryEventAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
 def TelemetryEventEnd(builder): return builder.EndObject()
 
 import PrintNannyEvent.TelemetrySchema.EventData
@@ -74,6 +82,7 @@ class TelemetryEventT(object):
 
     # TelemetryEventT
     def __init__(self):
+        self.version = None  # type: str
         self.eventDataType = 0  # type: int
         self.eventData = None  # type: Union[None, PrintNannyEvent.TelemetrySchema.MonitoringFrame.MonitoringFrameT]
         self.eventType = 0  # type: int
@@ -95,6 +104,7 @@ class TelemetryEventT(object):
     def _UnPack(self, telemetryEvent):
         if telemetryEvent is None:
             return
+        self.version = telemetryEvent.Version()
         self.eventDataType = telemetryEvent.EventDataType()
         self.eventData = PrintNannyEvent.TelemetrySchema.EventData.EventDataCreator(self.eventDataType, telemetryEvent.EventData())
         self.eventType = telemetryEvent.EventType()
@@ -103,11 +113,15 @@ class TelemetryEventT(object):
 
     # TelemetryEventT
     def Pack(self, builder):
+        if self.version is not None:
+            version = builder.CreateString(self.version)
         if self.eventData is not None:
             eventData = self.eventData.Pack(builder)
         if self.metadata is not None:
             metadata = self.metadata.Pack(builder)
         TelemetryEventStart(builder)
+        if self.version is not None:
+            TelemetryEventAddVersion(builder, version)
         TelemetryEventAddEventDataType(builder, self.eventDataType)
         if self.eventData is not None:
             TelemetryEventAddEventData(builder, eventData)
