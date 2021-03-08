@@ -55,15 +55,9 @@ clean-python-client: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -rf {} +
 
-clean-messages-lib:
-	rm -rf clients/python/PrintNannyMessage
 
-
-# rust-flatbuffer: clean-messages-lib
-# 	~/projects/flatbuffers/flatc --rust --filename-suffix '' --gen-object-api -o clients/python/PrintNannyMessage/rust/src clients/flatbuffers/telemetry_event.fbs
-
-python-flatbuffer: clean-messages-lib
-	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry_event.fbs
+python-flatbuffer:
+	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/print_nanny_client clients/flatbuffers/telemetry_event.fbs
 
 
 python-client: clean-python-client python-flatbuffer
