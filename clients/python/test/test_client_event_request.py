@@ -36,7 +36,6 @@ class TestClientEventRequest(unittest.TestCase):
         # model = print_nanny_client.models.client_event_request.ClientEventRequest()  # noqa: E501
         if include_optional :
             return ClientEventRequest(
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 client_event_type = 'plugin', 
                 event_data = {
                     'key' : null
@@ -47,12 +46,9 @@ class TestClientEventRequest(unittest.TestCase):
             )
         else :
             return ClientEventRequest(
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                client_event_type = 'plugin',
                 event_data = {
                     'key' : null
                     },
-                device = 56,
                 plugin_version = '',
                 octoprint_version = '',
         )

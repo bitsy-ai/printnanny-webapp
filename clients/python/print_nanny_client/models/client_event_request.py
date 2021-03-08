@@ -33,7 +33,6 @@ class ClientEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'created_dt': 'datetime',
         'client_event_type': 'ClientEventTypeEnum',
         'event_data': 'dict(str, object)',
         'device': 'int',
@@ -42,7 +41,6 @@ class ClientEventRequest(object):
     }
 
     attribute_map = {
-        'created_dt': 'created_dt',
         'client_event_type': 'client_event_type',
         'event_data': 'event_data',
         'device': 'device',
@@ -50,13 +48,12 @@ class ClientEventRequest(object):
         'octoprint_version': 'octoprint_version'
     }
 
-    def __init__(self, created_dt=None, client_event_type=None, event_data=None, device=None, plugin_version=None, octoprint_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, client_event_type=None, event_data=None, device=None, plugin_version=None, octoprint_version=None, local_vars_configuration=None):  # noqa: E501
         """ClientEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._created_dt = None
         self._client_event_type = None
         self._event_data = None
         self._device = None
@@ -64,35 +61,12 @@ class ClientEventRequest(object):
         self._octoprint_version = None
         self.discriminator = None
 
-        self.created_dt = created_dt
-        self.client_event_type = client_event_type
+        if client_event_type is not None:
+            self.client_event_type = client_event_type
         self.event_data = event_data
         self.device = device
         self.plugin_version = plugin_version
         self.octoprint_version = octoprint_version
-
-    @property
-    def created_dt(self):
-        """Gets the created_dt of this ClientEventRequest.  # noqa: E501
-
-
-        :return: The created_dt of this ClientEventRequest.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._created_dt
-
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this ClientEventRequest.
-
-
-        :param created_dt: The created_dt of this ClientEventRequest.  # noqa: E501
-        :type created_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
-
-        self._created_dt = created_dt
 
     @property
     def client_event_type(self):
@@ -112,8 +86,6 @@ class ClientEventRequest(object):
         :param client_event_type: The client_event_type of this ClientEventRequest.  # noqa: E501
         :type client_event_type: ClientEventTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and client_event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `client_event_type`, must not be `None`")  # noqa: E501
 
         self._client_event_type = client_event_type
 
@@ -158,8 +130,6 @@ class ClientEventRequest(object):
         :param device: The device of this ClientEventRequest.  # noqa: E501
         :type device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 
