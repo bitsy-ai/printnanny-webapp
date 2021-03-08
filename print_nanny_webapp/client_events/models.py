@@ -35,11 +35,17 @@ class ClientEvent(PolymorphicModel):
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     client_event_type = models.CharField(
-        max_length=255, db_index=True, choices=ClientEventType.choices, default=ClientEventType.PLUGIN
+        max_length=255,
+        db_index=True,
+        choices=ClientEventType.choices,
+        default=ClientEventType.PLUGIN,
     )
     event_data = models.JSONField()
     device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", db_index=True, on_delete=models.CASCADE, null=True
+        "remote_control.OctoPrintDevice",
+        db_index=True,
+        on_delete=models.CASCADE,
+        null=True,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True, null=True)
     plugin_version = models.CharField(max_length=60)
