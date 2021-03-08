@@ -41,10 +41,18 @@ class Metadata(object):
             return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
         return 0
 
-def MetadataStart(builder): builder.StartObject(3)
+    # Metadata
+    def Ts(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+def MetadataStart(builder): builder.StartObject(4)
 def MetadataAddUserId(builder, userId): builder.PrependUint32Slot(0, userId, 0)
 def MetadataAddDeviceId(builder, deviceId): builder.PrependUint32Slot(1, deviceId, 0)
 def MetadataAddDeviceCloudiotId(builder, deviceCloudiotId): builder.PrependUint64Slot(2, deviceCloudiotId, 0)
+def MetadataAddTs(builder, ts): builder.PrependUint32Slot(3, ts, 0)
 def MetadataEnd(builder): return builder.EndObject()
 
 
@@ -55,6 +63,7 @@ class MetadataT(object):
         self.userId = 0  # type: int
         self.deviceId = 0  # type: int
         self.deviceCloudiotId = 0  # type: int
+        self.ts = 0  # type: int
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -75,6 +84,7 @@ class MetadataT(object):
         self.userId = metadata.UserId()
         self.deviceId = metadata.DeviceId()
         self.deviceCloudiotId = metadata.DeviceCloudiotId()
+        self.ts = metadata.Ts()
 
     # MetadataT
     def Pack(self, builder):
@@ -82,5 +92,6 @@ class MetadataT(object):
         MetadataAddUserId(builder, self.userId)
         MetadataAddDeviceId(builder, self.deviceId)
         MetadataAddDeviceCloudiotId(builder, self.deviceCloudiotId)
+        MetadataAddTs(builder, self.ts)
         metadata = MetadataEnd(builder)
         return metadata
