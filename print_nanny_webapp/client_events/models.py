@@ -46,7 +46,7 @@ class ClientEvent(PolymorphicModel):
     # octoprint_version = models.CharField(max_length=60)
 
 
-class PluginEvent(models.Model):
+class PluginEvent(ClientEvent):
     """
     Events emitted by OctoPrint Nanny plugin
     """
@@ -88,7 +88,7 @@ class PluginEvent(models.Model):
     )
 
 
-class OctoPrintEvent(models.Model):
+class OctoPrintEvent(ClientEvent):
     """
     Events emitted by OctoPrint Core and plugins bundled with core
     """
@@ -178,7 +178,7 @@ class OctoPrintEvent(models.Model):
     )
 
 
-class PrintJobState(models.Model):
+class PrintJobState(ClientEvent):
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs
