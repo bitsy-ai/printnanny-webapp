@@ -21,15 +21,8 @@ class MonitoringFrame(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # MonitoringFrame
-    def Ts(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # MonitoringFrame
     def Image(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             from print_nanny_client.telemetry_event.Image import Image
@@ -40,7 +33,7 @@ class MonitoringFrame(object):
 
     # MonitoringFrame
     def BoundingBoxes(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             from print_nanny_client.telemetry_event.BoundingBoxes import BoundingBoxes
@@ -49,10 +42,9 @@ class MonitoringFrame(object):
             return obj
         return None
 
-def MonitoringFrameStart(builder): builder.StartObject(3)
-def MonitoringFrameAddTs(builder, ts): builder.PrependUint32Slot(0, ts, 0)
-def MonitoringFrameAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
-def MonitoringFrameAddBoundingBoxes(builder, boundingBoxes): builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(boundingBoxes), 0)
+def MonitoringFrameStart(builder): builder.StartObject(2)
+def MonitoringFrameAddImage(builder, image): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(image), 0)
+def MonitoringFrameAddBoundingBoxes(builder, boundingBoxes): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(boundingBoxes), 0)
 def MonitoringFrameEnd(builder): return builder.EndObject()
 
 import print_nanny_client.telemetry_event.BoundingBoxes
@@ -66,7 +58,6 @@ class MonitoringFrameT(object):
 
     # MonitoringFrameT
     def __init__(self):
-        self.ts = 0  # type: int
         self.image = None  # type: Optional[print_nanny_client.telemetry_event.Image.ImageT]
         self.boundingBoxes = None  # type: Optional[print_nanny_client.telemetry_event.BoundingBoxes.BoundingBoxesT]
 
@@ -86,7 +77,6 @@ class MonitoringFrameT(object):
     def _UnPack(self, monitoringFrame):
         if monitoringFrame is None:
             return
-        self.ts = monitoringFrame.Ts()
         if monitoringFrame.Image() is not None:
             self.image = print_nanny_client.telemetry_event.Image.ImageT.InitFromObj(monitoringFrame.Image())
         if monitoringFrame.BoundingBoxes() is not None:
@@ -99,7 +89,6 @@ class MonitoringFrameT(object):
         if self.boundingBoxes is not None:
             boundingBoxes = self.boundingBoxes.Pack(builder)
         MonitoringFrameStart(builder)
-        MonitoringFrameAddTs(builder, self.ts)
         if self.image is not None:
             MonitoringFrameAddImage(builder, image)
         if self.boundingBoxes is not None:
