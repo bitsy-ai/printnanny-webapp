@@ -8,9 +8,9 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0047_remove_printjob_last_status'),
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('client_events', '0019_remove_printjobevent_progress'),
+        ("remote_control", "0047_remove_printjob_last_status"),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("client_events", "0019_remove_printjobevent_progress"),
     ]
 
     operations = [
