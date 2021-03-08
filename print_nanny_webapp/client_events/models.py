@@ -23,27 +23,28 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class ClientEvent(PolymorphicModel):
+class ClientEvent(models.Model):
     """
     Base class for client-side events
     """
-
+    class Meta:
+        abstract = True
     class ClientEventType(models.TextChoices):
         PLUGIN = "plugin", "OctoPrint Nanny plugin events"
         OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
         PRINT_JOB = "octoprint_job", "OctoPrint print job events"
 
-    created_dt = models.DateTimeField(db_index=True)
-    client_event_type = models.CharField(
-        max_length=255, db_index=True, choices=ClientEventType.choices
-    )
-    event_data = models.JSONField()
-    device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", db_index=True, on_delete=models.CASCADE
-    )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    plugin_version = models.CharField(max_length=60)
-    octoprint_version = models.CharField(max_length=60)
+    # created_dt = models.DateTimeField(db_index=True)
+    # client_event_type = models.CharField(
+    #     max_length=255, db_index=True, choices=ClientEventType.choices
+    # )
+    # event_data = models.JSONField()
+    # device = models.ForeignKey(
+    #     "remote_control.OctoPrintDevice", db_index=True, on_delete=models.CASCADE
+    # )
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    # plugin_version = models.CharField(max_length=60)
+    # octoprint_version = models.CharField(max_length=60)
 
 
 class PluginEvent(ClientEvent):
