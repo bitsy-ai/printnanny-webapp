@@ -124,11 +124,13 @@ class Migration(migrations.Migration):
                 (
                     "clientevent_ptr",
                     models.OneToOneField(
+                        default=None,
                         auto_created=True,
                         on_delete=django.db.models.deletion.CASCADE,
                         parent_link=True,
                         primary_key=True,
                         serialize=False,
+                        null=True,
                         to="client_events.clientevent",
                     ),
                 ),
@@ -176,6 +178,8 @@ class Migration(migrations.Migration):
                     "clientevent_ptr",
                     models.OneToOneField(
                         auto_created=True,
+                        default=None,
+                        null=True,
                         on_delete=django.db.models.deletion.CASCADE,
                         parent_link=True,
                         primary_key=True,
@@ -234,6 +238,7 @@ class Migration(migrations.Migration):
             field=models.OneToOneField(
                 auto_created=True,
                 default=None,
+                null=True,
                 on_delete=django.db.models.deletion.CASCADE,
                 parent_link=True,
                 primary_key=True,
