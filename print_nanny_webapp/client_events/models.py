@@ -102,7 +102,7 @@ class OctoPrintEvent(ClientEvent):
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args,
-            client_event_type=ClientEvent.ClientEventType.OCTOPRINT_CORE,
+            client_event_type=ClientEvent.ClientEventType.OCTOPRINT,
             **kwargs
         )
 
