@@ -4,13 +4,11 @@
 
 {% block css %}
 {{ block.super }}
-
 <style>
     .StripeElement {
         box-sizing: border-box;
 
         height: 40px;
-        width: 400px;
 
         padding: 10px 12px;
 
@@ -35,7 +33,6 @@
         background-color: #fefde5 !important;
     }
 </style>
-
 {% endblock %}
 
 {% block content %}
@@ -50,29 +47,48 @@
                         <li class="breadcrumb-item active">Subscription History</li>
                     </ol>
                 </div>
+                <h4 class="page-title d-inline-block">Subscription History
+                    <!-- <a href="">  &nbsp;  &nbsp; -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
+                    <!-- </a> -->
+                </h4>
             </div>
         </div>
     </div>
 
-    <div class="payment-form">
-        <h1 class="is-size-3">Subscribe</h1>
+    <!-- Primary Header Modal -->
+    <div id="subscribe-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="primary-header-modalLabel">Subscribe to Print Nanny Cloud!</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
 
-        <p class="form-row">
-            <label for="card-element">
-                Credit or debit card
-            </label>
-        <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
-        </div>
+                    <p class="form-row">
+                        <label for="card-element">
+                            Credit or debit card
+                        </label>
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
 
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-        <div id="card-success" role="alert">
-            <span id="success-message"></span>
-        </div>
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
+                    <div id="card-success" role="alert">
+                        <span id="success-message"></span>
+                    </div>
 
-        <button id="card-button">Submit Payment</button>
-    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="card-button">Submit Payment</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <hr/>
 
     <ul id="subscription-history">
@@ -83,7 +99,6 @@
 </div>
 
 <script>
-
     window.addEventListener('load', function () {
         // Create a Stripe client.
         var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
