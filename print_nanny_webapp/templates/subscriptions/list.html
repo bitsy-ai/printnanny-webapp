@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
-
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block css %}
 {{ block.super }}
@@ -38,12 +39,24 @@
 {% endblock %}
 
 {% block content %}
-<section class="section">
-    <div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
 
-        <h1 class="is-size-3">Example Payment Intent Manual Configuration</h1>
+                        <li class="breadcrumb-item active">Subscription History</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <input id="cardholder-name" type="text" placeholder="Cardholder Name">
+    <div class="payment-form">
+        <h1 class="is-size-3">Subscribe</h1>
+
         <p class="form-row">
             <label for="card-element">
                 Credit or debit card
@@ -59,9 +72,15 @@
         </div>
 
         <button id="card-button">Submit Payment</button>
-
     </div>
-</section>
+    <hr/>
+
+    <ul id="subscription-history">
+        {% for subscription in SUBSCRIPTIONS %}
+            <li>{{ subscription.id }}: {{ subscription.status }} {{ subscription.price }}$</li>
+        {% endfor %}
+    </ul>
+</div>
 
 <script>
 
@@ -98,9 +117,7 @@
         var cardButton = document.getElementById('card-button');
 
         cardButton.addEventListener('click', function (ev) {
-            stripe.createPaymentMethod('card', cardElement, {
-                billing_details: {name: cardholderName.value}
-            }).then(function (result) {
+            stripe.createPaymentMethod('card', cardElement, {}).then(function (result) {
                 if (result.error) {
                     // Inform the user if there was an error.
                     var errorElement = document.getElementById('card-errors');

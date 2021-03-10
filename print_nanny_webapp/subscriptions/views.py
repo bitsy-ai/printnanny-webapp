@@ -1,4 +1,3 @@
-from print_nanny_webapp.subscriptions.forms import SubscriptionsPaymentForm
 import stripe
 import json, logging
 from django.conf import settings
@@ -15,61 +14,20 @@ logger = logging.getLogger(__name__)
 
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
-    form_classes = {
-        "payment": SubscriptionsPaymentForm,
-    }
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        ctx["STRIPE_PUBLIC_KEY"] = settings.STRIPE_PUBLIC_KEY
-        return ctx
 
-    def form_valid(self, form):
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        stripe_source = form.cleaned_data["stripe_source"]
-        plan = form.cleaned_data["plan"]
-
-        # Create the stripe Customer, by default subscriber Model is User,
-        # this can be overridden with settings.DJSTRIPE_SUBSCRIBER_MODEL
         customer, created = djstripe.models.Customer.get_or_create(subscriber=self.request.user)
 
-        # Add the source as the customer's default card
-        customer.add_card(stripe_source)
-
-        # Using the Stripe API, create a subscription for this customer,
-        # using the customer's default payment source
-        stripe_subscription = stripe.Subscription.create(
+        ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
+        ctx["SUBSCRIPTIONS"] = stripe.Subscription.list(
             customer=customer.id,
-            items=[{"plan": plan.id}],
-            collection_method="charge_automatically",
-            # tax_percent=15,
-            api_key=djstripe.settings.STRIPE_SECRET_KEY,
-        )
+            status="all",
+            limit=10,
+            api_key=djstripe.settings.STRIPE_SECRET_KEY)
 
-        # Sync the Stripe API return data to the database,
-        # this way we don't need to wait for a webhook-triggered sync
-        subscription = djstripe.models.Subscription.sync_from_stripe_data(
-            stripe_subscription
-        )
-
-        self.request.subscription = subscription
-
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse(
-            "subscriptions:success",
-            kwargs={"id": self.request.subscription.id},
-        )
-
-
-class SubscriptionsSuccessView(DashboardView):
-    template_name = "subscriptions/success.html"
-
-    queryset = djstripe.models.Subscription.objects.all()
-    slug_field = "id"
-    slug_url_kwarg = "id"
-    context_object_name = "subscription"
+        return ctx
 
 
 # TODO: Maybe this needs to be a normal class? Maybe throw it above?
