@@ -1,6 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 {% block css %}
 {{ block.super }}
@@ -48,20 +49,17 @@
                     </ol>
                 </div>
                 <h4 class="page-title d-inline-block">Subscription History
-                    <!-- <a href="">  &nbsp;  &nbsp; -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
-                    <!-- </a> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
                 </h4>
             </div>
         </div>
     </div>
 
-    <!-- Primary Header Modal -->
-    <div id="subscribe-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="primary-header-modalLabel" aria-hidden="true">
+    <div id="subscribe-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-colored-header bg-primary">
-                    <h4 class="modal-title" id="primary-header-modalLabel">Subscribe to Print Nanny Cloud!</h4>
+                    <h4 class="modal-title">Subscribe to Print Nanny Cloud!</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -89,13 +87,46 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <hr/>
-
-    <ul id="subscription-history">
-        {% for subscription in SUBSCRIPTIONS %}
-            <li>{{ subscription.id }}: {{ subscription.status }} {{ subscription.price }}$</li>
-        {% endfor %}
-    </ul>
+    <table id="subscription-history" class="table table-hover table-centered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in SUBSCRIPTIONS %}
+                <tr>
+                    <td>{{ subscription.created_datetime }}</td>
+                    <td>{{ subscription.plan.amount_float | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
+                    <td>
+                        {% if subscription.status == "active" %}
+                            <i class="mdi mdi-circle text-success"></i>
+                        {% elif subscription.status == "unpaid" or subscription.status == "past_due" %}
+                            <i class="mdi mdi-circle text-warning"></i>
+                        {% elif subscription.status == "past_due" %}
+                            <i class="mdi mdi-circle text-dange"></i>
+                        {% else %}
+                            <i class="mdi mdi-circle"></i>
+                        {% endif %}
+                        &nbsp;{{ subscription.status | title }}
+                    </td>
+                    <td>{{ subscription.current_period_start_datetime }}</td>
+                    <td>{{ subscription.current_period_end_datetime }}</td>
+                    <td class="table-action">
+                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                        {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
+                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 <script>

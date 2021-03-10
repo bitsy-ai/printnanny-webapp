@@ -1,3 +1,4 @@
+from datetime import datetime
 import stripe
 import json, logging
 from django.conf import settings
@@ -26,6 +27,12 @@ class SubscriptionsListView(DashboardView):
             status="all",
             limit=10,
             api_key=djstripe.settings.STRIPE_SECRET_KEY)
+
+        for d in ctx["SUBSCRIPTIONS"].data:
+            d["created_datetime"] = datetime.fromtimestamp(d["created"])
+            d["current_period_start_datetime"] = datetime.fromtimestamp(d["current_period_start"])
+            d["current_period_end_datetime"] = datetime.fromtimestamp(d["current_period_end"])
+            d["plan"]["amount_float"] = float(d["plan"]["amount"]) / 100
 
         return ctx
 
