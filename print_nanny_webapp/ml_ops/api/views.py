@@ -11,11 +11,13 @@ from print_nanny_webapp.ml_ops.models import (
     ModelArtifact,
     ExperimentDeviceConfig,
     DeviceCalibration,
+    Experiment
 )
 from .serializers import (
     ModelArtifactSerializer,
     ExperimentDeviceConfigSerializer,
     DeviceCalibrationSerializer,
+    ExperimentSerializer
 )
 
 logger = logging.getLogger(__name__)
@@ -67,6 +69,13 @@ class DeviceCalibrationViewSet(
 class ModelArtifactViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     serializer_class = ModelArtifactSerializer
     queryset = ModelArtifact.objects.all()
+    lookup_field = "id"
+
+
+@extend_schema(tags=["ml-ops"])
+class ExperimentViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+    serializer_class = ExperimentSerializer
+    queryset = Experiment.objects.all()
     lookup_field = "id"
 
 

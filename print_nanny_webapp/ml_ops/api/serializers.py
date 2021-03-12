@@ -5,7 +5,7 @@ from drf_spectacular.utils import extend_schema_field
 DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 ModelArtifact = apps.get_model("ml_ops", "ModelArtifact")
 ExperimentDeviceConfig = apps.get_model("ml_ops", "ExperimentDeviceConfig")
-
+Experiment = apps.get_model("ml_ops", "Experiment")
 
 @extend_schema_field(field={"type": "array", "items": {"type": "number"}})
 class JSONArrayField(serializers.JSONField):
@@ -38,10 +38,12 @@ class DeviceCalibrationSerializer(serializers.ModelSerializer):
 
 
 class ModelArtifactSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = ModelArtifact
         fields = [field.name for field in ModelArtifact._meta.fields] + [
             "url",
+            "labels_gcs"
         ]
         extra_kwargs = {
             "url": {"view_name": "api:model-artifact-detail", "lookup_field": "id"},
@@ -54,4 +56,10 @@ class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperimentDeviceConfig
         fields = ["id", "created_dt", "experiment", "artifact"]
+        depth = 1
+
+class ExperimentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experiment
+        fields = ["id", "created_dt", "active", "name", "hypothesis", "control", "treatments", "notion_url"]
         depth = 1

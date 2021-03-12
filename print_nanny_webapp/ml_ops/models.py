@@ -34,10 +34,9 @@ class ModelArtifact(models.Model):
     artifacts = models.FileField()
     artifact_types = ChoiceArrayField(
         models.CharField(choices=ArtifactTypes.choices, max_length=255),
-        default=(ArtifactTypes.TFLITE,),
+        default=(ArtifactTypes.TFLITE, ArtifactTypes.TF2_SAVED_MODEL),
     )
     metadata = JSONField()
-
 
 class Experiment(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
