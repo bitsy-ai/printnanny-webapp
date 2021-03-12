@@ -892,6 +892,61 @@ export interface DeviceCalibrationRequest {
 /**
  * 
  * @export
+ * @interface Experiment
+ */
+export interface Experiment {
+    /**
+     * 
+     * @type {number}
+     * @memberof Experiment
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Experiment
+     */
+    active?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    hypothesis: string;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof Experiment
+     */
+    control?: Nested;
+    /**
+     * 
+     * @type {Array<Nested>}
+     * @memberof Experiment
+     */
+    treatments?: Array<Nested>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    notion_url?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface ExperimentDeviceConfig
  */
 export interface ExperimentDeviceConfig {
@@ -2044,6 +2099,37 @@ export interface PaginatedExperimentDeviceConfigList {
      * @memberof PaginatedExperimentDeviceConfigList
      */
     results?: Array<ExperimentDeviceConfig>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedExperimentList
+ */
+export interface PaginatedExperimentList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedExperimentList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedExperimentList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedExperimentList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<Experiment>}
+     * @memberof PaginatedExperimentList
+     */
+    results?: Array<Experiment>;
 }
 /**
  * 
@@ -8099,6 +8185,111 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        experimentsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/experiments/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling experimentsRetrieve.');
+            }
+            const localVarPath = `/api/experiments/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         modelArtifactsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/model-artifacts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8306,6 +8497,32 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async experimentsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentList>> {
+            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async experimentsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Experiment>> {
+            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async modelArtifactsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedModelArtifactList>> {
             const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).modelArtifactsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -8406,6 +8623,24 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList> {
+            return MlOpsApiFp(configuration).experimentsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment> {
+            return MlOpsApiFp(configuration).experimentsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         modelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList> {
             return MlOpsApiFp(configuration).modelArtifactsList(page, options).then((request) => request(axios, basePath));
         },
@@ -8491,6 +8726,24 @@ export interface MlOpsApiInterface {
      * @memberof MlOpsApiInterface
      */
     experimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this experiment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment>;
 
     /**
      * 
@@ -8596,6 +8849,28 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      */
     public experimentDeviceConfigsRetrieve(id: number, options?: any) {
         return MlOpsApiFp(this.configuration).experimentDeviceConfigsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public experimentsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this experiment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public experimentsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

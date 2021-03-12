@@ -43,7 +43,6 @@ class ModelArtifactSerializer(serializers.ModelSerializer):
         model = ModelArtifact
         fields = [field.name for field in ModelArtifact._meta.fields] + [
             "url",
-            "labels_gcs"
         ]
         extra_kwargs = {
             "url": {"view_name": "api:model-artifact-detail", "lookup_field": "id"},

@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev42"
+__version__ = "0.5.0-dev43"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -67,6 +67,7 @@ from print_nanny_client.models.defect_alert_settings import DefectAlertSettings
 from print_nanny_client.models.defect_alert_settings_request import DefectAlertSettingsRequest
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
+from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.gcode_file_request import GcodeFileRequest
@@ -90,6 +91,7 @@ from print_nanny_client.models.paginated_client_event_polymorphic_list import Pa
 from print_nanny_client.models.paginated_defect_alert_list import PaginatedDefectAlertList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
+from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
 from print_nanny_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from print_nanny_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList

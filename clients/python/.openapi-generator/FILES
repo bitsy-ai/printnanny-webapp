@@ -39,6 +39,7 @@ docs/DefectAlertSettingsRequest.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/EventsApi.md
+docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/GcodeFileRequest.md
@@ -63,6 +64,7 @@ docs/PaginatedClientEventPolymorphicList.md
 docs/PaginatedDefectAlertList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
+docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
@@ -168,6 +170,7 @@ print_nanny_client/models/defect_alert_settings.py
 print_nanny_client/models/defect_alert_settings_request.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
+print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
 print_nanny_client/models/gcode_file_request.py
@@ -191,6 +194,7 @@ print_nanny_client/models/paginated_client_event_polymorphic_list.py
 print_nanny_client/models/paginated_defect_alert_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
+print_nanny_client/models/paginated_experiment_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
 print_nanny_client/models/paginated_model_artifact_list.py
 print_nanny_client/models/paginated_octo_print_device_list.py
@@ -288,6 +292,7 @@ test/test_defect_alert_settings_request.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
 test/test_events_api.py
+test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
 test/test_gcode_file_request.py
@@ -312,6 +317,7 @@ test/test_paginated_client_event_polymorphic_list.py
 test/test_paginated_defect_alert_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_experiment_device_config_list.py
+test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_device_list.py
