@@ -30,29 +30,18 @@ class ClientEvent(models.Model):
 
     class Meta:
         abstract = True
-    class ClientEventType(models.TextChoices):
-        PLUGIN = "plugin", "OctoPrint Nanny plugin events"
-        OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
-        PRINT_JOB = "octoprint_job", "OctoPrint print job events"
-        MONITORING_FRAME = "monitoring_frame" "Monitoring frame event (active learning mode)"
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    client_event_type = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=ClientEventType.choices,
-        default=ClientEventType.PLUGIN,
-    )
     event_data = models.JSONField(null=True)
     device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
         on_delete=models.CASCADE,
-        null=True,
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True, null=True)
-    plugin_version = models.CharField(max_length=60, null=True)
-    octoprint_version = models.CharField(max_length=60, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    plugin_version = models.CharField(max_length=60)
+    client_version = models.CharField(max_length=60)
+    octoprint_version = models.CharField(max_length=60)
 
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
@@ -69,20 +58,13 @@ class MonitoringFrameEvent(ClientEvent):
     session = models.CharField(max_length=128)
     image = models.ImageField(upload_to=_upload_to)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, client_event_type=ClientEvent.ClientEventType.MONITORING_FRAME, **kwargs
-        )
+    experiment = models.ForeignKey("ml_ops.experiment", null=True, on_delete=models.SET_NULL)
+
 
 class PluginEvent(ClientEvent):
     """
     Events emitted by OctoPrint Nanny plugin
     """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, client_event_type=ClientEvent.ClientEventType.PLUGIN, **kwargs
-        )
 
     class EventType(models.TextChoices):
 
@@ -114,13 +96,6 @@ class OctoPrintEvent(ClientEvent):
     """
     Events emitted by OctoPrint Core and plugins bundled with core
     """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args,
-            client_event_type=ClientEvent.ClientEventType.OCTOPRINT,
-            **kwargs
-        )
 
     class EventType(models.TextChoices):
         # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
@@ -201,10 +176,6 @@ class OctoPrintEvent(ClientEvent):
 
 
 class PrintJobState(ClientEvent):
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs
-        )
 
     class EventType(models.TextChoices):
         # print job
@@ -232,10 +203,10 @@ class PrintJobState(ClientEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
-    state = JSONField(default={})
+    state = JSONField(default=dict)
     current_z = models.FloatField(null=True)
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
-    progress = JSONField(default={})
+    progress = JSONField(default=dict)
     job_data_file = models.CharField(max_length=255)
     print_job = models.ForeignKey(
         "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
