@@ -32,6 +32,7 @@ class ClientEvent(PolymorphicModel):
         PLUGIN = "plugin", "OctoPrint Nanny plugin events"
         OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
         PRINT_JOB = "octoprint_job", "OctoPrint print job events"
+        MONITORING_FRAME = "monitoring_frame" "Monitoring frame event (active learning mode)"
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     client_event_type = models.CharField(
@@ -51,6 +52,25 @@ class ClientEvent(PolymorphicModel):
     plugin_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
 
+def _upload_to(instance, filename):
+    datesegment = dateformat.format(timezone.now(), "Y/M/d/")
+    path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
+    logger.info("Uploading to path")
+    return path
+
+class MonitoringFrameEvent(ClientEvent):
+    """
+        MonitoringFrame uploaded by plugins running in Active Learning mode
+    """
+
+    ts = models.DateTimeField(db_index=True)
+    session = models.CharField(max_length=128)
+    image = models.ImageField(upload_to=_upload_to)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(
+            *args, client_event_type=ClientEvent.ClientEventType.MONITORING_FRAME, **kwargs
+        )
 
 class PluginEvent(ClientEvent):
     """
