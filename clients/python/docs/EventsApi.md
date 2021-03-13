@@ -355,7 +355,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_events_create**
-> ClientEventPolymorphic octoprint_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+> OctoPrintEvent octoprint_events_create(octo_print_event_request)
 
 
 
@@ -394,10 +394,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.octoprint_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
@@ -436,10 +436,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.octoprint_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->octoprint_events_create: %s\n" % e)
@@ -449,11 +449,11 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_event_polymorphic_request** | [**ClientEventPolymorphicRequest**](ClientEventPolymorphicRequest.md)|  | [optional] 
+ **octo_print_event_request** | [**OctoPrintEventRequest**](OctoPrintEventRequest.md)|  | 
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 
@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_events_list**
-> PaginatedClientEventPolymorphicList octoprint_events_list(page=page)
+> PaginatedOctoPrintEventList octoprint_events_list(page=page)
 
 
 
@@ -571,7 +571,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedClientEventPolymorphicList**](PaginatedClientEventPolymorphicList.md)
+[**PaginatedOctoPrintEventList**](PaginatedOctoPrintEventList.md)
 
 ### Authorization
 
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **octoprint_events_retrieve**
-> ClientEventPolymorphic octoprint_events_retrieve(id)
+> OctoPrintEvent octoprint_events_retrieve(id)
 
 
 
@@ -688,7 +688,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **plugin_events_create**
-> ClientEventPolymorphic plugin_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+> OctoPrintEvent plugin_events_create(octo_print_event_request)
 
 
 
@@ -746,10 +746,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.plugin_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.plugin_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->plugin_events_create: %s\n" % e)
@@ -788,10 +788,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.plugin_events_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.plugin_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->plugin_events_create: %s\n" % e)
@@ -801,11 +801,11 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_event_polymorphic_request** | [**ClientEventPolymorphicRequest**](ClientEventPolymorphicRequest.md)|  | [optional] 
+ **octo_print_event_request** | [**OctoPrintEventRequest**](OctoPrintEventRequest.md)|  | 
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 
@@ -825,7 +825,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **plugin_events_list**
-> PaginatedClientEventPolymorphicList plugin_events_list(page=page)
+> PaginatedOctoPrintEventList plugin_events_list(page=page)
 
 
 
@@ -923,7 +923,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedClientEventPolymorphicList**](PaginatedClientEventPolymorphicList.md)
+[**PaginatedOctoPrintEventList**](PaginatedOctoPrintEventList.md)
 
 ### Authorization
 
@@ -942,7 +942,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **plugin_events_retrieve**
-> ClientEventPolymorphic plugin_events_retrieve(id)
+> OctoPrintEvent plugin_events_retrieve(id)
 
 
 
@@ -1040,7 +1040,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 
@@ -1059,7 +1059,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_job_states_create**
-> ClientEventPolymorphic print_job_states_create(client_event_polymorphic_request=client_event_polymorphic_request)
+> OctoPrintEvent print_job_states_create(octo_print_event_request)
 
 
 
@@ -1098,10 +1098,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.print_job_states_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.print_job_states_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->print_job_states_create: %s\n" % e)
@@ -1140,10 +1140,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    client_event_polymorphic_request = print_nanny_client.ClientEventPolymorphicRequest() # ClientEventPolymorphicRequest |  (optional)
+    octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.print_job_states_create(client_event_polymorphic_request=client_event_polymorphic_request)
+        api_response = api_instance.print_job_states_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventsApi->print_job_states_create: %s\n" % e)
@@ -1153,11 +1153,11 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_event_polymorphic_request** | [**ClientEventPolymorphicRequest**](ClientEventPolymorphicRequest.md)|  | [optional] 
+ **octo_print_event_request** | [**OctoPrintEventRequest**](OctoPrintEventRequest.md)|  | 
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 
@@ -1177,7 +1177,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_job_states_list**
-> PaginatedClientEventPolymorphicList print_job_states_list(page=page)
+> PaginatedOctoPrintEventList print_job_states_list(page=page)
 
 
 
@@ -1275,7 +1275,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedClientEventPolymorphicList**](PaginatedClientEventPolymorphicList.md)
+[**PaginatedOctoPrintEventList**](PaginatedOctoPrintEventList.md)
 
 ### Authorization
 
@@ -1294,7 +1294,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_job_states_retrieve**
-> ClientEventPolymorphic print_job_states_retrieve(id)
+> OctoPrintEvent print_job_states_retrieve(id)
 
 
 
@@ -1392,7 +1392,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ClientEventPolymorphic**](ClientEventPolymorphic.md)
+[**OctoPrintEvent**](OctoPrintEvent.md)
 
 ### Authorization
 

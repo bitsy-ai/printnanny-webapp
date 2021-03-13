@@ -19,7 +19,11 @@ from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 
-from .serializers import ClientEventPolymorphicSerializer
+from .serializers import (
+    OctoPrintEventSerializer,
+    PluginEventSerializer,
+    PrintJobStateSerializer
+)
 import print_nanny_webapp.client_events.api.exceptions
 
 PrintJob = apps.get_model("remote_control", "PrintJob")
@@ -33,15 +37,15 @@ logger = logging.getLogger(__name__)
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: ClientEventPolymorphicSerializer,
-            400: ClientEventPolymorphicSerializer,
+            201:  OctoPrintEventSerializer,
+            400:  OctoPrintEventSerializer,
         }
     )
 )
 class OctoPrintEventViewSet(
     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
-    serializer_class = ClientEventPolymorphicSerializer
+    serializer_class =  OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
     lookup_field = "id"
 
@@ -78,13 +82,13 @@ class OctoPrintEventViewSet(
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: ClientEventPolymorphicSerializer,
-            400: ClientEventPolymorphicSerializer,
+            201:  PluginEventSerializer,
+            400: PluginEventSerializer
         }
     )
 )
 class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = ClientEventPolymorphicSerializer
+    serializer_class =  PluginEventSerializer
     queryset = PluginEvent.objects.all()
     lookup_field = "id"
 
@@ -121,13 +125,13 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: ClientEventPolymorphicSerializer,
-            400: ClientEventPolymorphicSerializer,
+            201:  PrintJobStateSerializer,
+            400:  PrintJobStateSerializer,
         }
     )
 )
 class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = ClientEventPolymorphicSerializer
+    serializer_class =  PrintJobStateSerializer
     queryset = PrintJobState.objects.all()
     lookup_field = "id"
 

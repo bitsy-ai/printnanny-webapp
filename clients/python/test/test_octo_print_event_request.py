@@ -36,21 +36,20 @@ class TestOctoPrintEventRequest(unittest.TestCase):
         # model = print_nanny_client.models.octo_print_event_request.OctoPrintEventRequest()  # noqa: E501
         if include_optional :
             return OctoPrintEventRequest(
-                client_event_type = 'plugin', 
                 event_data = {
                     'key' : null
                     }, 
                 device = 56, 
                 plugin_version = '', 
+                client_version = '', 
                 octoprint_version = '', 
                 event_type = 'ClientAuthed'
             )
         else :
             return OctoPrintEventRequest(
-                event_data = {
-                    'key' : null
-                    },
+                device = 56,
                 plugin_version = '',
+                client_version = '',
                 octoprint_version = '',
                 event_type = 'ClientAuthed',
         )

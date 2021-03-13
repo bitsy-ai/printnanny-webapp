@@ -11,14 +11,6 @@ from print_nanny_webapp.client_events.models import (
 )
 
 
-class ClientEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ClientEvent
-        fields = [field.name for field in ClientEvent._meta.fields] + ["url"]
-
-        read_only_fields = ("user",)
-
-
 class OctoPrintEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintEvent
@@ -48,16 +40,3 @@ class PrintJobStateSerializer(serializers.ModelSerializer):
         }
         read_only_fields = ("user",)
 
-
-class ClientEventPolymorphicSerializer(PolymorphicSerializer):
-    resource_type_field_name = "type"
-
-    model_serializer_mapping = {
-        ClientEvent: ClientEventSerializer,
-        PrintJobState: PrintJobStateSerializer,
-        OctoPrintEvent: OctoPrintEventSerializer,
-        PluginEvent: PluginEventSerializer,
-    }
-
-    def to_resource_type(self, model_or_instance):
-        return model_or_instance._meta.object_name.lower()

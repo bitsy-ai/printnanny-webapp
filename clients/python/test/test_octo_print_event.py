@@ -37,26 +37,23 @@ class TestOctoPrintEvent(unittest.TestCase):
         if include_optional :
             return OctoPrintEvent(
                 id = 56, 
-                polymorphic_ctype = 56, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                client_event_type = 'plugin', 
                 event_data = {
                     'key' : null
                     }, 
                 device = 56, 
                 user = 56, 
                 plugin_version = '', 
+                client_version = '', 
                 octoprint_version = '', 
-                clientevent_ptr = 56, 
                 event_type = 'ClientAuthed', 
                 url = ''
             )
         else :
             return OctoPrintEvent(
-                event_data = {
-                    'key' : null
-                    },
+                device = 56,
                 plugin_version = '',
+                client_version = '',
                 octoprint_version = '',
                 event_type = 'ClientAuthed',
         )
