@@ -58,6 +58,7 @@ table Metadata {
     device_id: uint32;
     device_cloudiot_id: uint64;
     ts: uint32;
+    session: string;
 }
 
 table TelemetryEvent {
