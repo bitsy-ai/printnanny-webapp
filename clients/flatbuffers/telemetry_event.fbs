@@ -59,10 +59,11 @@ table Metadata {
     device_cloudiot_id: uint64;
     ts: uint32;
     session: string;
+    client_version:string;
+    model_version:string;
 }
 
 table TelemetryEvent {
-    version:string;
     event_data: EventData (required);
     event_type: TelemetryEventEnum;
     metadata: Metadata (required);
