@@ -28,20 +28,26 @@ class TestEventsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_monitoring_frame_event_enum_retrieve(self):
+        """Test case for monitoring_frame_event_enum_retrieve
+
+        """
+        pass
+
+    def test_monitoring_frame_events_list(self):
+        """Test case for monitoring_frame_events_list
+
+        """
+        pass
+
+    def test_monitoring_frame_events_retrieve(self):
+        """Test case for monitoring_frame_events_retrieve
+
+        """
+        pass
+
     def test_octoprint_core_events_enum_retrieve(self):
         """Test case for octoprint_core_events_enum_retrieve
-
-        """
-        pass
-
-    def test_octoprint_core_events_enum_retrieve2(self):
-        """Test case for octoprint_core_events_enum_retrieve2
-
-        """
-        pass
-
-    def test_octoprint_core_events_enum_retrieve3(self):
-        """Test case for octoprint_core_events_enum_retrieve3
 
         """
         pass
@@ -64,8 +70,8 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_plugin_events_create(self):
-        """Test case for plugin_events_create
+    def test_plugin_events_enum_retrieve(self):
+        """Test case for plugin_events_enum_retrieve
 
         """
         pass
@@ -82,8 +88,8 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_print_job_states_create(self):
-        """Test case for print_job_states_create
+    def test_print_job_event_enum_retrieve(self):
+        """Test case for print_job_event_enum_retrieve
 
         """
         pass

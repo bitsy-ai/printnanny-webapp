@@ -53,6 +53,14 @@ class MonitoringFrameEvent(ClientEvent):
     """
         MonitoringFrame uploaded by plugins running in Active Learning mode
     """
+    class EventType(models.TextChoices):
+
+        MONITORING_FRAME_RAW = "monitoring_frame_raw", "Monitoring frame sent without model annotations"
+        MONITORING_FRAME_POST = "monitoring_frame_post", "Monitoring frame sent with on-device annotations"
+
+    event_type = models.CharField(
+        max_length=255, db_index=True, choices=EventType.choices, default=EventType.MONITORING_FRAME_RAW
+    )
 
     ts = models.DateTimeField(db_index=True)
     session = models.CharField(max_length=128)

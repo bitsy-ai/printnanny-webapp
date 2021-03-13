@@ -22,7 +22,8 @@ from django.conf import settings
 from .serializers import (
     OctoPrintEventSerializer,
     PluginEventSerializer,
-    PrintJobStateSerializer
+    PrintJobStateSerializer,
+    MonitoringFrameEventSerializer
 )
 import print_nanny_webapp.client_events.api.exceptions
 
@@ -30,6 +31,8 @@ PrintJob = apps.get_model("remote_control", "PrintJob")
 PluginEvent = apps.get_model("client_events", "PluginEvent")
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
 PrintJobState = apps.get_model("client_events", "PrintJobState")
+MonitoringFrameEvent = apps.get_model("client_events", "MonitoringFrameEvent")
+
 logger = logging.getLogger(__name__)
 
 
@@ -162,3 +165,45 @@ class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         else:
             user = None
         instance = serializer.save(user=user, print_job=print_job)
+
+@extend_schema(tags=["events"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201:  MonitoringFrameEventSerializer,
+            400:  MonitoringFrameEventSerializer,
+        }
+    )
+)
+class MonitoringFrameEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class =  MonitoringFrameEventSerializer
+    queryset = MonitoringFrameEvent.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        tags=["events"],
+        operation_id="monitoring_frame_event_enum_retrieve",
+        responses={200: OpenApiTypes.STR},
+    )
+    @action(methods=["GET"], detail=False)
+    def enum(self, *args, **kwargs):
+        return Response(
+            MonitoringFrameEvent.event_codes,
+            status.HTTP_200_OK,
+        )
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
+    # def perform_create(self, serializer):
+
+    #     event_data = self.request.data["event_data"]
+
+    #     print_job = event_data.get("print_job")
+    #     if print_job is not None:
+    #         print_job = PrintJob.objects.get(id=print_job)
+    #     if self.request.user:
+    #         user = self.request.user
+    #     else:
+    #         user = None
+    #     instance = serializer.save(user=user, print_job=print_job)

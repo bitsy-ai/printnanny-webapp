@@ -114,16 +114,17 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**defect_alerts_retrieve**](docs/AlertsApi.md#defect_alerts_retrieve) | **GET** /api/defect-alerts/{id}/ | 
 *AlertsApi* | [**defect_alerts_update**](docs/AlertsApi.md#defect_alerts_update) | **PUT** /api/defect-alerts/{id}/ | 
 *AuthTokenApi* | [**auth_token_create**](docs/AuthTokenApi.md#auth_token_create) | **POST** /api/auth-token/ | 
+*EventsApi* | [**monitoring_frame_event_enum_retrieve**](docs/EventsApi.md#monitoring_frame_event_enum_retrieve) | **GET** /api/monitoring-frame-events/enum/ | 
+*EventsApi* | [**monitoring_frame_events_list**](docs/EventsApi.md#monitoring_frame_events_list) | **GET** /api/monitoring-frame-events/ | 
+*EventsApi* | [**monitoring_frame_events_retrieve**](docs/EventsApi.md#monitoring_frame_events_retrieve) | **GET** /api/monitoring-frame-events/{id}/ | 
 *EventsApi* | [**octoprint_core_events_enum_retrieve**](docs/EventsApi.md#octoprint_core_events_enum_retrieve) | **GET** /api/octoprint-events/enum/ | 
-*EventsApi* | [**octoprint_core_events_enum_retrieve2**](docs/EventsApi.md#octoprint_core_events_enum_retrieve2) | **GET** /api/plugin-events/enum/ | 
-*EventsApi* | [**octoprint_core_events_enum_retrieve3**](docs/EventsApi.md#octoprint_core_events_enum_retrieve3) | **GET** /api/print-job-states/enum/ | 
 *EventsApi* | [**octoprint_events_create**](docs/EventsApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
 *EventsApi* | [**octoprint_events_list**](docs/EventsApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
 *EventsApi* | [**octoprint_events_retrieve**](docs/EventsApi.md#octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
-*EventsApi* | [**plugin_events_create**](docs/EventsApi.md#plugin_events_create) | **POST** /api/plugin-events/ | 
+*EventsApi* | [**plugin_events_enum_retrieve**](docs/EventsApi.md#plugin_events_enum_retrieve) | **GET** /api/plugin-events/enum/ | 
 *EventsApi* | [**plugin_events_list**](docs/EventsApi.md#plugin_events_list) | **GET** /api/plugin-events/ | 
 *EventsApi* | [**plugin_events_retrieve**](docs/EventsApi.md#plugin_events_retrieve) | **GET** /api/plugin-events/{id}/ | 
-*EventsApi* | [**print_job_states_create**](docs/EventsApi.md#print_job_states_create) | **POST** /api/print-job-states/ | 
+*EventsApi* | [**print_job_event_enum_retrieve**](docs/EventsApi.md#print_job_event_enum_retrieve) | **GET** /api/print-job-states/enum/ | 
 *EventsApi* | [**print_job_states_list**](docs/EventsApi.md#print_job_states_list) | **GET** /api/print-job-states/ | 
 *EventsApi* | [**print_job_states_retrieve**](docs/EventsApi.md#print_job_states_retrieve) | **GET** /api/print-job-states/{id}/ | 
 *MlOpsApi* | [**device_calibration_update_or_create**](docs/MlOpsApi.md#device_calibration_update_or_create) | **POST** /api/device-calibrations/update-or-create/ | 
@@ -206,7 +207,6 @@ Class | Method | HTTP request | Description
  - [DefectAlertSettingsRequest](docs/DefectAlertSettingsRequest.md)
  - [DeviceCalibration](docs/DeviceCalibration.md)
  - [DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
- - [EventTypeEnum](docs/EventTypeEnum.md)
  - [Experiment](docs/Experiment.md)
  - [ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [GcodeFile](docs/GcodeFile.md)
@@ -214,6 +214,8 @@ Class | Method | HTTP request | Description
  - [ManualVideoUploadAlert](docs/ManualVideoUploadAlert.md)
  - [ManualVideoUploadAlertRequest](docs/ManualVideoUploadAlertRequest.md)
  - [ModelArtifact](docs/ModelArtifact.md)
+ - [MonitoringFrameEvent](docs/MonitoringFrameEvent.md)
+ - [MonitoringFrameEventEventTypeEnum](docs/MonitoringFrameEventEventTypeEnum.md)
  - [MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [MonitoringStartEnum](docs/MonitoringStartEnum.md)
  - [MonitoringStopEnum](docs/MonitoringStopEnum.md)
@@ -223,6 +225,7 @@ Class | Method | HTTP request | Description
  - [OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
  - [OctoPrintEvent](docs/OctoPrintEvent.md)
+ - [OctoPrintEventEventTypeEnum](docs/OctoPrintEventEventTypeEnum.md)
  - [OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
  - [PaginatedAlertPolymorphicList](docs/PaginatedAlertPolymorphicList.md)
  - [PaginatedAlertSettingsPolymorphicList](docs/PaginatedAlertSettingsPolymorphicList.md)
@@ -232,9 +235,12 @@ Class | Method | HTTP request | Description
  - [PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
  - [PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
+ - [PaginatedMonitoringFrameEventList](docs/PaginatedMonitoringFrameEventList.md)
  - [PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
  - [PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)
+ - [PaginatedPluginEventList](docs/PaginatedPluginEventList.md)
  - [PaginatedPrintJobList](docs/PaginatedPrintJobList.md)
+ - [PaginatedPrintJobStateList](docs/PaginatedPrintJobStateList.md)
  - [PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [PaginatedRemoteControlSnapshotList](docs/PaginatedRemoteControlSnapshotList.md)
@@ -259,8 +265,12 @@ Class | Method | HTTP request | Description
  - [PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [PatchedRemoteControlSnapshotRequest](docs/PatchedRemoteControlSnapshotRequest.md)
  - [PatchedUserRequest](docs/PatchedUserRequest.md)
+ - [PluginEvent](docs/PluginEvent.md)
+ - [PluginEventEventTypeEnum](docs/PluginEventEventTypeEnum.md)
  - [PrintJob](docs/PrintJob.md)
  - [PrintJobRequest](docs/PrintJobRequest.md)
+ - [PrintJobState](docs/PrintJobState.md)
+ - [PrintJobStateEventTypeEnum](docs/PrintJobStateEventTypeEnum.md)
  - [PrintPauseEnum](docs/PrintPauseEnum.md)
  - [PrintResumeEnum](docs/PrintResumeEnum.md)
  - [PrintStartEnum](docs/PrintStartEnum.md)

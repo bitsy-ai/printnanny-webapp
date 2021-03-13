@@ -1,4 +1,4 @@
-# OctoPrintEvent
+# PrintJobState
 
 ## Properties
 Name | Type | Description | Notes
@@ -11,7 +11,12 @@ Name | Type | Description | Notes
 **plugin_version** | **str** |  | 
 **client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**event_type** | [**OctoPrintEventEventTypeEnum**](OctoPrintEventEventTypeEnum.md) |  | 
+**event_type** | [**PrintJobStateEventTypeEnum**](PrintJobStateEventTypeEnum.md) |  | 
+**state** | **dict(str, object)** |  | [optional] 
+**current_z** | **float** |  | [optional] 
+**progress** | **dict(str, object)** |  | [optional] 
+**job_data_file** | **str** |  | 
+**print_job** | **int** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

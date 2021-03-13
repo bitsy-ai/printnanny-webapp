@@ -36,6 +36,390 @@ class EventsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def monitoring_frame_event_enum_retrieve(self, **kwargs):  # noqa: E501
+        """monitoring_frame_event_enum_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_event_enum_retrieve(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: str
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.monitoring_frame_event_enum_retrieve_with_http_info(**kwargs)  # noqa: E501
+
+    def monitoring_frame_event_enum_retrieve_with_http_info(self, **kwargs):  # noqa: E501
+        """monitoring_frame_event_enum_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_event_enum_retrieve_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method monitoring_frame_event_enum_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+        
+        response_types_map = {
+            200: "str",
+        }
+
+        return self.api_client.call_api(
+            '/api/monitoring-frame-events/enum/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def monitoring_frame_events_list(self, **kwargs):  # noqa: E501
+        """monitoring_frame_events_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_events_list(async_req=True)
+        >>> result = thread.get()
+
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PaginatedMonitoringFrameEventList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.monitoring_frame_events_list_with_http_info(**kwargs)  # noqa: E501
+
+    def monitoring_frame_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """monitoring_frame_events_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_events_list_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PaginatedMonitoringFrameEventList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'page'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method monitoring_frame_events_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+            query_params.append(('page', local_var_params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+        
+        response_types_map = {
+            200: "PaginatedMonitoringFrameEventList",
+        }
+
+        return self.api_client.call_api(
+            '/api/monitoring-frame-events/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def monitoring_frame_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """monitoring_frame_events_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_events_retrieve(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this monitoring frame event. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MonitoringFrameEvent
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.monitoring_frame_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+
+    def monitoring_frame_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """monitoring_frame_events_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.monitoring_frame_events_retrieve_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this monitoring frame event. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MonitoringFrameEvent, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method monitoring_frame_events_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `monitoring_frame_events_retrieve`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+        
+        response_types_map = {
+            200: "MonitoringFrameEvent",
+        }
+
+        return self.api_client.call_api(
+            '/api/monitoring-frame-events/{id}/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def octoprint_core_events_enum_retrieve(self, **kwargs):  # noqa: E501
         """octoprint_core_events_enum_retrieve  # noqa: E501
 
@@ -143,250 +527,6 @@ class EventsApi(object):
 
         return self.api_client.call_api(
             '/api/octoprint-events/enum/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def octoprint_core_events_enum_retrieve2(self, **kwargs):  # noqa: E501
-        """octoprint_core_events_enum_retrieve2  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_core_events_enum_retrieve2(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.octoprint_core_events_enum_retrieve2_with_http_info(**kwargs)  # noqa: E501
-
-    def octoprint_core_events_enum_retrieve2_with_http_info(self, **kwargs):  # noqa: E501
-        """octoprint_core_events_enum_retrieve2  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_core_events_enum_retrieve2_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_core_events_enum_retrieve2" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            200: "str",
-        }
-
-        return self.api_client.call_api(
-            '/api/plugin-events/enum/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def octoprint_core_events_enum_retrieve3(self, **kwargs):  # noqa: E501
-        """octoprint_core_events_enum_retrieve3  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_core_events_enum_retrieve3(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.octoprint_core_events_enum_retrieve3_with_http_info(**kwargs)  # noqa: E501
-
-    def octoprint_core_events_enum_retrieve3_with_http_info(self, **kwargs):  # noqa: E501
-        """octoprint_core_events_enum_retrieve3  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.octoprint_core_events_enum_retrieve3_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_core_events_enum_retrieve3" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            200: "str",
-        }
-
-        return self.api_client.call_api(
-            '/api/print-job-states/enum/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -802,17 +942,15 @@ class EventsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def plugin_events_create(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """plugin_events_create  # noqa: E501
+    def plugin_events_enum_retrieve(self, **kwargs):  # noqa: E501
+        """plugin_events_enum_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.plugin_events_create(octo_print_event_request, async_req=True)
+        >>> thread = api.plugin_events_enum_retrieve(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_event_request: (required)
-        :type octo_print_event_request: OctoPrintEventRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -826,22 +964,20 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintEvent
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
-        return self.plugin_events_create_with_http_info(octo_print_event_request, **kwargs)  # noqa: E501
+        return self.plugin_events_enum_retrieve_with_http_info(**kwargs)  # noqa: E501
 
-    def plugin_events_create_with_http_info(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """plugin_events_create  # noqa: E501
+    def plugin_events_enum_retrieve_with_http_info(self, **kwargs):  # noqa: E501
+        """plugin_events_enum_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.plugin_events_create_with_http_info(octo_print_event_request, async_req=True)
+        >>> thread = api.plugin_events_enum_retrieve_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_event_request: (required)
-        :type octo_print_event_request: OctoPrintEventRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -862,13 +998,12 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'octo_print_event_request'
         ]
         all_params.extend(
             [
@@ -884,14 +1019,10 @@ class EventsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method plugin_events_create" % key
+                    " to method plugin_events_enum_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_event_request' is set
-        if self.api_client.client_side_validation and ('octo_print_event_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_event_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_event_request` when calling `plugin_events_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -905,26 +1036,19 @@ class EventsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'octo_print_event_request' in local_var_params:
-            body_params = local_var_params['octo_print_event_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            201: "OctoPrintEvent",
-            400: "OctoPrintEvent",
+            200: "str",
         }
 
         return self.api_client.call_api(
-            '/api/plugin-events/', 'POST',
+            '/api/plugin-events/enum/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -964,7 +1088,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedOctoPrintEventList
+        :rtype: PaginatedPluginEventList
         """
         kwargs['_return_http_data_only'] = True
         return self.plugin_events_list_with_http_info(**kwargs)  # noqa: E501
@@ -1000,7 +1124,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedOctoPrintEventList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedPluginEventList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1049,7 +1173,7 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedOctoPrintEventList",
+            200: "PaginatedPluginEventList",
         }
 
         return self.api_client.call_api(
@@ -1078,7 +1202,7 @@ class EventsApi(object):
         >>> thread = api.plugin_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print event. (required)
+        :param id: A unique integer value identifying this plugin event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1093,7 +1217,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintEvent
+        :rtype: PluginEvent
         """
         kwargs['_return_http_data_only'] = True
         return self.plugin_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -1107,7 +1231,7 @@ class EventsApi(object):
         >>> thread = api.plugin_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print event. (required)
+        :param id: A unique integer value identifying this plugin event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1129,7 +1253,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PluginEvent, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1182,7 +1306,7 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintEvent",
+            200: "PluginEvent",
         }
 
         return self.api_client.call_api(
@@ -1202,17 +1326,15 @@ class EventsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_job_states_create(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """print_job_states_create  # noqa: E501
+    def print_job_event_enum_retrieve(self, **kwargs):  # noqa: E501
+        """print_job_event_enum_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_states_create(octo_print_event_request, async_req=True)
+        >>> thread = api.print_job_event_enum_retrieve(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_event_request: (required)
-        :type octo_print_event_request: OctoPrintEventRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1226,22 +1348,20 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintEvent
+        :rtype: str
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_job_states_create_with_http_info(octo_print_event_request, **kwargs)  # noqa: E501
+        return self.print_job_event_enum_retrieve_with_http_info(**kwargs)  # noqa: E501
 
-    def print_job_states_create_with_http_info(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """print_job_states_create  # noqa: E501
+    def print_job_event_enum_retrieve_with_http_info(self, **kwargs):  # noqa: E501
+        """print_job_event_enum_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_states_create_with_http_info(octo_print_event_request, async_req=True)
+        >>> thread = api.print_job_event_enum_retrieve_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param octo_print_event_request: (required)
-        :type octo_print_event_request: OctoPrintEventRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1262,13 +1382,12 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'octo_print_event_request'
         ]
         all_params.extend(
             [
@@ -1284,14 +1403,10 @@ class EventsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_job_states_create" % key
+                    " to method print_job_event_enum_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'octo_print_event_request' is set
-        if self.api_client.client_side_validation and ('octo_print_event_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['octo_print_event_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_event_request` when calling `print_job_states_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1305,26 +1420,19 @@ class EventsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'octo_print_event_request' in local_var_params:
-            body_params = local_var_params['octo_print_event_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            201: "OctoPrintEvent",
-            400: "OctoPrintEvent",
+            200: "str",
         }
 
         return self.api_client.call_api(
-            '/api/print-job-states/', 'POST',
+            '/api/print-job-states/enum/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -1364,7 +1472,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedOctoPrintEventList
+        :rtype: PaginatedPrintJobStateList
         """
         kwargs['_return_http_data_only'] = True
         return self.print_job_states_list_with_http_info(**kwargs)  # noqa: E501
@@ -1400,7 +1508,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedOctoPrintEventList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedPrintJobStateList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1449,7 +1557,7 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedOctoPrintEventList",
+            200: "PaginatedPrintJobStateList",
         }
 
         return self.api_client.call_api(
@@ -1478,7 +1586,7 @@ class EventsApi(object):
         >>> thread = api.print_job_states_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print event. (required)
+        :param id: A unique integer value identifying this print job state. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1493,7 +1601,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintEvent
+        :rtype: PrintJobState
         """
         kwargs['_return_http_data_only'] = True
         return self.print_job_states_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -1507,7 +1615,7 @@ class EventsApi(object):
         >>> thread = api.print_job_states_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print event. (required)
+        :param id: A unique integer value identifying this print job state. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1529,7 +1637,7 @@ class EventsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PrintJobState, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1582,7 +1690,7 @@ class EventsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintEvent",
+            200: "PrintJobState",
         }
 
         return self.api_client.call_api(

@@ -8,6 +8,7 @@ from print_nanny_webapp.client_events.models import (
     OctoPrintEvent,
     PrintJobState,
     PluginEvent,
+    MonitoringFrameEvent
 )
 
 
@@ -37,6 +38,15 @@ class PrintJobStateSerializer(serializers.ModelSerializer):
         fields = [field.name for field in PrintJobState._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:print-job-event-detail", "lookup_field": "id"}
+        }
+        read_only_fields = ("user",)
+
+class MonitoringFrameEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MonitoringFrameEvent
+        fields = [field.name for field in MonitoringFrameEvent._meta.fields] + ["url"]
+        extra_kwargs = {
+            "url": {"view_name": "api:monitoring-frame-event-detail", "lookup_field": "id"}
         }
         read_only_fields = ("user",)
 

@@ -38,7 +38,7 @@ class OctoPrintEventRequest(object):
         'plugin_version': 'str',
         'client_version': 'str',
         'octoprint_version': 'str',
-        'event_type': 'EventTypeEnum'
+        'event_type': 'OctoPrintEventEventTypeEnum'
     }
 
     attribute_map = {
@@ -199,7 +199,7 @@ class OctoPrintEventRequest(object):
 
 
         :return: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: EventTypeEnum
+        :rtype: OctoPrintEventEventTypeEnum
         """
         return self._event_type
 
@@ -209,7 +209,7 @@ class OctoPrintEventRequest(object):
 
 
         :param event_type: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :type event_type: EventTypeEnum
+        :type event_type: OctoPrintEventEventTypeEnum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
