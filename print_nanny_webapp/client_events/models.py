@@ -23,11 +23,13 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class ClientEvent(PolymorphicModel):
+class ClientEvent(models.Model):
     """
     Base class for client-side events
     """
 
+    class Meta:
+        abstract = True
     class ClientEventType(models.TextChoices):
         PLUGIN = "plugin", "OctoPrint Nanny plugin events"
         OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
@@ -41,7 +43,7 @@ class ClientEvent(PolymorphicModel):
         choices=ClientEventType.choices,
         default=ClientEventType.PLUGIN,
     )
-    event_data = models.JSONField()
+    event_data = models.JSONField(null=True)
     device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
@@ -49,8 +51,8 @@ class ClientEvent(PolymorphicModel):
         null=True,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True, null=True)
-    plugin_version = models.CharField(max_length=60)
-    octoprint_version = models.CharField(max_length=60)
+    plugin_version = models.CharField(max_length=60, null=True)
+    octoprint_version = models.CharField(max_length=60, null=True)
 
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
@@ -83,12 +85,6 @@ class PluginEvent(ClientEvent):
         )
 
     class EventType(models.TextChoices):
-        BOUNDING_BOX_PREDICT = (
-            "bounding_box_predict",
-            "On-device bounding box prediction",
-        )
-        MONITORING_FRAME_RAW = "monitoring_frame_raw", "Raw frame buffer sample"
-        MONITORING_FRAME_POST = "monitoring_frame_post", "Post-processed frame buffer"
 
         DEVICE_REGISTER_START = "device_register_start", "Device registration started"
         DEVICE_REGISTER_DONE = "device_register_done", "Device registration succeeded"
