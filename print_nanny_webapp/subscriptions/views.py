@@ -21,6 +21,7 @@ class SubscriptionsListView(DashboardView):
 
         customer, created = djstripe.models.Customer.get_or_create(subscriber=self.request.user)
 
+        # Populate template with current subscriptions and stripe public key
         ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
         ctx["SUBSCRIPTIONS"] = stripe.Subscription.list(
             customer=customer.id,
@@ -28,6 +29,7 @@ class SubscriptionsListView(DashboardView):
             limit=10,
             api_key=djstripe.settings.STRIPE_SECRET_KEY)
 
+        # Cast some useful subscription timestamp fields to datetime object
         for d in ctx["SUBSCRIPTIONS"].data:
             d["created_datetime"] = datetime.fromtimestamp(d["created"])
             d["current_period_start_datetime"] = datetime.fromtimestamp(d["current_period_start"])
