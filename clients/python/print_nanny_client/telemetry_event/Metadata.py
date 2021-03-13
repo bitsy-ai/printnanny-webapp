@@ -55,12 +55,28 @@ class Metadata(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def MetadataStart(builder): builder.StartObject(5)
+    # Metadata
+    def ClientVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Metadata
+    def ModelVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def MetadataStart(builder): builder.StartObject(7)
 def MetadataAddUserId(builder, userId): builder.PrependUint32Slot(0, userId, 0)
 def MetadataAddDeviceId(builder, deviceId): builder.PrependUint32Slot(1, deviceId, 0)
 def MetadataAddDeviceCloudiotId(builder, deviceCloudiotId): builder.PrependUint64Slot(2, deviceCloudiotId, 0)
 def MetadataAddTs(builder, ts): builder.PrependUint32Slot(3, ts, 0)
 def MetadataAddSession(builder, session): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(session), 0)
+def MetadataAddClientVersion(builder, clientVersion): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(clientVersion), 0)
+def MetadataAddModelVersion(builder, modelVersion): builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelVersion), 0)
 def MetadataEnd(builder): return builder.EndObject()
 
 
@@ -73,6 +89,8 @@ class MetadataT(object):
         self.deviceCloudiotId = 0  # type: int
         self.ts = 0  # type: int
         self.session = None  # type: str
+        self.clientVersion = None  # type: str
+        self.modelVersion = None  # type: str
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -95,11 +113,17 @@ class MetadataT(object):
         self.deviceCloudiotId = metadata.DeviceCloudiotId()
         self.ts = metadata.Ts()
         self.session = metadata.Session()
+        self.clientVersion = metadata.ClientVersion()
+        self.modelVersion = metadata.ModelVersion()
 
     # MetadataT
     def Pack(self, builder):
         if self.session is not None:
             session = builder.CreateString(self.session)
+        if self.clientVersion is not None:
+            clientVersion = builder.CreateString(self.clientVersion)
+        if self.modelVersion is not None:
+            modelVersion = builder.CreateString(self.modelVersion)
         MetadataStart(builder)
         MetadataAddUserId(builder, self.userId)
         MetadataAddDeviceId(builder, self.deviceId)
@@ -107,5 +131,9 @@ class MetadataT(object):
         MetadataAddTs(builder, self.ts)
         if self.session is not None:
             MetadataAddSession(builder, session)
+        if self.clientVersion is not None:
+            MetadataAddClientVersion(builder, clientVersion)
+        if self.modelVersion is not None:
+            MetadataAddModelVersion(builder, modelVersion)
         metadata = MetadataEnd(builder)
         return metadata
