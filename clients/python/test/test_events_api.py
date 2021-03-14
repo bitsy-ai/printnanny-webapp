@@ -28,24 +28,6 @@ class TestEventsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_monitoring_frame_event_enum_retrieve(self):
-        """Test case for monitoring_frame_event_enum_retrieve
-
-        """
-        pass
-
-    def test_monitoring_frame_events_list(self):
-        """Test case for monitoring_frame_events_list
-
-        """
-        pass
-
-    def test_monitoring_frame_events_retrieve(self):
-        """Test case for monitoring_frame_events_retrieve
-
-        """
-        pass
-
     def test_octoprint_core_events_enum_retrieve(self):
         """Test case for octoprint_core_events_enum_retrieve
 

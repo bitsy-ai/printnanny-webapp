@@ -114,9 +114,6 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**defect_alerts_retrieve**](docs/AlertsApi.md#defect_alerts_retrieve) | **GET** /api/defect-alerts/{id}/ | 
 *AlertsApi* | [**defect_alerts_update**](docs/AlertsApi.md#defect_alerts_update) | **PUT** /api/defect-alerts/{id}/ | 
 *AuthTokenApi* | [**auth_token_create**](docs/AuthTokenApi.md#auth_token_create) | **POST** /api/auth-token/ | 
-*EventsApi* | [**monitoring_frame_event_enum_retrieve**](docs/EventsApi.md#monitoring_frame_event_enum_retrieve) | **GET** /api/monitoring-frame-events/enum/ | 
-*EventsApi* | [**monitoring_frame_events_list**](docs/EventsApi.md#monitoring_frame_events_list) | **GET** /api/monitoring-frame-events/ | 
-*EventsApi* | [**monitoring_frame_events_retrieve**](docs/EventsApi.md#monitoring_frame_events_retrieve) | **GET** /api/monitoring-frame-events/{id}/ | 
 *EventsApi* | [**octoprint_core_events_enum_retrieve**](docs/EventsApi.md#octoprint_core_events_enum_retrieve) | **GET** /api/octoprint-events/enum/ | 
 *EventsApi* | [**octoprint_events_create**](docs/EventsApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
 *EventsApi* | [**octoprint_events_list**](docs/EventsApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
@@ -214,8 +211,6 @@ Class | Method | HTTP request | Description
  - [ManualVideoUploadAlert](docs/ManualVideoUploadAlert.md)
  - [ManualVideoUploadAlertRequest](docs/ManualVideoUploadAlertRequest.md)
  - [ModelArtifact](docs/ModelArtifact.md)
- - [MonitoringFrameEvent](docs/MonitoringFrameEvent.md)
- - [MonitoringFrameEventEventTypeEnum](docs/MonitoringFrameEventEventTypeEnum.md)
  - [MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [MonitoringStartEnum](docs/MonitoringStartEnum.md)
  - [MonitoringStopEnum](docs/MonitoringStopEnum.md)
@@ -235,7 +230,6 @@ Class | Method | HTTP request | Description
  - [PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
  - [PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
- - [PaginatedMonitoringFrameEventList](docs/PaginatedMonitoringFrameEventList.md)
  - [PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
  - [PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)
  - [PaginatedPluginEventList](docs/PaginatedPluginEventList.md)

@@ -42,8 +42,6 @@ docs/ManualVideoUploadAlert.md
 docs/ManualVideoUploadAlertRequest.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
-docs/MonitoringFrameEvent.md
-docs/MonitoringFrameEventEventTypeEnum.md
 docs/MonitoringModeEnum.md
 docs/MonitoringStartEnum.md
 docs/MonitoringStopEnum.md
@@ -63,7 +61,6 @@ docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
 docs/PaginatedModelArtifactList.md
-docs/PaginatedMonitoringFrameEventList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
 docs/PaginatedPluginEventList.md
@@ -170,8 +167,6 @@ print_nanny_client/models/gcode_file_request.py
 print_nanny_client/models/manual_video_upload_alert.py
 print_nanny_client/models/manual_video_upload_alert_request.py
 print_nanny_client/models/model_artifact.py
-print_nanny_client/models/monitoring_frame_event.py
-print_nanny_client/models/monitoring_frame_event_event_type_enum.py
 print_nanny_client/models/monitoring_mode_enum.py
 print_nanny_client/models/monitoring_start_enum.py
 print_nanny_client/models/monitoring_stop_enum.py
@@ -191,7 +186,6 @@ print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_experiment_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
 print_nanny_client/models/paginated_model_artifact_list.py
-print_nanny_client/models/paginated_monitoring_frame_event_list.py
 print_nanny_client/models/paginated_octo_print_device_list.py
 print_nanny_client/models/paginated_octo_print_event_list.py
 print_nanny_client/models/paginated_plugin_event_list.py
@@ -291,8 +285,6 @@ test/test_manual_video_upload_alert.py
 test/test_manual_video_upload_alert_request.py
 test/test_ml_ops_api.py
 test/test_model_artifact.py
-test/test_monitoring_frame_event.py
-test/test_monitoring_frame_event_event_type_enum.py
 test/test_monitoring_mode_enum.py
 test/test_monitoring_start_enum.py
 test/test_monitoring_stop_enum.py
@@ -312,7 +304,6 @@ test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
 test/test_paginated_model_artifact_list.py
-test/test_paginated_monitoring_frame_event_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py
 test/test_paginated_plugin_event_list.py
