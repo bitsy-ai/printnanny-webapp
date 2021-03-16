@@ -1042,107 +1042,6 @@ export interface ModelArtifact {
 /**
  * 
  * @export
- * @interface MonitoringFrameEvent
- */
-export interface MonitoringFrameEvent {
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitoringFrameEvent
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof MonitoringFrameEvent
-     */
-    event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitoringFrameEvent
-     */
-    device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitoringFrameEvent
-     */
-    user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {MonitoringFrameEventEventTypeEnum}
-     * @memberof MonitoringFrameEvent
-     */
-    event_type?: MonitoringFrameEventEventTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    ts: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    session: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    image: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MonitoringFrameEvent
-     */
-    experiment?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof MonitoringFrameEvent
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum MonitoringFrameEventEventTypeEnum {
-    Raw = 'monitoring_frame_raw',
-    Post = 'monitoring_frame_post'
-}
-
-/**
- * 
- * @export
  * @enum {string}
  */
 export enum MonitoringModeEnum {
@@ -2123,37 +2022,6 @@ export interface PaginatedModelArtifactList {
      * @memberof PaginatedModelArtifactList
      */
     results?: Array<ModelArtifact>;
-}
-/**
- * 
- * @export
- * @interface PaginatedMonitoringFrameEventList
- */
-export interface PaginatedMonitoringFrameEventList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedMonitoringFrameEventList
-     */
-    count?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedMonitoringFrameEventList
-     */
-    next?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedMonitoringFrameEventList
-     */
-    previous?: string | null;
-    /**
-     * 
-     * @type {Array<MonitoringFrameEvent>}
-     * @memberof PaginatedMonitoringFrameEventList
-     */
-    results?: Array<MonitoringFrameEvent>;
 }
 /**
  * 
@@ -6532,158 +6400,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        monitoringFrameEventEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/monitoring-frame-events/enum/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        monitoringFrameEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/monitoring-frame-events/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this monitoring frame event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        monitoringFrameEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling monitoringFrameEventsRetrieve.');
-            }
-            const localVarPath = `/api/monitoring-frame-events/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         octoprintCoreEventsEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-events/enum/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7210,44 +6926,6 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async monitoringFrameEventEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).monitoringFrameEventEnumRetrieve(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async monitoringFrameEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedMonitoringFrameEventList>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).monitoringFrameEventsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this monitoring frame event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async monitoringFrameEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MonitoringFrameEvent>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).monitoringFrameEventsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         async octoprintCoreEventsEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintCoreEventsEnumRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -7384,32 +7062,6 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        monitoringFrameEventEnumRetrieve(options?: any): AxiosPromise<string> {
-            return EventsApiFp(configuration).monitoringFrameEventEnumRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        monitoringFrameEventsList(page?: number, options?: any): AxiosPromise<PaginatedMonitoringFrameEventList> {
-            return EventsApiFp(configuration).monitoringFrameEventsList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this monitoring frame event.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        monitoringFrameEventsRetrieve(id: number, options?: any): AxiosPromise<MonitoringFrameEvent> {
-            return EventsApiFp(configuration).monitoringFrameEventsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
         octoprintCoreEventsEnumRetrieve(options?: any): AxiosPromise<string> {
             return EventsApiFp(configuration).octoprintCoreEventsEnumRetrieve(options).then((request) => request(axios, basePath));
         },
@@ -7507,32 +7159,6 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    monitoringFrameEventEnumRetrieve(options?: any): AxiosPromise<string>;
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    monitoringFrameEventsList(page?: number, options?: any): AxiosPromise<PaginatedMonitoringFrameEventList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this monitoring frame event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    monitoringFrameEventsRetrieve(id: number, options?: any): AxiosPromise<MonitoringFrameEvent>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
     octoprintCoreEventsEnumRetrieve(options?: any): AxiosPromise<string>;
 
     /**
@@ -7623,38 +7249,6 @@ export interface EventsApiInterface {
  * @extends {BaseAPI}
  */
 export class EventsApi extends BaseAPI implements EventsApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public monitoringFrameEventEnumRetrieve(options?: any) {
-        return EventsApiFp(this.configuration).monitoringFrameEventEnumRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public monitoringFrameEventsList(page?: number, options?: any) {
-        return EventsApiFp(this.configuration).monitoringFrameEventsList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this monitoring frame event.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public monitoringFrameEventsRetrieve(id: number, options?: any) {
-        return EventsApiFp(this.configuration).monitoringFrameEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * 
      * @param {*} [options] Override http request option.
