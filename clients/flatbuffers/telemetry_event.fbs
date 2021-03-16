@@ -38,10 +38,10 @@ table Image {
 
 
 table BoundingBoxes {
-    scores: [float] (required);
-    classes: [uint32] (required);
+    detection_scores: [float] (required);
+    detection_classes: [uint32] (required);
+    detection_boxes: [Box] (required);
     num_detections: uint32;
-    boxes: [Box] (required);
 }
 
 table MonitoringFrame {
