@@ -26,7 +26,7 @@ class DeviceCalibration(models.Model):
     fpm = models.IntegerField(null=True)
     coordinates = JSONField(null=True)
     mask = JSONField(null=True)
-    dataframe = models.FileField(null=True)
+    config_file = models.FileField(null=True)
 
 
 class ModelArtifact(models.Model):

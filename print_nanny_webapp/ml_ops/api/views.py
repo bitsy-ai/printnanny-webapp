@@ -6,6 +6,8 @@ from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_framework.response import Response
 from rest_framework import status
+from django.core.files.base import ContentFile
+
 
 from print_nanny_webapp.ml_ops.models import (
     ModelArtifact,
@@ -54,7 +56,14 @@ class DeviceCalibrationViewSet(
         serializer = self.get_serializer(data=request.data, instance=instance)
 
         if serializer.is_valid():
+            config_file_content = json.dumps(dict(
+                fpm=serializer.validated_data["fpm"],
+                mask=serializer.validated_data["mask"],
+                coordinates=serializer.validated_data["coordinates"]
+            )).encode('utf-8')
+            config_file_content = ContentFile(config_file_content)
             instance, created = serializer.update_or_create(serializer.validated_data)
+            instance.config_file.save('calibration.json', config_file_content)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(
