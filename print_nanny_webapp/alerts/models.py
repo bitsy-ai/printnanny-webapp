@@ -29,7 +29,6 @@ logger = logging.getLogger(__name__)
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
-    logger.info("Uploading to path")
     return path
 
 

@@ -10,6 +10,13 @@ from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 
+
+
+def _upload_to(instance, filename):
+    path = os.path.join(f"uploads/{instance.__class__.__name__}", instance.id, filename)
+    return path
+
+
 class DeviceCalibration(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
     updated_dt = models.fields.DateTimeField(auto_now=True)
@@ -19,6 +26,7 @@ class DeviceCalibration(models.Model):
     fpm = models.IntegerField(null=True)
     coordinates = JSONField(null=True)
     mask = JSONField(null=True)
+    dataframe = models.FileField(null=True)
 
 
 class ModelArtifact(models.Model):
