@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.http.response import JsonResponse
 import stripe
 import json, logging
 from django.http import HttpResponse, HttpRequest
@@ -22,23 +23,12 @@ class SubscriptionsListView(DashboardView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-
-        customer, created = djstripe.models.Customer.get_or_create(subscriber=self.request.user)
+        customer = djstripe.models.Customer.objects.get(subscriber=self.request.user)
 
         # Populate template with current subscriptions and stripe public key
         ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
-        ctx["SUBSCRIPTIONS"] = stripe.Subscription.list(
-            customer=customer.id,
-            status="all",
-            limit=10,
-            api_key=djstripe.settings.STRIPE_SECRET_KEY)
-
-        # Cast some useful subscription timestamp fields to datetime object
-        for d in ctx["SUBSCRIPTIONS"].data:
-            d["created_datetime"] = datetime.fromtimestamp(d["created"])
-            d["current_period_start_datetime"] = datetime.fromtimestamp(d["current_period_start"])
-            d["current_period_end_datetime"] = datetime.fromtimestamp(d["current_period_end"])
-            d["plan"]["amount_float"] = float(d["plan"]["amount"]) / 100
+        ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by('-created')
+        ctx["PLANS"] = [x.id for x in djstripe.models.Plan.objects.all()]
 
         return ctx
 
@@ -53,9 +43,9 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
     # TODO: Put this in the form
     data["plan"] = djstripe.models.Plan.objects.first().id
     try:
+        customer, created = djstripe.models.Customer.get_or_create(subscriber=request.user)
         # TODO: This is just ugly
         if "payment_method_id" in data:
-            customer, created = djstripe.models.Customer.get_or_create(subscriber=request.user)
             customer.add_payment_method(data["payment_method_id"])
 
             # Using the Stripe API, create a subscription for this customer,
@@ -80,6 +70,19 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
                 data["payment_intent_id"],
                 api_key=djstripe.settings.STRIPE_SECRET_KEY,
             )
+        else:
+            session = stripe.checkout.Session.create(
+                customer=customer.id,
+                payment_method_types=['card'],
+                # success_url='http://example.com/success',
+                # cancel_url='http://example.com/cancelled',
+                subscription_data={
+                    'items': [{
+                        'plan': request.data["plan"],
+                    }],
+                },
+            )
+            return JsonResponse({"session_id", session.id}, status=200)
     except stripe.error.CardError as e:
         # Display error on client
         return_data = json.dumps({"error": e.user_message}), 400

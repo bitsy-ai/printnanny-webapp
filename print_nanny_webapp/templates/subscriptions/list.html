@@ -101,8 +101,8 @@
         <tbody>
             {% for subscription in SUBSCRIPTIONS %}
                 <tr>
-                    <td>{{ subscription.created_datetime }}</td>
-                    <td>{{ subscription.plan.amount_float | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
+                    <td>{{ subscription.created }}</td>
+                    <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
                     <td>
                         {% if subscription.status == "active" %}
                             <i class="mdi mdi-circle text-success"></i>
@@ -115,8 +115,8 @@
                         {% endif %}
                         &nbsp;{{ subscription.status | title }}
                     </td>
-                    <td>{{ subscription.current_period_start_datetime }}</td>
-                    <td>{{ subscription.current_period_end_datetime }}</td>
+                    <td>{{ subscription.current_period_start }}</td>
+                    <td>{{ subscription.current_period_end }}</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                         {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
