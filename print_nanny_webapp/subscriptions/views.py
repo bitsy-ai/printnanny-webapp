@@ -1,17 +1,21 @@
 from datetime import datetime
 import stripe
 import json, logging
-from django.conf import settings
 from django.http import HttpResponse, HttpRequest
-from django.urls import reverse
+from django.contrib.auth import get_user_model
 from django.template.response import TemplateResponse
+from djstripe import webhooks
 
 import djstripe.models
 import djstripe.settings
+from anymail.message import AnymailMessage
+from django.template.loader import render_to_string
 
 from print_nanny_webapp.dashboard.views import DashboardView
 
 logger = logging.getLogger(__name__)
+User = get_user_model()
+
 
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
@@ -39,9 +43,6 @@ class SubscriptionsListView(DashboardView):
         return ctx
 
 
-# TODO: Maybe this needs to be a normal class? Maybe throw it above?
-# Might not be possible due to "requires_action" but could use REST API thing
-# TODO: Use crispy form
 def subscriptions_payment_intent_view_create(request: HttpRequest):
     if request.method != "POST":
         ctx = {"STRIPE_PUBLIC_KEY": djstripe.settings.STRIPE_PUBLIC_KEY}
@@ -107,3 +108,92 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
         # Invalid status
         return_data = json.dumps({"error": "Invalid PaymentIntent status"}), 500
     return HttpResponse(return_data[0], content_type="application/json", status=return_data[1])
+
+@webhooks.handler("customer.subscription.trial_will_end")
+def subscriptions_trial_will_end(event):
+    logger.info(f"Sending email to user {event.customer.email} that their trial is ending")
+    user = User.objects.get(email=event.customer.email)
+
+    merge_data = {
+        "FIRST_NAME": user.first_name or "Maker",
+    }
+
+    text_body = render_to_string("email/subscriptions_trial_ending_body.txt", merge_data)
+    # html_body = render_to_string("email/subscriptions_trial_ending_body.html", merge_data)
+    subject = render_to_string("email/subscriptions_trial_ending_subject.txt", merge_data)
+
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[event.customer.email],
+    )
+    # message.attach_alternative(html_body, "text/html")
+    message.send()
+
+@webhooks.handler("subscription_schedule.expiring")
+def subscriptions_subscription_expiring(event):
+    logger.info(f"User {event.customer.email} subscription <X> is expiring, sending email")
+    user = User.objects.get(email=event.customer.email)
+
+    merge_data = {
+        "FIRST_NAME": user.first_name or "Maker",
+    }
+
+    text_body = render_to_string("email/subscriptions_subscription_expiring_body.txt", merge_data)
+    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+    subject = render_to_string("email/subscriptions_subscription_expiring_subject.txt", merge_data)
+
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[event.customer.email],
+    )
+    # message.attach_alternative(html_body, "text/html")
+    message.send()
+
+# @webhooks.handler("charge.failed")
+@webhooks.handler("invoice.payment_failed")
+def subscriptions_payment_failed(event):
+    logger.info(f"User's {event.customer.email} subscription <X> payment <X> failed, sending email")
+    user = User.objects.get(email=event.customer.email)
+
+    merge_data = {
+        "FIRST_NAME": user.first_name or "Maker",
+    }
+
+    text_body = render_to_string("email/subscriptions_payment_failed_body.txt", merge_data)
+    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+    subject = render_to_string("email/subscriptions_payment_failed_subject.txt", merge_data)
+
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[event.customer.email],
+    )
+    # message.attach_alternative(html_body, "text/html")
+    message.send()
+
+# Payment action required is handled during the payment step inside the view
+# There are both invoice.paid and invoice.payment_succeeded but docs lean on the first
+# https://stripe.com/docs/billing/subscriptions/webhooks#tracking
+# @webhooks.handler("charge.succeeded")
+@webhooks.handler("invoice.paid")
+def subscriptions_invoice_paid(event):
+    logger.info(f"User {event.customer.email} paid subscription <X> successfully, sending email")
+    user = User.objects.get(email=event.customer.email)
+
+    merge_data = {
+        "FIRST_NAME": user.first_name or "Maker",
+    }
+
+    text_body = render_to_string("email/subscriptions_payment_succeeded_body.txt", merge_data)
+    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+    subject = render_to_string("email/subscriptions_payment_succeeded_subject.txt", merge_data)
+
+    message = AnymailMessage(
+        subject=subject,
+        body=text_body,
+        to=[event.customer.email],
+    )
+    # message.attach_alternative(html_body, "text/html")
+    message.send()
