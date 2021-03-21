@@ -146,7 +146,7 @@ class ProgressAlertSettings(AlertSettings):
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    session = models.CharField(max_length=255, db_index=True)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
