@@ -80,10 +80,12 @@ class Alert(PolymorphicModel):
 
     def trigger_alert(self):
         from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
-
-        alert_serializer = AlertPolymorphicSerializer(self)
-        data = alert_serializer.data
-        return self.alert_trigger_method_map[self.alert_method](data)
+        if self.sent is False:
+            alert_serializer = AlertPolymorphicSerializer(self)
+            data = alert_serializer.data
+            self.alert_trigger_method_map[self.alert_method](data)
+            self.sent = True
+            self.save()
 
     def trigger_ui_alert(self, data):
         channel_layer = get_channel_layer()
