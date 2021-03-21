@@ -293,8 +293,8 @@ class PrintSession(models.Model):
     
     created_dt = models.DateTimeField(db_index=True)
     end_dt = models.DateTimeField(null=True, db_index=True)
-    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE)
-    session = models.CharField(max_length=255)
+    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
+    session = models.CharField(max_length=255, db_index=True)
 
 class PrintJob(models.Model):
     class Meta:
