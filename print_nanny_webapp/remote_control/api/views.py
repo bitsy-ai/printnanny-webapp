@@ -424,7 +424,8 @@ class OctoPrintDeviceViewSet(
                 return Response({}, status=status.HTTP_403_FORBIDDEN)
             
             instance = serializer.save()
-            instance.trigger_alert()
+            instance.trigger_alert_task()
+            
             return Response(serializer.data, status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
