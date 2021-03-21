@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **print_session** | **str** |  | 
 **octoprint_device** | **int** |  | [optional] 
 **print_job** | **int** |  | [optional] [readonly] 
+**sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **device** | **int** |  | 

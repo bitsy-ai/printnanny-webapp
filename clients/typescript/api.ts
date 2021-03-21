@@ -2895,6 +2895,12 @@ export interface PatchedProgressAlertRequest {
      * @type {boolean}
      * @memberof PatchedProgressAlertRequest
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedProgressAlertRequest
+     */
     dismissed?: boolean;
     /**
      * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
@@ -3809,6 +3815,12 @@ export interface ProgressAlert {
      * @type {boolean}
      * @memberof ProgressAlert
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlert
+     */
     dismissed?: boolean;
     /**
      * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
@@ -3853,6 +3865,12 @@ export interface ProgressAlertRequest {
      * @memberof ProgressAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlertRequest
+     */
+    sent?: boolean;
     /**
      * 
      * @type {boolean}
