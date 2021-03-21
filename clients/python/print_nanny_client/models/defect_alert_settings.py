@@ -39,7 +39,6 @@ class DefectAlertSettings(object):
         'alert_type': 'AlertTypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'enabled': 'bool',
-        'session': 'str',
         'polymorphic_ctype': 'int',
         'user': 'int'
     }
@@ -51,12 +50,11 @@ class DefectAlertSettings(object):
         'alert_type': 'alert_type',
         'alert_methods': 'alert_methods',
         'enabled': 'enabled',
-        'session': 'session',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, session=None, polymorphic_ctype=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, polymorphic_ctype=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlertSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -68,7 +66,6 @@ class DefectAlertSettings(object):
         self._alert_type = None
         self._alert_methods = None
         self._enabled = None
-        self._session = None
         self._polymorphic_ctype = None
         self._user = None
         self.discriminator = None
@@ -84,7 +81,6 @@ class DefectAlertSettings(object):
             self.alert_methods = alert_methods
         if enabled is not None:
             self.enabled = enabled
-        self.session = session
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
@@ -219,32 +215,6 @@ class DefectAlertSettings(object):
         """
 
         self._enabled = enabled
-
-    @property
-    def session(self):
-        """Gets the session of this DefectAlertSettings.  # noqa: E501
-
-
-        :return: The session of this DefectAlertSettings.  # noqa: E501
-        :rtype: str
-        """
-        return self._session
-
-    @session.setter
-    def session(self, session):
-        """Sets the session of this DefectAlertSettings.
-
-
-        :param session: The session of this DefectAlertSettings.  # noqa: E501
-        :type session: str
-        """
-        if self.local_vars_configuration.client_side_validation and session is None:  # noqa: E501
-            raise ValueError("Invalid value for `session`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                session is not None and len(session) > 255):
-            raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._session = session
 
     @property
     def polymorphic_ctype(self):

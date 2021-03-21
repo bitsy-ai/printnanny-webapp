@@ -55,7 +55,7 @@ class OctoPrintDevice(object):
         'pip_version': 'str',
         'virtualenv': 'str',
         'monitoring_active': 'bool',
-        'monitoring_mode': 'MonitoringModeEnum',
+        'monitoring_mode': 'MonitoringModeF13Enum',
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
@@ -698,7 +698,7 @@ class OctoPrintDevice(object):
 
 
         :return: The monitoring_mode of this OctoPrintDevice.  # noqa: E501
-        :rtype: MonitoringModeEnum
+        :rtype: MonitoringModeF13Enum
         """
         return self._monitoring_mode
 
@@ -708,7 +708,7 @@ class OctoPrintDevice(object):
 
 
         :param monitoring_mode: The monitoring_mode of this OctoPrintDevice.  # noqa: E501
-        :type monitoring_mode: MonitoringModeEnum
+        :type monitoring_mode: MonitoringModeF13Enum
         """
 
         self._monitoring_mode = monitoring_mode

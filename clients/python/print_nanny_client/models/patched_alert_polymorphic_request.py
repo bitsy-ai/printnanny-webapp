@@ -42,8 +42,10 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'str',
         'seen': 'bool',
         'title': 'str',
-        'dataframe': 'file',
+        'print_session': 'str',
+        'monitoring_mode': 'DefectAlertMonitoringModeEnum',
         'octoprint_device': 'int',
+        'user': 'int',
         'progress_percent': 'int',
         'device': 'int'
     }
@@ -58,8 +60,10 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'description',
         'seen': 'seen',
         'title': 'title',
-        'dataframe': 'dataframe',
+        'print_session': 'print_session',
+        'monitoring_mode': 'monitoring_mode',
         'octoprint_device': 'octoprint_device',
+        'user': 'user',
         'progress_percent': 'progress_percent',
         'device': 'device'
     }
@@ -67,7 +71,7 @@ class PatchedAlertPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, dataframe=None, octoprint_device=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, print_session=None, monitoring_mode=None, octoprint_device=None, user=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -82,8 +86,10 @@ class PatchedAlertPolymorphicRequest(object):
         self._description = None
         self._seen = None
         self._title = None
-        self._dataframe = None
+        self._print_session = None
+        self._monitoring_mode = None
         self._octoprint_device = None
+        self._user = None
         self._progress_percent = None
         self._device = None
         self.discriminator = 'type'
@@ -106,8 +112,13 @@ class PatchedAlertPolymorphicRequest(object):
             self.seen = seen
         if title is not None:
             self.title = title
-        self.dataframe = dataframe
+        if print_session is not None:
+            self.print_session = print_session
+        if monitoring_mode is not None:
+            self.monitoring_mode = monitoring_mode
         self.octoprint_device = octoprint_device
+        if user is not None:
+            self.user = user
         if progress_percent is not None:
             self.progress_percent = progress_percent
         if device is not None:
@@ -303,25 +314,46 @@ class PatchedAlertPolymorphicRequest(object):
         self._title = title
 
     @property
-    def dataframe(self):
-        """Gets the dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
+    def print_session(self):
+        """Gets the print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
 
 
-        :return: The dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :rtype: file
+        :return: The print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: str
         """
-        return self._dataframe
+        return self._print_session
 
-    @dataframe.setter
-    def dataframe(self, dataframe):
-        """Sets the dataframe of this PatchedAlertPolymorphicRequest.
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PatchedAlertPolymorphicRequest.
 
 
-        :param dataframe: The dataframe of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :type dataframe: file
+        :param print_session: The print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type print_session: str
         """
 
-        self._dataframe = dataframe
+        self._print_session = print_session
+
+    @property
+    def monitoring_mode(self):
+        """Gets the monitoring_mode of this PatchedAlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The monitoring_mode of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: DefectAlertMonitoringModeEnum
+        """
+        return self._monitoring_mode
+
+    @monitoring_mode.setter
+    def monitoring_mode(self, monitoring_mode):
+        """Sets the monitoring_mode of this PatchedAlertPolymorphicRequest.
+
+
+        :param monitoring_mode: The monitoring_mode of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type monitoring_mode: DefectAlertMonitoringModeEnum
+        """
+
+        self._monitoring_mode = monitoring_mode
 
     @property
     def octoprint_device(self):
@@ -343,6 +375,27 @@ class PatchedAlertPolymorphicRequest(object):
         """
 
         self._octoprint_device = octoprint_device
+
+    @property
+    def user(self):
+        """Gets the user of this PatchedAlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The user of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this PatchedAlertPolymorphicRequest.
+
+
+        :param user: The user of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type user: int
+        """
+
+        self._user = user
 
     @property
     def progress_percent(self):

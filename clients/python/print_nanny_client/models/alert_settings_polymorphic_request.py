@@ -44,7 +44,6 @@ class AlertSettingsPolymorphicRequest(object):
         'print_pause': 'list[PrintPauseEnum]',
         'print_resume': 'list[PrintResumeEnum]',
         'move_nozzle': 'list[MoveNozzleEnum]',
-        'session': 'str',
         'on_progress_percent': 'int'
     }
 
@@ -60,14 +59,13 @@ class AlertSettingsPolymorphicRequest(object):
         'print_pause': 'print_pause',
         'print_resume': 'print_resume',
         'move_nozzle': 'move_nozzle',
-        'session': 'session',
         'on_progress_percent': 'on_progress_percent'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, alert_type=None, alert_methods=None, enabled=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, session=None, on_progress_percent=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_type=None, alert_methods=None, enabled=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, on_progress_percent=None, local_vars_configuration=None):  # noqa: E501
         """AlertSettingsPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -84,7 +82,6 @@ class AlertSettingsPolymorphicRequest(object):
         self._print_pause = None
         self._print_resume = None
         self._move_nozzle = None
-        self._session = None
         self._on_progress_percent = None
         self.discriminator = 'type'
 
@@ -109,7 +106,6 @@ class AlertSettingsPolymorphicRequest(object):
             self.print_resume = print_resume
         if move_nozzle is not None:
             self.move_nozzle = move_nozzle
-        self.session = session
         if on_progress_percent is not None:
             self.on_progress_percent = on_progress_percent
 
@@ -363,32 +359,6 @@ class AlertSettingsPolymorphicRequest(object):
         """
 
         self._move_nozzle = move_nozzle
-
-    @property
-    def session(self):
-        """Gets the session of this AlertSettingsPolymorphicRequest.  # noqa: E501
-
-
-        :return: The session of this AlertSettingsPolymorphicRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._session
-
-    @session.setter
-    def session(self, session):
-        """Sets the session of this AlertSettingsPolymorphicRequest.
-
-
-        :param session: The session of this AlertSettingsPolymorphicRequest.  # noqa: E501
-        :type session: str
-        """
-        if self.local_vars_configuration.client_side_validation and session is None:  # noqa: E501
-            raise ValueError("Invalid value for `session`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                session is not None and len(session) > 255):
-            raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._session = session
 
     @property
     def on_progress_percent(self):

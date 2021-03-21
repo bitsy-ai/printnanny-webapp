@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **pip_version** | **str** |  | 
 **virtualenv** | **str** |  | 
 **monitoring_active** | **bool** |  | [optional] 
-**monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
+**monitoring_mode** | [**MonitoringModeF13Enum**](MonitoringModeF13Enum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 

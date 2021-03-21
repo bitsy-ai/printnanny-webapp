@@ -494,40 +494,28 @@ export enum CommandEnum {
 export interface DefectAlert {
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    print_session: string;
+    /**
+     * 
+     * @type {DefectAlertMonitoringModeEnum}
+     * @memberof DefectAlert
+     */
+    monitoring_mode: DefectAlertMonitoringModeEnum;
+    /**
+     * 
      * @type {number}
      * @memberof DefectAlert
      */
-    id?: number;
+    octoprint_device?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof DefectAlert
      */
-    time?: string;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof DefectAlert
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof DefectAlert
-     */
-    alert_type?: AlertTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    updated_dt?: string;
+    print_job?: number;
     /**
      * 
      * @type {boolean}
@@ -542,29 +530,21 @@ export interface DefectAlert {
     dismissed?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    dataframe?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlert
      */
-    polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    octoprint_device?: number | null;
+    user: number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum DefectAlertMonitoringModeEnum {
+    Active = 'ACTIVE',
+    Lite = 'LITE'
+}
+
 /**
  * 
  * @export
@@ -573,6 +553,24 @@ export interface DefectAlert {
 export interface DefectAlertRequest {
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlertRequest
+     */
+    print_session: string;
+    /**
+     * 
+     * @type {DefectAlertMonitoringModeEnum}
+     * @memberof DefectAlertRequest
+     */
+    monitoring_mode: DefectAlertMonitoringModeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof DefectAlertRequest
      */
@@ -585,16 +583,10 @@ export interface DefectAlertRequest {
     dismissed?: boolean;
     /**
      * 
-     * @type {any}
-     * @memberof DefectAlertRequest
-     */
-    dataframe?: any | null;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlertRequest
      */
-    octoprint_device?: number | null;
+    user: number;
 }
 /**
  * 
@@ -640,12 +632,6 @@ export interface DefectAlertSettings {
     enabled?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof DefectAlertSettings
-     */
-    session: string;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlertSettings
      */
@@ -681,12 +667,6 @@ export interface DefectAlertSettingsRequest {
      * @memberof DefectAlertSettingsRequest
      */
     enabled?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlertSettingsRequest
-     */
-    session: string;
 }
 /**
  * 
@@ -1068,7 +1048,7 @@ export interface ModelArtifact {
  * @export
  * @enum {string}
  */
-export enum MonitoringModeEnum {
+export enum MonitoringModeF13Enum {
     ActiveLearning = 'active_learning',
     Lite = 'lite'
 }
@@ -1301,10 +1281,10 @@ export interface OctoPrintDevice {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeEnum}
+     * @type {MonitoringModeF13Enum}
      * @memberof OctoPrintDevice
      */
-    monitoring_mode?: MonitoringModeEnum;
+    monitoring_mode?: MonitoringModeF13Enum;
     /**
      * 
      * @type {string}
@@ -1470,10 +1450,10 @@ export interface OctoPrintDeviceKey {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeEnum}
+     * @type {MonitoringModeF13Enum}
      * @memberof OctoPrintDeviceKey
      */
-    monitoring_mode?: MonitoringModeEnum;
+    monitoring_mode?: MonitoringModeF13Enum;
     /**
      * 
      * @type {string}
@@ -1615,10 +1595,10 @@ export interface OctoPrintDeviceRequest {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeEnum}
+     * @type {MonitoringModeF13Enum}
      * @memberof OctoPrintDeviceRequest
      */
-    monitoring_mode?: MonitoringModeEnum;
+    monitoring_mode?: MonitoringModeF13Enum;
     /**
      * 
      * @type {string}
@@ -2482,6 +2462,24 @@ export interface PatchedCommandAlertSettingsRequest {
 export interface PatchedDefectAlertRequest {
     /**
      * 
+     * @type {string}
+     * @memberof PatchedDefectAlertRequest
+     */
+    print_session?: string;
+    /**
+     * 
+     * @type {DefectAlertMonitoringModeEnum}
+     * @memberof PatchedDefectAlertRequest
+     */
+    monitoring_mode?: DefectAlertMonitoringModeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDefectAlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof PatchedDefectAlertRequest
      */
@@ -2494,16 +2492,10 @@ export interface PatchedDefectAlertRequest {
     dismissed?: boolean;
     /**
      * 
-     * @type {any}
-     * @memberof PatchedDefectAlertRequest
-     */
-    dataframe?: any | null;
-    /**
-     * 
      * @type {number}
      * @memberof PatchedDefectAlertRequest
      */
-    octoprint_device?: number | null;
+    user?: number;
 }
 /**
  * 
@@ -2529,12 +2521,6 @@ export interface PatchedDefectAlertSettingsRequest {
      * @memberof PatchedDefectAlertSettingsRequest
      */
     enabled?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDefectAlertSettingsRequest
-     */
-    session?: string;
 }
 /**
  * 
@@ -2709,10 +2695,10 @@ export interface PatchedOctoPrintDeviceRequest {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeEnum}
+     * @type {MonitoringModeF13Enum}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    monitoring_mode?: MonitoringModeEnum;
+    monitoring_mode?: MonitoringModeF13Enum;
     /**
      * 
      * @type {string}
@@ -5418,11 +5404,82 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate: async (defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertTrigger: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertTrigger.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertTrigger.');
+            }
+            const localVarPath = `/api/octoprint-devices/{id}/trigger_defect_alert/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
+            }
             const localVarPath = `/api/defect-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -5644,14 +5701,18 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate: async (id: number, defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsUpdate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsUpdate.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsUpdate.');
             }
             const localVarPath = `/api/defect-alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -5819,11 +5880,25 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+        async defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertTrigger(id, defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -5873,11 +5948,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+        async defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsUpdate(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -5967,11 +6042,21 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+        defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6005,11 +6090,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+        defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -6095,12 +6180,22 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -6133,12 +6228,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
 }
 
@@ -6239,12 +6334,24 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any) {
+    public defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6285,12 +6392,12 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any) {
+    public defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -8792,6 +8899,73 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertTrigger: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertTrigger.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertTrigger.');
+            }
+            const localVarPath = `/api/octoprint-devices/{id}/trigger_defect_alert/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -10687,6 +10861,20 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertTrigger(id, defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11137,6 +11325,16 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return RemoteControlApiFp(configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11468,6 +11666,16 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -11809,6 +12017,18 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

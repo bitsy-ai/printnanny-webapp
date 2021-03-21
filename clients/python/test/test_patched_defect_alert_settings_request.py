@@ -40,8 +40,7 @@ class TestPatchedDefectAlertSettingsRequest(unittest.TestCase):
                 alert_methods = [
                     'UI'
                     ], 
-                enabled = True, 
-                session = ''
+                enabled = True
             )
         else :
             return PatchedDefectAlertSettingsRequest(

@@ -35,18 +35,16 @@ class PatchedDefectAlertSettingsRequest(object):
     openapi_types = {
         'alert_type': 'AlertTypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
-        'enabled': 'bool',
-        'session': 'str'
+        'enabled': 'bool'
     }
 
     attribute_map = {
         'alert_type': 'alert_type',
         'alert_methods': 'alert_methods',
-        'enabled': 'enabled',
-        'session': 'session'
+        'enabled': 'enabled'
     }
 
-    def __init__(self, alert_type=None, alert_methods=None, enabled=None, session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_type=None, alert_methods=None, enabled=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDefectAlertSettingsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -55,7 +53,6 @@ class PatchedDefectAlertSettingsRequest(object):
         self._alert_type = None
         self._alert_methods = None
         self._enabled = None
-        self._session = None
         self.discriminator = None
 
         if alert_type is not None:
@@ -64,8 +61,6 @@ class PatchedDefectAlertSettingsRequest(object):
             self.alert_methods = alert_methods
         if enabled is not None:
             self.enabled = enabled
-        if session is not None:
-            self.session = session
 
     @property
     def alert_type(self):
@@ -131,30 +126,6 @@ class PatchedDefectAlertSettingsRequest(object):
         """
 
         self._enabled = enabled
-
-    @property
-    def session(self):
-        """Gets the session of this PatchedDefectAlertSettingsRequest.  # noqa: E501
-
-
-        :return: The session of this PatchedDefectAlertSettingsRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._session
-
-    @session.setter
-    def session(self, session):
-        """Sets the session of this PatchedDefectAlertSettingsRequest.
-
-
-        :param session: The session of this PatchedDefectAlertSettingsRequest.  # noqa: E501
-        :type session: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                session is not None and len(session) > 255):
-            raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._session = session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

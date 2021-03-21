@@ -33,203 +33,138 @@ class DefectAlert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'time': 'str',
-        'alert_method': 'AlertMethodEnum',
-        'alert_type': 'AlertTypeEnum',
-        'created_dt': 'datetime',
-        'updated_dt': 'datetime',
+        'print_session': 'str',
+        'monitoring_mode': 'DefectAlertMonitoringModeEnum',
+        'octoprint_device': 'int',
+        'print_job': 'int',
         'seen': 'bool',
         'dismissed': 'bool',
-        'dataframe': 'str',
-        'polymorphic_ctype': 'int',
-        'user': 'int',
-        'octoprint_device': 'int'
+        'user': 'int'
     }
 
     attribute_map = {
-        'id': 'id',
-        'time': 'time',
-        'alert_method': 'alert_method',
-        'alert_type': 'alert_type',
-        'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt',
+        'print_session': 'print_session',
+        'monitoring_mode': 'monitoring_mode',
+        'octoprint_device': 'octoprint_device',
+        'print_job': 'print_job',
         'seen': 'seen',
         'dismissed': 'dismissed',
-        'dataframe': 'dataframe',
-        'polymorphic_ctype': 'polymorphic_ctype',
-        'user': 'user',
-        'octoprint_device': 'octoprint_device'
+        'user': 'user'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, dataframe=None, polymorphic_ctype=None, user=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, monitoring_mode=None, octoprint_device=None, print_job=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._id = None
-        self._time = None
-        self._alert_method = None
-        self._alert_type = None
-        self._created_dt = None
-        self._updated_dt = None
+        self._print_session = None
+        self._monitoring_mode = None
+        self._octoprint_device = None
+        self._print_job = None
         self._seen = None
         self._dismissed = None
-        self._dataframe = None
-        self._polymorphic_ctype = None
         self._user = None
-        self._octoprint_device = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if time is not None:
-            self.time = time
-        if alert_method is not None:
-            self.alert_method = alert_method
-        if alert_type is not None:
-            self.alert_type = alert_type
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
+        self.print_session = print_session
+        self.monitoring_mode = monitoring_mode
+        self.octoprint_device = octoprint_device
+        if print_job is not None:
+            self.print_job = print_job
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-        self.dataframe = dataframe
-        if polymorphic_ctype is not None:
-            self.polymorphic_ctype = polymorphic_ctype
-        if user is not None:
-            self.user = user
-        self.octoprint_device = octoprint_device
+        self.user = user
 
     @property
-    def id(self):
-        """Gets the id of this DefectAlert.  # noqa: E501
+    def print_session(self):
+        """Gets the print_session of this DefectAlert.  # noqa: E501
 
 
-        :return: The id of this DefectAlert.  # noqa: E501
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this DefectAlert.
-
-
-        :param id: The id of this DefectAlert.  # noqa: E501
-        :type id: int
-        """
-
-        self._id = id
-
-    @property
-    def time(self):
-        """Gets the time of this DefectAlert.  # noqa: E501
-
-
-        :return: The time of this DefectAlert.  # noqa: E501
+        :return: The print_session of this DefectAlert.  # noqa: E501
         :rtype: str
         """
-        return self._time
+        return self._print_session
 
-    @time.setter
-    def time(self, time):
-        """Sets the time of this DefectAlert.
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this DefectAlert.
 
 
-        :param time: The time of this DefectAlert.  # noqa: E501
-        :type time: str
+        :param print_session: The print_session of this DefectAlert.  # noqa: E501
+        :type print_session: str
         """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
-        self._time = time
+        self._print_session = print_session
 
     @property
-    def alert_method(self):
-        """Gets the alert_method of this DefectAlert.  # noqa: E501
+    def monitoring_mode(self):
+        """Gets the monitoring_mode of this DefectAlert.  # noqa: E501
 
 
-        :return: The alert_method of this DefectAlert.  # noqa: E501
-        :rtype: AlertMethodEnum
+        :return: The monitoring_mode of this DefectAlert.  # noqa: E501
+        :rtype: DefectAlertMonitoringModeEnum
         """
-        return self._alert_method
+        return self._monitoring_mode
 
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this DefectAlert.
+    @monitoring_mode.setter
+    def monitoring_mode(self, monitoring_mode):
+        """Sets the monitoring_mode of this DefectAlert.
 
 
-        :param alert_method: The alert_method of this DefectAlert.  # noqa: E501
-        :type alert_method: AlertMethodEnum
+        :param monitoring_mode: The monitoring_mode of this DefectAlert.  # noqa: E501
+        :type monitoring_mode: DefectAlertMonitoringModeEnum
         """
+        if self.local_vars_configuration.client_side_validation and monitoring_mode is None:  # noqa: E501
+            raise ValueError("Invalid value for `monitoring_mode`, must not be `None`")  # noqa: E501
 
-        self._alert_method = alert_method
+        self._monitoring_mode = monitoring_mode
 
     @property
-    def alert_type(self):
-        """Gets the alert_type of this DefectAlert.  # noqa: E501
+    def octoprint_device(self):
+        """Gets the octoprint_device of this DefectAlert.  # noqa: E501
 
 
-        :return: The alert_type of this DefectAlert.  # noqa: E501
-        :rtype: AlertTypeEnum
+        :return: The octoprint_device of this DefectAlert.  # noqa: E501
+        :rtype: int
         """
-        return self._alert_type
+        return self._octoprint_device
 
-    @alert_type.setter
-    def alert_type(self, alert_type):
-        """Sets the alert_type of this DefectAlert.
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this DefectAlert.
 
 
-        :param alert_type: The alert_type of this DefectAlert.  # noqa: E501
-        :type alert_type: AlertTypeEnum
+        :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
+        :type octoprint_device: int
         """
 
-        self._alert_type = alert_type
+        self._octoprint_device = octoprint_device
 
     @property
-    def created_dt(self):
-        """Gets the created_dt of this DefectAlert.  # noqa: E501
+    def print_job(self):
+        """Gets the print_job of this DefectAlert.  # noqa: E501
 
 
-        :return: The created_dt of this DefectAlert.  # noqa: E501
-        :rtype: datetime
+        :return: The print_job of this DefectAlert.  # noqa: E501
+        :rtype: int
         """
-        return self._created_dt
+        return self._print_job
 
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this DefectAlert.
-
-
-        :param created_dt: The created_dt of this DefectAlert.  # noqa: E501
-        :type created_dt: datetime
-        """
-
-        self._created_dt = created_dt
-
-    @property
-    def updated_dt(self):
-        """Gets the updated_dt of this DefectAlert.  # noqa: E501
+    @print_job.setter
+    def print_job(self, print_job):
+        """Sets the print_job of this DefectAlert.
 
 
-        :return: The updated_dt of this DefectAlert.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._updated_dt
-
-    @updated_dt.setter
-    def updated_dt(self, updated_dt):
-        """Sets the updated_dt of this DefectAlert.
-
-
-        :param updated_dt: The updated_dt of this DefectAlert.  # noqa: E501
-        :type updated_dt: datetime
+        :param print_job: The print_job of this DefectAlert.  # noqa: E501
+        :type print_job: int
         """
 
-        self._updated_dt = updated_dt
+        self._print_job = print_job
 
     @property
     def seen(self):
@@ -274,48 +209,6 @@ class DefectAlert(object):
         self._dismissed = dismissed
 
     @property
-    def dataframe(self):
-        """Gets the dataframe of this DefectAlert.  # noqa: E501
-
-
-        :return: The dataframe of this DefectAlert.  # noqa: E501
-        :rtype: str
-        """
-        return self._dataframe
-
-    @dataframe.setter
-    def dataframe(self, dataframe):
-        """Sets the dataframe of this DefectAlert.
-
-
-        :param dataframe: The dataframe of this DefectAlert.  # noqa: E501
-        :type dataframe: str
-        """
-
-        self._dataframe = dataframe
-
-    @property
-    def polymorphic_ctype(self):
-        """Gets the polymorphic_ctype of this DefectAlert.  # noqa: E501
-
-
-        :return: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :rtype: int
-        """
-        return self._polymorphic_ctype
-
-    @polymorphic_ctype.setter
-    def polymorphic_ctype(self, polymorphic_ctype):
-        """Sets the polymorphic_ctype of this DefectAlert.
-
-
-        :param polymorphic_ctype: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :type polymorphic_ctype: int
-        """
-
-        self._polymorphic_ctype = polymorphic_ctype
-
-    @property
     def user(self):
         """Gets the user of this DefectAlert.  # noqa: E501
 
@@ -333,29 +226,10 @@ class DefectAlert(object):
         :param user: The user of this DefectAlert.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this DefectAlert.  # noqa: E501
-
-
-        :return: The octoprint_device of this DefectAlert.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this DefectAlert.
-
-
-        :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
-        :type octoprint_device: int
-        """
-
-        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

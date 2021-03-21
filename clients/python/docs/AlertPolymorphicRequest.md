@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **description** | **str** |  | 
 **seen** | **bool** |  | [optional] 
 **title** | **str** |  | 
-**dataframe** | **file** |  | [optional] 
+**print_session** | **str** |  | 
+**monitoring_mode** | [**DefectAlertMonitoringModeEnum**](DefectAlertMonitoringModeEnum.md) |  | 
 **octoprint_device** | **int** |  | [optional] 
+**user** | **int** |  | 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **device** | **int** |  | 
 

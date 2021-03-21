@@ -33,37 +33,112 @@ class DefectAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'print_session': 'str',
+        'monitoring_mode': 'DefectAlertMonitoringModeEnum',
+        'octoprint_device': 'int',
         'seen': 'bool',
         'dismissed': 'bool',
-        'dataframe': 'file',
-        'octoprint_device': 'int'
+        'user': 'int'
     }
 
     attribute_map = {
+        'print_session': 'print_session',
+        'monitoring_mode': 'monitoring_mode',
+        'octoprint_device': 'octoprint_device',
         'seen': 'seen',
         'dismissed': 'dismissed',
-        'dataframe': 'dataframe',
-        'octoprint_device': 'octoprint_device'
+        'user': 'user'
     }
 
-    def __init__(self, seen=None, dismissed=None, dataframe=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, monitoring_mode=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._print_session = None
+        self._monitoring_mode = None
+        self._octoprint_device = None
         self._seen = None
         self._dismissed = None
-        self._dataframe = None
-        self._octoprint_device = None
+        self._user = None
         self.discriminator = None
 
+        self.print_session = print_session
+        self.monitoring_mode = monitoring_mode
+        self.octoprint_device = octoprint_device
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-        self.dataframe = dataframe
-        self.octoprint_device = octoprint_device
+        self.user = user
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this DefectAlertRequest.  # noqa: E501
+
+
+        :return: The print_session of this DefectAlertRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this DefectAlertRequest.
+
+
+        :param print_session: The print_session of this DefectAlertRequest.  # noqa: E501
+        :type print_session: str
+        """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
+
+        self._print_session = print_session
+
+    @property
+    def monitoring_mode(self):
+        """Gets the monitoring_mode of this DefectAlertRequest.  # noqa: E501
+
+
+        :return: The monitoring_mode of this DefectAlertRequest.  # noqa: E501
+        :rtype: DefectAlertMonitoringModeEnum
+        """
+        return self._monitoring_mode
+
+    @monitoring_mode.setter
+    def monitoring_mode(self, monitoring_mode):
+        """Sets the monitoring_mode of this DefectAlertRequest.
+
+
+        :param monitoring_mode: The monitoring_mode of this DefectAlertRequest.  # noqa: E501
+        :type monitoring_mode: DefectAlertMonitoringModeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and monitoring_mode is None:  # noqa: E501
+            raise ValueError("Invalid value for `monitoring_mode`, must not be `None`")  # noqa: E501
+
+        self._monitoring_mode = monitoring_mode
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this DefectAlertRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this DefectAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this DefectAlertRequest.
+
+
+        :param octoprint_device: The octoprint_device of this DefectAlertRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def seen(self):
@@ -108,46 +183,27 @@ class DefectAlertRequest(object):
         self._dismissed = dismissed
 
     @property
-    def dataframe(self):
-        """Gets the dataframe of this DefectAlertRequest.  # noqa: E501
+    def user(self):
+        """Gets the user of this DefectAlertRequest.  # noqa: E501
 
 
-        :return: The dataframe of this DefectAlertRequest.  # noqa: E501
-        :rtype: file
-        """
-        return self._dataframe
-
-    @dataframe.setter
-    def dataframe(self, dataframe):
-        """Sets the dataframe of this DefectAlertRequest.
-
-
-        :param dataframe: The dataframe of this DefectAlertRequest.  # noqa: E501
-        :type dataframe: file
-        """
-
-        self._dataframe = dataframe
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this DefectAlertRequest.  # noqa: E501
-
-
-        :return: The octoprint_device of this DefectAlertRequest.  # noqa: E501
+        :return: The user of this DefectAlertRequest.  # noqa: E501
         :rtype: int
         """
-        return self._octoprint_device
+        return self._user
 
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this DefectAlertRequest.
+    @user.setter
+    def user(self, user):
+        """Sets the user of this DefectAlertRequest.
 
 
-        :param octoprint_device: The octoprint_device of this DefectAlertRequest.  # noqa: E501
-        :type octoprint_device: int
+        :param user: The user of this DefectAlertRequest.  # noqa: E501
+        :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
-        self._octoprint_device = octoprint_device
+        self._user = user
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
