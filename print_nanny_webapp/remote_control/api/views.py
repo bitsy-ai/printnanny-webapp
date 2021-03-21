@@ -38,7 +38,7 @@ from .serializers import (
     RemoteControlSnapshotCreateResponseSerializer,
 )
 
-from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
+from print_nanny_webapp.alerts.api.serializers import DefectAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintJob,
@@ -51,6 +51,7 @@ from print_nanny_webapp.remote_control.models import (
 from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (
     create_remote_control_command_alerts,
 )
+
 
 from django.contrib.auth import get_user_model
 
@@ -404,3 +405,23 @@ class OctoPrintDeviceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    @extend_schema(
+        tags=["alerts", "remote-control"],
+        request=DefectAlertSerializer,
+        operation_id="defect_alert_trigger",
+        responses={
+            201: DefectAlertSerializer,
+        },
+    )
+    @action(detail=True, methods=["POST"])
+    def trigger_defect_alert(self, request):
+        serializer = DefectAlertSerializer(data=request.data)
+        if serializer.is_valid():
+            if not request.user.id == serializer.validated_data["user"] and not request.user.is_superuser:
+                return Response({}, status=status.HTTP_403_FORBIDDEN)
+            
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
