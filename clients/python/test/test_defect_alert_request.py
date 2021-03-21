@@ -37,7 +37,6 @@ class TestDefectAlertRequest(unittest.TestCase):
         if include_optional :
             return DefectAlertRequest(
                 print_session = '', 
-                monitoring_mode = 'ACTIVE', 
                 octoprint_device = 56, 
                 seen = True, 
                 dismissed = True, 
@@ -46,7 +45,6 @@ class TestDefectAlertRequest(unittest.TestCase):
         else :
             return DefectAlertRequest(
                 print_session = '',
-                monitoring_mode = 'ACTIVE',
                 user = 56,
         )
 

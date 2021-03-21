@@ -51,7 +51,6 @@ class AlertPolymorphic(object):
         'snapshot_url': 'str',
         'title': 'str',
         'print_session': 'str',
-        'monitoring_mode': 'DefectAlertMonitoringModeEnum',
         'octoprint_device': 'int',
         'print_job': 'int',
         'progress_percent': 'int',
@@ -78,7 +77,6 @@ class AlertPolymorphic(object):
         'snapshot_url': 'snapshot_url',
         'title': 'title',
         'print_session': 'print_session',
-        'monitoring_mode': 'monitoring_mode',
         'octoprint_device': 'octoprint_device',
         'print_job': 'print_job',
         'progress_percent': 'progress_percent',
@@ -89,7 +87,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, print_session=None, monitoring_mode=None, octoprint_device=None, print_job=None, progress_percent=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, print_session=None, octoprint_device=None, print_job=None, progress_percent=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -113,7 +111,6 @@ class AlertPolymorphic(object):
         self._snapshot_url = None
         self._title = None
         self._print_session = None
-        self._monitoring_mode = None
         self._octoprint_device = None
         self._print_job = None
         self._progress_percent = None
@@ -148,7 +145,6 @@ class AlertPolymorphic(object):
             self.snapshot_url = snapshot_url
         self.title = title
         self.print_session = print_session
-        self.monitoring_mode = monitoring_mode
         self.octoprint_device = octoprint_device
         if print_job is not None:
             self.print_job = print_job
@@ -553,29 +549,6 @@ class AlertPolymorphic(object):
             raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
-
-    @property
-    def monitoring_mode(self):
-        """Gets the monitoring_mode of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The monitoring_mode of this AlertPolymorphic.  # noqa: E501
-        :rtype: DefectAlertMonitoringModeEnum
-        """
-        return self._monitoring_mode
-
-    @monitoring_mode.setter
-    def monitoring_mode(self, monitoring_mode):
-        """Sets the monitoring_mode of this AlertPolymorphic.
-
-
-        :param monitoring_mode: The monitoring_mode of this AlertPolymorphic.  # noqa: E501
-        :type monitoring_mode: DefectAlertMonitoringModeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and monitoring_mode is None:  # noqa: E501
-            raise ValueError("Invalid value for `monitoring_mode`, must not be `None`")  # noqa: E501
-
-        self._monitoring_mode = monitoring_mode
 
     @property
     def octoprint_device(self):

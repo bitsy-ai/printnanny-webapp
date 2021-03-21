@@ -34,7 +34,6 @@ class DefectAlertRequest(object):
     """
     openapi_types = {
         'print_session': 'str',
-        'monitoring_mode': 'DefectAlertMonitoringModeEnum',
         'octoprint_device': 'int',
         'seen': 'bool',
         'dismissed': 'bool',
@@ -43,21 +42,19 @@ class DefectAlertRequest(object):
 
     attribute_map = {
         'print_session': 'print_session',
-        'monitoring_mode': 'monitoring_mode',
         'octoprint_device': 'octoprint_device',
         'seen': 'seen',
         'dismissed': 'dismissed',
         'user': 'user'
     }
 
-    def __init__(self, print_session=None, monitoring_mode=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._print_session = None
-        self._monitoring_mode = None
         self._octoprint_device = None
         self._seen = None
         self._dismissed = None
@@ -65,7 +62,6 @@ class DefectAlertRequest(object):
         self.discriminator = None
 
         self.print_session = print_session
-        self.monitoring_mode = monitoring_mode
         self.octoprint_device = octoprint_device
         if seen is not None:
             self.seen = seen
@@ -95,29 +91,6 @@ class DefectAlertRequest(object):
             raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
-
-    @property
-    def monitoring_mode(self):
-        """Gets the monitoring_mode of this DefectAlertRequest.  # noqa: E501
-
-
-        :return: The monitoring_mode of this DefectAlertRequest.  # noqa: E501
-        :rtype: DefectAlertMonitoringModeEnum
-        """
-        return self._monitoring_mode
-
-    @monitoring_mode.setter
-    def monitoring_mode(self, monitoring_mode):
-        """Sets the monitoring_mode of this DefectAlertRequest.
-
-
-        :param monitoring_mode: The monitoring_mode of this DefectAlertRequest.  # noqa: E501
-        :type monitoring_mode: DefectAlertMonitoringModeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and monitoring_mode is None:  # noqa: E501
-            raise ValueError("Invalid value for `monitoring_mode`, must not be `None`")  # noqa: E501
-
-        self._monitoring_mode = monitoring_mode
 
     @property
     def octoprint_device(self):

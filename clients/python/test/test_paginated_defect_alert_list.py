@@ -42,7 +42,6 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.defect_alert.DefectAlert(
                         print_session = '', 
-                        monitoring_mode = 'ACTIVE', 
                         octoprint_device = 56, 
                         print_job = 56, 
                         seen = True, 

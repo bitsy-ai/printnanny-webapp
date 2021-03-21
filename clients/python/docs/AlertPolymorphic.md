@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **snapshot_url** | **str** |  | [optional] [readonly] 
 **title** | **str** |  | 
 **print_session** | **str** |  | 
-**monitoring_mode** | [**DefectAlertMonitoringModeEnum**](DefectAlertMonitoringModeEnum.md) |  | 
 **octoprint_device** | **int** |  | [optional] 
 **print_job** | **int** |  | [optional] [readonly] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 

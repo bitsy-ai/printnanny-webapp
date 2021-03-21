@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.defect_alert_monitoring_mode_enum import DefectAlertMonitoringModeEnum  # noqa: E501
+from print_nanny_client.models.monitoring_mode_enum import MonitoringModeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestDefectAlertMonitoringModeEnum(unittest.TestCase):
-    """DefectAlertMonitoringModeEnum unit test stubs"""
+class TestMonitoringModeEnum(unittest.TestCase):
+    """MonitoringModeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestDefectAlertMonitoringModeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DefectAlertMonitoringModeEnum
+        """Test MonitoringModeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.defect_alert_monitoring_mode_enum.DefectAlertMonitoringModeEnum()  # noqa: E501
+        # model = print_nanny_client.models.monitoring_mode_enum.MonitoringModeEnum()  # noqa: E501
         if include_optional :
-            return DefectAlertMonitoringModeEnum(
+            return MonitoringModeEnum(
             )
         else :
-            return DefectAlertMonitoringModeEnum(
+            return MonitoringModeEnum(
         )
 
-    def testDefectAlertMonitoringModeEnum(self):
-        """Test DefectAlertMonitoringModeEnum"""
+    def testMonitoringModeEnum(self):
+        """Test MonitoringModeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

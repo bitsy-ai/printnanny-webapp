@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **print_session** | **str** |  | [optional] 
-**monitoring_mode** | [**DefectAlertMonitoringModeEnum**](DefectAlertMonitoringModeEnum.md) |  | [optional] 
 **octoprint_device** | **int** |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 

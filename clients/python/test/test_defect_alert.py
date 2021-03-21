@@ -37,7 +37,6 @@ class TestDefectAlert(unittest.TestCase):
         if include_optional :
             return DefectAlert(
                 print_session = '', 
-                monitoring_mode = 'ACTIVE', 
                 octoprint_device = 56, 
                 print_job = 56, 
                 seen = True, 
@@ -47,7 +46,6 @@ class TestDefectAlert(unittest.TestCase):
         else :
             return DefectAlert(
                 print_session = '',
-                monitoring_mode = 'ACTIVE',
                 user = 56,
         )
 

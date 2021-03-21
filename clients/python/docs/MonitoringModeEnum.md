@@ -1,4 +1,4 @@
-# MonitoringModeF13Enum
+# MonitoringModeEnum
 
 ## Properties
 Name | Type | Description | Notes
