@@ -19,9 +19,6 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
-AlertPlot = apps.get_model("alerts", "AlertPlot")
-
 # minimum confidence score for detection to be accepted for post-processing
 CONFIDENCE_THRESHOLD = 0.5
 # minimum ratio of failed:neutral detections required to send email
@@ -42,6 +39,14 @@ FAILURES = {
     3: "spaghetti",
 }
 
+
+@shared_task
+def trigger_alert_task(alert_id):
+    Alert = apps.get_model("alerts", "Alert")
+    alert = Alert.get(id=alert_id)
+    
+    alert.trigger_alert()
+    
 
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())
@@ -67,6 +72,9 @@ def savgol_filter(x, fps):
 
 
 def create_alert_plot(filename, tmp_dir, function, title, description, alert_id):
+
+    ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+    AlertPlot = apps.get_model("alerts", "AlertPlot")
 
     with open(os.path.join(tmp_dir, filename + ".png"), "rb") as png_f:
         wrapped_png = ImageFile(png_f)
@@ -270,6 +278,7 @@ def create_health_rel_plot(confident_df, fail_df, alert_id, temp_dir, fps):
 
         notify_timecode = y[y <= intercept].index[alert_offset]
         notify_seconds = int(_seconds(notify_timecode, fps))
+        ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
         ManualVideoUploadAlert.objects.filter(id=alert_id).update(
             notify_seconds=notify_seconds, notify_timecode=notify_timecode
@@ -374,6 +383,7 @@ def calc_metrics(df, framerate):
 
 @shared_task
 def create_report_card(df, alert_id, temp_dir, fps, callback):
+    ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
     alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
 
@@ -400,6 +410,8 @@ def create_report_card(df, alert_id, temp_dir, fps, callback):
 
 @shared_task
 def render_alert_annotated_video(alert_id, temp_dir, fps):
+    ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+
     annotated_images = imread_collection(temp_dir + "/*.jpg")
     filename = f"alert_{alert_id}_annotated_video.mp4"
     file_path = os.path.join(temp_dir, filename)
