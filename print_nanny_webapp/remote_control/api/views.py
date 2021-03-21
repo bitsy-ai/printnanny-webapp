@@ -412,6 +412,8 @@ class OctoPrintDeviceViewSet(
         operation_id="defect_alerts_create",
         responses={
             201: DefectAlertSerializer,
+            400: DefectAlertSerializer
+            403: DefectAlertSerializer
         },
     )
     @action(detail=True, methods=["POST"])
