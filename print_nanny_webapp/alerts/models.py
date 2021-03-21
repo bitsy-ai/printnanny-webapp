@@ -146,7 +146,6 @@ class ProgressAlertSettings(AlertSettings):
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    session = models.CharField(max_length=255, db_index=True)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
@@ -229,10 +228,17 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
 
 class DefectAlert(Alert):
+
+    class MonitoringMode(models.TextChoices):
+        ACTIVE = "ACTIVE", "Active learning pipeline"
+        LITE = "LITE", "Lite/offline mode"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
     dataframe = models.FileField(upload_to=_upload_to, null=True)
+    monitoring_mode = models.CharField(max_length=255, choices=MonitoringMode.choices)
+    session = models.CharField(max_length=255, db_index=True)
 
 
 class ProgressAlert(Alert):
