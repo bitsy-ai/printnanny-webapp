@@ -500,12 +500,6 @@ export interface DefectAlert {
     print_session: string;
     /**
      * 
-     * @type {DefectAlertMonitoringModeEnum}
-     * @memberof DefectAlert
-     */
-    monitoring_mode: DefectAlertMonitoringModeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlert
      */
@@ -538,16 +532,6 @@ export interface DefectAlert {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum DefectAlertMonitoringModeEnum {
-    Active = 'ACTIVE',
-    Lite = 'LITE'
-}
-
-/**
- * 
- * @export
  * @interface DefectAlertRequest
  */
 export interface DefectAlertRequest {
@@ -557,12 +541,6 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     print_session: string;
-    /**
-     * 
-     * @type {DefectAlertMonitoringModeEnum}
-     * @memberof DefectAlertRequest
-     */
-    monitoring_mode: DefectAlertMonitoringModeEnum;
     /**
      * 
      * @type {number}
@@ -1048,7 +1026,7 @@ export interface ModelArtifact {
  * @export
  * @enum {string}
  */
-export enum MonitoringModeF13Enum {
+export enum MonitoringModeEnum {
     ActiveLearning = 'active_learning',
     Lite = 'lite'
 }
@@ -1281,10 +1259,10 @@ export interface OctoPrintDevice {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeF13Enum}
+     * @type {MonitoringModeEnum}
      * @memberof OctoPrintDevice
      */
-    monitoring_mode?: MonitoringModeF13Enum;
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}
@@ -1450,10 +1428,10 @@ export interface OctoPrintDeviceKey {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeF13Enum}
+     * @type {MonitoringModeEnum}
      * @memberof OctoPrintDeviceKey
      */
-    monitoring_mode?: MonitoringModeF13Enum;
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}
@@ -1595,10 +1573,10 @@ export interface OctoPrintDeviceRequest {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeF13Enum}
+     * @type {MonitoringModeEnum}
      * @memberof OctoPrintDeviceRequest
      */
-    monitoring_mode?: MonitoringModeF13Enum;
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}
@@ -2468,12 +2446,6 @@ export interface PatchedDefectAlertRequest {
     print_session?: string;
     /**
      * 
-     * @type {DefectAlertMonitoringModeEnum}
-     * @memberof PatchedDefectAlertRequest
-     */
-    monitoring_mode?: DefectAlertMonitoringModeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof PatchedDefectAlertRequest
      */
@@ -2695,10 +2667,10 @@ export interface PatchedOctoPrintDeviceRequest {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {MonitoringModeF13Enum}
+     * @type {MonitoringModeEnum}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    monitoring_mode?: MonitoringModeF13Enum;
+    monitoring_mode?: MonitoringModeEnum;
     /**
      * 
      * @type {string}

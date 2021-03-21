@@ -409,13 +409,13 @@ class OctoPrintDeviceViewSet(
     @extend_schema(
         tags=["alerts", "remote-control"],
         request=DefectAlertSerializer,
-        operation_id="defect_alert_trigger",
+        operation_id="defect_alerts_create",
         responses={
             201: DefectAlertSerializer,
         },
     )
     @action(detail=True, methods=["POST"])
-    def trigger_defect_alert(self, request):
+    def create_defect_alerts(self, request):
         serializer = DefectAlertSerializer(data=request.data)
         if serializer.is_valid():
             if not request.user.id == serializer.validated_data["user"] and not request.user.is_superuser:
