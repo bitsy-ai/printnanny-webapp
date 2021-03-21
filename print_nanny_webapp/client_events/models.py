@@ -162,7 +162,9 @@ class OctoPrintEvent(ClientEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
-
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+    )
 
 class PrintJobState(ClientEvent):
 
@@ -200,3 +202,7 @@ class PrintJobState(ClientEvent):
     print_job = models.ForeignKey(
         "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
     )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+    )
+
