@@ -101,25 +101,23 @@ class Alert(PolymorphicModel):
                 "data": JSONRenderer().render(data),
             },
         )
-
-
+    
+    
     def trigger_email_alert(self, data):
 
-        snapshot = self.command.snapshots.order_by("-created_dt").first()
+        device_url = reverse("dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id })
         merge_data = {
-            "SNAPSHOT_URL": snapshot.image.url,
+            "DEVICE_URL": device_url,
             "FIRST_NAME": self.user.first_name or "Maker",
-            "DEVICE_NAME": self.command.device.name,
-            "COMMAND": self.command.command,
-            "SUBTYPE": self.alert_subtype,
-            "PROGRESS": self.command.metadata.get("progress"),
+            "DEVICE_NAME": self.octoprint_device.name,
+            "ALERT_TYPE": self.get_alert_type_display(),
         }
 
         text_body = render_to_string(
-            "email/remote_control_command_body.txt", merge_data
+            "email/generic_alert_body.txt", merge_data
         )
         subject = render_to_string(
-            "email/remote_control_command_subject.txt", merge_data
+            "email/generic_alert_subject.txt", merge_data
         )
 
         message = AnymailMessage(
@@ -127,15 +125,18 @@ class Alert(PolymorphicModel):
             body=text_body,
             to=[self.user.email],
             tags=[
-                "RemoteControlCommandAlert",
-                self.command.command,
+                self.__class__,
                 self.alert_subtype,
                 f"User:{self.user.id}",
+                f"Device:{self.octoprint_device.id}"
             ],
         )
         message.send()
 
         return message
+
+
+
 
     def trigger_discord_alert(self, data):
 
@@ -328,6 +329,40 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         default=(AlertSubTypeChoices.FAILED,),
     )
 
+
+    def trigger_email_alert(self, data):
+
+        snapshot = self.command.snapshots.order_by("-created_dt").first()
+        merge_data = {
+            "SNAPSHOT_URL": snapshot.image.url,
+            "FIRST_NAME": self.user.first_name or "Maker",
+            "DEVICE_NAME": self.command.device.name,
+            "COMMAND": self.command.command,
+            "SUBTYPE": self.alert_subtype,
+            "PROGRESS": self.command.metadata.get("progress"),
+        }
+
+        text_body = render_to_string(
+            "email/remote_control_command_body.txt", merge_data
+        )
+        subject = render_to_string(
+            "email/remote_control_command_subject.txt", merge_data
+        )
+
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=[self.user.email],
+            tags=[
+                "RemoteControlCommandAlert",
+                self.command.command,
+                self.alert_subtype,
+                f"User:{self.user.id}",
+            ],
+        )
+        message.send()
+
+        return message
 
 ##
 # Alert Models

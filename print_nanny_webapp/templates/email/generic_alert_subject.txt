@@ -1,0 +1,1 @@
+🔔 [{{DEVICE_NAME}}] {{ ALERT_TYPE }} {% if ACTION %} {{ ACTION }} {% endif %}
