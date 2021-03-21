@@ -184,3 +184,11 @@ class AlertMethodSerializer(serializers.Serializer):
 
     label = serializers.CharField()
     value = serializers.CharField()
+
+class CreateDefectAlertSerializer(serializers.ModelSerializer):
+
+    print_session = serializers.StringRelatedField()
+    
+    class Meta:
+        model = DefectAlert
+        fields = "__all__"

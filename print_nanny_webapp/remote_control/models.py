@@ -296,6 +296,9 @@ class PrintSession(models.Model):
     device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
     session = models.CharField(max_length=255, db_index=True)
 
+    def __str__(self):
+        return self.session
+
 class PrintJob(models.Model):
     class Meta:
         unique_together = ("user", "name", "created_dt")
