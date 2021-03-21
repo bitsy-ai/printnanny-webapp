@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**commands_partial_update**](RemoteControlApi.md#commands_partial_update) | **PATCH** /api/commands/{id}/ | 
 [**commands_retrieve**](RemoteControlApi.md#commands_retrieve) | **GET** /api/commands/{id}/ | 
 [**commands_update**](RemoteControlApi.md#commands_update) | **PUT** /api/commands/{id}/ | 
-[**defect_alert_trigger**](RemoteControlApi.md#defect_alert_trigger) | **POST** /api/octoprint-devices/{id}/trigger_defect_alert/ | 
+[**defect_alerts_create2**](RemoteControlApi.md#defect_alerts_create2) | **POST** /api/octoprint-devices/{id}/create_defect_alerts/ | 
 [**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **POST** /api/gcode-files/ | 
 [**gcode_files_list**](RemoteControlApi.md#gcode_files_list) | **GET** /api/gcode-files/ | 
 [**gcode_files_partial_update**](RemoteControlApi.md#gcode_files_partial_update) | **PATCH** /api/gcode-files/{id}/ | 
@@ -514,8 +514,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **defect_alert_trigger**
-> DefectAlert defect_alert_trigger(id, defect_alert_request)
+# **defect_alerts_create2**
+> DefectAlert defect_alerts_create2(id, defect_alert_request)
 
 
 
@@ -558,10 +558,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alert_trigger(id, defect_alert_request)
+        api_response = api_instance.defect_alerts_create2(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->defect_alert_trigger: %s\n" % e)
+        print("Exception when calling RemoteControlApi->defect_alerts_create2: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -601,10 +601,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alert_trigger(id, defect_alert_request)
+        api_response = api_instance.defect_alerts_create2(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->defect_alert_trigger: %s\n" % e)
+        print("Exception when calling RemoteControlApi->defect_alerts_create2: %s\n" % e)
 ```
 
 ### Parameters
@@ -631,6 +631,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

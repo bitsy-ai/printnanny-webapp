@@ -5376,22 +5376,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertTrigger: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertTrigger.');
-            }
+        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'defectAlertRequest' is not null or undefined
             if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertTrigger.');
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
             }
-            const localVarPath = `/api/octoprint-devices/{id}/trigger_defect_alert/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/defect-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5443,16 +5437,22 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
+            }
             // verify required parameter 'defectAlertRequest' is not null or undefined
             if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
             }
-            const localVarPath = `/api/defect-alerts/`;
+            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5852,13 +5852,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertTrigger(id, defectAlertRequest, options);
+        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5866,12 +5865,13 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
+        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6014,22 +6014,22 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6152,22 +6152,22 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
-
-    /**
-     * 
      * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
     defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -6306,18 +6306,6 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6325,6 +6313,18 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8876,16 +8876,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertTrigger: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertTrigger.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
             }
             // verify required parameter 'defectAlertRequest' is not null or undefined
             if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertTrigger.');
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
             }
-            const localVarPath = `/api/octoprint-devices/{id}/trigger_defect_alert/`
+            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -10838,8 +10838,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertTrigger(id, defectAlertRequest, options);
+        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11302,8 +11302,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return RemoteControlApiFp(configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return RemoteControlApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11647,7 +11647,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -11999,8 +11999,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public defectAlertTrigger(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).defectAlertTrigger(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
