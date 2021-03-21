@@ -423,7 +423,8 @@ class OctoPrintDeviceViewSet(
             if not request.user.id == serializer.validated_data["user"] and not request.user.is_superuser:
                 return Response({}, status=status.HTTP_403_FORBIDDEN)
             
-            serializer.save()
+            instance = serializer.save()
+            instance.trigger_alert()
             return Response(serializer.data, status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
