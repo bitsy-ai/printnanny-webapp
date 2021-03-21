@@ -49,6 +49,7 @@ class AlertSettingsPolymorphic(object):
         'print_resume': 'list[PrintResumeEnum]',
         'move_nozzle': 'list[MoveNozzleEnum]',
         'user': 'int',
+        'session': 'str',
         'on_progress_percent': 'int'
     }
 
@@ -69,13 +70,14 @@ class AlertSettingsPolymorphic(object):
         'print_resume': 'print_resume',
         'move_nozzle': 'move_nozzle',
         'user': 'user',
+        'session': 'session',
         'on_progress_percent': 'on_progress_percent'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, polymorphic_ctype=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, user=None, on_progress_percent=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, alert_type=None, alert_methods=None, enabled=None, polymorphic_ctype=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, user=None, session=None, on_progress_percent=None, local_vars_configuration=None):  # noqa: E501
         """AlertSettingsPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -97,6 +99,7 @@ class AlertSettingsPolymorphic(object):
         self._print_resume = None
         self._move_nozzle = None
         self._user = None
+        self._session = None
         self._on_progress_percent = None
         self.discriminator = 'type'
 
@@ -131,6 +134,7 @@ class AlertSettingsPolymorphic(object):
             self.move_nozzle = move_nozzle
         if user is not None:
             self.user = user
+        self.session = session
         if on_progress_percent is not None:
             self.on_progress_percent = on_progress_percent
 
@@ -489,6 +493,32 @@ class AlertSettingsPolymorphic(object):
         """
 
         self._user = user
+
+    @property
+    def session(self):
+        """Gets the session of this AlertSettingsPolymorphic.  # noqa: E501
+
+
+        :return: The session of this AlertSettingsPolymorphic.  # noqa: E501
+        :rtype: str
+        """
+        return self._session
+
+    @session.setter
+    def session(self, session):
+        """Sets the session of this AlertSettingsPolymorphic.
+
+
+        :param session: The session of this AlertSettingsPolymorphic.  # noqa: E501
+        :type session: str
+        """
+        if self.local_vars_configuration.client_side_validation and session is None:  # noqa: E501
+            raise ValueError("Invalid value for `session`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                session is not None and len(session) > 255):
+            raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._session = session
 
     @property
     def on_progress_percent(self):

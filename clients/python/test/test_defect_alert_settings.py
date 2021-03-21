@@ -44,12 +44,14 @@ class TestDefectAlertSettings(unittest.TestCase):
                     'UI'
                     ], 
                 enabled = True, 
+                session = '', 
                 polymorphic_ctype = 56, 
                 user = 56
             )
         else :
             return DefectAlertSettings(
                 alert_type = 'COMMAND',
+                session = '',
         )
 
     def testDefectAlertSettings(self):

@@ -33,6 +33,7 @@ class PatchedPrintJobRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'print_session': 'int',
         'printer_profile': 'int',
         'name': 'str',
         'gcode_file': 'int',
@@ -41,6 +42,7 @@ class PatchedPrintJobRequest(object):
     }
 
     attribute_map = {
+        'print_session': 'print_session',
         'printer_profile': 'printer_profile',
         'name': 'name',
         'gcode_file': 'gcode_file',
@@ -48,12 +50,13 @@ class PatchedPrintJobRequest(object):
         'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, printer_profile=None, name=None, gcode_file=None, progress=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, printer_profile=None, name=None, gcode_file=None, progress=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintJobRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._print_session = None
         self._printer_profile = None
         self._name = None
         self._gcode_file = None
@@ -61,6 +64,7 @@ class PatchedPrintJobRequest(object):
         self._octoprint_device = None
         self.discriminator = None
 
+        self.print_session = print_session
         if printer_profile is not None:
             self.printer_profile = printer_profile
         if name is not None:
@@ -69,6 +73,27 @@ class PatchedPrintJobRequest(object):
         if progress is not None:
             self.progress = progress
         self.octoprint_device = octoprint_device
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this PatchedPrintJobRequest.  # noqa: E501
+
+
+        :return: The print_session of this PatchedPrintJobRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PatchedPrintJobRequest.
+
+
+        :param print_session: The print_session of this PatchedPrintJobRequest.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     @property
     def printer_profile(self):

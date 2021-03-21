@@ -640,6 +640,12 @@ export interface DefectAlertSettings {
     enabled?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlertSettings
+     */
+    session: string;
+    /**
+     * 
      * @type {number}
      * @memberof DefectAlertSettings
      */
@@ -675,6 +681,12 @@ export interface DefectAlertSettingsRequest {
      * @memberof DefectAlertSettingsRequest
      */
     enabled?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlertSettingsRequest
+     */
+    session: string;
 }
 /**
  * 
@@ -729,6 +741,12 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
+    config_file?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceCalibration
+     */
     url?: string;
 }
 /**
@@ -761,6 +779,12 @@ export interface DeviceCalibrationRequest {
      * @memberof DeviceCalibrationRequest
      */
     mask: Array<number>;
+    /**
+     * 
+     * @type {any}
+     * @memberof DeviceCalibrationRequest
+     */
+    config_file?: any | null;
 }
 /**
  * 
@@ -1676,6 +1700,12 @@ export interface OctoPrintEvent {
     event_type: OctoPrintEventEventTypeEnum;
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintEvent
+     */
+    print_session?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintEvent
      */
@@ -1774,6 +1804,12 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     event_type: OctoPrintEventEventTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintEventRequest
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -2493,6 +2529,12 @@ export interface PatchedDefectAlertSettingsRequest {
      * @memberof PatchedDefectAlertSettingsRequest
      */
     enabled?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDefectAlertSettingsRequest
+     */
+    session?: string;
 }
 /**
  * 
@@ -2524,6 +2566,12 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     mask?: Array<number>;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedDeviceCalibrationRequest
+     */
+    config_file?: any | null;
 }
 /**
  * 
@@ -2690,6 +2738,12 @@ export interface PatchedOctoPrintDeviceRequest {
  * @interface PatchedPrintJobRequest
  */
 export interface PatchedPrintJobRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintJobRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -3186,6 +3240,12 @@ export interface PrintJob {
      * @type {number}
      * @memberof PrintJob
      */
+    print_session?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJob
+     */
     user?: number;
     /**
      * 
@@ -3205,12 +3265,6 @@ export interface PrintJob {
      * @memberof PrintJob
      */
     gcode_file?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    last_seen?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3236,6 +3290,12 @@ export interface PrintJob {
  * @interface PrintJobRequest
  */
 export interface PrintJobRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -3357,6 +3417,12 @@ export interface PrintJobState {
      * @memberof PrintJobState
      */
     print_job?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobState
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {string}

@@ -40,11 +40,13 @@ class TestDefectAlertSettingsRequest(unittest.TestCase):
                 alert_methods = [
                     'UI'
                     ], 
-                enabled = True
+                enabled = True, 
+                session = ''
             )
         else :
             return DefectAlertSettingsRequest(
                 alert_type = 'COMMAND',
+                session = '',
         )
 
     def testDefectAlertSettingsRequest(self):

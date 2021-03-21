@@ -56,6 +56,7 @@ class TestPrintJobState(unittest.TestCase):
                     }, 
                 job_data_file = '', 
                 print_job = 56, 
+                print_session = 56, 
                 url = ''
             )
         else :

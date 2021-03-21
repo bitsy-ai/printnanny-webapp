@@ -42,6 +42,7 @@ class OctoPrintEvent(object):
         'client_version': 'str',
         'octoprint_version': 'str',
         'event_type': 'OctoPrintEventEventTypeEnum',
+        'print_session': 'int',
         'url': 'str'
     }
 
@@ -55,10 +56,11 @@ class OctoPrintEvent(object):
         'client_version': 'client_version',
         'octoprint_version': 'octoprint_version',
         'event_type': 'event_type',
+        'print_session': 'print_session',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, event_data=None, device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -73,6 +75,7 @@ class OctoPrintEvent(object):
         self._client_version = None
         self._octoprint_version = None
         self._event_type = None
+        self._print_session = None
         self._url = None
         self.discriminator = None
 
@@ -88,6 +91,7 @@ class OctoPrintEvent(object):
         self.client_version = client_version
         self.octoprint_version = octoprint_version
         self.event_type = event_type
+        self.print_session = print_session
         if url is not None:
             self.url = url
 
@@ -298,6 +302,27 @@ class OctoPrintEvent(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The print_session of this OctoPrintEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this OctoPrintEvent.
+
+
+        :param print_session: The print_session of this OctoPrintEvent.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     @property
     def url(self):

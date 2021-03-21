@@ -36,6 +36,7 @@ class TestPrintJobRequest(unittest.TestCase):
         # model = print_nanny_client.models.print_job_request.PrintJobRequest()  # noqa: E501
         if include_optional :
             return PrintJobRequest(
+                print_session = 56, 
                 printer_profile = 56, 
                 name = '', 
                 gcode_file = 56, 

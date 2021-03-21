@@ -52,6 +52,7 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                         client_version = '', 
                         octoprint_version = '', 
                         event_type = 'ClientAuthed', 
+                        print_session = 56, 
                         url = '', )
                     ]
             )

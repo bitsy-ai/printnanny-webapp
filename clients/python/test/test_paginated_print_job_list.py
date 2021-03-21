@@ -44,11 +44,11 @@ class TestPaginatedPrintJobList(unittest.TestCase):
                         id = 56, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        print_session = 56, 
                         user = 56, 
                         printer_profile = 56, 
                         name = '', 
                         gcode_file = 56, 
-                        last_seen = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         progress = {
                             'key' : null
                             }, 

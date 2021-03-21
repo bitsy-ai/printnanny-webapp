@@ -43,7 +43,8 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                 plugin_version = '', 
                 client_version = '', 
                 octoprint_version = '', 
-                event_type = 'ClientAuthed'
+                event_type = 'ClientAuthed', 
+                print_session = 56
             )
         else :
             return OctoPrintEventRequest(

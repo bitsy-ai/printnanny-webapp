@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**print_session** | **int** |  | [optional] 
 **printer_profile** | **int** |  | 
 **name** | **str** |  | 
 **gcode_file** | **int** |  | [optional] 

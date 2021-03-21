@@ -38,7 +38,8 @@ class OctoPrintEventRequest(object):
         'plugin_version': 'str',
         'client_version': 'str',
         'octoprint_version': 'str',
-        'event_type': 'OctoPrintEventEventTypeEnum'
+        'event_type': 'OctoPrintEventEventTypeEnum',
+        'print_session': 'int'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class OctoPrintEventRequest(object):
         'plugin_version': 'plugin_version',
         'client_version': 'client_version',
         'octoprint_version': 'octoprint_version',
-        'event_type': 'event_type'
+        'event_type': 'event_type',
+        'print_session': 'print_session'
     }
 
-    def __init__(self, event_data=None, device=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_data=None, device=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class OctoPrintEventRequest(object):
         self._client_version = None
         self._octoprint_version = None
         self._event_type = None
+        self._print_session = None
         self.discriminator = None
 
         self.event_data = event_data
@@ -70,6 +73,7 @@ class OctoPrintEventRequest(object):
         self.client_version = client_version
         self.octoprint_version = octoprint_version
         self.event_type = event_type
+        self.print_session = print_session
 
     @property
     def event_data(self):
@@ -215,6 +219,27 @@ class OctoPrintEventRequest(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The print_session of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this OctoPrintEventRequest.
+
+
+        :param print_session: The print_session of this OctoPrintEventRequest.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

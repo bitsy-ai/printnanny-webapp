@@ -47,6 +47,7 @@ class PrintJobState(object):
         'progress': 'dict(str, object)',
         'job_data_file': 'str',
         'print_job': 'int',
+        'print_session': 'int',
         'url': 'str'
     }
 
@@ -65,10 +66,11 @@ class PrintJobState(object):
         'progress': 'progress',
         'job_data_file': 'job_data_file',
         'print_job': 'print_job',
+        'print_session': 'print_session',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, print_job=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, event_data=None, device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, print_job=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintJobState - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -88,6 +90,7 @@ class PrintJobState(object):
         self._progress = None
         self._job_data_file = None
         self._print_job = None
+        self._print_session = None
         self._url = None
         self.discriminator = None
 
@@ -110,6 +113,7 @@ class PrintJobState(object):
             self.progress = progress
         self.job_data_file = job_data_file
         self.print_job = print_job
+        self.print_session = print_session
         if url is not None:
             self.url = url
 
@@ -430,6 +434,27 @@ class PrintJobState(object):
         """
 
         self._print_job = print_job
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this PrintJobState.  # noqa: E501
+
+
+        :return: The print_session of this PrintJobState.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PrintJobState.
+
+
+        :param print_session: The print_session of this PrintJobState.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     @property
     def url(self):

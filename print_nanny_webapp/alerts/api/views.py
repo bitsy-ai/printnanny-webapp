@@ -13,7 +13,7 @@ from rest_framework.decorators import action
 
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
-
+from django.apps import apps
 from .serializers import (
     ManualVideoUploadAlertSerializer,
     AlertSettingsPolymorphicSerializer,
@@ -51,6 +51,15 @@ class DefectAlertViewSet(
     def get_queryset(self):
         user = self.request.user
         return DefectAlert.objects.filter(user=user).all()
+
+    def perform_create(self, serializer):
+        # allow superuser service accounts to create defect alerts for any user
+        if self.requst.user.is_superuser:
+            serializer.save()
+        else:
+            serializer.save(user=self.request.user)
+            
+
 
 
 class AlertViewSet(

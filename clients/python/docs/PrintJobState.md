@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **progress** | **dict(str, object)** |  | [optional] 
 **job_data_file** | **str** |  | 
 **print_job** | **int** |  | [optional] 
+**print_session** | **int** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -36,11 +36,11 @@ class PrintJob(object):
         'id': 'int',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
+        'print_session': 'int',
         'user': 'int',
         'printer_profile': 'int',
         'name': 'str',
         'gcode_file': 'int',
-        'last_seen': 'datetime',
         'progress': 'dict(str, object)',
         'octoprint_device': 'int',
         'url': 'str'
@@ -50,17 +50,17 @@ class PrintJob(object):
         'id': 'id',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
+        'print_session': 'print_session',
         'user': 'user',
         'printer_profile': 'printer_profile',
         'name': 'name',
         'gcode_file': 'gcode_file',
-        'last_seen': 'last_seen',
         'progress': 'progress',
         'octoprint_device': 'octoprint_device',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, user=None, printer_profile=None, name=None, gcode_file=None, last_seen=None, progress=None, octoprint_device=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, print_session=None, user=None, printer_profile=None, name=None, gcode_file=None, progress=None, octoprint_device=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintJob - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -69,11 +69,11 @@ class PrintJob(object):
         self._id = None
         self._created_dt = None
         self._updated_dt = None
+        self._print_session = None
         self._user = None
         self._printer_profile = None
         self._name = None
         self._gcode_file = None
-        self._last_seen = None
         self._progress = None
         self._octoprint_device = None
         self._url = None
@@ -85,13 +85,12 @@ class PrintJob(object):
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
+        self.print_session = print_session
         if user is not None:
             self.user = user
         self.printer_profile = printer_profile
         self.name = name
         self.gcode_file = gcode_file
-        if last_seen is not None:
-            self.last_seen = last_seen
         if progress is not None:
             self.progress = progress
         self.octoprint_device = octoprint_device
@@ -160,6 +159,27 @@ class PrintJob(object):
         """
 
         self._updated_dt = updated_dt
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this PrintJob.  # noqa: E501
+
+
+        :return: The print_session of this PrintJob.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PrintJob.
+
+
+        :param print_session: The print_session of this PrintJob.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     @property
     def user(self):
@@ -251,27 +271,6 @@ class PrintJob(object):
         """
 
         self._gcode_file = gcode_file
-
-    @property
-    def last_seen(self):
-        """Gets the last_seen of this PrintJob.  # noqa: E501
-
-
-        :return: The last_seen of this PrintJob.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._last_seen
-
-    @last_seen.setter
-    def last_seen(self, last_seen):
-        """Sets the last_seen of this PrintJob.
-
-
-        :param last_seen: The last_seen of this PrintJob.  # noqa: E501
-        :type last_seen: datetime
-        """
-
-        self._last_seen = last_seen
 
     @property
     def progress(self):
