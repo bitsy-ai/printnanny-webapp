@@ -47,7 +47,7 @@ class DefectAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
     class Meta:
         model = DefectAlert
-        fields = ["print_session", "monitoring_mode", "octoprint_device", "print_job", "print_session", "seen", "dismissed", "user"]
+        fields = ["print_session", "octoprint_device", "print_job", "print_session", "seen", "dismissed", "user"]
         read_only_fields = ("alert_method", "alert_type", "polymorphic_ctype", "print_job")
 
 

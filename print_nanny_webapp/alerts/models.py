@@ -229,15 +229,10 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
 class DefectAlert(Alert):
 
-    class MonitoringMode(models.TextChoices):
-        ACTIVE = "ACTIVE", "Active learning pipeline"
-        LITE = "LITE", "Lite/offline mode"
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
     # dataframe = models.FileField(upload_to=_upload_to, null=True)
-    monitoring_mode = models.CharField(max_length=255, choices=MonitoringMode.choices)
     print_job = models.ForeignKey("remote_control.PrintJob", db_index=True, null=True, on_delete=models.CASCADE)
 
 
