@@ -61,6 +61,7 @@ table Metadata {
     session: string;
     client_version:string;
     model_version:string;
+    fpm: uint8;
 }
 
 table TelemetryEvent {
