@@ -13,6 +13,7 @@ from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
 
 from print_nanny_webapp.dashboard.views import DashboardView
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -20,6 +21,7 @@ User = get_user_model()
 
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
+    # template_name = "components/base-ui/cards.html"
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
@@ -28,7 +30,14 @@ class SubscriptionsListView(DashboardView):
         # Populate template with current subscriptions and stripe public key
         ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
         ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by('-created')
-        ctx["PLANS"] = [x.id for x in djstripe.models.Plan.objects.all()]
+        ctx["PRODUCTS"] = djstripe.models.Product.objects.filter(active=True)
+        for p in ctx["PRODUCTS"]:
+            p.prices_list = p.prices.filter(active=True)
+
+        try:
+            ctx["DEVICES"] = OctoPrintDevice.objects.get(user=self.request.user)
+        except OctoPrintDevice.DoesNotExist:
+            ctx["DEVICES"] = None
 
         return ctx
 

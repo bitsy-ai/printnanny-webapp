@@ -49,7 +49,11 @@
                     </ol>
                 </div>
                 <h4 class="page-title d-inline-block">Subscription History
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
+                    {% if DEVICES %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
+                    {% else %}
+                        &nbsp;| Please <a href="{% url 'dashboard:octoprint-devices:list' %}">add a device</a> to be able to subscribe!
+                    {% endif %}
                 </h4>
             </div>
         </div>
@@ -63,11 +67,30 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
+                    <p class="form-row" />
+                    <!-- <div class="col-md-12"> -->
+                    {% for product in PRODUCTS %}
+                        <div class="card d-block">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+                                <select name="device">
+                                    {% for device in DEVICES %}
+                                        <option value="{{ device.id }}">{{ device.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% for price in product.prices_list %}
+                                    <a href="javascript: void(0);" class="btn btn-primary">{{ price.human_readable_price }}</a>
+                                {% endfor %}
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    {% endfor %}
+                    <!-- </div> -->
 
-                    <p class="form-row">
-                        <label for="card-element">
-                            Credit or debit card
-                        </label>
+                    <p class="form-row" />
+                    <label for="card-element">
+                        Credit or debit card
+                    </label>
                     <div id="card-element">
                         <!-- A Stripe Element will be inserted here. -->
                     </div>
