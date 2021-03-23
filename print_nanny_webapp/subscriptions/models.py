@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 @receiver(post_save, sender=User, dispatch_uid="subscriptions_start_trial")
-def start_trial(sender, instance=None, **kwargs):
+def start_trial(sender, instance=None, created=False, **kwargs):
+    if not created:
+        return
     customer = djstripe.models.Customer.create(subscriber=instance)
     logger.info(f"Created stripe customer {customer.id}")
 

@@ -50,7 +50,7 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
 
     data = json.loads(request.body)
 
-    customer, created = djstripe.models.Customer.get_or_create(subscriber=request.user)
+    customer, created = djstripe.models.Customer.objects.get(subscriber=request.user)
     session = stripe.checkout.Session.create(
         customer=customer.id,
         payment_method_types=["card"],
