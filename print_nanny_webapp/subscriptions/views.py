@@ -5,12 +5,14 @@ import json, logging
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import get_user_model
 from django.template.response import TemplateResponse
+from django.shortcuts import redirect
 from djstripe import webhooks
 
 import djstripe.models
 import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
+from stripe.api_resources import line_item
 
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
@@ -44,82 +46,24 @@ class SubscriptionsListView(DashboardView):
 
 def subscriptions_payment_intent_view_create(request: HttpRequest):
     if request.method != "POST":
-        ctx = {"STRIPE_PUBLIC_KEY": djstripe.settings.STRIPE_PUBLIC_KEY}
-        return TemplateResponse(request, SubscriptionsListView.template_name, ctx)
+        return redirect("subscriptions:list")
 
-    intent = None
     data = json.loads(request.body)
-    # TODO: Put this in the form
-    data["plan"] = djstripe.models.Plan.objects.first().id
-    try:
-        customer, created = djstripe.models.Customer.get_or_create(subscriber=request.user)
-        # TODO: This is just ugly
-        if "payment_method_id" in data:
-            customer.add_payment_method(data["payment_method_id"])
 
-            # Using the Stripe API, create a subscription for this customer,
-            # using the customer's default payment source
-            stripe_subscription = stripe.Subscription.create(
-                customer=customer.id,
-                items=[{"plan": data["plan"]}],
-                collection_method="charge_automatically",
-                # tax_percent=15,
-                api_key=djstripe.settings.STRIPE_SECRET_KEY,
-            )
-
-            # Sync the Stripe API return data to the database,
-            # this way we don't need to wait for a webhook-triggered sync
-            subscription = djstripe.models.Subscription.sync_from_stripe_data(
-                stripe_subscription
-            )
-
-            intent = stripe_subscription
-        elif "payment_intent_id" in data:
-            intent = stripe.PaymentIntent.confirm(
-                data["payment_intent_id"],
-                api_key=djstripe.settings.STRIPE_SECRET_KEY,
-            )
-        else:
-            session = stripe.checkout.Session.create(
-                customer=customer.id,
-                payment_method_types=['card'],
-                # success_url='http://example.com/success',
-                # cancel_url='http://example.com/cancelled',
-                subscription_data={
-                    'items': [{
-                        'plan': request.data["plan"],
-                    }],
-                },
-            )
-            return JsonResponse({"session_id", session.id}, status=200)
-    except stripe.error.CardError as e:
-        # Display error on client
-        return_data = json.dumps({"error": e.user_message}), 400
-        return HttpResponse(
-            return_data[0], content_type="application/json", status=return_data[1]
-        )
-
-    # For more: https://stripe.com/docs/payments/intents#intent-statuses
-    if intent.status == "requires_action" and intent.next_action.type == "use_stripe_sdk":
-        # Tell the client to handle the action
-        return_data = (
-            json.dumps(
-                {
-                    "requires_action": True,
-                    "payment_intent_client_secret": intent.client_secret,
-                }
-            ),
-            200,
-        )
-    elif intent.status == "succeeded" or intent.status == "active":
-        # The payment did not need any additional actions and completed!
-        # Handle post-payment fulfillment
-        return_data = json.dumps({"success": True}), 200
-    else:
-        print(intent.status)
-        # Invalid status
-        return_data = json.dumps({"error": "Invalid PaymentIntent status"}), 500
-    return HttpResponse(return_data[0], content_type="application/json", status=return_data[1])
+    customer, created = djstripe.models.Customer.get_or_create(subscriber=request.user)
+    session = stripe.checkout.Session.create(
+        customer=customer.id,
+        payment_method_types=["card"],
+        mode="subscription",
+        success_url="http://localhost:8000/subscriptions",
+        cancel_url="http://localhost:8000/subscriptions/asdf",
+        line_items=[{
+            "price": data["price_id"],
+            "quantity": 1,
+        }],
+        api_key=djstripe.settings.STRIPE_SECRET_KEY,
+    )
+    return JsonResponse({"session_id": session.id}, status=200)
 
 @webhooks.handler("customer.subscription.trial_will_end")
 def subscriptions_trial_will_end(event):
