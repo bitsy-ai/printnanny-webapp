@@ -135,6 +135,7 @@ def subscriptions_payment_failed(event):
 # @webhooks.handler("charge.succeeded")
 @webhooks.handler("invoice.paid")
 def subscriptions_invoice_paid(event):
+    # TODO: When a trial was paid, do nothing
     logger.info(f"User {event.customer.email} paid subscription <X> successfully, sending email")
     user = User.objects.get(email=event.customer.email)
 
