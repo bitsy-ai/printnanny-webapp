@@ -22,11 +22,6 @@ def start_trial(sender, instance=None, created=False, **kwargs):
     customer.subscribe(plan, charge_immediately=False, trial_period_days=14)
 
 def is_trialing(self) -> bool:
-    # Even if one subscription is active normally, the user is not considered
-    # to be trialing
-    if self.is_subscribed():
-        return False
-
     customer = djstripe.models.Customer.objects.get(subscriber=self)
     subscriptions = customer.subscriptions.filter(
         current_period_end__gt=timezone.now(),
