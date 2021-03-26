@@ -69,7 +69,14 @@ class Metadata(object):
             return self._tab.String(o + self._tab.Pos)
         return None
 
-def MetadataStart(builder): builder.StartObject(7)
+    # Metadata
+    def Fpm(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def MetadataStart(builder): builder.StartObject(8)
 def MetadataAddUserId(builder, userId): builder.PrependUint32Slot(0, userId, 0)
 def MetadataAddDeviceId(builder, deviceId): builder.PrependUint32Slot(1, deviceId, 0)
 def MetadataAddDeviceCloudiotId(builder, deviceCloudiotId): builder.PrependUint64Slot(2, deviceCloudiotId, 0)
@@ -77,6 +84,7 @@ def MetadataAddTs(builder, ts): builder.PrependUint32Slot(3, ts, 0)
 def MetadataAddSession(builder, session): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(session), 0)
 def MetadataAddClientVersion(builder, clientVersion): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(clientVersion), 0)
 def MetadataAddModelVersion(builder, modelVersion): builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelVersion), 0)
+def MetadataAddFpm(builder, fpm): builder.PrependUint8Slot(7, fpm, 0)
 def MetadataEnd(builder): return builder.EndObject()
 
 
@@ -91,6 +99,7 @@ class MetadataT(object):
         self.session = None  # type: str
         self.clientVersion = None  # type: str
         self.modelVersion = None  # type: str
+        self.fpm = 0  # type: int
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -115,6 +124,7 @@ class MetadataT(object):
         self.session = metadata.Session()
         self.clientVersion = metadata.ClientVersion()
         self.modelVersion = metadata.ModelVersion()
+        self.fpm = metadata.Fpm()
 
     # MetadataT
     def Pack(self, builder):
@@ -135,5 +145,6 @@ class MetadataT(object):
             MetadataAddClientVersion(builder, clientVersion)
         if self.modelVersion is not None:
             MetadataAddModelVersion(builder, modelVersion)
+        MetadataAddFpm(builder, self.fpm)
         metadata = MetadataEnd(builder)
         return metadata
