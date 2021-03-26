@@ -47,6 +47,7 @@ class TestDeviceCalibration(unittest.TestCase):
                 mask = [
                     1.337
                     ], 
+                config_file = '', 
                 url = ''
             )
         else :

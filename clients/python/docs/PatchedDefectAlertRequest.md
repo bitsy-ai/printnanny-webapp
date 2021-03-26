@@ -3,10 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**print_session** | **str** |  | [optional] 
+**octoprint_device** | **int** |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
-**dataframe** | **file** |  | [optional] 
-**octoprint_device** | **int** |  | [optional] 
+**user** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

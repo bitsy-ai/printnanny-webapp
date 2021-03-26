@@ -40,6 +40,7 @@ class DeviceCalibration(object):
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
         'mask': 'list[float]',
+        'config_file': 'str',
         'url': 'str'
     }
 
@@ -51,10 +52,11 @@ class DeviceCalibration(object):
         'fpm': 'fpm',
         'coordinates': 'coordinates',
         'mask': 'mask',
+        'config_file': 'config_file',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, fpm=None, coordinates=None, mask=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, fpm=None, coordinates=None, mask=None, config_file=None, url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -67,6 +69,7 @@ class DeviceCalibration(object):
         self._fpm = None
         self._coordinates = None
         self._mask = None
+        self._config_file = None
         self._url = None
         self.discriminator = None
 
@@ -80,6 +83,7 @@ class DeviceCalibration(object):
         self.fpm = fpm
         self.coordinates = coordinates
         self.mask = mask
+        self.config_file = config_file
         if url is not None:
             self.url = url
 
@@ -239,6 +243,27 @@ class DeviceCalibration(object):
             raise ValueError("Invalid value for `mask`, must not be `None`")  # noqa: E501
 
         self._mask = mask
+
+    @property
+    def config_file(self):
+        """Gets the config_file of this DeviceCalibration.  # noqa: E501
+
+
+        :return: The config_file of this DeviceCalibration.  # noqa: E501
+        :rtype: str
+        """
+        return self._config_file
+
+    @config_file.setter
+    def config_file(self, config_file):
+        """Sets the config_file of this DeviceCalibration.
+
+
+        :param config_file: The config_file of this DeviceCalibration.  # noqa: E501
+        :type config_file: str
+        """
+
+        self._config_file = config_file
 
     @property
     def url(self):

@@ -40,6 +40,7 @@ class ProgressAlert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool',
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
@@ -56,6 +57,7 @@ class ProgressAlert(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed',
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
@@ -64,7 +66,7 @@ class ProgressAlert(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, progress_percent=None, polymorphic_ctype=None, user=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, progress_percent=None, polymorphic_ctype=None, user=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """ProgressAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -77,6 +79,7 @@ class ProgressAlert(object):
         self._created_dt = None
         self._updated_dt = None
         self._seen = None
+        self._sent = None
         self._dismissed = None
         self._progress_percent = None
         self._polymorphic_ctype = None
@@ -99,6 +102,8 @@ class ProgressAlert(object):
             self.updated_dt = updated_dt
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
         if progress_percent is not None:
@@ -256,6 +261,27 @@ class ProgressAlert(object):
         """
 
         self._seen = seen
+
+    @property
+    def sent(self):
+        """Gets the sent of this ProgressAlert.  # noqa: E501
+
+
+        :return: The sent of this ProgressAlert.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this ProgressAlert.
+
+
+        :param sent: The sent of this ProgressAlert.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
 
     @property
     def dismissed(self):

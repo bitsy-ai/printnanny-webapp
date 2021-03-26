@@ -36,21 +36,17 @@ class TestDefectAlert(unittest.TestCase):
         # model = print_nanny_client.models.defect_alert.DefectAlert()  # noqa: E501
         if include_optional :
             return DefectAlert(
-                id = 56, 
-                time = '', 
-                alert_method = None, 
-                alert_type = None, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                print_session = '', 
+                octoprint_device = 56, 
+                print_job = 56, 
                 seen = True, 
                 dismissed = True, 
-                dataframe = '', 
-                polymorphic_ctype = 56, 
-                user = 56, 
-                octoprint_device = 56
+                user = 56
             )
         else :
             return DefectAlert(
+                print_session = '',
+                user = 56,
         )
 
     def testDefectAlert(self):

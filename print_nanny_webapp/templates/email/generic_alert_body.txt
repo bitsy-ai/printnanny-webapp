@@ -1,0 +1,9 @@
+Hey {{FIRST_NAME }},
+
+Just wanted to let you know {{ ALERT_TYPE }} 
+
+Click the link below to manage {{ DEVICE_NAME }}.
+{{ DEVICE_URL }}
+
+Thanks,
+Print Nanny

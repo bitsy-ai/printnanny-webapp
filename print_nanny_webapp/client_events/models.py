@@ -23,52 +23,39 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class ClientEvent(PolymorphicModel):
+class ClientEvent(models.Model):
     """
     Base class for client-side events
     """
 
-    class ClientEventType(models.TextChoices):
-        PLUGIN = "plugin", "OctoPrint Nanny plugin events"
-        OCTOPRINT = "octoprint", "OctoPrint core and bundled plugins events"
-        PRINT_JOB = "octoprint_job", "OctoPrint print job events"
+    class Meta:
+        abstract = True
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    client_event_type = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=ClientEventType.choices,
-        default=ClientEventType.PLUGIN,
-    )
-    event_data = models.JSONField()
+    event_data = models.JSONField(null=True)
     device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
         on_delete=models.CASCADE,
-        null=True,
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     plugin_version = models.CharField(max_length=60)
+    client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
 
+def _upload_to(instance, filename):
+    datesegment = dateformat.format(timezone.now(), "Y/M/d/")
+    path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
+    logger.info("Uploading to path")
+    return path
+    
 
 class PluginEvent(ClientEvent):
     """
     Events emitted by OctoPrint Nanny plugin
     """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, client_event_type=ClientEvent.ClientEventType.PLUGIN, **kwargs
-        )
-
     class EventType(models.TextChoices):
-        BOUNDING_BOX_PREDICT = (
-            "bounding_box_predict",
-            "On-device bounding box prediction",
-        )
-        MONITORING_FRAME_RAW = "monitoring_frame_raw", "Raw frame buffer sample"
-        MONITORING_FRAME_POST = "monitoring_frame_post", "Post-processed frame buffer"
 
         DEVICE_REGISTER_START = "device_register_start", "Device registration started"
         DEVICE_REGISTER_DONE = "device_register_done", "Device registration succeeded"
@@ -98,13 +85,6 @@ class OctoPrintEvent(ClientEvent):
     """
     Events emitted by OctoPrint Core and plugins bundled with core
     """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args,
-            client_event_type=ClientEvent.ClientEventType.OCTOPRINT,
-            **kwargs
-        )
 
     class EventType(models.TextChoices):
         # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
@@ -182,13 +162,11 @@ class OctoPrintEvent(ClientEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
-
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+    )
 
 class PrintJobState(ClientEvent):
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, client_event_type=ClientEvent.ClientEventType.PRINT_JOB, **kwargs
-        )
 
     class EventType(models.TextChoices):
         # print job
@@ -216,11 +194,15 @@ class PrintJobState(ClientEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
-    state = JSONField(default={})
+    state = JSONField(default=dict)
     current_z = models.FloatField(null=True)
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
-    progress = JSONField(default={})
+    progress = JSONField(default=dict)
     job_data_file = models.CharField(max_length=255)
     print_job = models.ForeignKey(
         "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
     )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+    )
+

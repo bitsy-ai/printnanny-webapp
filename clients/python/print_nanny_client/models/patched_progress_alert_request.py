@@ -34,6 +34,7 @@ class PatchedProgressAlertRequest(object):
     """
     openapi_types = {
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool',
         'progress_percent': 'int',
         'octoprint_device': 'int',
@@ -42,19 +43,21 @@ class PatchedProgressAlertRequest(object):
 
     attribute_map = {
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed',
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
         'device': 'device'
     }
 
-    def __init__(self, seen=None, dismissed=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, sent=None, dismissed=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedProgressAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._seen = None
+        self._sent = None
         self._dismissed = None
         self._progress_percent = None
         self._octoprint_device = None
@@ -63,6 +66,8 @@ class PatchedProgressAlertRequest(object):
 
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
         if progress_percent is not None:
@@ -91,6 +96,27 @@ class PatchedProgressAlertRequest(object):
         """
 
         self._seen = seen
+
+    @property
+    def sent(self):
+        """Gets the sent of this PatchedProgressAlertRequest.  # noqa: E501
+
+
+        :return: The sent of this PatchedProgressAlertRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this PatchedProgressAlertRequest.
+
+
+        :param sent: The sent of this PatchedProgressAlertRequest.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
 
     @property
     def dismissed(self):

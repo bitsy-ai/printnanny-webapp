@@ -284,6 +284,20 @@ class PrinterProfile(models.Model):
     volume_origin = models.CharField(null=True, max_length=255)
     volume_width = models.FloatField(null=True)
 
+class PrintSession(models.Model):
+    '''
+        Represents a unique print job/session
+    '''
+    class Meta:
+        unique_together = ("device", "session")
+    
+    created_dt = models.DateTimeField(db_index=True)
+    end_dt = models.DateTimeField(null=True, db_index=True)
+    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
+    session = models.CharField(max_length=255, db_index=True)
+
+    def __str__(self):
+        return self.session
 
 class PrintJob(models.Model):
     class Meta:
@@ -291,20 +305,11 @@ class PrintJob(models.Model):
 
     created_dt = models.DateTimeField(auto_now_add=True)
     updated_dt = models.DateTimeField(auto_now=True)
-
+    print_session = models.ForeignKey(PrintSession, null=True, db_index=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
-
-    # last_status = models.CharField(
-    #     max_length=56,
-    #     choices=PrintJobState.EventType.choices,
-    #     default=PrintJobState.EventType.PRINT_STARTED,
-    # )
-    last_seen = models.DateTimeField(auto_now=True)
-
-    # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
     progress = JSONField(default={})
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
@@ -445,3 +450,4 @@ class RemoteControlCommand(models.Model):
     @property
     def octoprint_event_type(self):
         return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)
+

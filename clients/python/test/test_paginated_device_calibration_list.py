@@ -52,6 +52,7 @@ class TestPaginatedDeviceCalibrationList(unittest.TestCase):
                         mask = [
                             1.337
                             ], 
+                        config_file = '', 
                         url = '', )
                     ]
             )

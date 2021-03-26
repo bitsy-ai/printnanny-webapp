@@ -13,7 +13,7 @@ from rest_framework.decorators import action
 
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
-
+from django.apps import apps
 from .serializers import (
     ManualVideoUploadAlertSerializer,
     AlertSettingsPolymorphicSerializer,
@@ -24,6 +24,7 @@ from .serializers import (
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
     DefectAlertSerializer,
+    # CreateDefectAlertSerializer
 )
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
@@ -51,7 +52,6 @@ class DefectAlertViewSet(
     def get_queryset(self):
         user = self.request.user
         return DefectAlert.objects.filter(user=user).all()
-
 
 class AlertViewSet(
     GenericViewSet,

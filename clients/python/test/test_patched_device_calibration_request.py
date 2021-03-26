@@ -43,7 +43,8 @@ class TestPatchedDeviceCalibrationRequest(unittest.TestCase):
                     }, 
                 mask = [
                     1.337
-                    ]
+                    ], 
+                config_file = bytes(b'blah')
             )
         else :
             return PatchedDeviceCalibrationRequest(

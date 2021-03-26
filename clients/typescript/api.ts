@@ -297,133 +297,6 @@ export interface AuthTokenRequest {
 /**
  * 
  * @export
- * @interface ClientEvent
- */
-export interface ClientEvent {
-    /**
-     * 
-     * @type {number}
-     * @memberof ClientEvent
-     */
-    id?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ClientEvent
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEvent
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {ClientEventTypeEnum}
-     * @memberof ClientEvent
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ClientEvent
-     */
-    event_data: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof ClientEvent
-     */
-    device?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof ClientEvent
-     */
-    user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEvent
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEvent
-     */
-    url?: string;
-}
-/**
- * @type ClientEventPolymorphic
- * @export
- */
-export type ClientEventPolymorphic = ClientEvent | OctoPrintEvent | PluginEvent | PrintJobState;
-
-/**
- * @type ClientEventPolymorphicRequest
- * @export
- */
-export type ClientEventPolymorphicRequest = ClientEventRequest | OctoPrintEventRequest | PluginEventRequest | PrintJobStateRequest;
-
-/**
- * 
- * @export
- * @interface ClientEventRequest
- */
-export interface ClientEventRequest {
-    /**
-     * 
-     * @type {ClientEventTypeEnum}
-     * @memberof ClientEventRequest
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof ClientEventRequest
-     */
-    event_data: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof ClientEventRequest
-     */
-    device?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEventRequest
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ClientEventRequest
-     */
-    octoprint_version: string;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum ClientEventTypeEnum {
-    Plugin = 'plugin',
-    Octoprint = 'octoprint',
-    OctoprintJob = 'octoprint_job'
-}
-
-/**
- * 
- * @export
  * @interface CommandAlertSettings
  */
 export interface CommandAlertSettings {
@@ -621,40 +494,22 @@ export enum CommandEnum {
 export interface DefectAlert {
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    print_session: string;
+    /**
+     * 
      * @type {number}
      * @memberof DefectAlert
      */
-    id?: number;
+    octoprint_device?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof DefectAlert
      */
-    time?: string;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof DefectAlert
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof DefectAlert
-     */
-    alert_type?: AlertTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    updated_dt?: string;
+    print_job?: number;
     /**
      * 
      * @type {boolean}
@@ -669,28 +524,10 @@ export interface DefectAlert {
     dismissed?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof DefectAlert
-     */
-    dataframe?: string | null;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlert
      */
-    polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    octoprint_device?: number | null;
+    user: number;
 }
 /**
  * 
@@ -700,6 +537,18 @@ export interface DefectAlert {
 export interface DefectAlertRequest {
     /**
      * 
+     * @type {string}
+     * @memberof DefectAlertRequest
+     */
+    print_session: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof DefectAlertRequest
      */
@@ -712,16 +561,10 @@ export interface DefectAlertRequest {
     dismissed?: boolean;
     /**
      * 
-     * @type {any}
-     * @memberof DefectAlertRequest
-     */
-    dataframe?: any | null;
-    /**
-     * 
      * @type {number}
      * @memberof DefectAlertRequest
      */
-    octoprint_device?: number | null;
+    user: number;
 }
 /**
  * 
@@ -856,6 +699,12 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
+    config_file?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceCalibration
+     */
     url?: string;
 }
 /**
@@ -888,6 +737,67 @@ export interface DeviceCalibrationRequest {
      * @memberof DeviceCalibrationRequest
      */
     mask: Array<number>;
+    /**
+     * 
+     * @type {any}
+     * @memberof DeviceCalibrationRequest
+     */
+    config_file?: any | null;
+}
+/**
+ * 
+ * @export
+ * @interface Experiment
+ */
+export interface Experiment {
+    /**
+     * 
+     * @type {number}
+     * @memberof Experiment
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Experiment
+     */
+    active?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    hypothesis: string;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof Experiment
+     */
+    control?: Nested;
+    /**
+     * 
+     * @type {Array<Nested>}
+     * @memberof Experiment
+     */
+    treatments?: Array<Nested>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Experiment
+     */
+    notion_url?: string | null;
 }
 /**
  * 
@@ -1700,34 +1610,22 @@ export interface OctoPrintEvent {
     id?: number;
     /**
      * 
-     * @type {number}
-     * @memberof OctoPrintEvent
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintEvent
      */
     created_dt?: string;
     /**
      * 
-     * @type {ClientEventTypeEnum}
-     * @memberof OctoPrintEvent
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEvent
      */
-    event_data: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    device?: number | null;
+    device: number;
     /**
      * 
      * @type {number}
@@ -1745,19 +1643,25 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    octoprint_version: string;
+    client_version: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof OctoPrintEvent
      */
-    clientevent_ptr?: number;
+    octoprint_version: string;
     /**
      * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
     event_type: OctoPrintEventEventTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintEvent
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1824,28 +1728,28 @@ export enum OctoPrintEventEventTypeEnum {
 export interface OctoPrintEventRequest {
     /**
      * 
-     * @type {ClientEventTypeEnum}
-     * @memberof OctoPrintEventRequest
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
-    event_data: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    device?: number | null;
+    device: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintEventRequest
      */
     plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEventRequest
+     */
+    client_version: string;
     /**
      * 
      * @type {string}
@@ -1858,6 +1762,12 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     event_type: OctoPrintEventEventTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintEventRequest
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -1920,37 +1830,6 @@ export interface PaginatedAlertSettingsPolymorphicList {
      * @memberof PaginatedAlertSettingsPolymorphicList
      */
     results?: Array<AlertSettingsPolymorphic>;
-}
-/**
- * 
- * @export
- * @interface PaginatedClientEventPolymorphicList
- */
-export interface PaginatedClientEventPolymorphicList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedClientEventPolymorphicList
-     */
-    count?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedClientEventPolymorphicList
-     */
-    next?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedClientEventPolymorphicList
-     */
-    previous?: string | null;
-    /**
-     * 
-     * @type {Array<ClientEventPolymorphic>}
-     * @memberof PaginatedClientEventPolymorphicList
-     */
-    results?: Array<ClientEventPolymorphic>;
 }
 /**
  * 
@@ -2048,6 +1927,37 @@ export interface PaginatedExperimentDeviceConfigList {
 /**
  * 
  * @export
+ * @interface PaginatedExperimentList
+ */
+export interface PaginatedExperimentList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedExperimentList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedExperimentList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedExperimentList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<Experiment>}
+     * @memberof PaginatedExperimentList
+     */
+    results?: Array<Experiment>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedGcodeFileList
  */
 export interface PaginatedGcodeFileList {
@@ -2141,6 +2051,68 @@ export interface PaginatedOctoPrintDeviceList {
 /**
  * 
  * @export
+ * @interface PaginatedOctoPrintEventList
+ */
+export interface PaginatedOctoPrintEventList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedOctoPrintEventList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedOctoPrintEventList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedOctoPrintEventList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<OctoPrintEvent>}
+     * @memberof PaginatedOctoPrintEventList
+     */
+    results?: Array<OctoPrintEvent>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPluginEventList
+ */
+export interface PaginatedPluginEventList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPluginEventList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPluginEventList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPluginEventList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<PluginEvent>}
+     * @memberof PaginatedPluginEventList
+     */
+    results?: Array<PluginEvent>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedPrintJobList
  */
 export interface PaginatedPrintJobList {
@@ -2168,6 +2140,37 @@ export interface PaginatedPrintJobList {
      * @memberof PaginatedPrintJobList
      */
     results?: Array<PrintJob>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPrintJobStateList
+ */
+export interface PaginatedPrintJobStateList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPrintJobStateList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrintJobStateList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrintJobStateList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<PrintJobState>}
+     * @memberof PaginatedPrintJobStateList
+     */
+    results?: Array<PrintJobState>;
 }
 /**
  * 
@@ -2437,6 +2440,18 @@ export interface PatchedCommandAlertSettingsRequest {
 export interface PatchedDefectAlertRequest {
     /**
      * 
+     * @type {string}
+     * @memberof PatchedDefectAlertRequest
+     */
+    print_session?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDefectAlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof PatchedDefectAlertRequest
      */
@@ -2449,16 +2464,10 @@ export interface PatchedDefectAlertRequest {
     dismissed?: boolean;
     /**
      * 
-     * @type {any}
-     * @memberof PatchedDefectAlertRequest
-     */
-    dataframe?: any | null;
-    /**
-     * 
      * @type {number}
      * @memberof PatchedDefectAlertRequest
      */
-    octoprint_device?: number | null;
+    user?: number;
 }
 /**
  * 
@@ -2515,6 +2524,12 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     mask?: Array<number>;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedDeviceCalibrationRequest
+     */
+    config_file?: any | null;
 }
 /**
  * 
@@ -2681,6 +2696,12 @@ export interface PatchedOctoPrintDeviceRequest {
  * @interface PatchedPrintJobRequest
  */
 export interface PatchedPrintJobRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintJobRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -2869,6 +2890,12 @@ export interface PatchedProgressAlertRequest {
      * @memberof PatchedProgressAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedProgressAlertRequest
+     */
+    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -3081,34 +3108,22 @@ export interface PluginEvent {
     id?: number;
     /**
      * 
-     * @type {number}
-     * @memberof PluginEvent
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
      * @type {string}
      * @memberof PluginEvent
      */
     created_dt?: string;
     /**
      * 
-     * @type {ClientEventTypeEnum}
-     * @memberof PluginEvent
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
      * @type {{ [key: string]: any; }}
      * @memberof PluginEvent
      */
-    event_data: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
      * @memberof PluginEvent
      */
-    device?: number | null;
+    device: number;
     /**
      * 
      * @type {number}
@@ -3126,13 +3141,13 @@ export interface PluginEvent {
      * @type {string}
      * @memberof PluginEvent
      */
-    octoprint_version: string;
+    client_version: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PluginEvent
      */
-    clientevent_ptr?: number;
+    octoprint_version: string;
     /**
      * 
      * @type {PluginEventEventTypeEnum}
@@ -3152,9 +3167,6 @@ export interface PluginEvent {
  * @enum {string}
  */
 export enum PluginEventEventTypeEnum {
-    BoundingBoxPredict = 'bounding_box_predict',
-    MonitoringFrameRaw = 'monitoring_frame_raw',
-    MonitoringFramePost = 'monitoring_frame_post',
     DeviceRegisterStart = 'device_register_start',
     DeviceRegisterDone = 'device_register_done',
     DeviceRegisterFailed = 'device_register_failed',
@@ -3163,49 +3175,6 @@ export enum PluginEventEventTypeEnum {
     PrinterProfileSyncFailed = 'printer_profile_sync_failed'
 }
 
-/**
- * 
- * @export
- * @interface PluginEventRequest
- */
-export interface PluginEventRequest {
-    /**
-     * 
-     * @type {ClientEventTypeEnum}
-     * @memberof PluginEventRequest
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PluginEventRequest
-     */
-    event_data: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PluginEventRequest
-     */
-    device?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PluginEventRequest
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PluginEventRequest
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {PluginEventEventTypeEnum}
-     * @memberof PluginEventRequest
-     */
-    event_type: PluginEventEventTypeEnum;
-}
 /**
  * 
  * @export
@@ -3235,6 +3204,12 @@ export interface PrintJob {
      * @type {number}
      * @memberof PrintJob
      */
+    print_session?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJob
+     */
     user?: number;
     /**
      * 
@@ -3254,12 +3229,6 @@ export interface PrintJob {
      * @memberof PrintJob
      */
     gcode_file?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    last_seen?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3285,6 +3254,12 @@ export interface PrintJob {
  * @interface PrintJobRequest
  */
 export interface PrintJobRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -3330,34 +3305,22 @@ export interface PrintJobState {
     id?: number;
     /**
      * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
      * @type {string}
      * @memberof PrintJobState
      */
     created_dt?: string;
     /**
      * 
-     * @type {ClientEventTypeEnum}
-     * @memberof PrintJobState
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
      * @type {{ [key: string]: any; }}
      * @memberof PrintJobState
      */
-    event_data: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
      * @memberof PrintJobState
      */
-    device?: number | null;
+    device: number;
     /**
      * 
      * @type {number}
@@ -3375,13 +3338,13 @@ export interface PrintJobState {
      * @type {string}
      * @memberof PrintJobState
      */
-    octoprint_version: string;
+    client_version: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PrintJobState
      */
-    clientevent_ptr?: number;
+    octoprint_version: string;
     /**
      * 
      * @type {PrintJobStateEventTypeEnum}
@@ -3418,6 +3381,12 @@ export interface PrintJobState {
      * @memberof PrintJobState
      */
     print_job?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobState
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {string}
@@ -3441,79 +3410,6 @@ export enum PrintJobStateEventTypeEnum {
     PrintStarted = 'PrintStarted'
 }
 
-/**
- * 
- * @export
- * @interface PrintJobStateRequest
- */
-export interface PrintJobStateRequest {
-    /**
-     * 
-     * @type {ClientEventTypeEnum}
-     * @memberof PrintJobStateRequest
-     */
-    client_event_type?: ClientEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobStateRequest
-     */
-    event_data: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobStateRequest
-     */
-    device?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobStateRequest
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobStateRequest
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {PrintJobStateEventTypeEnum}
-     * @memberof PrintJobStateRequest
-     */
-    event_type: PrintJobStateEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobStateRequest
-     */
-    state?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobStateRequest
-     */
-    current_z?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobStateRequest
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobStateRequest
-     */
-    job_data_file: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobStateRequest
-     */
-    print_job?: number | null;
-}
 /**
  * 
  * @export
@@ -3919,6 +3815,12 @@ export interface ProgressAlert {
      * @type {boolean}
      * @memberof ProgressAlert
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlert
+     */
     dismissed?: boolean;
     /**
      * Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
@@ -3963,6 +3865,12 @@ export interface ProgressAlertRequest {
      * @memberof ProgressAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProgressAlertRequest
+     */
+    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -5486,12 +5394,83 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate: async (defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
+            }
             const localVarPath = `/api/defect-alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
+            }
+            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5712,14 +5691,18 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate: async (id: number, defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsUpdate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsUpdate.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsUpdate.');
             }
             const localVarPath = `/api/defect-alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -5887,12 +5870,26 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5941,11 +5938,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+        async defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsUpdate(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6035,12 +6032,22 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+        defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6073,11 +6080,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+        defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -6163,12 +6170,22 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -6201,12 +6218,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
 }
 
@@ -6307,13 +6324,25 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsCreate(defectAlertRequest?: DefectAlertRequest, options?: any) {
+    public defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6353,12 +6382,12 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any) {
+    public defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6578,105 +6607,15 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
+         * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintCoreEventsEnumRetrieve2: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/plugin-events/enum/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
+        octoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintEventRequest' is not null or undefined
+            if (octoPrintEventRequest === null || octoPrintEventRequest === undefined) {
+                throw new RequiredError('octoPrintEventRequest','Required parameter octoPrintEventRequest was null or undefined when calling octoprintEventsCreate.');
             }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintCoreEventsEnumRetrieve3: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/print-job-states/enum/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintEventsCreate: async (clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -6714,13 +6653,13 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof clientEventPolymorphicRequest !== 'string';
+            const nonString = typeof octoPrintEventRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(clientEventPolymorphicRequest !== undefined ? clientEventPolymorphicRequest : {})
-                : (clientEventPolymorphicRequest || "");
+                ? JSON.stringify(octoPrintEventRequest !== undefined ? octoPrintEventRequest : {})
+                : (octoPrintEventRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6834,12 +6773,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pluginEventsCreate: async (clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/plugin-events/`;
+        pluginEventsEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/plugin-events/enum/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -6847,7 +6785,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -6864,8 +6802,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             const queryParameters = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 queryParameters.set(key, localVarQueryParameter[key]);
@@ -6876,13 +6812,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof clientEventPolymorphicRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(clientEventPolymorphicRequest !== undefined ? clientEventPolymorphicRequest : {})
-                : (clientEventPolymorphicRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6943,7 +6872,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6996,12 +6925,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesCreate: async (clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/print-job-states/`;
+        printJobEventEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-job-states/enum/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -7009,7 +6937,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -7026,8 +6954,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             const queryParameters = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 queryParameters.set(key, localVarQueryParameter[key]);
@@ -7038,13 +6964,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof clientEventPolymorphicRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(clientEventPolymorphicRequest !== undefined ? clientEventPolymorphicRequest : {})
-                : (clientEventPolymorphicRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -7105,7 +7024,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this print job state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7179,36 +7098,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintCoreEventsEnumRetrieve2(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintCoreEventsEnumRetrieve2(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async octoprintCoreEventsEnumRetrieve3(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintCoreEventsEnumRetrieve3(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async octoprintEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsCreate(clientEventPolymorphicRequest, options);
+        async octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsCreate(octoPrintEventRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7220,7 +7115,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedClientEventPolymorphicList>> {
+        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7233,7 +7128,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
+        async octoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).octoprintEventsRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7242,12 +7137,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pluginEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).pluginEventsCreate(clientEventPolymorphicRequest, options);
+        async pluginEventsEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).pluginEventsEnumRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7259,7 +7153,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedClientEventPolymorphicList>> {
+        async pluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPluginEventList>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).pluginEventsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7268,11 +7162,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
+        async pluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PluginEvent>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).pluginEventsRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7281,12 +7175,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesCreate(clientEventPolymorphicRequest, options);
+        async printJobEventEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobEventEnumRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7298,7 +7191,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedClientEventPolymorphicList>> {
+        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobStateList>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7307,11 +7200,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this print job state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClientEventPolymorphic>> {
+        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJobState>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7337,28 +7230,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
+         * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintCoreEventsEnumRetrieve2(options?: any): AxiosPromise<string> {
-            return EventsApiFp(configuration).octoprintCoreEventsEnumRetrieve2(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintCoreEventsEnumRetrieve3(options?: any): AxiosPromise<string> {
-            return EventsApiFp(configuration).octoprintCoreEventsEnumRetrieve3(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic> {
-            return EventsApiFp(configuration).octoprintEventsCreate(clientEventPolymorphicRequest, options).then((request) => request(axios, basePath));
+        octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
+            return EventsApiFp(configuration).octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7366,7 +7243,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList> {
+        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
             return EventsApiFp(configuration).octoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7375,17 +7252,16 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic> {
+        octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
             return EventsApiFp(configuration).octoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pluginEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic> {
-            return EventsApiFp(configuration).pluginEventsCreate(clientEventPolymorphicRequest, options).then((request) => request(axios, basePath));
+        pluginEventsEnumRetrieve(options?: any): AxiosPromise<string> {
+            return EventsApiFp(configuration).pluginEventsEnumRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7393,26 +7269,25 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList> {
+        pluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPluginEventList> {
             return EventsApiFp(configuration).pluginEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pluginEventsRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic> {
+        pluginEventsRetrieve(id: number, options?: any): AxiosPromise<PluginEvent> {
             return EventsApiFp(configuration).pluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic> {
-            return EventsApiFp(configuration).printJobStatesCreate(clientEventPolymorphicRequest, options).then((request) => request(axios, basePath));
+        printJobEventEnumRetrieve(options?: any): AxiosPromise<string> {
+            return EventsApiFp(configuration).printJobEventEnumRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7420,16 +7295,16 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList> {
+        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobStateList> {
             return EventsApiFp(configuration).printJobStatesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print event.
+         * @param {number} id A unique integer value identifying this print job state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic> {
+        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintJobState> {
             return EventsApiFp(configuration).printJobStatesRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
@@ -7451,28 +7326,12 @@ export interface EventsApiInterface {
 
     /**
      * 
+     * @param {OctoPrintEventRequest} octoPrintEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    octoprintCoreEventsEnumRetrieve2(options?: any): AxiosPromise<string>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    octoprintCoreEventsEnumRetrieve3(options?: any): AxiosPromise<string>;
-
-    /**
-     * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    octoprintEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -7481,7 +7340,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList>;
+    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
 
     /**
      * 
@@ -7490,16 +7349,15 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    pluginEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    pluginEventsEnumRetrieve(options?: any): AxiosPromise<string>;
 
     /**
      * 
@@ -7508,25 +7366,24 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    pluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList>;
+    pluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPluginEventList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print event.
+     * @param {number} id A unique integer value identifying this plugin event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    pluginEventsRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    pluginEventsRetrieve(id: number, options?: any): AxiosPromise<PluginEvent>;
 
     /**
      * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    printJobEventEnumRetrieve(options?: any): AxiosPromise<string>;
 
     /**
      * 
@@ -7535,16 +7392,16 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedClientEventPolymorphicList>;
+    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobStateList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print event.
+     * @param {number} id A unique integer value identifying this print job state.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<ClientEventPolymorphic>;
+    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintJobState>;
 
 }
 
@@ -7567,33 +7424,13 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
+     * @param {OctoPrintEventRequest} octoPrintEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public octoprintCoreEventsEnumRetrieve2(options?: any) {
-        return EventsApiFp(this.configuration).octoprintCoreEventsEnumRetrieve2(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public octoprintCoreEventsEnumRetrieve3(options?: any) {
-        return EventsApiFp(this.configuration).octoprintCoreEventsEnumRetrieve3(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public octoprintEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any) {
-        return EventsApiFp(this.configuration).octoprintEventsCreate(clientEventPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
+        return EventsApiFp(this.configuration).octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7620,13 +7457,12 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public pluginEventsCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any) {
-        return EventsApiFp(this.configuration).pluginEventsCreate(clientEventPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public pluginEventsEnumRetrieve(options?: any) {
+        return EventsApiFp(this.configuration).pluginEventsEnumRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7642,7 +7478,7 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print event.
+     * @param {number} id A unique integer value identifying this plugin event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
@@ -7653,13 +7489,12 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {ClientEventPolymorphicRequest} [clientEventPolymorphicRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public printJobStatesCreate(clientEventPolymorphicRequest?: ClientEventPolymorphicRequest, options?: any) {
-        return EventsApiFp(this.configuration).printJobStatesCreate(clientEventPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public printJobEventEnumRetrieve(options?: any) {
+        return EventsApiFp(this.configuration).printJobEventEnumRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7675,7 +7510,7 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print event.
+     * @param {number} id A unique integer value identifying this print job state.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
@@ -8099,6 +7934,111 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        experimentsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/experiments/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling experimentsRetrieve.');
+            }
+            const localVarPath = `/api/experiments/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         modelArtifactsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/model-artifacts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8306,6 +8246,32 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        async experimentsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentList>> {
+            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async experimentsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Experiment>> {
+            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         async modelArtifactsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedModelArtifactList>> {
             const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).modelArtifactsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
@@ -8406,6 +8372,24 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
+        experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList> {
+            return MlOpsApiFp(configuration).experimentsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment> {
+            return MlOpsApiFp(configuration).experimentsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
         modelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList> {
             return MlOpsApiFp(configuration).modelArtifactsList(page, options).then((request) => request(axios, basePath));
         },
@@ -8491,6 +8475,24 @@ export interface MlOpsApiInterface {
      * @memberof MlOpsApiInterface
      */
     experimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this experiment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment>;
 
     /**
      * 
@@ -8596,6 +8598,28 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      */
     public experimentDeviceConfigsRetrieve(id: number, options?: any) {
         return MlOpsApiFp(this.configuration).experimentDeviceConfigsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public experimentsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this experiment.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public experimentsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8857,6 +8881,73 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarRequestOptions.data =  needsSerialization
                 ? JSON.stringify(remoteControlCommandRequest !== undefined ? remoteControlCommandRequest : {})
                 : (remoteControlCommandRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
+            }
+            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof defectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
+                : (defectAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -10760,6 +10851,20 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11210,6 +11315,16 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return RemoteControlApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11541,6 +11656,16 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -11882,6 +12007,18 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -36,17 +36,19 @@ class DeviceCalibrationRequest(object):
         'octoprint_device': 'int',
         'fpm': 'int',
         'coordinates': 'dict(str, object)',
-        'mask': 'list[float]'
+        'mask': 'list[float]',
+        'config_file': 'file'
     }
 
     attribute_map = {
         'octoprint_device': 'octoprint_device',
         'fpm': 'fpm',
         'coordinates': 'coordinates',
-        'mask': 'mask'
+        'mask': 'mask',
+        'config_file': 'config_file'
     }
 
-    def __init__(self, octoprint_device=None, fpm=None, coordinates=None, mask=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, fpm=None, coordinates=None, mask=None, config_file=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibrationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -56,12 +58,14 @@ class DeviceCalibrationRequest(object):
         self._fpm = None
         self._coordinates = None
         self._mask = None
+        self._config_file = None
         self.discriminator = None
 
         self.octoprint_device = octoprint_device
         self.fpm = fpm
         self.coordinates = coordinates
         self.mask = mask
+        self.config_file = config_file
 
     @property
     def octoprint_device(self):
@@ -156,6 +160,27 @@ class DeviceCalibrationRequest(object):
             raise ValueError("Invalid value for `mask`, must not be `None`")  # noqa: E501
 
         self._mask = mask
+
+    @property
+    def config_file(self):
+        """Gets the config_file of this DeviceCalibrationRequest.  # noqa: E501
+
+
+        :return: The config_file of this DeviceCalibrationRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._config_file
+
+    @config_file.setter
+    def config_file(self, config_file):
+        """Sets the config_file of this DeviceCalibrationRequest.
+
+
+        :param config_file: The config_file of this DeviceCalibrationRequest.  # noqa: E501
+        :type config_file: file
+        """
+
+        self._config_file = config_file
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

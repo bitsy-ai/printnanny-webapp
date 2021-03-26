@@ -33,65 +33,47 @@ class OctoPrintEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'client_event_type': 'ClientEventTypeEnum',
         'event_data': 'dict(str, object)',
         'device': 'int',
         'plugin_version': 'str',
+        'client_version': 'str',
         'octoprint_version': 'str',
-        'event_type': 'OctoPrintEventEventTypeEnum'
+        'event_type': 'OctoPrintEventEventTypeEnum',
+        'print_session': 'int'
     }
 
     attribute_map = {
-        'client_event_type': 'client_event_type',
         'event_data': 'event_data',
         'device': 'device',
         'plugin_version': 'plugin_version',
+        'client_version': 'client_version',
         'octoprint_version': 'octoprint_version',
-        'event_type': 'event_type'
+        'event_type': 'event_type',
+        'print_session': 'print_session'
     }
 
-    def __init__(self, client_event_type=None, event_data=None, device=None, plugin_version=None, octoprint_version=None, event_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_data=None, device=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._client_event_type = None
         self._event_data = None
         self._device = None
         self._plugin_version = None
+        self._client_version = None
         self._octoprint_version = None
         self._event_type = None
+        self._print_session = None
         self.discriminator = None
 
-        if client_event_type is not None:
-            self.client_event_type = client_event_type
         self.event_data = event_data
         self.device = device
         self.plugin_version = plugin_version
+        self.client_version = client_version
         self.octoprint_version = octoprint_version
         self.event_type = event_type
-
-    @property
-    def client_event_type(self):
-        """Gets the client_event_type of this OctoPrintEventRequest.  # noqa: E501
-
-
-        :return: The client_event_type of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: ClientEventTypeEnum
-        """
-        return self._client_event_type
-
-    @client_event_type.setter
-    def client_event_type(self, client_event_type):
-        """Sets the client_event_type of this OctoPrintEventRequest.
-
-
-        :param client_event_type: The client_event_type of this OctoPrintEventRequest.  # noqa: E501
-        :type client_event_type: ClientEventTypeEnum
-        """
-
-        self._client_event_type = client_event_type
+        self.print_session = print_session
 
     @property
     def event_data(self):
@@ -111,8 +93,6 @@ class OctoPrintEventRequest(object):
         :param event_data: The event_data of this OctoPrintEventRequest.  # noqa: E501
         :type event_data: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and event_data is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_data`, must not be `None`")  # noqa: E501
 
         self._event_data = event_data
 
@@ -134,6 +114,8 @@ class OctoPrintEventRequest(object):
         :param device: The device of this OctoPrintEventRequest.  # noqa: E501
         :type device: int
         """
+        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
+            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
 
@@ -162,6 +144,32 @@ class OctoPrintEventRequest(object):
             raise ValueError("Invalid value for `plugin_version`, length must be less than or equal to `60`")  # noqa: E501
 
         self._plugin_version = plugin_version
+
+    @property
+    def client_version(self):
+        """Gets the client_version of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The client_version of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._client_version
+
+    @client_version.setter
+    def client_version(self, client_version):
+        """Sets the client_version of this OctoPrintEventRequest.
+
+
+        :param client_version: The client_version of this OctoPrintEventRequest.  # noqa: E501
+        :type client_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and client_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `client_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                client_version is not None and len(client_version) > 60):
+            raise ValueError("Invalid value for `client_version`, length must be less than or equal to `60`")  # noqa: E501
+
+        self._client_version = client_version
 
     @property
     def octoprint_version(self):
@@ -211,6 +219,27 @@ class OctoPrintEventRequest(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The print_session of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this OctoPrintEventRequest.
+
+
+        :param print_session: The print_session of this OctoPrintEventRequest.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

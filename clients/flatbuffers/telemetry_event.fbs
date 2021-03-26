@@ -38,10 +38,10 @@ table Image {
 
 
 table BoundingBoxes {
-    scores: [float] (required);
-    classes: [uint32] (required);
+    detection_scores: [float] (required);
+    detection_classes: [uint32] (required);
+    detection_boxes: [Box] (required);
     num_detections: uint32;
-    boxes: [Box] (required);
 }
 
 table MonitoringFrame {
@@ -58,10 +58,13 @@ table Metadata {
     device_id: uint32;
     device_cloudiot_id: uint64;
     ts: uint32;
+    session: string;
+    client_version:string;
+    model_version:string;
+    fpm: uint8;
 }
 
 table TelemetryEvent {
-    version:string;
     event_data: EventData (required);
     event_type: TelemetryEventEnum;
     metadata: Metadata (required);

@@ -37,6 +37,7 @@ class TestPatchedProgressAlertRequest(unittest.TestCase):
         if include_optional :
             return PatchedProgressAlertRequest(
                 seen = True, 
+                sent = True, 
                 dismissed = True, 
                 progress_percent = 1, 
                 octoprint_device = 56, 

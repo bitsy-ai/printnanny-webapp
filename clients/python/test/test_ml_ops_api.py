@@ -70,6 +70,18 @@ class TestMlOpsApi(unittest.TestCase):
         """
         pass
 
+    def test_experiments_list(self):
+        """Test case for experiments_list
+
+        """
+        pass
+
+    def test_experiments_retrieve(self):
+        """Test case for experiments_retrieve
+
+        """
+        pass
+
     def test_model_artifacts_list(self):
         """Test case for model_artifacts_list
 

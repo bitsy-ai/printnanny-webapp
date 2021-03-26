@@ -28,9 +28,6 @@ class PluginEventEventTypeEnum(object):
     """
     allowed enum values
     """
-    BOUNDING_BOX_PREDICT = "bounding_box_predict"
-    MONITORING_FRAME_RAW = "monitoring_frame_raw"
-    MONITORING_FRAME_POST = "monitoring_frame_post"
     DEVICE_REGISTER_START = "device_register_start"
     DEVICE_REGISTER_DONE = "device_register_done"
     DEVICE_REGISTER_FAILED = "device_register_failed"
@@ -38,7 +35,7 @@ class PluginEventEventTypeEnum(object):
     PRINTER_PROFILE_SYNC_DONE = "printer_profile_sync_done"
     PRINTER_PROFILE_SYNC_FAILED = "printer_profile_sync_failed"
 
-    allowable_values = [BOUNDING_BOX_PREDICT, MONITORING_FRAME_RAW, MONITORING_FRAME_POST, DEVICE_REGISTER_START, DEVICE_REGISTER_DONE, DEVICE_REGISTER_FAILED, PRINTER_PROFILE_SYNC_START, PRINTER_PROFILE_SYNC_DONE, PRINTER_PROFILE_SYNC_FAILED]  # noqa: E501
+    allowable_values = [DEVICE_REGISTER_START, DEVICE_REGISTER_DONE, DEVICE_REGISTER_FAILED, PRINTER_PROFILE_SYNC_START, PRINTER_PROFILE_SYNC_DONE, PRINTER_PROFILE_SYNC_FAILED]  # noqa: E501
 
     """
     Attributes:
