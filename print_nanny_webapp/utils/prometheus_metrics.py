@@ -3,9 +3,9 @@ import prometheus_client
 
 from print_nanny_webapp.client_events.models import PrintSessionState
 
-print_job_status = prometheus_client.Enum(
-    "print_job_status",
-    "Last seen status of a print job",
+print_session_status = prometheus_client.Enum(
+    "print_session_status",
+    "Last seen status of a print session/job",
     states=PrintSessionState.EventType.values,
 )
 

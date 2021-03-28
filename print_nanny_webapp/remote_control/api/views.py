@@ -143,7 +143,7 @@ class PrintSessionViewSet(
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="print_jobs_create",
+        operation_id="print_session_create",
         responses={400: PrintSessionSerializer, 201: PrintSessionSerializer},
     )
     def create(self, request, *args, **kwargs):
@@ -157,7 +157,7 @@ class PrintSessionViewSet(
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="print_jobs_update",
+        operation_id="print_session_update",
         responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def update(self, *args, **kwargs):
@@ -165,7 +165,7 @@ class PrintSessionViewSet(
 
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
-        # prometheus_metrics.print_job_status.state(instance.last_status)
+        # prometheus_metrics.print_session_status.state(instance.last_status)
         return Response(serializer.data, status=status.HTTP_201_OK)
 
     def perform_update(self, serializer):
@@ -176,12 +176,12 @@ class PrintSessionViewSet(
             and instance % user.user_settings.alert_on_progress_percent == 0
         ):
             create_progress_video_task.delay(instance.id, instance.progress)
-        prometheus_metrics.print_job_status.state(instance.last_status)
+        prometheus_metrics.print_session_status.state(instance.last_status)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="print_jobs_partial_update",
+        operation_id="print_session_partial_update",
         responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def partial_update(self, request, *args, **kwargs):

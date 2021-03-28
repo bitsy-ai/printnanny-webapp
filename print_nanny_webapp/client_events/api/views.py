@@ -69,14 +69,14 @@ class OctoPrintEventViewSet(
 
         event_data = self.request.data["event_data"]
 
-        print_job = event_data.get("print_job")
-        if print_job is not None:
-            print_job = PrintSession.objects.get(id=print_job)
+        print_session = event_data.get("print_session")
+        if print_session is not None:
+            print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
             user = self.request.user
         else:
             user = None
-        instance = serializer.save(user=user, print_job=print_job)
+        instance = serializer.save(user=user, print_session=print_session)
 
 
 @extend_schema(tags=["events"])
@@ -112,14 +112,14 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 
         event_data = self.request.data["event_data"]
 
-        print_job = event_data.get("print_job")
-        if print_job is not None:
-            print_job = PrintSession.objects.get(id=print_job)
+        print_session = event_data.get("print_session")
+        if print_session is not None:
+            print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
             user = self.request.user
         else:
             user = None
-        instance = serializer.save(user=user, print_job=print_job)
+        instance = serializer.save(user=user, print_session=print_session)
 
 
 @extend_schema(tags=["events"])
@@ -138,7 +138,7 @@ class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixi
 
     @extend_schema(
         tags=["events"],
-        operation_id="print_job_event_enum_retrieve",
+        operation_id="print_session_event_enum_retrieve",
         responses={200: OpenApiTypes.STR},
     )
     @action(methods=["GET"], detail=False)
@@ -155,11 +155,11 @@ class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixi
 
         event_data = self.request.data["event_data"]
 
-        print_job = event_data.get("print_job")
-        if print_job is not None:
-            print_job = PrintSession.objects.get(id=print_job)
+        print_session = event_data.get("print_session")
+        if print_session is not None:
+            print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
             user = self.request.user
         else:
             user = None
-        instance = serializer.save(user=user, print_job=print_job)
+        instance = serializer.save(user=user, print_session=print_session)
