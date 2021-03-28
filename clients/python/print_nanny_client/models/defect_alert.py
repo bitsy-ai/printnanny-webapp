@@ -35,7 +35,6 @@ class DefectAlert(object):
     openapi_types = {
         'print_session': 'str',
         'octoprint_device': 'int',
-        'print_job': 'int',
         'seen': 'bool',
         'dismissed': 'bool',
         'user': 'int'
@@ -44,13 +43,12 @@ class DefectAlert(object):
     attribute_map = {
         'print_session': 'print_session',
         'octoprint_device': 'octoprint_device',
-        'print_job': 'print_job',
         'seen': 'seen',
         'dismissed': 'dismissed',
         'user': 'user'
     }
 
-    def __init__(self, print_session=None, octoprint_device=None, print_job=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -58,7 +56,6 @@ class DefectAlert(object):
 
         self._print_session = None
         self._octoprint_device = None
-        self._print_job = None
         self._seen = None
         self._dismissed = None
         self._user = None
@@ -66,8 +63,6 @@ class DefectAlert(object):
 
         self.print_session = print_session
         self.octoprint_device = octoprint_device
-        if print_job is not None:
-            self.print_job = print_job
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
@@ -117,27 +112,6 @@ class DefectAlert(object):
         """
 
         self._octoprint_device = octoprint_device
-
-    @property
-    def print_job(self):
-        """Gets the print_job of this DefectAlert.  # noqa: E501
-
-
-        :return: The print_job of this DefectAlert.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_job
-
-    @print_job.setter
-    def print_job(self, print_job):
-        """Sets the print_job of this DefectAlert.
-
-
-        :param print_job: The print_job of this DefectAlert.  # noqa: E501
-        :type print_job: int
-        """
-
-        self._print_job = print_job
 
     @property
     def seen(self):

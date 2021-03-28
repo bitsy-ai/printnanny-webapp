@@ -5,7 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **print_session** | **str** |  | 
 **octoprint_device** | **int** |  | [optional] 
-**print_job** | **int** |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
 **user** | **int** |  | 

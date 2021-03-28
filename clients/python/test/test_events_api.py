@@ -70,12 +70,6 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_print_job_event_enum_retrieve(self):
-        """Test case for print_job_event_enum_retrieve
-
-        """
-        pass
-
     def test_print_job_states_list(self):
         """Test case for print_job_states_list
 
@@ -84,6 +78,12 @@ class TestEventsApi(unittest.TestCase):
 
     def test_print_job_states_retrieve(self):
         """Test case for print_job_states_retrieve
+
+        """
+        pass
+
+    def test_print_session_event_enum_retrieve(self):
+        """Test case for print_session_event_enum_retrieve
 
         """
         pass

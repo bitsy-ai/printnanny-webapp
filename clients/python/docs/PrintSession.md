@@ -1,18 +1,17 @@
-# PrintJob
+# PrintSession
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
+**created_dt** | **datetime** |  | 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
-**print_session** | **int** |  | [optional] 
-**user** | **int** |  | [optional] [readonly] 
-**printer_profile** | **int** |  | 
-**name** | **str** |  | 
-**gcode_file** | **int** |  | [optional] 
+**octoprint_device** | **int** |  | 
+**session** | **str** |  | 
 **progress** | **dict(str, object)** |  | [optional] 
-**octoprint_device** | **int** |  | [optional] 
+**user** | **int** |  | [optional] [readonly] 
+**printer_profile** | **int** |  | [optional] 
+**gcode_file** | **int** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

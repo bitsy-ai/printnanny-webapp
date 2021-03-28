@@ -21,11 +21,11 @@ Method | HTTP request | Description
 [**octoprint_devices_retrieve**](RemoteControlApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
-[**print_jobs_create**](RemoteControlApi.md#print_jobs_create) | **POST** /api/print-jobs/ | 
-[**print_jobs_list**](RemoteControlApi.md#print_jobs_list) | **GET** /api/print-jobs/ | 
-[**print_jobs_partial_update**](RemoteControlApi.md#print_jobs_partial_update) | **PATCH** /api/print-jobs/{id}/ | 
-[**print_jobs_retrieve**](RemoteControlApi.md#print_jobs_retrieve) | **GET** /api/print-jobs/{id}/ | 
-[**print_jobs_update**](RemoteControlApi.md#print_jobs_update) | **PUT** /api/print-jobs/{id}/ | 
+[**print_session_create**](RemoteControlApi.md#print_session_create) | **POST** /api/print-sessions/ | 
+[**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{id}/ | 
+[**print_session_update**](RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{id}/ | 
+[**print_sessions_list**](RemoteControlApi.md#print_sessions_list) | **GET** /api/print-sessions/ | 
+[**print_sessions_retrieve**](RemoteControlApi.md#print_sessions_retrieve) | **GET** /api/print-sessions/{id}/ | 
 [**printer_profiles_create**](RemoteControlApi.md#printer_profiles_create) | **POST** /api/printer-profiles/ | 
 [**printer_profiles_list**](RemoteControlApi.md#printer_profiles_list) | **GET** /api/printer-profiles/ | 
 [**printer_profiles_partial_update**](RemoteControlApi.md#printer_profiles_partial_update) | **PATCH** /api/printer-profiles/{id}/ | 
@@ -2098,8 +2098,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_jobs_create**
-> PrintJob print_jobs_create(print_job_request)
+# **print_session_create**
+> PrintSession print_session_create(print_session_request)
 
 
 
@@ -2138,13 +2138,13 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
+    print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
 
     try:
-        api_response = api_instance.print_jobs_create(print_job_request)
+        api_response = api_instance.print_session_create(print_session_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_session_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2180,24 +2180,24 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
+    print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
 
     try:
-        api_response = api_instance.print_jobs_create(print_job_request)
+        api_response = api_instance.print_session_create(print_session_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_create: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_session_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **print_job_request** | [**PrintJobRequest**](PrintJobRequest.md)|  | 
+ **print_session_request** | [**PrintSessionRequest**](PrintSessionRequest.md)|  | 
 
 ### Return type
 
-[**PrintJob**](PrintJob.md)
+[**PrintSession**](PrintSession.md)
 
 ### Authorization
 
@@ -2216,8 +2216,250 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_jobs_list**
-> PaginatedPrintJobList print_jobs_list(page=page)
+# **print_session_partial_update**
+> PrintSession print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.RemoteControlApi(api_client)
+    id = 56 # int | A unique integer value identifying this print session.
+patched_print_session_request = print_nanny_client.PatchedPrintSessionRequest() # PatchedPrintSessionRequest |  (optional)
+
+    try:
+        api_response = api_instance.print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RemoteControlApi->print_session_partial_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.RemoteControlApi(api_client)
+    id = 56 # int | A unique integer value identifying this print session.
+patched_print_session_request = print_nanny_client.PatchedPrintSessionRequest() # PatchedPrintSessionRequest |  (optional)
+
+    try:
+        api_response = api_instance.print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RemoteControlApi->print_session_partial_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this print session. | 
+ **patched_print_session_request** | [**PatchedPrintSessionRequest**](PatchedPrintSessionRequest.md)|  | [optional] 
+
+### Return type
+
+[**PrintSession**](PrintSession.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** |  |  -  |
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **print_session_update**
+> PrintSession print_session_update(id, print_session_request)
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.RemoteControlApi(api_client)
+    id = 56 # int | A unique integer value identifying this print session.
+print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
+
+    try:
+        api_response = api_instance.print_session_update(id, print_session_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RemoteControlApi->print_session_update: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.RemoteControlApi(api_client)
+    id = 56 # int | A unique integer value identifying this print session.
+print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
+
+    try:
+        api_response = api_instance.print_session_update(id, print_session_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling RemoteControlApi->print_session_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this print session. | 
+ **print_session_request** | [**PrintSessionRequest**](PrintSessionRequest.md)|  | 
+
+### Return type
+
+[**PrintSession**](PrintSession.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** |  |  -  |
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **print_sessions_list**
+> PaginatedPrintSessionList print_sessions_list(page=page)
 
 
 
@@ -2259,10 +2501,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_jobs_list(page=page)
+        api_response = api_instance.print_sessions_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_sessions_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2301,10 +2543,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_jobs_list(page=page)
+        api_response = api_instance.print_sessions_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_list: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_sessions_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -2315,7 +2557,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedPrintJobList**](PaginatedPrintJobList.md)
+[**PaginatedPrintSessionList**](PaginatedPrintSessionList.md)
 
 ### Authorization
 
@@ -2333,8 +2575,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_jobs_partial_update**
-> PrintJob print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
+# **print_sessions_retrieve**
+> PrintSession print_sessions_retrieve(id)
 
 
 
@@ -2373,14 +2615,13 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-patched_print_job_request = print_nanny_client.PatchedPrintJobRequest() # PatchedPrintJobRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this print session.
 
     try:
-        api_response = api_instance.print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
+        api_response = api_instance.print_sessions_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_sessions_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2416,144 +2657,24 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-patched_print_job_request = print_nanny_client.PatchedPrintJobRequest() # PatchedPrintJobRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this print session.
 
     try:
-        api_response = api_instance.print_jobs_partial_update(id, patched_print_job_request=patched_print_job_request)
+        api_response = api_instance.print_sessions_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_partial_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->print_sessions_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print job. | 
- **patched_print_job_request** | [**PatchedPrintJobRequest**](PatchedPrintJobRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this print session. | 
 
 ### Return type
 
-[**PrintJob**](PrintJob.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**400** |  |  -  |
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **print_jobs_retrieve**
-> PrintJob print_jobs_retrieve(id)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-
-    try:
-        api_response = api_instance.print_jobs_retrieve(id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-
-    try:
-        api_response = api_instance.print_jobs_retrieve(id)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_retrieve: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print job. | 
-
-### Return type
-
-[**PrintJob**](PrintJob.md)
+[**PrintSession**](PrintSession.md)
 
 ### Authorization
 
@@ -2567,133 +2688,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **print_jobs_update**
-> PrintJob print_jobs_update(id, print_job_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
-
-    try:
-        api_response = api_instance.print_jobs_update(id, print_job_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job.
-print_job_request = print_nanny_client.PrintJobRequest() # PrintJobRequest | 
-
-    try:
-        api_response = api_instance.print_jobs_update(id, print_job_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling RemoteControlApi->print_jobs_update: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print job. | 
- **print_job_request** | [**PrintJobRequest**](PrintJobRequest.md)|  | 
-
-### Return type
-
-[**PrintJob**](PrintJob.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**400** |  |  -  |
 **200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **printer_profiles_create**
-> PrintJob printer_profiles_create(printer_profile_request)
+> PrintSession printer_profiles_create(printer_profile_request)
 
 
 
@@ -2791,7 +2791,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PrintJob**](PrintJob.md)
+[**PrintSession**](PrintSession.md)
 
 ### Authorization
 

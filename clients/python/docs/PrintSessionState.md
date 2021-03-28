@@ -1,4 +1,4 @@
-# PrintJobState
+# PrintSessionState
 
 ## Properties
 Name | Type | Description | Notes
@@ -11,12 +11,11 @@ Name | Type | Description | Notes
 **plugin_version** | **str** |  | 
 **client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**event_type** | [**PrintJobStateEventTypeEnum**](PrintJobStateEventTypeEnum.md) |  | 
+**event_type** | [**PrintSessionStateEventTypeEnum**](PrintSessionStateEventTypeEnum.md) |  | 
 **state** | **dict(str, object)** |  | [optional] 
 **current_z** | **float** |  | [optional] 
 **progress** | **dict(str, object)** |  | [optional] 
 **job_data_file** | **str** |  | 
-**print_job** | **int** |  | [optional] 
 **print_session** | **int** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 

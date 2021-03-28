@@ -52,7 +52,6 @@ class AlertPolymorphic(object):
         'title': 'str',
         'print_session': 'str',
         'octoprint_device': 'int',
-        'print_job': 'int',
         'sent': 'bool',
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
@@ -79,7 +78,6 @@ class AlertPolymorphic(object):
         'title': 'title',
         'print_session': 'print_session',
         'octoprint_device': 'octoprint_device',
-        'print_job': 'print_job',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
@@ -89,7 +87,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, print_session=None, octoprint_device=None, print_job=None, sent=None, progress_percent=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, print_session=None, octoprint_device=None, sent=None, progress_percent=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -114,7 +112,6 @@ class AlertPolymorphic(object):
         self._title = None
         self._print_session = None
         self._octoprint_device = None
-        self._print_job = None
         self._sent = None
         self._progress_percent = None
         self._polymorphic_ctype = None
@@ -149,8 +146,6 @@ class AlertPolymorphic(object):
         self.title = title
         self.print_session = print_session
         self.octoprint_device = octoprint_device
-        if print_job is not None:
-            self.print_job = print_job
         if sent is not None:
             self.sent = sent
         if progress_percent is not None:
@@ -575,27 +570,6 @@ class AlertPolymorphic(object):
         """
 
         self._octoprint_device = octoprint_device
-
-    @property
-    def print_job(self):
-        """Gets the print_job of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The print_job of this AlertPolymorphic.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_job
-
-    @print_job.setter
-    def print_job(self, print_job):
-        """Sets the print_job of this AlertPolymorphic.
-
-
-        :param print_job: The print_job of this AlertPolymorphic.  # noqa: E501
-        :type print_job: int
-        """
-
-        self._print_job = print_job
 
     @property
     def sent(self):

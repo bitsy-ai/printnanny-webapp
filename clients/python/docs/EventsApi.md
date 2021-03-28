@@ -11,9 +11,9 @@ Method | HTTP request | Description
 [**plugin_events_enum_retrieve**](EventsApi.md#plugin_events_enum_retrieve) | **GET** /api/plugin-events/enum/ | 
 [**plugin_events_list**](EventsApi.md#plugin_events_list) | **GET** /api/plugin-events/ | 
 [**plugin_events_retrieve**](EventsApi.md#plugin_events_retrieve) | **GET** /api/plugin-events/{id}/ | 
-[**print_job_event_enum_retrieve**](EventsApi.md#print_job_event_enum_retrieve) | **GET** /api/print-job-states/enum/ | 
 [**print_job_states_list**](EventsApi.md#print_job_states_list) | **GET** /api/print-job-states/ | 
 [**print_job_states_retrieve**](EventsApi.md#print_job_states_retrieve) | **GET** /api/print-job-states/{id}/ | 
+[**print_session_event_enum_retrieve**](EventsApi.md#print_session_event_enum_retrieve) | **GET** /api/print-job-states/enum/ | 
 
 
 # **octoprint_core_events_enum_retrieve**
@@ -826,120 +826,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_job_event_enum_retrieve**
-> str print_job_event_enum_retrieve()
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    
-    try:
-        api_response = api_instance.print_job_event_enum_retrieve()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling EventsApi->print_job_event_enum_retrieve: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.EventsApi(api_client)
-    
-    try:
-        api_response = api_instance.print_job_event_enum_retrieve()
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling EventsApi->print_job_event_enum_retrieve: %s\n" % e)
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**str**
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **print_job_states_list**
-> PaginatedPrintJobStateList print_job_states_list(page=page)
+> PaginatedPrintSessionStateList print_job_states_list(page=page)
 
 
 
@@ -1037,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedPrintJobStateList**](PaginatedPrintJobStateList.md)
+[**PaginatedPrintSessionStateList**](PaginatedPrintSessionStateList.md)
 
 ### Authorization
 
@@ -1056,7 +944,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_job_states_retrieve**
-> PrintJobState print_job_states_retrieve(id)
+> PrintSessionState print_job_states_retrieve(id)
 
 
 
@@ -1095,7 +983,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job state.
+    id = 56 # int | A unique integer value identifying this print session state.
 
     try:
         api_response = api_instance.print_job_states_retrieve(id)
@@ -1137,7 +1025,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.EventsApi(api_client)
-    id = 56 # int | A unique integer value identifying this print job state.
+    id = 56 # int | A unique integer value identifying this print session state.
 
     try:
         api_response = api_instance.print_job_states_retrieve(id)
@@ -1150,11 +1038,123 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print job state. | 
+ **id** | **int**| A unique integer value identifying this print session state. | 
 
 ### Return type
 
-[**PrintJobState**](PrintJobState.md)
+[**PrintSessionState**](PrintSessionState.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **print_session_event_enum_retrieve**
+> str print_session_event_enum_retrieve()
+
+
+
+### Example
+
+* Api Key Authentication (cookieAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.EventsApi(api_client)
+    
+    try:
+        api_response = api_instance.print_session_event_enum_retrieve()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling EventsApi->print_session_event_enum_retrieve: %s\n" % e)
+```
+
+* Bearer Authentication (tokenAuth):
+```python
+from __future__ import print_function
+import time
+import print_nanny_client
+from print_nanny_client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = print_nanny_client.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: cookieAuth
+configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
+
+# Configure Bearer authorization: tokenAuth
+configuration = print_nanny_client.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with print_nanny_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = print_nanny_client.EventsApi(api_client)
+    
+    try:
+        api_response = api_instance.print_session_event_enum_retrieve()
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling EventsApi->print_session_event_enum_retrieve: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**str**
 
 ### Authorization
 

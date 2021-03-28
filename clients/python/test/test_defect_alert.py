@@ -38,7 +38,6 @@ class TestDefectAlert(unittest.TestCase):
             return DefectAlert(
                 print_session = '', 
                 octoprint_device = 56, 
-                print_job = 56, 
                 seen = True, 
                 dismissed = True, 
                 user = 56

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.print_job import PrintJob  # noqa: E501
+from print_nanny_client.models.print_session_request import PrintSessionRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPrintJob(unittest.TestCase):
-    """PrintJob unit test stubs"""
+class TestPrintSessionRequest(unittest.TestCase):
+    """PrintSessionRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,35 +29,31 @@ class TestPrintJob(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PrintJob
+        """Test PrintSessionRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.print_job.PrintJob()  # noqa: E501
+        # model = print_nanny_client.models.print_session_request.PrintSessionRequest()  # noqa: E501
         if include_optional :
-            return PrintJob(
-                id = 56, 
+            return PrintSessionRequest(
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                print_session = 56, 
-                user = 56, 
-                printer_profile = 56, 
-                name = '', 
-                gcode_file = 56, 
+                octoprint_device = 56, 
+                session = '', 
                 progress = {
                     'key' : null
                     }, 
-                octoprint_device = 56, 
-                url = ''
+                printer_profile = 56, 
+                gcode_file = 56
             )
         else :
-            return PrintJob(
-                printer_profile = 56,
-                name = '',
+            return PrintSessionRequest(
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                octoprint_device = 56,
+                session = '',
         )
 
-    def testPrintJob(self):
-        """Test PrintJob"""
+    def testPrintSessionRequest(self):
+        """Test PrintSessionRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 
