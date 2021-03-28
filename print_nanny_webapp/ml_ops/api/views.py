@@ -13,13 +13,13 @@ from print_nanny_webapp.ml_ops.models import (
     ModelArtifact,
     ExperimentDeviceConfig,
     DeviceCalibration,
-    Experiment
+    Experiment,
 )
 from .serializers import (
     ModelArtifactSerializer,
     ExperimentDeviceConfigSerializer,
     DeviceCalibrationSerializer,
-    ExperimentSerializer
+    ExperimentSerializer,
 )
 
 logger = logging.getLogger(__name__)
@@ -56,14 +56,16 @@ class DeviceCalibrationViewSet(
         serializer = self.get_serializer(data=request.data, instance=instance)
 
         if serializer.is_valid():
-            config_file_content = json.dumps(dict(
-                fpm=serializer.validated_data["fpm"],
-                mask=serializer.validated_data["mask"],
-                coordinates=serializer.validated_data["coordinates"]
-            )).encode('utf-8')
+            config_file_content = json.dumps(
+                dict(
+                    fpm=serializer.validated_data["fpm"],
+                    mask=serializer.validated_data["mask"],
+                    coordinates=serializer.validated_data["coordinates"],
+                )
+            ).encode("utf-8")
             config_file_content = ContentFile(config_file_content)
             instance, created = serializer.update_or_create(serializer.validated_data)
-            instance.config_file.save('calibration.json', config_file_content)
+            instance.config_file.save("calibration.json", config_file_content)
             response_serializer = self.get_serializer(instance)
             if not created:
                 return Response(

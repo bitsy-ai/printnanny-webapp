@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0037_remove_defectalert_dataframe'),
+        ("alerts", "0037_remove_defectalert_dataframe"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='defectalert',
-            name='monitoring_mode',
+            model_name="defectalert",
+            name="monitoring_mode",
         ),
     ]

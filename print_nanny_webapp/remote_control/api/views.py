@@ -72,7 +72,9 @@ RemoteControlCommandAlertSettings = apps.get_model(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintSessionSerializer, 400: PrintSessionSerializer})
+    create=extend_schema(
+        responses={201: PrintSessionSerializer, 400: PrintSessionSerializer}
+    )
 )
 class CommandViewSet(
     ListModelMixin,
@@ -124,7 +126,9 @@ class CommandViewSet(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintSessionSerializer, 400: PrintSessionSerializer})
+    create=extend_schema(
+        responses={201: PrintSessionSerializer, 400: PrintSessionSerializer}
+    )
 )
 class PrintSessionViewSet(
     CreateModelMixin,
@@ -413,19 +417,22 @@ class OctoPrintDeviceViewSet(
         responses={
             201: DefectAlertSerializer,
             400: DefectAlertSerializer,
-            403: DefectAlertSerializer
+            403: DefectAlertSerializer,
         },
     )
     @action(detail=True, methods=["POST"])
     def create_defect_alerts(self, request):
         serializer = DefectAlertSerializer(data=request.data)
         if serializer.is_valid():
-            if not request.user.id == serializer.validated_data["user"] and not request.user.is_superuser:
+            if (
+                not request.user.id == serializer.validated_data["user"]
+                and not request.user.is_superuser
+            ):
                 return Response({}, status=status.HTTP_403_FORBIDDEN)
-            
+
             instance = serializer.save()
             instance.trigger_alert_task()
-            
+
             return Response(serializer.data, status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

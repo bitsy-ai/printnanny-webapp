@@ -43,12 +43,13 @@ class ClientEvent(models.Model):
     client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
 
+
 def _upload_to(instance, filename):
     datesegment = dateformat.format(timezone.now(), "Y/M/d/")
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
     logger.info("Uploading to path")
     return path
-    
+
 
 class PluginEvent(ClientEvent):
     """
@@ -163,11 +164,14 @@ class OctoPrintEvent(ClientEvent):
         max_length=255, db_index=True, choices=EventType.choices
     )
     print_session = models.ForeignKey(
-        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+        "remote_control.PrintSession",
+        null=True,
+        on_delete=models.CASCADE,
+        db_index=True,
     )
 
-class PrintSessionState(ClientEvent):
 
+class PrintSessionState(ClientEvent):
     class EventType(models.TextChoices):
         # print job
         ERROR = "Error", "Error"
@@ -200,6 +204,8 @@ class PrintSessionState(ClientEvent):
     progress = JSONField(default=dict)
     job_data_file = models.CharField(max_length=255)
     print_session = models.ForeignKey(
-        "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
+        "remote_control.PrintSession",
+        null=True,
+        on_delete=models.CASCADE,
+        db_index=True,
     )
-

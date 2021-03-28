@@ -10,8 +10,6 @@ from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 
-
-
 def _upload_to(instance, filename):
     path = os.path.join(f"uploads/{instance.__class__.__name__}", instance.id, filename)
     return path
@@ -45,6 +43,7 @@ class ModelArtifact(models.Model):
         default=(ArtifactTypes.TFLITE, ArtifactTypes.TF2_SAVED_MODEL),
     )
     metadata = JSONField()
+
 
 class Experiment(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
@@ -87,7 +86,7 @@ class ExperimentDeviceConfigManager(models.Manager):
             artifact=artifact,
             experiment_group=experiment_group,
             experiment=experiment,
-            **kwargs
+            **kwargs,
         )
 
 

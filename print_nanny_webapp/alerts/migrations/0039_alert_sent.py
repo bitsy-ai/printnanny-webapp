@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0038_remove_defectalert_monitoring_mode'),
+        ("alerts", "0038_remove_defectalert_monitoring_mode"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alert',
-            name='sent',
+            model_name="alert",
+            name="sent",
             field=models.BooleanField(default=False),
         ),
     ]

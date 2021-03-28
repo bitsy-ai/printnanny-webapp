@@ -199,7 +199,9 @@ class OctoPrintDevice(models.Model):
         PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
         last_print_session_event = (
-            PrintSessionState.objects.filter(device=self).order_by("-created_dt").first()
+            PrintSessionState.objects.filter(device=self)
+            .order_by("-created_dt")
+            .first()
         )
         if last_print_session_event:
             return last_print_session_event.event_type
@@ -211,7 +213,9 @@ class OctoPrintDevice(models.Model):
         PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
         last_print_session_event = (
-            PrintSessionState.objects.filter(device=self).order_by("-created_dt").first()
+            PrintSessionState.objects.filter(device=self)
+            .order_by("-created_dt")
+            .first()
         )
         if last_print_session_event:
             return last_print_session_event.job_data_file
@@ -284,25 +288,32 @@ class PrinterProfile(models.Model):
     volume_origin = models.CharField(null=True, max_length=255)
     volume_width = models.FloatField(null=True)
 
+
 class PrintSession(models.Model):
-    '''
-        Represents a unique print job/session
-    '''
+    """
+    Represents a unique print job/session
+    """
+
     class Meta:
         unique_together = ("octoprint_device", "session")
-    
+
     created_dt = models.DateTimeField(db_index=True)
     updated_dt = models.DateTimeField(auto_now=True)
-    octoprint_device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
+    octoprint_device = models.ForeignKey(
+        OctoPrintDevice, on_delete=models.CASCADE, db_index=True
+    )
     session = models.CharField(max_length=255, db_index=True)
     progress = JSONField(default={})
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE, null=True)
+    printer_profile = models.ForeignKey(
+        PrinterProfile, on_delete=models.CASCADE, null=True
+    )
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
 
     def render_video(self):
         pass
+
     @property
     def gcode_filename(self):
         if self.gcode_file:
@@ -310,6 +321,7 @@ class PrintSession(models.Model):
 
     def __str__(self):
         return self.session
+
 
 # class PrintSession(models.Model):
 #     class Meta:
@@ -462,4 +474,3 @@ class RemoteControlCommand(models.Model):
     @property
     def octoprint_event_type(self):
         return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)
-

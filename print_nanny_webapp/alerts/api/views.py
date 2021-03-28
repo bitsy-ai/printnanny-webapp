@@ -52,6 +52,7 @@ class DefectAlertViewSet(
         user = self.request.user
         return DefectAlert.objects.filter(user=user).all()
 
+
 class AlertViewSet(
     GenericViewSet,
     ListModelMixin,

@@ -7,30 +7,48 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0047_remove_printjob_last_status'),
+        ("remote_control", "0047_remove_printjob_last_status"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printjob',
-            name='last_seen',
+            model_name="printjob",
+            name="last_seen",
         ),
         migrations.CreateModel(
-            name='PrintSession',
+            name="PrintSession",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(db_index=True)),
-                ('end_dt', models.DateTimeField(db_index=True, null=True)),
-                ('session', models.CharField(max_length=255)),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(db_index=True)),
+                ("end_dt", models.DateTimeField(db_index=True, null=True)),
+                ("session", models.CharField(max_length=255)),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('device', 'session')},
+                "unique_together": {("device", "session")},
             },
         ),
         migrations.AddField(
-            model_name='printjob',
-            name='print_session',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="printjob",
+            name="print_session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
         ),
     ]

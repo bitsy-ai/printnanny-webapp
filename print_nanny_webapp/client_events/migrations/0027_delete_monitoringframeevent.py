@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0026_monitoringframeevent_event_type'),
+        ("client_events", "0026_monitoringframeevent_event_type"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='MonitoringFrameEvent',
+            name="MonitoringFrameEvent",
         ),
     ]

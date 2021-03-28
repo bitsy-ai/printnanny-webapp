@@ -38,15 +38,15 @@ logger = logging.getLogger(__name__)
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201:  OctoPrintEventSerializer,
-            400:  OctoPrintEventSerializer,
+            201: OctoPrintEventSerializer,
+            400: OctoPrintEventSerializer,
         }
     )
 )
 class OctoPrintEventViewSet(
     CreateModelMixin, GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
-    serializer_class =  OctoPrintEventSerializer
+    serializer_class = OctoPrintEventSerializer
     queryset = OctoPrintEvent.objects.all()
     lookup_field = "id"
 
@@ -82,14 +82,11 @@ class OctoPrintEventViewSet(
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={
-            201:  PluginEventSerializer,
-            400: PluginEventSerializer
-        }
+        responses={201: PluginEventSerializer, 400: PluginEventSerializer}
     )
 )
 class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class =  PluginEventSerializer
+    serializer_class = PluginEventSerializer
     queryset = PluginEvent.objects.all()
     lookup_field = "id"
 
@@ -126,13 +123,13 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201:  PrintSessionStateSerializer,
-            400:  PrintSessionStateSerializer,
+            201: PrintSessionStateSerializer,
+            400: PrintSessionStateSerializer,
         }
     )
 )
 class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class =  PrintSessionStateSerializer
+    serializer_class = PrintSessionStateSerializer
     queryset = PrintSessionState.objects.all()
     lookup_field = "id"
 

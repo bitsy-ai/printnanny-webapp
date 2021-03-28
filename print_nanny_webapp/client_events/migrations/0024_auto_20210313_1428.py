@@ -6,14 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0023_auto_20210313_1315'),
+        ("client_events", "0023_auto_20210313_1315"),
     ]
 
     operations = [
         migrations.RenameModel("OctoprintEvent", "OctoPrintPolymophicBackupMarch2021"),
         migrations.RenameModel("PluginEvent", "PluginEventPolymophicBackupMarch2021"),
-
         migrations.DeleteModel("PrintJobState"),
-        migrations.DeleteModel("MonitoringFrameEvent")
-
+        migrations.DeleteModel("MonitoringFrameEvent"),
     ]

@@ -7,19 +7,27 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0048_auto_20210321_1312'),
-        ('client_events', '0027_delete_monitoringframeevent'),
+        ("remote_control", "0048_auto_20210321_1312"),
+        ("client_events", "0027_delete_monitoringframeevent"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintevent',
-            name='print_session',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="octoprintevent",
+            name="print_session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
         ),
         migrations.AddField(
-            model_name='printjobstate',
-            name='print_session',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="printjobstate",
+            name="print_session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
         ),
     ]

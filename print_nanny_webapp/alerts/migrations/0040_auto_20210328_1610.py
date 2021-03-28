@@ -7,19 +7,23 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0049_auto_20210321_1313'),
-        ('alerts', '0039_alert_sent'),
+        ("remote_control", "0049_auto_20210321_1313"),
+        ("alerts", "0039_alert_sent"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='defectalert',
-            name='print_job',
+            model_name="defectalert",
+            name="print_job",
         ),
         migrations.AddField(
-            model_name='defectalert',
-            name='print_session',
-            field=models.OneToOneField(default=None, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="defectalert",
+            name="print_session",
+            field=models.OneToOneField(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
             preserve_default=False,
         ),
     ]

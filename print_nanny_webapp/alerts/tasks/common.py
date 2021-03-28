@@ -44,9 +44,9 @@ FAILURES = {
 def trigger_alert_task(alert_id):
     Alert = apps.get_model("alerts", "Alert")
     alert = Alert.get(id=alert_id)
-    
+
     alert.trigger_alert()
-    
+
 
 def dict_to_series(data):
     return pd.Series(data.values(), index=data.keys())

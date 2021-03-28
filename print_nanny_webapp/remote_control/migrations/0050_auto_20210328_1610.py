@@ -9,53 +9,65 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0029_auto_20210328_1610'),
+        ("client_events", "0029_auto_20210328_1610"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0040_auto_20210328_1610'),
-        ('remote_control', '0049_auto_20210321_1313'),
+        ("alerts", "0040_auto_20210328_1610"),
+        ("remote_control", "0049_auto_20210321_1313"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='printsession',
-            old_name='device',
-            new_name='octoprint_device',
+            model_name="printsession",
+            old_name="device",
+            new_name="octoprint_device",
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='gcode_file',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.gcodefile'),
+            model_name="printsession",
+            name="gcode_file",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.gcodefile",
+            ),
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='printer_profile',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printerprofile'),
+            model_name="printsession",
+            name="printer_profile",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printerprofile",
+            ),
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='progress',
+            model_name="printsession",
+            name="progress",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='updated_dt',
+            model_name="printsession",
+            name="updated_dt",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='user',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='users.user'),
+            model_name="printsession",
+            name="user",
+            field=models.ForeignKey(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="users.user",
+            ),
             preserve_default=False,
         ),
         migrations.AlterUniqueTogether(
-            name='printsession',
-            unique_together={('octoprint_device', 'session')},
+            name="printsession",
+            unique_together={("octoprint_device", "session")},
         ),
         migrations.DeleteModel(
-            name='PrintJob',
+            name="PrintJob",
         ),
         migrations.RemoveField(
-            model_name='printsession',
-            name='end_dt',
+            model_name="printsession",
+            name="end_dt",
         ),
     ]

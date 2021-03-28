@@ -22,6 +22,7 @@ import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.alerts.tasks.common import trigger_alert_task
+
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
@@ -38,8 +39,6 @@ def _upload_to(instance, filename):
 
 
 class Alert(PolymorphicModel):
-
-
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -80,6 +79,7 @@ class Alert(PolymorphicModel):
 
     def trigger_alert(self):
         from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
+
         if self.sent is False:
             alert_serializer = AlertPolymorphicSerializer(self)
             data = alert_serializer.data
@@ -103,11 +103,12 @@ class Alert(PolymorphicModel):
                 "data": JSONRenderer().render(data),
             },
         )
-    
-    
+
     def trigger_email_alert(self, data):
 
-        device_url = reverse("dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id })
+        device_url = reverse(
+            "dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id}
+        )
         merge_data = {
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.user.first_name or "Maker",
@@ -115,12 +116,8 @@ class Alert(PolymorphicModel):
             "ALERT_TYPE": self.get_alert_type_display(),
         }
 
-        text_body = render_to_string(
-            "email/generic_alert_body.txt", merge_data
-        )
-        subject = render_to_string(
-            "email/generic_alert_subject.txt", merge_data
-        )
+        text_body = render_to_string("email/generic_alert_body.txt", merge_data)
+        subject = render_to_string("email/generic_alert_subject.txt", merge_data)
 
         message = AnymailMessage(
             subject=subject,
@@ -130,15 +127,12 @@ class Alert(PolymorphicModel):
                 self.__class__,
                 self.alert_subtype,
                 f"User:{self.user.id}",
-                f"Device:{self.octoprint_device.id}"
+                f"Device:{self.octoprint_device.id}",
             ],
         )
         message.send()
 
         return message
-
-
-
 
     def trigger_discord_alert(self, data):
 
@@ -174,6 +168,7 @@ class Alert(PolymorphicModel):
                 "message": message,
             },
         )
+
 
 class AlertSettings(PolymorphicModel):
 
@@ -256,6 +251,7 @@ class ProgressAlertSettings(AlertSettings):
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
@@ -331,7 +327,6 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         default=(AlertSubTypeChoices.FAILED,),
     )
 
-
     def trigger_email_alert(self, data):
 
         snapshot = self.command.snapshots.order_by("-created_dt").first()
@@ -366,17 +361,19 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
         return message
 
+
 ##
 # Alert Models
 ##
 
 
 class DefectAlert(Alert):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
-    print_session = models.OneToOneField("remote_control.PrintSession", on_delete=models.CASCADE)
+    print_session = models.OneToOneField(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
 
 
 class ProgressAlert(Alert):
@@ -520,6 +517,7 @@ class ManualVideoUploadAlert(Alert):
     @property
     def original_filename(self):
         return os.path.basename(self.original_video.name)
+
 
 class AlertPlot(models.Model):
     image = models.ImageField(upload_to=_upload_to)
