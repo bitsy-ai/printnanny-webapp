@@ -166,7 +166,7 @@ class OctoPrintEvent(ClientEvent):
         "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
     )
 
-class PrintJobState(ClientEvent):
+class PrintSessionState(ClientEvent):
 
     class EventType(models.TextChoices):
         # print job
@@ -199,9 +199,6 @@ class PrintJobState(ClientEvent):
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
     progress = JSONField(default=dict)
     job_data_file = models.CharField(max_length=255)
-    print_job = models.ForeignKey(
-        "remote_control.PrintJob", null=True, on_delete=models.CASCADE, db_index=True
-    )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", null=True, on_delete=models.CASCADE, db_index=True
     )

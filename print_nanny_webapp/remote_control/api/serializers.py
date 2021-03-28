@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from print_nanny_webapp.remote_control.models import (
     GcodeFile,
-    PrintJob,
+    PrintSession,
     PrinterProfile,
     OctoPrintDevice,
     RemoteControlCommand,
@@ -78,6 +78,9 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
         defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
+        unique_together_fields = {
+            k: v for k, v in validated_data.items() if k in unique_together
+        }
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )
@@ -168,13 +171,13 @@ class GcodeFileSerializer(serializers.ModelSerializer):
         ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
 
 
-class PrintJobSerializer(serializers.ModelSerializer):
+class PrintSessionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PrintJob
-        fields = [field.name for field in PrintJob._meta.fields] + ["url"]
+        model = PrintSession
+        fields = [field.name for field in PrintSession._meta.fields] + ["url"]
         read_only_fields = ("user",)
         extra_kwargs = {
-            "url": {"view_name": "api:print-job-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:print-session-detail", "lookup_field": "id"}
         }
 
 

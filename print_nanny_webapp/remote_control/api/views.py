@@ -29,7 +29,7 @@ import django_filters.rest_framework
 
 from .serializers import (
     PrinterProfileSerializer,
-    PrintJobSerializer,
+    PrintSessionSerializer,
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
@@ -41,7 +41,7 @@ from .serializers import (
 from print_nanny_webapp.alerts.api.serializers import DefectAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
-    PrintJob,
+    PrintSession,
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
@@ -72,7 +72,7 @@ RemoteControlCommandAlertSettings = apps.get_model(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintJobSerializer, 400: PrintJobSerializer})
+    create=extend_schema(responses={201: PrintSessionSerializer, 400: PrintSessionSerializer})
 )
 class CommandViewSet(
     ListModelMixin,
@@ -124,17 +124,17 @@ class CommandViewSet(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintJobSerializer, 400: PrintJobSerializer})
+    create=extend_schema(responses={201: PrintSessionSerializer, 400: PrintSessionSerializer})
 )
-class PrintJobViewSet(
+class PrintSessionViewSet(
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     GenericViewSet,
 ):
-    serializer_class = PrintJobSerializer
-    queryset = PrintJob.objects.all()
+    serializer_class = PrintSessionSerializer
+    queryset = PrintSession.objects.all()
     lookup_field = "id"
     basename = "print-job"  # users for view name generation e.g. "print-job-detail"
 
@@ -144,7 +144,7 @@ class PrintJobViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="print_jobs_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
+        responses={400: PrintSessionSerializer, 201: PrintSessionSerializer},
     )
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -158,7 +158,7 @@ class PrintJobViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="print_jobs_update",
-        responses={400: PrintJobSerializer, 200: PrintJobSerializer},
+        responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def update(self, *args, **kwargs):
         return super().update(*args, **kwargs)
@@ -182,7 +182,7 @@ class PrintJobViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="print_jobs_partial_update",
-        responses={400: PrintJobSerializer, 200: PrintJobSerializer},
+        responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def partial_update(self, request, *args, **kwargs):
         kwargs["partial"] = True
@@ -209,7 +209,7 @@ class PrinterProfileViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="printer_profiles_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
+        responses={400: PrintSessionSerializer, 201: PrintSessionSerializer},
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)

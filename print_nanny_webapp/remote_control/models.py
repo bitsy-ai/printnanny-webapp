@@ -289,35 +289,47 @@ class PrintSession(models.Model):
         Represents a unique print job/session
     '''
     class Meta:
-        unique_together = ("device", "session")
+        unique_together = ("octoprint_device", "session")
     
     created_dt = models.DateTimeField(db_index=True)
-    end_dt = models.DateTimeField(null=True, db_index=True)
-    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    octoprint_device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
     session = models.CharField(max_length=255, db_index=True)
+    progress = JSONField(default={})
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE, null=True)
+    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+
+    def render_video(self):
+        pass
+    @property
+    def gcode_filename(self):
+        if self.gcode_file:
+            return self.gcode_file.file.name
 
     def __str__(self):
         return self.session
 
-class PrintJob(models.Model):
-    class Meta:
-        unique_together = ("user", "name", "created_dt")
+# class PrintJob(models.Model):
+#     class Meta:
+#         unique_together = ("user", "name", "created_dt")
 
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-    print_session = models.ForeignKey(PrintSession, null=True, db_index=True, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
-    progress = JSONField(default={})
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
-    )
+#     created_dt = models.DateTimeField(auto_now_add=True)
+#     updated_dt = models.DateTimeField(auto_now=True)
+#     print_session = models.ForeignKey(PrintSession, null=True, db_index=True, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=255)
+#     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+#     progress = JSONField(default={})
+#     octoprint_device = models.ForeignKey(
+#         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
+#     )
 
-    @property
-    def filename(self):
-        return self.gcode_file.file.name
+#     @property
+#     def filename(self):
+#         return self.gcode_file.file.name
 
 
 class RemoteControlCommandManager(models.Manager):

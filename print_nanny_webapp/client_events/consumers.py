@@ -19,9 +19,6 @@ from print_nanny_webapp.utils.prometheus_metrics import (
 )
 
 logger = logging.getLogger(__name__)
-
-PrintJob = apps.get_model("remote_control", "PrintJob")
-
 User = get_user_model()
 
 

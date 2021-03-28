@@ -24,7 +24,6 @@ from .serializers import (
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
     DefectAlertSerializer,
-    # CreateDefectAlertSerializer
 )
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 

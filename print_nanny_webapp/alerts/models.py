@@ -376,8 +376,7 @@ class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
-    # dataframe = models.FileField(upload_to=_upload_to, null=True)
-    print_job = models.ForeignKey("remote_control.PrintJob", db_index=True, null=True, on_delete=models.CASCADE)
+    print_session = models.OneToOneField("remote_control.PrintSession", on_delete=models.CASCADE)
 
 
 class ProgressAlert(Alert):

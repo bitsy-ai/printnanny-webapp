@@ -22,14 +22,14 @@ from django.conf import settings
 from .serializers import (
     OctoPrintEventSerializer,
     PluginEventSerializer,
-    PrintJobStateSerializer,
+    PrintSessionStateSerializer,
 )
 import print_nanny_webapp.client_events.api.exceptions
 
-PrintJob = apps.get_model("remote_control", "PrintJob")
+PrintSession = apps.get_model("remote_control", "PrintSession")
 PluginEvent = apps.get_model("client_events", "PluginEvent")
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintJobState = apps.get_model("client_events", "PrintJobState")
+PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ class OctoPrintEventViewSet(
 
         print_job = event_data.get("print_job")
         if print_job is not None:
-            print_job = PrintJob.objects.get(id=print_job)
+            print_job = PrintSession.objects.get(id=print_job)
         if self.request.user:
             user = self.request.user
         else:
@@ -114,7 +114,7 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 
         print_job = event_data.get("print_job")
         if print_job is not None:
-            print_job = PrintJob.objects.get(id=print_job)
+            print_job = PrintSession.objects.get(id=print_job)
         if self.request.user:
             user = self.request.user
         else:
@@ -126,14 +126,14 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201:  PrintJobStateSerializer,
-            400:  PrintJobStateSerializer,
+            201:  PrintSessionStateSerializer,
+            400:  PrintSessionStateSerializer,
         }
     )
 )
-class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class =  PrintJobStateSerializer
-    queryset = PrintJobState.objects.all()
+class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class =  PrintSessionStateSerializer
+    queryset = PrintSessionState.objects.all()
     lookup_field = "id"
 
     @extend_schema(
@@ -144,7 +144,7 @@ class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     @action(methods=["GET"], detail=False)
     def enum(self, *args, **kwargs):
         return Response(
-            PrintJobState.event_codes,
+            PrintSessionState.event_codes,
             status.HTTP_200_OK,
         )
 
@@ -157,7 +157,7 @@ class PrintJobStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 
         print_job = event_data.get("print_job")
         if print_job is not None:
-            print_job = PrintJob.objects.get(id=print_job)
+            print_job = PrintSession.objects.get(id=print_job)
         if self.request.user:
             user = self.request.user
         else:
