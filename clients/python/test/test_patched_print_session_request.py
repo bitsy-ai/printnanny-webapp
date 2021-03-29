@@ -36,7 +36,6 @@ class TestPatchedPrintSessionRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_print_session_request.PatchedPrintSessionRequest()  # noqa: E501
         if include_optional :
             return PatchedPrintSessionRequest(
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 octoprint_device = 56, 
                 session = '', 
                 progress = {

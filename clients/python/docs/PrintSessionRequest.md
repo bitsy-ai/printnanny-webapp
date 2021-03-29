@@ -3,7 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_dt** | **datetime** |  | 
 **octoprint_device** | **int** |  | 
 **session** | **str** |  | 
 **progress** | **dict(str, object)** |  | [optional] 

@@ -81,7 +81,8 @@ class PrintSession(object):
 
         if id is not None:
             self.id = id
-        self.created_dt = created_dt
+        if created_dt is not None:
+            self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
         self.octoprint_device = octoprint_device
@@ -135,8 +136,6 @@ class PrintSession(object):
         :param created_dt: The created_dt of this PrintSession.  # noqa: E501
         :type created_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 

@@ -52,7 +52,6 @@ class TestPrintSession(unittest.TestCase):
             )
         else :
             return PrintSession(
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 octoprint_device = 56,
                 session = '',
         )
