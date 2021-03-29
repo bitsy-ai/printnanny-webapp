@@ -42,10 +42,10 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.defect_alert.DefectAlert(
                         print_session = '', 
-                        octoprint_device = 56, 
+                        octoprint_device = null, 
                         seen = True, 
                         dismissed = True, 
-                        user = 56, )
+                        user = null, )
                     ]
             )
         else :

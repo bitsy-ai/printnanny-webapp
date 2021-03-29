@@ -1,13 +1,10 @@
-# DefectAlert
+# AlertBulkRequestRequest
 
+Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**print_session** | **str** |  | 
-**octoprint_device** | [**Nested**](Nested.md) |  | [optional] [readonly] 
-**seen** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
-**user** | [**Nested**](Nested.md) |  | [optional] [readonly] 
+**ids** | **list[int]** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

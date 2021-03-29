@@ -34,10 +34,10 @@ class DefectAlert(object):
     """
     openapi_types = {
         'print_session': 'str',
-        'octoprint_device': 'int',
+        'octoprint_device': 'Nested',
         'seen': 'bool',
         'dismissed': 'bool',
-        'user': 'int'
+        'user': 'Nested'
     }
 
     attribute_map = {
@@ -100,7 +100,7 @@ class DefectAlert(object):
 
 
         :return: The octoprint_device of this DefectAlert.  # noqa: E501
-        :rtype: int
+        :rtype: Nested
         """
         return self._octoprint_device
 
@@ -110,7 +110,7 @@ class DefectAlert(object):
 
 
         :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
-        :type octoprint_device: int
+        :type octoprint_device: Nested
         """
 
         self._octoprint_device = octoprint_device
@@ -163,7 +163,7 @@ class DefectAlert(object):
 
 
         :return: The user of this DefectAlert.  # noqa: E501
-        :rtype: int
+        :rtype: Nested
         """
         return self._user
 
@@ -173,7 +173,7 @@ class DefectAlert(object):
 
 
         :param user: The user of this DefectAlert.  # noqa: E501
-        :type user: int
+        :type user: Nested
         """
 
         self._user = user

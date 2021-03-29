@@ -59,6 +59,19 @@ export interface Alert {
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
  * @export
+ * @interface AlertBulkRequestRequest
+ */
+export interface AlertBulkRequestRequest {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof AlertBulkRequestRequest
+     */
+    ids: Array<number>;
+}
+/**
+ * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+ * @export
  * @interface AlertBulkResponse
  */
 export interface AlertBulkResponse {
@@ -500,10 +513,10 @@ export interface DefectAlert {
     print_session: string;
     /**
      * 
-     * @type {number}
+     * @type {Nested}
      * @memberof DefectAlert
      */
-    octoprint_device?: number;
+    octoprint_device?: Nested;
     /**
      * 
      * @type {boolean}
@@ -518,10 +531,10 @@ export interface DefectAlert {
     dismissed?: boolean;
     /**
      * 
-     * @type {number}
+     * @type {Nested}
      * @memberof DefectAlert
      */
-    user?: number;
+    user?: Nested;
 }
 /**
  * 
@@ -1066,12 +1079,6 @@ export interface Nested {
     created_dt?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    active?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof Nested
      */
@@ -1081,25 +1088,290 @@ export interface Nested {
      * @type {string}
      * @memberof Nested
      */
-    hypothesis: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof Nested
      */
-    notion_url?: string | null;
+    fingerprint: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof Nested
+     */
+    cloudiot_device: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    cloudiot_device_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof Nested
      */
-    control: number;
+    cloudiot_device_num_id: number;
     /**
      * 
-     * @type {Array<number>}
+     * @type {string}
      * @memberof Nested
      */
-    treatments?: Array<number>;
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    platform: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Nested
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    hardware: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    revision: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    serial: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Nested
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Nested
+     */
+    ram: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    python_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    pip_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    virtualenv: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Nested
+     */
+    monitoring_active?: boolean;
+    /**
+     * 
+     * @type {MonitoringModeEnum}
+     * @memberof Nested
+     */
+    monitoring_mode?: MonitoringModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Nested
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Nested
+     */
+    user: number;
+}
+/**
+ * 
+ * @export
+ * @interface NestedRequest
+ */
+export interface NestedRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    public_key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    fingerprint: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof NestedRequest
+     */
+    cloudiot_device: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    cloudiot_device_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    cloudiot_device_path: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NestedRequest
+     */
+    cloudiot_device_num_id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    platform: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof NestedRequest
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    hardware: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    revision: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    serial: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NestedRequest
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof NestedRequest
+     */
+    ram: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    python_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    pip_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    virtualenv: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NestedRequest
+     */
+    monitoring_active?: boolean;
+    /**
+     * 
+     * @type {MonitoringModeEnum}
+     * @memberof NestedRequest
+     */
+    monitoring_mode?: MonitoringModeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NestedRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NestedRequest
+     */
+    user: number;
 }
 /**
  * 
@@ -5376,22 +5648,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertCreate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertCreate.');
-            }
+        defectAlertCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'defectAlertRequest' is not null or undefined
             if (defectAlertRequest === null || defectAlertRequest === undefined) {
                 throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertCreate.');
             }
-            const localVarPath = `/api/defect-alerts/{id}/create_defect_alerts/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/defect-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5443,16 +5709,75 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
+        defectAlertStopPrint: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertStopPrint.');
             }
-            const localVarPath = `/api/defect-alerts/`;
+            const localVarPath = `/api/defect-alerts/{id}/stop_print/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertStopPrint2: async (id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertStopPrint2.');
+            }
+            // verify required parameter 'alertBulkRequestRequest' is not null or undefined
+            if (alertBulkRequestRequest === null || alertBulkRequestRequest === undefined) {
+                throw new RequiredError('alertBulkRequestRequest','Required parameter alertBulkRequestRequest was null or undefined when calling defectAlertStopPrint2.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/stop_print/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5489,13 +5814,133 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
+            const nonString = typeof alertBulkRequestRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
+                ? JSON.stringify(alertBulkRequestRequest !== undefined ? alertBulkRequestRequest : {})
+                : (alertBulkRequestRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertSupress: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertSupress.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/supress/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertSupress2: async (id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertSupress2.');
+            }
+            // verify required parameter 'alertBulkRequestRequest' is not null or undefined
+            if (alertBulkRequestRequest === null || alertBulkRequestRequest === undefined) {
+                throw new RequiredError('alertBulkRequestRequest','Required parameter alertBulkRequestRequest was null or undefined when calling defectAlertSupress2.');
+            }
+            const localVarPath = `/api/defect-alerts/{id}/supress/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof alertBulkRequestRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(alertBulkRequestRequest !== undefined ? alertBulkRequestRequest : {})
+                : (alertBulkRequestRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -5852,13 +6297,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertCreate(id, defectAlertRequest, options);
+        async defectAlertCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertCreate(defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5866,12 +6310,53 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
+        async defectAlertStopPrint(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertStopPrint(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertStopPrint2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertStopPrint2(id, alertBulkRequestRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertSupress(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertSupress(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertSupress2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertSupress2(id, alertBulkRequestRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6014,22 +6499,50 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
          * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertCreate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        defectAlertCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
+        defectAlertStopPrint(id: number, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertStopPrint(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertStopPrint2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertStopPrint2(id, alertBulkRequestRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertSupress(id: number, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertSupress(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this defect alert.
+         * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertSupress2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertSupress2(id, alertBulkRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6152,22 +6665,50 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this defect alert.
      * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
-     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {number} id A unique integer value identifying this defect alert.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertStopPrint(id: number, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertStopPrint2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertSupress(id: number, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertSupress2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -6306,25 +6847,59 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this defect alert.
      * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertCreate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public defectAlertCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {number} id A unique integer value identifying this defect alert.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public defectAlertStopPrint(id: number, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertStopPrint(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertStopPrint2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertStopPrint2(id, alertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertSupress(id: number, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertSupress(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this defect alert.
+     * @param {AlertBulkRequestRequest} alertBulkRequestRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertSupress2(id: number, alertBulkRequestRequest: AlertBulkRequestRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertSupress2(id, alertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8871,73 +9446,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertCreate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertCreate.');
-            }
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertCreate.');
-            }
-            const localVarPath = `/api/defect-alerts/{id}/create_defect_alerts/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -10833,20 +11341,6 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertCreate(id, defectAlertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11297,16 +11791,6 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return RemoteControlApiFp(configuration).defectAlertCreate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11638,16 +12122,6 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -11989,18 +12463,6 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public defectAlertCreate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).defectAlertCreate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

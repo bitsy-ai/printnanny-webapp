@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.defect_alert import DefectAlert  # noqa: E501
+from print_nanny_client.models.alert_bulk_request_request import AlertBulkRequestRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestDefectAlert(unittest.TestCase):
-    """DefectAlert unit test stubs"""
+class TestAlertBulkRequestRequest(unittest.TestCase):
+    """AlertBulkRequestRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,26 @@ class TestDefectAlert(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DefectAlert
+        """Test AlertBulkRequestRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.defect_alert.DefectAlert()  # noqa: E501
+        # model = print_nanny_client.models.alert_bulk_request_request.AlertBulkRequestRequest()  # noqa: E501
         if include_optional :
-            return DefectAlert(
-                print_session = '', 
-                octoprint_device = None, 
-                seen = True, 
-                dismissed = True, 
-                user = None
+            return AlertBulkRequestRequest(
+                ids = [
+                    56
+                    ]
             )
         else :
-            return DefectAlert(
-                print_session = '',
+            return AlertBulkRequestRequest(
+                ids = [
+                    56
+                    ],
         )
 
-    def testDefectAlert(self):
-        """Test DefectAlert"""
+    def testAlertBulkRequestRequest(self):
+        """Test AlertBulkRequestRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

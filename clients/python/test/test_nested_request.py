@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.nested import Nested  # noqa: E501
+from print_nanny_client.models.nested_request import NestedRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestNested(unittest.TestCase):
-    """Nested unit test stubs"""
+class TestNestedRequest(unittest.TestCase):
+    """NestedRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,15 +29,13 @@ class TestNested(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test Nested
+        """Test NestedRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.nested.Nested()  # noqa: E501
+        # model = print_nanny_client.models.nested_request.NestedRequest()  # noqa: E501
         if include_optional :
-            return Nested(
-                id = 56, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+            return NestedRequest(
                 name = '', 
                 public_key = '', 
                 fingerprint = '', 
@@ -68,7 +66,7 @@ class TestNested(unittest.TestCase):
                 user = 56
             )
         else :
-            return Nested(
+            return NestedRequest(
                 name = '',
                 public_key = '',
                 fingerprint = '',
@@ -97,8 +95,8 @@ class TestNested(unittest.TestCase):
                 user = 56,
         )
 
-    def testNested(self):
-        """Test Nested"""
+    def testNestedRequest(self):
+        """Test NestedRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

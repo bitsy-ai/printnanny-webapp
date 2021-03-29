@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev58"
+__version__ = "0.5.0-dev59"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -37,6 +37,7 @@ from print_nanny_client.exceptions import ApiAttributeError
 from print_nanny_client.exceptions import ApiException
 # import models into sdk package
 from print_nanny_client.models.alert import Alert
+from print_nanny_client.models.alert_bulk_request_request import AlertBulkRequestRequest
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_method import AlertMethod
 from print_nanny_client.models.alert_method_enum import AlertMethodEnum
@@ -74,6 +75,7 @@ from print_nanny_client.models.monitoring_start_enum import MonitoringStartEnum
 from print_nanny_client.models.monitoring_stop_enum import MonitoringStopEnum
 from print_nanny_client.models.move_nozzle_enum import MoveNozzleEnum
 from print_nanny_client.models.nested import Nested
+from print_nanny_client.models.nested_request import NestedRequest
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest

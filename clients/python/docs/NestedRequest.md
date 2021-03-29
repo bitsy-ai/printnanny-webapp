@@ -1,10 +1,8 @@
-# Nested
+# NestedRequest
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **public_key** | **str** |  | 
 **fingerprint** | **str** |  | 

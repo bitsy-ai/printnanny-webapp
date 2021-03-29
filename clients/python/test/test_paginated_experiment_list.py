@@ -51,11 +51,34 @@ class TestPaginatedExperimentList(unittest.TestCase):
                             print_nanny_client.models.nested.Nested(
                                 id = 56, 
                                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                active = True, 
                                 name = '', 
-                                hypothesis = '', 
-                                notion_url = '', 
-                                control = 56, )
+                                public_key = '', 
+                                fingerprint = '', 
+                                cloudiot_device = {
+                                    'key' : null
+                                    }, 
+                                cloudiot_device_name = '', 
+                                cloudiot_device_path = '', 
+                                cloudiot_device_num_id = -9223372036854775808, 
+                                model = '', 
+                                platform = '', 
+                                cpu_flags = [
+                                    ''
+                                    ], 
+                                hardware = '', 
+                                revision = '', 
+                                serial = '', 
+                                cores = -2147483648, 
+                                ram = -2147483648, 
+                                python_version = '', 
+                                pip_version = '', 
+                                virtualenv = '', 
+                                monitoring_active = True, 
+                                monitoring_mode = 'active_learning', 
+                                octoprint_version = '', 
+                                plugin_version = '', 
+                                print_nanny_client_version = '', 
+                                user = 56, )
                             ], 
                         notion_url = '', )
                     ]

@@ -73,7 +73,7 @@ RemoteControlCommandAlertSettings = apps.get_model(
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: PrintSessionSerializer, 400: PrintSessionSerializer}
+        responses={201: RemoteControlCommandSerializer, 400: RemoteControlCommandSerializer }
     )
 )
 class CommandViewSet(
@@ -144,20 +144,6 @@ class PrintSessionViewSet(
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-
-    @extend_schema(
-        tags=["remote-control"],
-        operation_id="print_session_create",
-        responses={400: PrintSessionSerializer, 201: PrintSessionSerializer},
-    )
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data, status=status.HTTP_201_CREATED, headers=headers
-        )
 
     @extend_schema(
         tags=["remote-control"],

@@ -82,8 +82,26 @@ class TestAlertsApi(unittest.TestCase):
         """
         pass
 
-    def test_defect_alerts_create(self):
-        """Test case for defect_alerts_create
+    def test_defect_alert_stop_print(self):
+        """Test case for defect_alert_stop_print
+
+        """
+        pass
+
+    def test_defect_alert_stop_print2(self):
+        """Test case for defect_alert_stop_print2
+
+        """
+        pass
+
+    def test_defect_alert_supress(self):
+        """Test case for defect_alert_supress
+
+        """
+        pass
+
+    def test_defect_alert_supress2(self):
+        """Test case for defect_alert_supress2
 
         """
         pass

@@ -52,12 +52,6 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_defect_alert_create(self):
-        """Test case for defect_alert_create
-
-        """
-        pass
-
     def test_gcode_files_create(self):
         """Test case for gcode_files_create
 
