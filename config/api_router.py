@@ -27,7 +27,7 @@ router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("alert_settings", AlertSettingsViewSet)
-router.register("defect-alerts", DefectAlertViewSet)
+router.register("defect-alerts", DefectAlertViewSet, basename="defect-alert")
 
 router.register("users", UserViewSet)
 

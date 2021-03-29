@@ -50,10 +50,30 @@ class CreateDefectAlertSerializer(AlertSerializer):
         fields = ("print_session", )
 
 class DefectAlertSerializer(AlertSerializer):
-
+    supress_url = serializers.HyperlinkedIdentityField(
+        view_name='api:defect-alert-supress',
+        lookup_field='pk'
+    )
+    supress_url = serializers.HyperlinkedIdentityField(
+        view_name='api:defect-alert-stop-print',
+        lookup_field='pk'
+    )
     class Meta:
         model = DefectAlert
-        fields = "__all__"
+        fields = [
+            "id",
+            "time",
+            "alert_methods",
+            "alert_type",
+            "created_dt",
+            "updated_dt",
+            "seen",
+            "dismissed",
+            "user",
+            "octoprint_device",
+            "print_session",
+            "supress_url"
+        ]
 
         read_only_fields = (
             "alert_methods", 
@@ -62,10 +82,10 @@ class DefectAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
         )
-        extra_kwargs = {
-            "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "id"},
-            "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
-        }
+        # extra_kwargs = {
+        #     "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "pk"},
+        #     # "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
+        # }
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """

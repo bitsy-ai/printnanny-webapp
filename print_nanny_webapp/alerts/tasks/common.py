@@ -41,10 +41,10 @@ FAILURES = {
 
 
 @shared_task
-def trigger_alerts_task(alert_id):
+def trigger_alerts_task(alert_id, serialized_obj):
     Alert = apps.get_model("alerts", "Alert")
     alert = Alert.objects.get(id=alert_id)
-    alert.trigger_alerts()
+    alert.trigger_alerts(serialized_obj)
 
 
 def dict_to_series(data):

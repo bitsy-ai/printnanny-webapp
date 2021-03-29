@@ -17,7 +17,7 @@ from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
-
+from django.urls import reverse
 import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
@@ -78,17 +78,14 @@ class Alert(PolymorphicModel):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
 
-    def trigger_alerts_task(self):
-        return trigger_alerts_task.delay(self.id)
+    def trigger_alerts_task(self, serialized_obj):
+        return trigger_alerts_task.delay(self.id, serialized_obj)
 
-    def trigger_alerts(self):
-        from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
+    def trigger_alerts(self, serialized_obj):
 
         if self.sent is False:
-            alert_serializer = AlertPolymorphicSerializer(self)
-            data = alert_serializer.data
             for alert_method in self.alert_methods:
-                self.alert_trigger_method_map[alert_method](data)
+                self.alert_trigger_method_map[alert_method](serialized_obj)
             self.sent = True
             self.save()
 
@@ -112,7 +109,7 @@ class Alert(PolymorphicModel):
     def trigger_email_alert(self, data):
 
         device_url = reverse(
-            "dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id}
+            "dashboard:octoprint-devices:detail", kwargs={"pk": self.octoprint_device.id}
         )
         merge_data = {
             "DEVICE_URL": device_url,
@@ -383,15 +380,20 @@ class DefectAlert(Alert):
     )
 
     def get_supress_url(self):
-        raise NotImplemented
+        return reverse(
+            "api:defect-alert-supress"
+        )
 
     def get_stop_print_url(self):
-        raise NotImplemented
+        return reverse(
+            "api:defect-alert:stop_print"
+        )
+
 
     def trigger_email_alert(self, data):
 
         device_url = reverse(
-            "dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id}
+            "dashboard:octoprint-devices:detail", kwargs={"pk": self.octoprint_device.id}
         )
         merge_data = {
             "DEVICE_URL": device_url,
