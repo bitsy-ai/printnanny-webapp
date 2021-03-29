@@ -1,6 +1,10 @@
 from rest_framework import permissions
 
 
+class IsAdminOrIsSelf(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.user == request.user or request.user.is_superuser
+
 class IsPrivateAllowed(permissions.BasePermission):
     """
     Allow access to request owner
