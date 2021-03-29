@@ -36,22 +36,13 @@ class TestNestedRequest(unittest.TestCase):
         # model = print_nanny_client.models.nested_request.NestedRequest()  # noqa: E501
         if include_optional :
             return NestedRequest(
-                session = '', 
-                progress = {
-                    'key' : null
-                    }, 
-                gcode_filename = '', 
-                supress_alerts = True, 
-                octoprint_device = 56, 
-                user = 56, 
-                printer_profile = 56, 
-                gcode_file = 56
+                app_label = '', 
+                model = ''
             )
         else :
             return NestedRequest(
-                session = '',
-                octoprint_device = 56,
-                user = 56,
+                app_label = '',
+                model = '',
         )
 
     def testNestedRequest(self):

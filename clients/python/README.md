@@ -203,6 +203,7 @@ Class | Method | HTTP request | Description
  - [CommandAlertSettings](docs/CommandAlertSettings.md)
  - [CommandAlertSettingsRequest](docs/CommandAlertSettingsRequest.md)
  - [CommandEnum](docs/CommandEnum.md)
+ - [CreateDefectAlertRequest](docs/CreateDefectAlertRequest.md)
  - [DefectAlert](docs/DefectAlert.md)
  - [DefectAlertRequest](docs/DefectAlertRequest.md)
  - [DefectAlertSettings](docs/DefectAlertSettings.md)

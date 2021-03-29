@@ -25,6 +25,7 @@ from .serializers import (
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
     DefectAlertSerializer,
+    CreateDefectAlertSerializer
 )
 from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
@@ -61,7 +62,7 @@ class DefectAlertViewSet(
 
     @extend_schema(
         tags=["alerts"],
-        request=DefectAlertSerializer,
+        request=CreateDefectAlertSerializer,
         operation_id="defect_alert_create",
         responses={
             201: DefectAlertSerializer,

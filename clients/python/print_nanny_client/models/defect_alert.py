@@ -33,86 +33,210 @@ class DefectAlert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'print_session': 'Nested',
-        'octoprint_device': 'Nested',
+        'id': 'int',
+        'time': 'str',
+        'alert_method': 'AlertMethodEnum',
+        'alert_type': 'AlertTypeEnum',
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime',
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool',
-        'user': 'Nested'
+        'polymorphic_ctype': 'Nested',
+        'user': 'Nested',
+        'octoprint_device': 'Nested',
+        'print_session': 'Nested'
     }
 
     attribute_map = {
-        'print_session': 'print_session',
-        'octoprint_device': 'octoprint_device',
+        'id': 'id',
+        'time': 'time',
+        'alert_method': 'alert_method',
+        'alert_type': 'alert_type',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed',
-        'user': 'user'
+        'polymorphic_ctype': 'polymorphic_ctype',
+        'user': 'user',
+        'octoprint_device': 'octoprint_device',
+        'print_session': 'print_session'
     }
 
-    def __init__(self, print_session=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._print_session = None
-        self._octoprint_device = None
+        self._id = None
+        self._time = None
+        self._alert_method = None
+        self._alert_type = None
+        self._created_dt = None
+        self._updated_dt = None
         self._seen = None
+        self._sent = None
         self._dismissed = None
+        self._polymorphic_ctype = None
         self._user = None
+        self._octoprint_device = None
+        self._print_session = None
         self.discriminator = None
 
-        if print_session is not None:
-            self.print_session = print_session
-        if octoprint_device is not None:
-            self.octoprint_device = octoprint_device
+        if id is not None:
+            self.id = id
+        if time is not None:
+            self.time = time
+        if alert_method is not None:
+            self.alert_method = alert_method
+        if alert_type is not None:
+            self.alert_type = alert_type
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if updated_dt is not None:
+            self.updated_dt = updated_dt
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
             self.user = user
+        if octoprint_device is not None:
+            self.octoprint_device = octoprint_device
+        if print_session is not None:
+            self.print_session = print_session
 
     @property
-    def print_session(self):
-        """Gets the print_session of this DefectAlert.  # noqa: E501
+    def id(self):
+        """Gets the id of this DefectAlert.  # noqa: E501
 
 
-        :return: The print_session of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :return: The id of this DefectAlert.  # noqa: E501
+        :rtype: int
         """
-        return self._print_session
+        return self._id
 
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this DefectAlert.
+    @id.setter
+    def id(self, id):
+        """Sets the id of this DefectAlert.
 
 
-        :param print_session: The print_session of this DefectAlert.  # noqa: E501
-        :type print_session: Nested
+        :param id: The id of this DefectAlert.  # noqa: E501
+        :type id: int
         """
 
-        self._print_session = print_session
+        self._id = id
 
     @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this DefectAlert.  # noqa: E501
+    def time(self):
+        """Gets the time of this DefectAlert.  # noqa: E501
 
 
-        :return: The octoprint_device of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :return: The time of this DefectAlert.  # noqa: E501
+        :rtype: str
         """
-        return self._octoprint_device
+        return self._time
 
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this DefectAlert.
+    @time.setter
+    def time(self, time):
+        """Sets the time of this DefectAlert.
 
 
-        :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
-        :type octoprint_device: Nested
+        :param time: The time of this DefectAlert.  # noqa: E501
+        :type time: str
         """
 
-        self._octoprint_device = octoprint_device
+        self._time = time
+
+    @property
+    def alert_method(self):
+        """Gets the alert_method of this DefectAlert.  # noqa: E501
+
+
+        :return: The alert_method of this DefectAlert.  # noqa: E501
+        :rtype: AlertMethodEnum
+        """
+        return self._alert_method
+
+    @alert_method.setter
+    def alert_method(self, alert_method):
+        """Sets the alert_method of this DefectAlert.
+
+
+        :param alert_method: The alert_method of this DefectAlert.  # noqa: E501
+        :type alert_method: AlertMethodEnum
+        """
+
+        self._alert_method = alert_method
+
+    @property
+    def alert_type(self):
+        """Gets the alert_type of this DefectAlert.  # noqa: E501
+
+
+        :return: The alert_type of this DefectAlert.  # noqa: E501
+        :rtype: AlertTypeEnum
+        """
+        return self._alert_type
+
+    @alert_type.setter
+    def alert_type(self, alert_type):
+        """Sets the alert_type of this DefectAlert.
+
+
+        :param alert_type: The alert_type of this DefectAlert.  # noqa: E501
+        :type alert_type: AlertTypeEnum
+        """
+
+        self._alert_type = alert_type
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this DefectAlert.  # noqa: E501
+
+
+        :return: The created_dt of this DefectAlert.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this DefectAlert.
+
+
+        :param created_dt: The created_dt of this DefectAlert.  # noqa: E501
+        :type created_dt: datetime
+        """
+
+        self._created_dt = created_dt
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this DefectAlert.  # noqa: E501
+
+
+        :return: The updated_dt of this DefectAlert.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this DefectAlert.
+
+
+        :param updated_dt: The updated_dt of this DefectAlert.  # noqa: E501
+        :type updated_dt: datetime
+        """
+
+        self._updated_dt = updated_dt
 
     @property
     def seen(self):
@@ -136,6 +260,27 @@ class DefectAlert(object):
         self._seen = seen
 
     @property
+    def sent(self):
+        """Gets the sent of this DefectAlert.  # noqa: E501
+
+
+        :return: The sent of this DefectAlert.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this DefectAlert.
+
+
+        :param sent: The sent of this DefectAlert.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
+
+    @property
     def dismissed(self):
         """Gets the dismissed of this DefectAlert.  # noqa: E501
 
@@ -157,6 +302,27 @@ class DefectAlert(object):
         self._dismissed = dismissed
 
     @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this DefectAlert.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this DefectAlert.  # noqa: E501
+        :rtype: Nested
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this DefectAlert.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this DefectAlert.  # noqa: E501
+        :type polymorphic_ctype: Nested
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
+
+    @property
     def user(self):
         """Gets the user of this DefectAlert.  # noqa: E501
 
@@ -176,6 +342,48 @@ class DefectAlert(object):
         """
 
         self._user = user
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this DefectAlert.  # noqa: E501
+
+
+        :return: The octoprint_device of this DefectAlert.  # noqa: E501
+        :rtype: Nested
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this DefectAlert.
+
+
+        :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
+        :type octoprint_device: Nested
+        """
+
+        self._octoprint_device = octoprint_device
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this DefectAlert.  # noqa: E501
+
+
+        :return: The print_session of this DefectAlert.  # noqa: E501
+        :rtype: Nested
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this DefectAlert.
+
+
+        :param print_session: The print_session of this DefectAlert.  # noqa: E501
+        :type print_session: Nested
+        """
+
+        self._print_session = print_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -28,6 +28,7 @@ docs/AuthTokenRequest.md
 docs/CommandAlertSettings.md
 docs/CommandAlertSettingsRequest.md
 docs/CommandEnum.md
+docs/CreateDefectAlertRequest.md
 docs/DefectAlert.md
 docs/DefectAlertRequest.md
 docs/DefectAlertSettings.md
@@ -157,6 +158,7 @@ print_nanny_client/models/auth_token_request.py
 print_nanny_client/models/command_alert_settings.py
 print_nanny_client/models/command_alert_settings_request.py
 print_nanny_client/models/command_enum.py
+print_nanny_client/models/create_defect_alert_request.py
 print_nanny_client/models/defect_alert.py
 print_nanny_client/models/defect_alert_request.py
 print_nanny_client/models/defect_alert_settings.py
@@ -275,6 +277,7 @@ test/test_auth_token_request.py
 test/test_command_alert_settings.py
 test/test_command_alert_settings_request.py
 test/test_command_enum.py
+test/test_create_defect_alert_request.py
 test/test_defect_alert.py
 test/test_defect_alert_request.py
 test/test_defect_alert_settings.py

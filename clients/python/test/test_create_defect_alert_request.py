@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.patched_defect_alert_request import PatchedDefectAlertRequest  # noqa: E501
+from print_nanny_client.models.create_defect_alert_request import CreateDefectAlertRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPatchedDefectAlertRequest(unittest.TestCase):
-    """PatchedDefectAlertRequest unit test stubs"""
+class TestCreateDefectAlertRequest(unittest.TestCase):
+    """CreateDefectAlertRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,23 +29,22 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PatchedDefectAlertRequest
+        """Test CreateDefectAlertRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.patched_defect_alert_request.PatchedDefectAlertRequest()  # noqa: E501
+        # model = print_nanny_client.models.create_defect_alert_request.CreateDefectAlertRequest()  # noqa: E501
         if include_optional :
-            return PatchedDefectAlertRequest(
-                seen = True, 
-                sent = True, 
-                dismissed = True
+            return CreateDefectAlertRequest(
+                print_session = ''
             )
         else :
-            return PatchedDefectAlertRequest(
+            return CreateDefectAlertRequest(
+                print_session = '',
         )
 
-    def testPatchedDefectAlertRequest(self):
-        """Test PatchedDefectAlertRequest"""
+    def testCreateDefectAlertRequest(self):
+        """Test CreateDefectAlertRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

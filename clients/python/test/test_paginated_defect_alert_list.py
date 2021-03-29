@@ -41,11 +41,19 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
                     print_nanny_client.models.defect_alert.DefectAlert(
-                        print_session = null, 
-                        octoprint_device = null, 
+                        id = 56, 
+                        time = '', 
+                        alert_method = null, 
+                        alert_type = null, 
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         seen = True, 
+                        sent = True, 
                         dismissed = True, 
-                        user = null, )
+                        polymorphic_ctype = null, 
+                        user = null, 
+                        octoprint_device = null, 
+                        print_session = null, )
                     ]
             )
         else :

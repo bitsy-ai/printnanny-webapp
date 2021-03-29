@@ -34,26 +34,31 @@ class PatchedDefectAlertRequest(object):
     """
     openapi_types = {
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool'
     }
 
     attribute_map = {
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed'
     }
 
-    def __init__(self, seen=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, sent=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._seen = None
+        self._sent = None
         self._dismissed = None
         self.discriminator = None
 
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
 
@@ -77,6 +82,27 @@ class PatchedDefectAlertRequest(object):
         """
 
         self._seen = seen
+
+    @property
+    def sent(self):
+        """Gets the sent of this PatchedDefectAlertRequest.  # noqa: E501
+
+
+        :return: The sent of this PatchedDefectAlertRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this PatchedDefectAlertRequest.
+
+
+        :param sent: The sent of this PatchedDefectAlertRequest.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
 
     @property
     def dismissed(self):

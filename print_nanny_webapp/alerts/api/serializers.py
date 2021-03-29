@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
-
 class AlertSerializer(serializers.ModelSerializer):
 
     time = serializers.SerializerMethodField()
@@ -44,38 +43,30 @@ class ProgressAlertSerializer(AlertSerializer):
         fields = "__all__"
         read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
 
-
+class CreateDefectAlertSerializer(AlertSerializer):
+    print_session = serializers.CharField()
+    class Meta:
+        model = DefectAlert
+        fields = ("print_session", )
+        
 class DefectAlertSerializer(AlertSerializer):
+
     class Meta:
         depth = 1
         model = DefectAlert
-        fields = [
-            "print_session",
-            "octoprint_device",
-            "seen",
-            "dismissed",
-            "user",
-            # "supress_url",
-            # "stop_print_url"
-        ]
+        fields = "__all__"
+
         read_only_fields = (
-            "alert_method",
-            "alert_type",
-            "polymorphic_ctype",
+            "alert_method", 
+            "alert_type", 
+            "polymorphic_ctype", 
             "user",
             "octoprint_device",
         )
         extra_kwargs = {
-            "supress_url": {
-                "view_name": "api:defect-alert-supress",
-                "lookup_field": "id",
-            },
-            "stop_print_url": {
-                "view_name": "api:defect-alert-stop-print",
-                "lookup_field": "id",
-            },
+            "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "id"},
+            "stop_print_url": {"view_name": "apqi:defect-alert-stop-print", "lookup_field": "id"}
         }
-
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """

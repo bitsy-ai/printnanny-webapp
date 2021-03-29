@@ -37,6 +37,7 @@ class TestDefectAlertRequest(unittest.TestCase):
         if include_optional :
             return DefectAlertRequest(
                 seen = True, 
+                sent = True, 
                 dismissed = True
             )
         else :

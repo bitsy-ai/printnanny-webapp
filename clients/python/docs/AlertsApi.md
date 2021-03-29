@@ -958,7 +958,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **defect_alert_create**
-> DefectAlert defect_alert_create(defect_alert_request=defect_alert_request)
+> DefectAlert defect_alert_create(create_defect_alert_request)
 
 
 
@@ -997,10 +997,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest |  (optional)
+    create_defect_alert_request = print_nanny_client.CreateDefectAlertRequest() # CreateDefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alert_create(defect_alert_request=defect_alert_request)
+        api_response = api_instance.defect_alert_create(create_defect_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->defect_alert_create: %s\n" % e)
@@ -1039,10 +1039,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest |  (optional)
+    create_defect_alert_request = print_nanny_client.CreateDefectAlertRequest() # CreateDefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alert_create(defect_alert_request=defect_alert_request)
+        api_response = api_instance.defect_alert_create(create_defect_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->defect_alert_create: %s\n" % e)
@@ -1052,7 +1052,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **defect_alert_request** | [**DefectAlertRequest**](DefectAlertRequest.md)|  | [optional] 
+ **create_defect_alert_request** | [**CreateDefectAlertRequest**](CreateDefectAlertRequest.md)|  | 
 
 ### Return type
 

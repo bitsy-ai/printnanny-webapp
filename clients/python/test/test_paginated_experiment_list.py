@@ -50,18 +50,8 @@ class TestPaginatedExperimentList(unittest.TestCase):
                         treatments = [
                             print_nanny_client.models.nested.Nested(
                                 id = 56, 
-                                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                session = '', 
-                                progress = {
-                                    'key' : null
-                                    }, 
-                                gcode_filename = '', 
-                                supress_alerts = True, 
-                                octoprint_device = 56, 
-                                user = 56, 
-                                printer_profile = 56, 
-                                gcode_file = 56, )
+                                app_label = '', 
+                                model = '', )
                             ], 
                         notion_url = '', )
                     ]

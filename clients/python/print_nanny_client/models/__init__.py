@@ -35,6 +35,7 @@ from print_nanny_client.models.auth_token_request import AuthTokenRequest
 from print_nanny_client.models.command_alert_settings import CommandAlertSettings
 from print_nanny_client.models.command_alert_settings_request import CommandAlertSettingsRequest
 from print_nanny_client.models.command_enum import CommandEnum
+from print_nanny_client.models.create_defect_alert_request import CreateDefectAlertRequest
 from print_nanny_client.models.defect_alert import DefectAlert
 from print_nanny_client.models.defect_alert_request import DefectAlertRequest
 from print_nanny_client.models.defect_alert_settings import DefectAlertSettings

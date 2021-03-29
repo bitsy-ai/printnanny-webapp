@@ -33,233 +33,79 @@ class NestedRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'session': 'str',
-        'progress': 'dict(str, object)',
-        'gcode_filename': 'str',
-        'supress_alerts': 'bool',
-        'octoprint_device': 'int',
-        'user': 'int',
-        'printer_profile': 'int',
-        'gcode_file': 'int'
+        'app_label': 'str',
+        'model': 'str'
     }
 
     attribute_map = {
-        'session': 'session',
-        'progress': 'progress',
-        'gcode_filename': 'gcode_filename',
-        'supress_alerts': 'supress_alerts',
-        'octoprint_device': 'octoprint_device',
-        'user': 'user',
-        'printer_profile': 'printer_profile',
-        'gcode_file': 'gcode_file'
+        'app_label': 'app_label',
+        'model': 'model'
     }
 
-    def __init__(self, session=None, progress=None, gcode_filename=None, supress_alerts=None, octoprint_device=None, user=None, printer_profile=None, gcode_file=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, app_label=None, model=None, local_vars_configuration=None):  # noqa: E501
         """NestedRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._session = None
-        self._progress = None
-        self._gcode_filename = None
-        self._supress_alerts = None
-        self._octoprint_device = None
-        self._user = None
-        self._printer_profile = None
-        self._gcode_file = None
+        self._app_label = None
+        self._model = None
         self.discriminator = None
 
-        self.session = session
-        if progress is not None:
-            self.progress = progress
-        self.gcode_filename = gcode_filename
-        if supress_alerts is not None:
-            self.supress_alerts = supress_alerts
-        self.octoprint_device = octoprint_device
-        self.user = user
-        self.printer_profile = printer_profile
-        self.gcode_file = gcode_file
+        self.app_label = app_label
+        self.model = model
 
     @property
-    def session(self):
-        """Gets the session of this NestedRequest.  # noqa: E501
+    def app_label(self):
+        """Gets the app_label of this NestedRequest.  # noqa: E501
 
 
-        :return: The session of this NestedRequest.  # noqa: E501
+        :return: The app_label of this NestedRequest.  # noqa: E501
         :rtype: str
         """
-        return self._session
+        return self._app_label
 
-    @session.setter
-    def session(self, session):
-        """Sets the session of this NestedRequest.
+    @app_label.setter
+    def app_label(self, app_label):
+        """Sets the app_label of this NestedRequest.
 
 
-        :param session: The session of this NestedRequest.  # noqa: E501
-        :type session: str
+        :param app_label: The app_label of this NestedRequest.  # noqa: E501
+        :type app_label: str
         """
-        if self.local_vars_configuration.client_side_validation and session is None:  # noqa: E501
-            raise ValueError("Invalid value for `session`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and app_label is None:  # noqa: E501
+            raise ValueError("Invalid value for `app_label`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                session is not None and len(session) > 255):
-            raise ValueError("Invalid value for `session`, length must be less than or equal to `255`")  # noqa: E501
+                app_label is not None and len(app_label) > 100):
+            raise ValueError("Invalid value for `app_label`, length must be less than or equal to `100`")  # noqa: E501
 
-        self._session = session
-
-    @property
-    def progress(self):
-        """Gets the progress of this NestedRequest.  # noqa: E501
-
-
-        :return: The progress of this NestedRequest.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._progress
-
-    @progress.setter
-    def progress(self, progress):
-        """Sets the progress of this NestedRequest.
-
-
-        :param progress: The progress of this NestedRequest.  # noqa: E501
-        :type progress: dict(str, object)
-        """
-
-        self._progress = progress
+        self._app_label = app_label
 
     @property
-    def gcode_filename(self):
-        """Gets the gcode_filename of this NestedRequest.  # noqa: E501
+    def model(self):
+        """Gets the model of this NestedRequest.  # noqa: E501
 
 
-        :return: The gcode_filename of this NestedRequest.  # noqa: E501
+        :return: The model of this NestedRequest.  # noqa: E501
         :rtype: str
         """
-        return self._gcode_filename
+        return self._model
 
-    @gcode_filename.setter
-    def gcode_filename(self, gcode_filename):
-        """Sets the gcode_filename of this NestedRequest.
+    @model.setter
+    def model(self, model):
+        """Sets the model of this NestedRequest.
 
 
-        :param gcode_filename: The gcode_filename of this NestedRequest.  # noqa: E501
-        :type gcode_filename: str
+        :param model: The model of this NestedRequest.  # noqa: E501
+        :type model: str
         """
+        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
+            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                gcode_filename is not None and len(gcode_filename) > 255):
-            raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
+                model is not None and len(model) > 100):
+            raise ValueError("Invalid value for `model`, length must be less than or equal to `100`")  # noqa: E501
 
-        self._gcode_filename = gcode_filename
-
-    @property
-    def supress_alerts(self):
-        """Gets the supress_alerts of this NestedRequest.  # noqa: E501
-
-
-        :return: The supress_alerts of this NestedRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._supress_alerts
-
-    @supress_alerts.setter
-    def supress_alerts(self, supress_alerts):
-        """Sets the supress_alerts of this NestedRequest.
-
-
-        :param supress_alerts: The supress_alerts of this NestedRequest.  # noqa: E501
-        :type supress_alerts: bool
-        """
-
-        self._supress_alerts = supress_alerts
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this NestedRequest.  # noqa: E501
-
-
-        :return: The octoprint_device of this NestedRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this NestedRequest.
-
-
-        :param octoprint_device: The octoprint_device of this NestedRequest.  # noqa: E501
-        :type octoprint_device: int
-        """
-        if self.local_vars_configuration.client_side_validation and octoprint_device is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_device`, must not be `None`")  # noqa: E501
-
-        self._octoprint_device = octoprint_device
-
-    @property
-    def user(self):
-        """Gets the user of this NestedRequest.  # noqa: E501
-
-
-        :return: The user of this NestedRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this NestedRequest.
-
-
-        :param user: The user of this NestedRequest.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
-
-    @property
-    def printer_profile(self):
-        """Gets the printer_profile of this NestedRequest.  # noqa: E501
-
-
-        :return: The printer_profile of this NestedRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._printer_profile
-
-    @printer_profile.setter
-    def printer_profile(self, printer_profile):
-        """Sets the printer_profile of this NestedRequest.
-
-
-        :param printer_profile: The printer_profile of this NestedRequest.  # noqa: E501
-        :type printer_profile: int
-        """
-
-        self._printer_profile = printer_profile
-
-    @property
-    def gcode_file(self):
-        """Gets the gcode_file of this NestedRequest.  # noqa: E501
-
-
-        :return: The gcode_file of this NestedRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._gcode_file
-
-    @gcode_file.setter
-    def gcode_file(self, gcode_file):
-        """Sets the gcode_file of this NestedRequest.
-
-
-        :param gcode_file: The gcode_file of this NestedRequest.  # noqa: E501
-        :type gcode_file: int
-        """
-
-        self._gcode_file = gcode_file
+        self._model = model
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

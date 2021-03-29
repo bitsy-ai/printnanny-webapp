@@ -50,11 +50,11 @@ class AlertPolymorphic(object):
         'seen': 'bool',
         'snapshot_url': 'str',
         'title': 'str',
-        'print_session': 'Nested',
-        'octoprint_device': 'int',
         'sent': 'bool',
-        'progress_percent': 'int',
         'polymorphic_ctype': 'int',
+        'octoprint_device': 'int',
+        'print_session': 'Nested',
+        'progress_percent': 'int',
         'device': 'int'
     }
 
@@ -76,18 +76,18 @@ class AlertPolymorphic(object):
         'seen': 'seen',
         'snapshot_url': 'snapshot_url',
         'title': 'title',
-        'print_session': 'print_session',
-        'octoprint_device': 'octoprint_device',
         'sent': 'sent',
-        'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
+        'octoprint_device': 'octoprint_device',
+        'print_session': 'print_session',
+        'progress_percent': 'progress_percent',
         'device': 'device'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, print_session=None, octoprint_device=None, sent=None, progress_percent=None, polymorphic_ctype=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, sent=None, polymorphic_ctype=None, octoprint_device=None, print_session=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -110,11 +110,11 @@ class AlertPolymorphic(object):
         self._seen = None
         self._snapshot_url = None
         self._title = None
-        self._print_session = None
-        self._octoprint_device = None
         self._sent = None
-        self._progress_percent = None
         self._polymorphic_ctype = None
+        self._octoprint_device = None
+        self._print_session = None
+        self._progress_percent = None
         self._device = None
         self.discriminator = 'type'
 
@@ -145,15 +145,15 @@ class AlertPolymorphic(object):
         if snapshot_url is not None:
             self.snapshot_url = snapshot_url
         self.title = title
-        if print_session is not None:
-            self.print_session = print_session
-        self.octoprint_device = octoprint_device
         if sent is not None:
             self.sent = sent
-        if progress_percent is not None:
-            self.progress_percent = progress_percent
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
+        self.octoprint_device = octoprint_device
+        if print_session is not None:
+            self.print_session = print_session
+        if progress_percent is not None:
+            self.progress_percent = progress_percent
         self.device = device
 
     @property
@@ -528,25 +528,46 @@ class AlertPolymorphic(object):
         self._title = title
 
     @property
-    def print_session(self):
-        """Gets the print_session of this AlertPolymorphic.  # noqa: E501
+    def sent(self):
+        """Gets the sent of this AlertPolymorphic.  # noqa: E501
 
 
-        :return: The print_session of this AlertPolymorphic.  # noqa: E501
-        :rtype: Nested
+        :return: The sent of this AlertPolymorphic.  # noqa: E501
+        :rtype: bool
         """
-        return self._print_session
+        return self._sent
 
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this AlertPolymorphic.
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this AlertPolymorphic.
 
 
-        :param print_session: The print_session of this AlertPolymorphic.  # noqa: E501
-        :type print_session: Nested
+        :param sent: The sent of this AlertPolymorphic.  # noqa: E501
+        :type sent: bool
         """
 
-        self._print_session = print_session
+        self._sent = sent
+
+    @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this AlertPolymorphic.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def octoprint_device(self):
@@ -570,25 +591,25 @@ class AlertPolymorphic(object):
         self._octoprint_device = octoprint_device
 
     @property
-    def sent(self):
-        """Gets the sent of this AlertPolymorphic.  # noqa: E501
+    def print_session(self):
+        """Gets the print_session of this AlertPolymorphic.  # noqa: E501
 
 
-        :return: The sent of this AlertPolymorphic.  # noqa: E501
-        :rtype: bool
+        :return: The print_session of this AlertPolymorphic.  # noqa: E501
+        :rtype: Nested
         """
-        return self._sent
+        return self._print_session
 
-    @sent.setter
-    def sent(self, sent):
-        """Sets the sent of this AlertPolymorphic.
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this AlertPolymorphic.
 
 
-        :param sent: The sent of this AlertPolymorphic.  # noqa: E501
-        :type sent: bool
+        :param print_session: The print_session of this AlertPolymorphic.  # noqa: E501
+        :type print_session: Nested
         """
 
-        self._sent = sent
+        self._print_session = print_session
 
     @property
     def progress_percent(self):
@@ -618,27 +639,6 @@ class AlertPolymorphic(object):
             raise ValueError("Invalid value for `progress_percent`, must be a value greater than or equal to `1`")  # noqa: E501
 
         self._progress_percent = progress_percent
-
-    @property
-    def polymorphic_ctype(self):
-        """Gets the polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
-        :rtype: int
-        """
-        return self._polymorphic_ctype
-
-    @polymorphic_ctype.setter
-    def polymorphic_ctype(self, polymorphic_ctype):
-        """Sets the polymorphic_ctype of this AlertPolymorphic.
-
-
-        :param polymorphic_ctype: The polymorphic_ctype of this AlertPolymorphic.  # noqa: E501
-        :type polymorphic_ctype: int
-        """
-
-        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def device(self):
