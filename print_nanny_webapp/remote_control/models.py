@@ -310,14 +310,10 @@ class PrintSession(models.Model):
         PrinterProfile, on_delete=models.CASCADE, null=True
     )
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+    gcode_filename = models.CharField(max_length=255, null=True)
 
     def render_video(self):
         pass
-
-    @property
-    def gcode_filename(self):
-        if self.gcode_file:
-            return self.gcode_file.file.name
 
     def __str__(self):
         return self.session
