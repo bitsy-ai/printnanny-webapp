@@ -46,8 +46,6 @@ class ProgressAlertSerializer(AlertSerializer):
 
 class DefectAlertSerializer(AlertSerializer):
 
-    print_session = serializers.CharField()
-
     class Meta:
         depth = 1
         model = DefectAlert

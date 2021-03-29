@@ -67,11 +67,12 @@ class DefectAlertViewSet(
     )
     def create(self, request, permissions=[IsAdminOrIsSelf]):
         session = request.data.get("print_session")
+        import pdb; pdb.set_trace()
         session = PrintSession.objects.get(session=session)
         serializer = DefectAlertSerializer(data={
-            "print_session": session.id,
-            "user": session.user.id,
-            "octoprint_device": session.octoprint_device.id
+            "print_session": session,
+            "user": session.user,
+            "octoprint_device": session.octoprint_device
         })
         if serializer.is_valid():
             instance = serializer.save()
