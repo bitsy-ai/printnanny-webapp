@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0050_auto_20210328_1610'),
+        ("remote_control", "0050_auto_20210328_1610"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printsession',
-            name='gcode_filename',
+            model_name="printsession",
+            name="gcode_filename",
             field=models.CharField(max_length=255, null=True),
         ),
     ]
