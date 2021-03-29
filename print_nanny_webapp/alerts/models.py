@@ -394,7 +394,7 @@ class DefectAlert(Alert):
             "DEVICE_NAME": self.octoprint_device.name,
             "ALERT_TYPE": self.get_alert_type_display(),
             "SUPRESS_EMAIL_URL": self.get_supress_url(),
-            "STOP_PRINT_URL": self.get_stop_print_url()
+            "STOP_PRINT_URL": self.get_stop_print_url(),
         }
 
         text_body = render_to_string("email/defect_alert_body.txt", merge_data)
@@ -415,6 +415,7 @@ class DefectAlert(Alert):
         message.send()
 
         return message
+
 
 class ProgressAlert(Alert):
     """

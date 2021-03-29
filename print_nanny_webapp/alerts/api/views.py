@@ -26,12 +26,16 @@ from .serializers import (
     AlertMethodSerializer,
     DefectAlertSerializer,
 )
-from print_nanny_webapp.utils.permissions import IsAdminOrIsSelf, IsAdminOrIsPrintSessionOwner
+from print_nanny_webapp.utils.permissions import (
+    IsAdminOrIsSelf,
+    IsAdminOrIsPrintSessionOwner,
+)
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
 logger = logging.getLogger(__name__)
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
+
 
 @extend_schema(
     tags=["alerts"],
@@ -68,13 +72,19 @@ class DefectAlertViewSet(
     def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
         session = request.data.get("print_session")
         session = PrintSession.objects.get(session=session)
-        serializer = DefectAlertSerializer(data={
-            "print_session": session,
-            "user": session.user,
-            "octoprint_device": session.octoprint_device
-        })
+        serializer = DefectAlertSerializer(
+            data={
+                "print_session": session,
+                "user": session.user,
+                "octoprint_device": session.octoprint_device,
+            }
+        )
         if serializer.is_valid() and session.supress_alerts is False:
-            instance = serializer.save(user=session.user, octoprint_device=session.octoprint_device, print_session=session)
+            instance = serializer.save(
+                user=session.user,
+                octoprint_device=session.octoprint_device,
+                print_session=session,
+            )
             # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alert_task()
 
@@ -92,7 +102,9 @@ class DefectAlertViewSet(
             403: DefectAlertSerializer,
         },
     )
-    @action(detail=True, methods=["GET", "POST"]) # GET method is required to render as a href / raw link in emails
+    @action(
+        detail=True, methods=["GET", "POST"]
+    )  # GET method is required to render as a href / raw link in emails
     def supress(self, request, permission_classes=[IsAdminOrIsSelf]):
         defect_alert = self.get_object()
 
@@ -111,7 +123,9 @@ class DefectAlertViewSet(
             403: DefectAlertSerializer,
         },
     )
-    @action(detail=True, methods=["GET", "POST"]) # GET method is required to render as a href / raw link in emails
+    @action(
+        detail=True, methods=["GET", "POST"]
+    )  # GET method is required to render as a href / raw link in emails
     def stop_print(self, request, permission_classes=[IsAdminOrIsSelf]):
         defect_alert = self.get_object()
 
@@ -124,6 +138,7 @@ class DefectAlertViewSet(
         )
         serializer = self.get_serializer(defect_alert)
         return Response(serializer.data, status.HTTP_202_ACCEPTED)
+
 
 class AlertViewSet(
     GenericViewSet,

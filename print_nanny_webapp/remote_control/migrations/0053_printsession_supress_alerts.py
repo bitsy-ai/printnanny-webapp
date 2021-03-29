@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0052_auto_20210328_1728'),
+        ("remote_control", "0052_auto_20210328_1728"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printsession',
-            name='supress_alerts',
+            model_name="printsession",
+            name="supress_alerts",
             field=models.BooleanField(default=False),
         ),
     ]
