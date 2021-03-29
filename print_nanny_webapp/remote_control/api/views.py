@@ -170,7 +170,7 @@ class PrintSessionViewSet(
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
         # prometheus_metrics.print_session_status.state(instance.last_status)
-        return Response(serializer.data, status=status.HTTP_201_OK)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def perform_update(self, serializer):
 
