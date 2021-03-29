@@ -10,6 +10,7 @@ from rest_framework.mixins import (
     CreateModelMixin,
 )
 from rest_framework.decorators import action
+from rest_framework import status
 
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
@@ -66,9 +67,9 @@ class DefectAlertViewSet(
     )
     def create(self, request, permissions=[IsAdminOrIsSelf]):
         session = request.data.get("print_session")
-        session = PrintSession(session=session)
+        session = PrintSession.objects.get(session=session)
         serializer = DefectAlertSerializer(data={
-            "session": session.id,
+            "print_session": session.id,
             "user": session.user.id,
             "octoprint_device": session.octoprint_device.id
         })
