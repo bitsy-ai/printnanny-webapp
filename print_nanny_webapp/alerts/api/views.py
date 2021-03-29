@@ -65,7 +65,7 @@ class DefectAlertViewSet(
         },
     )
     def create(self, request, permissions=[IsAdminOrIsSelf]):
-        session = request.data.get("session")
+        session = request.data.get("print_session")
         session = PrintSession(session=session)
         serializer = DefectAlertSerializer(data={
             "session": session.id,

@@ -155,9 +155,9 @@ Class | Method | HTTP request | Description
 *RemoteControlApi* | [**octoprint_devices_retrieve**](docs/RemoteControlApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
 *RemoteControlApi* | [**octoprint_devices_update**](docs/RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
 *RemoteControlApi* | [**octoprint_devices_update_or_create**](docs/RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
-*RemoteControlApi* | [**print_session_create**](docs/RemoteControlApi.md#print_session_create) | **POST** /api/print-sessions/ | 
 *RemoteControlApi* | [**print_session_partial_update**](docs/RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{id}/ | 
 *RemoteControlApi* | [**print_session_update**](docs/RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{id}/ | 
+*RemoteControlApi* | [**print_sessions_create**](docs/RemoteControlApi.md#print_sessions_create) | **POST** /api/print-sessions/ | 
 *RemoteControlApi* | [**print_sessions_list**](docs/RemoteControlApi.md#print_sessions_list) | **GET** /api/print-sessions/ | 
 *RemoteControlApi* | [**print_sessions_retrieve**](docs/RemoteControlApi.md#print_sessions_retrieve) | **GET** /api/print-sessions/{id}/ | 
 *RemoteControlApi* | [**printer_profiles_create**](docs/RemoteControlApi.md#printer_profiles_create) | **POST** /api/printer-profiles/ | 

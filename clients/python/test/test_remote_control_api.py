@@ -124,12 +124,6 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_print_session_create(self):
-        """Test case for print_session_create
-
-        """
-        pass
-
     def test_print_session_partial_update(self):
         """Test case for print_session_partial_update
 
@@ -138,6 +132,12 @@ class TestRemoteControlApi(unittest.TestCase):
 
     def test_print_session_update(self):
         """Test case for print_session_update
+
+        """
+        pass
+
+    def test_print_sessions_create(self):
+        """Test case for print_sessions_create
 
         """
         pass
