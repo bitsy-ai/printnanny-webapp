@@ -61,7 +61,11 @@ class Alert(PolymorphicModel):
             self.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
         }
 
-    alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
+    alert_methods = ChoiceArrayField(
+        models.CharField(choices=AlertMethodChoices.choices, max_length=255),
+        blank=True,
+        default=(AlertMethodChoices.UI,AlertMethodChoices.EMAIL),
+    )    
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -183,7 +187,7 @@ class AlertSettings(PolymorphicModel):
     alert_methods = ChoiceArrayField(
         models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255),
         blank=True,
-        default=(Alert.AlertMethodChoices.UI,),
+        default=(Alert.AlertMethodChoices.UI,Alert.AlertMethodChoices.EMAIL),
     )
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"

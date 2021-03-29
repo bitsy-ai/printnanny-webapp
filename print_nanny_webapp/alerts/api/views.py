@@ -75,16 +75,20 @@ class DefectAlertViewSet(
         session = PrintSession.objects.get(session=session)
         serializer = DefectAlertSerializer(
             data={
-                "print_session": session,
-                "user": session.user,
-                "octoprint_device": session.octoprint_device,
+                "print_session": session.id,
+                "user": session.user.id,
+                "octoprint_device": session.octoprint_device.id,
             }
         )
         if serializer.is_valid() and session.supress_alerts is False:
+            alert_methods = DefectAlertSettings.objects.get_or_create(
+                user=session.user,
+            )
             instance = serializer.save(
                 user=session.user,
                 octoprint_device=session.octoprint_device,
                 print_session=session,
+                alert_methods=alert_methods
             )
             # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alert_task()

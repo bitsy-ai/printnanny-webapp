@@ -574,28 +574,28 @@ export interface DefectAlert {
     dismissed?: boolean;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof DefectAlert
      */
-    polymorphic_ctype?: Nested;
+    polymorphic_ctype?: number;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof DefectAlert
      */
-    user?: Nested;
+    user?: number;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof DefectAlert
      */
-    octoprint_device?: Nested;
+    octoprint_device?: number;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof DefectAlert
      */
-    print_session?: Nested;
+    print_session: number;
 }
 /**
  * 
@@ -621,6 +621,12 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DefectAlertRequest
+     */
+    print_session: number;
 }
 /**
  * 
@@ -1137,32 +1143,43 @@ export interface Nested {
      * @type {string}
      * @memberof Nested
      */
-    app_label: string;
+    created_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Nested
+     */
+    active?: boolean;
     /**
      * 
      * @type {string}
      * @memberof Nested
      */
-    model: string;
-}
-/**
- * 
- * @export
- * @interface NestedRequest
- */
-export interface NestedRequest {
+    name: string;
     /**
      * 
      * @type {string}
-     * @memberof NestedRequest
+     * @memberof Nested
      */
-    app_label: string;
+    hypothesis: string;
     /**
      * 
      * @type {string}
-     * @memberof NestedRequest
+     * @memberof Nested
      */
-    model: string;
+    notion_url?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Nested
+     */
+    control: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof Nested
+     */
+    treatments?: Array<number>;
 }
 /**
  * 
@@ -2501,6 +2518,12 @@ export interface PatchedDefectAlertRequest {
      * @memberof PatchedDefectAlertRequest
      */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDefectAlertRequest
+     */
+    print_session?: number;
 }
 /**
  * 
@@ -5909,14 +5932,18 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate: async (id: number, defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertsUpdate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsUpdate.');
+            }
+            // verify required parameter 'defectAlertRequest' is not null or undefined
+            if (defectAlertRequest === null || defectAlertRequest === undefined) {
+                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsUpdate.');
             }
             const localVarPath = `/api/defect-alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -6192,11 +6219,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+        async defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsUpdate(id, defectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6362,11 +6389,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {DefectAlertRequest} defectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+        defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -6528,12 +6555,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
 }
 
@@ -6726,12 +6753,12 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {DefectAlertRequest} defectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsUpdate(id: number, defectAlertRequest?: DefectAlertRequest, options?: any) {
+    public defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
