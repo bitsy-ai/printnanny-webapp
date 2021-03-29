@@ -26,7 +26,7 @@ from .serializers import (
     AlertMethodSerializer,
     DefectAlertSerializer,
 )
-from print_nanny_webapp.utils.permissions import IsAdminOrIsSelf
+from print_nanny_webapp.utils.permissions import IsAdminOrIsSelf, IsAdminOrIsPrintSessionOwner
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
 logger = logging.getLogger(__name__)
@@ -65,17 +65,17 @@ class DefectAlertViewSet(
             403: DefectAlertSerializer,
         },
     )
-    def create(self, request, permissions=[IsAdminOrIsSelf]):
+    def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
         session = request.data.get("print_session")
-        import pdb; pdb.set_trace()
         session = PrintSession.objects.get(session=session)
         serializer = DefectAlertSerializer(data={
             "print_session": session,
             "user": session.user,
             "octoprint_device": session.octoprint_device
         })
-        if serializer.is_valid():
-            instance = serializer.save()
+        if serializer.is_valid() and session.supress_alerts is False:
+            instance = serializer.save(user=session.user, octoprint_device=session.octoprint_device, print_session=session)
+            # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alert_task()
 
             return Response(serializer.data, status.HTTP_201_CREATED)

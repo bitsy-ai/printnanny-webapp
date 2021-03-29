@@ -130,7 +130,9 @@ class Alert(PolymorphicModel):
                 f"Device:{self.octoprint_device.id}",
             ],
         )
-        message.send()
+        # supression check is performed before enqueueing celery task AND immediately prior to sending msg
+        if self.print_session.supress_alerts is False:
+            message.send()
 
         return message
 

@@ -43,7 +43,7 @@ FAILURES = {
 @shared_task
 def trigger_alert_task(alert_id):
     Alert = apps.get_model("alerts", "Alert")
-    alert = Alert.get(id=alert_id)
+    alert = Alert.objects.get(id=alert_id)
 
     alert.trigger_alert()
 
