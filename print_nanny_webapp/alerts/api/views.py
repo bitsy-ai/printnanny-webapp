@@ -25,6 +25,7 @@ from .serializers import (
     AlertMethodSerializer,
     DefectAlertSerializer,
 )
+from print_nanny_webapp.utils.permissions import IsAdminOrIsSelf
 from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
 logger = logging.getLogger(__name__)
@@ -54,7 +55,7 @@ class DefectAlertViewSet(
         return DefectAlert.objects.filter(user=user).all()
 
     @extend_schema(
-        tags=["alerts", "remote-control"],
+        tags=["alerts"],
         request=DefectAlertSerializer,
         operation_id="defect_alert_create",
         responses={
@@ -63,18 +64,9 @@ class DefectAlertViewSet(
             403: DefectAlertSerializer,
         },
     )
-    @action(detail=True, methods=["POST"])
-    def create_defect_alerts(self, request):
+    def create(self, request, permissions=[IsAdminOrIsSelf]):
         session = request.data.get("session")
         session = PrintSession(session=session)
-
-        if (
-            not request.user.id != session.user.id
-            and not request.user.is_superuser
-        ):
-            return Response({"msg": f"You are not permitted to create a DefectAlert for session={session.session}"}, status=status.HTTP_403_FORBIDDEN)
-
-
         serializer = DefectAlertSerializer(data={
             "session": session.id,
             "user": session.user.id,
@@ -87,6 +79,49 @@ class DefectAlertViewSet(
             return Response(serializer.data, status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @extend_schema(
+        tags=["alerts"],
+        request=AlertBulkRequestSerializer,
+        operation_id="defect_alert_supress",
+        responses={
+            200: DefectAlertSerializer,
+            400: DefectAlertSerializer,
+            403: DefectAlertSerializer,
+        },
+    )
+    @action(detail=True, methods=["GET", "POST"]) # GET method is required to render as a href / raw link in emails
+    def supress(self, request, permission_classes=[IsAdminOrIsSelf]):
+        defect_alert = self.get_object()
+
+        defect_alert.print_session.supress_alerts = True
+        defect_alert.save()
+        serializer = self.get_serializer(defect_alert)
+        return Response(serializer.data, status.HTTP_202_ACCEPTED)
+
+    @extend_schema(
+        tags=["alerts"],
+        request=AlertBulkRequestSerializer,
+        operation_id="defect_alert_stop_print",
+        responses={
+            200: DefectAlertSerializer,
+            400: DefectAlertSerializer,
+            403: DefectAlertSerializer,
+        },
+    )
+    @action(detail=True, methods=["GET", "POST"]) # GET method is required to render as a href / raw link in emails
+    def stop_print(self, request, permission_classes=[IsAdminOrIsSelf]):
+        defect_alert = self.get_object()
+
+        defect_alert.print_session.supress_alerts = True
+        defect_alert.save()
+        remote_control_command = RemoteControlCommand.objects.create(
+            command=RemoteControlCommand.PRINT_STOP,
+            user=defect_alert.user,
+            device=defect_alert.octoprint_device,
+        )
+        serializer = self.get_serializer(defect_alert)
+        return Response(serializer.data, status.HTTP_202_ACCEPTED)
 
 class AlertViewSet(
     GenericViewSet,

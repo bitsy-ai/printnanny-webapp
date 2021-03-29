@@ -375,6 +375,44 @@ class DefectAlert(Alert):
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
 
+    def get_supress_url(self):
+        raise NotImplemented
+
+    def get_stop_print_url(self):
+        raise NotImplemented
+
+    def trigger_email_alert(self, data):
+
+        device_url = reverse(
+            "dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id}
+        )
+        merge_data = {
+            "DEVICE_URL": device_url,
+            "FIRST_NAME": self.user.first_name or "Maker",
+            "DEVICE_NAME": self.octoprint_device.name,
+            "ALERT_TYPE": self.get_alert_type_display(),
+            "SUPRESS_EMAIL_URL": self.get_supress_url(),
+            "STOP_PRINT_URL": self.get_stop_print_url()
+        }
+
+        text_body = render_to_string("email/defect_alert_body.txt", merge_data)
+        html_body = render_to_string("email/defect_alert_body.txt", merge_data)
+
+        subject = render_to_string("email/defect_alert_subject.txt", merge_data)
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=[self.user.email],
+            tags=[
+                self.__class__,
+                self.alert_subtype,
+                f"User:{self.user.id}",
+                f"Device:{self.octoprint_device.id}",
+            ],
+        )
+        message.send()
+
+        return message
 
 class ProgressAlert(Alert):
     """

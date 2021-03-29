@@ -23,6 +23,7 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
         }
 
 
+
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     cloudiot_device_configs = serializers.SerializerMethodField()

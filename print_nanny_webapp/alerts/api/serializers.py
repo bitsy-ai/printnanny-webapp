@@ -1,6 +1,7 @@
 import logging
 import inspect
 
+from django.apps import apps
 from django.urls import reverse
 from rest_framework import serializers
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -21,6 +22,7 @@ from ..models import (
 
 logger = logging.getLogger(__name__)
 
+RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
 class AlertSerializer(serializers.ModelSerializer):
 
@@ -47,6 +49,7 @@ class DefectAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
 
     class Meta:
+        depth = 1
         model = DefectAlert
         fields = [
             "print_session",
@@ -54,6 +57,8 @@ class DefectAlertSerializer(AlertSerializer):
             "seen",
             "dismissed",
             "user",
+            # "supress_url",
+            # "stop_print_url"
         ]
         read_only_fields = (
             "alert_method", 
@@ -62,7 +67,10 @@ class DefectAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
         )
-
+        extra_kwargs = {
+            "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "id"},
+            "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
+        }
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """
