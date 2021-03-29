@@ -29,6 +29,7 @@ from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
 
 logger = logging.getLogger(__name__)
 
+PrintSession = apps.get_model("remote_control", "PrintSession")
 
 @extend_schema(
     tags=["alerts"],
@@ -52,6 +53,40 @@ class DefectAlertViewSet(
         user = self.request.user
         return DefectAlert.objects.filter(user=user).all()
 
+    @extend_schema(
+        tags=["alerts", "remote-control"],
+        request=DefectAlertSerializer,
+        operation_id="defect_alert_create",
+        responses={
+            201: DefectAlertSerializer,
+            400: DefectAlertSerializer,
+            403: DefectAlertSerializer,
+        },
+    )
+    @action(detail=True, methods=["POST"])
+    def create_defect_alerts(self, request):
+        session = request.data.get("session")
+        session = PrintSession(session=session)
+
+        if (
+            not request.user.id != session.user.id
+            and not request.user.is_superuser
+        ):
+            return Response({"msg": f"You are not permitted to create a DefectAlert for session={session.session}"}, status=status.HTTP_403_FORBIDDEN)
+
+
+        serializer = DefectAlertSerializer(data={
+            "session": session.id,
+            "user": session.user.id,
+            "octoprint_device": session.octoprint_device.id
+        })
+        if serializer.is_valid():
+            instance = serializer.save()
+            instance.trigger_alert_task()
+
+            return Response(serializer.data, status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AlertViewSet(
     GenericViewSet,

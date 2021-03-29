@@ -371,7 +371,7 @@ class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
-    print_session = models.OneToOneField(
+    print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
 

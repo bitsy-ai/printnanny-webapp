@@ -311,6 +311,7 @@ class PrintSession(models.Model):
     )
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
     gcode_filename = models.CharField(max_length=255, null=True)
+    supress_alerts = models.BooleanField(default=False)
 
     def render_video(self):
         pass

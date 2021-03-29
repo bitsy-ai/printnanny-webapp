@@ -51,12 +51,17 @@ class DefectAlertSerializer(AlertSerializer):
         fields = [
             "print_session",
             "octoprint_device",
-            "print_session",
             "seen",
             "dismissed",
             "user",
         ]
-        read_only_fields = ("alert_method", "alert_type", "polymorphic_ctype")
+        read_only_fields = (
+            "alert_method", 
+            "alert_type", 
+            "polymorphic_ctype", 
+            "user",
+            "octoprint_device",
+        )
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):
