@@ -18,7 +18,6 @@ from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_request_request import AlertBulkRequestRequest
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_method import AlertMethod
-from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_methods_enum import AlertMethodsEnum
 from print_nanny_client.models.alert_polymorphic import AlertPolymorphic
 from print_nanny_client.models.alert_polymorphic_request import AlertPolymorphicRequest

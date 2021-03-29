@@ -8,7 +8,6 @@ docs/Alert.md
 docs/AlertBulkRequestRequest.md
 docs/AlertBulkResponse.md
 docs/AlertMethod.md
-docs/AlertMethodEnum.md
 docs/AlertMethodsEnum.md
 docs/AlertPolymorphic.md
 docs/AlertPolymorphicRequest.md
@@ -140,7 +139,6 @@ print_nanny_client/models/alert.py
 print_nanny_client/models/alert_bulk_request_request.py
 print_nanny_client/models/alert_bulk_response.py
 print_nanny_client/models/alert_method.py
-print_nanny_client/models/alert_method_enum.py
 print_nanny_client/models/alert_methods_enum.py
 print_nanny_client/models/alert_polymorphic.py
 print_nanny_client/models/alert_polymorphic_request.py
@@ -255,7 +253,6 @@ test/test_alert.py
 test/test_alert_bulk_request_request.py
 test/test_alert_bulk_response.py
 test/test_alert_method.py
-test/test_alert_method_enum.py
 test/test_alert_methods_enum.py
 test/test_alert_polymorphic.py
 test/test_alert_polymorphic_request.py

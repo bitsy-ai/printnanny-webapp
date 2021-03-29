@@ -35,7 +35,7 @@ class DefectAlert(object):
     openapi_types = {
         'id': 'int',
         'time': 'str',
-        'alert_method': 'AlertMethodEnum',
+        'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
@@ -51,7 +51,7 @@ class DefectAlert(object):
     attribute_map = {
         'id': 'id',
         'time': 'time',
-        'alert_method': 'alert_method',
+        'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
@@ -64,7 +64,7 @@ class DefectAlert(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -72,7 +72,7 @@ class DefectAlert(object):
 
         self._id = None
         self._time = None
-        self._alert_method = None
+        self._alert_methods = None
         self._alert_type = None
         self._created_dt = None
         self._updated_dt = None
@@ -89,8 +89,8 @@ class DefectAlert(object):
             self.id = id
         if time is not None:
             self.time = time
-        if alert_method is not None:
-            self.alert_method = alert_method
+        if alert_methods is not None:
+            self.alert_methods = alert_methods
         if alert_type is not None:
             self.alert_type = alert_type
         if created_dt is not None:
@@ -154,25 +154,25 @@ class DefectAlert(object):
         self._time = time
 
     @property
-    def alert_method(self):
-        """Gets the alert_method of this DefectAlert.  # noqa: E501
+    def alert_methods(self):
+        """Gets the alert_methods of this DefectAlert.  # noqa: E501
 
 
-        :return: The alert_method of this DefectAlert.  # noqa: E501
-        :rtype: AlertMethodEnum
+        :return: The alert_methods of this DefectAlert.  # noqa: E501
+        :rtype: list[AlertMethodsEnum]
         """
-        return self._alert_method
+        return self._alert_methods
 
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this DefectAlert.
+    @alert_methods.setter
+    def alert_methods(self, alert_methods):
+        """Sets the alert_methods of this DefectAlert.
 
 
-        :param alert_method: The alert_method of this DefectAlert.  # noqa: E501
-        :type alert_method: AlertMethodEnum
+        :param alert_methods: The alert_methods of this DefectAlert.  # noqa: E501
+        :type alert_methods: list[AlertMethodsEnum]
         """
 
-        self._alert_method = alert_method
+        self._alert_methods = alert_methods
 
     @property
     def alert_type(self):

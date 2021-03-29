@@ -112,17 +112,6 @@ export interface AlertMethod {
  * @export
  * @enum {string}
  */
-export enum AlertMethodEnum {
-    Ui = 'UI',
-    Email = 'EMAIL',
-    Discord = 'DISCORD'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
 export enum AlertMethodsEnum {
     Ui = 'UI',
     Email = 'EMAIL',
@@ -532,10 +521,10 @@ export interface DefectAlert {
     time?: string;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof DefectAlert
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3028,10 +3017,10 @@ export interface PatchedRemoteControlCommandAlertRequest {
     alert_subtype?: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3850,10 +3839,10 @@ export interface ProgressAlert {
     time?: string;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof ProgressAlert
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -4143,10 +4132,10 @@ export interface RemoteControlCommandAlert {
     alert_subtype: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof RemoteControlCommandAlert
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -4252,10 +4241,10 @@ export interface RemoteControlCommandAlertRequest {
     alert_subtype: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof RemoteControlCommandAlertRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}

@@ -43,7 +43,9 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                     print_nanny_client.models.defect_alert.DefectAlert(
                         id = 56, 
                         time = '', 
-                        alert_method = null, 
+                        alert_methods = [
+                            'UI'
+                            ], 
                         alert_type = null, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

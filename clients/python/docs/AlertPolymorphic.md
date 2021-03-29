@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **dismissed** | **bool** |  | [optional] 
 **time** | **str** |  | [optional] [readonly] 
 **alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 
-**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [readonly] 
+**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [readonly] 
 **color** | **str** |  | 
 **dashboard_url** | **str** |  | [optional] [readonly] 

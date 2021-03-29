@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev63"
+__version__ = "0.5.0-dev64"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -40,7 +40,6 @@ from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_request_request import AlertBulkRequestRequest
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_method import AlertMethod
-from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_methods_enum import AlertMethodsEnum
 from print_nanny_client.models.alert_polymorphic import AlertPolymorphic
 from print_nanny_client.models.alert_polymorphic_request import AlertPolymorphicRequest
