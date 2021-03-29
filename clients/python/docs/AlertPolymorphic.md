@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
-**user** | **int** |  | [readonly] 
+**user** | **int** |  | [optional] [readonly] 
 **dismissed** | **bool** |  | [optional] 
 **time** | **str** |  | [optional] [readonly] 
 **alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 

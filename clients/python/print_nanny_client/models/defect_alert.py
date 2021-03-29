@@ -62,12 +62,14 @@ class DefectAlert(object):
         self.discriminator = None
 
         self.print_session = print_session
-        self.octoprint_device = octoprint_device
+        if octoprint_device is not None:
+            self.octoprint_device = octoprint_device
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-        self.user = user
+        if user is not None:
+            self.user = user
 
     @property
     def print_session(self):
@@ -173,8 +175,6 @@ class DefectAlert(object):
         :param user: The user of this DefectAlert.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 

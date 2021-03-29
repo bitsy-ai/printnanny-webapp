@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**commands_partial_update**](RemoteControlApi.md#commands_partial_update) | **PATCH** /api/commands/{id}/ | 
 [**commands_retrieve**](RemoteControlApi.md#commands_retrieve) | **GET** /api/commands/{id}/ | 
 [**commands_update**](RemoteControlApi.md#commands_update) | **PUT** /api/commands/{id}/ | 
-[**defect_alerts_create2**](RemoteControlApi.md#defect_alerts_create2) | **POST** /api/octoprint-devices/{id}/create_defect_alerts/ | 
+[**defect_alert_create**](RemoteControlApi.md#defect_alert_create) | **POST** /api/defect-alerts/{id}/create_defect_alerts/ | 
 [**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **POST** /api/gcode-files/ | 
 [**gcode_files_list**](RemoteControlApi.md#gcode_files_list) | **GET** /api/gcode-files/ | 
 [**gcode_files_partial_update**](RemoteControlApi.md#gcode_files_partial_update) | **PATCH** /api/gcode-files/{id}/ | 
@@ -514,8 +514,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **defect_alerts_create2**
-> DefectAlert defect_alerts_create2(id, defect_alert_request)
+# **defect_alert_create**
+> DefectAlert defect_alert_create(id, defect_alert_request)
 
 
 
@@ -554,14 +554,14 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print device.
+    id = 56 # int | A unique integer value identifying this defect alert.
 defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alerts_create2(id, defect_alert_request)
+        api_response = api_instance.defect_alert_create(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->defect_alerts_create2: %s\n" % e)
+        print("Exception when calling RemoteControlApi->defect_alert_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -597,21 +597,21 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print device.
+    id = 56 # int | A unique integer value identifying this defect alert.
 defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alerts_create2(id, defect_alert_request)
+        api_response = api_instance.defect_alert_create(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->defect_alerts_create2: %s\n" % e)
+        print("Exception when calling RemoteControlApi->defect_alert_create: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this octo print device. | 
+ **id** | **int**| A unique integer value identifying this defect alert. | 
  **defect_alert_request** | [**DefectAlertRequest**](DefectAlertRequest.md)|  | 
 
 ### Return type

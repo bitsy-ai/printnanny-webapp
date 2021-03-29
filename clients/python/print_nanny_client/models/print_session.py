@@ -43,6 +43,7 @@ class PrintSession(object):
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
+        'supress_alerts': 'bool',
         'url': 'str'
     }
 
@@ -57,10 +58,11 @@ class PrintSession(object):
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
+        'supress_alerts': 'supress_alerts',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, supress_alerts=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -76,6 +78,7 @@ class PrintSession(object):
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
+        self._supress_alerts = None
         self._url = None
         self.discriminator = None
 
@@ -94,6 +97,8 @@ class PrintSession(object):
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
+        if supress_alerts is not None:
+            self.supress_alerts = supress_alerts
         if url is not None:
             self.url = url
 
@@ -316,6 +321,27 @@ class PrintSession(object):
             raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
 
         self._gcode_filename = gcode_filename
+
+    @property
+    def supress_alerts(self):
+        """Gets the supress_alerts of this PrintSession.  # noqa: E501
+
+
+        :return: The supress_alerts of this PrintSession.  # noqa: E501
+        :rtype: bool
+        """
+        return self._supress_alerts
+
+    @supress_alerts.setter
+    def supress_alerts(self, supress_alerts):
+        """Sets the supress_alerts of this PrintSession.
+
+
+        :param supress_alerts: The supress_alerts of this PrintSession.  # noqa: E501
+        :type supress_alerts: bool
+        """
+
+        self._supress_alerts = supress_alerts
 
     @property
     def url(self):

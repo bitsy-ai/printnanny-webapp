@@ -37,15 +37,12 @@ class TestDefectAlertRequest(unittest.TestCase):
         if include_optional :
             return DefectAlertRequest(
                 print_session = '', 
-                octoprint_device = 56, 
                 seen = True, 
-                dismissed = True, 
-                user = 56
+                dismissed = True
             )
         else :
             return DefectAlertRequest(
                 print_session = '',
-                user = 56,
         )
 
     def testDefectAlertRequest(self):

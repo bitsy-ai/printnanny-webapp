@@ -34,42 +34,33 @@ class PatchedDefectAlertRequest(object):
     """
     openapi_types = {
         'print_session': 'str',
-        'octoprint_device': 'int',
         'seen': 'bool',
-        'dismissed': 'bool',
-        'user': 'int'
+        'dismissed': 'bool'
     }
 
     attribute_map = {
         'print_session': 'print_session',
-        'octoprint_device': 'octoprint_device',
         'seen': 'seen',
-        'dismissed': 'dismissed',
-        'user': 'user'
+        'dismissed': 'dismissed'
     }
 
-    def __init__(self, print_session=None, octoprint_device=None, seen=None, dismissed=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, seen=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._print_session = None
-        self._octoprint_device = None
         self._seen = None
         self._dismissed = None
-        self._user = None
         self.discriminator = None
 
         if print_session is not None:
             self.print_session = print_session
-        self.octoprint_device = octoprint_device
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-        if user is not None:
-            self.user = user
 
     @property
     def print_session(self):
@@ -91,27 +82,6 @@ class PatchedDefectAlertRequest(object):
         """
 
         self._print_session = print_session
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
-
-
-        :return: The octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this PatchedDefectAlertRequest.
-
-
-        :param octoprint_device: The octoprint_device of this PatchedDefectAlertRequest.  # noqa: E501
-        :type octoprint_device: int
-        """
-
-        self._octoprint_device = octoprint_device
 
     @property
     def seen(self):
@@ -154,27 +124,6 @@ class PatchedDefectAlertRequest(object):
         """
 
         self._dismissed = dismissed
-
-    @property
-    def user(self):
-        """Gets the user of this PatchedDefectAlertRequest.  # noqa: E501
-
-
-        :return: The user of this PatchedDefectAlertRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this PatchedDefectAlertRequest.
-
-
-        :param user: The user of this PatchedDefectAlertRequest.  # noqa: E501
-        :type user: int
-        """
-
-        self._user = user
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

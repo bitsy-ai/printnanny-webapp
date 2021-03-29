@@ -122,7 +122,8 @@ class AlertPolymorphic(object):
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
-        self.user = user
+        if user is not None:
+            self.user = user
         if dismissed is not None:
             self.dismissed = dismissed
         if time is not None:
@@ -214,8 +215,6 @@ class AlertPolymorphic(object):
         :param user: The user of this AlertPolymorphic.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 

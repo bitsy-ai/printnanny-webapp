@@ -37,10 +37,8 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
         if include_optional :
             return PatchedDefectAlertRequest(
                 print_session = '', 
-                octoprint_device = 56, 
                 seen = True, 
-                dismissed = True, 
-                user = 56
+                dismissed = True
             )
         else :
             return PatchedDefectAlertRequest(

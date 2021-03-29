@@ -45,7 +45,6 @@ class TestDefectAlert(unittest.TestCase):
         else :
             return DefectAlert(
                 print_session = '',
-                user = 56,
         )
 
     def testDefectAlert(self):

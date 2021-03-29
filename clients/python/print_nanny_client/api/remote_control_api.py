@@ -590,16 +590,16 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def defect_alerts_create2(self, id, defect_alert_request, **kwargs):  # noqa: E501
-        """defect_alerts_create2  # noqa: E501
+    def defect_alert_create(self, id, defect_alert_request, **kwargs):  # noqa: E501
+        """defect_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alerts_create2(id, defect_alert_request, async_req=True)
+        >>> thread = api.defect_alert_create(id, defect_alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print device. (required)
+        :param id: A unique integer value identifying this defect alert. (required)
         :type id: int
         :param defect_alert_request: (required)
         :type defect_alert_request: DefectAlertRequest
@@ -619,18 +619,18 @@ class RemoteControlApi(object):
         :rtype: DefectAlert
         """
         kwargs['_return_http_data_only'] = True
-        return self.defect_alerts_create2_with_http_info(id, defect_alert_request, **kwargs)  # noqa: E501
+        return self.defect_alert_create_with_http_info(id, defect_alert_request, **kwargs)  # noqa: E501
 
-    def defect_alerts_create2_with_http_info(self, id, defect_alert_request, **kwargs):  # noqa: E501
-        """defect_alerts_create2  # noqa: E501
+    def defect_alert_create_with_http_info(self, id, defect_alert_request, **kwargs):  # noqa: E501
+        """defect_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alerts_create2_with_http_info(id, defect_alert_request, async_req=True)
+        >>> thread = api.defect_alert_create_with_http_info(id, defect_alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print device. (required)
+        :param id: A unique integer value identifying this defect alert. (required)
         :type id: int
         :param defect_alert_request: (required)
         :type defect_alert_request: DefectAlertRequest
@@ -677,18 +677,18 @@ class RemoteControlApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method defect_alerts_create2" % key
+                    " to method defect_alert_create" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `defect_alerts_create2`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `defect_alert_create`")  # noqa: E501
         # verify the required parameter 'defect_alert_request' is set
         if self.api_client.client_side_validation and ('defect_alert_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['defect_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `defect_alert_request` when calling `defect_alerts_create2`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `defect_alert_request` when calling `defect_alert_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -724,7 +724,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/octoprint-devices/{id}/create_defect_alerts/', 'POST',
+            '/api/defect-alerts/{id}/create_defect_alerts/', 'POST',
             path_params,
             query_params,
             header_params,

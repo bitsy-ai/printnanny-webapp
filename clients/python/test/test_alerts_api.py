@@ -76,14 +76,14 @@ class TestAlertsApi(unittest.TestCase):
         """
         pass
 
-    def test_defect_alerts_create(self):
-        """Test case for defect_alerts_create
+    def test_defect_alert_create(self):
+        """Test case for defect_alert_create
 
         """
         pass
 
-    def test_defect_alerts_create2(self):
-        """Test case for defect_alerts_create2
+    def test_defect_alerts_create(self):
+        """Test case for defect_alerts_create
 
         """
         pass
