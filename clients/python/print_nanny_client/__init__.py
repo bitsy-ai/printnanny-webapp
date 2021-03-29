@@ -76,7 +76,6 @@ from print_nanny_client.models.monitoring_start_enum import MonitoringStartEnum
 from print_nanny_client.models.monitoring_stop_enum import MonitoringStopEnum
 from print_nanny_client.models.move_nozzle_enum import MoveNozzleEnum
 from print_nanny_client.models.nested import Nested
-from print_nanny_client.models.nested_request import NestedRequest
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest

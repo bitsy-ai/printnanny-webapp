@@ -222,7 +222,6 @@ Class | Method | HTTP request | Description
  - [MonitoringStopEnum](docs/MonitoringStopEnum.md)
  - [MoveNozzleEnum](docs/MoveNozzleEnum.md)
  - [Nested](docs/Nested.md)
- - [NestedRequest](docs/NestedRequest.md)
  - [OctoPrintDevice](docs/OctoPrintDevice.md)
  - [OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)

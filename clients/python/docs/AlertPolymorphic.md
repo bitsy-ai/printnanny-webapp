@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **sent** | **bool** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] 
-**print_session** | [**Nested**](Nested.md) |  | [optional] [readonly] 
+**print_session** | **int** |  | 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **device** | **int** |  | 
 

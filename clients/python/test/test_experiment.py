@@ -45,8 +45,15 @@ class TestExperiment(unittest.TestCase):
                 treatments = [
                     print_nanny_client.models.nested.Nested(
                         id = 56, 
-                        app_label = '', 
-                        model = '', )
+                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        active = True, 
+                        name = '', 
+                        hypothesis = '', 
+                        notion_url = '', 
+                        control = 56, 
+                        treatments = [
+                            56
+                            ], )
                     ], 
                 notion_url = ''
             )

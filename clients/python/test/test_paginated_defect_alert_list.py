@@ -50,10 +50,10 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                         seen = True, 
                         sent = True, 
                         dismissed = True, 
-                        polymorphic_ctype = null, 
-                        user = null, 
-                        octoprint_device = null, 
-                        print_session = null, )
+                        polymorphic_ctype = 56, 
+                        user = 56, 
+                        octoprint_device = 56, 
+                        print_session = 56, )
                     ]
             )
         else :

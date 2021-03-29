@@ -42,10 +42,10 @@ class DefectAlert(object):
         'seen': 'bool',
         'sent': 'bool',
         'dismissed': 'bool',
-        'polymorphic_ctype': 'Nested',
-        'user': 'Nested',
-        'octoprint_device': 'Nested',
-        'print_session': 'Nested'
+        'polymorphic_ctype': 'int',
+        'user': 'int',
+        'octoprint_device': 'int',
+        'print_session': 'int'
     }
 
     attribute_map = {
@@ -109,8 +109,7 @@ class DefectAlert(object):
             self.user = user
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
-        if print_session is not None:
-            self.print_session = print_session
+        self.print_session = print_session
 
     @property
     def id(self):
@@ -307,7 +306,7 @@ class DefectAlert(object):
 
 
         :return: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._polymorphic_ctype
 
@@ -317,7 +316,7 @@ class DefectAlert(object):
 
 
         :param polymorphic_ctype: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :type polymorphic_ctype: Nested
+        :type polymorphic_ctype: int
         """
 
         self._polymorphic_ctype = polymorphic_ctype
@@ -328,7 +327,7 @@ class DefectAlert(object):
 
 
         :return: The user of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._user
 
@@ -338,7 +337,7 @@ class DefectAlert(object):
 
 
         :param user: The user of this DefectAlert.  # noqa: E501
-        :type user: Nested
+        :type user: int
         """
 
         self._user = user
@@ -349,7 +348,7 @@ class DefectAlert(object):
 
 
         :return: The octoprint_device of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._octoprint_device
 
@@ -359,7 +358,7 @@ class DefectAlert(object):
 
 
         :param octoprint_device: The octoprint_device of this DefectAlert.  # noqa: E501
-        :type octoprint_device: Nested
+        :type octoprint_device: int
         """
 
         self._octoprint_device = octoprint_device
@@ -370,7 +369,7 @@ class DefectAlert(object):
 
 
         :return: The print_session of this DefectAlert.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._print_session
 
@@ -380,8 +379,10 @@ class DefectAlert(object):
 
 
         :param print_session: The print_session of this DefectAlert.  # noqa: E501
-        :type print_session: Nested
+        :type print_session: int
         """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
 

@@ -35,16 +35,18 @@ class PatchedDefectAlertRequest(object):
     openapi_types = {
         'seen': 'bool',
         'sent': 'bool',
-        'dismissed': 'bool'
+        'dismissed': 'bool',
+        'print_session': 'int'
     }
 
     attribute_map = {
         'seen': 'seen',
         'sent': 'sent',
-        'dismissed': 'dismissed'
+        'dismissed': 'dismissed',
+        'print_session': 'print_session'
     }
 
-    def __init__(self, seen=None, sent=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, sent=None, dismissed=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -53,6 +55,7 @@ class PatchedDefectAlertRequest(object):
         self._seen = None
         self._sent = None
         self._dismissed = None
+        self._print_session = None
         self.discriminator = None
 
         if seen is not None:
@@ -61,6 +64,8 @@ class PatchedDefectAlertRequest(object):
             self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
+        if print_session is not None:
+            self.print_session = print_session
 
     @property
     def seen(self):
@@ -124,6 +129,27 @@ class PatchedDefectAlertRequest(object):
         """
 
         self._dismissed = dismissed
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this PatchedDefectAlertRequest.  # noqa: E501
+
+
+        :return: The print_session of this PatchedDefectAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PatchedDefectAlertRequest.
+
+
+        :param print_session: The print_session of this PatchedDefectAlertRequest.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

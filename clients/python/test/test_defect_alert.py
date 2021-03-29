@@ -45,13 +45,14 @@ class TestDefectAlert(unittest.TestCase):
                 seen = True, 
                 sent = True, 
                 dismissed = True, 
-                polymorphic_ctype = None, 
-                user = None, 
-                octoprint_device = None, 
-                print_session = None
+                polymorphic_ctype = 56, 
+                user = 56, 
+                octoprint_device = 56, 
+                print_session = 56
             )
         else :
             return DefectAlert(
+                print_session = 56,
         )
 
     def testDefectAlert(self):

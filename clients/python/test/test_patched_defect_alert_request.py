@@ -38,7 +38,8 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
             return PatchedDefectAlertRequest(
                 seen = True, 
                 sent = True, 
-                dismissed = True
+                dismissed = True, 
+                print_session = 56
             )
         else :
             return PatchedDefectAlertRequest(

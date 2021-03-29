@@ -1919,7 +1919,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **defect_alerts_update**
-> DefectAlert defect_alerts_update(id, defect_alert_request=defect_alert_request)
+> DefectAlert defect_alerts_update(id, defect_alert_request)
 
 
 
@@ -1959,10 +1959,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this defect alert.
-defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest |  (optional)
+defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alerts_update(id, defect_alert_request=defect_alert_request)
+        api_response = api_instance.defect_alerts_update(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->defect_alerts_update: %s\n" % e)
@@ -2002,10 +2002,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this defect alert.
-defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest |  (optional)
+defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequest | 
 
     try:
-        api_response = api_instance.defect_alerts_update(id, defect_alert_request=defect_alert_request)
+        api_response = api_instance.defect_alerts_update(id, defect_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->defect_alerts_update: %s\n" % e)
@@ -2016,7 +2016,7 @@ defect_alert_request = print_nanny_client.DefectAlertRequest() # DefectAlertRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this defect alert. | 
- **defect_alert_request** | [**DefectAlertRequest**](DefectAlertRequest.md)|  | [optional] 
+ **defect_alert_request** | [**DefectAlertRequest**](DefectAlertRequest.md)|  | 
 
 ### Return type
 

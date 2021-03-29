@@ -53,7 +53,7 @@ class AlertPolymorphic(object):
         'sent': 'bool',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
-        'print_session': 'Nested',
+        'print_session': 'int',
         'progress_percent': 'int',
         'device': 'int'
     }
@@ -150,8 +150,7 @@ class AlertPolymorphic(object):
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
-        if print_session is not None:
-            self.print_session = print_session
+        self.print_session = print_session
         if progress_percent is not None:
             self.progress_percent = progress_percent
         self.device = device
@@ -596,7 +595,7 @@ class AlertPolymorphic(object):
 
 
         :return: The print_session of this AlertPolymorphic.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._print_session
 
@@ -606,8 +605,10 @@ class AlertPolymorphic(object):
 
 
         :param print_session: The print_session of this AlertPolymorphic.  # noqa: E501
-        :type print_session: Nested
+        :type print_session: int
         """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
 

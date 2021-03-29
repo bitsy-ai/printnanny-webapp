@@ -34,31 +34,54 @@ class Nested(object):
     """
     openapi_types = {
         'id': 'int',
-        'app_label': 'str',
-        'model': 'str'
+        'created_dt': 'datetime',
+        'active': 'bool',
+        'name': 'str',
+        'hypothesis': 'str',
+        'notion_url': 'str',
+        'control': 'int',
+        'treatments': 'list[int]'
     }
 
     attribute_map = {
         'id': 'id',
-        'app_label': 'app_label',
-        'model': 'model'
+        'created_dt': 'created_dt',
+        'active': 'active',
+        'name': 'name',
+        'hypothesis': 'hypothesis',
+        'notion_url': 'notion_url',
+        'control': 'control',
+        'treatments': 'treatments'
     }
 
-    def __init__(self, id=None, app_label=None, model=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, active=None, name=None, hypothesis=None, notion_url=None, control=None, treatments=None, local_vars_configuration=None):  # noqa: E501
         """Nested - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._app_label = None
-        self._model = None
+        self._created_dt = None
+        self._active = None
+        self._name = None
+        self._hypothesis = None
+        self._notion_url = None
+        self._control = None
+        self._treatments = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
-        self.app_label = app_label
-        self.model = model
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if active is not None:
+            self.active = active
+        self.name = name
+        self.hypothesis = hypothesis
+        self.notion_url = notion_url
+        self.control = control
+        if treatments is not None:
+            self.treatments = treatments
 
     @property
     def id(self):
@@ -82,56 +105,166 @@ class Nested(object):
         self._id = id
 
     @property
-    def app_label(self):
-        """Gets the app_label of this Nested.  # noqa: E501
+    def created_dt(self):
+        """Gets the created_dt of this Nested.  # noqa: E501
 
 
-        :return: The app_label of this Nested.  # noqa: E501
-        :rtype: str
+        :return: The created_dt of this Nested.  # noqa: E501
+        :rtype: datetime
         """
-        return self._app_label
+        return self._created_dt
 
-    @app_label.setter
-    def app_label(self, app_label):
-        """Sets the app_label of this Nested.
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this Nested.
 
 
-        :param app_label: The app_label of this Nested.  # noqa: E501
-        :type app_label: str
+        :param created_dt: The created_dt of this Nested.  # noqa: E501
+        :type created_dt: datetime
         """
-        if self.local_vars_configuration.client_side_validation and app_label is None:  # noqa: E501
-            raise ValueError("Invalid value for `app_label`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                app_label is not None and len(app_label) > 100):
-            raise ValueError("Invalid value for `app_label`, length must be less than or equal to `100`")  # noqa: E501
 
-        self._app_label = app_label
+        self._created_dt = created_dt
 
     @property
-    def model(self):
-        """Gets the model of this Nested.  # noqa: E501
+    def active(self):
+        """Gets the active of this Nested.  # noqa: E501
 
 
-        :return: The model of this Nested.  # noqa: E501
+        :return: The active of this Nested.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this Nested.
+
+
+        :param active: The active of this Nested.  # noqa: E501
+        :type active: bool
+        """
+
+        self._active = active
+
+    @property
+    def name(self):
+        """Gets the name of this Nested.  # noqa: E501
+
+
+        :return: The name of this Nested.  # noqa: E501
         :rtype: str
         """
-        return self._model
+        return self._name
 
-    @model.setter
-    def model(self, model):
-        """Sets the model of this Nested.
+    @name.setter
+    def name(self, name):
+        """Sets the name of this Nested.
 
 
-        :param model: The model of this Nested.  # noqa: E501
-        :type model: str
+        :param name: The name of this Nested.  # noqa: E501
+        :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
-            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                model is not None and len(model) > 100):
-            raise ValueError("Invalid value for `model`, length must be less than or equal to `100`")  # noqa: E501
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._model = model
+        self._name = name
+
+    @property
+    def hypothesis(self):
+        """Gets the hypothesis of this Nested.  # noqa: E501
+
+
+        :return: The hypothesis of this Nested.  # noqa: E501
+        :rtype: str
+        """
+        return self._hypothesis
+
+    @hypothesis.setter
+    def hypothesis(self, hypothesis):
+        """Sets the hypothesis of this Nested.
+
+
+        :param hypothesis: The hypothesis of this Nested.  # noqa: E501
+        :type hypothesis: str
+        """
+        if self.local_vars_configuration.client_side_validation and hypothesis is None:  # noqa: E501
+            raise ValueError("Invalid value for `hypothesis`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                hypothesis is not None and len(hypothesis) > 255):
+            raise ValueError("Invalid value for `hypothesis`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._hypothesis = hypothesis
+
+    @property
+    def notion_url(self):
+        """Gets the notion_url of this Nested.  # noqa: E501
+
+
+        :return: The notion_url of this Nested.  # noqa: E501
+        :rtype: str
+        """
+        return self._notion_url
+
+    @notion_url.setter
+    def notion_url(self, notion_url):
+        """Sets the notion_url of this Nested.
+
+
+        :param notion_url: The notion_url of this Nested.  # noqa: E501
+        :type notion_url: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                notion_url is not None and len(notion_url) > 255):
+            raise ValueError("Invalid value for `notion_url`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._notion_url = notion_url
+
+    @property
+    def control(self):
+        """Gets the control of this Nested.  # noqa: E501
+
+
+        :return: The control of this Nested.  # noqa: E501
+        :rtype: int
+        """
+        return self._control
+
+    @control.setter
+    def control(self, control):
+        """Sets the control of this Nested.
+
+
+        :param control: The control of this Nested.  # noqa: E501
+        :type control: int
+        """
+        if self.local_vars_configuration.client_side_validation and control is None:  # noqa: E501
+            raise ValueError("Invalid value for `control`, must not be `None`")  # noqa: E501
+
+        self._control = control
+
+    @property
+    def treatments(self):
+        """Gets the treatments of this Nested.  # noqa: E501
+
+
+        :return: The treatments of this Nested.  # noqa: E501
+        :rtype: list[int]
+        """
+        return self._treatments
+
+    @treatments.setter
+    def treatments(self, treatments):
+        """Sets the treatments of this Nested.
+
+
+        :param treatments: The treatments of this Nested.  # noqa: E501
+        :type treatments: list[int]
+        """
+
+        self._treatments = treatments
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

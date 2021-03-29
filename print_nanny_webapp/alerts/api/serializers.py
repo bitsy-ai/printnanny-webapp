@@ -48,11 +48,10 @@ class CreateDefectAlertSerializer(AlertSerializer):
     class Meta:
         model = DefectAlert
         fields = ("print_session", )
-        
+
 class DefectAlertSerializer(AlertSerializer):
 
     class Meta:
-        depth = 1
         model = DefectAlert
         fields = "__all__"
 
@@ -65,7 +64,7 @@ class DefectAlertSerializer(AlertSerializer):
         )
         extra_kwargs = {
             "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "id"},
-            "stop_print_url": {"view_name": "apqi:defect-alert-stop-print", "lookup_field": "id"}
+            "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
         }
 
 class AlertBulkRequestSerializer(serializers.Serializer):

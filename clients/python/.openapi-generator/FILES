@@ -49,7 +49,6 @@ docs/MonitoringStartEnum.md
 docs/MonitoringStopEnum.md
 docs/MoveNozzleEnum.md
 docs/Nested.md
-docs/NestedRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -177,7 +176,6 @@ print_nanny_client/models/monitoring_start_enum.py
 print_nanny_client/models/monitoring_stop_enum.py
 print_nanny_client/models/move_nozzle_enum.py
 print_nanny_client/models/nested.py
-print_nanny_client/models/nested_request.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
 print_nanny_client/models/octo_print_device_request.py
@@ -298,7 +296,6 @@ test/test_monitoring_start_enum.py
 test/test_monitoring_stop_enum.py
 test/test_move_nozzle_enum.py
 test/test_nested.py
-test/test_nested_request.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py

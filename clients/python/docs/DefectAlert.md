@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
-**polymorphic_ctype** | [**Nested**](Nested.md) |  | [optional] [readonly] 
-**user** | [**Nested**](Nested.md) |  | [optional] [readonly] 
-**octoprint_device** | [**Nested**](Nested.md) |  | [optional] [readonly] 
-**print_session** | [**Nested**](Nested.md) |  | [optional] [readonly] 
+**polymorphic_ctype** | **int** |  | [optional] [readonly] 
+**user** | **int** |  | [optional] [readonly] 
+**octoprint_device** | **int** |  | [optional] [readonly] 
+**print_session** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

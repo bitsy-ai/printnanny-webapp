@@ -38,10 +38,12 @@ class TestDefectAlertRequest(unittest.TestCase):
             return DefectAlertRequest(
                 seen = True, 
                 sent = True, 
-                dismissed = True
+                dismissed = True, 
+                print_session = 56
             )
         else :
             return DefectAlertRequest(
+                print_session = 56,
         )
 
     def testDefectAlertRequest(self):
