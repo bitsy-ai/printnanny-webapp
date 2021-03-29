@@ -90,7 +90,8 @@ class DefectAlertViewSet(
             instance.trigger_alert_task()
 
             return Response(serializer.data, status.HTTP_201_CREATED)
-
+        elif session.supress_alerts is True:
+            return Response({"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(

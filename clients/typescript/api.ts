@@ -502,21 +502,58 @@ export enum CommandEnum {
 /**
  * 
  * @export
+ * @interface CreateDefectAlertRequest
+ */
+export interface CreateDefectAlertRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDefectAlertRequest
+     */
+    print_session: string;
+}
+/**
+ * 
+ * @export
  * @interface DefectAlert
  */
 export interface DefectAlert {
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof DefectAlert
      */
-    print_session?: Nested;
+    id?: number;
     /**
      * 
-     * @type {Nested}
+     * @type {string}
      * @memberof DefectAlert
      */
-    octoprint_device?: Nested;
+    time?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof DefectAlert
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof DefectAlert
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    updated_dt?: string;
     /**
      * 
      * @type {boolean}
@@ -528,13 +565,37 @@ export interface DefectAlert {
      * @type {boolean}
      * @memberof DefectAlert
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlert
+     */
     dismissed?: boolean;
     /**
      * 
      * @type {Nested}
      * @memberof DefectAlert
      */
+    polymorphic_ctype?: Nested;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof DefectAlert
+     */
     user?: Nested;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof DefectAlert
+     */
+    octoprint_device?: Nested;
+    /**
+     * 
+     * @type {Nested}
+     * @memberof DefectAlert
+     */
+    print_session?: Nested;
 }
 /**
  * 
@@ -548,6 +609,12 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DefectAlertRequest
+     */
+    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -1070,61 +1137,13 @@ export interface Nested {
      * @type {string}
      * @memberof Nested
      */
-    created_dt?: string;
+    app_label: string;
     /**
      * 
      * @type {string}
      * @memberof Nested
      */
-    updated_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    session: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof Nested
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    gcode_filename?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    supress_alerts?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    octoprint_device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    user: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    printer_profile?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    gcode_file?: number | null;
+    model: string;
 }
 /**
  * 
@@ -1137,49 +1156,13 @@ export interface NestedRequest {
      * @type {string}
      * @memberof NestedRequest
      */
-    session: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof NestedRequest
-     */
-    progress?: { [key: string]: any; };
+    app_label: string;
     /**
      * 
      * @type {string}
      * @memberof NestedRequest
      */
-    gcode_filename?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    supress_alerts?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof NestedRequest
-     */
-    octoprint_device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof NestedRequest
-     */
-    user: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof NestedRequest
-     */
-    printer_profile?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof NestedRequest
-     */
-    gcode_file?: number | null;
+    model: string;
 }
 /**
  * 
@@ -2506,6 +2489,12 @@ export interface PatchedDefectAlertRequest {
      * @memberof PatchedDefectAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedDefectAlertRequest
+     */
+    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -5450,11 +5439,15 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertCreate: async (defectAlertRequest?: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        defectAlertCreate: async (createDefectAlertRequest: CreateDefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createDefectAlertRequest' is not null or undefined
+            if (createDefectAlertRequest === null || createDefectAlertRequest === undefined) {
+                throw new RequiredError('createDefectAlertRequest','Required parameter createDefectAlertRequest was null or undefined when calling defectAlertCreate.');
+            }
             const localVarPath = `/api/defect-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -5492,13 +5485,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
+            const nonString = typeof createDefectAlertRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
+                ? JSON.stringify(createDefectAlertRequest !== undefined ? createDefectAlertRequest : {})
+                : (createDefectAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6091,12 +6084,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertCreate(defectAlertRequest?: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertCreate(defectAlertRequest, options);
+        async defectAlertCreate(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertCreate(createDefectAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6293,12 +6286,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {DefectAlertRequest} [defectAlertRequest] 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
+        defectAlertCreate(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).defectAlertCreate(createDefectAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6459,12 +6452,12 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {CreateDefectAlertRequest} createDefectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertCreate(defectAlertRequest?: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    defectAlertCreate(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
 
     /**
      * 
@@ -6641,13 +6634,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} [defectAlertRequest] 
+     * @param {CreateDefectAlertRequest} createDefectAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertCreate(defectAlertRequest?: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public defectAlertCreate(createDefectAlertRequest: CreateDefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertCreate(createDefectAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
