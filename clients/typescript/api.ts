@@ -10252,67 +10252,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printSessionCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'printSessionRequest' is not null or undefined
-            if (printSessionRequest === null || printSessionRequest === undefined) {
-                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionCreate.');
-            }
-            const localVarPath = `/api/print-sessions/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printSessionRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
-                : (printSessionRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this print session.
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
@@ -10400,6 +10339,67 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             }
 
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof printSessionRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
+                : (printSessionRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printSessionRequest' is not null or undefined
+            if (printSessionRequest === null || printSessionRequest === undefined) {
+                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionsCreate.');
+            }
+            const localVarPath = `/api/print-sessions/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -11513,19 +11513,6 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async printSessionCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionCreate(printSessionRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this print session.
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
@@ -11547,6 +11534,19 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          */
         async printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionUpdate(id, printSessionRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsCreate(printSessionRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11915,15 +11915,6 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printSessionCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionCreate(printSessionRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this print session.
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
@@ -11941,6 +11932,15 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          */
         printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
             return RemoteControlApiFp(configuration).printSessionUpdate(id, printSessionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -12249,15 +12249,6 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {PrintSessionRequest} printSessionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    printSessionCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
-
-    /**
-     * 
      * @param {number} id A unique integer value identifying this print session.
      * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
@@ -12275,6 +12266,15 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -12615,17 +12615,6 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {PrintSessionRequest} printSessionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public printSessionCreate(printSessionRequest: PrintSessionRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printSessionCreate(printSessionRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {number} id A unique integer value identifying this print session.
      * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
@@ -12646,6 +12635,17 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).printSessionUpdate(id, printSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
