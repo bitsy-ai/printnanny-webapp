@@ -36,7 +36,6 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_defect_alert_request.PatchedDefectAlertRequest()  # noqa: E501
         if include_optional :
             return PatchedDefectAlertRequest(
-                print_session = '', 
                 seen = True, 
                 dismissed = True
             )

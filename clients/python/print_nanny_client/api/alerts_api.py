@@ -1098,16 +1098,16 @@ class AlertsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def defect_alert_create(self, defect_alert_request, **kwargs):  # noqa: E501
+    def defect_alert_create(self, **kwargs):  # noqa: E501
         """defect_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alert_create(defect_alert_request, async_req=True)
+        >>> thread = api.defect_alert_create(async_req=True)
         >>> result = thread.get()
 
-        :param defect_alert_request: (required)
+        :param defect_alert_request:
         :type defect_alert_request: DefectAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1125,18 +1125,18 @@ class AlertsApi(object):
         :rtype: DefectAlert
         """
         kwargs['_return_http_data_only'] = True
-        return self.defect_alert_create_with_http_info(defect_alert_request, **kwargs)  # noqa: E501
+        return self.defect_alert_create_with_http_info(**kwargs)  # noqa: E501
 
-    def defect_alert_create_with_http_info(self, defect_alert_request, **kwargs):  # noqa: E501
+    def defect_alert_create_with_http_info(self, **kwargs):  # noqa: E501
         """defect_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alert_create_with_http_info(defect_alert_request, async_req=True)
+        >>> thread = api.defect_alert_create_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param defect_alert_request: (required)
+        :param defect_alert_request:
         :type defect_alert_request: DefectAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1184,10 +1184,6 @@ class AlertsApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'defect_alert_request' is set
-        if self.api_client.client_side_validation and ('defect_alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['defect_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `defect_alert_request` when calling `defect_alert_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2219,18 +2215,18 @@ class AlertsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def defect_alerts_update(self, id, defect_alert_request, **kwargs):  # noqa: E501
+    def defect_alerts_update(self, id, **kwargs):  # noqa: E501
         """defect_alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alerts_update(id, defect_alert_request, async_req=True)
+        >>> thread = api.defect_alerts_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this defect alert. (required)
         :type id: int
-        :param defect_alert_request: (required)
+        :param defect_alert_request:
         :type defect_alert_request: DefectAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2248,20 +2244,20 @@ class AlertsApi(object):
         :rtype: DefectAlert
         """
         kwargs['_return_http_data_only'] = True
-        return self.defect_alerts_update_with_http_info(id, defect_alert_request, **kwargs)  # noqa: E501
+        return self.defect_alerts_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def defect_alerts_update_with_http_info(self, id, defect_alert_request, **kwargs):  # noqa: E501
+    def defect_alerts_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """defect_alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.defect_alerts_update_with_http_info(id, defect_alert_request, async_req=True)
+        >>> thread = api.defect_alerts_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this defect alert. (required)
         :type id: int
-        :param defect_alert_request: (required)
+        :param defect_alert_request:
         :type defect_alert_request: DefectAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -2314,10 +2310,6 @@ class AlertsApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `defect_alerts_update`")  # noqa: E501
-        # verify the required parameter 'defect_alert_request' is set
-        if self.api_client.client_side_validation and ('defect_alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['defect_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `defect_alert_request` when calling `defect_alerts_update`")  # noqa: E501
 
         collection_formats = {}
 

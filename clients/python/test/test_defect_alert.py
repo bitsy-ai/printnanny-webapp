@@ -36,7 +36,7 @@ class TestDefectAlert(unittest.TestCase):
         # model = print_nanny_client.models.defect_alert.DefectAlert()  # noqa: E501
         if include_optional :
             return DefectAlert(
-                print_session = '', 
+                print_session = None, 
                 octoprint_device = None, 
                 seen = True, 
                 dismissed = True, 
@@ -44,7 +44,6 @@ class TestDefectAlert(unittest.TestCase):
             )
         else :
             return DefectAlert(
-                print_session = '',
         )
 
     def testDefectAlert(self):

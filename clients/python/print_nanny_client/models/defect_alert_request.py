@@ -33,56 +33,29 @@ class DefectAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'print_session': 'str',
         'seen': 'bool',
         'dismissed': 'bool'
     }
 
     attribute_map = {
-        'print_session': 'print_session',
         'seen': 'seen',
         'dismissed': 'dismissed'
     }
 
-    def __init__(self, print_session=None, seen=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, dismissed=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._print_session = None
         self._seen = None
         self._dismissed = None
         self.discriminator = None
 
-        self.print_session = print_session
         if seen is not None:
             self.seen = seen
         if dismissed is not None:
             self.dismissed = dismissed
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this DefectAlertRequest.  # noqa: E501
-
-
-        :return: The print_session of this DefectAlertRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this DefectAlertRequest.
-
-
-        :param print_session: The print_session of this DefectAlertRequest.  # noqa: E501
-        :type print_session: str
-        """
-        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
-
-        self._print_session = print_session
 
     @property
     def seen(self):

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**print_session** | **str** |  | 
+**print_session** | [**Nested**](Nested.md) |  | [optional] [readonly] 
 **octoprint_device** | [**Nested**](Nested.md) |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 

@@ -41,7 +41,7 @@ class TestPaginatedDefectAlertList(unittest.TestCase):
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
                     print_nanny_client.models.defect_alert.DefectAlert(
-                        print_session = '', 
+                        print_session = null, 
                         octoprint_device = null, 
                         seen = True, 
                         dismissed = True, 

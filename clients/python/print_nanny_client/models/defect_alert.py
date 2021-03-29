@@ -33,7 +33,7 @@ class DefectAlert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'print_session': 'str',
+        'print_session': 'Nested',
         'octoprint_device': 'Nested',
         'seen': 'bool',
         'dismissed': 'bool',
@@ -61,7 +61,8 @@ class DefectAlert(object):
         self._user = None
         self.discriminator = None
 
-        self.print_session = print_session
+        if print_session is not None:
+            self.print_session = print_session
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
         if seen is not None:
@@ -77,7 +78,7 @@ class DefectAlert(object):
 
 
         :return: The print_session of this DefectAlert.  # noqa: E501
-        :rtype: str
+        :rtype: Nested
         """
         return self._print_session
 
@@ -87,10 +88,8 @@ class DefectAlert(object):
 
 
         :param print_session: The print_session of this DefectAlert.  # noqa: E501
-        :type print_session: str
+        :type print_session: Nested
         """
-        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
 

@@ -50,7 +50,7 @@ class AlertPolymorphic(object):
         'seen': 'bool',
         'snapshot_url': 'str',
         'title': 'str',
-        'print_session': 'str',
+        'print_session': 'Nested',
         'octoprint_device': 'int',
         'sent': 'bool',
         'progress_percent': 'int',
@@ -145,7 +145,8 @@ class AlertPolymorphic(object):
         if snapshot_url is not None:
             self.snapshot_url = snapshot_url
         self.title = title
-        self.print_session = print_session
+        if print_session is not None:
+            self.print_session = print_session
         self.octoprint_device = octoprint_device
         if sent is not None:
             self.sent = sent
@@ -532,7 +533,7 @@ class AlertPolymorphic(object):
 
 
         :return: The print_session of this AlertPolymorphic.  # noqa: E501
-        :rtype: str
+        :rtype: Nested
         """
         return self._print_session
 
@@ -542,10 +543,8 @@ class AlertPolymorphic(object):
 
 
         :param print_session: The print_session of this AlertPolymorphic.  # noqa: E501
-        :type print_session: str
+        :type print_session: Nested
         """
-        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
 

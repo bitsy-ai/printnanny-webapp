@@ -3,7 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**print_session** | **str** |  | 
 **seen** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
 

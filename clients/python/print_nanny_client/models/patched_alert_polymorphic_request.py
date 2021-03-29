@@ -42,7 +42,6 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'str',
         'seen': 'bool',
         'title': 'str',
-        'print_session': 'str',
         'sent': 'bool',
         'progress_percent': 'int',
         'octoprint_device': 'int',
@@ -59,7 +58,6 @@ class PatchedAlertPolymorphicRequest(object):
         'description': 'description',
         'seen': 'seen',
         'title': 'title',
-        'print_session': 'print_session',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
@@ -69,7 +67,7 @@ class PatchedAlertPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, print_session=None, sent=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -84,7 +82,6 @@ class PatchedAlertPolymorphicRequest(object):
         self._description = None
         self._seen = None
         self._title = None
-        self._print_session = None
         self._sent = None
         self._progress_percent = None
         self._octoprint_device = None
@@ -109,8 +106,6 @@ class PatchedAlertPolymorphicRequest(object):
             self.seen = seen
         if title is not None:
             self.title = title
-        if print_session is not None:
-            self.print_session = print_session
         if sent is not None:
             self.sent = sent
         if progress_percent is not None:
@@ -307,27 +302,6 @@ class PatchedAlertPolymorphicRequest(object):
         """
 
         self._title = title
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this PatchedAlertPolymorphicRequest.
-
-
-        :param print_session: The print_session of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :type print_session: str
-        """
-
-        self._print_session = print_session
 
     @property
     def sent(self):
