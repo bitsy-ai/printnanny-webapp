@@ -1,7 +1,7 @@
 ---
 library: asyncio
 packageName: print_nanny_client
-packageVersion: '0.5.0-dev60'
+packageVersion: '0.5.0-dev61'
 templateDir: /local/clients/templates
 infoName: "Leigh Johnson"
 infoEmail: "leigh@bitsy.ai"
