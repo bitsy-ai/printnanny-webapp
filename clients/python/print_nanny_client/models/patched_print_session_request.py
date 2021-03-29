@@ -38,7 +38,8 @@ class PatchedPrintSessionRequest(object):
         'session': 'str',
         'progress': 'dict(str, object)',
         'printer_profile': 'int',
-        'gcode_file': 'int'
+        'gcode_file': 'int',
+        'gcode_filename': 'str'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class PatchedPrintSessionRequest(object):
         'session': 'session',
         'progress': 'progress',
         'printer_profile': 'printer_profile',
-        'gcode_file': 'gcode_file'
+        'gcode_file': 'gcode_file',
+        'gcode_filename': 'gcode_filename'
     }
 
-    def __init__(self, created_dt=None, octoprint_device=None, session=None, progress=None, printer_profile=None, gcode_file=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, octoprint_device=None, session=None, progress=None, printer_profile=None, gcode_file=None, gcode_filename=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class PatchedPrintSessionRequest(object):
         self._progress = None
         self._printer_profile = None
         self._gcode_file = None
+        self._gcode_filename = None
         self.discriminator = None
 
         if created_dt is not None:
@@ -74,6 +77,7 @@ class PatchedPrintSessionRequest(object):
             self.progress = progress
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
+        self.gcode_filename = gcode_filename
 
     @property
     def created_dt(self):
@@ -203,6 +207,30 @@ class PatchedPrintSessionRequest(object):
         """
 
         self._gcode_file = gcode_file
+
+    @property
+    def gcode_filename(self):
+        """Gets the gcode_filename of this PatchedPrintSessionRequest.  # noqa: E501
+
+
+        :return: The gcode_filename of this PatchedPrintSessionRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._gcode_filename
+
+    @gcode_filename.setter
+    def gcode_filename(self, gcode_filename):
+        """Sets the gcode_filename of this PatchedPrintSessionRequest.
+
+
+        :param gcode_filename: The gcode_filename of this PatchedPrintSessionRequest.  # noqa: E501
+        :type gcode_filename: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                gcode_filename is not None and len(gcode_filename) > 255):
+            raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._gcode_filename = gcode_filename
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -2726,6 +2726,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_file?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPrintSessionRequest
+     */
+    gcode_filename?: string | null;
 }
 /**
  * 
@@ -3256,6 +3262,12 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
+    gcode_filename?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
     url?: string;
 }
 /**
@@ -3300,6 +3312,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     gcode_file?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionRequest
+     */
+    gcode_filename?: string | null;
 }
 /**
  * 

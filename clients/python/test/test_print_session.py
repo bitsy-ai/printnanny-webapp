@@ -47,6 +47,7 @@ class TestPrintSession(unittest.TestCase):
                 user = 56, 
                 printer_profile = 56, 
                 gcode_file = 56, 
+                gcode_filename = '', 
                 url = ''
             )
         else :

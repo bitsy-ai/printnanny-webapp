@@ -43,7 +43,8 @@ class TestPatchedPrintSessionRequest(unittest.TestCase):
                     'key' : null
                     }, 
                 printer_profile = 56, 
-                gcode_file = 56
+                gcode_file = 56, 
+                gcode_filename = ''
             )
         else :
             return PatchedPrintSessionRequest(

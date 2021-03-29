@@ -42,6 +42,7 @@ class PrintSession(object):
         'user': 'int',
         'printer_profile': 'int',
         'gcode_file': 'int',
+        'gcode_filename': 'str',
         'url': 'str'
     }
 
@@ -55,10 +56,11 @@ class PrintSession(object):
         'user': 'user',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
+        'gcode_filename': 'gcode_filename',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -73,6 +75,7 @@ class PrintSession(object):
         self._user = None
         self._printer_profile = None
         self._gcode_file = None
+        self._gcode_filename = None
         self._url = None
         self.discriminator = None
 
@@ -89,6 +92,7 @@ class PrintSession(object):
             self.user = user
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
+        self.gcode_filename = gcode_filename
         if url is not None:
             self.url = url
 
@@ -289,6 +293,30 @@ class PrintSession(object):
         """
 
         self._gcode_file = gcode_file
+
+    @property
+    def gcode_filename(self):
+        """Gets the gcode_filename of this PrintSession.  # noqa: E501
+
+
+        :return: The gcode_filename of this PrintSession.  # noqa: E501
+        :rtype: str
+        """
+        return self._gcode_filename
+
+    @gcode_filename.setter
+    def gcode_filename(self, gcode_filename):
+        """Sets the gcode_filename of this PrintSession.
+
+
+        :param gcode_filename: The gcode_filename of this PrintSession.  # noqa: E501
+        :type gcode_filename: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                gcode_filename is not None and len(gcode_filename) > 255):
+            raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._gcode_filename = gcode_filename
 
     @property
     def url(self):
