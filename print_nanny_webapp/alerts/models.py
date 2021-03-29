@@ -21,7 +21,7 @@ from asgiref.sync import async_to_sync
 import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-from print_nanny_webapp.alerts.tasks.common import trigger_alert_task
+from print_nanny_webapp.alerts.tasks.common import trigger_alerts_task
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -78,16 +78,17 @@ class Alert(PolymorphicModel):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
 
-    def trigger_alert_task(self):
-        return trigger_alert_task.delay(self.id)
+    def trigger_alerts_task(self):
+        return trigger_alerts_task.delay(self.id)
 
-    def trigger_alert(self):
+    def trigger_alerts(self):
         from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
 
         if self.sent is False:
             alert_serializer = AlertPolymorphicSerializer(self)
             data = alert_serializer.data
-            self.alert_trigger_method_map[self.alert_method](data)
+            for alert_method in self.alert_methods:
+                self.alert_trigger_method_map[alert_method](data)
             self.sent = True
             self.save()
 

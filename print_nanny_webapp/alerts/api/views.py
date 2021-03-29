@@ -31,7 +31,7 @@ from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
     IsAdminOrIsPrintSessionOwner,
 )
-from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
+from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert, DefectAlertSettings
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +91,7 @@ class DefectAlertViewSet(
                 alert_methods=alert_methods
             )
             # supression check is performed before enqueueing celery task and immediately prior to sending msg
-            instance.trigger_alert_task()
+            instance.trigger_alerts_task()
 
             return Response(serializer.data, status.HTTP_201_CREATED)
         elif session.supress_alerts is True:

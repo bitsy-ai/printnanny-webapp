@@ -41,7 +41,7 @@ class ProgressAlertSerializer(AlertSerializer):
     class Meta:
         model = ProgressAlert
         fields = "__all__"
-        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
+        read_only_fields = ("user", "alert_methods", "alert_type", "polymorphic_ctype")
 
 class CreateDefectAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
@@ -56,7 +56,7 @@ class DefectAlertSerializer(AlertSerializer):
         fields = "__all__"
 
         read_only_fields = (
-            "alert_method", 
+            "alert_methods", 
             "alert_type", 
             "polymorphic_ctype", 
             "user",
@@ -114,7 +114,7 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
         model = RemoteControlCommandAlert
         fields = [
             "alert_subtype",
-            "alert_method",
+            "alert_methods",
             "alert_type",
             "color",
             "created_dt",

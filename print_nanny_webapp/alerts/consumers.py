@@ -52,7 +52,7 @@ class AlertConsumer(WebsocketConsumer):
 class DiscordConsumer(AsyncConsumer):
     groups = []
 
-    async def trigger_alert(self, data):
+    async def trigger_alerts(self, data):
         logger.info(
             f"Received message for user IDs {data['user_ids']} and channel IDs {data['channel_ids']}"
         )
