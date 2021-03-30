@@ -64,8 +64,8 @@ class Alert(PolymorphicModel):
     alert_methods = ChoiceArrayField(
         models.CharField(choices=AlertMethodChoices.choices, max_length=255),
         blank=True,
-        default=(AlertMethodChoices.UI,AlertMethodChoices.EMAIL),
-    )    
+        default=(AlertMethodChoices.UI, AlertMethodChoices.EMAIL),
+    )
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -109,7 +109,8 @@ class Alert(PolymorphicModel):
     def trigger_email_alert(self, data):
 
         device_url = reverse(
-            "dashboard:octoprint-devices:detail", kwargs={"pk": self.octoprint_device.id}
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
         )
         merge_data = {
             "DEVICE_URL": device_url,
@@ -131,7 +132,6 @@ class Alert(PolymorphicModel):
                 f"Device:{self.octoprint_device.id}",
             ],
         )
-
 
         return message
 
@@ -182,7 +182,7 @@ class AlertSettings(PolymorphicModel):
     alert_methods = ChoiceArrayField(
         models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255),
         blank=True,
-        default=(Alert.AlertMethodChoices.UI,Alert.AlertMethodChoices.EMAIL),
+        default=(Alert.AlertMethodChoices.UI, Alert.AlertMethodChoices.EMAIL),
     )
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"
@@ -379,7 +379,8 @@ class DefectAlert(Alert):
     def trigger_email_alert(self, data, gif_url):
 
         device_url = reverse(
-            "dashboard:octoprint-devices:detail", kwargs={"pk": self.octoprint_device.id}
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
         )
         merge_data = {
             "DEVICE_URL": device_url,
@@ -387,7 +388,6 @@ class DefectAlert(Alert):
             "DEVICE_NAME": self.octoprint_device.name,
             "SUPRESS_URL": data["supress_url"],
             "STOP_PRINT_URL": data["supress_url"],
-            
         }
 
         text_body = render_to_string("email/defect_alert_body.txt", merge_data)
@@ -411,7 +411,6 @@ class DefectAlert(Alert):
         message.send()
 
         return message
-
 
 
 class ProgressAlert(Alert):

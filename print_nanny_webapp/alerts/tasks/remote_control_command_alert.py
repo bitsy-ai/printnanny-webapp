@@ -35,7 +35,6 @@ def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
     alert_settings = RemoteControlCommandAlertSettings.objects.get_or_create(user=user)
     alert_settings_attr = alert_settings.command_to_attr(command.command)
 
-
     instance = RemoteControlCommandAlert.objects.create(
         alert_method=alert_method,
         user=user,

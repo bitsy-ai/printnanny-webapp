@@ -25,13 +25,19 @@ from .serializers import (
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
     DefectAlertSerializer,
-    CreateDefectAlertSerializer
+    CreateDefectAlertSerializer,
 )
 from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
     IsAdminOrIsPrintSessionOwner,
 )
-from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert, DefectAlertSettings
+from ..models import (
+    ManualVideoUploadAlert,
+    Alert,
+    AlertSettings,
+    DefectAlert,
+    DefectAlertSettings,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +85,7 @@ class DefectAlertViewSet(
                 "user": session.user.id,
                 "octoprint_device": session.octoprint_device.id,
             },
-            context={'request': request}
+            context={"request": request},
         )
         if serializer.is_valid() and session.supress_alerts is False:
             alert_settings, created = DefectAlertSettings.objects.get_or_create(
@@ -89,16 +95,18 @@ class DefectAlertViewSet(
                 user=session.user,
                 octoprint_device=session.octoprint_device,
                 print_session=session,
-                alert_methods=alert_settings.alert_methods
+                alert_methods=alert_settings.alert_methods,
             )
             # instance.print_session.supress_alerts = True
             # instance.print_session.supress_alerts.save()
             # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alerts_task(serializer.data)
-            
+
             return Response(serializer.data, status.HTTP_201_CREATED)
         elif session.supress_alerts is True:
-            return Response({"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT)
+            return Response(
+                {"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(

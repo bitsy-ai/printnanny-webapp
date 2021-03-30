@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
+
 class AlertSerializer(serializers.ModelSerializer):
 
     time = serializers.SerializerMethodField()
@@ -43,21 +44,23 @@ class ProgressAlertSerializer(AlertSerializer):
         fields = "__all__"
         read_only_fields = ("user", "alert_methods", "alert_type", "polymorphic_ctype")
 
+
 class CreateDefectAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
+
     class Meta:
         model = DefectAlert
-        fields = ("print_session", )
+        fields = ("print_session",)
+
 
 class DefectAlertSerializer(AlertSerializer):
     supress_url = serializers.HyperlinkedIdentityField(
-        view_name='api:defect-alert-supress',
-        lookup_field='pk'
+        view_name="api:defect-alert-supress", lookup_field="pk"
     )
     supress_url = serializers.HyperlinkedIdentityField(
-        view_name='api:defect-alert-stop-print',
-        lookup_field='pk'
+        view_name="api:defect-alert-stop-print", lookup_field="pk"
     )
+
     class Meta:
         model = DefectAlert
         fields = [
@@ -72,13 +75,13 @@ class DefectAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
             "print_session",
-            "supress_url"
+            "supress_url",
         ]
 
         read_only_fields = (
-            "alert_methods", 
-            "alert_type", 
-            "polymorphic_ctype", 
+            "alert_methods",
+            "alert_type",
+            "polymorphic_ctype",
             "user",
             "octoprint_device",
         )
@@ -86,6 +89,7 @@ class DefectAlertSerializer(AlertSerializer):
         #     "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "pk"},
         #     # "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
         # }
+
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """
