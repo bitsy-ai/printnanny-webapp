@@ -40,12 +40,11 @@ class DefectAlert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'seen': 'bool',
-        'sent': 'bool',
         'dismissed': 'bool',
-        'polymorphic_ctype': 'int',
         'user': 'int',
         'octoprint_device': 'int',
-        'print_session': 'int'
+        'print_session': 'int',
+        'supress_url': 'str'
     }
 
     attribute_map = {
@@ -56,15 +55,14 @@ class DefectAlert(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'seen': 'seen',
-        'sent': 'sent',
         'dismissed': 'dismissed',
-        'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
         'octoprint_device': 'octoprint_device',
-        'print_session': 'print_session'
+        'print_session': 'print_session',
+        'supress_url': 'supress_url'
     }
 
-    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, user=None, octoprint_device=None, print_session=None, supress_url=None, local_vars_configuration=None):  # noqa: E501
         """DefectAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -77,12 +75,11 @@ class DefectAlert(object):
         self._created_dt = None
         self._updated_dt = None
         self._seen = None
-        self._sent = None
         self._dismissed = None
-        self._polymorphic_ctype = None
         self._user = None
         self._octoprint_device = None
         self._print_session = None
+        self._supress_url = None
         self.discriminator = None
 
         if id is not None:
@@ -99,17 +96,15 @@ class DefectAlert(object):
             self.updated_dt = updated_dt
         if seen is not None:
             self.seen = seen
-        if sent is not None:
-            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
-        if polymorphic_ctype is not None:
-            self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
             self.user = user
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
         self.print_session = print_session
+        if supress_url is not None:
+            self.supress_url = supress_url
 
     @property
     def id(self):
@@ -259,27 +254,6 @@ class DefectAlert(object):
         self._seen = seen
 
     @property
-    def sent(self):
-        """Gets the sent of this DefectAlert.  # noqa: E501
-
-
-        :return: The sent of this DefectAlert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._sent
-
-    @sent.setter
-    def sent(self, sent):
-        """Sets the sent of this DefectAlert.
-
-
-        :param sent: The sent of this DefectAlert.  # noqa: E501
-        :type sent: bool
-        """
-
-        self._sent = sent
-
-    @property
     def dismissed(self):
         """Gets the dismissed of this DefectAlert.  # noqa: E501
 
@@ -299,27 +273,6 @@ class DefectAlert(object):
         """
 
         self._dismissed = dismissed
-
-    @property
-    def polymorphic_ctype(self):
-        """Gets the polymorphic_ctype of this DefectAlert.  # noqa: E501
-
-
-        :return: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :rtype: int
-        """
-        return self._polymorphic_ctype
-
-    @polymorphic_ctype.setter
-    def polymorphic_ctype(self, polymorphic_ctype):
-        """Sets the polymorphic_ctype of this DefectAlert.
-
-
-        :param polymorphic_ctype: The polymorphic_ctype of this DefectAlert.  # noqa: E501
-        :type polymorphic_ctype: int
-        """
-
-        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def user(self):
@@ -385,6 +338,27 @@ class DefectAlert(object):
             raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
 
         self._print_session = print_session
+
+    @property
+    def supress_url(self):
+        """Gets the supress_url of this DefectAlert.  # noqa: E501
+
+
+        :return: The supress_url of this DefectAlert.  # noqa: E501
+        :rtype: str
+        """
+        return self._supress_url
+
+    @supress_url.setter
+    def supress_url(self, supress_url):
+        """Sets the supress_url of this DefectAlert.
+
+
+        :param supress_url: The supress_url of this DefectAlert.  # noqa: E501
+        :type supress_url: str
+        """
+
+        self._supress_url = supress_url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

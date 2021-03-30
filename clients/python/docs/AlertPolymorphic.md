@@ -20,11 +20,12 @@ Name | Type | Description | Notes
 **seen** | **bool** |  | [optional] 
 **snapshot_url** | **str** |  | [optional] [readonly] 
 **title** | **str** |  | 
-**sent** | **bool** |  | [optional] 
-**polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] 
 **print_session** | **int** |  | 
+**supress_url** | **str** |  | [optional] [readonly] 
+**sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
+**polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **device** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

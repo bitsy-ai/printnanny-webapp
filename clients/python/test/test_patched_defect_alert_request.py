@@ -37,7 +37,6 @@ class TestPatchedDefectAlertRequest(unittest.TestCase):
         if include_optional :
             return PatchedDefectAlertRequest(
                 seen = True, 
-                sent = True, 
                 dismissed = True, 
                 print_session = 56
             )

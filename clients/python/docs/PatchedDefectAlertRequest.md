@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **seen** | **bool** |  | [optional] 
-**sent** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
 **print_session** | **int** |  | [optional] 
 

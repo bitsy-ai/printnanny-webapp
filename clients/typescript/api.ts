@@ -554,19 +554,7 @@ export interface DefectAlert {
      * @type {boolean}
      * @memberof DefectAlert
      */
-    sent?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlert
-     */
     dismissed?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    polymorphic_ctype?: number;
     /**
      * 
      * @type {number}
@@ -585,6 +573,12 @@ export interface DefectAlert {
      * @memberof DefectAlert
      */
     print_session: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DefectAlert
+     */
+    supress_url?: string;
 }
 /**
  * 
@@ -598,12 +592,6 @@ export interface DefectAlertRequest {
      * @memberof DefectAlertRequest
      */
     seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlertRequest
-     */
-    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -2495,12 +2483,6 @@ export interface PatchedDefectAlertRequest {
      * @memberof PatchedDefectAlertRequest
      */
     seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDefectAlertRequest
-     */
-    sent?: boolean;
     /**
      * 
      * @type {boolean}
@@ -10055,18 +10037,18 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionPartialUpdate: async (id: number, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printSessionPartialUpdate.');
+        printSessionPartialUpdate: async (session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionPartialUpdate.');
             }
-            const localVarPath = `/api/print-sessions/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -10118,22 +10100,22 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PrintSessionRequest} printSessionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionUpdate: async (id: number, printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printSessionUpdate.');
+        printSessionUpdate: async (session: string, printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionUpdate.');
             }
             // verify required parameter 'printSessionRequest' is not null or undefined
             if (printSessionRequest === null || printSessionRequest === undefined) {
                 throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionUpdate.');
             }
-            const localVarPath = `/api/print-sessions/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -10298,17 +10280,17 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printSessionsRetrieve.');
+        printSessionsRetrieve: async (session: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionsRetrieve.');
             }
-            const localVarPath = `/api/print-sessions/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -11316,13 +11298,13 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printSessionPartialUpdate(id: number, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionPartialUpdate(id, patchedPrintSessionRequest, options);
+        async printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11330,13 +11312,13 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PrintSessionRequest} printSessionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionUpdate(id, printSessionRequest, options);
+        async printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionUpdate(session, printSessionRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11370,12 +11352,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printSessionsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsRetrieve(id, options);
+        async printSessionsRetrieve(session: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsRetrieve(session, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11718,23 +11700,23 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionPartialUpdate(id: number, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionPartialUpdate(id, patchedPrintSessionRequest, options).then((request) => request(axios, basePath));
+        printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {PrintSessionRequest} printSessionRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionUpdate(id, printSessionRequest, options).then((request) => request(axios, basePath));
+        printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionUpdate(session, printSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11756,12 +11738,12 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print session.
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionsRetrieve(id: number, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionsRetrieve(id, options).then((request) => request(axios, basePath));
+        printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionsRetrieve(session, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -12052,23 +12034,23 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printSessionPartialUpdate(id: number, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+    printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {PrintSessionRequest} printSessionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+    printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -12090,12 +12072,12 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printSessionsRetrieve(id: number, options?: any): AxiosPromise<PrintSession>;
+    printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -12418,26 +12400,26 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printSessionPartialUpdate(id: number, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printSessionPartialUpdate(id, patchedPrintSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {PrintSessionRequest} printSessionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printSessionUpdate(id: number, printSessionRequest: PrintSessionRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printSessionUpdate(id, printSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionUpdate(session, printSessionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12464,13 +12446,13 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print session.
+     * @param {string} session 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printSessionsRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).printSessionsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printSessionsRetrieve(session: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsRetrieve(session, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

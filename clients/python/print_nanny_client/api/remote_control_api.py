@@ -2400,17 +2400,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_session_partial_update(self, id, **kwargs):  # noqa: E501
+    def print_session_partial_update(self, session, **kwargs):  # noqa: E501
         """print_session_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_partial_update(id, async_req=True)
+        >>> thread = api.print_session_partial_update(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param patched_print_session_request:
         :type patched_print_session_request: PatchedPrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -2429,19 +2429,19 @@ class RemoteControlApi(object):
         :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_session_partial_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.print_session_partial_update_with_http_info(session, **kwargs)  # noqa: E501
 
-    def print_session_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
+    def print_session_partial_update_with_http_info(self, session, **kwargs):  # noqa: E501
         """print_session_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_partial_update_with_http_info(id, async_req=True)
+        >>> thread = api.print_session_partial_update_with_http_info(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param patched_print_session_request:
         :type patched_print_session_request: PatchedPrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -2470,7 +2470,7 @@ class RemoteControlApi(object):
         local_var_params = locals()
 
         all_params = [
-            'id',
+            'session',
             'patched_print_session_request'
         ]
         all_params.extend(
@@ -2491,16 +2491,16 @@ class RemoteControlApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_session_partial_update`")  # noqa: E501
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_session_partial_update`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
 
         query_params = []
 
@@ -2529,7 +2529,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/print-sessions/{id}/', 'PATCH',
+            '/api/print-sessions/{session}/', 'PATCH',
             path_params,
             query_params,
             header_params,
@@ -2545,17 +2545,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_session_update(self, id, print_session_request, **kwargs):  # noqa: E501
+    def print_session_update(self, session, print_session_request, **kwargs):  # noqa: E501
         """print_session_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_update(id, print_session_request, async_req=True)
+        >>> thread = api.print_session_update(session, print_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param print_session_request: (required)
         :type print_session_request: PrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -2574,19 +2574,19 @@ class RemoteControlApi(object):
         :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_session_update_with_http_info(id, print_session_request, **kwargs)  # noqa: E501
+        return self.print_session_update_with_http_info(session, print_session_request, **kwargs)  # noqa: E501
 
-    def print_session_update_with_http_info(self, id, print_session_request, **kwargs):  # noqa: E501
+    def print_session_update_with_http_info(self, session, print_session_request, **kwargs):  # noqa: E501
         """print_session_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_update_with_http_info(id, print_session_request, async_req=True)
+        >>> thread = api.print_session_update_with_http_info(session, print_session_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param print_session_request: (required)
         :type print_session_request: PrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
@@ -2615,7 +2615,7 @@ class RemoteControlApi(object):
         local_var_params = locals()
 
         all_params = [
-            'id',
+            'session',
             'print_session_request'
         ]
         all_params.extend(
@@ -2636,10 +2636,10 @@ class RemoteControlApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_session_update`")  # noqa: E501
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_session_update`")  # noqa: E501
         # verify the required parameter 'print_session_request' is set
         if self.api_client.client_side_validation and ('print_session_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['print_session_request'] is None):  # noqa: E501
@@ -2648,8 +2648,8 @@ class RemoteControlApi(object):
         collection_formats = {}
 
         path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
 
         query_params = []
 
@@ -2678,7 +2678,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/print-sessions/{id}/', 'PUT',
+            '/api/print-sessions/{session}/', 'PUT',
             path_params,
             query_params,
             header_params,
@@ -2961,17 +2961,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_sessions_retrieve(self, id, **kwargs):  # noqa: E501
+    def print_sessions_retrieve(self, session, **kwargs):  # noqa: E501
         """print_sessions_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_sessions_retrieve(id, async_req=True)
+        >>> thread = api.print_sessions_retrieve(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2988,19 +2988,19 @@ class RemoteControlApi(object):
         :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_sessions_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.print_sessions_retrieve_with_http_info(session, **kwargs)  # noqa: E501
 
-    def print_sessions_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+    def print_sessions_retrieve_with_http_info(self, session, **kwargs):  # noqa: E501
         """print_sessions_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_sessions_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.print_sessions_retrieve_with_http_info(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print session. (required)
-        :type id: int
+        :param session: (required)
+        :type session: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3027,7 +3027,7 @@ class RemoteControlApi(object):
         local_var_params = locals()
 
         all_params = [
-            'id'
+            'session'
         ]
         all_params.extend(
             [
@@ -3047,16 +3047,16 @@ class RemoteControlApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_sessions_retrieve`")  # noqa: E501
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_sessions_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
 
         query_params = []
 
@@ -3078,7 +3078,7 @@ class RemoteControlApi(object):
         }
 
         return self.api_client.call_api(
-            '/api/print-sessions/{id}/', 'GET',
+            '/api/print-sessions/{session}/', 'GET',
             path_params,
             query_params,
             header_params,

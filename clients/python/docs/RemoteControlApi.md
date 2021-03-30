@@ -20,11 +20,11 @@ Method | HTTP request | Description
 [**octoprint_devices_retrieve**](RemoteControlApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
-[**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{id}/ | 
-[**print_session_update**](RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{id}/ | 
+[**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{session}/ | 
+[**print_session_update**](RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{session}/ | 
 [**print_sessions_create**](RemoteControlApi.md#print_sessions_create) | **POST** /api/print-sessions/ | 
 [**print_sessions_list**](RemoteControlApi.md#print_sessions_list) | **GET** /api/print-sessions/ | 
-[**print_sessions_retrieve**](RemoteControlApi.md#print_sessions_retrieve) | **GET** /api/print-sessions/{id}/ | 
+[**print_sessions_retrieve**](RemoteControlApi.md#print_sessions_retrieve) | **GET** /api/print-sessions/{session}/ | 
 [**printer_profiles_create**](RemoteControlApi.md#printer_profiles_create) | **POST** /api/printer-profiles/ | 
 [**printer_profiles_list**](RemoteControlApi.md#printer_profiles_list) | **GET** /api/printer-profiles/ | 
 [**printer_profiles_partial_update**](RemoteControlApi.md#printer_profiles_partial_update) | **PATCH** /api/printer-profiles/{id}/ | 
@@ -1976,7 +1976,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_session_partial_update**
-> PrintSession print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+> PrintSession print_session_partial_update(session, patched_print_session_request=patched_print_session_request)
 
 
 
@@ -2015,11 +2015,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 patched_print_session_request = print_nanny_client.PatchedPrintSessionRequest() # PatchedPrintSessionRequest |  (optional)
 
     try:
-        api_response = api_instance.print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+        api_response = api_instance.print_session_partial_update(session, patched_print_session_request=patched_print_session_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_session_partial_update: %s\n" % e)
@@ -2058,11 +2058,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 patched_print_session_request = print_nanny_client.PatchedPrintSessionRequest() # PatchedPrintSessionRequest |  (optional)
 
     try:
-        api_response = api_instance.print_session_partial_update(id, patched_print_session_request=patched_print_session_request)
+        api_response = api_instance.print_session_partial_update(session, patched_print_session_request=patched_print_session_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_session_partial_update: %s\n" % e)
@@ -2072,7 +2072,7 @@ patched_print_session_request = print_nanny_client.PatchedPrintSessionRequest() 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print session. | 
+ **session** | **str**|  | 
  **patched_print_session_request** | [**PatchedPrintSessionRequest**](PatchedPrintSessionRequest.md)|  | [optional] 
 
 ### Return type
@@ -2097,7 +2097,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_session_update**
-> PrintSession print_session_update(id, print_session_request)
+> PrintSession print_session_update(session, print_session_request)
 
 
 
@@ -2136,11 +2136,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
 
     try:
-        api_response = api_instance.print_session_update(id, print_session_request)
+        api_response = api_instance.print_session_update(session, print_session_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_session_update: %s\n" % e)
@@ -2179,11 +2179,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionRequest | 
 
     try:
-        api_response = api_instance.print_session_update(id, print_session_request)
+        api_response = api_instance.print_session_update(session, print_session_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_session_update: %s\n" % e)
@@ -2193,7 +2193,7 @@ print_session_request = print_nanny_client.PrintSessionRequest() # PrintSessionR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print session. | 
+ **session** | **str**|  | 
  **print_session_request** | [**PrintSessionRequest**](PrintSessionRequest.md)|  | 
 
 ### Return type
@@ -2453,7 +2453,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_sessions_retrieve**
-> PrintSession print_sessions_retrieve(id)
+> PrintSession print_sessions_retrieve(session)
 
 
 
@@ -2492,10 +2492,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 
     try:
-        api_response = api_instance.print_sessions_retrieve(id)
+        api_response = api_instance.print_sessions_retrieve(session)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_sessions_retrieve: %s\n" % e)
@@ -2534,10 +2534,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this print session.
+    session = 'session_example' # str | 
 
     try:
-        api_response = api_instance.print_sessions_retrieve(id)
+        api_response = api_instance.print_sessions_retrieve(session)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling RemoteControlApi->print_sessions_retrieve: %s\n" % e)
@@ -2547,7 +2547,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this print session. | 
+ **session** | **str**|  | 
 
 ### Return type
 
