@@ -1,1 +1,1 @@
-🔔 Check print: [{{DEVICE_NAME}}] {% if ACTION %} - {{ GCODE_FILENAME }} {% endif %}
+🔔 Check device: {{DEVICE_NAME}} {% if GCODE_FILENAME %} - {{ GCODE_FILENAME }} {% endif %}-failure detected!
