@@ -177,8 +177,9 @@ class PrintSessionSerializer(serializers.ModelSerializer):
         fields = [field.name for field in PrintSession._meta.fields] + ["url"]
         read_only_fields = ("user",)
         extra_kwargs = {
-            "url": {"view_name": "api:print-session-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
         }
+        lookup_field = ("session",)
 
 
 class PrinterProfileSerializer(serializers.ModelSerializer):

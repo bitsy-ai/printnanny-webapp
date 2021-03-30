@@ -91,9 +91,11 @@ class DefectAlertViewSet(
                 print_session=session,
                 alert_methods=alert_settings.alert_methods
             )
+            # instance.print_session.supress_alerts = True
+            # instance.print_session.supress_alerts.save()
             # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alerts_task(serializer.data)
-
+            
             return Response(serializer.data, status.HTTP_201_CREATED)
         elif session.supress_alerts is True:
             return Response({"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT)

@@ -127,14 +127,11 @@ class Alert(PolymorphicModel):
             to=[self.user.email],
             tags=[
                 self.__class__,
-                self.alert_subtype,
                 f"User:{self.user.id}",
                 f"Device:{self.octoprint_device.id}",
             ],
         )
-        # supression check is performed before enqueueing celery task AND immediately prior to sending msg
-        if self.print_session.supress_alerts is False:
-            message.send()
+
 
         return message
 
@@ -379,18 +376,7 @@ class DefectAlert(Alert):
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
 
-    def get_supress_url(self):
-        return reverse(
-            "api:defect-alert-supress"
-        )
-
-    def get_stop_print_url(self):
-        return reverse(
-            "api:defect-alert:stop_print"
-        )
-
-
-    def trigger_email_alert(self, data):
+    def trigger_email_alert(self, data, gif_url):
 
         device_url = reverse(
             "dashboard:octoprint-devices:detail", kwargs={"pk": self.octoprint_device.id}
@@ -399,9 +385,9 @@ class DefectAlert(Alert):
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.octoprint_device.name,
-            "ALERT_TYPE": self.get_alert_type_display(),
-            "SUPRESS_EMAIL_URL": self.get_supress_url(),
-            "STOP_PRINT_URL": self.get_stop_print_url(),
+            "SUPRESS_URL": data["supress_url"],
+            "STOP_PRINT_URL": data["supress_url"],
+            
         }
 
         text_body = render_to_string("email/defect_alert_body.txt", merge_data)
@@ -414,14 +400,18 @@ class DefectAlert(Alert):
             to=[self.user.email],
             tags=[
                 self.__class__,
-                self.alert_subtype,
                 f"User:{self.user.id}",
                 f"Device:{self.octoprint_device.id}",
             ],
         )
+
+        # supression check is performed before enqueueing celery task AND immediately prior to sending msg
+        if self.print_session.supress_alerts is False:
+            message.send()
         message.send()
 
         return message
+
 
 
 class ProgressAlert(Alert):
