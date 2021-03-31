@@ -158,3 +158,12 @@ services:
       - manage.py
       - runworker
       - discord
+
+  # Stripe websocket proxy
+  stripe:
+    container_name: stripe
+    image: stripe/stripe-cli
+    command:
+      - listen
+      - --forward-to
+      - django:8000/stripe/webhook/
