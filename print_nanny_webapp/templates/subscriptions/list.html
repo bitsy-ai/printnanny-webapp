@@ -49,8 +49,8 @@
                     </ol>
                 </div>
                 <h4 class="page-title d-inline-block">Subscription History
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
                     {% if DEVICES %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
                     {% else %}
                         &nbsp;| Please <a href="{% url 'dashboard:octoprint-devices:list' %}">add a device</a> to be able to subscribe!
                     {% endif %}
@@ -74,11 +74,14 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ product.name }}</h5>
                                 <p class="card-text">{{ product.description }}</p>
-                                <select name="device">
-                                    {% for device in DEVICES %}
-                                        <option value="{{ device.id }}">{{ device.name }}</option>
-                                    {% endfor %}
-                                </select>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        {% for device in DEVICES %}
+                                            <input class="custom-control-input" type="checkbox" name="devices" value="{{ device.id }}" id="subscribe-device-{{ device.id }}" />
+                                            <label class="custom-control-label" for="subscribe-device-{{ device.id }}">{{ device.name }}</label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                                 {% for price in product.prices_list %}
                                     <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary">{{ price.human_readable_price }}</a>
                                 {% endfor %}
@@ -87,20 +90,8 @@
                     {% endfor %}
                     <!-- </div> -->
 
-                    <p class="form-row" />
-                    <label for="card-element">
-                        Credit or debit card
-                    </label>
-                    <div id="card-element">
-                        <!-- A Stripe Element will be inserted here. -->
-                    </div>
-
                     <!-- Used to display form errors. -->
-                    <div id="card-errors" role="alert"></div>
-                    <div id="card-success" role="alert">
-                        <span id="success-message"></span>
-                    </div>
-
+                    <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
@@ -173,6 +164,17 @@
     }
 
     function paySubscription(price_id) {
+        var devices = $("input:checkbox[name=devices]:checked").map(function() { return $(this).val() }).get();
+        var displayError = $("#card-errors");
+        displayError.text("");
+        displayError.hide();
+
+        if (devices.length === 0) {
+            displayError.text("Please select at least one device");
+            displayError.show();
+            return
+        }
+
         fetch("{% url 'subscriptions:payment_intent' %}", {
             method: 'POST',
             headers: {
@@ -181,10 +183,18 @@
                 "Content-Type": "application/json",
                 "X-Requested-With": "XMLHttpRequest"
             },
-            body: JSON.stringify({ price_id })
+            body: JSON.stringify({ price_id, devices })
         }).then(function (result) {
-            // Handle server response.
             result.json().then(function (json) {
+                // Something went wrong with a message too
+                if (typeof json.err !== "undefined") {
+                    displayError.text(json.err);
+                    displayError.show();
+                }
+
+                // Something went wrong - HTTP status code
+                if (!result.ok) return
+
                 const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
                 stripe.redirectToCheckout({
                     sessionId: json.session_id
@@ -192,8 +202,8 @@
                     // If `redirectToCheckout` fails due to a browser or network
                     // error, display the localized error message to your customer
                     // using `result.error.message`.
-                    var displayError = document.getElementById("card-errors");
-                    displayError.textContent = result.error.message;
+                    displayError.text(result.error.message);
+                    displayError.show();
                 });
             })
         });

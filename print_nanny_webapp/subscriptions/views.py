@@ -1,10 +1,9 @@
-from datetime import datetime
 from django.http.response import JsonResponse
 import stripe
 import json, logging
-from django.http import HttpResponse, HttpRequest
+from django.urls import reverse
+from django.http import HttpRequest
 from django.contrib.auth import get_user_model
-from django.template.response import TemplateResponse
 from django.shortcuts import redirect
 from djstripe import webhooks
 
@@ -12,7 +11,6 @@ import djstripe.models
 import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
-from stripe.api_resources import line_item
 
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
@@ -37,7 +35,7 @@ class SubscriptionsListView(DashboardView):
             p.prices_list = p.prices.filter(active=True)
 
         try:
-            ctx["DEVICES"] = OctoPrintDevice.objects.get(user=self.request.user)
+            ctx["DEVICES"] = OctoPrintDevice.objects.filter(user=self.request.user)
         except OctoPrintDevice.DoesNotExist:
             ctx["DEVICES"] = None
 
@@ -50,18 +48,30 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
 
     data = json.loads(request.body)
 
-    customer, created = djstripe.models.Customer.objects.get(subscriber=request.user)
+    if "price_id" not in data.keys():
+        return JsonResponse({"err": "No plan selected. Please select a subscription plan"}, status=400)
+    if "devices" not in data.keys() or not len(data["devices"]):
+        return JsonResponse({"err": "No device selected. Please select a device to apply the subscription to"}, status=400)
+
+    devices = OctoPrintDevice.objects.filter(user=request.user, pk__in=data["devices"])
+    if not len(devices) or len(devices) != len(data["devices"]):
+        return JsonResponse({"err": "The selected devices are not valid or do not exist. Please select at least one valid device - but we like your curiosity :)"}, status=400)
+
+    customer = djstripe.models.Customer.objects.get(subscriber=request.user)
     session = stripe.checkout.Session.create(
         customer=customer.id,
         payment_method_types=["card"],
         mode="subscription",
-        success_url="http://localhost:8000/subscriptions",
-        cancel_url="http://localhost:8000/subscriptions/asdf",
+        success_url=request.build_absolute_uri(reverse("subscriptions:list")),
+        cancel_url=request.build_absolute_uri(reverse("subscriptions:list")),
         line_items=[{
             "price": data["price_id"],
-            "quantity": 1,
+            "quantity": len(devices),
+            "description": "Print-Nanny Subscription"
         }],
         api_key=djstripe.settings.STRIPE_SECRET_KEY,
+        allow_promotion_codes=True,
+        metadata={"devices": devices},
     )
     return JsonResponse({"session_id": session.id}, status=200)
 

@@ -15,6 +15,7 @@ User = get_user_model()
 def start_trial(sender, instance=None, created=False, **kwargs):
     if not created:
         return
+
     customer = djstripe.models.Customer.create(subscriber=instance)
     logger.info(f"Created stripe customer {customer.id}")
 
