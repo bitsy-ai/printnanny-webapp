@@ -4,6 +4,7 @@ import os
 from django.contrib.auth import get_user_model
 
 import json
+from django.urls import reverse
 from django.apps import apps
 from django.db import models
 from django.utils import timezone
@@ -232,6 +233,12 @@ class OctoPrintDevice(models.Model):
     def monitoring_active_css_class(self):
         return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
 
+    @property
+    def manage_url(self):
+        return reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.id},
+        )
 
 class GcodeFile(models.Model):
     class Meta:

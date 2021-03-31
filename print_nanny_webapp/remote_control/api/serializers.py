@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from rest_framework import serializers
 
 from print_nanny_webapp.remote_control.models import (
@@ -50,6 +51,9 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     # def get_ca_certs(self, obj):
     #     return getattr(obj, "ca_certs", None)
 
+    manage_url = serializers.HyperlinkedIdentityField(
+        view_name="dashboard:octoprint-devices:detail", lookup_field="pk"
+    )
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
@@ -59,6 +63,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "public_key_checksum",
             "cloudiot_device_configs",
             "ca_certs",
+            "manage_url"
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -89,18 +94,23 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
     cloudiot_device_configs = serializers.SerializerMethodField()
-
     def get_cloudiot_device_configs(self, obj):
         return obj.cloudiot_device_configs
+
+    manage_url = serializers.HyperlinkedIdentityField(
+        view_name="dashboard:octoprint-devices:detail", lookup_field="pk"
+    )
 
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
-            "cloudiot_device_configs"
+            "cloudiot_device_configs",
+            "manage_url"
         ]
 
         extra_kwargs = {
-            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
+            "url": {"view_name": "api:octoprint-devices-detail", "lookup_field": "id"},
+
         }
 
         read_only_fields = (
