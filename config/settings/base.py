@@ -79,7 +79,7 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
-    "djstripe",
+    "djstripe", # Gated at the bottom
 ]
 
 LOCAL_APPS = [
@@ -89,7 +89,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.dashboard.apps.DashboardConfig",
-    "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig",
+    # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -527,3 +527,8 @@ GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
 # ------------------------------------------------------------------------------
 DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+
+ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
+if ENABLE_SUBSCRIPTIONS:
+    # THIRD_PARTY_APPS.append("djstripe")
+    LOCAL_APPS.append("print_nanny_webapp.subscriptions.apps.SubscriptionsConfig")

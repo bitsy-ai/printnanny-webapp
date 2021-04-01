@@ -86,6 +86,7 @@
                 </a>
             </li>
 
+            {% if ENABLE_SUBSCRIPTIONS %}
             <li class="side-nav-item">
                 <a href="{% url 'subscriptions:list' %}" class="side-nav-link">
                     <i class="dripicons dripicons-basket"></i>
@@ -93,6 +94,7 @@
 
                 </a>
             </li>
+            {% endif %}
 
             <li class="side-nav-item">
                 <a href="https://help.print-nanny.com/" target="_blank" class="side-nav-link">

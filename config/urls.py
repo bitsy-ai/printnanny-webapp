@@ -45,12 +45,14 @@ urlpatterns = [
          include("print_nanny_webapp.dashboard.urls", namespace="dashboard"), ),
 
     path("alerts/", include("print_nanny_webapp.alerts.urls", "alerts")),
-    path("subscriptions/", include("print_nanny_webapp.subscriptions.urls", "subscriptions")),
     re_path(r'^invitations/', include('invitations.urls', namespace='invitations')),
-    path("stripe/", include("djstripe.urls", namespace="djstripe")),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.ENABLE_SUBSCRIPTIONS:
+    urlpatterns += path("subscriptions/", include("print_nanny_webapp.subscriptions.urls", "subscriptions")),
+    urlpatterns += path("stripe/", include("djstripe.urls", namespace="djstripe")),
 
 
 if settings.DEBUG:

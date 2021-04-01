@@ -2,7 +2,7 @@ from django.http.response import JsonResponse
 import stripe
 import json, logging
 from django.urls import reverse
-from django.http import HttpRequest
+from django.http import HttpRequest, request
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
@@ -12,6 +12,7 @@ import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
 
+from .models import start_trial
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
@@ -25,7 +26,12 @@ class SubscriptionsListView(DashboardView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        customer = djstripe.models.Customer.objects.get(subscriber=self.request.user)
+
+        try:
+            customer = djstripe.models.Customer.objects.get(subscriber=self.request.user)
+        except djstripe.models.Customer.DoesNotExist:
+            start_trial(self.request.user, instance=self.request.user, created=True)
+            customer = djstripe.models.Customer.objects.get(subscriber=self.request.user)
 
         # Populate template with current subscriptions and stripe public key
         ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
@@ -71,7 +77,7 @@ def subscriptions_payment_intent_view_create(request: HttpRequest):
         }],
         api_key=djstripe.settings.STRIPE_SECRET_KEY,
         allow_promotion_codes=True,
-        metadata={"devices": devices},
+        metadata={"devices": ",".join([str(x.id) for x in devices])},
     )
     return JsonResponse({"session_id": session.id}, status=200)
 
