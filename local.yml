@@ -15,7 +15,6 @@ services:
     container_name: django
     depends_on:
       - postgres
-      - ngrok
       - prometheus
     volumes:
       - .:/app:z
@@ -27,8 +26,8 @@ services:
       - ./.envs/.local/.postgres
       - ./.envs/.local/.secrets
     ports:
-      - "8000:8000"
-      - "8001:8001"
+      - "0.0.0.0:8000:8000"
+      - "127.0.0.1:8001:8001"
     command: /start
 
   postgres:
@@ -44,7 +43,7 @@ services:
     env_file:
       - ./.envs/.local/.postgres
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
 
   docs:
 
@@ -64,17 +63,8 @@ services:
       - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
 
     ports:
-      - "7000:7000"
+      - "127.0.0.1:7000:7000"
 
-  ngrok:
-
-    image: wernight/ngrok
-    container_name: ngrok
-    environment:
-      NGROK_PROTOCOL: http
-      NGROK_PORT: django:8000
-    ports:
-      - "4040:4040"
   redis:
 
     build:
@@ -89,7 +79,7 @@ services:
     depends_on:
       - redis
       - postgres
-      - ngrok
+      # - ngrok
     ports: []
     command: /start-celeryworker
 
@@ -102,7 +92,7 @@ services:
     depends_on:
       - redis
       - postgres
-      - ngrok
+      # - ngrok
     ports: []
     command: /start-celerybeat
 
@@ -113,7 +103,7 @@ services:
     image: print_nanny_webapp_local_flower
     container_name: flower
     ports:
-      - "5555:5555"
+      - "127.0.0.1:5555:5555"
     command: /start-flower
 
   notebook:
@@ -124,14 +114,14 @@ services:
 
     container_name: notebook
     ports:
-      - "8888:8888"
+      - "127.0.0.1:8888:8888"
     command: /start-notebook
 
   prometheus:
 
     image: prom/prometheus
     ports:
-      - 9000:9090
+      - 127.0.0.1:9000:9090
 
     volumes:
       - ./prometheus:/etc/prometheus
@@ -141,7 +131,7 @@ services:
   celery-exporter:
     image: ovalmoney/celery-exporter
     ports:
-      - 9540:9540
+      - 127.0.0.1:9540:9540
   events:
     container_name: events
     <<: *django
