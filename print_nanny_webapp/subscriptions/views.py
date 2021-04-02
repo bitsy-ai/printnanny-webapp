@@ -40,10 +40,7 @@ class SubscriptionsListView(DashboardView):
         for p in ctx["PRODUCTS"]:
             p.prices_list = p.prices.filter(active=True)
 
-        try:
-            ctx["DEVICES"] = OctoPrintDevice.objects.filter(user=self.request.user)
-        except OctoPrintDevice.DoesNotExist:
-            ctx["DEVICES"] = None
+        ctx["DEVICES"] = OctoPrintDevice.objects.filter(user=self.request.user)
 
         return ctx
 
