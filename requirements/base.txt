@@ -57,3 +57,4 @@ discord.py==1.6.0
 # pin to twisted <=21.2.0
 # tracking https://twistedmatrix.com/trac/ticket/10039
 twisted==20.3.0
+dj-stripe==2.4.3

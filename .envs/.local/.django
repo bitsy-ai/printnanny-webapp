@@ -8,7 +8,7 @@ REDIS_URL=redis://redis:6379/0
 
 # Celery
 # ------------------------------------------------------------------------------
-CELERY_BROKER_URL=REDIS_URL 
+CELERY_BROKER_URL=REDIS_URL
 CELERY_EXPORTER_BROKER_URL=REDIS_URL
 C_FORCE_ROOT=1
 
@@ -19,3 +19,4 @@ CELERY_FLOWER_PASSWORD=debug
 GOOGLE_APPLICATION_CREDENTIALS =/tmp/keys/keyfile.json
 GOOGLE_CLOUD_PROJECT=print-nanny-sandbox
 DJANGO_GCP_STORAGE_BUCKET_NAME=print-nanny-sandbox
+ENABLE_SUBSCRIPTIONS=False

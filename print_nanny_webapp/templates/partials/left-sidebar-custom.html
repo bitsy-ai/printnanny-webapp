@@ -22,7 +22,7 @@
             <img src="{% static 'images/logo_sm_dark.png' %}" alt="" height="16">
         </span>
     </a>
-    
+
     <div class="h-100" id="left-side-menu-container" data-simplebar>
 
         <!--- Sidemenu -->
@@ -77,7 +77,7 @@
                     <span> {% trans "Devices & Printers" %} </span>
                 </a>
             </li>
-            
+
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:apps:list' %}" class="side-nav-link">
                     <i class="dripicons dripicons-print"></i>
@@ -85,6 +85,16 @@
 
                 </a>
             </li>
+
+            {% if ENABLE_SUBSCRIPTIONS %}
+            <li class="side-nav-item">
+                <a href="{% url 'subscriptions:list' %}" class="side-nav-link">
+                    <i class="dripicons dripicons-basket"></i>
+                    <span> {% trans "Subscriptions" %} </span>
+
+                </a>
+            </li>
+            {% endif %}
 
             <li class="side-nav-item">
                 <a href="https://help.print-nanny.com/" target="_blank" class="side-nav-link">

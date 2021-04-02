@@ -1,0 +1,212 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    .StripeElement {
+        box-sizing: border-box;
+
+        height: 40px;
+
+        padding: 10px 12px;
+
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: white;
+
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
+
+                        <li class="breadcrumb-item active">Subscription History</li>
+                    </ol>
+                </div>
+                <h4 class="page-title d-inline-block">Subscription History
+                    {% if DEVICES %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
+                    {% else %}
+                        &nbsp;| Please <a href="{% url 'dashboard:octoprint-devices:list' %}">add a device</a> to be able to subscribe!
+                    {% endif %}
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div id="subscribe-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title">Subscribe to Print Nanny Cloud!</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p class="form-row" />
+                    <!-- <div class="col-md-12"> -->
+                    {% for product in PRODUCTS %}
+                        <div class="card d-block">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        {% for device in DEVICES %}
+                                            <input class="custom-control-input" type="checkbox" name="devices" value="{{ device.id }}" id="subscribe-device-{{ device.id }}" />
+                                            <label class="custom-control-label" for="subscribe-device-{{ device.id }}">{{ device.name }}</label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% for price in product.prices_list %}
+                                    <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary">{{ price.human_readable_price }}</a>
+                                {% endfor %}
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    {% endfor %}
+                    <!-- </div> -->
+
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="card-button">Submit Payment</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <table id="subscription-history" class="table table-hover table-centered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscription in SUBSCRIPTIONS %}
+                <tr>
+                    <td>{{ subscription.created }}</td>
+                    <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
+                    <td>
+                        {% if subscription.status == "active" %}
+                            <i class="mdi mdi-circle text-success"></i>
+                        {% elif subscription.status == "unpaid" or subscription.status == "past_due" %}
+                            <i class="mdi mdi-circle text-warning"></i>
+                        {% elif subscription.status == "past_due" %}
+                            <i class="mdi mdi-circle text-dange"></i>
+                        {% else %}
+                            <i class="mdi mdi-circle"></i>
+                        {% endif %}
+                        &nbsp;{{ subscription.status | title }}
+                    </td>
+                    <td>{{ subscription.current_period_start }}</td>
+                    <td>{{ subscription.current_period_end }}</td>
+                    <td class="table-action">
+                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                        {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
+                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
+
+{% block extra_javascript %}
+{{ block.super }}
+<script src="https://js.stripe.com/v3/"></script>
+
+<!-- Source based on https://medium.com/@berat703/django-stripe-integration-with-using-dj-stripe-1df59d17fa73 -->
+<script>
+    function getCookie(name) {
+        if (!document.cookie) {
+            return null;
+        }
+        const xsrfCookies = document.cookie.split(';')
+            .map(c => c.trim())
+            .filter(c => c.startsWith(name + '='));
+        if (xsrfCookies.length === 0) {
+            return null;
+        }
+        return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+    }
+
+    function paySubscription(price_id) {
+        var devices = $("input:checkbox[name=devices]:checked").map(function() { return $(this).val() }).get();
+        var displayError = $("#card-errors");
+        displayError.text("");
+        displayError.hide();
+
+        if (devices.length === 0) {
+            displayError.text("Please select at least one device");
+            displayError.show();
+            return
+        }
+
+        fetch("{% url 'subscriptions:payment_intent' %}", {
+            method: 'POST',
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({ price_id, devices })
+        }).then(function (result) {
+            result.json().then(function (json) {
+                // Something went wrong with a message too
+                if (typeof json.err !== "undefined") {
+                    displayError.text(json.err);
+                    displayError.show();
+                }
+
+                // Something went wrong - HTTP status code
+                if (!result.ok) return
+
+                const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+                stripe.redirectToCheckout({
+                    sessionId: json.session_id
+                }).then(function(result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, display the localized error message to your customer
+                    // using `result.error.message`.
+                    displayError.text(result.error.message);
+                    displayError.show();
+                });
+            })
+        });
+    }
+</script>
+{% endblock %}
