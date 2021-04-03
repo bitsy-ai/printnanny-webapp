@@ -18,7 +18,7 @@ from ..models import (
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
     DefectAlertSettings,
-    # PrintSessionAlertAlert
+    PrintSessionAlert
 )
 
 logger = logging.getLogger(__name__)
@@ -53,13 +53,38 @@ class CreateDefectAlertSerializer(AlertSerializer):
         model = DefectAlert
         fields = ("print_session",)
 
-# class CreatePrintSessionAlertAlertSerializer(AlertSerializer):
-#     print_session = serializers.CharField()
+class CreatePrintSessionAlertSerializer(AlertSerializer):
+    print_session = serializers.CharField()
 
-#     class Meta:
-#         model = PrintSessionAlertAlert
-#         fields = ("print_session",)
+    class Meta:
+        model = PrintSessionAlert
+        fields = ("print_session",)
 
+class PrintSessionAlertSerializer(AlertSerializer):
+
+    class Meta:
+        model = DefectAlert
+        fields = [
+            "id",
+            "time",
+            "alert_methods",
+            "alert_type",
+            "created_dt",
+            "updated_dt",
+            "seen",
+            "dismissed",
+            "user",
+            "octoprint_device",
+            "print_session",
+        ]
+
+        read_only_fields = (
+            "alert_methods",
+            "alert_type",
+            "polymorphic_ctype",
+            "user",
+            "octoprint_device",
+        )
 class DefectAlertSerializer(AlertSerializer):
     supress_url = serializers.HyperlinkedIdentityField(
         view_name="api:defect-alert-supress", lookup_field="pk"
@@ -92,11 +117,6 @@ class DefectAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
         )
-        # extra_kwargs = {
-        #     "supress_url": {"view_name": "api:defect-alert-supress", "lookup_field": "pk"},
-        #     # "stop_print_url": {"view_name": "api:defect-alert-stop-print", "lookup_field": "id"}
-        # }
-
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """

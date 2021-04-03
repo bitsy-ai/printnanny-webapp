@@ -26,6 +26,8 @@ from .serializers import (
     AlertMethodSerializer,
     DefectAlertSerializer,
     CreateDefectAlertSerializer,
+    CreatePrintSessionAlertSerializer,
+    PrintSessionAlertSerializer
 )
 from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
@@ -42,6 +44,64 @@ from ..models import (
 logger = logging.getLogger(__name__)
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
+
+@extend_schema(
+    tags=["alerts"],
+    responses={
+        200: DefectAlertSerializer,
+        201: DefectAlertSerializer,
+        202: DefectAlertSerializer,
+    },
+)
+class PrintSessionAlertViewSet(
+    GenericViewSet,
+    ListModelMixin,
+    RetrieveModelMixin,
+    CreateModelMixin,
+):
+
+    def get_queryset(self):
+        user = self.request.user
+        return DefectAlert.objects.filter(user=user).all()
+
+    @extend_schema(
+        tags=["alerts"],
+        request=CreateDefectAlertSerializer,
+        operation_id="defect_alert_create",
+        responses={
+            201: PrintSessionAlertSerializer,
+            400: PrintSessionAlertSerializer,
+            403: PrintSessionAlertSerializer,
+        },
+    )
+    def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
+        session = request.data.get("print_session")
+        session = PrintSession.objects.get(session=session)
+        serializer = PrintSessionAlertSerializer(
+            data={
+                "print_session": session.id,
+                "user": session.user.id,
+                "octoprint_device": session.octoprint_device.id,
+            },
+            context={"request": request},
+        )
+        if serializer.is_valid():
+            alert_settings, created = PrintSessionAlertSerializer.objects.get_or_create(
+                user=session.user,
+            )
+            instance = serializer.save(
+                user=session.user,
+                octoprint_device=session.octoprint_device,
+                print_session=session,
+                alert_methods=alert_settings.alert_methods,
+            )
+            # instance.print_session.supress_alerts = True
+            # instance.print_session.supress_alerts.save()
+            # supression check is performed before enqueueing celery task and immediately prior to sending msg
+            instance.trigger_alerts_task(serializer.data)
+
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @extend_schema(

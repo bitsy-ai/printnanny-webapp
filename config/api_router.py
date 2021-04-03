@@ -19,15 +19,19 @@ from print_nanny_webapp.remote_control.api.views import (
     OctoPrintDeviceViewSet,
     CommandViewSet,
     RemoteControlSnapshotViewSet,
+
 )
 
-from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet, DefectAlertViewSet
+from print_nanny_webapp.alerts.api.views import (
+    AlertViewSet, AlertSettingsViewSet, DefectAlertViewSet,     PrintSessionAlertViewSet
+)
 
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("alert_settings", AlertSettingsViewSet)
 router.register("defect-alerts", DefectAlertViewSet, basename="defect-alert")
+router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
 
 router.register("users", UserViewSet)
 
