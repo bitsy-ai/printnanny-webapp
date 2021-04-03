@@ -250,6 +250,13 @@ class ProgressAlertSettings(AlertSettings):
                 f"ProgressAlertSettings.on_print_progress issued command id={command.id}"
             )
 
+class PrintSessionDoneAlertSettings(AlertSettings):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs)
+
+
 
 class DefectAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
