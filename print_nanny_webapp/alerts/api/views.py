@@ -27,7 +27,7 @@ from .serializers import (
     DefectAlertSerializer,
     CreateDefectAlertSerializer,
     CreatePrintSessionAlertSerializer,
-    PrintSessionAlertSerializer
+    PrintSessionAlertSerializer,
 )
 from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
@@ -45,6 +45,7 @@ logger = logging.getLogger(__name__)
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 
+
 @extend_schema(
     tags=["alerts"],
     responses={
@@ -59,7 +60,6 @@ class PrintSessionAlertViewSet(
     RetrieveModelMixin,
     CreateModelMixin,
 ):
-
     def get_queryset(self):
         user = self.request.user
         return DefectAlert.objects.filter(user=user).all()

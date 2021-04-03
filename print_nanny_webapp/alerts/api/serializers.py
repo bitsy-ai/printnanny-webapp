@@ -18,7 +18,7 @@ from ..models import (
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
     DefectAlertSettings,
-    PrintSessionAlert
+    PrintSessionAlert,
 )
 
 logger = logging.getLogger(__name__)
@@ -53,6 +53,7 @@ class CreateDefectAlertSerializer(AlertSerializer):
         model = DefectAlert
         fields = ("print_session",)
 
+
 class CreatePrintSessionAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
 
@@ -60,8 +61,8 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
         model = PrintSessionAlert
         fields = ("print_session",)
 
-class PrintSessionAlertSerializer(AlertSerializer):
 
+class PrintSessionAlertSerializer(AlertSerializer):
     class Meta:
         model = DefectAlert
         fields = [
@@ -85,6 +86,8 @@ class PrintSessionAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
         )
+
+
 class DefectAlertSerializer(AlertSerializer):
     supress_url = serializers.HyperlinkedIdentityField(
         view_name="api:defect-alert-supress", lookup_field="pk"
@@ -117,6 +120,7 @@ class DefectAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
         )
+
 
 class AlertBulkRequestSerializer(serializers.Serializer):
     """

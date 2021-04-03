@@ -7,22 +7,46 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0041_auto_20210328_1908'),
+        ("alerts", "0041_auto_20210328_1908"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='alert',
-            name='alert_method',
+            model_name="alert",
+            name="alert_method",
         ),
         migrations.AddField(
-            model_name='alert',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord')], max_length=255), blank=True, default=('UI', 'EMAIL'), size=None),
+            model_name="alert",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI", "EMAIL"),
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='alertsettings',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord')], max_length=255), blank=True, default=('UI', 'EMAIL'), size=None),
+            model_name="alertsettings",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI", "EMAIL"),
+                size=None,
+            ),
         ),
     ]

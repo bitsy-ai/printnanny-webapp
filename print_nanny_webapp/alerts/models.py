@@ -250,12 +250,14 @@ class ProgressAlertSettings(AlertSettings):
                 f"ProgressAlertSettings.on_print_progress issued command id={command.id}"
             )
 
+
 class PrintSessionAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs)
-
+        super().__init__(
+            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs
+        )
 
 
 class DefectAlertSettings(AlertSettings):
@@ -375,6 +377,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 # Alert Models
 ##
 
+
 class PrintSessionAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(
@@ -416,6 +419,7 @@ class PrintSessionAlert(Alert):
         message.send()
         return message
 
+
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
@@ -453,7 +457,9 @@ class DefectAlert(Alert):
             ],
         )
         if self.print_session.supress_alerts is True:
-            logger.warning(f"Discarding email alert for print session={self.print_session.session}")
+            logger.warning(
+                f"Discarding email alert for print session={self.print_session.session}"
+            )
             return
         message.send()
         self.print_session.supress_alerts = True

@@ -8,18 +8,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('remote_control', '0053_printsession_supress_alerts'),
-        ('alerts', '0045_auto_20210402_2140'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("remote_control", "0053_printsession_supress_alerts"),
+        ("alerts", "0045_auto_20210402_2140"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='PrintSessionAlertAlert',
-            new_name='PrintSessionAlert',
+            old_name="PrintSessionAlertAlert",
+            new_name="PrintSessionAlert",
         ),
         migrations.RenameModel(
-            old_name='PrintSessionAlertAlertSettings',
-            new_name='PrintSessionAlertSettings',
+            old_name="PrintSessionAlertAlertSettings",
+            new_name="PrintSessionAlertSettings",
         ),
     ]

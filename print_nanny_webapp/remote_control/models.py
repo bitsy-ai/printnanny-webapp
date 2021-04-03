@@ -240,6 +240,7 @@ class OctoPrintDevice(models.Model):
             kwargs={"pk": self.id},
         )
 
+
 class GcodeFile(models.Model):
     class Meta:
         unique_together = ("user", "file_hash")
