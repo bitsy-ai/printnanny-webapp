@@ -249,7 +249,8 @@ export enum AlertTypeEnum {
     Command = 'COMMAND',
     PrintProgress = 'PRINT_PROGRESS',
     ManualVideoUpload = 'MANUAL_VIDEO_UPLOAD',
-    Defect = 'DEFECT'
+    Defect = 'DEFECT',
+    PrintSessionDone = 'PRINT_SESSION_DONE'
 }
 
 /**
@@ -1326,6 +1327,12 @@ export interface OctoPrintDevice {
      * @memberof OctoPrintDevice
      */
     cloudiot_device_configs?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDevice
+     */
+    manage_url?: string;
 }
 /**
  * 
@@ -1525,6 +1532,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     ca_certs: { [key: string]: string; };
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    manage_url?: string;
 }
 /**
  * 
@@ -3308,6 +3321,79 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionAlert
+ */
+export interface PrintSessionAlert {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {Array<AlertMethodsEnum>}
+     * @memberof PrintSessionAlert
+     */
+    alert_methods?: Array<AlertMethodsEnum>;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PrintSessionAlert
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    octoprint_device?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    print_session: number;
 }
 /**
  * 
@@ -5494,6 +5580,67 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertCreate2: async (createDefectAlertRequest: CreateDefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createDefectAlertRequest' is not null or undefined
+            if (createDefectAlertRequest === null || createDefectAlertRequest === undefined) {
+                throw new RequiredError('createDefectAlertRequest','Required parameter createDefectAlertRequest was null or undefined when calling defectAlertCreate2.');
+            }
+            const localVarPath = `/api/print-session-alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof createDefectAlertRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(createDefectAlertRequest !== undefined ? createDefectAlertRequest : {})
+                : (createDefectAlertRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5967,6 +6114,111 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionAlertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-session-alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionAlertsRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling printSessionAlertsRetrieve.');
+            }
+            const localVarPath = `/api/print-session-alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -6095,6 +6347,19 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async defectAlertCreate2(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertCreate2(createDefectAlertRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6201,6 +6466,32 @@ export const AlertsApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionAlertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDefectAlertList>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionAlertsRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -6293,6 +6584,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
+         * @param {CreateDefectAlertRequest} createDefectAlertRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        defectAlertCreate2(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): AxiosPromise<PrintSessionAlert> {
+            return AlertsApiFp(configuration).defectAlertCreate2(createDefectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this defect alert.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6366,6 +6666,24 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          */
         defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
             return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList> {
+            return AlertsApiFp(configuration).printSessionAlertsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionAlertsRetrieve(id: string, options?: any): AxiosPromise<DefectAlert> {
+            return AlertsApiFp(configuration).printSessionAlertsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6459,6 +6777,15 @@ export interface AlertsApiInterface {
 
     /**
      * 
+     * @param {CreateDefectAlertRequest} createDefectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    defectAlertCreate2(createDefectAlertRequest: CreateDefectAlertRequest, options?: any): AxiosPromise<PrintSessionAlert>;
+
+    /**
+     * 
      * @param {number} id A unique integer value identifying this defect alert.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6532,6 +6859,24 @@ export interface AlertsApiInterface {
      * @memberof AlertsApiInterface
      */
     defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    printSessionAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    printSessionAlertsRetrieve(id: string, options?: any): AxiosPromise<DefectAlert>;
 
 }
 
@@ -6643,6 +6988,17 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
+     * @param {CreateDefectAlertRequest} createDefectAlertRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public defectAlertCreate2(createDefectAlertRequest: CreateDefectAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).defectAlertCreate2(createDefectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} id A unique integer value identifying this defect alert.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6731,6 +7087,28 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      */
     public defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
         return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public printSessionAlertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public printSessionAlertsRetrieve(id: string, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

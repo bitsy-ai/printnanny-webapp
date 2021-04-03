@@ -73,7 +73,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 cloudiot_device_configs = '', 
                 ca_certs = {
                     'key' : ''
-                    }
+                    }, 
+                manage_url = ''
             )
         else :
             return OctoPrintDeviceKey(

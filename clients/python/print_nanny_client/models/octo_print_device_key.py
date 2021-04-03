@@ -64,7 +64,8 @@ class OctoPrintDeviceKey(object):
         'private_key_checksum': 'str',
         'public_key_checksum': 'str',
         'cloudiot_device_configs': 'str',
-        'ca_certs': 'dict(str, str)'
+        'ca_certs': 'dict(str, str)',
+        'manage_url': 'str'
     }
 
     attribute_map = {
@@ -99,10 +100,11 @@ class OctoPrintDeviceKey(object):
         'private_key_checksum': 'private_key_checksum',
         'public_key_checksum': 'public_key_checksum',
         'cloudiot_device_configs': 'cloudiot_device_configs',
-        'ca_certs': 'ca_certs'
+        'ca_certs': 'ca_certs',
+        'manage_url': 'manage_url'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -140,6 +142,7 @@ class OctoPrintDeviceKey(object):
         self._public_key_checksum = None
         self._cloudiot_device_configs = None
         self._ca_certs = None
+        self._manage_url = None
         self.discriminator = None
 
         if id is not None:
@@ -189,6 +192,8 @@ class OctoPrintDeviceKey(object):
         if cloudiot_device_configs is not None:
             self.cloudiot_device_configs = cloudiot_device_configs
         self.ca_certs = ca_certs
+        if manage_url is not None:
+            self.manage_url = manage_url
 
     @property
     def id(self):
@@ -943,6 +948,27 @@ class OctoPrintDeviceKey(object):
             raise ValueError("Invalid value for `ca_certs`, must not be `None`")  # noqa: E501
 
         self._ca_certs = ca_certs
+
+    @property
+    def manage_url(self):
+        """Gets the manage_url of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The manage_url of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._manage_url
+
+    @manage_url.setter
+    def manage_url(self, manage_url):
+        """Sets the manage_url of this OctoPrintDeviceKey.
+
+
+        :param manage_url: The manage_url of this OctoPrintDeviceKey.  # noqa: E501
+        :type manage_url: str
+        """
+
+        self._manage_url = manage_url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

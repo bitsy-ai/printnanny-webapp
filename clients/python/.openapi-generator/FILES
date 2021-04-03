@@ -96,6 +96,7 @@ docs/PluginEventEventTypeEnum.md
 docs/PrintPauseEnum.md
 docs/PrintResumeEnum.md
 docs/PrintSession.md
+docs/PrintSessionAlert.md
 docs/PrintSessionRequest.md
 docs/PrintSessionState.md
 docs/PrintSessionStateEventTypeEnum.md
@@ -222,6 +223,7 @@ print_nanny_client/models/plugin_event_event_type_enum.py
 print_nanny_client/models/print_pause_enum.py
 print_nanny_client/models/print_resume_enum.py
 print_nanny_client/models/print_session.py
+print_nanny_client/models/print_session_alert.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_session_state.py
 print_nanny_client/models/print_session_state_event_type_enum.py
@@ -341,6 +343,7 @@ test/test_plugin_event_event_type_enum.py
 test/test_print_pause_enum.py
 test/test_print_resume_enum.py
 test/test_print_session.py
+test/test_print_session_alert.py
 test/test_print_session_request.py
 test/test_print_session_state.py
 test/test_print_session_state_event_type_enum.py
