@@ -47,6 +47,7 @@ class Alert(PolymorphicModel):
             "Manually-uploaded video is ready for review",
         )
         DEFECT = "DEFECT", "Defect detected in print"
+        PRINT_SESSION_DONE = "PRINT_SESSION_DONE", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
         UI = "UI", "Receive Print Nanny UI notifications"
@@ -367,6 +368,46 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 # Alert Models
 ##
 
+class PrintSessionDoneAlert(Alert):
+    def __init__(self, *args, **kwargs):
+        super().__init__(
+            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs
+        )
+
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
+
+    def trigger_email_alert(self, data, gif_url):
+
+        device_url = reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
+        )
+        merge_data = {
+            "DEVICE_URL": device_url,
+            "FIRST_NAME": self.user.first_name or "Maker",
+            "DEVICE_NAME": self.octoprint_device.name,
+            "SUPRESS_URL": data["supress_url"],
+            "STOP_PRINT_URL": data["supress_url"],
+        }
+
+        text_body = render_to_string("email/print_session_done_body.txt", merge_data)
+        # html_body = render_to_string("email/print_sessinn_done_body.html", merge_data)
+
+        subject = render_to_string("email/print_session_done_body.txt", merge_data)
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=[self.user.email],
+            tags=[
+                self.__class__,
+                f"User:{self.user.id}",
+                f"Device:{self.octoprint_device.id}",
+            ],
+        )
+        message.send()
+        return message
 
 class DefectAlert(Alert):
     def __init__(self, *args, **kwargs):
@@ -404,11 +445,12 @@ class DefectAlert(Alert):
                 f"Device:{self.octoprint_device.id}",
             ],
         )
-
-        # supression check is performed before enqueueing celery task AND immediately prior to sending msg
-        if self.print_session.supress_alerts is False:
-            message.send()
+        if self.print_session.supress_alerts is True:
+            logger.warning(f"Discarding email alert for print session={self.print_session.session}")
+            return
         message.send()
+        self.print_session.supress_alerts = True
+        self.print_session.supress_alerts.save()
 
         return message
 
