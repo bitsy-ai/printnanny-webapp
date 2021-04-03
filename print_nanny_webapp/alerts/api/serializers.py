@@ -18,6 +18,7 @@ from ..models import (
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
     DefectAlertSettings,
+    # PrintSessionAlertAlert
 )
 
 logger = logging.getLogger(__name__)
@@ -52,6 +53,12 @@ class CreateDefectAlertSerializer(AlertSerializer):
         model = DefectAlert
         fields = ("print_session",)
 
+# class CreatePrintSessionAlertAlertSerializer(AlertSerializer):
+#     print_session = serializers.CharField()
+
+#     class Meta:
+#         model = PrintSessionAlertAlert
+#         fields = ("print_session",)
 
 class DefectAlertSerializer(AlertSerializer):
     supress_url = serializers.HyperlinkedIdentityField(

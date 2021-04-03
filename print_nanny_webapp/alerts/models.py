@@ -250,7 +250,7 @@ class ProgressAlertSettings(AlertSettings):
                 f"ProgressAlertSettings.on_print_progress issued command id={command.id}"
             )
 
-class PrintSessionDoneAlertSettings(AlertSettings):
+class PrintSessionAlertAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __init__(self, *args, **kwargs):
@@ -375,7 +375,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 # Alert Models
 ##
 
-class PrintSessionDoneAlert(Alert):
+class PrintSessionAlertAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs
