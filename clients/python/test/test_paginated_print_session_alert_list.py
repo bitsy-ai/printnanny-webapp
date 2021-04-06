@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.paginated_print_session_list import PaginatedPrintSessionList  # noqa: E501
+from print_nanny_client.models.paginated_print_session_alert_list import PaginatedPrintSessionAlertList  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPaginatedPrintSessionList(unittest.TestCase):
-    """PaginatedPrintSessionList unit test stubs"""
+class TestPaginatedPrintSessionAlertList(unittest.TestCase):
+    """PaginatedPrintSessionAlertList unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,40 +29,39 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedPrintSessionList
+        """Test PaginatedPrintSessionAlertList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.paginated_print_session_list.PaginatedPrintSessionList()  # noqa: E501
+        # model = print_nanny_client.models.paginated_print_session_alert_list.PaginatedPrintSessionAlertList()  # noqa: E501
         if include_optional :
-            return PaginatedPrintSessionList(
+            return PaginatedPrintSessionAlertList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    print_nanny_client.models.print_session.PrintSession(
+                    print_nanny_client.models.print_session_alert.PrintSessionAlert(
                         id = 56, 
+                        time = '', 
+                        alert_methods = [
+                            'UI'
+                            ], 
+                        alert_type = null, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        octoprint_device = 56, 
-                        session = '', 
-                        progress = {
-                            'key' : null
-                            }, 
+                        seen = True, 
+                        dismissed = True, 
                         user = 56, 
-                        printer_profile = 56, 
-                        gcode_file = 56, 
-                        gcode_filename = '', 
-                        url = '', 
-                        should_alert = '', )
+                        octoprint_device = 56, 
+                        print_session = 56, )
                     ]
             )
         else :
-            return PaginatedPrintSessionList(
+            return PaginatedPrintSessionAlertList(
         )
 
-    def testPaginatedPrintSessionList(self):
-        """Test PaginatedPrintSessionList"""
+    def testPaginatedPrintSessionAlertList(self):
+        """Test PaginatedPrintSessionAlertList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

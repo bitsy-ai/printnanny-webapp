@@ -38,8 +38,7 @@ class PrintSessionRequest(object):
         'progress': 'dict(str, object)',
         'printer_profile': 'int',
         'gcode_file': 'int',
-        'gcode_filename': 'str',
-        'supress_alerts': 'bool'
+        'gcode_filename': 'str'
     }
 
     attribute_map = {
@@ -48,11 +47,10 @@ class PrintSessionRequest(object):
         'progress': 'progress',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
-        'gcode_filename': 'gcode_filename',
-        'supress_alerts': 'supress_alerts'
+        'gcode_filename': 'gcode_filename'
     }
 
-    def __init__(self, octoprint_device=None, session=None, progress=None, printer_profile=None, gcode_file=None, gcode_filename=None, supress_alerts=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, session=None, progress=None, printer_profile=None, gcode_file=None, gcode_filename=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -64,7 +62,6 @@ class PrintSessionRequest(object):
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
-        self._supress_alerts = None
         self.discriminator = None
 
         self.octoprint_device = octoprint_device
@@ -74,8 +71,6 @@ class PrintSessionRequest(object):
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
-        if supress_alerts is not None:
-            self.supress_alerts = supress_alerts
 
     @property
     def octoprint_device(self):
@@ -212,27 +207,6 @@ class PrintSessionRequest(object):
             raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
 
         self._gcode_filename = gcode_filename
-
-    @property
-    def supress_alerts(self):
-        """Gets the supress_alerts of this PrintSessionRequest.  # noqa: E501
-
-
-        :return: The supress_alerts of this PrintSessionRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._supress_alerts
-
-    @supress_alerts.setter
-    def supress_alerts(self, supress_alerts):
-        """Sets the supress_alerts of this PrintSessionRequest.
-
-
-        :param supress_alerts: The supress_alerts of this PrintSessionRequest.  # noqa: E501
-        :type supress_alerts: bool
-        """
-
-        self._supress_alerts = supress_alerts
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

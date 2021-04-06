@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev66"
+__version__ = "0.5.0-dev67"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -92,6 +92,7 @@ from print_nanny_client.models.paginated_model_artifact_list import PaginatedMod
 from print_nanny_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from print_nanny_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
 from print_nanny_client.models.paginated_plugin_event_list import PaginatedPluginEventList
+from print_nanny_client.models.paginated_print_session_alert_list import PaginatedPrintSessionAlertList
 from print_nanny_client.models.paginated_print_session_list import PaginatedPrintSessionList
 from print_nanny_client.models.paginated_print_session_state_list import PaginatedPrintSessionStateList
 from print_nanny_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
@@ -124,6 +125,7 @@ from print_nanny_client.models.print_pause_enum import PrintPauseEnum
 from print_nanny_client.models.print_resume_enum import PrintResumeEnum
 from print_nanny_client.models.print_session import PrintSession
 from print_nanny_client.models.print_session_alert import PrintSessionAlert
+from print_nanny_client.models.print_session_alert_request import PrintSessionAlertRequest
 from print_nanny_client.models.print_session_request import PrintSessionRequest
 from print_nanny_client.models.print_session_state import PrintSessionState
 from print_nanny_client.models.print_session_state_event_type_enum import PrintSessionStateEventTypeEnum

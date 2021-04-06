@@ -43,8 +43,8 @@ class PrintSession(object):
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
-        'supress_alerts': 'bool',
-        'url': 'str'
+        'url': 'str',
+        'should_alert': 'str'
     }
 
     attribute_map = {
@@ -58,11 +58,11 @@ class PrintSession(object):
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
-        'supress_alerts': 'supress_alerts',
-        'url': 'url'
+        'url': 'url',
+        'should_alert': 'should_alert'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, supress_alerts=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, should_alert=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -78,8 +78,8 @@ class PrintSession(object):
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
-        self._supress_alerts = None
         self._url = None
+        self._should_alert = None
         self.discriminator = None
 
         if id is not None:
@@ -97,10 +97,10 @@ class PrintSession(object):
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
-        if supress_alerts is not None:
-            self.supress_alerts = supress_alerts
         if url is not None:
             self.url = url
+        if should_alert is not None:
+            self.should_alert = should_alert
 
     @property
     def id(self):
@@ -323,27 +323,6 @@ class PrintSession(object):
         self._gcode_filename = gcode_filename
 
     @property
-    def supress_alerts(self):
-        """Gets the supress_alerts of this PrintSession.  # noqa: E501
-
-
-        :return: The supress_alerts of this PrintSession.  # noqa: E501
-        :rtype: bool
-        """
-        return self._supress_alerts
-
-    @supress_alerts.setter
-    def supress_alerts(self, supress_alerts):
-        """Sets the supress_alerts of this PrintSession.
-
-
-        :param supress_alerts: The supress_alerts of this PrintSession.  # noqa: E501
-        :type supress_alerts: bool
-        """
-
-        self._supress_alerts = supress_alerts
-
-    @property
     def url(self):
         """Gets the url of this PrintSession.  # noqa: E501
 
@@ -363,6 +342,27 @@ class PrintSession(object):
         """
 
         self._url = url
+
+    @property
+    def should_alert(self):
+        """Gets the should_alert of this PrintSession.  # noqa: E501
+
+
+        :return: The should_alert of this PrintSession.  # noqa: E501
+        :rtype: str
+        """
+        return self._should_alert
+
+    @should_alert.setter
+    def should_alert(self, should_alert):
+        """Sets the should_alert of this PrintSession.
+
+
+        :param should_alert: The should_alert of this PrintSession.  # noqa: E501
+        :type should_alert: str
+        """
+
+        self._should_alert = should_alert
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

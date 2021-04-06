@@ -65,6 +65,7 @@ docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
 docs/PaginatedPluginEventList.md
+docs/PaginatedPrintSessionAlertList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrintSessionStateList.md
 docs/PaginatedPrinterProfileList.md
@@ -97,6 +98,7 @@ docs/PrintPauseEnum.md
 docs/PrintResumeEnum.md
 docs/PrintSession.md
 docs/PrintSessionAlert.md
+docs/PrintSessionAlertRequest.md
 docs/PrintSessionRequest.md
 docs/PrintSessionState.md
 docs/PrintSessionStateEventTypeEnum.md
@@ -192,6 +194,7 @@ print_nanny_client/models/paginated_model_artifact_list.py
 print_nanny_client/models/paginated_octo_print_device_list.py
 print_nanny_client/models/paginated_octo_print_event_list.py
 print_nanny_client/models/paginated_plugin_event_list.py
+print_nanny_client/models/paginated_print_session_alert_list.py
 print_nanny_client/models/paginated_print_session_list.py
 print_nanny_client/models/paginated_print_session_state_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
@@ -224,6 +227,7 @@ print_nanny_client/models/print_pause_enum.py
 print_nanny_client/models/print_resume_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_alert.py
+print_nanny_client/models/print_session_alert_request.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_session_state.py
 print_nanny_client/models/print_session_state_event_type_enum.py
@@ -312,6 +316,7 @@ test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py
 test/test_paginated_plugin_event_list.py
+test/test_paginated_print_session_alert_list.py
 test/test_paginated_print_session_list.py
 test/test_paginated_print_session_state_list.py
 test/test_paginated_printer_profile_list.py
@@ -344,6 +349,7 @@ test/test_print_pause_enum.py
 test/test_print_resume_enum.py
 test/test_print_session.py
 test/test_print_session_alert.py
+test/test_print_session_alert_request.py
 test/test_print_session_request.py
 test/test_print_session_state.py
 test/test_print_session_state_event_type_enum.py
