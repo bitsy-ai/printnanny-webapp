@@ -2044,7 +2044,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **print_session_alert_create**
-> PrintSessionAlert print_session_alert_create(print_session_alert_request)
+> PrintSessionAlert print_session_alert_create(create_print_session_alert_request)
 
 
 
@@ -2083,10 +2083,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    print_session_alert_request = print_nanny_client.PrintSessionAlertRequest() # PrintSessionAlertRequest | 
+    create_print_session_alert_request = print_nanny_client.CreatePrintSessionAlertRequest() # CreatePrintSessionAlertRequest | 
 
     try:
-        api_response = api_instance.print_session_alert_create(print_session_alert_request)
+        api_response = api_instance.print_session_alert_create(create_print_session_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->print_session_alert_create: %s\n" % e)
@@ -2125,10 +2125,10 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    print_session_alert_request = print_nanny_client.PrintSessionAlertRequest() # PrintSessionAlertRequest | 
+    create_print_session_alert_request = print_nanny_client.CreatePrintSessionAlertRequest() # CreatePrintSessionAlertRequest | 
 
     try:
-        api_response = api_instance.print_session_alert_create(print_session_alert_request)
+        api_response = api_instance.print_session_alert_create(create_print_session_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->print_session_alert_create: %s\n" % e)
@@ -2138,7 +2138,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **print_session_alert_request** | [**PrintSessionAlertRequest**](PrintSessionAlertRequest.md)|  | 
+ **create_print_session_alert_request** | [**CreatePrintSessionAlertRequest**](CreatePrintSessionAlertRequest.md)|  | 
 
 ### Return type
 
@@ -2159,6 +2159,7 @@ Name | Type | Description  | Notes
 **201** |  |  -  |
 **400** |  |  -  |
 **403** |  |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.print_session_alert_request import PrintSessionAlertRequest  # noqa: E501
+from print_nanny_client.models.create_print_session_alert_request import CreatePrintSessionAlertRequest  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPrintSessionAlertRequest(unittest.TestCase):
-    """PrintSessionAlertRequest unit test stubs"""
+class TestCreatePrintSessionAlertRequest(unittest.TestCase):
+    """CreatePrintSessionAlertRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,24 +29,24 @@ class TestPrintSessionAlertRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PrintSessionAlertRequest
+        """Test CreatePrintSessionAlertRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.print_session_alert_request.PrintSessionAlertRequest()  # noqa: E501
+        # model = print_nanny_client.models.create_print_session_alert_request.CreatePrintSessionAlertRequest()  # noqa: E501
         if include_optional :
-            return PrintSessionAlertRequest(
-                seen = True, 
-                dismissed = True, 
-                print_session = 56
+            return CreatePrintSessionAlertRequest(
+                print_session = '', 
+                annotated_video = ''
             )
         else :
-            return PrintSessionAlertRequest(
-                print_session = 56,
+            return CreatePrintSessionAlertRequest(
+                print_session = '',
+                annotated_video = '',
         )
 
-    def testPrintSessionAlertRequest(self):
-        """Test PrintSessionAlertRequest"""
+    def testCreatePrintSessionAlertRequest(self):
+        """Test CreatePrintSessionAlertRequest"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

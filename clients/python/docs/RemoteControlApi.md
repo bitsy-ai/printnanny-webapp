@@ -797,7 +797,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 name = 'name_example' # str |  (optional)
 file = '/path/to/file' # file |  (optional)
 file_hash = 'file_hash_example' # str |  (optional)
@@ -843,7 +843,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 name = 'name_example' # str |  (optional)
 file = '/path/to/file' # file |  (optional)
 file_hash = 'file_hash_example' # str |  (optional)
@@ -860,7 +860,7 @@ octoprint_device = 'octoprint_device_example' # str |  (optional)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this gcode file. | 
+ **id** | **str**|  | 
  **name** | **str**|  | [optional] 
  **file** | **file**|  | [optional] 
  **file_hash** | **str**|  | [optional] 
@@ -926,7 +926,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 
     try:
         api_response = api_instance.gcode_files_retrieve(id)
@@ -968,7 +968,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 
     try:
         api_response = api_instance.gcode_files_retrieve(id)
@@ -981,7 +981,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this gcode file. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -1043,7 +1043,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 name = 'name_example' # str | 
 file = '/path/to/file' # file | 
 file_hash = 'file_hash_example' # str | 
@@ -1089,7 +1089,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.RemoteControlApi(api_client)
-    id = 56 # int | A unique integer value identifying this gcode file.
+    id = 'id_example' # str | 
 name = 'name_example' # str | 
 file = '/path/to/file' # file | 
 file_hash = 'file_hash_example' # str | 
@@ -1106,7 +1106,7 @@ octoprint_device = 'octoprint_device_example' # str |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this gcode file. | 
+ **id** | **str**|  | 
  **name** | **str**|  | 
  **file** | **file**|  | 
  **file_hash** | **str**|  | 

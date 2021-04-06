@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev67"
+__version__ = "0.5.0-dev68"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -57,6 +57,7 @@ from print_nanny_client.models.command_alert_settings import CommandAlertSetting
 from print_nanny_client.models.command_alert_settings_request import CommandAlertSettingsRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.create_defect_alert_request import CreateDefectAlertRequest
+from print_nanny_client.models.create_print_session_alert_request import CreatePrintSessionAlertRequest
 from print_nanny_client.models.defect_alert import DefectAlert
 from print_nanny_client.models.defect_alert_request import DefectAlertRequest
 from print_nanny_client.models.defect_alert_settings import DefectAlertSettings
@@ -125,7 +126,6 @@ from print_nanny_client.models.print_pause_enum import PrintPauseEnum
 from print_nanny_client.models.print_resume_enum import PrintResumeEnum
 from print_nanny_client.models.print_session import PrintSession
 from print_nanny_client.models.print_session_alert import PrintSessionAlert
-from print_nanny_client.models.print_session_alert_request import PrintSessionAlertRequest
 from print_nanny_client.models.print_session_request import PrintSessionRequest
 from print_nanny_client.models.print_session_state import PrintSessionState
 from print_nanny_client.models.print_session_state_event_type_enum import PrintSessionStateEventTypeEnum

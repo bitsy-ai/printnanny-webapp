@@ -505,6 +505,25 @@ export interface CreateDefectAlertRequest {
 /**
  * 
  * @export
+ * @interface CreatePrintSessionAlertRequest
+ */
+export interface CreatePrintSessionAlertRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePrintSessionAlertRequest
+     */
+    print_session: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePrintSessionAlertRequest
+     */
+    annotated_video: string;
+}
+/**
+ * 
+ * @export
  * @interface DefectAlert
  */
 export interface DefectAlert {
@@ -3423,31 +3442,6 @@ export interface PrintSessionAlert {
 /**
  * 
  * @export
- * @interface PrintSessionAlertRequest
- */
-export interface PrintSessionAlertRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlertRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlertRequest
-     */
-    dismissed?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlertRequest
-     */
-    print_session: number;
-}
-/**
- * 
- * @export
  * @interface PrintSessionRequest
  */
 export interface PrintSessionRequest {
@@ -6099,14 +6093,14 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {PrintSessionAlertRequest} printSessionAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionAlertCreate: async (printSessionAlertRequest: PrintSessionAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'printSessionAlertRequest' is not null or undefined
-            if (printSessionAlertRequest === null || printSessionAlertRequest === undefined) {
-                throw new RequiredError('printSessionAlertRequest','Required parameter printSessionAlertRequest was null or undefined when calling printSessionAlertCreate.');
+        printSessionAlertCreate: async (createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createPrintSessionAlertRequest' is not null or undefined
+            if (createPrintSessionAlertRequest === null || createPrintSessionAlertRequest === undefined) {
+                throw new RequiredError('createPrintSessionAlertRequest','Required parameter createPrintSessionAlertRequest was null or undefined when calling printSessionAlertCreate.');
             }
             const localVarPath = `/api/print-session-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6145,13 +6139,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printSessionAlertRequest !== 'string';
+            const nonString = typeof createPrintSessionAlertRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printSessionAlertRequest !== undefined ? printSessionAlertRequest : {})
-                : (printSessionAlertRequest || "");
+                ? JSON.stringify(createPrintSessionAlertRequest !== undefined ? createPrintSessionAlertRequest : {})
+                : (createPrintSessionAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -6499,12 +6493,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PrintSessionAlertRequest} printSessionAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printSessionAlertCreate(printSessionAlertRequest: PrintSessionAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertCreate(printSessionAlertRequest, options);
+        async printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6704,12 +6698,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {PrintSessionAlertRequest} printSessionAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printSessionAlertCreate(printSessionAlertRequest: PrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert> {
-            return AlertsApiFp(configuration).printSessionAlertCreate(printSessionAlertRequest, options).then((request) => request(axios, basePath));
+        printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert> {
+            return AlertsApiFp(configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6897,12 +6891,12 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {PrintSessionAlertRequest} printSessionAlertRequest 
+     * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    printSessionAlertCreate(printSessionAlertRequest: PrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert>;
+    printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert>;
 
     /**
      * 
@@ -7124,13 +7118,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {PrintSessionAlertRequest} printSessionAlertRequest 
+     * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public printSessionAlertCreate(printSessionAlertRequest: PrintSessionAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).printSessionAlertCreate(printSessionAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9792,7 +9786,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -9800,7 +9794,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate: async (id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesPartialUpdate: async (id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesPartialUpdate.');
@@ -9869,11 +9863,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesRetrieve.');
@@ -9922,7 +9916,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -9930,7 +9924,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate: async (id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesUpdate: async (id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesUpdate.');
@@ -11577,7 +11571,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -11585,7 +11579,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11594,11 +11588,11 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11607,7 +11601,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11615,7 +11609,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -12019,7 +12013,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -12027,21 +12021,21 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesRetrieve(id: number, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -12049,7 +12043,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
@@ -12353,7 +12347,7 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
@@ -12362,20 +12356,20 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesRetrieve(id: number, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -12384,7 +12378,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -12699,7 +12693,7 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
@@ -12708,24 +12702,24 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
+    public gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesRetrieve(id: number, options?: any) {
+    public gcodeFilesRetrieve(id: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -12734,7 +12728,7 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+    public gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 

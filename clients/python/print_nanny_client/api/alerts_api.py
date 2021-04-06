@@ -2369,17 +2369,17 @@ class AlertsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_session_alert_create(self, print_session_alert_request, **kwargs):  # noqa: E501
+    def print_session_alert_create(self, create_print_session_alert_request, **kwargs):  # noqa: E501
         """print_session_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_alert_create(print_session_alert_request, async_req=True)
+        >>> thread = api.print_session_alert_create(create_print_session_alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param print_session_alert_request: (required)
-        :type print_session_alert_request: PrintSessionAlertRequest
+        :param create_print_session_alert_request: (required)
+        :type create_print_session_alert_request: CreatePrintSessionAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2396,19 +2396,19 @@ class AlertsApi(object):
         :rtype: PrintSessionAlert
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_session_alert_create_with_http_info(print_session_alert_request, **kwargs)  # noqa: E501
+        return self.print_session_alert_create_with_http_info(create_print_session_alert_request, **kwargs)  # noqa: E501
 
-    def print_session_alert_create_with_http_info(self, print_session_alert_request, **kwargs):  # noqa: E501
+    def print_session_alert_create_with_http_info(self, create_print_session_alert_request, **kwargs):  # noqa: E501
         """print_session_alert_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_session_alert_create_with_http_info(print_session_alert_request, async_req=True)
+        >>> thread = api.print_session_alert_create_with_http_info(create_print_session_alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param print_session_alert_request: (required)
-        :type print_session_alert_request: PrintSessionAlertRequest
+        :param create_print_session_alert_request: (required)
+        :type create_print_session_alert_request: CreatePrintSessionAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2435,7 +2435,7 @@ class AlertsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'print_session_alert_request'
+            'create_print_session_alert_request'
         ]
         all_params.extend(
             [
@@ -2455,10 +2455,10 @@ class AlertsApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'print_session_alert_request' is set
-        if self.api_client.client_side_validation and ('print_session_alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['print_session_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `print_session_alert_request` when calling `print_session_alert_create`")  # noqa: E501
+        # verify the required parameter 'create_print_session_alert_request' is set
+        if self.api_client.client_side_validation and ('create_print_session_alert_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['create_print_session_alert_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `create_print_session_alert_request` when calling `print_session_alert_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -2472,8 +2472,8 @@ class AlertsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'print_session_alert_request' in local_var_params:
-            body_params = local_var_params['print_session_alert_request']
+        if 'create_print_session_alert_request' in local_var_params:
+            body_params = local_var_params['create_print_session_alert_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2489,6 +2489,7 @@ class AlertsApi(object):
             201: "PrintSessionAlert",
             400: "PrintSessionAlert",
             403: "PrintSessionAlert",
+            409: "PrintSessionAlert",
         }
 
         return self.api_client.call_api(

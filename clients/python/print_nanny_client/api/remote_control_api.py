@@ -905,8 +905,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_partial_update(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name:
         :type name: str
         :param file:
@@ -942,8 +942,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name:
         :type name: str
         :param file:
@@ -1076,8 +1076,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1105,8 +1105,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1209,8 +1209,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_update(id, name, file, file_hash, octoprint_device, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name: (required)
         :type name: str
         :param file: (required)
@@ -1246,8 +1246,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_update_with_http_info(id, name, file, file_hash, octoprint_device, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name: (required)
         :type name: str
         :param file: (required)

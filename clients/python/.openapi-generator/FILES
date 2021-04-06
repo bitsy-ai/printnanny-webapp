@@ -28,6 +28,7 @@ docs/CommandAlertSettings.md
 docs/CommandAlertSettingsRequest.md
 docs/CommandEnum.md
 docs/CreateDefectAlertRequest.md
+docs/CreatePrintSessionAlertRequest.md
 docs/DefectAlert.md
 docs/DefectAlertRequest.md
 docs/DefectAlertSettings.md
@@ -98,7 +99,6 @@ docs/PrintPauseEnum.md
 docs/PrintResumeEnum.md
 docs/PrintSession.md
 docs/PrintSessionAlert.md
-docs/PrintSessionAlertRequest.md
 docs/PrintSessionRequest.md
 docs/PrintSessionState.md
 docs/PrintSessionStateEventTypeEnum.md
@@ -159,6 +159,7 @@ print_nanny_client/models/command_alert_settings.py
 print_nanny_client/models/command_alert_settings_request.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/create_defect_alert_request.py
+print_nanny_client/models/create_print_session_alert_request.py
 print_nanny_client/models/defect_alert.py
 print_nanny_client/models/defect_alert_request.py
 print_nanny_client/models/defect_alert_settings.py
@@ -227,7 +228,6 @@ print_nanny_client/models/print_pause_enum.py
 print_nanny_client/models/print_resume_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_alert.py
-print_nanny_client/models/print_session_alert_request.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_session_state.py
 print_nanny_client/models/print_session_state_event_type_enum.py
@@ -279,6 +279,7 @@ test/test_command_alert_settings.py
 test/test_command_alert_settings_request.py
 test/test_command_enum.py
 test/test_create_defect_alert_request.py
+test/test_create_print_session_alert_request.py
 test/test_defect_alert.py
 test/test_defect_alert_request.py
 test/test_defect_alert_settings.py
@@ -349,7 +350,6 @@ test/test_print_pause_enum.py
 test/test_print_resume_enum.py
 test/test_print_session.py
 test/test_print_session_alert.py
-test/test_print_session_alert_request.py
 test/test_print_session_request.py
 test/test_print_session_state.py
 test/test_print_session_state_event_type_enum.py
