@@ -89,7 +89,7 @@ class PrintSessionAlertViewSet(
                 "print_session": session.id,
                 "user": session.user.id,
                 "octoprint_device": session.octoprint_device.id,
-                "annotated_image": request.data.get("annotated_image")
+                "annotated_image": request.data.get("annotated_image"),
             },
             context={"request": request},
         )
@@ -98,8 +98,7 @@ class PrintSessionAlertViewSet(
                 user=session.user,
             )
             instance, created = serializer.update_or_create(
-                alert_methods=alert_settings.alert_methods,
-                **serializer.validated_data
+                alert_methods=alert_settings.alert_methods, **serializer.validated_data
             )
 
             if created and session.should_alert():

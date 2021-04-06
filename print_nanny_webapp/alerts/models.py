@@ -400,7 +400,7 @@ class PrintSessionAlert(Alert):
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.octoprint_device.name,
             # TODO session url view
-            "ANNOTATED_VIDEO_URL": self.annotated_video.url
+            "ANNOTATED_VIDEO_URL": self.annotated_video.url,
         }
 
         text_body = render_to_string("email/print_session_done_body.txt", merge_data)
@@ -416,7 +416,7 @@ class PrintSessionAlert(Alert):
                 f"User:{self.user.id}",
                 f"Device:{self.octoprint_device.id}",
                 f"PrintSessionID:{self.print_session.id}",
-                f"PrintSession:{self.print_session.session}"
+                f"PrintSession:{self.print_session.session}",
             ],
         )
         message.send()

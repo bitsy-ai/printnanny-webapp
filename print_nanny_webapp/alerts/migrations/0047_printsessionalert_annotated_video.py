@@ -7,13 +7,15 @@ import print_nanny_webapp.alerts.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0046_auto_20210402_2142'),
+        ("alerts", "0046_auto_20210402_2142"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printsessionalert',
-            name='annotated_video',
-            field=models.FileField(null=True, upload_to=print_nanny_webapp.alerts.models._upload_to),
+            model_name="printsessionalert",
+            name="annotated_video",
+            field=models.FileField(
+                null=True, upload_to=print_nanny_webapp.alerts.models._upload_to
+            ),
         ),
     ]
