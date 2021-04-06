@@ -41,6 +41,7 @@ from ..models import (
     DefectAlert,
     DefectAlertSettings,
     PrintSessionAlert,
+    PrintSessionAlertSettings
 )
 
 logger = logging.getLogger(__name__)
@@ -94,11 +95,11 @@ class PrintSessionAlertViewSet(
             context={"request": request},
         )
         if serializer.is_valid():
-            alert_settings, created = PrintSessionAlertSerializer.objects.get_or_create(
-                user=session.user,
+            alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
+                user=session.user
             )
-            instance, created = serializer.update_or_create(
-                alert_methods=alert_settings.alert_methods, **serializer.validated_data
+            instance = serializer.save(
+                alert_methods=alert_settings.alert_methods,
             )
 
             if created and session.should_alert():
