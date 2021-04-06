@@ -279,7 +279,6 @@ class GcodeFileViewSet(
 ):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
-    queryset = GcodeFile.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):

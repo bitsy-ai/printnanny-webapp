@@ -71,22 +71,25 @@ class PrintSessionAlertViewSet(
 
     @extend_schema(
         tags=["alerts"],
-        request=PrintSessionAlertSerializer,
+        request=CreatePrintSessionAlertSerializer,
         operation_id="print_session_alert_create",
         responses={
             201: PrintSessionAlertSerializer,
             400: PrintSessionAlertSerializer,
             403: PrintSessionAlertSerializer,
+            409: PrintSessionAlertSerializer,
         },
     )
     def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
         session = request.data.get("print_session")
         session = PrintSession.objects.get(session=session)
+
         serializer = PrintSessionAlertSerializer(
             data={
                 "print_session": session.id,
                 "user": session.user.id,
                 "octoprint_device": session.octoprint_device.id,
+                "annotated_image": request.data.get("annotated_image")
             },
             context={"request": request},
         )
@@ -94,16 +97,13 @@ class PrintSessionAlertViewSet(
             alert_settings, created = PrintSessionAlertSerializer.objects.get_or_create(
                 user=session.user,
             )
-            instance = serializer.save(
-                user=session.user,
-                octoprint_device=session.octoprint_device,
-                print_session=session,
+            instance, created = serializer.update_or_create(
                 alert_methods=alert_settings.alert_methods,
+                **serializer.validated_data
             )
-            # instance.print_session.supress_alerts = True
-            # instance.print_session.supress_alerts.save()
-            # supression check is performed before enqueueing celery task and immediately prior to sending msg
-            instance.trigger_alerts_task(serializer.data)
+
+            if created and session.should_alert():
+                instance.trigger_alerts_task(serializer.data)
 
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

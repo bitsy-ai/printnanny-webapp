@@ -56,15 +56,18 @@ class CreateDefectAlertSerializer(AlertSerializer):
 
 class CreatePrintSessionAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
+    # dataflow writes uploaded video to gcs, so create method acccepts path string
+    # this saves having to buffer the file bytes via django's http1 api
+    annotatd_video = serializers.CharField()
 
     class Meta:
         model = PrintSessionAlert
-        fields = ("print_session",)
+        fields = ("print_session", "annotated_video")
 
 
 class PrintSessionAlertSerializer(AlertSerializer):
     class Meta:
-        model = DefectAlert
+        model = PrintSessionAlert
         fields = [
             "id",
             "time",

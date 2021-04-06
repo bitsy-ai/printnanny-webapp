@@ -387,6 +387,7 @@ class PrintSessionAlert(Alert):
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
+    annotated_video = models.FileField(upload_to=_upload_to)
 
     def trigger_email_alert(self, data, gif_url):
 
@@ -398,8 +399,8 @@ class PrintSessionAlert(Alert):
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.octoprint_device.name,
-            "SUPRESS_URL": data["supress_url"],
-            "STOP_PRINT_URL": data["supress_url"],
+            # TODO session url view
+            "ANNOTATED_VIDEO_URL": self.annotated_video.url
         }
 
         text_body = render_to_string("email/print_session_done_body.txt", merge_data)
@@ -414,6 +415,8 @@ class PrintSessionAlert(Alert):
                 self.__class__,
                 f"User:{self.user.id}",
                 f"Device:{self.octoprint_device.id}",
+                f"PrintSessionID:{self.print_session.id}",
+                f"PrintSession:{self.print_session.session}"
             ],
         )
         message.send()
