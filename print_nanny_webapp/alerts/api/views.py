@@ -1,5 +1,6 @@
 import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from django.db.models import Q
 
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
@@ -39,6 +40,7 @@ from ..models import (
     AlertSettings,
     DefectAlert,
     DefectAlertSettings,
+    PrintSessionAlert,
 )
 
 logger = logging.getLogger(__name__)
@@ -49,9 +51,9 @@ PrintSession = apps.get_model("remote_control", "PrintSession")
 @extend_schema(
     tags=["alerts"],
     responses={
-        200: DefectAlertSerializer,
-        201: DefectAlertSerializer,
-        202: DefectAlertSerializer,
+        200: PrintSessionAlertSerializer,
+        201: PrintSessionAlertSerializer,
+        202: PrintSessionAlertSerializer,
     },
 )
 class PrintSessionAlertViewSet(
@@ -60,14 +62,17 @@ class PrintSessionAlertViewSet(
     RetrieveModelMixin,
     CreateModelMixin,
 ):
+    lookup_fields = ("print_session", "id")
+    serializer_class = PrintSessionAlertSerializer
+
     def get_queryset(self):
         user = self.request.user
-        return DefectAlert.objects.filter(user=user).all()
+        return PrintSessionAlert.objects.filter(user=user).all()
 
     @extend_schema(
         tags=["alerts"],
-        request=CreateDefectAlertSerializer,
-        operation_id="defect_alert_create",
+        request=PrintSessionAlertSerializer,
+        operation_id="print_session_alert_create",
         responses={
             201: PrintSessionAlertSerializer,
             400: PrintSessionAlertSerializer,

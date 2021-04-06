@@ -319,34 +319,19 @@ class PrintSession(models.Model):
     )
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
     gcode_filename = models.CharField(max_length=255, null=True)
-    supress_alerts = models.BooleanField(default=False)
 
-    def render_video(self):
-        pass
+    @property
+    def should_alert(self):
+        """
+        Encapsulates stateful alert logic
+        """
+        print(dir(self))
+        # PrintSession alert does not exist
+        # TODO enable defect alert check
+        return self.printsessionalert_set.count() == 0
 
     def __str__(self):
         return self.session
-
-
-# class PrintSession(models.Model):
-#     class Meta:
-#         unique_together = ("user", "name", "created_dt")
-
-#     created_dt = models.DateTimeField(auto_now_add=True)
-#     updated_dt = models.DateTimeField(auto_now=True)
-#     print_session = models.ForeignKey(PrintSession, null=True, db_index=True, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255)
-#     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
-#     progress = JSONField(default={})
-#     octoprint_device = models.ForeignKey(
-#         "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
-#     )
-
-#     @property
-#     def filename(self):
-#         return self.gcode_file.file.name
 
 
 class RemoteControlCommandManager(models.Manager):

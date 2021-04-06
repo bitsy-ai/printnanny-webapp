@@ -183,9 +183,17 @@ class GcodeFileSerializer(serializers.ModelSerializer):
 
 
 class PrintSessionSerializer(serializers.ModelSerializer):
+    should_alert = serializers.SerializerMethodField()
+
+    def get_should_alert(self, obj):
+        return obj.should_alert
+
     class Meta:
         model = PrintSession
-        fields = [field.name for field in PrintSession._meta.fields] + ["url"]
+        fields = [field.name for field in PrintSession._meta.fields] + [
+            "url",
+            "should_alert",
+        ]
         read_only_fields = ("user",)
         extra_kwargs = {
             "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
