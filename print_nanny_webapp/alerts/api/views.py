@@ -151,7 +151,7 @@ class DefectAlertViewSet(
             },
             context={"request": request},
         )
-        if serializer.is_valid() and session.supress_alerts is False:
+        if serializer.is_valid() and session.should_alert is True:
             alert_settings, created = DefectAlertSettings.objects.get_or_create(
                 user=session.user,
             )
@@ -161,38 +161,35 @@ class DefectAlertViewSet(
                 print_session=session,
                 alert_methods=alert_settings.alert_methods,
             )
-            # instance.print_session.supress_alerts = True
-            # instance.print_session.supress_alerts.save()
-            # supression check is performed before enqueueing celery task and immediately prior to sending msg
             instance.trigger_alerts_task(serializer.data)
 
             return Response(serializer.data, status.HTTP_201_CREATED)
-        elif session.supress_alerts is True:
+        elif session.should_alert is False:
             return Response(
                 {"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @extend_schema(
-        tags=["alerts"],
-        request=AlertBulkRequestSerializer,
-        operation_id="defect_alert_supress",
-        responses={
-            200: DefectAlertSerializer,
-            400: DefectAlertSerializer,
-            403: DefectAlertSerializer,
-        },
-    )
-    @action(
-        detail=True, methods=["GET", "POST"]
-    )  # GET method is required to render as a href / raw link in emails
-    def supress(self, request, permission_classes=[IsAdminOrIsSelf]):
-        defect_alert = self.get_object()
+    # @extend_schema(
+    #     tags=["alerts"],
+    #     request=AlertBulkRequestSerializer,
+    #     operation_id="defect_alert_supress",
+    #     responses={
+    #         200: DefectAlertSerializer,
+    #         400: DefectAlertSerializer,
+    #         403: DefectAlertSerializer,
+    #     },
+    # )
+    # @action(
+    #     detail=True, methods=["GET", "POST"]
+    # )  # GET method is required to render as a href / raw link in emails
+    # def supress(self, request, permission_classes=[IsAdminOrIsSelf]):
+    #     defect_alert = self.get_object()
 
-        defect_alert.print_session.supress_alerts = True
-        defect_alert.save()
-        serializer = self.get_serializer(defect_alert)
-        return Response(serializer.data, status.HTTP_202_ACCEPTED)
+    #     defect_alert.print_session.supress_alerts = True
+    #     defect_alert.save()
+    #     serializer = self.get_serializer(defect_alert)
+    #     return Response(serializer.data, status.HTTP_202_ACCEPTED)
 
     @extend_schema(
         tags=["alerts"],
@@ -209,9 +206,6 @@ class DefectAlertViewSet(
     )  # GET method is required to render as a href / raw link in emails
     def stop_print(self, request, permission_classes=[IsAdminOrIsSelf]):
         defect_alert = self.get_object()
-
-        defect_alert.print_session.supress_alerts = True
-        defect_alert.save()
         remote_control_command = RemoteControlCommand.objects.create(
             command=RemoteControlCommand.PRINT_STOP,
             user=defect_alert.user,

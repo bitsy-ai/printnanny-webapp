@@ -459,15 +459,7 @@ class DefectAlert(Alert):
                 f"Device:{self.octoprint_device.id}",
             ],
         )
-        if self.print_session.supress_alerts is True:
-            logger.warning(
-                f"Discarding email alert for print session={self.print_session.session}"
-            )
-            return
         message.send()
-        self.print_session.supress_alerts = True
-        self.print_session.supress_alerts.save()
-
         return message
 
 
