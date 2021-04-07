@@ -408,7 +408,7 @@ class PrintSessionAlert(Alert):
     )
     annotated_video = models.FileField(upload_to=_upload_to)
 
-    def trigger_email_alert(self, data, gif_url):
+    def trigger_email_alert(self, data):
 
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
@@ -450,7 +450,7 @@ class PrintSessionAlert(Alert):
 #         "remote_control.PrintSession", on_delete=models.CASCADE
 #     )
 
-#     def trigger_email_alert(self, data, gif_url):
+#     def trigger_email_alert(self, data ):
 
 #         device_url = reverse(
 #             "dashboard:octoprint-devices:detail",
