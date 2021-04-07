@@ -13,12 +13,11 @@ from ..models import (
     RemoteControlCommandAlert,
     Alert,
     ProgressAlert,
-    DefectAlert,
     AlertSettings,
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
-    DefectAlertSettings,
     PrintSessionAlert,
+    PrintSessionAlertSettings
 )
 
 logger = logging.getLogger(__name__)
@@ -46,20 +45,14 @@ class ProgressAlertSerializer(AlertSerializer):
         read_only_fields = ("user", "alert_methods", "alert_type", "polymorphic_ctype")
 
 
-class CreateDefectAlertSerializer(AlertSerializer):
-    print_session = serializers.CharField()
-
-    class Meta:
-        model = DefectAlert
-        fields = ("print_session",)
-
-
 class CreatePrintSessionAlertSerializer(AlertSerializer):
-    print_session = serializers.CharField()
+    print_session = serializers.StringRelatedField()
     # dataflow writes uploaded video to gcs, so create method acccepts path string
     # this saves having to buffer the file bytes via django's http1 api
     annotated_video = serializers.CharField()
-
+    def create(self, validated_data):
+        annotated_video = validated_data["annotated_video"]
+        print_session = validated_data["print_session"]
     class Meta:
         model = PrintSessionAlert
         fields = ("print_session", "annotated_video")
@@ -80,40 +73,6 @@ class PrintSessionAlertSerializer(AlertSerializer):
             "user",
             "octoprint_device",
             "print_session",
-        ]
-
-        read_only_fields = (
-            "alert_methods",
-            "alert_type",
-            "polymorphic_ctype",
-            "user",
-            "octoprint_device",
-        )
-
-
-class DefectAlertSerializer(AlertSerializer):
-    supress_url = serializers.HyperlinkedIdentityField(
-        view_name="api:defect-alert-supress", lookup_field="pk"
-    )
-    supress_url = serializers.HyperlinkedIdentityField(
-        view_name="api:defect-alert-stop-print", lookup_field="pk"
-    )
-
-    class Meta:
-        model = DefectAlert
-        fields = [
-            "id",
-            "time",
-            "alert_methods",
-            "alert_type",
-            "created_dt",
-            "updated_dt",
-            "seen",
-            "dismissed",
-            "user",
-            "octoprint_device",
-            "print_session",
-            "supress_url",
         ]
 
         read_only_fields = (
@@ -206,8 +165,8 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         Alert: AlertSerializer,
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
-        DefectAlert: DefectAlertSerializer,
         ProgressAlert: ProgressAlertSerializer,
+        PrintSessionAlert: PrintSessionAlert
     }
 
     def to_resource_type(self, model_or_instance):
@@ -228,13 +187,6 @@ class CommandAlertSettingsSerializer(AlertSettingsSerializer):
         read_only_fields = ("user",)
 
 
-class DefectAlertSettingsSerializer(AlertSettingsSerializer):
-    class Meta:
-        model = DefectAlertSettings
-        fields = "__all__"
-        read_only_fields = ("user",)
-
-
 class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
     class Meta:
         model = ProgressAlertSettings
@@ -248,8 +200,8 @@ class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         AlertSettings: AlertSettingsSerializer,
         RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
-        DefectAlertSettings: DefectAlertSettingsSerializer,
         ProgressAlert: ProgressAlertSettingsSerializer,
+        PrintSessionAlert: PrintSessionAlertSettings
     }
 
     def to_resource_type(self, model_or_instance):

@@ -38,7 +38,6 @@ from .serializers import (
     RemoteControlSnapshotCreateResponseSerializer,
 )
 
-from print_nanny_webapp.alerts.api.serializers import DefectAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintSession,

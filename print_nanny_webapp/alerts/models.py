@@ -46,8 +46,7 @@ class Alert(PolymorphicModel):
             "MANUAL_VIDEO_UPLOAD",
             "Manually-uploaded video is ready for review",
         )
-        DEFECT = "DEFECT", "Defect detected in print"
-        PRINT_SESSION_DONE = "PRINT_SESSION_DONE", "Print job is finished"
+        PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
         UI = "UI", "Receive Print Nanny UI notifications"
@@ -256,15 +255,15 @@ class PrintSessionAlertSettings(AlertSettings):
 
     def __init__(self, *args, **kwargs):
         super().__init__(
-            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs
+            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
 
+# TODO combine defect, end, progress events into PrintSessionAlert subtypes
+# class DefectAlertSettings(AlertSettings):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-class DefectAlertSettings(AlertSettings):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
 
 class RemoteControlCommandAlertSettings(AlertSettings):
@@ -381,7 +380,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 class PrintSessionAlert(Alert):
     def __init__(self, *args, **kwargs):
         super().__init__(
-            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION_DONE, **kwargs
+            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
 
     print_session = models.ForeignKey(
@@ -422,45 +421,45 @@ class PrintSessionAlert(Alert):
         message.send()
         return message
 
+# TODO combine defect, end, progress events into PrintSessionAlert subtypes
+# class DefectAlert(Alert):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
-class DefectAlert(Alert):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+#     print_session = models.ForeignKey(
+#         "remote_control.PrintSession", on_delete=models.CASCADE
+#     )
 
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
+#     def trigger_email_alert(self, data, gif_url):
 
-    def trigger_email_alert(self, data, gif_url):
+#         device_url = reverse(
+#             "dashboard:octoprint-devices:detail",
+#             kwargs={"pk": self.octoprint_device.id},
+#         )
+#         merge_data = {
+#             "DEVICE_URL": device_url,
+#             "FIRST_NAME": self.user.first_name or "Maker",
+#             "DEVICE_NAME": self.octoprint_device.name,
+#             "SUPRESS_URL": data["supress_url"],
+#             "STOP_PRINT_URL": data["supress_url"],
+#         }
 
-        device_url = reverse(
-            "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.octoprint_device.id},
-        )
-        merge_data = {
-            "DEVICE_URL": device_url,
-            "FIRST_NAME": self.user.first_name or "Maker",
-            "DEVICE_NAME": self.octoprint_device.name,
-            "SUPRESS_URL": data["supress_url"],
-            "STOP_PRINT_URL": data["supress_url"],
-        }
+#         text_body = render_to_string("email/defect_alert_body.txt", merge_data)
+#         html_body = render_to_string("email/defect_alert_body.txt", merge_data)
 
-        text_body = render_to_string("email/defect_alert_body.txt", merge_data)
-        html_body = render_to_string("email/defect_alert_body.txt", merge_data)
-
-        subject = render_to_string("email/defect_alert_subject.txt", merge_data)
-        message = AnymailMessage(
-            subject=subject,
-            body=text_body,
-            to=[self.user.email],
-            tags=[
-                self.__class__,
-                f"User:{self.user.id}",
-                f"Device:{self.octoprint_device.id}",
-            ],
-        )
-        message.send()
-        return message
+#         subject = render_to_string("email/defect_alert_subject.txt", merge_data)
+#         message = AnymailMessage(
+#             subject=subject,
+#             body=text_body,
+#             to=[self.user.email],
+#             tags=[
+#                 self.__class__,
+#                 f"User:{self.user.id}",
+#                 f"Device:{self.octoprint_device.id}",
+#             ],
+#         )
+#         message.send()
+#         return message
 
 
 class ProgressAlert(Alert):

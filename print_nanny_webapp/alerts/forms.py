@@ -2,7 +2,6 @@ from django.forms import ModelForm
 
 from .models import (
     ProgressAlertSettings,
-    DefectAlertSettings,
     RemoteControlCommandAlertSettings,
     DiscordMethodSettings,
 )
@@ -12,14 +11,6 @@ class ProgressAlertSettingsForm(ModelForm):
     class Meta:
         model = ProgressAlertSettings
         fields = ("enabled", "on_progress_percent", "alert_methods")
-
-
-class DefectAlertSettingsForm(ModelForm):
-    class Meta:
-        model = DefectAlertSettings
-
-        fields = ("enabled", "alert_methods")
-
 
 class CommandAlertSettingsForm(ModelForm):
     class Meta:
