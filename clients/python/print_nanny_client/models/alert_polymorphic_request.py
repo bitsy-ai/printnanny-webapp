@@ -42,11 +42,11 @@ class AlertPolymorphicRequest(object):
         'description': 'str',
         'seen': 'bool',
         'title': 'str',
-        'print_session': 'int',
         'sent': 'bool',
         'progress_percent': 'int',
         'octoprint_device': 'int',
-        'device': 'int'
+        'device': 'int',
+        'print_session': 'int'
     }
 
     attribute_map = {
@@ -59,17 +59,17 @@ class AlertPolymorphicRequest(object):
         'description': 'description',
         'seen': 'seen',
         'title': 'title',
-        'print_session': 'print_session',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
-        'device': 'device'
+        'device': 'device',
+        'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, print_session=None, sent=None, progress_percent=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -84,11 +84,11 @@ class AlertPolymorphicRequest(object):
         self._description = None
         self._seen = None
         self._title = None
-        self._print_session = None
         self._sent = None
         self._progress_percent = None
         self._octoprint_device = None
         self._device = None
+        self._print_session = None
         self.discriminator = 'type'
 
         if dismissed is not None:
@@ -103,13 +103,13 @@ class AlertPolymorphicRequest(object):
         if seen is not None:
             self.seen = seen
         self.title = title
-        self.print_session = print_session
         if sent is not None:
             self.sent = sent
         if progress_percent is not None:
             self.progress_percent = progress_percent
         self.octoprint_device = octoprint_device
         self.device = device
+        self.print_session = print_session
 
     @property
     def dismissed(self):
@@ -313,29 +313,6 @@ class AlertPolymorphicRequest(object):
         self._title = title
 
     @property
-    def print_session(self):
-        """Gets the print_session of this AlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The print_session of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this AlertPolymorphicRequest.
-
-
-        :param print_session: The print_session of this AlertPolymorphicRequest.  # noqa: E501
-        :type print_session: int
-        """
-        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
-
-        self._print_session = print_session
-
-    @property
     def sent(self):
         """Gets the sent of this AlertPolymorphicRequest.  # noqa: E501
 
@@ -428,6 +405,29 @@ class AlertPolymorphicRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this AlertPolymorphicRequest.
+
+
+        :param print_session: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :type print_session: int
+        """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
+
+        self._print_session = print_session
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

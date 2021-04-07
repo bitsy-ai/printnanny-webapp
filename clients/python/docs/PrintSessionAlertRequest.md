@@ -1,4 +1,4 @@
-# DefectAlertRequest
+# PrintSessionAlertRequest
 
 ## Properties
 Name | Type | Description | Notes

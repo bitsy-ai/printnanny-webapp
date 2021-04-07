@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **description** | **str** |  | 
 **seen** | **bool** |  | [optional] 
 **title** | **str** |  | 
-**print_session** | **int** |  | 
 **sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **octoprint_device** | **int** |  | [optional] 
 **device** | **int** |  | 
+**print_session** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
