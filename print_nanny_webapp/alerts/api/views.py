@@ -86,12 +86,12 @@ class PrintSessionAlertViewSet(
             context={"request": request},
         )
         if request_serializer.is_valid():
-            instance = serializer.save()
-            instance.trigger_alerts_task(serializer.data)
+            instance = request_serializer.save()
             response_serializer = PrintSessionAlertSerializer(instance)
+            instance.trigger_alerts_task(response_serializer.data)
 
             return Response(response_serializer.data, status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # TODO combine defect, end, progress events into PrintSessionAlert subtypes
 # @extend_schema(

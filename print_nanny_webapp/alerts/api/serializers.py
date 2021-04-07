@@ -55,7 +55,7 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
         annotated_video = validated_data["annotated_video"]
         print_session = validated_data["print_session"]
         print_session = PrintSession.objects.get(session=print_session)
-        return PrintSessionAlert(
+        return PrintSessionAlert.objects.create(
             user=print_session.user,
             print_session=print_session,
             annotated_video=annotated_video,
@@ -70,19 +70,7 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
 class PrintSessionAlertSerializer(AlertSerializer):
     class Meta:
         model = PrintSessionAlert
-        fields = [
-            "id",
-            "time",
-            "alert_methods",
-            "alert_type",
-            "created_dt",
-            "updated_dt",
-            "seen",
-            "dismissed",
-            "user",
-            "octoprint_device",
-            "print_session",
-        ]
+        fields =  "__all__"
 
         read_only_fields = (
             "alert_methods",
