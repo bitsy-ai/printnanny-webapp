@@ -254,7 +254,12 @@ class PrintSessionAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.get("user")
+        alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
+            user=user
+        )
         super().__init__(
+            alert_settings=alert_settings,
             *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
 

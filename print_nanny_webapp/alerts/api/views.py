@@ -81,28 +81,16 @@ class PrintSessionAlertViewSet(
         session = request.data.get("print_session")
         session = PrintSession.objects.get(session=session)
 
-        serializer = PrintSessionAlertSerializer(
-            data={
-                "print_session": session.id,
-                "user": session.user.id,
-                "octoprint_device": session.octoprint_device.id,
-                "annotated_video": request.data.get("annotated_video"),
-            },
+        request_serializer = CreatePrintSessionAlertSerializer(
+            data=request.data
             context={"request": request},
         )
-        if serializer.is_valid():
-            alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
-                user=session.user
-            )
-            instance = serializer.save(
-                alert_methods=alert_settings.alert_methods,
-                user=session.user
-            )
+        if request_serializer.is_valid():
+            instance = serializer.save()
+            instance.trigger_alerts_task(serializer.data)
+            response_serializer = PrintSessionAlertSerializer(instance)
 
-            if created and session.should_alert():
-                instance.trigger_alerts_task(serializer.data)
-
-            return Response(serializer.data, status.HTTP_201_CREATED)
+            return Response(response_serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # TODO combine defect, end, progress events into PrintSessionAlert subtypes
