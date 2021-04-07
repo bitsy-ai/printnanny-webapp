@@ -36,10 +36,12 @@ class TestCreatePrintSessionAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.create_print_session_alert_request.CreatePrintSessionAlertRequest()  # noqa: E501
         if include_optional :
             return CreatePrintSessionAlertRequest(
+                print_session = '', 
                 annotated_video = ''
             )
         else :
             return CreatePrintSessionAlertRequest(
+                print_session = '',
                 annotated_video = '',
         )
 

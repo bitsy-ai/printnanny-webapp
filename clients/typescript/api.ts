@@ -486,6 +486,12 @@ export interface CreatePrintSessionAlertRequest {
      * @type {string}
      * @memberof CreatePrintSessionAlertRequest
      */
+    print_session: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePrintSessionAlertRequest
+     */
     annotated_video: string;
 }
 /**

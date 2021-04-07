@@ -33,23 +33,50 @@ class CreatePrintSessionAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'print_session': 'str',
         'annotated_video': 'str'
     }
 
     attribute_map = {
+        'print_session': 'print_session',
         'annotated_video': 'annotated_video'
     }
 
-    def __init__(self, annotated_video=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, print_session=None, annotated_video=None, local_vars_configuration=None):  # noqa: E501
         """CreatePrintSessionAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._print_session = None
         self._annotated_video = None
         self.discriminator = None
 
+        self.print_session = print_session
         self.annotated_video = annotated_video
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this CreatePrintSessionAlertRequest.  # noqa: E501
+
+
+        :return: The print_session of this CreatePrintSessionAlertRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this CreatePrintSessionAlertRequest.
+
+
+        :param print_session: The print_session of this CreatePrintSessionAlertRequest.  # noqa: E501
+        :type print_session: str
+        """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
+
+        self._print_session = print_session
 
     @property
     def annotated_video(self):
