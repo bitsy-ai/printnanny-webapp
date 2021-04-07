@@ -46,7 +46,7 @@ class ProgressAlertSerializer(AlertSerializer):
 
 
 class CreatePrintSessionAlertSerializer(AlertSerializer):
-    print_session = serializers.StringRelatedField()
+    print_session = serializers.CharField()
     # dataflow writes uploaded video to gcs, so create method acccepts path string
     # this saves having to buffer the file bytes via django's http1 api
     annotated_video = serializers.CharField()
