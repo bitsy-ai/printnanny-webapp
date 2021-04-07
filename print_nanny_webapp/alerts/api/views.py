@@ -82,7 +82,7 @@ class PrintSessionAlertViewSet(
         session = PrintSession.objects.get(session=session)
 
         request_serializer = CreatePrintSessionAlertSerializer(
-            data=request.data
+            data=request.data,
             context={"request": request},
         )
         if request_serializer.is_valid():
