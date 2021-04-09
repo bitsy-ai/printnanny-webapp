@@ -45,24 +45,6 @@
 
                 <div class="card-body">
                     <div class="card-title">
-                        <h4 class="page-title">Defect Detector</h4>
-                        <p>Receive notifications when Print Nanny <strong>detects a defect</strong> in your print job.</p>
-                    </div>
-                    <div class="form-group">
-                        <form method="post" id="defect-alert-settings">
-                            {% csrf_token %}
-                            {{ forms.defect | crispy }}
-                            <button type="submit"  name="action" value="defect" class="btn btn-primary">Save</button>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="card-title">
                         <h4 class="page-title">Discord Bot Settings</h4>
                         <p>Configure the Discord notification bot</p>
                     </div>
