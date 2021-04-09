@@ -125,6 +125,7 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    last_session = models.ForeignKey("remote_control.PrintSession", on_delete=models.CASCADE, db_index=True, null=True)
 
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
