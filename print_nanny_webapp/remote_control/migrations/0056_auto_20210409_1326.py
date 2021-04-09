@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0055_printsession_current_status'),
+        ("remote_control", "0055_printsession_current_status"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='printsession',
-            old_name='current_status',
-            new_name='status',
+            model_name="printsession",
+            old_name="current_status",
+            new_name="status",
         ),
     ]

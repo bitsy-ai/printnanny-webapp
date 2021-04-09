@@ -6,13 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0054_remove_printsession_supress_alerts'),
+        ("remote_control", "0054_remove_printsession_supress_alerts"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printsession',
-            name='current_status',
-            field=models.CharField(choices=[('monitoring_active', 'Print Nanny is currently monitoring your print job'), ('rendering_video', 'Print Nanny is creating a timelapse video of your print job'), ('doneA timelapse of your print job is ready!', 'Done')], db_index=True, default='monitoring_active', max_length=255),
+            model_name="printsession",
+            name="current_status",
+            field=models.CharField(
+                choices=[
+                    (
+                        "monitoring_active",
+                        "Print Nanny is currently monitoring your print job",
+                    ),
+                    (
+                        "rendering_video",
+                        "Print Nanny is creating a timelapse video of your print job",
+                    ),
+                    ("doneA timelapse of your print job is ready!", "Done"),
+                ],
+                db_index=True,
+                default="monitoring_active",
+                max_length=255,
+            ),
         ),
     ]

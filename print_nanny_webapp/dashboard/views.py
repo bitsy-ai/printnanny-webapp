@@ -252,17 +252,19 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
 
 octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
+
 class VideoDashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/video-list.html"
-    
+
     def get_context_data(self, *args, **kwargs):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
         context["alerts"] = PrintSessionAlert.objects.filter(
             user=self.request.user
-        ).order_by('-created_dt')
+        ).order_by("-created_dt")
         return context
+
 
 video_list_view = VideoDashboardView.as_view()
 

@@ -5,7 +5,7 @@ from .views import (
     app_dashboard_list_view,
     octoprint_device_dashboard_list_view,
     octoprint_device_dashboard_detail_view,
-    video_list_view
+    video_list_view,
 )
 
 app_name = "dashboard"
