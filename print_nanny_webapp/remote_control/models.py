@@ -302,7 +302,10 @@ class PrintSession(models.Model):
     """
     Represents a unique print job/session
     """
-
+    class StatusChoices(models.TextChoices):
+        MONITORING_ACTIVE = "monitoring_active", "Print Nanny is currently monitoring your print job"
+        RENDERING_VIDEO = "rendering_video", "Print Nanny is creating a timelapse video of your print job"
+        DONE = "done" "A timelapse of your print job is ready!"
     class Meta:
         unique_together = ("octoprint_device", "session")
 
@@ -313,6 +316,7 @@ class PrintSession(models.Model):
     )
     session = models.CharField(max_length=255, db_index=True)
     progress = JSONField(default={})
+    status = models.CharField(max_length=255, db_index=True, choices=StatusChoices.choices, default=StatusChoices.MONITORING_ACTIVE)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(
@@ -326,7 +330,6 @@ class PrintSession(models.Model):
         """
         Encapsulates stateful alert logic
         """
-        print(dir(self))
         # PrintSession alert does not exist
         # TODO enable defect alert check
         return self.printsessionalert_set.count() == 0

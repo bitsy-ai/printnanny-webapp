@@ -26,16 +26,16 @@
         <!-- end page title -->
 
           <!-- done cards -->
-          {% if print_session.count > 0 %}
+          {% if print_sessions.count > 0 %}
             <h3 class="page-title mt-4 mb-1">Timelapse Videos</h3>
                     <!-- videos -->
                     <div class="row">
-                      {% for alert in alerts_success %}
+                      {% for obj in in print_sessions %}
                     
                         <!-- card wrapper -->
                         <div class="card col-sm-12 col-lg-3">
                             <!-- critical failure detected -->
-                            {% if print_session.notify_timecode %}
+                            {% if print_session.created_dt %}
                               <div class="card-body">
                                 <h4 class="card-title">Print Failure                             
                                   
