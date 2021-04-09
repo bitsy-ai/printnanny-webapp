@@ -36,13 +36,12 @@ class PatchedCommandAlertSettingsRequest(object):
         'alert_type': 'AlertTypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'enabled': 'bool',
-        'snapshot': 'list[SnapshotEnum]',
-        'monitoring_stop': 'list[MonitoringStopEnum]',
-        'monitoring_start': 'list[MonitoringStartEnum]',
-        'print_start': 'list[PrintStartEnum]',
-        'print_stop': 'list[PrintStopEnum]',
-        'print_pause': 'list[PrintPauseEnum]',
-        'print_resume': 'list[PrintResumeEnum]',
+        'monitoring_stop': 'list[MoveNozzleEnum]',
+        'monitoring_start': 'list[MoveNozzleEnum]',
+        'print_start': 'list[MoveNozzleEnum]',
+        'print_stop': 'list[MoveNozzleEnum]',
+        'print_pause': 'list[MoveNozzleEnum]',
+        'print_resume': 'list[MoveNozzleEnum]',
         'move_nozzle': 'list[MoveNozzleEnum]'
     }
 
@@ -50,7 +49,6 @@ class PatchedCommandAlertSettingsRequest(object):
         'alert_type': 'alert_type',
         'alert_methods': 'alert_methods',
         'enabled': 'enabled',
-        'snapshot': 'snapshot',
         'monitoring_stop': 'monitoring_stop',
         'monitoring_start': 'monitoring_start',
         'print_start': 'print_start',
@@ -60,7 +58,7 @@ class PatchedCommandAlertSettingsRequest(object):
         'move_nozzle': 'move_nozzle'
     }
 
-    def __init__(self, alert_type=None, alert_methods=None, enabled=None, snapshot=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_type=None, alert_methods=None, enabled=None, monitoring_stop=None, monitoring_start=None, print_start=None, print_stop=None, print_pause=None, print_resume=None, move_nozzle=None, local_vars_configuration=None):  # noqa: E501
         """PatchedCommandAlertSettingsRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -69,7 +67,6 @@ class PatchedCommandAlertSettingsRequest(object):
         self._alert_type = None
         self._alert_methods = None
         self._enabled = None
-        self._snapshot = None
         self._monitoring_stop = None
         self._monitoring_start = None
         self._print_start = None
@@ -85,8 +82,6 @@ class PatchedCommandAlertSettingsRequest(object):
             self.alert_methods = alert_methods
         if enabled is not None:
             self.enabled = enabled
-        if snapshot is not None:
-            self.snapshot = snapshot
         if monitoring_stop is not None:
             self.monitoring_stop = monitoring_stop
         if monitoring_start is not None:
@@ -168,36 +163,13 @@ class PatchedCommandAlertSettingsRequest(object):
         self._enabled = enabled
 
     @property
-    def snapshot(self):
-        """Gets the snapshot of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-
-        Fires on web camera <strong>Snapshot</strong> command  # noqa: E501
-
-        :return: The snapshot of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[SnapshotEnum]
-        """
-        return self._snapshot
-
-    @snapshot.setter
-    def snapshot(self, snapshot):
-        """Sets the snapshot of this PatchedCommandAlertSettingsRequest.
-
-        Fires on web camera <strong>Snapshot</strong> command  # noqa: E501
-
-        :param snapshot: The snapshot of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type snapshot: list[SnapshotEnum]
-        """
-
-        self._snapshot = snapshot
-
-    @property
     def monitoring_stop(self):
         """Gets the monitoring_stop of this PatchedCommandAlertSettingsRequest.  # noqa: E501
 
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
         :return: The monitoring_stop of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[MonitoringStopEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._monitoring_stop
 
@@ -208,7 +180,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.  # noqa: E501
 
         :param monitoring_stop: The monitoring_stop of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type monitoring_stop: list[MonitoringStopEnum]
+        :type monitoring_stop: list[MoveNozzleEnum]
         """
 
         self._monitoring_stop = monitoring_stop
@@ -220,7 +192,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
         :return: The monitoring_start of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[MonitoringStartEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._monitoring_start
 
@@ -231,7 +203,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.  # noqa: E501
 
         :param monitoring_start: The monitoring_start of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type monitoring_start: list[MonitoringStartEnum]
+        :type monitoring_start: list[MoveNozzleEnum]
         """
 
         self._monitoring_start = monitoring_start
@@ -243,7 +215,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :return: The print_start of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[PrintStartEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._print_start
 
@@ -254,7 +226,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :param print_start: The print_start of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type print_start: list[PrintStartEnum]
+        :type print_start: list[MoveNozzleEnum]
         """
 
         self._print_start = print_start
@@ -266,7 +238,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
         :return: The print_stop of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[PrintStopEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._print_stop
 
@@ -277,7 +249,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.  # noqa: E501
 
         :param print_stop: The print_stop of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type print_stop: list[PrintStopEnum]
+        :type print_stop: list[MoveNozzleEnum]
         """
 
         self._print_stop = print_stop
@@ -289,7 +261,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
 
         :return: The print_pause of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[PrintPauseEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._print_pause
 
@@ -300,7 +272,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.  # noqa: E501
 
         :param print_pause: The print_pause of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type print_pause: list[PrintPauseEnum]
+        :type print_pause: list[MoveNozzleEnum]
         """
 
         self._print_pause = print_pause
@@ -312,7 +284,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
 
         :return: The print_resume of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :rtype: list[PrintResumeEnum]
+        :rtype: list[MoveNozzleEnum]
         """
         return self._print_resume
 
@@ -323,7 +295,7 @@ class PatchedCommandAlertSettingsRequest(object):
         Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.  # noqa: E501
 
         :param print_resume: The print_resume of this PatchedCommandAlertSettingsRequest.  # noqa: E501
-        :type print_resume: list[PrintResumeEnum]
+        :type print_resume: list[MoveNozzleEnum]
         """
 
         self._print_resume = print_resume

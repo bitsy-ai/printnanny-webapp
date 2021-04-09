@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **time** | **str** |  | [optional] [readonly] 
 **description** | **str** |  | 
 **seen** | **bool** |  | [optional] 
-**snapshot_url** | **str** |  | [optional] [readonly] 
 **title** | **str** |  | 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 

@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **description** | **str** |  | 
 **seen** | **bool** |  | [optional] 
-**snapshot_url** | **str** |  | [optional] [readonly] 
 **title** | **str** |  | 
 **sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 

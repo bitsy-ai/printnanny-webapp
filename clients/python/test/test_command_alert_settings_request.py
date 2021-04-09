@@ -41,9 +41,6 @@ class TestCommandAlertSettingsRequest(unittest.TestCase):
                     'UI'
                     ], 
                 enabled = True, 
-                snapshot = [
-                    'RECEIVED'
-                    ], 
                 monitoring_stop = [
                     'RECEIVED'
                     ], 

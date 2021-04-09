@@ -38,8 +38,6 @@ docs/ManualVideoUploadAlertRequest.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
 docs/MonitoringModeEnum.md
-docs/MonitoringStartEnum.md
-docs/MonitoringStopEnum.md
 docs/MoveNozzleEnum.md
 docs/Nested.md
 docs/OctoPrintDevice.md
@@ -63,7 +61,6 @@ docs/PaginatedPrintSessionList.md
 docs/PaginatedPrintSessionStateList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteControlCommandList.md
-docs/PaginatedRemoteControlSnapshotList.md
 docs/PaginatedUserList.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertPolymorphicRequest.md
@@ -82,12 +79,9 @@ docs/PatchedProgressAlertRequest.md
 docs/PatchedProgressAlertSettingsRequest.md
 docs/PatchedRemoteControlCommandAlertRequest.md
 docs/PatchedRemoteControlCommandRequest.md
-docs/PatchedRemoteControlSnapshotRequest.md
 docs/PatchedUserRequest.md
 docs/PluginEvent.md
 docs/PluginEventEventTypeEnum.md
-docs/PrintPauseEnum.md
-docs/PrintResumeEnum.md
 docs/PrintSession.md
 docs/PrintSessionAlert.md
 docs/PrintSessionAlertAlertSubtypeEnum.md
@@ -95,8 +89,6 @@ docs/PrintSessionAlertRequest.md
 docs/PrintSessionRequest.md
 docs/PrintSessionState.md
 docs/PrintSessionStateEventTypeEnum.md
-docs/PrintStartEnum.md
-docs/PrintStopEnum.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/ProgressAlert.md
@@ -109,11 +101,7 @@ docs/RemoteControlCommandAlert.md
 docs/RemoteControlCommandAlertAlertSubtypeEnum.md
 docs/RemoteControlCommandAlertRequest.md
 docs/RemoteControlCommandRequest.md
-docs/RemoteControlSnapshot.md
-docs/RemoteControlSnapshotCreateResponse.md
-docs/RemoteControlSnapshotRequest.md
 docs/SchemaApi.md
-docs/SnapshotEnum.md
 docs/StatusEnum.md
 docs/User.md
 docs/UserRequest.md
@@ -162,8 +150,6 @@ print_nanny_client/models/manual_video_upload_alert.py
 print_nanny_client/models/manual_video_upload_alert_request.py
 print_nanny_client/models/model_artifact.py
 print_nanny_client/models/monitoring_mode_enum.py
-print_nanny_client/models/monitoring_start_enum.py
-print_nanny_client/models/monitoring_stop_enum.py
 print_nanny_client/models/move_nozzle_enum.py
 print_nanny_client/models/nested.py
 print_nanny_client/models/octo_print_device.py
@@ -187,7 +173,6 @@ print_nanny_client/models/paginated_print_session_list.py
 print_nanny_client/models/paginated_print_session_state_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
-print_nanny_client/models/paginated_remote_control_snapshot_list.py
 print_nanny_client/models/paginated_user_list.py
 print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_polymorphic_request.py
@@ -206,12 +191,9 @@ print_nanny_client/models/patched_progress_alert_request.py
 print_nanny_client/models/patched_progress_alert_settings_request.py
 print_nanny_client/models/patched_remote_control_command_alert_request.py
 print_nanny_client/models/patched_remote_control_command_request.py
-print_nanny_client/models/patched_remote_control_snapshot_request.py
 print_nanny_client/models/patched_user_request.py
 print_nanny_client/models/plugin_event.py
 print_nanny_client/models/plugin_event_event_type_enum.py
-print_nanny_client/models/print_pause_enum.py
-print_nanny_client/models/print_resume_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_alert.py
 print_nanny_client/models/print_session_alert_alert_subtype_enum.py
@@ -219,8 +201,6 @@ print_nanny_client/models/print_session_alert_request.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_session_state.py
 print_nanny_client/models/print_session_state_event_type_enum.py
-print_nanny_client/models/print_start_enum.py
-print_nanny_client/models/print_stop_enum.py
 print_nanny_client/models/printer_profile.py
 print_nanny_client/models/printer_profile_request.py
 print_nanny_client/models/progress_alert.py
@@ -232,10 +212,6 @@ print_nanny_client/models/remote_control_command_alert.py
 print_nanny_client/models/remote_control_command_alert_alert_subtype_enum.py
 print_nanny_client/models/remote_control_command_alert_request.py
 print_nanny_client/models/remote_control_command_request.py
-print_nanny_client/models/remote_control_snapshot.py
-print_nanny_client/models/remote_control_snapshot_create_response.py
-print_nanny_client/models/remote_control_snapshot_request.py
-print_nanny_client/models/snapshot_enum.py
 print_nanny_client/models/status_enum.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
@@ -279,8 +255,6 @@ test/test_manual_video_upload_alert_request.py
 test/test_ml_ops_api.py
 test/test_model_artifact.py
 test/test_monitoring_mode_enum.py
-test/test_monitoring_start_enum.py
-test/test_monitoring_stop_enum.py
 test/test_move_nozzle_enum.py
 test/test_nested.py
 test/test_octo_print_device.py
@@ -304,7 +278,6 @@ test/test_paginated_print_session_list.py
 test/test_paginated_print_session_state_list.py
 test/test_paginated_printer_profile_list.py
 test/test_paginated_remote_control_command_list.py
-test/test_paginated_remote_control_snapshot_list.py
 test/test_paginated_user_list.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_polymorphic_request.py
@@ -323,12 +296,9 @@ test/test_patched_progress_alert_request.py
 test/test_patched_progress_alert_settings_request.py
 test/test_patched_remote_control_command_alert_request.py
 test/test_patched_remote_control_command_request.py
-test/test_patched_remote_control_snapshot_request.py
 test/test_patched_user_request.py
 test/test_plugin_event.py
 test/test_plugin_event_event_type_enum.py
-test/test_print_pause_enum.py
-test/test_print_resume_enum.py
 test/test_print_session.py
 test/test_print_session_alert.py
 test/test_print_session_alert_alert_subtype_enum.py
@@ -336,8 +306,6 @@ test/test_print_session_alert_request.py
 test/test_print_session_request.py
 test/test_print_session_state.py
 test/test_print_session_state_event_type_enum.py
-test/test_print_start_enum.py
-test/test_print_stop_enum.py
 test/test_printer_profile.py
 test/test_printer_profile_request.py
 test/test_progress_alert.py
@@ -350,11 +318,7 @@ test/test_remote_control_command_alert.py
 test/test_remote_control_command_alert_alert_subtype_enum.py
 test/test_remote_control_command_alert_request.py
 test/test_remote_control_command_request.py
-test/test_remote_control_snapshot.py
-test/test_remote_control_snapshot_create_response.py
-test/test_remote_control_snapshot_request.py
 test/test_schema_api.py
-test/test_snapshot_enum.py
 test/test_status_enum.py
 test/test_user.py
 test/test_user_request.py
