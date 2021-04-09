@@ -1,0 +1,143 @@
+{% extends "vertical_base.html" %}
+{% load static i18n crispy_forms_tags %}
+
+{% block head_title %}{% trans "Report Card List" %}{% endblock head_title %}
+
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                          
+                            <li class="breadcrumb-item active">Timelapse Videos</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Timelapse Videos</h4>
+                </div>
+            </div>
+        </div>     
+        <!-- end page title -->
+
+          <!-- done cards -->
+          {% if print_session.count > 0 %}
+            <h3 class="page-title mt-4 mb-1">Timelapse Videos</h3>
+                    <!-- videos -->
+                    <div class="row">
+                      {% for alert in alerts_success %}
+                    
+                        <!-- card wrapper -->
+                        <div class="card col-sm-12 col-lg-3">
+                            <!-- critical failure detected -->
+                            {% if print_session.notify_timecode %}
+                              <div class="card-body">
+                                <h4 class="card-title">Print Failure                             
+                                  
+                                  {% if not print_session.seen %}
+
+                                  <span class="badge badge-danger">NEW REPORT</span>
+                                  {% endif %}
+                                </h4>
+          
+                                <dl class="row mb-0">
+            
+            
+                                  <dt class="col-sm-3">Filename</dt>
+                                  <dd class="col-sm-9">{{print_session.original_filename}}</dd>
+
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{print_session.source_display_name}}</dd>
+
+                                  <dt class="col-sm-3">Verdict</dt>
+            
+                                    <dd class="col-sm-9">Critical failure at <strong>{{print_session.notify_timecode}}</strong> ⚠️ </dd>
+                                </dl>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <video class="embed-responsive-item" controls>
+                                    <source src="{{ print_session.annotated_video.url }}" type="video/mp4">
+                                  </video>
+                                </div>
+          
+                                <a href="{% url 'dashboard:videos:detail' pk=print_session.id %}">
+                                  <p>
+          
+                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
+            
+                                    </button>
+                                  </p>
+                    
+                                </a>
+                                </div>
+                                <div class="card-footer">
+                                  {% include "form/feedback.html" %}
+          
+                                </div>
+                            {% else %}
+                              <div class="card-body">
+                                <h4 class="card-title">No Critical Defects</h4>
+          
+                                <dl class="row mb-0">
+            
+            
+                                  <dt class="col-sm-3">Filename</dt>
+                                  <dd class="col-sm-9">{{print_session.original_filename}}</dd>
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{print_session.polymorphic_ctype}}</dd>
+
+                                  <dt class="col-sm-3">Verdict</dt>
+          
+                                    <dd class="col-sm-9">No critical failures in your print.</dd>
+            
+                                </dl>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <video class="embed-responsive-item" controls>
+                                    <source src="{{ print_session.annotated_video.url }}" type="video/mp4">
+                                  </video>
+                                </div>
+                                <a href="{% url 'dashboard:videos:detail' pk=print_session.id %}">
+                                  <p>
+          
+                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
+            
+                                    </button>
+                                  </p>
+                    
+                                </a>
+                                </div>
+                                <div class="card-footer">
+                                  {% include "form/feedback.html" %}
+          
+                                </div>
+                            <!-- no critical issues -->
+                            {% endif %}
+          
+                        </div>
+                    
+                  {% endfor %}
+                      </div>  
+
+        {% else %}
+    
+            <div class="card col-sm-12">
+                <div class="card-body">
+
+                    <p>Print Nanny will automatically create timelapse videos of your print jobs.</p>
+                    <p>Having trouble getting started?</p>
+                    <p>Check out the <a href="https://help.print-nanny.com/octoprint-plugin-setup/">OctoPrint Plugin Guide</a> to start monitoring your prints.</p>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+    </div> <!-- container -->
+{% endblock %}
+
+
+

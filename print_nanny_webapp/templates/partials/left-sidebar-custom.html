@@ -41,7 +41,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="{% url 'dashboard:videos-list' %}" class="side-nav-link">
+                <a href="{% url 'dashboard:videos:list' %}" class="side-nav-link">
                     <i class="uil-video"></i>
 
 
@@ -69,18 +69,6 @@
                     </li>
                 </ul>
             </li>
-
-
-
-            <!-- <li class="side-nav-item">
-                <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
-                    <i class="dripicons dripicons-graph-line"></i>
-                    <span> {% trans "Quality Reports" %} </span>
-                    {% if object.active_alerts.count > 0 %}
-                    <span class="badge badge-danger float-right"> {{ object.active_alerts.count }}</span>
-                    {% endif %}
-                </a>
-            </li> -->
 
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:octoprint-devices:list' %}" class="side-nav-link">
