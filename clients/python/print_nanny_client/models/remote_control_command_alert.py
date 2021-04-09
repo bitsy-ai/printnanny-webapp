@@ -46,7 +46,6 @@ class RemoteControlCommandAlert(object):
         'time': 'str',
         'description': 'str',
         'seen': 'bool',
-        'snapshot_url': 'str',
         'title': 'str',
         'updated_dt': 'datetime',
         'user': 'int'
@@ -66,13 +65,12 @@ class RemoteControlCommandAlert(object):
         'time': 'time',
         'description': 'description',
         'seen': 'seen',
-        'snapshot_url': 'snapshot_url',
         'title': 'title',
         'updated_dt': 'updated_dt',
         'user': 'user'
     }
 
-    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, dismissed=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, snapshot_url=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, dismissed=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """RemoteControlCommandAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -91,7 +89,6 @@ class RemoteControlCommandAlert(object):
         self._time = None
         self._description = None
         self._seen = None
-        self._snapshot_url = None
         self._title = None
         self._updated_dt = None
         self._user = None
@@ -118,8 +115,6 @@ class RemoteControlCommandAlert(object):
         self.description = description
         if seen is not None:
             self.seen = seen
-        if snapshot_url is not None:
-            self.snapshot_url = snapshot_url
         self.title = title
         if updated_dt is not None:
             self.updated_dt = updated_dt
@@ -408,27 +403,6 @@ class RemoteControlCommandAlert(object):
         """
 
         self._seen = seen
-
-    @property
-    def snapshot_url(self):
-        """Gets the snapshot_url of this RemoteControlCommandAlert.  # noqa: E501
-
-
-        :return: The snapshot_url of this RemoteControlCommandAlert.  # noqa: E501
-        :rtype: str
-        """
-        return self._snapshot_url
-
-    @snapshot_url.setter
-    def snapshot_url(self, snapshot_url):
-        """Sets the snapshot_url of this RemoteControlCommandAlert.
-
-
-        :param snapshot_url: The snapshot_url of this RemoteControlCommandAlert.  # noqa: E501
-        :type snapshot_url: str
-        """
-
-        self._snapshot_url = snapshot_url
 
     @property
     def title(self):

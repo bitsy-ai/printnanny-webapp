@@ -8,7 +8,6 @@ from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     OctoPrintDevice,
     RemoteControlCommand,
-    RemoteControlSnapshot,
 )
 
 
@@ -137,25 +136,6 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )
-
-
-class RemoteControlSnapshotSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RemoteControlSnapshot
-        fields = [field.name for field in RemoteControlSnapshot._meta.fields] + ["url"]
-        extra_kwargs = {
-            "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
-        }
-
-
-class RemoteControlSnapshotCreateResponseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RemoteControlSnapshot
-        fields = ["url", "id", "created_dt"]
-        extra_kwargs = {
-            "url": {"view_name": "api:snapshot-detail", "lookup_field": "id"}
-        }
-
 
 class GcodeFileSerializer(serializers.ModelSerializer):
 

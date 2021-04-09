@@ -17,9 +17,7 @@ from print_nanny_webapp.remote_control.api.views import (
     PrinterProfileViewSet, 
     PrintSessionViewSet,
     OctoPrintDeviceViewSet,
-    CommandViewSet,
-    RemoteControlSnapshotViewSet,
-
+    CommandViewSet
 )
 
 from print_nanny_webapp.alerts.api.views import (
@@ -35,7 +33,6 @@ router.register("print-session-alerts", PrintSessionAlertViewSet, basename="prin
 router.register("users", UserViewSet)
 
 router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
-router.register(f"snapshots", RemoteControlSnapshotViewSet, basename='snapshot')
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
 router.register(f"print-job-states", PrintSessionStateViewSet, basename='print-job-states')

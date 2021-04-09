@@ -48,7 +48,6 @@ class AlertPolymorphic(object):
         'id': 'int',
         'description': 'str',
         'seen': 'bool',
-        'snapshot_url': 'str',
         'title': 'str',
         'sent': 'bool',
         'progress_percent': 'int',
@@ -75,7 +74,6 @@ class AlertPolymorphic(object):
         'id': 'id',
         'description': 'description',
         'seen': 'seen',
-        'snapshot_url': 'snapshot_url',
         'title': 'title',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
@@ -89,7 +87,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -110,7 +108,6 @@ class AlertPolymorphic(object):
         self._id = None
         self._description = None
         self._seen = None
-        self._snapshot_url = None
         self._title = None
         self._sent = None
         self._progress_percent = None
@@ -146,8 +143,6 @@ class AlertPolymorphic(object):
         self.description = description
         if seen is not None:
             self.seen = seen
-        if snapshot_url is not None:
-            self.snapshot_url = snapshot_url
         self.title = title
         if sent is not None:
             self.sent = sent
@@ -485,27 +480,6 @@ class AlertPolymorphic(object):
         """
 
         self._seen = seen
-
-    @property
-    def snapshot_url(self):
-        """Gets the snapshot_url of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The snapshot_url of this AlertPolymorphic.  # noqa: E501
-        :rtype: str
-        """
-        return self._snapshot_url
-
-    @snapshot_url.setter
-    def snapshot_url(self, snapshot_url):
-        """Sets the snapshot_url of this AlertPolymorphic.
-
-
-        :param snapshot_url: The snapshot_url of this AlertPolymorphic.  # noqa: E501
-        :type snapshot_url: str
-        """
-
-        self._snapshot_url = snapshot_url
 
     @property
     def title(self):

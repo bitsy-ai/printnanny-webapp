@@ -30,14 +30,13 @@ class CommandEnum(object):
     """
     MONITORING_STOP = "monitoring_stop"
     MONITORING_START = "monitoring_start"
-    SNAPSHOT = "snapshot"
     PRINT_START = "print_start"
     PRINT_STOP = "print_stop"
     PRINT_PAUSE = "print_pause"
     PRINT_RESUME = "print_resume"
     MOVE_NOZZLE = "move_nozzle"
 
-    allowable_values = [MONITORING_STOP, MONITORING_START, SNAPSHOT, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE]  # noqa: E501
+    allowable_values = [MONITORING_STOP, MONITORING_START, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE]  # noqa: E501
 
     """
     Attributes:

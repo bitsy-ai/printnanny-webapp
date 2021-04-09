@@ -190,36 +190,6 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_snapshots_create(self):
-        """Test case for snapshots_create
-
-        """
-        pass
-
-    def test_snapshots_list(self):
-        """Test case for snapshots_list
-
-        """
-        pass
-
-    def test_snapshots_partial_update(self):
-        """Test case for snapshots_partial_update
-
-        """
-        pass
-
-    def test_snapshots_retrieve(self):
-        """Test case for snapshots_retrieve
-
-        """
-        pass
-
-    def test_snapshots_update(self):
-        """Test case for snapshots_update
-
-        """
-        pass
-
     def test_valid_commands_retrieve(self):
         """Test case for valid_commands_retrieve
 

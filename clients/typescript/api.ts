@@ -315,47 +315,41 @@ export interface CommandAlertSettings {
      */
     enabled?: boolean;
     /**
-     * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<SnapshotEnum>}
-     * @memberof CommandAlertSettings
-     */
-    snapshot?: Array<SnapshotEnum>;
-    /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<MonitoringStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    monitoring_stop?: Array<MonitoringStopEnum>;
+    monitoring_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<MonitoringStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    monitoring_start?: Array<MonitoringStartEnum>;
+    monitoring_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
-     * @type {Array<PrintStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    print_start?: Array<PrintStartEnum>;
+    print_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<PrintStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    print_stop?: Array<PrintStopEnum>;
+    print_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PrintPauseEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    print_pause?: Array<PrintPauseEnum>;
+    print_pause?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<PrintResumeEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
-    print_resume?: Array<PrintResumeEnum>;
+    print_resume?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
@@ -400,47 +394,41 @@ export interface CommandAlertSettingsRequest {
      */
     enabled?: boolean;
     /**
-     * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<SnapshotEnum>}
-     * @memberof CommandAlertSettingsRequest
-     */
-    snapshot?: Array<SnapshotEnum>;
-    /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<MonitoringStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    monitoring_stop?: Array<MonitoringStopEnum>;
+    monitoring_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<MonitoringStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    monitoring_start?: Array<MonitoringStartEnum>;
+    monitoring_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
-     * @type {Array<PrintStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    print_start?: Array<PrintStartEnum>;
+    print_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<PrintStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    print_stop?: Array<PrintStopEnum>;
+    print_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PrintPauseEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    print_pause?: Array<PrintPauseEnum>;
+    print_pause?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<PrintResumeEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
-    print_resume?: Array<PrintResumeEnum>;
+    print_resume?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
@@ -456,7 +444,6 @@ export interface CommandAlertSettingsRequest {
 export enum CommandEnum {
     MonitoringStop = 'monitoring_stop',
     MonitoringStart = 'monitoring_start',
-    Snapshot = 'snapshot',
     PrintStart = 'print_start',
     PrintStop = 'print_stop',
     PrintPause = 'print_pause',
@@ -866,28 +853,6 @@ export interface ModelArtifact {
 export enum MonitoringModeEnum {
     ActiveLearning = 'active_learning',
     Lite = 'lite'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum MonitoringStartEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum MonitoringStopEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
 }
 
 /**
@@ -2104,37 +2069,6 @@ export interface PaginatedRemoteControlCommandList {
 /**
  * 
  * @export
- * @interface PaginatedRemoteControlSnapshotList
- */
-export interface PaginatedRemoteControlSnapshotList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedRemoteControlSnapshotList
-     */
-    count?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedRemoteControlSnapshotList
-     */
-    next?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedRemoteControlSnapshotList
-     */
-    previous?: string | null;
-    /**
-     * 
-     * @type {Array<RemoteControlSnapshot>}
-     * @memberof PaginatedRemoteControlSnapshotList
-     */
-    results?: Array<RemoteControlSnapshot>;
-}
-/**
- * 
- * @export
  * @interface PaginatedUserList
  */
 export interface PaginatedUserList {
@@ -2251,47 +2185,41 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     enabled?: boolean;
     /**
-     * Fires on web camera <strong>Snapshot</strong> command
-     * @type {Array<SnapshotEnum>}
-     * @memberof PatchedCommandAlertSettingsRequest
-     */
-    snapshot?: Array<SnapshotEnum>;
-    /**
      * Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
-     * @type {Array<MonitoringStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    monitoring_stop?: Array<MonitoringStopEnum>;
+    monitoring_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
-     * @type {Array<MonitoringStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    monitoring_start?: Array<MonitoringStartEnum>;
+    monitoring_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
-     * @type {Array<PrintStartEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    print_start?: Array<PrintStartEnum>;
+    print_start?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
-     * @type {Array<PrintStopEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    print_stop?: Array<PrintStopEnum>;
+    print_stop?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
-     * @type {Array<PrintPauseEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    print_pause?: Array<PrintPauseEnum>;
+    print_pause?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
-     * @type {Array<PrintResumeEnum>}
+     * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
-    print_resume?: Array<PrintResumeEnum>;
+    print_resume?: Array<MoveNozzleEnum>;
     /**
      * Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint
      * @type {Array<MoveNozzleEnum>}
@@ -2925,25 +2853,6 @@ export interface PatchedRemoteControlCommandRequest {
 /**
  * 
  * @export
- * @interface PatchedRemoteControlSnapshotRequest
- */
-export interface PatchedRemoteControlSnapshotRequest {
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedRemoteControlSnapshotRequest
-     */
-    image?: any;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedRemoteControlSnapshotRequest
-     */
-    command?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedUserRequest
  */
 export interface PatchedUserRequest {
@@ -3033,28 +2942,6 @@ export enum PluginEventEventTypeEnum {
     PrinterProfileSyncStart = 'printer_profile_sync_start',
     PrinterProfileSyncDone = 'printer_profile_sync_done',
     PrinterProfileSyncFailed = 'printer_profile_sync_failed'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintPauseEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintResumeEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
 }
 
 /**
@@ -3452,28 +3339,6 @@ export enum PrintSessionStateEventTypeEnum {
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
     PrintStarted = 'PrintStarted'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintStartEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintStopEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
 }
 
 /**
@@ -4172,12 +4037,6 @@ export interface RemoteControlCommandAlert {
      * @type {string}
      * @memberof RemoteControlCommandAlert
      */
-    snapshot_url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlCommandAlert
-     */
     title: string;
     /**
      * 
@@ -4313,98 +4172,6 @@ export interface RemoteControlCommandRequest {
      */
     metadata?: { [key: string]: any; };
 }
-/**
- * 
- * @export
- * @interface RemoteControlSnapshot
- */
-export interface RemoteControlSnapshot {
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoteControlSnapshot
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlSnapshot
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlSnapshot
-     */
-    image: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoteControlSnapshot
-     */
-    command: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlSnapshot
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @interface RemoteControlSnapshotCreateResponse
- */
-export interface RemoteControlSnapshotCreateResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlSnapshotCreateResponse
-     */
-    url?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoteControlSnapshotCreateResponse
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteControlSnapshotCreateResponse
-     */
-    created_dt?: string;
-}
-/**
- * 
- * @export
- * @interface RemoteControlSnapshotRequest
- */
-export interface RemoteControlSnapshotRequest {
-    /**
-     * 
-     * @type {any}
-     * @memberof RemoteControlSnapshotRequest
-     */
-    image: any;
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoteControlSnapshotRequest
-     */
-    command: number;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum SnapshotEnum {
-    Received = 'RECEIVED',
-    Failed = 'FAILED',
-    Success = 'SUCCESS'
-}
-
 /**
  * 
  * @export
@@ -10067,322 +9834,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsCreate: async (image: any, command: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'image' is not null or undefined
-            if (image === null || image === undefined) {
-                throw new RequiredError('image','Required parameter image was null or undefined when calling snapshotsCreate.');
-            }
-            // verify required parameter 'command' is not null or undefined
-            if (command === null || command === undefined) {
-                throw new RequiredError('command','Required parameter command was null or undefined when calling snapshotsCreate.');
-            }
-            const localVarPath = `/api/snapshots/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-            if (image !== undefined) { 
-                localVarFormParams.append('image', image as any);
-            }
-    
-            if (command !== undefined) { 
-                localVarFormParams.append('command', command as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/snapshots/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} [image] 
-         * @param {number} [command] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsPartialUpdate: async (id: number, image?: any, command?: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsPartialUpdate.');
-            }
-            const localVarPath = `/api/snapshots/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-            if (image !== undefined) { 
-                localVarFormParams.append('image', image as any);
-            }
-    
-            if (command !== undefined) { 
-                localVarFormParams.append('command', command as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsRetrieve.');
-            }
-            const localVarPath = `/api/snapshots/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsUpdate: async (id: number, image: any, command: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling snapshotsUpdate.');
-            }
-            // verify required parameter 'image' is not null or undefined
-            if (image === null || image === undefined) {
-                throw new RequiredError('image','Required parameter image was null or undefined when calling snapshotsUpdate.');
-            }
-            // verify required parameter 'command' is not null or undefined
-            if (command === null || command === undefined) {
-                throw new RequiredError('command','Required parameter command was null or undefined when calling snapshotsUpdate.');
-            }
-            const localVarPath = `/api/snapshots/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-            if (image !== undefined) { 
-                localVarFormParams.append('image', image as any);
-            }
-    
-            if (command !== undefined) { 
-                localVarFormParams.append('command', command as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -10814,76 +10265,6 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async snapshotsCreate(image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshotCreateResponse>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsCreate(image, command, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async snapshotsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlSnapshotList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} [image] 
-         * @param {number} [command] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsPartialUpdate(id, image, command, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async snapshotsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async snapshotsUpdate(id: number, image: any, command: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlSnapshot>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).snapshotsUpdate(id, image, command, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11172,56 +10553,6 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshotCreateResponse> {
-            return RemoteControlApiFp(configuration).snapshotsCreate(image, command, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlSnapshotList> {
-            return RemoteControlApiFp(configuration).snapshotsList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} [image] 
-         * @param {number} [command] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
-            return RemoteControlApiFp(configuration).snapshotsPartialUpdate(id, image, command, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
-            return RemoteControlApiFp(configuration).snapshotsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this remote control snapshot.
-         * @param {any} image 
-         * @param {number} command 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        snapshotsUpdate(id: number, image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot> {
-            return RemoteControlApiFp(configuration).snapshotsUpdate(id, image, command, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -11503,56 +10834,6 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     printerProfilesUpdateOrCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile>;
-
-    /**
-     * 
-     * @param {any} image 
-     * @param {number} command 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    snapshotsCreate(image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshotCreateResponse>;
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    snapshotsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlSnapshotList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {any} [image] 
-     * @param {number} [command] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    snapshotsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {any} image 
-     * @param {number} command 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    snapshotsUpdate(id: number, image: any, command: number, options?: any): AxiosPromise<RemoteControlSnapshot>;
 
     /**
      * 
@@ -11890,66 +11171,6 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public printerProfilesUpdateOrCreate(printerProfileRequest: PrinterProfileRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).printerProfilesUpdateOrCreate(printerProfileRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {any} image 
-     * @param {number} command 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public snapshotsCreate(image: any, command: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).snapshotsCreate(image, command, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public snapshotsList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).snapshotsList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {any} [image] 
-     * @param {number} [command] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public snapshotsPartialUpdate(id: number, image?: any, command?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).snapshotsPartialUpdate(id, image, command, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public snapshotsRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).snapshotsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this remote control snapshot.
-     * @param {any} image 
-     * @param {number} command 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public snapshotsUpdate(id: number, image: any, command: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).snapshotsUpdate(id, image, command, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
