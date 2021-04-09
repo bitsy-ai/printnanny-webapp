@@ -79,7 +79,6 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
-    "djstripe", # Gated at the bottom
 ]
 
 LOCAL_APPS = [
@@ -525,10 +524,10 @@ GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
 
 # dj-stripe
 # ------------------------------------------------------------------------------
-DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
 if ENABLE_SUBSCRIPTIONS:
-    # THIRD_PARTY_APPS.append("djstripe")
+    DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
+    DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+    THIRD_PARTY_APPS.append("djstripe")
     LOCAL_APPS.append("print_nanny_webapp.subscriptions.apps.SubscriptionsConfig")
