@@ -40,7 +40,11 @@ class PrintSessionAlert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool',
+        'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
+        'annotated_video': 'str',
+        'polymorphic_ctype': 'int',
         'user': 'int',
         'octoprint_device': 'int',
         'print_session': 'int'
@@ -54,13 +58,17 @@ class PrintSessionAlert(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed',
+        'alert_subtype': 'alert_subtype',
+        'annotated_video': 'annotated_video',
+        'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
         'octoprint_device': 'octoprint_device',
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, dismissed=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, alert_subtype=None, annotated_video=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -73,7 +81,11 @@ class PrintSessionAlert(object):
         self._created_dt = None
         self._updated_dt = None
         self._seen = None
+        self._sent = None
         self._dismissed = None
+        self._alert_subtype = None
+        self._annotated_video = None
+        self._polymorphic_ctype = None
         self._user = None
         self._octoprint_device = None
         self._print_session = None
@@ -93,8 +105,15 @@ class PrintSessionAlert(object):
             self.updated_dt = updated_dt
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
+        if alert_subtype is not None:
+            self.alert_subtype = alert_subtype
+        self.annotated_video = annotated_video
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
         if user is not None:
             self.user = user
         if octoprint_device is not None:
@@ -249,6 +268,27 @@ class PrintSessionAlert(object):
         self._seen = seen
 
     @property
+    def sent(self):
+        """Gets the sent of this PrintSessionAlert.  # noqa: E501
+
+
+        :return: The sent of this PrintSessionAlert.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this PrintSessionAlert.
+
+
+        :param sent: The sent of this PrintSessionAlert.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
+
+    @property
     def dismissed(self):
         """Gets the dismissed of this PrintSessionAlert.  # noqa: E501
 
@@ -268,6 +308,71 @@ class PrintSessionAlert(object):
         """
 
         self._dismissed = dismissed
+
+    @property
+    def alert_subtype(self):
+        """Gets the alert_subtype of this PrintSessionAlert.  # noqa: E501
+
+
+        :return: The alert_subtype of this PrintSessionAlert.  # noqa: E501
+        :rtype: PrintSessionAlertAlertSubtypeEnum
+        """
+        return self._alert_subtype
+
+    @alert_subtype.setter
+    def alert_subtype(self, alert_subtype):
+        """Sets the alert_subtype of this PrintSessionAlert.
+
+
+        :param alert_subtype: The alert_subtype of this PrintSessionAlert.  # noqa: E501
+        :type alert_subtype: PrintSessionAlertAlertSubtypeEnum
+        """
+
+        self._alert_subtype = alert_subtype
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this PrintSessionAlert.  # noqa: E501
+
+
+        :return: The annotated_video of this PrintSessionAlert.  # noqa: E501
+        :rtype: str
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this PrintSessionAlert.
+
+
+        :param annotated_video: The annotated_video of this PrintSessionAlert.  # noqa: E501
+        :type annotated_video: str
+        """
+        if self.local_vars_configuration.client_side_validation and annotated_video is None:  # noqa: E501
+            raise ValueError("Invalid value for `annotated_video`, must not be `None`")  # noqa: E501
+
+        self._annotated_video = annotated_video
+
+    @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this PrintSessionAlert.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this PrintSessionAlert.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this PrintSessionAlert.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this PrintSessionAlert.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def user(self):

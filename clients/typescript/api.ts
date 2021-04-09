@@ -221,17 +221,6 @@ export interface AlertSettingsRequest {
  * @export
  * @enum {string}
  */
-export enum AlertSubtypeEnum {
-    Received = 'RECEIVED',
-    Success = 'SUCCESS',
-    Failed = 'FAILED'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
 export enum AlertTypeEnum {
     Command = 'COMMAND',
     PrintProgress = 'PRINT_PROGRESS',
@@ -999,6 +988,12 @@ export interface OctoPrintDevice {
     user?: number;
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintDevice
+     */
+    last_session?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -1172,6 +1167,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintDeviceKey
+     */
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1359,6 +1360,12 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     name: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintDeviceRequest
+     */
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -2393,6 +2400,12 @@ export interface PatchedOctoPrintDeviceRequest {
     name?: string;
     /**
      * 
+     * @type {number}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    last_session?: number | null;
+    /**
+     * 
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
@@ -2505,7 +2518,25 @@ export interface PatchedPrintSessionAlertRequest {
      * @type {boolean}
      * @memberof PatchedPrintSessionAlertRequest
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {PrintSessionAlertAlertSubtypeEnum}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    alert_subtype?: PrintSessionAlertAlertSubtypeEnum;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    annotated_video?: any;
     /**
      * 
      * @type {number}
@@ -2537,6 +2568,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     progress?: { [key: string]: any; };
+    /**
+     * 
+     * @type {StatusEnum}
+     * @memberof PatchedPrintSessionRequest
+     */
+    status?: StatusEnum;
     /**
      * 
      * @type {number}
@@ -2783,10 +2820,10 @@ export interface PatchedProgressAlertSettingsRequest {
 export interface PatchedRemoteControlCommandAlertRequest {
     /**
      * 
-     * @type {AlertSubtypeEnum}
+     * @type {RemoteControlCommandAlertAlertSubtypeEnum}
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
-    alert_subtype?: AlertSubtypeEnum;
+    alert_subtype?: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
      * @type {Array<AlertMethodsEnum>}
@@ -3064,6 +3101,12 @@ export interface PrintSession {
     progress?: { [key: string]: any; };
     /**
      * 
+     * @type {StatusEnum}
+     * @memberof PrintSession
+     */
+    status?: StatusEnum;
+    /**
+     * 
      * @type {number}
      * @memberof PrintSession
      */
@@ -3152,7 +3195,31 @@ export interface PrintSessionAlert {
      * @type {boolean}
      * @memberof PrintSessionAlert
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {PrintSessionAlertAlertSubtypeEnum}
+     * @memberof PrintSessionAlert
+     */
+    alert_subtype?: PrintSessionAlertAlertSubtypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    annotated_video: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    polymorphic_ctype?: number;
     /**
      * 
      * @type {number}
@@ -3175,6 +3242,16 @@ export interface PrintSessionAlert {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum PrintSessionAlertAlertSubtypeEnum {
+    Success = 'SUCCESS',
+    Failure = 'FAILURE'
+}
+
+/**
+ * 
+ * @export
  * @interface PrintSessionAlertRequest
  */
 export interface PrintSessionAlertRequest {
@@ -3189,7 +3266,25 @@ export interface PrintSessionAlertRequest {
      * @type {boolean}
      * @memberof PrintSessionAlertRequest
      */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
     dismissed?: boolean;
+    /**
+     * 
+     * @type {PrintSessionAlertAlertSubtypeEnum}
+     * @memberof PrintSessionAlertRequest
+     */
+    alert_subtype?: PrintSessionAlertAlertSubtypeEnum;
+    /**
+     * 
+     * @type {any}
+     * @memberof PrintSessionAlertRequest
+     */
+    annotated_video: any;
     /**
      * 
      * @type {number}
@@ -3221,6 +3316,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     progress?: { [key: string]: any; };
+    /**
+     * 
+     * @type {StatusEnum}
+     * @memberof PrintSessionRequest
+     */
+    status?: StatusEnum;
     /**
      * 
      * @type {number}
@@ -3990,10 +4091,10 @@ export interface RemoteControlCommand {
 export interface RemoteControlCommandAlert {
     /**
      * 
-     * @type {AlertSubtypeEnum}
+     * @type {RemoteControlCommandAlertAlertSubtypeEnum}
      * @memberof RemoteControlCommandAlert
      */
-    alert_subtype: AlertSubtypeEnum;
+    alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
      * @type {Array<AlertMethodsEnum>}
@@ -4094,15 +4195,26 @@ export interface RemoteControlCommandAlert {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum RemoteControlCommandAlertAlertSubtypeEnum {
+    Received = 'RECEIVED',
+    Success = 'SUCCESS',
+    Failed = 'FAILED'
+}
+
+/**
+ * 
+ * @export
  * @interface RemoteControlCommandAlertRequest
  */
 export interface RemoteControlCommandAlertRequest {
     /**
      * 
-     * @type {AlertSubtypeEnum}
+     * @type {RemoteControlCommandAlertAlertSubtypeEnum}
      * @memberof RemoteControlCommandAlertRequest
      */
-    alert_subtype: AlertSubtypeEnum;
+    alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
      * @type {Array<AlertMethodsEnum>}
@@ -4291,6 +4403,17 @@ export enum SnapshotEnum {
     Received = 'RECEIVED',
     Failed = 'FAILED',
     Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum StatusEnum {
+    MonitoringActive = 'monitoring_active',
+    RenderingVideo = 'rendering_video',
+    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
 }
 
 /**

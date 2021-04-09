@@ -39,6 +39,7 @@ class PrintSession(object):
         'octoprint_device': 'int',
         'session': 'str',
         'progress': 'dict(str, object)',
+        'status': 'StatusEnum',
         'user': 'int',
         'printer_profile': 'int',
         'gcode_file': 'int',
@@ -54,6 +55,7 @@ class PrintSession(object):
         'octoprint_device': 'octoprint_device',
         'session': 'session',
         'progress': 'progress',
+        'status': 'status',
         'user': 'user',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
@@ -62,7 +64,7 @@ class PrintSession(object):
         'should_alert': 'should_alert'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, should_alert=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, should_alert=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -74,6 +76,7 @@ class PrintSession(object):
         self._octoprint_device = None
         self._session = None
         self._progress = None
+        self._status = None
         self._user = None
         self._printer_profile = None
         self._gcode_file = None
@@ -92,6 +95,8 @@ class PrintSession(object):
         self.session = session
         if progress is not None:
             self.progress = progress
+        if status is not None:
+            self.status = status
         if user is not None:
             self.user = user
         self.printer_profile = printer_profile
@@ -234,6 +239,27 @@ class PrintSession(object):
         """
 
         self._progress = progress
+
+    @property
+    def status(self):
+        """Gets the status of this PrintSession.  # noqa: E501
+
+
+        :return: The status of this PrintSession.  # noqa: E501
+        :rtype: StatusEnum
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this PrintSession.
+
+
+        :param status: The status of this PrintSession.  # noqa: E501
+        :type status: StatusEnum
+        """
+
+        self._status = status
 
     @property
     def user(self):

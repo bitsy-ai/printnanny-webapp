@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **user** | **int** |  | [optional] [readonly] 
 **dismissed** | **bool** |  | [optional] 
 **time** | **str** |  | [optional] [readonly] 
-**alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 
+**alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | 
 **alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [readonly] 
 **color** | **str** |  | 
@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] [readonly] 
 **device** | **int** |  | 
+**annotated_video** | **str** |  | 
 **print_session** | **int** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -37,6 +37,7 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'datetime',
         'name': 'str',
         'user': 'int',
+        'last_session': 'int',
         'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
@@ -73,6 +74,7 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'created_dt',
         'name': 'name',
         'user': 'user',
+        'last_session': 'last_session',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
@@ -104,7 +106,7 @@ class OctoPrintDeviceKey(object):
         'manage_url': 'manage_url'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, name=None, user=None, last_session=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -114,6 +116,7 @@ class OctoPrintDeviceKey(object):
         self._created_dt = None
         self._name = None
         self._user = None
+        self._last_session = None
         self._public_key = None
         self._fingerprint = None
         self._cloudiot_device = None
@@ -152,6 +155,7 @@ class OctoPrintDeviceKey(object):
         self.name = name
         if user is not None:
             self.user = user
+        self.last_session = last_session
         if public_key is not None:
             self.public_key = public_key
         if fingerprint is not None:
@@ -283,6 +287,27 @@ class OctoPrintDeviceKey(object):
         """
 
         self._user = user
+
+    @property
+    def last_session(self):
+        """Gets the last_session of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The last_session of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: int
+        """
+        return self._last_session
+
+    @last_session.setter
+    def last_session(self, last_session):
+        """Sets the last_session of this OctoPrintDeviceKey.
+
+
+        :param last_session: The last_session of this OctoPrintDeviceKey.  # noqa: E501
+        :type last_session: int
+        """
+
+        self._last_session = last_session
 
     @property
     def public_key(self):

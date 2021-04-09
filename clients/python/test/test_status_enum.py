@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.print_session_request import PrintSessionRequest  # noqa: E501
+from print_nanny_client.models.status_enum import StatusEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPrintSessionRequest(unittest.TestCase):
-    """PrintSessionRequest unit test stubs"""
+class TestStatusEnum(unittest.TestCase):
+    """StatusEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,31 +29,20 @@ class TestPrintSessionRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PrintSessionRequest
+        """Test StatusEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.print_session_request.PrintSessionRequest()  # noqa: E501
+        # model = print_nanny_client.models.status_enum.StatusEnum()  # noqa: E501
         if include_optional :
-            return PrintSessionRequest(
-                octoprint_device = 56, 
-                session = '', 
-                progress = {
-                    'key' : null
-                    }, 
-                status = 'monitoring_active', 
-                printer_profile = 56, 
-                gcode_file = 56, 
-                gcode_filename = ''
+            return StatusEnum(
             )
         else :
-            return PrintSessionRequest(
-                octoprint_device = 56,
-                session = '',
+            return StatusEnum(
         )
 
-    def testPrintSessionRequest(self):
-        """Test PrintSessionRequest"""
+    def testStatusEnum(self):
+        """Test StatusEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

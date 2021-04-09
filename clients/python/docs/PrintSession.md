@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **octoprint_device** | **int** |  | 
 **session** | **str** |  | 
 **progress** | **dict(str, object)** |  | [optional] 
+**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **printer_profile** | **int** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 

@@ -34,7 +34,7 @@ class AlertPolymorphicRequest(object):
     """
     openapi_types = {
         'dismissed': 'bool',
-        'alert_subtype': 'AlertSubtypeEnum',
+        'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
@@ -46,6 +46,7 @@ class AlertPolymorphicRequest(object):
         'progress_percent': 'int',
         'octoprint_device': 'int',
         'device': 'int',
+        'annotated_video': 'file',
         'print_session': 'int'
     }
 
@@ -63,13 +64,14 @@ class AlertPolymorphicRequest(object):
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
         'device': 'device',
+        'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -88,6 +90,7 @@ class AlertPolymorphicRequest(object):
         self._progress_percent = None
         self._octoprint_device = None
         self._device = None
+        self._annotated_video = None
         self._print_session = None
         self.discriminator = 'type'
 
@@ -109,6 +112,7 @@ class AlertPolymorphicRequest(object):
             self.progress_percent = progress_percent
         self.octoprint_device = octoprint_device
         self.device = device
+        self.annotated_video = annotated_video
         self.print_session = print_session
 
     @property
@@ -138,7 +142,7 @@ class AlertPolymorphicRequest(object):
 
 
         :return: The alert_subtype of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: AlertSubtypeEnum
+        :rtype: PrintSessionAlertAlertSubtypeEnum
         """
         return self._alert_subtype
 
@@ -148,7 +152,7 @@ class AlertPolymorphicRequest(object):
 
 
         :param alert_subtype: The alert_subtype of this AlertPolymorphicRequest.  # noqa: E501
-        :type alert_subtype: AlertSubtypeEnum
+        :type alert_subtype: PrintSessionAlertAlertSubtypeEnum
         """
         if self.local_vars_configuration.client_side_validation and alert_subtype is None:  # noqa: E501
             raise ValueError("Invalid value for `alert_subtype`, must not be `None`")  # noqa: E501
@@ -405,6 +409,29 @@ class AlertPolymorphicRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this AlertPolymorphicRequest.
+
+
+        :param annotated_video: The annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+        :type annotated_video: file
+        """
+        if self.local_vars_configuration.client_side_validation and annotated_video is None:  # noqa: E501
+            raise ValueError("Invalid value for `annotated_video`, must not be `None`")  # noqa: E501
+
+        self._annotated_video = annotated_video
 
     @property
     def print_session(self):

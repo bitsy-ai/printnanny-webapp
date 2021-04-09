@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.0-dev72"
+__version__ = "0.5.0-dev73"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -47,7 +47,6 @@ from print_nanny_client.models.alert_settings import AlertSettings
 from print_nanny_client.models.alert_settings_polymorphic import AlertSettingsPolymorphic
 from print_nanny_client.models.alert_settings_polymorphic_request import AlertSettingsPolymorphicRequest
 from print_nanny_client.models.alert_settings_request import AlertSettingsRequest
-from print_nanny_client.models.alert_subtype_enum import AlertSubtypeEnum
 from print_nanny_client.models.alert_type_enum import AlertTypeEnum
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.auth_token import AuthToken
@@ -118,6 +117,7 @@ from print_nanny_client.models.print_pause_enum import PrintPauseEnum
 from print_nanny_client.models.print_resume_enum import PrintResumeEnum
 from print_nanny_client.models.print_session import PrintSession
 from print_nanny_client.models.print_session_alert import PrintSessionAlert
+from print_nanny_client.models.print_session_alert_alert_subtype_enum import PrintSessionAlertAlertSubtypeEnum
 from print_nanny_client.models.print_session_alert_request import PrintSessionAlertRequest
 from print_nanny_client.models.print_session_request import PrintSessionRequest
 from print_nanny_client.models.print_session_state import PrintSessionState
@@ -132,12 +132,14 @@ from print_nanny_client.models.progress_alert_settings import ProgressAlertSetti
 from print_nanny_client.models.progress_alert_settings_request import ProgressAlertSettingsRequest
 from print_nanny_client.models.remote_control_command import RemoteControlCommand
 from print_nanny_client.models.remote_control_command_alert import RemoteControlCommandAlert
+from print_nanny_client.models.remote_control_command_alert_alert_subtype_enum import RemoteControlCommandAlertAlertSubtypeEnum
 from print_nanny_client.models.remote_control_command_alert_request import RemoteControlCommandAlertRequest
 from print_nanny_client.models.remote_control_command_request import RemoteControlCommandRequest
 from print_nanny_client.models.remote_control_snapshot import RemoteControlSnapshot
 from print_nanny_client.models.remote_control_snapshot_create_response import RemoteControlSnapshotCreateResponse
 from print_nanny_client.models.remote_control_snapshot_request import RemoteControlSnapshotRequest
 from print_nanny_client.models.snapshot_enum import SnapshotEnum
+from print_nanny_client.models.status_enum import StatusEnum
 from print_nanny_client.models.user import User
 from print_nanny_client.models.user_request import UserRequest
 

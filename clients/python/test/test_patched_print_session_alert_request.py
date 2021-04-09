@@ -37,7 +37,10 @@ class TestPatchedPrintSessionAlertRequest(unittest.TestCase):
         if include_optional :
             return PatchedPrintSessionAlertRequest(
                 seen = True, 
+                sent = True, 
                 dismissed = True, 
+                alert_subtype = 'SUCCESS', 
+                annotated_video = bytes(b'blah'), 
                 print_session = 56
             )
         else :

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 
+**alert_subtype** | [**RemoteControlCommandAlertAlertSubtypeEnum**](RemoteControlCommandAlertAlertSubtypeEnum.md) |  | 
 **alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
 **color** | **str** |  | 

@@ -49,6 +49,7 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
                         progress = {
                             'key' : null
                             }, 
+                        status = 'monitoring_active', 
                         user = 56, 
                         printer_profile = 56, 
                         gcode_file = 56, 

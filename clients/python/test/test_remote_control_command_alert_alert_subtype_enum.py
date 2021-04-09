@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.alert_subtype_enum import AlertSubtypeEnum  # noqa: E501
+from print_nanny_client.models.remote_control_command_alert_alert_subtype_enum import RemoteControlCommandAlertAlertSubtypeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestAlertSubtypeEnum(unittest.TestCase):
-    """AlertSubtypeEnum unit test stubs"""
+class TestRemoteControlCommandAlertAlertSubtypeEnum(unittest.TestCase):
+    """RemoteControlCommandAlertAlertSubtypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestAlertSubtypeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AlertSubtypeEnum
+        """Test RemoteControlCommandAlertAlertSubtypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.alert_subtype_enum.AlertSubtypeEnum()  # noqa: E501
+        # model = print_nanny_client.models.remote_control_command_alert_alert_subtype_enum.RemoteControlCommandAlertAlertSubtypeEnum()  # noqa: E501
         if include_optional :
-            return AlertSubtypeEnum(
+            return RemoteControlCommandAlertAlertSubtypeEnum(
             )
         else :
-            return AlertSubtypeEnum(
+            return RemoteControlCommandAlertAlertSubtypeEnum(
         )
 
-    def testAlertSubtypeEnum(self):
-        """Test AlertSubtypeEnum"""
+    def testRemoteControlCommandAlertAlertSubtypeEnum(self):
+        """Test RemoteControlCommandAlertAlertSubtypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 
