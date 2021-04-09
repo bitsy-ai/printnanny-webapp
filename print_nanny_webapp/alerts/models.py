@@ -433,7 +433,7 @@ class PrintSessionAlert(Alert):
         text_body = render_to_string("email/print_done_body.txt", merge_data)
         # html_body = render_to_string("email/print_sessinn_done_body.html", merge_data)
 
-        subject = render_to_string("email/print_done_body.txt", merge_data)
+        subject = render_to_string("email/print_done_subject.txt", merge_data)
         message = AnymailMessage(
             subject=subject,
             body=text_body,
