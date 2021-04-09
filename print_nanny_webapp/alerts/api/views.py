@@ -1,6 +1,7 @@
 import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.db.models import Q
+from rest_framework.exceptions import APIException
 
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
@@ -12,7 +13,7 @@ from rest_framework.mixins import (
 )
 from rest_framework.decorators import action
 from rest_framework import status
-
+from django.db.utils import IntegrityError
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
@@ -44,6 +45,10 @@ logger = logging.getLogger(__name__)
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 
+class AlreadyExists(APIException):
+    status_code = 409
+    default_detail = "A resource of this type already exists, ignoring request"
+    default_code = "already_exists"
 
 @extend_schema(
     tags=["alerts"],
@@ -86,7 +91,11 @@ class PrintSessionAlertViewSet(
             context={"request": request},
         )
         if request_serializer.is_valid():
-            instance = request_serializer.save()
+            try:
+                instance = request_serializer.save()
+            except IntegrityError:
+                raise AlreadyExists()
+
             response_serializer = PrintSessionAlertSerializer(instance)
             instance.trigger_alerts_task(response_serializer.data)
 
