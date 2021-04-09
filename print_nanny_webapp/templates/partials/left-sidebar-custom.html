@@ -87,6 +87,15 @@
 
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="{% url 'alerts:settings' %}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+
+
+                    <span> {% trans "Notifications Settings" %} </span>
+
+                </a>
+            </li>
             {% if ENABLE_SUBSCRIPTIONS %}
             <li class="side-nav-item">
                 <a href="{% url 'subscriptions:list' %}" class="side-nav-link">
