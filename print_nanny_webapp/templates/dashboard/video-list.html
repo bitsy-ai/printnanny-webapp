@@ -1,7 +1,8 @@
 {% extends "vertical_base.html" %}
 {% load static i18n crispy_forms_tags %}
+{% load humanize %}
 
-{% block head_title %}{% trans "Report Card List" %}{% endblock head_title %}
+{% block head_title %}{% trans "Timelapse Videos" %}{% endblock head_title %}
 
 
 {% block content %}
@@ -26,101 +27,42 @@
         <!-- end page title -->
 
           <!-- done cards -->
-          {% if print_sessions.count > 0 %}
-            <h3 class="page-title mt-4 mb-1">Timelapse Videos</h3>
+          {% if alerts.count > 0 %}
                     <!-- videos -->
                     <div class="row">
-                      {% for obj in in print_sessions %}
+                      {% for obj in alerts %}
                     
                         <!-- card wrapper -->
-                        <div class="card col-sm-12 col-lg-3">
+                        <div class="card col-sm-12 col-lg-6">
                             <!-- critical failure detected -->
-                            {% if print_session.created_dt %}
-                              <div class="card-body">
-                                <h4 class="card-title">Print Failure                             
-                                  
-                                  {% if not print_session.seen %}
-
-                                  <span class="badge badge-danger">NEW REPORT</span>
-                                  {% endif %}
-                                </h4>
-          
+                            <div class="card-body">
+                                <h4 class="card-title">Finished {{obj.created_dt | naturaltime }}</h4>
+                                <!-- {% if not obj.seen %}
+                                    <span class="badge badge-danger">NEW REPORT</span>
+                                {% endif %} -->
                                 <dl class="row mb-0">
             
             
-                                  <dt class="col-sm-3">Filename</dt>
-                                  <dd class="col-sm-9">{{print_session.original_filename}}</dd>
-
-                                  <dt class="col-sm-3">Source</dt>
-                                  <dd class="col-sm-9">{{print_session.source_display_name}}</dd>
-
-                                  <dt class="col-sm-3">Verdict</dt>
-            
-                                    <dd class="col-sm-9">Critical failure at <strong>{{print_session.notify_timecode}}</strong> ⚠️ </dd>
+                                    <dt class="col-sm-3">Filename</dt>
+                                    <dd class="col-sm-9">{{obj.print_session.gcode_filename}}</dd>
+                                    <dt class="col-sm-3">Duration</dt>
+                                    <dd class="col-sm-9">{{obj.print_session.duration | naturaltime}}</dd>
+                                    <dt class="col-sm-3">Device</dt>
+                                    <dd class="col-sm-9">{{obj.octoprint_device.name}}</dd>
+                                    <dt class="col-sm-3">Session</dt>
+                                    <dd class="col-sm-9">{{obj.print_session.session}}</dd>
                                 </dl>
                                 <div class="embed-responsive embed-responsive-16by9">
-                                  <video class="embed-responsive-item" controls>
-                                    <source src="{{ print_session.annotated_video.url }}" type="video/mp4">
-                                  </video>
+                                    <video class="embed-responsive-item" controls>
+                                    <source src="{{ obj.annotated_video.url }}" type="video/mp4">
+                                    </video>
                                 </div>
-          
-                                <a href="{% url 'dashboard:videos:detail' pk=print_session.id %}">
-                                  <p>
-          
-                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
-            
-                                    </button>
-                                  </p>
-                    
-                                </a>
-                                </div>
-                                <div class="card-footer">
-                                  {% include "form/feedback.html" %}
-          
-                                </div>
-                            {% else %}
-                              <div class="card-body">
-                                <h4 class="card-title">No Critical Defects</h4>
-          
-                                <dl class="row mb-0">
-            
-            
-                                  <dt class="col-sm-3">Filename</dt>
-                                  <dd class="col-sm-9">{{print_session.original_filename}}</dd>
-                                  <dt class="col-sm-3">Source</dt>
-                                  <dd class="col-sm-9">{{print_session.polymorphic_ctype}}</dd>
-
-                                  <dt class="col-sm-3">Verdict</dt>
-          
-                                    <dd class="col-sm-9">No critical failures in your print.</dd>
-            
-                                </dl>
-                                <div class="embed-responsive embed-responsive-16by9">
-                                  <video class="embed-responsive-item" controls>
-                                    <source src="{{ print_session.annotated_video.url }}" type="video/mp4">
-                                  </video>
-                                </div>
-                                <a href="{% url 'dashboard:videos:detail' pk=print_session.id %}">
-                                  <p>
-          
-                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
-            
-                                    </button>
-                                  </p>
-                    
-                                </a>
-                                </div>
-                                <div class="card-footer">
-                                  {% include "form/feedback.html" %}
-          
-                                </div>
-                            <!-- no critical issues -->
-                            {% endif %}
+                            </div>
           
                         </div>
                     
-                  {% endfor %}
-                      </div>  
+                        {% endfor %}
+                    </div>  
 
         {% else %}
     

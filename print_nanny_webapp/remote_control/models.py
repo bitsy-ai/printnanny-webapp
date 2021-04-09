@@ -327,6 +327,9 @@ class PrintSession(models.Model):
     gcode_filename = models.CharField(max_length=255, null=True)
 
     @property
+    def duration(self):
+        return self.updated_dt - self.created_dt
+    @property
     def should_alert(self):
         """
         Encapsulates stateful alert logic

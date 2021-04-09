@@ -5,8 +5,7 @@ from .views import (
     app_dashboard_list_view,
     octoprint_device_dashboard_list_view,
     octoprint_device_dashboard_detail_view,
-    video_list_view,
-    video_detail_view
+    video_list_view
 )
 
 app_name = "dashboard"
@@ -22,7 +21,6 @@ octoprint_devices_urls = [
 
 video_urls = [
     path("/", video_list_view, name="list"),
-    path("/<slug:pk>",video_detail_view, name="detail"), 
 ]
 
 urlpatterns = [

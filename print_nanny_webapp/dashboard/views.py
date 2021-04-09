@@ -37,7 +37,7 @@ ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
-PrintSession = apps.get_model("remote_control", "PrintSession")
+PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
@@ -256,33 +256,15 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/video-list.html"
     
     def get_context_data(self, *args, **kwargs):
-        PrintSession = apps.get_model("remote_control", "PrintSession")
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        context["print_sessions"] = PrintSession.objects.filter(
+        context["alerts"] = PrintSessionAlert.objects.filter(
             user=self.request.user
         ).order_by('-created_dt')
         return context
 
 video_list_view = VideoDashboardView.as_view()
-
-class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
-
-    model = PrintSession
-    # slug_field = "id"
-    # slug_url_kwarg = "id"
-    template_name = "dashboard/video-detail.html"
-
-    def get_object(self):
-        obj = super().get_object()
-
-        # obj.seen = True
-        obj.save()
-        return obj
-
-
-video_detail_view = VideoDashboardDetailView.as_view()
 
 # class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
 #     success_url = "/dashboard/report-cards/"
