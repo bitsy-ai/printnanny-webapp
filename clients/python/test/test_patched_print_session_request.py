@@ -41,6 +41,7 @@ class TestPatchedPrintSessionRequest(unittest.TestCase):
                 progress = {
                     'key' : null
                     }, 
+                status = 'monitoring_active', 
                 printer_profile = 56, 
                 gcode_file = 56, 
                 gcode_filename = ''

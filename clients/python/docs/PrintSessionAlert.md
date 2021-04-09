@@ -10,7 +10,11 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
+**sent** | **bool** |  | [optional] 
 **dismissed** | **bool** |  | [optional] 
+**alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | [optional] 
+**annotated_video** | **str** |  | 
+**polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] [readonly] 
 **print_session** | **int** |  | 

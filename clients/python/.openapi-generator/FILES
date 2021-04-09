@@ -16,7 +16,6 @@ docs/AlertSettingsApi.md
 docs/AlertSettingsPolymorphic.md
 docs/AlertSettingsPolymorphicRequest.md
 docs/AlertSettingsRequest.md
-docs/AlertSubtypeEnum.md
 docs/AlertTypeEnum.md
 docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
@@ -91,6 +90,7 @@ docs/PrintPauseEnum.md
 docs/PrintResumeEnum.md
 docs/PrintSession.md
 docs/PrintSessionAlert.md
+docs/PrintSessionAlertAlertSubtypeEnum.md
 docs/PrintSessionAlertRequest.md
 docs/PrintSessionRequest.md
 docs/PrintSessionState.md
@@ -106,6 +106,7 @@ docs/ProgressAlertSettingsRequest.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandAlert.md
+docs/RemoteControlCommandAlertAlertSubtypeEnum.md
 docs/RemoteControlCommandAlertRequest.md
 docs/RemoteControlCommandRequest.md
 docs/RemoteControlSnapshot.md
@@ -113,6 +114,7 @@ docs/RemoteControlSnapshotCreateResponse.md
 docs/RemoteControlSnapshotRequest.md
 docs/SchemaApi.md
 docs/SnapshotEnum.md
+docs/StatusEnum.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -142,7 +144,6 @@ print_nanny_client/models/alert_settings.py
 print_nanny_client/models/alert_settings_polymorphic.py
 print_nanny_client/models/alert_settings_polymorphic_request.py
 print_nanny_client/models/alert_settings_request.py
-print_nanny_client/models/alert_subtype_enum.py
 print_nanny_client/models/alert_type_enum.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/auth_token.py
@@ -213,6 +214,7 @@ print_nanny_client/models/print_pause_enum.py
 print_nanny_client/models/print_resume_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_alert.py
+print_nanny_client/models/print_session_alert_alert_subtype_enum.py
 print_nanny_client/models/print_session_alert_request.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_session_state.py
@@ -227,12 +229,14 @@ print_nanny_client/models/progress_alert_settings.py
 print_nanny_client/models/progress_alert_settings_request.py
 print_nanny_client/models/remote_control_command.py
 print_nanny_client/models/remote_control_command_alert.py
+print_nanny_client/models/remote_control_command_alert_alert_subtype_enum.py
 print_nanny_client/models/remote_control_command_alert_request.py
 print_nanny_client/models/remote_control_command_request.py
 print_nanny_client/models/remote_control_snapshot.py
 print_nanny_client/models/remote_control_snapshot_create_response.py
 print_nanny_client/models/remote_control_snapshot_request.py
 print_nanny_client/models/snapshot_enum.py
+print_nanny_client/models/status_enum.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
 print_nanny_client/rest.py
@@ -253,7 +257,6 @@ test/test_alert_settings_api.py
 test/test_alert_settings_polymorphic.py
 test/test_alert_settings_polymorphic_request.py
 test/test_alert_settings_request.py
-test/test_alert_subtype_enum.py
 test/test_alert_type_enum.py
 test/test_alerts_api.py
 test/test_artifact_types_enum.py
@@ -328,6 +331,7 @@ test/test_print_pause_enum.py
 test/test_print_resume_enum.py
 test/test_print_session.py
 test/test_print_session_alert.py
+test/test_print_session_alert_alert_subtype_enum.py
 test/test_print_session_alert_request.py
 test/test_print_session_request.py
 test/test_print_session_state.py
@@ -343,6 +347,7 @@ test/test_progress_alert_settings_request.py
 test/test_remote_control_api.py
 test/test_remote_control_command.py
 test/test_remote_control_command_alert.py
+test/test_remote_control_command_alert_alert_subtype_enum.py
 test/test_remote_control_command_alert_request.py
 test/test_remote_control_command_request.py
 test/test_remote_control_snapshot.py
@@ -350,6 +355,7 @@ test/test_remote_control_snapshot_create_response.py
 test/test_remote_control_snapshot_request.py
 test/test_schema_api.py
 test/test_snapshot_enum.py
+test/test_status_enum.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py

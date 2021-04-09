@@ -37,6 +37,7 @@ ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
+PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
@@ -252,125 +253,140 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
 octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
 
-class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
-    success_url = "/dashboard/report-cards/"
-
-    form_classes = {
-        "upload": TimelapseUploadForm,
-        "upvote": FeedbackForm,
-        "downvote": FeedbackForm,
-        "dismiss": TimelapseCancelForm,
-        "cancel": TimelapseCancelForm,
-    }
+class VideoDashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/video-list.html"
-
-    def dismiss_form_valid(self, form):
-        failed_job = self.request.POST.get("alert_id")
-        if failed_job is not None:
-            ManualVideoUploadAlert.objects.filter(id=failed_job).update(
-                seen=True, dismissed=True
-            )
-
-        return redirect(reverse("dashboard:report-cards:list"))
-
-    def cancel_form_valid(self, form):
-        failed_job = self.request.POST.get("alert_id")
-        if failed_job is not None:
-            ManualVideoUploadAlert.objects.filter(id=failed_job).update(
-                job_status=ManualVideoUploadAlert.JobStatusChoices.CANCELLED
-            )
-
-        return redirect(reverse("dashboard:report-cards:list"))
-
-    def upvote_form_valid(self, form):
-
-        alert_id = self.request.POST.get("alert_id")
-        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=True)
-
-        return redirect(self.get_success_url())
-
-    def downvote_form_valid(self, form):
-
-        alert_id = self.request.POST.get("alert_id")
-        alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
-            feedback=False
-        )
-
-        return redirect(self.get_success_url())
-
-    def upload_form_valid(self, form):
-
-        video_file = self.request.FILES.get("video_file")
-        if video_file is not None:
-            timelapse_alert = ManualVideoUploadAlert.objects.create(
-                user=self.request.user,
-                original_video=self.request.FILES["video_file"],
-            )
-            if isinstance(video_file, InMemoryUploadedFile):
-                logging.info(f"File processed asInMemoryUploadedFile")
-                logging.info(f"File info {timelapse_alert.original_video}")
-                create_analyze_video_task.apply_async(
-                    (timelapse_alert.id,),
-                    link_error=annotate_job_error.si(timelapse_alert.id),
-                )
-            elif isinstance(video_file, TemporaryUploadedFile):
-                logging.info(f"File processed as TemporaryUploadedFile")
-                create_analyze_video_task.apply_async(
-                    (timelapse_alert.id,),
-                    link_error=annotate_job_error.si(timelapse_alert.id),
-                )
-        return redirect(reverse("dashboard:report-cards:list"))
 
     def get_context_data(self, *args, **kwargs):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
-        context["alerts_success"] = (
-            ManualVideoUploadAlert.objects.filter(
-                user=self.request.user.id,
-                job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
-
-        context["alerts_failed"] = (
-            ManualVideoUploadAlert.objects.filter(
-                user=self.request.user.id,
-                job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
-                dismissed=False,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
-
-        context["alerts_processing"] = (
-            ManualVideoUploadAlert.objects.filter(
-                user=self.request.user.id,
-                job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
-
+        context["user"] = self.request.user
+        context["alerts"] = PrintSessionAlert.objects.filter(
+            user=self.request.user
+        ).order_by("-created_dt")
         return context
 
 
-video_dashboard_list_view = VideoDashboardView.as_view()
+video_list_view = VideoDashboardView.as_view()
+
+# class VideoDashboardView(LoginRequiredMixin, MultiFormsView):
+#     success_url = "/dashboard/report-cards/"
+
+#     form_classes = {
+#         "upload": TimelapseUploadForm,
+#         "upvote": FeedbackForm,
+#         "downvote": FeedbackForm,
+#         "dismiss": TimelapseCancelForm,
+#         "cancel": TimelapseCancelForm,
+#     }
+#     template_name = "dashboard/report-cards-list.html"
+
+#     def dismiss_form_valid(self, form):
+#         failed_job = self.request.POST.get("alert_id")
+#         if failed_job is not None:
+#             ManualVideoUploadAlert.objects.filter(id=failed_job).update(
+#                 seen=True, dismissed=True
+#             )
+
+#         return redirect(reverse("dashboard:report-cards:list"))
+
+#     def cancel_form_valid(self, form):
+#         failed_job = self.request.POST.get("alert_id")
+#         if failed_job is not None:
+#             ManualVideoUploadAlert.objects.filter(id=failed_job).update(
+#                 job_status=ManualVideoUploadAlert.JobStatusChoices.CANCELLED
+#             )
+
+#         return redirect(reverse("dashboard:report-cards:list"))
+
+#     def upvote_form_valid(self, form):
+
+#         alert_id = self.request.POST.get("alert_id")
+#         alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(feedback=True)
+
+#         return redirect(self.get_success_url())
+
+#     def downvote_form_valid(self, form):
+
+#         alert_id = self.request.POST.get("alert_id")
+#         alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
+#             feedback=False
+#         )
+
+#         return redirect(self.get_success_url())
+
+#     def upload_form_valid(self, form):
+
+#         video_file = self.request.FILES.get("video_file")
+#         if video_file is not None:
+#             timelapse_alert = ManualVideoUploadAlert.objects.create(
+#                 user=self.request.user,
+#                 original_video=self.request.FILES["video_file"],
+#             )
+#             if isinstance(video_file, InMemoryUploadedFile):
+#                 logging.info(f"File processed asInMemoryUploadedFile")
+#                 logging.info(f"File info {timelapse_alert.original_video}")
+#                 create_analyze_video_task.apply_async(
+#                     (timelapse_alert.id,),
+#                     link_error=annotate_job_error.si(timelapse_alert.id),
+#                 )
+#             elif isinstance(video_file, TemporaryUploadedFile):
+#                 logging.info(f"File processed as TemporaryUploadedFile")
+#                 create_analyze_video_task.apply_async(
+#                     (timelapse_alert.id,),
+#                     link_error=annotate_job_error.si(timelapse_alert.id),
+#                 )
+#         return redirect(reverse("dashboard:report-cards:list"))
+
+#     def get_context_data(self, *args, **kwargs):
+#         context = super(VideoDashboardView, self).get_context_data(**kwargs)
+
+#         context["alerts_success"] = (
+#             ManualVideoUploadAlert.objects.filter(
+#                 user=self.request.user.id,
+#                 job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS,
+#             )
+#             .order_by("-created_dt")
+#             .all()
+#         )
+
+#         context["alerts_failed"] = (
+#             ManualVideoUploadAlert.objects.filter(
+#                 user=self.request.user.id,
+#                 job_status=ManualVideoUploadAlert.JobStatusChoices.FAILURE,
+#                 dismissed=False,
+#             )
+#             .order_by("-created_dt")
+#             .all()
+#         )
+
+#         context["alerts_processing"] = (
+#             ManualVideoUploadAlert.objects.filter(
+#                 user=self.request.user.id,
+#                 job_status=ManualVideoUploadAlert.JobStatusChoices.PROCESSING,
+#             )
+#             .order_by("-created_dt")
+#             .all()
+#         )
+
+#         return context
 
 
-class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
-
-    model = ManualVideoUploadAlert
-    # slug_field = "id"
-    # slug_url_kwarg = "id"
-    template_name = "dashboard/video-detail.html"
-
-    def get_object(self):
-        obj = super().get_object()
-
-        # obj.seen = True
-        obj.save()
-        return obj
+# video_dashboard_list_view = VideoDashboardView.as_view()
 
 
-video_dashboard_detail_view = VideoDashboardDetailView.as_view()
+# class VideoDashboardDetailView(LoginRequiredMixin, DetailView):
+
+#     model = ManualVideoUploadAlert
+#     # slug_field = "id"
+#     # slug_url_kwarg = "id"
+#     template_name = "dashboard/report-cards-detail.html"
+
+#     def get_object(self):
+#         obj = super().get_object()
+
+#         # obj.seen = True
+#         obj.save()
+#         return obj
+
+
+# video_dashboard_detail_view = VideoDashboardDetailView.as_view()

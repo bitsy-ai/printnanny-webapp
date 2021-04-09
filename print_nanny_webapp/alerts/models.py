@@ -79,6 +79,8 @@ class Alert(PolymorphicModel):
     )
 
     def trigger_alerts_task(self, serialized_obj):
+        self.print_session.status = self.print_session.StatusChoices.DONE
+        self.print_session.save()
         return trigger_alerts_task.delay(self.id, serialized_obj)
 
     def trigger_alerts(self, serialized_obj):

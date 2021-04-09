@@ -1,4 +1,4 @@
-# AlertSubtypeEnum
+# RemoteControlCommandAlertAlertSubtypeEnum
 
 ## Properties
 Name | Type | Description | Notes

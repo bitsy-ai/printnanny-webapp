@@ -38,7 +38,7 @@ class AlertPolymorphic(object):
         'user': 'int',
         'dismissed': 'bool',
         'time': 'str',
-        'alert_subtype': 'AlertSubtypeEnum',
+        'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
@@ -55,6 +55,7 @@ class AlertPolymorphic(object):
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'device': 'int',
+        'annotated_video': 'str',
         'print_session': 'int'
     }
 
@@ -81,13 +82,14 @@ class AlertPolymorphic(object):
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'device': 'device',
+        'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, snapshot_url=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -115,6 +117,7 @@ class AlertPolymorphic(object):
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._device = None
+        self._annotated_video = None
         self._print_session = None
         self.discriminator = 'type'
 
@@ -155,6 +158,7 @@ class AlertPolymorphic(object):
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
         self.device = device
+        self.annotated_video = annotated_video
         self.print_session = print_session
 
     @property
@@ -268,7 +272,7 @@ class AlertPolymorphic(object):
 
 
         :return: The alert_subtype of this AlertPolymorphic.  # noqa: E501
-        :rtype: AlertSubtypeEnum
+        :rtype: PrintSessionAlertAlertSubtypeEnum
         """
         return self._alert_subtype
 
@@ -278,7 +282,7 @@ class AlertPolymorphic(object):
 
 
         :param alert_subtype: The alert_subtype of this AlertPolymorphic.  # noqa: E501
-        :type alert_subtype: AlertSubtypeEnum
+        :type alert_subtype: PrintSessionAlertAlertSubtypeEnum
         """
         if self.local_vars_configuration.client_side_validation and alert_subtype is None:  # noqa: E501
             raise ValueError("Invalid value for `alert_subtype`, must not be `None`")  # noqa: E501
@@ -640,6 +644,29 @@ class AlertPolymorphic(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The annotated_video of this AlertPolymorphic.  # noqa: E501
+        :rtype: str
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this AlertPolymorphic.
+
+
+        :param annotated_video: The annotated_video of this AlertPolymorphic.  # noqa: E501
+        :type annotated_video: str
+        """
+        if self.local_vars_configuration.client_side_validation and annotated_video is None:  # noqa: E501
+            raise ValueError("Invalid value for `annotated_video`, must not be `None`")  # noqa: E501
+
+        self._annotated_video = annotated_video
 
     @property
     def print_session(self):

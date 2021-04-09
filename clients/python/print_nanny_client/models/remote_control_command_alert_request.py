@@ -33,7 +33,7 @@ class RemoteControlCommandAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'alert_subtype': 'AlertSubtypeEnum',
+        'alert_subtype': 'RemoteControlCommandAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
@@ -92,7 +92,7 @@ class RemoteControlCommandAlertRequest(object):
 
 
         :return: The alert_subtype of this RemoteControlCommandAlertRequest.  # noqa: E501
-        :rtype: AlertSubtypeEnum
+        :rtype: RemoteControlCommandAlertAlertSubtypeEnum
         """
         return self._alert_subtype
 
@@ -102,7 +102,7 @@ class RemoteControlCommandAlertRequest(object):
 
 
         :param alert_subtype: The alert_subtype of this RemoteControlCommandAlertRequest.  # noqa: E501
-        :type alert_subtype: AlertSubtypeEnum
+        :type alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum
         """
         if self.local_vars_configuration.client_side_validation and alert_subtype is None:  # noqa: E501
             raise ValueError("Invalid value for `alert_subtype`, must not be `None`")  # noqa: E501

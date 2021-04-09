@@ -40,6 +40,7 @@ class TestOctoPrintDevice(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 user = 56, 
+                last_session = 56, 
                 public_key = '', 
                 fingerprint = '', 
                 cloudiot_device = {

@@ -1,0 +1,231 @@
+{% extends "vertical_base.html" %}
+{% load static i18n crispy_forms_tags %}
+
+{% block head_title %}{% trans "Report Card List" %}{% endblock head_title %}
+
+
+{% block content %}
+    <!-- Start Content-->
+    <div class="container-fluid">
+        
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
+                          
+                            <li class="breadcrumb-item active">Print Report Card</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Print Quality Reports</h4>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                    <h2 class="header-title">
+                      ANAYZE MY VIDEO
+                    </h2>
+                      <p class="text-muted font-14">
+                       Are you wondering if Print Nanny could have saved one of your failed prints? Upload a timelapse video to find out. 
+                      </p>
+                      <p class="text-muted font-14">
+                        When the report is ready, you'll receive an email.
+                      </p>
+          
+                      <!-- File Upload -->
+                      <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        {{ forms.upload | crispy }}
+
+                        <button class="btn btn-primary" name="action" value="upload" type="submit">Analyze Video</button>
+                      </form>
+                </div>
+              </div>
+            </div>
+        </div>     
+        <!-- end page title -->
+        
+        
+          <!-- processing cards -->
+          {% if alerts_processing.count > 0 %}
+            <h3 class="page-title mt-4 mb-1"">In-Progress</h3>
+              <!-- videos -->
+              <div class="card-group">
+                {% for alert in alerts_processing %}
+              
+                  <!-- card wrapper -->
+                  <div class="card col-sm-12 col-lg-3">
+                        <!-- card -->
+                        <!-- card body -->
+                        <div class="card-body">
+                          <h2 class="header-title">Your video is being analyzed</h2>
+                          <p>You'll get an email when Print Nanny's report for <strong>{{alert.original_filename}}</strong> is ready.</p>
+                          <form enctype="multipart/form-data" method="post" class="form-group">
+
+                            <input type="hidden" value="{{ alert.id }}" name="alert_id">
+            
+                            {% csrf_token %}
+                            {{ forms.cancel |crispy }}
+
+                            <button class="btn btn-primary" type="button" disabled>
+                              <span class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                              Processing...
+                            </button>
+                            <button name="action" value="cancel" class="btn btn-secondary">Cancel</button>
+
+                          </form>
+           
+              
+                        </div> <!-- end card body -->
+    
+                  </div> <!-- end card -->
+                {% endfor %}
+              </div> <!-- end card group -->
+          {% endif %}
+          <!-- end processing cards -->
+
+          <!-- failed cards -->
+
+          {% if alerts_failed.count > 0 %}
+            <h3 class="page-title mt-4 mb-1"">Processing Failed</h3>
+              <!-- videos -->
+                <div class="card-group">
+                  {% for alert in alerts_failed %}
+                    <div class="card col-sm-12 col-lg-3">
+                      <div class="card-body">
+                          <h4 class="card-title">File Analysis Failed 
+
+                            {% if not alert.seen %}
+                            <span class="badge badge-danger float-right">Oops! Please retry.</span>
+
+                          </h4>
+                          {% endif %}
+                            <p>Failed to process: <strong>{{alert.original_filename}}</strong>.</p>
+                               <!-- File Upload -->
+                              <form enctype="multipart/form-data" method="post" class="form-group">
+      
+                                  <input type="hidden" value="{{ alert.id }}" name="alert_id">
+                  
+                                  {% csrf_token %}
+                                  {{ forms.dismiss|crispy }}
+                                  <button type="submit"  name="action" value="dismiss" class="btn btn-secondary">Dismiss</button>
+
+      
+                              </form>
+                      </div>
+                </div> 
+      
+                      
+              {% endfor %}
+              </div>
+          {% endif %}
+          <!-- failed cards -->
+
+
+          <!-- done cards -->
+
+          {% if alerts_success.count > 0 %}
+            <h3 class="page-title mt-4 mb-1">Print Quality Reports</h3>
+                    <!-- videos -->
+                    <div class="row">
+                      {% for alert in alerts_success %}
+                    
+                        <!-- card wrapper -->
+                        <div class="card col-sm-12 col-lg-3">
+                            <!-- critical failure detected -->
+                            {% if alert.notify_timecode %}
+                              <div class="card-body">
+                                <h4 class="card-title">Print Failure                             
+                                  
+                                  {% if not alert.seen %}
+
+                                  <span class="badge badge-danger">NEW REPORT</span>
+                                  {% endif %}
+                                </h4>
+          
+                                <dl class="row mb-0">
+            
+            
+                                  <dt class="col-sm-3">Filename</dt>
+                                  <dd class="col-sm-9">{{alert.original_filename}}</dd>
+
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{alert.source_display_name}}</dd>
+
+                                  <dt class="col-sm-3">Verdict</dt>
+            
+                                    <dd class="col-sm-9">Critical failure at <strong>{{alert.notify_timecode}}</strong> ⚠️ </dd>
+                                </dl>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <video class="embed-responsive-item" controls>
+                                    <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                                  </video>
+                                </div>
+          
+                                <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
+                                  <p>
+          
+                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
+            
+                                    </button>
+                                  </p>
+                    
+                                </a>
+                                </div>
+                                <div class="card-footer">
+                                  {% include "form/feedback.html" %}
+          
+                                </div>
+                            {% else %}
+                              <div class="card-body">
+                                <h4 class="card-title">No Critical Defects</h4>
+          
+                                <dl class="row mb-0">
+            
+            
+                                  <dt class="col-sm-3">Filename</dt>
+                                  <dd class="col-sm-9">{{alert.original_filename}}</dd>
+                                  <dt class="col-sm-3">Source</dt>
+                                  <dd class="col-sm-9">{{alert.polymorphic_ctype}}</dd>
+
+                                  <dt class="col-sm-3">Verdict</dt>
+          
+                                    <dd class="col-sm-9">No critical failures in your print.</dd>
+            
+                                </dl>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <video class="embed-responsive-item" controls>
+                                    <source src="{{ alert.annotated_video.url }}" type="video/mp4">
+                                  </video>
+                                </div>
+                                <a href="{% url 'dashboard:report-cards:detail' pk=alert.id %}">
+                                  <p>
+          
+                                    <button class="btn btn-primary btn-block" type="button" >View Full Report
+            
+                                    </button>
+                                  </p>
+                    
+                                </a>
+                                </div>
+                                <div class="card-footer">
+                                  {% include "form/feedback.html" %}
+          
+                                </div>
+                            <!-- no critical issues -->
+                            {% endif %}
+          
+                        </div>
+                    
+                  {% endfor %}
+                      </div>  
+          {% endif %}
+
+    </div> <!-- container -->
+{% endblock %}
+
+
+

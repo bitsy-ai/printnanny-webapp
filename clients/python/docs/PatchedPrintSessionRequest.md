@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **octoprint_device** | **int** |  | [optional] 
 **session** | **str** |  | [optional] 
 **progress** | **dict(str, object)** |  | [optional] 
+**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
 **printer_profile** | **int** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 
 **gcode_filename** | **str** |  | [optional] 

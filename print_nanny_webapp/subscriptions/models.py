@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
+
 @receiver(post_save, sender=User, dispatch_uid="subscriptions_start_trial")
 def start_trial(sender, instance=None, created=False, **kwargs):
     if not created:
@@ -22,6 +23,7 @@ def start_trial(sender, instance=None, created=False, **kwargs):
     plan = djstripe.models.Plan.objects.first()
     customer.subscribe(plan, charge_immediately=False, trial_period_days=14)
 
+
 def is_trialing(self) -> bool:
     customer = djstripe.models.Customer.objects.get(subscriber=self)
     subscriptions = customer.subscriptions.filter(
@@ -30,9 +32,14 @@ def is_trialing(self) -> bool:
     )
 
     return len(subscriptions) > 0
-User.add_to_class('is_trialing', is_trialing)
+
+
+User.add_to_class("is_trialing", is_trialing)
+
 
 def is_subscribed(self) -> bool:
     customer = djstripe.models.Customer.objects.get(subscriber=self)
     return customer.has_any_active_subscription()
-User.add_to_class('is_subscribed', is_subscribed)
+
+
+User.add_to_class("is_subscribed", is_subscribed)

@@ -125,6 +125,12 @@ class OctoPrintDevice(models.Model):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+    last_session = models.ForeignKey(
+        "remote_control.PrintSession",
+        on_delete=models.CASCADE,
+        db_index=True,
+        null=True,
+    )
 
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
@@ -303,6 +309,17 @@ class PrintSession(models.Model):
     Represents a unique print job/session
     """
 
+    class StatusChoices(models.TextChoices):
+        MONITORING_ACTIVE = (
+            "monitoring_active",
+            "Print Nanny is currently monitoring your print job",
+        )
+        RENDERING_VIDEO = (
+            "rendering_video",
+            "Print Nanny is creating a timelapse video of your print job",
+        )
+        DONE = "done" "A timelapse of your print job is ready!"
+
     class Meta:
         unique_together = ("octoprint_device", "session")
 
@@ -313,6 +330,12 @@ class PrintSession(models.Model):
     )
     session = models.CharField(max_length=255, db_index=True)
     progress = JSONField(default={})
+    status = models.CharField(
+        max_length=255,
+        db_index=True,
+        choices=StatusChoices.choices,
+        default=StatusChoices.MONITORING_ACTIVE,
+    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(
@@ -322,11 +345,14 @@ class PrintSession(models.Model):
     gcode_filename = models.CharField(max_length=255, null=True)
 
     @property
+    def duration(self):
+        return self.updated_dt - self.created_dt
+
+    @property
     def should_alert(self):
         """
         Encapsulates stateful alert logic
         """
-        print(dir(self))
         # PrintSession alert does not exist
         # TODO enable defect alert check
         return self.printsessionalert_set.count() == 0

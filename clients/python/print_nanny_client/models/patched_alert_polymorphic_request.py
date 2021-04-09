@@ -34,7 +34,7 @@ class PatchedAlertPolymorphicRequest(object):
     """
     openapi_types = {
         'dismissed': 'bool',
-        'alert_subtype': 'AlertSubtypeEnum',
+        'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
@@ -46,6 +46,7 @@ class PatchedAlertPolymorphicRequest(object):
         'progress_percent': 'int',
         'octoprint_device': 'int',
         'device': 'int',
+        'annotated_video': 'file',
         'print_session': 'int'
     }
 
@@ -63,13 +64,14 @@ class PatchedAlertPolymorphicRequest(object):
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
         'device': 'device',
+        'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -88,6 +90,7 @@ class PatchedAlertPolymorphicRequest(object):
         self._progress_percent = None
         self._octoprint_device = None
         self._device = None
+        self._annotated_video = None
         self._print_session = None
         self.discriminator = 'type'
 
@@ -116,6 +119,8 @@ class PatchedAlertPolymorphicRequest(object):
         self.octoprint_device = octoprint_device
         if device is not None:
             self.device = device
+        if annotated_video is not None:
+            self.annotated_video = annotated_video
         if print_session is not None:
             self.print_session = print_session
 
@@ -146,7 +151,7 @@ class PatchedAlertPolymorphicRequest(object):
 
 
         :return: The alert_subtype of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :rtype: AlertSubtypeEnum
+        :rtype: PrintSessionAlertAlertSubtypeEnum
         """
         return self._alert_subtype
 
@@ -156,7 +161,7 @@ class PatchedAlertPolymorphicRequest(object):
 
 
         :param alert_subtype: The alert_subtype of this PatchedAlertPolymorphicRequest.  # noqa: E501
-        :type alert_subtype: AlertSubtypeEnum
+        :type alert_subtype: PrintSessionAlertAlertSubtypeEnum
         """
 
         self._alert_subtype = alert_subtype
@@ -399,6 +404,27 @@ class PatchedAlertPolymorphicRequest(object):
         """
 
         self._device = device
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this PatchedAlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The annotated_video of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this PatchedAlertPolymorphicRequest.
+
+
+        :param annotated_video: The annotated_video of this PatchedAlertPolymorphicRequest.  # noqa: E501
+        :type annotated_video: file
+        """
+
+        self._annotated_video = annotated_video
 
     @property
     def print_session(self):

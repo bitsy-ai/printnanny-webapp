@@ -36,6 +36,7 @@ class PatchedPrintSessionRequest(object):
         'octoprint_device': 'int',
         'session': 'str',
         'progress': 'dict(str, object)',
+        'status': 'StatusEnum',
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str'
@@ -45,12 +46,13 @@ class PatchedPrintSessionRequest(object):
         'octoprint_device': 'octoprint_device',
         'session': 'session',
         'progress': 'progress',
+        'status': 'status',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename'
     }
 
-    def __init__(self, octoprint_device=None, session=None, progress=None, printer_profile=None, gcode_file=None, gcode_filename=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, session=None, progress=None, status=None, printer_profile=None, gcode_file=None, gcode_filename=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class PatchedPrintSessionRequest(object):
         self._octoprint_device = None
         self._session = None
         self._progress = None
+        self._status = None
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
@@ -70,6 +73,8 @@ class PatchedPrintSessionRequest(object):
             self.session = session
         if progress is not None:
             self.progress = progress
+        if status is not None:
+            self.status = status
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
@@ -139,6 +144,27 @@ class PatchedPrintSessionRequest(object):
         """
 
         self._progress = progress
+
+    @property
+    def status(self):
+        """Gets the status of this PatchedPrintSessionRequest.  # noqa: E501
+
+
+        :return: The status of this PatchedPrintSessionRequest.  # noqa: E501
+        :rtype: StatusEnum
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this PatchedPrintSessionRequest.
+
+
+        :param status: The status of this PatchedPrintSessionRequest.  # noqa: E501
+        :type status: StatusEnum
+        """
+
+        self._status = status
 
     @property
     def printer_profile(self):

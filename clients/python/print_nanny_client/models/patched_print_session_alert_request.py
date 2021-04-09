@@ -34,31 +34,46 @@ class PatchedPrintSessionAlertRequest(object):
     """
     openapi_types = {
         'seen': 'bool',
+        'sent': 'bool',
         'dismissed': 'bool',
+        'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
+        'annotated_video': 'file',
         'print_session': 'int'
     }
 
     attribute_map = {
         'seen': 'seen',
+        'sent': 'sent',
         'dismissed': 'dismissed',
+        'alert_subtype': 'alert_subtype',
+        'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
 
-    def __init__(self, seen=None, dismissed=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, sent=None, dismissed=None, alert_subtype=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._seen = None
+        self._sent = None
         self._dismissed = None
+        self._alert_subtype = None
+        self._annotated_video = None
         self._print_session = None
         self.discriminator = None
 
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
         if dismissed is not None:
             self.dismissed = dismissed
+        if alert_subtype is not None:
+            self.alert_subtype = alert_subtype
+        if annotated_video is not None:
+            self.annotated_video = annotated_video
         if print_session is not None:
             self.print_session = print_session
 
@@ -84,6 +99,27 @@ class PatchedPrintSessionAlertRequest(object):
         self._seen = seen
 
     @property
+    def sent(self):
+        """Gets the sent of this PatchedPrintSessionAlertRequest.  # noqa: E501
+
+
+        :return: The sent of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._sent
+
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this PatchedPrintSessionAlertRequest.
+
+
+        :param sent: The sent of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :type sent: bool
+        """
+
+        self._sent = sent
+
+    @property
     def dismissed(self):
         """Gets the dismissed of this PatchedPrintSessionAlertRequest.  # noqa: E501
 
@@ -103,6 +139,48 @@ class PatchedPrintSessionAlertRequest(object):
         """
 
         self._dismissed = dismissed
+
+    @property
+    def alert_subtype(self):
+        """Gets the alert_subtype of this PatchedPrintSessionAlertRequest.  # noqa: E501
+
+
+        :return: The alert_subtype of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :rtype: PrintSessionAlertAlertSubtypeEnum
+        """
+        return self._alert_subtype
+
+    @alert_subtype.setter
+    def alert_subtype(self, alert_subtype):
+        """Sets the alert_subtype of this PatchedPrintSessionAlertRequest.
+
+
+        :param alert_subtype: The alert_subtype of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :type alert_subtype: PrintSessionAlertAlertSubtypeEnum
+        """
+
+        self._alert_subtype = alert_subtype
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this PatchedPrintSessionAlertRequest.  # noqa: E501
+
+
+        :return: The annotated_video of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this PatchedPrintSessionAlertRequest.
+
+
+        :param annotated_video: The annotated_video of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :type annotated_video: file
+        """
+
+        self._annotated_video = annotated_video
 
     @property
     def print_session(self):

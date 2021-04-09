@@ -50,7 +50,11 @@ class TestPaginatedPrintSessionAlertList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         seen = True, 
+                        sent = True, 
                         dismissed = True, 
+                        alert_subtype = 'SUCCESS', 
+                        annotated_video = '', 
+                        polymorphic_ctype = 56, 
                         user = 56, 
                         octoprint_device = 56, 
                         print_session = 56, )

@@ -33,7 +33,7 @@ class PatchedRemoteControlCommandAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'alert_subtype': 'AlertSubtypeEnum',
+        'alert_subtype': 'RemoteControlCommandAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
@@ -98,7 +98,7 @@ class PatchedRemoteControlCommandAlertRequest(object):
 
 
         :return: The alert_subtype of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
-        :rtype: AlertSubtypeEnum
+        :rtype: RemoteControlCommandAlertAlertSubtypeEnum
         """
         return self._alert_subtype
 
@@ -108,7 +108,7 @@ class PatchedRemoteControlCommandAlertRequest(object):
 
 
         :param alert_subtype: The alert_subtype of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
-        :type alert_subtype: AlertSubtypeEnum
+        :type alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum
         """
 
         self._alert_subtype = alert_subtype

@@ -209,6 +209,8 @@ DEBUG=False
 
 # dj-stripe
 # ------------------------------------------------------------------------------
-STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
-STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
-STRIPE_LIVE_MODE = True
+ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
+if ENABLE_SUBSCRIPTIONS:
+    STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
+    STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
+    STRIPE_LIVE_MODE = True

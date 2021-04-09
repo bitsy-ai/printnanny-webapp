@@ -40,6 +40,8 @@
                 </a>
             </li>
 
+            {% comment %}
+
             <li class="side-nav-item">
                 <a hhref="javascript: void(0);" class="side-nav-link">
                     <i class="mdi mdi-bell"></i>
@@ -59,17 +61,8 @@
                 </ul>
             </li>
 
+            {% endcomment %}
 
-
-            <li class="side-nav-item">
-                <a href="{% url 'dashboard:report-cards:list' %}" class="side-nav-link">
-                    <i class="dripicons dripicons-graph-line"></i>
-                    <span> {% trans "Quality Reports" %} </span>
-                    {% if object.active_alerts.count > 0 %}
-                    <span class="badge badge-danger float-right"> {{ object.active_alerts.count }}</span>
-                    {% endif %}
-                </a>
-            </li>
 
             <li class="side-nav-item">
                 <a href="{% url 'dashboard:octoprint-devices:list' %}" class="side-nav-link">
@@ -85,7 +78,24 @@
 
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="{% url 'dashboard:videos:list' %}" class="side-nav-link">
+                    <i class="uil-video"></i>
 
+
+                    <span> {% trans "Videos" %} </span>
+
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{% url 'alerts:settings' %}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+
+
+                    <span> {% trans "Notifications Settings" %} </span>
+
+                </a>
+            </li>
             {% if ENABLE_SUBSCRIPTIONS %}
             <li class="side-nav-item">
                 <a href="{% url 'subscriptions:list' %}" class="side-nav-link">
@@ -116,8 +126,8 @@
                 <i class="mdi mdi-close"></i>
             </a> -->
             <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
-            <h3 class="mt-3">Beta Test</h3>
-            <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p>
+            <h3 class="mt-3">Beta Test 🚧</h3>
+            <!-- <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p> -->
             <p class="mb-3">{% trans "Report bugs by opening a Github Issue."%}</p>
 
             <a href="{{GITHUB_ISSUE_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Open Github Issue" %}</a>
