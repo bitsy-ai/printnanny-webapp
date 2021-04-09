@@ -260,8 +260,11 @@ class PrintSessionAlertSettings(AlertSettings):
         )
         super().__init__(
             alert_settings=alert_settings,
-            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
+            *args,
+            alert_type=Alert.AlertTypeChoices.PRINT_SESSION,
+            **kwargs,
         )
+
 
 # TODO combine defect, end, progress events into PrintSessionAlert subtypes
 # class DefectAlertSettings(AlertSettings):
@@ -383,25 +386,30 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
 
 class PrintSessionAlert(Alert):
-
     class AlertSubTypeChoices(models.TextChoices):
         SUCCESS = "SUCCESS", "Print session finished successfully"
         FAILURE = "FAILURE", "Failure detected in print session"
 
-    # TODO additional statuses here (such as unread) are possible via UniqueConstrains definitions 
+    # TODO additional statuses here (such as unread) are possible via UniqueConstrains definitions
     # https://docs.djangoproject.com/en/3.1/ref/models/constraints/#django.db.models.UniqueConstraint
     class Meta:
         constraints = (
-            models.UniqueConstraint(fields=['print_session', 'alert_subtype'], name='unique_alert_type_per_print_session'),
+            models.UniqueConstraint(
+                fields=["print_session", "alert_subtype"],
+                name="unique_alert_type_per_print_session",
+            ),
         )
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
-    
-    alert_subtype = models.CharField(max_length=36, choices=AlertSubTypeChoices.choices, default=AlertSubTypeChoices.SUCCESS)
+
+    alert_subtype = models.CharField(
+        max_length=36,
+        choices=AlertSubTypeChoices.choices,
+        default=AlertSubTypeChoices.SUCCESS,
+    )
 
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
@@ -440,6 +448,7 @@ class PrintSessionAlert(Alert):
         )
         message.send()
         return message
+
 
 # TODO combine defect, end, progress events into PrintSessionAlert subtypes
 # class DefectAlert(Alert):

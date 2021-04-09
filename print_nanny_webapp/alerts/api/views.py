@@ -38,17 +38,19 @@ from ..models import (
     Alert,
     AlertSettings,
     PrintSessionAlert,
-    PrintSessionAlertSettings
+    PrintSessionAlertSettings,
 )
 
 logger = logging.getLogger(__name__)
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 
+
 class AlreadyExists(APIException):
     status_code = 409
     default_detail = "A resource of this type already exists, ignoring request"
     default_code = "already_exists"
+
 
 @extend_schema(
     tags=["alerts"],
@@ -101,6 +103,7 @@ class PrintSessionAlertViewSet(
 
             return Response(response_serializer.data, status.HTTP_201_CREATED)
         return Response(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # TODO combine defect, end, progress events into PrintSessionAlert subtypes
 # @extend_schema(

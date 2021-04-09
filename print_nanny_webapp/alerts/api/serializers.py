@@ -17,7 +17,7 @@ from ..models import (
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
     PrintSessionAlert,
-    PrintSessionAlertSettings
+    PrintSessionAlertSettings,
 )
 
 logger = logging.getLogger(__name__)
@@ -50,6 +50,7 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
     # dataflow writes uploaded video to gcs, so create method acccepts path string
     # this saves having to buffer the file bytes via django's http1 api
     annotated_video = serializers.CharField()
+
     def create(self, validated_data):
         PrintSession = apps.get_model("remote_control", "PrintSession")
         annotated_video = validated_data["annotated_video"]
@@ -59,7 +60,7 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
             user=print_session.user,
             print_session=print_session,
             annotated_video=annotated_video,
-            octoprint_device=print_session.octoprint_device
+            octoprint_device=print_session.octoprint_device,
         )
 
     class Meta:
@@ -70,7 +71,7 @@ class CreatePrintSessionAlertSerializer(AlertSerializer):
 class PrintSessionAlertSerializer(AlertSerializer):
     class Meta:
         model = PrintSessionAlert
-        fields =  "__all__"
+        fields = "__all__"
 
         read_only_fields = (
             "alert_methods",
@@ -163,7 +164,7 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
         ProgressAlert: ProgressAlertSerializer,
-        PrintSessionAlert: PrintSessionAlertSerializer
+        PrintSessionAlert: PrintSessionAlertSerializer,
     }
 
     def to_resource_type(self, model_or_instance):

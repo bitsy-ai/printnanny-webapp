@@ -12,6 +12,7 @@ class ProgressAlertSettingsForm(ModelForm):
         model = ProgressAlertSettings
         fields = ("enabled", "on_progress_percent", "alert_methods")
 
+
 class CommandAlertSettingsForm(ModelForm):
     class Meta:
         model = RemoteControlCommandAlertSettings
