@@ -1,0 +1,16 @@
+Hey {{FIRST_NAME }},
+
+Device name: {{ DEVICE_NAME }}
+
+Is the print job ok? Check out the video below, then let me know what you think.
+{{ GIF_URL }}
+
+Click to STOP the print job:
+{{ STOP_PRINT_URL }}
+
+Click to SUPRESS alerts for the rest of the print job:
+{{ SUPRESS_URL }}
+
+If you do nothing, I'll keep monitoring the print and let you know if I spot another failure.
+
+Print Nanny

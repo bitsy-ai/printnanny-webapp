@@ -34,7 +34,7 @@ class PatchedRemoteControlCommandAlertRequest(object):
     """
     openapi_types = {
         'alert_subtype': 'AlertSubtypeEnum',
-        'alert_method': 'AlertMethodEnum',
+        'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
         'dismissed': 'bool',
@@ -46,7 +46,7 @@ class PatchedRemoteControlCommandAlertRequest(object):
 
     attribute_map = {
         'alert_subtype': 'alert_subtype',
-        'alert_method': 'alert_method',
+        'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
         'color': 'color',
         'dismissed': 'dismissed',
@@ -56,14 +56,14 @@ class PatchedRemoteControlCommandAlertRequest(object):
         'title': 'title'
     }
 
-    def __init__(self, alert_subtype=None, alert_method=None, alert_type=None, color=None, dismissed=None, icon=None, description=None, seen=None, title=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dismissed=None, icon=None, description=None, seen=None, title=None, local_vars_configuration=None):  # noqa: E501
         """PatchedRemoteControlCommandAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._alert_subtype = None
-        self._alert_method = None
+        self._alert_methods = None
         self._alert_type = None
         self._color = None
         self._dismissed = None
@@ -75,8 +75,8 @@ class PatchedRemoteControlCommandAlertRequest(object):
 
         if alert_subtype is not None:
             self.alert_subtype = alert_subtype
-        if alert_method is not None:
-            self.alert_method = alert_method
+        if alert_methods is not None:
+            self.alert_methods = alert_methods
         if alert_type is not None:
             self.alert_type = alert_type
         if color is not None:
@@ -114,25 +114,25 @@ class PatchedRemoteControlCommandAlertRequest(object):
         self._alert_subtype = alert_subtype
 
     @property
-    def alert_method(self):
-        """Gets the alert_method of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
+    def alert_methods(self):
+        """Gets the alert_methods of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
 
 
-        :return: The alert_method of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
-        :rtype: AlertMethodEnum
+        :return: The alert_methods of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
+        :rtype: list[AlertMethodsEnum]
         """
-        return self._alert_method
+        return self._alert_methods
 
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this PatchedRemoteControlCommandAlertRequest.
+    @alert_methods.setter
+    def alert_methods(self, alert_methods):
+        """Sets the alert_methods of this PatchedRemoteControlCommandAlertRequest.
 
 
-        :param alert_method: The alert_method of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
-        :type alert_method: AlertMethodEnum
+        :param alert_methods: The alert_methods of this PatchedRemoteControlCommandAlertRequest.  # noqa: E501
+        :type alert_methods: list[AlertMethodsEnum]
         """
 
-        self._alert_method = alert_method
+        self._alert_methods = alert_methods
 
     @property
     def alert_type(self):

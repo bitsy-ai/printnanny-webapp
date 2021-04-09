@@ -76,38 +76,20 @@ class TestAlertsApi(unittest.TestCase):
         """
         pass
 
-    def test_defect_alerts_create(self):
-        """Test case for defect_alerts_create
+    def test_print_session_alert_create(self):
+        """Test case for print_session_alert_create
 
         """
         pass
 
-    def test_defect_alerts_create2(self):
-        """Test case for defect_alerts_create2
+    def test_print_session_alerts_list(self):
+        """Test case for print_session_alerts_list
 
         """
         pass
 
-    def test_defect_alerts_list(self):
-        """Test case for defect_alerts_list
-
-        """
-        pass
-
-    def test_defect_alerts_partial_update(self):
-        """Test case for defect_alerts_partial_update
-
-        """
-        pass
-
-    def test_defect_alerts_retrieve(self):
-        """Test case for defect_alerts_retrieve
-
-        """
-        pass
-
-    def test_defect_alerts_update(self):
-        """Test case for defect_alerts_update
+    def test_print_session_alerts_retrieve(self):
+        """Test case for print_session_alerts_retrieve
 
         """
         pass

@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **public_key_checksum** | **str** |  | 
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 **ca_certs** | **dict(str, str)** |  | 
+**manage_url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

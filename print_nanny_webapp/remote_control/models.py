@@ -4,6 +4,7 @@ import os
 from django.contrib.auth import get_user_model
 
 import json
+from django.urls import reverse
 from django.apps import apps
 from django.db import models
 from django.utils import timezone
@@ -156,12 +157,13 @@ class OctoPrintDevice(models.Model):
     print_nanny_client_version = models.CharField(max_length=255)
 
     def to_json(self):
-        from print_nanny_webapp.remote_control.api.serializers import (
-            OctoPrintDeviceSerializer,
-        )
+        # from print_nanny_webapp.remote_control.api.serializers import (
+        #     OctoPrintDeviceSerializer,
+        # )
 
-        serializer = OctoPrintDeviceSerializer(instance=self)
-        return json.dumps(serializer.data, sort_keys=True, indent=2)
+        # serializer = OctoPrintDeviceSerializer(instance=self)
+        # TODO HyperLinkedIdentitySerialzier requires request context
+        return json.dumps({}, sort_keys=True, indent=2)
 
     @property
     def cloudiot_device_configs(self):
@@ -195,38 +197,49 @@ class OctoPrintDevice(models.Model):
         return cloudiot_device_dict
 
     @property
-    def print_job_status(self):
-        PrintJobState = apps.get_model("client_events", "PrintJobState")
+    def print_session_status(self):
+        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
-        last_print_job_event = (
-            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
+        last_print_session_event = (
+            PrintSessionState.objects.filter(device=self)
+            .order_by("-created_dt")
+            .first()
         )
-        if last_print_job_event:
-            return last_print_job_event.event_type
+        if last_print_session_event:
+            return last_print_session_event.event_type
         else:
             return "Idle"
 
     @property
-    def print_job_gcode_file(self):
-        PrintJobState = apps.get_model("client_events", "PrintJobState")
+    def print_session_gcode_file(self):
+        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
-        last_print_job_event = (
-            PrintJobState.objects.filter(device=self).order_by("-created_dt").first()
+        last_print_session_event = (
+            PrintSessionState.objects.filter(device=self)
+            .order_by("-created_dt")
+            .first()
         )
-        if last_print_job_event:
-            return last_print_job_event.job_data_file
+        if last_print_session_event:
+            return last_print_session_event.job_data_file
         else:
             return ""
 
     @property
-    def print_job_status_css_class(self):
-        PrintJobState = apps.get_model("client_events", "PrintJobState")
+    def print_session_status_css_class(self):
+        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
-        return PrintJobState.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+        return PrintSessionState.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
 
     @property
     def monitoring_active_css_class(self):
         return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
+
+    @property
+    def manage_url(self):
+        return reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.id},
+        )
 
 
 class GcodeFile(models.Model):
@@ -284,40 +297,42 @@ class PrinterProfile(models.Model):
     volume_origin = models.CharField(null=True, max_length=255)
     volume_width = models.FloatField(null=True)
 
+
 class PrintSession(models.Model):
-    '''
-        Represents a unique print job/session
-    '''
+    """
+    Represents a unique print job/session
+    """
+
     class Meta:
-        unique_together = ("device", "session")
-    
-    created_dt = models.DateTimeField(db_index=True)
-    end_dt = models.DateTimeField(null=True, db_index=True)
-    device = models.ForeignKey(OctoPrintDevice, on_delete=models.CASCADE, db_index=True)
+        unique_together = ("octoprint_device", "session")
+
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    octoprint_device = models.ForeignKey(
+        OctoPrintDevice, on_delete=models.CASCADE, db_index=True
+    )
     session = models.CharField(max_length=255, db_index=True)
+    progress = JSONField(default={})
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    printer_profile = models.ForeignKey(
+        PrinterProfile, on_delete=models.CASCADE, null=True
+    )
+    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
+    gcode_filename = models.CharField(max_length=255, null=True)
+
+    @property
+    def should_alert(self):
+        """
+        Encapsulates stateful alert logic
+        """
+        print(dir(self))
+        # PrintSession alert does not exist
+        # TODO enable defect alert check
+        return self.printsessionalert_set.count() == 0
 
     def __str__(self):
         return self.session
-
-class PrintJob(models.Model):
-    class Meta:
-        unique_together = ("user", "name", "created_dt")
-
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-    print_session = models.ForeignKey(PrintSession, null=True, db_index=True, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    printer_profile = models.ForeignKey(PrinterProfile, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
-    progress = JSONField(default={})
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.SET_NULL, null=True
-    )
-
-    @property
-    def filename(self):
-        return self.gcode_file.file.name
 
 
 class RemoteControlCommandManager(models.Manager):
@@ -400,35 +415,35 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     @classmethod
-    def get_valid_actions(cls, print_job_status):
-        PrintJobState = apps.get_model("client_events", "PrintJobState")
+    def get_valid_actions(cls, print_session_status):
+        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
 
         valid_actions = {
-            PrintJobState.EventType.PRINT_STARTED: [
+            PrintSessionState.EventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_PAUSE,
             ],
-            PrintJobState.EventType.PRINT_DONE: [
+            PrintSessionState.EventType.PRINT_DONE: [
                 cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
                 cls.Command.SNAPSHOT,
             ],
-            PrintJobState.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
-            PrintJobState.EventType.PRINT_CANCELLING: [],
-            PrintJobState.EventType.PRINT_PAUSED: [
+            PrintSessionState.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintSessionState.EventType.PRINT_CANCELLING: [],
+            PrintSessionState.EventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
                 cls.Command.MOVE_NOZZLE,
             ],
-            PrintJobState.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            PrintSessionState.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
             "Idle": [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
                 cls.Command.SNAPSHOT,
             ],
         }
-        return valid_actions[print_job_status]
+        return valid_actions[print_session_status]
 
     ACTION_CSS_CLASSES = {
         Command.PRINT_STOP: "danger",
@@ -450,4 +465,3 @@ class RemoteControlCommand(models.Model):
     @property
     def octoprint_event_type(self):
         return self.PLUGIN_EVENT_PREFIX + stringcase.snakecase(self.command)
-

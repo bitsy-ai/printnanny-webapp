@@ -6,14 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0034_defectalert_dataframe'),
+        ("alerts", "0034_defectalert_dataframe"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='defectalertsettings',
-            name='session',
-            field=models.CharField(db_index=True, default='defaultsession', max_length=255),
+            model_name="defectalertsettings",
+            name="session",
+            field=models.CharField(
+                db_index=True, default="defaultsession", max_length=255
+            ),
             preserve_default=False,
         ),
     ]

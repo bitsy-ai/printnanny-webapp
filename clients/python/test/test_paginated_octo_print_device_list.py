@@ -71,7 +71,8 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                         octoprint_version = '', 
                         plugin_version = '', 
                         print_nanny_client_version = '', 
-                        cloudiot_device_configs = '', )
+                        cloudiot_device_configs = '', 
+                        manage_url = '', )
                     ]
             )
         else :

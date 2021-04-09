@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
+**manage_url** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

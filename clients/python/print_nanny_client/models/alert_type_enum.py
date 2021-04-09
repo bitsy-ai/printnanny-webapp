@@ -31,9 +31,9 @@ class AlertTypeEnum(object):
     COMMAND = "COMMAND"
     PRINT_PROGRESS = "PRINT_PROGRESS"
     MANUAL_VIDEO_UPLOAD = "MANUAL_VIDEO_UPLOAD"
-    DEFECT = "DEFECT"
+    PRINT_SESSION = "PRINT_SESSION"
 
-    allowable_values = [COMMAND, PRINT_PROGRESS, MANUAL_VIDEO_UPLOAD, DEFECT]  # noqa: E501
+    allowable_values = [COMMAND, PRINT_PROGRESS, MANUAL_VIDEO_UPLOAD, PRINT_SESSION]  # noqa: E501
 
     """
     Attributes:

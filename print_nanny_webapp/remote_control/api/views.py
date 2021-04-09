@@ -29,7 +29,7 @@ import django_filters.rest_framework
 
 from .serializers import (
     PrinterProfileSerializer,
-    PrintJobSerializer,
+    PrintSessionSerializer,
     GcodeFileSerializer,
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
@@ -38,10 +38,9 @@ from .serializers import (
     RemoteControlSnapshotCreateResponseSerializer,
 )
 
-from print_nanny_webapp.alerts.api.serializers import DefectAlertSerializer
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
-    PrintJob,
+    PrintSession,
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
@@ -72,7 +71,12 @@ RemoteControlCommandAlertSettings = apps.get_model(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintJobSerializer, 400: PrintJobSerializer})
+    create=extend_schema(
+        responses={
+            201: RemoteControlCommandSerializer,
+            400: RemoteControlCommandSerializer,
+        }
+    )
 )
 class CommandViewSet(
     ListModelMixin,
@@ -124,49 +128,37 @@ class CommandViewSet(
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
-    create=extend_schema(responses={201: PrintJobSerializer, 400: PrintJobSerializer})
+    create=extend_schema(
+        responses={201: PrintSessionSerializer, 400: PrintSessionSerializer}
+    )
 )
-class PrintJobViewSet(
+class PrintSessionViewSet(
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     GenericViewSet,
 ):
-    serializer_class = PrintJobSerializer
-    queryset = PrintJob.objects.all()
-    lookup_field = "id"
-    basename = "print-job"  # users for view name generation e.g. "print-job-detail"
+    serializer_class = PrintSessionSerializer
+    queryset = PrintSession.objects.all()
+    lookup_field = "session"
+    basename = "print-session"  # users for view name generation e.g. "print-job-detail"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="print_jobs_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
-    )
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data, status=status.HTTP_201_CREATED, headers=headers
-        )
-
-    @extend_schema(
-        tags=["remote-control"],
-        operation_id="print_jobs_update",
-        responses={400: PrintJobSerializer, 200: PrintJobSerializer},
+        operation_id="print_session_update",
+        responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def update(self, *args, **kwargs):
         return super().update(*args, **kwargs)
 
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
-        # prometheus_metrics.print_job_status.state(instance.last_status)
-        return Response(serializer.data, status=status.HTTP_201_OK)
+        # prometheus_metrics.print_session_status.state(instance.last_status)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def perform_update(self, serializer):
 
@@ -176,13 +168,13 @@ class PrintJobViewSet(
             and instance % user.user_settings.alert_on_progress_percent == 0
         ):
             create_progress_video_task.delay(instance.id, instance.progress)
-        prometheus_metrics.print_job_status.state(instance.last_status)
+        prometheus_metrics.print_session_status.state(instance.last_status)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         tags=["remote-control"],
-        operation_id="print_jobs_partial_update",
-        responses={400: PrintJobSerializer, 200: PrintJobSerializer},
+        operation_id="print_session_partial_update",
+        responses={400: PrintSessionSerializer, 200: PrintSessionSerializer},
     )
     def partial_update(self, request, *args, **kwargs):
         kwargs["partial"] = True
@@ -209,7 +201,7 @@ class PrinterProfileViewSet(
     @extend_schema(
         tags=["remote-control"],
         operation_id="printer_profiles_create",
-        responses={400: PrintJobSerializer, 201: PrintJobSerializer},
+        responses={400: PrintSessionSerializer, 201: PrintSessionSerializer},
     )
     def create(self, *args, **kwargs):
         return super().create(*args, **kwargs)
@@ -286,7 +278,6 @@ class GcodeFileViewSet(
 ):
     parser_classes = (MultiPartParser, FormParser)
     serializer_class = GcodeFileSerializer
-    queryset = GcodeFile.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
@@ -405,27 +396,3 @@ class OctoPrintDeviceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-    @extend_schema(
-        tags=["alerts", "remote-control"],
-        request=DefectAlertSerializer,
-        operation_id="defect_alerts_create",
-        responses={
-            201: DefectAlertSerializer,
-            400: DefectAlertSerializer,
-            403: DefectAlertSerializer
-        },
-    )
-    @action(detail=True, methods=["POST"])
-    def create_defect_alerts(self, request):
-        serializer = DefectAlertSerializer(data=request.data)
-        if serializer.is_valid():
-            if not request.user.id == serializer.validated_data["user"] and not request.user.is_superuser:
-                return Response({}, status=status.HTTP_403_FORBIDDEN)
-            
-            instance = serializer.save()
-            instance.trigger_alert_task()
-            
-            return Response(serializer.data, status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

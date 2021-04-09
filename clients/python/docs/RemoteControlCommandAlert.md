@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alert_subtype** | [**AlertSubtypeEnum**](AlertSubtypeEnum.md) |  | 
-**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
+**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
 **color** | **str** |  | 
 **created_dt** | **datetime** |  | [optional] [readonly] 

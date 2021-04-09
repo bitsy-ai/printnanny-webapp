@@ -52,12 +52,6 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_defect_alerts_create2(self):
-        """Test case for defect_alerts_create2
-
-        """
-        pass
-
     def test_gcode_files_create(self):
         """Test case for gcode_files_create
 
@@ -130,32 +124,32 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_print_jobs_create(self):
-        """Test case for print_jobs_create
+    def test_print_session_partial_update(self):
+        """Test case for print_session_partial_update
 
         """
         pass
 
-    def test_print_jobs_list(self):
-        """Test case for print_jobs_list
+    def test_print_session_update(self):
+        """Test case for print_session_update
 
         """
         pass
 
-    def test_print_jobs_partial_update(self):
-        """Test case for print_jobs_partial_update
+    def test_print_sessions_create(self):
+        """Test case for print_sessions_create
 
         """
         pass
 
-    def test_print_jobs_retrieve(self):
-        """Test case for print_jobs_retrieve
+    def test_print_sessions_list(self):
+        """Test case for print_sessions_list
 
         """
         pass
 
-    def test_print_jobs_update(self):
-        """Test case for print_jobs_update
+    def test_print_sessions_retrieve(self):
+        """Test case for print_sessions_retrieve
 
         """
         pass

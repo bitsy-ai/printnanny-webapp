@@ -37,7 +37,9 @@ class TestRemoteControlCommandAlert(unittest.TestCase):
         if include_optional :
             return RemoteControlCommandAlert(
                 alert_subtype = 'RECEIVED', 
-                alert_method = 'UI', 
+                alert_methods = [
+                    'UI'
+                    ], 
                 alert_type = 'COMMAND', 
                 color = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -57,7 +59,6 @@ class TestRemoteControlCommandAlert(unittest.TestCase):
         else :
             return RemoteControlCommandAlert(
                 alert_subtype = 'RECEIVED',
-                alert_method = 'UI',
                 alert_type = 'COMMAND',
                 color = '',
                 icon = '',

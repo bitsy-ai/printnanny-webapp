@@ -35,43 +35,41 @@ class AlertPolymorphicRequest(object):
     openapi_types = {
         'dismissed': 'bool',
         'alert_subtype': 'AlertSubtypeEnum',
-        'alert_method': 'AlertMethodEnum',
+        'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
         'icon': 'str',
         'description': 'str',
         'seen': 'bool',
         'title': 'str',
-        'print_session': 'str',
-        'octoprint_device': 'int',
-        'user': 'int',
         'sent': 'bool',
         'progress_percent': 'int',
-        'device': 'int'
+        'octoprint_device': 'int',
+        'device': 'int',
+        'print_session': 'int'
     }
 
     attribute_map = {
         'dismissed': 'dismissed',
         'alert_subtype': 'alert_subtype',
-        'alert_method': 'alert_method',
+        'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
         'color': 'color',
         'icon': 'icon',
         'description': 'description',
         'seen': 'seen',
         'title': 'title',
-        'print_session': 'print_session',
-        'octoprint_device': 'octoprint_device',
-        'user': 'user',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
-        'device': 'device'
+        'octoprint_device': 'octoprint_device',
+        'device': 'device',
+        'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, print_session=None, octoprint_device=None, user=None, sent=None, progress_percent=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -79,25 +77,25 @@ class AlertPolymorphicRequest(object):
 
         self._dismissed = None
         self._alert_subtype = None
-        self._alert_method = None
+        self._alert_methods = None
         self._alert_type = None
         self._color = None
         self._icon = None
         self._description = None
         self._seen = None
         self._title = None
-        self._print_session = None
-        self._octoprint_device = None
-        self._user = None
         self._sent = None
         self._progress_percent = None
+        self._octoprint_device = None
         self._device = None
+        self._print_session = None
         self.discriminator = 'type'
 
         if dismissed is not None:
             self.dismissed = dismissed
         self.alert_subtype = alert_subtype
-        self.alert_method = alert_method
+        if alert_methods is not None:
+            self.alert_methods = alert_methods
         self.alert_type = alert_type
         self.color = color
         self.icon = icon
@@ -105,14 +103,13 @@ class AlertPolymorphicRequest(object):
         if seen is not None:
             self.seen = seen
         self.title = title
-        self.print_session = print_session
-        self.octoprint_device = octoprint_device
-        self.user = user
         if sent is not None:
             self.sent = sent
         if progress_percent is not None:
             self.progress_percent = progress_percent
+        self.octoprint_device = octoprint_device
         self.device = device
+        self.print_session = print_session
 
     @property
     def dismissed(self):
@@ -159,27 +156,25 @@ class AlertPolymorphicRequest(object):
         self._alert_subtype = alert_subtype
 
     @property
-    def alert_method(self):
-        """Gets the alert_method of this AlertPolymorphicRequest.  # noqa: E501
+    def alert_methods(self):
+        """Gets the alert_methods of this AlertPolymorphicRequest.  # noqa: E501
 
 
-        :return: The alert_method of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: AlertMethodEnum
+        :return: The alert_methods of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: list[AlertMethodsEnum]
         """
-        return self._alert_method
+        return self._alert_methods
 
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this AlertPolymorphicRequest.
+    @alert_methods.setter
+    def alert_methods(self, alert_methods):
+        """Sets the alert_methods of this AlertPolymorphicRequest.
 
 
-        :param alert_method: The alert_method of this AlertPolymorphicRequest.  # noqa: E501
-        :type alert_method: AlertMethodEnum
+        :param alert_methods: The alert_methods of this AlertPolymorphicRequest.  # noqa: E501
+        :type alert_methods: list[AlertMethodsEnum]
         """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
-        self._alert_method = alert_method
+        self._alert_methods = alert_methods
 
     @property
     def alert_type(self):
@@ -318,73 +313,6 @@ class AlertPolymorphicRequest(object):
         self._title = title
 
     @property
-    def print_session(self):
-        """Gets the print_session of this AlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The print_session of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this AlertPolymorphicRequest.
-
-
-        :param print_session: The print_session of this AlertPolymorphicRequest.  # noqa: E501
-        :type print_session: str
-        """
-        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
-
-        self._print_session = print_session
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this AlertPolymorphicRequest.
-
-
-        :param octoprint_device: The octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
-        :type octoprint_device: int
-        """
-
-        self._octoprint_device = octoprint_device
-
-    @property
-    def user(self):
-        """Gets the user of this AlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The user of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this AlertPolymorphicRequest.
-
-
-        :param user: The user of this AlertPolymorphicRequest.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
-
-    @property
     def sent(self):
         """Gets the sent of this AlertPolymorphicRequest.  # noqa: E501
 
@@ -435,6 +363,27 @@ class AlertPolymorphicRequest(object):
         self._progress_percent = progress_percent
 
     @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this AlertPolymorphicRequest.
+
+
+        :param octoprint_device: The octoprint_device of this AlertPolymorphicRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
+
+    @property
     def device(self):
         """Gets the device of this AlertPolymorphicRequest.  # noqa: E501
 
@@ -456,6 +405,29 @@ class AlertPolymorphicRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this AlertPolymorphicRequest.
+
+
+        :param print_session: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :type print_session: int
+        """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
+
+        self._print_session = print_session
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

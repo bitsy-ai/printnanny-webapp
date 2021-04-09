@@ -206,7 +206,7 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
     def get_context_data(self, *args, **kwargs):
         self.get_object()
         context = super(OctoPrintDevicesDetailView, self).get_context_data(**kwargs)
-        # context["valid_actions"] = RemoteControlCommand.VALID_ACTIONS[context["object"].print_job_status]
+        # context["valid_actions"] = RemoteControlCommand.VALID_ACTIONS[context["object"].print_session_status]
 
         context["sent_commands"] = RemoteControlCommand.objects.filter(
             user_id=self.request.user
@@ -220,7 +220,7 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
         obj = super().get_object()
 
         kwargs["command_choices"] = RemoteControlCommand.get_valid_actions(
-            obj.print_job_status
+            obj.print_session_status
         )
         return kwargs
 

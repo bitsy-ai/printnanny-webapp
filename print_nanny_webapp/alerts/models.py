@@ -17,11 +17,12 @@ from channels.layers import get_channel_layer
 from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
-
+from django.urls import reverse
 import stringcase
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-from print_nanny_webapp.alerts.tasks.common import trigger_alert_task
+from print_nanny_webapp.alerts.tasks.common import trigger_alerts_task
+
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
@@ -38,8 +39,6 @@ def _upload_to(instance, filename):
 
 
 class Alert(PolymorphicModel):
-
-
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -47,7 +46,7 @@ class Alert(PolymorphicModel):
             "MANUAL_VIDEO_UPLOAD",
             "Manually-uploaded video is ready for review",
         )
-        DEFECT = "DEFECT", "Defect detected in print"
+        PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
         UI = "UI", "Receive Print Nanny UI notifications"
@@ -62,7 +61,11 @@ class Alert(PolymorphicModel):
             self.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
         }
 
-    alert_method = models.CharField(choices=AlertMethodChoices.choices, max_length=255)
+    alert_methods = ChoiceArrayField(
+        models.CharField(choices=AlertMethodChoices.choices, max_length=255),
+        blank=True,
+        default=(AlertMethodChoices.UI, AlertMethodChoices.EMAIL),
+    )
     alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -75,15 +78,14 @@ class Alert(PolymorphicModel):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
 
-    def trigger_alert_task(self):
-        return trigger_alert_task.delay(self.id)
+    def trigger_alerts_task(self, serialized_obj):
+        return trigger_alerts_task.delay(self.id, serialized_obj)
 
-    def trigger_alert(self):
-        from print_nanny_webapp.alerts.api.serializers import AlertPolymorphicSerializer
+    def trigger_alerts(self, serialized_obj):
+
         if self.sent is False:
-            alert_serializer = AlertPolymorphicSerializer(self)
-            data = alert_serializer.data
-            self.alert_trigger_method_map[self.alert_method](data)
+            for alert_method in self.alert_methods:
+                self.alert_trigger_method_map[alert_method](serialized_obj)
             self.sent = True
             self.save()
 
@@ -103,11 +105,13 @@ class Alert(PolymorphicModel):
                 "data": JSONRenderer().render(data),
             },
         )
-    
-    
+
     def trigger_email_alert(self, data):
 
-        device_url = reverse("dashboard:octoprint-device:detail", kwargs={"pk": self.octoprint_device.id })
+        device_url = reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
+        )
         merge_data = {
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.user.first_name or "Maker",
@@ -115,12 +119,8 @@ class Alert(PolymorphicModel):
             "ALERT_TYPE": self.get_alert_type_display(),
         }
 
-        text_body = render_to_string(
-            "email/generic_alert_body.txt", merge_data
-        )
-        subject = render_to_string(
-            "email/generic_alert_subject.txt", merge_data
-        )
+        text_body = render_to_string("email/generic_alert_body.txt", merge_data)
+        subject = render_to_string("email/generic_alert_subject.txt", merge_data)
 
         message = AnymailMessage(
             subject=subject,
@@ -128,17 +128,12 @@ class Alert(PolymorphicModel):
             to=[self.user.email],
             tags=[
                 self.__class__,
-                self.alert_subtype,
                 f"User:{self.user.id}",
-                f"Device:{self.octoprint_device.id}"
+                f"Device:{self.octoprint_device.id}",
             ],
         )
-        message.send()
 
         return message
-
-
-
 
     def trigger_discord_alert(self, data):
 
@@ -175,6 +170,7 @@ class Alert(PolymorphicModel):
             },
         )
 
+
 class AlertSettings(PolymorphicModel):
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -186,7 +182,7 @@ class AlertSettings(PolymorphicModel):
     alert_methods = ChoiceArrayField(
         models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255),
         blank=True,
-        default=(Alert.AlertMethodChoices.UI,),
+        default=(Alert.AlertMethodChoices.UI, Alert.AlertMethodChoices.EMAIL),
     )
     enabled = models.BooleanField(
         default=True, help_text="Enable or disable this alert channel"
@@ -254,10 +250,28 @@ class ProgressAlertSettings(AlertSettings):
             )
 
 
-class DefectAlertSettings(AlertSettings):
+class PrintSessionAlertSettings(AlertSettings):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+        user = kwargs.get("user")
+        alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
+            user=user
+        )
+        super().__init__(
+            alert_settings=alert_settings,
+            *args,
+            alert_type=Alert.AlertTypeChoices.PRINT_SESSION,
+            **kwargs,
+        )
+
+
+# TODO combine defect, end, progress events into PrintSessionAlert subtypes
+# class DefectAlertSettings(AlertSettings):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
 
 
 class RemoteControlCommandAlertSettings(AlertSettings):
@@ -331,7 +345,6 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         default=(AlertSubTypeChoices.FAILED,),
     )
 
-
     def trigger_email_alert(self, data):
 
         snapshot = self.command.snapshots.order_by("-created_dt").first()
@@ -366,18 +379,116 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
         return message
 
+
 ##
 # Alert Models
 ##
 
 
-class DefectAlert(Alert):
+class PrintSessionAlert(Alert):
+    class AlertSubTypeChoices(models.TextChoices):
+        SUCCESS = "SUCCESS", "Print session finished successfully"
+        FAILURE = "FAILURE", "Failure detected in print session"
+
+    # TODO additional statuses here (such as unread) are possible via UniqueConstrains definitions
+    # https://docs.djangoproject.com/en/3.1/ref/models/constraints/#django.db.models.UniqueConstraint
+    class Meta:
+        constraints = (
+            models.UniqueConstraint(
+                fields=["print_session", "alert_subtype"],
+                name="unique_alert_type_per_print_session",
+            ),
+        )
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+        super().__init__(
+            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
+        )
 
-    # dataframe = models.FileField(upload_to=_upload_to, null=True)
-    print_job = models.ForeignKey("remote_control.PrintJob", db_index=True, null=True, on_delete=models.CASCADE)
+    alert_subtype = models.CharField(
+        max_length=36,
+        choices=AlertSubTypeChoices.choices,
+        default=AlertSubTypeChoices.SUCCESS,
+    )
+
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
+    annotated_video = models.FileField(upload_to=_upload_to)
+
+    def trigger_email_alert(self, data):
+
+        device_url = reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
+        )
+        merge_data = {
+            "DEVICE_URL": device_url,
+            "FIRST_NAME": self.user.first_name or "Maker",
+            "DEVICE_NAME": self.octoprint_device.name,
+            # TODO session url view
+            "ANNOTATED_VIDEO_URL": self.annotated_video.url,
+        }
+
+        text_body = render_to_string("email/print_done_body.txt", merge_data)
+        # html_body = render_to_string("email/print_sessinn_done_body.html", merge_data)
+
+        subject = render_to_string("email/print_done_subject.txt", merge_data)
+        message = AnymailMessage(
+            subject=subject,
+            body=text_body,
+            to=[self.user.email],
+            tags=[
+                self.__class__,
+                f"User:{self.user.id}",
+                f"Device:{self.octoprint_device.id}",
+                f"PrintSessionID:{self.print_session.id}",
+                f"PrintSession:{self.print_session.session}",
+            ],
+        )
+        message.send()
+        return message
+
+
+# TODO combine defect, end, progress events into PrintSessionAlert subtypes
+# class DefectAlert(Alert):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.DEFECT, **kwargs)
+
+#     print_session = models.ForeignKey(
+#         "remote_control.PrintSession", on_delete=models.CASCADE
+#     )
+
+#     def trigger_email_alert(self, data ):
+
+#         device_url = reverse(
+#             "dashboard:octoprint-devices:detail",
+#             kwargs={"pk": self.octoprint_device.id},
+#         )
+#         merge_data = {
+#             "DEVICE_URL": device_url,
+#             "FIRST_NAME": self.user.first_name or "Maker",
+#             "DEVICE_NAME": self.octoprint_device.name,
+#             "SUPRESS_URL": data["supress_url"],
+#             "STOP_PRINT_URL": data["supress_url"],
+#         }
+
+#         text_body = render_to_string("email/defect_alert_body.txt", merge_data)
+#         html_body = render_to_string("email/defect_alert_body.txt", merge_data)
+
+#         subject = render_to_string("email/defect_alert_subject.txt", merge_data)
+#         message = AnymailMessage(
+#             subject=subject,
+#             body=text_body,
+#             to=[self.user.email],
+#             tags=[
+#                 self.__class__,
+#                 f"User:{self.user.id}",
+#                 f"Device:{self.octoprint_device.id}",
+#             ],
+#         )
+#         message.send()
+#         return message
 
 
 class ProgressAlert(Alert):
@@ -521,6 +632,7 @@ class ManualVideoUploadAlert(Alert):
     @property
     def original_filename(self):
         return os.path.basename(self.original_video.name)
+
 
 class AlertPlot(models.Model):
     image = models.ImageField(upload_to=_upload_to)

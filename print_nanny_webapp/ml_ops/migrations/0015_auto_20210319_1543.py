@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0014_devicecalibration_dataframe'),
+        ("ml_ops", "0014_devicecalibration_dataframe"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='devicecalibration',
-            old_name='dataframe',
-            new_name='config_file',
+            model_name="devicecalibration",
+            old_name="dataframe",
+            new_name="config_file",
         ),
     ]

@@ -8,27 +8,55 @@ import print_nanny_webapp.client_events.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0022_auto_20210307_1828'),
+        ("client_events", "0022_auto_20210307_1828"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MonitoringFrameEvent',
+            name="MonitoringFrameEvent",
             fields=[
-                ('clientevent_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='client_events.clientevent')),
-                ('ts', models.DateTimeField(db_index=True)),
-                ('session', models.CharField(max_length=128)),
-                ('image', models.ImageField(upload_to=print_nanny_webapp.client_events.models._upload_to)),
+                (
+                    "clientevent_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="client_events.clientevent",
+                    ),
+                ),
+                ("ts", models.DateTimeField(db_index=True)),
+                ("session", models.CharField(max_length=128)),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to=print_nanny_webapp.client_events.models._upload_to
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'base_manager_name': 'objects',
+                "abstract": False,
+                "base_manager_name": "objects",
             },
-            bases=('client_events.clientevent',),
+            bases=("client_events.clientevent",),
         ),
         migrations.AlterField(
-            model_name='clientevent',
-            name='client_event_type',
-            field=models.CharField(choices=[('plugin', 'OctoPrint Nanny plugin events'), ('octoprint', 'OctoPrint core and bundled plugins events'), ('octoprint_job', 'OctoPrint print job events'), ('monitoring_frameMonitoring frame event (active learning mode)', 'Monitoring Frame')], db_index=True, default='plugin', max_length=255),
+            model_name="clientevent",
+            name="client_event_type",
+            field=models.CharField(
+                choices=[
+                    ("plugin", "OctoPrint Nanny plugin events"),
+                    ("octoprint", "OctoPrint core and bundled plugins events"),
+                    ("octoprint_job", "OctoPrint print job events"),
+                    (
+                        "monitoring_frameMonitoring frame event (active learning mode)",
+                        "Monitoring Frame",
+                    ),
+                ],
+                db_index=True,
+                default="plugin",
+                max_length=255,
+            ),
         ),
     ]

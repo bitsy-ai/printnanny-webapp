@@ -5,9 +5,12 @@ volumes:
   local_postgres_data_backups: {}
   local_prometheus_data: {}
   local_file_data: {}
-
 services:
+
   django: &django
+    # enables use of pdb
+    stdin_open: true
+    tty: true
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -84,6 +87,9 @@ services:
 
   celeryworker:
     <<: *django
+    # celery uses rdb (telnet-based debugger) instead of pdb
+    stdin_open: false
+    tty: false
     image: print_nanny_webapp_local_celeryworker
     container_name: celeryworker
     depends_on:
@@ -96,7 +102,9 @@ services:
   celerybeat:
     <<: *django
     user: 1000:1000
-
+    # celery uses rdb (telnet-based debugger) instead of pdb
+    stdin_open: false
+    tty: false
     image: print_nanny_webapp_local_celerybeat
     container_name: celerybeat
     depends_on:

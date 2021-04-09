@@ -6,13 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0025_auto_20210313_1447'),
+        ("client_events", "0025_auto_20210313_1447"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='monitoringframeevent',
-            name='event_type',
-            field=models.CharField(choices=[('monitoring_frame_raw', 'Monitoring frame sent without model annotations'), ('monitoring_frame_post', 'Monitoring frame sent with on-device annotations')], db_index=True, default='monitoring_frame_raw', max_length=255),
+            model_name="monitoringframeevent",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    (
+                        "monitoring_frame_raw",
+                        "Monitoring frame sent without model annotations",
+                    ),
+                    (
+                        "monitoring_frame_post",
+                        "Monitoring frame sent with on-device annotations",
+                    ),
+                ],
+                db_index=True,
+                default="monitoring_frame_raw",
+                max_length=255,
+            ),
         ),
     ]

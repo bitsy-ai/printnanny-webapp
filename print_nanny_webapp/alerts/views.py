@@ -10,14 +10,12 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from .forms import (
     ProgressAlertSettingsForm,
-    DefectAlertSettingsForm,
     CommandAlertSettingsForm,
     DiscordMethodSettingsForm,
 )
 from .models import (
     Alert,
     ProgressAlertSettings,
-    DefectAlertSettings,
     RemoteControlCommandAlertSettings,
     DiscordMethodSettings,
 )
@@ -30,7 +28,6 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     success_url = "/alerts/settings"
     form_classes = {
         "progress": ProgressAlertSettingsForm,
-        "defect": DefectAlertSettingsForm,
         "command": CommandAlertSettingsForm,
         "discord": DiscordMethodSettingsForm,
     }
@@ -55,22 +52,23 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         success_url = self.get_success_url()
         return HttpResponseRedirect(success_url)
 
-    def create_defect_form(self, **kwargs):
-        instance, created = DefectAlertSettings.objects.get_or_create(
-            user=self.request.user,
-        )
-        if instance is not None:
-            return DefectAlertSettingsForm(instance=instance, **kwargs)
-        else:
-            return DefectAlertSettingsForm(**kwargs)
+    # TODO combine defect, end, progress events into PrintSessionAlert subtypes
+    # def create_defect_form(self, **kwargs):
+    #     instance, created = DefectAlertSettings.objects.get_or_create(
+    #         user=self.request.user,
+    #     )
+    #     if instance is not None:
+    #         return DefectAlertSettingsForm(instance=instance, **kwargs)
+    #     else:
+    #         return DefectAlertSettingsForm(**kwargs)
 
-    def defect_form_valid(self, form):
-        form.user = self.request.user
-        form.alert_type = Alert.AlertTypeChoices.DEFECT
-        form.save()
+    # def defect_form_valid(self, form):
+    #     form.user = self.request.user
+    #     form.alert_type = Alert.AlertTypeChoices.DEFECT
+    #     form.save()
 
-        success_url = self.get_success_url()
-        return HttpResponseRedirect(success_url)
+    #     success_url = self.get_success_url()
+    #     return HttpResponseRedirect(success_url)
 
     def create_discord_form(self, **kwargs):
         instance, created = DiscordMethodSettings.objects.get_or_create(

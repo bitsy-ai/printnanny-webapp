@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from rest_framework import serializers
 
 from print_nanny_webapp.remote_control.models import (
     GcodeFile,
-    PrintJob,
+    PrintSession,
     PrinterProfile,
     OctoPrintDevice,
     RemoteControlCommand,
@@ -50,6 +51,10 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     # def get_ca_certs(self, obj):
     #     return getattr(obj, "ca_certs", None)
 
+    manage_url = serializers.HyperlinkedIdentityField(
+        view_name="dashboard:octoprint-devices:detail", lookup_field="pk"
+    )
+
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
@@ -59,6 +64,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "public_key_checksum",
             "cloudiot_device_configs",
             "ca_certs",
+            "manage_url",
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -78,6 +84,9 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     def update_or_create(self, user, serial, validated_data):
         unique_together = ("user", "serial")
         defaults = {k: v for k, v in validated_data.items() if k not in unique_together}
+        unique_together_fields = {
+            k: v for k, v in validated_data.items() if k in unique_together
+        }
         return OctoPrintDevice.objects.update_or_create(
             user=user, serial=serial, defaults=validated_data
         )
@@ -90,14 +99,19 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
     def get_cloudiot_device_configs(self, obj):
         return obj.cloudiot_device_configs
 
+    manage_url = serializers.HyperlinkedIdentityField(
+        view_name="dashboard:octoprint-devices:detail", lookup_field="pk"
+    )
+
     class Meta:
         model = OctoPrintDevice
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
-            "cloudiot_device_configs"
+            "cloudiot_device_configs",
+            "manage_url",
         ]
 
         extra_kwargs = {
-            "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
+            "url": {"view_name": "api:octoprint-devices-detail", "lookup_field": "id"},
         }
 
         read_only_fields = (
@@ -168,14 +182,23 @@ class GcodeFileSerializer(serializers.ModelSerializer):
         ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
 
 
-class PrintJobSerializer(serializers.ModelSerializer):
+class PrintSessionSerializer(serializers.ModelSerializer):
+    should_alert = serializers.SerializerMethodField()
+
+    def get_should_alert(self, obj):
+        return obj.should_alert
+
     class Meta:
-        model = PrintJob
-        fields = [field.name for field in PrintJob._meta.fields] + ["url"]
+        model = PrintSession
+        fields = [field.name for field in PrintSession._meta.fields] + [
+            "url",
+            "should_alert",
+        ]
         read_only_fields = ("user",)
         extra_kwargs = {
-            "url": {"view_name": "api:print-job-detail", "lookup_field": "id"}
+            "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
         }
+        lookup_field = ("session",)
 
 
 class PrinterProfileSerializer(serializers.ModelSerializer):

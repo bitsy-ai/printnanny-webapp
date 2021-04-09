@@ -590,156 +590,6 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def defect_alerts_create2(self, id, defect_alert_request, **kwargs):  # noqa: E501
-        """defect_alerts_create2  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.defect_alerts_create2(id, defect_alert_request, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this octo print device. (required)
-        :type id: int
-        :param defect_alert_request: (required)
-        :type defect_alert_request: DefectAlertRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: DefectAlert
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.defect_alerts_create2_with_http_info(id, defect_alert_request, **kwargs)  # noqa: E501
-
-    def defect_alerts_create2_with_http_info(self, id, defect_alert_request, **kwargs):  # noqa: E501
-        """defect_alerts_create2  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.defect_alerts_create2_with_http_info(id, defect_alert_request, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this octo print device. (required)
-        :type id: int
-        :param defect_alert_request: (required)
-        :type defect_alert_request: DefectAlertRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(DefectAlert, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'id',
-            'defect_alert_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method defect_alerts_create2" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `defect_alerts_create2`")  # noqa: E501
-        # verify the required parameter 'defect_alert_request' is set
-        if self.api_client.client_side_validation and ('defect_alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['defect_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `defect_alert_request` when calling `defect_alerts_create2`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'defect_alert_request' in local_var_params:
-            body_params = local_var_params['defect_alert_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            201: "DefectAlert",
-            400: "DefectAlert",
-            403: "DefectAlert",
-        }
-
-        return self.api_client.call_api(
-            '/api/octoprint-devices/{id}/create_defect_alerts/', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
     def gcode_files_create(self, name, file, file_hash, octoprint_device, **kwargs):  # noqa: E501
         """gcode_files_create  # noqa: E501
 
@@ -1055,8 +905,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_partial_update(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name:
         :type name: str
         :param file:
@@ -1092,8 +942,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name:
         :type name: str
         :param file:
@@ -1226,8 +1076,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1255,8 +1105,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -1359,8 +1209,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_update(id, name, file, file_hash, octoprint_device, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name: (required)
         :type name: str
         :param file: (required)
@@ -1396,8 +1246,8 @@ class RemoteControlApi(object):
         >>> thread = api.gcode_files_update_with_http_info(id, name, file, file_hash, octoprint_device, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this gcode file. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param name: (required)
         :type name: str
         :param file: (required)
@@ -2550,17 +2400,19 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_jobs_create(self, print_job_request, **kwargs):  # noqa: E501
-        """print_jobs_create  # noqa: E501
+    def print_session_partial_update(self, session, **kwargs):  # noqa: E501
+        """print_session_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_create(print_job_request, async_req=True)
+        >>> thread = api.print_session_partial_update(session, async_req=True)
         >>> result = thread.get()
 
-        :param print_job_request: (required)
-        :type print_job_request: PrintJobRequest
+        :param session: (required)
+        :type session: str
+        :param patched_print_session_request:
+        :type patched_print_session_request: PatchedPrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2574,22 +2426,24 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PrintJob
+        :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_jobs_create_with_http_info(print_job_request, **kwargs)  # noqa: E501
+        return self.print_session_partial_update_with_http_info(session, **kwargs)  # noqa: E501
 
-    def print_jobs_create_with_http_info(self, print_job_request, **kwargs):  # noqa: E501
-        """print_jobs_create  # noqa: E501
+    def print_session_partial_update_with_http_info(self, session, **kwargs):  # noqa: E501
+        """print_session_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_create_with_http_info(print_job_request, async_req=True)
+        >>> thread = api.print_session_partial_update_with_http_info(session, async_req=True)
         >>> result = thread.get()
 
-        :param print_job_request: (required)
-        :type print_job_request: PrintJobRequest
+        :param session: (required)
+        :type session: str
+        :param patched_print_session_request:
+        :type patched_print_session_request: PatchedPrintSessionRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2610,13 +2464,14 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PrintJob, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PrintSession, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'print_job_request'
+            'session',
+            'patched_print_session_request'
         ]
         all_params.extend(
             [
@@ -2632,18 +2487,20 @@ class RemoteControlApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_jobs_create" % key
+                    " to method print_session_partial_update" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'print_job_request' is set
-        if self.api_client.client_side_validation and ('print_job_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['print_job_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `print_job_request` when calling `print_jobs_create`")  # noqa: E501
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_session_partial_update`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
 
         query_params = []
 
@@ -2653,8 +2510,8 @@ class RemoteControlApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'print_job_request' in local_var_params:
-            body_params = local_var_params['print_job_request']
+        if 'patched_print_session_request' in local_var_params:
+            body_params = local_var_params['patched_print_session_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -2667,12 +2524,12 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            201: "PrintJob",
-            400: "PrintJob",
+            400: "PrintSession",
+            200: "PrintSession",
         }
 
         return self.api_client.call_api(
-            '/api/print-jobs/', 'POST',
+            '/api/print-sessions/{session}/', 'PATCH',
             path_params,
             query_params,
             header_params,
@@ -2688,13 +2545,300 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_jobs_list(self, **kwargs):  # noqa: E501
-        """print_jobs_list  # noqa: E501
+    def print_session_update(self, session, print_session_request, **kwargs):  # noqa: E501
+        """print_session_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_list(async_req=True)
+        >>> thread = api.print_session_update(session, print_session_request, async_req=True)
+        >>> result = thread.get()
+
+        :param session: (required)
+        :type session: str
+        :param print_session_request: (required)
+        :type print_session_request: PrintSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrintSession
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.print_session_update_with_http_info(session, print_session_request, **kwargs)  # noqa: E501
+
+    def print_session_update_with_http_info(self, session, print_session_request, **kwargs):  # noqa: E501
+        """print_session_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.print_session_update_with_http_info(session, print_session_request, async_req=True)
+        >>> result = thread.get()
+
+        :param session: (required)
+        :type session: str
+        :param print_session_request: (required)
+        :type print_session_request: PrintSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrintSession, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'session',
+            'print_session_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method print_session_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_session_update`")  # noqa: E501
+        # verify the required parameter 'print_session_request' is set
+        if self.api_client.client_side_validation and ('print_session_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['print_session_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `print_session_request` when calling `print_session_update`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'print_session_request' in local_var_params:
+            body_params = local_var_params['print_session_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+        
+        response_types_map = {
+            400: "PrintSession",
+            200: "PrintSession",
+        }
+
+        return self.api_client.call_api(
+            '/api/print-sessions/{session}/', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def print_sessions_create(self, print_session_request, **kwargs):  # noqa: E501
+        """print_sessions_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.print_sessions_create(print_session_request, async_req=True)
+        >>> result = thread.get()
+
+        :param print_session_request: (required)
+        :type print_session_request: PrintSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrintSession
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.print_sessions_create_with_http_info(print_session_request, **kwargs)  # noqa: E501
+
+    def print_sessions_create_with_http_info(self, print_session_request, **kwargs):  # noqa: E501
+        """print_sessions_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.print_sessions_create_with_http_info(print_session_request, async_req=True)
+        >>> result = thread.get()
+
+        :param print_session_request: (required)
+        :type print_session_request: PrintSessionRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrintSession, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'print_session_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method print_sessions_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'print_session_request' is set
+        if self.api_client.client_side_validation and ('print_session_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['print_session_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `print_session_request` when calling `print_sessions_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'print_session_request' in local_var_params:
+            body_params = local_var_params['print_session_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+        
+        response_types_map = {
+            201: "PrintSession",
+            400: "PrintSession",
+        }
+
+        return self.api_client.call_api(
+            '/api/print-sessions/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def print_sessions_list(self, **kwargs):  # noqa: E501
+        """print_sessions_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.print_sessions_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -2712,18 +2856,18 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedPrintJobList
+        :rtype: PaginatedPrintSessionList
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_jobs_list_with_http_info(**kwargs)  # noqa: E501
+        return self.print_sessions_list_with_http_info(**kwargs)  # noqa: E501
 
-    def print_jobs_list_with_http_info(self, **kwargs):  # noqa: E501
-        """print_jobs_list  # noqa: E501
+    def print_sessions_list_with_http_info(self, **kwargs):  # noqa: E501
+        """print_sessions_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_list_with_http_info(async_req=True)
+        >>> thread = api.print_sessions_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -2748,7 +2892,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedPrintJobList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedPrintSessionList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -2770,7 +2914,7 @@ class RemoteControlApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_jobs_list" % key
+                    " to method print_sessions_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -2797,11 +2941,11 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedPrintJobList",
+            200: "PaginatedPrintSessionList",
         }
 
         return self.api_client.call_api(
-            '/api/print-jobs/', 'GET',
+            '/api/print-sessions/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -2817,19 +2961,17 @@ class RemoteControlApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_jobs_partial_update(self, id, **kwargs):  # noqa: E501
-        """print_jobs_partial_update  # noqa: E501
+    def print_sessions_retrieve(self, session, **kwargs):  # noqa: E501
+        """print_sessions_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_partial_update(id, async_req=True)
+        >>> thread = api.print_sessions_retrieve(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param patched_print_job_request:
-        :type patched_print_job_request: PatchedPrintJobRequest
+        :param session: (required)
+        :type session: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2843,24 +2985,22 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PrintJob
+        :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_jobs_partial_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.print_sessions_retrieve_with_http_info(session, **kwargs)  # noqa: E501
 
-    def print_jobs_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
-        """print_jobs_partial_update  # noqa: E501
+    def print_sessions_retrieve_with_http_info(self, session, **kwargs):  # noqa: E501
+        """print_sessions_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_jobs_partial_update_with_http_info(id, async_req=True)
+        >>> thread = api.print_sessions_retrieve_with_http_info(session, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param patched_print_job_request:
-        :type patched_print_job_request: PatchedPrintJobRequest
+        :param session: (required)
+        :type session: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2881,14 +3021,13 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PrintJob, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PrintSession, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
-            'id',
-            'patched_print_job_request'
+            'session'
         ]
         all_params.extend(
             [
@@ -2904,160 +3043,20 @@ class RemoteControlApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_jobs_partial_update" % key
+                    " to method print_sessions_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_jobs_partial_update`")  # noqa: E501
+        # verify the required parameter 'session' is set
+        if self.api_client.client_side_validation and ('session' not in local_var_params or  # noqa: E501
+                                                        local_var_params['session'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `session` when calling `print_sessions_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'patched_print_job_request' in local_var_params:
-            body_params = local_var_params['patched_print_job_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            400: "PrintJob",
-            200: "PrintJob",
-        }
-
-        return self.api_client.call_api(
-            '/api/print-jobs/{id}/', 'PATCH',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def print_jobs_retrieve(self, id, **kwargs):  # noqa: E501
-        """print_jobs_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_jobs_retrieve(id, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PrintJob
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.print_jobs_retrieve_with_http_info(id, **kwargs)  # noqa: E501
-
-    def print_jobs_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """print_jobs_retrieve  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_jobs_retrieve_with_http_info(id, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PrintJob, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method print_jobs_retrieve" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_jobs_retrieve`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
+        if 'session' in local_var_params:
+            path_params['session'] = local_var_params['session']  # noqa: E501
 
         query_params = []
 
@@ -3075,160 +3074,11 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PrintJob",
+            200: "PrintSession",
         }
 
         return self.api_client.call_api(
-            '/api/print-jobs/{id}/', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def print_jobs_update(self, id, print_job_request, **kwargs):  # noqa: E501
-        """print_jobs_update  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_jobs_update(id, print_job_request, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param print_job_request: (required)
-        :type print_job_request: PrintJobRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PrintJob
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.print_jobs_update_with_http_info(id, print_job_request, **kwargs)  # noqa: E501
-
-    def print_jobs_update_with_http_info(self, id, print_job_request, **kwargs):  # noqa: E501
-        """print_jobs_update  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_jobs_update_with_http_info(id, print_job_request, async_req=True)
-        >>> result = thread.get()
-
-        :param id: A unique integer value identifying this print job. (required)
-        :type id: int
-        :param print_job_request: (required)
-        :type print_job_request: PrintJobRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PrintJob, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'id',
-            'print_job_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method print_jobs_update" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'id' is set
-        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_jobs_update`")  # noqa: E501
-        # verify the required parameter 'print_job_request' is set
-        if self.api_client.client_side_validation and ('print_job_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['print_job_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `print_job_request` when calling `print_jobs_update`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in local_var_params:
-            path_params['id'] = local_var_params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'print_job_request' in local_var_params:
-            body_params = local_var_params['print_job_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            400: "PrintJob",
-            200: "PrintJob",
-        }
-
-        return self.api_client.call_api(
-            '/api/print-jobs/{id}/', 'PUT',
+            '/api/print-sessions/{session}/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -3268,7 +3118,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PrintJob
+        :rtype: PrintSession
         """
         kwargs['_return_http_data_only'] = True
         return self.printer_profiles_create_with_http_info(printer_profile_request, **kwargs)  # noqa: E501
@@ -3304,7 +3154,7 @@ class RemoteControlApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PrintJob, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PrintSession, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -3361,8 +3211,8 @@ class RemoteControlApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            400: "PrintJob",
-            201: "PrintJob",
+            400: "PrintSession",
+            201: "PrintSession",
         }
 
         return self.api_client.call_api(

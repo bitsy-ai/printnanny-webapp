@@ -7,13 +7,25 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ml_ops', '0012_devicecalibration'),
+        ("ml_ops", "0012_devicecalibration"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='modelartifact',
-            name='artifact_types',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('TFLITE', 'TensorFlow Lite Flatbuffer'), ('TF1', 'TensorFlow v1 SavedModel format (legacy)'), ('TF2_SAVED_MODEL', 'TensorFlow v2 SavedModel format'), ('TF2_HDF5', 'TensorFlow v2 Keras H5 format')], max_length=255), default=('TFLITE', 'TF2_SAVED_MODEL'), size=None),
+            model_name="modelartifact",
+            name="artifact_types",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("TFLITE", "TensorFlow Lite Flatbuffer"),
+                        ("TF1", "TensorFlow v1 SavedModel format (legacy)"),
+                        ("TF2_SAVED_MODEL", "TensorFlow v2 SavedModel format"),
+                        ("TF2_HDF5", "TensorFlow v2 Keras H5 format"),
+                    ],
+                    max_length=255,
+                ),
+                default=("TFLITE", "TF2_SAVED_MODEL"),
+                size=None,
+            ),
         ),
     ]

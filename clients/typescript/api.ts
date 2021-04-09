@@ -99,17 +99,6 @@ export interface AlertMethod {
  * @export
  * @enum {string}
  */
-export enum AlertMethodEnum {
-    Ui = 'UI',
-    Email = 'EMAIL',
-    Discord = 'DISCORD'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
 export enum AlertMethodsEnum {
     Ui = 'UI',
     Email = 'EMAIL',
@@ -120,13 +109,13 @@ export enum AlertMethodsEnum {
  * @type AlertPolymorphic
  * @export
  */
-export type AlertPolymorphic = Alert | DefectAlert | ManualVideoUploadAlert | ProgressAlert | RemoteControlCommandAlert;
+export type AlertPolymorphic = Alert | ManualVideoUploadAlert | PrintSessionAlert | ProgressAlert | RemoteControlCommandAlert;
 
 /**
  * @type AlertPolymorphicRequest
  * @export
  */
-export type AlertPolymorphicRequest = AlertRequest | DefectAlertRequest | ManualVideoUploadAlertRequest | ProgressAlertRequest | RemoteControlCommandAlertRequest;
+export type AlertPolymorphicRequest = AlertRequest | ManualVideoUploadAlertRequest | PrintSessionAlertRequest | ProgressAlertRequest | RemoteControlCommandAlertRequest;
 
 /**
  * 
@@ -194,13 +183,13 @@ export interface AlertSettings {
  * @type AlertSettingsPolymorphic
  * @export
  */
-export type AlertSettingsPolymorphic = AlertSettings | CommandAlertSettings | DefectAlertSettings | ProgressAlertSettings;
+export type AlertSettingsPolymorphic = AlertSettings | CommandAlertSettings | ProgressAlertSettings;
 
 /**
  * @type AlertSettingsPolymorphicRequest
  * @export
  */
-export type AlertSettingsPolymorphicRequest = AlertSettingsRequest | CommandAlertSettingsRequest | DefectAlertSettingsRequest | ProgressAlertSettingsRequest;
+export type AlertSettingsPolymorphicRequest = AlertSettingsRequest | CommandAlertSettingsRequest | ProgressAlertSettingsRequest;
 
 /**
  * 
@@ -247,7 +236,7 @@ export enum AlertTypeEnum {
     Command = 'COMMAND',
     PrintProgress = 'PRINT_PROGRESS',
     ManualVideoUpload = 'MANUAL_VIDEO_UPLOAD',
-    Defect = 'DEFECT'
+    PrintSession = 'PRINT_SESSION'
 }
 
 /**
@@ -489,162 +478,21 @@ export enum CommandEnum {
 /**
  * 
  * @export
- * @interface DefectAlert
+ * @interface CreatePrintSessionAlertRequest
  */
-export interface DefectAlert {
+export interface CreatePrintSessionAlertRequest {
     /**
      * 
      * @type {string}
-     * @memberof DefectAlert
+     * @memberof CreatePrintSessionAlertRequest
      */
     print_session: string;
     /**
      * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    octoprint_device?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    print_job?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlert
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlert
-     */
-    dismissed?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlert
-     */
-    user: number;
-}
-/**
- * 
- * @export
- * @interface DefectAlertRequest
- */
-export interface DefectAlertRequest {
-    /**
-     * 
      * @type {string}
-     * @memberof DefectAlertRequest
+     * @memberof CreatePrintSessionAlertRequest
      */
-    print_session: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlertRequest
-     */
-    octoprint_device?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlertRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DefectAlertRequest
-     */
-    dismissed?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlertRequest
-     */
-    user: number;
-}
-/**
- * 
- * @export
- * @interface DefectAlertSettings
- */
-export interface DefectAlertSettings {
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlertSettings
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlertSettings
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DefectAlertSettings
-     */
-    updated_dt?: string;
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof DefectAlertSettings
-     */
-    alert_type: AlertTypeEnum;
-    /**
-     * 
-     * @type {Array<AlertMethodsEnum>}
-     * @memberof DefectAlertSettings
-     */
-    alert_methods?: Array<AlertMethodsEnum>;
-    /**
-     * Enable or disable this alert channel
-     * @type {boolean}
-     * @memberof DefectAlertSettings
-     */
-    enabled?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlertSettings
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DefectAlertSettings
-     */
-    user?: number;
-}
-/**
- * 
- * @export
- * @interface DefectAlertSettingsRequest
- */
-export interface DefectAlertSettingsRequest {
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof DefectAlertSettingsRequest
-     */
-    alert_type: AlertTypeEnum;
-    /**
-     * 
-     * @type {Array<AlertMethodsEnum>}
-     * @memberof DefectAlertSettingsRequest
-     */
-    alert_methods?: Array<AlertMethodsEnum>;
-    /**
-     * Enable or disable this alert channel
-     * @type {boolean}
-     * @memberof DefectAlertSettingsRequest
-     */
-    enabled?: boolean;
+    annotated_video: string;
 }
 /**
  * 
@@ -1287,6 +1135,12 @@ export interface OctoPrintDevice {
      * @memberof OctoPrintDevice
      */
     cloudiot_device_configs?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDevice
+     */
+    manage_url?: string;
 }
 /**
  * 
@@ -1486,6 +1340,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     ca_certs: { [key: string]: string; };
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    manage_url?: string;
 }
 /**
  * 
@@ -1834,37 +1694,6 @@ export interface PaginatedAlertSettingsPolymorphicList {
 /**
  * 
  * @export
- * @interface PaginatedDefectAlertList
- */
-export interface PaginatedDefectAlertList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedDefectAlertList
-     */
-    count?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDefectAlertList
-     */
-    next?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedDefectAlertList
-     */
-    previous?: string | null;
-    /**
-     * 
-     * @type {Array<DefectAlert>}
-     * @memberof PaginatedDefectAlertList
-     */
-    results?: Array<DefectAlert>;
-}
-/**
- * 
- * @export
  * @interface PaginatedDeviceCalibrationList
  */
 export interface PaginatedDeviceCalibrationList {
@@ -2113,64 +1942,95 @@ export interface PaginatedPluginEventList {
 /**
  * 
  * @export
- * @interface PaginatedPrintJobList
+ * @interface PaginatedPrintSessionAlertList
  */
-export interface PaginatedPrintJobList {
+export interface PaginatedPrintSessionAlertList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedPrintJobList
+     * @memberof PaginatedPrintSessionAlertList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintJobList
+     * @memberof PaginatedPrintSessionAlertList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintJobList
+     * @memberof PaginatedPrintSessionAlertList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<PrintJob>}
-     * @memberof PaginatedPrintJobList
+     * @type {Array<PrintSessionAlert>}
+     * @memberof PaginatedPrintSessionAlertList
      */
-    results?: Array<PrintJob>;
+    results?: Array<PrintSessionAlert>;
 }
 /**
  * 
  * @export
- * @interface PaginatedPrintJobStateList
+ * @interface PaginatedPrintSessionList
  */
-export interface PaginatedPrintJobStateList {
+export interface PaginatedPrintSessionList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedPrintJobStateList
+     * @memberof PaginatedPrintSessionList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintJobStateList
+     * @memberof PaginatedPrintSessionList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintJobStateList
+     * @memberof PaginatedPrintSessionList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<PrintJobState>}
-     * @memberof PaginatedPrintJobStateList
+     * @type {Array<PrintSession>}
+     * @memberof PaginatedPrintSessionList
      */
-    results?: Array<PrintJobState>;
+    results?: Array<PrintSession>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPrintSessionStateList
+ */
+export interface PaginatedPrintSessionStateList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPrintSessionStateList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrintSessionStateList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrintSessionStateList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<PrintSessionState>}
+     * @memberof PaginatedPrintSessionStateList
+     */
+    results?: Array<PrintSessionState>;
 }
 /**
  * 
@@ -2313,7 +2173,7 @@ export interface PatchedAlertBulkRequestRequest {
  * @type PatchedAlertPolymorphicRequest
  * @export
  */
-export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedDefectAlertRequest | PatchedManualVideoUploadAlertRequest | PatchedProgressAlertRequest | PatchedRemoteControlCommandAlertRequest;
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedManualVideoUploadAlertRequest | PatchedPrintSessionAlertRequest | PatchedProgressAlertRequest | PatchedRemoteControlCommandAlertRequest;
 
 /**
  * 
@@ -2332,7 +2192,7 @@ export interface PatchedAlertRequest {
  * @type PatchedAlertSettingsPolymorphicRequest
  * @export
  */
-export type PatchedAlertSettingsPolymorphicRequest = PatchedAlertSettingsRequest | PatchedCommandAlertSettingsRequest | PatchedDefectAlertSettingsRequest | PatchedProgressAlertSettingsRequest;
+export type PatchedAlertSettingsPolymorphicRequest = PatchedAlertSettingsRequest | PatchedCommandAlertSettingsRequest | PatchedProgressAlertSettingsRequest;
 
 /**
  * 
@@ -2431,68 +2291,6 @@ export interface PatchedCommandAlertSettingsRequest {
      * @memberof PatchedCommandAlertSettingsRequest
      */
     move_nozzle?: Array<MoveNozzleEnum>;
-}
-/**
- * 
- * @export
- * @interface PatchedDefectAlertRequest
- */
-export interface PatchedDefectAlertRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDefectAlertRequest
-     */
-    print_session?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDefectAlertRequest
-     */
-    octoprint_device?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDefectAlertRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedDefectAlertRequest
-     */
-    dismissed?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDefectAlertRequest
-     */
-    user?: number;
-}
-/**
- * 
- * @export
- * @interface PatchedDefectAlertSettingsRequest
- */
-export interface PatchedDefectAlertSettingsRequest {
-    /**
-     * 
-     * @type {AlertTypeEnum}
-     * @memberof PatchedDefectAlertSettingsRequest
-     */
-    alert_type?: AlertTypeEnum;
-    /**
-     * 
-     * @type {Array<AlertMethodsEnum>}
-     * @memberof PatchedDefectAlertSettingsRequest
-     */
-    alert_methods?: Array<AlertMethodsEnum>;
-    /**
-     * Enable or disable this alert channel
-     * @type {boolean}
-     * @memberof PatchedDefectAlertSettingsRequest
-     */
-    enabled?: boolean;
 }
 /**
  * 
@@ -2693,45 +2491,70 @@ export interface PatchedOctoPrintDeviceRequest {
 /**
  * 
  * @export
- * @interface PatchedPrintJobRequest
+ * @interface PatchedPrintSessionAlertRequest
  */
-export interface PatchedPrintJobRequest {
+export interface PatchedPrintSessionAlertRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    dismissed?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof PatchedPrintJobRequest
+     * @memberof PatchedPrintSessionAlertRequest
      */
-    print_session?: number | null;
+    print_session?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedPrintSessionRequest
+ */
+export interface PatchedPrintSessionRequest {
     /**
      * 
      * @type {number}
-     * @memberof PatchedPrintJobRequest
+     * @memberof PatchedPrintSessionRequest
      */
-    printer_profile?: number;
+    octoprint_device?: number;
     /**
      * 
      * @type {string}
-     * @memberof PatchedPrintJobRequest
+     * @memberof PatchedPrintSessionRequest
      */
-    name?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrintJobRequest
-     */
-    gcode_file?: number | null;
+    session?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PatchedPrintJobRequest
+     * @memberof PatchedPrintSessionRequest
      */
     progress?: { [key: string]: any; };
     /**
      * 
      * @type {number}
-     * @memberof PatchedPrintJobRequest
+     * @memberof PatchedPrintSessionRequest
      */
-    octoprint_device?: number | null;
+    printer_profile?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintSessionRequest
+     */
+    gcode_file?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPrintSessionRequest
+     */
+    gcode_filename?: string | null;
 }
 /**
  * 
@@ -2966,10 +2789,10 @@ export interface PatchedRemoteControlCommandAlertRequest {
     alert_subtype?: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3178,241 +3001,6 @@ export enum PluginEventEventTypeEnum {
 /**
  * 
  * @export
- * @interface PrintJob
- */
-export interface PrintJob {
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    updated_dt?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    print_session?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    printer_profile: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    name: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    gcode_file?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJob
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJob
-     */
-    octoprint_device?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJob
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @interface PrintJobRequest
- */
-export interface PrintJobRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobRequest
-     */
-    print_session?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobRequest
-     */
-    printer_profile: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobRequest
-     */
-    name: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobRequest
-     */
-    gcode_file?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobRequest
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobRequest
-     */
-    octoprint_device?: number | null;
-}
-/**
- * 
- * @export
- * @interface PrintJobState
- */
-export interface PrintJobState {
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobState
-     */
-    event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {PrintJobStateEventTypeEnum}
-     * @memberof PrintJobState
-     */
-    event_type: PrintJobStateEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobState
-     */
-    state?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    current_z?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobState
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    job_data_file: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    print_job?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintJobState
-     */
-    print_session?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintJobState
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintJobStateEventTypeEnum {
-    Error = 'Error',
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
-/**
- * 
- * @export
  * @enum {string}
  */
 export enum PrintPauseEnum {
@@ -3430,6 +3018,339 @@ export enum PrintResumeEnum {
     Received = 'RECEIVED',
     Failed = 'FAILED',
     Success = 'SUCCESS'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrintSession
+ */
+export interface PrintSession {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    session: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSession
+     */
+    progress?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    printer_profile?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    gcode_file?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    gcode_filename?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    should_alert?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionAlert
+ */
+export interface PrintSessionAlert {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {Array<AlertMethodsEnum>}
+     * @memberof PrintSessionAlert
+     */
+    alert_methods?: Array<AlertMethodsEnum>;
+    /**
+     * 
+     * @type {AlertTypeEnum}
+     * @memberof PrintSessionAlert
+     */
+    alert_type?: AlertTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    octoprint_device?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    print_session: number;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionAlertRequest
+ */
+export interface PrintSessionAlertRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
+    dismissed?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlertRequest
+     */
+    print_session: number;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionRequest
+ */
+export interface PrintSessionRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionRequest
+     */
+    session: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionRequest
+     */
+    progress?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    printer_profile?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    gcode_file?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionRequest
+     */
+    gcode_filename?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionState
+ */
+export interface PrintSessionState {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionState
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionState
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionState
+     */
+    device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionState
+     */
+    user?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {PrintSessionStateEventTypeEnum}
+     * @memberof PrintSessionState
+     */
+    event_type: PrintSessionStateEventTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionState
+     */
+    state?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionState
+     */
+    current_z?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionState
+     */
+    progress?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    job_data_file: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionState
+     */
+    print_session?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionState
+     */
+    url?: string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintSessionStateEventTypeEnum {
+    Error = 'Error',
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
 }
 
 /**
@@ -3782,10 +3703,10 @@ export interface ProgressAlert {
     time?: string;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof ProgressAlert
      */
-    alert_method?: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -4075,10 +3996,10 @@ export interface RemoteControlCommandAlert {
     alert_subtype: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof RemoteControlCommandAlert
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -4184,10 +4105,10 @@ export interface RemoteControlCommandAlertRequest {
     alert_subtype: AlertSubtypeEnum;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {Array<AlertMethodsEnum>}
      * @memberof RemoteControlCommandAlertRequest
      */
-    alert_method: AlertMethodEnum;
+    alert_methods?: Array<AlertMethodsEnum>;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -5394,16 +5315,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate: async (defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate.');
+        printSessionAlertCreate: async (createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createPrintSessionAlertRequest' is not null or undefined
+            if (createPrintSessionAlertRequest === null || createPrintSessionAlertRequest === undefined) {
+                throw new RequiredError('createPrintSessionAlertRequest','Required parameter createPrintSessionAlertRequest was null or undefined when calling printSessionAlertCreate.');
             }
-            const localVarPath = `/api/defect-alerts/`;
+            const localVarPath = `/api/print-session-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5440,80 +5361,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
+            const nonString = typeof createPrintSessionAlertRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
-            }
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
-            }
-            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
+                ? JSON.stringify(createPrintSessionAlertRequest !== undefined ? createPrintSessionAlertRequest : {})
+                : (createPrintSessionAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -5526,8 +5380,8 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/defect-alerts/`;
+        printSessionAlertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-session-alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -5574,79 +5428,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsPartialUpdate: async (id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
+        printSessionAlertsRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsPartialUpdate.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling printSessionAlertsRetrieve.');
             }
-            const localVarPath = `/api/defect-alerts/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedDefectAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedDefectAlertRequest !== undefined ? patchedDefectAlertRequest : {})
-                : (patchedDefectAlertRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsRetrieve.');
-            }
-            const localVarPath = `/api/defect-alerts/{id}/`
+            const localVarPath = `/api/print-session-alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -5682,73 +5473,6 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsUpdate: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsUpdate.');
-            }
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsUpdate.');
-            }
-            const localVarPath = `/api/defect-alerts/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -5870,26 +5594,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate(defectAlertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
+        async printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5901,8 +5611,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDefectAlertList>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsList(page, options);
+        async printSessionAlertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionAlertList>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -5910,40 +5620,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async defectAlertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).defectAlertsUpdate(id, defectAlertRequest, options);
+        async printSessionAlertsRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionAlert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).printSessionAlertsRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -6032,22 +5714,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {DefectAlertRequest} defectAlertRequest 
+         * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert> {
+            return AlertsApiFp(configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6055,37 +5727,17 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList> {
-            return AlertsApiFp(configuration).defectAlertsList(page, options).then((request) => request(axios, basePath));
+        printSessionAlertsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionAlertList> {
+            return AlertsApiFp(configuration).printSessionAlertsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsRetrieve(id: number, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this defect alert.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return AlertsApiFp(configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(axios, basePath));
+        printSessionAlertsRetrieve(id: string, options?: any): AxiosPromise<PrintSessionAlert> {
+            return AlertsApiFp(configuration).printSessionAlertsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6170,22 +5822,12 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any): AxiosPromise<PrintSessionAlert>;
 
     /**
      * 
@@ -6194,36 +5836,16 @@ export interface AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsList(page?: number, options?: any): AxiosPromise<PaginatedDefectAlertList>;
+    printSessionAlertsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionAlertList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    defectAlertsRetrieve(id: number, options?: any): AxiosPromise<DefectAlert>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
+    printSessionAlertsRetrieve(id: string, options?: any): AxiosPromise<PrintSessionAlert>;
 
 }
 
@@ -6324,25 +5946,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {DefectAlertRequest} defectAlertRequest 
+     * @param {CreatePrintSessionAlertRequest} createPrintSessionAlertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsCreate(defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsCreate(defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionAlertCreate(createPrintSessionAlertRequest: CreatePrintSessionAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertCreate(createPrintSessionAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6352,43 +5962,19 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsList(page?: number, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printSessionAlertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {PatchedDefectAlertRequest} [patchedDefectAlertRequest] 
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public defectAlertsPartialUpdate(id: number, patchedDefectAlertRequest?: PatchedDefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsPartialUpdate(id, patchedDefectAlertRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public defectAlertsRetrieve(id: number, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this defect alert.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public defectAlertsUpdate(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return AlertsApiFp(this.configuration).defectAlertsUpdate(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionAlertsRetrieve(id: string, options?: any) {
+        return AlertsApiFp(this.configuration).printSessionAlertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -6925,53 +6511,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobEventEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/print-job-states/enum/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7024,7 +6563,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job state.
+         * @param {number} id A unique integer value identifying this print session state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7035,6 +6574,53 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             }
             const localVarPath = `/api/print-job-states/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionEventEnumRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-job-states/enum/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -7175,23 +6761,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async printJobEventEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobEventEnumRetrieve(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobStateList>> {
+        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionStateList>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7200,12 +6774,24 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job state.
+         * @param {number} id A unique integer value identifying this print session state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJobState>> {
+        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionState>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionEventEnumRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printSessionEventEnumRetrieve(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -7283,29 +6869,29 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobEventEnumRetrieve(options?: any): AxiosPromise<string> {
-            return EventsApiFp(configuration).printJobEventEnumRetrieve(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobStateList> {
+        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionStateList> {
             return EventsApiFp(configuration).printJobStatesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job state.
+         * @param {number} id A unique integer value identifying this print session state.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintJobState> {
+        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintSessionState> {
             return EventsApiFp(configuration).printJobStatesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionEventEnumRetrieve(options?: any): AxiosPromise<string> {
+            return EventsApiFp(configuration).printSessionEventEnumRetrieve(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -7379,29 +6965,29 @@ export interface EventsApiInterface {
 
     /**
      * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApiInterface
-     */
-    printJobEventEnumRetrieve(options?: any): AxiosPromise<string>;
-
-    /**
-     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobStateList>;
+    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionStateList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print job state.
+     * @param {number} id A unique integer value identifying this print session state.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintJobState>;
+    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintSessionState>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApiInterface
+     */
+    printSessionEventEnumRetrieve(options?: any): AxiosPromise<string>;
 
 }
 
@@ -7489,16 +7075,6 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public printJobEventEnumRetrieve(options?: any) {
-        return EventsApiFp(this.configuration).printJobEventEnumRetrieve(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7510,13 +7086,23 @@ export class EventsApi extends BaseAPI implements EventsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print job state.
+     * @param {number} id A unique integer value identifying this print session state.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
     public printJobStatesRetrieve(id: number, options?: any) {
         return EventsApiFp(this.configuration).printJobStatesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public printSessionEventEnumRetrieve(options?: any) {
+        return EventsApiFp(this.configuration).printSessionEventEnumRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -8889,73 +8475,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsCreate2: async (id: number, defectAlertRequest: DefectAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling defectAlertsCreate2.');
-            }
-            // verify required parameter 'defectAlertRequest' is not null or undefined
-            if (defectAlertRequest === null || defectAlertRequest === undefined) {
-                throw new RequiredError('defectAlertRequest','Required parameter defectAlertRequest was null or undefined when calling defectAlertsCreate2.');
-            }
-            const localVarPath = `/api/octoprint-devices/{id}/create_defect_alerts/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof defectAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(defectAlertRequest !== undefined ? defectAlertRequest : {})
-                : (defectAlertRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -9095,7 +8614,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -9103,7 +8622,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate: async (id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesPartialUpdate: async (id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesPartialUpdate.');
@@ -9172,11 +8691,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesRetrieve.');
@@ -9225,7 +8744,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -9233,7 +8752,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate: async (id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesUpdate: async (id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesUpdate.');
@@ -9762,16 +9281,146 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {PrintJobRequest} printJobRequest 
+         * @param {string} session 
+         * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsCreate: async (printJobRequest: PrintJobRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'printJobRequest' is not null or undefined
-            if (printJobRequest === null || printJobRequest === undefined) {
-                throw new RequiredError('printJobRequest','Required parameter printJobRequest was null or undefined when calling printJobsCreate.');
+        printSessionPartialUpdate: async (session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionPartialUpdate.');
             }
-            const localVarPath = `/api/print-jobs/`;
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedPrintSessionRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedPrintSessionRequest !== undefined ? patchedPrintSessionRequest : {})
+                : (patchedPrintSessionRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionUpdate: async (session: string, printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionUpdate.');
+            }
+            // verify required parameter 'printSessionRequest' is not null or undefined
+            if (printSessionRequest === null || printSessionRequest === undefined) {
+                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionUpdate.');
+            }
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof printSessionRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
+                : (printSessionRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printSessionRequest' is not null or undefined
+            if (printSessionRequest === null || printSessionRequest === undefined) {
+                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionsCreate.');
+            }
+            const localVarPath = `/api/print-sessions/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -9808,13 +9457,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printJobRequest !== 'string';
+            const nonString = typeof printSessionRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printJobRequest !== undefined ? printJobRequest : {})
-                : (printJobRequest || "");
+                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
+                : (printSessionRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -9827,8 +9476,8 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/print-jobs/`;
+        printSessionsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-sessions/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -9875,80 +9524,17 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PatchedPrintJobRequest} [patchedPrintJobRequest] 
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsPartialUpdate: async (id: number, patchedPrintJobRequest?: PatchedPrintJobRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printJobsPartialUpdate.');
+        printSessionsRetrieve: async (session: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            if (session === null || session === undefined) {
+                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionsRetrieve.');
             }
-            const localVarPath = `/api/print-jobs/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedPrintJobRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedPrintJobRequest !== undefined ? patchedPrintJobRequest : {})
-                : (patchedPrintJobRequest || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printJobsRetrieve.');
-            }
-            const localVarPath = `/api/print-jobs/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -9983,73 +9569,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PrintJobRequest} printJobRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobsUpdate: async (id: number, printJobRequest: PrintJobRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printJobsUpdate.');
-            }
-            // verify required parameter 'printJobRequest' is not null or undefined
-            if (printJobRequest === null || printJobRequest === undefined) {
-                throw new RequiredError('printJobRequest','Required parameter printJobRequest was null or undefined when calling printJobsUpdate.');
-            }
-            const localVarPath = `/api/print-jobs/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printJobRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printJobRequest !== undefined ? printJobRequest : {})
-                : (printJobRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -10851,20 +10370,6 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DefectAlert>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).defectAlertsCreate2(id, defectAlertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -10894,7 +10399,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -10902,7 +10407,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -10911,11 +10416,11 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -10924,7 +10429,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -10932,7 +10437,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+        async gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11037,12 +10542,40 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {PrintJobRequest} printJobRequest 
+         * @param {string} session 
+         * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobsCreate(printJobRequest: PrintJobRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsCreate(printJobRequest, options);
+        async printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionUpdate(session, printSessionRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsCreate(printSessionRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11054,8 +10587,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsList(page, options);
+        async printSessionsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionList>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11063,40 +10596,12 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PatchedPrintJobRequest} [patchedPrintJobRequest] 
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobsPartialUpdate(id: number, patchedPrintJobRequest?: PatchedPrintJobRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsPartialUpdate(id, patchedPrintJobRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async printJobsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PrintJobRequest} printJobRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async printJobsUpdate(id: number, printJobRequest: PrintJobRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printJobsUpdate(id, printJobRequest, options);
+        async printSessionsRetrieve(session: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsRetrieve(session, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -11108,7 +10613,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJob>> {
+        async printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
             const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesCreate(printerProfileRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -11315,16 +10820,6 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {DefectAlertRequest} defectAlertRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert> {
-            return RemoteControlApiFp(configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11346,7 +10841,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} [name] 
          * @param {any} [file] 
          * @param {string} [fileHash] 
@@ -11354,21 +10849,21 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesRetrieve(id: number, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this gcode file.
+         * @param {string} id 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -11376,7 +10871,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+        gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
             return RemoteControlApiFp(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11449,12 +10944,32 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
-         * @param {PrintJobRequest} printJobRequest 
+         * @param {string} session 
+         * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsCreate(printJobRequest: PrintJobRequest, options?: any): AxiosPromise<PrintJob> {
-            return RemoteControlApiFp(configuration).printJobsCreate(printJobRequest, options).then((request) => request(axios, basePath));
+        printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionUpdate(session, printSessionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11462,37 +10977,17 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobList> {
-            return RemoteControlApiFp(configuration).printJobsList(page, options).then((request) => request(axios, basePath));
+        printSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList> {
+            return RemoteControlApiFp(configuration).printSessionsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PatchedPrintJobRequest} [patchedPrintJobRequest] 
+         * @param {string} session 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobsPartialUpdate(id: number, patchedPrintJobRequest?: PatchedPrintJobRequest, options?: any): AxiosPromise<PrintJob> {
-            return RemoteControlApiFp(configuration).printJobsPartialUpdate(id, patchedPrintJobRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobsRetrieve(id: number, options?: any): AxiosPromise<PrintJob> {
-            return RemoteControlApiFp(configuration).printJobsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this print job.
-         * @param {PrintJobRequest} printJobRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        printJobsUpdate(id: number, printJobRequest: PrintJobRequest, options?: any): AxiosPromise<PrintJob> {
-            return RemoteControlApiFp(configuration).printJobsUpdate(id, printJobRequest, options).then((request) => request(axios, basePath));
+        printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession> {
+            return RemoteControlApiFp(configuration).printSessionsRetrieve(session, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11500,7 +10995,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintJob> {
+        printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintSession> {
             return RemoteControlApiFp(configuration).printerProfilesCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -11659,16 +11154,6 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any): AxiosPromise<DefectAlert>;
-
-    /**
-     * 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -11690,7 +11175,7 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
@@ -11699,20 +11184,20 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesRetrieve(id: number, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -11721,7 +11206,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
+    gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
 
     /**
      * 
@@ -11793,12 +11278,32 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
-     * @param {PrintJobRequest} printJobRequest 
+     * @param {string} session 
+     * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printJobsCreate(printJobRequest: PrintJobRequest, options?: any): AxiosPromise<PrintJob>;
+    printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
+     * @param {string} session 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -11807,36 +11312,16 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printJobsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobList>;
+    printSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {PatchedPrintJobRequest} [patchedPrintJobRequest] 
+     * @param {string} session 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printJobsPartialUpdate(id: number, patchedPrintJobRequest?: PatchedPrintJobRequest, options?: any): AxiosPromise<PrintJob>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    printJobsRetrieve(id: number, options?: any): AxiosPromise<PrintJob>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {PrintJobRequest} printJobRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    printJobsUpdate(id: number, printJobRequest: PrintJobRequest, options?: any): AxiosPromise<PrintJob>;
+    printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -11845,7 +11330,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintJob>;
+    printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintSession>;
 
     /**
      * 
@@ -12011,18 +11496,6 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {DefectAlertRequest} defectAlertRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public defectAlertsCreate2(id: number, defectAlertRequest: DefectAlertRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).defectAlertsCreate2(id, defectAlertRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -12048,7 +11521,7 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} [name] 
      * @param {any} [file] 
      * @param {string} [fileHash] 
@@ -12057,24 +11530,24 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesPartialUpdate(id: number, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
+    public gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesRetrieve(id: number, options?: any) {
+    public gcodeFilesRetrieve(id: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this gcode file.
+     * @param {string} id 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -12083,7 +11556,7 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public gcodeFilesUpdate(id: number, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+    public gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
         return RemoteControlApiFp(this.configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -12171,13 +11644,37 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
-     * @param {PrintJobRequest} printJobRequest 
+     * @param {string} session 
+     * @param {PatchedPrintSessionRequest} [patchedPrintSessionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printJobsCreate(printJobRequest: PrintJobRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsCreate(printJobRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} session 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionUpdate(session, printSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12187,43 +11684,19 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printJobsList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printSessionsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {PatchedPrintJobRequest} [patchedPrintJobRequest] 
+     * @param {string} session 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public printJobsPartialUpdate(id: number, patchedPrintJobRequest?: PatchedPrintJobRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsPartialUpdate(id, patchedPrintJobRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public printJobsRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this print job.
-     * @param {PrintJobRequest} printJobRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public printJobsUpdate(id: number, printJobRequest: PrintJobRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).printJobsUpdate(id, printJobRequest, options).then((request) => request(this.axios, this.basePath));
+    public printSessionsRetrieve(session: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsRetrieve(session, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

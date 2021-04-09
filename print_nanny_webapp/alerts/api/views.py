@@ -1,5 +1,7 @@
 import logging
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from django.db.models import Q
+from rest_framework.exceptions import APIException
 
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
@@ -10,7 +12,8 @@ from rest_framework.mixins import (
     CreateModelMixin,
 )
 from rest_framework.decorators import action
-
+from rest_framework import status
+from django.db.utils import IntegrityError
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
@@ -23,35 +26,192 @@ from .serializers import (
     AlertBulkResponseSerializer,
     RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
-    DefectAlertSerializer,
-    # CreateDefectAlertSerializer
+    CreatePrintSessionAlertSerializer,
+    PrintSessionAlertSerializer,
 )
-from ..models import ManualVideoUploadAlert, Alert, AlertSettings, DefectAlert
+from print_nanny_webapp.utils.permissions import (
+    IsAdminOrIsSelf,
+    IsAdminOrIsPrintSessionOwner,
+)
+from ..models import (
+    ManualVideoUploadAlert,
+    Alert,
+    AlertSettings,
+    PrintSessionAlert,
+    PrintSessionAlertSettings,
+)
 
 logger = logging.getLogger(__name__)
+
+PrintSession = apps.get_model("remote_control", "PrintSession")
+
+
+class AlreadyExists(APIException):
+    status_code = 409
+    default_detail = "A resource of this type already exists, ignoring request"
+    default_code = "already_exists"
 
 
 @extend_schema(
     tags=["alerts"],
     responses={
-        200: DefectAlertSerializer,
-        201: DefectAlertSerializer,
-        202: DefectAlertSerializer,
+        200: PrintSessionAlertSerializer,
+        201: PrintSessionAlertSerializer,
+        202: PrintSessionAlertSerializer,
     },
 )
-class DefectAlertViewSet(
+class PrintSessionAlertViewSet(
     GenericViewSet,
     ListModelMixin,
     RetrieveModelMixin,
     CreateModelMixin,
-    UpdateModelMixin,
 ):
-    serializer_class = DefectAlertSerializer
-    queryset = DefectAlert.objects.all()
+    lookup_fields = ("print_session", "id")
+    serializer_class = PrintSessionAlertSerializer
 
     def get_queryset(self):
         user = self.request.user
-        return DefectAlert.objects.filter(user=user).all()
+        return PrintSessionAlert.objects.filter(user=user).all()
+
+    @extend_schema(
+        tags=["alerts"],
+        request=CreatePrintSessionAlertSerializer,
+        operation_id="print_session_alert_create",
+        responses={
+            201: PrintSessionAlertSerializer,
+            400: PrintSessionAlertSerializer,
+            403: PrintSessionAlertSerializer,
+            409: PrintSessionAlertSerializer,
+        },
+    )
+    def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
+        session = request.data.get("print_session")
+        session = PrintSession.objects.get(session=session)
+
+        request_serializer = CreatePrintSessionAlertSerializer(
+            data=request.data,
+            context={"request": request},
+        )
+        if request_serializer.is_valid():
+            try:
+                instance = request_serializer.save()
+            except IntegrityError:
+                raise AlreadyExists()
+
+            response_serializer = PrintSessionAlertSerializer(instance)
+            instance.trigger_alerts_task(response_serializer.data)
+
+            return Response(response_serializer.data, status.HTTP_201_CREATED)
+        return Response(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# TODO combine defect, end, progress events into PrintSessionAlert subtypes
+# @extend_schema(
+#     tags=["alerts"],
+#     responses={
+#         200: DefectAlertSerializer,
+#         201: DefectAlertSerializer,
+#         202: DefectAlertSerializer,
+#     },
+# )
+# class DefectAlertViewSet(
+#     GenericViewSet,
+#     ListModelMixin,
+#     RetrieveModelMixin,
+#     CreateModelMixin,
+#     UpdateModelMixin,
+# ):
+#     serializer_class = DefectAlertSerializer
+#     queryset = DefectAlert.objects.all()
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         return DefectAlert.objects.filter(user=user).all()
+
+#     @extend_schema(
+#         tags=["alerts"],
+#         request=CreateDefectAlertSerializer,
+#         operation_id="defect_alert_create",
+#         responses={
+#             201: DefectAlertSerializer,
+#             400: DefectAlertSerializer,
+#             403: DefectAlertSerializer,
+#         },
+#     )
+#     def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
+#         session = request.data.get("print_session")
+#         session = PrintSession.objects.get(session=session)
+#         serializer = DefectAlertSerializer(
+#             data={
+#                 "print_session": session.id,
+#                 "user": session.user.id,
+#                 "octoprint_device": session.octoprint_device.id,
+#             },
+#             context={"request": request},
+#         )
+#         if serializer.is_valid() and session.should_alert is True:
+#             alert_settings, created = DefectAlertSettings.objects.get_or_create(
+#                 user=session.user,
+#             )
+#             instance = serializer.save(
+#                 user=session.user,
+#                 octoprint_device=session.octoprint_device,
+#                 print_session=session,
+#                 alert_methods=alert_settings.alert_methods,
+#             )
+#             instance.trigger_alerts_task(serializer.data)
+
+#             return Response(serializer.data, status.HTTP_201_CREATED)
+#         elif session.should_alert is False:
+#             return Response(
+#                 {"error": "Alerts are supressed"}, status=status.HTTP_409_CONFLICT
+#             )
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     # @extend_schema(
+#     #     tags=["alerts"],
+#     #     request=AlertBulkRequestSerializer,
+#     #     operation_id="defect_alert_supress",
+#     #     responses={
+#     #         200: DefectAlertSerializer,
+#     #         400: DefectAlertSerializer,
+#     #         403: DefectAlertSerializer,
+#     #     },
+#     # )
+#     # @action(
+#     #     detail=True, methods=["GET", "POST"]
+#     # )  # GET method is required to render as a href / raw link in emails
+#     # def supress(self, request, permission_classes=[IsAdminOrIsSelf]):
+#     #     defect_alert = self.get_object()
+
+#     #     defect_alert.print_session.supress_alerts = True
+#     #     defect_alert.save()
+#     #     serializer = self.get_serializer(defect_alert)
+#     #     return Response(serializer.data, status.HTTP_202_ACCEPTED)
+
+#     @extend_schema(
+#         tags=["alerts"],
+#         request=AlertBulkRequestSerializer,
+#         operation_id="defect_alert_stop_print",
+#         responses={
+#             200: DefectAlertSerializer,
+#             400: DefectAlertSerializer,
+#             403: DefectAlertSerializer,
+#         },
+#     )
+#     @action(
+#         detail=True, methods=["GET", "POST"]
+#     )  # GET method is required to render as a href / raw link in emails
+#     def stop_print(self, request, permission_classes=[IsAdminOrIsSelf]):
+#         defect_alert = self.get_object()
+#         remote_control_command = RemoteControlCommand.objects.create(
+#             command=RemoteControlCommand.PRINT_STOP,
+#             user=defect_alert.user,
+#             device=defect_alert.octoprint_device,
+#         )
+#         serializer = self.get_serializer(defect_alert)
+#         return Response(serializer.data, status.HTTP_202_ACCEPTED)
+
 
 class AlertViewSet(
     GenericViewSet,

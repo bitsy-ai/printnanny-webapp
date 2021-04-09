@@ -8,26 +8,29 @@ from print_nanny_webapp.ml_ops.api.views import (
 from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet,
-    PrintJobStateViewSet,
+    PrintSessionStateViewSet,
     PluginEventViewSet,
 )
 
 from print_nanny_webapp.remote_control.api.views import (
     GcodeFileViewSet, 
     PrinterProfileViewSet, 
-    PrintJobViewSet,
+    PrintSessionViewSet,
     OctoPrintDeviceViewSet,
     CommandViewSet,
     RemoteControlSnapshotViewSet,
+
 )
 
-from print_nanny_webapp.alerts.api.views import AlertViewSet, AlertSettingsViewSet, DefectAlertViewSet
+from print_nanny_webapp.alerts.api.views import (
+    AlertViewSet, AlertSettingsViewSet, PrintSessionAlertViewSet
+)
 
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
 router.register("alert_settings", AlertSettingsViewSet)
-router.register("defect-alerts", DefectAlertViewSet)
+router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
 
 router.register("users", UserViewSet)
 
@@ -35,11 +38,11 @@ router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="devi
 router.register(f"snapshots", RemoteControlSnapshotViewSet, basename='snapshot')
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
-router.register(f"print-job-states", PrintJobStateViewSet, basename='print-job-states')
+router.register(f"print-job-states", PrintSessionStateViewSet, basename='print-job-states')
 router.register(f"plugin-events", PluginEventViewSet, basename='plugin-event')
 
 router.register(r"printer-profiles", PrinterProfileViewSet, basename='printer-profile')
-router.register(r"print-jobs", PrintJobViewSet, basename='print-job')
+router.register(r"print-sessions", PrintSessionViewSet, basename='print-session')
 router.register(r"gcode-files", GcodeFileViewSet, basename='gcode-file')
 router.register(r"commands", CommandViewSet, basename='command')
 router.register(r"model-artifacts", ModelArtifactViewSet, basename='model-artifact')

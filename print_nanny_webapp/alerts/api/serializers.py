@@ -1,6 +1,7 @@
 import logging
 import inspect
 
+from django.apps import apps
 from django.urls import reverse
 from rest_framework import serializers
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -12,14 +13,16 @@ from ..models import (
     RemoteControlCommandAlert,
     Alert,
     ProgressAlert,
-    DefectAlert,
     AlertSettings,
     ProgressAlertSettings,
     RemoteControlCommandAlertSettings,
-    DefectAlertSettings,
+    PrintSessionAlert,
+    PrintSessionAlertSettings,
 )
 
 logger = logging.getLogger(__name__)
+
+RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -39,16 +42,44 @@ class ProgressAlertSerializer(AlertSerializer):
     class Meta:
         model = ProgressAlert
         fields = "__all__"
-        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
+        read_only_fields = ("user", "alert_methods", "alert_type", "polymorphic_ctype")
 
 
-class DefectAlertSerializer(AlertSerializer):
-
+class CreatePrintSessionAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
+    # dataflow writes uploaded video to gcs, so create method acccepts path string
+    # this saves having to buffer the file bytes via django's http1 api
+    annotated_video = serializers.CharField()
+
+    def create(self, validated_data):
+        PrintSession = apps.get_model("remote_control", "PrintSession")
+        annotated_video = validated_data["annotated_video"]
+        print_session = validated_data["print_session"]
+        print_session = PrintSession.objects.get(session=print_session)
+        return PrintSessionAlert.objects.create(
+            user=print_session.user,
+            print_session=print_session,
+            annotated_video=annotated_video,
+            octoprint_device=print_session.octoprint_device,
+        )
+
     class Meta:
-        model = DefectAlert
-        fields = ["print_session", "octoprint_device", "print_job", "print_session", "seen", "dismissed", "user"]
-        read_only_fields = ("alert_method", "alert_type", "polymorphic_ctype", "print_job")
+        model = PrintSessionAlert
+        fields = ("print_session", "annotated_video")
+
+
+class PrintSessionAlertSerializer(AlertSerializer):
+    class Meta:
+        model = PrintSessionAlert
+        fields = "__all__"
+
+        read_only_fields = (
+            "alert_methods",
+            "alert_type",
+            "polymorphic_ctype",
+            "user",
+            "octoprint_device",
+        )
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):
@@ -98,7 +129,7 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
         model = RemoteControlCommandAlert
         fields = [
             "alert_subtype",
-            "alert_method",
+            "alert_methods",
             "alert_type",
             "color",
             "created_dt",
@@ -132,8 +163,8 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
         Alert: AlertSerializer,
         RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
-        DefectAlert: DefectAlertSerializer,
         ProgressAlert: ProgressAlertSerializer,
+        PrintSessionAlert: PrintSessionAlertSerializer,
     }
 
     def to_resource_type(self, model_or_instance):
@@ -154,13 +185,6 @@ class CommandAlertSettingsSerializer(AlertSettingsSerializer):
         read_only_fields = ("user",)
 
 
-class DefectAlertSettingsSerializer(AlertSettingsSerializer):
-    class Meta:
-        model = DefectAlertSettings
-        fields = "__all__"
-        read_only_fields = ("user",)
-
-
 class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
     class Meta:
         model = ProgressAlertSettings
@@ -174,8 +198,8 @@ class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         AlertSettings: AlertSettingsSerializer,
         RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
-        DefectAlertSettings: DefectAlertSettingsSerializer,
         ProgressAlert: ProgressAlertSettingsSerializer,
+        # PrintSessionAlert: PrintSessionAlertSettingsSerializer
     }
 
     def to_resource_type(self, model_or_instance):
@@ -186,4 +210,3 @@ class AlertMethodSerializer(serializers.Serializer):
 
     label = serializers.CharField()
     value = serializers.CharField()
-
