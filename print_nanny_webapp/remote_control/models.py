@@ -111,11 +111,6 @@ class OctoPrintDevice(models.Model):
         return active_config
 
     @property
-    def last_snapshot(self):
-        if self.last_command:
-            return self.last_command.last_snapshot
-
-    @property
     def last_command(self):
         return self.commands.order_by("-created_dt").first()
 
@@ -170,6 +165,10 @@ class OctoPrintDevice(models.Model):
         # serializer = OctoPrintDeviceSerializer(instance=self)
         # TODO HyperLinkedIdentitySerialzier requires request context
         return json.dumps({}, sort_keys=True, indent=2)
+
+    @property
+    def manage_url(self):
+        reverse("dashboard:octoprint-devices:detail", kwargs={"pk": self.id})
 
     @property
     def cloudiot_device_configs(self):
@@ -426,17 +425,11 @@ class RemoteControlCommand(models.Model):
     class Command(models.TextChoices):
         MONITORING_STOP = "monitoring_stop", "Stop Print Nanny Monitoring"
         MONITORING_START = "monitoring_start", "Start Print Nanny Monitoring"
-        SNAPSHOT = "snapshot", "Capture a webcam snapshot"
         PRINT_START = "print_start", "Start Print"
         PRINT_STOP = "print_stop", "Stop Print"
         PRINT_PAUSE = "print_pause", "Pause Print"
         PRINT_RESUME = "print_resume", "Resume Print"
         MOVE_NOZZLE = "move_nozzle", "Move Nozzle"
-
-    @property
-    def last_snapshot(self):
-        last_snapshot = self.snapshots.order_by("-created_dt").first()
-        return last_snapshot
 
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
@@ -453,7 +446,6 @@ class RemoteControlCommand(models.Model):
                 cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
-                cls.Command.SNAPSHOT,
             ],
             PrintSessionState.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
             PrintSessionState.EventType.PRINT_CANCELLING: [],
@@ -466,7 +458,6 @@ class RemoteControlCommand(models.Model):
             "Idle": [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
-                cls.Command.SNAPSHOT,
             ],
         }
         return valid_actions[print_session_status]

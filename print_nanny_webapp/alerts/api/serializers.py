@@ -8,22 +8,18 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from ..models import (
-    ManualVideoUploadAlert,
-    RemoteControlCommandAlert,
-    Alert,
-    ProgressAlert,
-    AlertSettings,
-    ProgressAlertSettings,
-    RemoteControlCommandAlertSettings,
-    PrintSessionAlert,
-    PrintSessionAlertSettings,
-)
-
 logger = logging.getLogger(__name__)
 
+Alert = apps.get_model("alerts", "Alert")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
+ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
+ProgressAlert = apps.get_model("alerts", "ProgressAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
-
+PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
+PrintSessionAlertSettings = apps.get_model("alerts", "PrintSessionAlertSettings")
+RemoteControlCommandAlertSettings = apps.get_model("alerts", "RemoteControlCommandAlertSettings")
+ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
 
 class AlertSerializer(serializers.ModelSerializer):
 
@@ -108,13 +104,6 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
             "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
         )
 
-    snapshot_url = serializers.SerializerMethodField()
-
-    def get_snapshot_url(self, obj):
-        lastest_snapshot = obj.command.snapshots.order_by("-created_dt").first()
-        if lastest_snapshot:
-            return lastest_snapshot.image.url
-
     metadata = serializers.SerializerMethodField()
 
     def get_metadata(self, obj):
@@ -141,7 +130,6 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
             "time",
             "description",
             "seen",
-            "snapshot_url",
             "title",
             "updated_dt",
             "user",

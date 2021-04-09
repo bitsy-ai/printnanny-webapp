@@ -9,9 +9,9 @@ Device: {{ DEVICE_NAME }}
 Progress: {{PROGRESS}}% complete
 {% endif %}
 
-Click the following link to view a web camera snapshot:
+Click the following link to manage your device:
 
-{{ SNAPSHOT_URL }}
+{{ MANAGE_DEVICE_URL }}
 
 Was this alert not helpful? You can unsubscribe in Print Nanny's alert settings dashboard:
 

@@ -34,8 +34,6 @@ from .serializers import (
     OctoPrintDeviceSerializer,
     OctoPrintDeviceKeySerializer,
     RemoteControlCommandSerializer,
-    RemoteControlSnapshotSerializer,
-    RemoteControlSnapshotCreateResponseSerializer,
 )
 
 from print_nanny_webapp.remote_control.models import (
@@ -44,7 +42,6 @@ from print_nanny_webapp.remote_control.models import (
     GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
-    RemoteControlSnapshot,
 )
 
 from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (
@@ -230,43 +227,6 @@ class PrinterProfileViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-
-@extend_schema(tags=["remote-control"])
-class RemoteControlSnapshotViewSet(
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-    GenericViewSet,
-):
-    parser_classes = (MultiPartParser, FormParser)
-    serializer_class = RemoteControlSnapshotSerializer
-    queryset = RemoteControlSnapshot.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(
-        tags=["remote-control"],
-        operation_id="snapshots_create",
-        responses={
-            400: RemoteControlSnapshotSerializer,
-            201: RemoteControlSnapshotCreateResponseSerializer,
-        },
-    )
-    def create(self, request):
-        serializer = self.get_serializer(data=request.data)
-
-        if serializer.is_valid():
-            # https://github.com/aio-libs/aiohttp/issues/3652
-            # octoprint_device is accepted as a string and deserialized to an integer
-            instance = serializer.create(serializer.validated_data)
-            response_serializer = RemoteControlSnapshotCreateResponseSerializer(
-                instance=instance, context={"request": self.request}
-            )
-            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @extend_schema(tags=["remote-control"])
 class GcodeFileViewSet(

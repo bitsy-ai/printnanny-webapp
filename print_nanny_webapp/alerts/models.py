@@ -159,8 +159,8 @@ class Alert(PolymorphicModel):
         )
 
         message = f"{data['title']}: {data['description']}"
-        if data["snapshot_url"] is not None:
-            message += "\n" + data["snapshot_url"]
+        if data.get("manage_device_url") is not None:
+            message += "\n" + data["manage_device_url"]
 
         async_to_sync(channel_layer.send)(
             "discord",
@@ -238,18 +238,11 @@ class ProgressAlertSettings(AlertSettings):
     )
 
     def on_print_progress(self, octoprint_event):
-        RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
-
+        from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
         progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
-            command = RemoteControlCommand.objects.create(
-                command=RemoteControlCommand.Command.SNAPSHOT,
-                device=octoprint_event.device,
-                user=octoprint_event.user,
-            )
-            logger.info(
-                f"ProgressAlertSettings.on_print_progress issued command id={command.id}"
-            )
+            serialized_obj = ProgressAlertSerializer(self)
+            return self.trigger_alerts_task(serialized_obj)
 
 
 class PrintSessionAlertSettings(AlertSettings):
@@ -290,13 +283,6 @@ class RemoteControlCommandAlertSettings(AlertSettings):
         return getattr(self, snake_cased)
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    snapshot = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on web camera <strong>Snapshot</strong> command",
-        default=(AlertSubTypeChoices.FAILED, AlertSubTypeChoices.SUCCESS),
-        blank=True,
-    )
 
     monitoring_stop = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
@@ -349,14 +335,13 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     def trigger_email_alert(self, data):
 
-        snapshot = self.command.snapshots.order_by("-created_dt").first()
         merge_data = {
-            "SNAPSHOT_URL": snapshot.image.url,
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.command.device.name,
             "COMMAND": self.command.command,
             "SUBTYPE": self.alert_subtype,
             "PROGRESS": self.command.metadata.get("progress"),
+            "MANAGE_DEVICE_URL": self.command.device.manage_url
         }
 
         text_body = render_to_string(
