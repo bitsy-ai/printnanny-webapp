@@ -1,8 +1,8 @@
 Hey {{FIRST_NAME }},
 
-Just wanted to let you know the print job on {{ DEVICE_NAME }} finished!
+Head's up, the print job on {{ DEVICE_NAME }} finished! 🎉
 
-Click the following link to see a timelapse video:
+Check out the timelapse video:
 {{ ANNOTATED_VIDEO_URL }}
 
 Print Nanny

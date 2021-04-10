@@ -403,6 +403,10 @@ class PrintSessionAlert(Alert):
     )
     annotated_video = models.FileField(upload_to=_upload_to)
 
+    @property
+    def dashboard_url(self):
+        return reverse("dashboard:videos:list")
+
     def trigger_email_alert(self, data):
 
         device_url = reverse(
@@ -414,7 +418,7 @@ class PrintSessionAlert(Alert):
             "FIRST_NAME": self.user.first_name or "Maker",
             "DEVICE_NAME": self.octoprint_device.name,
             # TODO session url view
-            "ANNOTATED_VIDEO_URL": self.annotated_video.url,
+            "ANNOTATED_VIDEO_URL": self.dashboard_url,
         }
 
         text_body = render_to_string("email/print_done_body.txt", merge_data)
