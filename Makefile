@@ -20,6 +20,7 @@ dev-up:
 	docker-compose -f local.yml up
 
 deploy: build
+	gcloud container clusters get-credentials www-beta --zone us-central1-c --project print-nanny
 	k8s/push.sh
 
 blog-deploy:
