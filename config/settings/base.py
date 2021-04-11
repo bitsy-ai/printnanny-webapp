@@ -490,7 +490,7 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
 
 
-HONEYCOMB_DATASET = env('HONEYCOMB_DATASET')
+HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', "print_nanny_webapp_sandbox")
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
 
