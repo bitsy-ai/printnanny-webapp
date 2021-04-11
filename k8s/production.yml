@@ -2,123 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: celery-worker
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: celery-worker
-  template:
-    metadata:
-      labels:
-        app: celery-worker
-    spec:
-      serviceAccountName: sql-webapp
-      containers:
-      - name: celery-worker
-        imagePullPolicy: Always
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
-        command:
-          - /start-celeryworker
-        envFrom:
-          - configMapRef:
-              name: webapp
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: celery-worker
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: /etc/service-account
-          readOnly: true
-      - name: cloud-sql-proxy
-        # It is recommended to use the latest version of the Cloud SQL proxy
-        # Make sure to update on a regular schedule!
-        image: gcr.io/cloudsql-docker/gce-proxy:1.17
-        command:
-          - "/cloud_sql_proxy"
-
-          # If connecting from a VPC-native GKE cluster, you can use the
-          # following flag to have the proxy connect over private IP
-          # - "-ip_address_types=PRIVATE"
-
-          # Replace DB_PORT with the port the proxy should listen on
-          # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-          - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
-        securityContext:
-          # The default Cloud SQL proxy image runs as the
-          # "nonroot" user and group (uid: 65532) by default.
-          runAsNonRoot: true
-        ports:
-          - containerPort: 5432
-      volumes:
-        - name: dataflow-service-account
-          secret:
-            secretName: dataflow-service-account
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: octoprint-events
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: octoprint-events
-  template:
-    metadata:
-      labels:
-        app: octoprint-events
-    spec:
-      serviceAccountName: sql-webapp
-      containers:
-      - name: octoprint-events
-        imagePullPolicy: Always
-        command:
-          - python
-          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
-        ports:
-        - containerPort: 8000
-        - containerPort: 8001
-        envFrom:
-          - configMapRef:
-              name: webapp
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: octoprint-events
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: /etc/service-account
-          readOnly: true
-      - name: cloud-sql-proxy
-        # It is recommended to use the latest version of the Cloud SQL proxy
-        # Make sure to update on a regular schedule!
-        image: gcr.io/cloudsql-docker/gce-proxy:1.17
-        command:
-          - "/cloud_sql_proxy"
-
-          # If connecting from a VPC-native GKE cluster, you can use the
-          # following flag to have the proxy connect over private IP
-          # - "-ip_address_types=PRIVATE"
-
-          # Replace DB_PORT with the port the proxy should listen on
-          # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
-          - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
-        securityContext:
-          # The default Cloud SQL proxy image runs as the
-          # "nonroot" user and group (uid: 65532) by default.
-          runAsNonRoot: true
-        ports:
-          - containerPort: 5432
-      volumes:
-        - name: dataflow-service-account
-          secret:
-            secretName: dataflow-service-account
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: discord-worker
 spec:
   replicas: 1
@@ -192,7 +75,7 @@ spec:
       labels:
         app: django
     spec:
-      serviceAccountName: sql-webapp
+      serviceAccountName: webapp
       containers:
       - name: django
         imagePullPolicy: Always
@@ -244,17 +127,6 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 5432
-      volumes:
-        - name: dataflow-service-account
-          secret:
-            secretName: dataflow-service-account
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sql-webapp
-  annotations:
-    iam.gke.io/gcp-service-account: sql-webapp@print-nanny.iam.gserviceaccount.com
 ---
 apiVersion: v1
 kind: Service
