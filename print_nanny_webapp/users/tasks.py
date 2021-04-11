@@ -40,7 +40,7 @@ def create_ghost_member(ghost_member):
     )
 
     # Make an authenticated request to create a post
-    url = "https://help.print-nanny.com/ghost/api/v3/admin/members/"
+    url = "https://blog.print-nanny.com/ghost/api/v3/admin/members/"
     headers = {"Authorization": "Ghost {}".format(token)}
     body = {"members": [ghost_member]}
     r = requests.post(url, json=body, headers=headers)
@@ -84,6 +84,7 @@ def create_ghost_member(ghost_member):
                     email_count=member["email_count"],
                     email_open_rate=member["email_open_rate"],
                     email_opened_count=member["email_opened_count"],
+                    site=GhostMember.SiteChoices.BLOG
                 )
                 logger.info(f"Created GhostMember id={obj.id}")
         except Exception as e:
