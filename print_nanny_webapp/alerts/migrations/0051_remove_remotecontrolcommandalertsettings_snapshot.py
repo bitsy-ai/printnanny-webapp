@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0050_auto_20210406_2247'),
+        ("alerts", "0050_auto_20210406_2247"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='remotecontrolcommandalertsettings',
-            name='snapshot',
+            model_name="remotecontrolcommandalertsettings",
+            name="snapshot",
         ),
     ]

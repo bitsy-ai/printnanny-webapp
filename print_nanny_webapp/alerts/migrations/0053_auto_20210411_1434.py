@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0052_auto_20210411_1421'),
+        ("alerts", "0052_auto_20210411_1421"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printsessionalertsettings',
-            name='needs_review',
+            model_name="printsessionalertsettings",
+            name="needs_review",
         ),
         migrations.AddField(
-            model_name='printsessionalert',
-            name='needs_review',
+            model_name="printsessionalert",
+            name="needs_review",
             field=models.BooleanField(default=False),
         ),
     ]

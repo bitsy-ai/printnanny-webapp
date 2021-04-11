@@ -262,14 +262,14 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
     }
 
     def needs_review_form_valid(self, form):
-        alert_id= self.request.POST.get("alert_id")
+        alert_id = self.request.POST.get("alert_id")
         needs_review = self.request.POST.get("needs_review")
         if alert_id is not None and needs_review is not None:
             # python, i love you, but i'm breaking up with your type system
             needs_review = bool(int(needs_review))
-            PrintSessionAlert.objects.filter(
-                id=alert_id
-            ).update(needs_review=needs_review)
+            PrintSessionAlert.objects.filter(id=alert_id).update(
+                needs_review=needs_review
+            )
 
         return redirect(reverse("dashboard:videos:list"))
 
@@ -277,9 +277,9 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        alerts = PrintSessionAlert.objects.filter(
-            user=self.request.user
-        ).order_by("-created_dt")
+        alerts = PrintSessionAlert.objects.filter(user=self.request.user).order_by(
+            "-created_dt"
+        )
         context["alerts"] = alerts
         try:
             return context

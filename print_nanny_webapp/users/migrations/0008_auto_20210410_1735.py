@@ -6,19 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0007_ghostmember_email'),
+        ("users", "0007_ghostmember_email"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ghostmember',
-            name='site',
-            field=models.CharField(choices=[('blog', 'blog.print-nanny.com'), ('help', 'help.print-nanny.com')], default='help', max_length=32),
+            model_name="ghostmember",
+            name="site",
+            field=models.CharField(
+                choices=[
+                    ("blog", "blog.print-nanny.com"),
+                    ("help", "help.print-nanny.com"),
+                ],
+                default="help",
+                max_length=32,
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='ghostmember',
-            name='email',
+            model_name="ghostmember",
+            name="email",
             field=models.EmailField(db_index=True, max_length=254),
         ),
     ]

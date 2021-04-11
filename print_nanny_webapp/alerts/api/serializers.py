@@ -18,8 +18,11 @@ ProgressAlert = apps.get_model("alerts", "ProgressAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 PrintSessionAlertSettings = apps.get_model("alerts", "PrintSessionAlertSettings")
-RemoteControlCommandAlertSettings = apps.get_model("alerts", "RemoteControlCommandAlertSettings")
+RemoteControlCommandAlertSettings = apps.get_model(
+    "alerts", "RemoteControlCommandAlertSettings"
+)
 ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
+
 
 class AlertSerializer(serializers.ModelSerializer):
 

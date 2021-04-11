@@ -238,6 +238,7 @@ class ProgressAlertSettings(AlertSettings):
 
     def on_print_progress(self, octoprint_event):
         from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
+
         progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
             serialized_obj = ProgressAlertSerializer(self)
@@ -340,7 +341,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
             "COMMAND": self.command.command,
             "SUBTYPE": self.alert_subtype,
             "PROGRESS": self.command.metadata.get("progress"),
-            "MANAGE_DEVICE_URL": self.command.device.manage_url
+            "MANAGE_DEVICE_URL": self.command.device.manage_url,
         }
 
         text_body = render_to_string(
@@ -390,6 +391,7 @@ class PrintSessionAlert(Alert):
         super().__init__(
             *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
+
     needs_review = models.BooleanField(default=False)
 
     alert_subtype = models.CharField(
