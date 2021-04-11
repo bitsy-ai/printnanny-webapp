@@ -58,7 +58,6 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             Alert.objects.filter(
                 user=self.request.user,
             )
-            .exclude(dismissed=True)
             .order_by("-created_dt")
             .all()
         )
