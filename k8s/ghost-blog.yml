@@ -39,7 +39,7 @@ spec:
         name: ghost
         env:
         - name: url
-          value: "https://help.print-nanny.com"
+          value: "https://blog.print-nanny.com"
         - name: mail__transport
           value: SMTP
         - name: mail__options__service
