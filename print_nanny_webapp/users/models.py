@@ -164,8 +164,12 @@ class GhostMember(models.Model):
     """
     Periodically synced with Ghost's user/member API @ help.print-nanny.com
     """
+    class SiteChoices(models.TextChoices):
+        BLOG = "blog", "blog.print-nanny.com"
+        HELP = "help", "help.print-nanny.com"
 
-    email = models.EmailField()
+    site = models.CharField(max_length=32, choices=SiteChoices.choices)
+    email = models.EmailField(db_index=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True)
     invite_request = models.OneToOneField(
         InviteRequest, on_delete=models.CASCADE, unique=True, null=True
