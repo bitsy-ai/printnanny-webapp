@@ -13,7 +13,7 @@ spec:
       labels:
         app: metabase
     spec:
-      serviceAccountName: sql-webapp
+      serviceAccountName: cloudsql-client
       containers:
       - name: cloud-sql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.17

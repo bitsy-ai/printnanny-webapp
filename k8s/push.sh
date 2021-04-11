@@ -14,7 +14,9 @@ docker push us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev
 
 
 kubectl apply -f k8s/configmap.yml
-kubectl apply -f k8s/production.yml
+kubectl apply -f k8s/octoprint-events.yml
+kubectl apply -f k8s/celery-worker.yml
+kubectl apply -f k8s/django.yml
 
 kubectl set image deployment/django django=us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev-parse HEAD) --record
 kubectl set image deployment/celery-worker celery-worker=us.gcr.io/print-nanny/print_nanny_webapp_production_django:$(git rev-parse HEAD) --record

@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   annotations:
-  name: print-nanny-help
+  name: print-nanny-blog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: print-nanny-help
-  serviceName: print-nanny-help
+      app: print-nanny-blog
+  serviceName: print-nanny-blog
   template:
     metadata:
       labels:
-        app: print-nanny-help
+        app: print-nanny-blog
     spec:
       serviceAccountName: ghost-site
       containers:
@@ -39,7 +39,7 @@ spec:
         name: ghost
         env:
         - name: url
-          value: "https://help.print-nanny.com"
+          value: "https://blog.print-nanny.com"
         - name: mail__transport
           value: SMTP
         - name: mail__options__service
@@ -68,12 +68,12 @@ spec:
               name:  mysql-creds
               key: password
         - name: database__connection__database
-          value: print_nanny_help
+          value: print_nanny_blog
         ports:
         - containerPort: 2368
         volumeMounts:
         - mountPath: /var/lib/ghost/content
-          name: print-nanny-help-data
+          name: print-nanny-blog-data
         livenessProbe:
           httpGet:
             path: /
@@ -111,7 +111,7 @@ spec:
         emptyDir: {}
   volumeClaimTemplates:
   - metadata:
-      name: print-nanny-help-data
+      name: print-nanny-blog-data
     spec:
       accessModes:
       - ReadWriteOnce
@@ -122,7 +122,7 @@ spec:
 apiVersion: cloud.google.com/v1beta1
 kind: BackendConfig
 metadata:
-  name: print-nanny-help
+  name: print-nanny-blog
 spec:
   customRequestHeaders:
     headers:
@@ -131,14 +131,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: print-nanny-help
+  name: print-nanny-blog
   labels:
-    app: print-nanny-help
+    app: print-nanny-blog
   annotations:
-    cloud.google.com/backend-config: '{"default": "print-nanny-help"}'
+    cloud.google.com/backend-config: '{"default": "print-nanny-blog"}'
 spec:
   selector:
-    app: print-nanny-help
+    app: print-nanny-blog
   type: NodePort
   ports:
     - protocol: TCP
@@ -148,22 +148,22 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: print-nanny-help
+  name: print-nanny-blog
 spec:
   domains:
-    - help.print-nanny.com
+    - blog.print-nanny.com
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: print-nanny-help
+  name: print-nanny-blog
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: ghost-help-static-up
-    networking.gke.io/managed-certificates: print-nanny-help
+    kubernetes.io/ingress.global-static-ip-name: ghost-blog-static-ip
+    networking.gke.io/managed-certificates: print-nanny-blog
 spec:
   backend:
-    serviceName: print-nanny-help
+    serviceName: print-nanny-blog
     servicePort: 80
 ---
 apiVersion: v1
