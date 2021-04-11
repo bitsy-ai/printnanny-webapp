@@ -14,7 +14,7 @@ spec:
       labels:
         app: print-nanny-blog
     spec:
-      serviceAccountName: sql-webapp
+      serviceAccountName: ghost-site
       containers:
       - name: nginx
         image: nginx
