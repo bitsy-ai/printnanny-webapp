@@ -41,10 +41,6 @@ spec:
         envFrom:
           - configMapRef:
               name: webapp
-        volumeMounts:
-        - name: dataflow-service-account
-          mountPath: /etc/service-account
-          readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!

@@ -12,3 +12,10 @@ metadata:
   name: ghost-site
   annotations:
     iam.gke.io/gcp-service-account: ghost-site@print-nanny.iam.gserviceaccount.com
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cloudsql-client
+  annotations:
+    iam.gke.io/gcp-service-account: cloudsql-client@print-nanny.iam.gserviceaccount.com

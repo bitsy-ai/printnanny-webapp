@@ -13,7 +13,7 @@ spec:
       labels:
         app: cloud-sql-proxy
     spec:
-      serviceAccountName: sql-webapp
+      serviceAccountName: cloudsql-client
       containers:
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
