@@ -164,6 +164,7 @@ class GhostMember(models.Model):
     """
     Periodically synced with Ghost's user/member API @ help.print-nanny.com
     """
+
     class SiteChoices(models.TextChoices):
         BLOG = "blog", "blog.print-nanny.com"
         HELP = "help", "help.print-nanny.com"

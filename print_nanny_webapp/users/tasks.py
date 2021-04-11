@@ -84,7 +84,7 @@ def create_ghost_member(ghost_member):
                     email_count=member["email_count"],
                     email_open_rate=member["email_open_rate"],
                     email_opened_count=member["email_opened_count"],
-                    site=GhostMember.SiteChoices.BLOG
+                    site=GhostMember.SiteChoices.BLOG,
                 )
                 logger.info(f"Created GhostMember id={obj.id}")
         except Exception as e:

@@ -253,17 +253,38 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
 octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
 
-class VideoDashboardView(LoginRequiredMixin, TemplateView):
+class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
     template_name = "dashboard/video-list.html"
+    success_url = "/dashboard/videos/"
+
+    form_classes = {
+        "needs_review": FeedbackForm,
+    }
+
+    def needs_review_form_valid(self, form):
+        alert_id = self.request.POST.get("alert_id")
+        needs_review = self.request.POST.get("needs_review")
+        if alert_id is not None and needs_review is not None:
+            # python, i love you, but i'm breaking up with your type system
+            needs_review = bool(int(needs_review))
+            PrintSessionAlert.objects.filter(id=alert_id).update(
+                needs_review=needs_review
+            )
+
+        return redirect(reverse("dashboard:videos:list"))
 
     def get_context_data(self, *args, **kwargs):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        context["alerts"] = PrintSessionAlert.objects.filter(
-            user=self.request.user
-        ).order_by("-created_dt")
-        return context
+        alerts = PrintSessionAlert.objects.filter(user=self.request.user).order_by(
+            "-created_dt"
+        )
+        context["alerts"] = alerts
+        try:
+            return context
+        finally:
+            alerts.update(seen=True)
 
 
 video_list_view = VideoDashboardView.as_view()

@@ -137,6 +137,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             user=user, serial=serial, defaults=validated_data
         )
 
+
 class GcodeFileSerializer(serializers.ModelSerializer):
 
     # https://github.com/aio-libs/aiohttp/issues/3652
