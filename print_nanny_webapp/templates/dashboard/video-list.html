@@ -30,6 +30,7 @@
           {% if alerts.count > 0 %}
                     <!-- videos -->
                     <div class="row">
+                
                       {% for obj in alerts %}
                     
                         <!-- card wrapper -->
@@ -58,7 +59,10 @@
                                     </video>
                                 </div>
                             </div>
-          
+                            <div class="card-footer">
+                                {% include "form/needs_review.html" %}
+        
+                            </div>
                         </div>
                     
                         {% endfor %}

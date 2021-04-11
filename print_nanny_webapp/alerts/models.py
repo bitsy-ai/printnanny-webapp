@@ -73,7 +73,6 @@ class Alert(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     seen = models.BooleanField(default=False)
     sent = models.BooleanField(default=False)
-    dismissed = models.BooleanField(default=False)
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
@@ -391,6 +390,7 @@ class PrintSessionAlert(Alert):
         super().__init__(
             *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
         )
+    needs_review = models.BooleanField(default=False)
 
     alert_subtype = models.CharField(
         max_length=36,
