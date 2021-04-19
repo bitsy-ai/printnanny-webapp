@@ -190,7 +190,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         device = OctoPrintDevice.objects.get(id=octoprint_device_id)
         device.delete()
         return redirect("dashboard:octoprint-devices:list")
-   
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         form_classes = self.get_form_classes()
