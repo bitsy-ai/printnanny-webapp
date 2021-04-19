@@ -5,7 +5,7 @@ from django.urls import include, path, re_path
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
-from print_nanny_webapp.users.api.views import UserViewSet #, MeViewSet
+from print_nanny_webapp.users.api.views import UserViewSet, geeks_token_validation_view_set #, MeViewSet
 from print_nanny_webapp.client_events.api.views import (
     OctoPrintEventViewSet,
     PrintSessionStateViewSet,
@@ -13,8 +13,8 @@ from print_nanny_webapp.client_events.api.views import (
 )
 
 from print_nanny_webapp.remote_control.api.views import (
-    GcodeFileViewSet, 
-    PrinterProfileViewSet, 
+    GcodeFileViewSet,
+    PrinterProfileViewSet,
     PrintSessionViewSet,
     OctoPrintDeviceViewSet,
     CommandViewSet
@@ -31,6 +31,7 @@ router.register("alert_settings", AlertSettingsViewSet)
 router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
 
 router.register("users", UserViewSet)
+# router.register("geeks-callback", geeks_token_validation_view_set, basename="geeks-callback")
 
 router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
@@ -47,4 +48,7 @@ router.register(r"experiment-device-configs", ExperimentDeviceConfigViewSet, bas
 router.register(r"experiments", ExperimentViewSet, basename="experiment")
 
 app_name = "api"
-urlpatterns = router.urls
+urlpatterns = [
+    path("geeks-callback", geeks_token_validation_view_set),
+    path("", include(router.urls)),
+]

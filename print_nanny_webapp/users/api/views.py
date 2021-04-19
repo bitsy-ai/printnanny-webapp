@@ -1,6 +1,7 @@
+from print_nanny_webapp.users.authentication import GeeksTokenAuthentication
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, authentication_classes
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
@@ -32,3 +33,11 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
         queryset = self.filter_queryset(self.get_queryset()).first()
         serializer = self.get_serializer(queryset)
         return Response(serializer.data)
+
+@api_view(['GET'])
+@authentication_classes([GeeksTokenAuthentication])
+def geeks_token_validation_view_set(request):
+    return Response({
+        "printer_name": "Prusa MK3S",
+        "is_valid": True,
+    })

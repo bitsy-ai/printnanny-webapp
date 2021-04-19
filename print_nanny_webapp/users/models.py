@@ -9,6 +9,7 @@ from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
 from anymail.message import AnymailMessage
+from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
@@ -181,3 +182,9 @@ class GhostMember(models.Model):
     email_opened_count = models.IntegerField()
     email_open_rate = models.FloatField(null=True)
     subscribed = models.BooleanField(default=True)
+
+
+class GeeksToken(Token):
+    # Ancestor already has `user` field
+    token = models.CharField(max_length=64, db_index=True)
+    octoprint_device = models.ForeignKey("remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE)
