@@ -57,6 +57,23 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">3D Geeks Method Settings</h4>
+                        <p>Configure the 3D Geeks notification app</p>
+                    </div>
+                    <div class="form-group">
+                        {% for token in tokens %}
+                            <h4>{{ token.octoprint_device.name }}</h4>
+
+                            <input id="token" type="password" class="form-control"
+                                value="{{ token.key }}" readonly>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="card">

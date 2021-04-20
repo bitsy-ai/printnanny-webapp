@@ -38,9 +38,3 @@ class DiscordMethodSettingsForm(ModelForm):
         model = DiscordMethodSettings
         unique_together = ("user", "target_id", "target_id_type")
         fields = ("target_id", "target_id_type")
-
-
-class GeeksMethodSettingsForm(ModelForm):
-    class Meta:
-        model = GeeksToken
-        fields = ("token", "octoprint_device")
