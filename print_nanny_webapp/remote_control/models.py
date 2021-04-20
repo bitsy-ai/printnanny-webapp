@@ -22,6 +22,7 @@ from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
+from print_nanny_webapp.users.models import GeeksToken
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -171,6 +172,11 @@ class OctoPrintDevice(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
+
+
+    def save(self, *args, **kwargs):
+        GeeksToken.objects.get_or_create(user=self.user, octoprint_device=self)
+        return super().save(*args, **kwargs)
 
     def to_json(self):
         # from print_nanny_webapp.remote_control.api.serializers import (

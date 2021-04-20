@@ -14,7 +14,6 @@ from .forms import (
     ProgressAlertSettingsForm,
     CommandAlertSettingsForm,
     DiscordMethodSettingsForm,
-    GeeksMethodSettingsForm,
 )
 from .models import (
     Alert,
@@ -33,7 +32,6 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         "progress": ProgressAlertSettingsForm,
         "command": CommandAlertSettingsForm,
         "discord": DiscordMethodSettingsForm,
-        "geeks": GeeksMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
 
@@ -126,11 +124,10 @@ class AlertSettingsView(DashboardView, MultiFormsView):
 
     def get_context_data(self, *args, **kwargs):
         if kwargs.get("forms") is None:
-            for device in OctoPrintDevice.objects.filter(user=self.request.user):
-                token = GeeksToken.objects.get_or_create(user=self.request.user, octoprint_device=device)
+            tokens = GeeksToken.objects.filter(user=self.request.user)
             form_classes = self.get_form_classes()
             forms = self.get_forms(form_classes)
-            context = super().get_context_data(forms=forms, **kwargs)
+            context = super().get_context_data(forms=forms, tokens=tokens, **kwargs)
         else:
             context = super().get_context_data(*args, **kwargs)
         return context

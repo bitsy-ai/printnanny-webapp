@@ -38,6 +38,6 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
 @authentication_classes([GeeksTokenAuthentication])
 def geeks_token_validation_view_set(request):
     return Response({
-        "printer_name": "Prusa MK3S",
+        "printer_name": request.auth.octoprint_device.name,
         "is_valid": True,
     })
