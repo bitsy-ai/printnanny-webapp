@@ -15,14 +15,9 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-
 @extend_schema(
     tags=["users"],
-    responses={
-        200: UserSerializer,
-        201: UserSerializer,
-        202: UserSerializer
-    },
+    responses={200: UserSerializer, 201: UserSerializer, 202: UserSerializer},
 )
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
