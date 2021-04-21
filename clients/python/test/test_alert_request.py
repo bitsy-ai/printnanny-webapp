@@ -36,7 +36,7 @@ class TestAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.alert_request.AlertRequest()  # noqa: E501
         if include_optional :
             return AlertRequest(
-                dismissed = True
+                seen = True
             )
         else :
             return AlertRequest(

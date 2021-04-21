@@ -36,7 +36,7 @@ class TestPatchedAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_alert_request.PatchedAlertRequest()  # noqa: E501
         if include_optional :
             return PatchedAlertRequest(
-                dismissed = True
+                seen = True
             )
         else :
             return PatchedAlertRequest(

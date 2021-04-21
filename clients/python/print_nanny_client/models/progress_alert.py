@@ -41,7 +41,6 @@ class ProgressAlert(object):
         'updated_dt': 'datetime',
         'seen': 'bool',
         'sent': 'bool',
-        'dismissed': 'bool',
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
         'user': 'int',
@@ -58,7 +57,6 @@ class ProgressAlert(object):
         'updated_dt': 'updated_dt',
         'seen': 'seen',
         'sent': 'sent',
-        'dismissed': 'dismissed',
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
@@ -66,7 +64,7 @@ class ProgressAlert(object):
         'device': 'device'
     }
 
-    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, progress_percent=None, polymorphic_ctype=None, user=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, progress_percent=None, polymorphic_ctype=None, user=None, octoprint_device=None, device=None, local_vars_configuration=None):  # noqa: E501
         """ProgressAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -80,7 +78,6 @@ class ProgressAlert(object):
         self._updated_dt = None
         self._seen = None
         self._sent = None
-        self._dismissed = None
         self._progress_percent = None
         self._polymorphic_ctype = None
         self._user = None
@@ -104,8 +101,6 @@ class ProgressAlert(object):
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        if dismissed is not None:
-            self.dismissed = dismissed
         if progress_percent is not None:
             self.progress_percent = progress_percent
         if polymorphic_ctype is not None:
@@ -282,27 +277,6 @@ class ProgressAlert(object):
         """
 
         self._sent = sent
-
-    @property
-    def dismissed(self):
-        """Gets the dismissed of this ProgressAlert.  # noqa: E501
-
-
-        :return: The dismissed of this ProgressAlert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this ProgressAlert.
-
-
-        :param dismissed: The dismissed of this ProgressAlert.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
 
     @property
     def progress_percent(self):

@@ -33,45 +33,45 @@ class PatchedAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'dismissed': 'bool'
+        'seen': 'bool'
     }
 
     attribute_map = {
-        'dismissed': 'dismissed'
+        'seen': 'seen'
     }
 
-    def __init__(self, dismissed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._dismissed = None
+        self._seen = None
         self.discriminator = None
 
-        if dismissed is not None:
-            self.dismissed = dismissed
+        if seen is not None:
+            self.seen = seen
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this PatchedAlertRequest.  # noqa: E501
+    def seen(self):
+        """Gets the seen of this PatchedAlertRequest.  # noqa: E501
 
 
-        :return: The dismissed of this PatchedAlertRequest.  # noqa: E501
+        :return: The seen of this PatchedAlertRequest.  # noqa: E501
         :rtype: bool
         """
-        return self._dismissed
+        return self._seen
 
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this PatchedAlertRequest.
+    @seen.setter
+    def seen(self, seen):
+        """Sets the seen of this PatchedAlertRequest.
 
 
-        :param dismissed: The dismissed of this PatchedAlertRequest.  # noqa: E501
-        :type dismissed: bool
+        :param seen: The seen of this PatchedAlertRequest.  # noqa: E501
+        :type seen: bool
         """
 
-        self._dismissed = dismissed
+        self._seen = seen
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

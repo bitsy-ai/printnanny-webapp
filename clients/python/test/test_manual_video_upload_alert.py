@@ -39,7 +39,6 @@ class TestManualVideoUploadAlert(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 user = 56, 
-                dismissed = True, 
                 alert_type = 'COMMAND'
             )
         else :

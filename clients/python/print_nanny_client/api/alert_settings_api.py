@@ -36,13 +36,13 @@ class AlertSettingsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def alert_settings_list(self, **kwargs):  # noqa: E501
-        """alert_settings_list  # noqa: E501
+    def api_alert_settings_list(self, **kwargs):  # noqa: E501
+        """api_alert_settings_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_list(async_req=True)
+        >>> thread = api.api_alert_settings_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -63,15 +63,15 @@ class AlertSettingsApi(object):
         :rtype: PaginatedAlertSettingsPolymorphicList
         """
         kwargs['_return_http_data_only'] = True
-        return self.alert_settings_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_alert_settings_list_with_http_info(**kwargs)  # noqa: E501
 
-    def alert_settings_list_with_http_info(self, **kwargs):  # noqa: E501
-        """alert_settings_list  # noqa: E501
+    def api_alert_settings_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_alert_settings_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_list_with_http_info(async_req=True)
+        >>> thread = api.api_alert_settings_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -118,7 +118,7 @@ class AlertSettingsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method alert_settings_list" % key
+                    " to method api_alert_settings_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -165,13 +165,13 @@ class AlertSettingsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alert_settings_methods_retrieve(self, **kwargs):  # noqa: E501
-        """alert_settings_methods_retrieve  # noqa: E501
+    def api_alert_settings_methods_retrieve(self, **kwargs):  # noqa: E501
+        """api_alert_settings_methods_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_methods_retrieve(async_req=True)
+        >>> thread = api.api_alert_settings_methods_retrieve(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -190,15 +190,15 @@ class AlertSettingsApi(object):
         :rtype: AlertMethod
         """
         kwargs['_return_http_data_only'] = True
-        return self.alert_settings_methods_retrieve_with_http_info(**kwargs)  # noqa: E501
+        return self.api_alert_settings_methods_retrieve_with_http_info(**kwargs)  # noqa: E501
 
-    def alert_settings_methods_retrieve_with_http_info(self, **kwargs):  # noqa: E501
-        """alert_settings_methods_retrieve  # noqa: E501
+    def api_alert_settings_methods_retrieve_with_http_info(self, **kwargs):  # noqa: E501
+        """api_alert_settings_methods_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_methods_retrieve_with_http_info(async_req=True)
+        >>> thread = api.api_alert_settings_methods_retrieve_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -242,7 +242,7 @@ class AlertSettingsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method alert_settings_methods_retrieve" % key
+                    " to method api_alert_settings_methods_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -287,13 +287,13 @@ class AlertSettingsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alert_settings_partial_update(self, id, **kwargs):  # noqa: E501
-        """alert_settings_partial_update  # noqa: E501
+    def api_alert_settings_partial_update(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_partial_update(id, async_req=True)
+        >>> thread = api.api_alert_settings_partial_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -316,15 +316,15 @@ class AlertSettingsApi(object):
         :rtype: AlertSettingsPolymorphic
         """
         kwargs['_return_http_data_only'] = True
-        return self.alert_settings_partial_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_alert_settings_partial_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def alert_settings_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
-        """alert_settings_partial_update  # noqa: E501
+    def api_alert_settings_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_partial_update_with_http_info(id, async_req=True)
+        >>> thread = api.api_alert_settings_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -374,14 +374,14 @@ class AlertSettingsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method alert_settings_partial_update" % key
+                    " to method api_alert_settings_partial_update" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `alert_settings_partial_update`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_alert_settings_partial_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -431,13 +431,13 @@ class AlertSettingsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alert_settings_retrieve(self, id, **kwargs):  # noqa: E501
-        """alert_settings_retrieve  # noqa: E501
+    def api_alert_settings_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_retrieve(id, async_req=True)
+        >>> thread = api.api_alert_settings_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -458,15 +458,15 @@ class AlertSettingsApi(object):
         :rtype: AlertSettingsPolymorphic
         """
         kwargs['_return_http_data_only'] = True
-        return self.alert_settings_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_alert_settings_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def alert_settings_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """alert_settings_retrieve  # noqa: E501
+    def api_alert_settings_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_alert_settings_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -513,14 +513,14 @@ class AlertSettingsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method alert_settings_retrieve" % key
+                    " to method api_alert_settings_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `alert_settings_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_alert_settings_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -564,13 +564,13 @@ class AlertSettingsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alert_settings_update(self, id, **kwargs):  # noqa: E501
-        """alert_settings_update  # noqa: E501
+    def api_alert_settings_update(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_update(id, async_req=True)
+        >>> thread = api.api_alert_settings_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -593,15 +593,15 @@ class AlertSettingsApi(object):
         :rtype: AlertSettingsPolymorphic
         """
         kwargs['_return_http_data_only'] = True
-        return self.alert_settings_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_alert_settings_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def alert_settings_update_with_http_info(self, id, **kwargs):  # noqa: E501
-        """alert_settings_update  # noqa: E501
+    def api_alert_settings_update_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_alert_settings_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alert_settings_update_with_http_info(id, async_req=True)
+        >>> thread = api.api_alert_settings_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert settings. (required)
@@ -651,14 +651,14 @@ class AlertSettingsApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method alert_settings_update" % key
+                    " to method api_alert_settings_update" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `alert_settings_update`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_alert_settings_update`")  # noqa: E501
 
         collection_formats = {}
 

@@ -38,7 +38,7 @@ class TestPatchedPrintSessionAlertRequest(unittest.TestCase):
             return PatchedPrintSessionAlertRequest(
                 seen = True, 
                 sent = True, 
-                dismissed = True, 
+                needs_review = True, 
                 alert_subtype = 'SUCCESS', 
                 annotated_video = bytes(b'blah'), 
                 print_session = 56

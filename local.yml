@@ -24,6 +24,10 @@ services:
       - .:/app:z
       - local_file_data:/tmp:z
       - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
+      # prevent host machine .venv and node_modules from being included in container
+      # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
+      - /app/node_modules
+      - /app/.venv
 
     env_file:
       - ./.envs/.local/.django

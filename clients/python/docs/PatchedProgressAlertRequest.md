@@ -5,7 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **octoprint_device** | **int** |  | [optional] 
 **device** | **int** |  | [optional] 

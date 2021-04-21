@@ -37,7 +37,6 @@ class RemoteControlCommandAlertRequest(object):
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
-        'dismissed': 'bool',
         'icon': 'str',
         'description': 'str',
         'seen': 'bool',
@@ -49,14 +48,13 @@ class RemoteControlCommandAlertRequest(object):
         'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
         'color': 'color',
-        'dismissed': 'dismissed',
         'icon': 'icon',
         'description': 'description',
         'seen': 'seen',
         'title': 'title'
     }
 
-    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dismissed=None, icon=None, description=None, seen=None, title=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, local_vars_configuration=None):  # noqa: E501
         """RemoteControlCommandAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -66,7 +64,6 @@ class RemoteControlCommandAlertRequest(object):
         self._alert_methods = None
         self._alert_type = None
         self._color = None
-        self._dismissed = None
         self._icon = None
         self._description = None
         self._seen = None
@@ -78,8 +75,6 @@ class RemoteControlCommandAlertRequest(object):
             self.alert_methods = alert_methods
         self.alert_type = alert_type
         self.color = color
-        if dismissed is not None:
-            self.dismissed = dismissed
         self.icon = icon
         self.description = description
         if seen is not None:
@@ -175,27 +170,6 @@ class RemoteControlCommandAlertRequest(object):
             raise ValueError("Invalid value for `color`, must not be `None`")  # noqa: E501
 
         self._color = color
-
-    @property
-    def dismissed(self):
-        """Gets the dismissed of this RemoteControlCommandAlertRequest.  # noqa: E501
-
-
-        :return: The dismissed of this RemoteControlCommandAlertRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this RemoteControlCommandAlertRequest.
-
-
-        :param dismissed: The dismissed of this RemoteControlCommandAlertRequest.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
 
     @property
     def icon(self):

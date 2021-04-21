@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 

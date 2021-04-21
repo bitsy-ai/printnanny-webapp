@@ -28,68 +28,68 @@ class TestMlOpsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_api_device_calibrations_list(self):
+        """Test case for api_device_calibrations_list
+
+        """
+        pass
+
+    def test_api_device_calibrations_partial_update(self):
+        """Test case for api_device_calibrations_partial_update
+
+        """
+        pass
+
+    def test_api_device_calibrations_retrieve(self):
+        """Test case for api_device_calibrations_retrieve
+
+        """
+        pass
+
+    def test_api_device_calibrations_update(self):
+        """Test case for api_device_calibrations_update
+
+        """
+        pass
+
+    def test_api_experiment_device_configs_list(self):
+        """Test case for api_experiment_device_configs_list
+
+        """
+        pass
+
+    def test_api_experiment_device_configs_retrieve(self):
+        """Test case for api_experiment_device_configs_retrieve
+
+        """
+        pass
+
+    def test_api_experiments_list(self):
+        """Test case for api_experiments_list
+
+        """
+        pass
+
+    def test_api_experiments_retrieve(self):
+        """Test case for api_experiments_retrieve
+
+        """
+        pass
+
+    def test_api_model_artifacts_list(self):
+        """Test case for api_model_artifacts_list
+
+        """
+        pass
+
+    def test_api_model_artifacts_retrieve(self):
+        """Test case for api_model_artifacts_retrieve
+
+        """
+        pass
+
     def test_device_calibration_update_or_create(self):
         """Test case for device_calibration_update_or_create
-
-        """
-        pass
-
-    def test_device_calibrations_list(self):
-        """Test case for device_calibrations_list
-
-        """
-        pass
-
-    def test_device_calibrations_partial_update(self):
-        """Test case for device_calibrations_partial_update
-
-        """
-        pass
-
-    def test_device_calibrations_retrieve(self):
-        """Test case for device_calibrations_retrieve
-
-        """
-        pass
-
-    def test_device_calibrations_update(self):
-        """Test case for device_calibrations_update
-
-        """
-        pass
-
-    def test_experiment_device_configs_list(self):
-        """Test case for experiment_device_configs_list
-
-        """
-        pass
-
-    def test_experiment_device_configs_retrieve(self):
-        """Test case for experiment_device_configs_retrieve
-
-        """
-        pass
-
-    def test_experiments_list(self):
-        """Test case for experiments_list
-
-        """
-        pass
-
-    def test_experiments_retrieve(self):
-        """Test case for experiments_retrieve
-
-        """
-        pass
-
-    def test_model_artifacts_list(self):
-        """Test case for model_artifacts_list
-
-        """
-        pass
-
-    def test_model_artifacts_retrieve(self):
-        """Test case for model_artifacts_retrieve
 
         """
         pass

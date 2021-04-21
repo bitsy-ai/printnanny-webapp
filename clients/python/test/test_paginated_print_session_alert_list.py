@@ -51,7 +51,7 @@ class TestPaginatedPrintSessionAlertList(unittest.TestCase):
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         seen = True, 
                         sent = True, 
-                        dismissed = True, 
+                        needs_review = True, 
                         alert_subtype = 'SUCCESS', 
                         annotated_video = '', 
                         polymorphic_ctype = 56, 

@@ -36,19 +36,19 @@ class Alert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
-        'dismissed': 'bool',
-        'time': 'str'
+        'time': 'str',
+        'seen': 'bool'
     }
 
     attribute_map = {
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
-        'dismissed': 'dismissed',
-        'time': 'time'
+        'time': 'time',
+        'seen': 'seen'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -57,8 +57,8 @@ class Alert(object):
         self._created_dt = None
         self._updated_dt = None
         self._user = None
-        self._dismissed = None
         self._time = None
+        self._seen = None
         self.discriminator = None
 
         if created_dt is not None:
@@ -67,10 +67,10 @@ class Alert(object):
             self.updated_dt = updated_dt
         if user is not None:
             self.user = user
-        if dismissed is not None:
-            self.dismissed = dismissed
         if time is not None:
             self.time = time
+        if seen is not None:
+            self.seen = seen
 
     @property
     def created_dt(self):
@@ -136,27 +136,6 @@ class Alert(object):
         self._user = user
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this Alert.  # noqa: E501
-
-
-        :return: The dismissed of this Alert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this Alert.
-
-
-        :param dismissed: The dismissed of this Alert.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
-
-    @property
     def time(self):
         """Gets the time of this Alert.  # noqa: E501
 
@@ -176,6 +155,27 @@ class Alert(object):
         """
 
         self._time = time
+
+    @property
+    def seen(self):
+        """Gets the seen of this Alert.  # noqa: E501
+
+
+        :return: The seen of this Alert.  # noqa: E501
+        :rtype: bool
+        """
+        return self._seen
+
+    @seen.setter
+    def seen(self, seen):
+        """Sets the seen of this Alert.
+
+
+        :param seen: The seen of this Alert.  # noqa: E501
+        :type seen: bool
+        """
+
+        self._seen = seen
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

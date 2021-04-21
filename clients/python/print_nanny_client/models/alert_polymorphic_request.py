@@ -33,37 +33,37 @@ class AlertPolymorphicRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'dismissed': 'bool',
+        'seen': 'bool',
         'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
         'icon': 'str',
         'description': 'str',
-        'seen': 'bool',
         'title': 'str',
         'sent': 'bool',
         'progress_percent': 'int',
         'octoprint_device': 'int',
         'device': 'int',
+        'needs_review': 'bool',
         'annotated_video': 'file',
         'print_session': 'int'
     }
 
     attribute_map = {
-        'dismissed': 'dismissed',
+        'seen': 'seen',
         'alert_subtype': 'alert_subtype',
         'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
         'color': 'color',
         'icon': 'icon',
         'description': 'description',
-        'seen': 'seen',
         'title': 'title',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'octoprint_device': 'octoprint_device',
         'device': 'device',
+        'needs_review': 'needs_review',
         'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
@@ -71,31 +71,31 @@ class AlertPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, dismissed=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, seen=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, icon=None, description=None, title=None, sent=None, progress_percent=None, octoprint_device=None, device=None, needs_review=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._dismissed = None
+        self._seen = None
         self._alert_subtype = None
         self._alert_methods = None
         self._alert_type = None
         self._color = None
         self._icon = None
         self._description = None
-        self._seen = None
         self._title = None
         self._sent = None
         self._progress_percent = None
         self._octoprint_device = None
         self._device = None
+        self._needs_review = None
         self._annotated_video = None
         self._print_session = None
         self.discriminator = 'type'
 
-        if dismissed is not None:
-            self.dismissed = dismissed
+        if seen is not None:
+            self.seen = seen
         self.alert_subtype = alert_subtype
         if alert_methods is not None:
             self.alert_methods = alert_methods
@@ -103,8 +103,6 @@ class AlertPolymorphicRequest(object):
         self.color = color
         self.icon = icon
         self.description = description
-        if seen is not None:
-            self.seen = seen
         self.title = title
         if sent is not None:
             self.sent = sent
@@ -112,29 +110,31 @@ class AlertPolymorphicRequest(object):
             self.progress_percent = progress_percent
         self.octoprint_device = octoprint_device
         self.device = device
+        if needs_review is not None:
+            self.needs_review = needs_review
         self.annotated_video = annotated_video
         self.print_session = print_session
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this AlertPolymorphicRequest.  # noqa: E501
+    def seen(self):
+        """Gets the seen of this AlertPolymorphicRequest.  # noqa: E501
 
 
-        :return: The dismissed of this AlertPolymorphicRequest.  # noqa: E501
+        :return: The seen of this AlertPolymorphicRequest.  # noqa: E501
         :rtype: bool
         """
-        return self._dismissed
+        return self._seen
 
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this AlertPolymorphicRequest.
+    @seen.setter
+    def seen(self, seen):
+        """Sets the seen of this AlertPolymorphicRequest.
 
 
-        :param dismissed: The dismissed of this AlertPolymorphicRequest.  # noqa: E501
-        :type dismissed: bool
+        :param seen: The seen of this AlertPolymorphicRequest.  # noqa: E501
+        :type seen: bool
         """
 
-        self._dismissed = dismissed
+        self._seen = seen
 
     @property
     def alert_subtype(self):
@@ -273,27 +273,6 @@ class AlertPolymorphicRequest(object):
         self._description = description
 
     @property
-    def seen(self):
-        """Gets the seen of this AlertPolymorphicRequest.  # noqa: E501
-
-
-        :return: The seen of this AlertPolymorphicRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._seen
-
-    @seen.setter
-    def seen(self, seen):
-        """Sets the seen of this AlertPolymorphicRequest.
-
-
-        :param seen: The seen of this AlertPolymorphicRequest.  # noqa: E501
-        :type seen: bool
-        """
-
-        self._seen = seen
-
-    @property
     def title(self):
         """Gets the title of this AlertPolymorphicRequest.  # noqa: E501
 
@@ -409,6 +388,27 @@ class AlertPolymorphicRequest(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def needs_review(self):
+        """Gets the needs_review of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The needs_review of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._needs_review
+
+    @needs_review.setter
+    def needs_review(self, needs_review):
+        """Sets the needs_review of this AlertPolymorphicRequest.
+
+
+        :param needs_review: The needs_review of this AlertPolymorphicRequest.  # noqa: E501
+        :type needs_review: bool
+        """
+
+        self._needs_review = needs_review
 
     @property
     def annotated_video(self):

@@ -36,8 +36,8 @@ class AlertPolymorphic(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
-        'dismissed': 'bool',
         'time': 'str',
+        'seen': 'bool',
         'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'alert_methods': 'list[AlertMethodsEnum]',
         'alert_type': 'AlertTypeEnum',
@@ -47,13 +47,13 @@ class AlertPolymorphic(object):
         'icon': 'str',
         'id': 'int',
         'description': 'str',
-        'seen': 'bool',
         'title': 'str',
         'sent': 'bool',
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'device': 'int',
+        'needs_review': 'bool',
         'annotated_video': 'str',
         'print_session': 'int'
     }
@@ -62,8 +62,8 @@ class AlertPolymorphic(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
-        'dismissed': 'dismissed',
         'time': 'time',
+        'seen': 'seen',
         'alert_subtype': 'alert_subtype',
         'alert_methods': 'alert_methods',
         'alert_type': 'alert_type',
@@ -73,13 +73,13 @@ class AlertPolymorphic(object):
         'icon': 'icon',
         'id': 'id',
         'description': 'description',
-        'seen': 'seen',
         'title': 'title',
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'device': 'device',
+        'needs_review': 'needs_review',
         'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
@@ -87,7 +87,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, time=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, seen=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, needs_review=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -96,8 +96,8 @@ class AlertPolymorphic(object):
         self._created_dt = None
         self._updated_dt = None
         self._user = None
-        self._dismissed = None
         self._time = None
+        self._seen = None
         self._alert_subtype = None
         self._alert_methods = None
         self._alert_type = None
@@ -107,13 +107,13 @@ class AlertPolymorphic(object):
         self._icon = None
         self._id = None
         self._description = None
-        self._seen = None
         self._title = None
         self._sent = None
         self._progress_percent = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._device = None
+        self._needs_review = None
         self._annotated_video = None
         self._print_session = None
         self.discriminator = 'type'
@@ -124,10 +124,10 @@ class AlertPolymorphic(object):
             self.updated_dt = updated_dt
         if user is not None:
             self.user = user
-        if dismissed is not None:
-            self.dismissed = dismissed
         if time is not None:
             self.time = time
+        if seen is not None:
+            self.seen = seen
         self.alert_subtype = alert_subtype
         if alert_methods is not None:
             self.alert_methods = alert_methods
@@ -141,8 +141,6 @@ class AlertPolymorphic(object):
         if id is not None:
             self.id = id
         self.description = description
-        if seen is not None:
-            self.seen = seen
         self.title = title
         if sent is not None:
             self.sent = sent
@@ -153,6 +151,8 @@ class AlertPolymorphic(object):
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
         self.device = device
+        if needs_review is not None:
+            self.needs_review = needs_review
         self.annotated_video = annotated_video
         self.print_session = print_session
 
@@ -220,27 +220,6 @@ class AlertPolymorphic(object):
         self._user = user
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The dismissed of this AlertPolymorphic.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this AlertPolymorphic.
-
-
-        :param dismissed: The dismissed of this AlertPolymorphic.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
-
-    @property
     def time(self):
         """Gets the time of this AlertPolymorphic.  # noqa: E501
 
@@ -260,6 +239,27 @@ class AlertPolymorphic(object):
         """
 
         self._time = time
+
+    @property
+    def seen(self):
+        """Gets the seen of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The seen of this AlertPolymorphic.  # noqa: E501
+        :rtype: bool
+        """
+        return self._seen
+
+    @seen.setter
+    def seen(self, seen):
+        """Sets the seen of this AlertPolymorphic.
+
+
+        :param seen: The seen of this AlertPolymorphic.  # noqa: E501
+        :type seen: bool
+        """
+
+        self._seen = seen
 
     @property
     def alert_subtype(self):
@@ -461,27 +461,6 @@ class AlertPolymorphic(object):
         self._description = description
 
     @property
-    def seen(self):
-        """Gets the seen of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The seen of this AlertPolymorphic.  # noqa: E501
-        :rtype: bool
-        """
-        return self._seen
-
-    @seen.setter
-    def seen(self, seen):
-        """Sets the seen of this AlertPolymorphic.
-
-
-        :param seen: The seen of this AlertPolymorphic.  # noqa: E501
-        :type seen: bool
-        """
-
-        self._seen = seen
-
-    @property
     def title(self):
         """Gets the title of this AlertPolymorphic.  # noqa: E501
 
@@ -618,6 +597,27 @@ class AlertPolymorphic(object):
             raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
 
         self._device = device
+
+    @property
+    def needs_review(self):
+        """Gets the needs_review of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The needs_review of this AlertPolymorphic.  # noqa: E501
+        :rtype: bool
+        """
+        return self._needs_review
+
+    @needs_review.setter
+    def needs_review(self, needs_review):
+        """Sets the needs_review of this AlertPolymorphic.
+
+
+        :param needs_review: The needs_review of this AlertPolymorphic.  # noqa: E501
+        :type needs_review: bool
+        """
+
+        self._needs_review = needs_review
 
     @property
     def annotated_video(self):

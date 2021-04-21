@@ -42,7 +42,6 @@ class TestPatchedRemoteControlCommandAlertRequest(unittest.TestCase):
                     ], 
                 alert_type = 'COMMAND', 
                 color = '', 
-                dismissed = True, 
                 icon = '', 
                 description = '', 
                 seen = True, 
