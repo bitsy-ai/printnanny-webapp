@@ -9,6 +9,11 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 logger = logging.getLogger(__name__)
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
+class RemoveDeviceForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = "post"
 
 class TimelapseUploadForm(forms.Form):
 
@@ -50,5 +55,6 @@ class RemoteControlCommandForm(forms.Form):
         # django metaclass magic to construct fields
 
         command_choices = kwargs.pop("command_choices")
+        print(f"received command choices {command_choices}")
         super().__init__(*args, **kwargs)
         self.fields["command"].choices = [(x.value, x.label) for x in command_choices]

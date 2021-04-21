@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.apps import apps
 from django.views.generic import TemplateView, DetailView, FormView, ListView
+from django.views.generic.detail import BaseDetailView
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import (
@@ -15,6 +16,7 @@ from .forms import (
     FeedbackForm,
     AppNotificationForm,
     RemoteControlCommandForm,
+    RemoveDeviceForm
 )
 from print_nanny_webapp.alerts.tasks.timelapse_alert import (
     create_analyze_video_task,
@@ -174,15 +176,29 @@ class AppDashboardListView(DashboardView, FormView):
 app_dashboard_list_view = AppDashboardListView.as_view()
 
 
-class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
+class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailView):
     model = OctoPrintDevice
-    # slug_field = "id"
-    # slug_url_kwarg = "id"
-    form_class = RemoteControlCommandForm
-
     template_name = "dashboard/octoprint-devices-detail.html"
 
-    def form_valid(self, form):
+    form_classes = {
+        "remote_command": RemoteControlCommandForm,
+        "remove_device": RemoveDeviceForm
+    }
+
+    def remote_device_form_valid(self, form):
+        octoprint_device_id = self.request.POST.get("octoprint_device_id")
+        device = OctoPrintDevice.objects.get(id=octoprint_device_id)
+        device.delete()
+        return redirect("dashboard:octoprint-devices:list")
+   
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_classes = self.get_form_classes()
+        forms = self.get_forms(form_classes)
+        context = self.get_context_data(object=self.object, forms=forms)
+        return self.render_to_response(context)
+
+    def remote_command_form_valid(self, form):
         device = self.get_object()
         command = form.cleaned_data.get("command")
 
@@ -205,6 +221,7 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
 
     def get_context_data(self, *args, **kwargs):
         self.get_object()
+
         context = super(OctoPrintDevicesDetailView, self).get_context_data(**kwargs)
         # context["valid_actions"] = RemoteControlCommand.VALID_ACTIONS[context["object"].print_session_status]
 
@@ -214,15 +231,15 @@ class OctoPrintDevicesDetailView(DashboardView, DetailView, FormView):
 
         return context
 
-    def get_form_kwargs(self):
-        kwargs = super(OctoPrintDevicesDetailView, self).get_form_kwargs()
-
-        obj = super().get_object()
-
-        kwargs["command_choices"] = RemoteControlCommand.get_valid_actions(
+    def create_remote_command_form(self, **kwargs):
+        obj = self.get_object()
+        command_choices = RemoteControlCommand.get_valid_actions(
             obj.print_session_status
         )
-        return kwargs
+        form = RemoteControlCommandForm(command_choices=command_choices,**kwargs)
+        return form
+
+
 
 
 octoprint_device_dashboard_detail_view = OctoPrintDevicesDetailView.as_view()

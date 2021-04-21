@@ -1,10 +1,10 @@
 {% load static i18n crispy_forms_tags %}
  
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form | crispy }}
+<form method="POST">
+    {% csrf_token %}
+    {{ forms.remote_command | crispy }}
 
-        <button class="btn btn-primary" type="submit">Send Command</button>
+    <button name="action" value="remote_command" class="btn btn-primary" type="submit">Send Command</button>
 
-    </form>
+</form>
