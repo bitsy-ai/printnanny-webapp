@@ -33,7 +33,7 @@ class AlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "time"]
+        fields = ["created_dt", "updated_dt", "user", "time", "seen"]
         read_only_fields = ("user",)
 
 

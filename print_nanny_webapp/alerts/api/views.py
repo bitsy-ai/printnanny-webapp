@@ -213,6 +213,14 @@ class PrintSessionAlertViewSet(
 #         return Response(serializer.data, status.HTTP_202_ACCEPTED)
 
 
+@extend_schema(
+    tags=["alerts"],
+    responses={
+        200: AlertPolymorphicSerializer,
+        201: AlertPolymorphicSerializer,
+        202: AlertPolymorphicSerializer
+    },
+)
 class AlertViewSet(
     GenericViewSet,
     ListModelMixin,
@@ -225,30 +233,7 @@ class AlertViewSet(
 
     def get_queryset(self):
         user = self.request.user
-        return Alert.objects.filter(user=user).order_by("-seen", "-updated_dt").all()
-
-    @extend_schema(
-        tags=["alerts"],
-        request=AlertBulkRequestSerializer,
-        operation_id="alerts_dismiss",
-        responses={
-            200: AlertBulkResponseSerializer,
-            202: AlertBulkResponseSerializer,
-        },
-    )
-    @action(detail=False, methods=["PATCH"])
-    def dismiss(self, request):
-        ids = request.data.get("ids", [])
-
-        updated_alerts = Alert.objects.filter(user=request.user, id__in=ids).update(
-            seen=True
-        )
-
-        data = dict(updated=updated_alerts, received=len(ids))
-
-        serializer = AlertBulkResponseSerializer(data=data)
-        serializer.is_valid()
-        return Response(serializer.data)
+        return Alert.objects.filter(user=user).all()
 
     @extend_schema(
         tags=["alerts"],
