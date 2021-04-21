@@ -218,7 +218,7 @@ class PrintSessionAlertViewSet(
     responses={
         200: AlertPolymorphicSerializer,
         201: AlertPolymorphicSerializer,
-        202: AlertPolymorphicSerializer
+        202: AlertPolymorphicSerializer,
     },
 )
 class AlertViewSet(
@@ -258,9 +258,7 @@ class AlertViewSet(
 
     @action(detail=False)
     def recent(self, request):
-        recent_alerts = Alert.objects.filter(
-            user=request.user
-        ).order_by("-updated_dt")
+        recent_alerts = Alert.objects.filter(user=request.user).order_by("-updated_dt")
 
         page = self.paginate_queryset(recent_alerts)
         if page is not None:
@@ -273,9 +271,9 @@ class AlertViewSet(
 
     @action(detail=False)
     def unread(self, request):
-        recent_alerts = Alert.objects.filter(
-            user=request.user, seen=False
-        ).order_by("-updated_dt")
+        recent_alerts = Alert.objects.filter(user=request.user, seen=False).order_by(
+            "-updated_dt"
+        )
 
         page = self.paginate_queryset(recent_alerts)
         if page is not None:

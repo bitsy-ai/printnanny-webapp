@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
+from drf_spectacular.utils import extend_schema, extend_schema_view
 
 # from drf_yasg.utils import swagger_auto_schema
 # from drf_yasg import openapi
@@ -14,6 +15,10 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
+@extend_schema(
+    tags=["users"],
+    responses={200: UserSerializer, 201: UserSerializer, 202: UserSerializer},
+)
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
