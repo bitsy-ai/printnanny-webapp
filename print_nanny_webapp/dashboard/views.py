@@ -185,7 +185,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         "remove_device": RemoveDeviceForm
     }
 
-    def remote_device_form_valid(self, form):
+    def remove_device_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
         device = OctoPrintDevice.objects.get(id=octoprint_device_id)
         device.delete()
