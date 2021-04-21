@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
 **color** | **str** |  | 
-**dismissed** | **bool** |  | [optional] 
 **icon** | **str** |  | 
 **description** | **str** |  | 
 **seen** | **bool** |  | [optional] 

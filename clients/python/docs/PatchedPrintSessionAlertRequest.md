@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
+**needs_review** | **bool** |  | [optional] 
 **alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | [optional] 
 **annotated_video** | **file** |  | [optional] 
 **print_session** | **int** |  | [optional] 

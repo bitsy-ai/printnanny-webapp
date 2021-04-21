@@ -28,68 +28,62 @@ class TestAlertsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_alerts_dismiss(self):
-        """Test case for alerts_dismiss
-
-        """
-        pass
-
-    def test_alerts_list(self):
-        """Test case for alerts_list
-
-        """
-        pass
-
-    def test_alerts_partial_update(self):
-        """Test case for alerts_partial_update
-
-        """
-        pass
-
-    def test_alerts_recent_retrieve(self):
-        """Test case for alerts_recent_retrieve
-
-        """
-        pass
-
-    def test_alerts_retrieve(self):
-        """Test case for alerts_retrieve
-
-        """
-        pass
-
     def test_alerts_seen(self):
         """Test case for alerts_seen
 
         """
         pass
 
-    def test_alerts_unread_retrieve(self):
-        """Test case for alerts_unread_retrieve
+    def test_api_alerts_list(self):
+        """Test case for api_alerts_list
 
         """
         pass
 
-    def test_alerts_update(self):
-        """Test case for alerts_update
+    def test_api_alerts_partial_update(self):
+        """Test case for api_alerts_partial_update
+
+        """
+        pass
+
+    def test_api_alerts_recent_retrieve(self):
+        """Test case for api_alerts_recent_retrieve
+
+        """
+        pass
+
+    def test_api_alerts_retrieve(self):
+        """Test case for api_alerts_retrieve
+
+        """
+        pass
+
+    def test_api_alerts_unread_retrieve(self):
+        """Test case for api_alerts_unread_retrieve
+
+        """
+        pass
+
+    def test_api_alerts_update(self):
+        """Test case for api_alerts_update
+
+        """
+        pass
+
+    def test_api_print_session_alerts_list(self):
+        """Test case for api_print_session_alerts_list
+
+        """
+        pass
+
+    def test_api_print_session_alerts_retrieve(self):
+        """Test case for api_print_session_alerts_retrieve
 
         """
         pass
 
     def test_print_session_alert_create(self):
         """Test case for print_session_alert_create
-
-        """
-        pass
-
-    def test_print_session_alerts_list(self):
-        """Test case for print_session_alerts_list
-
-        """
-        pass
-
-    def test_print_session_alerts_retrieve(self):
-        """Test case for print_session_alerts_retrieve
 
         """
         pass

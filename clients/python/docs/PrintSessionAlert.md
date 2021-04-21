@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
-**dismissed** | **bool** |  | [optional] 
+**needs_review** | **bool** |  | [optional] 
 **alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | [optional] 
 **annotated_video** | **str** |  | 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 

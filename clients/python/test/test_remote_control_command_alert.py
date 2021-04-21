@@ -44,7 +44,6 @@ class TestRemoteControlCommandAlert(unittest.TestCase):
                 color = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 dashboard_url = '', 
-                dismissed = True, 
                 metadata = '', 
                 icon = '', 
                 id = 56, 

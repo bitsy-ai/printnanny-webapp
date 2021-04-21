@@ -36,7 +36,6 @@ class ManualVideoUploadAlert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
-        'dismissed': 'bool',
         'alert_type': 'AlertTypeEnum'
     }
 
@@ -44,11 +43,10 @@ class ManualVideoUploadAlert(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
-        'dismissed': 'dismissed',
         'alert_type': 'alert_type'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, dismissed=None, alert_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, alert_type=None, local_vars_configuration=None):  # noqa: E501
         """ManualVideoUploadAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -57,7 +55,6 @@ class ManualVideoUploadAlert(object):
         self._created_dt = None
         self._updated_dt = None
         self._user = None
-        self._dismissed = None
         self._alert_type = None
         self.discriminator = None
 
@@ -67,8 +64,6 @@ class ManualVideoUploadAlert(object):
             self.updated_dt = updated_dt
         if user is not None:
             self.user = user
-        if dismissed is not None:
-            self.dismissed = dismissed
         self.alert_type = alert_type
 
     @property
@@ -133,27 +128,6 @@ class ManualVideoUploadAlert(object):
         """
 
         self._user = user
-
-    @property
-    def dismissed(self):
-        """Gets the dismissed of this ManualVideoUploadAlert.  # noqa: E501
-
-
-        :return: The dismissed of this ManualVideoUploadAlert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this ManualVideoUploadAlert.
-
-
-        :param dismissed: The dismissed of this ManualVideoUploadAlert.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
 
     @property
     def alert_type(self):

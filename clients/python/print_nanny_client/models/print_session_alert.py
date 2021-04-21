@@ -41,7 +41,7 @@ class PrintSessionAlert(object):
         'updated_dt': 'datetime',
         'seen': 'bool',
         'sent': 'bool',
-        'dismissed': 'bool',
+        'needs_review': 'bool',
         'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'annotated_video': 'str',
         'polymorphic_ctype': 'int',
@@ -59,7 +59,7 @@ class PrintSessionAlert(object):
         'updated_dt': 'updated_dt',
         'seen': 'seen',
         'sent': 'sent',
-        'dismissed': 'dismissed',
+        'needs_review': 'needs_review',
         'alert_subtype': 'alert_subtype',
         'annotated_video': 'annotated_video',
         'polymorphic_ctype': 'polymorphic_ctype',
@@ -68,7 +68,7 @@ class PrintSessionAlert(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, dismissed=None, alert_subtype=None, annotated_video=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, needs_review=None, alert_subtype=None, annotated_video=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -82,7 +82,7 @@ class PrintSessionAlert(object):
         self._updated_dt = None
         self._seen = None
         self._sent = None
-        self._dismissed = None
+        self._needs_review = None
         self._alert_subtype = None
         self._annotated_video = None
         self._polymorphic_ctype = None
@@ -107,8 +107,8 @@ class PrintSessionAlert(object):
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        if dismissed is not None:
-            self.dismissed = dismissed
+        if needs_review is not None:
+            self.needs_review = needs_review
         if alert_subtype is not None:
             self.alert_subtype = alert_subtype
         self.annotated_video = annotated_video
@@ -289,25 +289,25 @@ class PrintSessionAlert(object):
         self._sent = sent
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this PrintSessionAlert.  # noqa: E501
+    def needs_review(self):
+        """Gets the needs_review of this PrintSessionAlert.  # noqa: E501
 
 
-        :return: The dismissed of this PrintSessionAlert.  # noqa: E501
+        :return: The needs_review of this PrintSessionAlert.  # noqa: E501
         :rtype: bool
         """
-        return self._dismissed
+        return self._needs_review
 
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this PrintSessionAlert.
+    @needs_review.setter
+    def needs_review(self, needs_review):
+        """Sets the needs_review of this PrintSessionAlert.
 
 
-        :param dismissed: The dismissed of this PrintSessionAlert.  # noqa: E501
-        :type dismissed: bool
+        :param needs_review: The needs_review of this PrintSessionAlert.  # noqa: E501
+        :type needs_review: bool
         """
 
-        self._dismissed = dismissed
+        self._needs_review = needs_review
 
     @property
     def alert_subtype(self):

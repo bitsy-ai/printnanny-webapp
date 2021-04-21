@@ -35,7 +35,7 @@ class PatchedPrintSessionAlertRequest(object):
     openapi_types = {
         'seen': 'bool',
         'sent': 'bool',
-        'dismissed': 'bool',
+        'needs_review': 'bool',
         'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
         'annotated_video': 'file',
         'print_session': 'int'
@@ -44,13 +44,13 @@ class PatchedPrintSessionAlertRequest(object):
     attribute_map = {
         'seen': 'seen',
         'sent': 'sent',
-        'dismissed': 'dismissed',
+        'needs_review': 'needs_review',
         'alert_subtype': 'alert_subtype',
         'annotated_video': 'annotated_video',
         'print_session': 'print_session'
     }
 
-    def __init__(self, seen=None, sent=None, dismissed=None, alert_subtype=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, sent=None, needs_review=None, alert_subtype=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -58,7 +58,7 @@ class PatchedPrintSessionAlertRequest(object):
 
         self._seen = None
         self._sent = None
-        self._dismissed = None
+        self._needs_review = None
         self._alert_subtype = None
         self._annotated_video = None
         self._print_session = None
@@ -68,8 +68,8 @@ class PatchedPrintSessionAlertRequest(object):
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        if dismissed is not None:
-            self.dismissed = dismissed
+        if needs_review is not None:
+            self.needs_review = needs_review
         if alert_subtype is not None:
             self.alert_subtype = alert_subtype
         if annotated_video is not None:
@@ -120,25 +120,25 @@ class PatchedPrintSessionAlertRequest(object):
         self._sent = sent
 
     @property
-    def dismissed(self):
-        """Gets the dismissed of this PatchedPrintSessionAlertRequest.  # noqa: E501
+    def needs_review(self):
+        """Gets the needs_review of this PatchedPrintSessionAlertRequest.  # noqa: E501
 
 
-        :return: The dismissed of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :return: The needs_review of this PatchedPrintSessionAlertRequest.  # noqa: E501
         :rtype: bool
         """
-        return self._dismissed
+        return self._needs_review
 
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this PatchedPrintSessionAlertRequest.
+    @needs_review.setter
+    def needs_review(self, needs_review):
+        """Sets the needs_review of this PatchedPrintSessionAlertRequest.
 
 
-        :param dismissed: The dismissed of this PatchedPrintSessionAlertRequest.  # noqa: E501
-        :type dismissed: bool
+        :param needs_review: The needs_review of this PatchedPrintSessionAlertRequest.  # noqa: E501
+        :type needs_review: bool
         """
 
-        self._dismissed = dismissed
+        self._needs_review = needs_review
 
     @property
     def alert_subtype(self):

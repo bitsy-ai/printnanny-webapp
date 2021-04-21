@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **color** | **str** |  | 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **dashboard_url** | **str** |  | [optional] [readonly] 
-**dismissed** | **bool** |  | [optional] 
 **metadata** | **str** |  | [optional] [readonly] 
 **icon** | **str** |  | 
 **id** | **int** |  | [optional] [readonly] 

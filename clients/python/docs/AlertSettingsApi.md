@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alert_settings_list**](AlertSettingsApi.md#alert_settings_list) | **GET** /api/alert_settings/ | 
-[**alert_settings_methods_retrieve**](AlertSettingsApi.md#alert_settings_methods_retrieve) | **GET** /api/alert_settings/methods/ | 
-[**alert_settings_partial_update**](AlertSettingsApi.md#alert_settings_partial_update) | **PATCH** /api/alert_settings/{id}/ | 
-[**alert_settings_retrieve**](AlertSettingsApi.md#alert_settings_retrieve) | **GET** /api/alert_settings/{id}/ | 
-[**alert_settings_update**](AlertSettingsApi.md#alert_settings_update) | **PUT** /api/alert_settings/{id}/ | 
+[**api_alert_settings_list**](AlertSettingsApi.md#api_alert_settings_list) | **GET** /api/alert_settings/ | 
+[**api_alert_settings_methods_retrieve**](AlertSettingsApi.md#api_alert_settings_methods_retrieve) | **GET** /api/alert_settings/methods/ | 
+[**api_alert_settings_partial_update**](AlertSettingsApi.md#api_alert_settings_partial_update) | **PATCH** /api/alert_settings/{id}/ | 
+[**api_alert_settings_retrieve**](AlertSettingsApi.md#api_alert_settings_retrieve) | **GET** /api/alert_settings/{id}/ | 
+[**api_alert_settings_update**](AlertSettingsApi.md#api_alert_settings_update) | **PUT** /api/alert_settings/{id}/ | 
 
 
-# **alert_settings_list**
-> PaginatedAlertSettingsPolymorphicList alert_settings_list(page=page)
+# **api_alert_settings_list**
+> PaginatedAlertSettingsPolymorphicList api_alert_settings_list(page=page)
 
 
 
@@ -54,10 +54,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.alert_settings_list(page=page)
+        api_response = api_instance.api_alert_settings_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_list: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -96,10 +96,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.alert_settings_list(page=page)
+        api_response = api_instance.api_alert_settings_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_list: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -128,8 +128,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **alert_settings_methods_retrieve**
-> AlertMethod alert_settings_methods_retrieve()
+# **api_alert_settings_methods_retrieve**
+> AlertMethod api_alert_settings_methods_retrieve()
 
 
 
@@ -170,10 +170,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     api_instance = print_nanny_client.AlertSettingsApi(api_client)
     
     try:
-        api_response = api_instance.alert_settings_methods_retrieve()
+        api_response = api_instance.api_alert_settings_methods_retrieve()
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_methods_retrieve: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_methods_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -211,10 +211,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     api_instance = print_nanny_client.AlertSettingsApi(api_client)
     
     try:
-        api_response = api_instance.alert_settings_methods_retrieve()
+        api_response = api_instance.api_alert_settings_methods_retrieve()
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_methods_retrieve: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_methods_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -240,8 +240,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **alert_settings_partial_update**
-> AlertSettingsPolymorphic alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
+# **api_alert_settings_partial_update**
+> AlertSettingsPolymorphic api_alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
 
 
 
@@ -284,10 +284,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 patched_alert_settings_polymorphic_request = print_nanny_client.PatchedAlertSettingsPolymorphicRequest() # PatchedAlertSettingsPolymorphicRequest |  (optional)
 
     try:
-        api_response = api_instance.alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
+        api_response = api_instance.api_alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_partial_update: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_partial_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -327,10 +327,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 patched_alert_settings_polymorphic_request = print_nanny_client.PatchedAlertSettingsPolymorphicRequest() # PatchedAlertSettingsPolymorphicRequest |  (optional)
 
     try:
-        api_response = api_instance.alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
+        api_response = api_instance.api_alert_settings_partial_update(id, patched_alert_settings_polymorphic_request=patched_alert_settings_polymorphic_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_partial_update: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_partial_update: %s\n" % e)
 ```
 
 ### Parameters
@@ -360,8 +360,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **alert_settings_retrieve**
-> AlertSettingsPolymorphic alert_settings_retrieve(id)
+# **api_alert_settings_retrieve**
+> AlertSettingsPolymorphic api_alert_settings_retrieve(id)
 
 
 
@@ -403,10 +403,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this alert settings.
 
     try:
-        api_response = api_instance.alert_settings_retrieve(id)
+        api_response = api_instance.api_alert_settings_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_retrieve: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -445,10 +445,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this alert settings.
 
     try:
-        api_response = api_instance.alert_settings_retrieve(id)
+        api_response = api_instance.api_alert_settings_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_retrieve: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -477,8 +477,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **alert_settings_update**
-> AlertSettingsPolymorphic alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
+# **api_alert_settings_update**
+> AlertSettingsPolymorphic api_alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
 
 
 
@@ -521,10 +521,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 alert_settings_polymorphic_request = print_nanny_client.AlertSettingsPolymorphicRequest() # AlertSettingsPolymorphicRequest |  (optional)
 
     try:
-        api_response = api_instance.alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
+        api_response = api_instance.api_alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_update: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_update: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -564,10 +564,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 alert_settings_polymorphic_request = print_nanny_client.AlertSettingsPolymorphicRequest() # AlertSettingsPolymorphicRequest |  (optional)
 
     try:
-        api_response = api_instance.alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
+        api_response = api_instance.api_alert_settings_update(id, alert_settings_polymorphic_request=alert_settings_polymorphic_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AlertSettingsApi->alert_settings_update: %s\n" % e)
+        print("Exception when calling AlertSettingsApi->api_alert_settings_update: %s\n" % e)
 ```
 
 ### Parameters

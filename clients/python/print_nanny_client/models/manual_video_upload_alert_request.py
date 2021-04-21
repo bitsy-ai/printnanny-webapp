@@ -33,49 +33,23 @@ class ManualVideoUploadAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'dismissed': 'bool',
         'alert_type': 'AlertTypeEnum'
     }
 
     attribute_map = {
-        'dismissed': 'dismissed',
         'alert_type': 'alert_type'
     }
 
-    def __init__(self, dismissed=None, alert_type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_type=None, local_vars_configuration=None):  # noqa: E501
         """ManualVideoUploadAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._dismissed = None
         self._alert_type = None
         self.discriminator = None
 
-        if dismissed is not None:
-            self.dismissed = dismissed
         self.alert_type = alert_type
-
-    @property
-    def dismissed(self):
-        """Gets the dismissed of this ManualVideoUploadAlertRequest.  # noqa: E501
-
-
-        :return: The dismissed of this ManualVideoUploadAlertRequest.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this ManualVideoUploadAlertRequest.
-
-
-        :param dismissed: The dismissed of this ManualVideoUploadAlertRequest.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
 
     @property
     def alert_type(self):

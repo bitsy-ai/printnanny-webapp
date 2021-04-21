@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 
-**dismissed** | **bool** |  | [optional] 
 **time** | **str** |  | [optional] [readonly] 
+**seen** | **bool** |  | [optional] 
 **alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | 
 **alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [readonly] 
@@ -17,13 +17,13 @@ Name | Type | Description | Notes
 **icon** | **str** |  | 
 **id** | **int** |  | [optional] [readonly] 
 **description** | **str** |  | 
-**seen** | **bool** |  | [optional] 
 **title** | **str** |  | 
 **sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] [readonly] 
 **device** | **int** |  | 
+**needs_review** | **bool** |  | [optional] 
 **annotated_video** | **str** |  | 
 **print_session** | **int** |  | 
 

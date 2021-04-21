@@ -39,7 +39,6 @@ class RemoteControlCommandAlert(object):
         'color': 'str',
         'created_dt': 'datetime',
         'dashboard_url': 'str',
-        'dismissed': 'bool',
         'metadata': 'str',
         'icon': 'str',
         'id': 'int',
@@ -58,7 +57,6 @@ class RemoteControlCommandAlert(object):
         'color': 'color',
         'created_dt': 'created_dt',
         'dashboard_url': 'dashboard_url',
-        'dismissed': 'dismissed',
         'metadata': 'metadata',
         'icon': 'icon',
         'id': 'id',
@@ -70,7 +68,7 @@ class RemoteControlCommandAlert(object):
         'user': 'user'
     }
 
-    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, dismissed=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """RemoteControlCommandAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -82,7 +80,6 @@ class RemoteControlCommandAlert(object):
         self._color = None
         self._created_dt = None
         self._dashboard_url = None
-        self._dismissed = None
         self._metadata = None
         self._icon = None
         self._id = None
@@ -103,8 +100,6 @@ class RemoteControlCommandAlert(object):
             self.created_dt = created_dt
         if dashboard_url is not None:
             self.dashboard_url = dashboard_url
-        if dismissed is not None:
-            self.dismissed = dismissed
         if metadata is not None:
             self.metadata = metadata
         self.icon = icon
@@ -252,27 +247,6 @@ class RemoteControlCommandAlert(object):
         """
 
         self._dashboard_url = dashboard_url
-
-    @property
-    def dismissed(self):
-        """Gets the dismissed of this RemoteControlCommandAlert.  # noqa: E501
-
-
-        :return: The dismissed of this RemoteControlCommandAlert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._dismissed
-
-    @dismissed.setter
-    def dismissed(self, dismissed):
-        """Sets the dismissed of this RemoteControlCommandAlert.
-
-
-        :param dismissed: The dismissed of this RemoteControlCommandAlert.  # noqa: E501
-        :type dismissed: bool
-        """
-
-        self._dismissed = dismissed
 
     @property
     def metadata(self):

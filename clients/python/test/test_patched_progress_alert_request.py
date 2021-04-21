@@ -38,7 +38,6 @@ class TestPatchedProgressAlertRequest(unittest.TestCase):
             return PatchedProgressAlertRequest(
                 seen = True, 
                 sent = True, 
-                dismissed = True, 
                 progress_percent = 1, 
                 octoprint_device = 56, 
                 device = 56

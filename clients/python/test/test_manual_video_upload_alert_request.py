@@ -36,7 +36,6 @@ class TestManualVideoUploadAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.manual_video_upload_alert_request.ManualVideoUploadAlertRequest()  # noqa: E501
         if include_optional :
             return ManualVideoUploadAlertRequest(
-                dismissed = True, 
                 alert_type = 'COMMAND'
             )
         else :
