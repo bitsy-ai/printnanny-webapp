@@ -241,7 +241,7 @@ class AlertViewSet(
         ids = request.data.get("ids", [])
 
         updated_alerts = Alert.objects.filter(user=request.user, id__in=ids).update(
-            dismissed=True, seen=True
+            seen=True
         )
 
         data = dict(updated=updated_alerts, received=len(ids))
@@ -274,7 +274,7 @@ class AlertViewSet(
     @action(detail=False)
     def recent(self, request):
         recent_alerts = Alert.objects.filter(
-            user=request.user, dismissed=False
+            user=request.user
         ).order_by("-updated_dt")
 
         page = self.paginate_queryset(recent_alerts)
@@ -289,7 +289,7 @@ class AlertViewSet(
     @action(detail=False)
     def unread(self, request):
         recent_alerts = Alert.objects.filter(
-            user=request.user, dismissed=False, seen=False
+            user=request.user, seen=False
         ).order_by("-updated_dt")
 
         page = self.paginate_queryset(recent_alerts)

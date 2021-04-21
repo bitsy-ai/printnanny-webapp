@@ -33,7 +33,7 @@ class AlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "dismissed", "time"]
+        fields = ["created_dt", "updated_dt", "user", "time"]
         read_only_fields = ("user",)
 
 
@@ -126,7 +126,6 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
             "color",
             "created_dt",
             "dashboard_url",
-            "dismissed",
             "metadata",
             "icon",
             "id",
@@ -143,7 +142,7 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
 class ManualVideoUploadAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManualVideoUploadAlert
-        fields = ["created_dt", "updated_dt", "user", "dismissed", "alert_type"]
+        fields = ["created_dt", "updated_dt", "user", "alert_type"]
         read_only_fields = ("user",)
 
 
