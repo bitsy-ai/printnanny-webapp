@@ -104,6 +104,7 @@ docs/RemoteControlCommandRequest.md
 docs/StatusEnum.md
 docs/User.md
 docs/UserRequest.md
+docs/UsersApi.md
 git_push.sh
 print_nanny_client/__init__.py
 print_nanny_client/api/__init__.py
@@ -113,6 +114,7 @@ print_nanny_client/api/api_api.py
 print_nanny_client/api/events_api.py
 print_nanny_client/api/ml_ops_api.py
 print_nanny_client/api/remote_control_api.py
+print_nanny_client/api/users_api.py
 print_nanny_client/api_client.py
 print_nanny_client/configuration.py
 print_nanny_client/exceptions.py
@@ -317,4 +319,5 @@ test/test_remote_control_command_request.py
 test/test_status_enum.py
 test/test_user.py
 test/test_user_request.py
+test/test_users_api.py
 tox.ini

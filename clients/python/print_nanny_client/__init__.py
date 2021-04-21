@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.5.1"
+__version__ = "0.5.2"
 
 # import apis into sdk package
 from print_nanny_client.api.alert_settings_api import AlertSettingsApi
@@ -23,6 +23,7 @@ from print_nanny_client.api.api_api import ApiApi
 from print_nanny_client.api.events_api import EventsApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.remote_control_api import RemoteControlApi
+from print_nanny_client.api.users_api import UsersApi
 
 # import ApiClient
 from print_nanny_client.api_client import ApiClient

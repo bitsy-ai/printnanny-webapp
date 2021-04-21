@@ -40,36 +40,6 @@ class TestApiApi(unittest.TestCase):
         """
         pass
 
-    def test_api_users_list(self):
-        """Test case for api_users_list
-
-        """
-        pass
-
-    def test_api_users_me_retrieve(self):
-        """Test case for api_users_me_retrieve
-
-        """
-        pass
-
-    def test_api_users_partial_update(self):
-        """Test case for api_users_partial_update
-
-        """
-        pass
-
-    def test_api_users_retrieve(self):
-        """Test case for api_users_retrieve
-
-        """
-        pass
-
-    def test_api_users_update(self):
-        """Test case for api_users_update
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()
