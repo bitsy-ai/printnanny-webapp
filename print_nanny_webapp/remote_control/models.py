@@ -18,20 +18,27 @@ from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
 from safedelete.models import SafeDeleteModel, SOFT_DELETE_CASCADE
-
+from safedelete.managers import SafeDeleteManager
+from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.remote_control.utils import (
+    delete_cloudiot_device,
     update_or_create_cloudiot_device,
     generate_keypair,
 )
 
-User = get_user_model()
+# User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
 
-class OctoPrintDeviceManager(models.Manager):
+def pre_softdelete_cloudiot_device(instance=None, **kwargs):
+    return delete_cloudiot_device(instance.cloudiot_device_num_id)
+pre_softdelete.connect(pre_softdelete_cloudiot_device)
+
+
+class OctoPrintDeviceManager(SafeDeleteManager):
     def update_or_create(self, defaults=None, **kwargs):
         serial = kwargs.get("serial")
         logging.info(f"Creating keypair for device serial={serial}")
