@@ -120,8 +120,9 @@ class OctoPrintDevice(SafeDeleteModel):
         return self.commands.order_by("-created_dt").first()
 
     class Meta:
-        constraints = UniqueConstraint(fields=['user', 'serial'], condition=Q(deleted=None), name='unique_serial_per_user')
-
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'serial'], condition=models.Q(deleted=None), name='unique_serial_per_user')
+        ]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
