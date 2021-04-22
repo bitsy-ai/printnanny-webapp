@@ -190,6 +190,8 @@ django-redis==4.12.1
     # via -r requirements/production.txt
 django-rest-polymorphic==0.1.9
     # via -r requirements/production.txt
+django-safedelete==1.0.0
+    # via -r requirements/production.txt
 django-storages[google]==1.10.1
     # via -r requirements/production.txt
 django-timezone-field==4.1.2
@@ -212,6 +214,7 @@ django==3.1.7
     #   django-polymorphic
     #   django-redis
     #   django-rest-polymorphic
+    #   django-safedelete
     #   django-storages
     #   django-timezone-field
     #   djangorestframework
