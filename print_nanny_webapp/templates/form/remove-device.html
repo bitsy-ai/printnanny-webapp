@@ -1,0 +1,8 @@
+{% load static i18n crispy_forms_tags %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
+
+    <button name="action" value="remove_device" type="submit" class="btn btn-danger btn-small">Remove Device</button>
+</form>
+

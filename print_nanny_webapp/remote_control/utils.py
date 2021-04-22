@@ -145,6 +145,16 @@ def generate_keypair():
             ca_certs=ca_certs,
         )
 
+def delete_cloudiot_device(device_id: int):
+
+    client = cloudiot_v1.DeviceManagerClient()
+    device_path = client.device_path(
+        settings.GCP_PROJECT_ID,
+        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
+        settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
+        device_id
+    )
+    return client.delete_device(name=device_path)
 
 def create_cloudiot_device(
     name: str,

@@ -531,3 +531,9 @@ if ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
     THIRD_PARTY_APPS.append("djstripe")
     LOCAL_APPS.append("print_nanny_webapp.subscriptions.apps.SubscriptionsConfig")
+
+# django-safedelete
+
+INSTALLED_APPS += [
+    'safedelete'
+]
