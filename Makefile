@@ -1,6 +1,28 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials cypress-local-dev cypress-local-run
+
+
+PRINT_NANNY_URL ?= "http://localhost:8000/"
+OCTOPRINT_URL ?= "http://localhost:5005/"
+OCTOPRINT_USERPASS ?= "octoprint"
+PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
+PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
+
+cypress-local-dev:
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	cypress open
+cypress-local-run:
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	cypress run
 
 PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
