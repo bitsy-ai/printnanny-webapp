@@ -191,7 +191,7 @@ class GeeksToken(models.Model):
     # Grabbed code from rest_framework Token model
 
     key = models.UUIDField(primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     octoprint_device = models.OneToOneField("remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE)
 
     class Meta:
