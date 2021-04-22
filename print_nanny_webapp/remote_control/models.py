@@ -28,13 +28,14 @@ from print_nanny_webapp.remote_control.utils import (
     generate_keypair,
 )
 
-# User = get_user_model()
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
 
 def pre_softdelete_cloudiot_device(instance=None, **kwargs):
     return delete_cloudiot_device(instance.cloudiot_device_num_id)
+
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 

@@ -154,8 +154,8 @@ def delete_cloudiot_device(device_id: int):
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
         device_id
     )
-    return client.delete_device(device_path)
-    
+    return client.delete_device(name=device_path)
+
 def create_cloudiot_device(
     name: str,
     serial: str,
