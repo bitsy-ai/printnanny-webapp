@@ -226,6 +226,8 @@ django-redis==4.12.1
     # via -r requirements/local.txt
 django-rest-polymorphic==0.1.9
     # via -r requirements/local.txt
+django-safedelete==1.0.0
+    # via -r requirements/local.txt
 django-storages[google]==1.10.1
     # via -r requirements/local.txt
 django-stubs==1.6.0
@@ -250,6 +252,7 @@ django==3.1.7
     #   django-polymorphic
     #   django-redis
     #   django-rest-polymorphic
+    #   django-safedelete
     #   django-storages
     #   django-stubs
     #   django-timezone-field

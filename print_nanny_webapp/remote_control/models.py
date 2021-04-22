@@ -17,6 +17,8 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
+from safedelete.models import SafeDeleteModel, SOFT_DELETE_CASCADE
+
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.remote_control.utils import (
@@ -89,7 +91,10 @@ class OctoPrintDeviceManager(models.Manager):
         return device, created
 
 
-class OctoPrintDevice(models.Model):
+class OctoPrintDevice(SafeDeleteModel):
+
+    _safedelete_policy = SOFT_DELETE_CASCADE
+
     objects = OctoPrintDeviceManager()
 
     MONITORING_ACTIVE_CSS = {
@@ -115,7 +120,8 @@ class OctoPrintDevice(models.Model):
         return self.commands.order_by("-created_dt").first()
 
     class Meta:
-        unique_together = ("user", "serial")
+        constraints = UniqueConstraint(fields=['user', 'serial'], condition=Q(deleted=None), name='unique_serial_per_user')
+
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
