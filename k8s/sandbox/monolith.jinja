@@ -123,6 +123,19 @@ spec:
       targetPort: 8000
   type: NodePort
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ DEPLOY_USER }}-django"
+spec:
+  selector:
+    app: "{{ DEPLOY_USER }}-sandbox"
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: NodePort
+---
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
