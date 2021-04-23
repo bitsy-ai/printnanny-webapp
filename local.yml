@@ -6,7 +6,12 @@ volumes:
   local_prometheus_data: {}
   local_file_data: {}
 services:
-
+  octoprint:
+    image: octoprint/octoprint
+    container_name: octoprint
+    ports:
+      - "5005:5000"
+      
   django: &django
     # enables use of pdb
     stdin_open: true
