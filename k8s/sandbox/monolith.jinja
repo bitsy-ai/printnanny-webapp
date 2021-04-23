@@ -1,0 +1,163 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ DEPLOY_USER }}-sandbox"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ DEPLOY_USER }}-sandbox"
+
+  template:
+    metadata:
+      labels:
+        app: "{{ DEPLOY_USER }}-sandbox"
+    spec:
+      serviceAccountName: webapp
+      containers:
+      - name: celery-worker
+        imagePullPolicy: Always
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_production_django:{{ GIT_SHA }}
+        command:
+          - /start-celeryworker
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: celery-worker
+      - name: octoprint-events
+        imagePullPolicy: Always
+        command:
+          - python
+          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_production_django:{{ GIT_SHA }}
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: octoprint-events
+      - name: discord-worker
+        imagePullPolicy: Always
+        command:
+          - python
+          - manage.py
+          - runworker
+          - discord
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_production_django:{{ GIT_SHA }}
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: discord-worker
+      - name: django
+        imagePullPolicy: Always
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_production_django:{{ GIT_SHA }}
+        livenessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        command:
+          - /start
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: django
+      - name: octoprint
+        imagePullPolicy: Always
+        image: octoprint/octoprint
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: django
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ DEPLOY_USER }}-django"
+spec:
+  selector:
+    app: "{{ DEPLOY_USER }}-sandbox"
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: "{{ DEPLOY_USER }}-sandbox-tls"
+spec:
+  domains:
+    - "{{ DEPLOY_USER }}.sandbox.print-nanny.com"
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: http-to-https
+spec:
+  redirectToHttps:
+    enabled: true
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ DEPLOY_USER }}-django"
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: "{{ DEPLOY_USER }}-static-ip"
+    networking.gke.io/managed-certificates: "{{ DEPLOY_USER }}-sandbox-tls"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: "{{ DEPLOY_USER }}-django"
+          servicePort: 80
+      - path: /octoprint
+        backend:
+          serviceName: "{{ DEPLOY_USER }}-octoprint"
+          servicePort: 80
