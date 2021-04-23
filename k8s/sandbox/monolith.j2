@@ -12,23 +12,23 @@ spec:
     requests:
       storage: 10Gi
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: "{{ DEPLOY_USER }}-postgres"
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ DEPLOY_USER }}-postgres"
   template:
     metadata:
-      labels:
-        app: "{{ DEPLOY_USER }}-postgres"
+      labels: "{{ DEPLOY_USER }}-postgres"
     spec:
       containers:
-        - name: postgres
-          image: postgres:12.3
-          imagePullPolicy: "IfNotPresent"
-          ports:
-            - containerPort: 5432
+      - name: postgres
+        image: postgres:12.3
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - containerPort: 5432
         envFrom:
           - configMapRef:
               name: "{{ DEPLOY_USER }}-sandbox"
