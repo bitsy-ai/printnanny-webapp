@@ -43,7 +43,6 @@ docker:
 	-t print_nanny_webapp:$(GITHUB_SHA) \
 	.
 build: vue ui docker
-	docker-compose -f production.yml build
 
 prod-up: build
 	docker-compose -f production.yml up
