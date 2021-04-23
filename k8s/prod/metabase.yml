@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metabase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metabase
+  template:
+    metadata:
+      labels:
+        app: metabase
+    spec:
+      serviceAccountName: cloudsql-client
+      containers:
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        command:
+          - "/cloud_sql_proxy"
+          - "-instances=print-nanny:us-central1:print-nanny=tcp:5432"
+        securityContext:
+          runAsNonRoot: true
+        ports:
+          - containerPort: 5432
+      - image: metabase/metabase
+        name: metabase
+        envFrom:
+          - configMapRef:
+              name: webapp
+          - configMapRef:
+              name: metabase
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: metabase
+  labels:
+    app: metabase
+spec:
+  selector:
+    app: metabase
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: metabase
+spec:
+  domains:
+    - metabase.print-nanny.com
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: metabase
+  annotations:
+    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
+    kubernetes.io/ingress.global-static-ip-name: metabase
+    networking.gke.io/managed-certificates: metabase
+spec:
+  backend:
+    serviceName: metabase
+    servicePort: 80
