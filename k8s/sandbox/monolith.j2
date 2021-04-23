@@ -61,7 +61,7 @@ spec:
         image: redis:6.2
       - name: celery-worker
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_sandbox_django:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
         command:
           - /start-celeryworker
         envFrom:
@@ -75,7 +75,7 @@ spec:
         command:
           - python
           - print_nanny_webapp/client_events/subscribers/octoprint_events.py
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_sandbox_django:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
         envFrom:
           - configMapRef:
               name: "{{ DEPLOY_USER }}-sandbox"
@@ -89,7 +89,7 @@ spec:
           - manage.py
           - runworker
           - discord
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_sandbox_django:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
         envFrom:
           - configMapRef:
               name: "{{ DEPLOY_USER }}-sandbox"
@@ -98,7 +98,7 @@ spec:
             value: discord-worker
       - name: django
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_sandbox_django:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
         livenessProbe:
           httpGet:
             path: /health/

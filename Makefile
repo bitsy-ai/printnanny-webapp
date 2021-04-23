@@ -8,6 +8,7 @@ OCTOPRINT_URL ?= "http://localhost:5005/"
 OCTOPRINT_USERPASS ?= "octoprint"
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
+GITHUB_SHA ?= $(shell git rev-parse HEAD)
 
 cypress-local-dev:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
@@ -36,7 +37,12 @@ ui:
 vue:
 	cd print_nanny_vue && npm install && npm run build
 
-build: vue ui
+docker:
+	docker build \
+	-f compose/production/django/Dockerfile \
+	-t print_nanny_webapp:$(GITHUB_SHA) \
+	.
+build: vue ui docker
 	docker-compose -f production.yml build
 
 prod-up: build
