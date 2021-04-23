@@ -19,22 +19,24 @@ on:
       user:
         description: 'Valid users are leigh, dzervas, polidoros'
         required: true
+env:
+  DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
+  STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
+  STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
+  MAILGUN_API_KEY: ${{ secrets.SANDBOX_MAILGUN_API_KEY }}
+  MAILGUN_DOMAIN: ${{ secrets.SANDBOX_MAILGUN_DOMAIN }}
+  DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
+  HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+  GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
 
-steps:
-  runs-on: ubuntu-latest
-  env:
-    DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
-    STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
-    STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
-    MAILGUN_API_KEY: ${{ secrets.SANDBOX_MAILGUN_API_KEY }}
-    MAILGUN_DOMAIN: ${{ secrets.SANDBOX_MAILGUN_DOMAIN }}
-    DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
-    HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
-    GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
-  - name: Checkout branch
-    uses: actions/checkout@v2
-  - name: Deploy sandbox instance
-    run: PROJECT="print-nanny-sandbox" \
-      DEPLOY_USER="${{ inputs.user }}"
-      make sandbox-deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v2
+    - name: Deploy sandbox instance
+      run: PROJECT="print-nanny-sandbox" \
+        DEPLOY_USER="${{ inputs.user }}"
+        make sandbox-deploy
 
