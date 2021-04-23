@@ -519,9 +519,6 @@ CORS_ORIGIN_WHITELIST = [
     'https://print-nanny.com'
 ]
 
-GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
-GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
-
 # dj-stripe
 # ------------------------------------------------------------------------------
 

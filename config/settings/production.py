@@ -214,3 +214,10 @@ if ENABLE_SUBSCRIPTIONS:
     STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
     STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
     STRIPE_LIVE_MODE = True
+
+
+# ghost member sync
+# Celery task: print_nanny_webapp/users/tasks.py
+# ------------------------------------------------------------------------------
+GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
+GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
