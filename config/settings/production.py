@@ -172,7 +172,6 @@ CHANNEL_LAYERS = {
 BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
 
-PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
 
 # Resources created prior to Terraform cutover
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")

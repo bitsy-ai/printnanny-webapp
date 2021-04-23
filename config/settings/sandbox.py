@@ -133,6 +133,8 @@ ALLOWED_CIDR_NETS = [
 
 
 # django-prometheus middleware must be last in middleware stack
+PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
+
 MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
 
 CHANNEL_LAYERS = {
