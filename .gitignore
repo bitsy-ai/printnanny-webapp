@@ -286,6 +286,7 @@ print_nanny_webapp/media/
 # .envs/*
 .envs/.local/.secrets
 .envs/.local/key.json
+.envs/.local/.env
 .envs/.production/
 # !.envs/.local/.postgres
 k8s/prod/configmap.yml

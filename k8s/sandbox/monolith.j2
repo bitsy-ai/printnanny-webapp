@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ DEPLOY_USER }}-pv-claim"
+  name: "{{ PRINT_NANNY_USER }}-pv-claim"
   labels:
     app: postgres
 spec:
@@ -15,16 +15,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ DEPLOY_USER }}-postgres"
+  name: "{{ PRINT_NANNY_USER }}-postgres"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ DEPLOY_USER }}-postgres"
+      app: "{{ PRINT_NANNY_USER }}-postgres"
   template:
     metadata:
       labels: 
-        app: "{{ DEPLOY_USER }}-postgres"
+        app: "{{ PRINT_NANNY_USER }}-postgres"
     spec:
       containers:
       - name: postgres
@@ -34,29 +34,29 @@ spec:
           - containerPort: 5432
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: postgredb
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: "{{ DEPLOY_USER }}-pv-claim"
+            claimName: "{{ PRINT_NANNY_USER }}-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ DEPLOY_USER }}-sandbox"
+  name: "{{ PRINT_NANNY_USER }}-sandbox"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ DEPLOY_USER }}-sandbox"
+      app: "{{ PRINT_NANNY_USER }}-sandbox"
 
   template:
     metadata:
       labels:
-        app: "{{ DEPLOY_USER }}-sandbox"
+        app: "{{ PRINT_NANNY_USER }}-sandbox"
     spec:
       serviceAccountName: webapp
       containers:
@@ -64,12 +64,12 @@ spec:
         image: redis:6.2
       - name: celery-worker
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         command:
           - /start-celeryworker
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: celery-worker
@@ -78,10 +78,10 @@ spec:
         command:
           - python
           - print_nanny_webapp/client_events/subscribers/octoprint_events.py
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint-events
@@ -92,16 +92,16 @@ spec:
           - manage.py
           - runworker
           - discord
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: discord-worker
       - name: django
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GITHUB_SHA }}
+        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         livenessProbe:
           httpGet:
             path: /health/
@@ -124,7 +124,7 @@ spec:
           - /start
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -151,7 +151,7 @@ spec:
           failureThreshold: 4
         envFrom:
           - configMapRef:
-              name: "{{ DEPLOY_USER }}-sandbox"
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -159,10 +159,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ DEPLOY_USER }}-django"
+  name: "{{ PRINT_NANNY_USER }}-django"
 spec:
   selector:
-    app: "{{ DEPLOY_USER }}-sandbox"
+    app: "{{ PRINT_NANNY_USER }}-sandbox"
   ports:
     - protocol: TCP
       port: 80
@@ -172,10 +172,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ DEPLOY_USER }}-django"
+  name: "{{ PRINT_NANNY_USER }}-django"
 spec:
   selector:
-    app: "{{ DEPLOY_USER }}-sandbox"
+    app: "{{ PRINT_NANNY_USER }}-sandbox"
   ports:
     - protocol: TCP
       port: 80
@@ -185,10 +185,10 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: "{{ DEPLOY_USER }}-sandbox-tls"
+  name: "{{ PRINT_NANNY_USER }}-sandbox-tls"
 spec:
   domains:
-    - "{{ DEPLOY_USER }}.sandbox.print-nanny.com"
+    - "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
 ---
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
@@ -203,22 +203,22 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: "{{ DEPLOY_USER }}-django"
+  name: "{{ PRINT_NANNY_USER }}-django"
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "{{ DEPLOY_USER }}-static-ip"
-    networking.gke.io/managed-certificates: "{{ DEPLOY_USER }}-sandbox-tls"
+    kubernetes.io/ingress.global-static-ip-name: "{{ PRINT_NANNY_USER }}-static-ip"
+    networking.gke.io/managed-certificates: "{{ PRINT_NANNY_USER }}-sandbox-tls"
 spec:
   rules:
   - http:
       paths:
       - path: /*
         backend:
-          serviceName: "{{ DEPLOY_USER }}-django"
+          serviceName: "{{ PRINT_NANNY_USER }}-django"
           servicePort: 80
       - path: /octoprint
         backend:
-          serviceName: "{{ DEPLOY_USER }}-octoprint"
+          serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
           servicePort: 80
 ---
 apiVersion: v1

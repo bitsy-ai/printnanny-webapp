@@ -8,7 +8,7 @@ OCTOPRINT_URL ?= "http://localhost:5005/"
 OCTOPRINT_USERPASS ?= "octoprint"
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
-GITHUB_SHA ?= $(shell git rev-parse HEAD)
+GIT_SHA ?= $(shell git rev-parse HEAD)
 
 cypress-local-dev:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
@@ -40,7 +40,7 @@ vue:
 docker-image:
 	DOCKER_BUILDKIT=1 docker build \
 	-f compose/production/django/Dockerfile \
-	-t print_nanny_webapp:$(GITHUB_SHA) \
+	-t print_nanny_webapp:$(GIT_SHA) \
 	.
 build: vue ui docker-image
 
@@ -54,9 +54,9 @@ cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
 sandbox-deploy: cluster-config build
-	k8s/sandbox/push.sh
-	k8s/sandbox/render.sh
-	k8s/sandbox/apply.sh
+	GIT_SHA=$(GIT_SHA) k8s/sandbox/push.sh
+	GIT_SHA=$(GIT_SHA) k8s/sandbox/render.sh
+	GIT_SHA=$(GIT_SHA) k8s/sandbox/apply.sh
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh
