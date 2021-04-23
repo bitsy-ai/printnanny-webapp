@@ -50,7 +50,7 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.ENABLE_SUBSCRIPTIONS:
+if settings.STRIPE_ENABLE_SUBSCRIPTIONS:
     urlpatterns += path("subscriptions/", include("print_nanny_webapp.subscriptions.urls", "subscriptions")),
     urlpatterns += path("stripe/", include("djstripe.urls", namespace="djstripe")),
 

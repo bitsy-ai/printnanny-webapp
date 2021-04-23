@@ -11,5 +11,5 @@ def settings_context(_request):
         "WS_BASE_URL": settings.WS_BASE_URL,
         "DISCORD_URL": settings.DISCORD_URL,
         "GITHUB_ISSUE_URL": settings.GITHUB_ISSUE_URL,
-        "ENABLE_SUBSCRIPTIONS": settings.ENABLE_SUBSCRIPTIONS,
+        "STRIPE_ENABLE_SUBSCRIPTIONS": settings.STRIPE_ENABLE_SUBSCRIPTIONS,
     }

@@ -522,8 +522,8 @@ CORS_ORIGIN_WHITELIST = [
 # dj-stripe
 # ------------------------------------------------------------------------------
 
-ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
-if ENABLE_SUBSCRIPTIONS:
+STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
+if STRIPE_ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
     THIRD_PARTY_APPS.append("djstripe")
