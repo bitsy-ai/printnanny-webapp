@@ -288,7 +288,7 @@ print_nanny_webapp/media/
 .envs/.local/key.json
 .envs/.production/
 # !.envs/.local/.postgres
-k8s/configmap.yml
+k8s/prod/configmap.yml
 
 # ignore generated vue files
 print_nanny_webapp/static/vue/

@@ -1,0 +1,35 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'INFO'
+      octoprint_plugin_version:
+        description: 'Commitish or branch of the OctoPrint Nanny plugin to install in sandbox'
+        default: 'devel'
+        required: true
+      octoprint_version:
+        description: 'OctoPrint version to install in sandbox'
+        default: '1.6.0rc3'
+      fixtures:
+        description: 'Load default fixture data?'
+        default: true
+        required: true
+      user:
+        description: 'Valid users are leigh, dzervas, polidoros'
+        required: true
+
+steps:
+  env:
+    DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
+    STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
+    STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
+    MAILGUN_API_KEY: ${{ secrets.SANDBOX_MAILGUN_API_KEY }}
+    MAILGUN_DOMAIN: ${{ secrets.SANDBOX_MAILGUN_DOMAIN }}
+    DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
+    HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+    GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
+  - uses: actions/checkout@v2
+    name: Build image
+

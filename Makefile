@@ -2,6 +2,10 @@
 
 .PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials
 
+PROJECT ?= "print-nanny-sandbox"
+CLUSTER ?= "www-sandbox"
+ZONE ?= "us-central1-c"
+
 sandbox-credentials:
 	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
 ui:
@@ -19,9 +23,16 @@ prod-up: build
 dev-up:
 	docker-compose -f local.yml up
 
-deploy: build
-	gcloud container clusters get-credentials www-beta --zone us-central1-c --project print-nanny
-	k8s/push.sh
+cluster-config:
+	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
+
+sandbox-deploy: build cluster-config
+	k8s/sandbox/push.sh
+	k8s/sandbox/render.sh
+	k8s/sandbox/apply.sh
+
+prod-deploy: build cluster-config
+	k8s/prod/push.sh
 
 blog-deploy:
 	k8s/push-blog.sh
