@@ -44,7 +44,6 @@ jobs:
     - name: Checkout branch
       uses: actions/checkout@v2
     - name: Deploy sandbox instance
-      run: PROJECT="print-nanny-sandbox" \
-        DEPLOY_USER="${{ github.event.inputs.user }}" \
-        make sandbox-deploy
+      run: |
+        make sandbox-deploy PROJECT="print-nanny-sandbox" DEPLOY_USER="${{ github.event.inputs.user }}"
 
