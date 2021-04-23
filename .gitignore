@@ -275,6 +275,10 @@ Session.vim
 # Auto-generated tag files
 tags
 
+## cypress local run videos and screenshots
+cypress/screenshots
+cypress/vidoes
+
 ### Project template
 
 print_nanny_webapp/media/
