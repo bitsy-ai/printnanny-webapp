@@ -1,4 +1,45 @@
 ---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "{{ DEPLOY_USER }}-pv-claim"
+  labels:
+    app: postgres
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "{{ DEPLOY_USER }}-postgres"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ DEPLOY_USER }}-postgres"
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:12.3
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+        envFrom:
+          - configMapRef:
+              name: "{{ DEPLOY_USER }}-sandbox"
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: "{{ DEPLOY_USER }}-pv-claim"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +57,8 @@ spec:
     spec:
       serviceAccountName: webapp
       containers:
+      - name: redis
+        image: redis:6.2
       - name: celery-worker
         imagePullPolicy: Always
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp_production_django:{{ GIT_SHA }}
