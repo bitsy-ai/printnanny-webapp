@@ -21,7 +21,8 @@ spec:
       app: "{{ DEPLOY_USER }}-postgres"
   template:
     metadata:
-      labels: "{{ DEPLOY_USER }}-postgres"
+      labels: 
+        app: "{{ DEPLOY_USER }}-postgres"
     spec:
       containers:
       - name: postgres
