@@ -28,7 +28,6 @@ env:
   DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
   HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
   GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
