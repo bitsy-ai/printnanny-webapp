@@ -32,9 +32,9 @@ spec:
         envFrom:
           - configMapRef:
               name: "{{ DEPLOY_USER }}-sandbox"
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgredb
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgredb
       volumes:
         - name: postgredb
           persistentVolumeClaim:
