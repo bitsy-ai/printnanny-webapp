@@ -37,12 +37,12 @@ ui:
 vue:
 	cd print_nanny_vue && npm install && npm run build
 
-docker:
-	docker build \
+docker-image:
+	DOCKER_BUILDKIT=1 docker build \
 	-f compose/production/django/Dockerfile \
 	-t print_nanny_webapp:$(GITHUB_SHA) \
 	.
-build: vue ui docker
+build: vue ui docker-image
 
 prod-up: build
 	docker-compose -f production.yml up
@@ -53,8 +53,7 @@ dev-up:
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
-sandbox-deploy: cluster-config # build
-	npm install
+sandbox-deploy: cluster-config build
 	# k8s/sandbox/push.sh
 	k8s/sandbox/render.sh
 	k8s/sandbox/apply.sh
