@@ -279,6 +279,10 @@ tags
 cypress/screenshots
 cypress/vidoes
 
+## ignore generated yml
+k8s/sandbox/configmap.yml
+k8s/sandbox/monolith.yml
+
 ### Project template
 
 print_nanny_webapp/media/
