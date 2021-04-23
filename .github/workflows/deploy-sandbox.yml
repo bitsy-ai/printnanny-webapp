@@ -51,6 +51,8 @@ jobs:
       run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
     - name: Active Service Account
       run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
+    - name: Configure docker registry credentials
+      run: gcloud auth configure-docker
     - name: Deploy sandbox instance
       run: make sandbox-deploy PROJECT="print-nanny-sandbox" DEPLOY_USER="${{ github.event.inputs.user }}"
 
