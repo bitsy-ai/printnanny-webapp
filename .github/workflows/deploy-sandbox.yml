@@ -5,7 +5,7 @@ on:
         description: 'Log level'     
         required: true
         default: 'INFO'
-      octoprint_plugin_version:
+      plugin_version:
         description: 'Commitish or branch of the OctoPrint Nanny plugin to install in sandbox'
         default: 'devel'
         required: true
@@ -18,6 +18,9 @@ on:
         required: true
       user:
         description: 'Valid users are leigh, dzervas, polidoros'
+        required: true
+      branch:
+        description: 'Branch to build'
         required: true
 env:
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
@@ -32,10 +35,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Input Settings
+      run: |
+        echo "User: ${{ github.event.inputs.user }}" 
+        echo "Branch: ${{ github.event.inputs.branch }}"
+        echo "Loglevel: ${{ github.event.inputs.loglevel }}"
+        echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
+        echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
+        echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
+
     - name: Checkout branch
       uses: actions/checkout@v2
+      ref: "${{ github.event.inputs.branch }}"
     - name: Deploy sandbox instance
       run: PROJECT="print-nanny-sandbox" \
-        DEPLOY_USER="${{ inputs.user }}"
+        DEPLOY_USER="${{ github.event.inputs.user }}"
         make sandbox-deploy
 
