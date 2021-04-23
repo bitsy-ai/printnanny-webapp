@@ -8,7 +8,7 @@ OCTOPRINT_URL ?= "http://localhost:5005/"
 OCTOPRINT_USERPASS ?= "octoprint"
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
-GITHUB_SHA ?= $(shell git rev-parse HEAD)
+GITHUB_SHA ?= "28fd47efa14df9b369d279dd6fe56f13c72040db" #$(shell git rev-parse HEAD)
 
 cypress-local-dev:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
@@ -53,8 +53,9 @@ dev-up:
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
-sandbox-deploy: build cluster-config
-	k8s/sandbox/push.sh
+sandbox-deploy: cluster-config # build
+	npm install
+	# k8s/sandbox/push.sh
 	k8s/sandbox/render.sh
 	k8s/sandbox/apply.sh
 

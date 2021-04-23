@@ -20,6 +20,8 @@ on:
         description: 'Valid users are leigh, dzervas, polidoros'
         required: true
 env:
+  PRINT_NANNY_URL: ${{ github.events.inputs.user }}.sandbox.print-nanny.com
+  OCTOPRINT_URL: ${{ github.events.inputs.user }}.sandbox.print-nanny.com/octoprint
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
   DJANGO_SUPERUSER_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
@@ -56,6 +58,6 @@ jobs:
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
     - name: Deploy sandbox instance
-      run: make sandbox-deploy PROJECT="print-nanny-sandbox" DEPLOY_USER="${{ github.event.inputs.user }}"
+      run: make sandbox-deploy PROJECT="print-nanny-sandbox" DEPLOY_USER="${{ github.event.inputs.user }}" PRINT_NANNY_URL=$PRINT_NANNY_URL OCTOPRINT_URL=$OCTOPRINT_URL
     - name: Run cypress tests
       run: make cypress-local-run
