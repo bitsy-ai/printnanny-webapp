@@ -40,9 +40,11 @@ jobs:
         echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
         echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
-
     - name: Checkout branch
       uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
     - name: Deploy sandbox instance
       run: make sandbox-deploy PROJECT="print-nanny-sandbox" DEPLOY_USER="${{ github.event.inputs.user }}"
 
