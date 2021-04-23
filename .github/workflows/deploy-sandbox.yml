@@ -21,6 +21,7 @@ on:
         required: true
 
 steps:
+  runs-on: ubuntu-latest
   env:
     DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
     STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
@@ -30,6 +31,10 @@ steps:
     DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
     HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
     GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
-  - uses: actions/checkout@v2
-    name: Build image
+  - name: Checkout branch
+    uses: actions/checkout@v2
+  - name: Deploy sandbox instance
+    run: PROJECT="print-nanny-sandbox" \
+      DEPLOY_USER="${{ inputs.user }}"
+      make sandbox-deploy
 
