@@ -20,8 +20,8 @@ on:
         description: 'Valid users are leigh, dzervas, polidoros'
         required: true
 env:
-  PRINT_NANNY_URL: ${{ github.events.inputs.user }}.sandbox.print-nanny.com
-  OCTOPRINT_URL: ${{ github.events.inputs.user }}.sandbox.print-nanny.com/octoprint
+  PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com
+  OCTOPRINT_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/octoprint
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
   DJANGO_SUPERUSER_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
