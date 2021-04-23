@@ -175,7 +175,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-django"
+  name: "{{ PRINT_NANNY_USER }}-octoprint"
 spec:
   selector:
     app: "{{ PRINT_NANNY_USER }}-sandbox"
@@ -183,6 +183,19 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 5000
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ PRINT_NANNY_USER }}-postgres"
+spec:
+  selector:
+    app: "{{ PRINT_NANNY_USER }}-postgres"
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
   type: NodePort
 ---
 apiVersion: networking.gke.io/v1
