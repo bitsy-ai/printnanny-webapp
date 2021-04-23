@@ -19,9 +19,6 @@ on:
       user:
         description: 'Valid users are leigh, dzervas, polidoros'
         required: true
-      branch:
-        description: 'Branch to build'
-        required: true
 env:
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
@@ -46,7 +43,6 @@ jobs:
 
     - name: Checkout branch
       uses: actions/checkout@v2
-      ref: "${{ github.event.inputs.branch }}"
     - name: Deploy sandbox instance
       run: PROJECT="print-nanny-sandbox" \
         DEPLOY_USER="${{ github.event.inputs.user }}"
