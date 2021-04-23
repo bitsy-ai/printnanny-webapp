@@ -31,10 +31,10 @@ ZONE ?= "us-central1-c"
 sandbox-credentials:
 	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
 ui:
-	npm run build
+	npm install && npm run build
 
 vue:
-	cd print_nanny_vue && npm run build
+	cd print_nanny_vue && npm install && npm run build
 
 build: vue ui
 	docker-compose -f production.yml build
