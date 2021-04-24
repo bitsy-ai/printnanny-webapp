@@ -15,7 +15,7 @@ describe('Log into OctoPrint interface', () => {
         cy.get('#settings_plugin_pluginmanager_repositorydialog form input').eq(1).type(Cypress.env('PRINT_NANNY_PLUGIN_ARCHIVE'))
 
         cy.get('#settings_plugin_pluginmanager_repositorydialog form .btn.btn-primary').first().click({force: true})
-        cy.contains('A restart is needed for the changes to take effect.', {timeout: 20000})
+        cy.contains('A restart is needed for the changes to take effect.', {timeout: 60000})
 
         cy.contains('Restart now', {timeout: 60000}).click()
         cy.contains('Proceed', {timeout: 60000}).click()
