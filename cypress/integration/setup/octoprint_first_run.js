@@ -1,6 +1,6 @@
 describe('OctoPrint initial setup wizard', () => {
       it('Create a new user or log in with existing user', () => {
-        cy.visit(Cypress.env('OCTOPRINT_URL'))
+        cy.visit(Cypress.env('OCTOPRINT_URL'), {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
         cy.contains('Setup Wizard')
         cy.get('button[name=next]').click()
         cy.get('button[name=next]').click()
@@ -28,6 +28,6 @@ describe('OctoPrint initial setup wizard', () => {
         cy.get('button[name=next]').click()
         cy.get('button[name=finish]').click()
 
-        
+
       })
   })

@@ -2,7 +2,7 @@
 describe('Log into OctoPrint interface', () => {
 
     before(() => {
-        cy.visit(Cypress.env('OCTOPRINT_URL'))
+        cy.visit(Cypress.env('OCTOPRINT_URL'), {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
         cy.get("#login-user").type(Cypress.env('PRINT_NANNY_EMAIL'))
         cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()

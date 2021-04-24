@@ -88,7 +88,7 @@ sandbox-email:
 	ZONE=$(ZONE) \
 		k8s/sandbox/email.sh
 
-sandbox-ci: sandbox-deploy cypress-open sandbox-email
+sandbox-ci: sandbox-deploy sandbox-email cypress-run
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh
