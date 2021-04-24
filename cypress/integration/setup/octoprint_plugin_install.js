@@ -18,8 +18,6 @@ describe('Log into OctoPrint interface', () => {
         cy.contains('A restart is needed for the changes to take effect.', {timeout: 60000})
 
         cy.contains('Restart now', {timeout: 60000}).click()
-        cy.contains('Proceed', {timeout: 60000}).click()
-        cy.contains('Reload now', {timeout: 60000}).click()
-        cy.contains("#wizard_plugin_octoprint_nanny")
+        cy.visit(Cypress.env('OCTOPRINT_URL'), {timeout: 600000}).contains("#wizard_plugin_octoprint_nanny")
     })
 })

@@ -2,7 +2,33 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-pv-claim"
+  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
+  labels:
+    app: postgres
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
+  labels:
+    app: octoprint
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
   labels:
     app: postgres
 spec:
@@ -44,7 +70,7 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: "{{ PRINT_NANNY_USER }}-pv-claim"
+            claimName: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -158,6 +184,13 @@ spec:
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
+        volumeMounts:
+          - mountPath: /octoprint
+            name: octoprint-data
+      volumes:
+        - name: octoprint-data
+          persistentVolumeClaim:
+            claimName: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment

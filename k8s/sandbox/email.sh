@@ -32,7 +32,8 @@ cluster: $CLUSTER
 zone: $ZONE
 
 WARNING: sandbox is deployed to a preemptible node! Availability is not guaranteed. Max lifetime is generally 24 hours. Local data will be deleted.
-NOTE: postgres deployment uses a PersistentVolumeClaim, which persists database even if deployment node is cycled.
+
+OctoPrint and Postgres deployment use a PersistentVolumeClaim to persist data.
 https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms
 EOF
 
