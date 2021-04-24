@@ -17,7 +17,7 @@ on:
         default: true
         required: true
       user:
-        description: 'Valid users are leigh, dzervas, polidoros'
+        description: 'Username'
         required: true
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
