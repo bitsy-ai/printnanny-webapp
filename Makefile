@@ -2,13 +2,16 @@
 
 .PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials cypress-local-dev cypress-local-run
 
+PROJECT ?= "print-nanny-sandbox"
+CLUSTER ?= "www-sandbox"
+ZONE ?= "us-central1-c"
 
 PRINT_NANNY_URL ?= "http://localhost:8000/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
-OCTOPRINT_USERPASS ?= "octoprint"
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
 GIT_SHA ?= $(shell git rev-parse HEAD)
+GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 cypress-local-dev:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
@@ -16,6 +19,8 @@ cypress-local-dev:
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
 	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress open
 cypress-local-run:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
@@ -23,14 +28,10 @@ cypress-local-run:
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
 	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress run
 
-PROJECT ?= "print-nanny-sandbox"
-CLUSTER ?= "www-sandbox"
-ZONE ?= "us-central1-c"
-
-sandbox-credentials:
-	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
 ui:
 	npm install && npm run build
 
@@ -50,13 +51,25 @@ prod-up: build
 dev-up:
 	docker-compose -f local.yml up
 
+sandbox-owner-credentials:
+	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
+
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
 sandbox-deploy: cluster-config build
-	GIT_SHA=$(GIT_SHA) k8s/sandbox/push.sh
-	GIT_SHA=$(GIT_SHA) k8s/sandbox/render.sh
-	GIT_SHA=$(GIT_SHA) k8s/sandbox/apply.sh
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/push.sh && \
+		k8s/sandbox/render.sh && \
+		k8s/sandbox/apply.sh
+
+sandbox-email:
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/email.sh
+
+sandbox: sandbox-deploy 
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh

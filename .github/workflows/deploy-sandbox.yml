@@ -23,8 +23,7 @@ env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
   PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com
   OCTOPRINT_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/octoprint
-  DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
-  DJANGO_SUPERUSER_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
+  PRINT_NANNY_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
@@ -47,6 +46,9 @@ jobs:
         echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
         echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
+    - name: Generate random passwords
+      run : echo "::set-output name=RANDOM_PASSWORD::$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1)"
+      id: random-password
     - name: Checkout branch
       uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -59,6 +61,13 @@ jobs:
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
     - name: Deploy sandbox instance
-      run: make sandbox-deploy PROJECT="print-nanny-sandbox" PRINT_NANNY_USER="${{ github.event.inputs.user }}" PRINT_NANNY_URL=$PRINT_NANNY_URL OCTOPRINT_URL=$OCTOPRINT_URL
+      run: |
+        make sandbox-deploy \
+        PROJECT="print-nanny-sandbox" \
+        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+        OCTOPRINT_URL="$OCTOPRINT_URL" \
+        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL" \
+        PRINT_NANNY_PASSWORD="${{ steps.random-password.output.RANDOM_PASSWORD }}"
     - name: Run cypress tests
       run: make cypress-local-run
