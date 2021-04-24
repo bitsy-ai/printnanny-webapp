@@ -181,19 +181,19 @@ spec:
         image: octoprint/octoprint
         livenessProbe:
           httpGet:
-            path: /
+            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
             port: 5000
           initialDelaySeconds: 60
-          periodSeconds: 15
+          periodSeconds: 30
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 4
         readinessProbe:
           httpGet:
-            path: /
+            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
             port: 5000
           initialDelaySeconds: 60
-          periodSeconds: 15
+          periodSeconds: 30
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 4

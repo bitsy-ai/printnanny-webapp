@@ -4,8 +4,15 @@ describe('OctoPrint initial setup wizard', () => {
         cy.contains('Setup Wizard')
         cy.get('button[name=next]').click()
         cy.get('button[name=next]').click()
-        cy.get('#wizard_plugin_corewizard_acl input').first().type(Cypress.env('PRINT_NANNY_EMAIL'))
-        cy.get('#wizard_plugin_corewizard_acl input').last().type(Cypress.env('PRINT_NANNY_PASSWORD'))
+        cy.get('#wizard_plugin_corewizard_acl input')
+          .each((el, index, list) =>{
+            if (index == 0){
+              cy.wrap(el).type(Cypress.env('PRINT_NANNY_EMAIL'))
+            } else {
+              cy.wrap(el).type(Cypress.env('PRINT_NANNY_PASSWORD'))
+            }
+          })
+
         cy.get('#wizard_plugin_corewizard_acl .controls a').contains('Create Account').click({force: true})
         cy.get('button[name=next]').click()
         cy.contains("Disable Anonymous Usage Tracking").click()
