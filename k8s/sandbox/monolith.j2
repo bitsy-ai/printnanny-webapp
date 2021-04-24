@@ -205,6 +205,8 @@ metadata:
 spec:
   domains:
     - "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+    - "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+
 ---
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
@@ -229,12 +231,21 @@ spec:
     serviceName: "{{ PRINT_NANNY_USER }}-django"
     servicePort: 80
   rules:
-  - http:
+  - host: "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+    http:
       paths:
-      - path: /octoprint
+      - path: /
         pathType: Prefix
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
+          servicePort: 80
+  - host: "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: "{{ PRINT_NANNY_USER }}-django"
           servicePort: 80
 ---
 apiVersion: v1

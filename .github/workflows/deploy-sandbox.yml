@@ -22,7 +22,7 @@ on:
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
   PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com
-  OCTOPRINT_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/octoprint
+  OCTOPRINT_URL: https://octoprint.${{ github.event.inputs.user }}.sandbox.print-nanny.com
   PRINT_NANNY_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
