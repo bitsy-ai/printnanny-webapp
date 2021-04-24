@@ -27,5 +27,7 @@ describe('OctoPrint initial setup wizard', () => {
         cy.get('button[name=next]').click()
         cy.get('button[name=next]').click()
         cy.get('button[name=finish]').click()
+
+        
       })
   })

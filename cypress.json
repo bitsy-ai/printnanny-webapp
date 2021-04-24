@@ -1,6 +1,7 @@
 {
     "projectId": "vwjwew",
     "testFiles": [
-       "setup/*.js" 
+       "setup/octoprint_first_run.js",
+       "setup/octoprint_plugin_install.js" 
     ]
 }

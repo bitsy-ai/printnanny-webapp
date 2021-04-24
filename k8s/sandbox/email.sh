@@ -1,13 +1,8 @@
 #!/bin/bash
 
-set -euo pipefail
+set -uo pipefail
 
-curl -s --user "api:$MAILGUN_API_KEY" \
-    "https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages" \
-    -F from='robots@print-nanny.com' \
-    -F to="$PRINT_NANNY_EMAIL" \
-    -F subject="🚀 Print Nanny sandbox ready: $GIT_BRANCH" \
-    -F text="$body" << EOF
+read -r -d '' body << EOF
 Your sandbox is ready! 💪
 
 Version Info
@@ -38,3 +33,11 @@ zone: $ZONE
 
 WARNING: sandbox is deployed to a preemptible instance, which last no longer than 24 hours.
 EOF
+
+echo $PRINT_NANNY_EMAIL
+curl -s --user "api:$MAILGUN_API_KEY" \
+    "https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages" \
+    -F from='robots@print-nanny.com' \
+    -F to="$PRINT_NANNY_EMAIL" \
+    -F subject="🚀 Print Nanny sandbox ready: $GIT_BRANCH" \
+    -F text="$body"

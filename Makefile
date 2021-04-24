@@ -70,14 +70,19 @@ sandbox-deploy: cluster-config build
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/rollout-wait.sh
+
 sandbox-email:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 	PLUGIN_SHA=$(PRINT_NANNY_PLUGIN_SHA) \
 	DATAFLOW_SHA=$(PRINT_NANNY_DATAFLOW_SHA) \
+	PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	PROJECT=$(PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	ZONE=$(ZONE) \
 		k8s/sandbox/email.sh
 
-sandbox: sandbox-deploy cypress-run sandbox-email
+sandbox: sandbox-deploy cypress-open sandbox-email
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh
