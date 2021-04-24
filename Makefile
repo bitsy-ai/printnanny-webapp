@@ -71,7 +71,9 @@ sandbox-deploy: cluster-config build
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/apply.sh
-
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/rollout-wait.sh
 sandbox-email:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \

@@ -183,8 +183,8 @@ spec:
           httpGet:
             path: /api/currentuser # root path serves 302 (login) which is not followed by health check
             port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 30
+          initialDelaySeconds: 30
+          periodSeconds: 15
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 4
@@ -192,8 +192,8 @@ spec:
           httpGet:
             path: /api/currentuser # root path serves 302 (login) which is not followed by health check
             port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 30
+          initialDelaySeconds: 30
+          periodSeconds: 15
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 4
