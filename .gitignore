@@ -277,7 +277,7 @@ tags
 
 ## cypress local run videos and screenshots
 cypress/screenshots
-cypress/vidoes
+cypress/videos
 
 ## ignore generated yml
 k8s/sandbox/configmap.yml

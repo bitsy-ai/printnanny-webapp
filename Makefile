@@ -13,7 +13,7 @@ PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugi
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
-cypress-local-dev:
+cypress-open:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
 	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
@@ -22,13 +22,14 @@ cypress-local-dev:
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress open
-cypress-local-run:
+
+cypress-run:
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
 	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
 	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
-	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress run
 
@@ -69,7 +70,7 @@ sandbox-email:
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/email.sh
 
-sandbox: sandbox-deploy 
+sandbox: sandbox-deploy cypress-run
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh

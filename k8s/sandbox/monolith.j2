@@ -225,13 +225,12 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: "{{ PRINT_NANNY_USER }}-static-ip"
     networking.gke.io/managed-certificates: "{{ PRINT_NANNY_USER }}-sandbox-tls"
 spec:
+  backend:
+    serviceName: "{{ PRINT_NANNY_USER }}-django"
+    servicePort: 80
   rules:
   - http:
       paths:
-      - path: /*
-        backend:
-          serviceName: "{{ PRINT_NANNY_USER }}-django"
-          servicePort: 80
       - path: /octoprint
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
