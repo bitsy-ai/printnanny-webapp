@@ -159,6 +159,51 @@ spec:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ PRINT_NANNY_USER }}-octoprint"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ PRINT_NANNY_USER }}-octoprint"
+
+  template:
+    metadata:
+      labels:
+        app: "{{ PRINT_NANNY_USER }}-octoprint"
+    spec:
+      serviceAccountName: webapp
+      containers:
+      - name: octoprint
+        imagePullPolicy: Always
+        image: octoprint/octoprint
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        envFrom:
+          - configMapRef:
+              name: "{{ PRINT_NANNY_USER }}-sandbox"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: octoprint
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -178,7 +223,7 @@ metadata:
   name: "{{ PRINT_NANNY_USER }}-octoprint"
 spec:
   selector:
-    app: "{{ PRINT_NANNY_USER }}-sandbox"
+    app: "{{ PRINT_NANNY_USER }}-octoprint"
   ports:
     - protocol: TCP
       port: 80
@@ -235,7 +280,6 @@ spec:
     http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
           servicePort: 80
@@ -243,7 +287,6 @@ spec:
     http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-django"
           servicePort: 80
