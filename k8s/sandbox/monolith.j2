@@ -232,6 +232,7 @@ spec:
   - http:
       paths:
       - path: /octoprint
+        pathType: Prefix
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
           servicePort: 80
