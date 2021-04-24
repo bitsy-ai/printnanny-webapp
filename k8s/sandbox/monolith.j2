@@ -227,7 +227,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 80
   type: NodePort
 ---
 apiVersion: v1
@@ -279,14 +279,14 @@ spec:
   - host: "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
     http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
           servicePort: 80
   - host: "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
     http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: "{{ PRINT_NANNY_USER }}-django"
           servicePort: 80
