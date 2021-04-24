@@ -1,0 +1,9 @@
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: "{{ PRINT_NANNY_USER }}-sandbox-tls"
+spec:
+  domains:
+    - "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+    - "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"

@@ -57,13 +57,19 @@ dev-up:
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
-sandbox-deploy: cluster-config build
-	GIT_SHA=$(GIT_SHA) \
-	GIT_BRANCH=$(GIT_BRANCH) \
-		k8s/sandbox/push.sh && \
+sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/render.sh && \
+
+sandbox-clean: sandbox-render
+	k8s/sandbox/delete.sh
+
+
+sandbox-deploy: cluster-config build sandbox-clean
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/push.sh && \
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/apply.sh && \
