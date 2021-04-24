@@ -62,12 +62,10 @@ jobs:
       run: gcloud auth configure-docker
     - name: Deploy sandbox instance
       run: |
-        make sandbox-deploy \
+        make sandbox \
         PROJECT="print-nanny-sandbox" \
         PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL" \
         PRINT_NANNY_PASSWORD="${{ steps.random-password.output.RANDOM_PASSWORD }}"
-    - name: Run cypress tests
-      run: make cypress-local-run
