@@ -1,7 +1,6 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials cypress-local-dev cypress-local-run
-
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials cypress-open cypress-run
 PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
 ZONE ?= "us-central1-c"
@@ -70,7 +69,7 @@ sandbox-deploy: cluster-config build
 		k8s/sandbox/render.sh && \
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
-		k8s/sandbox/apply.sh
+		k8s/sandbox/apply.sh &&
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/rollout-wait.sh
