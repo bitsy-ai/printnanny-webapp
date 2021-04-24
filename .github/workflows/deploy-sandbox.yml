@@ -62,7 +62,7 @@ jobs:
       run: gcloud auth configure-docker
     - name: Deploy sandbox instance
       run: |
-        make sandbox \
+        make sandbox-ci \
         PROJECT="print-nanny-sandbox" \
         PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
