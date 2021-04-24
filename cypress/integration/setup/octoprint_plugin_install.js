@@ -3,8 +3,8 @@ describe('Log into OctoPrint interface', () => {
 
     before(() => {
         cy.visit(Cypress.env('OCTOPRINT_URL'))
-        cy.get("#login-user").type(Cypress.env('OCTOPRINT_USERPASS'))
-        cy.get("#login-password").type(Cypress.env('OCTOPRINT_USERPASS'))
+        cy.get("#login-user").type(Cypress.env('PRINT_NANNY_EMAIL'))
+        cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()
     })
     it('Install OctoPrint Nanny plugin', () => {
