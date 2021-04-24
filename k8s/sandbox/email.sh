@@ -6,13 +6,13 @@ read -r -d '' body << EOF
 Your sandbox is ready! 💪
 
 Version Info
---------
+-----------------------
 sha: $GIT_SHA
 branch: $GIT_BRANCH
-channel: $PRINT_NANNY_RELEASE_CHANNEL
+release channel: $PRINT_NANNY_RELEASE_CHANNEL
 
 Django
---------
+-----------------------
 url: $PRINT_NANNY_URL
 admin: $PRINT_NANNY_URL/admin
 api: $PRINT_NANNY_URL/api
@@ -20,18 +20,20 @@ user: $PRINT_NANNY_EMAIL
 password: $PRINT_NANNY_PASSWORD
 
 OctoPrint
---------
+-----------------------
 url: $OCTOPRINT_URL
 user: $PRINT_NANNY_EMAIL
 password: $PRINT_NANNY_PASSWORD
 
 Google Cloud Platform
---------
+-----------------------
 project: $PROJECT
 cluster: $CLUSTER
 zone: $ZONE
 
-WARNING: sandbox is deployed to a preemptible instance, which last no longer than 24 hours.
+WARNING: sandbox is deployed to a preemptible node! Availability is not guaranteed. Max lifetime is generally 24 hours. Local data will be deleted.
+NOTE: postgres deployment uses a PersistentVolumeClaim, which persists database even if deployment node is cycled.
+https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms
 EOF
 
 echo $PRINT_NANNY_EMAIL
