@@ -43,3 +43,5 @@ curl -s --user "api:$MAILGUN_API_KEY" \
     -F to="$PRINT_NANNY_EMAIL" \
     -F subject="🚀 Print Nanny sandbox ready: $GIT_BRANCH" \
     -F text="$body"
+
+echo "📮 Sandbox is ready! Sent details to email: $PRINT_NANNY_EMAIL"

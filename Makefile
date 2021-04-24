@@ -60,9 +60,9 @@ cluster-config:
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
-		k8s/sandbox/render.sh && \
+		k8s/sandbox/render.sh
 
-sandbox-clean: sandbox-render
+sandbox-clean: sandbox-config
 	k8s/sandbox/delete.sh
 
 
@@ -88,7 +88,7 @@ sandbox-email:
 	ZONE=$(ZONE) \
 		k8s/sandbox/email.sh
 
-sandbox: sandbox-deploy cypress-open sandbox-email
+sandbox-ci: sandbox-deploy cypress-open sandbox-email
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh

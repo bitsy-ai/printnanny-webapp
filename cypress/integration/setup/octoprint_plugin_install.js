@@ -6,6 +6,7 @@ describe('Log into OctoPrint interface', () => {
         cy.get("#login-user").type(Cypress.env('PRINT_NANNY_EMAIL'))
         cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()
+        cy.get(".ui-pnotify button").contains("Ignore").click()
     })
     it('Install OctoPrint Nanny plugin', () => {
         cy.get("#navbar_show_settings").click()    
@@ -16,9 +17,9 @@ describe('Log into OctoPrint interface', () => {
         cy.get('#settings_plugin_pluginmanager_repositorydialog form .btn.btn-primary').first().click({force: true})
         cy.contains('A restart is needed for the changes to take effect.', {timeout: 20000})
 
-        cy.contains('Restart now', {timeout: 20000}).click()
-        cy.contains('Proceed', {timeout: 20000}).click()
-        cy.contains('Reload now', {timeout: 20000}).click()
+        cy.contains('Restart now', {timeout: 60000}).click()
+        cy.contains('Proceed', {timeout: 60000}).click()
+        cy.contains('Reload now', {timeout: 60000}).click()
         cy.contains("#wizard_plugin_octoprint_nanny")
     })
 })
