@@ -15,7 +15,11 @@ PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/o
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
-cypress-open:
+octoprint-wait:
+	OCTOPRINT_URL=$(OCTOPRINT_URL) \
+		k8s/sandbox/octoprint-wait.sh
+
+cypress-open: octoprint-wait
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
 	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
@@ -25,7 +29,7 @@ cypress-open:
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress open
 
-cypress-run:
+cypress-run: octoprint-wait
 	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
 	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
 	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
