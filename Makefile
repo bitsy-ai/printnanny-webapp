@@ -54,9 +54,6 @@ prod-up: build
 dev-up:
 	docker-compose -f local.yml up
 
-sandbox-owner-credentials:
-	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
-
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
@@ -69,7 +66,7 @@ sandbox-deploy: cluster-config build
 		k8s/sandbox/render.sh && \
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
-		k8s/sandbox/apply.sh &&
+		k8s/sandbox/apply.sh && \
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/rollout-wait.sh
