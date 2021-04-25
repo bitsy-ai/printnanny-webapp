@@ -6,7 +6,8 @@ describe('Log into OctoPrint interface', () => {
         cy.get("#login-user").type(Cypress.env('PRINT_NANNY_EMAIL'))
         cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()
-        cy.get(".ui-pnotify button").contains("Ignore").click()
+
+
     })
     it('Install OctoPrint Nanny plugin', () => {
         cy.get("#navbar_show_settings").click()    
