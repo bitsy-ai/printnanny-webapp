@@ -1,6 +1,7 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials cypress-open cypress-run
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run
+
 PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
 ZONE ?= "us-central1-c"
