@@ -46,12 +46,6 @@ jobs:
         echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
         echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
-    - name: Generate random passwords
-      run : |
-        password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1)
-        echo $password
-        echo ::set-output name=RANDOM_PASSWORD::$password
-      id: random-password
     - name: Checkout branch
       uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -71,4 +65,4 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL" \
-        PRINT_NANNY_PASSWORD="${{ steps.random-password.output.RANDOM_PASSWORD }}"
+        PRINT_NANNY_PASSWORD="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1)"
