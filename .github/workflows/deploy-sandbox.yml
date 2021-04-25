@@ -87,3 +87,6 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    - name: Show kube deployment logs
+      run: |
+        make sandbox-logs

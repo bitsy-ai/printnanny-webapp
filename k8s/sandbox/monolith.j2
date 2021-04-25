@@ -47,6 +47,8 @@ spec:
   selector:
     matchLabels:
       app: "{{ PRINT_NANNY_USER }}-postgres"
+      branch: "{{ GIT_BRANCH }}"
+      owner: "{{ PRINT_NANNY_USER }}"
   template:
     metadata:
       labels: 
@@ -81,7 +83,8 @@ spec:
   selector:
     matchLabels:
       app: "{{ PRINT_NANNY_USER }}-sandbox"
-
+      branch: "{{ GIT_BRANCH }}"
+      owner: "{{ PRINT_NANNY_USER }}"
   template:
     metadata:
       labels:
@@ -201,7 +204,8 @@ spec:
   selector:
     matchLabels:
       app: "{{ PRINT_NANNY_USER }}-octoprint"
-
+      branch: "{{ GIT_BRANCH }}"
+      owner: "{{ PRINT_NANNY_USER }}"
   template:
     metadata:
       labels:

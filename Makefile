@@ -55,6 +55,8 @@ cypress-ci: octoprint-wait
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress run --record
 
+sandbox-logs:
+	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 ui:
 	npm install && npm run build
 

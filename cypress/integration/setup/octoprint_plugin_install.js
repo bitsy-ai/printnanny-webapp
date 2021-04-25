@@ -10,7 +10,10 @@ describe('Log into OctoPrint interface', () => {
         cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()
         
-        if (!window.location in local_addresses){
+        if (local_addresses.contains(window.location)){
+            console.log("Cypress is running against local instance")
+        } else {
+            console.log("Cypress is running against remote sandbox")
             cy.get("button").contains("Ignore").click()
         }
 
