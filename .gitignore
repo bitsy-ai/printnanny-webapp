@@ -292,6 +292,7 @@ print_nanny_webapp/media/
 
 .ipython/
 # .envs/*
+.password
 .envs/.local/.secrets
 .envs/.local/key.json
 .envs/.local/.env

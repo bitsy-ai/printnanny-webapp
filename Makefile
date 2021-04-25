@@ -10,17 +10,15 @@ PRINT_NANNY_URL ?= "http://localhost:8000/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
 PRINT_NANNY_USER ?= "test"
 PRINT_NANNY_EMAIL ?= "test@print-nanny.com"
-PRINT_NANNY_PASSWORD ?= $(shell makepasswd --chars=42)
+PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password))
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
-PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
+PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$.zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
-password:
-	echo $(PRINT_NANNY_PASSWORD)
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
