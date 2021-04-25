@@ -43,6 +43,16 @@ cypress-run: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	node_modules/.bin/cypress run
+
+cypress-ci: octoprint-wait
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	node_modules/.bin/cypress run --record
 
 ui:
@@ -100,7 +110,7 @@ sandbox-email:
 	ZONE=$(ZONE) \
 		k8s/sandbox/email.sh
 
-sandbox-ci: sandbox-deploy sandbox-email cypress-run
+sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh
