@@ -17,9 +17,15 @@ on:
         default: true
         required: true
       user:
-        description: 'Valid users are leigh, dzervas, polidoros'
+        description: 'Username'
         required: true
 env:
+  PRINT_NANNY_USER: ${{ github.event.inputs.user }}
+  PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com
+  PRINT_NANNY_WS_URL: wss://${{ github.event.inputs.user }}.sandbox.print-nanny.com/ws
+  PRINT_NANNY_STATIC_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/static/
+  OCTOPRINT_URL: https://octoprint.${{ github.event.inputs.user }}.sandbox.print-nanny.com
+  PRINT_NANNY_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.SANDBOX_STRIPE_SECRET_KEY }}
@@ -27,7 +33,10 @@ env:
   MAILGUN_DOMAIN: ${{ secrets.SANDBOX_MAILGUN_DOMAIN }}
   DISCORD_TOKEN: ${{ secrets.SANDBOX_DISCORD_TOKEN }}
   HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
+  GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}
   GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -40,11 +49,25 @@ jobs:
         echo "Plugin Version: ${{ github.event.inputs.plugin_version }}"
         echo "Octoprint Version: ${{ github.event.inputs.octoprint_version }}"
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
-
     - name: Checkout branch
       uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: |
+        sudo apt-get install makepasswd
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Write deploy key
+      run: echo $GCP_SERVICE_ACCOUNT_KEY > key.json
+    - name: Active Service Account
+      run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
+    - name: Configure docker registry credentials
+      run: gcloud auth configure-docker
     - name: Deploy sandbox instance
-      run: PROJECT="print-nanny-sandbox" \
-        DEPLOY_USER="${{ github.event.inputs.user }}"
-        make sandbox-deploy
-
+      run: |
+        make sandbox-ci \
+        PROJECT="print-nanny-sandbox" \
+        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+        OCTOPRINT_URL="$OCTOPRINT_URL" \
+        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"

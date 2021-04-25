@@ -1,21 +1,62 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy sandbox-credentials
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run
 
 PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
 ZONE ?= "us-central1-c"
 
-sandbox-credentials:
-	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
+PRINT_NANNY_URL ?= "http://localhost:8000/"
+OCTOPRINT_URL ?= "http://localhost:5005/"
+PRINT_NANNY_USER ?= "test"
+PRINT_NANNY_EMAIL ?= "test@print-nanny.com"
+PRINT_NANNY_PASSWORD ?= $(shell makepasswd --chars=42)
+PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
+PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
+PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
+PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
+
+GIT_SHA ?= $(shell git rev-parse HEAD)
+GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
+
+password:
+	echo $(PRINT_NANNY_PASSWORD)
+octoprint-wait:
+	OCTOPRINT_URL=$(OCTOPRINT_URL) \
+		k8s/sandbox/octoprint-wait.sh
+
+cypress-open: octoprint-wait
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	node_modules/.bin/cypress open
+
+cypress-run: octoprint-wait
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	node_modules/.bin/cypress run --record
+
 ui:
-	npm run build
+	npm install && npm run build
 
 vue:
-	cd print_nanny_vue && npm run build
+	cd print_nanny_vue && npm install && npm run build
 
-build: vue ui
-	docker-compose -f production.yml build
+docker-image:
+	DOCKER_BUILDKIT=1 docker build \
+	-f compose/production/django/Dockerfile \
+	-t print_nanny_webapp:$(GIT_SHA) \
+	.
+build: vue ui docker-image
 
 prod-up: build
 	docker-compose -f production.yml up
@@ -26,10 +67,40 @@ dev-up:
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
 
-sandbox-deploy: build cluster-config
-	k8s/sandbox/push.sh
-	k8s/sandbox/render.sh
-	k8s/sandbox/apply.sh
+sandbox-config:
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+		k8s/sandbox/render.sh
+
+sandbox-clean: sandbox-config
+	k8s/sandbox/delete.sh
+
+
+sandbox-deploy: cluster-config build sandbox-clean
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/push.sh && \
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/apply.sh && \
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+		k8s/sandbox/rollout-wait.sh
+
+sandbox-email:
+	GIT_SHA=$(GIT_SHA) \
+	GIT_BRANCH=$(GIT_BRANCH) \
+	PLUGIN_SHA=$(PRINT_NANNY_PLUGIN_SHA) \
+	DATAFLOW_SHA=$(PRINT_NANNY_DATAFLOW_SHA) \
+	PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	PROJECT=$(PROJECT) \
+	CLUSTER=$(CLUSTER) \
+	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	ZONE=$(ZONE) \
+		k8s/sandbox/email.sh
+
+sandbox-ci: sandbox-deploy sandbox-email cypress-run
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh

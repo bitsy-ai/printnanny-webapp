@@ -127,7 +127,6 @@ LOGGING = {
             "propagate": False,
         },
         # Errors logged by the SDK itself
-        "sentry_sdk": {"level": "ERROR", "handlers": ["console"], "propagate": False},
         "django.security.DisallowedHost": {
             "level": "ERROR",
             "handlers": ["console"],
@@ -140,24 +139,6 @@ LOGGING = {
         }
     },
 }
-
-# Sentry
-# ------------------------------------------------------------------------------
-SENTRY_DSN = env("SENTRY_DSN")
-SENTRY_LOG_LEVEL = env.int("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
-
-sentry_logging = LoggingIntegration(
-    level=SENTRY_LOG_LEVEL,  # Capture info and above as breadcrumbs
-    event_level=logging.ERROR,  # Send errors as events
-)
-integrations = [sentry_logging, DjangoIntegration(), CeleryIntegration()]
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    integrations=integrations,
-    environment=env("SENTRY_ENVIRONMENT", default="production"),
-    send_default_pii=True,
-    #traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
-)
 
 # Your stuff...
 # ------------------------------------------------------------------------------
@@ -191,7 +172,6 @@ CHANNEL_LAYERS = {
 BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
 
-PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
 
 # Resources created prior to Terraform cutover
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
@@ -209,8 +189,15 @@ DEBUG=False
 
 # dj-stripe
 # ------------------------------------------------------------------------------
-ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
-if ENABLE_SUBSCRIPTIONS:
+STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
+if STRIPE_ENABLE_SUBSCRIPTIONS:
     STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
     STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
     STRIPE_LIVE_MODE = True
+
+
+# ghost member sync
+# Celery task: print_nanny_webapp/users/tasks.py
+# ------------------------------------------------------------------------------
+GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
+GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')

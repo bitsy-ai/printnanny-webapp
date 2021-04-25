@@ -519,14 +519,11 @@ CORS_ORIGIN_WHITELIST = [
     'https://print-nanny.com'
 ]
 
-GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
-GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
-
 # dj-stripe
 # ------------------------------------------------------------------------------
 
-ENABLE_SUBSCRIPTIONS = env("ENABLE_SUBSCRIPTIONS", default=False)
-if ENABLE_SUBSCRIPTIONS:
+STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
+if STRIPE_ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
     THIRD_PARTY_APPS.append("djstripe")
