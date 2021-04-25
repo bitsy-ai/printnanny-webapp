@@ -41,7 +41,7 @@ cypress-run: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
-	node_modules/.bin/cypress run
+	node_modules/.bin/cypress run --record
 
 ui:
 	npm install && npm run build
