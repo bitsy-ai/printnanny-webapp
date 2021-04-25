@@ -8,11 +8,11 @@ ZONE ?= "us-central1-c"
 
 PRINT_NANNY_URL ?= "http://localhost:8000/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
-PRINT_NANNY_USER ?= "test"
-PRINT_NANNY_EMAIL ?= "test@print-nanny.com"
+PRINT_NANNY_USER ?= "${USER}""
+PRINT_NANNY_EMAIL ?= "${USER}@print-nanny.com"
 PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password))
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
-PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$.zip"
+PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 
@@ -68,11 +68,22 @@ docker-image:
 	.
 build: vue ui docker-image
 
-prod-up: build
-	docker-compose -f production.yml up
+local-clean:
+	docker-compose -f local.yml stop
+	docker-compose -f local.yml rm
+	docker volume rm \
+		print_nanny_webapp_local_file_data \
+		print_nanny_webapp_local_octoprint_data \
+		print_nanny_webapp_local_postgres_data \
+		print_nanny_webapp_local_postgres_data_backups \
+		print_nanny_webapp_local_prometheus_data
 
-dev-up:
-	docker-compose -f local.yml up
+local-build:
+	docker-compose -f local.yml build
+local-up:
+	DJANGO_SUPERUSER_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
+		docker-compose -f local.yml up
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
