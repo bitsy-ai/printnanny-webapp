@@ -51,6 +51,9 @@ jobs:
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
     - name: Checkout branch
       uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: |
+        sudo apt-get install makepasswd
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
