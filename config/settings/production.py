@@ -201,3 +201,6 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
 # ------------------------------------------------------------------------------
 GHOST_ADMIN_API_KEY = env('GHOST_ADMIN_API_KEY')
 GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
+
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
