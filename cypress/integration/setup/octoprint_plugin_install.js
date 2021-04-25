@@ -1,12 +1,18 @@
 
+// octoprint shows a "possible external address detected" warning that needs to be dismissed if domain is not in:
+local_addresses = ['127.0.0.1', 'localhost']
 describe('Log into OctoPrint interface', () => {
 
     before(() => {
-        cy.visit(Cypress.env('OCTOPRINT_URL'), {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
+        octoprint_url = Cypress.env('OCTOPRINT_URL')
+        cy.visit(octoprint_url, {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
         cy.get("#login-user").type(Cypress.env('PRINT_NANNY_EMAIL'))
         cy.get("#login-password").type(Cypress.env('PRINT_NANNY_PASSWORD'))
         cy.get("#login-button").click()
-
+        
+        if (!window.location in local_addresses){
+            cy.get("button").contains("Ignore").click()
+        }
 
     })
     it('Install OctoPrint Nanny plugin', () => {
