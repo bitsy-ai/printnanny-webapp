@@ -68,6 +68,7 @@ cluster-config:
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
+	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 		k8s/sandbox/render.sh
 
 sandbox-clean: sandbox-config
