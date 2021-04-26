@@ -8,19 +8,20 @@ ZONE ?= "us-central1-c"
 
 PRINT_NANNY_URL ?= "http://localhost:8000/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
-PRINT_NANNY_USER ?= "test"
-PRINT_NANNY_EMAIL ?= "test@print-nanny.com"
-PRINT_NANNY_PASSWORD ?= $(shell makepasswd --chars=42)
+PRINT_NANNY_USER ?= "${USER}""
+PRINT_NANNY_EMAIL ?= "${USER}@print-nanny.com"
+PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password) )
+DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
+PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(PRINT_NANNY_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
+
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
-PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/devel.zip"
+PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
-password:
-	echo $(PRINT_NANNY_PASSWORD)
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
@@ -33,6 +34,7 @@ cypress-open: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
 	node_modules/.bin/cypress open
 
 cypress-run: octoprint-wait
@@ -43,8 +45,22 @@ cypress-run: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
+	node_modules/.bin/cypress run
+
+cypress-ci: octoprint-wait
+	CYPRESS_PRINT_NANNY_PLUGIN_ARCHIVE=$(PRINT_NANNY_PLUGIN_ARCHIVE) \
+	CYPRESS_PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
+	CYPRESS_OCTOPRINT_USERPASS=$(OCTOPRINT_USERPASS) \
+	CYPRESS_PRINT_NANNY_URL=$(PRINT_NANNY_URL) \
+	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
+	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
+	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
 	node_modules/.bin/cypress run --record
 
+sandbox-logs:
+	kubectl logs --all-containers -l branch=$(GIT_BRANCH)
 ui:
 	npm install && npm run build
 
@@ -58,11 +74,24 @@ docker-image:
 	.
 build: vue ui docker-image
 
-prod-up: build
-	docker-compose -f production.yml up
+local-clean:
+	rm .token
+	rm .password
+	docker-compose -f local.yml stop
+	docker-compose -f local.yml rm
+	docker volume rm \
+		print_nanny_webapp_local_file_data \
+		print_nanny_webapp_local_octoprint_data \
+		print_nanny_webapp_local_postgres_data \
+		print_nanny_webapp_local_postgres_data_backups \
+		print_nanny_webapp_local_prometheus_data
 
-dev-up:
-	docker-compose -f local.yml up
+local-build:
+	docker-compose -f local.yml build
+local-up:
+	DJANGO_SUPERUSER_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
+		docker-compose -f local.yml up
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
@@ -100,7 +129,7 @@ sandbox-email:
 	ZONE=$(ZONE) \
 		k8s/sandbox/email.sh
 
-sandbox-ci: sandbox-deploy sandbox-email cypress-run
+sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 prod-deploy: build cluster-config
 	k8s/prod/push.sh

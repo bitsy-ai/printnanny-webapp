@@ -5,13 +5,16 @@ volumes:
   local_postgres_data_backups: {}
   local_prometheus_data: {}
   local_file_data: {}
+  local_octoprint_data: {}
 services:
   octoprint:
     image: octoprint/octoprint
     container_name: octoprint
     ports:
       - "5005:5000"
-      
+    
+    volumes:
+      - local_octoprint_data:/octoprint
   django: &django
     # enables use of pdb
     stdin_open: true
@@ -33,7 +36,9 @@ services:
       # idea from: https://stackoverflow.com/questions/29181032/add-a-volume-to-docker-but-exclude-a-sub-folder
       - /app/node_modules
       - /app/.venv
-
+    environment:
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres

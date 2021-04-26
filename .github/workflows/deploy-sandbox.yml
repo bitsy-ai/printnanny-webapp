@@ -65,9 +65,28 @@ jobs:
       run: gcloud auth configure-docker
     - name: Deploy sandbox instance
       run: |
-        make sandbox-ci \
+        make sandbox-deploy \
         PROJECT="print-nanny-sandbox" \
         PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    - name: Send notification email 
+      run: |
+        make sandbox-email \
+        PROJECT="print-nanny-sandbox" \
+        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+        OCTOPRINT_URL="$OCTOPRINT_URL" \
+        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    - name: Run Cypress tests 
+      run: |
+        make cypress-ci \
+        PROJECT="print-nanny-sandbox" \
+        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+        OCTOPRINT_URL="$OCTOPRINT_URL" \
+        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    - name: Show kube deployment logs
+      run: |
+        make sandbox-logs

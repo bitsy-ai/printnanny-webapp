@@ -26,8 +26,14 @@ END
 #   # NOTE this command will fail if django-compressor is disabled
 #   python /app/manage.py compress
 # fi
-python manage.py migrate
-# /usr/local/bin/gunicorn config.asgi --preload \
-# --bind 0.0.0.0:8000 -w 4 --chdir=/app -k uvicorn.workers.UvicornWorker
+
+if [ "$DJANGO_SUPERUSER_EMAIL" ]
+then
+    python manage.py createsuperuser \
+        --noinput \
+        --email $DJANGO_SUPERUSER_EMAIL || \
+    echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
+fi
+
 
 daphne -b 0.0.0.0 -p 8000 config.asgi:application

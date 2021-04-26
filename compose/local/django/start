@@ -5,4 +5,13 @@ set -o pipefail
 set -o nounset
 
 python manage.py migrate
+
+if [ "$DJANGO_SUPERUSER_EMAIL" ]
+then
+    python manage.py createsuperuser \
+        --noinput \
+        --email $DJANGO_SUPERUSER_EMAIL || \
+    echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
+fi
+
 uvicorn config.asgi:application --host 0.0.0.0 --reload
