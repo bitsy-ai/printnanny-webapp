@@ -24,7 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+const fs = require('fs') 
+
 Cypress.Commands.add('octoprintLogin', (email, password) => {
+    const local_addresses = ['127.0.0.1', 'localhost']
     const url = Cypress.env('OCTOPRINT_URL')
     cy.visit(url, {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
     cy.get("#login-user").type(email)
@@ -65,5 +68,7 @@ Cypress.Commands.add('fetchPrintNannyToken', (email, password) => {
     cy.get('input[name=password]').type(password)
     cy.get('button[type=submit]').click()
     cy.get('#show-token').click()
-    return cy.get('#token').then($input => $input.val)
+    return cy.get('#token').then($input => {
+        return $input.val
+    })
 })

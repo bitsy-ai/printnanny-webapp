@@ -20,6 +20,7 @@ User = get_user_model()
     responses={200: UserSerializer, 201: UserSerializer, 202: UserSerializer},
 )
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     lookup_field = "id"

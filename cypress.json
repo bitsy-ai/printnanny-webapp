@@ -2,5 +2,6 @@
     "projectId": "y1ro11",
     "testFiles": [
        "setup/*.js"
-    ]
+    ],
+    "chromeWebSecurity": false
 }

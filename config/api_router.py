@@ -1,7 +1,6 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 from django.urls import include, path, re_path
-
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -48,3 +47,4 @@ router.register(r"experiments", ExperimentViewSet, basename="experiment")
 
 app_name = "api"
 urlpatterns = router.urls
+

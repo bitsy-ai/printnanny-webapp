@@ -52,13 +52,14 @@ class AlreadyExists(APIException):
     default_code = "already_exists"
 
 
-@extend_schema(
+@extend_schema_view(
     tags=["alerts"],
     responses={
         200: PrintSessionAlertSerializer,
         201: PrintSessionAlertSerializer,
         202: PrintSessionAlertSerializer,
     },
+    list=extend_schema(operation_id='print_session_alerts_list')
 )
 class PrintSessionAlertViewSet(
     GenericViewSet,
@@ -213,7 +214,7 @@ class PrintSessionAlertViewSet(
 #         return Response(serializer.data, status.HTTP_202_ACCEPTED)
 
 
-@extend_schema(
+@extend_schema_view(
     tags=["alerts"],
     responses={
         200: AlertPolymorphicSerializer,
@@ -256,6 +257,12 @@ class AlertViewSet(
         serializer.is_valid()
         return Response(serializer.data)
 
+    @extend_schema(
+        tags=["alerts"],
+        request=AlertBulkRequestSerializer,
+        operation_id="alerts_recent",
+        responses={200: AlertBulkResponseSerializer, 202: AlertBulkResponseSerializer},
+    )
     @action(detail=False)
     def recent(self, request):
         recent_alerts = Alert.objects.filter(user=request.user).order_by("-updated_dt")
@@ -269,6 +276,12 @@ class AlertViewSet(
 
         return Response(serializer.data)
 
+    @extend_schema(
+        tags=["alerts"],
+        request=AlertBulkRequestSerializer,
+        operation_id="alerts_unread",
+        responses={200: AlertBulkResponseSerializer, 202: AlertBulkResponseSerializer},
+    )
     @action(detail=False)
     def unread(self, request):
         recent_alerts = Alert.objects.filter(user=request.user, seen=False).order_by(

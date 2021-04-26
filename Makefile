@@ -10,7 +10,10 @@ PRINT_NANNY_URL ?= "http://localhost:8000/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
 PRINT_NANNY_USER ?= "${USER}""
 PRINT_NANNY_EMAIL ?= "${USER}@print-nanny.com"
-PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password))
+PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepasswd --chars=42 > .password && cat .password) )
+DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
+PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(PRINT_NANNY_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
+
 PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
@@ -31,6 +34,7 @@ cypress-open: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
 	node_modules/.bin/cypress open
 
 cypress-run: octoprint-wait
@@ -41,6 +45,7 @@ cypress-run: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
 	node_modules/.bin/cypress run
 
 cypress-ci: octoprint-wait
@@ -51,6 +56,7 @@ cypress-ci: octoprint-wait
 	CYPRESS_OCTOPRINT_URL=$(OCTOPRINT_URL) \
 	CYPRESS_PRINT_NANNY_EMAIL=$(PRINT_NANNY_EMAIL) \
 	CYPRESS_PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	CYPRESS_PRINT_NANNY_TOKEN=$(PRINT_NANNY_TOKEN) \
 	node_modules/.bin/cypress run --record
 
 sandbox-logs:
@@ -69,6 +75,8 @@ docker-image:
 build: vue ui docker-image
 
 local-clean:
+	rm .token
+	rm .password
 	docker-compose -f local.yml stop
 	docker-compose -f local.yml rm
 	docker volume rm \
