@@ -240,6 +240,20 @@ spec:
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint
+          - name: OCTOPRINT_NANNY_GCP_PROJECT
+            value: "{{ PROJECT }}"
+          - name: OCTOPRINT_NANNY_API_URL
+            value: "{{ PRINT_NANNY_API_URL }}"
+          - name: OCTOPRINT_NANNY_WS_URL
+            value: "{{ PRINT_NANNY_WS_URL }}"
+          - name: OCTOPRINT_NANNY_IOT_DEVICE_REGISTER
+            value: "{{ PRINT_NANNY_IOT_DEVICE_REGISTRY }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_DATASET
+            value: "{{ PRINT_NANNY_HONEYCOMB_DATASET }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_API_KEY
+            value: "{{ PRINT_NANNY_HONEYCOMB_API_KEY }}"
+          - name: "OCTOPRINT_NANNY_HONEYCOMB_DEBUG"
+            value: "{{ PRINT_NANNY_HONEYCOMB_DEBUG }}"
 ---
 apiVersion: v1
 kind: Service
