@@ -110,7 +110,7 @@ sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
-	PTINY_NANNY_API_URL=$(PRINT_NANNY_API_URL) \
+	PRINT_NANNY_API_URL=$(PRINT_NANNY_API_URL) \
 		k8s/sandbox/render.sh
 
 sandbox-clean: sandbox-config

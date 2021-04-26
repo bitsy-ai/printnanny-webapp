@@ -20,4 +20,18 @@ describe('Log into OctoPrint interface', () => {
         cy.contains('Reload now', {timeout: 60000}).click()
         cy.get('#tab_plugin_octoprint_nanny')
     })
+
+    it('Runs Print Nanny setup wizard (OctoPrint)', () => {
+        if (Cypress.$('#plugin_octoprint_nanny_wizard').length > 0){
+            cy.visit(OCTOPRINT_URL)
+            cy.octoprintLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+            cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_settings_auth_token_basic').clear().type(PRINT_NANNY_TOKEN)
+            cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_test_auth_token').click()
+                .get('#octoprint_nanny_alert_auth').should('have.class', 'alert-success')
+            cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_device_registration').click()
+            cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_alert_device_registration').should('have.class', 'alert-success')
+            cy.get('button[name=finish]').click()
+            cy.get('#tab_plugin_octoprint_nanny').click()
+        }
+    })
 })
