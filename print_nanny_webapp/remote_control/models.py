@@ -161,7 +161,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
-    virtualenv = models.CharField(max_length=255)
+    virtualenv = models.CharField(max_length=255, null=True)
 
     monitoring_active = models.BooleanField(default=False)
     monitoring_mode = models.CharField(
