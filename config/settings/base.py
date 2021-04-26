@@ -384,12 +384,12 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'print_nanny_webapp.utils.openapi.CustomAutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_SCHEMA_CLASS": 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'print_nanny_webapp.utils.pagination.PageNumberPagination',
     'PAGE_SIZE': PAGE_SIZE
