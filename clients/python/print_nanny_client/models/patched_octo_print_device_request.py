@@ -120,8 +120,7 @@ class PatchedOctoPrintDeviceRequest(object):
             self.python_version = python_version
         if pip_version is not None:
             self.pip_version = pip_version
-        if virtualenv is not None:
-            self.virtualenv = virtualenv
+        self.virtualenv = virtualenv
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
         if monitoring_mode is not None:

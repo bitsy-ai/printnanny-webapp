@@ -1052,7 +1052,7 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1239,7 +1239,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1396,7 +1396,7 @@ export interface OctoPrintDeviceRequest {
      * @type {string}
      * @memberof OctoPrintDeviceRequest
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -2391,7 +2391,7 @@ export interface PatchedOctoPrintDeviceRequest {
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    virtualenv?: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}

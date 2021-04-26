@@ -67,7 +67,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
                 ram = -2147483648,
                 python_version = '',
                 pip_version = '',
-                virtualenv = '',
                 octoprint_version = '',
                 plugin_version = '',
                 print_nanny_client_version = '',

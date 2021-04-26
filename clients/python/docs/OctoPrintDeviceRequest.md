@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ram** | **int** |  | 
 **python_version** | **str** |  | 
 **pip_version** | **str** |  | 
-**virtualenv** | **str** |  | 
+**virtualenv** | **str** |  | [optional] 
 **monitoring_active** | **bool** |  | [optional] 
 **monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 

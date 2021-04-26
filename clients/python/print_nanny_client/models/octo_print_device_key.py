@@ -736,8 +736,6 @@ class OctoPrintDeviceKey(object):
         :param virtualenv: The virtualenv of this OctoPrintDeviceKey.  # noqa: E501
         :type virtualenv: str
         """
-        if self.local_vars_configuration.client_side_validation and virtualenv is None:  # noqa: E501
-            raise ValueError("Invalid value for `virtualenv`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 virtualenv is not None and len(virtualenv) > 255):
             raise ValueError("Invalid value for `virtualenv`, length must be less than or equal to `255`")  # noqa: E501
