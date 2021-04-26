@@ -52,6 +52,8 @@ spec:
   template:
     metadata:
       labels: 
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-postgres"
     spec:
       containers:
@@ -88,6 +90,8 @@ spec:
   template:
     metadata:
       labels:
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-sandbox"
     spec:
       serviceAccountName: webapp
@@ -209,6 +213,8 @@ spec:
   template:
     metadata:
       labels:
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-octoprint"
     spec:
       serviceAccountName: webapp
