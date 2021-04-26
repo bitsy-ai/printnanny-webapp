@@ -107,12 +107,9 @@ class PatchedOctoPrintDeviceRequest(object):
             self.model = model
         if platform is not None:
             self.platform = platform
-        if cpu_flags is not None:
-            self.cpu_flags = cpu_flags
-        if hardware is not None:
-            self.hardware = hardware
-        if revision is not None:
-            self.revision = revision
+        self.cpu_flags = cpu_flags
+        self.hardware = hardware
+        self.revision = revision
         if serial is not None:
             self.serial = serial
         if cores is not None:

@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
-**cpu_flags** | **list[str]** |  | 
-**hardware** | **str** |  | 
-**revision** | **str** |  | 
+**cpu_flags** | **list[str]** |  | [optional] 
+**hardware** | **str** |  | [optional] 
+**revision** | **str** |  | [optional] 
 **serial** | **str** |  | 
 **cores** | **int** |  | 
 **ram** | **int** |  | 

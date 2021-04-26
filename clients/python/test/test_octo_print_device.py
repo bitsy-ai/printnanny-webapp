@@ -76,11 +76,6 @@ class TestOctoPrintDevice(unittest.TestCase):
                 name = '',
                 model = '',
                 platform = '',
-                cpu_flags = [
-                    ''
-                    ],
-                hardware = '',
-                revision = '',
                 serial = '',
                 cores = -2147483648,
                 ram = -2147483648,
