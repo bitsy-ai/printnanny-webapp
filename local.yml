@@ -37,7 +37,6 @@ services:
       - /app/node_modules
       - /app/.venv
     environment:
-      DJANGO_CREATE_SUPERUSER: 1
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
     env_file:

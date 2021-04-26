@@ -6,43 +6,12 @@ set -o nounset
 
 python manage.py migrate
 
-# Source: https://github.com/cedadev/django-docker/blob/master/docker/entrypoint.sh
-# Create Django superuser if required
-if [ "${DJANGO_CREATE_SUPERUSER:-0}" -eq 1 ]; then
-  echo "[INFO] Ensuring Django superuser exists"
-  # We require that username and email exist
-  if [ -z "$DJANGO_SUPERUSER_EMAIL" ]; then
-    echo "[ERROR]   DJANGO_SUPERUSER_EMAIL must be set to create superuser"
-    exit 1
-  fi
-  if [ -z "$DJANGO_SUPERUSER_EMAIL" ]; then
-    echo "[ERROR]   DJANGO_SUPERUSER_EMAIL must be set to create superuser"
-    exit 1
-  fi
-  # Run a command that has a non-zero exit code if the user already exists
-  python manage.py shell -c "
-import sys
-from django.contrib.auth import get_user_model
-if get_user_model().objects.filter(email='$DJANGO_SUPERUSER_EMAIL').exists():
-    sys.exit(1)
-" || exit 1
-  # A zero exit status means the user needs to be created
-  if [ "$?" -eq 0 ]; then
-    echo "[INFO] Creating Django superuser"
-    # Create the superuser with an unusable password
-    python manage.py createsuperuser --no-input  \
-        --email "$DJANGO_SUPERUSER_EMAIL" || exit 1
-    # Update the password for the superuser if required
-    if [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; then
-      echo "[INFO] Setting Django superuser password"
-      python manage.py shell -c "
-from django.contrib.auth import get_user_model
-user = get_user_model().objects.get(email='$DJANGO_SUPERUSER_EMAIL')
-user.set_password('$DJANGO_SUPERUSER_PASSWORD')
-user.save()
-" || exit 1
-    fi
-  fi
+if [ "$DJANGO_SUPERUSER_EMAIL" ]
+then
+    python manage.py createsuperuser \
+        --noinput \
+        --email $DJANGO_SUPERUSER_EMAIL || \
+    echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
 
 uvicorn config.asgi:application --host 0.0.0.0 --reload
