@@ -34,6 +34,7 @@ class OctoPrintDevice(object):
     """
     openapi_types = {
         'id': 'int',
+        'deleted': 'datetime',
         'created_dt': 'datetime',
         'name': 'str',
         'user': 'int',
@@ -66,6 +67,7 @@ class OctoPrintDevice(object):
 
     attribute_map = {
         'id': 'id',
+        'deleted': 'deleted',
         'created_dt': 'created_dt',
         'name': 'name',
         'user': 'user',
@@ -96,13 +98,14 @@ class OctoPrintDevice(object):
         'manage_url': 'manage_url'
     }
 
-    def __init__(self, id=None, created_dt=None, name=None, user=None, last_session=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, cloudiot_device_configs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, name=None, user=None, last_session=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, cloudiot_device_configs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._deleted = None
         self._created_dt = None
         self._name = None
         self._user = None
@@ -135,6 +138,8 @@ class OctoPrintDevice(object):
 
         if id is not None:
             self.id = id
+        if deleted is not None:
+            self.deleted = deleted
         if created_dt is not None:
             self.created_dt = created_dt
         self.name = name
@@ -196,6 +201,27 @@ class OctoPrintDevice(object):
         """
 
         self._id = id
+
+    @property
+    def deleted(self):
+        """Gets the deleted of this OctoPrintDevice.  # noqa: E501
+
+
+        :return: The deleted of this OctoPrintDevice.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._deleted
+
+    @deleted.setter
+    def deleted(self, deleted):
+        """Sets the deleted of this OctoPrintDevice.
+
+
+        :param deleted: The deleted of this OctoPrintDevice.  # noqa: E501
+        :type deleted: datetime
+        """
+
+        self._deleted = deleted
 
     @property
     def created_dt(self):

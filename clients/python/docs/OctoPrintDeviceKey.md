@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
+**deleted** | **datetime** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **user** | **int** |  | [optional] [readonly] 

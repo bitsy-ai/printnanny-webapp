@@ -28,56 +28,56 @@ class TestEventsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_api_octoprint_events_create(self):
-        """Test case for api_octoprint_events_create
-
-        """
-        pass
-
-    def test_api_octoprint_events_list(self):
-        """Test case for api_octoprint_events_list
-
-        """
-        pass
-
-    def test_api_octoprint_events_retrieve(self):
-        """Test case for api_octoprint_events_retrieve
-
-        """
-        pass
-
-    def test_api_plugin_events_list(self):
-        """Test case for api_plugin_events_list
-
-        """
-        pass
-
-    def test_api_plugin_events_retrieve(self):
-        """Test case for api_plugin_events_retrieve
-
-        """
-        pass
-
-    def test_api_print_job_states_list(self):
-        """Test case for api_print_job_states_list
-
-        """
-        pass
-
-    def test_api_print_job_states_retrieve(self):
-        """Test case for api_print_job_states_retrieve
-
-        """
-        pass
-
     def test_octoprint_core_events_enum_retrieve(self):
         """Test case for octoprint_core_events_enum_retrieve
 
         """
         pass
 
+    def test_octoprint_events_create(self):
+        """Test case for octoprint_events_create
+
+        """
+        pass
+
+    def test_octoprint_events_list(self):
+        """Test case for octoprint_events_list
+
+        """
+        pass
+
+    def test_octoprint_events_retrieve(self):
+        """Test case for octoprint_events_retrieve
+
+        """
+        pass
+
     def test_plugin_events_enum_retrieve(self):
         """Test case for plugin_events_enum_retrieve
+
+        """
+        pass
+
+    def test_plugin_events_list(self):
+        """Test case for plugin_events_list
+
+        """
+        pass
+
+    def test_plugin_events_retrieve(self):
+        """Test case for plugin_events_retrieve
+
+        """
+        pass
+
+    def test_print_job_states_list(self):
+        """Test case for print_job_states_list
+
+        """
+        pass
+
+    def test_print_job_states_retrieve(self):
+        """Test case for print_job_states_retrieve
 
         """
         pass

@@ -28,110 +28,26 @@ class TestRemoteControlApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_api_commands_list(self):
-        """Test case for api_commands_list
+    def test_commands_list(self):
+        """Test case for commands_list
 
         """
         pass
 
-    def test_api_commands_partial_update(self):
-        """Test case for api_commands_partial_update
+    def test_commands_partial_update(self):
+        """Test case for commands_partial_update
 
         """
         pass
 
-    def test_api_commands_retrieve(self):
-        """Test case for api_commands_retrieve
+    def test_commands_retrieve(self):
+        """Test case for commands_retrieve
 
         """
         pass
 
-    def test_api_commands_update(self):
-        """Test case for api_commands_update
-
-        """
-        pass
-
-    def test_api_gcode_files_list(self):
-        """Test case for api_gcode_files_list
-
-        """
-        pass
-
-    def test_api_gcode_files_partial_update(self):
-        """Test case for api_gcode_files_partial_update
-
-        """
-        pass
-
-    def test_api_gcode_files_retrieve(self):
-        """Test case for api_gcode_files_retrieve
-
-        """
-        pass
-
-    def test_api_gcode_files_update(self):
-        """Test case for api_gcode_files_update
-
-        """
-        pass
-
-    def test_api_octoprint_devices_create(self):
-        """Test case for api_octoprint_devices_create
-
-        """
-        pass
-
-    def test_api_octoprint_devices_list(self):
-        """Test case for api_octoprint_devices_list
-
-        """
-        pass
-
-    def test_api_octoprint_devices_retrieve(self):
-        """Test case for api_octoprint_devices_retrieve
-
-        """
-        pass
-
-    def test_api_print_sessions_create(self):
-        """Test case for api_print_sessions_create
-
-        """
-        pass
-
-    def test_api_print_sessions_list(self):
-        """Test case for api_print_sessions_list
-
-        """
-        pass
-
-    def test_api_print_sessions_retrieve(self):
-        """Test case for api_print_sessions_retrieve
-
-        """
-        pass
-
-    def test_api_printer_profiles_list(self):
-        """Test case for api_printer_profiles_list
-
-        """
-        pass
-
-    def test_api_printer_profiles_partial_update(self):
-        """Test case for api_printer_profiles_partial_update
-
-        """
-        pass
-
-    def test_api_printer_profiles_retrieve(self):
-        """Test case for api_printer_profiles_retrieve
-
-        """
-        pass
-
-    def test_api_printer_profiles_update(self):
-        """Test case for api_printer_profiles_update
+    def test_commands_update(self):
+        """Test case for commands_update
 
         """
         pass
@@ -142,14 +58,56 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
+    def test_gcode_files_list(self):
+        """Test case for gcode_files_list
+
+        """
+        pass
+
+    def test_gcode_files_partial_update(self):
+        """Test case for gcode_files_partial_update
+
+        """
+        pass
+
+    def test_gcode_files_retrieve(self):
+        """Test case for gcode_files_retrieve
+
+        """
+        pass
+
+    def test_gcode_files_update(self):
+        """Test case for gcode_files_update
+
+        """
+        pass
+
     def test_gcode_files_update_or_create(self):
         """Test case for gcode_files_update_or_create
 
         """
         pass
 
+    def test_octoprint_devices_create(self):
+        """Test case for octoprint_devices_create
+
+        """
+        pass
+
+    def test_octoprint_devices_list(self):
+        """Test case for octoprint_devices_list
+
+        """
+        pass
+
     def test_octoprint_devices_partial_update(self):
         """Test case for octoprint_devices_partial_update
+
+        """
+        pass
+
+    def test_octoprint_devices_retrieve(self):
+        """Test case for octoprint_devices_retrieve
 
         """
         pass
@@ -178,8 +136,50 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
+    def test_print_sessions_create(self):
+        """Test case for print_sessions_create
+
+        """
+        pass
+
+    def test_print_sessions_list(self):
+        """Test case for print_sessions_list
+
+        """
+        pass
+
+    def test_print_sessions_retrieve(self):
+        """Test case for print_sessions_retrieve
+
+        """
+        pass
+
     def test_printer_profiles_create(self):
         """Test case for printer_profiles_create
+
+        """
+        pass
+
+    def test_printer_profiles_list(self):
+        """Test case for printer_profiles_list
+
+        """
+        pass
+
+    def test_printer_profiles_partial_update(self):
+        """Test case for printer_profiles_partial_update
+
+        """
+        pass
+
+    def test_printer_profiles_retrieve(self):
+        """Test case for printer_profiles_retrieve
+
+        """
+        pass
+
+    def test_printer_profiles_update(self):
+        """Test case for printer_profiles_update
 
         """
         pass

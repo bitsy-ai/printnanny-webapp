@@ -15,27 +15,27 @@ from __future__ import absolute_import
 import unittest
 
 import print_nanny_client
-from print_nanny_client.api.api_api import ApiApi  # noqa: E501
+from print_nanny_client.api.print_session_alerts_api import PrintSessionAlertsApi  # noqa: E501
 from print_nanny_client.rest import ApiException
 
 
-class TestApiApi(unittest.TestCase):
-    """ApiApi unit test stubs"""
+class TestPrintSessionAlertsApi(unittest.TestCase):
+    """PrintSessionAlertsApi unit test stubs"""
 
     def setUp(self):
-        self.api = print_nanny_client.api.api_api.ApiApi()  # noqa: E501
+        self.api = print_nanny_client.api.print_session_alerts_api.PrintSessionAlertsApi()  # noqa: E501
 
     def tearDown(self):
         pass
 
-    def test_api_auth_token_create(self):
-        """Test case for api_auth_token_create
+    def test_print_session_alerts_list(self):
+        """Test case for print_session_alerts_list
 
         """
         pass
 
-    def test_api_schema_retrieve(self):
-        """Test case for api_schema_retrieve
+    def test_print_session_alerts_retrieve(self):
+        """Test case for print_session_alerts_retrieve
 
         """
         pass
