@@ -17,6 +17,8 @@ describe('Print Nanny setup wizard', () => {
         cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_test_auth_token').click()
             .get('#octoprint_nanny_alert_auth').should('have.class', 'alert-success')
         cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_device_registration').click()
-
+        cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_alert_device_registration').should('have.class', 'alert-success')
+        cy.get('button[name=finish]').click()
+        cy.get('#tab_plugin_octoprint_nanny').click()
     })
 })
