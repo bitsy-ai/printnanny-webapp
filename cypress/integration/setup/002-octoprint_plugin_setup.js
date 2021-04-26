@@ -10,7 +10,7 @@ describe('Print Nanny setup wizard', () => {
         cy.fetchPrintNannyToken(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD).then($token => assert.exists($token))
     })
 
-    it('Runs Print Nanny setup wizard', () => {
+    it('Runs Print Nanny setup wizard (OctoPrint)', () => {
         if (Cypress.$('#wizard_dialog').length > 0){
             cy.visit(OCTOPRINT_URL)
             cy.octoprintLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
@@ -22,5 +22,12 @@ describe('Print Nanny setup wizard', () => {
             cy.get('button[name=finish]').click()
             cy.get('#tab_plugin_octoprint_nanny').click()
         }
+    })
+
+    it('Retrieves device info from dashboard', () =>{
+        cy.printNannyLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+        cy.get('#dashboard-octoprint-devices tr').should('have.length', 2)
+        cy.get('#dashboard-octoprint-devices tr').last().contains('View Metadata').click()
+        cy.get('#octoprint-device-metadata-modal-1').contains('Metadata')
     })
 })

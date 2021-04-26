@@ -43,22 +43,7 @@ Cypress.Commands.add('octoprintLogin', (email, password) => {
 })
 
 
-Cypress.Commands.add('printNannyyLogin', (email, password) => {
-    const _url = Cypress.env('PRINT_NANNY_URL')
-    cy.visit(url, {timeout: 600000}) // sandbox: wait for octoprint deployment to be available
-    cy.get("#login-user").type(email)
-    cy.get("#login-password").type(password)
-    cy.get("#login-button").click()
-    
-    if (local_addresses.includes(window.location.hostname)){
-        console.log("Cypress is running against local instance")
-    } else {
-        console.log("Cypress is running against remote sandbox")
-        cy.get("button").contains("Ignore").click()
-    }  
-})
-
-Cypress.Commands.add('fetchPrintNannyToken', (email, password) => {
+Cypress.Commands.add('printNannyLogin', (email, password) => {
     const PRINT_NANNY_URL = Cypress.env('PRINT_NANNY_URL')
     const PRINT_NANNY_LOGIN_URL = new URL('/accounts/login', PRINT_NANNY_URL).href
     cy.visit(PRINT_NANNY_LOGIN_URL)
@@ -67,6 +52,10 @@ Cypress.Commands.add('fetchPrintNannyToken', (email, password) => {
     cy.get('input[name=login]').type(email)
     cy.get('input[name=password]').type(password)
     cy.get('button[type=submit]').click()
+})
+
+Cypress.Commands.add('fetchPrintNannyToken', (email, password) => {
+    cy.printNannyLogin(email, password)
     cy.get('#show-token').click()
     return cy.get('#token').then($input => {
         return $input.val
