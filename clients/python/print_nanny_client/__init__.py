@@ -22,6 +22,7 @@ from print_nanny_client.api.alerts_api import AlertsApi
 from print_nanny_client.api.auth_token_api import AuthTokenApi
 from print_nanny_client.api.events_api import EventsApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
+from print_nanny_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from print_nanny_client.api.print_session_alerts_api import PrintSessionAlertsApi
 from print_nanny_client.api.remote_control_api import RemoteControlApi
 from print_nanny_client.api.schema_api import SchemaApi
@@ -40,6 +41,7 @@ from print_nanny_client.exceptions import ApiException
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_method import AlertMethod
+from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_methods_enum import AlertMethodsEnum
 from print_nanny_client.models.alert_polymorphic import AlertPolymorphic
 from print_nanny_client.models.alert_polymorphic_request import AlertPolymorphicRequest
@@ -90,6 +92,7 @@ from print_nanny_client.models.paginated_print_session_state_list import Paginat
 from print_nanny_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
 from print_nanny_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
 from print_nanny_client.models.paginated_user_list import PaginatedUserList
+from print_nanny_client.models.partner_octo_print_device import PartnerOctoPrintDevice
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_polymorphic_request import PatchedAlertPolymorphicRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest

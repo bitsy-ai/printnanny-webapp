@@ -31,8 +31,9 @@ class AlertMethodsEnum(object):
     UI = "UI"
     EMAIL = "EMAIL"
     DISCORD = "DISCORD"
+    PARTNER_3DGEEKS = "PARTNER_3DGEEKS"
 
-    allowable_values = [UI, EMAIL, DISCORD]  # noqa: E501
+    allowable_values = [UI, EMAIL, DISCORD, PARTNER_3DGEEKS]  # noqa: E501
 
     """
     Attributes:

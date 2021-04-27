@@ -37,7 +37,8 @@ class Alert(object):
         'updated_dt': 'datetime',
         'user': 'int',
         'time': 'str',
-        'seen': 'bool'
+        'seen': 'bool',
+        'octoprint_device': 'int'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class Alert(object):
         'updated_dt': 'updated_dt',
         'user': 'user',
         'time': 'time',
-        'seen': 'seen'
+        'seen': 'seen',
+        'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class Alert(object):
         self._user = None
         self._time = None
         self._seen = None
+        self._octoprint_device = None
         self.discriminator = None
 
         if created_dt is not None:
@@ -71,6 +74,7 @@ class Alert(object):
             self.time = time
         if seen is not None:
             self.seen = seen
+        self.octoprint_device = octoprint_device
 
     @property
     def created_dt(self):
@@ -176,6 +180,27 @@ class Alert(object):
         """
 
         self._seen = seen
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this Alert.  # noqa: E501
+
+
+        :return: The octoprint_device of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this Alert.
+
+
+        :param octoprint_device: The octoprint_device of this Alert.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

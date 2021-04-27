@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.alert_request import AlertRequest  # noqa: E501
+from print_nanny_client.models.alert_method_enum import AlertMethodEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestAlertRequest(unittest.TestCase):
-    """AlertRequest unit test stubs"""
+class TestAlertMethodEnum(unittest.TestCase):
+    """AlertMethodEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,22 +29,20 @@ class TestAlertRequest(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test AlertRequest
+        """Test AlertMethodEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.alert_request.AlertRequest()  # noqa: E501
+        # model = print_nanny_client.models.alert_method_enum.AlertMethodEnum()  # noqa: E501
         if include_optional :
-            return AlertRequest(
-                seen = True, 
-                octoprint_device = 56
+            return AlertMethodEnum(
             )
         else :
-            return AlertRequest(
+            return AlertMethodEnum(
         )
 
-    def testAlertRequest(self):
-        """Test AlertRequest"""
+    def testAlertMethodEnum(self):
+        """Test AlertMethodEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

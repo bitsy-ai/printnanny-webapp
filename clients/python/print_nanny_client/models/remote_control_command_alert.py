@@ -34,7 +34,7 @@ class RemoteControlCommandAlert(object):
     """
     openapi_types = {
         'alert_subtype': 'RemoteControlCommandAlertAlertSubtypeEnum',
-        'alert_methods': 'list[AlertMethodsEnum]',
+        'alert_method': 'AlertMethodEnum',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
         'created_dt': 'datetime',
@@ -52,7 +52,7 @@ class RemoteControlCommandAlert(object):
 
     attribute_map = {
         'alert_subtype': 'alert_subtype',
-        'alert_methods': 'alert_methods',
+        'alert_method': 'alert_method',
         'alert_type': 'alert_type',
         'color': 'color',
         'created_dt': 'created_dt',
@@ -68,14 +68,14 @@ class RemoteControlCommandAlert(object):
         'user': 'user'
     }
 
-    def __init__(self, alert_subtype=None, alert_methods=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_subtype=None, alert_method=None, alert_type=None, color=None, created_dt=None, dashboard_url=None, metadata=None, icon=None, id=None, time=None, description=None, seen=None, title=None, updated_dt=None, user=None, local_vars_configuration=None):  # noqa: E501
         """RemoteControlCommandAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._alert_subtype = None
-        self._alert_methods = None
+        self._alert_method = None
         self._alert_type = None
         self._color = None
         self._created_dt = None
@@ -92,8 +92,8 @@ class RemoteControlCommandAlert(object):
         self.discriminator = None
 
         self.alert_subtype = alert_subtype
-        if alert_methods is not None:
-            self.alert_methods = alert_methods
+        if alert_method is not None:
+            self.alert_method = alert_method
         self.alert_type = alert_type
         self.color = color
         if created_dt is not None:
@@ -140,25 +140,25 @@ class RemoteControlCommandAlert(object):
         self._alert_subtype = alert_subtype
 
     @property
-    def alert_methods(self):
-        """Gets the alert_methods of this RemoteControlCommandAlert.  # noqa: E501
+    def alert_method(self):
+        """Gets the alert_method of this RemoteControlCommandAlert.  # noqa: E501
 
 
-        :return: The alert_methods of this RemoteControlCommandAlert.  # noqa: E501
-        :rtype: list[AlertMethodsEnum]
+        :return: The alert_method of this RemoteControlCommandAlert.  # noqa: E501
+        :rtype: AlertMethodEnum
         """
-        return self._alert_methods
+        return self._alert_method
 
-    @alert_methods.setter
-    def alert_methods(self, alert_methods):
-        """Sets the alert_methods of this RemoteControlCommandAlert.
+    @alert_method.setter
+    def alert_method(self, alert_method):
+        """Sets the alert_method of this RemoteControlCommandAlert.
 
 
-        :param alert_methods: The alert_methods of this RemoteControlCommandAlert.  # noqa: E501
-        :type alert_methods: list[AlertMethodsEnum]
+        :param alert_method: The alert_method of this RemoteControlCommandAlert.  # noqa: E501
+        :type alert_method: AlertMethodEnum
         """
 
-        self._alert_methods = alert_methods
+        self._alert_method = alert_method
 
     @property
     def alert_type(self):

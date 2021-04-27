@@ -36,7 +36,8 @@ class TestPatchedAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_alert_request.PatchedAlertRequest()  # noqa: E501
         if include_optional :
             return PatchedAlertRequest(
-                seen = True
+                seen = True, 
+                octoprint_device = 56
             )
         else :
             return PatchedAlertRequest(

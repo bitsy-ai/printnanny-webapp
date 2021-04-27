@@ -37,9 +37,7 @@ class TestRemoteControlCommandAlertRequest(unittest.TestCase):
         if include_optional :
             return RemoteControlCommandAlertRequest(
                 alert_subtype = 'RECEIVED', 
-                alert_methods = [
-                    'UI'
-                    ], 
+                alert_method = 'UI', 
                 alert_type = 'COMMAND', 
                 color = '', 
                 icon = '', 
