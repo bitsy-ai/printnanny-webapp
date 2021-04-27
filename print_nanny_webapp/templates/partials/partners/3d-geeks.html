@@ -16,10 +16,12 @@
             <div id="octoprint-device-partner-3d-geeks-qrcode" class="modal-body text-center"">
                 <p>Scan the QR below with the 3D Geeks app to link your printer.</p>
                 <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken.qrcode.url }}">
-                <p>Having trouble scanning the QR Code? Connect by entering the following code in the 3D Geeks app.</p>
-                <pre>
+                <p>Having trouble scanning the QR Code?</p>
+
+                <p>Connect by entering the following code in the 3D Geeks app:</p>
+                <code>
                     {{ object.geekstoken.key }}
-                </pre>
+                </code>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
