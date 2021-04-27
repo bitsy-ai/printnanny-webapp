@@ -18,6 +18,7 @@ class GeeksViewSet(ViewSet):
     """
 
     authentication_classes = [GeeksTokenAuthentication]
+
     @extend_schema(
         tags=["3dgeeks", "partners"],
         operation_id="geeks_3d_metadata_retrieve",
