@@ -52,6 +52,8 @@ spec:
   template:
     metadata:
       labels: 
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-postgres"
     spec:
       containers:
@@ -88,6 +90,8 @@ spec:
   template:
     metadata:
       labels:
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-sandbox"
     spec:
       serviceAccountName: webapp
@@ -209,6 +213,8 @@ spec:
   template:
     metadata:
       labels:
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
         app: "{{ PRINT_NANNY_USER }}-octoprint"
     spec:
       serviceAccountName: webapp
@@ -240,6 +246,20 @@ spec:
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint
+          - name: OCTOPRINT_NANNY_GCP_PROJECT
+            value: "{{ PROJECT }}"
+          - name: OCTOPRINT_NANNY_API_URL
+            value: "{{ PRINT_NANNY_API_URL }}"
+          - name: OCTOPRINT_NANNY_WS_URL
+            value: "{{ PRINT_NANNY_WS_URL }}"
+          - name: OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY
+            value: "{{ PRINT_NANNY_IOT_DEVICE_REGISTRY }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_DATASET
+            value: "{{ PRINT_NANNY_HONEYCOMB_DATASET }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_API_KEY
+            value: "{{ PRINT_NANNY_HONEYCOMB_API_KEY }}"
+          - name: "OCTOPRINT_NANNY_HONEYCOMB_DEBUG"
+            value: "{{ PRINT_NANNY_HONEYCOMB_DEBUG }}"
 ---
 apiVersion: v1
 kind: Service

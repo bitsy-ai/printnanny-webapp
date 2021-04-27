@@ -1004,19 +1004,19 @@ export interface OctoPrintDevice {
      * @type {Array<string>}
      * @memberof OctoPrintDevice
      */
-    cpu_flags: Array<string>;
+    cpu_flags?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
@@ -1052,7 +1052,7 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1191,19 +1191,19 @@ export interface OctoPrintDeviceKey {
      * @type {Array<string>}
      * @memberof OctoPrintDeviceKey
      */
-    cpu_flags: Array<string>;
+    cpu_flags?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
@@ -1239,7 +1239,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -1348,19 +1348,19 @@ export interface OctoPrintDeviceRequest {
      * @type {Array<string>}
      * @memberof OctoPrintDeviceRequest
      */
-    cpu_flags: Array<string>;
+    cpu_flags?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceRequest
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceRequest
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
@@ -1396,7 +1396,7 @@ export interface OctoPrintDeviceRequest {
      * @type {string}
      * @memberof OctoPrintDeviceRequest
      */
-    virtualenv: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}
@@ -2343,19 +2343,19 @@ export interface PatchedOctoPrintDeviceRequest {
      * @type {Array<string>}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    cpu_flags?: Array<string>;
+    cpu_flags?: Array<string> | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    hardware?: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    revision?: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
@@ -2391,7 +2391,7 @@ export interface PatchedOctoPrintDeviceRequest {
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    virtualenv?: string;
+    virtualenv?: string | null;
     /**
      * 
      * @type {boolean}

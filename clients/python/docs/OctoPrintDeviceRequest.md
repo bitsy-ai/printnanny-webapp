@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **last_session** | **int** |  | [optional] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
-**cpu_flags** | **list[str]** |  | 
-**hardware** | **str** |  | 
-**revision** | **str** |  | 
+**cpu_flags** | **list[str]** |  | [optional] 
+**hardware** | **str** |  | [optional] 
+**revision** | **str** |  | [optional] 
 **serial** | **str** |  | 
 **cores** | **int** |  | 
 **ram** | **int** |  | 
 **python_version** | **str** |  | 
 **pip_version** | **str** |  | 
-**virtualenv** | **str** |  | 
+**virtualenv** | **str** |  | [optional] 
 **monitoring_active** | **bool** |  | [optional] 
 **monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 

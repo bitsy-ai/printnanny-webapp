@@ -508,8 +508,6 @@ class OctoPrintDevice(object):
         :param cpu_flags: The cpu_flags of this OctoPrintDevice.  # noqa: E501
         :type cpu_flags: list[str]
         """
-        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
-            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
 
         self._cpu_flags = cpu_flags
 
@@ -531,8 +529,6 @@ class OctoPrintDevice(object):
         :param hardware: The hardware of this OctoPrintDevice.  # noqa: E501
         :type hardware: str
         """
-        if self.local_vars_configuration.client_side_validation and hardware is None:  # noqa: E501
-            raise ValueError("Invalid value for `hardware`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 hardware is not None and len(hardware) > 255):
             raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
@@ -557,8 +553,6 @@ class OctoPrintDevice(object):
         :param revision: The revision of this OctoPrintDevice.  # noqa: E501
         :type revision: str
         """
-        if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
-            raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 revision is not None and len(revision) > 255):
             raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
@@ -719,8 +713,6 @@ class OctoPrintDevice(object):
         :param virtualenv: The virtualenv of this OctoPrintDevice.  # noqa: E501
         :type virtualenv: str
         """
-        if self.local_vars_configuration.client_side_validation and virtualenv is None:  # noqa: E501
-            raise ValueError("Invalid value for `virtualenv`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 virtualenv is not None and len(virtualenv) > 255):
             raise ValueError("Invalid value for `virtualenv`, length must be less than or equal to `255`")  # noqa: E501

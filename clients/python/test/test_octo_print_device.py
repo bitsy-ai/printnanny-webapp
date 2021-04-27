@@ -76,17 +76,11 @@ class TestOctoPrintDevice(unittest.TestCase):
                 name = '',
                 model = '',
                 platform = '',
-                cpu_flags = [
-                    ''
-                    ],
-                hardware = '',
-                revision = '',
                 serial = '',
                 cores = -2147483648,
                 ram = -2147483648,
                 python_version = '',
                 pip_version = '',
-                virtualenv = '',
                 octoprint_version = '',
                 plugin_version = '',
                 print_nanny_client_version = '',

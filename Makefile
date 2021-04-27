@@ -2,11 +2,15 @@
 
 .PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run
 
+# silence targets where credentials are passed
+.SILENT: cypress-open cypress-run cypress-ci local-up
+
 PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
 ZONE ?= "us-central1-c"
 
 PRINT_NANNY_URL ?= "http://localhost:8000/"
+PRINT_NANNY_API_URL ?= "${PRINT_NANNY_URL}api/"
 OCTOPRINT_URL ?= "http://localhost:5005/"
 PRINT_NANNY_USER ?= "${USER}""
 PRINT_NANNY_EMAIL ?= "${USER}@print-nanny.com"
@@ -14,7 +18,7 @@ PRINT_NANNY_PASSWORD ?= $(shell test -f .password && cat .password || (makepassw
 DJANGO_ADMIN_CMD ?= docker-compose -f local.yml run --rm django python manage.py
 PRINT_NANNY_TOKEN ?= $(shell test -f .token && cat .token || (${DJANGO_ADMIN_CMD} drf_create_token $(PRINT_NANNY_EMAIL) | tail -n 1 | awk '{print $$3}'> .token && cat .token))
 
-PRINT_NANNY_RELEASE_CHANNEL ?= "devel"
+PRINT_NANNY_RELEASE_CHANNEL ?= "cypress-fixups"
 PRINT_NANNY_PLUGIN_ARCHIVE ?= "https://github.com/bitsy-ai/octoprint-nanny-plugin/archive/$(PRINT_NANNY_RELEASE_CHANNEL).zip"
 PRINT_NANNY_PLUGIN_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-plugin/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
 PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/octoprint-nanny-dataflow/branches/$(PRINT_NANNY_RELEASE_CHANNEL) | jq .commit.sha)
@@ -75,8 +79,8 @@ docker-image:
 build: vue ui docker-image
 
 local-clean:
-	rm .token
-	rm .password
+	rm .token || echo "Skipping .token cleanup"
+	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
 	docker-compose -f local.yml rm
 	docker volume rm \
@@ -88,7 +92,13 @@ local-clean:
 
 local-build:
 	docker-compose -f local.yml build
+
 local-up:
+	PROJECT=$(PROJECT) \
+	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
+	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
+	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
+	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
 	DJANGO_SUPERUSER_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
 		docker-compose -f local.yml up
@@ -100,6 +110,11 @@ sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
+	PRINT_NANNY_API_URL=$(PRINT_NANNY_API_URL) \
+	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
+	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
+	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
+	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
 		k8s/sandbox/render.sh
 
 sandbox-clean: sandbox-config

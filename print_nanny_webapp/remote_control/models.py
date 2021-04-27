@@ -151,17 +151,17 @@ class OctoPrintDevice(SafeDeleteModel):
 
     model = models.CharField(max_length=255)
     platform = models.CharField(max_length=255)
-    cpu_flags = ArrayField(models.CharField(max_length=255))
+    cpu_flags = ArrayField(models.CharField(max_length=255), null=True)
 
-    hardware = models.CharField(max_length=255)  # /cat/cpuinfo HARDWARE
-    revision = models.CharField(max_length=255)  # /cat/cpuinfo REVISION
+    hardware = models.CharField(max_length=255, null=True)  # /cat/cpuinfo HARDWARE
+    revision = models.CharField(max_length=255, null=True)  # /cat/cpuinfo REVISION
     serial = models.CharField(max_length=255)  # /cat/cpuinfo Serial
     cores = models.IntegerField()
     ram = models.IntegerField()
 
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
-    virtualenv = models.CharField(max_length=255)
+    virtualenv = models.CharField(max_length=255, null=True)
 
     monitoring_active = models.BooleanField(default=False)
     monitoring_mode = models.CharField(
