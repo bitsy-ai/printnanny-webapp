@@ -6,7 +6,7 @@ describe('Print Nanny setup wizard', () => {
     const PRINT_NANNY_TOKEN = Cypress.env('PRINT_NANNY_TOKEN')
 
     it('Retrieves Print Nanny auth token', () => {
-        cy.fetchPrintNannyToken(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD).then($token => assert.exists($token))
+        cy.getPrintNannyToken(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD).then($token => assert.exists($token))
     })
 
     it('Retrieves device info from dashboard or display empty message', () =>{
