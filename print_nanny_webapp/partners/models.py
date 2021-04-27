@@ -1,7 +1,6 @@
 import io
 import os
 from uuid import uuid4
-
 from django.db import models
 from django.utils import timezone, dateformat
 
@@ -35,11 +34,18 @@ class GeeksTokenManager(SafeDeleteManager):
 
 class GeeksToken(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
-
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["octoprint_device_id"],
+                condition=models.Q(deleted=None),
+                name="unique_geeks_token_per_octoprint_device",
+            )
+        ]
     # Grabbed code from rest_framework.models.Token
     key = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    octoprint_device = models.OneToOneField(
+    octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
     verified = models.BooleanField(default=False)
