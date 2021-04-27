@@ -1,0 +1,30 @@
+{% load static i18n crispy_forms_tags %}
+
+{% if object.geekstoken.verified %}
+<input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
+<button name="action" value="revoke3d_geeks" type="submit" class="btn btn-success btn-small">Revoke 3D Geeks</button>
+{% else %}
+<button data-toggle="modal" data-target="#octoprint-device-partner-3dgeeks-modal" class="btn btn-success btn-small">Connect 3D Geeks</button>
+<!--  Modal -->
+<div class="modal fade" id="octoprint-device-partner-3dgeeks-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Connect 3D Geeks App</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div id="octoprint-device-partner-3d-geeks-qrcode" class="modal-body text-center"">
+                <p>Scan the QR below with the 3D Geeks app to link your printer.</p>
+                <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken.qrcode.url }}">
+                <p>Having trouble scanning the QR Code? Connect by entering the following code in the 3D Geeks app.</p>
+                <pre>
+                    {{ object.geekstoken.key }}
+                </pre>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endif %}
+
+
+

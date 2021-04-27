@@ -1,5 +1,4 @@
 import logging
-from print_nanny_webapp.users.models import GeeksToken
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -23,6 +22,8 @@ from .models import (
 )
 
 logger = logging.getLogger(__name__)
+
+from print_nanny_webapp.partners.models import GeeksToken
 
 
 class AlertSettingsView(DashboardView, MultiFormsView):

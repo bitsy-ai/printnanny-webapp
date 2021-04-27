@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0060_auto_20210425_2239'),
+        ("remote_control", "0060_auto_20210425_2239"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='virtualenv',
+            model_name="octoprintdevice",
+            name="virtualenv",
             field=models.CharField(max_length=255, null=True),
         ),
     ]

@@ -592,6 +592,7 @@ pillow==8.0.1
     #   -r requirements/production.txt
     #   imageio
     #   matplotlib
+    #   qrcode
     #   scikit-image
 plotly==4.12.0
     # via -r requirements/production.txt
@@ -724,6 +725,8 @@ pyzmq==22.0.3
     #   jupyter-client
     #   jupyter-server
     #   notebook
+qrcode[pil]==6.1
+    # via -r requirements/production.txt
 rcssmin==1.0.6
     # via
     #   -r requirements/production.txt
@@ -804,6 +807,7 @@ six==1.15.0
     #   protobuf
     #   pyopenssl
     #   python-dateutil
+    #   qrcode
     #   retrying
     #   tensorflow
 sniffio==1.2.0

@@ -22,7 +22,6 @@ from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
-from print_nanny_webapp.users.models import GeeksToken
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -35,7 +34,10 @@ logger = logging.getLogger(__name__)
 
 
 def pre_softdelete_cloudiot_device(instance=None, **kwargs):
-    return delete_cloudiot_device(instance.cloudiot_device_num_id)
+    fn = getattr(instance, "pre_softdelete", None)
+    if hasattr(fn, "__call__"):
+        return fn()
+
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
@@ -115,6 +117,9 @@ class OctoPrintDevice(SafeDeleteModel):
         ACTIVE_LEARNING = "active_learning", "Active Learning"
         LITE = "lite", "Lite"
 
+    def pre_softdelete(self):
+        return delete_cloudiot_device(self.cloudiot_device_num_id)
+
     @property
     def active_config(self):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
@@ -130,7 +135,11 @@ class OctoPrintDevice(SafeDeleteModel):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['user', 'serial'], condition=models.Q(deleted=None), name='unique_serial_per_user')
+            models.UniqueConstraint(
+                fields=["user", "serial"],
+                condition=models.Q(deleted=None),
+                name="unique_serial_per_user",
+            )
         ]
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -172,11 +181,6 @@ class OctoPrintDevice(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
-
-
-    def save(self, *args, **kwargs):
-        GeeksToken.objects.get_or_create(user=self.user, octoprint_device=self)
-        return super().save(*args, **kwargs)
 
     def to_json(self):
         # from print_nanny_webapp.remote_control.api.serializers import (

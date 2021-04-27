@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0009_geekstoken'),
+        ("users", "0009_geekstoken"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='geekstoken',
-            name='token',
+            model_name="geekstoken",
+            name="token",
             field=models.UUIDField(primary_key=True, serialize=False),
         ),
     ]

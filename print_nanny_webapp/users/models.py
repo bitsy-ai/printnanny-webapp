@@ -1,6 +1,5 @@
 import binascii
 import os
-from uuid import uuid4
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
@@ -185,31 +184,3 @@ class GhostMember(models.Model):
     email_opened_count = models.IntegerField()
     email_open_rate = models.FloatField(null=True)
     subscribed = models.BooleanField(default=True)
-
-
-class GeeksToken(models.Model):
-    # Grabbed code from rest_framework Token model
-
-    key = models.UUIDField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    octoprint_device = models.OneToOneField("remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE)
-
-    class Meta:
-        # Work around for a bug in Django:
-        # https://code.djangoproject.com/ticket/19422
-        #
-        # Also see corresponding ticket:
-        # https://github.com/encode/django-rest-framework/issues/705
-        abstract = 'rest_framework.authtoken' not in settings.INSTALLED_APPS
-
-    def save(self, *args, **kwargs):
-        if not self.key:
-            self.key = self.generate_key()
-        return super().save(*args, **kwargs)
-
-    @classmethod
-    def generate_key(cls):
-        return uuid4()
-
-    def __str__(self):
-        return self.key

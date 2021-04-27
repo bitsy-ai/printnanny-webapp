@@ -9,11 +9,13 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 logger = logging.getLogger(__name__)
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
+
 class RemoveDeviceForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "post"
+
 
 class TimelapseUploadForm(forms.Form):
 

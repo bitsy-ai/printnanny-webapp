@@ -688,6 +688,7 @@ pillow==8.0.1
     #   -r requirements/local.txt
     #   imageio
     #   matplotlib
+    #   qrcode
     #   scikit-image
 pip-tools==6.1.0
     # via -r requirements/local.txt
@@ -869,6 +870,8 @@ pyzmq==22.0.3
     #   jupyter-client
     #   jupyter-server
     #   notebook
+qrcode[pil]==6.1
+    # via -r requirements/local.txt
 rcssmin==1.0.6
     # via
     #   -r requirements/local.txt
@@ -954,6 +957,7 @@ six==1.15.0
     #   protobuf
     #   pyopenssl
     #   python-dateutil
+    #   qrcode
     #   retrying
     #   tensorflow
     #   virtualenv

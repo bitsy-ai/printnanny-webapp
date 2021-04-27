@@ -16,7 +16,7 @@ from .forms import (
     FeedbackForm,
     AppNotificationForm,
     RemoteControlCommandForm,
-    RemoveDeviceForm
+    RemoveDeviceForm,
 )
 from print_nanny_webapp.alerts.tasks.timelapse_alert import (
     create_analyze_video_task,
@@ -35,6 +35,7 @@ from print_nanny_webapp.users.forms import UserSettingsForm
 User = get_user_model()
 Alert = apps.get_model("alerts", "Alert")
 ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+GeeksToken = apps.get_model("partners", "GeeksToken")
 
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
@@ -182,7 +183,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     form_classes = {
         "remote_command": RemoteControlCommandForm,
-        "remove_device": RemoveDeviceForm
+        "remove_device": RemoveDeviceForm,
     }
 
     def remove_device_form_valid(self, form):
@@ -216,7 +217,9 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     def get_object(self):
         self.object = super().get_object()
-
+        token, created = GeeksToken.objects.get_or_create(
+            octoprint_device=self.object, user=self.request.user
+        )
         return self.object
 
     def get_context_data(self, *args, **kwargs):
@@ -236,10 +239,8 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         command_choices = RemoteControlCommand.get_valid_actions(
             obj.print_session_status
         )
-        form = RemoteControlCommandForm(command_choices=command_choices,**kwargs)
+        form = RemoteControlCommandForm(command_choices=command_choices, **kwargs)
         return form
-
-
 
 
 octoprint_device_dashboard_detail_view = OctoPrintDevicesDetailView.as_view()
