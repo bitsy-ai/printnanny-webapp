@@ -8,23 +8,49 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0053_auto_20210411_1434'),
+        ("alerts", "0053_auto_20210411_1434"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alert',
-            name='payload',
+            model_name="alert",
+            name="payload",
             field=django.contrib.postgres.fields.jsonb.JSONField(default={}),
         ),
         migrations.AlterField(
-            model_name='alert',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord'), ('GEEKS3D', 'Receive notifications in 3D Geeks mobile app')], max_length=255), blank=True, default=('UI', 'EMAIL'), size=None),
+            model_name="alert",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                        ("GEEKS3D", "Receive notifications in 3D Geeks mobile app"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI", "EMAIL"),
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='alertsettings',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord'), ('GEEKS3D', 'Receive notifications in 3D Geeks mobile app')], max_length=255), blank=True, default=('UI', 'EMAIL'), size=None),
+            model_name="alertsettings",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                        ("GEEKS3D", "Receive notifications in 3D Geeks mobile app"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI", "EMAIL"),
+                size=None,
+            ),
         ),
     ]
