@@ -25,7 +25,6 @@ class GeeksViewSet(ViewSet):
             200: GeeksMetadataSerializer,
         },
     )
-    @extend_schema_serializer
     def retrieve(self, request, pk=None):
         queryset = GeeksToken.objects.all()
         token = get_object_or_404(queryset, pk=pk)
