@@ -34,8 +34,7 @@
                         <form method="post" id="progress-alert-settings">
                             {% csrf_token %}
                             {{ forms.progress | crispy }}
-                            <button type="submit"  name="action" value="progress" class="btn btn-primary">Save</button>
-
+                            <button type="submit" name="action" value="progress" class="btn btn-primary">Save</button>
                         </form>
 
                     </div>
@@ -54,6 +53,31 @@
                             {{ forms.discord | crispy }}
                             <button type="submit"  name="action" value="discord" class="btn btn-primary">Save</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">3D Geeks Method Settings</h4>
+                        <p>Configure the 3D Geeks notification app</p>
+                    </div>
+                    <div class="form-group">
+                        {% for token in tokens %}
+                            <h4>{{ token.octoprint_device.name }}</h4>
+
+                            <div class="input-group">
+                                <input id="token-{{ token.octoprint_device.name }}" type="password" class="form-control" value="{{ token.key }}" readonly>
+                                <div class="input-group-append" data-password="false">
+                                    <div class="input-group-text">
+                                        <span class="password-eye"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img id="token-{{ token.octoprint_device.name }}-qrcode" />
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -81,3 +105,19 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block extra_javascript %}
+{{ block.super }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js" integrity="sha512-pUhApVQtLbnpLtJn6DuzDD5o2xtmLJnJ7oBoMsBnzOkVkpqofGLGPaBJ6ayD2zQe3lCgCibhJBi4cj5wAxwVKA==" crossorigin="anonymous"></script>
+
+{% for token in tokens %}
+    <script>
+        (function() {
+            var qr = new QRious({
+            element: document.getElementById('token-{{ token.octoprint_device.name }}-qrcode'),
+            value: '{{ token.key }}'
+            });
+        })();
+    </script>
+{% endfor %}
+{% endblock %}

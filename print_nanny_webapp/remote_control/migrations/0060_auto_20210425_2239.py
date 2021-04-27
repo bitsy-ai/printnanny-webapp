@@ -7,23 +7,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0059_auto_20210421_1714'),
+        ("remote_control", "0059_auto_20210421_1714"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='cpu_flags',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), null=True, size=None),
+            model_name="octoprintdevice",
+            name="cpu_flags",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.CharField(max_length=255), null=True, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='hardware',
+            model_name="octoprintdevice",
+            name="hardware",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='revision',
+            model_name="octoprintdevice",
+            name="revision",
             field=models.CharField(max_length=255, null=True),
         ),
     ]

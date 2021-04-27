@@ -6,21 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0058_auto_20210409_1548'),
+        ("remote_control", "0058_auto_20210409_1548"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='deleted',
+            model_name="octoprintdevice",
+            name="deleted",
             field=models.DateTimeField(editable=False, null=True),
         ),
         migrations.AlterUniqueTogether(
-            name='octoprintdevice',
+            name="octoprintdevice",
             unique_together=set(),
         ),
         migrations.AddConstraint(
-            model_name='octoprintdevice',
-            constraint=models.UniqueConstraint(condition=models.Q(deleted=None), fields=('user', 'serial'), name='unique_serial_per_user'),
+            model_name="octoprintdevice",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(deleted=None),
+                fields=("user", "serial"),
+                name="unique_serial_per_user",
+            ),
         ),
     ]

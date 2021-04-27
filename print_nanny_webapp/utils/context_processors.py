@@ -12,4 +12,5 @@ def settings_context(_request):
         "DISCORD_URL": settings.DISCORD_URL,
         "GITHUB_ISSUE_URL": settings.GITHUB_ISSUE_URL,
         "STRIPE_ENABLE_SUBSCRIPTIONS": settings.STRIPE_ENABLE_SUBSCRIPTIONS,
+        "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
     }

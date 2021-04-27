@@ -59,7 +59,7 @@ class AlreadyExists(APIException):
         201: PrintSessionAlertSerializer,
         202: PrintSessionAlertSerializer,
     },
-    list=extend_schema(operation_id='print_session_alerts_list')
+    list=extend_schema(operation_id="print_session_alerts_list"),
 )
 class PrintSessionAlertViewSet(
     GenericViewSet,

@@ -92,9 +92,22 @@
                     <h4>
                         <i class="mdi mdi-lock-check"></i> <strong>Security & Identity</strong>
                     </h4>
-                    <dt class="col-sm-3">Fingerprint</dt>
-                    <dd class="col-sm-8">{{object.fingerprint}}</dd>
-                    {% include 'form/remove-device.html' %}
+                    <dl class="row">
+
+                        <dt class="col-sm-3">Fingerprint</dt>
+                        <dd class="col-sm-8">{{object.fingerprint}} {% include 'form/remove-device.html' %}
+                        </dd>
+                    </dl>
+
+                    <h4>
+                        <i class="mdi mdi-lock-check"></i><strong>Partner Apps</strong>
+                    </h4>
+                    <dl class="row">
+
+                        <dt class="col-sm-3"><a target="_blank" href="https://www.3dgeeks.xyz/#/">3D Geeks</a></dt>
+                        <dd class="col-sm-8">{% include 'partials/partners/3d-geeks.html' %}</dd>
+                    </dl>
+
                 </div>
             </div>  
         </div>

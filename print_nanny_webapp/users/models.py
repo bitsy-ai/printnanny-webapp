@@ -1,3 +1,5 @@
+import binascii
+import os
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
@@ -9,6 +11,7 @@ from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
 from anymail.message import AnymailMessage
+from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 

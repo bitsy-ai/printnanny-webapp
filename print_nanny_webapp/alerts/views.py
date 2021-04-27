@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 
 from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.dashboard.views import DashboardView
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
@@ -21,6 +22,8 @@ from .models import (
 )
 
 logger = logging.getLogger(__name__)
+
+from print_nanny_webapp.partners.models import GeeksToken
 
 
 class AlertSettingsView(DashboardView, MultiFormsView):
@@ -122,9 +125,10 @@ class AlertSettingsView(DashboardView, MultiFormsView):
 
     def get_context_data(self, *args, **kwargs):
         if kwargs.get("forms") is None:
+            tokens = GeeksToken.objects.filter(user=self.request.user)
             form_classes = self.get_form_classes()
             forms = self.get_forms(form_classes)
-            context = super().get_context_data(forms=forms, **kwargs)
+            context = super().get_context_data(forms=forms, tokens=tokens, **kwargs)
         else:
             context = super().get_context_data(*args, **kwargs)
         return context

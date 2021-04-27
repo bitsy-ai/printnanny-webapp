@@ -133,10 +133,13 @@ class BaseMultipleFormsView(MultiFormMixin, ProcessMultipleFormsView):
     """
     A base view for displaying several forms.
     """
+
     pass
+
 
 class MultiFormsView(TemplateResponseMixin, BaseMultipleFormsView):
     """
     A view for displaying several forms, and rendering a template response.
     """
+
     pass

@@ -32,7 +32,9 @@ def create_remote_control_command_alerts(user_id, command_id, alert_subtype):
         f"Processing {alert_subtype} alerts for command={command.command} command_id={command_id} user_id={user_id}"
     )
 
-    alert_settings, _created = RemoteControlCommandAlertSettings.objects.get_or_create(user=user)
+    alert_settings, _created = RemoteControlCommandAlertSettings.objects.get_or_create(
+        user=user
+    )
     alert_settings_attr = alert_settings.command_to_attr(command.command)
 
     created_alerts = []
