@@ -20,8 +20,8 @@ class GeeksViewSet(ViewSet):
     authentication_classes = [GeeksTokenAuthentication]
 
     @extend_schema(
-        tags=["geeks3d", "partners"],
-        operation_id="geeks3d_metadata_retrieve",
+        tags=["partners.geeks3d"],
+        operation_id="metadata_retrieve",
         responses={
             200: PartnerOctoPrintDeviceSerializer,
         },

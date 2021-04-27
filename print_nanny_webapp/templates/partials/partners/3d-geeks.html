@@ -10,18 +10,16 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Connect 3D Geeks App</h4>
+                <h4 class="modal-title">Connect you Printer to 3D Geeks</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div id="octoprint-device-partner-3d-geeks-qrcode" class="modal-body text-center"">
-                <p>Scan the QR below with the 3D Geeks app to link your printer.</p>
+                <p>Scan the QR below to add your printer to the 3D Geeks mobile app.</p>
                 <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken.qrcode.url }}">
-                <p>Having trouble scanning the QR Code?</p>
-
-                <p>Connect by entering the following code in the 3D Geeks app:</p>
-                <code>
-                    {{ object.geekstoken.key }}
-                </code>
+            </div>
+            <div class="modal-footer">
+                <p class="mx-auto text-center">Having trouble scanning the QR Code? Connect by entering the following code in the 3D Geeks app:</p>
+                <code class="mx-auto" id="partners-3dgeeks-token">{{ object.geekstoken.key }}</code>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
