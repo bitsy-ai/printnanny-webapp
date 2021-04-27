@@ -163,7 +163,7 @@ clean-ts-client:
 	find . -name '*.hot-update.json' -exec rm -fr {} +
 	sudo rm -rf clients/typescript
 
-clean-ts-client:
+clean-kotlin-client:
 	sudo rm -rf clients/kotlin
 
 kotlin-client: clean-kotlin-client
