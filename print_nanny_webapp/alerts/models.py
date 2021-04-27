@@ -20,6 +20,8 @@ from asgiref.sync import async_to_sync
 from django.urls import reverse
 import stringcase
 
+from django.contrib.postgres.fields import JSONField
+
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.alerts.tasks.common import trigger_alerts_task
 
@@ -39,6 +41,7 @@ def _upload_to(instance, filename):
 
 
 class Alert(PolymorphicModel):
+
     class AlertTypeChoices(models.TextChoices):
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
@@ -48,10 +51,12 @@ class Alert(PolymorphicModel):
         )
         PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
+
     class AlertMethodChoices(models.TextChoices):
         UI = "UI", "Receive Print Nanny UI notifications"
         EMAIL = "EMAIL", "Receive email notifications"
         DISCORD = "DISCORD", "Receive notifications through Discord"
+        GEEKS3D = "GEEKS3D", "Receive notifications in 3D Geeks mobile app"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -59,6 +64,7 @@ class Alert(PolymorphicModel):
             self.AlertMethodChoices.UI: self.trigger_ui_alert,
             self.AlertMethodChoices.EMAIL: self.trigger_email_alert,
             self.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
+            self.AlertMethodChoices.GEEKS3D: self.trigger_geeks3d_alert,
         }
 
     alert_methods = ChoiceArrayField(
@@ -76,6 +82,7 @@ class Alert(PolymorphicModel):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
+    payload = JSONField(default=dict())
 
     def trigger_alerts_task(self, serialized_obj):
         self.print_session.status = self.print_session.StatusChoices.DONE
