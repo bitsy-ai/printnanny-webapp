@@ -17,7 +17,7 @@ describe('Print Nanny setup wizard', () => {
             cy.get('#dashboard-octoprint-devices tr').should('have.length', 2)
             cy.get('#dashboard-octoprint-devices tr').last().contains('View Metadata').click()
               .contains('Metadata')
-              .wait(2000) // wait for modal fade-in animation 
+              .wait(4000) // wait for modal fade-in animation 
               .get("#octoprint-device-metadata-modal-1 button.close[data-dismiss='modal']").click()
         }
 
@@ -38,7 +38,8 @@ describe('Print Nanny setup wizard', () => {
         cy.get('#navbar_show_settings').click()
             .get('#settings_plugin_octoprint_nanny_link a').click()
             .get('#octoprint_nanny_settings_reset_device').click()
-            .contains('✅ Success! Your device was issued a new identity')
+        cy.contains('✅ Success! Your device was issued a new identity.')
 
     })
+
 })
