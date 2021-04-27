@@ -163,6 +163,19 @@ clean-ts-client:
 	find . -name '*.hot-update.json' -exec rm -fr {} +
 	sudo rm -rf clients/typescript
 
+clean-ts-client:
+	sudo rm -rf clients/kotlin
+
+kotlin-client: clean-kotlin-client
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+		-i http://localhost:8000/api/schema --recommend
+
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+		-i http://localhost:8000/api/schema \
+		-g kotlin \
+		-o /local/clients/kotlin \
+		-c /local/clients/kotlin.yaml
+
 ts-client: clean-ts-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
@@ -171,7 +184,7 @@ ts-client: clean-ts-client
 		-i http://localhost:8000/api/schema \
 		-g typescript-axios \
 		-o /local/clients/typescript \
-		-c /local/clients/typescript.yaml \
+		-c /local/clients/typescript.yaml
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
