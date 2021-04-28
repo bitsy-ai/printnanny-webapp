@@ -7,8 +7,6 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [('client_events', '0010_delete_octoprintdevice'), ('client_events', '0011_predicteventimage'), ('client_events', '0012_auto_20201230_1710'), ('client_events', '0013_auto_20201231_1522'), ('client_events', '0014_auto_20201231_1909'), ('client_events', '0015_auto_20201231_1936')]
-
     dependencies = [
         ('client_events', '0002_predictsession_channel_name_squashed_0009_auto_20201228_1434'),
         ('remote_control', '0007_auto_20201229_2309'),
