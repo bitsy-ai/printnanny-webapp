@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('alerts', '0002_auto_20201206_1719_squashed_0027_alert_alert_method'),
-        ('remote_control', '0047_remove_printjob_last_status'),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

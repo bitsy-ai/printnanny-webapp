@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         ('remote_control', '0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('client_events', '0010_delete_octoprintdevice_squashed_0015_auto_20201231_1936'),
-        ('remote_control', '0047_remove_printjob_last_status'),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         ('contenttypes', '0002_remove_content_type_name'),
     ]
 

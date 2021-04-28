@@ -7,8 +7,8 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0048_auto_20210321_1312'),
-        ('client_events', '0025_auto_20210313_1447'),
+        ('remote_control', '0042_auto_20210207_2249_squashed_0049_auto_20210321_1313'),
+        ('client_events', '0024_auto_20210313_1428_squashed_0025_auto_20210313_1447'),
     ]
 
     operations = [
