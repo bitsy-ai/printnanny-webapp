@@ -8,13 +8,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('alerts', '0062_auto_20210427_2018'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("alerts", "0062_auto_20210427_2018"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='PrintProgresEventSettings',
-            new_name='PrintProgressEventSettings',
+            old_name="PrintProgresEventSettings",
+            new_name="PrintProgressEventSettings",
         ),
     ]

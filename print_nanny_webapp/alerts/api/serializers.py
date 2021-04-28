@@ -11,17 +11,12 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 logger = logging.getLogger(__name__)
 
 Alert = apps.get_model("alerts", "Alert")
-# AlertSettings = apps.get_model("alerts", "AlertSettings")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
 ProgressAlert = apps.get_model("alerts", "ProgressAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
-# PrintSessionAlertSettings = apps.get_model("alerts", "PrintSessionAlertSettings")
-# RemoteControlCommandAlertSettings = apps.get_model(
-#     "alerts", "RemoteControlCommandAlertSettings"
-# )
-# ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -166,41 +161,6 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
 
     def to_resource_type(self, model_or_instance):
         return model_or_instance._meta.object_name.lower()
-
-
-# class AlertSettingsSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AlertSettings
-#         fields = "__all__"
-#         read_only_fields = ("user",)
-
-
-# class CommandAlertSettingsSerializer(AlertSettingsSerializer):
-#     class Meta:
-#         model = RemoteControlCommandAlertSettings
-#         fields = "__all__"
-#         read_only_fields = ("user",)
-
-
-# class ProgressAlertSettingsSerializer(AlertSettingsSerializer):
-#     class Meta:
-#         model = ProgressAlertSettings
-#         fields = "__all__"
-#         read_only_fields = ("user",)
-
-
-# class AlertSettingsPolymorphicSerializer(PolymorphicSerializer):
-#     resource_type_field_name = "type"
-
-#     model_serializer_mapping = {
-#         AlertSettings: AlertSettingsSerializer,
-#         RemoteControlCommandAlertSettings: CommandAlertSettingsSerializer,
-#         ProgressAlert: ProgressAlertSettingsSerializer,
-#         # PrintSessionAlert: PrintSessionAlertSettingsSerializer
-#     }
-
-#     def to_resource_type(self, model_or_instance):
-#         return model_or_instance._meta.object_name.lower()
 
 
 class AlertMethodSerializer(serializers.Serializer):

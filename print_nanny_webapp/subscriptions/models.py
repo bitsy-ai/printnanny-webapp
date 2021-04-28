@@ -12,15 +12,21 @@ logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
+
 class MemberBadge(models.Model):
     class Meta:
         unique_together = ("type", "user")
+
     class BadgeTypes(models.TextChoices):
         BETA_TESTER = "BETA_TESTER", "Early access Beta tester"
-        FOUNDING_MEMBER = "FOUNDING_MEMBER", "Become a Founding Member to receive early access to Print Nanny"
-    
+        FOUNDING_MEMBER = (
+            "FOUNDING_MEMBER",
+            "Become a Founding Member to receive early access to Print Nanny",
+        )
+
     type = models.CharField(choices=BadgeTypes.choices, max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 ##
 # Disable trial for remainder of Beta

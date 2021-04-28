@@ -7,13 +7,29 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0074_auto_20210427_2151'),
+        ("alerts", "0074_auto_20210427_2151"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord'), ('PARTNER_3DGEEKS', 'Receive notifications in 3D Geeks mobile app')], max_length=255), blank=True, default=('UI', 'EMAIL'), size=None),
+            model_name="alerteventsettings",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                        (
+                            "PARTNER_3DGEEKS",
+                            "Receive notifications in 3D Geeks mobile app",
+                        ),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI", "EMAIL"),
+                size=None,
+            ),
         ),
     ]

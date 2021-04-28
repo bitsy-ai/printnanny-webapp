@@ -15,14 +15,40 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='MemberBadge',
+            name="MemberBadge",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('BETA_TESTER', 'Early access Beta tester'), ('FOUNDING_MEMBER', 'Become a Founding Member to receive early access to Print Nanny')], max_length=255)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("BETA_TESTER", "Early access Beta tester"),
+                            (
+                                "FOUNDING_MEMBER",
+                                "Become a Founding Member to receive early access to Print Nanny",
+                            ),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('type', 'user')},
+                "unique_together": {("type", "user")},
             },
         ),
     ]

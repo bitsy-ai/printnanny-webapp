@@ -6,18 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0063_auto_20210427_2020'),
+        ("alerts", "0063_auto_20210427_2020"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alert',
-            name='event_type',
-            field=models.CharField(choices=[('PrintProgress', 'Receive print progress notifications'), ('PrintHealth', 'Receive print health alerts'), ('PrintStatus', 'Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255, null=True),
+            model_name="alert",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("PrintProgress", "Receive print progress notifications"),
+                    ("PrintHealth", "Receive print health alerts"),
+                    (
+                        "PrintStatus",
+                        "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)",
+                    ),
+                ],
+                max_length=255,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='event_type',
-            field=models.CharField(choices=[('PrintProgress', 'Receive print progress notifications'), ('PrintHealth', 'Receive print health alerts'), ('PrintStatus', 'Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255),
+            model_name="alerteventsettings",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("PrintProgress", "Receive print progress notifications"),
+                    ("PrintHealth", "Receive print health alerts"),
+                    (
+                        "PrintStatus",
+                        "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)",
+                    ),
+                ],
+                max_length=255,
+            ),
         ),
     ]

@@ -83,7 +83,6 @@ class HomeDashboardView(DashboardView, MultiFormsView):
     form_classes = {
         "upload": TimelapseUploadForm,
         "user_settings": UserSettingsForm,
-
     }
 
     def get_user_settings_initial(self):

@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0064_auto_20210427_2030'),
+        ("alerts", "0064_auto_20210427_2030"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printprogresseventsettings',
-            name='alerteventsettings_ptr',
+            model_name="printprogresseventsettings",
+            name="alerteventsettings_ptr",
         ),
         migrations.DeleteModel(
-            name='AlertEventSettings',
+            name="AlertEventSettings",
         ),
         migrations.DeleteModel(
-            name='PrintProgressEventSettings',
+            name="PrintProgressEventSettings",
         ),
     ]

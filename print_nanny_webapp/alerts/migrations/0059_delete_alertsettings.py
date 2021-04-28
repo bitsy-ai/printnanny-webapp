@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0058_auto_20210427_1847'),
+        ("alerts", "0058_auto_20210427_1847"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='RemoteControlCommandAlertSettings',
+            name="RemoteControlCommandAlertSettings",
         ),
         migrations.DeleteModel(
-            name='PrintSessionAlertSettings',
+            name="PrintSessionAlertSettings",
         ),
         migrations.DeleteModel(
-            name='ProgressAlertSettings',
+            name="ProgressAlertSettings",
         ),
         migrations.DeleteModel(
-            name='AlertSettings',
+            name="AlertSettings",
         ),
     ]
