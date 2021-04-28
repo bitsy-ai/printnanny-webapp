@@ -6,12 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('partners', '0008_auto_20210427_1638'),
+        ("partners", "0008_auto_20210427_1638"),
     ]
 
     operations = [
         migrations.AddConstraint(
-            model_name='geekstoken',
-            constraint=models.UniqueConstraint(condition=models.Q(deleted=None), fields=('octoprint_device_id',), name='unique_geeks_token_per_octoprint_device'),
+            model_name="geekstoken",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(deleted=None),
+                fields=("octoprint_device_id",),
+                name="unique_geeks_token_per_octoprint_device",
+            ),
         ),
     ]

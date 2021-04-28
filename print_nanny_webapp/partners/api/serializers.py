@@ -32,6 +32,7 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
     """
 
     verified = serializers.SerializerMethodField()
+
     def get_verified(self, obj):
         return obj.geekstoken_set.first().verified
 
@@ -44,7 +45,7 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
             "octoprint_version",
             "plugin_version",
             "print_nanny_client_version",
-            "verified"
+            "verified",
         )
 
 

@@ -186,7 +186,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
     form_classes = {
         "remote_command": RemoteControlCommandForm,
         "remove_device": RemoveDeviceForm,
-        "revoke_3dgeeks": RevokeGeeksTokenForm
+        "revoke_3dgeeks": RevokeGeeksTokenForm,
     }
 
     def revoke_3dgeeks_form_valid(self, form):
@@ -195,10 +195,9 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         token.delete()
         octoprint_device = OctoPrintDevice.objects.get(id=octoprint_device_id)
         token, created = GeeksToken.objects.get_or_create(
-            octoprint_device=octoprint_device, user=self.request.user,deleted=None
+            octoprint_device=octoprint_device, user=self.request.user, deleted=None
         )
         return redirect("dashboard:octoprint-devices:detail", pk=octoprint_device.id)
- 
 
     def remove_device_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")

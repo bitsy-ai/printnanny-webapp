@@ -20,8 +20,10 @@ def _upload_to(instance, filename):
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
     return path
 
+
 class GeeksToken(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
+
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -30,6 +32,7 @@ class GeeksToken(SafeDeleteModel):
                 name="unique_geeks_token_per_octoprint_device",
             )
         ]
+
     # Grabbed code from rest_framework.models.Token
     key = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
