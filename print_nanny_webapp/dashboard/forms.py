@@ -9,6 +9,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 logger = logging.getLogger(__name__)
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
+class PushNotificationsForm(forms.form):
+    email = forms.BooleanField(label="Receive email notifications")
+    discord = forms.BooleanField(label="Receive discord notifications")
+    geeks_3d = forms.BooleanField(label="Receive push notifications from 3D Geeks mobile app")
 
 class RemoveDeviceForm(forms.Form):
     def __init__(self, *args, **kwargs):

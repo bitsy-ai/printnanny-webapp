@@ -92,7 +92,7 @@ class AlertSettings(PolymorphicModel):
         default=(Alert.AlertMethodChoices.UI, Alert.AlertMethodChoices.EMAIL),
     )
     enabled = models.BooleanField(
-        default=True, help_text="Enable or disable this alert channel"
+        default=True, help_text="Enable or disable this alert type"
     )
 
 
@@ -124,6 +124,7 @@ class DiscordMethodSettings(models.Model):
     target_id_type = models.CharField(
         max_length=255, choices=TargetIDTypeChoices.choices, db_index=True
     )
+
 
 
 ##
@@ -169,7 +170,7 @@ class PrintSessionAlertSettings(AlertSettings):
 
 class RemoteControlCommandAlertSettings(AlertSettings):
     class AlertSubTypeChoices(models.TextChoices):
-        RECEVIED = "RECEIVED", "Command was acknowledged by device"
+        RECEVIED = "RECEIVED", "Command received by device"
         FAILED = "FAILED", "Command failed"
         SUCCESS = "SUCCESS", "Command succeeded"
 
@@ -198,7 +199,7 @@ class RemoteControlCommandAlertSettings(AlertSettings):
 
     print_start = ChoiceArrayField(
         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ",
+        help_text="Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. ",
         blank=True,
         default=(AlertSubTypeChoices.FAILED,),
     )

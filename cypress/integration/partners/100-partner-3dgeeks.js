@@ -3,7 +3,7 @@ import { PartnersGeeks3dApiFactory, Configuration } from '../../../clients/types
 require('../../../clients/typescript')
 // import { Configuration } from 'print-nanny-client/configuration'
 
-describe('3D Geeks Setup', () => {
+describe('3D Geeks Integration Tests', () => {
     const PRINT_NANNY_EMAIL = Cypress.env('PRINT_NANNY_EMAIL')
     const PRINT_NANNY_PASSWORD = Cypress.env('PRINT_NANNY_PASSWORD')
     // axios api client expects base url without trailing slash
@@ -15,7 +15,7 @@ describe('3D Geeks Setup', () => {
         cy.manageDevice()
       })
 
-    it('Marks 3D Geeks token as verfied after authorized request', () => {
+    it('Marks 3D Geeks token as verfied, sends test alert push', () => {
 
         cy.view3DGeeksToken().then(token =>{
             const apiConfig = new Configuration({
@@ -28,12 +28,14 @@ describe('3D Geeks Setup', () => {
             return geeks3DApi.metadataRetrieve(token).then(res =>{
                 expect(res.data.verified).to.be.true
                 return cy.get('#octoprint-device-partner-3dgeeks-modal button.close').click()
-                    .reload().get('button').contains('Revoke 3D Geeks Access')
+                    .reload()
+                    .get('button').contains('Revoke 3D Geeks Access')
+                    .get('button').contains('Test Alert').click()
             })
         })
     })
 
-    it('Revokes 3D Geeks token', () => {
+    it('Revokes Device 3D Geeks token', () => {
         cy.get3DGeeksToken().then(token1 =>{
             return cy.revoke3DGeeksToken()
                 .get3DGeeksToken(token2 => expect(token1).not.to.equal(token2))

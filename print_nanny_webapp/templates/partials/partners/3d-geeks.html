@@ -4,6 +4,7 @@
 <form method="post">
     {% csrf_token %}
     <input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
+    <button name="action" value="test_3dgeeks" type="submit" class="btn btn-secondary btn-small">Test Alert</button>
 
     <button name="action" value="revoke_3dgeeks" type="submit" class="btn btn-danger btn-small">Revoke 3D Geeks Access</button>
 </form>
