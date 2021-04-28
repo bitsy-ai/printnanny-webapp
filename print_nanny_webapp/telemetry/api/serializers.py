@@ -4,10 +4,9 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
 from print_nanny_webapp.telemetry.models import (
-    ClientEvent,
     OctoPrintEvent,
     PrintStatusEvent,
-    PluginEvent,
+    OctoPrintPluginEvent,
 )
 
 
@@ -21,10 +20,10 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 
-class PluginEventSerializer(serializers.ModelSerializer):
+class OctoPrintPluginEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PluginEvent
-        fields = [field.name for field in PluginEvent._meta.fields] + ["url"]
+        model = OctoPrintPluginEvent
+        fields = [field.name for field in OctoPrintPluginEvent._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:plugin-event-detail", "lookup_field": "id"}
         }
