@@ -46,28 +46,34 @@ class AlertEventSettings(PolymorphicModel):
     enabled = models.BooleanField(default=True)
     class EventType(models.TextChoices):
         PRINT_PROGRESS = "PrintProgress", "Receive print progress notifications"
-        PRINT_HEALTH = "PrintHealth", "Receive print health notifications"
-        TIMELAPSE_DONE = "TimelapseDone", "Receive a timelapse video of your print"
+        PRINT_HEALTH = "PrintHealth", "Receive print health alerts"
+        PRINT_STATUS = "PrintStatus", "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)"
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    event_type = models.CharField(choices=EventType.choices, max_length=255)
 
-    event_type = models.CharField(choices=EventType.choices, max_length=255, null=True)
 
+class PrintProgressEventSettings(AlertEventSettings):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=AlertEventSettings.EventType.PRINT_PROGRESS, **kwargs)
+
+    on_progress_percent = models.IntegerField(
+        default=25,
+        validators=[MinValueValidator(1), MaxValueValidator(100)],
+        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+    )
+
+    def on_print_progress(self, octoprint_event):
+        from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
+
+        progress = octoprint_event.event_data.get("event_data").get("progress")
+        if progress % self.on_progress_percent == 0:
+            serialized_obj = ProgressAlertSerializer(self)
+            return self.trigger_alerts_task(serialized_obj)
 
 class Alert(PolymorphicModel):
     """
         Base class for alert events
     """
-        
-    # class AlertTypeChoices(models.TextChoices):
-    #     """
-    #         Types of noteworthy events
-    #     """
-    #     COMMAND = "COMMAND", "Remote command status updates"
-    #     PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
-    #     MANUAL_VIDEO_UPLOAD = (
-    #         "MANUAL_VIDEO_UPLOAD",
-    #         "Manually-uploaded video is ready for review",
-    #     )
-    #     PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
         """
@@ -106,123 +112,6 @@ class AlertMethodSettings(PolymorphicModel):
     alert_method = models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255)
     enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255, help_text="Enable or disable this alert method")
     user = models.OneToOneField(User, on_delete=models.CASCADE, db_index=True)
-
-
-##
-# Method Settings models
-##
-
-# @todo base from AlertSettings
-#  
-##
-# Alert Settings models
-##
-
-
-# class ProgressAlertSettings(AlertSettings):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
-
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     on_progress_percent = models.IntegerField(
-#         default=25,
-#         validators=[MinValueValidator(1), MaxValueValidator(100)],
-#         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
-#     )
-
-#     def on_print_progress(self, octoprint_event):
-#         from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
-
-#         progress = octoprint_event.event_data.get("event_data").get("progress")
-#         if progress % self.on_progress_percent == 0:
-#             serialized_obj = ProgressAlertSerializer(self)
-#             return self.trigger_alerts_task(serialized_obj)
-
-
-# class PrintSessionAlertSettings(AlertSettings):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-#     def __init__(self, *args, **kwargs):
-#         user = kwargs.get("user")
-#         alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
-#             user=user
-#         )
-#         super().__init__(
-#             alert_settings=alert_settings,
-#             *args,
-#             alert_type=Alert.AlertTypeChoices.PRINT_SESSION,
-#             **kwargs,
-#         )
-
-
-# class RemoteControlCommandAlertSettings(AlertSettings):
-#     class AlertSubTypeChoices(models.TextChoices):
-#         RECEVIED = "RECEIVED", "Command received by device"
-#         FAILED = "FAILED", "Command failed"
-#         SUCCESS = "SUCCESS", "Command succeeded"
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-#     def command_to_attr(self, command_str):
-#         snake_cased = stringcase.snakecase(command_str)
-#         return getattr(self, snake_cased)
-
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-#     monitoring_stop = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
-#         blank=True,
-#         default=(AlertSubTypeChoices.FAILED,),
-#     )
-
-#     monitoring_start = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
-#         blank=True,
-#         default=(AlertSubTypeChoices.FAILED,),
-#     )
-
-#     print_start = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. ",
-#         blank=True,
-#         default=(AlertSubTypeChoices.FAILED,),
-#     )
-
-#     print_stop = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
-#         blank=True,
-#         default=(AlertSubTypeChoices.FAILED,),
-#     )
-
-#     print_pause = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
-#         default=(AlertSubTypeChoices.FAILED,),
-#         blank=True,
-#     )
-
-#     print_resume = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
-#         default=(AlertSubTypeChoices.FAILED,),
-#         blank=True,
-#     )
-
-#     move_nozzle = ChoiceArrayField(
-#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-#         help_text="Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint",
-#         blank=True,
-#         default=(AlertSubTypeChoices.FAILED,),
-#     )
-
-
-##
-# Alert Models
-##
 
 
 class PrintSessionAlert(Alert):
