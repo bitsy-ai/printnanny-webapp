@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("remote_control", "0049_auto_20210321_1313"),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         ("client_events", "0026_monitoringframeevent_event_type_squashed_0028_auto_20210321_1312"),
     ]
 

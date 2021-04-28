@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
         ("client_events", "0029_auto_20210328_1610"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("alerts", "0040_auto_20210328_1610"),
-        ("remote_control", "0049_auto_20210321_1313"),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
     ]
 
     operations = [

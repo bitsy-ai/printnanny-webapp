@@ -9,13 +9,11 @@ import print_nanny_webapp.client_events.models
 
 class Migration(migrations.Migration):
 
-    replaces = [('client_events', '0024_auto_20210313_1428'), ('client_events', '0025_auto_20210313_1447')]
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('client_events', '0016_auto_20201231_2139_squashed_0023_auto_20210313_1315'),
         ('ml_ops', '0013_auto_20210313_1315'),
-        ('remote_control', '0047_remove_printjob_last_status'),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
     ]
 
     operations = [
