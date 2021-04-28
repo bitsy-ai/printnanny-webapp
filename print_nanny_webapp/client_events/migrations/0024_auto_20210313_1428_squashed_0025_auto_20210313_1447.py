@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("client_events", "0016_auto_20201231_2139_squashed_0023_auto_20210313_1315"),
-        ("ml_ops", "0013_auto_20210313_1315"),
+        ("ml_ops", "0001_initial_squashed_0015_auto_20210319_1543"),
     ]
 
     operations = [
