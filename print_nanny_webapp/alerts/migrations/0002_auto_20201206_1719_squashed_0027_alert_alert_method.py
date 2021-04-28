@@ -10,8 +10,6 @@ import print_nanny_webapp.utils.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('alerts', '0002_auto_20201206_1719'), ('alerts', '0003_auto_20201206_1919'), ('alerts', '0004_auto_20201206_2018'), ('alerts', '0005_auto_20210110_2202'), ('alerts', '0006_manualvideouploadalert'), ('alerts', '0007_remotecontrolcommandalert'), ('alerts', '0008_alertplot'), ('alerts', '0009_auto_20210110_2356'), ('alerts', '0010_auto_20210115_1047'), ('alerts', '0011_auto_20210115_1600'), ('alerts', '0012_auto_20210116_1426'), ('alerts', '0013_defectalert'), ('alerts', '0014_auto_20210116_1551'), ('alerts', '0015_auto_20210116_1600'), ('alerts', '0016_auto_20210116_1604'), ('alerts', '0017_auto_20210116_1605'), ('alerts', '0018_alert_alert_type'), ('alerts', '0019_auto_20210117_1715'), ('alerts', '0020_auto_20210117_2006'), ('alerts', '0021_alertsettings_alert_methods'), ('alerts', '0022_auto_20210117_2038'), ('alerts', '0023_auto_20210117_2119'), ('alerts', '0024_auto_20210117_2123'), ('alerts', '0025_auto_20210117_2124'), ('alerts', '0026_remotecontrolcommandalertsettings_snapshot'), ('alerts', '0027_alert_alert_method')]
-
     dependencies = [
         ('alerts', '0001_initial'),
         ('remote_control', '0003_printjob_progress'),

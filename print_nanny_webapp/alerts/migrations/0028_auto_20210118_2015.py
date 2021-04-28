@@ -7,7 +7,7 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("alerts", "0027_alert_alert_method"),
+        ("alerts", "0002_auto_20201206_1719_squashed_0027_alert_alert_method"),
     ]
 
     operations = [
