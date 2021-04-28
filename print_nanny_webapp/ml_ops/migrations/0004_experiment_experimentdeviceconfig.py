@@ -7,7 +7,10 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs"),
+        (
+            "remote_control",
+            "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs",
+        ),
         ("ml_ops", "0003_auto_20210206_1259"),
     ]
 

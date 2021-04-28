@@ -9,91 +9,210 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0002_auto_20201206_1719_squashed_0027_alert_alert_method'),
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313_squashed_0061_auto_20210425_2253"),
+        ("alerts", "0002_auto_20201206_1719_squashed_0027_alert_alert_method"),
+        (
+            "remote_control",
+            "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313_squashed_0061_auto_20210425_2253",
+        ),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alert',
-            name='alert_method',
-            field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord')], max_length=255),
+            model_name="alert",
+            name="alert_method",
+            field=models.CharField(
+                choices=[
+                    ("UI", "Receive Print Nanny UI notifications"),
+                    ("EMAIL", "Receive email notifications"),
+                    ("DISCORD", "Receive notifications through Discord"),
+                ],
+                max_length=255,
+            ),
         ),
         migrations.AlterField(
-            model_name='alertsettings',
-            name='alert_methods',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('UI', 'Receive Print Nanny UI notifications'), ('EMAIL', 'Receive email notifications'), ('DISCORD', 'Receive notifications through Discord')], max_length=255), blank=True, default=('UI',), size=None),
+            model_name="alertsettings",
+            name="alert_methods",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("UI", "Receive Print Nanny UI notifications"),
+                        ("EMAIL", "Receive email notifications"),
+                        ("DISCORD", "Receive notifications through Discord"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("UI",),
+                size=None,
+            ),
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='start_monitoring',
-            new_name='monitoring_start',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="start_monitoring",
+            new_name="monitoring_start",
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='monitoring_start',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="monitoring_start",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
+                size=None,
+            ),
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='stop_monitoring',
-            new_name='monitoring_stop',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="stop_monitoring",
+            new_name="monitoring_stop",
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='monitoring_stop',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="monitoring_stop",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
+                size=None,
+            ),
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='pause_print',
-            new_name='print_pause',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="pause_print",
+            new_name="print_pause",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='resume_print',
-            new_name='print_resume',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="resume_print",
+            new_name="print_resume",
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='stop_print',
-            new_name='print_start',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="stop_print",
+            new_name="print_start",
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='print_start',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="print_start",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. ",
+                size=None,
+            ),
         ),
         migrations.RenameField(
-            model_name='remotecontrolcommandalertsettings',
-            old_name='start_print',
-            new_name='print_stop',
+            model_name="remotecontrolcommandalertsettings",
+            old_name="start_print",
+            new_name="print_stop",
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='print_stop',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="print_stop",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>StartPrint</strong> command status changes. Helpful for verifying a print job started without a problem.",
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommandalertsettings',
-            name='print_stop',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('RECEIVED', 'Command was acknowledged by device'), ('FAILED', 'Command failed'), ('SUCCESS', 'Command succeeded')], max_length=255), blank=True, default=('FAILED',), help_text='Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.', size=None),
+            model_name="remotecontrolcommandalertsettings",
+            name="print_stop",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("RECEIVED", "Command was acknowledged by device"),
+                        ("FAILED", "Command failed"),
+                        ("SUCCESS", "Command succeeded"),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("FAILED",),
+                help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
+                size=None,
+            ),
         ),
         migrations.AddField(
-            model_name='alert',
-            name='octoprint_device',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice'),
+            model_name="alert",
+            name="octoprint_device",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.octoprintdevice",
+            ),
         ),
         migrations.CreateModel(
-            name='DiscordMethodSettings',
+            name="DiscordMethodSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('target_id', models.CharField(db_index=True, help_text='ID to send notifications to\nTo get an item\'s ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and "Copy ID"', max_length=24)),
-                ('target_id_type', models.CharField(choices=[('USER', 'User'), ('CHANNEL', 'Channel')], db_index=True, max_length=255)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                (
+                    "target_id",
+                    models.CharField(
+                        db_index=True,
+                        help_text='ID to send notifications to\nTo get an item\'s ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and "Copy ID"',
+                        max_length=24,
+                    ),
+                ),
+                (
+                    "target_id_type",
+                    models.CharField(
+                        choices=[("USER", "User"), ("CHANNEL", "Channel")],
+                        db_index=True,
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

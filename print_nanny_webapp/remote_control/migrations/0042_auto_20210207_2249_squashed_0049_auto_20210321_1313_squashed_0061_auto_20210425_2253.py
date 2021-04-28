@@ -12,93 +12,190 @@ class Migration(migrations.Migration):
     # replaces = [('remote_control', '0042_auto_20210207_2249_squashed_0049_auto_20210321_1313'), ('remote_control', '0050_auto_20210328_1610'), ('remote_control', '0051_printsession_gcode_filename'), ('remote_control', '0052_auto_20210328_1728'), ('remote_control', '0053_printsession_supress_alerts'), ('remote_control', '0054_remove_printsession_supress_alerts'), ('remote_control', '0055_printsession_current_status'), ('remote_control', '0056_auto_20210409_1326'), ('remote_control', '0057_octoprintdevice_last_session'), ('remote_control', '0058_auto_20210409_1548'), ('remote_control', '0059_auto_20210421_1714'), ('remote_control', '0060_auto_20210425_2239'), ('remote_control', '0061_auto_20210425_2253')]
 
     dependencies = [
-        ('remote_control', '0041_octoprintdevice_cloudiot_device_path'),
+        ("remote_control", "0041_octoprintdevice_cloudiot_device_path"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='octoprintdevice',
-            name='configs',
+            model_name="octoprintdevice",
+            name="configs",
         ),
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='monitoring_mode',
-            field=models.CharField(choices=[('active_learning', 'Active Learning'), ('lite', 'Lite')], default='lite', max_length=32),
+            model_name="octoprintdevice",
+            name="monitoring_mode",
+            field=models.CharField(
+                choices=[("active_learning", "Active Learning"), ("lite", "Lite")],
+                default="lite",
+                max_length=32,
+            ),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='command',
-            field=models.CharField(choices=[('monitoring_stop', 'Stop Print Nanny Monitoring'), ('monitoring_start', 'Start Print Nanny Monitoring'), ('snapshot', 'Capture a webcam snapshot'), ('print_start', 'Start Print'), ('print_stop', 'Stop Print'), ('print_pause', 'Pause Print'), ('print_resume', 'Resume Print'), ('move_nozzle', 'Move Nozzle')], max_length=255),
+            model_name="remotecontrolcommand",
+            name="command",
+            field=models.CharField(
+                choices=[
+                    ("monitoring_stop", "Stop Print Nanny Monitoring"),
+                    ("monitoring_start", "Start Print Nanny Monitoring"),
+                    ("snapshot", "Capture a webcam snapshot"),
+                    ("print_start", "Start Print"),
+                    ("print_stop", "Stop Print"),
+                    ("print_pause", "Pause Print"),
+                    ("print_resume", "Resume Print"),
+                    ("move_nozzle", "Move Nozzle"),
+                ],
+                max_length=255,
+            ),
         ),
         migrations.CreateModel(
-            name='PrintSession',
+            name="PrintSession",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('session', models.CharField(db_index=True, max_length=255)),
-                ('octoprint_device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
-                ('gcode_file', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.gcodefile')),
-                ('printer_profile', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printerprofile')),
-                ('progress', django.contrib.postgres.fields.jsonb.JSONField(default={})),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='users.user')),
-                ('gcode_filename', models.CharField(max_length=255, null=True)),
-                ('status', models.CharField(choices=[('monitoring_active', 'Print Nanny is currently monitoring your print job'), ('rendering_video', 'Print Nanny is creating a timelapse video of your print job'), ('doneA timelapse of your print job is ready!', 'Done')], db_index=True, default='monitoring_active', max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("session", models.CharField(db_index=True, max_length=255)),
+                (
+                    "octoprint_device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
+                (
+                    "gcode_file",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.gcodefile",
+                    ),
+                ),
+                (
+                    "printer_profile",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.printerprofile",
+                    ),
+                ),
+                (
+                    "progress",
+                    django.contrib.postgres.fields.jsonb.JSONField(default={}),
+                ),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        default=None,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="users.user",
+                    ),
+                ),
+                ("gcode_filename", models.CharField(max_length=255, null=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            (
+                                "monitoring_active",
+                                "Print Nanny is currently monitoring your print job",
+                            ),
+                            (
+                                "rendering_video",
+                                "Print Nanny is creating a timelapse video of your print job",
+                            ),
+                            ("doneA timelapse of your print job is ready!", "Done"),
+                        ],
+                        db_index=True,
+                        default="monitoring_active",
+                        max_length=255,
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('octoprint_device', 'session')},
+                "unique_together": {("octoprint_device", "session")},
             },
         ),
         migrations.AddField(
-            model_name='printjob',
-            name='print_session',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="printjob",
+            name="print_session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
         ),
         migrations.DeleteModel(
-            name='PrintJob',
+            name="PrintJob",
         ),
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='last_session',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+            model_name="octoprintdevice",
+            name="last_session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="remote_control.printsession",
+            ),
         ),
         migrations.AlterField(
-            model_name='remotecontrolcommand',
-            name='command',
-            field=models.CharField(choices=[('monitoring_stop', 'Stop Print Nanny Monitoring'), ('monitoring_start', 'Start Print Nanny Monitoring'), ('print_start', 'Start Print'), ('print_stop', 'Stop Print'), ('print_pause', 'Pause Print'), ('print_resume', 'Resume Print'), ('move_nozzle', 'Move Nozzle')], max_length=255),
+            model_name="remotecontrolcommand",
+            name="command",
+            field=models.CharField(
+                choices=[
+                    ("monitoring_stop", "Stop Print Nanny Monitoring"),
+                    ("monitoring_start", "Start Print Nanny Monitoring"),
+                    ("print_start", "Start Print"),
+                    ("print_stop", "Stop Print"),
+                    ("print_pause", "Pause Print"),
+                    ("print_resume", "Resume Print"),
+                    ("move_nozzle", "Move Nozzle"),
+                ],
+                max_length=255,
+            ),
         ),
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='deleted',
+            model_name="octoprintdevice",
+            name="deleted",
             field=models.DateTimeField(editable=False, null=True),
         ),
         migrations.AlterUniqueTogether(
-            name='octoprintdevice',
+            name="octoprintdevice",
             unique_together=set(),
         ),
         migrations.AddConstraint(
-            model_name='octoprintdevice',
-            constraint=models.UniqueConstraint(condition=models.Q(deleted=None), fields=('user', 'serial'), name='unique_serial_per_user'),
+            model_name="octoprintdevice",
+            constraint=models.UniqueConstraint(
+                condition=models.Q(deleted=None),
+                fields=("user", "serial"),
+                name="unique_serial_per_user",
+            ),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='cpu_flags',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), null=True, size=None),
+            model_name="octoprintdevice",
+            name="cpu_flags",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.CharField(max_length=255), null=True, size=None
+            ),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='hardware',
+            model_name="octoprintdevice",
+            name="hardware",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='revision',
+            model_name="octoprintdevice",
+            name="revision",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='virtualenv',
+            model_name="octoprintdevice",
+            name="virtualenv",
             field=models.CharField(max_length=255, null=True),
         ),
     ]

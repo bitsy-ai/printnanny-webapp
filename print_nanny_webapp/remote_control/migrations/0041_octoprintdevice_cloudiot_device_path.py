@@ -27,7 +27,10 @@ def reverse_cloudiot_device_path(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs"),
+        (
+            "remote_control",
+            "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs",
+        ),
     ]
 
     operations = [

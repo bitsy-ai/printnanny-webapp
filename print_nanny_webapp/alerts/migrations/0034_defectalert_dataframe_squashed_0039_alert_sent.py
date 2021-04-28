@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0028_auto_20210118_2015_squashed_0033_auto_20210228_2210'),
+        ("alerts", "0028_auto_20210118_2015_squashed_0033_auto_20210228_2210"),
     ]
 
     operations = [
@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
         #     field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printjob'),
         # ),
         migrations.AddField(
-            model_name='alert',
-            name='sent',
+            model_name="alert",
+            name="sent",
             field=models.BooleanField(default=False),
         ),
     ]

@@ -10,59 +10,81 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_events', '0001_initial'),
+        ("client_events", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='predictsession',
-            name='channel_name',
-            field=models.CharField(default='foo', max_length=255),
+            model_name="predictsession",
+            name="channel_name",
+            field=models.CharField(default="foo", max_length=255),
             preserve_default=False,
         ),
         migrations.CreateModel(
-            name='OctoPrintDevice',
+            name="OctoPrintDevice",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('private_key', models.FileField(upload_to='uploads/private_key/')),
-                ('public_key', models.FileField(upload_to='uploads/public_key/')),
-                ('model', models.CharField(max_length=255)),
-                ('platform', models.CharField(max_length=255)),
-                ('cpu_flags', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), size=None)),
-                ('hardware', models.CharField(max_length=255)),
-                ('revision', models.CharField(max_length=255)),
-                ('serial', models.CharField(max_length=255)),
-                ('cores', models.IntegerField()),
-                ('ram', models.IntegerField()),
-                ('python_version', models.CharField(max_length=255)),
-                ('pip_version', models.CharField(max_length=255)),
-                ('virtualenv', models.CharField(max_length=255)),
-                ('octoprint_version', models.CharField(max_length=255)),
-                ('plugin_version', models.CharField(max_length=255)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('print_nanny_client_version', models.CharField(default='v0.1.6', max_length=255)),
-                ('name', models.CharField(default='octoprint', max_length=255)),
-                ('cloudiot_device', django.contrib.postgres.fields.jsonb.JSONField()),
-                ('fingerprint', models.CharField(default=1, max_length=255)),
-                ('cloudiot_device_num_id', models.BigIntegerField(default=1)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("private_key", models.FileField(upload_to="uploads/private_key/")),
+                ("public_key", models.FileField(upload_to="uploads/public_key/")),
+                ("model", models.CharField(max_length=255)),
+                ("platform", models.CharField(max_length=255)),
+                (
+                    "cpu_flags",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=255), size=None
+                    ),
+                ),
+                ("hardware", models.CharField(max_length=255)),
+                ("revision", models.CharField(max_length=255)),
+                ("serial", models.CharField(max_length=255)),
+                ("cores", models.IntegerField()),
+                ("ram", models.IntegerField()),
+                ("python_version", models.CharField(max_length=255)),
+                ("pip_version", models.CharField(max_length=255)),
+                ("virtualenv", models.CharField(max_length=255)),
+                ("octoprint_version", models.CharField(max_length=255)),
+                ("plugin_version", models.CharField(max_length=255)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "print_nanny_client_version",
+                    models.CharField(default="v0.1.6", max_length=255),
+                ),
+                ("name", models.CharField(default="octoprint", max_length=255)),
+                ("cloudiot_device", django.contrib.postgres.fields.jsonb.JSONField()),
+                ("fingerprint", models.CharField(default=1, max_length=255)),
+                ("cloudiot_device_num_id", models.BigIntegerField(default=1)),
             ],
             options={
-                'unique_together': {('user', 'serial')},
+                "unique_together": {("user", "serial")},
             },
         ),
         migrations.RemoveField(
-            model_name='predictsession',
-            name='user',
+            model_name="predictsession",
+            name="user",
         ),
         migrations.DeleteModel(
-            name='PredictEvent',
+            name="PredictEvent",
         ),
         migrations.DeleteModel(
-            name='PredictEventFile',
+            name="PredictEventFile",
         ),
         migrations.DeleteModel(
-            name='PredictSession',
+            name="PredictSession",
         ),
     ]
