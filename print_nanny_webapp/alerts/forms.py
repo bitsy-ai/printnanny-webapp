@@ -2,18 +2,19 @@ from enum import unique
 from print_nanny_webapp.utils import fields
 from print_nanny_webapp.partners.models import GeeksToken
 from django.forms import ModelForm
+from django.forms import modelformset_factory
+from .models import (
+    AlertSettings,
+    RemoteControlCommandAlertSettings,
+    DiscordMethodSettings,
+)
 
-# from .models import (
-#     ProgressAlertSettings,
-#     RemoteControlCommandAlertSettings,
-#     DiscordMethodSettings,
-# )
 
 
-# class ProgressAlertSettingsForm(ModelForm):
-#     class Meta:
-#         model = ProgressAlertSettings
-#         fields = ("enabled", "on_progress_percent", "alert_methods")
+class AlertSettingsForm(ModelForm):
+    class Meta:
+        model = AlertSettings
+        fields = ("event_types", "print_process_percent")
 
 
 # class CommandAlertSettingsForm(ModelForm):
