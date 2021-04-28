@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ("contenttypes", "0002_remove_content_type_name"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("alerts", "0065_auto_20210427_2033"),
+        ("alerts", "0040_auto_20210328_1610_squashed_0065_auto_20210427_2033"),
     ]
 
     operations = [
