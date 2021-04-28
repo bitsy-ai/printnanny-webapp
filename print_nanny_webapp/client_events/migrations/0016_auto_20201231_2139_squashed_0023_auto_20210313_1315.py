@@ -10,8 +10,6 @@ import print_nanny_webapp.client_events.models
 
 class Migration(migrations.Migration):
 
-    replaces = [('client_events', '0016_auto_20201231_2139'), ('client_events', '0017_printjobevent_state'), ('client_events', '0018_auto_20210101_1050'), ('client_events', '0019_remove_printjobevent_progress'), ('client_events', '0020_auto_20210307_1632'), ('client_events', '0021_auto_20210307_1637'), ('client_events', '0022_auto_20210307_1828'), ('client_events', '0023_auto_20210313_1315')]
-
     dependencies = [
         ('remote_control', '0008_octoprintdevice_cloudiot_device_name'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
