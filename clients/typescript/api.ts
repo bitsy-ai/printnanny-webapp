@@ -192,7 +192,7 @@ export interface AlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof AlertSettings
      */
@@ -235,7 +235,7 @@ export interface AlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof AlertSettingsRequest
      */
@@ -334,7 +334,7 @@ export interface CommandAlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof CommandAlertSettings
      */
@@ -352,7 +352,7 @@ export interface CommandAlertSettings {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
@@ -413,7 +413,7 @@ export interface CommandAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof CommandAlertSettingsRequest
      */
@@ -431,7 +431,7 @@ export interface CommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -2164,6 +2164,12 @@ export interface PartnerOctoPrintDevice {
      * @memberof PartnerOctoPrintDevice
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    verified?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -2228,7 +2234,7 @@ export interface PatchedAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedAlertSettingsRequest
      */
@@ -2253,7 +2259,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2271,7 +2277,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2790,7 +2796,7 @@ export interface PatchedProgressAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedProgressAlertSettingsRequest
      */
@@ -3864,7 +3870,7 @@ export interface ProgressAlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof ProgressAlertSettings
      */
@@ -3907,7 +3913,7 @@ export interface ProgressAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof ProgressAlertSettingsRequest
      */
