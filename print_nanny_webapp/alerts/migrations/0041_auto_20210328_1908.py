@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0053_printsession_supress_alerts"),
         ("alerts", "0040_auto_20210328_1610"),
     ]
 

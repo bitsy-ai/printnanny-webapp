@@ -10,11 +10,28 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
-        ("client_events", "0026_monitoringframeevent_event_type_squashed_0028_auto_20210321_1312"),
+        ("client_events", "0024_auto_20210313_1428_squashed_0025_auto_20210313_1447"),
     ]
 
     operations = [
+        migrations.AddField(
+            model_name='monitoringframeevent',
+            name='event_type',
+            field=models.CharField(choices=[('monitoring_frame_raw', 'Monitoring frame sent without model annotations'), ('monitoring_frame_post', 'Monitoring frame sent with on-device annotations')], db_index=True, default='monitoring_frame_raw', max_length=255),
+        ),
+        migrations.DeleteModel(
+            name='MonitoringFrameEvent',
+        ),
+        migrations.AddField(
+            model_name='octoprintevent',
+            name='print_session',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+        ),
+        migrations.AddField(
+            model_name='printjobstate',
+            name='print_session',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printsession'),
+        ),
         migrations.CreateModel(
             name="PrintSessionState",
             fields=[

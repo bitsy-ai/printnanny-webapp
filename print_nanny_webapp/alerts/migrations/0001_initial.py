@@ -182,13 +182,13 @@ class Migration(migrations.Migration):
                         size=None,
                     ),
                 ),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
             ],
             options={
                 "abstract": False,
@@ -230,13 +230,13 @@ class Migration(migrations.Migration):
                         size=None,
                     ),
                 ),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
             ],
             options={
                 "abstract": False,

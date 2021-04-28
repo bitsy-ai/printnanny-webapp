@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('client_events', '0016_auto_20201231_2139_squashed_0023_auto_20210313_1315'),
         ('ml_ops', '0013_auto_20210313_1315'),
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
     ]
 
     operations = [
@@ -117,7 +116,7 @@ class Migration(migrations.Migration):
                 ('progress', django.contrib.postgres.fields.jsonb.JSONField(default=dict)),
                 ('job_data_file', models.CharField(max_length=255)),
                 ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
-                ('print_job', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printjob')),
+                # ('print_job', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printjob')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

@@ -12,12 +12,10 @@ import print_nanny_webapp.utils.storages
 
 class Migration(migrations.Migration):
 
-    # replaces = [('remote_control', '0002_auto_20201126_1453'), ('remote_control', '0003_printjob_progress'), ('remote_control', '0004_remove_printjob_gcode_file_hash'), ('remote_control', '0005_auto_20201227_1910'), ('remote_control', '0006_printjob_octoprint_device'), ('remote_control', '0007_auto_20201229_2309'), ('remote_control', '0008_octoprintdevice_cloudiot_device_name'), ('remote_control', '0009_remotecontrolaction'), ('remote_control', '0010_auto_20210103_1659'), ('remote_control', '0011_remotecontrolcommand_iotcore_response'), ('remote_control', '0012_remotecontrolcommand_config_version'), ('remote_control', '0013_auto_20210103_1855'), ('remote_control', '0014_auto_20210103_1922'), ('remote_control', '0015_remotecontrolcommand_success'), ('remote_control', '0016_octoprintdevice_monitoring_active'), ('remote_control', '0017_auto_20210103_2225'), ('remote_control', '0018_auto_20210103_2235'), ('remote_control', '0019_auto_20210109_2034'), ('remote_control', '0020_auto_20210117_2151'), ('remote_control', '0021_auto_20210118_0924'), ('remote_control', '0022_gcodefile_octoprint_device'), ('remote_control', '0023_auto_20210118_1016'), ('remote_control', '0024_auto_20210118_1040'), ('remote_control', '0025_auto_20210118_1114'), ('remote_control', '0026_remotecontrolsnapshot'), ('remote_control', '0027_remotecontrolcommand_metadata'), ('remote_control', '0028_auto_20210118_1245'), ('remote_control', '0029_auto_20210118_1458'), ('remote_control', '0030_printjob_progress'), ('remote_control', '0031_auto_20210118_1612'), ('remote_control', '0032_auto_20210118_1729'), ('remote_control', '0033_remotecontrolsnapshot_created_dt'), ('remote_control', '0034_auto_20210129_2321'), ('remote_control', '0035_remove_printerprofile_volume_custom_box'), ('remote_control', '0036_printerprofile_volume_custom_box'), ('remote_control', '0037_auto_20210201_1904'), ('remote_control', '0038_auto_20210201_2354'), ('remote_control', '0039_auto_20210202_0057'), ('remote_control', '0040_octoprintdevice_configs')]
-
     dependencies = [
         ('remote_control', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('client_events', '0002_predictsession_channel_name_squashed_0009_auto_20201228_1434'),
+        # ('client_events', '0002_predictsession_channel_name_squashed_0009_auto_20201228_1434'),
     ]
 
     operations = [

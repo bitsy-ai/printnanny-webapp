@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0061_auto_20210425_2253"),
+        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313_squashed_0061_auto_20210425_2253"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("client_events", "0029_auto_20210328_1610"),
     ]

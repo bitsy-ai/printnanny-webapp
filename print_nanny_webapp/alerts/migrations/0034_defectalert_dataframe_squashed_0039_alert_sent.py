@@ -7,16 +7,15 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         ('alerts', '0028_auto_20210118_2015_squashed_0033_auto_20210228_2210'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='defectalert',
-            name='print_job',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printjob'),
-        ),
+        # migrations.AddField(
+        #     model_name='defectalert',
+        #     name='print_job',
+        #     field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='remote_control.printjob'),
+        # ),
         migrations.AddField(
             model_name='alert',
             name='sent',

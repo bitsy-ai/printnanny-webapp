@@ -7,15 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         ("alerts", "0034_defectalert_dataframe_squashed_0039_alert_sent"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="defectalert",
-            name="print_job",
-        ),
+        # migrations.RemoveField(
+        #     model_name="defectalert",
+        #     name="print_job",
+        # ),
         migrations.AddField(
             model_name="defectalert",
             name="print_session",

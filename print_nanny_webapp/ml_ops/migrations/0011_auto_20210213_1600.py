@@ -10,7 +10,6 @@ DeviceCalibration = apps.get_model("ml_ops", "DeviceCalibration")
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("remote_control", "0042_auto_20210207_2249_squashed_0049_auto_20210321_1313"),
         ("ml_ops", "0010_devicecalibration_coordinates"),
     ]
 
