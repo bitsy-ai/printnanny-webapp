@@ -41,16 +41,20 @@ def _upload_to(instance, filename):
 ##
 
 class AlertEventSettings(PolymorphicModel):
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
-    enabled = models.BooleanField(default=True)
+    class Meta:
+        abstract = True
     class EventType(models.TextChoices):
         PRINT_PROGRESS = "PrintProgress", "Receive print progress notifications"
         PRINT_HEALTH = "PrintHealth", "Receive print health alerts"
         PRINT_STATUS = "PrintStatus", "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)"
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    enabled = models.BooleanField(default=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     event_type = models.CharField(choices=EventType.choices, max_length=255)
 
+    def on_event(self, octoprint_event):
+        raise NotImplemented
 
 class PrintProgressEventSettings(AlertEventSettings):
     def __init__(self, *args, **kwargs):
@@ -62,13 +66,25 @@ class PrintProgressEventSettings(AlertEventSettings):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
-    def on_print_progress(self, octoprint_event):
+    def on_event(self, octoprint_event):
         from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
 
         progress = octoprint_event.event_data.get("event_data").get("progress")
         if progress % self.on_progress_percent == 0:
             serialized_obj = ProgressAlertSerializer(self)
             return self.trigger_alerts_task(serialized_obj)
+
+class PrintHealthEventSettings(AlertEventSettings):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=AlertEventSettings.EventType.PRINT_HEALTH, **kwargs)
+
+class PrintStatusEventSettings(AlertEventSettings):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, alert_type=AlertEventSettings.EventType.PRINT_STATUS, **kwargs)
+
+
 
 class Alert(PolymorphicModel):
     """
