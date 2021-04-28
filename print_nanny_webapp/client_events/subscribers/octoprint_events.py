@@ -23,7 +23,7 @@ from django.apps import apps
 
 OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
 PrintSessionState = apps.get_model("client_events", "PrintSessionState")
-ProgressAlertSettings = apps.get_model("alerts", "ProgressAlertSettings")
+AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -31,13 +31,21 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
-    alert_settings, created = ProgressAlertSettings.objects.get_or_create(
+    alert_settings, created = AlertEventSettings.objects.get_or_create(
         user=octoprint_event.user
     )
     return alert_settings.on_print_progress(octoprint_event)
 
 
+def handle_print_status(octoprint_event):
+    pass
+
+
 HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
+
+HANDLER_FNS.update(
+    {value: handle_print_status for label, value in PrintSessionState.EventType.choices}
+)
 
 
 def on_octoprint_event(message):

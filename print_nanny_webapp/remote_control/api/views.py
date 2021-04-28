@@ -44,11 +44,6 @@ from print_nanny_webapp.remote_control.models import (
     RemoteControlCommand,
 )
 
-from print_nanny_webapp.alerts.tasks.remote_control_command_alert import (
-    create_remote_control_command_alerts,
-)
-
-
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -59,8 +54,6 @@ import google.api_core.exceptions
 from print_nanny_webapp.utils import prometheus_metrics
 
 logger = logging.getLogger(__name__)
-
-RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
 
 
 @extend_schema(tags=["remote-control"])
@@ -109,13 +102,6 @@ class CommandViewSet(
             # If 'prefetch_related' has been applied to a queryset, we need to
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
-
-        alert_subtype = RemoteControlCommandAlert.get_alert_subtype(request.data)
-        if alert_subtype is not None:
-            task = create_remote_control_command_alerts.delay(
-                request.user.id, instance.id, alert_subtype.value
-            )
-            logger.info(f"Created create_remote_control_command_alerts task {task}")
 
         return Response(serializer.data)
 
