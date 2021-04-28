@@ -42,7 +42,13 @@ def _upload_to(instance, filename):
 
 
 class Alert(PolymorphicModel):
+    """
+        Base class for alert events
+    """
     class AlertTypeChoices(models.TextChoices):
+        """
+            Types of noteworthy events
+        """
         COMMAND = "COMMAND", "Remote command status updates"
         PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
         MANUAL_VIDEO_UPLOAD = (
@@ -52,6 +58,9 @@ class Alert(PolymorphicModel):
         PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
+        """
+            The channels to which an alert is sent
+        """
         UI = "UI", "Receive Print Nanny UI notifications"
         EMAIL = "EMAIL", "Receive email notifications"
         DISCORD = "DISCORD", "Receive notifications through Discord"
@@ -76,6 +85,17 @@ class Alert(PolymorphicModel):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
+
+class AlertMethodSettings(PolymorphicModel):
+    """
+        Alert method/channel settings (per user) 
+    """
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    alert_method = models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255)
+    enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, db_index=True)
+
 
 
 class AlertSettings(PolymorphicModel):
