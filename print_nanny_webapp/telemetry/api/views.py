@@ -22,14 +22,14 @@ from django.conf import settings
 from .serializers import (
     OctoPrintEventSerializer,
     PluginEventSerializer,
-    PrintSessionStateSerializer,
+    PrintStatusEventSerializer,
 )
 import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 PluginEvent = apps.get_model("telemetry", "PluginEvent")
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
+PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
 logger = logging.getLogger(__name__)
 
@@ -123,14 +123,14 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: PrintSessionStateSerializer,
-            400: PrintSessionStateSerializer,
+            201: PrintStatusEventSerializer,
+            400: PrintStatusEventSerializer,
         }
     )
 )
-class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = PrintSessionStateSerializer
-    queryset = PrintSessionState.objects.all()
+class PrintStatusEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = PrintStatusEventSerializer
+    queryset = PrintStatusEvent.objects.all()
     lookup_field = "id"
 
     @extend_schema(
@@ -141,7 +141,7 @@ class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixi
     @action(methods=["GET"], detail=False)
     def enum(self, *args, **kwargs):
         return Response(
-            PrintSessionState.event_codes,
+            PrintStatusEvent.event_codes,
             status.HTTP_200_OK,
         )
 
