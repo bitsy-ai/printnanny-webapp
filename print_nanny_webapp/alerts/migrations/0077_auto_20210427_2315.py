@@ -6,22 +6,22 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0076_auto_20210427_2159'),
+        ("alerts", "0076_auto_20210427_2159"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='remotecontrolcommandalert',
-            name='alert_ptr',
+            model_name="remotecontrolcommandalert",
+            name="alert_ptr",
         ),
         migrations.RemoveField(
-            model_name='remotecontrolcommandalert',
-            name='command',
+            model_name="remotecontrolcommandalert",
+            name="command",
         ),
         migrations.DeleteModel(
-            name='ProgressAlert',
+            name="ProgressAlert",
         ),
         migrations.DeleteModel(
-            name='RemoteControlCommandAlert',
+            name="RemoteControlCommandAlert",
         ),
     ]

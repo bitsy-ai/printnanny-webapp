@@ -36,6 +36,7 @@ class AlertSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ("user",)
 
+
 class CreatePrintSessionAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
     # dataflow writes uploaded video to gcs, so create method acccepts path string

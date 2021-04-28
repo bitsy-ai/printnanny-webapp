@@ -36,13 +36,17 @@ def handle_print_progress(octoprint_event):
     )
     return alert_settings.on_print_progress(octoprint_event)
 
+
 def handle_print_status(octoprint_event):
+    pass
 
 
-HANDLER_FNS = { 
-    OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress,
-    **{ value: handle_print_status for label, value in PrintSessionState.EventType.choices}
-}
+HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
+
+HANDLER_FNS.update(
+    {value: handle_print_status for label, value in PrintSessionState.EventType.choices}
+)
+
 
 def on_octoprint_event(message):
     data = message.data.decode("utf-8")
