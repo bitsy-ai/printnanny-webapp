@@ -1,6 +1,6 @@
 ---
 artifactId: print-nanny-client
-artifactVersion: '0.5.4'
+artifactVersion: 'artifactVersion: '0.5.4''
 serializableModel: "true"
 dateLibrary: java8
 sortModelPropertiesByRequiredFlag: true
