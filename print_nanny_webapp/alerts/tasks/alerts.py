@@ -147,48 +147,6 @@ class AlertTask:
         )
 
 
-class RemoteCommandStatusAlertTask(AlertTask):
-    """
-    Fires when the status of a remote command changes
-    Status choices governed by RemoteControlCommandAlertSettings.AlertSubTypeChoices { RECEVIED, FAILED, SUCCESS }
-    """
-
-    email_body_txt_template = "email/remote_control_command_body.txt"
-    email_body_html_template = (
-        None  # @todo work with freelance designer on html email template set
-    )
-    email_subject_template = "email/remote_control_command_subject.txt"
-
-    def trigger_email_alert(self):
-
-        merge_data = {
-            "FIRST_NAME": self.instance.user.first_name or "Maker",
-            "DEVICE_NAME": self.instance.command.device.name,
-            "COMMAND": self.instance.command.command,
-            "SUBTYPE": self.instance.alert_subtype,
-            "PROGRESS": self.instance.command.metadata.get("progress"),
-            "MANAGE_DEVICE_URL": self.instance.command.device.manage_url,
-        }
-
-        text_body = render_to_string(self.email_body_txt_template, merge_data)
-        subject = render_to_string(self.email_subject_template, merge_data)
-
-        message = AnymailMessage(
-            subject=subject,
-            body=text_body,
-            to=[self.instance.user.email],
-            tags=[
-                "RemoteControlCommandAlert",
-                self.instance.command.command,
-                self.instance.alert_subtype,
-                f"User:{self.instance.user.id}",
-            ],
-        )
-        message.send()
-
-        return message
-
-
 class PrintSessionAlertTask(AlertTask):
 
     email_body_txt_template = "email/remote_control_command_body.txt"
