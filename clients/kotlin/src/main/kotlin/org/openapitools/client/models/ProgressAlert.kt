@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertTypeEnum
 
 import com.squareup.moshi.Json
@@ -22,7 +22,7 @@ import java.io.Serializable
  * @param device 
  * @param id 
  * @param time 
- * @param alertMethods 
+ * @param alertMethod 
  * @param alertType 
  * @param createdDt 
  * @param updatedDt 
@@ -41,8 +41,8 @@ data class ProgressAlert (
     val id: kotlin.Int? = null,
     @Json(name = "time")
     val time: kotlin.String? = null,
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum? = null,
     @Json(name = "alert_type")
     val alertType: AlertTypeEnum? = null,
     @Json(name = "created_dt")

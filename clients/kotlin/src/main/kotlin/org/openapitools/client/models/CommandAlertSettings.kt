@@ -25,10 +25,10 @@ import java.io.Serializable
  * @param createdDt 
  * @param updatedDt 
  * @param alertMethods 
- * @param enabled Enable or disable this alert channel
+ * @param enabled Enable or disable this alert type
  * @param monitoringStop Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
  * @param monitoringStart Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
- * @param printStart Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+ * @param printStart Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
  * @param printStop Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
  * @param printPause Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
  * @param printResume Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
@@ -48,7 +48,7 @@ data class CommandAlertSettings (
     val updatedDt: java.time.OffsetDateTime? = null,
     @Json(name = "alert_methods")
     val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
-    /* Enable or disable this alert channel */
+    /* Enable or disable this alert type */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
     /* Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes. */
@@ -57,7 +57,7 @@ data class CommandAlertSettings (
     /* Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem. */
     @Json(name = "monitoring_start")
     val monitoringStart: kotlin.collections.List<MoveNozzleEnum>? = null,
-    /* Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.  */
+    /* Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes.  */
     @Json(name = "print_start")
     val printStart: kotlin.collections.List<MoveNozzleEnum>? = null,
     /* Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem. */

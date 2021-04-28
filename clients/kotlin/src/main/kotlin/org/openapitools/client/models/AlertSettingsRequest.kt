@@ -21,7 +21,7 @@ import java.io.Serializable
  * 
  * @param alertType 
  * @param alertMethods 
- * @param enabled Enable or disable this alert channel
+ * @param enabled Enable or disable this alert type
  */
 
 data class AlertSettingsRequest (
@@ -29,7 +29,7 @@ data class AlertSettingsRequest (
     val alertType: AlertTypeEnum,
     @Json(name = "alert_methods")
     val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
-    /* Enable or disable this alert channel */
+    /* Enable or disable this alert type */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null
 ) : Serializable {

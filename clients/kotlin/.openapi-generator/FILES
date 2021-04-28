@@ -4,6 +4,7 @@ build.gradle
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertMethod.md
+docs/AlertMethodEnum.md
 docs/AlertMethodsEnum.md
 docs/AlertPolymorphic.md
 docs/AlertPolymorphicRequest.md
@@ -19,7 +20,6 @@ docs/ArtifactTypesEnum.md
 docs/AuthToken.md
 docs/AuthTokenApi.md
 docs/AuthTokenRequest.md
-docs/Class3dgeeksApi.md
 docs/CommandAlertSettings.md
 docs/CommandAlertSettingsRequest.md
 docs/CommandEnum.md
@@ -31,7 +31,6 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/GcodeFileRequest.md
-docs/GeeksMetadata.md
 docs/ManualVideoUploadAlert.md
 docs/ManualVideoUploadAlertRequest.md
 docs/MlOpsApi.md
@@ -61,7 +60,8 @@ docs/PaginatedPrintSessionStateList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedUserList.md
-docs/PartnersApi.md
+docs/PartnerOctoPrintDevice.md
+docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertPolymorphicRequest.md
 docs/PatchedAlertRequest.md
@@ -111,10 +111,9 @@ settings.gradle
 src/main/kotlin/org/openapitools/client/apis/AlertSettingsApi.kt
 src/main/kotlin/org/openapitools/client/apis/AlertsApi.kt
 src/main/kotlin/org/openapitools/client/apis/AuthTokenApi.kt
-src/main/kotlin/org/openapitools/client/apis/Class3dgeeksApi.kt
 src/main/kotlin/org/openapitools/client/apis/EventsApi.kt
 src/main/kotlin/org/openapitools/client/apis/MlOpsApi.kt
-src/main/kotlin/org/openapitools/client/apis/PartnersApi.kt
+src/main/kotlin/org/openapitools/client/apis/PartnersGeeks3dApi.kt
 src/main/kotlin/org/openapitools/client/apis/PrintSessionAlertsApi.kt
 src/main/kotlin/org/openapitools/client/apis/RemoteControlApi.kt
 src/main/kotlin/org/openapitools/client/apis/SchemaApi.kt
@@ -136,6 +135,7 @@ src/main/kotlin/org/openapitools/client/infrastructure/UUIDAdapter.kt
 src/main/kotlin/org/openapitools/client/models/Alert.kt
 src/main/kotlin/org/openapitools/client/models/AlertBulkResponse.kt
 src/main/kotlin/org/openapitools/client/models/AlertMethod.kt
+src/main/kotlin/org/openapitools/client/models/AlertMethodEnum.kt
 src/main/kotlin/org/openapitools/client/models/AlertMethodsEnum.kt
 src/main/kotlin/org/openapitools/client/models/AlertPolymorphic.kt
 src/main/kotlin/org/openapitools/client/models/AlertPolymorphicRequest.kt
@@ -158,7 +158,6 @@ src/main/kotlin/org/openapitools/client/models/Experiment.kt
 src/main/kotlin/org/openapitools/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/org/openapitools/client/models/GcodeFile.kt
 src/main/kotlin/org/openapitools/client/models/GcodeFileRequest.kt
-src/main/kotlin/org/openapitools/client/models/GeeksMetadata.kt
 src/main/kotlin/org/openapitools/client/models/ManualVideoUploadAlert.kt
 src/main/kotlin/org/openapitools/client/models/ManualVideoUploadAlertRequest.kt
 src/main/kotlin/org/openapitools/client/models/ModelArtifact.kt
@@ -187,6 +186,7 @@ src/main/kotlin/org/openapitools/client/models/PaginatedPrintSessionStateList.kt
 src/main/kotlin/org/openapitools/client/models/PaginatedPrinterProfileList.kt
 src/main/kotlin/org/openapitools/client/models/PaginatedRemoteControlCommandList.kt
 src/main/kotlin/org/openapitools/client/models/PaginatedUserList.kt
+src/main/kotlin/org/openapitools/client/models/PartnerOctoPrintDevice.kt
 src/main/kotlin/org/openapitools/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/org/openapitools/client/models/PatchedAlertPolymorphicRequest.kt
 src/main/kotlin/org/openapitools/client/models/PatchedAlertRequest.kt

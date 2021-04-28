@@ -1,15 +1,15 @@
-# PartnersApi
+# PartnersGeeks3dApi
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**geeks3dMetadataRetrieve**](PartnersApi.md#geeks3dMetadataRetrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
+[**metadataRetrieve**](PartnersGeeks3dApi.md#metadataRetrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 
 
-<a name="geeks3dMetadataRetrieve"></a>
-# **geeks3dMetadataRetrieve**
-> GeeksMetadata geeks3dMetadataRetrieve(id)
+<a name="metadataRetrieve"></a>
+# **metadataRetrieve**
+> PartnerOctoPrintDevice metadataRetrieve(id)
 
 
 
@@ -21,16 +21,16 @@ Method | HTTP request | Description
 //import org.openapitools.client.infrastructure.*
 //import org.openapitools.client.models.*
 
-val apiInstance = PartnersApi()
+val apiInstance = PartnersGeeks3dApi()
 val id : kotlin.String = id_example // kotlin.String | 
 try {
-    val result : GeeksMetadata = apiInstance.geeks3dMetadataRetrieve(id)
+    val result : PartnerOctoPrintDevice = apiInstance.metadataRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PartnersApi#geeks3dMetadataRetrieve")
+    println("4xx response calling PartnersGeeks3dApi#metadataRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PartnersApi#geeks3dMetadataRetrieve")
+    println("5xx response calling PartnersGeeks3dApi#metadataRetrieve")
     e.printStackTrace()
 }
 ```
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GeeksMetadata**](GeeksMetadata.md)
+[**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md)
 
 ### Authorization
 

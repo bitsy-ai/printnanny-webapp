@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertTypeEnum
 import org.openapitools.client.models.PatchedAlertRequest
 import org.openapitools.client.models.PatchedManualVideoUploadAlertRequest
@@ -26,8 +26,9 @@ import java.io.Serializable
 /**
  * 
  * @param seen 
+ * @param octoprintDevice 
  * @param alertSubtype 
- * @param alertMethods 
+ * @param alertMethod 
  * @param alertType 
  * @param color 
  * @param icon 
@@ -35,7 +36,6 @@ import java.io.Serializable
  * @param title 
  * @param sent 
  * @param progressPercent Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
- * @param octoprintDevice 
  * @param device 
  * @param needsReview 
  * @param annotatedVideo 
@@ -49,10 +49,12 @@ interface PatchedAlertPolymorphicRequest : Serializable {
 
     @Json(name = "seen")
     val seen: kotlin.Boolean?
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int?
     @Json(name = "alert_subtype")
     val alertSubtype: PrintSessionAlertAlertSubtypeEnum?
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>?
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum?
     @Json(name = "alert_type")
     val alertType: AlertTypeEnum?
     @Json(name = "color")
@@ -68,8 +70,6 @@ interface PatchedAlertPolymorphicRequest : Serializable {
     /* Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress */
     @Json(name = "progress_percent")
     val progressPercent: kotlin.Int?
-    @Json(name = "octoprint_device")
-    val octoprintDevice: kotlin.Int?
     @Json(name = "device")
     val device: kotlin.Int?
     @Json(name = "needs_review")

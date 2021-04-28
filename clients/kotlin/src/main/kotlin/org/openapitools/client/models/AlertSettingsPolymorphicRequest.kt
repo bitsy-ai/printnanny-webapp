@@ -25,10 +25,10 @@ import java.io.Serializable
  * 
  * @param alertType 
  * @param alertMethods 
- * @param enabled Enable or disable this alert channel
+ * @param enabled Enable or disable this alert type
  * @param monitoringStop Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes.
  * @param monitoringStart Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.
- * @param printStart Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+ * @param printStart Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
  * @param printStop Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.
  * @param printPause Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.
  * @param printResume Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.
@@ -45,7 +45,7 @@ interface AlertSettingsPolymorphicRequest : Serializable {
     val alertType: AlertTypeEnum
     @Json(name = "alert_methods")
     val alertMethods: kotlin.collections.List<AlertMethodsEnum>?
-    /* Enable or disable this alert channel */
+    /* Enable or disable this alert type */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean?
     /* Fires on <strong>MonitoringStop<strong> updates.   Helps debug unexpected Print Nanny crashes. */
@@ -54,7 +54,7 @@ interface AlertSettingsPolymorphicRequest : Serializable {
     /* Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem. */
     @Json(name = "monitoring_start")
     val monitoringStart: kotlin.collections.List<MoveNozzleEnum>?
-    /* Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.  */
+    /* Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes.  */
     @Json(name = "print_start")
     val printStart: kotlin.collections.List<MoveNozzleEnum>?
     /* Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem. */

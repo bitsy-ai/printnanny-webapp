@@ -19,7 +19,7 @@ import com.squareup.moshi.Json
 * Values: uI,eMAIL,dISCORD,pARTNER3DGEEKS
 */
 
-enum class AlertMethodsEnum(val value: kotlin.String){
+enum class AlertMethodEnum(val value: kotlin.String){
 
 
     @Json(name = "UI")

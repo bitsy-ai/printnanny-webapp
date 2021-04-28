@@ -49,7 +49,6 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
 *AlertsApi* | [**printSessionAlertCreate**](docs/AlertsApi.md#printsessionalertcreate) | **POST** /api/print-session-alerts/ | 
 *AuthTokenApi* | [**authTokenCreate**](docs/AuthTokenApi.md#authtokencreate) | **POST** /api/auth-token/ | 
-*Class3dgeeksApi* | [**geeks3dMetadataRetrieve**](docs/Class3dgeeksApi.md#geeks3dmetadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 *EventsApi* | [**octoprintCoreEventsEnumRetrieve**](docs/EventsApi.md#octoprintcoreeventsenumretrieve) | **GET** /api/octoprint-events/enum/ | 
 *EventsApi* | [**octoprintEventsCreate**](docs/EventsApi.md#octoprinteventscreate) | **POST** /api/octoprint-events/ | 
 *EventsApi* | [**octoprintEventsList**](docs/EventsApi.md#octoprinteventslist) | **GET** /api/octoprint-events/ | 
@@ -71,7 +70,7 @@ Class | Method | HTTP request | Description
 *MlOpsApi* | [**experimentsRetrieve**](docs/MlOpsApi.md#experimentsretrieve) | **GET** /api/experiments/{id}/ | 
 *MlOpsApi* | [**modelArtifactsList**](docs/MlOpsApi.md#modelartifactslist) | **GET** /api/model-artifacts/ | 
 *MlOpsApi* | [**modelArtifactsRetrieve**](docs/MlOpsApi.md#modelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
-*PartnersApi* | [**geeks3dMetadataRetrieve**](docs/PartnersApi.md#geeks3dmetadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
+*PartnersGeeks3dApi* | [**metadataRetrieve**](docs/PartnersGeeks3dApi.md#metadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 *PrintSessionAlertsApi* | [**printSessionAlertsList**](docs/PrintSessionAlertsApi.md#printsessionalertslist) | **GET** /api/print-session-alerts/ | 
 *PrintSessionAlertsApi* | [**printSessionAlertsRetrieve**](docs/PrintSessionAlertsApi.md#printsessionalertsretrieve) | **GET** /api/print-session-alerts/{id}/ | 
 *RemoteControlApi* | [**commandsList**](docs/RemoteControlApi.md#commandslist) | **GET** /api/commands/ | 
@@ -116,6 +115,7 @@ Class | Method | HTTP request | Description
  - [org.openapitools.client.models.Alert](docs/Alert.md)
  - [org.openapitools.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
  - [org.openapitools.client.models.AlertMethod](docs/AlertMethod.md)
+ - [org.openapitools.client.models.AlertMethodEnum](docs/AlertMethodEnum.md)
  - [org.openapitools.client.models.AlertMethodsEnum](docs/AlertMethodsEnum.md)
  - [org.openapitools.client.models.AlertPolymorphic](docs/AlertPolymorphic.md)
  - [org.openapitools.client.models.AlertPolymorphicRequest](docs/AlertPolymorphicRequest.md)
@@ -138,7 +138,6 @@ Class | Method | HTTP request | Description
  - [org.openapitools.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [org.openapitools.client.models.GcodeFile](docs/GcodeFile.md)
  - [org.openapitools.client.models.GcodeFileRequest](docs/GcodeFileRequest.md)
- - [org.openapitools.client.models.GeeksMetadata](docs/GeeksMetadata.md)
  - [org.openapitools.client.models.ManualVideoUploadAlert](docs/ManualVideoUploadAlert.md)
  - [org.openapitools.client.models.ManualVideoUploadAlertRequest](docs/ManualVideoUploadAlertRequest.md)
  - [org.openapitools.client.models.ModelArtifact](docs/ModelArtifact.md)
@@ -167,6 +166,7 @@ Class | Method | HTTP request | Description
  - [org.openapitools.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [org.openapitools.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [org.openapitools.client.models.PaginatedUserList](docs/PaginatedUserList.md)
+ - [org.openapitools.client.models.PartnerOctoPrintDevice](docs/PartnerOctoPrintDevice.md)
  - [org.openapitools.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [org.openapitools.client.models.PatchedAlertPolymorphicRequest](docs/PatchedAlertPolymorphicRequest.md)
  - [org.openapitools.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)

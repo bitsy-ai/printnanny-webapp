@@ -23,9 +23,10 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param pluginVersion 
  * @param printNannyClientVersion 
+ * @param verified 
  */
 
-data class GeeksMetadata (
+data class PartnerOctoPrintDevice (
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "model")
@@ -37,7 +38,9 @@ data class GeeksMetadata (
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
-    val printNannyClientVersion: kotlin.String
+    val printNannyClientVersion: kotlin.String,
+    @Json(name = "verified")
+    val verified: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

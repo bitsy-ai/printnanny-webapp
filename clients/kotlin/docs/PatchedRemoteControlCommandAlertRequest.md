@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alertSubtype** | [**RemoteControlCommandAlertAlertSubtypeEnum**](RemoteControlCommandAlertAlertSubtypeEnum.md) |  |  [optional]
-**alertMethods** | [**kotlin.collections.List&lt;AlertMethodsEnum&gt;**](AlertMethodsEnum.md) |  |  [optional]
+**alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  |  [optional]
 **alertType** | [**AlertTypeEnum**](AlertTypeEnum.md) |  |  [optional]
 **color** | **kotlin.String** |  |  [optional]
 **icon** | **kotlin.String** |  |  [optional]

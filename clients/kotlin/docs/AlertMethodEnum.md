@@ -1,5 +1,5 @@
 
-# AlertMethodsEnum
+# AlertMethodEnum
 
 ## Enum
 

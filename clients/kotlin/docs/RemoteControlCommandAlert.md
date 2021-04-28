@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **icon** | **kotlin.String** |  | 
 **description** | **kotlin.String** |  | 
 **title** | **kotlin.String** |  | 
-**alertMethods** | [**kotlin.collections.List&lt;AlertMethodsEnum&gt;**](AlertMethodsEnum.md) |  |  [optional]
+**alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  |  [optional]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **dashboardUrl** | **kotlin.String** |  |  [optional] [readonly]
 **metadata** | **kotlin.String** |  |  [optional] [readonly]

@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
 
-class PushNotificationsForm(forms.form):
+class PushNotificationsForm(forms.Form):
     email = forms.BooleanField(label="Receive email notifications")
     discord = forms.BooleanField(label="Receive discord notifications")
     geeks_3d = forms.BooleanField(

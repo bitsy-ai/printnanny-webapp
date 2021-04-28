@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.apis
 
-import org.openapitools.client.models.GeeksMetadata
+import org.openapitools.client.models.PartnerOctoPrintDevice
 
 import org.openapitools.client.infrastructure.ApiClient
 import org.openapitools.client.infrastructure.ClientException
@@ -25,7 +25,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class Class3dgeeksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class PartnersGeeks3dApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -37,14 +37,14 @@ class Class3dgeeksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     * 
     * 3D Geeks calls this endpoint to validate token &amp; fetch printer metadata
     * @param id  
-    * @return GeeksMetadata
+    * @return PartnerOctoPrintDevice
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun geeks3dMetadataRetrieve(id: kotlin.String) : GeeksMetadata {
+    fun metadataRetrieve(id: kotlin.String) : PartnerOctoPrintDevice {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -54,13 +54,13 @@ class Class3dgeeksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<GeeksMetadata>(
+        val localVarResponse = request<PartnerOctoPrintDevice>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GeeksMetadata
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PartnerOctoPrintDevice
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

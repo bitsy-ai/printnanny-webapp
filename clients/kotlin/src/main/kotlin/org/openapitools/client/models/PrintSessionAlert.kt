@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertTypeEnum
 import org.openapitools.client.models.PrintSessionAlertAlertSubtypeEnum
 
@@ -24,7 +24,7 @@ import java.io.Serializable
  * @param printSession 
  * @param id 
  * @param time 
- * @param alertMethods 
+ * @param alertMethod 
  * @param alertType 
  * @param createdDt 
  * @param updatedDt 
@@ -46,8 +46,8 @@ data class PrintSessionAlert (
     val id: kotlin.Int? = null,
     @Json(name = "time")
     val time: kotlin.String? = null,
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum? = null,
     @Json(name = "alert_type")
     val alertType: AlertTypeEnum? = null,
     @Json(name = "created_dt")

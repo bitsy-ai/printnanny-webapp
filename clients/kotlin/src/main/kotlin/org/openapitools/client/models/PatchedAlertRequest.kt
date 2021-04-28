@@ -18,11 +18,14 @@ import java.io.Serializable
 /**
  * 
  * @param seen 
+ * @param octoprintDevice 
  */
 
 data class PatchedAlertRequest (
     @Json(name = "seen")
-    val seen: kotlin.Boolean? = null
+    val seen: kotlin.Boolean? = null,
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

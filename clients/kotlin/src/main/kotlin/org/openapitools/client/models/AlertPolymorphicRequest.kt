@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertRequest
 import org.openapitools.client.models.AlertTypeEnum
 import org.openapitools.client.models.ManualVideoUploadAlertRequest
@@ -35,10 +35,10 @@ import java.io.Serializable
  * @param annotatedVideo 
  * @param printSession 
  * @param seen 
- * @param alertMethods 
+ * @param octoprintDevice 
+ * @param alertMethod 
  * @param sent 
  * @param progressPercent Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
- * @param octoprintDevice 
  * @param needsReview 
  */
 
@@ -67,15 +67,15 @@ interface AlertPolymorphicRequest : Serializable {
     val printSession: kotlin.Int
     @Json(name = "seen")
     val seen: kotlin.Boolean?
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>?
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int?
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum?
     @Json(name = "sent")
     val sent: kotlin.Boolean?
     /* Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress */
     @Json(name = "progress_percent")
     val progressPercent: kotlin.Int?
-    @Json(name = "octoprint_device")
-    val octoprintDevice: kotlin.Int?
     @Json(name = "needs_review")
     val needsReview: kotlin.Boolean?
 }

@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertTypeEnum
 import org.openapitools.client.models.RemoteControlCommandAlertAlertSubtypeEnum
 
@@ -26,7 +26,7 @@ import java.io.Serializable
  * @param icon 
  * @param description 
  * @param title 
- * @param alertMethods 
+ * @param alertMethod 
  * @param createdDt 
  * @param dashboardUrl 
  * @param metadata 
@@ -50,8 +50,8 @@ data class RemoteControlCommandAlert (
     val description: kotlin.String,
     @Json(name = "title")
     val title: kotlin.String,
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum? = null,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "dashboard_url")

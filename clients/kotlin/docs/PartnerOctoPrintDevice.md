@@ -1,5 +1,5 @@
 
-# GeeksMetadata
+# PartnerOctoPrintDevice
 
 ## Properties
 Name | Type | Description | Notes
@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
+**verified** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

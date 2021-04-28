@@ -11,7 +11,7 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AlertMethodsEnum
+import org.openapitools.client.models.AlertMethodEnum
 import org.openapitools.client.models.AlertTypeEnum
 import org.openapitools.client.models.RemoteControlCommandAlertAlertSubtypeEnum
 
@@ -21,7 +21,7 @@ import java.io.Serializable
 /**
  * 
  * @param alertSubtype 
- * @param alertMethods 
+ * @param alertMethod 
  * @param alertType 
  * @param color 
  * @param icon 
@@ -33,8 +33,8 @@ import java.io.Serializable
 data class PatchedRemoteControlCommandAlertRequest (
     @Json(name = "alert_subtype")
     val alertSubtype: RemoteControlCommandAlertAlertSubtypeEnum? = null,
-    @Json(name = "alert_methods")
-    val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum? = null,
     @Json(name = "alert_type")
     val alertType: AlertTypeEnum? = null,
     @Json(name = "color")

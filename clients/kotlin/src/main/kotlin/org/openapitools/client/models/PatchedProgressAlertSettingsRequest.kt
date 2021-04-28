@@ -21,7 +21,7 @@ import java.io.Serializable
  * 
  * @param alertType 
  * @param alertMethods 
- * @param enabled Enable or disable this alert channel
+ * @param enabled Enable or disable this alert type
  * @param onProgressPercent Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress
  */
 
@@ -30,7 +30,7 @@ data class PatchedProgressAlertSettingsRequest (
     val alertType: AlertTypeEnum? = null,
     @Json(name = "alert_methods")
     val alertMethods: kotlin.collections.List<AlertMethodsEnum>? = null,
-    /* Enable or disable this alert channel */
+    /* Enable or disable this alert type */
     @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
     /* Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress */
