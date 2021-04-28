@@ -8,11 +8,11 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | 
 **alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
-**enabled** | **bool** | Enable or disable this alert channel | [optional] 
+**enabled** | **bool** | Enable or disable this alert type | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **monitoring_stop** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;MonitoringStop&lt;strong&gt; updates.   Helps debug unexpected Print Nanny crashes. | [optional] 
 **monitoring_start** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;MonitoringStop&lt;/strong&gt; updates. Helpful if you want to confirm monitoring started without a problem. | [optional] 
-**print_start** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;StopPrint&lt;/strong&gt; updates. Get notified as soon as a print job finishes.  | [optional] 
+**print_start** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;StartPrint&lt;/strong&gt; updates. Get notified as soon as a print job finishes.  | [optional] 
 **print_stop** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;PrintStart&lt;/strong&gt; command status changes. Helpful for verifying a print job started without a problem. | [optional] 
 **print_pause** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;PausePrint&lt;/strong&gt; command status changes. Helpful for verifying a print was paused successfully. | [optional] 
 **print_resume** | [**list[MoveNozzleEnum]**](MoveNozzleEnum.md) | Fires on &lt;strong&gt;ResumePrint&lt;/strong&gt; command status changes Helpful for verifying a print was resumed. | [optional] 

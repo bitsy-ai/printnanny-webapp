@@ -38,7 +38,8 @@ class PartnerOctoPrintDevice(object):
         'platform': 'str',
         'octoprint_version': 'str',
         'plugin_version': 'str',
-        'print_nanny_client_version': 'str'
+        'print_nanny_client_version': 'str',
+        'verified': 'str'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class PartnerOctoPrintDevice(object):
         'platform': 'platform',
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
-        'print_nanny_client_version': 'print_nanny_client_version'
+        'print_nanny_client_version': 'print_nanny_client_version',
+        'verified': 'verified'
     }
 
-    def __init__(self, name=None, model=None, platform=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, verified=None, local_vars_configuration=None):  # noqa: E501
         """PartnerOctoPrintDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class PartnerOctoPrintDevice(object):
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
+        self._verified = None
         self.discriminator = None
 
         self.name = name
@@ -70,6 +73,8 @@ class PartnerOctoPrintDevice(object):
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
+        if verified is not None:
+            self.verified = verified
 
     @property
     def name(self):
@@ -226,6 +231,27 @@ class PartnerOctoPrintDevice(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def verified(self):
+        """Gets the verified of this PartnerOctoPrintDevice.  # noqa: E501
+
+
+        :return: The verified of this PartnerOctoPrintDevice.  # noqa: E501
+        :rtype: str
+        """
+        return self._verified
+
+    @verified.setter
+    def verified(self, verified):
+        """Sets the verified of this PartnerOctoPrintDevice.
+
+
+        :param verified: The verified of this PartnerOctoPrintDevice.  # noqa: E501
+        :type verified: str
+        """
+
+        self._verified = verified
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

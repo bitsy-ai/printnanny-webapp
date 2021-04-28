@@ -41,7 +41,8 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
                 platform = '', 
                 octoprint_version = '', 
                 plugin_version = '', 
-                print_nanny_client_version = ''
+                print_nanny_client_version = '', 
+                verified = ''
             )
         else :
             return PartnerOctoPrintDevice(
