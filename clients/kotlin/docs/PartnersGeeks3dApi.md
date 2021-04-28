@@ -18,8 +18,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = PartnersGeeks3dApi()
 val id : kotlin.String = id_example // kotlin.String | 

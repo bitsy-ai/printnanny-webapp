@@ -20,8 +20,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AlertSettingsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -70,8 +70,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AlertSettingsApi()
 try {
@@ -116,8 +116,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AlertSettingsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert settings.
@@ -168,8 +168,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AlertSettingsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert settings.
@@ -218,8 +218,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AlertSettingsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert settings.

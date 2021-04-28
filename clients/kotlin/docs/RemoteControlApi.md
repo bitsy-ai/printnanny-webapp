@@ -43,8 +43,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -93,8 +93,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote control command.
@@ -145,8 +145,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote control command.
@@ -195,8 +195,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote control command.
@@ -247,8 +247,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val name : kotlin.String = name_example // kotlin.String | 
@@ -303,8 +303,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -353,8 +353,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.String = id_example // kotlin.String | 
@@ -411,8 +411,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.String = id_example // kotlin.String | 
@@ -461,8 +461,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.String = id_example // kotlin.String | 
@@ -519,8 +519,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val name : kotlin.String = name_example // kotlin.String | 
@@ -575,8 +575,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val octoPrintDeviceRequest : OctoPrintDeviceRequest =  // OctoPrintDeviceRequest | 
@@ -625,8 +625,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -675,8 +675,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print device.
@@ -727,8 +727,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print device.
@@ -777,8 +777,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print device.
@@ -829,8 +829,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val octoPrintDeviceRequest : OctoPrintDeviceRequest =  // OctoPrintDeviceRequest | 
@@ -879,8 +879,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val session : kotlin.String = session_example // kotlin.String | 
@@ -931,8 +931,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val session : kotlin.String = session_example // kotlin.String | 
@@ -983,8 +983,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val printSessionRequest : PrintSessionRequest =  // PrintSessionRequest | 
@@ -1033,8 +1033,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -1083,8 +1083,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val session : kotlin.String = session_example // kotlin.String | 
@@ -1133,8 +1133,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val printerProfileRequest : PrinterProfileRequest =  // PrinterProfileRequest | 
@@ -1183,8 +1183,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val name : kotlin.String = name_example // kotlin.String | 
@@ -1237,8 +1237,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
@@ -1289,8 +1289,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
@@ -1339,8 +1339,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
@@ -1391,8 +1391,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 val printerProfileRequest : PrinterProfileRequest =  // PrinterProfileRequest | 
@@ -1441,8 +1441,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = RemoteControlApi()
 try {
