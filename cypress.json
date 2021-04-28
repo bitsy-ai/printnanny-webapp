@@ -1,7 +1,8 @@
 {
     "projectId": "y1ro11",
     "testFiles": [
-       "setup/*.js"
+       "setup/*.js",
+       "partners/*.js"
     ],
     "viewportWidth": 1366,
     "viewportHeight": 768

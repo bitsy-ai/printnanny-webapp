@@ -20,18 +20,6 @@ def _upload_to(instance, filename):
     path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
     return path
 
-
-class GeeksTokenManager(SafeDeleteManager):
-    def create(self, *args, **kwargs):
-        obj = super().create(*args, **kwargs)
-        output = io.BytesIO()
-        img = qrcode.make(obj.key)
-        img.save(output, format="PNG")
-        obj.qrcode.save(f"{self.key}.png", ContentFile(output.read()))
-        obj.save()
-        return obj
-
-
 class GeeksToken(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
     class Meta:
@@ -61,4 +49,4 @@ class GeeksToken(SafeDeleteModel):
             self.qrcode.save(f"{self.key}.png", ContentFile(output.read()))
 
     def __str__(self):
-        return self.key
+        return self.key.hex

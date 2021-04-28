@@ -1,4 +1,4 @@
-import { Geeks3dApiFactory, Configuration } from '../../../clients/typescript'
+import { PartnersGeeks3dApiFactory, Configuration } from '../../../clients/typescript'
 
 require('../../../clients/typescript')
 // import { Configuration } from 'print-nanny-client/configuration'
@@ -6,31 +6,39 @@ require('../../../clients/typescript')
 describe('3D Geeks Setup', () => {
     const PRINT_NANNY_EMAIL = Cypress.env('PRINT_NANNY_EMAIL')
     const PRINT_NANNY_PASSWORD = Cypress.env('PRINT_NANNY_PASSWORD')
-    const PRINT_NANNY_API_URL = Cypress.env('PRINT_NANNY_API_URL')
+    // axios api client expects base url without trailing slash
+    const PRINT_NANNY_URL = Cypress.env('PRINT_NANNY_URL').substr(0, Cypress.env('PRINT_NANNY_URL').length-1)
 
 
-    before(() => {
+    beforeEach(() => {
         cy.printNannyLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+        cy.manageDevice()
       })
 
-    it('Marks 3D token as verfied after authorized request', () => {
-        cy.get3DGeeksToken().then($token =>{
-            const token = $token.innerText
+    it('Marks 3D Geeks token as verfied after authorized request', () => {
+
+        cy.view3DGeeksToken().then(token =>{
             const apiConfig = new Configuration({
-                basePath: process.env.BASE_API_URL,
-                baseOptions: {
-                  accessToken: token,
-                  withCredentials: true
-                }
+                basePath: PRINT_NANNY_URL,
+                accessToken: token,
+
             })
 
-            geeks3DApi = Geeks3dApiFactory(apiConfig)
-            return geeks3DApi.metadataRetrieve(token)
+            const geeks3DApi = PartnersGeeks3dApiFactory(apiConfig, PRINT_NANNY_URL)
+            return geeks3DApi.metadataRetrieve(token).then(res =>{
+                expect(res.data.verified).to.be.true
+                return cy.get('#octoprint-device-partner-3dgeeks-modal button.close').click()
+                    .reload().get('button').contains('Revoke 3D Geeks Access')
+            })
         })
-
     })
 
-    it('Sends alert to 3D Geeks push endpoint', () => {
+    it('Revokes 3D Geeks token', () => {
+        cy.get3DGeeksToken().then(token1 =>{
+            return cy.revoke3DGeeksToken()
+                .get3DGeeksToken(token2 => expect(token1).not.to.equal(token2))
+                .get('button').contains('Connect 3D Geeks')
+        })
         
     })
 

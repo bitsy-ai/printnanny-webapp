@@ -31,6 +31,10 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
     Please do not include any personally-identifying info or sensitive info in partner serializers
     """
 
+    verified = serializers.SerializerMethodField()
+    def get_verified(self, obj):
+        return obj.geekstoken_set.first().verified
+
     class Meta:
         model = OctoPrintDevice
         fields = (
@@ -40,6 +44,7 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
             "octoprint_version",
             "plugin_version",
             "print_nanny_client_version",
+            "verified"
         )
 
 

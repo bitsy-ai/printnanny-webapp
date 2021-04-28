@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_serializer
 from print_nanny_webapp.partners.authentication import GeeksTokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
+from rest_framework import status
 
 from .serializers import PartnerOctoPrintDeviceSerializer
 
@@ -29,5 +30,7 @@ class GeeksViewSet(ViewSet):
     def retrieve(self, request, pk=None):
         queryset = GeeksToken.objects.all()
         token = get_object_or_404(queryset, pk=pk)
+        token.verified = True
+        token.save()
         serializer = PartnerOctoPrintDeviceSerializer(token.octoprint_device)
         return Response(serializer.data)
