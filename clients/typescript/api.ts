@@ -2001,33 +2001,33 @@ export interface PaginatedPrintSessionList {
 /**
  * 
  * @export
- * @interface PaginatedPrintSessionStateList
+ * @interface PaginatedPrintStatusEventList
  */
-export interface PaginatedPrintSessionStateList {
+export interface PaginatedPrintStatusEventList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedPrintSessionStateList
+     * @memberof PaginatedPrintStatusEventList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintSessionStateList
+     * @memberof PaginatedPrintStatusEventList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedPrintSessionStateList
+     * @memberof PaginatedPrintStatusEventList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<PrintSessionState>}
-     * @memberof PaginatedPrintSessionStateList
+     * @type {Array<PrintStatusEvent>}
+     * @memberof PaginatedPrintStatusEventList
      */
-    results?: Array<PrintSessionState>;
+    results?: Array<PrintStatusEvent>;
 }
 /**
  * 
@@ -3293,97 +3293,97 @@ export interface PrintSessionRequest {
 /**
  * 
  * @export
- * @interface PrintSessionState
+ * @interface PrintStatusEvent
  */
-export interface PrintSessionState {
+export interface PrintStatusEvent {
     /**
      * 
      * @type {number}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     id?: number;
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     created_dt?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     device: number;
     /**
      * 
      * @type {number}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     user?: number;
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     plugin_version: string;
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     client_version: string;
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     octoprint_version: string;
     /**
      * 
-     * @type {PrintSessionStateEventTypeEnum}
-     * @memberof PrintSessionState
+     * @type {PrintStatusEventEventTypeEnum}
+     * @memberof PrintStatusEvent
      */
-    event_type: PrintSessionStateEventTypeEnum;
+    event_type: PrintStatusEventEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     state?: { [key: string]: any; };
     /**
      * 
      * @type {number}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     current_z?: number | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     progress?: { [key: string]: any; };
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     job_data_file: string;
     /**
      * 
      * @type {number}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     print_session?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof PrintSessionState
+     * @memberof PrintStatusEvent
      */
     url?: string;
 }
@@ -3392,7 +3392,7 @@ export interface PrintSessionState {
  * @export
  * @enum {string}
  */
-export enum PrintSessionStateEventTypeEnum {
+export enum PrintStatusEventEventTypeEnum {
     Error = 'Error',
     PrintCancelled = 'PrintCancelled',
     PrintCancelling = 'PrintCancelling',
@@ -6405,7 +6405,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionStateList>> {
+        async printJobStatesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6418,7 +6418,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSessionState>> {
+        async printJobStatesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).printJobStatesRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6513,7 +6513,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionStateList> {
+        printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
             return EventsApiFp(configuration).printJobStatesList(page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6522,7 +6522,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintSessionState> {
+        printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
             return EventsApiFp(configuration).printJobStatesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6610,7 +6610,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionStateList>;
+    printJobStatesList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList>;
 
     /**
      * 
@@ -6619,7 +6619,7 @@ export interface EventsApiInterface {
      * @throws {RequiredError}
      * @memberof EventsApiInterface
      */
-    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintSessionState>;
+    printJobStatesRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
 
     /**
      * 

@@ -1,12 +1,12 @@
 from django.apps import apps
 import prometheus_client
 
-from print_nanny_webapp.client_events.models import PrintSessionState
+from print_nanny_webapp.tracking.models import PrintStatusEvent
 
 print_session_status = prometheus_client.Enum(
     "print_session_status",
     "Last seen status of a print session/job",
-    states=PrintSessionState.EventType.values,
+    states=PrintStatusEvent.EventType.values,
 )
 
 predict_frames_per_minute = prometheus_client.Summary(

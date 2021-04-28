@@ -1,5 +1,3 @@
-import base64
-import hashlib
 import logging
 
 from rest_framework import status
@@ -7,7 +5,6 @@ from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
     CreateModelMixin,
 )
 from rest_framework.response import Response
@@ -15,21 +12,19 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 
 from .serializers import (
     OctoPrintEventSerializer,
-    PluginEventSerializer,
-    PrintSessionStateSerializer,
+    OctoPrintPluginEventSerializer,
+    PrintStatusEventSerializer,
 )
-import print_nanny_webapp.client_events.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
-PluginEvent = apps.get_model("client_events", "PluginEvent")
-OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+OctoPrintPluginEvent = apps.get_model("tracking", "OctoPrintPluginEvent")
+OctoPrintEvent = apps.get_model("tracking", "OctoPrintEvent")
+PrintStatusEvent = apps.get_model("tracking", "PrintStatusEvent")
 
 logger = logging.getLogger(__name__)
 
@@ -82,17 +77,17 @@ class OctoPrintEventViewSet(
 @extend_schema(tags=["events"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: PluginEventSerializer, 400: PluginEventSerializer}
+        responses={201: OctoPrintPluginEventSerializer, 400: OctoPrintPluginEventSerializer}
     )
 )
-class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = PluginEventSerializer
-    queryset = PluginEvent.objects.all()
+class OctoPrintPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = OctoPrintPluginEventSerializer
+    queryset = OctoPrintPluginEvent.objects.all()
     lookup_field = "id"
 
     @extend_schema(
         tags=["events"],
-        operation_id="plugin_events_enum_retrieve",
+        operation_id="octoprint_plugin_events_enum_retrieve",
         responses={200: OpenApiTypes.STR},
     )
     @action(methods=["GET"], detail=False)
@@ -123,14 +118,14 @@ class PluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: PrintSessionStateSerializer,
-            400: PrintSessionStateSerializer,
+            201: PrintStatusEventSerializer,
+            400: PrintStatusEventSerializer,
         }
     )
 )
-class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = PrintSessionStateSerializer
-    queryset = PrintSessionState.objects.all()
+class PrintStatusEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = PrintStatusEventSerializer
+    queryset = PrintStatusEvent.objects.all()
     lookup_field = "id"
 
     @extend_schema(
@@ -141,7 +136,7 @@ class PrintSessionStateViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixi
     @action(methods=["GET"], detail=False)
     def enum(self, *args, **kwargs):
         return Response(
-            PrintSessionState.event_codes,
+            PrintStatusEvent.event_codes,
             status.HTTP_200_OK,
         )
 

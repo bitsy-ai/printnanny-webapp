@@ -5,10 +5,10 @@ from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
 from print_nanny_webapp.users.api.views import UserViewSet
-from print_nanny_webapp.client_events.api.views import (
+from print_nanny_webapp.tracking.api.views import (
     OctoPrintEventViewSet,
-    PrintSessionStateViewSet,
-    PluginEventViewSet,
+    PrintStatusEventViewSet,
+    OctoPrintPluginEventViewSet,
 )
 
 from print_nanny_webapp.remote_control.api.views import (
@@ -34,9 +34,10 @@ router.register("users", UserViewSet)
 
 router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
-router.register(f"octoprint-events", OctoPrintEventViewSet, basename='octoprint-event')
-router.register(f"print-job-states", PrintSessionStateViewSet, basename='print-job-states')
-router.register(f"plugin-events", PluginEventViewSet, basename='plugin-event')
+
+router.register(f"events/print-statust", OctoPrintEventViewSet, basename='octoprint-event')
+router.register(f"events/print-status", PrintStatusEventViewSet, basename='print-status')
+router.register(f"events/octoprint-plugin", OctoPrintPluginEventViewSet, basename='octoprint-plugin-event')
 
 router.register(r"printer-profiles", PrinterProfileViewSet, basename='printer-profile')
 router.register(r"print-sessions", PrintSessionViewSet, basename='print-session')

@@ -3,11 +3,10 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
-from print_nanny_webapp.client_events.models import (
-    ClientEvent,
+from print_nanny_webapp.tracking.models import (
     OctoPrintEvent,
-    PrintSessionState,
-    PluginEvent,
+    PrintStatusEvent,
+    OctoPrintPluginEvent,
 )
 
 
@@ -21,20 +20,20 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 
-class PluginEventSerializer(serializers.ModelSerializer):
+class OctoPrintPluginEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PluginEvent
-        fields = [field.name for field in PluginEvent._meta.fields] + ["url"]
+        model = OctoPrintPluginEvent
+        fields = [field.name for field in OctoPrintPluginEvent._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:plugin-event-detail", "lookup_field": "id"}
         }
         read_only_fields = ("user",)
 
 
-class PrintSessionStateSerializer(serializers.ModelSerializer):
+class PrintStatusEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PrintSessionState
-        fields = [field.name for field in PrintSessionState._meta.fields] + ["url"]
+        model = PrintStatusEvent
+        fields = [field.name for field in PrintStatusEvent._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:print-session-event-detail", "lookup_field": "id"}
         }

@@ -85,7 +85,7 @@ LOCAL_APPS = [
     "print_nanny_webapp.partners.apps.PartnersConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
-    "print_nanny_webapp.client_events.apps.ClientEventsConfig",
+    "print_nanny_webapp.tracking.apps.TrackingConfig",
     "print_nanny_webapp.alerts.apps.AlertsConfig",
     "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.dashboard.apps.DashboardConfig",

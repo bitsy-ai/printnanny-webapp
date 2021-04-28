@@ -21,8 +21,8 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 from django.apps import apps
 
-OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+OctoPrintEvent = apps.get_model("tracking", "OctoPrintEvent")
+PrintStatusEvent = apps.get_model("tracking", "PrintStatusEvent")
 AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ def handle_print_status(octoprint_event):
 
 HANDLER_FNS = { 
     OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress,
-    **{ value: handle_print_status for label, value in PrintSessionState.EventType.choices}
+    **{ value: handle_print_status for label, value in PrintStatusEvent.EventType.choices}
 }
 
 def on_octoprint_event(message):
@@ -76,7 +76,7 @@ def on_octoprint_event(message):
             logger.error({"error": e, "data": data}, exc_info=True)
     elif event_type in PrintJobEventCodes:
         try:
-            PrintSessionState.objects.create(
+            PrintStatusEvent.objects.create(
                 created_dt=data["created_dt"],
                 current_z=data["printer_data"]["currentZ"],
                 device_id=data["device_id"],
