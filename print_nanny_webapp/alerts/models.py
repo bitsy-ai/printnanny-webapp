@@ -46,14 +46,34 @@ class AlertEventSettings(models.Model):
         PRINT_PROGRESS = "PrintProgress", "Print progress notifications"
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = "PrintStatus", "Print status updates (started, paused, resumed, cancelling, cancelled, failed)"
+    
+    class AlertMethod(models.TextChoices):
+        """
+            The channels to which an alert is sent
+        """
+        UI = "UI", "Print Nanny UI"
+        EMAIL = "EMAIL", "Email notifications"
+        DISCORD = "DISCORD", "Discord channel (webhook)"
+        PARTNER_3DGEEKS = (
+            "PARTNER_3DGEEKS",
+            "3D Geeks mobile app",
+        )
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    alert_methods = ChoiceArrayField(
+        models.CharField(choices=AlertMethod.choices, max_length=255),
+        blank=True,
+        default=(AlertMethod.EMAIL,)
+    )
     event_types = ChoiceArrayField(
         models.CharField(choices=EventType.choices, max_length=255),
         blank=True,
         default=(EventType.PRINT_PROGRESS, EventType.PRINT_HEALTH, EventType.PRINT_STATUS),
     )
+    discord_webhook = models.CharField(null=True, max_length=255, blank=True,
+        help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.")
     print_progress_percent = models.IntegerField(
         default=25,
         validators=[MinValueValidator(1), MaxValueValidator(100)],
@@ -67,22 +87,9 @@ class Alert(PolymorphicModel):
         Base class for alert events
     """
 
-    class AlertMethodChoices(models.TextChoices):
-        """
-            The channels to which an alert is sent
-        """
-        UI = "UI", "Receive Print Nanny UI notifications"
-        EMAIL = "EMAIL", "Receive email notifications"
-        DISCORD = "DISCORD", "Receive notifications through Discord"
-        PARTNER_3DGEEKS = (
-            "PARTNER_3DGEEKS",
-            "Receive notifications in 3D Geeks mobile app",
-        )
-
     alert_method = models.CharField(
-        choices=AlertMethodChoices.choices,
+        choices=AlertEventSettings.AlertMethod.choices,
         max_length=255,
-        default=AlertMethodChoices.EMAIL,
     )
     event_type = models.CharField(choices=AlertEventSettings.EventType.choices, max_length=255, null=True)
 
@@ -94,18 +101,6 @@ class Alert(PolymorphicModel):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
-    
-class AlertMethodSettings(PolymorphicModel):
-    """
-        Alert method/channel settings (per user) 
-    """
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
-    alert_method = models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255)
-    enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255, help_text="Enable or disable this alert method")
-    user = models.OneToOneField(User, on_delete=models.CASCADE, db_index=True)
-
-
 
 
 class PrintSessionAlert(Alert):

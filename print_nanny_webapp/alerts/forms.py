@@ -14,7 +14,11 @@ class AlertEventSettingsForm(ModelForm):
         model = AlertEventSettings
         fields = ("event_types", "print_progress_percent")
 
-
+class AlertMethodSettingsForm(ModelForm):
+    class Meta:
+        model = AlertEventSettings
+        fields = ("alert_methods", "discord_webhook")
+  
 # class CommandAlertSettingsForm(ModelForm):
 #     class Meta:
 #         model = RemoteControlCommandAlertSettings

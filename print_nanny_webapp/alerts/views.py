@@ -23,7 +23,7 @@ from .models import (
 
 logger = logging.getLogger(__name__)
 
-from print_nanny_webapp.alerts.forms import AlertEventSettingsForm
+from print_nanny_webapp.alerts.forms import AlertEventSettingsForm, AlertMethodSettingsForm
 
 
 class AlertSettingsView(DashboardView, MultiFormsView):
@@ -31,10 +31,29 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     success_url = "/alerts/settings"
     form_classes = {
         "event_settings": AlertEventSettingsForm,
+        "alert_methods": AlertMethodSettingsForm
         # "command": CommandAlertSettingsForm,
         # "discord": DiscordMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
+
+    def create_alert_methods_form(self, **kwargs):
+        instance, created = AlertEventSettings.objects.get_or_create(
+            user=self.request.user,
+        )
+        if instance is not None:
+            return AlertMethodSettingsForm(instance=instance, **kwargs)
+        else:
+            return AlertMethodSettingsForm(**kwargs)
+
+    def alert_methods_form_valid(self, form):
+
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+
+        success_url = self.get_success_url()
+        return HttpResponseRedirect(success_url)
 
     def create_event_settings_form(self, **kwargs):
         instance, created = AlertEventSettings.objects.get_or_create(
