@@ -33,7 +33,7 @@ class TelemetryEvent(models.Model):
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     event_data = models.JSONField(null=True)
-    device = models.ForeignKey(
+    octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
         on_delete=models.CASCADE,
@@ -101,10 +101,14 @@ class RemoteCommandEvent(TelemetryEvent):
 
 class OctoPrintPluginEvent(TelemetryEvent):
     """
-    Events emitted by OctoPrint Nanny plugin
+        Events emitted by OctoPrint Nanny plugin
 
-    OctoPrint sends these as snake-cased strings
+        OctoPrint sends these as snake-cased strings
+
+        For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
     """
+    plugin_identifier = "octoprint_nanny"
+    octoprint_event_prefix = "PLUGIN_OCTOPRINT_NANNY"
 
     class EventType(models.TextChoices):
 
@@ -130,6 +134,10 @@ class OctoPrintPluginEvent(TelemetryEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
+
+    @classmethod
+    def strip_plugin_identifier(self, event_type):
+        return event_type.replace(self.plugin_identifier, '')
 
 
 class OctoPrintEvent(TelemetryEvent):
