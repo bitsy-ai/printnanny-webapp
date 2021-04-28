@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("remote_control", "0049_auto_20210321_1313"),
-        ("alerts", "0039_alert_sent"),
+        ("alerts", "0034_defectalert_dataframe_squashed_0039_alert_sent"),
     ]
 
     operations = [
