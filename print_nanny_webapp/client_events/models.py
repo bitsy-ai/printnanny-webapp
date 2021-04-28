@@ -20,7 +20,7 @@ from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)    
 
 
 class ClientEvent(models.Model):
@@ -50,10 +50,51 @@ def _upload_to(instance, filename):
     logger.info("Uploading to path")
     return path
 
+class RemoteEvent(ClientEvent):
+    """
+        Commands sent to the OctoPrint device
+    """
+    class EventType(models.TextChoices):
+
+        MONITORING_START_RECEIVED = "monitoring_start_received", "MONITORING_START command was received by device"
+        MONITORING_START_FAILED = "monitoring_start_failed", "MONITORING_START command failed. Please download your Octoprint logs and open a Github issue to get this fixed."
+        MONITORING_START_SUCCESS = "monitoring_start_success", "MONITORING_START command succeeded. Live monitoring feed enabled"
+
+        MONITORING_STOP_RECEIVED = "monitoring_stop_received", "MONITORING_STOP command was received by device"
+        MONITORING_STOP_FAILED = "monitoring_stop_failed", "MONITORING_STOP command failed. Please download your Octoprint logs and open a Github issue to get this fixed."
+        MONITORING_STOP_SUCCESS = "monitoring_stop_success", "MONITORING_STOP command succeeded. Monitoring feed is now disabled."
+
+        # @todo
+        # PRINT_START_RECEIVED
+        # PRINT_START_FAILED
+        # PRINT_START_SUCCESS
+
+        # PRINT_STOP_RECEIVED
+        # PRINT_STOP_FAILED
+        # PRINT_STOP_SUCCESS
+
+        # PRINT_PAUSE_RECEIVED
+        # PRINT_PAUSE_FAILED
+        # PRINT_PAUSE_SUCCESS
+
+        # PRINT_RESUME_RECEIVED
+        # PRINT_RESUME_FAILED
+        # PRINT_RESUME_SUCCESS
+
+        # MOVE_NOZZLE_RECEIVED
+        # MOVE_NOZZLE_FAILED
+        # MOVE_NOZZLE_SUCCESS
+    event_codes = [x.value for x in EventType.__members__.values()]
+
+    event_type = models.CharField(
+        max_length=255, db_index=True, choices=EventType.choices
+    )
 
 class PluginEvent(ClientEvent):
     """
-    Events emitted by OctoPrint Nanny plugin
+        Events emitted by OctoPrint Nanny plugin
+
+        OctoPrint sends these as snake-cased strings
     """
 
     class EventType(models.TextChoices):
@@ -84,7 +125,8 @@ class PluginEvent(ClientEvent):
 
 class OctoPrintEvent(ClientEvent):
     """
-    Events emitted by OctoPrint Core and plugins bundled with core
+        Events emitted by OctoPrint Core and plugins bundled with core
+        PascalCased strings
     """
 
     class EventType(models.TextChoices):

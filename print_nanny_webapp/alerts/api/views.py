@@ -19,7 +19,6 @@ from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
 from .serializers import (
     ManualVideoUploadAlertSerializer,
-    AlertSettingsPolymorphicSerializer,
     AlertPolymorphicSerializer,
     AlertSerializer,
     AlertBulkRequestSerializer,
@@ -36,9 +35,7 @@ from print_nanny_webapp.utils.permissions import (
 from ..models import (
     ManualVideoUploadAlert,
     Alert,
-    AlertSettings,
     PrintSessionAlert,
-    PrintSessionAlertSettings,
 )
 
 logger = logging.getLogger(__name__)
@@ -298,28 +295,4 @@ class AlertViewSet(
         logger.info(serializer)
         logger.info(f"serializer data {serializer.data}")
 
-        return Response(serializer.data)
-
-
-@extend_schema(tags=["alert-settings"])
-class AlertSettingsViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
-
-    serializer_class = AlertSettingsPolymorphicSerializer
-    queryset = AlertSettings.objects.all()
-    lookup_field = "id"
-
-    @extend_schema(tags=["alert_settings"], responses={200: AlertMethodSerializer})
-    @action(detail=False)
-    def methods(self, request):
-        data = [
-            {"label": label, "value": value}
-            for label, value in Alert.AlertMethodChoices.choices
-        ]
-        serializer = AlertMethodSerializer(data=data, many=True)
-        serializer.is_valid()
         return Response(serializer.data)

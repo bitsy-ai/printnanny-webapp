@@ -61,10 +61,6 @@ from print_nanny_webapp.utils import prometheus_metrics
 logger = logging.getLogger(__name__)
 
 RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
-RemoteControlCommandAlertSettings = apps.get_model(
-    "alerts", "RemoteControlCommandAlertSettings"
-)
-
 
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(

@@ -6,9 +6,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
-RemoteControlCommandAlertSettings = apps.get_model(
-    "alerts", "RemoteControlCommandAlertSettings"
-)
+# RemoteControlCommandAlertSettings = apps.get_model(
+#     "alerts", "RemoteControlCommandAlertSettings"
+# )
 
 logger = logging.getLogger(__name__)
 

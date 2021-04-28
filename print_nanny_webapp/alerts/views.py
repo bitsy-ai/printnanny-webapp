@@ -9,51 +9,79 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from .forms import (
-    ProgressAlertSettingsForm,
-    CommandAlertSettingsForm,
-    DiscordMethodSettingsForm,
-)
+# from .forms import (
+#     ProgressAlertSettingsForm,
+#     CommandAlertSettingsForm,
+#     DiscordMethodSettingsForm,
+# )
 from .models import (
     Alert,
-    ProgressAlertSettings,
-    RemoteControlCommandAlertSettings,
-    DiscordMethodSettings,
+    AlertEventSettings,
+    # RemoteControlCommandAlertSettings,
+    # DiscordMethodSettings,
 )
 
 logger = logging.getLogger(__name__)
 
-from print_nanny_webapp.partners.models import GeeksToken
+from print_nanny_webapp.alerts.forms import AlertEventSettingsForm, AlertMethodSettingsForm
 
 
 class AlertSettingsView(DashboardView, MultiFormsView):
 
     success_url = "/alerts/settings"
     form_classes = {
-        "progress": ProgressAlertSettingsForm,
-        "command": CommandAlertSettingsForm,
-        "discord": DiscordMethodSettingsForm,
+        "event_settings": AlertEventSettingsForm,
+        "alert_methods": AlertMethodSettingsForm
+        # "command": CommandAlertSettingsForm,
+        # "discord": DiscordMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
 
-    def create_progress_form(self, **kwargs):
-        instance, created = ProgressAlertSettings.objects.get_or_create(
+    def create_alert_methods_form(self, **kwargs):
+        instance, created = AlertEventSettings.objects.get_or_create(
             user=self.request.user,
         )
         if instance is not None:
-            return ProgressAlertSettingsForm(instance=instance, **kwargs)
+            return AlertMethodSettingsForm(instance=instance, **kwargs)
         else:
-            return ProgressAlertSettingsForm(**kwargs)
+            return AlertMethodSettingsForm(**kwargs)
 
-    def progress_form_valid(self, form):
+    def alert_methods_form_valid(self, form):
 
         obj = form.save(commit=False)
         obj.user = self.request.user
-        obj.alert_type = Alert.AlertTypeChoices.PROGRESS
         obj.save()
 
         success_url = self.get_success_url()
         return HttpResponseRedirect(success_url)
+
+    def create_event_settings_form(self, **kwargs):
+        instance, created = AlertEventSettings.objects.get_or_create(
+            user=self.request.user,
+        )
+        if instance is not None:
+            return AlertEventSettingsForm(instance=instance, **kwargs)
+        else:
+            return AlertEventSettingsForm(**kwargs)
+
+    def event_settings_form_valid(self, form):
+
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+
+        success_url = self.get_success_url()
+        return HttpResponseRedirect(success_url)
+
+    # def progress_form_valid(self, form):
+
+    #     obj = form.save(commit=False)
+    #     obj.user = self.request.user
+    #     obj.alert_type = Alert.AlertTypeChoices.PROGRESS
+    #     obj.save()
+
+    #     success_url = self.get_success_url()
+    #     return HttpResponseRedirect(success_url)
 
     # TODO combine defect, end, progress events into PrintSessionAlert subtypes
     # def create_defect_form(self, **kwargs):
@@ -73,66 +101,51 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     #     success_url = self.get_success_url()
     #     return HttpResponseRedirect(success_url)
 
-    def create_discord_form(self, **kwargs):
-        instance, created = DiscordMethodSettings.objects.get_or_create(
-            user=self.request.user,
-        )
-        if instance is not None:
-            return DiscordMethodSettingsForm(instance=instance, **kwargs)
-        else:
-            return DiscordMethodSettingsForm(**kwargs)
+#     def create_discord_form(self, **kwargs):
+#         instance, created = DiscordMethodSettings.objects.get_or_create(
+#             user=self.request.user,
+#         )
+#         if instance is not None:
+#             return DiscordMethodSettingsForm(instance=instance, **kwargs)
+#         else:
+#             return DiscordMethodSettingsForm(**kwargs)
 
-    def discord_form_valid(self, form):
-        obj = form.save(commit=False)
+#     def discord_form_valid(self, form):
+#         obj = form.save(commit=False)
 
-        # channel_layer = get_channel_layer()
-        # res = async_to_sync(channel_layer.send)(
-        #     "discord", {
-        #         "type": "validate.id",
-        #         "target_id": obj.target_id,
-        #         "target_id_type": obj.target_id_type,
-        # })
+#         obj.user = self.request.user
+#         obj.method = Alert.AlertMethodChoices.DISCORD
+#         obj.save()
 
-        # if res is None:
-        #     raise ValidationError("Could not validate Discord ID - Maybe Discord is down?")
+#         success_url = self.get_success_url()
+#         return HttpResponseRedirect(success_url)
 
-        # if not res["is_valid"]:
-        #     raise ValidationError(res["error"])
+#     def create_command_form(self, **kwargs):
+#         instance, created = RemoteControlCommandAlertSettings.objects.get_or_create(
+#             user=self.request.user,
+#         )
+#         if instance is not None:
+#             return CommandAlertSettingsForm(instance=instance, **kwargs)
+#         else:
+#             return CommandAlertSettingsForm(**kwargs)
 
-        obj.user = self.request.user
-        obj.method = Alert.AlertMethodChoices.DISCORD
-        obj.save()
+#     def command_form_valid(self, form):
+#         form.user = self.request.user
+#         form.alert_type = Alert.AlertTypeChoices.COMMAND
+#         form.save()
 
-        success_url = self.get_success_url()
-        return HttpResponseRedirect(success_url)
-
-    def create_command_form(self, **kwargs):
-        instance, created = RemoteControlCommandAlertSettings.objects.get_or_create(
-            user=self.request.user,
-        )
-        if instance is not None:
-            return CommandAlertSettingsForm(instance=instance, **kwargs)
-        else:
-            return CommandAlertSettingsForm(**kwargs)
-
-    def command_form_valid(self, form):
-        form.user = self.request.user
-        form.alert_type = Alert.AlertTypeChoices.COMMAND
-        form.save()
-
-        success_url = self.get_success_url()
-        return HttpResponseRedirect(success_url)
+#         success_url = self.get_success_url()
+#         return HttpResponseRedirect(success_url)
 
     def get_context_data(self, *args, **kwargs):
+        # initialize form context if missing
         if kwargs.get("forms") is None:
-            tokens = GeeksToken.objects.filter(user=self.request.user)
             form_classes = self.get_form_classes()
             forms = self.get_forms(form_classes)
-            context = super().get_context_data(forms=forms, tokens=tokens, **kwargs)
+            context = super().get_context_data(forms=forms, **kwargs)
         else:
             context = super().get_context_data(*args, **kwargs)
         return context
-
 
 class AlertListView(DashboardView):
 
