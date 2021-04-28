@@ -82,8 +82,8 @@ local-clean:
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
-	docker-compose -f local.yml rm
-	docker volume rm \
+	yes | docker-compose -f local.yml rm
+	yes | docker volume rm \
 		print_nanny_webapp_local_file_data \
 		print_nanny_webapp_local_octoprint_data \
 		print_nanny_webapp_local_postgres_data \
@@ -102,6 +102,8 @@ local-up:
 	DJANGO_SUPERUSER_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
 		docker-compose -f local.yml up
+
+clean-local-up: local-clean local-up
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)

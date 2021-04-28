@@ -12,7 +12,10 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("remote_control", "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs"),
+        (
+            "remote_control",
+            "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs",
+        ),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("contenttypes", "0002_remove_content_type_name"),
     ]
@@ -182,13 +185,13 @@ class Migration(migrations.Migration):
                         size=None,
                     ),
                 ),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
             ],
             options={
                 "abstract": False,
@@ -230,13 +233,13 @@ class Migration(migrations.Migration):
                         size=None,
                     ),
                 ),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
             ],
             options={
                 "abstract": False,
