@@ -75,8 +75,14 @@ Class | Method | HTTP request | Description
 *RemoteControlApi* | [**printerProfilesRetrieve**](docs/RemoteControlApi.md#printerprofilesretrieve) | **GET** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**printerProfilesUpdate**](docs/RemoteControlApi.md#printerprofilesupdate) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**printerProfilesUpdateOrCreate**](docs/RemoteControlApi.md#printerprofilesupdateorcreate) | **POST** /api/printer-profiles/update-or-create/ | 
-*RemoteControlApi* | [**validCommandsRetrieve**](docs/RemoteControlApi.md#validcommandsretrieve) | **GET** /api/commands/valid/ | 
 *SchemaApi* | [**schemaRetrieve**](docs/SchemaApi.md#schemaretrieve) | **GET** /api/schema/ | 
+*TelemetryApi* | [**telemetryOctoprintEventsCreate**](docs/TelemetryApi.md#telemetryoctoprinteventscreate) | **POST** /api/telemetry/octoprint-events/ | 
+*TelemetryApi* | [**telemetryOctoprintEventsList**](docs/TelemetryApi.md#telemetryoctoprinteventslist) | **GET** /api/telemetry/octoprint-events/ | 
+*TelemetryApi* | [**telemetryOctoprintEventsRetrieve**](docs/TelemetryApi.md#telemetryoctoprinteventsretrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
+*TelemetryApi* | [**telemetryOctoprintPluginEventsList**](docs/TelemetryApi.md#telemetryoctoprintplugineventslist) | **GET** /api/telemetry/octoprint-plugin-events/ | 
+*TelemetryApi* | [**telemetryOctoprintPluginEventsRetrieve**](docs/TelemetryApi.md#telemetryoctoprintplugineventsretrieve) | **GET** /api/telemetry/octoprint-plugin-events/{id}/ | 
+*TelemetryApi* | [**telemetryPrintStatusEventsList**](docs/TelemetryApi.md#telemetryprintstatuseventslist) | **GET** /api/telemetry/print-status-events/ | 
+*TelemetryApi* | [**telemetryPrintStatusEventsRetrieve**](docs/TelemetryApi.md#telemetryprintstatuseventsretrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#userslist) | **GET** /api/users/ | 
 *UsersApi* | [**usersMeRetrieve**](docs/UsersApi.md#usersmeretrieve) | **GET** /api/users/me/ | 
 *UsersApi* | [**usersPartialUpdate**](docs/UsersApi.md#userspartialupdate) | **PATCH** /api/users/{id}/ | 
@@ -103,13 +109,21 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [com.print-nanny.client.models.OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
+ - [com.print-nanny.client.models.OctoPrintEvent](docs/OctoPrintEvent.md)
+ - [com.print-nanny.client.models.OctoPrintEventEventTypeEnum](docs/OctoPrintEventEventTypeEnum.md)
+ - [com.print-nanny.client.models.OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
+ - [com.print-nanny.client.models.OctoPrintPluginEvent](docs/OctoPrintPluginEvent.md)
+ - [com.print-nanny.client.models.OctoPrintPluginEventEventTypeEnum](docs/OctoPrintPluginEventEventTypeEnum.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
  - [com.print-nanny.client.models.PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
  - [com.print-nanny.client.models.PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
+ - [com.print-nanny.client.models.PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)
+ - [com.print-nanny.client.models.PaginatedOctoPrintPluginEventList](docs/PaginatedOctoPrintPluginEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
+ - [com.print-nanny.client.models.PaginatedPrintStatusEventList](docs/PaginatedPrintStatusEventList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedUserList](docs/PaginatedUserList.md)
@@ -123,6 +137,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedUserRequest](docs/PatchedUserRequest.md)
  - [com.print-nanny.client.models.PrintSession](docs/PrintSession.md)
  - [com.print-nanny.client.models.PrintSessionRequest](docs/PrintSessionRequest.md)
+ - [com.print-nanny.client.models.PrintStatusEvent](docs/PrintStatusEvent.md)
+ - [com.print-nanny.client.models.PrintStatusEventEventTypeEnum](docs/PrintStatusEventEventTypeEnum.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.RemoteControlCommand](docs/RemoteControlCommand.md)
