@@ -92,6 +92,8 @@ LOCAL_APPS = [
     # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
     # Your stuff: custom apps go here
 ]
+
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -527,8 +529,8 @@ STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
 if STRIPE_ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
-    THIRD_PARTY_APPS.append("djstripe")
-    LOCAL_APPS.append("print_nanny_webapp.subscriptions.apps.SubscriptionsConfig")
+    INSTALLED_APPS += ["djstripe"]
+    INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
 # django-safedelete
 

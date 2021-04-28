@@ -12,7 +12,7 @@ import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
 
-from .models import start_trial
+# from .models import start_trial
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
@@ -32,7 +32,7 @@ class SubscriptionsListView(DashboardView):
                 subscriber=self.request.user
             )
         except djstripe.models.Customer.DoesNotExist:
-            start_trial(self.request.user, instance=self.request.user, created=True)
+            # start_trial(self.request.user, instance=self.request.user, created=True)
             customer = djstripe.models.Customer.objects.get(
                 subscriber=self.request.user
             )
