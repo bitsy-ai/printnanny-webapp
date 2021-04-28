@@ -40,12 +40,12 @@ def _upload_to(instance, filename):
 # Base Polymorphic models
 ##
 
-class AlertSettings(models.Model):
+class AlertEventSettings(models.Model):
 
     class EventType(models.TextChoices):
-        PRINT_PROGRESS = "PrintProgress", "Receive print progress notifications"
-        PRINT_HEALTH = "PrintHealth", "Receive print health alerts"
-        PRINT_STATUS = "PrintStatus", "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)"
+        PRINT_PROGRESS = "PrintProgress", "Print progress notifications"
+        PRINT_HEALTH = "PrintHealth", "Print health alerts"
+        PRINT_STATUS = "PrintStatus", "Print status updates (started, paused, resumed, cancelling, cancelled, failed)"
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -61,8 +61,6 @@ class AlertSettings(models.Model):
     )
     def on_event(self, octoprint_event):
         raise NotImplemented
-
-
 
 class Alert(PolymorphicModel):
     """
@@ -86,7 +84,7 @@ class Alert(PolymorphicModel):
         max_length=255,
         default=AlertMethodChoices.EMAIL,
     )
-    event_type = models.CharField(choices=AlertSettings.EventType.choices, max_length=255, null=True)
+    event_type = models.CharField(choices=AlertEventSettings.EventType.choices, max_length=255, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -96,7 +94,7 @@ class Alert(PolymorphicModel):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
-
+    
 class AlertMethodSettings(PolymorphicModel):
     """
         Alert method/channel settings (per user) 
@@ -106,6 +104,8 @@ class AlertMethodSettings(PolymorphicModel):
     alert_method = models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255)
     enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255, help_text="Enable or disable this alert method")
     user = models.OneToOneField(User, on_delete=models.CASCADE, db_index=True)
+
+
 
 
 class PrintSessionAlert(Alert):

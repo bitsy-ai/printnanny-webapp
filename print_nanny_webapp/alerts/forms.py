@@ -4,17 +4,15 @@ from print_nanny_webapp.partners.models import GeeksToken
 from django.forms import ModelForm
 from django.forms import modelformset_factory
 from .models import (
-    AlertSettings,
-    RemoteControlCommandAlertSettings,
-    DiscordMethodSettings,
+    AlertEventSettings
 )
 
 
 
-class AlertSettingsForm(ModelForm):
+class AlertEventSettingsForm(ModelForm):
     class Meta:
-        model = AlertSettings
-        fields = ("event_types", "print_process_percent")
+        model = AlertEventSettings
+        fields = ("event_types", "print_progress_percent")
 
 
 # class CommandAlertSettingsForm(ModelForm):
