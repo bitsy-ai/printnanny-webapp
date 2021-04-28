@@ -7,7 +7,7 @@ import print_nanny_webapp.alerts.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("alerts", "0033_auto_20210228_2210"),
+        ("alerts", "0028_auto_20210118_2015_squashed_0033_auto_20210228_2210"),
     ]
 
     operations = [
