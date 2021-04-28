@@ -94,7 +94,7 @@ class AlertBulkResponseSerializer(serializers.Serializer):
 class ManualVideoUploadAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManualVideoUploadAlert
-        fields = ["created_dt", "updated_dt", "user", "alert_type"]
+        fields = ["created_dt", "updated_dt", "user"]
         read_only_fields = ("user",)
 
 
