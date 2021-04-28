@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('client_events', '0002_predictsession_channel_name_squashed_0009_auto_20201228_1434'),
-        ('remote_control', '0007_auto_20201229_2309'),
+        ('remote_control', '0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

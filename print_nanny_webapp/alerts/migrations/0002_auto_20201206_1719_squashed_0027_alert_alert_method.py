@@ -12,8 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('alerts', '0001_initial'),
-        ('remote_control', '0003_printjob_progress'),
-        ('remote_control', '0019_auto_20210109_2034'),
+        ('remote_control', '0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('contenttypes', '0002_remove_content_type_name'),
     ]
