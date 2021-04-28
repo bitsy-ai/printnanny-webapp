@@ -11,7 +11,7 @@ import print_nanny_webapp.client_events.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0008_octoprintdevice_cloudiot_device_name'),
+        ('remote_control', '0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('client_events', '0010_delete_octoprintdevice_squashed_0015_auto_20201231_1936'),
         ('remote_control', '0047_remove_printjob_last_status'),
@@ -24,10 +24,10 @@ class Migration(migrations.Migration):
             old_name='dt',
             new_name='created_dt',
         ),
-        migrations.RemoveField(
-            model_name='octoprintevent',
-            name='print_job',
-        ),
+        # migrations.RemoveField(
+        #     model_name='octoprintevent',
+        #     name='print_job',
+        # ),
         migrations.AlterField(
             model_name='octoprintevent',
             name='event_type',

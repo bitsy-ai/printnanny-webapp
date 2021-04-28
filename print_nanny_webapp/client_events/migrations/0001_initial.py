@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("remote_control", "0004_remove_printjob_gcode_file_hash"),
+        # ("remote_control", "0002_auto_20201126_1453_squashed_0040_octoprintdevice_configs"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -91,14 +91,14 @@ class Migration(migrations.Migration):
                         to="client_events.predictsession",
                     ),
                 ),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         null=True,
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
             ],
         ),
         migrations.CreateModel(
@@ -171,14 +171,14 @@ class Migration(migrations.Migration):
                 ("event_data", models.JSONField()),
                 ("plugin_version", models.CharField(max_length=30)),
                 ("octoprint_version", models.CharField(max_length=30)),
-                (
-                    "print_job",
-                    models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to="remote_control.printjob",
-                    ),
-                ),
+                # (
+                #     "print_job",
+                #     models.ForeignKey(
+                #         null=True,
+                #         on_delete=django.db.models.deletion.CASCADE,
+                #         to="remote_control.printjob",
+                #     ),
+                # ),
                 (
                     "user",
                     models.ForeignKey(
