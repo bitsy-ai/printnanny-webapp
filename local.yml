@@ -115,9 +115,9 @@ services:
     image: print_nanny_webapp_local_celeryworker
     container_name: celeryworker
     depends_on:
+      - django
       - redis
       - postgres
-      - ngrok
     ports: []
     command: /start-celeryworker
 
@@ -130,9 +130,10 @@ services:
     image: print_nanny_webapp_local_celerybeat
     container_name: celerybeat
     depends_on:
+      - celeryworker
+      - django
       - redis
       - postgres
-      - ngrok
     ports: []
     command: /start-celerybeat
 
@@ -145,7 +146,11 @@ services:
     ports:
       - "5555:5555"
     command: /start-flower
-
+    depends_on:
+      - celeryworker
+      - django
+      - redis
+      - postgres
   notebook:
     <<: *django
     image: print_nanny_webapp_local_notebook
@@ -188,7 +193,8 @@ services:
       - manage.py
       - runworker
       - discord
-
+    depends_on:
+      - django
   # Stripe websocket proxy
   stripe:
     container_name: stripe
