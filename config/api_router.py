@@ -14,16 +14,16 @@ from print_nanny_webapp.remote_control.api.views import (
     CommandViewSet
 )
 
-from print_nanny_webapp.alerts.api.views import (
-    AlertViewSet, PrintSessionAlertViewSet
-)
+# from print_nanny_webapp.alerts.api.views import (
+#     AlertViewSet, PrintSessionAlertViewSet
+# )
 
 from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 
 router = DefaultRouter()
 
-router.register("alerts", AlertViewSet)
-router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
+# router.register("alerts", AlertViewSet)
+# router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
 
 router.register("users", UserViewSet)
 
