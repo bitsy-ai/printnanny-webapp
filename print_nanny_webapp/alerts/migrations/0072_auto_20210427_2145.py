@@ -7,23 +7,53 @@ import print_nanny_webapp.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0071_auto_20210427_2105'),
+        ("alerts", "0071_auto_20210427_2105"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alerteventsettings',
-            name='discord_webhook',
-            field=models.CharField(help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.", max_length=255, null=True),
+            model_name="alerteventsettings",
+            name="discord_webhook",
+            field=models.CharField(
+                help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.",
+                max_length=255,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='alert',
-            name='event_type',
-            field=models.CharField(choices=[('PrintProgress', 'Print progress notifications'), ('PrintHealth', 'Print health alerts'), ('PrintStatus', 'Print status updates (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255, null=True),
+            model_name="alert",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("PrintProgress", "Print progress notifications"),
+                    ("PrintHealth", "Print health alerts"),
+                    (
+                        "PrintStatus",
+                        "Print status updates (started, paused, resumed, cancelling, cancelled, failed)",
+                    ),
+                ],
+                max_length=255,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='event_types',
-            field=print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('PrintProgress', 'Print progress notifications'), ('PrintHealth', 'Print health alerts'), ('PrintStatus', 'Print status updates (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255), blank=True, default=('PrintProgress', 'PrintHealth', 'PrintStatus'), size=None),
+            model_name="alerteventsettings",
+            name="event_types",
+            field=print_nanny_webapp.utils.fields.ChoiceArrayField(
+                base_field=models.CharField(
+                    choices=[
+                        ("PrintProgress", "Print progress notifications"),
+                        ("PrintHealth", "Print health alerts"),
+                        (
+                            "PrintStatus",
+                            "Print status updates (started, paused, resumed, cancelling, cancelled, failed)",
+                        ),
+                    ],
+                    max_length=255,
+                ),
+                blank=True,
+                default=("PrintProgress", "PrintHealth", "PrintStatus"),
+                size=None,
+            ),
         ),
     ]

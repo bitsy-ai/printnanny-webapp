@@ -62,6 +62,7 @@ logger = logging.getLogger(__name__)
 
 RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
 
+
 @extend_schema(tags=["remote-control"])
 @extend_schema_view(
     create=extend_schema(

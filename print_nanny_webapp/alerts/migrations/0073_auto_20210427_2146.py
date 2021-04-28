@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0072_auto_20210427_2145'),
+        ("alerts", "0072_auto_20210427_2145"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='discord_webhook',
-            field=models.CharField(blank=True, help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.", max_length=255, null=True),
+            model_name="alerteventsettings",
+            name="discord_webhook",
+            field=models.CharField(
+                blank=True,
+                help_text="Send notifications to a Discord channel. Please check out this guide to <a href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks'>generate a webhook</a> url and paste it here.",
+                max_length=255,
+                null=True,
+            ),
         ),
     ]

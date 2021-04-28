@@ -11,45 +11,90 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0068_printstatuseventsettings'),
+        ("alerts", "0068_printstatuseventsettings"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AlertSettings',
+            name="AlertSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('enabled', models.BooleanField(default=True)),
-                ('event_types', print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('PrintProgress', 'Receive print progress notifications'), ('PrintHealth', 'Receive print health alerts'), ('PrintStatus', 'Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255), blank=True, default=('PrintProgress', 'PrintHealth', 'PrintStatus'), size=None)),
-                ('print_progress_percent', models.IntegerField(default=25, help_text='Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress', validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(100)])),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                ("enabled", models.BooleanField(default=True)),
+                (
+                    "event_types",
+                    print_nanny_webapp.utils.fields.ChoiceArrayField(
+                        base_field=models.CharField(
+                            choices=[
+                                (
+                                    "PrintProgress",
+                                    "Receive print progress notifications",
+                                ),
+                                ("PrintHealth", "Receive print health alerts"),
+                                (
+                                    "PrintStatus",
+                                    "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)",
+                                ),
+                            ],
+                            max_length=255,
+                        ),
+                        blank=True,
+                        default=("PrintProgress", "PrintHealth", "PrintStatus"),
+                        size=None,
+                    ),
+                ),
+                (
+                    "print_progress_percent",
+                    models.IntegerField(
+                        default=25,
+                        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                            django.core.validators.MaxValueValidator(100),
+                        ],
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.RemoveField(
-            model_name='printprogresseventsettings',
-            name='polymorphic_ctype',
+            model_name="printprogresseventsettings",
+            name="polymorphic_ctype",
         ),
         migrations.RemoveField(
-            model_name='printprogresseventsettings',
-            name='user',
+            model_name="printprogresseventsettings",
+            name="user",
         ),
         migrations.RemoveField(
-            model_name='printstatuseventsettings',
-            name='polymorphic_ctype',
+            model_name="printstatuseventsettings",
+            name="polymorphic_ctype",
         ),
         migrations.RemoveField(
-            model_name='printstatuseventsettings',
-            name='user',
+            model_name="printstatuseventsettings",
+            name="user",
         ),
         migrations.DeleteModel(
-            name='PrintHealthEventSettings',
+            name="PrintHealthEventSettings",
         ),
         migrations.DeleteModel(
-            name='PrintProgressEventSettings',
+            name="PrintProgressEventSettings",
         ),
         migrations.DeleteModel(
-            name='PrintStatusEventSettings',
+            name="PrintStatusEventSettings",
         ),
     ]

@@ -8,12 +8,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0070_remove_alertsettings_enabled'),
+        ("alerts", "0070_remove_alertsettings_enabled"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='AlertSettings',
-            new_name='AlertEventSettings',
+            old_name="AlertSettings",
+            new_name="AlertEventSettings",
         ),
     ]

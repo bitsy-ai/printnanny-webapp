@@ -9,24 +9,60 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('alerts', '0066_printprogresseventsettings'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("alerts", "0066_printprogresseventsettings"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PrintHealthEventSettings',
+            name="PrintHealthEventSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True, db_index=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True, db_index=True)),
-                ('enabled', models.BooleanField(default=True)),
-                ('event_type', models.CharField(choices=[('PrintProgress', 'Receive print progress notifications'), ('PrintHealth', 'Receive print health alerts'), ('PrintStatus', 'Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)')], max_length=255)),
-                ('polymorphic_ctype', models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_alerts.printhealtheventsettings_set+', to='contenttypes.contenttype')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True, db_index=True)),
+                ("enabled", models.BooleanField(default=True)),
+                (
+                    "event_type",
+                    models.CharField(
+                        choices=[
+                            ("PrintProgress", "Receive print progress notifications"),
+                            ("PrintHealth", "Receive print health alerts"),
+                            (
+                                "PrintStatus",
+                                "Receive updates to print status (started, paused, resumed, cancelling, cancelled, failed)",
+                            ),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "polymorphic_ctype",
+                    models.ForeignKey(
+                        editable=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="polymorphic_alerts.printhealtheventsettings_set+",
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

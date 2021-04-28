@@ -9,18 +9,27 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('alerts', '0061_auto_20210427_2018'),
+        ("alerts", "0061_auto_20210427_2018"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='event_type',
-            field=models.CharField(choices=[('PrintProgress', 'Receive print progress notifications'), ('PrintHealth', 'Receive print health notifications'), ('TimelapseDone', 'Receive a timelapse video of your print')], max_length=255),
+            model_name="alerteventsettings",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("PrintProgress", "Receive print progress notifications"),
+                    ("PrintHealth", "Receive print health notifications"),
+                    ("TimelapseDone", "Receive a timelapse video of your print"),
+                ],
+                max_length=255,
+            ),
         ),
         migrations.AlterField(
-            model_name='alerteventsettings',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='users.user'),
+            model_name="alerteventsettings",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE, to="users.user"
+            ),
         ),
     ]
