@@ -58,30 +58,17 @@ class RemoteCommandEvent(TelemetryEvent):
 
     class EventType(models.TextChoices):
 
-        MONITORING_START_RECEIVED = (
-            "monitoring_start_received",
-            "MONITORING_START command was received by device",
+        RECEIVED = (
+            "received",
+            "Command was received by device",
         )
-        MONITORING_START_FAILED = (
-            "monitoring_start_failed",
-            "MONITORING_START command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
+        FAILED = (
+            "failed",
+            "Command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
         )
-        MONITORING_START_SUCCESS = (
-            "monitoring_start_success",
-            "MONITORING_START command succeeded. Live monitoring feed enabled",
-        )
-
-        MONITORING_STOP_RECEIVED = (
-            "monitoring_stop_received",
-            "MONITORING_STOP command was received by device",
-        )
-        MONITORING_STOP_FAILED = (
-            "monitoring_stop_failed",
-            "MONITORING_STOP command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
-        )
-        MONITORING_STOP_SUCCESS = (
-            "monitoring_stop_success",
-            "MONITORING_STOP command succeeded. Monitoring feed is now disabled.",
+        SUCCESS = (
+            "success",
+            "Command succeeded",
         )
 
         # @todo
