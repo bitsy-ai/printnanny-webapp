@@ -11,10 +11,8 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 logger = logging.getLogger(__name__)
 
 Alert = apps.get_model("alerts", "Alert")
-AlertSettings = apps.get_model("alerts", "AlertSettings")
+AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
 ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
-RemoteControlCommandAlert = apps.get_model("alerts", "RemoteControlCommandAlert")
-ProgressAlert = apps.get_model("alerts", "ProgressAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 
@@ -37,14 +35,6 @@ class AlertSerializer(serializers.ModelSerializer):
             "octoprint_device",
         ]
         read_only_fields = ("user",)
-
-
-class ProgressAlertSerializer(AlertSerializer):
-    class Meta:
-        model = ProgressAlert
-        fields = "__all__"
-        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
-
 
 class CreatePrintSessionAlertSerializer(AlertSerializer):
     print_session = serializers.CharField()
@@ -100,47 +90,6 @@ class AlertBulkResponseSerializer(serializers.Serializer):
     updated = serializers.IntegerField()
 
 
-class RemoteControlCommandAlertSerializer(AlertSerializer):
-
-    dashboard_url = serializers.SerializerMethodField()
-
-    def get_dashboard_url(self, obj):
-        return reverse(
-            "dashboard:octoprint-devices:detail", kwargs={"pk": obj.command.device.id}
-        )
-
-    metadata = serializers.SerializerMethodField()
-
-    def get_metadata(self, obj):
-        return obj.command.metadata
-
-    icon = serializers.CharField()
-    description = serializers.CharField()
-    color = serializers.CharField()
-    title = serializers.CharField()
-
-    class Meta:
-        model = RemoteControlCommandAlert
-        fields = [
-            "alert_subtype",
-            "alert_method",
-            "alert_type",
-            "color",
-            "created_dt",
-            "dashboard_url",
-            "metadata",
-            "icon",
-            "id",
-            "time",
-            "description",
-            "seen",
-            "title",
-            "updated_dt",
-            "user",
-        ]
-        read_only_fields = ("user",)
-
-
 class ManualVideoUploadAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManualVideoUploadAlert
@@ -153,9 +102,7 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
 
     model_serializer_mapping = {
         Alert: AlertSerializer,
-        RemoteControlCommandAlert: RemoteControlCommandAlertSerializer,
         ManualVideoUploadAlert: ManualVideoUploadAlertSerializer,
-        ProgressAlert: ProgressAlertSerializer,
         PrintSessionAlert: PrintSessionAlertSerializer,
     }
 

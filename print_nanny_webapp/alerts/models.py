@@ -92,8 +92,13 @@ class AlertEventSettings(models.Model):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
-    def on_event(self, octoprint_event):
-        raise NotImplemented
+    def on_print_progress(self, octoprint_event):
+        from print_nanny_webapp.alerts.api.serializers import AlertSerializer
+
+        progress = octoprint_event.event_data.get("event_data").get("progress")
+        if progress % self.on_progress_percent == 0:
+            serialized_obj = ProgressAlertSerializer(self)
+            return self.trigger_alerts_task(serialized_obj)
 
 
 class Alert(PolymorphicModel):
@@ -155,105 +160,6 @@ class PrintSessionAlert(Alert):
     @property
     def dashboard_url(self):
         return reverse("dashboard:videos:list")
-
-
-class ProgressAlert(Alert):
-    """
-    Fires on print job progress
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
-
-    progress_percent = models.IntegerField(
-        default=25,
-        validators=[MinValueValidator(1), MaxValueValidator(100)],
-        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
-    )
-
-    device = models.ForeignKey(
-        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
-    )
-
-    @property
-    def title(self):
-        unformatted = (
-            f"{self.progress_percent}% complete: {capfirst(self.command.device.name)}"
-        )
-        return unformatted
-
-    @property
-    def description(self):
-        return f"{str(self.get_alert_display())} {self.command.device.name}"
-
-    @property
-    def color(self):
-        return self.COLOR_CSS[self.alert_subtype]
-
-    @property
-    def icon(self):
-        return self.ICON_CSS[self.alert_subtype]
-
-
-class RemoteControlCommandAlert(Alert):
-    """
-    Fires on remote control events
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-    class AlertSubtypeChoices(models.TextChoices):
-        RECEIVED = "RECEIVED", "Command was received by"
-        SUCCESS = "SUCCESS", "Command succeeded"
-        FAILED = "FAILED", "Command failed"
-
-    COLOR_CSS = {
-        AlertSubtypeChoices.RECEIVED: "info",
-        AlertSubtypeChoices.SUCCESS: "success",
-        AlertSubtypeChoices.FAILED: "danger",
-    }
-
-    ICON_CSS = {
-        AlertSubtypeChoices.RECEIVED: "mdi mdi-upload",
-        AlertSubtypeChoices.SUCCESS: "mdi mdi-check",
-        AlertSubtypeChoices.FAILED: "mdi mdi-close",
-    }
-
-    command = models.ForeignKey(
-        "remote_control.RemoteControlCommand", on_delete=models.CASCADE
-    )
-    alert_subtype = models.CharField(
-        max_length=255, choices=AlertSubtypeChoices.choices
-    )
-
-    @property
-    def title(self):
-        unformatted = f"{self.command.command}: {capfirst(self.command.device.name)}"
-        return unformatted
-
-    @property
-    def description(self):
-        return f"{str(self.get_alert_subtype_display())} {self.command.device.name}"
-
-    @property
-    def color(self):
-        return self.COLOR_CSS[self.alert_subtype]
-
-    @property
-    def icon(self):
-        return self.ICON_CSS[self.alert_subtype]
-
-    @classmethod
-    def get_alert_subtype(cls, remote_control_command_data):
-        keys = remote_control_command_data.keys()
-        if "received" in keys:
-            return cls.AlertSubtypeChoices.RECEIVED
-        if "success" in keys:
-            if remote_control_command_data.get("success") == True:
-                return cls.AlertSubtypeChoices.SUCCESS
-            elif remote_control_command_data.get("success") == False:
-                return cls.AlertSubtypeChoices.FAILED
 
 
 class ManualVideoUploadAlert(Alert):

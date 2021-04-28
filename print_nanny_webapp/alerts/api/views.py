@@ -23,7 +23,6 @@ from .serializers import (
     AlertSerializer,
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
-    RemoteControlCommandAlertSerializer,
     AlertMethodSerializer,
     CreatePrintSessionAlertSerializer,
     PrintSessionAlertSerializer,
