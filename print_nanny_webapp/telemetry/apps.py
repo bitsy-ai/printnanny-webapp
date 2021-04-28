@@ -1,10 +1,10 @@
 from django.apps import AppConfig
 
 
-class ClientEventsConfig(AppConfig):
-    name = "print_nanny_webapp.client_events"
+class TelemetryConfig(AppConfig):
+    name = "print_nanny_webapp.telemetry"
     # def ready(self):
     #     try:
-    #         import print_nanny_webapp.client_events.signals  # noqa F401
+    #         import print_nanny_webapp.telemetry.signals  # noqa F401
     #     except ImportError:
     #         pass

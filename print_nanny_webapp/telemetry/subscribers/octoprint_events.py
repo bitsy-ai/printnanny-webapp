@@ -21,8 +21,8 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 from django.apps import apps
 
-OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
+PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
 
 logger = logging.getLogger(__name__)

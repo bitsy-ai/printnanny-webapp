@@ -1,7 +1,7 @@
 from django.apps import apps
 import prometheus_client
 
-# from print_nanny_webapp.client_events.models import PrintSessionState
+# from print_nanny_webapp.telemetry.models import PrintSessionState
 
 # print_session_status = prometheus_client.Enum(
 #     "print_session_status",

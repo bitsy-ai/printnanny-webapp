@@ -15,7 +15,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ("remote_control", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        # ('client_events', '0002_predictsession_channel_name_squashed_0009_auto_20201228_1434'),
     ]
 
     operations = [
