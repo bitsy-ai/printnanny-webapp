@@ -35,7 +35,7 @@ class PrintSessionAlert(object):
     openapi_types = {
         'id': 'int',
         'time': 'str',
-        'alert_methods': 'list[AlertMethodsEnum]',
+        'alert_method': 'AlertMethodEnum',
         'alert_type': 'AlertTypeEnum',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
@@ -53,7 +53,7 @@ class PrintSessionAlert(object):
     attribute_map = {
         'id': 'id',
         'time': 'time',
-        'alert_methods': 'alert_methods',
+        'alert_method': 'alert_method',
         'alert_type': 'alert_type',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
@@ -68,7 +68,7 @@ class PrintSessionAlert(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, time=None, alert_methods=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, needs_review=None, alert_subtype=None, annotated_video=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, alert_type=None, created_dt=None, updated_dt=None, seen=None, sent=None, needs_review=None, alert_subtype=None, annotated_video=None, polymorphic_ctype=None, user=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -76,7 +76,7 @@ class PrintSessionAlert(object):
 
         self._id = None
         self._time = None
-        self._alert_methods = None
+        self._alert_method = None
         self._alert_type = None
         self._created_dt = None
         self._updated_dt = None
@@ -95,8 +95,8 @@ class PrintSessionAlert(object):
             self.id = id
         if time is not None:
             self.time = time
-        if alert_methods is not None:
-            self.alert_methods = alert_methods
+        if alert_method is not None:
+            self.alert_method = alert_method
         if alert_type is not None:
             self.alert_type = alert_type
         if created_dt is not None:
@@ -163,25 +163,25 @@ class PrintSessionAlert(object):
         self._time = time
 
     @property
-    def alert_methods(self):
-        """Gets the alert_methods of this PrintSessionAlert.  # noqa: E501
+    def alert_method(self):
+        """Gets the alert_method of this PrintSessionAlert.  # noqa: E501
 
 
-        :return: The alert_methods of this PrintSessionAlert.  # noqa: E501
-        :rtype: list[AlertMethodsEnum]
+        :return: The alert_method of this PrintSessionAlert.  # noqa: E501
+        :rtype: AlertMethodEnum
         """
-        return self._alert_methods
+        return self._alert_method
 
-    @alert_methods.setter
-    def alert_methods(self, alert_methods):
-        """Sets the alert_methods of this PrintSessionAlert.
+    @alert_method.setter
+    def alert_method(self, alert_method):
+        """Sets the alert_method of this PrintSessionAlert.
 
 
-        :param alert_methods: The alert_methods of this PrintSessionAlert.  # noqa: E501
-        :type alert_methods: list[AlertMethodsEnum]
+        :param alert_method: The alert_method of this PrintSessionAlert.  # noqa: E501
+        :type alert_method: AlertMethodEnum
         """
 
-        self._alert_methods = alert_methods
+        self._alert_method = alert_method
 
     @property
     def alert_type(self):

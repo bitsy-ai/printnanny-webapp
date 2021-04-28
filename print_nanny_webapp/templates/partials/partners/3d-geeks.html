@@ -1,8 +1,13 @@
 {% load static i18n crispy_forms_tags %}
 
-{% if object.geekstoken.verified %}
-<input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
-<button name="action" value="revoke3d_geeks" type="submit" class="btn btn-success btn-small">Revoke 3D Geeks</button>
+{% if object.geekstoken_set.first.verified %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
+    <button name="action" value="test_3dgeeks" type="submit" class="btn btn-secondary btn-small">Test Alert</button>
+
+    <button name="action" value="revoke_3dgeeks" type="submit" class="btn btn-danger btn-small">Revoke 3D Geeks Access</button>
+</form>
 {% else %}
 <button data-toggle="modal" data-target="#octoprint-device-partner-3dgeeks-modal" class="btn btn-success btn-small">Connect 3D Geeks</button>
 <!--  Modal -->
@@ -10,18 +15,16 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Connect 3D Geeks App</h4>
+                <h4 class="modal-title">Connect you Printer to 3D Geeks</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div id="octoprint-device-partner-3d-geeks-qrcode" class="modal-body text-center"">
-                <p>Scan the QR below with the 3D Geeks app to link your printer.</p>
-                <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken.qrcode.url }}">
-                <p>Having trouble scanning the QR Code?</p>
-
-                <p>Connect by entering the following code in the 3D Geeks app:</p>
-                <code>
-                    {{ object.geekstoken.key }}
-                </code>
+                <p>Scan the QR below to add your printer to the 3D Geeks mobile app.</p>
+                <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken_set.first.qrcode.url }}">
+            </div>
+            <div class="modal-footer">
+                <p class="mx-auto text-center">Having trouble scanning the QR Code? Connect by entering the following code in the 3D Geeks app:</p>
+                <code class="mx-auto" id="partners-3dgeeks-token">{{ object.geekstoken_set.first.key }}</code>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

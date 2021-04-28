@@ -33,24 +33,28 @@ class AlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'seen': 'bool'
+        'seen': 'bool',
+        'octoprint_device': 'int'
     }
 
     attribute_map = {
-        'seen': 'seen'
+        'seen': 'seen',
+        'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, seen=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """AlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._seen = None
+        self._octoprint_device = None
         self.discriminator = None
 
         if seen is not None:
             self.seen = seen
+        self.octoprint_device = octoprint_device
 
     @property
     def seen(self):
@@ -72,6 +76,27 @@ class AlertRequest(object):
         """
 
         self._seen = seen
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this AlertRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this AlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this AlertRequest.
+
+
+        :param octoprint_device: The octoprint_device of this AlertRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

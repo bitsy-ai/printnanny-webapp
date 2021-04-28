@@ -55,6 +55,12 @@ export interface Alert {
      * @memberof Alert
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    octoprint_device?: number | null;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -99,10 +105,23 @@ export interface AlertMethod {
  * @export
  * @enum {string}
  */
+export enum AlertMethodEnum {
+    Ui = 'UI',
+    Email = 'EMAIL',
+    Discord = 'DISCORD',
+    Partner3Dgeeks = 'PARTNER_3DGEEKS'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 export enum AlertMethodsEnum {
     Ui = 'UI',
     Email = 'EMAIL',
-    Discord = 'DISCORD'
+    Discord = 'DISCORD',
+    Partner3Dgeeks = 'PARTNER_3DGEEKS'
 }
 
 /**
@@ -129,6 +148,12 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertRequest
+     */
+    octoprint_device?: number | null;
 }
 /**
  * 
@@ -167,7 +192,7 @@ export interface AlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof AlertSettings
      */
@@ -210,7 +235,7 @@ export interface AlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof AlertSettingsRequest
      */
@@ -309,7 +334,7 @@ export interface CommandAlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof CommandAlertSettings
      */
@@ -327,7 +352,7 @@ export interface CommandAlertSettings {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettings
      */
@@ -388,7 +413,7 @@ export interface CommandAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof CommandAlertSettingsRequest
      */
@@ -406,7 +431,7 @@ export interface CommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof CommandAlertSettingsRequest
      */
@@ -2098,6 +2123,55 @@ export interface PaginatedUserList {
     results?: Array<User>;
 }
 /**
+ * Please do not include any personally-identifying info or sensitive info in partner serializers
+ * @export
+ * @interface PartnerOctoPrintDevice
+ */
+export interface PartnerOctoPrintDevice {
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    platform: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerOctoPrintDevice
+     */
+    verified?: string;
+}
+/**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
  * @export
  * @interface PatchedAlertBulkRequestRequest
@@ -2128,6 +2202,12 @@ export interface PatchedAlertRequest {
      * @memberof PatchedAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedAlertRequest
+     */
+    octoprint_device?: number | null;
 }
 /**
  * @type PatchedAlertSettingsPolymorphicRequest
@@ -2154,7 +2234,7 @@ export interface PatchedAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedAlertSettingsRequest
      */
@@ -2179,7 +2259,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2197,7 +2277,7 @@ export interface PatchedCommandAlertSettingsRequest {
      */
     monitoring_start?: Array<MoveNozzleEnum>;
     /**
-     * Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes. 
+     * Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. 
      * @type {Array<MoveNozzleEnum>}
      * @memberof PatchedCommandAlertSettingsRequest
      */
@@ -2716,7 +2796,7 @@ export interface PatchedProgressAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof PatchedProgressAlertSettingsRequest
      */
@@ -2742,10 +2822,10 @@ export interface PatchedRemoteControlCommandAlertRequest {
     alert_subtype?: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
-     * @type {Array<AlertMethodsEnum>}
+     * @type {AlertMethodEnum}
      * @memberof PatchedRemoteControlCommandAlertRequest
      */
-    alert_methods?: Array<AlertMethodsEnum>;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3031,10 +3111,10 @@ export interface PrintSessionAlert {
     time?: string;
     /**
      * 
-     * @type {Array<AlertMethodsEnum>}
+     * @type {AlertMethodEnum}
      * @memberof PrintSessionAlert
      */
-    alert_methods?: Array<AlertMethodsEnum>;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3651,10 +3731,10 @@ export interface ProgressAlert {
     time?: string;
     /**
      * 
-     * @type {Array<AlertMethodsEnum>}
+     * @type {AlertMethodEnum}
      * @memberof ProgressAlert
      */
-    alert_methods?: Array<AlertMethodsEnum>;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -3790,7 +3870,7 @@ export interface ProgressAlertSettings {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof ProgressAlertSettings
      */
@@ -3833,7 +3913,7 @@ export interface ProgressAlertSettingsRequest {
      */
     alert_methods?: Array<AlertMethodsEnum>;
     /**
-     * Enable or disable this alert channel
+     * Enable or disable this alert type
      * @type {boolean}
      * @memberof ProgressAlertSettingsRequest
      */
@@ -3932,10 +4012,10 @@ export interface RemoteControlCommandAlert {
     alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
-     * @type {Array<AlertMethodsEnum>}
+     * @type {AlertMethodEnum}
      * @memberof RemoteControlCommandAlert
      */
-    alert_methods?: Array<AlertMethodsEnum>;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -4040,10 +4120,10 @@ export interface RemoteControlCommandAlertRequest {
     alert_subtype: RemoteControlCommandAlertAlertSubtypeEnum;
     /**
      * 
-     * @type {Array<AlertMethodsEnum>}
+     * @type {AlertMethodEnum}
      * @memberof RemoteControlCommandAlertRequest
      */
-    alert_methods?: Array<AlertMethodsEnum>;
+    alert_method?: AlertMethodEnum;
     /**
      * 
      * @type {AlertTypeEnum}
@@ -7788,6 +7868,143 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      */
     public modelArtifactsRetrieve(id: number, options?: any) {
         return MlOpsApiFp(this.configuration).modelArtifactsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PartnersGeeks3dApi - axios parameter creator
+ * @export
+ */
+export const PartnersGeeks3dApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        metadataRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling metadataRetrieve.');
+            }
+            const localVarPath = `/api/partners/3d-geeks/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PartnersGeeks3dApi - functional programming interface
+ * @export
+ */
+export const PartnersGeeks3dApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async metadataRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PartnerOctoPrintDevice>> {
+            const localVarAxiosArgs = await PartnersGeeks3dApiAxiosParamCreator(configuration).metadataRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * PartnersGeeks3dApi - factory interface
+ * @export
+ */
+export const PartnersGeeks3dApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        metadataRetrieve(id: string, options?: any): AxiosPromise<PartnerOctoPrintDevice> {
+            return PartnersGeeks3dApiFp(configuration).metadataRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * PartnersGeeks3dApi - interface
+ * @export
+ * @interface PartnersGeeks3dApi
+ */
+export interface PartnersGeeks3dApiInterface {
+    /**
+     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PartnersGeeks3dApiInterface
+     */
+    metadataRetrieve(id: string, options?: any): AxiosPromise<PartnerOctoPrintDevice>;
+
+}
+
+/**
+ * PartnersGeeks3dApi - object-oriented interface
+ * @export
+ * @class PartnersGeeks3dApi
+ * @extends {BaseAPI}
+ */
+export class PartnersGeeks3dApi extends BaseAPI implements PartnersGeeks3dApiInterface {
+    /**
+     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PartnersGeeks3dApi
+     */
+    public metadataRetrieve(id: string, options?: any) {
+        return PartnersGeeks3dApiFp(this.configuration).metadataRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

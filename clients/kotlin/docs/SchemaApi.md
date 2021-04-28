@@ -18,8 +18,8 @@ OpenApi3 schema for this API. Format can be selected via content negotiation.  -
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = SchemaApi()
 val lang : kotlin.String = lang_example // kotlin.String | 

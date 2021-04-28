@@ -26,6 +26,8 @@
 
 const fs = require('fs') 
 
+require('./partners/3dgeeks')
+
 Cypress.Commands.add('octoprintLogin', (email, password) => {
     const local_addresses = ['127.0.0.1', 'localhost']
     const url = Cypress.env('OCTOPRINT_URL')
@@ -54,10 +56,18 @@ Cypress.Commands.add('printNannyLogin', (email, password) => {
     cy.get('button[type=submit]').click()
 })
 
-Cypress.Commands.add('fetchPrintNannyToken', (email, password) => {
+Cypress.Commands.add('getPrintNannyToken', (email, password) => {
     cy.printNannyLogin(email, password)
     cy.get('#show-token').click()
     return cy.get('#token').then($input => {
         return $input.val
     })
+})
+
+Cypress.Commands.add('manageDevice', (octoprint_device_id=null) =>{
+    if (octoprint_device_id == null){
+        if (Cypress.$('#dashboard-octoprint-devices tr').length > 0){
+            return cy.get('#dashboard-octoprint-devices tr').last().contains('Manage Device').click()
+        }
+    }
 })

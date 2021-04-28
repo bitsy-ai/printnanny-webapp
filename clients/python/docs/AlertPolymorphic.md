@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **user** | **int** |  | [optional] [readonly] 
 **time** | **str** |  | [optional] [readonly] 
 **seen** | **bool** |  | [optional] 
+**octoprint_device** | **int** |  | [optional] [readonly] 
 **alert_subtype** | [**PrintSessionAlertAlertSubtypeEnum**](PrintSessionAlertAlertSubtypeEnum.md) |  | 
-**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] [readonly] 
+**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [readonly] 
 **color** | **str** |  | 
 **dashboard_url** | **str** |  | [optional] [readonly] 
@@ -21,7 +22,6 @@ Name | Type | Description | Notes
 **sent** | **bool** |  | [optional] 
 **progress_percent** | **int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
-**octoprint_device** | **int** |  | [optional] [readonly] 
 **device** | **int** |  | 
 **needs_review** | **bool** |  | [optional] 
 **annotated_video** | **str** |  | 

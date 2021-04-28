@@ -31,6 +31,8 @@ import google.api_core.exceptions
 
 from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
+from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
+from django.contrib import messages
 
 User = get_user_model()
 Alert = apps.get_model("alerts", "Alert")
@@ -44,6 +46,7 @@ PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
+
 logger = logging.getLogger(__name__)
 
 
@@ -184,7 +187,22 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
     form_classes = {
         "remote_command": RemoteControlCommandForm,
         "remove_device": RemoveDeviceForm,
+        "revoke_3dgeeks": RevokeGeeksTokenForm,
+        "test_3dgeeks": RevokeGeeksTokenForm,
     }
+
+    def test_3dgeeks_form_valid(self, form):
+        octoprint_device_id = self.request.POST.get("octoprint_device_id")
+
+    def revoke_3dgeeks_form_valid(self, form):
+        octoprint_device_id = self.request.POST.get("octoprint_device_id")
+        token = GeeksToken.objects.get(octoprint_device=octoprint_device_id)
+        token.delete()
+        octoprint_device = OctoPrintDevice.objects.get(id=octoprint_device_id)
+        token, created = GeeksToken.objects.get_or_create(
+            octoprint_device=octoprint_device, user=self.request.user, deleted=None
+        )
+        return redirect("dashboard:octoprint-devices:detail", pk=octoprint_device.id)
 
     def remove_device_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
@@ -218,7 +236,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
     def get_object(self):
         self.object = super().get_object()
         token, created = GeeksToken.objects.get_or_create(
-            octoprint_device=self.object, user=self.request.user
+            octoprint_device=self.object, user=self.request.user, deleted=None
         )
         return self.object
 

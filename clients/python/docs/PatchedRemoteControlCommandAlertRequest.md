@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alert_subtype** | [**RemoteControlCommandAlertAlertSubtypeEnum**](RemoteControlCommandAlertAlertSubtypeEnum.md) |  | [optional] 
-**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] 
+**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [optional] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [optional] 
 **color** | **str** |  | [optional] 
 **icon** | **str** |  | [optional] 

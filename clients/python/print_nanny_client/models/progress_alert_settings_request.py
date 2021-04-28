@@ -114,7 +114,7 @@ class ProgressAlertSettingsRequest(object):
     def enabled(self):
         """Gets the enabled of this ProgressAlertSettingsRequest.  # noqa: E501
 
-        Enable or disable this alert channel  # noqa: E501
+        Enable or disable this alert type  # noqa: E501
 
         :return: The enabled of this ProgressAlertSettingsRequest.  # noqa: E501
         :rtype: bool
@@ -125,7 +125,7 @@ class ProgressAlertSettingsRequest(object):
     def enabled(self, enabled):
         """Sets the enabled of this ProgressAlertSettingsRequest.
 
-        Enable or disable this alert channel  # noqa: E501
+        Enable or disable this alert type  # noqa: E501
 
         :param enabled: The enabled of this ProgressAlertSettingsRequest.  # noqa: E501
         :type enabled: bool

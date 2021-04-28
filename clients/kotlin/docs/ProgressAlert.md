@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **device** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **time** | **kotlin.String** |  |  [optional] [readonly]
-**alertMethods** | [**kotlin.collections.List&lt;AlertMethodsEnum&gt;**](AlertMethodsEnum.md) |  |  [optional] [readonly]
+**alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  |  [optional] [readonly]
 **alertType** | [**AlertTypeEnum**](AlertTypeEnum.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]

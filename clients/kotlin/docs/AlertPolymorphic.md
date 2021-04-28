@@ -18,14 +18,14 @@ Name | Type | Description | Notes
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **time** | **kotlin.String** |  |  [optional] [readonly]
 **seen** | **kotlin.Boolean** |  |  [optional]
-**alertMethods** | [**kotlin.collections.List&lt;AlertMethodsEnum&gt;**](AlertMethodsEnum.md) |  |  [optional] [readonly]
+**octoprintDevice** | **kotlin.Int** |  |  [optional] [readonly]
+**alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  |  [optional] [readonly]
 **dashboardUrl** | **kotlin.String** |  |  [optional] [readonly]
 **metadata** | **kotlin.String** |  |  [optional] [readonly]
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **sent** | **kotlin.Boolean** |  |  [optional]
 **progressPercent** | **kotlin.Int** | Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress |  [optional]
 **polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
-**octoprintDevice** | **kotlin.Int** |  |  [optional] [readonly]
 **needsReview** | **kotlin.Boolean** |  |  [optional]
 
 

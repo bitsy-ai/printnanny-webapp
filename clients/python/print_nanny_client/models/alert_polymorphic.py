@@ -38,8 +38,9 @@ class AlertPolymorphic(object):
         'user': 'int',
         'time': 'str',
         'seen': 'bool',
+        'octoprint_device': 'int',
         'alert_subtype': 'PrintSessionAlertAlertSubtypeEnum',
-        'alert_methods': 'list[AlertMethodsEnum]',
+        'alert_method': 'AlertMethodEnum',
         'alert_type': 'AlertTypeEnum',
         'color': 'str',
         'dashboard_url': 'str',
@@ -51,7 +52,6 @@ class AlertPolymorphic(object):
         'sent': 'bool',
         'progress_percent': 'int',
         'polymorphic_ctype': 'int',
-        'octoprint_device': 'int',
         'device': 'int',
         'needs_review': 'bool',
         'annotated_video': 'str',
@@ -64,8 +64,9 @@ class AlertPolymorphic(object):
         'user': 'user',
         'time': 'time',
         'seen': 'seen',
+        'octoprint_device': 'octoprint_device',
         'alert_subtype': 'alert_subtype',
-        'alert_methods': 'alert_methods',
+        'alert_method': 'alert_method',
         'alert_type': 'alert_type',
         'color': 'color',
         'dashboard_url': 'dashboard_url',
@@ -77,7 +78,6 @@ class AlertPolymorphic(object):
         'sent': 'sent',
         'progress_percent': 'progress_percent',
         'polymorphic_ctype': 'polymorphic_ctype',
-        'octoprint_device': 'octoprint_device',
         'device': 'device',
         'needs_review': 'needs_review',
         'annotated_video': 'annotated_video',
@@ -87,7 +87,7 @@ class AlertPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, alert_subtype=None, alert_methods=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, octoprint_device=None, device=None, needs_review=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, time=None, seen=None, octoprint_device=None, alert_subtype=None, alert_method=None, alert_type=None, color=None, dashboard_url=None, metadata=None, icon=None, id=None, description=None, title=None, sent=None, progress_percent=None, polymorphic_ctype=None, device=None, needs_review=None, annotated_video=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -98,8 +98,9 @@ class AlertPolymorphic(object):
         self._user = None
         self._time = None
         self._seen = None
+        self._octoprint_device = None
         self._alert_subtype = None
-        self._alert_methods = None
+        self._alert_method = None
         self._alert_type = None
         self._color = None
         self._dashboard_url = None
@@ -111,7 +112,6 @@ class AlertPolymorphic(object):
         self._sent = None
         self._progress_percent = None
         self._polymorphic_ctype = None
-        self._octoprint_device = None
         self._device = None
         self._needs_review = None
         self._annotated_video = None
@@ -128,9 +128,11 @@ class AlertPolymorphic(object):
             self.time = time
         if seen is not None:
             self.seen = seen
+        if octoprint_device is not None:
+            self.octoprint_device = octoprint_device
         self.alert_subtype = alert_subtype
-        if alert_methods is not None:
-            self.alert_methods = alert_methods
+        if alert_method is not None:
+            self.alert_method = alert_method
         self.alert_type = alert_type
         self.color = color
         if dashboard_url is not None:
@@ -148,8 +150,6 @@ class AlertPolymorphic(object):
             self.progress_percent = progress_percent
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
-        if octoprint_device is not None:
-            self.octoprint_device = octoprint_device
         self.device = device
         if needs_review is not None:
             self.needs_review = needs_review
@@ -262,6 +262,27 @@ class AlertPolymorphic(object):
         self._seen = seen
 
     @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this AlertPolymorphic.  # noqa: E501
+
+
+        :return: The octoprint_device of this AlertPolymorphic.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this AlertPolymorphic.
+
+
+        :param octoprint_device: The octoprint_device of this AlertPolymorphic.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
+
+    @property
     def alert_subtype(self):
         """Gets the alert_subtype of this AlertPolymorphic.  # noqa: E501
 
@@ -285,25 +306,25 @@ class AlertPolymorphic(object):
         self._alert_subtype = alert_subtype
 
     @property
-    def alert_methods(self):
-        """Gets the alert_methods of this AlertPolymorphic.  # noqa: E501
+    def alert_method(self):
+        """Gets the alert_method of this AlertPolymorphic.  # noqa: E501
 
 
-        :return: The alert_methods of this AlertPolymorphic.  # noqa: E501
-        :rtype: list[AlertMethodsEnum]
+        :return: The alert_method of this AlertPolymorphic.  # noqa: E501
+        :rtype: AlertMethodEnum
         """
-        return self._alert_methods
+        return self._alert_method
 
-    @alert_methods.setter
-    def alert_methods(self, alert_methods):
-        """Sets the alert_methods of this AlertPolymorphic.
+    @alert_method.setter
+    def alert_method(self, alert_method):
+        """Sets the alert_method of this AlertPolymorphic.
 
 
-        :param alert_methods: The alert_methods of this AlertPolymorphic.  # noqa: E501
-        :type alert_methods: list[AlertMethodsEnum]
+        :param alert_method: The alert_method of this AlertPolymorphic.  # noqa: E501
+        :type alert_method: AlertMethodEnum
         """
 
-        self._alert_methods = alert_methods
+        self._alert_method = alert_method
 
     @property
     def alert_type(self):
@@ -553,27 +574,6 @@ class AlertPolymorphic(object):
         """
 
         self._polymorphic_ctype = polymorphic_ctype
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this AlertPolymorphic.  # noqa: E501
-
-
-        :return: The octoprint_device of this AlertPolymorphic.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this AlertPolymorphic.
-
-
-        :param octoprint_device: The octoprint_device of this AlertPolymorphic.  # noqa: E501
-        :type octoprint_device: int
-        """
-
-        self._octoprint_device = octoprint_device
 
     @property
     def device(self):

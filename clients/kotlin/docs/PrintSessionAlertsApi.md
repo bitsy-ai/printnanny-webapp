@@ -17,8 +17,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = PrintSessionAlertsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -67,8 +67,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = PrintSessionAlertsApi()
 val id : kotlin.String = id_example // kotlin.String | 

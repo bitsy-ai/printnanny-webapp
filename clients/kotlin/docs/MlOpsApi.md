@@ -26,8 +26,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val deviceCalibrationRequest : DeviceCalibrationRequest =  // DeviceCalibrationRequest | 
@@ -76,8 +76,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -126,8 +126,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device calibration.
@@ -178,8 +178,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device calibration.
@@ -228,8 +228,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device calibration.
@@ -280,8 +280,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -330,8 +330,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this experiment device config.
@@ -380,8 +380,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -430,8 +430,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this experiment.
@@ -480,8 +480,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
@@ -530,8 +530,8 @@ Configure tokenAuth:
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = MlOpsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this model artifact.

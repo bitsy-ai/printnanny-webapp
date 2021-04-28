@@ -1,7 +1,6 @@
 import io
 import os
 from uuid import uuid4
-
 from django.db import models
 from django.utils import timezone, dateformat
 
@@ -22,24 +21,22 @@ def _upload_to(instance, filename):
     return path
 
 
-class GeeksTokenManager(SafeDeleteManager):
-    def create(self, *args, **kwargs):
-        obj = super().create(*args, **kwargs)
-        output = io.BytesIO()
-        img = qrcode.make(obj.key)
-        img.save(output, format="PNG")
-        obj.qrcode.save(f"{self.key}.png", ContentFile(output.read()))
-        obj.save()
-        return obj
-
-
 class GeeksToken(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["octoprint_device_id"],
+                condition=models.Q(deleted=None),
+                name="unique_geeks_token_per_octoprint_device",
+            )
+        ]
 
     # Grabbed code from rest_framework.models.Token
     key = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    octoprint_device = models.OneToOneField(
+    octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
     verified = models.BooleanField(default=False)
@@ -55,4 +52,4 @@ class GeeksToken(SafeDeleteModel):
             self.qrcode.save(f"{self.key}.png", ContentFile(output.read()))
 
     def __str__(self):
-        return self.key
+        return self.key.hex

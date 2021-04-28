@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **time** | **str** |  | [optional] [readonly] 
-**alert_methods** | [**list[AlertMethodsEnum]**](AlertMethodsEnum.md) |  | [optional] [readonly] 
+**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [optional] [readonly] 
 **alert_type** | [**AlertTypeEnum**](AlertTypeEnum.md) |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 

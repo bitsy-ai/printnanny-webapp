@@ -151,7 +151,7 @@ class PatchedAlertSettingsPolymorphicRequest(object):
     def enabled(self):
         """Gets the enabled of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
 
-        Enable or disable this alert channel  # noqa: E501
+        Enable or disable this alert type  # noqa: E501
 
         :return: The enabled of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
         :rtype: bool
@@ -162,7 +162,7 @@ class PatchedAlertSettingsPolymorphicRequest(object):
     def enabled(self, enabled):
         """Sets the enabled of this PatchedAlertSettingsPolymorphicRequest.
 
-        Enable or disable this alert channel  # noqa: E501
+        Enable or disable this alert type  # noqa: E501
 
         :param enabled: The enabled of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
         :type enabled: bool
@@ -220,7 +220,7 @@ class PatchedAlertSettingsPolymorphicRequest(object):
     def print_start(self):
         """Gets the print_start of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
 
-        Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
+        Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :return: The print_start of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
         :rtype: list[MoveNozzleEnum]
@@ -231,7 +231,7 @@ class PatchedAlertSettingsPolymorphicRequest(object):
     def print_start(self, print_start):
         """Sets the print_start of this PatchedAlertSettingsPolymorphicRequest.
 
-        Fires on <strong>StopPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
+        Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes.   # noqa: E501
 
         :param print_start: The print_start of this PatchedAlertSettingsPolymorphicRequest.  # noqa: E501
         :type print_start: list[MoveNozzleEnum]

@@ -21,6 +21,7 @@ class CommandAlertSettingsForm(ModelForm):
         model = RemoteControlCommandAlertSettings
         unique_together = ("user", "alert_type")
         fields = (
+            "alert_methods",
             "enabled",
             "alert_methods",
             "print_start",

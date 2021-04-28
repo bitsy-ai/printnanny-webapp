@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
 *MlOpsApi* | [**experiments_retrieve**](docs/MlOpsApi.md#experiments_retrieve) | **GET** /api/experiments/{id}/ | 
 *MlOpsApi* | [**model_artifacts_list**](docs/MlOpsApi.md#model_artifacts_list) | **GET** /api/model-artifacts/ | 
 *MlOpsApi* | [**model_artifacts_retrieve**](docs/MlOpsApi.md#model_artifacts_retrieve) | **GET** /api/model-artifacts/{id}/ | 
+*PartnersGeeks3dApi* | [**metadata_retrieve**](docs/PartnersGeeks3dApi.md#metadata_retrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 *PrintSessionAlertsApi* | [**print_session_alerts_list**](docs/PrintSessionAlertsApi.md#print_session_alerts_list) | **GET** /api/print-session-alerts/ | 
 *PrintSessionAlertsApi* | [**print_session_alerts_retrieve**](docs/PrintSessionAlertsApi.md#print_session_alerts_retrieve) | **GET** /api/print-session-alerts/{id}/ | 
 *RemoteControlApi* | [**commands_list**](docs/RemoteControlApi.md#commands_list) | **GET** /api/commands/ | 
@@ -173,6 +174,7 @@ Class | Method | HTTP request | Description
  - [Alert](docs/Alert.md)
  - [AlertBulkResponse](docs/AlertBulkResponse.md)
  - [AlertMethod](docs/AlertMethod.md)
+ - [AlertMethodEnum](docs/AlertMethodEnum.md)
  - [AlertMethodsEnum](docs/AlertMethodsEnum.md)
  - [AlertPolymorphic](docs/AlertPolymorphic.md)
  - [AlertPolymorphicRequest](docs/AlertPolymorphicRequest.md)
@@ -223,6 +225,7 @@ Class | Method | HTTP request | Description
  - [PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [PaginatedUserList](docs/PaginatedUserList.md)
+ - [PartnerOctoPrintDevice](docs/PartnerOctoPrintDevice.md)
  - [PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [PatchedAlertPolymorphicRequest](docs/PatchedAlertPolymorphicRequest.md)
  - [PatchedAlertRequest](docs/PatchedAlertRequest.md)

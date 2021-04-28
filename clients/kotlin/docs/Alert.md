@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **time** | **kotlin.String** |  |  [optional] [readonly]
 **seen** | **kotlin.Boolean** |  |  [optional]
+**octoprintDevice** | **kotlin.Int** |  |  [optional]
 
 
 

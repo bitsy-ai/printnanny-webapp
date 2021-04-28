@@ -33,7 +33,14 @@ class AlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Alert
-        fields = ["created_dt", "updated_dt", "user", "time", "seen"]
+        fields = [
+            "created_dt",
+            "updated_dt",
+            "user",
+            "time",
+            "seen",
+            "octoprint_device",
+        ]
         read_only_fields = ("user",)
 
 
@@ -41,7 +48,7 @@ class ProgressAlertSerializer(AlertSerializer):
     class Meta:
         model = ProgressAlert
         fields = "__all__"
-        read_only_fields = ("user", "alert_methods", "alert_type", "polymorphic_ctype")
+        read_only_fields = ("user", "alert_method", "alert_type", "polymorphic_ctype")
 
 
 class CreatePrintSessionAlertSerializer(AlertSerializer):
@@ -73,7 +80,7 @@ class PrintSessionAlertSerializer(AlertSerializer):
         fields = "__all__"
 
         read_only_fields = (
-            "alert_methods",
+            "alert_method",
             "alert_type",
             "polymorphic_ctype",
             "user",
@@ -121,7 +128,7 @@ class RemoteControlCommandAlertSerializer(AlertSerializer):
         model = RemoteControlCommandAlert
         fields = [
             "alert_subtype",
-            "alert_methods",
+            "alert_method",
             "alert_type",
             "color",
             "created_dt",

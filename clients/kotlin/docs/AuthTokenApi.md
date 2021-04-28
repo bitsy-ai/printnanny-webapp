@@ -16,8 +16,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
 
 val apiInstance = AuthTokenApi()
 val username : kotlin.String = username_example // kotlin.String | 

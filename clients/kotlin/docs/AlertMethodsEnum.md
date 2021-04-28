@@ -10,5 +10,7 @@
 
     * `dISCORD` (value: `"DISCORD"`)
 
+    * `pARTNER3DGEEKS` (value: `"PARTNER_3DGEEKS"`)
+
 
 
