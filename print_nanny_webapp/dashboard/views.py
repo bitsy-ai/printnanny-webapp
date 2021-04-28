@@ -188,12 +188,11 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         "remote_command": RemoteControlCommandForm,
         "remove_device": RemoveDeviceForm,
         "revoke_3dgeeks": RevokeGeeksTokenForm,
-        "test_3dgeeks": RevokeGeeksTokenForm
+        "test_3dgeeks": RevokeGeeksTokenForm,
     }
 
     def test_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
-
 
     def revoke_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")

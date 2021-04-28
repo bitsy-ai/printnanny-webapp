@@ -126,7 +126,6 @@ class DiscordMethodSettings(models.Model):
     )
 
 
-
 ##
 # Alert Settings models
 ##
