@@ -40,22 +40,34 @@ def _upload_to(instance, filename):
 # Base Polymorphic models
 ##
 
+class AlertEventSettings(PolymorphicModel):
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    enabled = models.BooleanField(default=True)
+    class EventType(models.TextChoices):
+        PRINT_PROGRESS = "PrintProgress", "Receive print progress notifications"
+        PRINT_HEALTH = "PrintHealth", "Receive print health notifications"
+        TIMELAPSE_DONE = "TimelapseDone", "Receive a timelapse video of your print"
+
+    event_type = models.CharField(choices=EventType.choices, max_length=255, null=True)
+
 
 class Alert(PolymorphicModel):
     """
         Base class for alert events
     """
-    class AlertTypeChoices(models.TextChoices):
-        """
-            Types of noteworthy events
-        """
-        COMMAND = "COMMAND", "Remote command status updates"
-        PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
-        MANUAL_VIDEO_UPLOAD = (
-            "MANUAL_VIDEO_UPLOAD",
-            "Manually-uploaded video is ready for review",
-        )
-        PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
+        
+    # class AlertTypeChoices(models.TextChoices):
+    #     """
+    #         Types of noteworthy events
+    #     """
+    #     COMMAND = "COMMAND", "Remote command status updates"
+    #     PROGRESS = "PRINT_PROGRESS", "Percentage-based print progress"
+    #     MANUAL_VIDEO_UPLOAD = (
+    #         "MANUAL_VIDEO_UPLOAD",
+    #         "Manually-uploaded video is ready for review",
+    #     )
+    #     PRINT_SESSION = "PRINT_SESSION", "Print job is finished"
 
     class AlertMethodChoices(models.TextChoices):
         """
@@ -74,8 +86,7 @@ class Alert(PolymorphicModel):
         max_length=255,
         default=AlertMethodChoices.EMAIL,
     )
-
-    alert_type = models.CharField(choices=AlertTypeChoices.choices, max_length=255)
+    event_type = models.CharField(choices=AlertEventSettings.EventType.choices, max_length=255, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -93,27 +104,8 @@ class AlertMethodSettings(PolymorphicModel):
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
     alert_method = models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255)
-    enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255)
+    enabled = models.BooleanField(choices=Alert.AlertMethodChoices.choices, max_length=255, help_text="Enable or disable this alert method")
     user = models.OneToOneField(User, on_delete=models.CASCADE, db_index=True)
-
-
-
-class AlertSettings(PolymorphicModel):
-
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
-
-    alert_type = models.CharField(
-        choices=Alert.AlertTypeChoices.choices, max_length=255
-    )
-    alert_methods = ChoiceArrayField(
-        models.CharField(choices=Alert.AlertMethodChoices.choices, max_length=255),
-        blank=True,
-        default=(Alert.AlertMethodChoices.UI, Alert.AlertMethodChoices.EMAIL),
-    )
-    enabled = models.BooleanField(
-        default=True, help_text="Enable or disable this alert type"
-    )
 
 
 ##
@@ -121,135 +113,111 @@ class AlertSettings(PolymorphicModel):
 ##
 
 # @todo base from AlertSettings
-class DiscordMethodSettings(models.Model):
-    class TargetIDTypeChoices(models.TextChoices):
-        USER = "USER", "User"
-        CHANNEL = "CHANNEL", "Channel"
-
-    created_dt = models.DateTimeField(auto_now_add=True)
-    updated_dt = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-
-    # Channel ID is where to send a message if you're not going for event-driven
-    # Channel IDs are of "snowflake" type
-    # Snowflakes are 64 bit unsigned integers represented as decimal strings
-    # so max 21 characters - 24 to be "safe"
-    # https://discord.com/developers/docs/reference#snowflakes
-    # TODO: Add a label with capital 'ID'. `label` kwarg is not recognized?
-    target_id = models.CharField(
-        help_text='ID to send notifications to\nTo get an item\'s ID, enable developer mode on under Discord Settings -> Appearance and right click to the target it (ex. a channel or a user) and "Copy ID"',
-        max_length=24,
-        db_index=True,
-    )
-    target_id_type = models.CharField(
-        max_length=255, choices=TargetIDTypeChoices.choices, db_index=True
-    )
-
-
+#  
 ##
 # Alert Settings models
 ##
 
 
-class ProgressAlertSettings(AlertSettings):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
+# class ProgressAlertSettings(AlertSettings):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.PROGRESS, **kwargs)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    on_progress_percent = models.IntegerField(
-        default=25,
-        validators=[MinValueValidator(1), MaxValueValidator(100)],
-        help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
-    )
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     on_progress_percent = models.IntegerField(
+#         default=25,
+#         validators=[MinValueValidator(1), MaxValueValidator(100)],
+#         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+#     )
 
-    def on_print_progress(self, octoprint_event):
-        from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
+#     def on_print_progress(self, octoprint_event):
+#         from print_nanny_webapp.alerts.api.serializers import ProgressAlertSerializer
 
-        progress = octoprint_event.event_data.get("event_data").get("progress")
-        if progress % self.on_progress_percent == 0:
-            serialized_obj = ProgressAlertSerializer(self)
-            return self.trigger_alerts_task(serialized_obj)
-
-
-class PrintSessionAlertSettings(AlertSettings):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __init__(self, *args, **kwargs):
-        user = kwargs.get("user")
-        alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
-            user=user
-        )
-        super().__init__(
-            alert_settings=alert_settings,
-            *args,
-            alert_type=Alert.AlertTypeChoices.PRINT_SESSION,
-            **kwargs,
-        )
+#         progress = octoprint_event.event_data.get("event_data").get("progress")
+#         if progress % self.on_progress_percent == 0:
+#             serialized_obj = ProgressAlertSerializer(self)
+#             return self.trigger_alerts_task(serialized_obj)
 
 
-class RemoteControlCommandAlertSettings(AlertSettings):
-    class AlertSubTypeChoices(models.TextChoices):
-        RECEVIED = "RECEIVED", "Command received by device"
-        FAILED = "FAILED", "Command failed"
-        SUCCESS = "SUCCESS", "Command succeeded"
+# class PrintSessionAlertSettings(AlertSettings):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         user = kwargs.get("user")
+#         alert_settings, created = PrintSessionAlertSettings.objects.get_or_create(
+#             user=user
+#         )
+#         super().__init__(
+#             alert_settings=alert_settings,
+#             *args,
+#             alert_type=Alert.AlertTypeChoices.PRINT_SESSION,
+#             **kwargs,
+#         )
 
-    def command_to_attr(self, command_str):
-        snake_cased = stringcase.snakecase(command_str)
-        return getattr(self, snake_cased)
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+# class RemoteControlCommandAlertSettings(AlertSettings):
+#     class AlertSubTypeChoices(models.TextChoices):
+#         RECEVIED = "RECEIVED", "Command received by device"
+#         FAILED = "FAILED", "Command failed"
+#         SUCCESS = "SUCCESS", "Command succeeded"
 
-    monitoring_stop = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
-        blank=True,
-        default=(AlertSubTypeChoices.FAILED,),
-    )
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
-    monitoring_start = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
-        blank=True,
-        default=(AlertSubTypeChoices.FAILED,),
-    )
+#     def command_to_attr(self, command_str):
+#         snake_cased = stringcase.snakecase(command_str)
+#         return getattr(self, snake_cased)
 
-    print_start = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. ",
-        blank=True,
-        default=(AlertSubTypeChoices.FAILED,),
-    )
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    print_stop = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
-        blank=True,
-        default=(AlertSubTypeChoices.FAILED,),
-    )
+#     monitoring_stop = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>MonitoringStop<strong> updates. \n Helps debug unexpected Print Nanny crashes.",
+#         blank=True,
+#         default=(AlertSubTypeChoices.FAILED,),
+#     )
 
-    print_pause = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
-        default=(AlertSubTypeChoices.FAILED,),
-        blank=True,
-    )
+#     monitoring_start = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>MonitoringStop</strong> updates. Helpful if you want to confirm monitoring started without a problem.",
+#         blank=True,
+#         default=(AlertSubTypeChoices.FAILED,),
+#     )
 
-    print_resume = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
-        default=(AlertSubTypeChoices.FAILED,),
-        blank=True,
-    )
+#     print_start = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>StartPrint</strong> updates. Get notified as soon as a print job finishes. ",
+#         blank=True,
+#         default=(AlertSubTypeChoices.FAILED,),
+#     )
 
-    move_nozzle = ChoiceArrayField(
-        models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
-        help_text="Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint",
-        blank=True,
-        default=(AlertSubTypeChoices.FAILED,),
-    )
+#     print_stop = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>PrintStart</strong> command status changes. Helpful for verifying a print job started without a problem.",
+#         blank=True,
+#         default=(AlertSubTypeChoices.FAILED,),
+#     )
+
+#     print_pause = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>PausePrint</strong> command status changes. Helpful for verifying a print was paused successfully.",
+#         default=(AlertSubTypeChoices.FAILED,),
+#         blank=True,
+#     )
+
+#     print_resume = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>ResumePrint</strong> command status changes Helpful for verifying a print was resumed.",
+#         default=(AlertSubTypeChoices.FAILED,),
+#         blank=True,
+#     )
+
+#     move_nozzle = ChoiceArrayField(
+#         models.CharField(max_length=255, choices=AlertSubTypeChoices.choices),
+#         help_text="Fires on <strong>MoveNozzle</strong>command status changes. Helpful for debugging connectivity between Print Nanny and OctoPrint",
+#         blank=True,
+#         default=(AlertSubTypeChoices.FAILED,),
+#     )
 
 
 ##
