@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("client_events", "0009_auto_20201228_1434"),
+        ("client_events", "0002_predictsession_channel_name_squashed_0009_auto_20201228_1434"),
         ("remote_control", "0005_auto_20201227_1910"),
     ]
 
