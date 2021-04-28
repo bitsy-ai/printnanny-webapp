@@ -23,7 +23,7 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class ClientEvent(models.Model):
+class TelemetryEvent(models.Model):
     """
     Base class for client-side events
     """
@@ -51,7 +51,7 @@ def _upload_to(instance, filename):
     return path
 
 
-class RemoteEvent(ClientEvent):
+class RemoteCommandEvent(TelemetryEvent):
     """
     Commands sent to the OctoPrint device
     """
@@ -112,7 +112,7 @@ class RemoteEvent(ClientEvent):
     )
 
 
-class PluginEvent(ClientEvent):
+class OctoPrintPluginEvent(TelemetryEvent):
     """
     Events emitted by OctoPrint Nanny plugin
 
@@ -145,7 +145,7 @@ class PluginEvent(ClientEvent):
     )
 
 
-class OctoPrintEvent(ClientEvent):
+class OctoPrintEvent(TelemetryEvent):
     """
     Events emitted by OctoPrint Core and plugins bundled with core
     PascalCased strings
@@ -235,7 +235,7 @@ class OctoPrintEvent(ClientEvent):
     )
 
 
-class PrintSessionState(ClientEvent):
+class PrintStatusEvent(TelemetryEvent):
     class EventType(models.TextChoices):
         # print job
         ERROR = "Error", "Error"

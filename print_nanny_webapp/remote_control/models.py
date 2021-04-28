@@ -228,7 +228,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_status(self):
-        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 
         last_print_session_event = (
             PrintSessionState.objects.filter(device=self)
@@ -242,7 +242,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_gcode_file(self):
-        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 
         last_print_session_event = (
             PrintSessionState.objects.filter(device=self)
@@ -256,7 +256,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_status_css_class(self):
-        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 
         return PrintSessionState.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
 
@@ -428,19 +428,6 @@ class RemoteControlCommandManager(models.Manager):
 public_storage = PublicGoogleCloudStorage()
 
 
-class RemoteControlSnapshot(models.Model):
-
-    created_dt = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(
-        upload_to="uploads/remote_control_snapshot/%Y/%m/%d/", storage=public_storage
-    )
-    command = models.ForeignKey(
-        "remote_control.RemoteControlCommand",
-        on_delete=models.CASCADE,
-        related_name="snapshots",
-    )
-
-
 class RemoteControlCommand(models.Model):
 
     PLUGIN_EVENT_PREFIX = "plugin_octoprint_nanny_"
@@ -460,7 +447,7 @@ class RemoteControlCommand(models.Model):
 
     @classmethod
     def get_valid_actions(cls, print_session_status):
-        PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 
         valid_actions = {
             PrintSessionState.EventType.PRINT_STARTED: [

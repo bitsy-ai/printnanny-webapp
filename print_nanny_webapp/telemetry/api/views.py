@@ -24,12 +24,12 @@ from .serializers import (
     PluginEventSerializer,
     PrintSessionStateSerializer,
 )
-import print_nanny_webapp.client_events.api.exceptions
+import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
-PluginEvent = apps.get_model("client_events", "PluginEvent")
-OctoPrintEvent = apps.get_model("client_events", "OctoPrintEvent")
-PrintSessionState = apps.get_model("client_events", "PrintSessionState")
+PluginEvent = apps.get_model("telemetry", "PluginEvent")
+OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
+PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
 
 logger = logging.getLogger(__name__)
 

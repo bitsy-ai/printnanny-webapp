@@ -113,7 +113,7 @@ spec:
         imagePullPolicy: Always
         command:
           - python
-          - print_nanny_webapp/client_events/subscribers/octoprint_events.py
+          - print_nanny_webapp/telemetry/subscribers/octoprint_events.py
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
