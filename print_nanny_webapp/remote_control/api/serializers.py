@@ -164,7 +164,6 @@ class GcodeFileSerializer(serializers.ModelSerializer):
 
 
 class PrintSessionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = PrintSession
         fields = [field.name for field in PrintSession._meta.fields] + [

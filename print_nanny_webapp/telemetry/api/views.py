@@ -70,7 +70,10 @@ class OctoPrintEventViewSet(
 @extend_schema(tags=["telemetry"])
 @extend_schema_view(
     create=extend_schema(
-        responses={201: OctoPrintPluginEventSerializer, 400: OctoPrintPluginEventSerializer}
+        responses={
+            201: OctoPrintPluginEventSerializer,
+            400: OctoPrintPluginEventSerializer,
+        }
     )
 )
 class OctoPrintPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):

@@ -26,7 +26,6 @@ class AlertSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 
-
 class AlertBulkRequestSerializer(serializers.Serializer):
     """
     Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests

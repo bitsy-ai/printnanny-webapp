@@ -101,12 +101,13 @@ class RemoteCommandEvent(TelemetryEvent):
 
 class OctoPrintPluginEvent(TelemetryEvent):
     """
-        Events emitted by OctoPrint Nanny plugin
+    Events emitted by OctoPrint Nanny plugin
 
-        OctoPrint sends these as snake-cased strings
+    OctoPrint sends these as snake-cased strings
 
-        For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
+    For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
     """
+
     plugin_identifier = "octoprint_nanny"
     octoprint_event_prefix = "PLUGIN_OCTOPRINT_NANNY"
 
@@ -137,7 +138,7 @@ class OctoPrintPluginEvent(TelemetryEvent):
 
     @classmethod
     def strip_plugin_identifier(self, event_type):
-        return event_type.replace(self.plugin_identifier, '')
+        return event_type.replace(self.plugin_identifier, "")
 
 
 class OctoPrintEvent(TelemetryEvent):

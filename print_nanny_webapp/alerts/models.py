@@ -109,6 +109,7 @@ class AlertEventTypes(models.TextChoices):
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
 
+
 class AlertMessage(models.Model):
     """
     Base class for alert events
@@ -134,6 +135,7 @@ class AlertMessage(models.Model):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
+
 
 ##
 # @ todo re-enable ManualVideoUpload feature

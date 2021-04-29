@@ -98,7 +98,10 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error({"error": e, "data": data})
 
-    elif OctoPrintPluginEvent.strip_plugin_identifier(event_type) in OctoPrintPluginEvent.EventType:
+    elif (
+        OctoPrintPluginEvent.strip_plugin_identifier(event_type)
+        in OctoPrintPluginEvent.EventType
+    ):
         try:
             OctoPrintPluginEvent.objects.create(
                 created_dt=data["created_dt"],
@@ -111,7 +114,7 @@ def on_octoprint_event(message):
                 user_id=data["user_id"],
             )
         except Exception as e:
-            logger.error({"error": e, "data": data})  
+            logger.error({"error": e, "data": data})
     else:
         logger.error(f"Unrecognized event_type={event_type} with data {data}")
     message.ack()
