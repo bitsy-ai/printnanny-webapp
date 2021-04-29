@@ -33,56 +33,181 @@ class Alert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'id': 'int',
+        'time': 'str',
+        'alert_method': 'AlertMethodEnum',
+        'event_type': 'OneOfAlertEventTypeEnumNullEnum',
+        'annotated_video': 'str',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
-        'alert_method': 'AlertMethodEnum',
-        'event_type': 'OneOfEventTypeA2eEnumNullEnum',
-        'user': 'int',
-        'time': 'str',
         'seen': 'bool',
+        'sent': 'bool',
+        'print_session': 'int',
+        'user': 'int',
         'octoprint_device': 'int'
     }
 
     attribute_map = {
-        'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt',
+        'id': 'id',
+        'time': 'time',
         'alert_method': 'alert_method',
         'event_type': 'event_type',
-        'user': 'user',
-        'time': 'time',
+        'annotated_video': 'annotated_video',
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt',
         'seen': 'seen',
+        'sent': 'sent',
+        'print_session': 'print_session',
+        'user': 'user',
         'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, alert_method=None, event_type=None, user=None, time=None, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, alert_method=None, event_type=None, annotated_video=None, created_dt=None, updated_dt=None, seen=None, sent=None, print_session=None, user=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._created_dt = None
-        self._updated_dt = None
+        self._id = None
+        self._time = None
         self._alert_method = None
         self._event_type = None
-        self._user = None
-        self._time = None
+        self._annotated_video = None
+        self._created_dt = None
+        self._updated_dt = None
         self._seen = None
+        self._sent = None
+        self._print_session = None
+        self._user = None
         self._octoprint_device = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
+        if time is not None:
+            self.time = time
+        self.alert_method = alert_method
+        self.event_type = event_type
+        self.annotated_video = annotated_video
         if created_dt is not None:
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
-        self.alert_method = alert_method
-        self.event_type = event_type
-        if user is not None:
-            self.user = user
-        if time is not None:
-            self.time = time
         if seen is not None:
             self.seen = seen
+        if sent is not None:
+            self.sent = sent
+        self.print_session = print_session
+        if user is not None:
+            self.user = user
         self.octoprint_device = octoprint_device
+
+    @property
+    def id(self):
+        """Gets the id of this Alert.  # noqa: E501
+
+
+        :return: The id of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Alert.
+
+
+        :param id: The id of this Alert.  # noqa: E501
+        :type id: int
+        """
+
+        self._id = id
+
+    @property
+    def time(self):
+        """Gets the time of this Alert.  # noqa: E501
+
+
+        :return: The time of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._time
+
+    @time.setter
+    def time(self, time):
+        """Sets the time of this Alert.
+
+
+        :param time: The time of this Alert.  # noqa: E501
+        :type time: str
+        """
+
+        self._time = time
+
+    @property
+    def alert_method(self):
+        """Gets the alert_method of this Alert.  # noqa: E501
+
+
+        :return: The alert_method of this Alert.  # noqa: E501
+        :rtype: AlertMethodEnum
+        """
+        return self._alert_method
+
+    @alert_method.setter
+    def alert_method(self, alert_method):
+        """Sets the alert_method of this Alert.
+
+
+        :param alert_method: The alert_method of this Alert.  # noqa: E501
+        :type alert_method: AlertMethodEnum
+        """
+        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
+            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
+
+        self._alert_method = alert_method
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this Alert.  # noqa: E501
+
+
+        :return: The event_type of this Alert.  # noqa: E501
+        :rtype: OneOfAlertEventTypeEnumNullEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this Alert.
+
+
+        :param event_type: The event_type of this Alert.  # noqa: E501
+        :type event_type: OneOfAlertEventTypeEnumNullEnum
+        """
+
+        self._event_type = event_type
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this Alert.  # noqa: E501
+
+
+        :return: The annotated_video of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this Alert.
+
+
+        :param annotated_video: The annotated_video of this Alert.  # noqa: E501
+        :type annotated_video: str
+        """
+
+        self._annotated_video = annotated_video
 
     @property
     def created_dt(self):
@@ -127,48 +252,67 @@ class Alert(object):
         self._updated_dt = updated_dt
 
     @property
-    def alert_method(self):
-        """Gets the alert_method of this Alert.  # noqa: E501
+    def seen(self):
+        """Gets the seen of this Alert.  # noqa: E501
 
 
-        :return: The alert_method of this Alert.  # noqa: E501
-        :rtype: AlertMethodEnum
+        :return: The seen of this Alert.  # noqa: E501
+        :rtype: bool
         """
-        return self._alert_method
+        return self._seen
 
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this Alert.
+    @seen.setter
+    def seen(self, seen):
+        """Sets the seen of this Alert.
 
 
-        :param alert_method: The alert_method of this Alert.  # noqa: E501
-        :type alert_method: AlertMethodEnum
+        :param seen: The seen of this Alert.  # noqa: E501
+        :type seen: bool
         """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
-        self._alert_method = alert_method
+        self._seen = seen
 
     @property
-    def event_type(self):
-        """Gets the event_type of this Alert.  # noqa: E501
+    def sent(self):
+        """Gets the sent of this Alert.  # noqa: E501
 
 
-        :return: The event_type of this Alert.  # noqa: E501
-        :rtype: OneOfEventTypeA2eEnumNullEnum
+        :return: The sent of this Alert.  # noqa: E501
+        :rtype: bool
         """
-        return self._event_type
+        return self._sent
 
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this Alert.
+    @sent.setter
+    def sent(self, sent):
+        """Sets the sent of this Alert.
 
 
-        :param event_type: The event_type of this Alert.  # noqa: E501
-        :type event_type: OneOfEventTypeA2eEnumNullEnum
+        :param sent: The sent of this Alert.  # noqa: E501
+        :type sent: bool
         """
 
-        self._event_type = event_type
+        self._sent = sent
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this Alert.  # noqa: E501
+
+
+        :return: The print_session of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this Alert.
+
+
+        :param print_session: The print_session of this Alert.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     @property
     def user(self):
@@ -190,48 +334,6 @@ class Alert(object):
         """
 
         self._user = user
-
-    @property
-    def time(self):
-        """Gets the time of this Alert.  # noqa: E501
-
-
-        :return: The time of this Alert.  # noqa: E501
-        :rtype: str
-        """
-        return self._time
-
-    @time.setter
-    def time(self, time):
-        """Sets the time of this Alert.
-
-
-        :param time: The time of this Alert.  # noqa: E501
-        :type time: str
-        """
-
-        self._time = time
-
-    @property
-    def seen(self):
-        """Gets the seen of this Alert.  # noqa: E501
-
-
-        :return: The seen of this Alert.  # noqa: E501
-        :rtype: bool
-        """
-        return self._seen
-
-    @seen.setter
-    def seen(self, seen):
-        """Sets the seen of this Alert.
-
-
-        :param seen: The seen of this Alert.  # noqa: E501
-        :type seen: bool
-        """
-
-        self._seen = seen
 
     @property
     def octoprint_device(self):

@@ -27,6 +27,36 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface Alert {
     /**
      * 
+     * @type {number}
+     * @memberof Alert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof Alert
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {AlertEventTypeEnum | NullEnum}
+     * @memberof Alert
+     */
+    event_type?: AlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    annotated_video?: string | null;
+    /**
+     * 
      * @type {string}
      * @memberof Alert
      */
@@ -39,34 +69,28 @@ export interface Alert {
     updated_dt?: string;
     /**
      * 
-     * @type {AlertMethodEnum}
+     * @type {boolean}
      * @memberof Alert
      */
-    alert_method: AlertMethodEnum;
+    seen?: boolean;
     /**
      * 
-     * @type {EventTypeA2eEnum | NullEnum}
+     * @type {boolean}
      * @memberof Alert
      */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
+    sent?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
      * @memberof Alert
      */
     user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Alert
-     */
-    time?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Alert
-     */
-    seen?: boolean;
     /**
      * 
      * @type {number}
@@ -98,24 +122,27 @@ export interface AlertBulkResponse {
  * @export
  * @enum {string}
  */
+export enum AlertEventTypeEnum {
+    PrintHealth = 'PrintHealth',
+    PrintProgress = 'PrintProgress',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 export enum AlertMethodEnum {
     Ui = 'UI',
     Email = 'EMAIL',
     Discord = 'DISCORD',
     Partner3Dgeeks = 'PARTNER_3DGEEKS'
 }
-
-/**
- * @type AlertPolymorphic
- * @export
- */
-export type AlertPolymorphic = Alert | PrintStatus;
-
-/**
- * @type AlertPolymorphicRequest
- * @export
- */
-export type AlertPolymorphicRequest = AlertRequest | PrintStatusRequest;
 
 /**
  * 
@@ -131,16 +158,34 @@ export interface AlertRequest {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventTypeA2eEnum | NullEnum}
+     * @type {AlertEventTypeEnum | NullEnum}
      * @memberof AlertRequest
      */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
+    event_type?: AlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof AlertRequest
+     */
+    annotated_video?: any | null;
     /**
      * 
      * @type {boolean}
      * @memberof AlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AlertRequest
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -305,30 +350,6 @@ export interface DeviceCalibrationRequest {
      */
     config_file?: any | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum EventSubtypeEnum {
-    PrintProgress = 'PrintProgress',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum EventTypeA2eEnum {
-    PrintHealth = 'PrintHealth',
-    PrintStatus = 'PrintStatus'
-}
-
 /**
  * 
  * @export
@@ -1400,33 +1421,33 @@ export enum OctoPrintPluginEventEventTypeEnum {
 /**
  * 
  * @export
- * @interface PaginatedAlertPolymorphicList
+ * @interface PaginatedAlertList
  */
-export interface PaginatedAlertPolymorphicList {
+export interface PaginatedAlertList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedAlertPolymorphicList
+     * @memberof PaginatedAlertList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedAlertPolymorphicList
+     * @memberof PaginatedAlertList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedAlertPolymorphicList
+     * @memberof PaginatedAlertList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<AlertPolymorphic>}
-     * @memberof PaginatedAlertPolymorphicList
+     * @type {Array<Alert>}
+     * @memberof PaginatedAlertList
      */
-    results?: Array<AlertPolymorphic>;
+    results?: Array<Alert>;
 }
 /**
  * 
@@ -1894,12 +1915,6 @@ export interface PatchedAlertBulkRequestRequest {
     ids?: Array<number>;
 }
 /**
- * @type PatchedAlertPolymorphicRequest
- * @export
- */
-export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedPrintStatusRequest;
-
-/**
  * 
  * @export
  * @interface PatchedAlertRequest
@@ -1913,16 +1928,34 @@ export interface PatchedAlertRequest {
     alert_method?: AlertMethodEnum;
     /**
      * 
-     * @type {EventTypeA2eEnum | NullEnum}
+     * @type {AlertEventTypeEnum | NullEnum}
      * @memberof PatchedAlertRequest
      */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
+    event_type?: AlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedAlertRequest
+     */
+    annotated_video?: any | null;
     /**
      * 
      * @type {boolean}
      * @memberof PatchedAlertRequest
      */
     seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedAlertRequest
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedAlertRequest
+     */
+    print_session?: number | null;
     /**
      * 
      * @type {number}
@@ -2161,55 +2194,6 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
-}
-/**
- * 
- * @export
- * @interface PatchedPrintStatusRequest
- */
-export interface PatchedPrintStatusRequest {
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedPrintStatusRequest
-     */
-    annotated_video?: any;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof PatchedPrintStatusRequest
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {EventTypeA2eEnum | NullEnum}
-     * @memberof PatchedPrintStatusRequest
-     */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
-    /**
-     * 
-     * @type {EventSubtypeEnum}
-     * @memberof PatchedPrintStatusRequest
-     */
-    event_subtype?: EventSubtypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrintStatusRequest
-     */
-    print_session?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrintStatusRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrintStatusRequest
-     */
-    octoprint_device?: number | null;
 }
 /**
  * 
@@ -2555,79 +2539,6 @@ export interface PrintSessionRequest {
 /**
  * 
  * @export
- * @interface PrintStatus
- */
-export interface PrintStatus {
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatus
-     */
-    annotated_video: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatus
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatus
-     */
-    updated_dt?: string;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof PrintStatus
-     */
-    alert_method: AlertMethodEnum;
-    /**
-     * 
-     * @type {EventTypeA2eEnum | NullEnum}
-     * @memberof PrintStatus
-     */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
-    /**
-     * 
-     * @type {EventSubtypeEnum}
-     * @memberof PrintStatus
-     */
-    event_subtype: EventSubtypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatus
-     */
-    print_session: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatus
-     */
-    user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatus
-     */
-    time?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintStatus
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatus
-     */
-    octoprint_device?: number | null;
-}
-/**
- * 
- * @export
  * @interface PrintStatusEvent
  */
 export interface PrintStatusEvent {
@@ -2737,55 +2648,6 @@ export enum PrintStatusEventEventTypeEnum {
     PrintStarted = 'PrintStarted'
 }
 
-/**
- * 
- * @export
- * @interface PrintStatusRequest
- */
-export interface PrintStatusRequest {
-    /**
-     * 
-     * @type {any}
-     * @memberof PrintStatusRequest
-     */
-    annotated_video: any;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof PrintStatusRequest
-     */
-    alert_method: AlertMethodEnum;
-    /**
-     * 
-     * @type {EventTypeA2eEnum | NullEnum}
-     * @memberof PrintStatusRequest
-     */
-    event_type?: EventTypeA2eEnum | NullEnum | null;
-    /**
-     * 
-     * @type {EventSubtypeEnum}
-     * @memberof PrintStatusRequest
-     */
-    event_subtype: EventSubtypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatusRequest
-     */
-    print_session: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintStatusRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatusRequest
-     */
-    octoprint_device?: number | null;
-}
 /**
  * 
  * @export
@@ -3327,11 +3189,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsPartialUpdate: async (id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+        alertsPartialUpdate: async (id: number, patchedAlertRequest?: PatchedAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling alertsPartialUpdate.');
@@ -3374,13 +3236,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedAlertPolymorphicRequest !== 'string';
+            const nonString = typeof patchedAlertRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedAlertPolymorphicRequest !== undefined ? patchedAlertPolymorphicRequest : {})
-                : (patchedAlertPolymorphicRequest || "");
+                ? JSON.stringify(patchedAlertRequest !== undefined ? patchedAlertRequest : {})
+                : (patchedAlertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -3594,14 +3456,18 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsUpdate: async (id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+        alertsUpdate: async (id: number, alertRequest: AlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling alertsUpdate.');
+            }
+            // verify required parameter 'alertRequest' is not null or undefined
+            if (alertRequest === null || alertRequest === undefined) {
+                throw new RequiredError('alertRequest','Required parameter alertRequest was null or undefined when calling alertsUpdate.');
             }
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
@@ -3641,13 +3507,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof alertPolymorphicRequest !== 'string';
+            const nonString = typeof alertRequest !== 'string';
             const needsSerialization = nonString && configuration && configuration.isJsonMime
                 ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
                 : nonString;
             localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(alertPolymorphicRequest !== undefined ? alertPolymorphicRequest : {})
-                : (alertPolymorphicRequest || "");
+                ? JSON.stringify(alertRequest !== undefined ? alertRequest : {})
+                : (alertRequest || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -3669,7 +3535,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertPolymorphicList>> {
+        async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertList>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(page, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -3679,12 +3545,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options);
+        async alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsPartialUpdate(id, patchedAlertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -3708,7 +3574,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+        async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
             const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -3743,12 +3609,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUpdate(id, alertPolymorphicRequest, options);
+        async alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUpdate(id, alertRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -3769,18 +3635,18 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList> {
+        alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList> {
             return AlertsApiFp(configuration).alertsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
-            return AlertsApiFp(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(axios, basePath));
+        alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert> {
+            return AlertsApiFp(configuration).alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3796,7 +3662,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic> {
+        alertsRetrieve(id: number, options?: any): AxiosPromise<Alert> {
             return AlertsApiFp(configuration).alertsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3819,12 +3685,12 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this alert.
-         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
-            return AlertsApiFp(configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(axios, basePath));
+        alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert> {
+            return AlertsApiFp(configuration).alertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3842,17 +3708,17 @@ export interface AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList>;
+    alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList>;
 
     /**
      * 
      * @param {number} id A unique integer value identifying this alert.
-     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+    alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert>;
 
     /**
      * 
@@ -3869,7 +3735,7 @@ export interface AlertsApiInterface {
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic>;
+    alertsRetrieve(id: number, options?: any): AxiosPromise<Alert>;
 
     /**
      * 
@@ -3891,12 +3757,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this alert.
-     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+    alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert>;
 
 }
 
@@ -3921,13 +3787,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this alert.
-     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any) {
-        return AlertsApiFp(this.configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3975,13 +3841,13 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this alert.
-     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any) {
-        return AlertsApiFp(this.configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    public alertsUpdate(id: number, alertRequest: AlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsUpdate(id, alertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

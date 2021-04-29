@@ -1,5 +1,5 @@
 
-# PaginatedAlertPolymorphicList
+# PaginatedAlertList
 
 ## Properties
 Name | Type | Description | Notes
@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **count** | **kotlin.Int** |  |  [optional]
 **next** | [**java.net.URI**](java.net.URI.md) |  |  [optional]
 **previous** | [**java.net.URI**](java.net.URI.md) |  |  [optional]
-**results** | [**kotlin.collections.List&lt;AlertPolymorphic&gt;**](AlertPolymorphic.md) |  |  [optional]
+**results** | [**kotlin.collections.List&lt;Alert&gt;**](Alert.md) |  |  [optional]
 
 
 

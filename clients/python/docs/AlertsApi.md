@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **alerts_list**
-> PaginatedAlertPolymorphicList alerts_list(page=page)
+> PaginatedAlertList alerts_list(page=page)
 
 
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedAlertPolymorphicList**](PaginatedAlertPolymorphicList.md)
+[**PaginatedAlertList**](PaginatedAlertList.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_partial_update**
-> AlertPolymorphic alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+> Alert alerts_partial_update(id, patched_alert_request=patched_alert_request)
 
 
 
@@ -171,10 +171,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert.
-patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRequest() # PatchedAlertPolymorphicRequest |  (optional)
+patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+        api_response = api_instance.alerts_partial_update(id, patched_alert_request=patched_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_partial_update: %s\n" % e)
@@ -214,10 +214,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert.
-patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRequest() # PatchedAlertPolymorphicRequest |  (optional)
+patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+        api_response = api_instance.alerts_partial_update(id, patched_alert_request=patched_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_partial_update: %s\n" % e)
@@ -228,11 +228,11 @@ patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this alert. | 
- **patched_alert_polymorphic_request** | [**PatchedAlertPolymorphicRequest**](PatchedAlertPolymorphicRequest.md)|  | [optional] 
+ **patched_alert_request** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional] 
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -364,7 +364,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_retrieve**
-> AlertPolymorphic alerts_retrieve(id)
+> Alert alerts_retrieve(id)
 
 
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -712,7 +712,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_update**
-> AlertPolymorphic alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+> Alert alerts_update(id, alert_request)
 
 
 
@@ -752,10 +752,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert.
-alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # AlertPolymorphicRequest |  (optional)
+alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
-        api_response = api_instance.alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+        api_response = api_instance.alerts_update(id, alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -795,10 +795,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert.
-alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # AlertPolymorphicRequest |  (optional)
+alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
-        api_response = api_instance.alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+        api_response = api_instance.alerts_update(id, alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -809,11 +809,11 @@ alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # Alert
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this alert. | 
- **alert_polymorphic_request** | [**AlertPolymorphicRequest**](AlertPolymorphicRequest.md)|  | [optional] 
+ **alert_request** | [**AlertRequest**](AlertRequest.md)|  | 
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 

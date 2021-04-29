@@ -1,8 +1,10 @@
 
-# EventSubtypeEnum
+# AlertEventTypeEnum
 
 ## Enum
 
+
+    * `printHealth` (value: `"PrintHealth"`)
 
     * `printProgress` (value: `"PrintProgress"`)
 

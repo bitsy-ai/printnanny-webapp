@@ -11,7 +11,7 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AlertPolymorphic
+import com.print-nanny.client.models.Alert
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -24,7 +24,7 @@ import java.io.Serializable
  * @param results 
  */
 
-data class PaginatedAlertPolymorphicList (
+data class PaginatedAlertList (
     @Json(name = "count")
     val count: kotlin.Int? = null,
     @Json(name = "next")
@@ -32,7 +32,7 @@ data class PaginatedAlertPolymorphicList (
     @Json(name = "previous")
     val previous: java.net.URI? = null,
     @Json(name = "results")
-    val results: kotlin.collections.List<AlertPolymorphic>? = null
+    val results: kotlin.collections.List<Alert>? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

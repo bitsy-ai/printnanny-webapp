@@ -38,7 +38,10 @@ class TestAlertRequest(unittest.TestCase):
             return AlertRequest(
                 alert_method = 'UI', 
                 event_type = None, 
+                annotated_video = bytes(b'blah'), 
                 seen = True, 
+                sent = True, 
+                print_session = 56, 
                 octoprint_device = 56
             )
         else :

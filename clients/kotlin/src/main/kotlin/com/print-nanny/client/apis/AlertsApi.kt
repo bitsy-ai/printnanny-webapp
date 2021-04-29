@@ -11,12 +11,12 @@
 */
 package com.print-nanny.client.apis
 
+import com.print-nanny.client.models.Alert
 import com.print-nanny.client.models.AlertBulkResponse
-import com.print-nanny.client.models.AlertPolymorphic
-import com.print-nanny.client.models.AlertPolymorphicRequest
-import com.print-nanny.client.models.PaginatedAlertPolymorphicList
+import com.print-nanny.client.models.AlertRequest
+import com.print-nanny.client.models.PaginatedAlertList
 import com.print-nanny.client.models.PatchedAlertBulkRequestRequest
-import com.print-nanny.client.models.PatchedAlertPolymorphicRequest
+import com.print-nanny.client.models.PatchedAlertRequest
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -42,14 +42,14 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedAlertPolymorphicList
+    * @return PaginatedAlertList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsList(page: kotlin.Int?) : PaginatedAlertPolymorphicList {
+    fun alertsList(page: kotlin.Int?) : PaginatedAlertList {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -64,13 +64,13 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<PaginatedAlertPolymorphicList>(
+        val localVarResponse = request<PaginatedAlertList>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAlertPolymorphicList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAlertList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -88,16 +88,16 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * 
     * 
     * @param id A unique integer value identifying this alert. 
-    * @param patchedAlertPolymorphicRequest  (optional)
-    * @return AlertPolymorphic
+    * @param patchedAlertRequest  (optional)
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsPartialUpdate(id: kotlin.Int, patchedAlertPolymorphicRequest: PatchedAlertPolymorphicRequest?) : AlertPolymorphic {
-        val localVariableBody: kotlin.Any? = patchedAlertPolymorphicRequest
+    fun alertsPartialUpdate(id: kotlin.Int, patchedAlertRequest: PatchedAlertRequest?) : Alert {
+        val localVariableBody: kotlin.Any? = patchedAlertRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         val localVariableConfig = RequestConfig(
@@ -106,13 +106,13 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<AlertPolymorphic>(
+        val localVarResponse = request<Alert>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AlertPolymorphic
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -170,14 +170,14 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * 
     * 
     * @param id A unique integer value identifying this alert. 
-    * @return AlertPolymorphic
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsRetrieve(id: kotlin.Int) : AlertPolymorphic {
+    fun alertsRetrieve(id: kotlin.Int) : Alert {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -187,13 +187,13 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<AlertPolymorphic>(
+        val localVarResponse = request<Alert>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AlertPolymorphic
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -292,16 +292,16 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * 
     * 
     * @param id A unique integer value identifying this alert. 
-    * @param alertPolymorphicRequest  (optional)
-    * @return AlertPolymorphic
+    * @param alertRequest  
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsUpdate(id: kotlin.Int, alertPolymorphicRequest: AlertPolymorphicRequest?) : AlertPolymorphic {
-        val localVariableBody: kotlin.Any? = alertPolymorphicRequest
+    fun alertsUpdate(id: kotlin.Int, alertRequest: AlertRequest) : Alert {
+        val localVariableBody: kotlin.Any? = alertRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         val localVariableConfig = RequestConfig(
@@ -310,13 +310,13 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<AlertPolymorphic>(
+        val localVarResponse = request<Alert>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as AlertPolymorphic
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

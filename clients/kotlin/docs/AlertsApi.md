@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="alertsList"></a>
 # **alertsList**
-> PaginatedAlertPolymorphicList alertsList(page)
+> PaginatedAlertList alertsList(page)
 
 
 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 val apiInstance = AlertsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedAlertPolymorphicList = apiInstance.alertsList(page)
+    val result : PaginatedAlertList = apiInstance.alertsList(page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsList")
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedAlertPolymorphicList**](PaginatedAlertPolymorphicList.md)
+[**PaginatedAlertList**](PaginatedAlertList.md)
 
 ### Authorization
 
@@ -65,7 +65,7 @@ Configure tokenAuth:
 
 <a name="alertsPartialUpdate"></a>
 # **alertsPartialUpdate**
-> AlertPolymorphic alertsPartialUpdate(id, patchedAlertPolymorphicRequest)
+> Alert alertsPartialUpdate(id, patchedAlertRequest)
 
 
 
@@ -77,9 +77,9 @@ Configure tokenAuth:
 
 val apiInstance = AlertsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
-val patchedAlertPolymorphicRequest : PatchedAlertPolymorphicRequest =  // PatchedAlertPolymorphicRequest | 
+val patchedAlertRequest : PatchedAlertRequest =  // PatchedAlertRequest | 
 try {
-    val result : AlertPolymorphic = apiInstance.alertsPartialUpdate(id, patchedAlertPolymorphicRequest)
+    val result : Alert = apiInstance.alertsPartialUpdate(id, patchedAlertRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsPartialUpdate")
@@ -95,11 +95,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this alert. |
- **patchedAlertPolymorphicRequest** | [**PatchedAlertPolymorphicRequest**](PatchedAlertPolymorphicRequest.md)|  | [optional]
+ **patchedAlertRequest** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional]
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Configure tokenAuth:
 
 <a name="alertsRetrieve"></a>
 # **alertsRetrieve**
-> AlertPolymorphic alertsRetrieve(id)
+> Alert alertsRetrieve(id)
 
 
 
@@ -176,7 +176,7 @@ Configure tokenAuth:
 val apiInstance = AlertsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
 try {
-    val result : AlertPolymorphic = apiInstance.alertsRetrieve(id)
+    val result : Alert = apiInstance.alertsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsRetrieve")
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -309,7 +309,7 @@ Configure tokenAuth:
 
 <a name="alertsUpdate"></a>
 # **alertsUpdate**
-> AlertPolymorphic alertsUpdate(id, alertPolymorphicRequest)
+> Alert alertsUpdate(id, alertRequest)
 
 
 
@@ -321,9 +321,9 @@ Configure tokenAuth:
 
 val apiInstance = AlertsApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
-val alertPolymorphicRequest : AlertPolymorphicRequest =  // AlertPolymorphicRequest | 
+val alertRequest : AlertRequest =  // AlertRequest | 
 try {
-    val result : AlertPolymorphic = apiInstance.alertsUpdate(id, alertPolymorphicRequest)
+    val result : Alert = apiInstance.alertsUpdate(id, alertRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsUpdate")
@@ -339,11 +339,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this alert. |
- **alertPolymorphicRequest** | [**AlertPolymorphicRequest**](AlertPolymorphicRequest.md)|  | [optional]
+ **alertRequest** | [**AlertRequest**](AlertRequest.md)|  |
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 

@@ -1,4 +1,4 @@
-# EventSubtypeEnum
+# AlertEventTypeEnum
 
 ## Properties
 Name | Type | Description | Notes
