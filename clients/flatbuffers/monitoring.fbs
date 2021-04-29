@@ -5,7 +5,6 @@ enum EventTypeEnum:ubyte {
     monitoring_frame_post,
 }
 
-
 struct Box {
     ymin:float;
     xmin:float;
@@ -32,10 +31,6 @@ table MonitoringFrame {
     bounding_boxes: BoundingBoxes;
 }
 
-union EventData {
-    MonitoringFrame,
-}
-
 table Metadata {
     user_id: uint32;
     octoprint_device_id: uint32;
@@ -48,7 +43,8 @@ table Metadata {
 }
 
 table MonitoringEvent {
-    event_data: EventData (required);
+    image: Image (required);
+    bounding_boxes: BoundingBoxes;
     event_type: EventTypeEnum;
     metadata: Metadata (required);
 }
