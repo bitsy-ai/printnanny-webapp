@@ -29,9 +29,7 @@ from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsPrintSessionOwner,
 )
 from ..models import (
-    ManualVideoUploadAlert,
     Alert,
-    PrintSessionAlert,
 )
 
 logger = logging.getLogger(__name__)

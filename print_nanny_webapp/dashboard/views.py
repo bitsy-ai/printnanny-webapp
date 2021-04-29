@@ -36,13 +36,12 @@ from django.contrib import messages
 
 User = get_user_model()
 Alert = apps.get_model("alerts", "Alert")
-ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
 UserSettings = apps.get_model("users", "UserSettings")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
-PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
@@ -302,7 +301,7 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
         if alert_id is not None and needs_review is not None:
             # python, i love you, but i'm breaking up with your type system
             needs_review = bool(int(needs_review))
-            PrintSessionAlert.objects.filter(id=alert_id).update(
+            PrintStatusAlert.objects.filter(id=alert_id).update(
                 needs_review=needs_review
             )
 
@@ -312,7 +311,7 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        alerts = PrintSessionAlert.objects.filter(user=self.request.user).order_by(
+        alerts = PrintStatusAlert.objects.filter(user=self.request.user).order_by(
             "-created_dt"
         )
         context["alerts"] = alerts

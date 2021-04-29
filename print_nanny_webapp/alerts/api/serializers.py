@@ -12,9 +12,7 @@ logger = logging.getLogger(__name__)
 
 Alert = apps.get_model("alerts", "Alert")
 AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
-ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
-RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
-PrintSessionAlert = apps.get_model("alerts", "PrintSessionAlert")
+PrintStatusAlert = apps.get_model("alerts", "PrintStatusAlert")
 
 
 class AlertSerializer(serializers.ModelSerializer):
@@ -30,6 +28,25 @@ class AlertSerializer(serializers.ModelSerializer):
             "created_dt",
             "updated_dt",
             "alert_method",
+            "event_type",
+            "user",
+            "time",
+            "seen",
+            "octoprint_device",
+        ]
+        read_only_fields = ("user",)
+
+class PrintStatusSerializer(AlertSerializer):
+    class Meta:
+        model = Alert
+        fields = [
+            "annotated_video",
+            "created_dt",
+            "updated_dt",
+            "alert_method",
+            "event_type",
+            "event_subtype",
+            "print_session",
             "user",
             "time",
             "seen",
@@ -60,6 +77,7 @@ class AlertPolymorphicSerializer(PolymorphicSerializer):
 
     model_serializer_mapping = {
         Alert: AlertSerializer,
+        PrintStatusAlert: PrintStatusSerializer
     }
 
     def to_resource_type(self, model_or_instance):

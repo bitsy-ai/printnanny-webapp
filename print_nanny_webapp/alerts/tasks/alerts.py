@@ -147,7 +147,7 @@ class AlertTask:
         )
 
 
-class PrintSessionAlertTask(AlertTask):
+class PrintStatusAlertTask(AlertTask):
 
     email_body_txt_template = "email/remote_control_command_body.txt"
     email_body_html_template = (

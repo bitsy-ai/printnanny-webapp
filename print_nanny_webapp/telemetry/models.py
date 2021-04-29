@@ -233,7 +233,6 @@ class OctoPrintEvent(TelemetryEvent):
 class PrintStatusEvent(TelemetryEvent):
     class EventType(models.TextChoices):
         # print job
-        ERROR = "Error", "Error"
         PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
         PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
         PRINT_DONE = "PrintDone", "PrintDone"
