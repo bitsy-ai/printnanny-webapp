@@ -22,6 +22,133 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
+ * @interface Alert
+ */
+export interface Alert {
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof Alert
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Alert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    octoprint_device?: number | null;
+}
+/**
+ * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+ * @export
+ * @interface AlertBulkResponse
+ */
+export interface AlertBulkResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertBulkResponse
+     */
+    received: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertBulkResponse
+     */
+    updated: number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum AlertMethodEnum {
+    Ui = 'UI',
+    Email = 'EMAIL',
+    Discord = 'DISCORD',
+    Partner3Dgeeks = 'PARTNER_3DGEEKS'
+}
+
+/**
+ * @type AlertPolymorphic
+ * @export
+ */
+export type AlertPolymorphic = Alert | PrintSessionAlert;
+
+/**
+ * @type AlertPolymorphicRequest
+ * @export
+ */
+export type AlertPolymorphicRequest = AlertRequest | PrintSessionAlertRequest;
+
+/**
+ * 
+ * @export
+ * @interface AlertRequest
+ */
+export interface AlertRequest {
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof AlertRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertRequest
+     */
+    octoprint_device?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum AlertSubtypeEnum {
+    Success = 'SUCCESS',
+    Failure = 'FAILURE'
+}
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 export enum ArtifactTypesEnum {
@@ -462,6 +589,15 @@ export interface Nested {
      */
     treatments?: Array<number>;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum NullEnum {
+    Null = 'null'
+}
+
 /**
  * 
  * @export
@@ -1238,6 +1374,37 @@ export enum OctoPrintPluginEventEventTypeEnum {
 /**
  * 
  * @export
+ * @interface PaginatedAlertPolymorphicList
+ */
+export interface PaginatedAlertPolymorphicList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedAlertPolymorphicList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAlertPolymorphicList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedAlertPolymorphicList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<AlertPolymorphic>}
+     * @memberof PaginatedAlertPolymorphicList
+     */
+    results?: Array<AlertPolymorphic>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedDeviceCalibrationList
  */
 export interface PaginatedDeviceCalibrationList {
@@ -1688,6 +1855,50 @@ export interface PartnerOctoPrintDevice {
     verified?: string;
 }
 /**
+ * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+ * @export
+ * @interface PatchedAlertBulkRequestRequest
+ */
+export interface PatchedAlertBulkRequestRequest {
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof PatchedAlertBulkRequestRequest
+     */
+    ids?: Array<number>;
+}
+/**
+ * @type PatchedAlertPolymorphicRequest
+ * @export
+ */
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedPrintSessionAlertRequest;
+
+/**
+ * 
+ * @export
+ * @interface PatchedAlertRequest
+ */
+export interface PatchedAlertRequest {
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedAlertRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedAlertRequest
+     */
+    octoprint_device?: number | null;
+}
+/**
  * 
  * @export
  * @interface PatchedDeviceCalibrationRequest
@@ -1869,6 +2080,55 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedPrintSessionAlertRequest
+ */
+export interface PatchedPrintSessionAlertRequest {
+    /**
+     * 
+     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    needs_review?: boolean;
+    /**
+     * 
+     * @type {AlertSubtypeEnum}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    annotated_video?: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintSessionAlertRequest
+     */
+    print_session?: number;
 }
 /**
  * 
@@ -2210,6 +2470,163 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     should_alert?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrintSessionAlert
+ */
+export interface PrintSessionAlert {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PrintSessionAlert
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * 
+     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
+     * @memberof PrintSessionAlert
+     */
+    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlert
+     */
+    needs_review?: boolean;
+    /**
+     * 
+     * @type {AlertSubtypeEnum}
+     * @memberof PrintSessionAlert
+     */
+    alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionAlert
+     */
+    annotated_video: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    octoprint_device?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlert
+     */
+    print_session: number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintSessionAlertEventTypeEnum {
+    PrintProgress = 'PrintProgress',
+    PrintHealth = 'PrintHealth',
+    PrintStatus = 'PrintStatus'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrintSessionAlertRequest
+ */
+export interface PrintSessionAlertRequest {
+    /**
+     * 
+     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
+     * @memberof PrintSessionAlertRequest
+     */
+    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintSessionAlertRequest
+     */
+    needs_review?: boolean;
+    /**
+     * 
+     * @type {AlertSubtypeEnum}
+     * @memberof PrintSessionAlertRequest
+     */
+    alert_subtype?: AlertSubtypeEnum;
+    /**
+     * 
+     * @type {any}
+     * @memberof PrintSessionAlertRequest
+     */
+    annotated_video: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionAlertRequest
+     */
+    print_session: number;
 }
 /**
  * 
@@ -2852,6 +3269,726 @@ export interface UserRequest {
      */
     email: string;
 }
+
+/**
+ * AlertsApi - axios parameter creator
+ * @export
+ */
+export const AlertsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsPartialUpdate: async (id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsPartialUpdate.');
+            }
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedAlertPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedAlertPolymorphicRequest !== undefined ? patchedAlertPolymorphicRequest : {})
+                : (patchedAlertPolymorphicRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRecent: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/recent/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsRetrieve.');
+            }
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsSeen: async (patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/seen/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof patchedAlertBulkRequestRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(patchedAlertBulkRequestRequest !== undefined ? patchedAlertBulkRequestRequest : {})
+                : (patchedAlertBulkRequestRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUnread: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/unread/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUpdate: async (id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsUpdate.');
+            }
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const nonString = typeof alertPolymorphicRequest !== 'string';
+            const needsSerialization = nonString && configuration && configuration.isJsonMime
+                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
+                : nonString;
+            localVarRequestOptions.data =  needsSerialization
+                ? JSON.stringify(alertPolymorphicRequest !== undefined ? alertPolymorphicRequest : {})
+                : (alertPolymorphicRequest || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AlertsApi - functional programming interface
+ * @export
+ */
+export const AlertsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertPolymorphicList>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(page, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsRecent(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRecent(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRetrieve(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsSeen(patchedAlertBulkRequestRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsUnread(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUnread(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertPolymorphic>> {
+            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUpdate(id, alertPolymorphicRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * AlertsApi - factory interface
+ * @export
+ */
+export const AlertsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList> {
+            return AlertsApiFp(configuration).alertsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRecent(options?: any): AxiosPromise<AlertBulkResponse> {
+            return AlertsApiFp(configuration).alertsRecent(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse> {
+            return AlertsApiFp(configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUnread(options?: any): AxiosPromise<AlertBulkResponse> {
+            return AlertsApiFp(configuration).alertsUnread(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert.
+         * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic> {
+            return AlertsApiFp(configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AlertsApi - interface
+ * @export
+ * @interface AlertsApi
+ */
+export interface AlertsApiInterface {
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertPolymorphicList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsRecent(options?: any): AxiosPromise<AlertBulkResponse>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsRetrieve(id: number, options?: any): AxiosPromise<AlertPolymorphic>;
+
+    /**
+     * 
+     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsUnread(options?: any): AxiosPromise<AlertBulkResponse>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any): AxiosPromise<AlertPolymorphic>;
+
+}
+
+/**
+ * AlertsApi - object-oriented interface
+ * @export
+ * @class AlertsApi
+ * @extends {BaseAPI}
+ */
+export class AlertsApi extends BaseAPI implements AlertsApiInterface {
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).alertsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {PatchedAlertPolymorphicRequest} [patchedAlertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsPartialUpdate(id: number, patchedAlertPolymorphicRequest?: PatchedAlertPolymorphicRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsPartialUpdate(id, patchedAlertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsRecent(options?: any) {
+        return AlertsApiFp(this.configuration).alertsRecent(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsRetrieve(id: number, options?: any) {
+        return AlertsApiFp(this.configuration).alertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsUnread(options?: any) {
+        return AlertsApiFp(this.configuration).alertsUnread(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this alert.
+     * @param {AlertPolymorphicRequest} [alertPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsUpdate(id: number, alertPolymorphicRequest?: AlertPolymorphicRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsUpdate(id, alertPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * AuthTokenApi - axios parameter creator

@@ -18,7 +18,7 @@ from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
 from .serializers import (
-    ManualVideoUploadAlertSerializer,
+    # ManualVideoUploadAlertSerializer,
     AlertPolymorphicSerializer,
     AlertSerializer,
     AlertBulkRequestSerializer,
