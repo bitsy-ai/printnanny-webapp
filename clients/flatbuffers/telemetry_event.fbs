@@ -1,6 +1,6 @@
 namespace print_nanny_client.flatbuffers.monitoring;
 
-enum MonitoringEventEnum:ubyte {
+enum EventTypeEnum:ubyte {
     monitoring_frame_raw,
     monitoring_frame_post,
 }
@@ -38,10 +38,10 @@ union EventData {
 
 table Metadata {
     user_id: uint32;
-    device_id: uint32;
-    device_cloudiot_id: uint64;
+    octoprint_device_id: uint32;
+    cloudiot_device_id: uint64;
     ts: uint32;
-    session: string;
+    print_session: string;
     client_version:string;
     model_version:string;
     fpm: uint8;
@@ -49,7 +49,7 @@ table Metadata {
 
 table MonitoringEvent {
     event_data: EventData (required);
-    event_type: TelemetryEventEnum;
+    event_type: EventTypeEnum;
     metadata: Metadata (required);
 }
 

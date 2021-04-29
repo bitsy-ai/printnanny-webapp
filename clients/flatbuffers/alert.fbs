@@ -1,1 +1,17 @@
-namespace print_nanny_client.flatbuffers;
+namespace print_nanny_client.flatbuffers.alert;
+
+enum EventTypeEnum:ubyte {
+    print_progress,
+    print_health,
+    print_status,
+}
+
+table Alert {
+    event_type: EventTypeEnum;
+    user_id: uint32;
+    octoprint_device_id: uint32;
+    cloudiot_device_id: uint64;
+    print_session: string;
+    client_version:string;
+    model_version:string;
+}
