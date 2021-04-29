@@ -16,5 +16,5 @@ class AlertsConfig(AppConfig):
             writekey=settings.HONEYCOMB_API_KEY,
             dataset=settings.HONEYCOMB_DATASET,
             service_name=settings.HONEYCOMB_SERVICE_NAME,
-            debug=settings.DEBUG,
+            # debug=settings.DEBUG,
         )
