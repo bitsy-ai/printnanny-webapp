@@ -2,7 +2,7 @@
 
 # namespace: monitoring
 
-class EventTypeEnum(object):
+class MonitoringEventTypeEnum(object):
     monitoring_frame_raw = 0
     monitoring_frame_post = 1
 
