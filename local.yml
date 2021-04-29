@@ -13,7 +13,7 @@ services:
     ports:
       - "5005:5000"
     environment:
-      OCTOPRINT_NANNY_GCP_PROJECT: ${PROJECT}
+      OCTOPRINT_NANNY_GCP_PROJECT_ID: ${PROJECT}
       OCTOPRINT_NANNY_API_URL: 'http://django:8000/api/'
       OCTOPRINT_NANNY_WS_URL: 'ws://django:8000/ws/'
       OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY: 'octoprint-devices'
