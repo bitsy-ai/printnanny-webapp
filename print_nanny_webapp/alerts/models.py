@@ -42,7 +42,7 @@ def _upload_to(instance, filename):
 
 
 class AlertSettings(models.Model):
-    class EventType(models.TextChoices):
+    class AlertSettingsEventType(models.TextChoices):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
@@ -71,11 +71,11 @@ class AlertSettings(models.Model):
         default=(AlertMethod.EMAIL,),
     )
     event_types = ChoiceArrayField(
-        models.CharField(choices=EventType.choices, max_length=255),
+        models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
         default=(
-            EventType.PRINT_HEALTH,
-            EventType.PRINT_STATUS,
+            AlertSettingsEventType.PRINT_HEALTH,
+            AlertSettingsEventType.PRINT_STATUS,
         ),
     )
     discord_webhook = models.CharField(
@@ -109,7 +109,7 @@ class Alert(PolymorphicModel):
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertSettings.EventType.choices, max_length=255, null=True
+        choices=AlertSettings.AlertSettingsEventType.choices, max_length=255, null=True
     )
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -123,7 +123,7 @@ class Alert(PolymorphicModel):
 
 
 class PrintStatusAlert(Alert):
-    class EventSubType(models.TextChoices):
+    class PrintStatusEventType(models.TextChoices):
         PRINT_PROGRESS = "PrintProgress", "PrintProgress"
         PRINT_DONE = "PrintDone", "PrintDone"
         PRINT_FAILED = "PrintFailed", "PrintFailed"
@@ -149,7 +149,7 @@ class PrintStatusAlert(Alert):
 
     event_subtype = models.CharField(
         max_length=36,
-        choices=EventSubType.choices,
+        choices=PrintStatusEventType.choices,
     )
 
     print_session = models.ForeignKey(
