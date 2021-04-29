@@ -78,15 +78,14 @@ configuration = print_nanny_client.Configuration(
 # Enter a context with an instance of the API client
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = print_nanny_client.AuthTokenApi(api_client)
-    username = 'username_example' # str | 
-password = 'password_example' # str | 
+    api_instance = print_nanny_client.AlertsApi(api_client)
+    page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.auth_token_create(username, password)
+        api_response = api_instance.alerts_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AuthTokenApi->auth_token_create: %s\n" % e)
+        print("Exception when calling AlertsApi->alerts_list: %s\n" % e)
     
 ```
 
@@ -96,6 +95,13 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AlertsApi* | [**alerts_list**](docs/AlertsApi.md#alerts_list) | **GET** /api/alerts/ | 
+*AlertsApi* | [**alerts_partial_update**](docs/AlertsApi.md#alerts_partial_update) | **PATCH** /api/alerts/{id}/ | 
+*AlertsApi* | [**alerts_recent**](docs/AlertsApi.md#alerts_recent) | **GET** /api/alerts/recent/ | 
+*AlertsApi* | [**alerts_retrieve**](docs/AlertsApi.md#alerts_retrieve) | **GET** /api/alerts/{id}/ | 
+*AlertsApi* | [**alerts_seen**](docs/AlertsApi.md#alerts_seen) | **PATCH** /api/alerts/seen/ | 
+*AlertsApi* | [**alerts_unread**](docs/AlertsApi.md#alerts_unread) | **GET** /api/alerts/unread/ | 
+*AlertsApi* | [**alerts_update**](docs/AlertsApi.md#alerts_update) | **PUT** /api/alerts/{id}/ | 
 *AuthTokenApi* | [**auth_token_create**](docs/AuthTokenApi.md#auth_token_create) | **POST** /api/auth-token/ | 
 *MlOpsApi* | [**device_calibration_update_or_create**](docs/MlOpsApi.md#device_calibration_update_or_create) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**device_calibrations_list**](docs/MlOpsApi.md#device_calibrations_list) | **GET** /api/device-calibrations/ | 
@@ -153,6 +159,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Alert](docs/Alert.md)
+ - [AlertBulkResponse](docs/AlertBulkResponse.md)
+ - [AlertMethodEnum](docs/AlertMethodEnum.md)
+ - [AlertPolymorphic](docs/AlertPolymorphic.md)
+ - [AlertPolymorphicRequest](docs/AlertPolymorphicRequest.md)
+ - [AlertRequest](docs/AlertRequest.md)
  - [ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [AuthToken](docs/AuthToken.md)
  - [AuthTokenRequest](docs/AuthTokenRequest.md)
@@ -174,6 +186,7 @@ Class | Method | HTTP request | Description
  - [OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
  - [OctoPrintPluginEvent](docs/OctoPrintPluginEvent.md)
  - [OctoPrintPluginEventEventTypeEnum](docs/OctoPrintPluginEventEventTypeEnum.md)
+ - [PaginatedAlertPolymorphicList](docs/PaginatedAlertPolymorphicList.md)
  - [PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [PaginatedExperimentList](docs/PaginatedExperimentList.md)
@@ -188,6 +201,9 @@ Class | Method | HTTP request | Description
  - [PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [PaginatedUserList](docs/PaginatedUserList.md)
  - [PartnerOctoPrintDevice](docs/PartnerOctoPrintDevice.md)
+ - [PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
+ - [PatchedAlertPolymorphicRequest](docs/PatchedAlertPolymorphicRequest.md)
+ - [PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
  - [PatchedGcodeFileRequest](docs/PatchedGcodeFileRequest.md)
  - [PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)

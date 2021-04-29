@@ -4,6 +4,13 @@
 .travis.yml
 MANIFEST.in
 README.md
+docs/Alert.md
+docs/AlertBulkResponse.md
+docs/AlertMethodEnum.md
+docs/AlertPolymorphic.md
+docs/AlertPolymorphicRequest.md
+docs/AlertRequest.md
+docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthToken.md
 docs/AuthTokenApi.md
@@ -27,6 +34,7 @@ docs/OctoPrintEventEventTypeEnum.md
 docs/OctoPrintEventRequest.md
 docs/OctoPrintPluginEvent.md
 docs/OctoPrintPluginEventEventTypeEnum.md
+docs/PaginatedAlertPolymorphicList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
@@ -42,6 +50,9 @@ docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedUserList.md
 docs/PartnerOctoPrintDevice.md
 docs/PartnersGeeks3dApi.md
+docs/PatchedAlertBulkRequestRequest.md
+docs/PatchedAlertPolymorphicRequest.md
+docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedGcodeFileRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -67,6 +78,7 @@ docs/UsersApi.md
 git_push.sh
 print_nanny_client/__init__.py
 print_nanny_client/api/__init__.py
+print_nanny_client/api/alerts_api.py
 print_nanny_client/api/auth_token_api.py
 print_nanny_client/api/ml_ops_api.py
 print_nanny_client/api/partners_geeks3d_api.py
@@ -78,6 +90,12 @@ print_nanny_client/api_client.py
 print_nanny_client/configuration.py
 print_nanny_client/exceptions.py
 print_nanny_client/models/__init__.py
+print_nanny_client/models/alert.py
+print_nanny_client/models/alert_bulk_response.py
+print_nanny_client/models/alert_method_enum.py
+print_nanny_client/models/alert_polymorphic.py
+print_nanny_client/models/alert_polymorphic_request.py
+print_nanny_client/models/alert_request.py
 print_nanny_client/models/artifact_types_enum.py
 print_nanny_client/models/auth_token.py
 print_nanny_client/models/auth_token_request.py
@@ -99,6 +117,7 @@ print_nanny_client/models/octo_print_event_event_type_enum.py
 print_nanny_client/models/octo_print_event_request.py
 print_nanny_client/models/octo_print_plugin_event.py
 print_nanny_client/models/octo_print_plugin_event_event_type_enum.py
+print_nanny_client/models/paginated_alert_polymorphic_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_experiment_list.py
@@ -113,6 +132,9 @@ print_nanny_client/models/paginated_printer_profile_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
 print_nanny_client/models/paginated_user_list.py
 print_nanny_client/models/partner_octo_print_device.py
+print_nanny_client/models/patched_alert_bulk_request_request.py
+print_nanny_client/models/patched_alert_polymorphic_request.py
+print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_device_calibration_request.py
 print_nanny_client/models/patched_gcode_file_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
@@ -137,6 +159,13 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_alert.py
+test/test_alert_bulk_response.py
+test/test_alert_method_enum.py
+test/test_alert_polymorphic.py
+test/test_alert_polymorphic_request.py
+test/test_alert_request.py
+test/test_alerts_api.py
 test/test_artifact_types_enum.py
 test/test_auth_token.py
 test/test_auth_token_api.py
@@ -160,6 +189,7 @@ test/test_octo_print_event_event_type_enum.py
 test/test_octo_print_event_request.py
 test/test_octo_print_plugin_event.py
 test/test_octo_print_plugin_event_event_type_enum.py
+test/test_paginated_alert_polymorphic_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
@@ -175,6 +205,9 @@ test/test_paginated_remote_control_command_list.py
 test/test_paginated_user_list.py
 test/test_partner_octo_print_device.py
 test/test_partners_geeks3d_api.py
+test/test_patched_alert_bulk_request_request.py
+test/test_patched_alert_polymorphic_request.py
+test/test_patched_alert_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_gcode_file_request.py
 test/test_patched_octo_print_device_request.py
