@@ -11,7 +11,7 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 logger = logging.getLogger(__name__)
 
 Alert = apps.get_model("alerts", "Alert")
-AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintStatusAlert = apps.get_model("alerts", "PrintStatusAlert")
 
 

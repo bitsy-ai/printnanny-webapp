@@ -24,7 +24,7 @@ from django.apps import apps
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -32,7 +32,7 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
-    alert_settings, created = AlertEventSettings.objects.get_or_create(
+    alert_settings, created = AlertSettings.objects.get_or_create(
         user=octoprint_event.user
     )
     return alert_settings.on_print_progress(octoprint_event)

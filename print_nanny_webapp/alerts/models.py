@@ -41,7 +41,7 @@ def _upload_to(instance, filename):
 ##
 
 
-class AlertEventSettings(models.Model):
+class AlertSettings(models.Model):
     class EventType(models.TextChoices):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
@@ -105,11 +105,11 @@ class Alert(PolymorphicModel):
     """
 
     alert_method = models.CharField(
-        choices=AlertEventSettings.AlertMethod.choices,
+        choices=AlertSettings.AlertMethod.choices,
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertEventSettings.EventType.choices, max_length=255, null=True
+        choices=AlertSettings.EventType.choices, max_length=255, null=True
     )
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)

@@ -3,16 +3,16 @@ from print_nanny_webapp.utils import fields
 from print_nanny_webapp.partners.models import GeeksToken
 from django.forms import ModelForm
 from django.forms import modelformset_factory
-from .models import AlertEventSettings
+from .models import AlertSettings
 
 
-class AlertEventSettingsForm(ModelForm):
+class AlertSettingsForm(ModelForm):
     class Meta:
-        model = AlertEventSettings
+        model = AlertSettings
         fields = ("event_types", "print_progress_percent")
 
 
 class AlertMethodSettingsForm(ModelForm):
     class Meta:
-        model = AlertEventSettings
+        model = AlertSettings
         fields = ("alert_methods", "discord_webhook")
