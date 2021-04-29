@@ -69,7 +69,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
             fingerprint=keypair["fingerprint"],
             cloudiot_device_num_id=cloudiot_device_num_id,
             cloudiot_device_name=cloudiot_device_name,
-            cloudiot_octoprint_device=cloudiot_device_dict,
+            cloudiot_device=cloudiot_device_dict,
             cloudiot_device_path=device_path,
         )
 
