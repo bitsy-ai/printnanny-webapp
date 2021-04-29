@@ -13,6 +13,9 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.Alert
 import com.print-nanny.client.models.AlertMethodEnum
+import com.print-nanny.client.models.EventSubtypeEnum
+import com.print-nanny.client.models.OneOfLessThanEventTypeA2eEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.PrintStatus
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -20,8 +23,12 @@ import java.io.Serializable
 /**
  * 
  * @param alertMethod 
+ * @param annotatedVideo 
+ * @param eventSubtype 
+ * @param printSession 
  * @param createdDt 
  * @param updatedDt 
+ * @param eventType 
  * @param user 
  * @param time 
  * @param seen 
@@ -35,10 +42,18 @@ interface AlertPolymorphic : Serializable {
 
     @Json(name = "alert_method")
     val alertMethod: AlertMethodEnum
+    @Json(name = "annotated_video")
+    val annotatedVideo: java.net.URI
+    @Json(name = "event_subtype")
+    val eventSubtype: EventSubtypeEnum
+    @Json(name = "print_session")
+    val printSession: kotlin.Int
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime?
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime?
+    @Json(name = "event_type")
+    val eventType: OneOfLessThanEventTypeA2eEnumCommaNullEnumGreaterThan?
     @Json(name = "user")
     val user: kotlin.Int?
     @Json(name = "time")

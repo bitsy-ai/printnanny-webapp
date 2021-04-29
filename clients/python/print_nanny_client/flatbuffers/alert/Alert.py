@@ -21,76 +21,63 @@ class Alert(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # Alert
-    def EventType(self):
+    def EventDataType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # Alert
-    def UserId(self):
+    def EventData(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
+            from flatbuffers.table import Table
+            obj = Table(bytearray(), 0)
+            self._tab.Union(obj, o)
+            return obj
+        return None
 
     # Alert
-    def OctoprintDeviceId(self):
+    def EventType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # Alert
-    def CloudiotDeviceId(self):
+    def Metadata(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
-        return 0
-
-    # Alert
-    def PrintSession(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Indirect(o + self._tab.Pos)
+            from print_nanny_client.flatbuffers.alert.Metadata import Metadata
+            obj = Metadata()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-    # Alert
-    def ClientVersion(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # Alert
-    def ModelVersion(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def AlertStart(builder): builder.StartObject(7)
-def AlertAddEventType(builder, eventType): builder.PrependUint8Slot(0, eventType, 0)
-def AlertAddUserId(builder, userId): builder.PrependUint32Slot(1, userId, 0)
-def AlertAddOctoprintDeviceId(builder, octoprintDeviceId): builder.PrependUint32Slot(2, octoprintDeviceId, 0)
-def AlertAddCloudiotDeviceId(builder, cloudiotDeviceId): builder.PrependUint64Slot(3, cloudiotDeviceId, 0)
-def AlertAddPrintSession(builder, printSession): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(printSession), 0)
-def AlertAddClientVersion(builder, clientVersion): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(clientVersion), 0)
-def AlertAddModelVersion(builder, modelVersion): builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelVersion), 0)
+def AlertStart(builder): builder.StartObject(4)
+def AlertAddEventDataType(builder, eventDataType): builder.PrependUint8Slot(0, eventDataType, 0)
+def AlertAddEventData(builder, eventData): builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(eventData), 0)
+def AlertAddEventType(builder, eventType): builder.PrependUint8Slot(2, eventType, 0)
+def AlertAddMetadata(builder, metadata): builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(metadata), 0)
 def AlertEnd(builder): return builder.EndObject()
 
+import print_nanny_client.flatbuffers.alert.EventData
+import print_nanny_client.flatbuffers.alert.Metadata
+import print_nanny_client.flatbuffers.alert.PrintStatusAlert
+try:
+    from typing import Optional, Union
+except:
+    pass
 
 class AlertT(object):
 
     # AlertT
     def __init__(self):
+        self.eventDataType = 0  # type: int
+        self.eventData = None  # type: Union[None, print_nanny_client.flatbuffers.alert.PrintStatusAlert.PrintStatusAlertT]
         self.eventType = 0  # type: int
-        self.userId = 0  # type: int
-        self.octoprintDeviceId = 0  # type: int
-        self.cloudiotDeviceId = 0  # type: int
-        self.printSession = None  # type: str
-        self.clientVersion = None  # type: str
-        self.modelVersion = None  # type: str
+        self.metadata = None  # type: Optional[print_nanny_client.flatbuffers.alert.Metadata.MetadataT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -108,32 +95,24 @@ class AlertT(object):
     def _UnPack(self, alert):
         if alert is None:
             return
+        self.eventDataType = alert.EventDataType()
+        self.eventData = print_nanny_client.flatbuffers.alert.EventData.EventDataCreator(self.eventDataType, alert.EventData())
         self.eventType = alert.EventType()
-        self.userId = alert.UserId()
-        self.octoprintDeviceId = alert.OctoprintDeviceId()
-        self.cloudiotDeviceId = alert.CloudiotDeviceId()
-        self.printSession = alert.PrintSession()
-        self.clientVersion = alert.ClientVersion()
-        self.modelVersion = alert.ModelVersion()
+        if alert.Metadata() is not None:
+            self.metadata = print_nanny_client.flatbuffers.alert.Metadata.MetadataT.InitFromObj(alert.Metadata())
 
     # AlertT
     def Pack(self, builder):
-        if self.printSession is not None:
-            printSession = builder.CreateString(self.printSession)
-        if self.clientVersion is not None:
-            clientVersion = builder.CreateString(self.clientVersion)
-        if self.modelVersion is not None:
-            modelVersion = builder.CreateString(self.modelVersion)
+        if self.eventData is not None:
+            eventData = self.eventData.Pack(builder)
+        if self.metadata is not None:
+            metadata = self.metadata.Pack(builder)
         AlertStart(builder)
+        AlertAddEventDataType(builder, self.eventDataType)
+        if self.eventData is not None:
+            AlertAddEventData(builder, eventData)
         AlertAddEventType(builder, self.eventType)
-        AlertAddUserId(builder, self.userId)
-        AlertAddOctoprintDeviceId(builder, self.octoprintDeviceId)
-        AlertAddCloudiotDeviceId(builder, self.cloudiotDeviceId)
-        if self.printSession is not None:
-            AlertAddPrintSession(builder, printSession)
-        if self.clientVersion is not None:
-            AlertAddClientVersion(builder, clientVersion)
-        if self.modelVersion is not None:
-            AlertAddModelVersion(builder, modelVersion)
+        if self.metadata is not None:
+            AlertAddMetadata(builder, metadata)
         alert = AlertEnd(builder)
         return alert

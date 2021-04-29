@@ -45,6 +45,12 @@ export interface Alert {
     alert_method: AlertMethodEnum;
     /**
      * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof Alert
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
+    /**
+     * 
      * @type {number}
      * @memberof Alert
      */
@@ -103,13 +109,13 @@ export enum AlertMethodEnum {
  * @type AlertPolymorphic
  * @export
  */
-export type AlertPolymorphic = Alert;
+export type AlertPolymorphic = Alert | PrintStatus;
 
 /**
  * @type AlertPolymorphicRequest
  * @export
  */
-export type AlertPolymorphicRequest = AlertRequest;
+export type AlertPolymorphicRequest = AlertRequest | PrintStatusRequest;
 
 /**
  * 
@@ -123,6 +129,12 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof AlertRequest
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -293,6 +305,30 @@ export interface DeviceCalibrationRequest {
      */
     config_file?: any | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum EventSubtypeEnum {
+    PrintProgress = 'PrintProgress',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum EventTypeA2eEnum {
+    PrintHealth = 'PrintHealth',
+    PrintStatus = 'PrintStatus'
+}
+
 /**
  * 
  * @export
@@ -579,6 +615,15 @@ export interface Nested {
      */
     treatments?: Array<number>;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum NullEnum {
+    Null = 'null'
+}
+
 /**
  * 
  * @export
@@ -1852,7 +1897,7 @@ export interface PatchedAlertBulkRequestRequest {
  * @type PatchedAlertPolymorphicRequest
  * @export
  */
-export type PatchedAlertPolymorphicRequest = PatchedAlertRequest;
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedPrintStatusRequest;
 
 /**
  * 
@@ -1866,6 +1911,12 @@ export interface PatchedAlertRequest {
      * @memberof PatchedAlertRequest
      */
     alert_method?: AlertMethodEnum;
+    /**
+     * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof PatchedAlertRequest
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -2110,6 +2161,55 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedPrintStatusRequest
+ */
+export interface PatchedPrintStatusRequest {
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedPrintStatusRequest
+     */
+    annotated_video?: any;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PatchedPrintStatusRequest
+     */
+    alert_method?: AlertMethodEnum;
+    /**
+     * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof PatchedPrintStatusRequest
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
+    /**
+     * 
+     * @type {EventSubtypeEnum}
+     * @memberof PatchedPrintStatusRequest
+     */
+    event_subtype?: EventSubtypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintStatusRequest
+     */
+    print_session?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintStatusRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintStatusRequest
+     */
+    octoprint_device?: number | null;
 }
 /**
  * 
@@ -2455,6 +2555,79 @@ export interface PrintSessionRequest {
 /**
  * 
  * @export
+ * @interface PrintStatus
+ */
+export interface PrintStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatus
+     */
+    annotated_video: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatus
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatus
+     */
+    updated_dt?: string;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PrintStatus
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof PrintStatus
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
+    /**
+     * 
+     * @type {EventSubtypeEnum}
+     * @memberof PrintStatus
+     */
+    event_subtype: EventSubtypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatus
+     */
+    print_session: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatus
+     */
+    user?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatus
+     */
+    time?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintStatus
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatus
+     */
+    octoprint_device?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface PrintStatusEvent
  */
 export interface PrintStatusEvent {
@@ -2555,7 +2728,6 @@ export interface PrintStatusEvent {
  * @enum {string}
  */
 export enum PrintStatusEventEventTypeEnum {
-    Error = 'Error',
     PrintCancelled = 'PrintCancelled',
     PrintCancelling = 'PrintCancelling',
     PrintDone = 'PrintDone',
@@ -2565,6 +2737,55 @@ export enum PrintStatusEventEventTypeEnum {
     PrintStarted = 'PrintStarted'
 }
 
+/**
+ * 
+ * @export
+ * @interface PrintStatusRequest
+ */
+export interface PrintStatusRequest {
+    /**
+     * 
+     * @type {any}
+     * @memberof PrintStatusRequest
+     */
+    annotated_video: any;
+    /**
+     * 
+     * @type {AlertMethodEnum}
+     * @memberof PrintStatusRequest
+     */
+    alert_method: AlertMethodEnum;
+    /**
+     * 
+     * @type {EventTypeA2eEnum | NullEnum}
+     * @memberof PrintStatusRequest
+     */
+    event_type?: EventTypeA2eEnum | NullEnum | null;
+    /**
+     * 
+     * @type {EventSubtypeEnum}
+     * @memberof PrintStatusRequest
+     */
+    event_subtype: EventSubtypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatusRequest
+     */
+    print_session: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrintStatusRequest
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatusRequest
+     */
+    octoprint_device?: number | null;
+}
 /**
  * 
  * @export

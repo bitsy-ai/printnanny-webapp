@@ -28,7 +28,6 @@ class PrintStatusEventEventTypeEnum(object):
     """
     allowed enum values
     """
-    ERROR = "Error"
     PRINTCANCELLED = "PrintCancelled"
     PRINTCANCELLING = "PrintCancelling"
     PRINTDONE = "PrintDone"
@@ -37,7 +36,7 @@ class PrintStatusEventEventTypeEnum(object):
     PRINTRESUMED = "PrintResumed"
     PRINTSTARTED = "PrintStarted"
 
-    allowable_values = [ERROR, PRINTCANCELLED, PRINTCANCELLING, PRINTDONE, PRINTFAILED, PRINTPAUSED, PRINTRESUMED, PRINTSTARTED]  # noqa: E501
+    allowable_values = [PRINTCANCELLED, PRINTCANCELLING, PRINTDONE, PRINTFAILED, PRINTPAUSED, PRINTRESUMED, PRINTSTARTED]  # noqa: E501
 
     """
     Attributes:

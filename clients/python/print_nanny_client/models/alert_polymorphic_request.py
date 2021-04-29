@@ -34,34 +34,50 @@ class AlertPolymorphicRequest(object):
     """
     openapi_types = {
         'alert_method': 'AlertMethodEnum',
+        'event_type': 'OneOfEventTypeA2eEnumNullEnum',
         'seen': 'bool',
-        'octoprint_device': 'int'
+        'octoprint_device': 'int',
+        'annotated_video': 'file',
+        'event_subtype': 'EventSubtypeEnum',
+        'print_session': 'int'
     }
 
     attribute_map = {
         'alert_method': 'alert_method',
+        'event_type': 'event_type',
         'seen': 'seen',
-        'octoprint_device': 'octoprint_device'
+        'octoprint_device': 'octoprint_device',
+        'annotated_video': 'annotated_video',
+        'event_subtype': 'event_subtype',
+        'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, alert_method=None, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, alert_method=None, event_type=None, seen=None, octoprint_device=None, annotated_video=None, event_subtype=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """AlertPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._alert_method = None
+        self._event_type = None
         self._seen = None
         self._octoprint_device = None
+        self._annotated_video = None
+        self._event_subtype = None
+        self._print_session = None
         self.discriminator = 'type'
 
         self.alert_method = alert_method
+        self.event_type = event_type
         if seen is not None:
             self.seen = seen
         self.octoprint_device = octoprint_device
+        self.annotated_video = annotated_video
+        self.event_subtype = event_subtype
+        self.print_session = print_session
 
     @property
     def alert_method(self):
@@ -85,6 +101,27 @@ class AlertPolymorphicRequest(object):
             raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
         self._alert_method = alert_method
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The event_type of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: OneOfEventTypeA2eEnumNullEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this AlertPolymorphicRequest.
+
+
+        :param event_type: The event_type of this AlertPolymorphicRequest.  # noqa: E501
+        :type event_type: OneOfEventTypeA2eEnumNullEnum
+        """
+
+        self._event_type = event_type
 
     @property
     def seen(self):
@@ -127,6 +164,75 @@ class AlertPolymorphicRequest(object):
         """
 
         self._octoprint_device = octoprint_device
+
+    @property
+    def annotated_video(self):
+        """Gets the annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: file
+        """
+        return self._annotated_video
+
+    @annotated_video.setter
+    def annotated_video(self, annotated_video):
+        """Sets the annotated_video of this AlertPolymorphicRequest.
+
+
+        :param annotated_video: The annotated_video of this AlertPolymorphicRequest.  # noqa: E501
+        :type annotated_video: file
+        """
+        if self.local_vars_configuration.client_side_validation and annotated_video is None:  # noqa: E501
+            raise ValueError("Invalid value for `annotated_video`, must not be `None`")  # noqa: E501
+
+        self._annotated_video = annotated_video
+
+    @property
+    def event_subtype(self):
+        """Gets the event_subtype of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The event_subtype of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: EventSubtypeEnum
+        """
+        return self._event_subtype
+
+    @event_subtype.setter
+    def event_subtype(self, event_subtype):
+        """Sets the event_subtype of this AlertPolymorphicRequest.
+
+
+        :param event_subtype: The event_subtype of this AlertPolymorphicRequest.  # noqa: E501
+        :type event_subtype: EventSubtypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_subtype is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_subtype`, must not be `None`")  # noqa: E501
+
+        self._event_subtype = event_subtype
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this AlertPolymorphicRequest.  # noqa: E501
+
+
+        :return: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this AlertPolymorphicRequest.
+
+
+        :param print_session: The print_session of this AlertPolymorphicRequest.  # noqa: E501
+        :type print_session: int
+        """
+        if self.local_vars_configuration.client_side_validation and print_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_session`, must not be `None`")  # noqa: E501
+
+        self._print_session = print_session
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

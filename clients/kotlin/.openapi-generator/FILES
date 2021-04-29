@@ -15,6 +15,8 @@ docs/AuthTokenRequest.md
 docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/EventSubtypeEnum.md
+docs/EventTypeA2eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -23,6 +25,7 @@ docs/MlOpsApi.md
 docs/ModelArtifact.md
 docs/MonitoringModeEnum.md
 docs/Nested.md
+docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -54,13 +57,16 @@ docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedGcodeFileRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
+docs/PatchedPrintStatusRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
+docs/PrintStatus.md
 docs/PrintStatusEvent.md
 docs/PrintStatusEventEventTypeEnum.md
+docs/PrintStatusRequest.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
 docs/RemoteControlApi.md
@@ -107,6 +113,8 @@ src/main/kotlin/com/print-nanny/client/models/AuthTokenRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/EventSubtypeEnum.kt
+src/main/kotlin/com/print-nanny/client/models/EventTypeA2eEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
@@ -114,6 +122,7 @@ src/main/kotlin/com/print-nanny/client/models/GcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/MonitoringModeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Nested.kt
+src/main/kotlin/com/print-nanny/client/models/NullEnum.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceKey.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceRequest.kt
@@ -144,13 +153,16 @@ src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedGcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedPrintStatusRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedRemoteControlCommandRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedUserRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrintSession.kt
 src/main/kotlin/com/print-nanny/client/models/PrintSessionRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PrintStatus.kt
 src/main/kotlin/com/print-nanny/client/models/PrintStatusEvent.kt
 src/main/kotlin/com/print-nanny/client/models/PrintStatusEventEventTypeEnum.kt
+src/main/kotlin/com/print-nanny/client/models/PrintStatusRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfile.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt

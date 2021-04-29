@@ -3,7 +3,6 @@
 # namespace: alert
 
 class EventTypeEnum(object):
-    print_progress = 0
-    print_health = 1
-    print_status = 2
+    print_health = 0
+    print_status = 1
 

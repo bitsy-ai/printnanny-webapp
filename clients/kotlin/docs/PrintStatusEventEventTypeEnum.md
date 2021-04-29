@@ -4,8 +4,6 @@
 ## Enum
 
 
-    * `error` (value: `"Error"`)
-
     * `printCancelled` (value: `"PrintCancelled"`)
 
     * `printCancelling` (value: `"PrintCancelling"`)

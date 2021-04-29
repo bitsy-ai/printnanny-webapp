@@ -51,7 +51,7 @@ class TestPaginatedPrintStatusEventList(unittest.TestCase):
                         plugin_version = '', 
                         client_version = '', 
                         octoprint_version = '', 
-                        event_type = 'Error', 
+                        event_type = 'PrintCancelled', 
                         state = {
                             'key' : null
                             }, 

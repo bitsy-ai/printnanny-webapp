@@ -36,6 +36,7 @@ class Alert(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'alert_method': 'AlertMethodEnum',
+        'event_type': 'OneOfEventTypeA2eEnumNullEnum',
         'user': 'int',
         'time': 'str',
         'seen': 'bool',
@@ -46,13 +47,14 @@ class Alert(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'alert_method': 'alert_method',
+        'event_type': 'event_type',
         'user': 'user',
         'time': 'time',
         'seen': 'seen',
         'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, alert_method=None, user=None, time=None, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, alert_method=None, event_type=None, user=None, time=None, seen=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -61,6 +63,7 @@ class Alert(object):
         self._created_dt = None
         self._updated_dt = None
         self._alert_method = None
+        self._event_type = None
         self._user = None
         self._time = None
         self._seen = None
@@ -72,6 +75,7 @@ class Alert(object):
         if updated_dt is not None:
             self.updated_dt = updated_dt
         self.alert_method = alert_method
+        self.event_type = event_type
         if user is not None:
             self.user = user
         if time is not None:
@@ -144,6 +148,27 @@ class Alert(object):
             raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
 
         self._alert_method = alert_method
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this Alert.  # noqa: E501
+
+
+        :return: The event_type of this Alert.  # noqa: E501
+        :rtype: OneOfEventTypeA2eEnumNullEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this Alert.
+
+
+        :param event_type: The event_type of this Alert.  # noqa: E501
+        :type event_type: OneOfEventTypeA2eEnumNullEnum
+        """
+
+        self._event_type = event_type
 
     @property
     def user(self):

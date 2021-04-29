@@ -38,7 +38,7 @@ class AlertSerializer(serializers.ModelSerializer):
 
 class PrintStatusSerializer(AlertSerializer):
     class Meta:
-        model = Alert
+        model = PrintStatusAlert
         fields = [
             "annotated_video",
             "created_dt",
