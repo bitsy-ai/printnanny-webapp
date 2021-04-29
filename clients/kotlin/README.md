@@ -35,6 +35,13 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AlertsApi* | [**alertsList**](docs/AlertsApi.md#alertslist) | **GET** /api/alerts/ | 
+*AlertsApi* | [**alertsPartialUpdate**](docs/AlertsApi.md#alertspartialupdate) | **PATCH** /api/alerts/{id}/ | 
+*AlertsApi* | [**alertsRecent**](docs/AlertsApi.md#alertsrecent) | **GET** /api/alerts/recent/ | 
+*AlertsApi* | [**alertsRetrieve**](docs/AlertsApi.md#alertsretrieve) | **GET** /api/alerts/{id}/ | 
+*AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
+*AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
+*AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
 *AuthTokenApi* | [**authTokenCreate**](docs/AuthTokenApi.md#authtokencreate) | **POST** /api/auth-token/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 
@@ -93,6 +100,12 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [com.print-nanny.client.models.Alert](docs/Alert.md)
+ - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
+ - [com.print-nanny.client.models.AlertMethodEnum](docs/AlertMethodEnum.md)
+ - [com.print-nanny.client.models.AlertPolymorphic](docs/AlertPolymorphic.md)
+ - [com.print-nanny.client.models.AlertPolymorphicRequest](docs/AlertPolymorphicRequest.md)
+ - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.AuthToken](docs/AuthToken.md)
  - [com.print-nanny.client.models.AuthTokenRequest](docs/AuthTokenRequest.md)
@@ -114,6 +127,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
  - [com.print-nanny.client.models.OctoPrintPluginEvent](docs/OctoPrintPluginEvent.md)
  - [com.print-nanny.client.models.OctoPrintPluginEventEventTypeEnum](docs/OctoPrintPluginEventEventTypeEnum.md)
+ - [com.print-nanny.client.models.PaginatedAlertPolymorphicList](docs/PaginatedAlertPolymorphicList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
@@ -128,6 +142,9 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedUserList](docs/PaginatedUserList.md)
  - [com.print-nanny.client.models.PartnerOctoPrintDevice](docs/PartnerOctoPrintDevice.md)
+ - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
+ - [com.print-nanny.client.models.PatchedAlertPolymorphicRequest](docs/PatchedAlertPolymorphicRequest.md)
+ - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.PatchedGcodeFileRequest](docs/PatchedGcodeFileRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)

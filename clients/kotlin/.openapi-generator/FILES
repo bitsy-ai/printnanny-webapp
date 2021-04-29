@@ -1,6 +1,13 @@
 .openapi-generator-ignore
 README.md
 build.gradle
+docs/Alert.md
+docs/AlertBulkResponse.md
+docs/AlertMethodEnum.md
+docs/AlertPolymorphic.md
+docs/AlertPolymorphicRequest.md
+docs/AlertRequest.md
+docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthToken.md
 docs/AuthTokenApi.md
@@ -24,6 +31,7 @@ docs/OctoPrintEventEventTypeEnum.md
 docs/OctoPrintEventRequest.md
 docs/OctoPrintPluginEvent.md
 docs/OctoPrintPluginEventEventTypeEnum.md
+docs/PaginatedAlertPolymorphicList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
@@ -39,6 +47,9 @@ docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedUserList.md
 docs/PartnerOctoPrintDevice.md
 docs/PartnersGeeks3dApi.md
+docs/PatchedAlertBulkRequestRequest.md
+docs/PatchedAlertPolymorphicRequest.md
+docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedGcodeFileRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -62,6 +73,7 @@ docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
 settings.gradle
+src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthTokenApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3dApi.kt
@@ -83,6 +95,12 @@ src/main/kotlin/com/print-nanny/client/infrastructure/RequestMethod.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ResponseExtensions.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/Serializer.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
+src/main/kotlin/com/print-nanny/client/models/Alert.kt
+src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
+src/main/kotlin/com/print-nanny/client/models/AlertMethodEnum.kt
+src/main/kotlin/com/print-nanny/client/models/AlertPolymorphic.kt
+src/main/kotlin/com/print-nanny/client/models/AlertPolymorphicRequest.kt
+src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AuthToken.kt
 src/main/kotlin/com/print-nanny/client/models/AuthTokenRequest.kt
@@ -104,6 +122,7 @@ src/main/kotlin/com/print-nanny/client/models/OctoPrintEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintEventRequest.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintPluginEvent.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintPluginEventEventTypeEnum.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedAlertPolymorphicList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentList.kt
@@ -118,6 +137,9 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfileList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteControlCommandList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedUserList.kt
 src/main/kotlin/com/print-nanny/client/models/PartnerOctoPrintDevice.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedAlertPolymorphicRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedGcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt

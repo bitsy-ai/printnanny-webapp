@@ -103,13 +103,13 @@ export enum AlertMethodEnum {
  * @type AlertPolymorphic
  * @export
  */
-export type AlertPolymorphic = Alert | PrintSessionAlert;
+export type AlertPolymorphic = Alert;
 
 /**
  * @type AlertPolymorphicRequest
  * @export
  */
-export type AlertPolymorphicRequest = AlertRequest | PrintSessionAlertRequest;
+export type AlertPolymorphicRequest = AlertRequest;
 
 /**
  * 
@@ -136,16 +136,6 @@ export interface AlertRequest {
      */
     octoprint_device?: number | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum AlertSubtypeEnum {
-    Success = 'SUCCESS',
-    Failure = 'FAILURE'
-}
-
 /**
  * 
  * @export
@@ -589,15 +579,6 @@ export interface Nested {
      */
     treatments?: Array<number>;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum NullEnum {
-    Null = 'null'
-}
-
 /**
  * 
  * @export
@@ -1871,7 +1852,7 @@ export interface PatchedAlertBulkRequestRequest {
  * @type PatchedAlertPolymorphicRequest
  * @export
  */
-export type PatchedAlertPolymorphicRequest = PatchedAlertRequest | PatchedPrintSessionAlertRequest;
+export type PatchedAlertPolymorphicRequest = PatchedAlertRequest;
 
 /**
  * 
@@ -2080,55 +2061,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
-}
-/**
- * 
- * @export
- * @interface PatchedPrintSessionAlertRequest
- */
-export interface PatchedPrintSessionAlertRequest {
-    /**
-     * 
-     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    sent?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    needs_review?: boolean;
-    /**
-     * 
-     * @type {AlertSubtypeEnum}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    alert_subtype?: AlertSubtypeEnum;
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    annotated_video?: any;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrintSessionAlertRequest
-     */
-    print_session?: number;
 }
 /**
  * 
@@ -2470,163 +2402,6 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     should_alert?: string;
-}
-/**
- * 
- * @export
- * @interface PrintSessionAlert
- */
-export interface PrintSessionAlert {
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlert
-     */
-    id?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintSessionAlert
-     */
-    time?: string;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof PrintSessionAlert
-     */
-    alert_method?: AlertMethodEnum;
-    /**
-     * 
-     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
-     * @memberof PrintSessionAlert
-     */
-    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintSessionAlert
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintSessionAlert
-     */
-    updated_dt?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlert
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlert
-     */
-    sent?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlert
-     */
-    needs_review?: boolean;
-    /**
-     * 
-     * @type {AlertSubtypeEnum}
-     * @memberof PrintSessionAlert
-     */
-    alert_subtype?: AlertSubtypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintSessionAlert
-     */
-    annotated_video: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlert
-     */
-    polymorphic_ctype?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlert
-     */
-    user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlert
-     */
-    octoprint_device?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlert
-     */
-    print_session: number;
-}
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintSessionAlertEventTypeEnum {
-    PrintProgress = 'PrintProgress',
-    PrintHealth = 'PrintHealth',
-    PrintStatus = 'PrintStatus'
-}
-
-/**
- * 
- * @export
- * @interface PrintSessionAlertRequest
- */
-export interface PrintSessionAlertRequest {
-    /**
-     * 
-     * @type {PrintSessionAlertEventTypeEnum | NullEnum}
-     * @memberof PrintSessionAlertRequest
-     */
-    event_type?: PrintSessionAlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlertRequest
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlertRequest
-     */
-    sent?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrintSessionAlertRequest
-     */
-    needs_review?: boolean;
-    /**
-     * 
-     * @type {AlertSubtypeEnum}
-     * @memberof PrintSessionAlertRequest
-     */
-    alert_subtype?: AlertSubtypeEnum;
-    /**
-     * 
-     * @type {any}
-     * @memberof PrintSessionAlertRequest
-     */
-    annotated_video: any;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintSessionAlertRequest
-     */
-    print_session: number;
 }
 /**
  * 
