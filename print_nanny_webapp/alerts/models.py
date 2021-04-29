@@ -100,6 +100,7 @@ class AlertSettings(models.Model):
 
 
 class AlertEventTypes(models.TextChoices):
+    VIDEO_DONE = "VideoDone", "VideoDone"
     PRINT_HEALTH = "PrintHealth", "PrintHealth"
     PRINT_PROGRESS = "PrintProgress", "PrintProgress"
     PRINT_DONE = "PrintDone", "PrintDone"
@@ -108,7 +109,7 @@ class AlertEventTypes(models.TextChoices):
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
 
-class Alert(models.Model):
+class AlertMessage(models.Model):
     """
     Base class for alert events
     """

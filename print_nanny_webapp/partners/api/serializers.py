@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
-Alert = apps.get_model("alerts", "Alert")
+Alert = apps.get_model("alerts", "AlertMessage")
 User = get_user_model()
 ##
 # Serializers for use with third-party partners and external systems

@@ -9,7 +9,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 logger = logging.getLogger(__name__)
 
-Alert = apps.get_model("alerts", "Alert")
+Alert = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 
 

@@ -35,7 +35,7 @@ from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
 from django.contrib import messages
 
 User = get_user_model()
-Alert = apps.get_model("alerts", "Alert")
+Alert = apps.get_model("alerts", "AlertMessage")
 # ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
