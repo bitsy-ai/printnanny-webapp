@@ -174,7 +174,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_partial_update(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param patched_alert_request:
         :type patched_alert_request: PatchedAlertRequest
@@ -205,7 +205,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param patched_alert_request:
         :type patched_alert_request: PatchedAlertRequest
@@ -441,7 +441,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -470,7 +470,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -831,7 +831,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_update(id, alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param alert_request: (required)
         :type alert_request: AlertRequest
@@ -862,7 +862,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_update_with_http_info(id, alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param alert_request: (required)
         :type alert_request: AlertRequest

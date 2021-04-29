@@ -4,6 +4,8 @@
 ## Enum
 
 
+    * `videoDone` (value: `"VideoDone"`)
+
     * `printHealth` (value: `"PrintHealth"`)
 
     * `printProgress` (value: `"PrintProgress"`)

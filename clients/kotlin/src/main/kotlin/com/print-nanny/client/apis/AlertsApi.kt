@@ -87,7 +87,7 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     /**
     * 
     * 
-    * @param id A unique integer value identifying this alert. 
+    * @param id A unique integer value identifying this alert message. 
     * @param patchedAlertRequest  (optional)
     * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -169,7 +169,7 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     /**
     * 
     * 
-    * @param id A unique integer value identifying this alert. 
+    * @param id A unique integer value identifying this alert message. 
     * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -291,7 +291,7 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     /**
     * 
     * 
-    * @param id A unique integer value identifying this alert. 
+    * @param id A unique integer value identifying this alert message. 
     * @param alertRequest  
     * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response

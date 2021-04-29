@@ -123,6 +123,7 @@ export interface AlertBulkResponse {
  * @enum {string}
  */
 export enum AlertEventTypeEnum {
+    VideoDone = 'VideoDone',
     PrintHealth = 'PrintHealth',
     PrintProgress = 'PrintProgress',
     PrintDone = 'PrintDone',
@@ -3188,7 +3189,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3298,7 +3299,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3455,7 +3456,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3544,7 +3545,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3570,7 +3571,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3608,7 +3609,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3640,7 +3641,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {PatchedAlertRequest} [patchedAlertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3658,7 +3659,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3684,7 +3685,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this alert.
+         * @param {number} id A unique integer value identifying this alert message.
          * @param {AlertRequest} alertRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3712,7 +3713,7 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3730,7 +3731,7 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
@@ -3756,7 +3757,7 @@ export interface AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3786,7 +3787,7 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3808,7 +3809,7 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
@@ -3840,7 +3841,7 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this alert.
+     * @param {number} id A unique integer value identifying this alert message.
      * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

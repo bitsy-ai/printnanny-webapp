@@ -76,7 +76,7 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
 val patchedAlertRequest : PatchedAlertRequest =  // PatchedAlertRequest | 
 try {
     val result : Alert = apiInstance.alertsPartialUpdate(id, patchedAlertRequest)
@@ -94,7 +94,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
  **patchedAlertRequest** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional]
 
 ### Return type
@@ -174,7 +174,7 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
 try {
     val result : Alert = apiInstance.alertsRetrieve(id)
     println(result)
@@ -191,7 +191,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
 
 ### Return type
 
@@ -320,7 +320,7 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
 val alertRequest : AlertRequest =  // AlertRequest | 
 try {
     val result : Alert = apiInstance.alertsUpdate(id, alertRequest)
@@ -338,7 +338,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
  **alertRequest** | [**AlertRequest**](AlertRequest.md)|  |
 
 ### Return type

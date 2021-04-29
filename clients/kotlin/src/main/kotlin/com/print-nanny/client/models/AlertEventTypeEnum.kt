@@ -16,10 +16,14 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted
+* Values: videoDone,printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted
 */
 
 enum class AlertEventTypeEnum(val value: kotlin.String){
+
+
+    @Json(name = "VideoDone")
+    videoDone("VideoDone"),
 
 
     @Json(name = "PrintHealth")

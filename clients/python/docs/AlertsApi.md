@@ -170,7 +170,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
@@ -213,7 +213,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
@@ -227,7 +227,7 @@ patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
+ **id** | **int**| A unique integer value identifying this alert message. | 
  **patched_alert_request** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional] 
 
 ### Return type
@@ -403,7 +403,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 
     try:
         api_response = api_instance.alerts_retrieve(id)
@@ -445,7 +445,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 
     try:
         api_response = api_instance.alerts_retrieve(id)
@@ -458,7 +458,7 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
+ **id** | **int**| A unique integer value identifying this alert message. | 
 
 ### Return type
 
@@ -751,7 +751,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
@@ -794,7 +794,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
@@ -808,7 +808,7 @@ alert_request = print_nanny_client.AlertRequest() # AlertRequest |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
+ **id** | **int**| A unique integer value identifying this alert message. | 
  **alert_request** | [**AlertRequest**](AlertRequest.md)|  | 
 
 ### Return type

@@ -28,6 +28,7 @@ class AlertEventTypeEnum(object):
     """
     allowed enum values
     """
+    VIDEODONE = "VideoDone"
     PRINTHEALTH = "PrintHealth"
     PRINTPROGRESS = "PrintProgress"
     PRINTDONE = "PrintDone"
@@ -36,7 +37,7 @@ class AlertEventTypeEnum(object):
     PRINTRESUMED = "PrintResumed"
     PRINTSTARTED = "PrintStarted"
 
-    allowable_values = [PRINTHEALTH, PRINTPROGRESS, PRINTDONE, PRINTFAILED, PRINTPAUSED, PRINTRESUMED, PRINTSTARTED]  # noqa: E501
+    allowable_values = [VIDEODONE, PRINTHEALTH, PRINTPROGRESS, PRINTDONE, PRINTFAILED, PRINTPAUSED, PRINTRESUMED, PRINTSTARTED]  # noqa: E501
 
     """
     Attributes:
