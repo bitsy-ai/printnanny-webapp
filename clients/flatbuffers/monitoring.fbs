@@ -38,10 +38,10 @@ table Metadata {
 }
 
 table MonitoringEvent {
-    image: Image (required);
-    bounding_boxes: BoundingBoxes;
     event_type: EventTypeEnum;
+    image: Image (required);
     metadata: Metadata (required);
+    bounding_boxes: BoundingBoxes;
 }
 
 root_type MonitoringEvent;
