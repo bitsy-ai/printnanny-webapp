@@ -1,8 +1,14 @@
 namespace print_nanny_client.flatbuffers.alert;
 
-enum EventTypeEnum:ubyte {
+enum AlertEventTypeEnum:ubyte {
     print_health,
-    print_status,
+    print_progress,
+    print_done,
+    print_failed,
+    print_paused,
+    print_resumed,
+    print_started,
+    video_done
 }
 
 table Metadata {
@@ -14,16 +20,6 @@ table Metadata {
     model_version:string;
 }
 
-enum PrintStatusEnum:ubyte {
-    print_progress,
-    print_done,
-    print_failed,
-    print_paused,
-    print_resumed,
-    print_started
-
-}
-
 table AnnotatedVideo {
     gcs_input: string; // input jpg frames
     gcs_output: string; // output .mp4 cool storage path
@@ -32,19 +28,8 @@ table AnnotatedVideo {
     bucket: string;
 }
 
-
-table PrintStatusAlert {
-    event_subtype: PrintStatusEnum;
-    annotated_video: AnnotatedVideo;
-}
-
-union EventData {
-    PrintStatusAlert
-}
-
-
 table Alert {
-    event_data: EventData (required);
-    event_type: EventTypeEnum;
+    event_type: AlertEventTypeEnum;
     metadata: Metadata (required);
+    annotated_video: AnnotatedVideo;
 }
