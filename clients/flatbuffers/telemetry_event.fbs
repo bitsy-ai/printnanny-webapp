@@ -1,26 +1,10 @@
-namespace print_nanny_client.telemetry_event;
+namespace print_nanny_client.flatbuffers.monitoring;
 
-enum TelemetryEventEnum:ubyte {
+enum MonitoringEventEnum:ubyte {
     monitoring_frame_raw,
     monitoring_frame_post,
-    device_register_start,
-    device_register_done,
-    device_register_failed,
-    printer_profile_sync_start,
-    printer_profile_sync_done,
-    printer_profile_sync_failed
- }
-
-
-enum RemoteCommand:ubyte {
-    print_start = 0,
-    print_stop = 1,
-    print_pause = 2,
-    print_resume = 3,
-    moze_nozzle = 5,
-    monitoring_start = 6,
-    monitoring_stop = 7
 }
+
 
 struct Box {
     ymin:float;
@@ -63,10 +47,10 @@ table Metadata {
     fpm: uint8;
 }
 
-table TelemetryEvent {
+table MonitoringEvent {
     event_data: EventData (required);
     event_type: TelemetryEventEnum;
     metadata: Metadata (required);
 }
 
-root_type TelemetryEvent;
+root_type MonitoringEvent;
