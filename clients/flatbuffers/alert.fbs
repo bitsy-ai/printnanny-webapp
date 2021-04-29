@@ -6,12 +6,26 @@ enum EventTypeEnum:ubyte {
     print_status,
 }
 
-table Alert {
-    event_type: EventTypeEnum;
+table Metadata {
     user_id: uint32;
     octoprint_device_id: uint32;
     cloudiot_device_id: uint64;
     print_session: string;
     client_version:string;
     model_version:string;
+}
+
+table TimelapseVideo {
+    gcs_input: string; // input jpg frames
+    gcs_output: string; // output .mp4 cool storage path
+    cdn_output: string; // output .mp4 copied to cdn path (including Django MEDIA_ROOT)
+    cdn_relative_path: string; // output .mp4 path relative to Django MEDIA_ROOT
+    bucket: string;
+}
+
+
+table Alert {
+    event_data: EventData (required);
+    event_type: EventTypeEnum;
+    metadata: Metadata (required);
 }
