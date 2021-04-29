@@ -69,7 +69,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
             fingerprint=keypair["fingerprint"],
             cloudiot_device_num_id=cloudiot_device_num_id,
             cloudiot_device_name=cloudiot_device_name,
-            cloudiot_device=cloudiot_device_dict,
+            cloudiot_octoprint_device=cloudiot_device_dict,
             cloudiot_device_path=device_path,
         )
 
@@ -95,7 +95,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
         active_experiment = Experiment.objects.filter(active=True).first()
         if active_experiment is not None:
             experiment_device_config = ExperimentDeviceConfig.objects.create(
-                device=device,
+                octoprint_device=device,
                 experiment=active_experiment,
             )
 
@@ -125,7 +125,7 @@ class OctoPrintDevice(SafeDeleteModel):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
 
         active_config = ExperimentDeviceConfig.objects.filter(
-            device=self, experiment__active=True
+            octoprint_device=self, experiment__active=True
         ).first()
         return active_config
 
@@ -231,7 +231,7 @@ class OctoPrintDevice(SafeDeleteModel):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
         last_print_session_event = (
-            PrintStatusEvent.objects.filter(device=self)
+            PrintStatusEvent.objects.filter(octoprint_device=self)
             .order_by("-created_dt")
             .first()
         )
@@ -245,7 +245,7 @@ class OctoPrintDevice(SafeDeleteModel):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
         last_print_session_event = (
-            PrintStatusEvent.objects.filter(device=self)
+            PrintStatusEvent.objects.filter(octoprint_device=self)
             .order_by("-created_dt")
             .first()
         )

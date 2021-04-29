@@ -26,18 +26,18 @@ class MonitoringFramePublisher(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
-        self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
+        self.octoprint_device_id = self.scope["url_route"]["kwargs"]["octoprint_device_id"]
         async_to_sync(self.channel_layer.group_add)(
-            f"video_{self.device_id}", self.channel_name
+            f"video_{self.octoprint_device_id}", self.channel_name
         )
 
-        logger.info(f"Consumer for {self.device_id} connected")
+        logger.info(f"Consumer for {self.octoprint_device_id} connected")
 
         annotated_ws_consumer_connected_metric.inc()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
-            f"video_{self.device_id}", self.channel_name
+            f"video_{self.octoprint_device_id}", self.channel_name
         )
 
         super().disconnect(close_code)
@@ -52,9 +52,9 @@ class MonitoringFrameReceiver(WebsocketConsumer):
     def connect(self):
         self.accept()
         self.user = self.scope["user"]
-        self.device_id = self.scope["url_route"]["kwargs"]["device_id"]
+        self.octoprint_device_id = self.scope["url_route"]["kwargs"]["octoprint_device_id"]
 
-        logger.info(f"Publisher for {self.device_id} connected")
+        logger.info(f"Publisher for {self.octoprint_device_id} connected")
 
         annotated_ws_publisher_connected_metric.inc()
 
@@ -65,6 +65,6 @@ class MonitoringFrameReceiver(WebsocketConsumer):
 
     def receive(self, bytes_data):
         async_to_sync(self.channel_layer.group_send)(
-            f"video_{self.device_id}",
+            f"video_{self.octoprint_device_id}",
             {"type": "video.frame", "image": bytes_data},
         )
