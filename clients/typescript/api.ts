@@ -2481,12 +2481,6 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintSession
-     */
-    should_alert?: string;
 }
 /**
  * 

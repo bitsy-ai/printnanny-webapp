@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **gcode_file** | **int** |  | [optional] 
 **gcode_filename** | **str** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
-**should_alert** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

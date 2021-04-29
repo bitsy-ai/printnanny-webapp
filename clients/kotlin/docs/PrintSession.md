@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
-**shouldAlert** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

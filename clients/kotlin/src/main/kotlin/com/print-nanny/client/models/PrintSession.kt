@@ -31,7 +31,6 @@ import java.io.Serializable
  * @param gcodeFile 
  * @param gcodeFilename 
  * @param url 
- * @param shouldAlert 
  */
 
 data class PrintSession (
@@ -58,9 +57,7 @@ data class PrintSession (
     @Json(name = "gcode_filename")
     val gcodeFilename: kotlin.String? = null,
     @Json(name = "url")
-    val url: java.net.URI? = null,
-    @Json(name = "should_alert")
-    val shouldAlert: kotlin.String? = null
+    val url: java.net.URI? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123
