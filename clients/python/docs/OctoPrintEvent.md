@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **event_data** | **dict(str, object)** |  | [optional] 
-**device** | **int** |  | 
+**octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 
 **plugin_version** | **str** |  | 
 **client_version** | **str** |  | 

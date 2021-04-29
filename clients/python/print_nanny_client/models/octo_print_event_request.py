@@ -34,7 +34,7 @@ class OctoPrintEventRequest(object):
     """
     openapi_types = {
         'event_data': 'dict(str, object)',
-        'device': 'int',
+        'octoprint_device': 'int',
         'plugin_version': 'str',
         'client_version': 'str',
         'octoprint_version': 'str',
@@ -44,7 +44,7 @@ class OctoPrintEventRequest(object):
 
     attribute_map = {
         'event_data': 'event_data',
-        'device': 'device',
+        'octoprint_device': 'octoprint_device',
         'plugin_version': 'plugin_version',
         'client_version': 'client_version',
         'octoprint_version': 'octoprint_version',
@@ -52,14 +52,14 @@ class OctoPrintEventRequest(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, event_data=None, device=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_data=None, octoprint_device=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._event_data = None
-        self._device = None
+        self._octoprint_device = None
         self._plugin_version = None
         self._client_version = None
         self._octoprint_version = None
@@ -68,7 +68,7 @@ class OctoPrintEventRequest(object):
         self.discriminator = None
 
         self.event_data = event_data
-        self.device = device
+        self.octoprint_device = octoprint_device
         self.plugin_version = plugin_version
         self.client_version = client_version
         self.octoprint_version = octoprint_version
@@ -97,27 +97,27 @@ class OctoPrintEventRequest(object):
         self._event_data = event_data
 
     @property
-    def device(self):
-        """Gets the device of this OctoPrintEventRequest.  # noqa: E501
+    def octoprint_device(self):
+        """Gets the octoprint_device of this OctoPrintEventRequest.  # noqa: E501
 
 
-        :return: The device of this OctoPrintEventRequest.  # noqa: E501
+        :return: The octoprint_device of this OctoPrintEventRequest.  # noqa: E501
         :rtype: int
         """
-        return self._device
+        return self._octoprint_device
 
-    @device.setter
-    def device(self, device):
-        """Sets the device of this OctoPrintEventRequest.
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this OctoPrintEventRequest.
 
 
-        :param device: The device of this OctoPrintEventRequest.  # noqa: E501
-        :type device: int
+        :param octoprint_device: The octoprint_device of this OctoPrintEventRequest.  # noqa: E501
+        :type octoprint_device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_device is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_device`, must not be `None`")  # noqa: E501
 
-        self._device = device
+        self._octoprint_device = octoprint_device
 
     @property
     def plugin_version(self):

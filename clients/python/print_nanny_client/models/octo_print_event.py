@@ -36,7 +36,7 @@ class OctoPrintEvent(object):
         'id': 'int',
         'created_dt': 'datetime',
         'event_data': 'dict(str, object)',
-        'device': 'int',
+        'octoprint_device': 'int',
         'user': 'int',
         'plugin_version': 'str',
         'client_version': 'str',
@@ -50,7 +50,7 @@ class OctoPrintEvent(object):
         'id': 'id',
         'created_dt': 'created_dt',
         'event_data': 'event_data',
-        'device': 'device',
+        'octoprint_device': 'octoprint_device',
         'user': 'user',
         'plugin_version': 'plugin_version',
         'client_version': 'client_version',
@@ -60,7 +60,7 @@ class OctoPrintEvent(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -69,7 +69,7 @@ class OctoPrintEvent(object):
         self._id = None
         self._created_dt = None
         self._event_data = None
-        self._device = None
+        self._octoprint_device = None
         self._user = None
         self._plugin_version = None
         self._client_version = None
@@ -84,7 +84,7 @@ class OctoPrintEvent(object):
         if created_dt is not None:
             self.created_dt = created_dt
         self.event_data = event_data
-        self.device = device
+        self.octoprint_device = octoprint_device
         if user is not None:
             self.user = user
         self.plugin_version = plugin_version
@@ -159,27 +159,27 @@ class OctoPrintEvent(object):
         self._event_data = event_data
 
     @property
-    def device(self):
-        """Gets the device of this OctoPrintEvent.  # noqa: E501
+    def octoprint_device(self):
+        """Gets the octoprint_device of this OctoPrintEvent.  # noqa: E501
 
 
-        :return: The device of this OctoPrintEvent.  # noqa: E501
+        :return: The octoprint_device of this OctoPrintEvent.  # noqa: E501
         :rtype: int
         """
-        return self._device
+        return self._octoprint_device
 
-    @device.setter
-    def device(self, device):
-        """Sets the device of this OctoPrintEvent.
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this OctoPrintEvent.
 
 
-        :param device: The device of this OctoPrintEvent.  # noqa: E501
-        :type device: int
+        :param octoprint_device: The octoprint_device of this OctoPrintEvent.  # noqa: E501
+        :type octoprint_device: int
         """
-        if self.local_vars_configuration.client_side_validation and device is None:  # noqa: E501
-            raise ValueError("Invalid value for `device`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_device is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_device`, must not be `None`")  # noqa: E501
 
-        self._device = device
+        self._octoprint_device = octoprint_device
 
     @property
     def user(self):

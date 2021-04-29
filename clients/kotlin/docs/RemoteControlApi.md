@@ -31,7 +31,6 @@ Method | HTTP request | Description
 [**printerProfilesRetrieve**](RemoteControlApi.md#printerProfilesRetrieve) | **GET** /api/printer-profiles/{id}/ | 
 [**printerProfilesUpdate**](RemoteControlApi.md#printerProfilesUpdate) | **PUT** /api/printer-profiles/{id}/ | 
 [**printerProfilesUpdateOrCreate**](RemoteControlApi.md#printerProfilesUpdateOrCreate) | **POST** /api/printer-profiles/update-or-create/ | 
-[**validCommandsRetrieve**](RemoteControlApi.md#validCommandsRetrieve) | **GET** /api/commands/valid/ | 
 
 
 <a name="commandsList"></a>
@@ -1430,51 +1429,5 @@ Configure tokenAuth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="validCommandsRetrieve"></a>
-# **validCommandsRetrieve**
-> kotlin.String validCommandsRetrieve()
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = RemoteControlApi()
-try {
-    val result : kotlin.String = apiInstance.validCommandsRetrieve()
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling RemoteControlApi#validCommandsRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling RemoteControlApi#validCommandsRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-**kotlin.String**
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 

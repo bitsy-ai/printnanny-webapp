@@ -11,31 +11,51 @@
 */
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.AlertMethodEnum
+import com.print-nanny.client.models.OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
+ * @param alertMethod 
+ * @param id 
+ * @param time 
+ * @param eventType 
+ * @param annotatedVideo 
  * @param createdDt 
  * @param updatedDt 
- * @param user 
- * @param time 
  * @param seen 
+ * @param sent 
+ * @param printSession 
+ * @param user 
  * @param octoprintDevice 
  */
 
 data class Alert (
+    @Json(name = "alert_method")
+    val alertMethod: AlertMethodEnum,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
+    @Json(name = "time")
+    val time: kotlin.String? = null,
+    @Json(name = "event_type")
+    val eventType: OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan? = null,
+    @Json(name = "annotated_video")
+    val annotatedVideo: java.net.URI? = null,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
-    @Json(name = "time")
-    val time: kotlin.String? = null,
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
+    @Json(name = "sent")
+    val sent: kotlin.Boolean? = null,
+    @Json(name = "print_session")
+    val printSession: kotlin.Int? = null,
+    @Json(name = "user")
+    val user: kotlin.Int? = null,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null
 ) : Serializable {

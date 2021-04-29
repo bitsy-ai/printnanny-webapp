@@ -46,7 +46,7 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                         event_data = {
                             'key' : null
                             }, 
-                        device = 56, 
+                        octoprint_device = 56, 
                         user = 56, 
                         plugin_version = '', 
                         client_version = '', 

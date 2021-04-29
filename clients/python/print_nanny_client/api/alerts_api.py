@@ -60,7 +60,7 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedAlertPolymorphicList
+        :rtype: PaginatedAlertList
         """
         kwargs['_return_http_data_only'] = True
         return self.alerts_list_with_http_info(**kwargs)  # noqa: E501
@@ -96,7 +96,7 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedAlertPolymorphicList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedAlertList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -145,7 +145,7 @@ class AlertsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedAlertPolymorphicList",
+            200: "PaginatedAlertList",
         }
 
         return self.api_client.call_api(
@@ -174,10 +174,10 @@ class AlertsApi(object):
         >>> thread = api.alerts_partial_update(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param patched_alert_polymorphic_request:
-        :type patched_alert_polymorphic_request: PatchedAlertPolymorphicRequest
+        :param patched_alert_request:
+        :type patched_alert_request: PatchedAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -191,7 +191,7 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: AlertPolymorphic
+        :rtype: Alert
         """
         kwargs['_return_http_data_only'] = True
         return self.alerts_partial_update_with_http_info(id, **kwargs)  # noqa: E501
@@ -205,10 +205,10 @@ class AlertsApi(object):
         >>> thread = api.alerts_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param patched_alert_polymorphic_request:
-        :type patched_alert_polymorphic_request: PatchedAlertPolymorphicRequest
+        :param patched_alert_request:
+        :type patched_alert_request: PatchedAlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -229,14 +229,14 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(AlertPolymorphic, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Alert, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'id',
-            'patched_alert_polymorphic_request'
+            'patched_alert_request'
         ]
         all_params.extend(
             [
@@ -275,8 +275,8 @@ class AlertsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'patched_alert_polymorphic_request' in local_var_params:
-            body_params = local_var_params['patched_alert_polymorphic_request']
+        if 'patched_alert_request' in local_var_params:
+            body_params = local_var_params['patched_alert_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -289,7 +289,7 @@ class AlertsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "AlertPolymorphic",
+            200: "Alert",
         }
 
         return self.api_client.call_api(
@@ -441,7 +441,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -456,7 +456,7 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: AlertPolymorphic
+        :rtype: Alert
         """
         kwargs['_return_http_data_only'] = True
         return self.alerts_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -470,7 +470,7 @@ class AlertsApi(object):
         >>> thread = api.alerts_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -492,7 +492,7 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(AlertPolymorphic, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Alert, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -545,7 +545,7 @@ class AlertsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "AlertPolymorphic",
+            200: "Alert",
         }
 
         return self.api_client.call_api(
@@ -822,19 +822,19 @@ class AlertsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alerts_update(self, id, **kwargs):  # noqa: E501
+    def alerts_update(self, id, alert_request, **kwargs):  # noqa: E501
         """alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alerts_update(id, async_req=True)
+        >>> thread = api.alerts_update(id, alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param alert_polymorphic_request:
-        :type alert_polymorphic_request: AlertPolymorphicRequest
+        :param alert_request: (required)
+        :type alert_request: AlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -848,24 +848,24 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: AlertPolymorphic
+        :rtype: Alert
         """
         kwargs['_return_http_data_only'] = True
-        return self.alerts_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.alerts_update_with_http_info(id, alert_request, **kwargs)  # noqa: E501
 
-    def alerts_update_with_http_info(self, id, **kwargs):  # noqa: E501
+    def alerts_update_with_http_info(self, id, alert_request, **kwargs):  # noqa: E501
         """alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alerts_update_with_http_info(id, async_req=True)
+        >>> thread = api.alerts_update_with_http_info(id, alert_request, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this alert. (required)
+        :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param alert_polymorphic_request:
-        :type alert_polymorphic_request: AlertPolymorphicRequest
+        :param alert_request: (required)
+        :type alert_request: AlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -886,14 +886,14 @@ class AlertsApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(AlertPolymorphic, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Alert, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
 
         all_params = [
             'id',
-            'alert_polymorphic_request'
+            'alert_request'
         ]
         all_params.extend(
             [
@@ -917,6 +917,10 @@ class AlertsApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `alerts_update`")  # noqa: E501
+        # verify the required parameter 'alert_request' is set
+        if self.api_client.client_side_validation and ('alert_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['alert_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `alert_request` when calling `alerts_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -932,8 +936,8 @@ class AlertsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'alert_polymorphic_request' in local_var_params:
-            body_params = local_var_params['alert_polymorphic_request']
+        if 'alert_request' in local_var_params:
+            body_params = local_var_params['alert_request']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -946,151 +950,11 @@ class AlertsApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "AlertPolymorphic",
+            200: "Alert",
         }
 
         return self.api_client.call_api(
             '/api/alerts/{id}/', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_types_map=response_types_map,
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats,
-            _request_auth=local_var_params.get('_request_auth'))
-
-    def print_session_alert_create(self, create_print_session_alert_request, **kwargs):  # noqa: E501
-        """print_session_alert_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_session_alert_create(create_print_session_alert_request, async_req=True)
-        >>> result = thread.get()
-
-        :param create_print_session_alert_request: (required)
-        :type create_print_session_alert_request: CreatePrintSessionAlertRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: PrintSessionAlert
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.print_session_alert_create_with_http_info(create_print_session_alert_request, **kwargs)  # noqa: E501
-
-    def print_session_alert_create_with_http_info(self, create_print_session_alert_request, **kwargs):  # noqa: E501
-        """print_session_alert_create  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.print_session_alert_create_with_http_info(create_print_session_alert_request, async_req=True)
-        >>> result = thread.get()
-
-        :param create_print_session_alert_request: (required)
-        :type create_print_session_alert_request: CreatePrintSessionAlertRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(PrintSessionAlert, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'create_print_session_alert_request'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method print_session_alert_create" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'create_print_session_alert_request' is set
-        if self.api_client.client_side_validation and ('create_print_session_alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['create_print_session_alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `create_print_session_alert_request` when calling `print_session_alert_create`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        if 'create_print_session_alert_request' in local_var_params:
-            body_params = local_var_params['create_print_session_alert_request']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
-        response_types_map = {
-            201: "PrintSessionAlert",
-            400: "PrintSessionAlert",
-            403: "PrintSessionAlert",
-            409: "PrintSessionAlert",
-        }
-
-        return self.api_client.call_api(
-            '/api/print-session-alerts/', 'POST',
             path_params,
             query_params,
             header_params,

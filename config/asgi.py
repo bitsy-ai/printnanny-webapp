@@ -77,8 +77,7 @@ class TokenAuthMiddleware:
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
 websocket_urlpatterns = (
-    # @TODO re-enable with telemetry app ref
-    # print_nanny_webapp.telemetry.routing.websocket_urlpatterns +
+    print_nanny_webapp.telemetry.routing.websocket_urlpatterns +
     print_nanny_webapp.alerts.routing.websocket_urlpatterns
 )
 logging.info(f'Registering websocket urlpatterns {websocket_urlpatterns}')

@@ -15,26 +15,19 @@ from rest_framework.decorators import action
 from rest_framework import status
 from django.db.utils import IntegrityError
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
 from .serializers import (
-    ManualVideoUploadAlertSerializer,
-    AlertPolymorphicSerializer,
+    # ManualVideoUploadAlertSerializer,
     AlertSerializer,
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
-    AlertMethodSerializer,
-    CreatePrintSessionAlertSerializer,
-    PrintSessionAlertSerializer,
 )
 from print_nanny_webapp.utils.permissions import (
     IsAdminOrIsSelf,
     IsAdminOrIsPrintSessionOwner,
 )
 from ..models import (
-    ManualVideoUploadAlert,
-    Alert,
-    PrintSessionAlert,
+    AlertMessage as Alert,
 )
 
 logger = logging.getLogger(__name__)
@@ -51,63 +44,9 @@ class AlreadyExists(APIException):
 @extend_schema_view(
     tags=["alerts"],
     responses={
-        200: PrintSessionAlertSerializer,
-        201: PrintSessionAlertSerializer,
-        202: PrintSessionAlertSerializer,
-    },
-    list=extend_schema(operation_id="print_session_alerts_list"),
-)
-class PrintSessionAlertViewSet(
-    GenericViewSet,
-    ListModelMixin,
-    RetrieveModelMixin,
-    CreateModelMixin,
-):
-    lookup_fields = ("print_session", "id")
-    serializer_class = PrintSessionAlertSerializer
-
-    def get_queryset(self):
-        user = self.request.user
-        return PrintSessionAlert.objects.filter(user=user).all()
-
-    @extend_schema(
-        tags=["alerts"],
-        request=CreatePrintSessionAlertSerializer,
-        operation_id="print_session_alert_create",
-        responses={
-            201: PrintSessionAlertSerializer,
-            400: PrintSessionAlertSerializer,
-            403: PrintSessionAlertSerializer,
-            409: PrintSessionAlertSerializer,
-        },
-    )
-    def create(self, request, permissions=[IsAdminOrIsPrintSessionOwner]):
-        session = request.data.get("print_session")
-        session = PrintSession.objects.get(session=session)
-
-        request_serializer = CreatePrintSessionAlertSerializer(
-            data=request.data,
-            context={"request": request},
-        )
-        if request_serializer.is_valid():
-            try:
-                instance = request_serializer.save()
-            except IntegrityError:
-                raise AlreadyExists()
-
-            response_serializer = PrintSessionAlertSerializer(instance)
-            instance.trigger_alerts_task(response_serializer.data)
-
-            return Response(response_serializer.data, status.HTTP_201_CREATED)
-        return Response(request_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@extend_schema_view(
-    tags=["alerts"],
-    responses={
-        200: AlertPolymorphicSerializer,
-        201: AlertPolymorphicSerializer,
-        202: AlertPolymorphicSerializer,
+        200: AlertSerializer,
+        201: AlertSerializer,
+        202: AlertSerializer,
     },
 )
 class AlertViewSet(
@@ -116,7 +55,7 @@ class AlertViewSet(
     RetrieveModelMixin,
     UpdateModelMixin,
 ):
-    serializer_class = AlertPolymorphicSerializer
+    serializer_class = AlertSerializer
     queryset = Alert.objects.all()
     lookup_field = "id"
 

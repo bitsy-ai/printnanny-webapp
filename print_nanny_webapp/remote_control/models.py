@@ -95,7 +95,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
         active_experiment = Experiment.objects.filter(active=True).first()
         if active_experiment is not None:
             experiment_device_config = ExperimentDeviceConfig.objects.create(
-                device=device,
+                octoprint_device=device,
                 experiment=active_experiment,
             )
 
@@ -125,7 +125,7 @@ class OctoPrintDevice(SafeDeleteModel):
         from print_nanny_webapp.ml_ops.models import ExperimentDeviceConfig
 
         active_config = ExperimentDeviceConfig.objects.filter(
-            device=self, experiment__active=True
+            octoprint_device=self, experiment__active=True
         ).first()
         return active_config
 
@@ -228,10 +228,10 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_status(self):
-        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
         last_print_session_event = (
-            PrintSessionState.objects.filter(device=self)
+            PrintStatusEvent.objects.filter(octoprint_device=self)
             .order_by("-created_dt")
             .first()
         )
@@ -242,10 +242,10 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_gcode_file(self):
-        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
         last_print_session_event = (
-            PrintSessionState.objects.filter(device=self)
+            PrintStatusEvent.objects.filter(octoprint_device=self)
             .order_by("-created_dt")
             .first()
         )
@@ -256,9 +256,9 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_status_css_class(self):
-        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
-        return PrintSessionState.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
+        return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -372,15 +372,6 @@ class PrintSession(models.Model):
     def duration(self):
         return self.updated_dt - self.created_dt
 
-    @property
-    def should_alert(self):
-        """
-        Encapsulates stateful alert logic
-        """
-        # PrintSession alert does not exist
-        # TODO enable defect alert check
-        return self.printsessionalert_set.count() == 0
-
     def __str__(self):
         return self.session
 
@@ -447,26 +438,26 @@ class RemoteControlCommand(models.Model):
 
     @classmethod
     def get_valid_actions(cls, print_session_status):
-        PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
         valid_actions = {
-            PrintSessionState.EventType.PRINT_STARTED: [
+            PrintStatusEvent.EventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_PAUSE,
             ],
-            PrintSessionState.EventType.PRINT_DONE: [
+            PrintStatusEvent.EventType.PRINT_DONE: [
                 cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
-            PrintSessionState.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
-            PrintSessionState.EventType.PRINT_CANCELLING: [],
-            PrintSessionState.EventType.PRINT_PAUSED: [
+            PrintStatusEvent.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintStatusEvent.EventType.PRINT_CANCELLING: [],
+            PrintStatusEvent.EventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
                 cls.Command.MOVE_NOZZLE,
             ],
-            PrintSessionState.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            PrintStatusEvent.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
             "Idle": [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,

@@ -70,12 +70,6 @@ class TestAlertsApi(unittest.TestCase):
         """
         pass
 
-    def test_print_session_alert_create(self):
-        """Test case for print_session_alert_create
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

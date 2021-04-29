@@ -20,17 +20,17 @@ from .common import (
 
 logger = logging.getLogger(__name__)
 
-ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
+# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 
 
-@shared_task
+# @shared_task
 def annotate_job_success(alert_id):
     alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
         job_status=ManualVideoUploadAlert.JobStatusChoices.SUCCESS
     )
 
 
-@shared_task
+# @shared_task
 def annotate_job_error(alert_id):
     logger.error(f"Marking ManualVideoUploadAlert {alert_id} as FAILURE")
     alert = ManualVideoUploadAlert.objects.filter(id=alert_id).update(
@@ -38,7 +38,7 @@ def annotate_job_error(alert_id):
     )
 
 
-@shared_task
+# @shared_task
 def send_timelapse_upload_email_notification(alert_id):
 
     timelapse_alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()
@@ -66,7 +66,7 @@ def send_timelapse_upload_email_notification(alert_id):
     return message
 
 
-@shared_task
+# @shared_task
 def predict_postprocess_frame(frame_id, frame, temp_dir):
     predictor = ThreadLocalPredictor()
     predict_data = predictor.predict(frame)
@@ -75,7 +75,7 @@ def predict_postprocess_frame(frame_id, frame, temp_dir):
     return {"predict_data": predict_data, "id": frame_id}
 
 
-@shared_task()
+# @shared_task()
 def create_analyze_video_task(alert_id):
     logger.info(f"Processing video for alert_id {alert_id}")
     alert = ManualVideoUploadAlert.objects.filter(id=alert_id).first()

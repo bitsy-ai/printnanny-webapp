@@ -19,7 +19,7 @@ import java.io.Serializable
 
 /**
  * 
- * @param device 
+ * @param octoprintDevice 
  * @param pluginVersion 
  * @param clientVersion 
  * @param octoprintVersion 
@@ -29,8 +29,8 @@ import java.io.Serializable
  */
 
 data class OctoPrintEventRequest (
-    @Json(name = "device")
-    val device: kotlin.Int,
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int,
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String,
     @Json(name = "client_version")

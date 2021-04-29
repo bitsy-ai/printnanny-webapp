@@ -22,8 +22,9 @@ application = get_wsgi_application()
 from django.apps import apps
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-PrintSessionState = apps.get_model("telemetry", "PrintSessionState")
-AlertEventSettings = apps.get_model("alerts", "AlertEventSettings")
+OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
+PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -31,7 +32,7 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
-    alert_settings, created = AlertEventSettings.objects.get_or_create(
+    alert_settings, created = AlertSettings.objects.get_or_create(
         user=octoprint_event.user
     )
     return alert_settings.on_print_progress(octoprint_event)
@@ -44,7 +45,7 @@ def handle_print_status(octoprint_event):
 HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
 
 HANDLER_FNS.update(
-    {value: handle_print_status for label, value in PrintSessionState.EventType.choices}
+    {value: handle_print_status for label, value in PrintStatusEvent.EventType.choices}
 )
 
 
@@ -53,9 +54,10 @@ def on_octoprint_event(message):
     data = json.loads(data)
 
     event_type = data["event_type"]
+
     logger.debug(f"Received {event_type} with data {data}")
-    if data.get("device_id") is None:
-        logger.warning(f"Received {event_type} without device_id {data}")
+    if data.get("octoprint_device_id") is None:
+        logger.warning(f"Received {event_type} without octoprint_device_id {data}")
         message.ack()
         return
     if data.get("user_id") is None:
@@ -66,7 +68,7 @@ def on_octoprint_event(message):
         try:
             event = OctoPrintEvent.objects.create(
                 created_dt=data["created_dt"],
-                device_id=data["device_id"],
+                octoprint_device_id=data["octoprint_device_id"],
                 event_data=data,
                 event_type=event_type,
                 octoprint_version=data["octoprint_version"],
@@ -78,12 +80,12 @@ def on_octoprint_event(message):
                 handler_fn(event)
         except Exception as e:
             logger.error({"error": e, "data": data}, exc_info=True)
-    elif event_type in PrintJobEventCodes:
+    elif event_type in PrintStatusEvent.EventType:
         try:
-            PrintSessionState.objects.create(
+            PrintStatusEvent.objects.create(
                 created_dt=data["created_dt"],
                 current_z=data["printer_data"]["currentZ"],
-                device_id=data["device_id"],
+                octoprint_device_id=data["octoprint_device_id"],
                 event_data=data,
                 event_type=event_type,
                 job_data_file=data["printer_data"]["job"]["file"],
@@ -91,6 +93,24 @@ def on_octoprint_event(message):
                 plugin_version=data["plugin_version"],
                 progress=data["printer_data"]["progress"],
                 state=data["printer_data"]["state"],
+                user_id=data["user_id"],
+            )
+        except Exception as e:
+            logger.error({"error": e, "data": data})
+
+    elif (
+        OctoPrintPluginEvent.strip_plugin_identifier(event_type)
+        in OctoPrintPluginEvent.EventType
+    ):
+        try:
+            OctoPrintPluginEvent.objects.create(
+                created_dt=data["created_dt"],
+                current_z=data["printer_data"]["currentZ"],
+                octoprint_device_id=data["octoprint_device_id"],
+                event_data=data,
+                event_type=event_type,
+                octoprint_version=data["octoprint_version"],
+                plugin_version=data["plugin_version"],
                 user_id=data["user_id"],
             )
         except Exception as e:

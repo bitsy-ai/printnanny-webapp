@@ -11,14 +11,13 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
 from .models import (
-    Alert,
-    AlertEventSettings,
+    AlertSettings,
 )
 
 logger = logging.getLogger(__name__)
 
 from print_nanny_webapp.alerts.forms import (
-    AlertEventSettingsForm,
+    AlertSettingsForm,
     AlertMethodSettingsForm,
 )
 
@@ -27,13 +26,13 @@ class AlertSettingsView(DashboardView, MultiFormsView):
 
     success_url = "/alerts/settings"
     form_classes = {
-        "event_settings": AlertEventSettingsForm,
+        "event_settings": AlertSettingsForm,
         "alert_methods": AlertMethodSettingsForm,
     }
     template_name = "alerts/settings.html"
 
     def create_alert_methods_form(self, **kwargs):
-        instance, created = AlertEventSettings.objects.get_or_create(
+        instance, created = AlertSettings.objects.get_or_create(
             user=self.request.user,
         )
         if instance is not None:
@@ -51,13 +50,13 @@ class AlertSettingsView(DashboardView, MultiFormsView):
         return HttpResponseRedirect(success_url)
 
     def create_event_settings_form(self, **kwargs):
-        instance, created = AlertEventSettings.objects.get_or_create(
+        instance, created = AlertSettings.objects.get_or_create(
             user=self.request.user,
         )
         if instance is not None:
-            return AlertEventSettingsForm(instance=instance, **kwargs)
+            return AlertSettingsForm(instance=instance, **kwargs)
         else:
-            return AlertEventSettingsForm(**kwargs)
+            return AlertSettingsForm(**kwargs)
 
     def event_settings_form_valid(self, form):
 

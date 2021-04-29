@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**device** | **kotlin.Int** |  | 
+**octoprintDevice** | **kotlin.Int** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **clientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 

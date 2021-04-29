@@ -33,7 +33,7 @@ class TelemetryEvent(models.Model):
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     event_data = models.JSONField(null=True)
-    device = models.ForeignKey(
+    octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
         on_delete=models.CASCADE,
@@ -58,30 +58,17 @@ class RemoteCommandEvent(TelemetryEvent):
 
     class EventType(models.TextChoices):
 
-        MONITORING_START_RECEIVED = (
-            "monitoring_start_received",
-            "MONITORING_START command was received by device",
+        RECEIVED = (
+            "received",
+            "Command was received by device",
         )
-        MONITORING_START_FAILED = (
-            "monitoring_start_failed",
-            "MONITORING_START command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
+        FAILED = (
+            "failed",
+            "Command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
         )
-        MONITORING_START_SUCCESS = (
-            "monitoring_start_success",
-            "MONITORING_START command succeeded. Live monitoring feed enabled",
-        )
-
-        MONITORING_STOP_RECEIVED = (
-            "monitoring_stop_received",
-            "MONITORING_STOP command was received by device",
-        )
-        MONITORING_STOP_FAILED = (
-            "monitoring_stop_failed",
-            "MONITORING_STOP command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
-        )
-        MONITORING_STOP_SUCCESS = (
-            "monitoring_stop_success",
-            "MONITORING_STOP command succeeded. Monitoring feed is now disabled.",
+        SUCCESS = (
+            "success",
+            "Command succeeded",
         )
 
         # @todo
@@ -117,7 +104,12 @@ class OctoPrintPluginEvent(TelemetryEvent):
     Events emitted by OctoPrint Nanny plugin
 
     OctoPrint sends these as snake-cased strings
+
+    For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
     """
+
+    plugin_identifier = "octoprint_nanny"
+    octoprint_event_prefix = "PLUGIN_OCTOPRINT_NANNY"
 
     class EventType(models.TextChoices):
 
@@ -143,6 +135,10 @@ class OctoPrintPluginEvent(TelemetryEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=EventType.choices
     )
+
+    @classmethod
+    def strip_plugin_identifier(self, event_type):
+        return event_type.replace(self.plugin_identifier, "")
 
 
 class OctoPrintEvent(TelemetryEvent):
@@ -238,7 +234,6 @@ class OctoPrintEvent(TelemetryEvent):
 class PrintStatusEvent(TelemetryEvent):
     class EventType(models.TextChoices):
         # print job
-        ERROR = "Error", "Error"
         PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
         PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
         PRINT_DONE = "PrintDone", "PrintDone"

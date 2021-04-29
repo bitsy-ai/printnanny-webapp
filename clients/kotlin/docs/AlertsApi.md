@@ -11,12 +11,11 @@ Method | HTTP request | Description
 [**alertsSeen**](AlertsApi.md#alertsSeen) | **PATCH** /api/alerts/seen/ | 
 [**alertsUnread**](AlertsApi.md#alertsUnread) | **GET** /api/alerts/unread/ | 
 [**alertsUpdate**](AlertsApi.md#alertsUpdate) | **PUT** /api/alerts/{id}/ | 
-[**printSessionAlertCreate**](AlertsApi.md#printSessionAlertCreate) | **POST** /api/print-session-alerts/ | 
 
 
 <a name="alertsList"></a>
 # **alertsList**
-> PaginatedAlertPolymorphicList alertsList(page)
+> PaginatedAlertList alertsList(page)
 
 
 
@@ -29,7 +28,7 @@ Method | HTTP request | Description
 val apiInstance = AlertsApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedAlertPolymorphicList = apiInstance.alertsList(page)
+    val result : PaginatedAlertList = apiInstance.alertsList(page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsList")
@@ -48,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedAlertPolymorphicList**](PaginatedAlertPolymorphicList.md)
+[**PaginatedAlertList**](PaginatedAlertList.md)
 
 ### Authorization
 
@@ -66,7 +65,7 @@ Configure tokenAuth:
 
 <a name="alertsPartialUpdate"></a>
 # **alertsPartialUpdate**
-> AlertPolymorphic alertsPartialUpdate(id, patchedAlertPolymorphicRequest)
+> Alert alertsPartialUpdate(id, patchedAlertRequest)
 
 
 
@@ -77,10 +76,10 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
-val patchedAlertPolymorphicRequest : PatchedAlertPolymorphicRequest =  // PatchedAlertPolymorphicRequest | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
+val patchedAlertRequest : PatchedAlertRequest =  // PatchedAlertRequest | 
 try {
-    val result : AlertPolymorphic = apiInstance.alertsPartialUpdate(id, patchedAlertPolymorphicRequest)
+    val result : Alert = apiInstance.alertsPartialUpdate(id, patchedAlertRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsPartialUpdate")
@@ -95,12 +94,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
- **patchedAlertPolymorphicRequest** | [**PatchedAlertPolymorphicRequest**](PatchedAlertPolymorphicRequest.md)|  | [optional]
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
+ **patchedAlertRequest** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional]
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -164,7 +163,7 @@ Configure tokenAuth:
 
 <a name="alertsRetrieve"></a>
 # **alertsRetrieve**
-> AlertPolymorphic alertsRetrieve(id)
+> Alert alertsRetrieve(id)
 
 
 
@@ -175,9 +174,9 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
 try {
-    val result : AlertPolymorphic = apiInstance.alertsRetrieve(id)
+    val result : Alert = apiInstance.alertsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsRetrieve")
@@ -192,11 +191,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -310,7 +309,7 @@ Configure tokenAuth:
 
 <a name="alertsUpdate"></a>
 # **alertsUpdate**
-> AlertPolymorphic alertsUpdate(id, alertPolymorphicRequest)
+> Alert alertsUpdate(id, alertRequest)
 
 
 
@@ -321,10 +320,10 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = AlertsApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert.
-val alertPolymorphicRequest : AlertPolymorphicRequest =  // AlertPolymorphicRequest | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this alert message.
+val alertRequest : AlertRequest =  // AlertRequest | 
 try {
-    val result : AlertPolymorphic = apiInstance.alertsUpdate(id, alertPolymorphicRequest)
+    val result : Alert = apiInstance.alertsUpdate(id, alertRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling AlertsApi#alertsUpdate")
@@ -339,62 +338,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this alert. |
- **alertPolymorphicRequest** | [**AlertPolymorphicRequest**](AlertPolymorphicRequest.md)|  | [optional]
+ **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
+ **alertRequest** | [**AlertRequest**](AlertRequest.md)|  |
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="printSessionAlertCreate"></a>
-# **printSessionAlertCreate**
-> PrintSessionAlert printSessionAlertCreate(createPrintSessionAlertRequest)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AlertsApi()
-val createPrintSessionAlertRequest : CreatePrintSessionAlertRequest =  // CreatePrintSessionAlertRequest | 
-try {
-    val result : PrintSessionAlert = apiInstance.printSessionAlertCreate(createPrintSessionAlertRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AlertsApi#printSessionAlertCreate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AlertsApi#printSessionAlertCreate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createPrintSessionAlertRequest** | [**CreatePrintSessionAlertRequest**](CreatePrintSessionAlertRequest.md)|  |
-
-### Return type
-
-[**PrintSessionAlert**](PrintSessionAlert.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 

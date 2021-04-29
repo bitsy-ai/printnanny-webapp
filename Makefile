@@ -26,6 +26,8 @@ PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/o
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
+token:
+	echo $(PRINT_NANNY_TOKEN)
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
@@ -94,7 +96,7 @@ local-build:
 	docker-compose -f local.yml build
 
 local-up:
-	PROJECT=$(PROJECT) \
+	. .envs/.sandbox/.env && PROJECT=$(PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
 	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
@@ -199,7 +201,7 @@ clean-python-client: ## remove build artifacts
 
 
 python-flatbuffer:
-	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/telemetry_event.fbs
+	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/*.fbs
 
 
 python-client: clean-python-client python-flatbuffer

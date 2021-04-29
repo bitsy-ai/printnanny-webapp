@@ -11,11 +11,10 @@ Method | HTTP request | Description
 [**alerts_seen**](AlertsApi.md#alerts_seen) | **PATCH** /api/alerts/seen/ | 
 [**alerts_unread**](AlertsApi.md#alerts_unread) | **GET** /api/alerts/unread/ | 
 [**alerts_update**](AlertsApi.md#alerts_update) | **PUT** /api/alerts/{id}/ | 
-[**print_session_alert_create**](AlertsApi.md#print_session_alert_create) | **POST** /api/print-session-alerts/ | 
 
 
 # **alerts_list**
-> PaginatedAlertPolymorphicList alerts_list(page=page)
+> PaginatedAlertList alerts_list(page=page)
 
 
 
@@ -113,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedAlertPolymorphicList**](PaginatedAlertPolymorphicList.md)
+[**PaginatedAlertList**](PaginatedAlertList.md)
 
 ### Authorization
 
@@ -132,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_partial_update**
-> AlertPolymorphic alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+> Alert alerts_partial_update(id, patched_alert_request=patched_alert_request)
 
 
 
@@ -171,11 +170,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
-patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRequest() # PatchedAlertPolymorphicRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this alert message.
+patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+        api_response = api_instance.alerts_partial_update(id, patched_alert_request=patched_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_partial_update: %s\n" % e)
@@ -214,11 +213,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
-patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRequest() # PatchedAlertPolymorphicRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this alert message.
+patched_alert_request = print_nanny_client.PatchedAlertRequest() # PatchedAlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_partial_update(id, patched_alert_polymorphic_request=patched_alert_polymorphic_request)
+        api_response = api_instance.alerts_partial_update(id, patched_alert_request=patched_alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_partial_update: %s\n" % e)
@@ -228,12 +227,12 @@ patched_alert_polymorphic_request = print_nanny_client.PatchedAlertPolymorphicRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
- **patched_alert_polymorphic_request** | [**PatchedAlertPolymorphicRequest**](PatchedAlertPolymorphicRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this alert message. | 
+ **patched_alert_request** | [**PatchedAlertRequest**](PatchedAlertRequest.md)|  | [optional] 
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -365,7 +364,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_retrieve**
-> AlertPolymorphic alerts_retrieve(id)
+> Alert alerts_retrieve(id)
 
 
 
@@ -404,7 +403,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 
     try:
         api_response = api_instance.alerts_retrieve(id)
@@ -446,7 +445,7 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
+    id = 56 # int | A unique integer value identifying this alert message.
 
     try:
         api_response = api_instance.alerts_retrieve(id)
@@ -459,11 +458,11 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
+ **id** | **int**| A unique integer value identifying this alert message. | 
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -713,7 +712,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_update**
-> AlertPolymorphic alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+> Alert alerts_update(id, alert_request)
 
 
 
@@ -752,11 +751,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
-alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # AlertPolymorphicRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this alert message.
+alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
-        api_response = api_instance.alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+        api_response = api_instance.alerts_update(id, alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -795,11 +794,11 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
-    id = 56 # int | A unique integer value identifying this alert.
-alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # AlertPolymorphicRequest |  (optional)
+    id = 56 # int | A unique integer value identifying this alert message.
+alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
 
     try:
-        api_response = api_instance.alerts_update(id, alert_polymorphic_request=alert_polymorphic_request)
+        api_response = api_instance.alerts_update(id, alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -809,12 +808,12 @@ alert_polymorphic_request = print_nanny_client.AlertPolymorphicRequest() # Alert
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this alert. | 
- **alert_polymorphic_request** | [**AlertPolymorphicRequest**](AlertPolymorphicRequest.md)|  | [optional] 
+ **id** | **int**| A unique integer value identifying this alert message. | 
+ **alert_request** | [**AlertRequest**](AlertRequest.md)|  | 
 
 ### Return type
 
-[**AlertPolymorphic**](AlertPolymorphic.md)
+[**Alert**](Alert.md)
 
 ### Authorization
 
@@ -829,126 +828,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **print_session_alert_create**
-> PrintSessionAlert print_session_alert_create(create_print_session_alert_request)
-
-
-
-### Example
-
-* Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AlertsApi(api_client)
-    create_print_session_alert_request = print_nanny_client.CreatePrintSessionAlertRequest() # CreatePrintSessionAlertRequest | 
-
-    try:
-        api_response = api_instance.print_session_alert_create(create_print_session_alert_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AlertsApi->print_session_alert_create: %s\n" % e)
-```
-
-* Bearer Authentication (tokenAuth):
-```python
-from __future__ import print_function
-import time
-import print_nanny_client
-from print_nanny_client.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = print_nanny_client.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: cookieAuth
-configuration.api_key['cookieAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['cookieAuth'] = 'Bearer'
-
-# Configure Bearer authorization: tokenAuth
-configuration = print_nanny_client.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with print_nanny_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = print_nanny_client.AlertsApi(api_client)
-    create_print_session_alert_request = print_nanny_client.CreatePrintSessionAlertRequest() # CreatePrintSessionAlertRequest | 
-
-    try:
-        api_response = api_instance.print_session_alert_create(create_print_session_alert_request)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AlertsApi->print_session_alert_create: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_print_session_alert_request** | [**CreatePrintSessionAlertRequest**](CreatePrintSessionAlertRequest.md)|  | 
-
-### Return type
-
-[**PrintSessionAlert**](PrintSessionAlert.md)
-
-### Authorization
-
-[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-**400** |  |  -  |
-**403** |  |  -  |
-**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

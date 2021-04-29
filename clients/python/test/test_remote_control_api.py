@@ -190,12 +190,6 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_valid_commands_retrieve(self):
-        """Test case for valid_commands_retrieve
-
-        """
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

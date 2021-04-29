@@ -41,13 +41,12 @@ def _upload_to(instance, filename):
 ##
 
 
-class AlertEventSettings(models.Model):
+class AlertSettings(models.Model):
     class EventType(models.TextChoices):
-        PRINT_PROGRESS = "PrintProgress", "Print progress notifications"
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
-            "Print status updates (started, paused, resumed, cancelling, cancelled, failed)",
+            "Print status updates (started, percent progress, paused, resumed, cancelling, cancelled, failed, done)",
         )
 
     class AlertMethod(models.TextChoices):
@@ -75,7 +74,6 @@ class AlertEventSettings(models.Model):
         models.CharField(choices=EventType.choices, max_length=255),
         blank=True,
         default=(
-            EventType.PRINT_PROGRESS,
             EventType.PRINT_HEALTH,
             EventType.PRINT_STATUS,
         ),
@@ -101,18 +99,33 @@ class AlertEventSettings(models.Model):
             return self.trigger_alerts_task(serialized_obj)
 
 
-class Alert(PolymorphicModel):
+class AlertEventTypes(models.TextChoices):
+    VIDEO_DONE = "VideoDone", "VideoDone"
+    PRINT_HEALTH = "PrintHealth", "PrintHealth"
+    PRINT_PROGRESS = "PrintProgress", "PrintProgress"
+    PRINT_DONE = "PrintDone", "PrintDone"
+    PRINT_FAILED = "PrintFailed", "PrintFailed"
+    PRINT_PAUSED = "PrintPaused", "PrintPaused"
+    PRINT_RESUMED = "PrintResumed", "PrintResumed"
+    PRINT_STARTED = "PrintStarted", "PrintStarted"
+
+
+class AlertMessage(models.Model):
     """
     Base class for alert events
     """
 
     alert_method = models.CharField(
-        choices=AlertEventSettings.AlertMethod.choices,
+        choices=AlertSettings.AlertMethod.choices,
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertEventSettings.EventType.choices, max_length=255, null=True
+        choices=AlertEventTypes.choices, max_length=255, null=True
     )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE, null=True
+    )
+    annotated_video = models.FileField(upload_to=_upload_to, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -124,92 +137,58 @@ class Alert(PolymorphicModel):
     )
 
 
-class PrintSessionAlert(Alert):
-    class AlertSubTypeChoices(models.TextChoices):
-        SUCCESS = "SUCCESS", "Print session finished successfully"
-        FAILURE = "FAILURE", "Failure detected in print session"
+##
+# @ todo re-enable ManualVideoUpload feature
+##
 
-    # TODO additional statuses here (such as unread) are possible via UniqueConstrains definitions
-    # https://docs.djangoproject.com/en/3.1/ref/models/constraints/#django.db.models.UniqueConstraint
-    class Meta:
-        constraints = (
-            models.UniqueConstraint(
-                fields=["print_session", "alert_subtype"],
-                name="unique_alert_type_per_print_session",
-            ),
-        )
+# class ManualVideoUploadAlert(Alert):
+#     """
+#     Base class for a prediction alert .gif or timelapse mp4 / mjpeg
+#     """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, alert_type=Alert.AlertTypeChoices.PRINT_SESSION, **kwargs
-        )
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(
+#             *args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs
+#         )
 
-    needs_review = models.BooleanField(default=False)
+#     class JobStatusChoices(models.TextChoices):
+#         PROCESSING = "Processing", "Processing"
+#         SUCCESS = "SUCCESS", "Success"
+#         FAILURE = "FAILURE", "Failure"
+#         CANCELLED = "CANCELLED", "Cancelled"
 
-    alert_subtype = models.CharField(
-        max_length=36,
-        choices=AlertSubTypeChoices.choices,
-        default=AlertSubTypeChoices.SUCCESS,
-    )
+#     class Backend(models.TextChoices):
+#         EMAIL = "EMAIL", "Email"
 
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
-    annotated_video = models.FileField(upload_to=_upload_to)
+#     job_status = models.CharField(
+#         max_length=32,
+#         choices=JobStatusChoices.choices,
+#         default=JobStatusChoices.PROCESSING,
+#     )
 
-    @property
-    def dashboard_url(self):
-        return reverse("dashboard:videos:list")
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
 
+#     dataframe = models.FileField(upload_to=_upload_to, null=True)
+#     original_video = models.FileField(upload_to=_upload_to, null=True)
+#     annotated_video = models.FileField(upload_to=_upload_to, null=True)
 
-class ManualVideoUploadAlert(Alert):
-    """
-    Base class for a prediction alert .gif or timelapse mp4 / mjpeg
-    """
+#     feedback = models.BooleanField(null=True)
+#     length = models.FloatField(null=True)
+#     fps = models.FloatField(null=True)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs
-        )
+#     notify_seconds = models.IntegerField(null=True)
+#     notify_timecode = models.CharField(max_length=32, null=True)
 
-    class JobStatusChoices(models.TextChoices):
-        PROCESSING = "Processing", "Processing"
-        SUCCESS = "SUCCESS", "Success"
-        FAILURE = "FAILURE", "Failure"
-        CANCELLED = "CANCELLED", "Cancelled"
-
-    class Backend(models.TextChoices):
-        EMAIL = "EMAIL", "Email"
-
-    job_status = models.CharField(
-        max_length=32,
-        choices=JobStatusChoices.choices,
-        default=JobStatusChoices.PROCESSING,
-    )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-    dataframe = models.FileField(upload_to=_upload_to, null=True)
-    original_video = models.FileField(upload_to=_upload_to, null=True)
-    annotated_video = models.FileField(upload_to=_upload_to, null=True)
-
-    feedback = models.BooleanField(null=True)
-    length = models.FloatField(null=True)
-    fps = models.FloatField(null=True)
-
-    notify_seconds = models.IntegerField(null=True)
-    notify_timecode = models.CharField(max_length=32, null=True)
-
-    @property
-    def original_filename(self):
-        return os.path.basename(self.original_video.name)
+#     @property
+#     def original_filename(self):
+#         return os.path.basename(self.original_video.name)
 
 
-class AlertPlot(models.Model):
-    image = models.ImageField(upload_to=_upload_to)
-    html = models.FileField(upload_to=_upload_to)
-    title = models.CharField(max_length=65)
-    description = models.CharField(max_length=255)
-    function = models.CharField(max_length=65)
-    alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
+# class AlertPlot(models.Model):
+#     image = models.ImageField(upload_to=_upload_to)
+#     html = models.FileField(upload_to=_upload_to)
+#     title = models.CharField(max_length=65)
+#     description = models.CharField(max_length=255)
+#     function = models.CharField(max_length=65)
+#     alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)

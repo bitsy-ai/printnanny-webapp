@@ -36,15 +36,22 @@ class TestAlert(unittest.TestCase):
         # model = print_nanny_client.models.alert.Alert()  # noqa: E501
         if include_optional :
             return Alert(
+                id = 56, 
+                time = '', 
+                alert_method = 'UI', 
+                event_type = None, 
+                annotated_video = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                user = 56, 
-                time = '', 
                 seen = True, 
+                sent = True, 
+                print_session = 56, 
+                user = 56, 
                 octoprint_device = 56
             )
         else :
             return Alert(
+                alert_method = 'UI',
         )
 
     def testAlert(self):

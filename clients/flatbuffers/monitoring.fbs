@@ -1,0 +1,47 @@
+namespace print_nanny_client.flatbuffers.monitoring;
+
+enum MonitoringEventTypeEnum:ubyte {
+    monitoring_frame_raw,
+    monitoring_frame_post,
+}
+
+struct Box {
+    ymin:float;
+    xmin:float;
+    ymax:float;
+    xmax:float;
+}
+
+table Image {
+    width: uint32;
+    height: uint32;
+    data: [ubyte] (required);
+}
+
+
+table BoundingBoxes {
+    detection_scores: [float] (required);
+    detection_classes: [uint32] (required);
+    detection_boxes: [Box] (required);
+    num_detections: uint32;
+}
+
+table Metadata {
+    user_id: uint32;
+    octoprint_device_id: uint32;
+    cloudiot_device_id: uint64;
+    ts: uint32;
+    print_session: string;
+    client_version:string;
+    model_version:string;
+    fpm: uint8;
+}
+
+table MonitoringEvent {
+    event_type: MonitoringEventTypeEnum;
+    image: Image (required);
+    metadata: Metadata (required);
+    bounding_boxes: BoundingBoxes;
+}
+
+root_type MonitoringEvent;

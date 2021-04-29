@@ -1,0 +1,35 @@
+namespace print_nanny_client.flatbuffers.alert;
+
+enum AlertEventTypeEnum:ubyte {
+    print_health,
+    print_progress,
+    print_done,
+    print_failed,
+    print_paused,
+    print_resumed,
+    print_started,
+    video_done
+}
+
+table Metadata {
+    user_id: uint32;
+    octoprint_device_id: uint32;
+    cloudiot_device_id: uint64;
+    print_session: string;
+    client_version:string;
+    model_version:string;
+}
+
+table AnnotatedVideo {
+    gcs_input: string; // input jpg frames
+    gcs_output: string; // output .mp4 cool storage path
+    cdn_output: string; // output .mp4 copied to cdn path (including Django MEDIA_ROOT)
+    cdn_relative_path: string; // output .mp4 path relative to Django MEDIA_ROOT
+    bucket: string;
+}
+
+table Alert {
+    event_type: AlertEventTypeEnum;
+    metadata: Metadata (required);
+    annotated_video: AnnotatedVideo;
+}

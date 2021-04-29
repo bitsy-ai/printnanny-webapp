@@ -41,7 +41,7 @@ class TestOctoPrintEvent(unittest.TestCase):
                 event_data = {
                     'key' : null
                     }, 
-                device = 56, 
+                octoprint_device = 56, 
                 user = 56, 
                 plugin_version = '', 
                 client_version = '', 
@@ -52,7 +52,7 @@ class TestOctoPrintEvent(unittest.TestCase):
             )
         else :
             return OctoPrintEvent(
-                device = 56,
+                octoprint_device = 56,
                 plugin_version = '',
                 client_version = '',
                 octoprint_version = '',

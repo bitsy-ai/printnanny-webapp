@@ -36,7 +36,12 @@ class TestPatchedAlertRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_alert_request.PatchedAlertRequest()  # noqa: E501
         if include_optional :
             return PatchedAlertRequest(
+                alert_method = 'UI', 
+                event_type = None, 
+                annotated_video = bytes(b'blah'), 
                 seen = True, 
+                sent = True, 
+                print_session = 56, 
                 octoprint_device = 56
             )
         else :
