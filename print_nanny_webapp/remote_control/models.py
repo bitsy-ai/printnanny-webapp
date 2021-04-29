@@ -372,15 +372,6 @@ class PrintSession(models.Model):
     def duration(self):
         return self.updated_dt - self.created_dt
 
-    @property
-    def should_alert(self):
-        """
-        Encapsulates stateful alert logic
-        """
-        # PrintSession alert does not exist
-        # TODO enable defect alert check
-        return self.printsessionalert_set.count() == 0
-
     def __str__(self):
         return self.session
 

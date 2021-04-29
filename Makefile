@@ -26,6 +26,8 @@ PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/o
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
+token:
+	echo $(PRINT_NANNY_TOKEN)
 octoprint-wait:
 	OCTOPRINT_URL=$(OCTOPRINT_URL) \
 		k8s/sandbox/octoprint-wait.sh
