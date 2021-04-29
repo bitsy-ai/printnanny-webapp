@@ -42,7 +42,7 @@ def _upload_to(instance, filename):
 
 
 class AlertSettings(models.Model):
-    class AlertSettingsEventType(models.TextChoices):
+    class EventType(models.TextChoices):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
@@ -71,11 +71,11 @@ class AlertSettings(models.Model):
         default=(AlertMethod.EMAIL,),
     )
     event_types = ChoiceArrayField(
-        models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
+        models.CharField(choices=EventType.choices, max_length=255),
         blank=True,
         default=(
-            AlertSettingsEventType.PRINT_HEALTH,
-            AlertSettingsEventType.PRINT_STATUS,
+            EventType.PRINT_HEALTH,
+            EventType.PRINT_STATUS,
         ),
     )
     discord_webhook = models.CharField(
@@ -99,7 +99,16 @@ class AlertSettings(models.Model):
             return self.trigger_alerts_task(serialized_obj)
 
 
-class Alert(PolymorphicModel):
+class AlertEventTypes(models.TextChoices):
+    PRINT_HEALTH = "PrintHealth", "PrintHealth"
+    PRINT_PROGRESS = "PrintProgress", "PrintProgress"
+    PRINT_DONE = "PrintDone", "PrintDone"
+    PRINT_FAILED = "PrintFailed", "PrintFailed"
+    PRINT_PAUSED = "PrintPaused", "PrintPaused"
+    PRINT_RESUMED = "PrintResumed", "PrintResumed"
+    PRINT_STARTED = "PrintStarted", "PrintStarted"
+
+class Alert(models.Model):
     """
     Base class for alert events
     """
@@ -109,8 +118,12 @@ class Alert(PolymorphicModel):
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertSettings.AlertSettingsEventType.choices, max_length=255, null=True
+        choices=AlertEventTypes.choices, max_length=255, null=True
     )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE, null=True
+    )
+    annotated_video = models.FileField(upload_to=_upload_to, null=True)
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
@@ -120,47 +133,6 @@ class Alert(PolymorphicModel):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
-
-
-class PrintStatusAlert(Alert):
-    class PrintStatusEventType(models.TextChoices):
-        PRINT_PROGRESS = "PrintProgress", "PrintProgress"
-        PRINT_DONE = "PrintDone", "PrintDone"
-        PRINT_FAILED = "PrintFailed", "PrintFailed"
-        PRINT_PAUSED = "PrintPaused", "PrintPaused"
-        PRINT_RESUMED = "PrintResumed", "PrintResumed"
-        PRINT_STARTED = "PrintStarted", "PrintStarted"
-
-
-    # TODO additional statuses here (such as unread) are possible via UniqueConstrains definitions
-    # https://docs.djangoproject.com/en/3.1/ref/models/constraints/#django.db.models.UniqueConstraint
-    class Meta:
-        constraints = (
-            models.UniqueConstraint(
-                fields=["print_session", "event_subtype"],
-                name="unique_alert_type_per_print_session",
-            ),
-        )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(
-            *args, alert_type=Alert.EventTypeChoices.PRINT_SESSION, **kwargs
-        )
-
-    event_subtype = models.CharField(
-        max_length=36,
-        choices=PrintStatusEventType.choices,
-    )
-
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession", on_delete=models.CASCADE
-    )
-    annotated_video = models.FileField(upload_to=_upload_to)
-
-    @property
-    def dashboard_url(self):
-        return reverse("dashboard:videos:list")
-
 
 ##
 # @ todo re-enable ManualVideoUpload feature

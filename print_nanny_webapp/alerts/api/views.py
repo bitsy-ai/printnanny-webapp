@@ -15,11 +15,9 @@ from rest_framework.decorators import action
 from rest_framework import status
 from django.db.utils import IntegrityError
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import PolymorphicProxySerializer, OpenApiParameter
 from django.apps import apps
 from .serializers import (
     # ManualVideoUploadAlertSerializer,
-    AlertPolymorphicSerializer,
     AlertSerializer,
     AlertBulkRequestSerializer,
     AlertBulkResponseSerializer,
@@ -46,9 +44,9 @@ class AlreadyExists(APIException):
 @extend_schema_view(
     tags=["alerts"],
     responses={
-        200: AlertPolymorphicSerializer,
-        201: AlertPolymorphicSerializer,
-        202: AlertPolymorphicSerializer,
+        200: AlertSerializer,
+        201: AlertSerializer,
+        202: AlertSerializer,
     },
 )
 class AlertViewSet(
@@ -57,7 +55,7 @@ class AlertViewSet(
     RetrieveModelMixin,
     UpdateModelMixin,
 ):
-    serializer_class = AlertPolymorphicSerializer
+    serializer_class = AlertSerializer
     queryset = Alert.objects.all()
     lookup_field = "id"
 

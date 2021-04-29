@@ -411,7 +411,7 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
-    
+    'AlertSettingsEventTypeEnum': 'print_nanny_webapp.alerts.models.AlertSettings.EventType.choices'
 }
 
 # django-filters
