@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 
 from django.apps import apps
 from print_nanny_webapp.alerts.api.serializer import AlertSerializer
@@ -18,17 +18,21 @@ class AlertTask:
     Triggers various alert methods with payload data
     """
 
-    serializer = AlertSerializer
-    partner_serializer = PartnerAlertSerializer
-
-    email_body_txt_template = "email/generic_alert_body.txt"
-    email_body_html_template = (
-        None  # @todo work with freelance designer on html email template set
-    )
-    email_subject_template = "email/generic_alert_subject.txt"
-
-    def __init__(self, instance):
+    def __init__(
+            self, 
+            instance: AlertMessage, 
+            email_body_txt_template: str="email/generic_alert_body.txt", 
+            email_body_html_template: Optional[str]=None,
+            email_subject_template: str="email/generic_alert_subject.txt",
+            serializer=AlertSerializer,
+            partner_serializer=PartnerAlertSerializer
+        ):
         self.instance = instance
+        self.email_body_txt_template = email_body_txt_template
+        self.email_body_html_template = email_body_html_template
+        self.email_subject_template = email_subject_template
+        self.serializer = serializer
+        self.partner_serializer = partner_serializer
         self.alert_trigger_method_map = {
             AlertModel.AlertMethodChoices.UI: self.trigger_ui_alert,
             AlertModel.AlertMethodChoices.EMAIL: self.trigger_email_alert,
@@ -79,48 +83,6 @@ class AlertTask:
             },
         )
 
-    def trigger_email_alert(self) -> AnymailMessage:
-        serializer = self.get_serializer()
-        data = serializer.data
-
-        device_url = reverse(
-            "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.octoprint_device.id},
-        )
-        merge_data = {
-            "DEVICE_URL": device_url,
-            "FIRST_NAME": self.user.first_name or "Maker",
-            "DEVICE_NAME": self.octoprint_device.name,
-            "ALERT_TYPE": self.get_alert_type_display(),
-        }
-
-        text_body = render_to_string(self.email_body_txt_template, merge_data)
-        subject = render_to_string(self.email_subject_template, merge_data)
-
-        message = AnymailMessage(
-            subject=subject,
-            body=text_body,
-            to=[self.user.email],
-            tags=[
-                self.__class__,
-                f"User:{self.user.id}",
-                f"Device:{self.octoprint_device.id}",
-            ],
-        )
-
-        return message
-
-    def trigger_discord_alert(self):
-        raise NotImplementedError
-
-class PrintStatusAlertTask(AlertTask):
-
-    email_body_txt_template = "email/remote_control_command_body.txt"
-    email_body_html_template = (
-        None  # @todo work with freelance designer on html email template set
-    )
-    email_subject_template = "email/remote_control_command_subject.txt"
-
     def trigger_email_alert(self):
 
         device_url = reverse(
@@ -133,9 +95,13 @@ class PrintStatusAlertTask(AlertTask):
             "DEVICE_NAME": self.instance.octoprint_device.name,
         }
         if self.event_type is AlertEventTypes.VIDEO_DONE:
-            merge_data.update({"ANNOTATED_VIDEO_URL": self.instance.dashboard_url})
-        elif self.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.extra_data.get("progress"):
-            merge_data.update({"PRINT_PROGRESS": self.instance.extra_data.get("progress")})
+            videos_url = reverse(
+                "dashboard:videos:list"
+            )
+            merge_data.update({"VIDEO_DASHBOARD_URL": videos_url })
+
+        elif self.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.print_session:
+            merge_data.update({"PRINT_PROGRESS": self.instance.print_session.print_progress })
 
         text_body = render_to_string(self.instance.email_body_txt_template, merge_data)
         subject = render_to_string(self.instance.email_subject_template, merge_data)
@@ -153,3 +119,7 @@ class PrintStatusAlertTask(AlertTask):
         )
         message.send()
         return message
+
+    def trigger_discord_alert(self):
+        raise NotImplementedError
+

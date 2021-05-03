@@ -18,8 +18,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 
-from print_nanny_webapp.alerts.api.serializers import AlertSerializer
-
 application = get_wsgi_application()
 from django.apps import apps
 

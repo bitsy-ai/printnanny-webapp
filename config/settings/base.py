@@ -489,6 +489,14 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBS
     )
 )
 
+GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION',
+    default=os.path.join(
+        'projects',
+        GCP_PROJECT_ID,
+        'subscriptions/alerts-pull'
+    )
+)
+
 DISCORD_URL="https://discord.gg/sf23bk2hPr"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

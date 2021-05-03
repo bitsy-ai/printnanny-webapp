@@ -184,6 +184,13 @@ services:
     command:
       - python
       - print_nanny_webapp/telemetry/subscribers/octoprint_events.py
+  alerts:
+    container_name: events
+    <<: *django
+    ports: []
+    command:
+      - python
+      - print_nanny_webapp/alertsy/subscribers/alerts.py
   discord:
     container_name: discord
     <<: *django
