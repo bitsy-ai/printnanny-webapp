@@ -190,7 +190,7 @@ services:
     ports: []
     command:
       - python
-      - print_nanny_webapp/alertsy/subscribers/alerts.py
+      - print_nanny_webapp/alerts/subscribers/alerts.py
   discord:
     container_name: discord
     <<: *django

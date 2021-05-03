@@ -1,14 +1,14 @@
-from typing import Optional
+from typing import Optional, Union
 
 from django.apps import apps
-from print_nanny_webapp.alerts.api.serializer import AlertSerializer
-from print_nanny_webapp.partners.api.serializer import (
+from print_nanny_webapp.alerts.api.serializers import AlertSerializer
+from print_nanny_webapp.partners.api.serializers import (
     PartnerAlertSerializer,
     PartnersEnum,
 )
 from django.conf import settings
 
-from print_nanny_webapp.models.alerts import AlertEventTypes
+from print_nanny_webapp.alerts.models import AlertEventTypes
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
@@ -93,6 +93,7 @@ class AlertTask:
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
+
         }
         if self.event_type is AlertEventTypes.VIDEO_DONE:
             videos_url = reverse(
