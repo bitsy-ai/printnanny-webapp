@@ -163,4 +163,5 @@ def on_octoprint_event(message):
 future = subscriber.subscribe(subscription_name, on_octoprint_event)
 
 if __name__ == "__main__":
+    logger.info(f"Initializing subscription to {subscription_name}")
     future.result()

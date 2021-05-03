@@ -23,7 +23,7 @@ application = get_wsgi_application()
 from django.apps import apps
 from print_nanny_webapp.alerts.models import AlertEventTypes
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
-from print_nanny_client.flatbuffers.alerts import Alert, AlertEventTypeEnum
+from print_nanny_client.flatbuffers.alert import Alert, AlertEventTypeEnum
 
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
@@ -77,4 +77,5 @@ def on_alert_event(message):
 future = subscriber.subscribe(subscription_name, on_alert_event)
 
 if __name__ == "__main__":
+    logger.info(f"Initializing subscription to {subscription_name}")
     future.result()
