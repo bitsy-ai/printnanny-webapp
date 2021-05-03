@@ -22,7 +22,6 @@ docs/MlOpsApi.md
 docs/ModelArtifact.md
 docs/MonitoringModeEnum.md
 docs/Nested.md
-docs/NullEnum.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -115,7 +114,6 @@ src/main/kotlin/com/print-nanny/client/models/GcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/MonitoringModeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Nested.kt
-src/main/kotlin/com/print-nanny/client/models/NullEnum.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceKey.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceRequest.kt

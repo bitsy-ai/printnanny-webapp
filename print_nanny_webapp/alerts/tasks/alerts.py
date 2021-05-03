@@ -11,7 +11,6 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from anymail.message import AnymailMessage
 
-from print_nanny_webapp.alerts.models import AlertEventTypes
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
@@ -101,14 +100,14 @@ class AlertTask:
             "EVENT_TYPE": self.instance.event_type
 
         }
-        if self.instance.event_type is AlertEventTypes.VIDEO_DONE:
+        if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
             videos_url = reverse(
                 "dashboard:videos:list"
             )
             videos_url = urljoin(settings.BASE_URL, videos_url)
             merge_data.update({"VIDEO_DASHBOARD_URL": videos_url })
 
-        elif self.instance.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.print_session:
+        elif self.instance.event_type is AlertMessage.AlertMessageType.PRINT_PROGRESS and self.instance.print_session:
             merge_data.update({"PRINT_PROGRESS": self.instance.print_session.print_progress })
 
         text_body = render_to_string(self.email_body_txt_template, merge_data)

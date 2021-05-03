@@ -75,10 +75,10 @@ export interface Alert {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum | NullEnum}
+     * @type {EventType92fEnum}
      * @memberof Alert
      */
-    event_type?: EventType92fEnum | NullEnum | null;
+    event_type?: EventType92fEnum | null;
     /**
      * 
      * @type {boolean}
@@ -155,10 +155,10 @@ export interface AlertRequest {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum | NullEnum}
+     * @type {EventType92fEnum}
      * @memberof AlertRequest
      */
-    event_type?: EventType92fEnum | NullEnum | null;
+    event_type?: EventType92fEnum | null;
     /**
      * 
      * @type {boolean}
@@ -631,15 +631,6 @@ export interface Nested {
      */
     treatments?: Array<number>;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum NullEnum {
-    Null = 'null'
-}
-
 /**
  * 
  * @export
@@ -1855,10 +1846,10 @@ export interface PaginatedUserList {
 export interface PartnerAlert {
     /**
      * 
-     * @type {EventType92fEnum | NullEnum}
+     * @type {EventType92fEnum}
      * @memberof PartnerAlert
      */
-    event_type?: EventType92fEnum | NullEnum | null;
+    event_type?: EventType92fEnum | null;
     /**
      * 
      * @type {boolean}
@@ -1996,10 +1987,10 @@ export interface PatchedAlertRequest {
     alert_method?: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum | NullEnum}
+     * @type {EventType92fEnum}
      * @memberof PatchedAlertRequest
      */
-    event_type?: EventType92fEnum | NullEnum | null;
+    event_type?: EventType92fEnum | null;
     /**
      * 
      * @type {boolean}

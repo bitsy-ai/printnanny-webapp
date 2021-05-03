@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **manageDeviceUrl** | **kotlin.String** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **octoprintDevice** | **kotlin.Int** |  |  [optional]
-**eventType** | [**OneOfLessThanEventType92fEnumCommaNullEnumGreaterThan**](OneOfLessThanEventType92fEnumCommaNullEnumGreaterThan.md) |  |  [optional]
+**eventType** | [**EventType92fEnum**](EventType92fEnum.md) |  |  [optional]
 **seen** | **kotlin.Boolean** |  |  [optional]
 **sent** | **kotlin.Boolean** |  |  [optional]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]

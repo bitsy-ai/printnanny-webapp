@@ -119,7 +119,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
- - [com.print-nanny.client.models.NullEnum](docs/NullEnum.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [com.print-nanny.client.models.OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
