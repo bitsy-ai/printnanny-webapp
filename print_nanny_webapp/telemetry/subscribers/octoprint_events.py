@@ -67,7 +67,10 @@ def handle_print_progress(octoprint_event):
         
 
 
-def handle_print_done(octoprint_event):
+def handle_print_status(octoprint_event):
+    """
+        Exclude PrintDone if monitoring is active (video render will duplicate alert)
+    """
     pass
 
 

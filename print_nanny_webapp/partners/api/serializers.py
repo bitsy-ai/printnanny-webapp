@@ -75,6 +75,22 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
     def get_token(self, obj):
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
+    
+    time_remaining = serializers.SerializerMethodField()
+    def get_time_remaining(self, obj):
+
+        if obj.print_session and obj.print_session.time_remaining:
+            now = timezone.now()
+            remaining = now + obj.print_session.time_remainiing
+            return naturaltime(remaining)
+    
+    manage_device_url = serializers.SerializerMethodField()
+    def get_manage_device_url(self, obj):
+        device_url = reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
+        )
+        return device_url
 
     class Meta:
         model = AlertMessage
@@ -83,7 +99,8 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
             "alert_method", 
             "seen", 
             "sent", 
-            "octoprint_device"
+            "octoprint_device",
+            "manage_device_url",
             "time",
             "token"
         )

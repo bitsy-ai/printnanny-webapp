@@ -6,12 +6,13 @@ from print_nanny_webapp.partners.authentication import GeeksTokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import action
 
-from .serializers import PartnerOctoPrintDeviceSerializer
+from .serializers import PartnerOctoPrintDeviceSerializer, PartnerAlertSerializer
 
 GeeksToken = apps.get_model("partners", "GeeksToken")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
-
+AlertsMessage = apps.get_model("alerts", "AlertMessage")
 
 class GeeksViewSet(ViewSet):
     """
@@ -34,3 +35,18 @@ class GeeksViewSet(ViewSet):
         token.save()
         serializer = PartnerOctoPrintDeviceSerializer(token.octoprint_device)
         return Response(serializer.data)
+
+    @extend_schema(
+        tags="partners.geeks3",
+        operation_id="alerts_list",
+        responses={
+            200: PartnerAlertSerializer
+        }
+    )
+    @action(detail=True, methods=["GET"])
+    def alerts_list(self, request, pk=None):
+        queryset = GeeksToken.objects.all()
+        token = get_object_or_404(queryset, pk=pk)
+        alerts = AlertsMessage.objects.filter(octoprint_device_id=token.octoprint_device_id)
+        serializer = PartnerAlertSerializer(alerts, many=True)
+        return Response(serialzier.data)
