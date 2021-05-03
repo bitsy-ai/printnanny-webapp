@@ -74,8 +74,8 @@ class AlertSettings(models.Model):
         models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
         default=(
-            EventType.PRINT_HEALTH,
-            EventType.PRINT_STATUS,
+            AlertSettingsEventType.PRINT_HEALTH,
+            AlertSettingsEventType.PRINT_STATUS,
         ),
     )
     discord_webhook = models.CharField(
@@ -95,7 +95,7 @@ class AlertMessage(models.Model):
     """
     Base class for alert events
     """
-    class AlertMessageEventTypes(models.TextChoices):
+    class AlertMessageEventType(models.TextChoices):
         VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
         PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
         PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
@@ -110,7 +110,7 @@ class AlertMessage(models.Model):
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertEventTypes.choices, max_length=255, null=True
+        choices=AlertMessageEventType.choices, max_length=255, null=True
     )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True
