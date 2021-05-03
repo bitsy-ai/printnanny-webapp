@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **model** | **kotlin.String** |  | 
 **platform** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
-**pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
+**printNannyPluginVersion** | **kotlin.String** |  |  [optional] [readonly]
 **verified** | **kotlin.String** |  |  [optional] [readonly]
 
 

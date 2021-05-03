@@ -8,7 +8,10 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **session** | **str** |  | 
-**progress** | **dict(str, object)** |  | [optional] 
+**filepos** | **int** |  | [optional] 
+**print_progress** | **int** |  | [optional] 
+**time_elapsed** | **int** |  | [optional] 
+**time_remaining** | **int** |  | [optional] 
 **status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **printer_profile** | **int** |  | [optional] 

@@ -3,13 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**octoprint_device** | **int** |  | [optional] 
 **alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
-**event_type** | [**OneOfAlertEventTypeEnumNullEnum**](OneOfAlertEventTypeEnumNullEnum.md) |  | [optional] 
-**annotated_video** | **file** |  | [optional] 
+**event_type** | [**OneOfEventType92fEnumNullEnum**](OneOfEventType92fEnumNullEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
-**print_session** | **int** |  | [optional] 
-**octoprint_device** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

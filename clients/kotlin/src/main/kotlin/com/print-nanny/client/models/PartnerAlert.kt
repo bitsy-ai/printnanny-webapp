@@ -11,32 +11,47 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AlertMethodEnum
 import com.print-nanny.client.models.OneOfLessThanEventType92fEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.PartnerOctoPrintDevice
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
- * @param alertMethod 
  * @param octoprintDevice 
  * @param eventType 
  * @param seen 
  * @param sent 
+ * @param manageDeviceUrl 
+ * @param time 
+ * @param token 
+ * @param timeRemaining 
+ * @param progress 
+ * @param gcodeFile 
  */
 
-data class AlertRequest (
-    @Json(name = "alert_method")
-    val alertMethod: AlertMethodEnum,
+data class PartnerAlert (
     @Json(name = "octoprint_device")
-    val octoprintDevice: kotlin.Int? = null,
+    val octoprintDevice: PartnerOctoPrintDevice,
     @Json(name = "event_type")
     val eventType: OneOfLessThanEventType92fEnumCommaNullEnumGreaterThan? = null,
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
     @Json(name = "sent")
-    val sent: kotlin.Boolean? = null
+    val sent: kotlin.Boolean? = null,
+    @Json(name = "manage_device_url")
+    val manageDeviceUrl: kotlin.String? = null,
+    @Json(name = "time")
+    val time: kotlin.String? = null,
+    @Json(name = "token")
+    val token: kotlin.String? = null,
+    @Json(name = "time_remaining")
+    val timeRemaining: kotlin.String? = null,
+    @Json(name = "progress")
+    val progress: kotlin.String? = null,
+    @Json(name = "gcode_file")
+    val gcodeFile: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

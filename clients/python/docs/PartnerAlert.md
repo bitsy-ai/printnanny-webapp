@@ -1,13 +1,18 @@
-# PatchedAlertRequest
+# PartnerAlert
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**octoprint_device** | **int** |  | [optional] 
-**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [optional] 
 **event_type** | [**OneOfEventType92fEnumNullEnum**](OneOfEventType92fEnumNullEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
+**octoprint_device** | [**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md) |  | 
+**manage_device_url** | **str** |  | [optional] [readonly] 
+**time** | **str** |  | [optional] [readonly] 
+**token** | **str** |  | [optional] [readonly] 
+**time_remaining** | **str** |  | [optional] [readonly] 
+**progress** | **str** |  | [optional] [readonly] 
+**gcode_file** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

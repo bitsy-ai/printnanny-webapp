@@ -16,7 +16,6 @@ from __future__ import absolute_import
 # import models into model package
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
-from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
@@ -25,6 +24,7 @@ from print_nanny_client.models.auth_token_request import AuthTokenRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
+from print_nanny_client.models.event_type92f_enum import EventType92fEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
@@ -55,6 +55,7 @@ from print_nanny_client.models.paginated_print_status_event_list import Paginate
 from print_nanny_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
 from print_nanny_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
 from print_nanny_client.models.paginated_user_list import PaginatedUserList
+from print_nanny_client.models.partner_alert import PartnerAlert
 from print_nanny_client.models.partner_octo_print_device import PartnerOctoPrintDevice
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest

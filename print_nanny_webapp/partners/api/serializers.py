@@ -34,10 +34,11 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
     """
 
     verified = serializers.SerializerMethodField()
-
     def get_verified(self, obj):
         return obj.geekstoken_set.first().verified
-
+    print_nanny_plugin_version = serializers.SerializerMethodField()
+    def get_print_nanny_plugin_version(self, obj):
+        return obj.plugin_version
     class Meta:
         model = OctoPrintDevice
         fields = (
@@ -95,12 +96,14 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlertMessage
         fields = (
-            "alert_type", 
-            "alert_method", 
+            "event_type", 
             "seen", 
             "sent", 
             "octoprint_device",
             "manage_device_url",
             "time",
-            "token"
+            "token",
+            "time_remaining",
+            "progress",
+            "gcode_file"
         )

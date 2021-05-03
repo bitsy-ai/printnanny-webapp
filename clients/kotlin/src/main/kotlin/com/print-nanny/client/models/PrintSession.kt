@@ -11,7 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.StatusEnum
 
 import com.squareup.moshi.Json
@@ -24,7 +23,10 @@ import java.io.Serializable
  * @param id 
  * @param createdDt 
  * @param updatedDt 
- * @param progress 
+ * @param filepos 
+ * @param printProgress 
+ * @param timeElapsed 
+ * @param timeRemaining 
  * @param status 
  * @param user 
  * @param printerProfile 
@@ -44,8 +46,14 @@ data class PrintSession (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
-    @Json(name = "progress")
-    val progress: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "filepos")
+    val filepos: kotlin.Int? = null,
+    @Json(name = "print_progress")
+    val printProgress: kotlin.Int? = null,
+    @Json(name = "time_elapsed")
+    val timeElapsed: kotlin.Int? = null,
+    @Json(name = "time_remaining")
+    val timeRemaining: kotlin.Int? = null,
     @Json(name = "status")
     val status: StatusEnum? = null,
     @Json(name = "user")

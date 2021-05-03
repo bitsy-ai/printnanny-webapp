@@ -27,16 +27,46 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface Alert {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Alert
      */
-    id?: number;
+    time?: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time?: string;
+    gcode_file?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    print_progress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    time_remaining?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    manage_device_url?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    octoprint_device?: number | null;
     /**
      * 
      * @type {AlertMethodEnum}
@@ -45,28 +75,10 @@ export interface Alert {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {EventType92fEnum | NullEnum}
      * @memberof Alert
      */
-    event_type?: AlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Alert
-     */
-    annotated_video?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Alert
-     */
-    created_dt?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Alert
-     */
-    updated_dt?: string;
+    event_type?: EventType92fEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -81,22 +93,16 @@ export interface Alert {
     sent?: boolean;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Alert
      */
-    print_session?: number | null;
+    created_dt?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Alert
      */
-    user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Alert
-     */
-    octoprint_device?: number | null;
+    updated_dt?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -122,22 +128,6 @@ export interface AlertBulkResponse {
  * @export
  * @enum {string}
  */
-export enum AlertEventTypeEnum {
-    VideoDone = 'VideoDone',
-    PrintHealth = 'PrintHealth',
-    PrintProgress = 'PrintProgress',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
-/**
- * 
- * @export
- * @enum {string}
- */
 export enum AlertMethodEnum {
     Ui = 'UI',
     Email = 'EMAIL',
@@ -153,22 +143,22 @@ export enum AlertMethodEnum {
 export interface AlertRequest {
     /**
      * 
+     * @type {number}
+     * @memberof AlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {AlertMethodEnum}
      * @memberof AlertRequest
      */
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {EventType92fEnum | NullEnum}
      * @memberof AlertRequest
      */
-    event_type?: AlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof AlertRequest
-     */
-    annotated_video?: any | null;
+    event_type?: EventType92fEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -181,18 +171,6 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     sent?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof AlertRequest
-     */
-    print_session?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof AlertRequest
-     */
-    octoprint_device?: number | null;
 }
 /**
  * 
@@ -351,6 +329,22 @@ export interface DeviceCalibrationRequest {
      */
     config_file?: any | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum EventType92fEnum {
+    VideoDone = 'VideoDone',
+    PrintHealth = 'PrintHealth',
+    PrintProgress = 'PrintProgress',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
+}
+
 /**
  * 
  * @export
@@ -1854,6 +1848,73 @@ export interface PaginatedUserList {
     results?: Array<User>;
 }
 /**
+ * 
+ * @export
+ * @interface PartnerAlert
+ */
+export interface PartnerAlert {
+    /**
+     * 
+     * @type {EventType92fEnum | NullEnum}
+     * @memberof PartnerAlert
+     */
+    event_type?: EventType92fEnum | NullEnum | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PartnerAlert
+     */
+    seen?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PartnerAlert
+     */
+    sent?: boolean;
+    /**
+     * 
+     * @type {PartnerOctoPrintDevice}
+     * @memberof PartnerAlert
+     */
+    octoprint_device: PartnerOctoPrintDevice;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    manage_device_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    time?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    time_remaining?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    progress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    gcode_file?: string;
+}
+/**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
  * @export
  * @interface PartnerOctoPrintDevice
@@ -1888,7 +1949,7 @@ export interface PartnerOctoPrintDevice {
      * @type {string}
      * @memberof PartnerOctoPrintDevice
      */
-    plugin_version: string;
+    print_nanny_plugin_version?: string;
     /**
      * 
      * @type {string}
@@ -1923,22 +1984,22 @@ export interface PatchedAlertBulkRequestRequest {
 export interface PatchedAlertRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PatchedAlertRequest
+     */
+    octoprint_device?: number | null;
+    /**
+     * 
      * @type {AlertMethodEnum}
      * @memberof PatchedAlertRequest
      */
     alert_method?: AlertMethodEnum;
     /**
      * 
-     * @type {AlertEventTypeEnum | NullEnum}
+     * @type {EventType92fEnum | NullEnum}
      * @memberof PatchedAlertRequest
      */
-    event_type?: AlertEventTypeEnum | NullEnum | null;
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedAlertRequest
-     */
-    annotated_video?: any | null;
+    event_type?: EventType92fEnum | NullEnum | null;
     /**
      * 
      * @type {boolean}
@@ -1951,18 +2012,6 @@ export interface PatchedAlertRequest {
      * @memberof PatchedAlertRequest
      */
     sent?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedAlertRequest
-     */
-    print_session?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedAlertRequest
-     */
-    octoprint_device?: number | null;
 }
 /**
  * 
@@ -2167,10 +2216,28 @@ export interface PatchedPrintSessionRequest {
     session?: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {number}
      * @memberof PatchedPrintSessionRequest
      */
-    progress?: { [key: string]: any; };
+    filepos?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintSessionRequest
+     */
+    print_progress?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintSessionRequest
+     */
+    time_elapsed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrintSessionRequest
+     */
+    time_remaining?: number | null;
     /**
      * 
      * @type {StatusEnum}
@@ -2441,10 +2508,28 @@ export interface PrintSession {
     session: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {number}
      * @memberof PrintSession
      */
-    progress?: { [key: string]: any; };
+    filepos?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    print_progress?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    time_elapsed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSession
+     */
+    time_remaining?: number | null;
     /**
      * 
      * @type {StatusEnum}
@@ -2502,10 +2587,28 @@ export interface PrintSessionRequest {
     session: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {number}
      * @memberof PrintSessionRequest
      */
-    progress?: { [key: string]: any; };
+    filepos?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    print_progress?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    time_elapsed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintSessionRequest
+     */
+    time_remaining?: number | null;
     /**
      * 
      * @type {StatusEnum}
@@ -5127,6 +5230,143 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      */
     public modelArtifactsRetrieve(id: number, options?: any) {
         return MlOpsApiFp(this.configuration).modelArtifactsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * PartnersGeeks3Api - axios parameter creator
+ * @export
+ */
+export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsList2: async (id: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsList2.');
+            }
+            const localVarPath = `/api/partners/3d-geeks/{id}/alerts_list/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            if (configuration && configuration.accessToken) {
+                const accessToken = typeof configuration.accessToken === 'function'
+                    ? await configuration.accessToken()
+                    : await configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            }
+
+
+    
+            const queryParameters = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                queryParameters.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                queryParameters.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PartnersGeeks3Api - functional programming interface
+ * @export
+ */
+export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsList2(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PartnerAlert>> {
+            const localVarAxiosArgs = await PartnersGeeks3ApiAxiosParamCreator(configuration).alertsList2(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * PartnersGeeks3Api - factory interface
+ * @export
+ */
+export const PartnersGeeks3ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsList2(id: string, options?: any): AxiosPromise<PartnerAlert> {
+            return PartnersGeeks3ApiFp(configuration).alertsList2(id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * PartnersGeeks3Api - interface
+ * @export
+ * @interface PartnersGeeks3Api
+ */
+export interface PartnersGeeks3ApiInterface {
+    /**
+     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PartnersGeeks3ApiInterface
+     */
+    alertsList2(id: string, options?: any): AxiosPromise<PartnerAlert>;
+
+}
+
+/**
+ * PartnersGeeks3Api - object-oriented interface
+ * @export
+ * @class PartnersGeeks3Api
+ * @extends {BaseAPI}
+ */
+export class PartnersGeeks3Api extends BaseAPI implements PartnersGeeks3ApiInterface {
+    /**
+     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PartnersGeeks3Api
+     */
+    public alertsList2(id: string, options?: any) {
+        return PartnersGeeks3ApiFp(this.configuration).alertsList2(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

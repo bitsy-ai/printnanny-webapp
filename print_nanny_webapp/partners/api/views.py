@@ -37,16 +37,16 @@ class GeeksViewSet(ViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        tags="partners.geeks3",
+        tags=["partners.geeks3"],
         operation_id="alerts_list",
         responses={
             200: PartnerAlertSerializer
         }
     )
     @action(detail=True, methods=["GET"])
-    def alerts_list(self, request, pk=None):
+    def alerts(self, request, pk=None):
         queryset = GeeksToken.objects.all()
         token = get_object_or_404(queryset, pk=pk)
         alerts = AlertsMessage.objects.filter(octoprint_device_id=token.octoprint_device_id)
         serializer = PartnerAlertSerializer(alerts, many=True)
-        return Response(serialzier.data)
+        return Response(serializer.data)

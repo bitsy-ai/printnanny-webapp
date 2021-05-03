@@ -38,7 +38,10 @@ class PrintSession(object):
         'updated_dt': 'datetime',
         'octoprint_device': 'int',
         'session': 'str',
-        'progress': 'dict(str, object)',
+        'filepos': 'int',
+        'print_progress': 'int',
+        'time_elapsed': 'int',
+        'time_remaining': 'int',
         'status': 'StatusEnum',
         'user': 'int',
         'printer_profile': 'int',
@@ -53,7 +56,10 @@ class PrintSession(object):
         'updated_dt': 'updated_dt',
         'octoprint_device': 'octoprint_device',
         'session': 'session',
-        'progress': 'progress',
+        'filepos': 'filepos',
+        'print_progress': 'print_progress',
+        'time_elapsed': 'time_elapsed',
+        'time_remaining': 'time_remaining',
         'status': 'status',
         'user': 'user',
         'printer_profile': 'printer_profile',
@@ -62,7 +68,7 @@ class PrintSession(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, progress=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -73,7 +79,10 @@ class PrintSession(object):
         self._updated_dt = None
         self._octoprint_device = None
         self._session = None
-        self._progress = None
+        self._filepos = None
+        self._print_progress = None
+        self._time_elapsed = None
+        self._time_remaining = None
         self._status = None
         self._user = None
         self._printer_profile = None
@@ -90,8 +99,10 @@ class PrintSession(object):
             self.updated_dt = updated_dt
         self.octoprint_device = octoprint_device
         self.session = session
-        if progress is not None:
-            self.progress = progress
+        self.filepos = filepos
+        self.print_progress = print_progress
+        self.time_elapsed = time_elapsed
+        self.time_remaining = time_remaining
         if status is not None:
             self.status = status
         if user is not None:
@@ -215,25 +226,112 @@ class PrintSession(object):
         self._session = session
 
     @property
-    def progress(self):
-        """Gets the progress of this PrintSession.  # noqa: E501
+    def filepos(self):
+        """Gets the filepos of this PrintSession.  # noqa: E501
 
 
-        :return: The progress of this PrintSession.  # noqa: E501
-        :rtype: dict(str, object)
+        :return: The filepos of this PrintSession.  # noqa: E501
+        :rtype: int
         """
-        return self._progress
+        return self._filepos
 
-    @progress.setter
-    def progress(self, progress):
-        """Sets the progress of this PrintSession.
+    @filepos.setter
+    def filepos(self, filepos):
+        """Sets the filepos of this PrintSession.
 
 
-        :param progress: The progress of this PrintSession.  # noqa: E501
-        :type progress: dict(str, object)
+        :param filepos: The filepos of this PrintSession.  # noqa: E501
+        :type filepos: int
         """
+        if (self.local_vars_configuration.client_side_validation and
+                filepos is not None and filepos > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `filepos`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                filepos is not None and filepos < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `filepos`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
-        self._progress = progress
+        self._filepos = filepos
+
+    @property
+    def print_progress(self):
+        """Gets the print_progress of this PrintSession.  # noqa: E501
+
+
+        :return: The print_progress of this PrintSession.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_progress
+
+    @print_progress.setter
+    def print_progress(self, print_progress):
+        """Sets the print_progress of this PrintSession.
+
+
+        :param print_progress: The print_progress of this PrintSession.  # noqa: E501
+        :type print_progress: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                print_progress is not None and print_progress > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `print_progress`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_progress is not None and print_progress < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `print_progress`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._print_progress = print_progress
+
+    @property
+    def time_elapsed(self):
+        """Gets the time_elapsed of this PrintSession.  # noqa: E501
+
+
+        :return: The time_elapsed of this PrintSession.  # noqa: E501
+        :rtype: int
+        """
+        return self._time_elapsed
+
+    @time_elapsed.setter
+    def time_elapsed(self, time_elapsed):
+        """Sets the time_elapsed of this PrintSession.
+
+
+        :param time_elapsed: The time_elapsed of this PrintSession.  # noqa: E501
+        :type time_elapsed: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                time_elapsed is not None and time_elapsed > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `time_elapsed`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                time_elapsed is not None and time_elapsed < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `time_elapsed`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._time_elapsed = time_elapsed
+
+    @property
+    def time_remaining(self):
+        """Gets the time_remaining of this PrintSession.  # noqa: E501
+
+
+        :return: The time_remaining of this PrintSession.  # noqa: E501
+        :rtype: int
+        """
+        return self._time_remaining
+
+    @time_remaining.setter
+    def time_remaining(self, time_remaining):
+        """Sets the time_remaining of this PrintSession.
+
+
+        :param time_remaining: The time_remaining of this PrintSession.  # noqa: E501
+        :type time_remaining: int
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                time_remaining is not None and time_remaining > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `time_remaining`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                time_remaining is not None and time_remaining < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `time_remaining`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._time_remaining = time_remaining
 
     @property
     def status(self):

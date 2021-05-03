@@ -66,7 +66,7 @@ class AlertSerializer(serializers.ModelSerializer):
             "created_dt",
             "updated_dt"
         ]
-        read_only_fields = ("user")
+        read_only_fields = ("user",)
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):

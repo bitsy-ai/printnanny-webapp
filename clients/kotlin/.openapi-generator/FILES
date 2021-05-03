@@ -3,7 +3,6 @@ README.md
 build.gradle
 docs/Alert.md
 docs/AlertBulkResponse.md
-docs/AlertEventTypeEnum.md
 docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
@@ -14,6 +13,7 @@ docs/AuthTokenRequest.md
 docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/EventType92fEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -45,7 +45,9 @@ docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedUserList.md
+docs/PartnerAlert.md
 docs/PartnerOctoPrintDevice.md
+docs/PartnersGeeks3Api.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
@@ -75,6 +77,7 @@ settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthTokenApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt
+src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3Api.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3dApi.kt
 src/main/kotlin/com/print-nanny/client/apis/RemoteControlApi.kt
 src/main/kotlin/com/print-nanny/client/apis/SchemaApi.kt
@@ -96,7 +99,6 @@ src/main/kotlin/com/print-nanny/client/infrastructure/Serializer.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
 src/main/kotlin/com/print-nanny/client/models/Alert.kt
 src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
-src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertMethodEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
@@ -105,6 +107,7 @@ src/main/kotlin/com/print-nanny/client/models/AuthTokenRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/EventType92fEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
@@ -135,6 +138,7 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedPrintStatusEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfileList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteControlCommandList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedUserList.kt
+src/main/kotlin/com/print-nanny/client/models/PartnerAlert.kt
 src/main/kotlin/com/print-nanny/client/models/PartnerOctoPrintDevice.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt

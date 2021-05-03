@@ -21,8 +21,8 @@ import java.io.Serializable
  * @param model 
  * @param platform 
  * @param octoprintVersion 
- * @param pluginVersion 
  * @param printNannyClientVersion 
+ * @param printNannyPluginVersion 
  * @param verified 
  */
 
@@ -35,10 +35,10 @@ data class PartnerOctoPrintDevice (
     val platform: kotlin.String,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
-    @Json(name = "plugin_version")
-    val pluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
+    @Json(name = "print_nanny_plugin_version")
+    val printNannyPluginVersion: kotlin.String? = null,
     @Json(name = "verified")
     val verified: kotlin.String? = null
 ) : Serializable {

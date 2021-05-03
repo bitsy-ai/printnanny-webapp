@@ -6,7 +6,6 @@ MANIFEST.in
 README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
-docs/AlertEventTypeEnum.md
 docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
@@ -17,6 +16,7 @@ docs/AuthTokenRequest.md
 docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/EventType92fEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -48,7 +48,9 @@ docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedUserList.md
+docs/PartnerAlert.md
 docs/PartnerOctoPrintDevice.md
+docs/PartnersGeeks3Api.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
@@ -80,6 +82,7 @@ print_nanny_client/api/__init__.py
 print_nanny_client/api/alerts_api.py
 print_nanny_client/api/auth_token_api.py
 print_nanny_client/api/ml_ops_api.py
+print_nanny_client/api/partners_geeks3_api.py
 print_nanny_client/api/partners_geeks3d_api.py
 print_nanny_client/api/remote_control_api.py
 print_nanny_client/api/schema_api.py
@@ -91,7 +94,6 @@ print_nanny_client/exceptions.py
 print_nanny_client/models/__init__.py
 print_nanny_client/models/alert.py
 print_nanny_client/models/alert_bulk_response.py
-print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_method_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/artifact_types_enum.py
@@ -100,6 +102,7 @@ print_nanny_client/models/auth_token_request.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
+print_nanny_client/models/event_type92f_enum.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
@@ -130,6 +133,7 @@ print_nanny_client/models/paginated_print_status_event_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
 print_nanny_client/models/paginated_user_list.py
+print_nanny_client/models/partner_alert.py
 print_nanny_client/models/partner_octo_print_device.py
 print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_request.py
@@ -159,7 +163,6 @@ test-requirements.txt
 test/__init__.py
 test/test_alert.py
 test/test_alert_bulk_response.py
-test/test_alert_event_type_enum.py
 test/test_alert_method_enum.py
 test/test_alert_request.py
 test/test_alerts_api.py
@@ -170,6 +173,7 @@ test/test_auth_token_request.py
 test/test_command_enum.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
+test/test_event_type92f_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
@@ -201,7 +205,9 @@ test/test_paginated_print_status_event_list.py
 test/test_paginated_printer_profile_list.py
 test/test_paginated_remote_control_command_list.py
 test/test_paginated_user_list.py
+test/test_partner_alert.py
 test/test_partner_octo_print_device.py
+test/test_partners_geeks3_api.py
 test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
