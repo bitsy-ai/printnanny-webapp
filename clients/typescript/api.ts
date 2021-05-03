@@ -5251,7 +5251,7 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling alertsList2.');
             }
-            const localVarPath = `/api/partners/3d-geeks/{id}/alerts_list/`
+            const localVarPath = `/api/partners/3d-geeks/{id}/alerts/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');

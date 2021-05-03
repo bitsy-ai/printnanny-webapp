@@ -50,7 +50,7 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         val localVariableConfig = RequestConfig(
             RequestMethod.GET,
-            "/api/partners/3d-geeks/{id}/alerts_list/".replace("{"+"id"+"}", "$id"),
+            "/api/partners/3d-geeks/{id}/alerts/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders
         )

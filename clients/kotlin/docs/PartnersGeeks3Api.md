@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alertsList2**](PartnersGeeks3Api.md#alertsList2) | **GET** /api/partners/3d-geeks/{id}/alerts_list/ | 
+[**alertsList2**](PartnersGeeks3Api.md#alertsList2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 
 
 <a name="alertsList2"></a>

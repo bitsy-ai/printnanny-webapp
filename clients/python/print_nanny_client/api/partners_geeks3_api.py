@@ -155,7 +155,7 @@ class PartnersGeeks3Api(object):
         }
 
         return self.api_client.call_api(
-            '/api/partners/3d-geeks/{id}/alerts_list/', 'GET',
+            '/api/partners/3d-geeks/{id}/alerts/', 'GET',
             path_params,
             query_params,
             header_params,
