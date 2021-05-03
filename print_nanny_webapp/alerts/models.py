@@ -95,7 +95,7 @@ class AlertMessage(models.Model):
     """
     Base class for alert events
     """
-    class AlertMessageEventType(models.TextChoices):
+    class AlertMessageType(models.TextChoices):
         VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
         PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
         PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
@@ -110,7 +110,7 @@ class AlertMessage(models.Model):
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertMessageEventType.choices, max_length=255, null=True
+        choices=AlertMessageType.choices, max_length=255, null=True
     )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True

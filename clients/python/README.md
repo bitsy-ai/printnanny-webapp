@@ -178,7 +178,6 @@ Class | Method | HTTP request | Description
  - [ModelArtifact](docs/ModelArtifact.md)
  - [MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [Nested](docs/Nested.md)
- - [NullEnum](docs/NullEnum.md)
  - [OctoPrintDevice](docs/OctoPrintDevice.md)
  - [OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)

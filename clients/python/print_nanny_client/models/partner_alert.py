@@ -33,7 +33,7 @@ class PartnerAlert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'event_type': 'OneOfEventType92fEnumNullEnum',
+        'event_type': 'EventType92fEnum',
         'seen': 'bool',
         'sent': 'bool',
         'octoprint_device': 'PartnerOctoPrintDevice',
@@ -101,7 +101,7 @@ class PartnerAlert(object):
 
 
         :return: The event_type of this PartnerAlert.  # noqa: E501
-        :rtype: OneOfEventType92fEnumNullEnum
+        :rtype: EventType92fEnum
         """
         return self._event_type
 
@@ -111,7 +111,7 @@ class PartnerAlert(object):
 
 
         :param event_type: The event_type of this PartnerAlert.  # noqa: E501
-        :type event_type: OneOfEventType92fEnumNullEnum
+        :type event_type: EventType92fEnum
         """
 
         self._event_type = event_type

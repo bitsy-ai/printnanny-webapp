@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **user** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | [optional] 
 **alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
-**event_type** | [**OneOfEventType92fEnumNullEnum**](OneOfEventType92fEnumNullEnum.md) |  | [optional] 
+**event_type** | [**EventType92fEnum**](EventType92fEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
