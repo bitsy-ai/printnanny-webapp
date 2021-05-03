@@ -96,14 +96,14 @@ class AlertMessage(models.Model):
     Base class for alert events
     """
     class AlertMessageType(models.TextChoices):
-        VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
-        PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
-        PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
-        PRINT_DONE = "PrintDone", "{gocde_file} - job finished ✅"
-        PRINT_FAILED = "PrintFailed", "{gocde_file} - job failed ❌"
-        PRINT_PAUSED = "PrintPaused", "{gcode_file} - job paused ⏸️"
-        PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
-        PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
+        VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
+        PRINT_HEALTH = "PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"
+        PRINT_PROGRESS = "PrintProgress", "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳"
+        PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,

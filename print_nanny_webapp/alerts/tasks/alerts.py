@@ -97,8 +97,9 @@ class AlertTask:
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
-            "EVENT_TYPE": self.instance.event_type
-
+            "EVENT_TYPE": self.instance.event_type,
+            "GCODE_FILENAME": self.instance.print_session.gcode_file.name
+            
         }
         if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
             videos_url = reverse(
@@ -106,9 +107,11 @@ class AlertTask:
             )
             videos_url = urljoin(settings.BASE_URL, videos_url)
             merge_data.update({"VIDEO_DASHBOARD_URL": videos_url })
-
-        elif self.instance.event_type is AlertMessage.AlertMessageType.PRINT_PROGRESS and self.instance.print_session:
-            merge_data.update({"PRINT_PROGRESS": self.instance.print_session.print_progress })
+        else:
+            merge_data.update({
+                "PRINT_PROGRESS": self.instance.print_session.print_progress,
+                "TIME_REMAINING": self.instance.print_session.time_remaining
+            })
 
         text_body = render_to_string(self.email_body_txt_template, merge_data)
         subject = render_to_string(self.email_subject_template, merge_data)
