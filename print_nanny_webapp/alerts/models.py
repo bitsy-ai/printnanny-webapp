@@ -42,7 +42,7 @@ def _upload_to(instance, filename):
 
 
 class AlertSettings(models.Model):
-    class EventType(models.TextChoices):
+    class AlertSettingsEventType(models.TextChoices):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
@@ -71,7 +71,7 @@ class AlertSettings(models.Model):
         default=(AlertMethod.EMAIL,),
     )
     event_types = ChoiceArrayField(
-        models.CharField(choices=EventType.choices, max_length=255),
+        models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
         default=(
             EventType.PRINT_HEALTH,
@@ -95,7 +95,7 @@ class AlertMessage(models.Model):
     """
     Base class for alert events
     """
-    class AlertEventTypes(models.TextChoices):
+    class AlertMessageEventTypes(models.TextChoices):
         VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
         PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
         PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
@@ -104,28 +104,6 @@ class AlertMessage(models.Model):
         PRINT_PAUSED = "PrintPaused", "{gcode_file} - job paused ⏸️"
         PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
         PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
-
-
-        @classmethod
-        def from_flatbuffer_event_type(cls, event_type):
-            """
-                flatbuffer generated enum
-
-            class AlertEventTypeEnum(object):
-                print_health = 0
-                print_progress = 1
-                print_done = 2
-                print_failed = 3
-                print_paused = 4
-                print_resumed = 5
-                print_started = 6
-                video_done = 7
-
-
-            """
-            from print_nanny_client.alerts import AlertEventTypeEnum
-            name = stringcase.AlertEventTypeEnum(event_type).name
-            return cls(stringcase.uppercase(name))
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
