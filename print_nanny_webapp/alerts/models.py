@@ -92,14 +92,14 @@ class AlertSettings(models.Model):
 
 
 class AlertEventTypes(models.TextChoices):
-    VIDEO_DONE = "VideoDone", "VideoDone"
-    PRINT_HEALTH = "PrintHealth", "PrintHealth"
-    PRINT_PROGRESS = "PrintProgress", "PrintProgress"
-    PRINT_DONE = "PrintDone", "PrintDone"
-    PRINT_FAILED = "PrintFailed", "PrintFailed"
-    PRINT_PAUSED = "PrintPaused", "PrintPaused"
-    PRINT_RESUMED = "PrintResumed", "PrintResumed"
-    PRINT_STARTED = "PrintStarted", "PrintStarted"
+    VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
+    PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
+    PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
+    PRINT_DONE = "PrintDone", "{gocde_file} - job finished ✅"
+    PRINT_FAILED = "PrintFailed", "{gocde_file} - job failed ❌"
+    PRINT_PAUSED = "PrintPaused", "{gcode_file} - job paused ⏸️"
+    PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
+    PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
 
     @classmethod
     def from_flatbuffer_event_type(cls, event_type):

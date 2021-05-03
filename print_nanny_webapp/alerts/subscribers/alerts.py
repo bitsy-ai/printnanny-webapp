@@ -23,8 +23,8 @@ application = get_wsgi_application()
 from django.apps import apps
 from print_nanny_webapp.alerts.models import AlertEventTypes
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
-from print_nanny_client.flatbuffers.alert import Alert, AlertEventTypeEnum
-
+from print_nanny_client.flatbuffers.alert import Alert
+from print_nanny_client.flatbuffers.alert.AlertEventTypeEnum import AlertEventTypeEnum
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
@@ -37,30 +37,30 @@ logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION
 
-def flatbuffer_enum_to_choices(event_type):
-    name = AlertEventTypeEnum(event_type).name
-    attr = stringcase.uppercase(name)
-    return getattr(AlertEventTypes, atrr)
+# TODO flatbuffer python gen creates an object instead of Enum type
+
+
 
 def on_alert_event(message):
-    obj = Alert.Alert.GetRootAsMonitoringEvent(message.data, 0)
+    obj = Alert.Alert.GetRootAsAlert(message.data, 0)
 
     flatbuffer_event_type = obj.EventType()
-    choices_event_type = flatbuffer_enum_to_choices(flatbuffer_event_type)    
+    logger.info(f"Received event_type={flatbuffer_event_type}")    
     if flatbuffer_event_type == AlertEventTypeEnum.video_done:
         user_id = obj.Metadata().UserId()
-        octoprint_device_id = obj.Metadata().OctoPrintDeviceId()
-        print_session = obj.Metadata().PrintSession()
-        annotated_video = obj.AnnotatedVideo().CdnRelativePath()
+        octoprint_device_id = obj.Metadata().OctoprintDeviceId()
+        print_session = obj.Metadata().PrintSession().decode('utf-8')
+        annotated_video = obj.AnnotatedVideo().CdnRelativePath().decode('utf-8')
 
         alert_settings, created = AlertSettings.objects.get_or_create(
-            user=user_id,
+            user_id=user_id,
         )
+        logger.info(f"Retrieving print_session={print_session}")
         print_session = PrintSession.objects.get(session=print_session)
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
                 user_id=user_id,
-                event_type=choices_event_type,
+                event_type=AlertEventTypes.VIDEO_DONE,
                 octoprint_device_id=octoprint_device_id,
                 annotated_video=annotated_video,
                 print_session=print_session,

@@ -1,15 +1,19 @@
 from typing import Optional, Union
-
+from urllib.parse import urljoin
 from django.apps import apps
+from django.urls import reverse
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
     PartnerAlertSerializer,
     PartnersEnum,
 )
 from django.conf import settings
+from django.template.loader import render_to_string
+from anymail.message import AnymailMessage
 
 from print_nanny_webapp.alerts.models import AlertEventTypes
 AlertMessage = apps.get_model("alerts", "AlertMessage")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
 class AlertTask:
@@ -34,10 +38,10 @@ class AlertTask:
         self.serializer = serializer
         self.partner_serializer = partner_serializer
         self.alert_trigger_method_map = {
-            AlertModel.AlertMethodChoices.UI: self.trigger_ui_alert,
-            AlertModel.AlertMethodChoices.EMAIL: self.trigger_email_alert,
-            AlertModel.AlertMethodChoices.DISCORD: self.trigger_discord_alert,
-            AlertModel.AlertMethodChoices.GEEKS3D: self.trigger_geeks3d_alert,
+            AlertSettings.AlertMethod.UI: self.trigger_ui_alert,
+            AlertSettings.AlertMethod.EMAIL: self.trigger_email_alert,
+            AlertSettings.AlertMethod.DISCORD: self.trigger_discord_alert,
+            AlertSettings.AlertMethod.PARTNER_3DGEEKS: self.trigger_geeks3d_alert,
         }
 
     def trigger_alert(self) -> bool:
@@ -45,15 +49,15 @@ class AlertTask:
         Returns a bool expressing whether method call resulted in alert being triggered
         Duplicate alert triggers will be ignored
         """
-        if self.sent is False:
-            self.alert_trigger_method_map[alert_method]()
-            self.sent = True
-            self.save()
+        if self.instance.sent is False:
+            self.alert_trigger_method_map[self.instance.alert_method]()
+            self.instance.sent = True
+            self.instance.save()
             return True
         return False
 
     def get_serializer(self) -> Union[AlertSerializer, PartnerAlertSerializer]:
-        if self.instance.alert_method.value in PartnersEnum:
+        if self.instance.alert_method in PartnersEnum:
             return self.partner_serializer(self.instance)
         return self.serializer(self.instance)
     
@@ -89,23 +93,26 @@ class AlertTask:
             "dashboard:octoprint-devices:detail",
             kwargs={"pk": self.instance.octoprint_device.id},
         )
+        device_url = urljoin(settings.BASE_URL, device_url)
         merge_data = {
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
+            "EVENT_TYPE": self.instance.event_type
 
         }
-        if self.event_type is AlertEventTypes.VIDEO_DONE:
+        if self.instance.event_type is AlertEventTypes.VIDEO_DONE:
             videos_url = reverse(
                 "dashboard:videos:list"
             )
+            videos_url = urljoin(settings.BASE_URL, videos_url)
             merge_data.update({"VIDEO_DASHBOARD_URL": videos_url })
 
-        elif self.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.print_session:
+        elif self.instance.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.print_session:
             merge_data.update({"PRINT_PROGRESS": self.instance.print_session.print_progress })
 
-        text_body = render_to_string(self.instance.email_body_txt_template, merge_data)
-        subject = render_to_string(self.instance.email_subject_template, merge_data)
+        text_body = render_to_string(self.email_body_txt_template, merge_data)
+        subject = render_to_string(self.email_subject_template, merge_data)
         message = AnymailMessage(
             subject=subject,
             body=text_body,

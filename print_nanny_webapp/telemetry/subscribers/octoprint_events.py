@@ -61,7 +61,8 @@ def handle_print_progress(octoprint_event):
                 user=self.user,
                 octoprint_device=octoprint_device_id
             )
-            task = PrintStatusAlertTask(self)
+            task = PrintStatusAlertTask(alert_message)
+            task.trigger_alert()
         
 
 
