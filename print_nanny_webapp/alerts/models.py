@@ -91,42 +91,41 @@ class AlertSettings(models.Model):
     )
 
 
-class AlertEventTypes(models.TextChoices):
-    VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
-    PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
-    PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
-    PRINT_DONE = "PrintDone", "{gocde_file} - job finished ✅"
-    PRINT_FAILED = "PrintFailed", "{gocde_file} - job failed ❌"
-    PRINT_PAUSED = "PrintPaused", "{gcode_file} - job paused ⏸️"
-    PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
-    PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
-
-    @classmethod
-    def from_flatbuffer_event_type(cls, event_type):
-        """
-            flatbuffer generated enum
-
-        class AlertEventTypeEnum(object):
-            print_health = 0
-            print_progress = 1
-            print_done = 2
-            print_failed = 3
-            print_paused = 4
-            print_resumed = 5
-            print_started = 6
-            video_done = 7
-
-
-        """
-        from print_nanny_client.alerts import AlertEventTypeEnum
-        name = stringcase.AlertEventTypeEnum(event_type).name
-        return cls(stringcase.uppercase(name))
-
 class AlertMessage(models.Model):
     """
     Base class for alert events
     """
+    class AlertEventTypes(models.TextChoices):
+        VIDEO_DONE = "VideoDone", "{gcode_file} - timelapse done 🎥"
+        PRINT_HEALTH = "PrintHealth", "{gcode_file} - job is unhealthy 😵"
+        PRINT_PROGRESS = "PrintProgress", "{gcode_file} - {print_progress}%% complete ⏳"
+        PRINT_DONE = "PrintDone", "{gocde_file} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{gocde_file} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{gcode_file} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
 
+        def format()
+        @classmethod
+        def from_flatbuffer_event_type(cls, event_type):
+            """
+                flatbuffer generated enum
+
+            class AlertEventTypeEnum(object):
+                print_health = 0
+                print_progress = 1
+                print_done = 2
+                print_failed = 3
+                print_paused = 4
+                print_resumed = 5
+                print_started = 6
+                video_done = 7
+
+
+            """
+            from print_nanny_client.alerts import AlertEventTypeEnum
+            name = stringcase.AlertEventTypeEnum(event_type).name
+            return cls(stringcase.uppercase(name))
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
