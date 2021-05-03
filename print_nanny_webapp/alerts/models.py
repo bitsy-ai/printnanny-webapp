@@ -105,7 +105,7 @@ class AlertMessage(models.Model):
         PRINT_RESUMED = "PrintResumed", "{gcode_file} - job resumed ⏯️"
         PRINT_STARTED = "PrintStarted", "{gocde_file} - job started 🏁"
 
-        def format()
+
         @classmethod
         def from_flatbuffer_event_type(cls, event_type):
             """
