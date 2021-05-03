@@ -1,6 +1,7 @@
 import logging
 import inspect
 
+from django.utils import timezone
 from django.apps import apps
 from django.urls import reverse
 from rest_framework import serializers
@@ -27,14 +28,45 @@ class AlertSerializer(serializers.ModelSerializer):
         else:
             return None
 
-    progress = serializers.SerializerMethodField()
-    def get_progress(self, obj):
+    print_progress = serializers.SerializerMethodField()
+    def get_print_progress(self, obj):
         if obj.print_session:
-            return obj.print_session.progress
+            return obj.print_session.print_progress
+    
+    time_remaining = serializers.SerializerMethodField()
+    def get_time_remaining(self, obj):
+
+        if obj.print_session and obj.print_session.time_remaining:
+            now = timezone.now()
+            remaining = now + obj.print_session.time_remainiing
+            return naturaltime(remaining)
+    
+    manage_device_url = serializers.SerializerMethodField()
+    def get_manage_device_url(self, obj):
+        device_url = reverse(
+            "dashboard:octoprint-devices:detail",
+            kwargs={"pk": self.octoprint_device.id},
+        )
+        return device_url
+
     class Meta:
         model = Alert
-        fields = "__all__"
-        read_only_fields = ("user", "extra_data")
+        fields = [
+            "time", 
+            "gcode_file", 
+            "print_progress",
+            "time_remaining",
+            "manage_device_url",
+            "user",
+            "octoprint_device",
+            "alert_method",
+            "event_type",
+            "seen",
+            "sent",
+            "created_dt",
+            "updated_dt"
+        ]
+        read_only_fields = ("user")
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):
