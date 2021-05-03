@@ -20,10 +20,21 @@ class AlertSerializer(serializers.ModelSerializer):
     def get_time(self, obj):
         return naturaltime(obj.updated_dt)
 
+    gcode_file = serializers.SerializerMethodField()
+    def get_gcode_file(self, obj):
+        if obj.print_session:
+            return obj.print_session.gcode_file
+        else:
+            return None
+
+    progress = serializers.SerializerMethodField()
+    def get_progress(self, obj):
+        if obj.print_session:
+            return obj.print_session.progress
     class Meta:
         model = Alert
         fields = "__all__"
-        read_only_fields = ("user",)
+        read_only_fields = ("user", "extra_data")
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):

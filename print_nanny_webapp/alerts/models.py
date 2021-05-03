@@ -90,14 +90,6 @@ class AlertSettings(models.Model):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
-    def on_print_progress(self, octoprint_event):
-        from print_nanny_webapp.alerts.api.serializers import AlertSerializer
-
-        progress = octoprint_event.event_data.get("event_data").get("progress")
-        if progress % self.on_progress_percent == 0:
-            serialized_obj = ProgressAlertSerializer(self)
-            return self.trigger_alerts_task(serialized_obj)
-
 
 class AlertEventTypes(models.TextChoices):
     VIDEO_DONE = "VideoDone", "VideoDone"
@@ -135,6 +127,7 @@ class AlertMessage(models.Model):
     Base class for alert events
     """
 
+
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
         max_length=255,
@@ -155,7 +148,6 @@ class AlertMessage(models.Model):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
-
 
 ##
 # @ todo re-enable ManualVideoUpload feature

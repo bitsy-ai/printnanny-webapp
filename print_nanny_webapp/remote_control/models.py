@@ -353,7 +353,12 @@ class PrintSession(models.Model):
         OctoPrintDevice, on_delete=models.CASCADE, db_index=True
     )
     session = models.CharField(max_length=255, db_index=True)
-    progress = JSONField(default={})
+
+    filepos = models.IntegerField(null=True)
+    print_progress = models.IntegerField(null=True)
+    time_elapsed = models.IntegerField(null=True)
+    time_remaining = models.IntegerField(null=True)
+
     status = models.CharField(
         max_length=255,
         db_index=True,

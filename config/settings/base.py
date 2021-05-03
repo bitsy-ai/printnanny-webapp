@@ -539,3 +539,7 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
 INSTALLED_APPS += [
     'safedelete'
 ]
+
+PARTNERS_3DGEEKS_SETTINGS = {
+    'alerts_push': 'https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push'
+}

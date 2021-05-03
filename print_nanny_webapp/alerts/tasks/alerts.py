@@ -6,9 +6,11 @@ from print_nanny_webapp.partners.api.serializer import (
     PartnerAlertSerializer,
     PartnersEnum,
 )
+from django.conf import settings
 
-AlertModel = apps.get_model("alerts", "Alert")
-
+from print_nanny_webapp.models.alerts import AlertEventTypes
+AlertMessage = apps.get_model("alerts", "AlertMessage")
+GeeksToken = apps.get_model("partners", "GeeksToken")
 
 class AlertTask:
     """
@@ -25,7 +27,7 @@ class AlertTask:
     )
     email_subject_template = "email/generic_alert_subject.txt"
 
-    def __init__(self, instance: AlertModel):
+    def __init__(self, instance):
         self.instance = instance
         self.alert_trigger_method_map = {
             AlertModel.AlertMethodChoices.UI: self.trigger_ui_alert,
@@ -50,6 +52,12 @@ class AlertTask:
         if self.instance.alert_method.value in PartnersEnum:
             return self.partner_serializer(self.instance)
         return self.serializer(self.instance)
+    
+    def trigger_geeks3d_alert(self):
+        serializer = self.get_serializer()
+        data = serializer.data
+        data['token'] = GeeksToken.get(octoprint_device_id=self.instance.octoprint_device_id)
+        return requests.post(settings.PARTNERS_3DGEEKS_SETTINGS['alerts_push'], json=data)
 
     def trigger_ui_alert(self):
         serializer = self.get_serializer()
@@ -102,50 +110,8 @@ class AlertTask:
 
         return message
 
-    def trigger_alerts_task(self):
-        serializer = self.get_serializer()
-
-        self.print_session.status = self.print_session.StatusChoices.DONE
-        self.print_session.save()
-        return trigger_alerts_task.delay(self.id, serializer.data)
-
     def trigger_discord_alert(self):
-        serializer = self.get_serializer()
-        data = serializer.data
-
-        channel_layer = get_channel_layer()
-        discord_settings = DiscordMethodSettings.objects.filter(user=self.instance.user)
-
-        channel_ids = []
-        user_ids = []
-
-        for setting in discord_settings:
-            if setting.target_id_type == DiscordMethodSettings.TargetIDTypeChoices.USER:
-                user_ids.append(setting.target_id)
-            elif (
-                setting.target_id_type
-                == DiscordMethodSettings.TargetIDTypeChoices.CHANNEL
-            ):
-                channel_ids.append(setting.target_id)
-
-        logger.info(
-            f"Sending Discord alert to channels: {channel_ids} and users: {user_ids}"
-        )
-
-        message = f"{data['title']}: {data['description']}"
-        if data.get("manage_device_url") is not None:
-            message += "\n" + data["manage_device_url"]
-
-        async_to_sync(channel_layer.send)(
-            "discord",
-            {
-                "type": "trigger.alert",
-                "user_ids": user_ids,
-                "channel_ids": channel_ids,
-                "message": message,
-            },
-        )
-
+        raise NotImplementedError
 
 class PrintStatusAlertTask(AlertTask):
 
@@ -165,9 +131,12 @@ class PrintStatusAlertTask(AlertTask):
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
-            # TODO session url view
-            "ANNOTATED_VIDEO_URL": self.instance.dashboard_url,
         }
+        if self.event_type is AlertEventTypes.VIDEO_DONE:
+            merge_data.update({"ANNOTATED_VIDEO_URL": self.instance.dashboard_url})
+        elif self.event_type is AlertEventTypes.PRINT_PROGRESS and self.instance.extra_data.get("progress"):
+            merge_data.update({"PRINT_PROGRESS": self.instance.extra_data.get("progress")})
+
         text_body = render_to_string(self.instance.email_body_txt_template, merge_data)
         subject = render_to_string(self.instance.email_subject_template, merge_data)
         message = AnymailMessage(
