@@ -81,7 +81,13 @@ HANDLER_FNS.update(
 
 
 def on_octoprint_event(message):
-    data = message.data.decode("utf-8")
+    try:
+        data = message.data.decode("utf-8")
+    except UnicodeDecodeError as e:
+        logger.error(e)
+        logger.warning(f"Ignoring msg with content={message.data}")
+        message.ack()
+        return
     data = json.loads(data)
 
     event_type = data["event_type"]
