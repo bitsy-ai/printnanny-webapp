@@ -22,7 +22,7 @@ spec:
           - manage.py
           - runworker
           - discord
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
+        image: us.gcr.io/print-nanny/print_nanny_webapp:latest
         ports:
         - containerPort: 8000
         - containerPort: 8001

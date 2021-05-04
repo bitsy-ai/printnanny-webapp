@@ -17,7 +17,7 @@ spec:
       containers:
       - name: celery-worker
         imagePullPolicy: Always
-        image: us.gcr.io/print-nanny/print_nanny_webapp_production_django:latest
+        image: us.gcr.io/print-nanny/print_nanny_webapp:latest
         command:
           - /start-celeryworker
         envFrom:
