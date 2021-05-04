@@ -153,7 +153,7 @@ sandbox-email:
 sandbox-ci: sandbox-deploy sandbox-email cypress-ci
 
 prod-deploy: build cluster-config
-	k8s/prod/push.sh
+	GIT_SHA=$(GIT_SHA) k8s/prod/push.sh
 
 blog-deploy:
 	k8s/push-blog.sh
