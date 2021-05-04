@@ -97,6 +97,7 @@ class AlertMessage(models.Model):
     """
 
     class AlertMessageType(models.TextChoices):
+        TEST = "Test", "Hello {{ FIRST_NAME }} 👋"
         VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
         PRINT_HEALTH = "PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"
         PRINT_PROGRESS = (

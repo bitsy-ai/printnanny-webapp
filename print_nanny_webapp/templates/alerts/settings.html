@@ -15,15 +15,16 @@
                         <li class="breadcrumb-item active">Notification Settings</li>
                     </ol>
                 </div>
-                <h3 class="page-title">Notification Settings</h4>
+                <h3 class="page-title d-inline-flex">Notification Settings</h3>
+                {% include "partials/messages.html"%}
             </div>
         </div>
     </div>
 
     <div class="row">
 
-        <div class="col-12 col-md-6">
-            <div class="card">
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+            <div class="card col-12">
 
                 <div class="card-body">
                     <div class="card-title">
@@ -31,7 +32,7 @@
                         <p>Choose the events you would like to receive</p>
                     </div>
                     <div class="form-group">
-                        <form method="post" id="alert-event-settings">
+                        <form method="POST" id="alert-event-settings">
                             {% csrf_token %}
                             {{ forms.event_settings | crispy }}
                             <button type="submit" name="action" value="event_settings" class="btn btn-primary">Save</button>
@@ -41,8 +42,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="card">
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+            <div class="card col-12">
 
                 <div class="card-body">
                     <div class="card-title">
@@ -50,11 +51,33 @@
                         <p>Select the ways Print Nannys should alert you.</p>
                     </div>
                     <div class="form-group">
-                        <form method="post" id="discord-method-settings">
+                        <form method="POST" id="discord-method-settings">
                             {% csrf_token %}
                             {{ forms.alert_methods | crispy }}
                             <button type="submit"  name="action" value="alert_methods" class="btn btn-primary">Save</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-12 col-md-6 d-flex align-items-stretch">
+            <div class="card col-12">
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="page-title">Send Test Alert 🧪</h4>
+                        <p>Click the button below to send an example print job notification.</p>
+                    </div>
+                    <div class="form-group">
+                        <form method="POST" id="alert-test">
+                            {% csrf_token %}
+                            {{ forms.test_alert| crispy }}
+                            <button type="submit" name="action" value="test_alert" class="btn btn-primary">Send Test Alert</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

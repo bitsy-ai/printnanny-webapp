@@ -13,7 +13,7 @@ docs/AuthTokenRequest.md
 docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
-docs/EventType92fEnum.md
+docs/EventTypeEddEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -106,7 +106,7 @@ src/main/kotlin/com/print-nanny/client/models/AuthTokenRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
-src/main/kotlin/com/print-nanny/client/models/EventType92fEnum.kt
+src/main/kotlin/com/print-nanny/client/models/EventTypeEddEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt

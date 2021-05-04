@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **octoprintDevice** | [**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md) |  | 
-**eventType** | [**EventType92fEnum**](EventType92fEnum.md) |  |  [optional]
+**eventType** | [**EventTypeEddEnum**](EventTypeEddEnum.md) |  |  [optional]
 **seen** | **kotlin.Boolean** |  |  [optional]
 **sent** | **kotlin.Boolean** |  |  [optional]
 **manageDeviceUrl** | **kotlin.String** |  |  [optional] [readonly]

@@ -95,39 +95,57 @@ class AlertTask:
         )
 
     def trigger_email_alert(self):
-
-        device_url = reverse(
-            "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.instance.octoprint_device.id},
-        )
-        device_url = urljoin(settings.BASE_URL, device_url)
-        serializer = self.get_serializer()
-        data = serializer.data
-
-        merge_data = {
-            "DEVICE_URL": device_url,
-            "FIRST_NAME": self.instance.user.first_name or "Maker",
-            "DEVICE_NAME": self.instance.octoprint_device.name,
-            "EVENT_TYPE": self.instance.event_type,
-            "GCODE_FILENAME": self.instance.print_session.gcode_file,
-        }
-        if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
-            videos_url = reverse("dashboard:videos:list")
-            videos_url = urljoin(settings.BASE_URL, videos_url)
-            merge_data.update(
-                {
-                    "VIDEO_DASHBOARD_URL": videos_url,
-                    "TIME_ELAPSED": data["time_elapsed"],
-                }
-            )
+        if self.instance.event_type is AlertMessage.AlertMessageType.TEST:
+            merge_data = {
+                "FIRST_NAME": self.instance.user.first_name or "Maker",
+                "GCODE_FILENAME": "my_test_print.gcode",
+                "DEVICE_NAME": "My Test Printer",
+                "EVENT_TYPE": AlertMessage.AlertMessageType.TEST,
+                "DEVICE_URL": urljoin(settings.BASE_URL, "dashboard/octoprint-devices/"),
+                "PRINT_PROGRESS": "11%",
+                "TIME_REMAINING": "23:23:59"
+            }
+            tags = [
+                f"User:{self.instance.user.id}",
+            ]
         else:
-            merge_data.update(
-                {
-                    "PRINT_PROGRESS": data["print_progress"],
-                    "TIME_REMAINING": data["time_remaining"],
-                }
+            device_url = reverse(
+                "dashboard:octoprint-devices:detail",
+                kwargs={"pk": self.instance.octoprint_device.id},
             )
+            device_url = urljoin(settings.BASE_URL, device_url)
+            serializer = self.get_serializer()
+            data = serializer.data
 
+            merge_data = {
+                "DEVICE_URL": device_url,
+                "FIRST_NAME": self.instance.user.first_name or "Maker",
+                "DEVICE_NAME": self.instance.octoprint_device.name,
+                "EVENT_TYPE": self.instance.event_type,
+                "GCODE_FILENAME": self.instance.print_session.gcode_file,
+            }
+            if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
+                videos_url = reverse("dashboard:videos:list")
+                videos_url = urljoin(settings.BASE_URL, videos_url)
+                merge_data.update(
+                    {
+                        "VIDEO_DASHBOARD_URL": videos_url,
+                        "TIME_ELAPSED": data["time_elapsed"],
+                    }
+                )
+            else:
+                merge_data.update(
+                    {
+                        "PRINT_PROGRESS": data["print_progress"],
+                        "TIME_REMAINING": data["time_remaining"],
+                    }
+                )
+            tags = [
+                f"User:{self.instance.user.id}",
+                f"Device:{self.instance.octoprint_device.id}",
+                f"PrintSessionID:{self.instance.print_session.id}",
+                f"PrintSession:{self.instance.print_session.session}",
+            ]
         subject_end_template = Template(self.instance.get_event_type_display())
         ctx = Context(merge_data)
 
@@ -139,13 +157,7 @@ class AlertTask:
             subject=subject,
             body=text_body,
             to=[self.instance.user.email],
-            tags=[
-                self.__class__,
-                f"User:{self.instance.user.id}",
-                f"Device:{self.instance.octoprint_device.id}",
-                f"PrintSessionID:{self.instance.print_session.id}",
-                f"PrintSession:{self.instance.print_session.session}",
-            ],
+            tags=tags,
         )
         message.send()
         return message

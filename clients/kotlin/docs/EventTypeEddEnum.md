@@ -1,8 +1,10 @@
 
-# EventType92fEnum
+# EventTypeEddEnum
 
 ## Enum
 
+
+    * `test` (value: `"Test"`)
 
     * `videoDone` (value: `"VideoDone"`)
 

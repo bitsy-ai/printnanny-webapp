@@ -11,7 +11,7 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.EventType92fEnum
+import com.print-nanny.client.models.EventTypeEddEnum
 import com.print-nanny.client.models.PartnerOctoPrintDevice
 
 import com.squareup.moshi.Json
@@ -36,7 +36,7 @@ data class PartnerAlert (
     @Json(name = "octoprint_device")
     val octoprintDevice: PartnerOctoPrintDevice,
     @Json(name = "event_type")
-    val eventType: EventType92fEnum? = null,
+    val eventType: EventTypeEddEnum? = null,
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
     @Json(name = "sent")

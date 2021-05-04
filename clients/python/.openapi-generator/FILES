@@ -16,7 +16,7 @@ docs/AuthTokenRequest.md
 docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
-docs/EventType92fEnum.md
+docs/EventTypeEddEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -101,7 +101,7 @@ print_nanny_client/models/auth_token_request.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
-print_nanny_client/models/event_type92f_enum.py
+print_nanny_client/models/event_type_edd_enum.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
@@ -171,7 +171,7 @@ test/test_auth_token_request.py
 test/test_command_enum.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
-test/test_event_type92f_enum.py
+test/test_event_type_edd_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py

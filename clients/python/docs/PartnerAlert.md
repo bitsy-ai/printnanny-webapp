@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_type** | [**EventType92fEnum**](EventType92fEnum.md) |  | [optional] 
+**event_type** | [**EventTypeEddEnum**](EventTypeEddEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 
 **octoprint_device** | [**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md) |  | 

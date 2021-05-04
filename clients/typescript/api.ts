@@ -81,10 +81,10 @@ export interface Alert {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum}
+     * @type {EventTypeEddEnum}
      * @memberof Alert
      */
-    event_type?: EventType92fEnum | null;
+    event_type?: EventTypeEddEnum | null;
     /**
      * 
      * @type {boolean}
@@ -161,10 +161,10 @@ export interface AlertRequest {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum}
+     * @type {EventTypeEddEnum}
      * @memberof AlertRequest
      */
-    event_type?: EventType92fEnum | null;
+    event_type?: EventTypeEddEnum | null;
     /**
      * 
      * @type {boolean}
@@ -340,7 +340,8 @@ export interface DeviceCalibrationRequest {
  * @export
  * @enum {string}
  */
-export enum EventType92fEnum {
+export enum EventTypeEddEnum {
+    Test = 'Test',
     VideoDone = 'VideoDone',
     PrintHealth = 'PrintHealth',
     PrintProgress = 'PrintProgress',
@@ -1852,10 +1853,10 @@ export interface PaginatedUserList {
 export interface PartnerAlert {
     /**
      * 
-     * @type {EventType92fEnum}
+     * @type {EventTypeEddEnum}
      * @memberof PartnerAlert
      */
-    event_type?: EventType92fEnum | null;
+    event_type?: EventTypeEddEnum | null;
     /**
      * 
      * @type {boolean}
@@ -1999,10 +2000,10 @@ export interface PatchedAlertRequest {
     alert_method?: AlertMethodEnum;
     /**
      * 
-     * @type {EventType92fEnum}
+     * @type {EventTypeEddEnum}
      * @memberof PatchedAlertRequest
      */
-    event_type?: EventType92fEnum | null;
+    event_type?: EventTypeEddEnum | null;
     /**
      * 
      * @type {boolean}

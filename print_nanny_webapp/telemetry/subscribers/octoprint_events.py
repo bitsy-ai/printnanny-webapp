@@ -20,7 +20,7 @@ from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
 from django.apps import apps
-
+from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
@@ -59,13 +59,12 @@ def handle_print_progress(octoprint_event):
         for alert_method in self.alert_methods:
             alert_message = AlertMessage(
                 alert_method=alert_method,
-                event_type=AlertEventTypes.PRINT_PROGRESS,
-                extra_data=octoprint_event,
+                event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
                 print_session=print_session,
                 user=self.user,
                 octoprint_device=octoprint_device_id,
             )
-            task = PrintStatusAlertTask(alert_message)
+            task = AlertTask(alert_message)
             task.trigger_alert()
 
 
