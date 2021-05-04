@@ -210,6 +210,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "print_nanny_webapp.utils.context_processors.settings_context",
+                
             ],
         },
     }
@@ -537,6 +538,7 @@ CORS_ORIGIN_WHITELIST = [
 # dj-stripe
 # ------------------------------------------------------------------------------
 
+# @TODO implement with django-flags
 STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
 if STRIPE_ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
@@ -545,11 +547,25 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
     INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
 # django-safedelete
-
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'safedelete'
 ]
 
+# django-flags
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += [
+    'flags'
+]
+
+FLAGS = {
+    'PARTNER_3DGEEKS_ENABLED': [
+        {'condition': 'parameter', 'value': '3dgeeks_enabled='}
+    ]
+}
+
+# 3D Geeks Integration settings
+# ------------------------------------------------------------------------------
 PARTNERS_3DGEEKS_SETTINGS = {
     'alerts_push': 'https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push'
 }

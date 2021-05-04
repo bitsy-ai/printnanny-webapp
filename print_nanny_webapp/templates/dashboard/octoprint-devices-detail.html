@@ -1,6 +1,6 @@
 {% extends "vertical_base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags feature_flags %}
 
 {% block blocktitle %}{{object.name}}{% endblock %}
 
@@ -99,15 +99,17 @@
                         </dd>
                     </dl>
 
-                    <h4>
-                        <i class="mdi mdi-lock-check"></i><strong>Partner Apps</strong>
-                    </h4>
-                    <dl class="row">
+                    {% flag_enabled 'PARTNER_3DGEEKS_ENABLED' as partner_3dgeeks_flag %}
+                    {% if partner_3dgeeks_flag %}
+                        <h4>
+                            <i class="mdi mdi-lock-check"></i><strong>Partner Apps</strong>
+                        </h4>
+                        <dl class="row">
 
-                        <dt class="col-sm-3"><a target="_blank" href="https://www.3dgeeks.xyz/#/">3D Geeks</a></dt>
-                        <dd class="col-sm-8">{% include 'partials/partners/3d-geeks.html' %}</dd>
-                    </dl>
-
+                            <dt class="col-sm-3"><a target="_blank" href="https://www.3dgeeks.xyz/#/">3D Geeks</a></dt>
+                            <dd class="col-sm-8">{% include 'partials/partners/3d-geeks.html' %}</dd>
+                        </dl>
+                    {% endif %}
                 </div>
             </div>  
         </div>
