@@ -34,7 +34,7 @@ spec:
             value: discord-worker
         volumeMounts:
         - name: webapp-service-account
-          mountPath: /etc/service-account
+          mountPath: /etc/service-account/print-nanny-f296cdb68802.json
           readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
