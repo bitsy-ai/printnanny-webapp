@@ -1,1 +1,1 @@
-🔔 [{{DEVICE_NAME}}] {{ ALERT_TYPE }} {% if ACTION %} {{ ACTION }} {% endif %}
+🔔 [{{DEVICE_NAME}}] {{ EMAIL_SUBJECT }}

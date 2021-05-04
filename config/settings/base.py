@@ -384,10 +384,11 @@ SOCIALACCOUNT_ADAPTER = "print_nanny_webapp.users.adapters.SocialAccountAdapter"
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
-
+# drf-spectacular
+INSTALLED_APPS += ['drf_spectacular']
 PAGE_SIZE = 20
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'print_nanny_webapp.utils.openapi.CustomAutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "print_nanny_webapp.users.authentication.BearerTokenAuthentication",
@@ -404,14 +405,15 @@ REST_FRAMEWORK = {
 # redis is used as a request cache and brokers celery tasks
 REDIS_URL = env("REDIS_URL")
 
-# drf-spectacular
-INSTALLED_APPS += ['drf_spectacular']
+
 SPECTACULAR_SETTINGS = {
-    'SCHEMA_PATH_PREFIX': r'api/',
     'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
-    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': True,
-    'AlertSettingsEventTypeEnum': 'print_nanny_webapp.alerts.models.AlertSettings.EventType.choices'
+    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,
+    'ENUM_NAME_OVERRIDES': {
+        'AlertMessageType': 'print_nanny_webapp.alerts.models.AlertMessage.AlertMessageType.choices',
+        'AlertSettingsEventType': 'print_nanny_webapp.alerts.models.AlertSettings.AlertSettingsEventType.choices'
+    },
 }
 
 # django-filters
@@ -489,6 +491,14 @@ GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBS
     )
 )
 
+GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION',
+    default=os.path.join(
+        'projects',
+        GCP_PROJECT_ID,
+        'subscriptions/alerts-pull'
+    )
+)
+
 DISCORD_URL="https://discord.gg/sf23bk2hPr"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -539,3 +549,7 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
 INSTALLED_APPS += [
     'safedelete'
 ]
+
+PARTNERS_3DGEEKS_SETTINGS = {
+    'alerts_push': 'https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push'
+}

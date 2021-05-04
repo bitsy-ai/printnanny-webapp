@@ -64,7 +64,8 @@ GOOGLE_ANALYTICS=""
 # django-prometheus middleware must be last in middleware stack
 MIDDLEWARE += ['django_prometheus.middleware.PrometheusAfterMiddleware']
 # django channels
-WS_BASE_URL = 'ws://localhost:8000/ws'
+WS_BASE_URL = env('PRINT_NANNY_WS_URL', default='ws://localhost:8000/ws/')
+BASE_URL = env('PRINT_NANNY_BASE_URL', default='http://localhost:8000/')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

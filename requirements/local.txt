@@ -13,6 +13,7 @@ aiohttp==3.7.4.post0
     # via
     #   -r requirements/local.txt
     #   discord.py
+    #   print-nanny-client
 aioredis==1.3.1
     # via
     #   -r requirements/local.txt
@@ -700,6 +701,8 @@ pluggy==0.13.1
     #   pytest
 pre-commit==2.8.2
     # via -r requirements/local.txt
+print-nanny-client==0.6.0.dev15
+    # via -r requirements/local.txt
 prometheus-client==0.8.0
     # via
     #   -r requirements/local.txt
@@ -832,6 +835,7 @@ python-dateutil==2.8.1
     #   jupyter-client
     #   matplotlib
     #   pandas
+    #   print-nanny-client
     #   python-crontab
 python-dotenv==0.17.0
     # via
@@ -954,6 +958,7 @@ six==1.15.0
     #   libhoney
     #   livereload
     #   plotly
+    #   print-nanny-client
     #   protobuf
     #   pyopenssl
     #   python-dateutil
@@ -1128,6 +1133,7 @@ uritemplate==3.0.1
 urllib3==1.26.4
     # via
     #   -r requirements/local.txt
+    #   print-nanny-client
     #   requests
 uvicorn[standard]==0.13.4
     # via -r requirements/local.txt

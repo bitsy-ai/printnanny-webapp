@@ -40,7 +40,7 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
                 model = '', 
                 platform = '', 
                 octoprint_version = '', 
-                plugin_version = '', 
+                print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
                 verified = ''
             )
@@ -50,7 +50,6 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
                 model = '',
                 platform = '',
                 octoprint_version = '',
-                plugin_version = '',
                 print_nanny_client_version = '',
         )
 

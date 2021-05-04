@@ -1,1 +1,0 @@
-🔔 Print finished: {{DEVICE_NAME}} {% if GCODE_FILENAME %} - {{ GCODE_FILENAME }} {% endif %}

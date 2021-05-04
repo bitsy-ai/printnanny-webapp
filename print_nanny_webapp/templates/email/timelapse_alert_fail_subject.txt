@@ -1,1 +1,0 @@
-Quality Report Finished: {{ ORIGINAL_FILENAME }}

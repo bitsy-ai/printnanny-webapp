@@ -37,7 +37,7 @@ class PartnerOctoPrintDevice(object):
         'model': 'str',
         'platform': 'str',
         'octoprint_version': 'str',
-        'plugin_version': 'str',
+        'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'verified': 'str'
     }
@@ -47,12 +47,12 @@ class PartnerOctoPrintDevice(object):
         'model': 'model',
         'platform': 'platform',
         'octoprint_version': 'octoprint_version',
-        'plugin_version': 'plugin_version',
+        'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'verified': 'verified'
     }
 
-    def __init__(self, name=None, model=None, platform=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, verified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, octoprint_version=None, print_nanny_plugin_version=None, print_nanny_client_version=None, verified=None, local_vars_configuration=None):  # noqa: E501
         """PartnerOctoPrintDevice - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,7 +62,7 @@ class PartnerOctoPrintDevice(object):
         self._model = None
         self._platform = None
         self._octoprint_version = None
-        self._plugin_version = None
+        self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._verified = None
         self.discriminator = None
@@ -71,7 +71,8 @@ class PartnerOctoPrintDevice(object):
         self.model = model
         self.platform = platform
         self.octoprint_version = octoprint_version
-        self.plugin_version = plugin_version
+        if print_nanny_plugin_version is not None:
+            self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         if verified is not None:
             self.verified = verified
@@ -181,30 +182,25 @@ class PartnerOctoPrintDevice(object):
         self._octoprint_version = octoprint_version
 
     @property
-    def plugin_version(self):
-        """Gets the plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
+    def print_nanny_plugin_version(self):
+        """Gets the print_nanny_plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
 
 
-        :return: The plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
+        :return: The print_nanny_plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
         :rtype: str
         """
-        return self._plugin_version
+        return self._print_nanny_plugin_version
 
-    @plugin_version.setter
-    def plugin_version(self, plugin_version):
-        """Sets the plugin_version of this PartnerOctoPrintDevice.
+    @print_nanny_plugin_version.setter
+    def print_nanny_plugin_version(self, print_nanny_plugin_version):
+        """Sets the print_nanny_plugin_version of this PartnerOctoPrintDevice.
 
 
-        :param plugin_version: The plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
-        :type plugin_version: str
+        :param print_nanny_plugin_version: The print_nanny_plugin_version of this PartnerOctoPrintDevice.  # noqa: E501
+        :type print_nanny_plugin_version: str
         """
-        if self.local_vars_configuration.client_side_validation and plugin_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `plugin_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                plugin_version is not None and len(plugin_version) > 255):
-            raise ValueError("Invalid value for `plugin_version`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._plugin_version = plugin_version
+        self._print_nanny_plugin_version = print_nanny_plugin_version
 
     @property
     def print_nanny_client_version(self):

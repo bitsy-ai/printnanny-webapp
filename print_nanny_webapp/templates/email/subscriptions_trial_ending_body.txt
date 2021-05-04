@@ -1,8 +1,0 @@
-Hey {{FIRST_NAME }},
-
-Your trial is ending!
-
-Consider upgrading to a paid subscription!
-
-Thanks,
-Print Nanny

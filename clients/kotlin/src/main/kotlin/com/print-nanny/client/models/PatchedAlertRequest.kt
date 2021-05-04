@@ -12,37 +12,31 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AlertMethodEnum
-import com.print-nanny.client.models.OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan
+import com.print-nanny.client.models.EventType92fEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
+ * @param octoprintDevice 
  * @param alertMethod 
  * @param eventType 
- * @param annotatedVideo 
  * @param seen 
  * @param sent 
- * @param printSession 
- * @param octoprintDevice 
  */
 
 data class PatchedAlertRequest (
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int? = null,
     @Json(name = "alert_method")
     val alertMethod: AlertMethodEnum? = null,
     @Json(name = "event_type")
-    val eventType: OneOfLessThanAlertEventTypeEnumCommaNullEnumGreaterThan? = null,
-    @Json(name = "annotated_video")
-    val annotatedVideo: java.io.File? = null,
+    val eventType: EventType92fEnum? = null,
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
     @Json(name = "sent")
-    val sent: kotlin.Boolean? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.Int? = null,
-    @Json(name = "octoprint_device")
-    val octoprintDevice: kotlin.Int? = null
+    val sent: kotlin.Boolean? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

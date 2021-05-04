@@ -41,9 +41,10 @@ class TestPrintSession(unittest.TestCase):
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 octoprint_device = 56, 
                 session = '', 
-                progress = {
-                    'key' : null
-                    }, 
+                filepos = -2147483648, 
+                print_progress = -2147483648, 
+                time_elapsed = -2147483648, 
+                time_remaining = -2147483648, 
                 status = 'monitoring_active', 
                 user = 56, 
                 printer_profile = 56, 

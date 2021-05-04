@@ -16,14 +16,42 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: `null`
+* Values: videoDone,printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted
 */
 
-enum class NullEnum(val value: kotlin.String){
+enum class EventType92fEnum(val value: kotlin.String){
 
 
-    @Json(name = "null")
-    `null`("null");
+    @Json(name = "VideoDone")
+    videoDone("VideoDone"),
+
+
+    @Json(name = "PrintHealth")
+    printHealth("PrintHealth"),
+
+
+    @Json(name = "PrintProgress")
+    printProgress("PrintProgress"),
+
+
+    @Json(name = "PrintDone")
+    printDone("PrintDone"),
+
+
+    @Json(name = "PrintFailed")
+    printFailed("PrintFailed"),
+
+
+    @Json(name = "PrintPaused")
+    printPaused("PrintPaused"),
+
+
+    @Json(name = "PrintResumed")
+    printResumed("PrintResumed"),
+
+
+    @Json(name = "PrintStarted")
+    printStarted("PrintStarted");
 
 
 

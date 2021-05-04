@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
 *MlOpsApi* | [**experimentsRetrieve**](docs/MlOpsApi.md#experimentsretrieve) | **GET** /api/experiments/{id}/ | 
 *MlOpsApi* | [**modelArtifactsList**](docs/MlOpsApi.md#modelartifactslist) | **GET** /api/model-artifacts/ | 
 *MlOpsApi* | [**modelArtifactsRetrieve**](docs/MlOpsApi.md#modelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
+*PartnersGeeks3Api* | [**alertsList2**](docs/PartnersGeeks3Api.md#alertslist2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 *PartnersGeeks3dApi* | [**metadataRetrieve**](docs/PartnersGeeks3dApi.md#metadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 *RemoteControlApi* | [**commandsList**](docs/RemoteControlApi.md#commandslist) | **GET** /api/commands/ | 
 *RemoteControlApi* | [**commandsPartialUpdate**](docs/RemoteControlApi.md#commandspartialupdate) | **PATCH** /api/commands/{id}/ | 
@@ -102,7 +103,6 @@ Class | Method | HTTP request | Description
 
  - [com.print-nanny.client.models.Alert](docs/Alert.md)
  - [com.print-nanny.client.models.AlertBulkResponse](docs/AlertBulkResponse.md)
- - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
  - [com.print-nanny.client.models.AlertMethodEnum](docs/AlertMethodEnum.md)
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
@@ -111,6 +111,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.EventType92fEnum](docs/EventType92fEnum.md)
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
@@ -118,7 +119,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
- - [com.print-nanny.client.models.NullEnum](docs/NullEnum.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [com.print-nanny.client.models.OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
@@ -141,6 +141,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedUserList](docs/PaginatedUserList.md)
+ - [com.print-nanny.client.models.PartnerAlert](docs/PartnerAlert.md)
  - [com.print-nanny.client.models.PartnerOctoPrintDevice](docs/PartnerOctoPrintDevice.md)
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)

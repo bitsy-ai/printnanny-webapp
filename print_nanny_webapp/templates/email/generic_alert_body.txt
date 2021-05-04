@@ -1,9 +1,17 @@
 Hey {{FIRST_NAME }},
 
-Just wanted to let you know {{ ALERT_TYPE }} 
+Status update for job running on {{ DEVICE_NAME }} 💜
 
-Click the link below to manage {{ DEVICE_NAME }}.
-{{ DEVICE_URL }}
+{% if GCODE_FILENAME %}📁 Filename - {{ GCODE_FILENAME }} {% endif %}
+🖨️ Printer: {{ DEVICE_NAME }}
+🔔 Event: {{ EVENT_TYPE }}
+{% if VIDEO_DASHBOARD_URL %}* Time elapsed - {{ TIME_ELAPSED }}
+📹 Check out the timelapse video: {{ VIDEO_DASHBOARD_URL }}
+{% else %}
+⌛ Progress - {{ PRINT_PROGRESS }}
+⌛ Time remaining - {{ TIME_REMAINING }}
+{% endif %}
+💜 Click to manage this printer: {{ DEVICE_URL }}
 
 Thanks,
 Print Nanny

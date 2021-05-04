@@ -33,50 +33,63 @@ class PatchedAlertRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'octoprint_device': 'int',
         'alert_method': 'AlertMethodEnum',
-        'event_type': 'OneOfAlertEventTypeEnumNullEnum',
-        'annotated_video': 'file',
+        'event_type': 'EventType92fEnum',
         'seen': 'bool',
-        'sent': 'bool',
-        'print_session': 'int',
-        'octoprint_device': 'int'
+        'sent': 'bool'
     }
 
     attribute_map = {
+        'octoprint_device': 'octoprint_device',
         'alert_method': 'alert_method',
         'event_type': 'event_type',
-        'annotated_video': 'annotated_video',
         'seen': 'seen',
-        'sent': 'sent',
-        'print_session': 'print_session',
-        'octoprint_device': 'octoprint_device'
+        'sent': 'sent'
     }
 
-    def __init__(self, alert_method=None, event_type=None, annotated_video=None, seen=None, sent=None, print_session=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, local_vars_configuration=None):  # noqa: E501
         """PatchedAlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._octoprint_device = None
         self._alert_method = None
         self._event_type = None
-        self._annotated_video = None
         self._seen = None
         self._sent = None
-        self._print_session = None
-        self._octoprint_device = None
         self.discriminator = None
 
+        self.octoprint_device = octoprint_device
         if alert_method is not None:
             self.alert_method = alert_method
         self.event_type = event_type
-        self.annotated_video = annotated_video
         if seen is not None:
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        self.print_session = print_session
-        self.octoprint_device = octoprint_device
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this PatchedAlertRequest.  # noqa: E501
+
+
+        :return: The octoprint_device of this PatchedAlertRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this PatchedAlertRequest.
+
+
+        :param octoprint_device: The octoprint_device of this PatchedAlertRequest.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def alert_method(self):
@@ -105,7 +118,7 @@ class PatchedAlertRequest(object):
 
 
         :return: The event_type of this PatchedAlertRequest.  # noqa: E501
-        :rtype: OneOfAlertEventTypeEnumNullEnum
+        :rtype: EventType92fEnum
         """
         return self._event_type
 
@@ -115,31 +128,10 @@ class PatchedAlertRequest(object):
 
 
         :param event_type: The event_type of this PatchedAlertRequest.  # noqa: E501
-        :type event_type: OneOfAlertEventTypeEnumNullEnum
+        :type event_type: EventType92fEnum
         """
 
         self._event_type = event_type
-
-    @property
-    def annotated_video(self):
-        """Gets the annotated_video of this PatchedAlertRequest.  # noqa: E501
-
-
-        :return: The annotated_video of this PatchedAlertRequest.  # noqa: E501
-        :rtype: file
-        """
-        return self._annotated_video
-
-    @annotated_video.setter
-    def annotated_video(self, annotated_video):
-        """Sets the annotated_video of this PatchedAlertRequest.
-
-
-        :param annotated_video: The annotated_video of this PatchedAlertRequest.  # noqa: E501
-        :type annotated_video: file
-        """
-
-        self._annotated_video = annotated_video
 
     @property
     def seen(self):
@@ -182,48 +174,6 @@ class PatchedAlertRequest(object):
         """
 
         self._sent = sent
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this PatchedAlertRequest.  # noqa: E501
-
-
-        :return: The print_session of this PatchedAlertRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this PatchedAlertRequest.
-
-
-        :param print_session: The print_session of this PatchedAlertRequest.  # noqa: E501
-        :type print_session: int
-        """
-
-        self._print_session = print_session
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this PatchedAlertRequest.  # noqa: E501
-
-
-        :return: The octoprint_device of this PatchedAlertRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this PatchedAlertRequest.
-
-
-        :param octoprint_device: The octoprint_device of this PatchedAlertRequest.  # noqa: E501
-        :type octoprint_device: int
-        """
-
-        self._octoprint_device = octoprint_device
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

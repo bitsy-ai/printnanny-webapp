@@ -42,7 +42,7 @@ def _upload_to(instance, filename):
 
 
 class AlertSettings(models.Model):
-    class EventType(models.TextChoices):
+    class AlertSettingsEventType(models.TextChoices):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
@@ -71,11 +71,11 @@ class AlertSettings(models.Model):
         default=(AlertMethod.EMAIL,),
     )
     event_types = ChoiceArrayField(
-        models.CharField(choices=EventType.choices, max_length=255),
+        models.CharField(choices=AlertSettingsEventType.choices, max_length=255),
         blank=True,
         default=(
-            EventType.PRINT_HEALTH,
-            EventType.PRINT_STATUS,
+            AlertSettingsEventType.PRINT_HEALTH,
+            AlertSettingsEventType.PRINT_STATUS,
         ),
     )
     discord_webhook = models.CharField(
@@ -90,37 +90,31 @@ class AlertSettings(models.Model):
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
     )
 
-    def on_print_progress(self, octoprint_event):
-        from print_nanny_webapp.alerts.api.serializers import AlertSerializer
-
-        progress = octoprint_event.event_data.get("event_data").get("progress")
-        if progress % self.on_progress_percent == 0:
-            serialized_obj = ProgressAlertSerializer(self)
-            return self.trigger_alerts_task(serialized_obj)
-
-
-class AlertEventTypes(models.TextChoices):
-    VIDEO_DONE = "VideoDone", "VideoDone"
-    PRINT_HEALTH = "PrintHealth", "PrintHealth"
-    PRINT_PROGRESS = "PrintProgress", "PrintProgress"
-    PRINT_DONE = "PrintDone", "PrintDone"
-    PRINT_FAILED = "PrintFailed", "PrintFailed"
-    PRINT_PAUSED = "PrintPaused", "PrintPaused"
-    PRINT_RESUMED = "PrintResumed", "PrintResumed"
-    PRINT_STARTED = "PrintStarted", "PrintStarted"
-
 
 class AlertMessage(models.Model):
     """
     Base class for alert events
     """
 
+    class AlertMessageType(models.TextChoices):
+        VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
+        PRINT_HEALTH = "PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"
+        PRINT_PROGRESS = (
+            "PrintProgress",
+            "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+        )
+        PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
         max_length=255,
     )
     event_type = models.CharField(
-        choices=AlertEventTypes.choices, max_length=255, null=True
+        choices=AlertMessageType.choices, max_length=255, null=True
     )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True
@@ -135,6 +129,7 @@ class AlertMessage(models.Model):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
+    needs_review = models.BooleanField(default=False)
 
 
 ##

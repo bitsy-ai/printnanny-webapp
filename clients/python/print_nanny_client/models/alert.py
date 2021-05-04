@@ -33,95 +33,86 @@ class Alert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
         'time': 'str',
+        'gcode_file': 'str',
+        'print_progress': 'str',
+        'time_elapsed': 'str',
+        'time_remaining': 'str',
+        'manage_device_url': 'str',
+        'user': 'int',
+        'octoprint_device': 'int',
         'alert_method': 'AlertMethodEnum',
-        'event_type': 'OneOfAlertEventTypeEnumNullEnum',
-        'annotated_video': 'str',
-        'created_dt': 'datetime',
-        'updated_dt': 'datetime',
+        'event_type': 'EventType92fEnum',
         'seen': 'bool',
         'sent': 'bool',
-        'print_session': 'int',
-        'user': 'int',
-        'octoprint_device': 'int'
+        'created_dt': 'datetime',
+        'updated_dt': 'datetime'
     }
 
     attribute_map = {
-        'id': 'id',
         'time': 'time',
+        'gcode_file': 'gcode_file',
+        'print_progress': 'print_progress',
+        'time_elapsed': 'time_elapsed',
+        'time_remaining': 'time_remaining',
+        'manage_device_url': 'manage_device_url',
+        'user': 'user',
+        'octoprint_device': 'octoprint_device',
         'alert_method': 'alert_method',
         'event_type': 'event_type',
-        'annotated_video': 'annotated_video',
-        'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt',
         'seen': 'seen',
         'sent': 'sent',
-        'print_session': 'print_session',
-        'user': 'user',
-        'octoprint_device': 'octoprint_device'
+        'created_dt': 'created_dt',
+        'updated_dt': 'updated_dt'
     }
 
-    def __init__(self, id=None, time=None, alert_method=None, event_type=None, annotated_video=None, created_dt=None, updated_dt=None, seen=None, sent=None, print_session=None, user=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._id = None
         self._time = None
-        self._alert_method = None
-        self._event_type = None
-        self._annotated_video = None
-        self._created_dt = None
-        self._updated_dt = None
-        self._seen = None
-        self._sent = None
-        self._print_session = None
+        self._gcode_file = None
+        self._print_progress = None
+        self._time_elapsed = None
+        self._time_remaining = None
+        self._manage_device_url = None
         self._user = None
         self._octoprint_device = None
+        self._alert_method = None
+        self._event_type = None
+        self._seen = None
+        self._sent = None
+        self._created_dt = None
+        self._updated_dt = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
         if time is not None:
             self.time = time
+        if gcode_file is not None:
+            self.gcode_file = gcode_file
+        if print_progress is not None:
+            self.print_progress = print_progress
+        if time_elapsed is not None:
+            self.time_elapsed = time_elapsed
+        if time_remaining is not None:
+            self.time_remaining = time_remaining
+        if manage_device_url is not None:
+            self.manage_device_url = manage_device_url
+        if user is not None:
+            self.user = user
+        self.octoprint_device = octoprint_device
         self.alert_method = alert_method
         self.event_type = event_type
-        self.annotated_video = annotated_video
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if updated_dt is not None:
-            self.updated_dt = updated_dt
         if seen is not None:
             self.seen = seen
         if sent is not None:
             self.sent = sent
-        self.print_session = print_session
-        if user is not None:
-            self.user = user
-        self.octoprint_device = octoprint_device
-
-    @property
-    def id(self):
-        """Gets the id of this Alert.  # noqa: E501
-
-
-        :return: The id of this Alert.  # noqa: E501
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this Alert.
-
-
-        :param id: The id of this Alert.  # noqa: E501
-        :type id: int
-        """
-
-        self._id = id
+        if created_dt is not None:
+            self.created_dt = created_dt
+        if updated_dt is not None:
+            self.updated_dt = updated_dt
 
     @property
     def time(self):
@@ -143,6 +134,153 @@ class Alert(object):
         """
 
         self._time = time
+
+    @property
+    def gcode_file(self):
+        """Gets the gcode_file of this Alert.  # noqa: E501
+
+
+        :return: The gcode_file of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._gcode_file
+
+    @gcode_file.setter
+    def gcode_file(self, gcode_file):
+        """Sets the gcode_file of this Alert.
+
+
+        :param gcode_file: The gcode_file of this Alert.  # noqa: E501
+        :type gcode_file: str
+        """
+
+        self._gcode_file = gcode_file
+
+    @property
+    def print_progress(self):
+        """Gets the print_progress of this Alert.  # noqa: E501
+
+
+        :return: The print_progress of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_progress
+
+    @print_progress.setter
+    def print_progress(self, print_progress):
+        """Sets the print_progress of this Alert.
+
+
+        :param print_progress: The print_progress of this Alert.  # noqa: E501
+        :type print_progress: str
+        """
+
+        self._print_progress = print_progress
+
+    @property
+    def time_elapsed(self):
+        """Gets the time_elapsed of this Alert.  # noqa: E501
+
+
+        :return: The time_elapsed of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._time_elapsed
+
+    @time_elapsed.setter
+    def time_elapsed(self, time_elapsed):
+        """Sets the time_elapsed of this Alert.
+
+
+        :param time_elapsed: The time_elapsed of this Alert.  # noqa: E501
+        :type time_elapsed: str
+        """
+
+        self._time_elapsed = time_elapsed
+
+    @property
+    def time_remaining(self):
+        """Gets the time_remaining of this Alert.  # noqa: E501
+
+
+        :return: The time_remaining of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._time_remaining
+
+    @time_remaining.setter
+    def time_remaining(self, time_remaining):
+        """Sets the time_remaining of this Alert.
+
+
+        :param time_remaining: The time_remaining of this Alert.  # noqa: E501
+        :type time_remaining: str
+        """
+
+        self._time_remaining = time_remaining
+
+    @property
+    def manage_device_url(self):
+        """Gets the manage_device_url of this Alert.  # noqa: E501
+
+
+        :return: The manage_device_url of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._manage_device_url
+
+    @manage_device_url.setter
+    def manage_device_url(self, manage_device_url):
+        """Sets the manage_device_url of this Alert.
+
+
+        :param manage_device_url: The manage_device_url of this Alert.  # noqa: E501
+        :type manage_device_url: str
+        """
+
+        self._manage_device_url = manage_device_url
+
+    @property
+    def user(self):
+        """Gets the user of this Alert.  # noqa: E501
+
+
+        :return: The user of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this Alert.
+
+
+        :param user: The user of this Alert.  # noqa: E501
+        :type user: int
+        """
+
+        self._user = user
+
+    @property
+    def octoprint_device(self):
+        """Gets the octoprint_device of this Alert.  # noqa: E501
+
+
+        :return: The octoprint_device of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._octoprint_device
+
+    @octoprint_device.setter
+    def octoprint_device(self, octoprint_device):
+        """Sets the octoprint_device of this Alert.
+
+
+        :param octoprint_device: The octoprint_device of this Alert.  # noqa: E501
+        :type octoprint_device: int
+        """
+
+        self._octoprint_device = octoprint_device
 
     @property
     def alert_method(self):
@@ -173,7 +311,7 @@ class Alert(object):
 
 
         :return: The event_type of this Alert.  # noqa: E501
-        :rtype: OneOfAlertEventTypeEnumNullEnum
+        :rtype: EventType92fEnum
         """
         return self._event_type
 
@@ -183,73 +321,10 @@ class Alert(object):
 
 
         :param event_type: The event_type of this Alert.  # noqa: E501
-        :type event_type: OneOfAlertEventTypeEnumNullEnum
+        :type event_type: EventType92fEnum
         """
 
         self._event_type = event_type
-
-    @property
-    def annotated_video(self):
-        """Gets the annotated_video of this Alert.  # noqa: E501
-
-
-        :return: The annotated_video of this Alert.  # noqa: E501
-        :rtype: str
-        """
-        return self._annotated_video
-
-    @annotated_video.setter
-    def annotated_video(self, annotated_video):
-        """Sets the annotated_video of this Alert.
-
-
-        :param annotated_video: The annotated_video of this Alert.  # noqa: E501
-        :type annotated_video: str
-        """
-
-        self._annotated_video = annotated_video
-
-    @property
-    def created_dt(self):
-        """Gets the created_dt of this Alert.  # noqa: E501
-
-
-        :return: The created_dt of this Alert.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._created_dt
-
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this Alert.
-
-
-        :param created_dt: The created_dt of this Alert.  # noqa: E501
-        :type created_dt: datetime
-        """
-
-        self._created_dt = created_dt
-
-    @property
-    def updated_dt(self):
-        """Gets the updated_dt of this Alert.  # noqa: E501
-
-
-        :return: The updated_dt of this Alert.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._updated_dt
-
-    @updated_dt.setter
-    def updated_dt(self, updated_dt):
-        """Sets the updated_dt of this Alert.
-
-
-        :param updated_dt: The updated_dt of this Alert.  # noqa: E501
-        :type updated_dt: datetime
-        """
-
-        self._updated_dt = updated_dt
 
     @property
     def seen(self):
@@ -294,67 +369,46 @@ class Alert(object):
         self._sent = sent
 
     @property
-    def print_session(self):
-        """Gets the print_session of this Alert.  # noqa: E501
+    def created_dt(self):
+        """Gets the created_dt of this Alert.  # noqa: E501
 
 
-        :return: The print_session of this Alert.  # noqa: E501
-        :rtype: int
+        :return: The created_dt of this Alert.  # noqa: E501
+        :rtype: datetime
         """
-        return self._print_session
+        return self._created_dt
 
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this Alert.
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this Alert.
 
 
-        :param print_session: The print_session of this Alert.  # noqa: E501
-        :type print_session: int
+        :param created_dt: The created_dt of this Alert.  # noqa: E501
+        :type created_dt: datetime
         """
 
-        self._print_session = print_session
+        self._created_dt = created_dt
 
     @property
-    def user(self):
-        """Gets the user of this Alert.  # noqa: E501
+    def updated_dt(self):
+        """Gets the updated_dt of this Alert.  # noqa: E501
 
 
-        :return: The user of this Alert.  # noqa: E501
-        :rtype: int
+        :return: The updated_dt of this Alert.  # noqa: E501
+        :rtype: datetime
         """
-        return self._user
+        return self._updated_dt
 
-    @user.setter
-    def user(self, user):
-        """Sets the user of this Alert.
-
-
-        :param user: The user of this Alert.  # noqa: E501
-        :type user: int
-        """
-
-        self._user = user
-
-    @property
-    def octoprint_device(self):
-        """Gets the octoprint_device of this Alert.  # noqa: E501
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this Alert.
 
 
-        :return: The octoprint_device of this Alert.  # noqa: E501
-        :rtype: int
-        """
-        return self._octoprint_device
-
-    @octoprint_device.setter
-    def octoprint_device(self, octoprint_device):
-        """Sets the octoprint_device of this Alert.
-
-
-        :param octoprint_device: The octoprint_device of this Alert.  # noqa: E501
-        :type octoprint_device: int
+        :param updated_dt: The updated_dt of this Alert.  # noqa: E501
+        :type updated_dt: datetime
         """
 
-        self._octoprint_device = octoprint_device
+        self._updated_dt = updated_dt
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

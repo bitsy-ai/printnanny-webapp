@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**plugin_version** | **str** |  | 
+**print_nanny_plugin_version** | **str** |  | [optional] [readonly] 
 **print_nanny_client_version** | **str** |  | 
 **verified** | **str** |  | [optional] [readonly] 
 

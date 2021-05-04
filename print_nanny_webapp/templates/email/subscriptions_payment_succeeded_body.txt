@@ -1,7 +1,0 @@
-Good news {{FIRST_NAME }},
-
-You're now officially subscribed, your payment was successful!
-Go yell it from the roofs!
-
-Thanks,
-Print Nanny
