@@ -21,7 +21,6 @@ import stringcase
 
 application = get_wsgi_application()
 from django.apps import apps
-from print_nanny_webapp.alerts.models import AlertEventTypes
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 from print_nanny_client.flatbuffers.alert import Alert
 from print_nanny_client.flatbuffers.alert.AlertEventTypeEnum import AlertEventTypeEnum
@@ -60,7 +59,7 @@ def on_alert_event(message):
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
                 user_id=user_id,
-                event_type=AlertEventTypes.VIDEO_DONE,
+                event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
                 octoprint_device_id=octoprint_device_id,
                 annotated_video=annotated_video,
                 print_session=print_session,

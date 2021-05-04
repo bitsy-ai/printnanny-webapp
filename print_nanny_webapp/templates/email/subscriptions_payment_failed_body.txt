@@ -1,8 +1,0 @@
-Hey {{FIRST_NAME }},
-
-There was some problem with your payment and it failed.
-
-Don't hesitate to ask as for help, we're there for you!
-
-Thanks,
-Print Nanny

@@ -1,8 +1,0 @@
-Hey {{FIRST_NAME }},
-
-Your subscription is about to expire!
-
-Consider prolonging your subscription, before it's too late!
-
-Thanks,
-Print Nanny

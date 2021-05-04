@@ -2,6 +2,8 @@ from typing import Optional, Union
 from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
+from django.template import engines
+
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
     PartnerAlertSerializer,
@@ -10,6 +12,7 @@ from print_nanny_webapp.partners.api.serializers import (
 from django.conf import settings
 from django.template.loader import render_to_string
 from anymail.message import AnymailMessage
+from django.template import Context, Template
 
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
@@ -93,12 +96,13 @@ class AlertTask:
             kwargs={"pk": self.instance.octoprint_device.id},
         )
         device_url = urljoin(settings.BASE_URL, device_url)
+
         merge_data = {
             "DEVICE_URL": device_url,
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
             "EVENT_TYPE": self.instance.event_type,
-            "GCODE_FILENAME": self.instance.print_session.gcode_file.name
+            "GCODE_FILENAME": self.instance.print_session.gcode_file
             
         }
         if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
@@ -112,6 +116,12 @@ class AlertTask:
                 "PRINT_PROGRESS": self.instance.print_session.print_progress,
                 "TIME_REMAINING": self.instance.print_session.time_remaining
             })
+
+        subject_end_template = Template(self.instance.get_event_type_display())
+        ctx = Context(merge_data)
+    
+        merge_data.update({"EMAIL_SUBJECT": subject_end_template.render(ctx)})
+
 
         text_body = render_to_string(self.email_body_txt_template, merge_data)
         subject = render_to_string(self.email_subject_template, merge_data)

@@ -1,7 +1,11 @@
 Hey {{FIRST_NAME }},
 
-Just wanted to let you know {{ ALERT_TYPE }} 
+Print Nanny here. Quick update on your print job:
 
+Filename: {{ GCODE_FILENAME }}
+Event: {{ EVENT_TYPE }}
+Device name {{ DEVICE_NAME }}
+Device url {{ DEVICE_URL }}
 Click the link below to manage {{ DEVICE_NAME }}.
 {{ DEVICE_URL }}
 
