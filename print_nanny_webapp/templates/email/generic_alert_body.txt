@@ -1,18 +1,17 @@
 Hey {{FIRST_NAME }},
 
 Quick update on your print job:
-
-{% if GCODE_FILENAME %}
-* Filename - {{ GCODE_FILENAME }} {% endif %}
+{% if GCODE_FILENAME %}* Filename - {{ GCODE_FILENAME }} {% endif %}
 * Printer - {{ DEVICE_NAME }}
 * Event - {{ EVENT_TYPE }}
 {% if VIDEO_DASHBOARD_URL %}
+* Time elapsed - {{ TIME_ELAPSED }}
 Check out the timelapse video: {{ VIDEO_DASHBOARD_URL }}
 {% else %}
 * Progress - {{ PRINT_PROGRESS }}
 * Time remaining - {{ TIME_REMAINING }}
-Click to manage this printer: {{ DEVICE_URL }}
 {% endif %}
+Click to manage this printer: {{ DEVICE_URL }}
 
 Thanks,
 Print Nanny

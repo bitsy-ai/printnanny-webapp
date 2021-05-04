@@ -77,13 +77,16 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
     
+    time_elapsed = serializers.SerializerMethodField()
+    def get_time_elapsed(self, obj):
+        if obj.print_session and obj.print_session.time_elapsed:
+            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_elapsed))
+    
     time_remaining = serializers.SerializerMethodField()
     def get_time_remaining(self, obj):
-
         if obj.print_session and obj.print_session.time_remaining:
-            now = timezone.now()
-            remaining = now + obj.print_session.time_remainiing
-            return naturaltime(remaining)
+            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_remaining))
+
     
     manage_device_url = serializers.SerializerMethodField()
     def get_manage_device_url(self, obj):
@@ -104,6 +107,7 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
             "time",
             "token",
             "time_remaining",
+            "time_elapsed",
             "progress",
             "gcode_file"
         )

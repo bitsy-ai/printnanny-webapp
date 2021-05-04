@@ -59,7 +59,7 @@ class AlertTask:
         return False
 
     def get_serializer(self) -> Union[AlertSerializer, PartnerAlertSerializer]:
-        if self.instance.alert_method in PartnersEnum:
+        if self.instance.alert_method in PartnersEnum._value2member_map_:
             return self.partner_serializer(self.instance)
         return self.serializer(self.instance)
     
@@ -96,6 +96,8 @@ class AlertTask:
             kwargs={"pk": self.instance.octoprint_device.id},
         )
         device_url = urljoin(settings.BASE_URL, device_url)
+        serializer = self.get_serializer()
+        data = serializer.data
 
         merge_data = {
             "DEVICE_URL": device_url,
@@ -110,11 +112,14 @@ class AlertTask:
                 "dashboard:videos:list"
             )
             videos_url = urljoin(settings.BASE_URL, videos_url)
-            merge_data.update({"VIDEO_DASHBOARD_URL": videos_url })
+            merge_data.update({
+                "VIDEO_DASHBOARD_URL": videos_url,
+                "TIME_ELAPSED": data["time_elapsed"]
+            })
         else:
             merge_data.update({
-                "PRINT_PROGRESS": self.instance.print_session.print_progress,
-                "TIME_REMAINING": self.instance.print_session.time_remaining
+                "PRINT_PROGRESS": data["print_progress"],
+                "TIME_REMAINING": data["time_remaining"]
             })
 
         subject_end_template = Template(self.instance.get_event_type_display())
