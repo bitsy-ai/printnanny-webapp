@@ -1,1 +1,1 @@
-🔔 [{{DEVICE_NAME}}] {{ EMAIL_SUBJECT_TEMPLATE }}
+🔔 [{{DEVICE_NAME}}] {{ EMAIL_SUBJECT }}

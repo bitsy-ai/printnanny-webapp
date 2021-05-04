@@ -1,13 +1,18 @@
 Hey {{FIRST_NAME }},
 
-Print Nanny here. Quick update on your print job:
+Quick update on your print job:
 
-Filename: {{ GCODE_FILENAME }}
-Event: {{ EVENT_TYPE }}
-Device name {{ DEVICE_NAME }}
-Device url {{ DEVICE_URL }}
-Click the link below to manage {{ DEVICE_NAME }}.
-{{ DEVICE_URL }}
+{% if GCODE_FILENAME %}
+* Filename - {{ GCODE_FILENAME }} {% endif %}
+* Printer - {{ DEVICE_NAME }}
+* Event - {{ EVENT_TYPE }}
+{% if VIDEO_DASHBOARD_URL %}
+Check out the timelapse video: {{ VIDEO_DASHBOARD_URL }}
+{% else %}
+* Progress - {{ PRINT_PROGRESS }}
+* Time remaining - {{ TIME_REMAINING }}
+Click to manage this printer: {{ DEVICE_URL }}
+{% endif %}
 
 Thanks,
 Print Nanny

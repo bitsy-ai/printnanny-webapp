@@ -125,6 +125,7 @@ class AlertMessage(models.Model):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
+    needs_review = models.BooleanField(default=False)
 
 ##
 # @ todo re-enable ManualVideoUpload feature
