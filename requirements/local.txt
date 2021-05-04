@@ -211,6 +211,8 @@ django-extensions==3.0.9
     # via -r requirements/local.txt
 django-filter==2.4.0
     # via -r requirements/local.txt
+django-flags==5.0.5
+    # via -r requirements/local.txt
 django-health-check==3.16.2
     # via -r requirements/local.txt
 django-invitations==1.9.3
@@ -248,6 +250,7 @@ django==3.1.7
     #   django-celery-beat
     #   django-debug-toolbar
     #   django-filter
+    #   django-flags
     #   django-health-check
     #   django-model-utils
     #   django-polymorphic
