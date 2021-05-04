@@ -1,4 +1,4 @@
-# EventType92fEnum
+# EventTypeEddEnum
 
 ## Properties
 Name | Type | Description | Notes

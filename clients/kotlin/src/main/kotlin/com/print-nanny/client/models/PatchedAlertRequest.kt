@@ -12,7 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AlertMethodEnum
-import com.print-nanny.client.models.EventType92fEnum
+import com.print-nanny.client.models.EventTypeEddEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,7 +32,7 @@ data class PatchedAlertRequest (
     @Json(name = "alert_method")
     val alertMethod: AlertMethodEnum? = null,
     @Json(name = "event_type")
-    val eventType: EventType92fEnum? = null,
+    val eventType: EventTypeEddEnum? = null,
     @Json(name = "seen")
     val seen: kotlin.Boolean? = null,
     @Json(name = "sent")

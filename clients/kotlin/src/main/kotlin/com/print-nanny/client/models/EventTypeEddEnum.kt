@@ -16,10 +16,14 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: videoDone,printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted
+* Values: test,videoDone,printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted
 */
 
-enum class EventType92fEnum(val value: kotlin.String){
+enum class EventTypeEddEnum(val value: kotlin.String){
+
+
+    @Json(name = "Test")
+    test("Test"),
 
 
     @Json(name = "VideoDone")

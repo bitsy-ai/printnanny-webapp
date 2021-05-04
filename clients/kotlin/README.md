@@ -111,7 +111,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
- - [com.print-nanny.client.models.EventType92fEnum](docs/EventType92fEnum.md)
+ - [com.print-nanny.client.models.EventTypeEddEnum](docs/EventTypeEddEnum.md)
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
