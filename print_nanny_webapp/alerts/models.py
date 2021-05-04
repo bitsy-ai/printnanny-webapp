@@ -95,10 +95,14 @@ class AlertMessage(models.Model):
     """
     Base class for alert events
     """
+
     class AlertMessageType(models.TextChoices):
         VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
         PRINT_HEALTH = "PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"
-        PRINT_PROGRESS = "PrintProgress", "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳"
+        PRINT_PROGRESS = (
+            "PrintProgress",
+            "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+        )
         PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
         PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
         PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
@@ -126,6 +130,7 @@ class AlertMessage(models.Model):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
     needs_review = models.BooleanField(default=False)
+
 
 ##
 # @ todo re-enable ManualVideoUpload feature

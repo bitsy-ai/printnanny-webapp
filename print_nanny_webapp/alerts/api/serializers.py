@@ -1,6 +1,6 @@
 import logging
 import inspect
-import time 
+import time
 
 from django.utils import timezone
 from django.apps import apps
@@ -23,6 +23,7 @@ class AlertSerializer(serializers.ModelSerializer):
         return naturaltime(obj.updated_dt)
 
     gcode_file = serializers.SerializerMethodField()
+
     def get_gcode_file(self, obj):
         if obj.print_session:
             return obj.print_session.gcode_file
@@ -30,23 +31,30 @@ class AlertSerializer(serializers.ModelSerializer):
             return None
 
     print_progress = serializers.SerializerMethodField()
+
     def get_print_progress(self, obj):
         if obj.print_session:
             return obj.print_session.print_progress
-    
+
     time_elapsed = serializers.SerializerMethodField()
+
     def get_time_elapsed(self, obj):
         if obj.print_session and obj.print_session.time_elapsed:
-            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_elapsed))
-    
+            return time.strftime(
+                "%H:%M:%S", time.gmtime(obj.print_session.time_elapsed)
+            )
+
     time_remaining = serializers.SerializerMethodField()
+
     def get_time_remaining(self, obj):
 
         if obj.print_session and obj.print_session.time_remaining:
-            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_remaining))
+            return time.strftime(
+                "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
+            )
 
-    
     manage_device_url = serializers.SerializerMethodField()
+
     def get_manage_device_url(self, obj):
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
@@ -57,8 +65,8 @@ class AlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
         fields = [
-            "time", 
-            "gcode_file", 
+            "time",
+            "gcode_file",
             "print_progress",
             "time_elapsed",
             "time_remaining",
@@ -70,7 +78,7 @@ class AlertSerializer(serializers.ModelSerializer):
             "seen",
             "sent",
             "created_dt",
-            "updated_dt"
+            "updated_dt",
         ]
         read_only_fields = ("user",)
 

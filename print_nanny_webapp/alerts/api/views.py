@@ -43,7 +43,7 @@ class AlreadyExists(APIException):
 
 @extend_schema_view(
     tags=["alerts"],
-    request= AlertSerializer,
+    request=AlertSerializer,
     responses={
         200: AlertSerializer,
         201: AlertSerializer,

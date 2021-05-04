@@ -42,16 +42,20 @@ def handle_print_progress(octoprint_event):
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
         print_session = PrintSession.objects.get(session=print_session).update(
-            progress = progress,
-            filepos = octoprint_event.get("filepos"),
-            time_elapsed = octoprint_event.get("time_elapsed"),
-            time_remaining = octoprint_event.get("time_remaining")
+            progress=progress,
+            filepos=octoprint_event.get("filepos"),
+            time_elapsed=octoprint_event.get("time_elapsed"),
+            time_remaining=octoprint_event.get("time_remaining"),
         )
 
-    if progress % self.on_progress_percent == 0 and progress != 100: # PrintDone / VideoDone events capture the case where a print is 100% complete
+    if (
+        progress % self.on_progress_percent == 0 and progress != 100
+    ):  # PrintDone / VideoDone events capture the case where a print is 100% complete
         # @TODO write octoprint_event serializer
-        print_session = octoprint_event.get('metadata', {}).get('print_session')
-        octoprint_device = octoprint_event.get('metadata', {}).get('octoprint_device_id')
+        print_session = octoprint_event.get("metadata", {}).get("print_session")
+        octoprint_device = octoprint_event.get("metadata", {}).get(
+            "octoprint_device_id"
+        )
         for alert_method in self.alert_methods:
             alert_message = AlertMessage(
                 alert_method=alert_method,
@@ -59,19 +63,17 @@ def handle_print_progress(octoprint_event):
                 extra_data=octoprint_event,
                 print_session=print_session,
                 user=self.user,
-                octoprint_device=octoprint_device_id
+                octoprint_device=octoprint_device_id,
             )
             task = PrintStatusAlertTask(alert_message)
             task.trigger_alert()
-        
 
 
 def handle_print_status(octoprint_event):
     """
-        Exclude PrintDone if monitoring is active (video render will duplicate alert)
+    Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
     pass
-
 
 
 HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}

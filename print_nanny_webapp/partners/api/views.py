@@ -14,6 +14,7 @@ GeeksToken = apps.get_model("partners", "GeeksToken")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 AlertsMessage = apps.get_model("alerts", "AlertMessage")
 
+
 class GeeksViewSet(ViewSet):
     """
     3D Geeks calls this endpoint to validate token & fetch printer metadata
@@ -39,14 +40,14 @@ class GeeksViewSet(ViewSet):
     @extend_schema(
         tags=["partners.geeks3"],
         operation_id="alerts_list",
-        responses={
-            200: PartnerAlertSerializer
-        }
+        responses={200: PartnerAlertSerializer},
     )
     @action(detail=True, methods=["GET"])
     def alerts(self, request, pk=None):
         queryset = GeeksToken.objects.all()
         token = get_object_or_404(queryset, pk=pk)
-        alerts = AlertsMessage.objects.filter(octoprint_device_id=token.octoprint_device_id)
+        alerts = AlertsMessage.objects.filter(
+            octoprint_device_id=token.octoprint_device_id
+        )
         serializer = PartnerAlertSerializer(alerts, many=True)
         return Response(serializer.data)

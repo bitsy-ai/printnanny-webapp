@@ -301,9 +301,7 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
         if alert_id is not None and needs_review is not None:
             # python, i love you, but i'm breaking up with your type system
             needs_review = bool(int(needs_review))
-            Alert.objects.filter(id=alert_id).update(
-                needs_review=needs_review
-            )
+            Alert.objects.filter(id=alert_id).update(needs_review=needs_review)
 
         return redirect(reverse("dashboard:videos:list"))
 
@@ -312,8 +310,7 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
 
         context["user"] = self.request.user
         alerts = Alert.objects.filter(
-            user=self.request.user,
-            event_type=Alert.AlertMessageType.VIDEO_DONE
+            user=self.request.user, event_type=Alert.AlertMessageType.VIDEO_DONE
         ).order_by("-created_dt")
         context["alerts"] = alerts
         try:

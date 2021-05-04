@@ -18,6 +18,7 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
+
 class AlertTask:
     """
     Serializes Alert instance to JSON payload
@@ -25,14 +26,14 @@ class AlertTask:
     """
 
     def __init__(
-            self, 
-            instance: AlertMessage, 
-            email_body_txt_template: str="email/generic_alert_body.txt", 
-            email_body_html_template: Optional[str]=None,
-            email_subject_template: str="email/generic_alert_subject.txt",
-            serializer=AlertSerializer,
-            partner_serializer=PartnerAlertSerializer
-        ):
+        self,
+        instance: AlertMessage,
+        email_body_txt_template: str = "email/generic_alert_body.txt",
+        email_body_html_template: Optional[str] = None,
+        email_subject_template: str = "email/generic_alert_subject.txt",
+        serializer=AlertSerializer,
+        partner_serializer=PartnerAlertSerializer,
+    ):
         self.instance = instance
         self.email_body_txt_template = email_body_txt_template
         self.email_body_html_template = email_body_html_template
@@ -62,12 +63,16 @@ class AlertTask:
         if self.instance.alert_method in PartnersEnum._value2member_map_:
             return self.partner_serializer(self.instance)
         return self.serializer(self.instance)
-    
+
     def trigger_geeks3d_alert(self):
         serializer = self.get_serializer()
         data = serializer.data
-        data['token'] = GeeksToken.get(octoprint_device_id=self.instance.octoprint_device_id)
-        return requests.post(settings.PARTNERS_3DGEEKS_SETTINGS['alerts_push'], json=data)
+        data["token"] = GeeksToken.get(
+            octoprint_device_id=self.instance.octoprint_device_id
+        )
+        return requests.post(
+            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data
+        )
 
     def trigger_ui_alert(self):
         serializer = self.get_serializer()
@@ -104,29 +109,29 @@ class AlertTask:
             "FIRST_NAME": self.instance.user.first_name or "Maker",
             "DEVICE_NAME": self.instance.octoprint_device.name,
             "EVENT_TYPE": self.instance.event_type,
-            "GCODE_FILENAME": self.instance.print_session.gcode_file
-            
+            "GCODE_FILENAME": self.instance.print_session.gcode_file,
         }
         if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
-            videos_url = reverse(
-                "dashboard:videos:list"
-            )
+            videos_url = reverse("dashboard:videos:list")
             videos_url = urljoin(settings.BASE_URL, videos_url)
-            merge_data.update({
-                "VIDEO_DASHBOARD_URL": videos_url,
-                "TIME_ELAPSED": data["time_elapsed"]
-            })
+            merge_data.update(
+                {
+                    "VIDEO_DASHBOARD_URL": videos_url,
+                    "TIME_ELAPSED": data["time_elapsed"],
+                }
+            )
         else:
-            merge_data.update({
-                "PRINT_PROGRESS": data["print_progress"],
-                "TIME_REMAINING": data["time_remaining"]
-            })
+            merge_data.update(
+                {
+                    "PRINT_PROGRESS": data["print_progress"],
+                    "TIME_REMAINING": data["time_remaining"],
+                }
+            )
 
         subject_end_template = Template(self.instance.get_event_type_display())
         ctx = Context(merge_data)
-    
-        merge_data.update({"EMAIL_SUBJECT": subject_end_template.render(ctx)})
 
+        merge_data.update({"EMAIL_SUBJECT": subject_end_template.render(ctx)})
 
         text_body = render_to_string(self.email_body_txt_template, merge_data)
         subject = render_to_string(self.email_subject_template, merge_data)
@@ -147,4 +152,3 @@ class AlertTask:
 
     def trigger_discord_alert(self):
         raise NotImplementedError
-

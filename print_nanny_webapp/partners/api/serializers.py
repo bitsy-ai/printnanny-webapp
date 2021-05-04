@@ -34,11 +34,15 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
     """
 
     verified = serializers.SerializerMethodField()
+
     def get_verified(self, obj):
         return obj.geekstoken_set.first().verified
+
     print_nanny_plugin_version = serializers.SerializerMethodField()
+
     def get_print_nanny_plugin_version(self, obj):
         return obj.plugin_version
+
     class Meta:
         model = OctoPrintDevice
         fields = (
@@ -61,6 +65,7 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
         return naturaltime(obj.created_dt)
 
     gcode_file = serializers.SerializerMethodField()
+
     def get_gcode_file(self, obj):
         if obj.print_session:
             return obj.print_session.gcode_file
@@ -68,27 +73,35 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
             return None
 
     progress = serializers.SerializerMethodField()
+
     def get_progress(self, obj):
         if obj.print_session:
             return obj.print_session.progress
-    
+
     token = serializers.SerializerMethodField()
+
     def get_token(self, obj):
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
-    
+
     time_elapsed = serializers.SerializerMethodField()
+
     def get_time_elapsed(self, obj):
         if obj.print_session and obj.print_session.time_elapsed:
-            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_elapsed))
-    
+            return time.strftime(
+                "%H:%M:%S", time.gmtime(obj.print_session.time_elapsed)
+            )
+
     time_remaining = serializers.SerializerMethodField()
+
     def get_time_remaining(self, obj):
         if obj.print_session and obj.print_session.time_remaining:
-            return  time.strftime('%H:%M:%S', time.gmtime(obj.print_session.time_remaining))
+            return time.strftime(
+                "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
+            )
 
-    
     manage_device_url = serializers.SerializerMethodField()
+
     def get_manage_device_url(self, obj):
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
@@ -99,9 +112,9 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlertMessage
         fields = (
-            "event_type", 
-            "seen", 
-            "sent", 
+            "event_type",
+            "seen",
+            "sent",
             "octoprint_device",
             "manage_device_url",
             "time",
@@ -109,5 +122,5 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
             "time_remaining",
             "time_elapsed",
             "progress",
-            "gcode_file"
+            "gcode_file",
         )
