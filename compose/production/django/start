@@ -22,6 +22,9 @@ else:
 END
 }
 
+python manage.py migrate
+
+
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled
 #   python /app/manage.py compress
