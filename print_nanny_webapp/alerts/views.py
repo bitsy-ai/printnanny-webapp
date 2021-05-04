@@ -1,6 +1,7 @@
 import logging
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.dashboard.views import DashboardView
@@ -12,13 +13,17 @@ from channels.layers import get_channel_layer
 
 from .models import (
     AlertSettings,
+    AlertMessage
 )
+
+from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
 logger = logging.getLogger(__name__)
 
 from print_nanny_webapp.alerts.forms import (
     AlertSettingsForm,
     AlertMethodSettingsForm,
+    AlertTestForm
 )
 
 
@@ -28,8 +33,24 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     form_classes = {
         "event_settings": AlertSettingsForm,
         "alert_methods": AlertMethodSettingsForm,
+        "test_alert": AlertTestForm
     }
     template_name = "alerts/settings.html"
+
+    def test_alert_form_valid(self, *args, **kwargs):
+        instance, created = AlertSettings.objects.get_or_create(
+            user=self.request.user,
+        )
+        for alert_method in instance.alert_methods:
+            alert_message = AlertMessage(
+                alert_method=alert_method,
+                event_type=AlertMessage.AlertMessageType.TEST,
+                user=instance.user,
+            )
+            task = AlertTask(alert_message)
+            task.trigger_alert()     
+        messages.success(self.request, 'Test alert was sent! Check your inbox.')
+        return HttpResponseRedirect(self.request.path_info)
 
     def create_alert_methods_form(self, **kwargs):
         instance, created = AlertSettings.objects.get_or_create(

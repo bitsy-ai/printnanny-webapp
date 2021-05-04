@@ -1,10 +1,13 @@
 from enum import unique
 from print_nanny_webapp.utils import fields
 from print_nanny_webapp.partners.models import GeeksToken
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 from django.forms import modelformset_factory
 from .models import AlertSettings
 
+
+class AlertTestForm(Form):
+    pass
 
 class AlertSettingsForm(ModelForm):
     class Meta:

@@ -3,11 +3,10 @@ Hey {{FIRST_NAME }},
 Status update for job running on {{ DEVICE_NAME }} 💜
 
 {% if GCODE_FILENAME %}📁 Filename - {{ GCODE_FILENAME }} {% endif %}
-🖨️ Printer: {{ DEVICE_NAME }}
-🔔 Event: {{ EVENT_TYPE }}
+🖨️ Printer - {{ DEVICE_NAME }}
+🔔 Event - {{ EVENT_TYPE }}
 {% if VIDEO_DASHBOARD_URL %}* Time elapsed - {{ TIME_ELAPSED }}
-📹 Check out the timelapse video: {{ VIDEO_DASHBOARD_URL }}
-{% else %}
+📹 Check out the timelapse video - {{ VIDEO_DASHBOARD_URL }}{% else %}
 ⌛ Progress - {{ PRINT_PROGRESS }}
 ⌛ Time remaining - {{ TIME_REMAINING }}
 {% endif %}

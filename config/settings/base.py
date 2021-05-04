@@ -569,3 +569,14 @@ FLAGS = {
 PARTNERS_3DGEEKS_SETTINGS = {
     'alerts_push': 'https://qx8eve27wk.execute-api.eu-west-2.amazonaws.com/prod/printnanny_push'
 }
+
+# messages
+# ------------------------------------------------------------------------------
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
