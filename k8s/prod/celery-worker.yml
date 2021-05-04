@@ -26,6 +26,10 @@ spec:
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: celery-worker
+        volumeMounts:
+        - name: webapp-service-account
+          mountPath: /etc/service-account
+          readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
@@ -46,3 +50,7 @@ spec:
           runAsNonRoot: true
         ports:
           - containerPort: 5432
+      volumes:
+        - name: webapp-service-account
+          secret:
+            secretName: webapp-service-account
