@@ -35,4 +35,4 @@ jobs:
       - name: Run linter
         run: |
           source .venv/bin/activate
-          make black
+          make lint
