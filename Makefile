@@ -93,7 +93,7 @@ local-clean:
 		print_nanny_webapp_local_prometheus_data
 
 local-build:
-	docker-compose -f local.yml build
+	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
 
 local-up:
 	. .envs/.sandbox/.env && PROJECT=$(PROJECT) \
