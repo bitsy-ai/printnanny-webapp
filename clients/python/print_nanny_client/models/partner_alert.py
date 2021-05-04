@@ -41,6 +41,7 @@ class PartnerAlert(object):
         'time': 'str',
         'token': 'str',
         'time_remaining': 'str',
+        'time_elapsed': 'str',
         'progress': 'str',
         'gcode_file': 'str'
     }
@@ -54,11 +55,12 @@ class PartnerAlert(object):
         'time': 'time',
         'token': 'token',
         'time_remaining': 'time_remaining',
+        'time_elapsed': 'time_elapsed',
         'progress': 'progress',
         'gcode_file': 'gcode_file'
     }
 
-    def __init__(self, event_type=None, seen=None, sent=None, octoprint_device=None, manage_device_url=None, time=None, token=None, time_remaining=None, progress=None, gcode_file=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, seen=None, sent=None, octoprint_device=None, manage_device_url=None, time=None, token=None, time_remaining=None, time_elapsed=None, progress=None, gcode_file=None, local_vars_configuration=None):  # noqa: E501
         """PartnerAlert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -72,6 +74,7 @@ class PartnerAlert(object):
         self._time = None
         self._token = None
         self._time_remaining = None
+        self._time_elapsed = None
         self._progress = None
         self._gcode_file = None
         self.discriminator = None
@@ -90,6 +93,8 @@ class PartnerAlert(object):
             self.token = token
         if time_remaining is not None:
             self.time_remaining = time_remaining
+        if time_elapsed is not None:
+            self.time_elapsed = time_elapsed
         if progress is not None:
             self.progress = progress
         if gcode_file is not None:
@@ -264,6 +269,27 @@ class PartnerAlert(object):
         """
 
         self._time_remaining = time_remaining
+
+    @property
+    def time_elapsed(self):
+        """Gets the time_elapsed of this PartnerAlert.  # noqa: E501
+
+
+        :return: The time_elapsed of this PartnerAlert.  # noqa: E501
+        :rtype: str
+        """
+        return self._time_elapsed
+
+    @time_elapsed.setter
+    def time_elapsed(self, time_elapsed):
+        """Sets the time_elapsed of this PartnerAlert.
+
+
+        :param time_elapsed: The time_elapsed of this PartnerAlert.  # noqa: E501
+        :type time_elapsed: str
+        """
+
+        self._time_elapsed = time_elapsed
 
     @property
     def progress(self):

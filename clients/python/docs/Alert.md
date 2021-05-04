@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **time** | **str** |  | [optional] [readonly] 
 **gcode_file** | **str** |  | [optional] [readonly] 
 **print_progress** | **str** |  | [optional] [readonly] 
+**time_elapsed** | **str** |  | [optional] [readonly] 
 **time_remaining** | **str** |  | [optional] [readonly] 
 **manage_device_url** | **str** |  | [optional] [readonly] 
 **user** | **int** |  | [optional] [readonly] 

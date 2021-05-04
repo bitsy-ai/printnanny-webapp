@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **time** | **str** |  | [optional] [readonly] 
 **token** | **str** |  | [optional] [readonly] 
 **time_remaining** | **str** |  | [optional] [readonly] 
+**time_elapsed** | **str** |  | [optional] [readonly] 
 **progress** | **str** |  | [optional] [readonly] 
 **gcode_file** | **str** |  | [optional] [readonly] 
 

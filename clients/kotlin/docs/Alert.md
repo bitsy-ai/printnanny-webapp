@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **time** | **kotlin.String** |  |  [optional] [readonly]
 **gcodeFile** | **kotlin.String** |  |  [optional] [readonly]
 **printProgress** | **kotlin.String** |  |  [optional] [readonly]
+**timeElapsed** | **kotlin.String** |  |  [optional] [readonly]
 **timeRemaining** | **kotlin.String** |  |  [optional] [readonly]
 **manageDeviceUrl** | **kotlin.String** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]

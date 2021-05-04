@@ -51,6 +51,7 @@ class TestPartnerAlert(unittest.TestCase):
                 time = '', 
                 token = '', 
                 time_remaining = '', 
+                time_elapsed = '', 
                 progress = '', 
                 gcode_file = ''
             )

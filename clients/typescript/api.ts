@@ -48,6 +48,12 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
+    time_elapsed?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
     time_remaining?: string;
     /**
      * 
@@ -1892,6 +1898,12 @@ export interface PartnerAlert {
      * @memberof PartnerAlert
      */
     time_remaining?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartnerAlert
+     */
+    time_elapsed?: string;
     /**
      * 
      * @type {string}

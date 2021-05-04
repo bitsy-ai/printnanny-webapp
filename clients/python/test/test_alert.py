@@ -39,6 +39,7 @@ class TestAlert(unittest.TestCase):
                 time = '', 
                 gcode_file = '', 
                 print_progress = '', 
+                time_elapsed = '', 
                 time_remaining = '', 
                 manage_device_url = '', 
                 user = 56, 

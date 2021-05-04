@@ -23,6 +23,7 @@ import java.io.Serializable
  * @param time 
  * @param gcodeFile 
  * @param printProgress 
+ * @param timeElapsed 
  * @param timeRemaining 
  * @param manageDeviceUrl 
  * @param user 
@@ -43,6 +44,8 @@ data class Alert (
     val gcodeFile: kotlin.String? = null,
     @Json(name = "print_progress")
     val printProgress: kotlin.String? = null,
+    @Json(name = "time_elapsed")
+    val timeElapsed: kotlin.String? = null,
     @Json(name = "time_remaining")
     val timeRemaining: kotlin.String? = null,
     @Json(name = "manage_device_url")

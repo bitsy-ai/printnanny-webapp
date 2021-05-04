@@ -36,6 +36,7 @@ class Alert(object):
         'time': 'str',
         'gcode_file': 'str',
         'print_progress': 'str',
+        'time_elapsed': 'str',
         'time_remaining': 'str',
         'manage_device_url': 'str',
         'user': 'int',
@@ -52,6 +53,7 @@ class Alert(object):
         'time': 'time',
         'gcode_file': 'gcode_file',
         'print_progress': 'print_progress',
+        'time_elapsed': 'time_elapsed',
         'time_remaining': 'time_remaining',
         'manage_device_url': 'manage_device_url',
         'user': 'user',
@@ -64,7 +66,7 @@ class Alert(object):
         'updated_dt': 'updated_dt'
     }
 
-    def __init__(self, time=None, gcode_file=None, print_progress=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -73,6 +75,7 @@ class Alert(object):
         self._time = None
         self._gcode_file = None
         self._print_progress = None
+        self._time_elapsed = None
         self._time_remaining = None
         self._manage_device_url = None
         self._user = None
@@ -91,6 +94,8 @@ class Alert(object):
             self.gcode_file = gcode_file
         if print_progress is not None:
             self.print_progress = print_progress
+        if time_elapsed is not None:
+            self.time_elapsed = time_elapsed
         if time_remaining is not None:
             self.time_remaining = time_remaining
         if manage_device_url is not None:
@@ -171,6 +176,27 @@ class Alert(object):
         """
 
         self._print_progress = print_progress
+
+    @property
+    def time_elapsed(self):
+        """Gets the time_elapsed of this Alert.  # noqa: E501
+
+
+        :return: The time_elapsed of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._time_elapsed
+
+    @time_elapsed.setter
+    def time_elapsed(self, time_elapsed):
+        """Sets the time_elapsed of this Alert.
+
+
+        :param time_elapsed: The time_elapsed of this Alert.  # noqa: E501
+        :type time_elapsed: str
+        """
+
+        self._time_elapsed = time_elapsed
 
     @property
     def time_remaining(self):

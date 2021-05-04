@@ -27,6 +27,7 @@ import java.io.Serializable
  * @param time 
  * @param token 
  * @param timeRemaining 
+ * @param timeElapsed 
  * @param progress 
  * @param gcodeFile 
  */
@@ -48,6 +49,8 @@ data class PartnerAlert (
     val token: kotlin.String? = null,
     @Json(name = "time_remaining")
     val timeRemaining: kotlin.String? = null,
+    @Json(name = "time_elapsed")
+    val timeElapsed: kotlin.String? = null,
     @Json(name = "progress")
     val progress: kotlin.String? = null,
     @Json(name = "gcode_file")
