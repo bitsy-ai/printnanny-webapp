@@ -45,7 +45,7 @@ class AlertSerializer(serializers.ModelSerializer):
     def get_manage_device_url(self, obj):
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.octoprint_device.id},
+            kwargs={"pk": obj.octoprint_device.id},
         )
         return device_url
 
