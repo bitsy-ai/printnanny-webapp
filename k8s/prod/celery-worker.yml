@@ -28,7 +28,7 @@ spec:
             value: celery-worker
         volumeMounts:
         - name: webapp-service-account
-          mountPath: /etc/service-account/print-nanny-f296cdb68802.json
+          mountPath: /etc/service-account
           readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
