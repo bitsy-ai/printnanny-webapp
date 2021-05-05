@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.event_type_edd_enum import EventTypeEddEnum  # noqa: E501
+from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestEventTypeEddEnum(unittest.TestCase):
-    """EventTypeEddEnum unit test stubs"""
+class TestAlertEventTypeEnum(unittest.TestCase):
+    """AlertEventTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestEventTypeEddEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test EventTypeEddEnum
+        """Test AlertEventTypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.event_type_edd_enum.EventTypeEddEnum()  # noqa: E501
+        # model = print_nanny_client.models.alert_event_type_enum.AlertEventTypeEnum()  # noqa: E501
         if include_optional :
-            return EventTypeEddEnum(
+            return AlertEventTypeEnum(
             )
         else :
-            return EventTypeEddEnum(
+            return AlertEventTypeEnum(
         )
 
-    def testEventTypeEddEnum(self):
-        """Test EventTypeEddEnum"""
+    def testAlertEventTypeEnum(self):
+        """Test AlertEventTypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

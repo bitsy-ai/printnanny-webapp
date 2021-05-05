@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **alerts_list2**
-> PartnerAlert alerts_list2(id)
+> Partner3DGeeksAlert alerts_list2(id)
 
 
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PartnerAlert**](PartnerAlert.md)
+[**Partner3DGeeksAlert**](Partner3DGeeksAlert.md)
 
 ### Authorization
 

@@ -120,8 +120,8 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
 
-    device_url = serializers.SerializerMethodField()
-    def get_device_url(self, obj):
+    action = serializers.SerializerMethodField()
+    def get_action(self, obj):
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
             kwargs={"pk": self.octoprint_device.id},
@@ -148,5 +148,6 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
             "current_time",
             "time_left",
             "percent",
-            "image"
+            "image",
+            "action"
         )

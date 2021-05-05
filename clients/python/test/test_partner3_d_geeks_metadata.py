@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.partner_octo_print_device import PartnerOctoPrintDevice  # noqa: E501
+from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPartnerOctoPrintDevice(unittest.TestCase):
-    """PartnerOctoPrintDevice unit test stubs"""
+class TestPartner3DGeeksMetadata(unittest.TestCase):
+    """Partner3DGeeksMetadata unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,13 +29,13 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PartnerOctoPrintDevice
+        """Test Partner3DGeeksMetadata
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.partner_octo_print_device.PartnerOctoPrintDevice()  # noqa: E501
+        # model = print_nanny_client.models.partner3_d_geeks_metadata.Partner3DGeeksMetadata()  # noqa: E501
         if include_optional :
-            return PartnerOctoPrintDevice(
+            return Partner3DGeeksMetadata(
                 name = '', 
                 model = '', 
                 platform = '', 
@@ -45,7 +45,7 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
                 verified = ''
             )
         else :
-            return PartnerOctoPrintDevice(
+            return Partner3DGeeksMetadata(
                 name = '',
                 model = '',
                 platform = '',
@@ -53,8 +53,8 @@ class TestPartnerOctoPrintDevice(unittest.TestCase):
                 print_nanny_client_version = '',
         )
 
-    def testPartnerOctoPrintDevice(self):
-        """Test PartnerOctoPrintDevice"""
+    def testPartner3DGeeksMetadata(self):
+        """Test Partner3DGeeksMetadata"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

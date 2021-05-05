@@ -26,7 +26,7 @@ class GeeksViewSet(ViewSet):
         tags=["partners.geeks3d"],
         operation_id="metadata_retrieve",
         responses={
-            200: PartnerMetadataSerializer,
+            200: Partner3DGeeksMetadataSerializer,
         },
     )
     def retrieve(self, request, pk=None):
@@ -34,13 +34,13 @@ class GeeksViewSet(ViewSet):
         token = get_object_or_404(queryset, pk=pk)
         token.verified = True
         token.save()
-        serializer = PartnerMetadataSerializer(token.octoprint_device)
+        serializer = Partner3DGeeksMetadataSerializer(token.octoprint_device)
         return Response(serializer.data)
 
     @extend_schema(
         tags=["partners.geeks3"],
         operation_id="alerts_list",
-        responses={200: PartnerAlertSerializer},
+        responses={200: Partner3DGeeksAlertSerializer},
     )
     @action(detail=True, methods=["GET"])
     def alerts(self, request, pk=None):
@@ -49,5 +49,5 @@ class GeeksViewSet(ViewSet):
         alerts = AlertsMessage.objects.filter(
             octoprint_device_id=token.octoprint_device_id
         )
-        serializer = PartnerAlertSerializer(alerts, many=True)
+        serializer = Partner3DGeeksAlertSerializer(alerts, many=True)
         return Response(serializer.data)
