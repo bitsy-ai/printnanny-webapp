@@ -423,7 +423,7 @@ INSTALLED_APPS += ['django_filters']
 # django-prometheus
 INSTALLED_APPS += ['django_prometheus']
 
-PROMETHEUS_METRICS_EXPORT_PORT = 8001
+PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
 PROMETHEUS_METRICS_EXPORT_ADDRESS = ''  # all addresses
 # https://github.com/korfuri/django-prometheus/issues/252
 PROMETHEUS_EXPORT_MIGRATIONS = False

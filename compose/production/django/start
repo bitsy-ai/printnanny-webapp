@@ -22,11 +22,14 @@ else:
 END
 }
 
+python manage.py migrate
+
+
 # if compress_enabled; then
 #   # NOTE this command will fail if django-compressor is disabled
 #   python /app/manage.py compress
 # fi
-
+set +u
 if [ "$DJANGO_SUPERUSER_EMAIL" ]
 then
     python manage.py createsuperuser \
@@ -34,6 +37,6 @@ then
         --email $DJANGO_SUPERUSER_EMAIL || \
     echo "User already exists: $DJANGO_SUPERUSER_EMAIL"
 fi
-
+set -u
 
 daphne -b 0.0.0.0 -p 8000 config.asgi:application
