@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="metadataRetrieve"></a>
 # **metadataRetrieve**
-> PartnerOctoPrintDevice metadataRetrieve(id)
+> Partner3DGeeksMetadata metadataRetrieve(id)
 
 
 
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 val apiInstance = PartnersGeeks3dApi()
 val id : kotlin.String = id_example // kotlin.String | 
 try {
-    val result : PartnerOctoPrintDevice = apiInstance.metadataRetrieve(id)
+    val result : Partner3DGeeksMetadata = apiInstance.metadataRetrieve(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling PartnersGeeks3dApi#metadataRetrieve")
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md)
+[**Partner3DGeeksMetadata**](Partner3DGeeksMetadata.md)
 
 ### Authorization
 

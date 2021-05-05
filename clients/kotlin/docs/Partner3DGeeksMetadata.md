@@ -1,5 +1,5 @@
 
-# PartnerOctoPrintDevice
+# Partner3DGeeksMetadata
 
 ## Properties
 Name | Type | Description | Notes

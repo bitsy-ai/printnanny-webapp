@@ -26,7 +26,7 @@ import java.io.Serializable
  * @param verified 
  */
 
-data class PartnerOctoPrintDevice (
+data class Partner3DGeeksMetadata (
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "model")

@@ -81,10 +81,10 @@ export interface Alert {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventTypeEddEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof Alert
      */
-    event_type?: EventTypeEddEnum | null;
+    event_type?: AlertEventTypeEnum | null;
     /**
      * 
      * @type {boolean}
@@ -134,6 +134,28 @@ export interface AlertBulkResponse {
  * @export
  * @enum {string}
  */
+export enum AlertEventTypeEnum {
+    Test = 'Test',
+    VideoDone = 'VideoDone',
+    PrintHealth = 'PrintHealth',
+    PrintProgress = 'PrintProgress',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrintCancelled = 'PrintCancelled',
+    Shutdown = 'Shutdown',
+    Startup = 'Startup',
+    Connected = 'Connected',
+    Disconnected = 'Disconnected'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 export enum AlertMethodEnum {
     Ui = 'UI',
     Email = 'EMAIL',
@@ -161,10 +183,10 @@ export interface AlertRequest {
     alert_method: AlertMethodEnum;
     /**
      * 
-     * @type {EventTypeEddEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof AlertRequest
      */
-    event_type?: EventTypeEddEnum | null;
+    event_type?: AlertEventTypeEnum | null;
     /**
      * 
      * @type {boolean}
@@ -335,23 +357,6 @@ export interface DeviceCalibrationRequest {
      */
     config_file?: any | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum EventTypeEddEnum {
-    Test = 'Test',
-    VideoDone = 'VideoDone',
-    PrintHealth = 'PrintHealth',
-    PrintProgress = 'PrintProgress',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
 /**
  * 
  * @export
@@ -1848,122 +1853,110 @@ export interface PaginatedUserList {
 /**
  * 
  * @export
- * @interface PartnerAlert
+ * @interface Partner3DGeeksAlert
  */
-export interface PartnerAlert {
-    /**
-     * 
-     * @type {EventTypeEddEnum}
-     * @memberof PartnerAlert
-     */
-    event_type?: EventTypeEddEnum | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PartnerAlert
-     */
-    seen?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PartnerAlert
-     */
-    sent?: boolean;
-    /**
-     * 
-     * @type {PartnerOctoPrintDevice}
-     * @memberof PartnerAlert
-     */
-    octoprint_device: PartnerOctoPrintDevice;
+export interface Partner3DGeeksAlert {
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
-    manage_device_url?: string;
+    event?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
-     */
-    time?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
     token?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
-    time_remaining?: string;
+    printer?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
-    time_elapsed?: string;
+    print?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
-    progress?: string;
+    current_time?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerAlert
+     * @memberof Partner3DGeeksAlert
      */
-    gcode_file?: string;
+    time_left?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Partner3DGeeksAlert
+     */
+    percent?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Partner3DGeeksAlert
+     */
+    image?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Partner3DGeeksAlert
+     */
+    action?: string;
 }
 /**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
  * @export
- * @interface PartnerOctoPrintDevice
+ * @interface Partner3DGeeksMetadata
  */
-export interface PartnerOctoPrintDevice {
+export interface Partner3DGeeksMetadata {
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     model: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     platform: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     octoprint_version: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     print_nanny_plugin_version?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     print_nanny_client_version: string;
     /**
      * 
      * @type {string}
-     * @memberof PartnerOctoPrintDevice
+     * @memberof Partner3DGeeksMetadata
      */
     verified?: string;
 }
@@ -2000,10 +1993,10 @@ export interface PatchedAlertRequest {
     alert_method?: AlertMethodEnum;
     /**
      * 
-     * @type {EventTypeEddEnum}
+     * @type {AlertEventTypeEnum}
      * @memberof PatchedAlertRequest
      */
-    event_type?: EventTypeEddEnum | null;
+    event_type?: AlertEventTypeEnum | null;
     /**
      * 
      * @type {boolean}
@@ -5310,7 +5303,7 @@ export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsList2(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PartnerAlert>> {
+        async alertsList2(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksAlert>> {
             const localVarAxiosArgs = await PartnersGeeks3ApiAxiosParamCreator(configuration).alertsList2(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -5332,7 +5325,7 @@ export const PartnersGeeks3ApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList2(id: string, options?: any): AxiosPromise<PartnerAlert> {
+        alertsList2(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert> {
             return PartnersGeeks3ApiFp(configuration).alertsList2(id, options).then((request) => request(axios, basePath));
         },
     };
@@ -5351,7 +5344,7 @@ export interface PartnersGeeks3ApiInterface {
      * @throws {RequiredError}
      * @memberof PartnersGeeks3ApiInterface
      */
-    alertsList2(id: string, options?: any): AxiosPromise<PartnerAlert>;
+    alertsList2(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert>;
 
 }
 
@@ -5447,7 +5440,7 @@ export const PartnersGeeks3dApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async metadataRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PartnerOctoPrintDevice>> {
+        async metadataRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksMetadata>> {
             const localVarAxiosArgs = await PartnersGeeks3dApiAxiosParamCreator(configuration).metadataRetrieve(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -5469,7 +5462,7 @@ export const PartnersGeeks3dApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        metadataRetrieve(id: string, options?: any): AxiosPromise<PartnerOctoPrintDevice> {
+        metadataRetrieve(id: string, options?: any): AxiosPromise<Partner3DGeeksMetadata> {
             return PartnersGeeks3dApiFp(configuration).metadataRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
@@ -5488,7 +5481,7 @@ export interface PartnersGeeks3dApiInterface {
      * @throws {RequiredError}
      * @memberof PartnersGeeks3dApiInterface
      */
-    metadataRetrieve(id: string, options?: any): AxiosPromise<PartnerOctoPrintDevice>;
+    metadataRetrieve(id: string, options?: any): AxiosPromise<Partner3DGeeksMetadata>;
 
 }
 

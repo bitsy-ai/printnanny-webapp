@@ -11,7 +11,7 @@
 */
 package com.print-nanny.client.apis
 
-import com.print-nanny.client.models.PartnerOctoPrintDevice
+import com.print-nanny.client.models.Partner3DGeeksMetadata
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -37,14 +37,14 @@ class PartnersGeeks3dApi(basePath: kotlin.String = defaultBasePath) : ApiClient(
     * 
     * 3D Geeks calls this endpoint to validate token &amp; fetch printer metadata
     * @param id  
-    * @return PartnerOctoPrintDevice
+    * @return Partner3DGeeksMetadata
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun metadataRetrieve(id: kotlin.String) : PartnerOctoPrintDevice {
+    fun metadataRetrieve(id: kotlin.String) : Partner3DGeeksMetadata {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -54,13 +54,13 @@ class PartnersGeeks3dApi(basePath: kotlin.String = defaultBasePath) : ApiClient(
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<PartnerOctoPrintDevice>(
+        val localVarResponse = request<Partner3DGeeksMetadata>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PartnerOctoPrintDevice
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Partner3DGeeksMetadata
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

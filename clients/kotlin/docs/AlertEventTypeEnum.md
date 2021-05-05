@@ -1,5 +1,5 @@
 
-# EventTypeEddEnum
+# AlertEventTypeEnum
 
 ## Enum
 
@@ -21,6 +21,16 @@
     * `printResumed` (value: `"PrintResumed"`)
 
     * `printStarted` (value: `"PrintStarted"`)
+
+    * `printCancelled` (value: `"PrintCancelled"`)
+
+    * `shutdown` (value: `"Shutdown"`)
+
+    * `startup` (value: `"Startup"`)
+
+    * `connected` (value: `"Connected"`)
+
+    * `disconnected` (value: `"Disconnected"`)
 
 
 
