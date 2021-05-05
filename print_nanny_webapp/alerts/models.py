@@ -109,6 +109,11 @@ class AlertMessage(models.Model):
         PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
         PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
         PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+        PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
+        SHUTDOWN = "Shutdown", "{{ DEVICE_NAME }} - OctoPrint server shutdown 😴"
+        STARTUP = "Startup", "{{ DEVICE_NAME }} - OctoPrint server startup ✨"
+        CONNECTED = "Connected", "{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗"
+        DISCONNECTED = "Disconnected", "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥"
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
