@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 
-from .serializers import PartnerOctoPrintDeviceSerializer, PartnerAlertSerializer
+from .serializers import Partner3DGeeksMetadataSerializer, Partner3DGeeksAlertSerializer
 
 GeeksToken = apps.get_model("partners", "GeeksToken")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
@@ -26,7 +26,7 @@ class GeeksViewSet(ViewSet):
         tags=["partners.geeks3d"],
         operation_id="metadata_retrieve",
         responses={
-            200: PartnerOctoPrintDeviceSerializer,
+            200: PartnerMetadataSerializer,
         },
     )
     def retrieve(self, request, pk=None):
@@ -34,7 +34,7 @@ class GeeksViewSet(ViewSet):
         token = get_object_or_404(queryset, pk=pk)
         token.verified = True
         token.save()
-        serializer = PartnerOctoPrintDeviceSerializer(token.octoprint_device)
+        serializer = PartnerMetadataSerializer(token.octoprint_device)
         return Response(serializer.data)
 
     @extend_schema(
