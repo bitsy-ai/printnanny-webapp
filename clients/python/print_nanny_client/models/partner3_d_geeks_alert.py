@@ -37,9 +37,9 @@ class Partner3DGeeksAlert(object):
         'token': 'str',
         'printer': 'str',
         '_print': 'str',
-        'current_time': 'str',
-        'time_left': 'str',
-        'percent': 'str',
+        'current_time': 'int',
+        'time_left': 'int',
+        'percent': 'int',
         'image': 'str',
         'action': 'str'
     }
@@ -79,16 +79,11 @@ class Partner3DGeeksAlert(object):
             self.token = token
         if printer is not None:
             self.printer = printer
-        if _print is not None:
-            self._print = _print
-        if current_time is not None:
-            self.current_time = current_time
-        if time_left is not None:
-            self.time_left = time_left
-        if percent is not None:
-            self.percent = percent
-        if image is not None:
-            self.image = image
+        self._print = _print
+        self.current_time = current_time
+        self.time_left = time_left
+        self.percent = percent
+        self.image = image
         if action is not None:
             self.action = action
 
@@ -182,7 +177,7 @@ class Partner3DGeeksAlert(object):
 
 
         :return: The current_time of this Partner3DGeeksAlert.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._current_time
 
@@ -192,7 +187,7 @@ class Partner3DGeeksAlert(object):
 
 
         :param current_time: The current_time of this Partner3DGeeksAlert.  # noqa: E501
-        :type current_time: str
+        :type current_time: int
         """
 
         self._current_time = current_time
@@ -203,7 +198,7 @@ class Partner3DGeeksAlert(object):
 
 
         :return: The time_left of this Partner3DGeeksAlert.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._time_left
 
@@ -213,7 +208,7 @@ class Partner3DGeeksAlert(object):
 
 
         :param time_left: The time_left of this Partner3DGeeksAlert.  # noqa: E501
-        :type time_left: str
+        :type time_left: int
         """
 
         self._time_left = time_left
@@ -224,7 +219,7 @@ class Partner3DGeeksAlert(object):
 
 
         :return: The percent of this Partner3DGeeksAlert.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._percent
 
@@ -234,7 +229,7 @@ class Partner3DGeeksAlert(object):
 
 
         :param percent: The percent of this Partner3DGeeksAlert.  # noqa: E501
-        :type percent: str
+        :type percent: int
         """
 
         self._percent = percent

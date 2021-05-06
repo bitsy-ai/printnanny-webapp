@@ -1879,31 +1879,31 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    print?: string;
+    print?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Partner3DGeeksAlert
+     */
+    current_time?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Partner3DGeeksAlert
+     */
+    time_left?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Partner3DGeeksAlert
+     */
+    percent?: number | null;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    current_time?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Partner3DGeeksAlert
-     */
-    time_left?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Partner3DGeeksAlert
-     */
-    percent?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Partner3DGeeksAlert
-     */
-    image?: string;
+    image?: string | null;
     /**
      * 
      * @type {string}
