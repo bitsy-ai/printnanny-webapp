@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **token** | **kotlin.String** |  |  [optional] [readonly]
 **printer** | **kotlin.String** |  |  [optional] [readonly]
 **print** | **kotlin.String** |  |  [optional] [readonly]
-**currentTime** | **kotlin.String** |  |  [optional] [readonly]
-**timeLeft** | **kotlin.String** |  |  [optional] [readonly]
-**percent** | **kotlin.String** |  |  [optional] [readonly]
+**currentTime** | **kotlin.Int** |  |  [optional] [readonly]
+**timeLeft** | **kotlin.Int** |  |  [optional] [readonly]
+**percent** | **kotlin.Int** |  |  [optional] [readonly]
 **image** | **kotlin.String** |  |  [optional] [readonly]
 **action** | **kotlin.String** |  |  [optional] [readonly]
 

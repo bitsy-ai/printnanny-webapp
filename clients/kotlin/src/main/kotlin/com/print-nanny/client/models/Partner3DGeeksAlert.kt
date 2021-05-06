@@ -38,11 +38,11 @@ data class Partner3DGeeksAlert (
     @Json(name = "print")
     val print: kotlin.String? = null,
     @Json(name = "current_time")
-    val currentTime: kotlin.String? = null,
+    val currentTime: kotlin.Int? = null,
     @Json(name = "time_left")
-    val timeLeft: kotlin.String? = null,
+    val timeLeft: kotlin.Int? = null,
     @Json(name = "percent")
-    val percent: kotlin.String? = null,
+    val percent: kotlin.Int? = null,
     @Json(name = "image")
     val image: kotlin.String? = null,
     @Json(name = "action")

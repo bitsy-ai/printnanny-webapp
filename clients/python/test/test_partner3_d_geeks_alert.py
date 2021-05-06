@@ -40,9 +40,9 @@ class TestPartner3DGeeksAlert(unittest.TestCase):
                 token = '', 
                 printer = '', 
                 _print = '', 
-                current_time = '', 
-                time_left = '', 
-                percent = '', 
+                current_time = 56, 
+                time_left = 56, 
+                percent = 56, 
                 image = '', 
                 action = ''
             )
