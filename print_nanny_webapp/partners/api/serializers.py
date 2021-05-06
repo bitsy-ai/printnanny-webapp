@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Union
+from typing import Union, Optional
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
@@ -61,67 +61,44 @@ class Partner3DGeeksMetadataSerializer(serializers.ModelSerializer):
 
 class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
 
-    current_time = serializers.SerializerMethodField()
-    @extend_schema_field({
-        'oneOf': [
-            {'type': 'int'},
-            {'type': 'null'}
-        ]
-    })
-    def get_current_time(self, obj):
-        if obj.print_session:
-            return obj.print_session.current_time
-
     time_left = serializers.SerializerMethodField()
 
-    @extend_schema_field({
-        'oneOf': [
-            {'type': 'int'},
-            {'type': 'null'}
-        ]
-    })
-    def get_time_left(self, obj):
+    def get_time_left(self, obj) -> Optional[int]:
         if obj.print_session:
             return obj.print_session.time_remaining
+            
+    current_time = serializers.SerializerMethodField()
+
+    def get_current_time(self, obj) -> Optional[int]:
+        if obj.print_session:
+            return obj.print_session.current_time
     
     event = serializers.SerializerMethodField()
-    def get_event(self, obj):
+    def get_event(self, obj) -> str:
         return obj.event_type
     
     printer = serializers.SerializerMethodField()
-    def get_printer(self, obj):
+    def get_printer(self, obj) -> str:
         return obj.octoprint_device.name
 
     print = serializers.SerializerMethodField()
-    @extend_schema_field({
-        'oneOf': [
-            {'type': 'string'},
-            {'type': 'null'}
-        ]
-    })
-    def get_print(self, obj):
+    def get_print(self, obj) -> Optional[str]:
         if obj.print_session:
             return obj.print_session.gcode_file
 
     percent = serializers.SerializerMethodField()
-    @extend_schema_field({
-        'oneOf': [
-            {'type': 'int'},
-            {'type': 'null'}
-        ]
-    })
-    def get_percent(self, obj):
+    def get_percent(self, obj) -> Optional[int]:
         if obj.print_session:
             return obj.print_session.progress
 
     token = serializers.SerializerMethodField()
 
-    def get_token(self, obj):
+    def get_token(self, obj) -> str:
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
 
     action = serializers.SerializerMethodField()
-    def get_action(self, obj):
+    def get_action(self, obj) -> str:
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
             kwargs={"pk": self.octoprint_device.id},
@@ -129,13 +106,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
         return device_url
 
     image = serializers.SerializerMethodField()
-    @extend_schema_field({
-        'oneOf': [
-            {'type': 'string'},
-            {'type': 'null'}
-        ]
-    })
-    def get_image(self, obj):
+    def get_image(self, obj) -> Optional[str]:
         return None
 
     class Meta:
