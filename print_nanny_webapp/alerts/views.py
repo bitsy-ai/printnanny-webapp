@@ -42,7 +42,7 @@ class AlertSettingsView(DashboardView, MultiFormsView):
             user=self.request.user,
         )
         for alert_method in instance.alert_methods:
-            alert_message = AlertMessage(
+            alert_message = AlertMessage.objects.create(
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.TEST,
                 user=instance.user,
