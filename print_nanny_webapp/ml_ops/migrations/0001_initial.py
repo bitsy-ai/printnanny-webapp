@@ -11,65 +11,148 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('remote_control', '0001_initial'),
+        ("remote_control", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Experiment',
+            name="Experiment",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('active', models.BooleanField(default=False)),
-                ('name', models.CharField(max_length=255)),
-                ('hypothesis', models.CharField(max_length=255)),
-                ('notion_url', models.CharField(max_length=255, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("active", models.BooleanField(default=False)),
+                ("name", models.CharField(max_length=255)),
+                ("hypothesis", models.CharField(max_length=255)),
+                ("notion_url", models.CharField(max_length=255, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='ModelArtifact',
+            name="ModelArtifact",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('version', models.CharField(max_length=255)),
-                ('labels', models.FileField(upload_to='')),
-                ('artifacts', models.FileField(upload_to='')),
-                ('artifact_types', print_nanny_webapp.utils.fields.ChoiceArrayField(base_field=models.CharField(choices=[('TFLITE', 'TensorFlow Lite Flatbuffer'), ('TF1', 'TensorFlow v1 SavedModel format (legacy)'), ('TF2_SAVED_MODEL', 'TensorFlow v2 SavedModel format'), ('TF2_HDF5', 'TensorFlow v2 Keras H5 format')], max_length=255), default=('TFLITE', 'TF2_SAVED_MODEL'), size=None)),
-                ('metadata', django.contrib.postgres.fields.jsonb.JSONField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("version", models.CharField(max_length=255)),
+                ("labels", models.FileField(upload_to="")),
+                ("artifacts", models.FileField(upload_to="")),
+                (
+                    "artifact_types",
+                    print_nanny_webapp.utils.fields.ChoiceArrayField(
+                        base_field=models.CharField(
+                            choices=[
+                                ("TFLITE", "TensorFlow Lite Flatbuffer"),
+                                ("TF1", "TensorFlow v1 SavedModel format (legacy)"),
+                                ("TF2_SAVED_MODEL", "TensorFlow v2 SavedModel format"),
+                                ("TF2_HDF5", "TensorFlow v2 Keras H5 format"),
+                            ],
+                            max_length=255,
+                        ),
+                        default=("TFLITE", "TF2_SAVED_MODEL"),
+                        size=None,
+                    ),
+                ),
+                ("metadata", django.contrib.postgres.fields.jsonb.JSONField()),
             ],
         ),
         migrations.CreateModel(
-            name='ExperimentDeviceConfig',
+            name="ExperimentDeviceConfig",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('experiment_group', models.IntegerField()),
-                ('artifact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ml_ops.modelartifact')),
-                ('device', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
-                ('experiment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ml_ops.experiment')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("experiment_group", models.IntegerField()),
+                (
+                    "artifact",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ml_ops.modelartifact",
+                    ),
+                ),
+                (
+                    "device",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
+                (
+                    "experiment",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ml_ops.experiment",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='experiment',
-            name='control',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='control', to='ml_ops.modelartifact'),
+            model_name="experiment",
+            name="control",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="control",
+                to="ml_ops.modelartifact",
+            ),
         ),
         migrations.AddField(
-            model_name='experiment',
-            name='treatments',
-            field=models.ManyToManyField(blank=True, null=True, related_name='treatment', to='ml_ops.ModelArtifact'),
+            model_name="experiment",
+            name="treatments",
+            field=models.ManyToManyField(
+                blank=True,
+                null=True,
+                related_name="treatment",
+                to="ml_ops.ModelArtifact",
+            ),
         ),
         migrations.CreateModel(
-            name='DeviceCalibration',
+            name="DeviceCalibration",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_dt', models.DateTimeField(auto_now_add=True)),
-                ('updated_dt', models.DateTimeField(auto_now=True)),
-                ('fpm', models.IntegerField(null=True)),
-                ('coordinates', django.contrib.postgres.fields.jsonb.JSONField(null=True)),
-                ('mask', django.contrib.postgres.fields.jsonb.JSONField(null=True)),
-                ('config_file', models.FileField(null=True, upload_to='')),
-                ('octoprint_device', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='remote_control.octoprintdevice')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_dt", models.DateTimeField(auto_now_add=True)),
+                ("updated_dt", models.DateTimeField(auto_now=True)),
+                ("fpm", models.IntegerField(null=True)),
+                (
+                    "coordinates",
+                    django.contrib.postgres.fields.jsonb.JSONField(null=True),
+                ),
+                ("mask", django.contrib.postgres.fields.jsonb.JSONField(null=True)),
+                ("config_file", models.FileField(null=True, upload_to="")),
+                (
+                    "octoprint_device",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="remote_control.octoprintdevice",
+                    ),
+                ),
             ],
         ),
     ]

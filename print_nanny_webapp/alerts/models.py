@@ -113,7 +113,10 @@ class AlertMessage(models.Model):
         SHUTDOWN = "Shutdown", "{{ DEVICE_NAME }} - OctoPrint server shutdown 😴"
         STARTUP = "Startup", "{{ DEVICE_NAME }} - OctoPrint server startup ✨"
         CONNECTED = "Connected", "{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗"
-        DISCONNECTED = "Disconnected", "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥"
+        DISCONNECTED = (
+            "Disconnected",
+            "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
+        )
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,

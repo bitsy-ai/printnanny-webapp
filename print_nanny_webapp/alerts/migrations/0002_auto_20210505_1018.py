@@ -6,13 +6,41 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alerts', '0001_initial'),
+        ("alerts", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alertmessage',
-            name='event_type',
-            field=models.CharField(choices=[('Test', 'Hello {{ FIRST_NAME }} 👋'), ('VideoDone', '{{ GCODE_FILE }} - timelapse done 🎥'), ('PrintHealth', '{{ GCODE_FILE }} - job is unhealthy 😵'), ('PrintProgress', '{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳'), ('PrintDone', '{{ GCODE_FILE }} - job finished ✅'), ('PrintFailed', '{{ GCODE_FILE }} - job failed ❌'), ('PrintPaused', '{{ GCODE_FILE }} - job paused ⏸️'), ('PrintResumed', '{{ GCODE_FILE }} - job resumed ⏯️'), ('PrintStarted', '{{ GCODE_FILE }} - job started 🏁'), ('PrintCancelled', '{{ GCODE_FILE }} - job cancelled ❌'), ('Shutdown', '{{ DEVICE_NAME }} - OctoPrint server shutdown 😴'), ('Startup', '{{ DEVICE_NAME }} - OctoPrint server startup ✨'), ('Connected', '{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗'), ('Disconnected', '{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥')], max_length=255, null=True),
+            model_name="alertmessage",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    ("Test", "Hello {{ FIRST_NAME }} 👋"),
+                    ("VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"),
+                    ("PrintHealth", "{{ GCODE_FILE }} - job is unhealthy 😵"),
+                    (
+                        "PrintProgress",
+                        "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+                    ),
+                    ("PrintDone", "{{ GCODE_FILE }} - job finished ✅"),
+                    ("PrintFailed", "{{ GCODE_FILE }} - job failed ❌"),
+                    ("PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"),
+                    ("PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"),
+                    ("PrintStarted", "{{ GCODE_FILE }} - job started 🏁"),
+                    ("PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"),
+                    ("Shutdown", "{{ DEVICE_NAME }} - OctoPrint server shutdown 😴"),
+                    ("Startup", "{{ DEVICE_NAME }} - OctoPrint server startup ✨"),
+                    (
+                        "Connected",
+                        "{{ DEVICE_NAME }} - OctoPrint connected to printer 🔗",
+                    ),
+                    (
+                        "Disconnected",
+                        "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
+                    ),
+                ],
+                max_length=255,
+                null=True,
+            ),
         ),
     ]

@@ -9,6 +9,7 @@ from .models import AlertSettings
 class AlertTestForm(Form):
     pass
 
+
 class AlertSettingsForm(ModelForm):
     class Meta:
         model = AlertSettings

@@ -11,10 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
-from .models import (
-    AlertSettings,
-    AlertMessage
-)
+from .models import AlertSettings, AlertMessage
 
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
@@ -23,7 +20,7 @@ logger = logging.getLogger(__name__)
 from print_nanny_webapp.alerts.forms import (
     AlertSettingsForm,
     AlertMethodSettingsForm,
-    AlertTestForm
+    AlertTestForm,
 )
 
 
@@ -33,7 +30,7 @@ class AlertSettingsView(DashboardView, MultiFormsView):
     form_classes = {
         "event_settings": AlertSettingsForm,
         "alert_methods": AlertMethodSettingsForm,
-        "test_alert": AlertTestForm
+        "test_alert": AlertTestForm,
     }
     template_name = "alerts/settings.html"
 
@@ -48,8 +45,8 @@ class AlertSettingsView(DashboardView, MultiFormsView):
                 user=instance.user,
             )
             task = AlertTask(alert_message)
-            task.trigger_alert()     
-        messages.success(self.request, 'Test alert was sent! Check your inbox.')
+            task.trigger_alert()
+        messages.success(self.request, "Test alert was sent! Check your inbox.")
         return HttpResponseRedirect(self.request.path_info)
 
     def create_alert_methods_form(self, **kwargs):

@@ -199,8 +199,8 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
             user=instance.user,
         )
         task = AlertTask(alert_message)
-        task.trigger_alert()     
-        messages.success(self.request, 'Test alert was sent! Check the 3D Geeks app.')
+        task.trigger_alert()
+        messages.success(self.request, "Test alert was sent! Check the 3D Geeks app.")
         return HttpResponseRedirect(self.request.path_info)
 
     def revoke_3dgeeks_form_valid(self, form):

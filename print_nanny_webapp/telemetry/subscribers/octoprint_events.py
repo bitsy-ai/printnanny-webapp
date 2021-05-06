@@ -21,6 +21,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 from django.apps import apps
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
