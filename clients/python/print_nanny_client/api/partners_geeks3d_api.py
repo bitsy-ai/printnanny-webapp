@@ -61,7 +61,7 @@ class PartnersGeeks3dApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PartnerOctoPrintDevice
+        :rtype: Partner3DGeeksMetadata
         """
         kwargs['_return_http_data_only'] = True
         return self.metadata_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -98,7 +98,7 @@ class PartnersGeeks3dApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PartnerOctoPrintDevice, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Partner3DGeeksMetadata, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -151,7 +151,7 @@ class PartnersGeeks3dApi(object):
         auth_settings = ['tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PartnerOctoPrintDevice",
+            200: "Partner3DGeeksMetadata",
         }
 
         return self.api_client.call_api(

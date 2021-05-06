@@ -61,7 +61,7 @@ class PartnersGeeks3Api(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PartnerAlert
+        :rtype: Partner3DGeeksAlert
         """
         kwargs['_return_http_data_only'] = True
         return self.alerts_list2_with_http_info(id, **kwargs)  # noqa: E501
@@ -98,7 +98,7 @@ class PartnersGeeks3Api(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PartnerAlert, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Partner3DGeeksAlert, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -151,7 +151,7 @@ class PartnersGeeks3Api(object):
         auth_settings = ['tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PartnerAlert",
+            200: "Partner3DGeeksAlert",
         }
 
         return self.api_client.call_api(

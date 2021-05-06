@@ -11,7 +11,7 @@
 */
 package com.print-nanny.client.apis
 
-import com.print-nanny.client.models.PartnerAlert
+import com.print-nanny.client.models.Partner3DGeeksAlert
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -37,14 +37,14 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
     * 
     * 3D Geeks calls this endpoint to validate token &amp; fetch printer metadata
     * @param id  
-    * @return PartnerAlert
+    * @return Partner3DGeeksAlert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsList2(id: kotlin.String) : PartnerAlert {
+    fun alertsList2(id: kotlin.String) : Partner3DGeeksAlert {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -54,13 +54,13 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
             query = localVariableQuery,
             headers = localVariableHeaders
         )
-        val localVarResponse = request<PartnerAlert>(
+        val localVarResponse = request<Partner3DGeeksAlert>(
             localVariableConfig,
             localVariableBody
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PartnerAlert
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Partner3DGeeksAlert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

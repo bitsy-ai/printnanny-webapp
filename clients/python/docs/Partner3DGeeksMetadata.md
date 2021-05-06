@@ -1,4 +1,4 @@
-# PartnerOctoPrintDevice
+# Partner3DGeeksMetadata
 
 Please do not include any personally-identifying info or sensitive info in partner serializers
 ## Properties

@@ -6,7 +6,7 @@ from django.template import engines
 
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
-    PartnerAlertSerializer,
+    Partner3DGeeksAlertSerializer,
     PartnersEnum,
 )
 from django.conf import settings
@@ -32,7 +32,7 @@ class AlertTask:
         email_body_html_template: Optional[str] = None,
         email_subject_template: str = "email/generic_alert_subject.txt",
         serializer=AlertSerializer,
-        partner_serializer=PartnerAlertSerializer,
+        partner_serializer=Partner3DGeeksAlertSerializer,
     ):
         self.instance = instance
         self.email_body_txt_template = email_body_txt_template
@@ -59,7 +59,7 @@ class AlertTask:
             return True
         return False
 
-    def get_serializer(self) -> Union[AlertSerializer, PartnerAlertSerializer]:
+    def get_serializer(self) -> Union[AlertSerializer, Partner3DGeeksAlertSerializer]:
         if self.instance.alert_method in PartnersEnum._value2member_map_:
             return self.partner_serializer(self.instance)
         return self.serializer(self.instance)

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **metadata_retrieve**
-> PartnerOctoPrintDevice metadata_retrieve(id)
+> Partner3DGeeksMetadata metadata_retrieve(id)
 
 
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PartnerOctoPrintDevice**](PartnerOctoPrintDevice.md)
+[**Partner3DGeeksMetadata**](Partner3DGeeksMetadata.md)
 
 ### Authorization
 

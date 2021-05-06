@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="alertsList2"></a>
 # **alertsList2**
-> PartnerAlert alertsList2(id)
+> Partner3DGeeksAlert alertsList2(id)
 
 
 
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 val apiInstance = PartnersGeeks3Api()
 val id : kotlin.String = id_example // kotlin.String | 
 try {
-    val result : PartnerAlert = apiInstance.alertsList2(id)
+    val result : Partner3DGeeksAlert = apiInstance.alertsList2(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling PartnersGeeks3Api#alertsList2")
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PartnerAlert**](PartnerAlert.md)
+[**Partner3DGeeksAlert**](Partner3DGeeksAlert.md)
 
 ### Authorization
 

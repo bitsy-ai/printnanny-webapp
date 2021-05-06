@@ -1,7 +1,10 @@
 from enum import Enum
+from typing import Union
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
 
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
@@ -28,7 +31,7 @@ class PartnerUserSerializer(serializers.ModelSerializer):
         fields = ("id", "")
 
 
-class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
+class Partner3DGeeksMetadataSerializer(serializers.ModelSerializer):
     """
     Please do not include any personally-identifying info or sensitive info in partner serializers
     """
@@ -56,25 +59,58 @@ class PartnerOctoPrintDeviceSerializer(serializers.ModelSerializer):
         )
 
 
-class PartnerAlertSerializer(serializers.ModelSerializer):
+class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
 
-    octoprint_device = PartnerOctoPrintDeviceSerializer()
-    time = serializers.SerializerMethodField()
+    current_time = serializers.SerializerMethodField()
+    @extend_schema_field({
+        'oneOf': [
+            {'type': 'int'},
+            {'type': 'null'}
+        ]
+    })
+    def get_current_time(self, obj):
+        if obj.print_session:
+            return obj.print_session.current_time
 
-    def get_time(self, obj):
-        return naturaltime(obj.created_dt)
+    time_left = serializers.SerializerMethodField()
 
-    gcode_file = serializers.SerializerMethodField()
+    @extend_schema_field({
+        'oneOf': [
+            {'type': 'int'},
+            {'type': 'null'}
+        ]
+    })
+    def get_time_left(self, obj):
+        if obj.print_session:
+            return obj.print_session.time_remaining
+    
+    event = serializers.SerializerMethodField()
+    def get_event(self, obj):
+        return obj.event_type
+    
+    printer = serializers.SerializerMethodField()
+    def get_printer(self, obj):
+        return obj.octoprint_device.name
 
-    def get_gcode_file(self, obj):
+    print = serializers.SerializerMethodField()
+    @extend_schema_field({
+        'oneOf': [
+            {'type': 'string'},
+            {'type': 'null'}
+        ]
+    })
+    def get_print(self, obj):
         if obj.print_session:
             return obj.print_session.gcode_file
-        else:
-            return None
 
-    progress = serializers.SerializerMethodField()
-
-    def get_progress(self, obj):
+    percent = serializers.SerializerMethodField()
+    @extend_schema_field({
+        'oneOf': [
+            {'type': 'int'},
+            {'type': 'null'}
+        ]
+    })
+    def get_percent(self, obj):
         if obj.print_session:
             return obj.print_session.progress
 
@@ -84,43 +120,34 @@ class PartnerAlertSerializer(serializers.ModelSerializer):
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
 
-    time_elapsed = serializers.SerializerMethodField()
-
-    def get_time_elapsed(self, obj):
-        if obj.print_session and obj.print_session.time_elapsed:
-            return time.strftime(
-                "%H:%M:%S", time.gmtime(obj.print_session.time_elapsed)
-            )
-
-    time_remaining = serializers.SerializerMethodField()
-
-    def get_time_remaining(self, obj):
-        if obj.print_session and obj.print_session.time_remaining:
-            return time.strftime(
-                "%H:%M:%S", time.gmtime(obj.print_session.time_remaining)
-            )
-
-    manage_device_url = serializers.SerializerMethodField()
-
-    def get_manage_device_url(self, obj):
+    action = serializers.SerializerMethodField()
+    def get_action(self, obj):
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
             kwargs={"pk": self.octoprint_device.id},
         )
         return device_url
 
+    image = serializers.SerializerMethodField()
+    @extend_schema_field({
+        'oneOf': [
+            {'type': 'string'},
+            {'type': 'null'}
+        ]
+    })
+    def get_image(self, obj):
+        return None
+
     class Meta:
         model = AlertMessage
         fields = (
-            "event_type",
-            "seen",
-            "sent",
-            "octoprint_device",
-            "manage_device_url",
-            "time",
+            "event",
             "token",
-            "time_remaining",
-            "time_elapsed",
-            "progress",
-            "gcode_file",
+            "printer",
+            "print",
+            "current_time",
+            "time_left",
+            "percent",
+            "image",
+            "action"
         )
