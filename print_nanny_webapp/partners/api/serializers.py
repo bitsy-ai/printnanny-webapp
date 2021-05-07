@@ -4,6 +4,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.conf import settings
+from urllib.parse import urljoin
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
