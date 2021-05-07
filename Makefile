@@ -90,8 +90,8 @@ local-clean:
 		print_nanny_webapp_local_octoprint_data \
 		print_nanny_webapp_local_postgres_data \
 		print_nanny_webapp_local_postgres_data_backups \
-		print_nanny_webapp_local_prometheus_data
-
+		print_nanny_webapp_local_prometheus_data || echo "No volumes found"
+ 
 local-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
 
@@ -106,6 +106,7 @@ local-up:
 		docker-compose -f local.yml up
 
 clean-local-up: local-clean local-up
+
 
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)

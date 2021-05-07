@@ -66,27 +66,31 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     def get_time_left(self, obj) -> Optional[int]:
         if obj.print_session:
             return obj.print_session.time_remaining
-            
+
     current_time = serializers.SerializerMethodField()
 
     def get_current_time(self, obj) -> Optional[int]:
         if obj.print_session:
             return obj.print_session.current_time
-    
+
     event = serializers.SerializerMethodField()
+
     def get_event(self, obj) -> str:
         return obj.event_type
-    
+
     printer = serializers.SerializerMethodField()
+
     def get_printer(self, obj) -> str:
         return obj.octoprint_device.name
 
     print = serializers.SerializerMethodField()
+
     def get_print(self, obj) -> Optional[str]:
         if obj.print_session:
             return obj.print_session.gcode_file
 
     percent = serializers.SerializerMethodField()
+
     def get_percent(self, obj) -> Optional[int]:
         if obj.print_session:
             return obj.print_session.progress
@@ -98,6 +102,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
         return str(token)
 
     action = serializers.SerializerMethodField()
+
     def get_action(self, obj) -> str:
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
@@ -106,6 +111,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
         return device_url
 
     image = serializers.SerializerMethodField()
+
     def get_image(self, obj) -> Optional[str]:
         return None
 
@@ -120,5 +126,5 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
             "time_left",
             "percent",
             "image",
-            "action"
+            "action",
         )

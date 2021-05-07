@@ -3,7 +3,5 @@
     "testFiles": [
        "setup/*.js",
        "partners/*.js"
-    ],
-    "viewportWidth": 1366,
-    "viewportHeight": 768
+    ]
 }

@@ -11,6 +11,7 @@ describe('OctoPrint initial setup', () => {
 
   it('Complete setup wizard or pass if already completed', () => {
     if (Cypress.$('#wizard_dialog').length > 0){
+      cy.viewport('macbook-16') // elements in the octoprint ui overlap / block at small viewports
       cy.get('#wizard_dialog')  
       cy.get('button[name=next]').click()
       cy.get('button[name=next]').click()
@@ -36,7 +37,7 @@ describe('OctoPrint initial setup', () => {
       cy.get('button[name=next]').click()
       cy.get('button[name=next]').click()
       cy.get('button[name=next]').click()
-      cy.get('button[name=finish]').click()
+      cy.get('button[name=finish]').click().wait(1000)
     } else {
       console.log("Skipping OctoPrint initial setup wizard (already done)")
     }
@@ -45,6 +46,7 @@ describe('OctoPrint initial setup', () => {
 
   it('Installs OctoPrint Nanny plugin', () => {
     cy.octoprintLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+    cy.viewport('macbook-16') // elements in the octoprint ui overlap / block at small viewports
     cy.get("#navbar_show_settings").click()    
     cy.get('#settings_plugin_pluginmanager_link a').click()
     cy.contains("Get More...").click()
@@ -70,10 +72,11 @@ describe('OctoPrint initial setup', () => {
   
   it('Runs Print Nanny setup wizard (OctoPrint)', () => {
       cy.octoprintLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD).then( ()=>{
+        cy.viewport('macbook-16') // elements in the octoprint ui overlap / block at small viewports
         if (Cypress.$('#octoprint_nanny_wizard_basic').length > 0){
           cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_settings_auth_token_basic').clear().type(PRINT_NANNY_TOKEN)
           cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_test_auth_token').click()
-              .get('#octoprint_nanny_alert_auth').should('have.class', 'alert-success')
+          cy.get('#octoprint_nanny_alert_auth').should('have.class', 'alert-success', {timeout: 10000})
           cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_device_registration').click()
           cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_alert_device_registration').should('have.class', 'alert-success')
           cy.get('button[name=finish]').click()

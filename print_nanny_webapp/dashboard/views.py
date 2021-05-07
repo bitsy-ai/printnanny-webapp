@@ -45,6 +45,7 @@ PrinterProfile = apps.get_model("remote_control", "PrinterProfile")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 
 logger = logging.getLogger(__name__)
 
@@ -192,6 +193,15 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     def test_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
+        alert_message = AlertMessage.objects.create(
+            alert_method=AlertSettings.PARTNER_3DGEEKS,
+            event_type=AlertMessage.AlertMessageType.TEST,
+            user=instance.user,
+        )
+        task = AlertTask(alert_message)
+        task.trigger_alert()
+        messages.success(self.request, "Test alert was sent! Check the 3D Geeks app.")
+        return HttpResponseRedirect(self.request.path_info)
 
     def revoke_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")

@@ -101,9 +101,11 @@ class AlertTask:
                 "GCODE_FILENAME": "my_test_print.gcode",
                 "DEVICE_NAME": "My Test Printer",
                 "EVENT_TYPE": AlertMessage.AlertMessageType.TEST,
-                "DEVICE_URL": urljoin(settings.BASE_URL, "dashboard/octoprint-devices/"),
+                "DEVICE_URL": urljoin(
+                    settings.BASE_URL, "dashboard/octoprint-devices/"
+                ),
                 "PRINT_PROGRESS": "11%",
-                "TIME_REMAINING": "23:23:59"
+                "TIME_REMAINING": "23:23:59",
             }
             tags = [
                 f"User:{self.instance.user.id}",

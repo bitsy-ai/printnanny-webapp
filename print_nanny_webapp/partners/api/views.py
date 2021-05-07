@@ -16,9 +16,6 @@ AlertsMessage = apps.get_model("alerts", "AlertMessage")
 
 
 class GeeksViewSet(ViewSet):
-    """
-    3D Geeks calls this endpoint to validate token & fetch printer metadata
-    """
 
     authentication_classes = [GeeksTokenAuthentication]
 
@@ -30,6 +27,9 @@ class GeeksViewSet(ViewSet):
         },
     )
     def retrieve(self, request, pk=None):
+        """
+        3D Geeks calls this endpoint to validate token & fetch printer metadata
+        """
         queryset = GeeksToken.objects.all()
         token = get_object_or_404(queryset, pk=pk)
         token.verified = True
