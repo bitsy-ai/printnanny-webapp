@@ -3,6 +3,7 @@ from typing import Union, Optional
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.conf import settings
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -61,15 +62,18 @@ class Partner3DGeeksMetadataSerializer(serializers.ModelSerializer):
 
 
 class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
+    """
+        Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
+    """
 
-    time_left = serializers.SerializerMethodField()
+    timeLeft = serializers.SerializerMethodField(method_name='get_time_left')
 
     def get_time_left(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.time_remaining
         return 0
 
-    current_time = serializers.SerializerMethodField()
+    currentTime = serializers.SerializerMethodField(method_name='get_current_time')
 
     def get_current_time(self, obj) -> int:
         if obj.print_session:
