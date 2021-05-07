@@ -196,7 +196,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         alert_message = AlertMessage.objects.create(
             alert_method=AlertSettings.AlertMethod.PARTNER_3DGEEKS,
             event_type=AlertMessage.AlertMessageType.TEST,
-            user=instance.user,
+            user=self.request.user,
         )
         task = AlertTask(alert_message)
         task.trigger_alert()
