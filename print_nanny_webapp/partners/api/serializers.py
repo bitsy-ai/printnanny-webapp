@@ -105,7 +105,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     def get_token(self, obj) -> str:
         print(obj.__dict__)
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
-        return str(token)
+        return token.key
 
     action = serializers.SerializerMethodField()
 

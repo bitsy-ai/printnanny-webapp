@@ -74,6 +74,7 @@ class AlertTask:
         headers = {
             'Authorization': f'Bearer {token}'
         }
+        logger.info(f"3DGeeks alerts_push headers={headers} request={data}")
         res = requests.post(
             settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data, headers=headers
         )
