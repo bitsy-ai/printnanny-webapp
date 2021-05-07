@@ -210,3 +210,10 @@ GHOST_CONTENT_API_KEY = env('GHOST_CONTENT_API_KEY')
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+# CORS
+# ------------------------------------------------------------------------------
+CORS_ORIGIN_WHITELIST = [
+    'https://print-nanny.com',
+    'https://www.print-nanny.com',
+]

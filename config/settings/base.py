@@ -526,14 +526,6 @@ INSTALLED_APPS += [
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
 
-# setting the default in axios config isn't working, so adjust to axios default
-# CSRF_COOKIE_NAME = "XSRF-TOKEN"
-# CSRF_USE_SESSIONS = True
-
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000',
-    'https://print-nanny.com'
-]
 
 # dj-stripe
 # ------------------------------------------------------------------------------
