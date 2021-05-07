@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
 from django.template import engines
+import logging
 
 import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
@@ -19,6 +20,7 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
+logger = logging.getLogger(__name__)
 
 class AlertTask:
     """
@@ -69,9 +71,11 @@ class AlertTask:
         serializer = self.get_serializer()
         data = serializer.data
 
-        return requests.post(
+        res = requests.post(
             settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data
         )
+        logger.warning(f"3DGeeks alerts_push response: {res.json()}")
+        return res
 
     def trigger_ui_alert(self):
         serializer = self.get_serializer()
