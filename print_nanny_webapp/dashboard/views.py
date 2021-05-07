@@ -32,6 +32,7 @@ import google.api_core.exceptions
 from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
 from print_nanny_webapp.users.forms import UserSettingsForm
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
+from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 from django.contrib import messages
 
 User = get_user_model()
@@ -46,7 +47,7 @@ RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
-AlertMessage = apps.get_model('alerts', "AlertMessage")
+AlertMessage = apps.get_model("alerts", "AlertMessage")
 logger = logging.getLogger(__name__)
 
 
