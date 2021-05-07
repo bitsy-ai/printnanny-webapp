@@ -70,9 +70,12 @@ class AlertTask:
     def trigger_geeks3d_alert(self):
         serializer = self.get_serializer()
         data = serializer.data
-
+        token = data['token']
+        headers = {
+            'Authorization': f'Bearer {token}'
+        }
         res = requests.post(
-            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data
+            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data, headers=headers
         )
         logger.warning(f"3DGeeks alerts_push response: {res.json()}")
         return res
