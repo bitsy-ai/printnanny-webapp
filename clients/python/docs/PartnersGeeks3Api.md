@@ -12,8 +12,6 @@ Method | HTTP request | Description
 
 
 
-3D Geeks calls this endpoint to validate token & fetch printer metadata
-
 ### Example
 
 * Bearer Authentication (tokenAuth):

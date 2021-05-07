@@ -35,7 +35,7 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
 
     /**
     * 
-    * 3D Geeks calls this endpoint to validate token &amp; fetch printer metadata
+    * 
     * @param id  
     * @return Partner3DGeeksAlert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
