@@ -4,7 +4,7 @@
 <form method="post">
     {% csrf_token %}
     <input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
-    <button name="action" value="test_3dgeeks" type="submit" class="btn btn-secondary btn-small">Test Alert</button>
+    <button name="action" value="test_3dgeeks" type="submit" class="btn btn-secondary btn-small">Send Test Alert</button>
 
     <button name="action" value="revoke_3dgeeks" type="submit" class="btn btn-danger btn-small">Revoke 3D Geeks Access</button>
 </form>
@@ -21,6 +21,14 @@
             <div id="octoprint-device-partner-3d-geeks-qrcode" class="modal-body text-center"">
                 <p>Scan the QR below to add your printer to the 3D Geeks mobile app.</p>
                 <img class=".mx-auto img-thumbnail" src="{{ object.geekstoken_set.first.qrcode.url }}">
+
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ object.id }}" name="octoprint_device_id">
+                    <button name="action" value="test_3dgeeks" type="submit" class="btn btn-secondary btn-small">Send Test Alert</button>
+                
+                    <button name="action" value="revoke_3dgeeks" type="submit" class="btn btn-danger btn-small">Revoke 3D Geeks Access</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <p class="mx-auto text-center">Having trouble scanning the QR Code? Connect by entering the following code in the 3D Geeks app:</p>

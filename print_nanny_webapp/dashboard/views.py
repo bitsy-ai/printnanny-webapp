@@ -194,7 +194,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
     def test_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
         alert_message = AlertMessage.objects.create(
-            alert_method=AlertSettings.PARTNER_3DGEEKS,
+            alert_method=AlertSettings.AlertMethod.PARTNER_3DGEEKS,
             event_type=AlertMessage.AlertMessageType.TEST,
             user=instance.user,
         )
