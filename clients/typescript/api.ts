@@ -1851,7 +1851,7 @@ export interface PaginatedUserList {
     results?: Array<User>;
 }
 /**
- * 
+ * Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
  * @export
  * @interface Partner3DGeeksAlert
  */
@@ -1879,25 +1879,25 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    print?: string | null;
+    print?: string;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    current_time?: number | null;
+    currentTime?: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    time_left?: number | null;
+    timeLeft?: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    percent?: number | null;
+    percent?: number;
     /**
      * 
      * @type {string}
@@ -5238,7 +5238,7 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
 export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5298,7 +5298,7 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
 export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5320,7 +5320,7 @@ export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
 export const PartnersGeeks3ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+         * 
          * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5338,7 +5338,7 @@ export const PartnersGeeks3ApiFactory = function (configuration?: Configuration,
  */
 export interface PartnersGeeks3ApiInterface {
     /**
-     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * 
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5356,7 +5356,7 @@ export interface PartnersGeeks3ApiInterface {
  */
 export class PartnersGeeks3Api extends BaseAPI implements PartnersGeeks3ApiInterface {
     /**
-     * 3D Geeks calls this endpoint to validate token & fetch printer metadata
+     * 
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
- * 
+ * Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
  * @param event 
  * @param token 
  * @param printer 
@@ -37,9 +37,9 @@ data class Partner3DGeeksAlert (
     val printer: kotlin.String? = null,
     @Json(name = "print")
     val print: kotlin.String? = null,
-    @Json(name = "current_time")
+    @Json(name = "currentTime")
     val currentTime: kotlin.Int? = null,
-    @Json(name = "time_left")
+    @Json(name = "timeLeft")
     val timeLeft: kotlin.Int? = null,
     @Json(name = "percent")
     val percent: kotlin.Int? = null,

@@ -49,8 +49,8 @@ class Partner3DGeeksAlert(object):
         'token': 'token',
         'printer': 'printer',
         '_print': 'print',
-        'current_time': 'current_time',
-        'time_left': 'time_left',
+        'current_time': 'currentTime',
+        'time_left': 'timeLeft',
         'percent': 'percent',
         'image': 'image',
         'action': 'action'
@@ -79,10 +79,14 @@ class Partner3DGeeksAlert(object):
             self.token = token
         if printer is not None:
             self.printer = printer
-        self._print = _print
-        self.current_time = current_time
-        self.time_left = time_left
-        self.percent = percent
+        if _print is not None:
+            self._print = _print
+        if current_time is not None:
+            self.current_time = current_time
+        if time_left is not None:
+            self.time_left = time_left
+        if percent is not None:
+            self.percent = percent
         self.image = image
         if action is not None:
             self.action = action

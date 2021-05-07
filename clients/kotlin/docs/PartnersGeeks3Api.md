@@ -13,8 +13,6 @@ Method | HTTP request | Description
 
 
 
-3D Geeks calls this endpoint to validate token &amp; fetch printer metadata
-
 ### Example
 ```kotlin
 // Import classes:

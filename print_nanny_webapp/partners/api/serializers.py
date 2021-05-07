@@ -2,6 +2,9 @@ from enum import Enum
 from typing import Union, Optional
 from django.apps import apps
 from django.contrib.auth import get_user_model
+from django.urls import reverse
+from django.conf import settings
+from urllib.parse import urljoin
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -60,18 +63,23 @@ class Partner3DGeeksMetadataSerializer(serializers.ModelSerializer):
 
 
 class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
+    """
+        Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
+    """
 
-    time_left = serializers.SerializerMethodField()
+    timeLeft = serializers.SerializerMethodField(method_name='get_time_left')
 
-    def get_time_left(self, obj) -> Optional[int]:
+    def get_time_left(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.time_remaining
+        return 0
 
-    current_time = serializers.SerializerMethodField()
+    currentTime = serializers.SerializerMethodField(method_name='get_current_time')
 
-    def get_current_time(self, obj) -> Optional[int]:
+    def get_current_time(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.current_time
+        return 0
 
     event = serializers.SerializerMethodField()
 
@@ -85,20 +93,22 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
 
     print = serializers.SerializerMethodField()
 
-    def get_print(self, obj) -> Optional[str]:
+    def get_print(self, obj) -> str:
         if obj.print_session:
             return obj.print_session.gcode_file
+        return str()
 
     percent = serializers.SerializerMethodField()
 
-    def get_percent(self, obj) -> Optional[int]:
+    def get_percent(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.progress
+        return 0
 
     token = serializers.SerializerMethodField()
 
     def get_token(self, obj) -> str:
-        token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
+        token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id, deleted=None)
         return str(token)
 
     action = serializers.SerializerMethodField()
@@ -106,8 +116,9 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     def get_action(self, obj) -> str:
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.octoprint_device.id},
+            kwargs={"pk": obj.octoprint_device.id},
         )
+        device_url = urljoin(settings.BASE_URL, device_url)
         return device_url
 
     image = serializers.SerializerMethodField()
@@ -122,8 +133,8 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
             "token",
             "printer",
             "print",
-            "current_time",
-            "time_left",
+            "currentTime",
+            "timeLeft",
             "percent",
             "image",
             "action",

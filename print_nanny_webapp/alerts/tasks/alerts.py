@@ -3,7 +3,9 @@ from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
 from django.template import engines
+import logging
 
+import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
     Partner3DGeeksAlertSerializer,
@@ -18,6 +20,7 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
+logger = logging.getLogger(__name__)
 
 class AlertTask:
     """
@@ -32,14 +35,14 @@ class AlertTask:
         email_body_html_template: Optional[str] = None,
         email_subject_template: str = "email/generic_alert_subject.txt",
         serializer=AlertSerializer,
-        partner_serializer=Partner3DGeeksAlertSerializer,
+        partner_3dgeeks_serializer=Partner3DGeeksAlertSerializer,
     ):
         self.instance = instance
         self.email_body_txt_template = email_body_txt_template
         self.email_body_html_template = email_body_html_template
         self.email_subject_template = email_subject_template
         self.serializer = serializer
-        self.partner_serializer = partner_serializer
+        self.partner_3dgeeks_serializer = partner_3dgeeks_serializer
         self.alert_trigger_method_map = {
             AlertSettings.AlertMethod.UI: self.trigger_ui_alert,
             AlertSettings.AlertMethod.EMAIL: self.trigger_email_alert,
@@ -60,19 +63,23 @@ class AlertTask:
         return False
 
     def get_serializer(self) -> Union[AlertSerializer, Partner3DGeeksAlertSerializer]:
-        if self.instance.alert_method in PartnersEnum._value2member_map_:
-            return self.partner_serializer(self.instance)
+        if self.instance.alert_method is AlertSettings.AlertMethod.PARTNER_3DGEEKS:
+            return self.partner_3dgeeks_serializer(self.instance)
         return self.serializer(self.instance)
 
     def trigger_geeks3d_alert(self):
         serializer = self.get_serializer()
         data = serializer.data
-        data["token"] = GeeksToken.get(
-            octoprint_device_id=self.instance.octoprint_device_id
+        token = data['token']
+        headers = {
+            'Authorization': f'Bearer {token}'
+        }
+        logger.info(f"3DGeeks alerts_push headers={headers} request={data}")
+        res = requests.post(
+            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data, headers=headers
         )
-        return requests.post(
-            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data
-        )
+        logger.warning(f"3DGeeks alerts_push response: {res.json()}")
+        return res
 
     def trigger_ui_alert(self):
         serializer = self.get_serializer()
