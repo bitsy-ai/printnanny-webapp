@@ -42,7 +42,7 @@ class AlertTask:
         self.email_body_html_template = email_body_html_template
         self.email_subject_template = email_subject_template
         self.serializer = serializer
-        self.partner_3dgeeks_serializer = partner_serializer
+        self.partner_3dgeeks_serializer = partner_3dgeeks_serializer
         self.alert_trigger_method_map = {
             AlertSettings.AlertMethod.UI: self.trigger_ui_alert,
             AlertSettings.AlertMethod.EMAIL: self.trigger_email_alert,
