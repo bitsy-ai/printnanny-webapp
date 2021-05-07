@@ -118,6 +118,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
             "dashboard:octoprint-devices:detail",
             kwargs={"pk": obj.octoprint_device.id},
         )
+        device_url = urljoin(settings.BASE_URL, device_url)
         return device_url
 
     image = serializers.SerializerMethodField()
