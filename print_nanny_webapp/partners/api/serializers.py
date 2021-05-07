@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Union, Optional
 from django.apps import apps
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
@@ -98,6 +99,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
 
     def get_token(self, obj) -> str:
+        print(obj.__dict__)
         token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id)
         return str(token)
 
@@ -106,7 +108,7 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     def get_action(self, obj) -> str:
         device_url = reverse(
             "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.octoprint_device.id},
+            kwargs={"pk": obj.octoprint_device.id},
         )
         return device_url
 

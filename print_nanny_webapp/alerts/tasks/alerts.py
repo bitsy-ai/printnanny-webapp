@@ -4,6 +4,7 @@ from django.apps import apps
 from django.urls import reverse
 from django.template import engines
 
+import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
     Partner3DGeeksAlertSerializer,
@@ -67,9 +68,7 @@ class AlertTask:
     def trigger_geeks3d_alert(self):
         serializer = self.get_serializer()
         data = serializer.data
-        data["token"] = GeeksToken.get(
-            octoprint_device_id=self.instance.octoprint_device_id
-        )
+
         return requests.post(
             settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"], json=data
         )
