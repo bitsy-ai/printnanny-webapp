@@ -1851,7 +1851,7 @@ export interface PaginatedUserList {
     results?: Array<User>;
 }
 /**
- * 
+ * Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
  * @export
  * @interface Partner3DGeeksAlert
  */
@@ -1885,13 +1885,13 @@ export interface Partner3DGeeksAlert {
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    current_time?: number;
+    currentTime?: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    time_left?: number;
+    timeLeft?: number;
     /**
      * 
      * @type {number}

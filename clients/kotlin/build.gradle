@@ -1,5 +1,5 @@
 group 'com.print-nanny'
-version '0.6.0-rc6'
+version '0.6.0-rc7'
 
 wrapper {
     gradleVersion = '4.9'

@@ -49,8 +49,8 @@ class Partner3DGeeksAlert(object):
         'token': 'token',
         'printer': 'printer',
         '_print': 'print',
-        'current_time': 'current_time',
-        'time_left': 'time_left',
+        'current_time': 'currentTime',
+        'time_left': 'timeLeft',
         'percent': 'percent',
         'image': 'image',
         'action': 'action'
