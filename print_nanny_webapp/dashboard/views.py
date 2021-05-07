@@ -46,7 +46,7 @@ RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
-
+AlertMessage = apps.get_model('alerts', "AlertMessage")
 logger = logging.getLogger(__name__)
 
 
