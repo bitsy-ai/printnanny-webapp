@@ -64,15 +64,17 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
 
     time_left = serializers.SerializerMethodField()
 
-    def get_time_left(self, obj) -> Optional[int]:
+    def get_time_left(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.time_remaining
+        return 0
 
     current_time = serializers.SerializerMethodField()
 
-    def get_current_time(self, obj) -> Optional[int]:
+    def get_current_time(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.current_time
+        return 0
 
     event = serializers.SerializerMethodField()
 
@@ -86,15 +88,17 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
 
     print = serializers.SerializerMethodField()
 
-    def get_print(self, obj) -> Optional[str]:
+    def get_print(self, obj) -> str:
         if obj.print_session:
             return obj.print_session.gcode_file
+        return str()
 
     percent = serializers.SerializerMethodField()
 
-    def get_percent(self, obj) -> Optional[int]:
+    def get_percent(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.progress
+        return 0
 
     token = serializers.SerializerMethodField()
 
