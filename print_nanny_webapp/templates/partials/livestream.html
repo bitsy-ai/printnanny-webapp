@@ -7,7 +7,7 @@
           <i class="mdi mdi-video-box-off"></i>{{object.name}} livestream</h2>
           <div id="stream-loading-{{object.id}}" class="row">
             <div class="alert alert-info col-12 col-md-5" role="alert">
-              <h4 class="alert-heading"><strong>{{object.name}}</strong> web camera is <strong>offline.</strong></h4>
+              <h4 class="alert-heading">{{object.name}} web camera is offline</h4>
               <p>Print Nanny couldn't find a live video stream for this device</p>
               <p><button class="btn btn-primary">Troubleshooting Guide</button></p>
               <p><a href="{% url 'dashboard:octoprint-devices:detail' pk=object.id%}"><button class="btn btn-secondary">Send Wake Command</button></a></p>
