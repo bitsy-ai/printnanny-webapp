@@ -39,4 +39,4 @@ then
 fi
 set -u
 
-daphne -b 0.0.0.0 -p 8000 config.asgi:application
+uvicorn config.asgi:application --host 0.0.0.0
