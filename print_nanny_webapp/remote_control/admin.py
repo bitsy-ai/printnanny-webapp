@@ -7,6 +7,6 @@ OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 
 class OctoPrintDeviceAdmin(admin.ModelAdmin):
 
-    list_display = ("id", "user", "serial", "cloudiot_device_id")
-    list_filters = ("id", "user", "serial", "cloudiot_device_id")
+    list_display = ("id", "user", "serial", "cloudiot_device_num_id")
+    list_filters = ("id", "user", "serial", "cloudiot_device_num_id")
     
