@@ -177,17 +177,7 @@ CHANNEL_LAYERS = {
 
 BETA_NOTIFY_EMAIL = ["beta@print-nanny.com"]
 
-
-
-# Resources created prior to Terraform cutover
 GCP_PROJECT_ID = env("GCP_PROJECT_ID", default="print-nanny")
-GCP_CLOUD_IOT_DEVICE_REGISTRY = env('GCP_CLOUD_IOT_DEVICE_REGISTRY', default='devices-us-central1-prod')
-
-GCP_PUBSUB_TELEMETRY_DEFAULT_TOPIC = env('GCP_PUBSUB_TELEMETRY_DEFAULT', default='projects/print-nanny/topics/telemetry-prod')
-GCP_PUBSUB_BOUNDING_BOXES_SUBFOLDER = env('GCP_PUBSUB_BOUNDING_BOXES', default='projects/print-nanny/topics/bounding-boxes-prod')
-GCP_PUBSUB_OCTOPRINT_EVENTS_TOPIC = env('GCP_PUBSUB_OCTOPRINT_EVENTS', default='projects/print-nanny/topics/octoprint-events-prod')
-
-GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION', default='projects/print-nanny/subscriptions/octoprint-events-webapp-prod')
 
 STATIC_URL = "https://print-nanny.com/static/"
 
