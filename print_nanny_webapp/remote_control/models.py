@@ -438,6 +438,7 @@ class RemoteControlCommand(models.Model):
         PRINT_PAUSE = "print_pause", "Pause Print"
         PRINT_RESUME = "print_resume", "Resume Print"
         MOVE_NOZZLE = "move_nozzle", "Move Nozzle"
+        PONG = "connection_test_mqtt_pong", "Pong"
 
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 

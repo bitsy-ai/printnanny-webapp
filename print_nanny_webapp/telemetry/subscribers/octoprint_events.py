@@ -21,6 +21,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 from django.apps import apps
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+import google.api_core.exceptions
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
@@ -74,7 +75,16 @@ def handle_print_status(octoprint_event):
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
     pass
+def handle_ping(octoprint_event):
+    device_id = octoprint_event.get("octoprint_device_id")
+    device = OctoPrintDevice.objects.get(id=device_id)
+    try:
 
+        RemoteControlCommand.objects.create(
+            user=self.request.user, device=device, command=RemoteControlCommand.Command.PONG
+        )
+    except google.api_core.exceptions.FailedPrecondition as e:
+        logger.error(f"Ping response for octoprint_device={octoprint_device} failed with error={e}")
 
 HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
 
@@ -94,8 +104,10 @@ def on_octoprint_event(message):
     data = json.loads(data)
 
     event_type = data["event_type"]
+    if event_type == "plugin_octoprint_nanny_connection_test_mqtt_ping":
+        handle_ping(message)
 
-    logger.debug(f"Received {event_type} with data {data}")
+    logger.info(f"Received {event_type} with data {data}")
     if data.get("octoprint_device_id") is None:
         logger.warning(f"Received {event_type} without octoprint_device_id {data}")
         message.ack()

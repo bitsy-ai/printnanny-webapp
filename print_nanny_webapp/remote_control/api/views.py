@@ -177,7 +177,7 @@ class PrinterProfileViewSet(
     @extend_schema(
         operation_id="printer_profiles_update_or_create",
         responses={
-            400: PrinterProfileSerializer,
+            # 400: PrinterProfileSerializer,
             200: PrinterProfileSerializer,
             201: PrinterProfileSerializer,
         },
@@ -307,7 +307,7 @@ class OctoPrintDeviceViewSet(
         operation_id="octoprint_devices_update",
         parameters=[],
         responses={
-            400: OctoPrintDeviceSerializer,
+            # 400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
             202: OctoPrintDeviceSerializer,
         },
@@ -318,7 +318,7 @@ class OctoPrintDeviceViewSet(
     @extend_schema(
         operation_id="octoprint_devices_partial_update",
         responses={
-            400: OctoPrintDeviceSerializer,
+            # 400: OctoPrintDeviceSerializer,
             200: OctoPrintDeviceSerializer,
             202: OctoPrintDeviceSerializer,
         },
