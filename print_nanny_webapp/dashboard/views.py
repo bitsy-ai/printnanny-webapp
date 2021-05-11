@@ -199,7 +199,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
             alert_method=AlertSettings.AlertMethod.PARTNER_3DGEEKS,
             event_type=AlertMessage.AlertMessageType.TEST,
             user=self.request.user,
-            octoprint_device_id=octoprint_device_id
+            octoprint_device_id=octoprint_device_id,
         )
         task = AlertTask(alert_message)
         task.trigger_alert()

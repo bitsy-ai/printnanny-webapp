@@ -130,43 +130,40 @@ class OctoPrintPluginEvent(TelemetryEvent):
             "Printer profile sync failed",
         )
 
-        CONNECT_TEST_REST_API = (
-            "connect_test_rest_api",
-            "Test connection to REST API"
-        )
+        CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
         CONNECT_TEST_REST_API_FAILED = (
             "connect_test_rest_api_failed",
-            "Test connection to REST API failed"
+            "Test connection to REST API failed",
         )
         CONNECT_TEST_REST_API_SUCCESS = (
             "connect_test_rest_api_success",
-            "Test connection to REST API success"
+            "Test connection to REST API success",
         )
 
         CONNECT_TEST_MQTT_PING = (
             "connect_test_mqtt_ping",
-            "Test connection to REST API"
+            "Test connection to REST API",
         )
         CONNECT_TEST_MQTT_PING_FAILED = (
             "connect_test_mqtt_ping_failed",
-            "Test connection to REST API failed"
+            "Test connection to REST API failed",
         )
         CONNECT_TEST_MQTT_PING_SUCCESS = (
             "connect_test_mqtt_ping_success",
-            "Test connection to REST API success"
+            "Test connection to REST API success",
         )
 
         CONNECT_TEST_MQTT_PONG = (
             "connect_test_mqtt_pong",
-            "Test connection to REST API"
+            "Test connection to REST API",
         )
         CONNECT_TEST_MQTT_PONG_FAILED = (
             "connect_test_mqtt_pong_failed",
-            "Test connection to REST API failed"
+            "Test connection to REST API failed",
         )
         CONNECT_TEST_MQTT_PONG_SUCCESS = (
             "connect_test_mqtt_pong_success",
-            "Test connection to REST API success"
+            "Test connection to REST API success",
         )
 
     event_codes = [x.value for x in EventType.__members__.values()]

@@ -64,17 +64,17 @@ class Partner3DGeeksMetadataSerializer(serializers.ModelSerializer):
 
 class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     """
-        Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
+    Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
     """
 
-    timeLeft = serializers.SerializerMethodField(method_name='get_time_left')
+    timeLeft = serializers.SerializerMethodField(method_name="get_time_left")
 
     def get_time_left(self, obj) -> int:
         if obj.print_session:
             return obj.print_session.time_remaining
         return 0
 
-    currentTime = serializers.SerializerMethodField(method_name='get_current_time')
+    currentTime = serializers.SerializerMethodField(method_name="get_current_time")
 
     def get_current_time(self, obj) -> int:
         if obj.print_session:
@@ -108,7 +108,9 @@ class Partner3DGeeksAlertSerializer(serializers.ModelSerializer):
     token = serializers.SerializerMethodField()
 
     def get_token(self, obj) -> str:
-        token = GeeksToken.objects.get(octoprint_device_id=obj.octoprint_device.id, deleted=None)
+        token = GeeksToken.objects.get(
+            octoprint_device_id=obj.octoprint_device.id, deleted=None
+        )
         return str(token)
 
     action = serializers.SerializerMethodField()

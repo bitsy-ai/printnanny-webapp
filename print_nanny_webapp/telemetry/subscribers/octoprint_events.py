@@ -76,16 +76,22 @@ def handle_print_status(octoprint_event):
     """
     pass
 
+
 def handle_ping(octoprint_event):
     device_id = octoprint_event.get("octoprint_device_id")
     device = OctoPrintDevice.objects.get(id=device_id)
     try:
 
         RemoteControlCommand.objects.create(
-            user=self.request.user, device=device, command=RemoteControlCommand.Command.PONG
+            user=self.request.user,
+            device=device,
+            command=RemoteControlCommand.Command.PONG,
         )
     except google.api_core.exceptions.FailedPrecondition as e:
-        logger.error(f"Ping response for octoprint_device={octoprint_device} failed with error={e}")
+        logger.error(
+            f"Ping response for octoprint_device={octoprint_device} failed with error={e}"
+        )
+
 
 HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
 
@@ -93,7 +99,7 @@ HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEvent.EventType.choices}
 )
 
-HANDLER_FNS.update({ OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping })
+HANDLER_FNS.update({OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping})
 
 
 def on_octoprint_event(message):
