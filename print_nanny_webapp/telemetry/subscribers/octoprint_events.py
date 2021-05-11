@@ -24,6 +24,7 @@ from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 import google.api_core.exceptions
 
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintPluginEvent")
@@ -123,7 +124,9 @@ def on_octoprint_event(message):
     logger.info(f"Received {event_type} with data {data}")
 
     # TODO enforce a schema on this topic :facepalm:
-    octoprint_device_id = data.get("octoprint_device_id") or data.get("metadata", {}).get("octoprint_device_id")
+    octoprint_device_id = data.get("octoprint_device_id") or data.get(
+        "metadata", {}
+    ).get("octoprint_device_id")
     user_id = data.get("user_id") or data.get("metadata", {}).get("user_id")
 
     if octoprint_device_id is None:
@@ -141,7 +144,7 @@ def on_octoprint_event(message):
                 octoprint_device_id=octoprint_device_id,
                 event_data=data,
                 event_type=event_type,
-                octoprint_version=data["octoprint_version"],
+                octoprint_version=data["metadata"]["octoprint_version"],
                 plugin_version=data["plugin_version"],
                 user_id=user_id,
             )
@@ -159,7 +162,7 @@ def on_octoprint_event(message):
                 event_data=data,
                 event_type=event_type,
                 job_data_file=data["printer_data"]["job"]["file"],
-                octoprint_version=data["octoprint_version"],
+                octoprint_version=data["metadata"]["octoprint_version"],
                 plugin_version=data["plugin_version"],
                 progress=data["printer_data"]["progress"],
                 state=data["printer_data"]["state"],
@@ -185,10 +188,12 @@ def on_octoprint_event(message):
                 plugin_version=data["metadata"]["plugin_version"],
                 user_id=user_id,
                 metadata=data["metadata"],
-                octoprint_job=data["octoprint_job"]
+                octoprint_job=data["octoprint_job"],
             )
 
-            handler_fn = HANDLER_FNS.get(OctoPrintPluginEvent.strip_octoprint_prefix(event_type))
+            handler_fn = HANDLER_FNS.get(
+                OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+            )
             if handler_fn is not None:
                 handler_fn(data)
         except Exception as e:
