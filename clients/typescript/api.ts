@@ -1385,7 +1385,16 @@ export enum OctoPrintPluginEventEventTypeEnum {
     DeviceRegisterFailed = 'device_register_failed',
     PrinterProfileSyncStart = 'printer_profile_sync_start',
     PrinterProfileSyncDone = 'printer_profile_sync_done',
-    PrinterProfileSyncFailed = 'printer_profile_sync_failed'
+    PrinterProfileSyncFailed = 'printer_profile_sync_failed',
+    ConnectTestRestApi = 'connect_test_rest_api',
+    ConnectTestRestApiFailed = 'connect_test_rest_api_failed',
+    ConnectTestRestApiSuccess = 'connect_test_rest_api_success',
+    ConnectTestMqttPing = 'connect_test_mqtt_ping',
+    ConnectTestMqttPingFailed = 'connect_test_mqtt_ping_failed',
+    ConnectTestMqttPingSuccess = 'connect_test_mqtt_ping_success',
+    ConnectTestMqttPong = 'connect_test_mqtt_pong',
+    ConnectTestMqttPongFailed = 'connect_test_mqtt_pong_failed',
+    ConnectTestMqttPongSuccess = 'connect_test_mqtt_pong_success'
 }
 
 /**
