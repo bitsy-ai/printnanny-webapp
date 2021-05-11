@@ -1,6 +1,7 @@
 # AlertBulkResponse
 
 Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

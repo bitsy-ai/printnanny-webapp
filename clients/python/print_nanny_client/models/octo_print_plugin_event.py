@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -41,6 +44,8 @@ class OctoPrintPluginEvent(object):
         'plugin_version': 'str',
         'client_version': 'str',
         'octoprint_version': 'str',
+        'metadata': 'dict(str, object)',
+        'octoprint_job': 'dict(str, object)',
         'event_type': 'OctoPrintPluginEventEventTypeEnum',
         'url': 'str'
     }
@@ -54,14 +59,16 @@ class OctoPrintPluginEvent(object):
         'plugin_version': 'plugin_version',
         'client_version': 'client_version',
         'octoprint_version': 'octoprint_version',
+        'metadata': 'metadata',
+        'octoprint_job': 'octoprint_job',
         'event_type': 'event_type',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, event_type=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, event_type=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintPluginEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
@@ -72,6 +79,8 @@ class OctoPrintPluginEvent(object):
         self._plugin_version = None
         self._client_version = None
         self._octoprint_version = None
+        self._metadata = None
+        self._octoprint_job = None
         self._event_type = None
         self._url = None
         self.discriminator = None
@@ -87,6 +96,8 @@ class OctoPrintPluginEvent(object):
         self.plugin_version = plugin_version
         self.client_version = client_version
         self.octoprint_version = octoprint_version
+        self.metadata = metadata
+        self.octoprint_job = octoprint_job
         self.event_type = event_type
         if url is not None:
             self.url = url
@@ -277,6 +288,48 @@ class OctoPrintPluginEvent(object):
         self._octoprint_version = octoprint_version
 
     @property
+    def metadata(self):
+        """Gets the metadata of this OctoPrintPluginEvent.  # noqa: E501
+
+
+        :return: The metadata of this OctoPrintPluginEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this OctoPrintPluginEvent.
+
+
+        :param metadata: The metadata of this OctoPrintPluginEvent.  # noqa: E501
+        :type metadata: dict(str, object)
+        """
+
+        self._metadata = metadata
+
+    @property
+    def octoprint_job(self):
+        """Gets the octoprint_job of this OctoPrintPluginEvent.  # noqa: E501
+
+
+        :return: The octoprint_job of this OctoPrintPluginEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_job
+
+    @octoprint_job.setter
+    def octoprint_job(self, octoprint_job):
+        """Sets the octoprint_job of this OctoPrintPluginEvent.
+
+
+        :param octoprint_job: The octoprint_job of this OctoPrintPluginEvent.  # noqa: E501
+        :type octoprint_job: dict(str, object)
+        """
+
+        self._octoprint_job = octoprint_job
+
+    @property
     def event_type(self):
         """Gets the event_type of this OctoPrintPluginEvent.  # noqa: E501
 
@@ -326,7 +379,7 @@ class OctoPrintPluginEvent(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

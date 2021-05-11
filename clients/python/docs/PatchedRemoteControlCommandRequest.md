@@ -1,5 +1,6 @@
 # PatchedRemoteControlCommandRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

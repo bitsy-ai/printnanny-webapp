@@ -331,7 +331,7 @@ google-cloud-iot==2.0.1
     # via -r requirements/local.txt
 google-cloud-monitoring==2.0.0
     # via -r requirements/local.txt
-google-cloud-pubsub==2.2.0
+google-cloud-pubsub==2.2.2
     # via -r requirements/local.txt
 google-cloud-storage==1.37.1
     # via

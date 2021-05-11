@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -34,8 +37,17 @@ class OctoPrintPluginEventEventTypeEnum(object):
     PRINTER_PROFILE_SYNC_START = "printer_profile_sync_start"
     PRINTER_PROFILE_SYNC_DONE = "printer_profile_sync_done"
     PRINTER_PROFILE_SYNC_FAILED = "printer_profile_sync_failed"
+    CONNECT_TEST_REST_API = "connect_test_rest_api"
+    CONNECT_TEST_REST_API_FAILED = "connect_test_rest_api_failed"
+    CONNECT_TEST_REST_API_SUCCESS = "connect_test_rest_api_success"
+    CONNECT_TEST_MQTT_PING = "connect_test_mqtt_ping"
+    CONNECT_TEST_MQTT_PING_FAILED = "connect_test_mqtt_ping_failed"
+    CONNECT_TEST_MQTT_PING_SUCCESS = "connect_test_mqtt_ping_success"
+    CONNECT_TEST_MQTT_PONG = "connect_test_mqtt_pong"
+    CONNECT_TEST_MQTT_PONG_FAILED = "connect_test_mqtt_pong_failed"
+    CONNECT_TEST_MQTT_PONG_SUCCESS = "connect_test_mqtt_pong_success"
 
-    allowable_values = [DEVICE_REGISTER_START, DEVICE_REGISTER_DONE, DEVICE_REGISTER_FAILED, PRINTER_PROFILE_SYNC_START, PRINTER_PROFILE_SYNC_DONE, PRINTER_PROFILE_SYNC_FAILED]  # noqa: E501
+    allowable_values = [DEVICE_REGISTER_START, DEVICE_REGISTER_DONE, DEVICE_REGISTER_FAILED, PRINTER_PROFILE_SYNC_START, PRINTER_PROFILE_SYNC_DONE, PRINTER_PROFILE_SYNC_FAILED, CONNECT_TEST_REST_API, CONNECT_TEST_REST_API_FAILED, CONNECT_TEST_REST_API_SUCCESS, CONNECT_TEST_MQTT_PING, CONNECT_TEST_MQTT_PING_FAILED, CONNECT_TEST_MQTT_PING_SUCCESS, CONNECT_TEST_MQTT_PONG, CONNECT_TEST_MQTT_PONG_FAILED, CONNECT_TEST_MQTT_PONG_SUCCESS]  # noqa: E501
 
     """
     Attributes:
@@ -53,7 +65,7 @@ class OctoPrintPluginEventEventTypeEnum(object):
     def __init__(self, local_vars_configuration=None):  # noqa: E501
         """OctoPrintPluginEventEventTypeEnum - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
         self.discriminator = None
 
@@ -63,7 +75,7 @@ class OctoPrintPluginEventEventTypeEnum(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

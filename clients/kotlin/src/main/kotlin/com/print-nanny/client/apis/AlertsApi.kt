@@ -50,23 +50,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsList(page: kotlin.Int?) : PaginatedAlertList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/alerts/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedAlertList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -85,6 +72,33 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     }
 
     /**
+    * To obtain the request config of the operation alertsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun alertsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/alerts/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this alert message. 
@@ -97,18 +111,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsPartialUpdate(id: kotlin.Int, patchedAlertRequest: PatchedAlertRequest?) : Alert {
-        val localVariableBody: kotlin.Any? = patchedAlertRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PATCH,
-            "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsPartialUpdateRequestConfig(id = id, patchedAlertRequest = patchedAlertRequest)
+
         val localVarResponse = request<Alert>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -127,6 +133,29 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     }
 
     /**
+    * To obtain the request config of the operation alertsPartialUpdate
+    *
+    * @param id A unique integer value identifying this alert message. 
+    * @param patchedAlertRequest  (optional)
+    * @return RequestConfig
+    */
+    fun alertsPartialUpdateRequestConfig(id: kotlin.Int, patchedAlertRequest: PatchedAlertRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedAlertRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @return AlertBulkResponse
@@ -137,18 +166,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsRecent() : AlertBulkResponse {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/alerts/recent/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsRecentRequestConfig()
+
         val localVarResponse = request<AlertBulkResponse>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -164,6 +185,27 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation alertsRecent
+    *
+    * @return RequestConfig
+    */
+    fun alertsRecentRequestConfig() : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/alerts/recent/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
     /**
@@ -178,18 +220,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsRetrieve(id: kotlin.Int) : Alert {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<Alert>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -208,6 +242,28 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     }
 
     /**
+    * To obtain the request config of the operation alertsRetrieve
+    *
+    * @param id A unique integer value identifying this alert message. 
+    * @return RequestConfig
+    */
+    fun alertsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param patchedAlertBulkRequestRequest  (optional)
@@ -219,18 +275,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsSeen(patchedAlertBulkRequestRequest: PatchedAlertBulkRequestRequest?) : AlertBulkResponse {
-        val localVariableBody: kotlin.Any? = patchedAlertBulkRequestRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PATCH,
-            "/api/alerts/seen/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsSeenRequestConfig(patchedAlertBulkRequestRequest = patchedAlertBulkRequestRequest)
+
         val localVarResponse = request<AlertBulkResponse>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -249,6 +297,28 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     }
 
     /**
+    * To obtain the request config of the operation alertsSeen
+    *
+    * @param patchedAlertBulkRequestRequest  (optional)
+    * @return RequestConfig
+    */
+    fun alertsSeenRequestConfig(patchedAlertBulkRequestRequest: PatchedAlertBulkRequestRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedAlertBulkRequestRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/alerts/seen/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @return AlertBulkResponse
@@ -259,18 +329,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsUnread() : AlertBulkResponse {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/alerts/unread/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsUnreadRequestConfig()
+
         val localVarResponse = request<AlertBulkResponse>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -286,6 +348,27 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation alertsUnread
+    *
+    * @return RequestConfig
+    */
+    fun alertsUnreadRequestConfig() : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/alerts/unread/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
     /**
@@ -301,18 +384,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsUpdate(id: kotlin.Int, alertRequest: AlertRequest) : Alert {
-        val localVariableBody: kotlin.Any? = alertRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PUT,
-            "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsUpdateRequestConfig(id = id, alertRequest = alertRequest)
+
         val localVarResponse = request<Alert>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -328,6 +403,29 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation alertsUpdate
+    *
+    * @param id A unique integer value identifying this alert message. 
+    * @param alertRequest  
+    * @return RequestConfig
+    */
+    fun alertsUpdateRequestConfig(id: kotlin.Int, alertRequest: AlertRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = alertRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

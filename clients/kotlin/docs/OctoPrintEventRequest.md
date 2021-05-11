@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  | 
 **eventType** | [**OctoPrintEventEventTypeEnum**](OctoPrintEventEventTypeEnum.md) |  | 
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**metadata** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]
 
 

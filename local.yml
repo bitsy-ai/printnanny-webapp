@@ -70,26 +70,27 @@ services:
       - ./.envs/.local/.postgres
     ports:
       - "5432:5432"
+  
+  # TODO evaluate whether these generated docs are of any value (swagger ones are probably more accurate)
+  # docs:
 
-  docs:
+  #   image: print_nanny_webapp_local_docs
+  #   container_name: docs
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/local/docs/Dockerfile
+  #   env_file:
+  #     - ./.envs/.local/.django
+  #     - ./.envs/.local/.secrets
+  #   volumes:
+  #     - ./docs:/docs:z
+  #     - ./.envs/.production/print-nanny-dataflow-owner.json:/app/.envs/.production/print-nanny-dataflow-owner.json
+  #     - ./config:/app/config:z
+  #     - ./print_nanny_webapp:/app/print_nanny_webapp:z
+  #     - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
 
-    image: print_nanny_webapp_local_docs
-    container_name: docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.secrets
-    volumes:
-      - ./docs:/docs:z
-      - ./.envs/.production/print-nanny-dataflow-owner.json:/app/.envs/.production/print-nanny-dataflow-owner.json
-      - ./config:/app/config:z
-      - ./print_nanny_webapp:/app/print_nanny_webapp:z
-      - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
-
-    ports:
-      - "7000:7000"
+  #   ports:
+  #     - "7000:7000"
 
   ngrok:
 
@@ -151,16 +152,18 @@ services:
       - django
       - redis
       - postgres
-  notebook:
-    <<: *django
-    image: print_nanny_webapp_local_notebook
 
-    user: 1000:1000
+  # @todo setup jupyter notebook lab / colab env
+  # notebook:
+  #   <<: *django
+  #   image: print_nanny_webapp_local_notebook
 
-    container_name: notebook
-    ports:
-      - "8888:8888"
-    command: /start-notebook
+  #   user: 1000:1000
+
+  #   container_name: notebook
+  #   ports:
+  #     - "8888:8888"
+  #   command: /start-notebook
 
   prometheus:
 

@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -47,6 +50,7 @@ class PrintSession(object):
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
+        'octoprint_job': 'dict(str, object)',
         'url': 'str'
     }
 
@@ -65,13 +69,14 @@ class PrintSession(object):
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
+        'octoprint_job': 'octoprint_job',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
@@ -88,6 +93,7 @@ class PrintSession(object):
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
+        self._octoprint_job = None
         self._url = None
         self.discriminator = None
 
@@ -110,6 +116,7 @@ class PrintSession(object):
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
+        self.octoprint_job = octoprint_job
         if url is not None:
             self.url = url
 
@@ -442,6 +449,27 @@ class PrintSession(object):
         self._gcode_filename = gcode_filename
 
     @property
+    def octoprint_job(self):
+        """Gets the octoprint_job of this PrintSession.  # noqa: E501
+
+
+        :return: The octoprint_job of this PrintSession.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_job
+
+    @octoprint_job.setter
+    def octoprint_job(self, octoprint_job):
+        """Sets the octoprint_job of this PrintSession.
+
+
+        :param octoprint_job: The octoprint_job of this PrintSession.  # noqa: E501
+        :type octoprint_job: dict(str, object)
+        """
+
+        self._octoprint_job = octoprint_job
+
+    @property
     def url(self):
         """Gets the url of this PrintSession.  # noqa: E501
 
@@ -468,7 +496,7 @@ class PrintSession(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

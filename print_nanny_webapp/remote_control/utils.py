@@ -155,11 +155,10 @@ def delete_cloudiot_device(device_id: int):
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
         device_id,
     )
-    try: 
+    try:
         return client.delete_device(name=device_path)
     except google.api_core.exceptions.NotFound as e:
-        logger.error(e)        
-
+        logger.error(e)
 
 
 def create_cloudiot_device(

@@ -1,5 +1,6 @@
 # OctoPrintEventRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -8,6 +9,8 @@ Name | Type | Description | Notes
 **plugin_version** | **str** |  | 
 **client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
+**metadata** | **dict(str, object)** |  | [optional] 
+**octoprint_job** | **dict(str, object)** |  | [optional] 
 **event_type** | [**OctoPrintEventEventTypeEnum**](OctoPrintEventEventTypeEnum.md) |  | 
 **print_session** | **int** |  | [optional] 
 

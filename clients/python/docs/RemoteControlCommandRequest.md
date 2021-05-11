@@ -1,5 +1,6 @@
 # RemoteControlCommandRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

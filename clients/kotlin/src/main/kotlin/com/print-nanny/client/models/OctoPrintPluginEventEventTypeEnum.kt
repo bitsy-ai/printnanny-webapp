@@ -16,35 +16,56 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed
+* Values: deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed,connectTestRestApi,connectTestRestApiFailed,connectTestRestApiSuccess,connectTestMqttPing,connectTestMqttPingFailed,connectTestMqttPingSuccess,connectTestMqttPong,connectTestMqttPongFailed,connectTestMqttPongSuccess
 */
 
-enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String){
+enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String) {
 
 
     @Json(name = "device_register_start")
     deviceRegisterStart("device_register_start"),
 
-
     @Json(name = "device_register_done")
     deviceRegisterDone("device_register_done"),
-
 
     @Json(name = "device_register_failed")
     deviceRegisterFailed("device_register_failed"),
 
-
     @Json(name = "printer_profile_sync_start")
     printerProfileSyncStart("printer_profile_sync_start"),
-
 
     @Json(name = "printer_profile_sync_done")
     printerProfileSyncDone("printer_profile_sync_done"),
 
-
     @Json(name = "printer_profile_sync_failed")
-    printerProfileSyncFailed("printer_profile_sync_failed");
+    printerProfileSyncFailed("printer_profile_sync_failed"),
 
+    @Json(name = "connect_test_rest_api")
+    connectTestRestApi("connect_test_rest_api"),
+
+    @Json(name = "connect_test_rest_api_failed")
+    connectTestRestApiFailed("connect_test_rest_api_failed"),
+
+    @Json(name = "connect_test_rest_api_success")
+    connectTestRestApiSuccess("connect_test_rest_api_success"),
+
+    @Json(name = "connect_test_mqtt_ping")
+    connectTestMqttPing("connect_test_mqtt_ping"),
+
+    @Json(name = "connect_test_mqtt_ping_failed")
+    connectTestMqttPingFailed("connect_test_mqtt_ping_failed"),
+
+    @Json(name = "connect_test_mqtt_ping_success")
+    connectTestMqttPingSuccess("connect_test_mqtt_ping_success"),
+
+    @Json(name = "connect_test_mqtt_pong")
+    connectTestMqttPong("connect_test_mqtt_pong"),
+
+    @Json(name = "connect_test_mqtt_pong_failed")
+    connectTestMqttPongFailed("connect_test_mqtt_pong_failed"),
+
+    @Json(name = "connect_test_mqtt_pong_success")
+    connectTestMqttPongSuccess("connect_test_mqtt_pong_success");
 
 
     /**
@@ -54,6 +75,5 @@ enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

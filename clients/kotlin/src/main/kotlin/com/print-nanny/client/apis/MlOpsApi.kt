@@ -54,18 +54,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest) : DeviceCalibration {
-        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/api/device-calibrations/update-or-create/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = deviceCalibrationUpdateOrCreateRequestConfig(deviceCalibrationRequest = deviceCalibrationRequest)
+
         val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -84,6 +76,28 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation deviceCalibrationUpdateOrCreate
+    *
+    * @param deviceCalibrationRequest  
+    * @return RequestConfig
+    */
+    fun deviceCalibrationUpdateOrCreateRequestConfig(deviceCalibrationRequest: DeviceCalibrationRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/device-calibrations/update-or-create/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -95,23 +109,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deviceCalibrationsList(page: kotlin.Int?) : PaginatedDeviceCalibrationList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/device-calibrations/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = deviceCalibrationsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedDeviceCalibrationList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -130,6 +131,33 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation deviceCalibrationsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/device-calibrations/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this device calibration. 
@@ -142,18 +170,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deviceCalibrationsPartialUpdate(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : DeviceCalibration {
-        val localVariableBody: kotlin.Any? = patchedDeviceCalibrationRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PATCH,
-            "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = deviceCalibrationsPartialUpdateRequestConfig(id = id, patchedDeviceCalibrationRequest = patchedDeviceCalibrationRequest)
+
         val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -172,6 +192,29 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation deviceCalibrationsPartialUpdate
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @param patchedDeviceCalibrationRequest  (optional)
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsPartialUpdateRequestConfig(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedDeviceCalibrationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this device calibration. 
@@ -183,18 +226,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deviceCalibrationsRetrieve(id: kotlin.Int) : DeviceCalibration {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = deviceCalibrationsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -210,6 +245,28 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceCalibrationsRetrieve
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
     /**
@@ -225,18 +282,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deviceCalibrationsUpdate(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : DeviceCalibration {
-        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.PUT,
-            "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = deviceCalibrationsUpdateRequestConfig(id = id, deviceCalibrationRequest = deviceCalibrationRequest)
+
         val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -255,6 +304,29 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation deviceCalibrationsUpdate
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @param deviceCalibrationRequest  
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsUpdateRequestConfig(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -266,23 +338,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun experimentDeviceConfigsList(page: kotlin.Int?) : PaginatedExperimentDeviceConfigList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/experiment-device-configs/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = experimentDeviceConfigsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedExperimentDeviceConfigList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -301,6 +360,33 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation experimentDeviceConfigsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun experimentDeviceConfigsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiment-device-configs/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this experiment device config. 
@@ -312,18 +398,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun experimentDeviceConfigsRetrieve(id: kotlin.Int) : ExperimentDeviceConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/experiment-device-configs/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = experimentDeviceConfigsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<ExperimentDeviceConfig>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -342,6 +420,28 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation experimentDeviceConfigsRetrieve
+    *
+    * @param id A unique integer value identifying this experiment device config. 
+    * @return RequestConfig
+    */
+    fun experimentDeviceConfigsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiment-device-configs/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -353,23 +453,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun experimentsList(page: kotlin.Int?) : PaginatedExperimentList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/experiments/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = experimentsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedExperimentList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -388,6 +475,33 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation experimentsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun experimentsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiments/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this experiment. 
@@ -399,18 +513,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun experimentsRetrieve(id: kotlin.Int) : Experiment {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/experiments/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = experimentsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<Experiment>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -429,6 +535,28 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation experimentsRetrieve
+    *
+    * @param id A unique integer value identifying this experiment. 
+    * @return RequestConfig
+    */
+    fun experimentsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiments/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -440,23 +568,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun modelArtifactsList(page: kotlin.Int?) : PaginatedModelArtifactList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/model-artifacts/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = modelArtifactsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedModelArtifactList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -475,6 +590,33 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
+    * To obtain the request config of the operation modelArtifactsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun modelArtifactsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/model-artifacts/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this model artifact. 
@@ -486,18 +628,10 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun modelArtifactsRetrieve(id: kotlin.Int) : ModelArtifact {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/model-artifacts/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = modelArtifactsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<ModelArtifact>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -513,6 +647,28 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation modelArtifactsRetrieve
+    *
+    * @param id A unique integer value identifying this model artifact. 
+    * @return RequestConfig
+    */
+    fun modelArtifactsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/model-artifacts/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

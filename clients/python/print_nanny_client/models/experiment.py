@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -57,7 +60,7 @@ class Experiment(object):
     def __init__(self, id=None, created_dt=None, active=None, name=None, hypothesis=None, control=None, treatments=None, notion_url=None, local_vars_configuration=None):  # noqa: E501
         """Experiment - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
@@ -271,7 +274,7 @@ class Experiment(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

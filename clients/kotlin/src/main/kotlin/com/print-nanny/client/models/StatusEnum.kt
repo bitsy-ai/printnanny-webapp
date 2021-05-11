@@ -19,20 +19,17 @@ import com.squareup.moshi.Json
 * Values: monitoringActive,renderingVideo,doneATimelapseOfYourPrintJobIsReadyExclamation
 */
 
-enum class StatusEnum(val value: kotlin.String){
+enum class StatusEnum(val value: kotlin.String) {
 
 
     @Json(name = "monitoring_active")
     monitoringActive("monitoring_active"),
 
-
     @Json(name = "rendering_video")
     renderingVideo("rendering_video"),
 
-
     @Json(name = "doneA timelapse of your print job is ready!")
     doneATimelapseOfYourPrintJobIsReadyExclamation("doneA timelapse of your print job is ready!");
-
 
 
     /**
@@ -42,6 +39,5 @@ enum class StatusEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

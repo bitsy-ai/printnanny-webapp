@@ -18,5 +18,7 @@
 
     * `moveNozzle` (value: `"move_nozzle"`)
 
+    * `connectTestMqttPong` (value: `"connect_test_mqtt_pong"`)
+
 
 

@@ -17,6 +17,8 @@ import { Configuration } from './configuration';
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+// @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
@@ -256,7 +258,8 @@ export enum CommandEnum {
     PrintStop = 'print_stop',
     PrintPause = 'print_pause',
     PrintResume = 'print_resume',
-    MoveNozzle = 'move_nozzle'
+    MoveNozzle = 'move_nozzle',
+    ConnectTestMqttPong = 'connect_test_mqtt_pong'
 }
 
 /**
@@ -491,37 +494,6 @@ export interface GcodeFile {
      * @memberof GcodeFile
      */
     url?: string;
-}
-/**
- * 
- * @export
- * @interface GcodeFileRequest
- */
-export interface GcodeFileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof GcodeFileRequest
-     */
-    name: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof GcodeFileRequest
-     */
-    file: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof GcodeFileRequest
-     */
-    file_hash: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GcodeFileRequest
-     */
-    octoprint_device: string;
 }
 /**
  * 
@@ -1218,6 +1190,18 @@ export interface OctoPrintEvent {
     octoprint_version: string;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
@@ -1324,6 +1308,18 @@ export interface OctoPrintEventRequest {
     octoprint_version: string;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
@@ -1391,6 +1387,18 @@ export interface OctoPrintPluginEvent {
     octoprint_version: string;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintPluginEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintPluginEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {OctoPrintPluginEventEventTypeEnum}
      * @memberof OctoPrintPluginEvent
      */
@@ -1413,7 +1421,16 @@ export enum OctoPrintPluginEventEventTypeEnum {
     DeviceRegisterFailed = 'device_register_failed',
     PrinterProfileSyncStart = 'printer_profile_sync_start',
     PrinterProfileSyncDone = 'printer_profile_sync_done',
-    PrinterProfileSyncFailed = 'printer_profile_sync_failed'
+    PrinterProfileSyncFailed = 'printer_profile_sync_failed',
+    ConnectTestRestApi = 'connect_test_rest_api',
+    ConnectTestRestApiFailed = 'connect_test_rest_api_failed',
+    ConnectTestRestApiSuccess = 'connect_test_rest_api_success',
+    ConnectTestMqttPing = 'connect_test_mqtt_ping',
+    ConnectTestMqttPingFailed = 'connect_test_mqtt_ping_failed',
+    ConnectTestMqttPingSuccess = 'connect_test_mqtt_ping_success',
+    ConnectTestMqttPong = 'connect_test_mqtt_pong',
+    ConnectTestMqttPongFailed = 'connect_test_mqtt_pong_failed',
+    ConnectTestMqttPongSuccess = 'connect_test_mqtt_pong_success'
 }
 
 /**
@@ -2050,37 +2067,6 @@ export interface PatchedDeviceCalibrationRequest {
 /**
  * 
  * @export
- * @interface PatchedGcodeFileRequest
- */
-export interface PatchedGcodeFileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedGcodeFileRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof PatchedGcodeFileRequest
-     */
-    file?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedGcodeFileRequest
-     */
-    file_hash?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedGcodeFileRequest
-     */
-    octoprint_device?: string;
-}
-/**
- * 
- * @export
  * @interface PatchedOctoPrintDeviceRequest
  */
 export interface PatchedOctoPrintDeviceRequest {
@@ -2259,6 +2245,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedPrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2559,6 +2551,12 @@ export interface PrintSession {
     gcode_filename?: string | null;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSession
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSession
      */
@@ -2630,6 +2628,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2685,6 +2689,18 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     octoprint_version: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {PrintStatusEventEventTypeEnum}
@@ -3238,7 +3254,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         alertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3252,12 +3268,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -3265,19 +3276,12 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3290,13 +3294,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          */
         alertsPartialUpdate: async (id: number, patchedAlertRequest?: PatchedAlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsPartialUpdate.');
-            }
+            assertParamExists('alertsPartialUpdate', 'id', id)
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3310,37 +3312,19 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedAlertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedAlertRequest !== undefined ? patchedAlertRequest : {})
-                : (patchedAlertRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3352,7 +3336,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         alertsRecent: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/recent/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3366,28 +3350,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3399,13 +3371,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          */
         alertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsRetrieve.');
-            }
+            assertParamExists('alertsRetrieve', 'id', id)
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3419,28 +3389,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3453,7 +3411,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         alertsSeen: async (patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/seen/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3467,37 +3425,19 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedAlertBulkRequestRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedAlertBulkRequestRequest !== undefined ? patchedAlertBulkRequestRequest : {})
-                : (patchedAlertBulkRequestRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertBulkRequestRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3509,7 +3449,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         alertsUnread: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/unread/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3523,28 +3463,16 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3557,17 +3485,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          */
         alertsUpdate: async (id: number, alertRequest: AlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsUpdate.');
-            }
+            assertParamExists('alertsUpdate', 'id', id)
             // verify required parameter 'alertRequest' is not null or undefined
-            if (alertRequest === null || alertRequest === undefined) {
-                throw new RequiredError('alertRequest','Required parameter alertRequest was null or undefined when calling alertsUpdate.');
-            }
+            assertParamExists('alertsUpdate', 'alertRequest', alertRequest)
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3581,37 +3505,19 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof alertRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(alertRequest !== undefined ? alertRequest : {})
-                : (alertRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(alertRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -3623,6 +3529,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
  * @export
  */
 export const AlertsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AlertsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -3631,11 +3538,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertList>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3645,11 +3549,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsPartialUpdate(id, patchedAlertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsPartialUpdate(id, patchedAlertRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3657,11 +3558,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsRecent(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRecent(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsRecent(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3670,11 +3568,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3683,11 +3578,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsSeen(patchedAlertBulkRequestRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSeen(patchedAlertBulkRequestRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3695,11 +3587,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsUnread(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUnread(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUnread(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -3709,11 +3598,8 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await AlertsApiAxiosParamCreator(configuration).alertsUpdate(id, alertRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUpdate(id, alertRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -3723,6 +3609,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const AlertsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AlertsApiFp(configuration)
     return {
         /**
          * 
@@ -3731,7 +3618,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList> {
-            return AlertsApiFp(configuration).alertsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3741,7 +3628,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert> {
-            return AlertsApiFp(configuration).alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3749,7 +3636,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsRecent(options?: any): AxiosPromise<AlertBulkResponse> {
-            return AlertsApiFp(configuration).alertsRecent(options).then((request) => request(axios, basePath));
+            return localVarFp.alertsRecent(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3758,7 +3645,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsRetrieve(id: number, options?: any): AxiosPromise<Alert> {
-            return AlertsApiFp(configuration).alertsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3767,7 +3654,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse> {
-            return AlertsApiFp(configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3775,7 +3662,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsUnread(options?: any): AxiosPromise<AlertBulkResponse> {
-            return AlertsApiFp(configuration).alertsUnread(options).then((request) => request(axios, basePath));
+            return localVarFp.alertsUnread(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3785,7 +3672,7 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert> {
-            return AlertsApiFp(configuration).alertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3962,16 +3849,12 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
          */
         authTokenCreate: async (username: string, password: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'username' is not null or undefined
-            if (username === null || username === undefined) {
-                throw new RequiredError('username','Required parameter username was null or undefined when calling authTokenCreate.');
-            }
+            assertParamExists('authTokenCreate', 'username', username)
             // verify required parameter 'password' is not null or undefined
-            if (password === null || password === undefined) {
-                throw new RequiredError('password','Required parameter password was null or undefined when calling authTokenCreate.');
-            }
+            assertParamExists('authTokenCreate', 'password', password)
             const localVarPath = `/api/auth-token/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -3986,12 +3869,7 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (username !== undefined) { 
@@ -4005,20 +3883,13 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4030,6 +3901,7 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
  * @export
  */
 export const AuthTokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AuthTokenApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -4039,11 +3911,8 @@ export const AuthTokenApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async authTokenCreate(username: string, password: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthToken>> {
-            const localVarAxiosArgs = await AuthTokenApiAxiosParamCreator(configuration).authTokenCreate(username, password, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(username, password, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -4053,6 +3922,7 @@ export const AuthTokenApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const AuthTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AuthTokenApiFp(configuration)
     return {
         /**
          * 
@@ -4062,7 +3932,7 @@ export const AuthTokenApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken> {
-            return AuthTokenApiFp(configuration).authTokenCreate(username, password, options).then((request) => request(axios, basePath));
+            return localVarFp.authTokenCreate(username, password, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4120,12 +3990,10 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         deviceCalibrationUpdateOrCreate: async (deviceCalibrationRequest: DeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceCalibrationRequest' is not null or undefined
-            if (deviceCalibrationRequest === null || deviceCalibrationRequest === undefined) {
-                throw new RequiredError('deviceCalibrationRequest','Required parameter deviceCalibrationRequest was null or undefined when calling deviceCalibrationUpdateOrCreate.');
-            }
+            assertParamExists('deviceCalibrationUpdateOrCreate', 'deviceCalibrationRequest', deviceCalibrationRequest)
             const localVarPath = `/api/device-calibrations/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4139,37 +4007,19 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof deviceCalibrationRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(deviceCalibrationRequest !== undefined ? deviceCalibrationRequest : {})
-                : (deviceCalibrationRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceCalibrationRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4182,7 +4032,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
         deviceCalibrationsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/device-calibrations/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4196,12 +4046,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -4209,19 +4054,12 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4234,13 +4072,11 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         deviceCalibrationsPartialUpdate: async (id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deviceCalibrationsPartialUpdate.');
-            }
+            assertParamExists('deviceCalibrationsPartialUpdate', 'id', id)
             const localVarPath = `/api/device-calibrations/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4254,37 +4090,19 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedDeviceCalibrationRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedDeviceCalibrationRequest !== undefined ? patchedDeviceCalibrationRequest : {})
-                : (patchedDeviceCalibrationRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceCalibrationRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4296,13 +4114,11 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         deviceCalibrationsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deviceCalibrationsRetrieve.');
-            }
+            assertParamExists('deviceCalibrationsRetrieve', 'id', id)
             const localVarPath = `/api/device-calibrations/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4316,28 +4132,16 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4350,17 +4154,13 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         deviceCalibrationsUpdate: async (id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deviceCalibrationsUpdate.');
-            }
+            assertParamExists('deviceCalibrationsUpdate', 'id', id)
             // verify required parameter 'deviceCalibrationRequest' is not null or undefined
-            if (deviceCalibrationRequest === null || deviceCalibrationRequest === undefined) {
-                throw new RequiredError('deviceCalibrationRequest','Required parameter deviceCalibrationRequest was null or undefined when calling deviceCalibrationsUpdate.');
-            }
+            assertParamExists('deviceCalibrationsUpdate', 'deviceCalibrationRequest', deviceCalibrationRequest)
             const localVarPath = `/api/device-calibrations/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4374,37 +4174,19 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof deviceCalibrationRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(deviceCalibrationRequest !== undefined ? deviceCalibrationRequest : {})
-                : (deviceCalibrationRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceCalibrationRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4417,7 +4199,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
         experimentDeviceConfigsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/experiment-device-configs/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4431,12 +4213,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -4444,19 +4221,12 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4468,13 +4238,11 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         experimentDeviceConfigsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling experimentDeviceConfigsRetrieve.');
-            }
+            assertParamExists('experimentDeviceConfigsRetrieve', 'id', id)
             const localVarPath = `/api/experiment-device-configs/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4488,28 +4256,16 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4522,7 +4278,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
         experimentsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/experiments/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4536,12 +4292,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -4549,19 +4300,12 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4573,13 +4317,11 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         experimentsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling experimentsRetrieve.');
-            }
+            assertParamExists('experimentsRetrieve', 'id', id)
             const localVarPath = `/api/experiments/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4593,28 +4335,16 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4627,7 +4357,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
         modelArtifactsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/model-artifacts/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4641,12 +4371,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -4654,19 +4379,12 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4678,13 +4396,11 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
          */
         modelArtifactsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling modelArtifactsRetrieve.');
-            }
+            assertParamExists('modelArtifactsRetrieve', 'id', id)
             const localVarPath = `/api/model-artifacts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -4698,28 +4414,16 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -4731,6 +4435,7 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
  * @export
  */
 export const MlOpsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MlOpsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -4739,11 +4444,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4752,11 +4454,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async deviceCalibrationsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceCalibrationList>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4766,11 +4465,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4779,11 +4475,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async deviceCalibrationsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4793,11 +4486,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).deviceCalibrationsUpdate(id, deviceCalibrationRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsUpdate(id, deviceCalibrationRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4806,11 +4496,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async experimentDeviceConfigsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentDeviceConfigList>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentDeviceConfigsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentDeviceConfigsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4819,11 +4506,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async experimentDeviceConfigsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExperimentDeviceConfig>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentDeviceConfigsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentDeviceConfigsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4832,11 +4516,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async experimentsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentList>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4845,11 +4526,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async experimentsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Experiment>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).experimentsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4858,11 +4536,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async modelArtifactsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedModelArtifactList>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).modelArtifactsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modelArtifactsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -4871,11 +4546,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async modelArtifactsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelArtifact>> {
-            const localVarAxiosArgs = await MlOpsApiAxiosParamCreator(configuration).modelArtifactsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modelArtifactsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -4885,6 +4557,7 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const MlOpsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MlOpsApiFp(configuration)
     return {
         /**
          * 
@@ -4893,7 +4566,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return MlOpsApiFp(configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4902,7 +4575,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         deviceCalibrationsList(page?: number, options?: any): AxiosPromise<PaginatedDeviceCalibrationList> {
-            return MlOpsApiFp(configuration).deviceCalibrationsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceCalibrationsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4912,7 +4585,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return MlOpsApiFp(configuration).deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4921,7 +4594,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         deviceCalibrationsRetrieve(id: number, options?: any): AxiosPromise<DeviceCalibration> {
-            return MlOpsApiFp(configuration).deviceCalibrationsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceCalibrationsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4931,7 +4604,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return MlOpsApiFp(configuration).deviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.deviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4940,7 +4613,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         experimentDeviceConfigsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentDeviceConfigList> {
-            return MlOpsApiFp(configuration).experimentDeviceConfigsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.experimentDeviceConfigsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4949,7 +4622,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         experimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig> {
-            return MlOpsApiFp(configuration).experimentDeviceConfigsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.experimentDeviceConfigsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4958,7 +4631,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList> {
-            return MlOpsApiFp(configuration).experimentsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.experimentsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4967,7 +4640,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment> {
-            return MlOpsApiFp(configuration).experimentsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.experimentsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4976,7 +4649,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         modelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList> {
-            return MlOpsApiFp(configuration).modelArtifactsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.modelArtifactsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -4985,7 +4658,7 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         modelArtifactsRetrieve(id: number, options?: any): AxiosPromise<ModelArtifact> {
-            return MlOpsApiFp(configuration).modelArtifactsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.modelArtifactsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5245,13 +4918,11 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
          */
         alertsList2: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling alertsList2.');
-            }
+            assertParamExists('alertsList2', 'id', id)
             const localVarPath = `/api/partners/3d-geeks/{id}/alerts/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5263,28 +4934,16 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5296,6 +4955,7 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
  * @export
  */
 export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PartnersGeeks3ApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -5304,11 +4964,8 @@ export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async alertsList2(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksAlert>> {
-            const localVarAxiosArgs = await PartnersGeeks3ApiAxiosParamCreator(configuration).alertsList2(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsList2(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -5318,6 +4975,7 @@ export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const PartnersGeeks3ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PartnersGeeks3ApiFp(configuration)
     return {
         /**
          * 
@@ -5326,7 +4984,7 @@ export const PartnersGeeks3ApiFactory = function (configuration?: Configuration,
          * @throws {RequiredError}
          */
         alertsList2(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert> {
-            return PartnersGeeks3ApiFp(configuration).alertsList2(id, options).then((request) => request(axios, basePath));
+            return localVarFp.alertsList2(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5382,13 +5040,11 @@ export const PartnersGeeks3dApiAxiosParamCreator = function (configuration?: Con
          */
         metadataRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling metadataRetrieve.');
-            }
+            assertParamExists('metadataRetrieve', 'id', id)
             const localVarPath = `/api/partners/3d-geeks/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5400,28 +5056,16 @@ export const PartnersGeeks3dApiAxiosParamCreator = function (configuration?: Con
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5433,6 +5077,7 @@ export const PartnersGeeks3dApiAxiosParamCreator = function (configuration?: Con
  * @export
  */
 export const PartnersGeeks3dApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = PartnersGeeks3dApiAxiosParamCreator(configuration)
     return {
         /**
          * 3D Geeks calls this endpoint to validate token & fetch printer metadata
@@ -5441,11 +5086,8 @@ export const PartnersGeeks3dApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async metadataRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksMetadata>> {
-            const localVarAxiosArgs = await PartnersGeeks3dApiAxiosParamCreator(configuration).metadataRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.metadataRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -5455,6 +5097,7 @@ export const PartnersGeeks3dApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const PartnersGeeks3dApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = PartnersGeeks3dApiFp(configuration)
     return {
         /**
          * 3D Geeks calls this endpoint to validate token & fetch printer metadata
@@ -5463,7 +5106,7 @@ export const PartnersGeeks3dApiFactory = function (configuration?: Configuration
          * @throws {RequiredError}
          */
         metadataRetrieve(id: string, options?: any): AxiosPromise<Partner3DGeeksMetadata> {
-            return PartnersGeeks3dApiFp(configuration).metadataRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.metadataRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -5520,7 +5163,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         commandsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/commands/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5534,12 +5177,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -5547,19 +5185,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5572,13 +5203,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         commandsPartialUpdate: async (id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling commandsPartialUpdate.');
-            }
+            assertParamExists('commandsPartialUpdate', 'id', id)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5592,37 +5221,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedRemoteControlCommandRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedRemoteControlCommandRequest !== undefined ? patchedRemoteControlCommandRequest : {})
-                : (patchedRemoteControlCommandRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedRemoteControlCommandRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5634,13 +5245,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         commandsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling commandsRetrieve.');
-            }
+            assertParamExists('commandsRetrieve', 'id', id)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5654,28 +5263,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5688,17 +5285,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         commandsUpdate: async (id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling commandsUpdate.');
-            }
+            assertParamExists('commandsUpdate', 'id', id)
             // verify required parameter 'remoteControlCommandRequest' is not null or undefined
-            if (remoteControlCommandRequest === null || remoteControlCommandRequest === undefined) {
-                throw new RequiredError('remoteControlCommandRequest','Required parameter remoteControlCommandRequest was null or undefined when calling commandsUpdate.');
-            }
+            assertParamExists('commandsUpdate', 'remoteControlCommandRequest', remoteControlCommandRequest)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5712,37 +5305,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof remoteControlCommandRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(remoteControlCommandRequest !== undefined ? remoteControlCommandRequest : {})
-                : (remoteControlCommandRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(remoteControlCommandRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5757,24 +5332,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         gcodeFilesCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
-            if (name === null || name === undefined) {
-                throw new RequiredError('name','Required parameter name was null or undefined when calling gcodeFilesCreate.');
-            }
+            assertParamExists('gcodeFilesCreate', 'name', name)
             // verify required parameter 'file' is not null or undefined
-            if (file === null || file === undefined) {
-                throw new RequiredError('file','Required parameter file was null or undefined when calling gcodeFilesCreate.');
-            }
+            assertParamExists('gcodeFilesCreate', 'file', file)
             // verify required parameter 'fileHash' is not null or undefined
-            if (fileHash === null || fileHash === undefined) {
-                throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesCreate.');
-            }
+            assertParamExists('gcodeFilesCreate', 'fileHash', fileHash)
             // verify required parameter 'octoprintDevice' is not null or undefined
-            if (octoprintDevice === null || octoprintDevice === undefined) {
-                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesCreate.');
-            }
+            assertParamExists('gcodeFilesCreate', 'octoprintDevice', octoprintDevice)
             const localVarPath = `/api/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5789,12 +5356,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (name !== undefined) { 
@@ -5816,20 +5378,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5842,7 +5397,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         gcodeFilesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5856,12 +5411,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -5869,19 +5419,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5897,13 +5440,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         gcodeFilesPartialUpdate: async (id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesPartialUpdate.');
-            }
+            assertParamExists('gcodeFilesPartialUpdate', 'id', id)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5918,12 +5459,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (name !== undefined) { 
@@ -5945,20 +5481,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -5970,13 +5499,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         gcodeFilesRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesRetrieve.');
-            }
+            assertParamExists('gcodeFilesRetrieve', 'id', id)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -5990,28 +5517,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6027,29 +5542,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         gcodeFilesUpdate: async (id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling gcodeFilesUpdate.');
-            }
+            assertParamExists('gcodeFilesUpdate', 'id', id)
             // verify required parameter 'name' is not null or undefined
-            if (name === null || name === undefined) {
-                throw new RequiredError('name','Required parameter name was null or undefined when calling gcodeFilesUpdate.');
-            }
+            assertParamExists('gcodeFilesUpdate', 'name', name)
             // verify required parameter 'file' is not null or undefined
-            if (file === null || file === undefined) {
-                throw new RequiredError('file','Required parameter file was null or undefined when calling gcodeFilesUpdate.');
-            }
+            assertParamExists('gcodeFilesUpdate', 'file', file)
             // verify required parameter 'fileHash' is not null or undefined
-            if (fileHash === null || fileHash === undefined) {
-                throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesUpdate.');
-            }
+            assertParamExists('gcodeFilesUpdate', 'fileHash', fileHash)
             // verify required parameter 'octoprintDevice' is not null or undefined
-            if (octoprintDevice === null || octoprintDevice === undefined) {
-                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesUpdate.');
-            }
+            assertParamExists('gcodeFilesUpdate', 'octoprintDevice', octoprintDevice)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6064,12 +5569,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (name !== undefined) { 
@@ -6091,20 +5591,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6119,24 +5612,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         gcodeFilesUpdateOrCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
-            if (name === null || name === undefined) {
-                throw new RequiredError('name','Required parameter name was null or undefined when calling gcodeFilesUpdateOrCreate.');
-            }
+            assertParamExists('gcodeFilesUpdateOrCreate', 'name', name)
             // verify required parameter 'file' is not null or undefined
-            if (file === null || file === undefined) {
-                throw new RequiredError('file','Required parameter file was null or undefined when calling gcodeFilesUpdateOrCreate.');
-            }
+            assertParamExists('gcodeFilesUpdateOrCreate', 'file', file)
             // verify required parameter 'fileHash' is not null or undefined
-            if (fileHash === null || fileHash === undefined) {
-                throw new RequiredError('fileHash','Required parameter fileHash was null or undefined when calling gcodeFilesUpdateOrCreate.');
-            }
+            assertParamExists('gcodeFilesUpdateOrCreate', 'fileHash', fileHash)
             // verify required parameter 'octoprintDevice' is not null or undefined
-            if (octoprintDevice === null || octoprintDevice === undefined) {
-                throw new RequiredError('octoprintDevice','Required parameter octoprintDevice was null or undefined when calling gcodeFilesUpdateOrCreate.');
-            }
+            assertParamExists('gcodeFilesUpdateOrCreate', 'octoprintDevice', octoprintDevice)
             const localVarPath = `/api/gcode-files/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6151,12 +5636,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
             if (name !== undefined) { 
@@ -6178,20 +5658,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
     
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6203,12 +5676,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         octoprintDevicesCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
-            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesCreate.');
-            }
+            assertParamExists('octoprintDevicesCreate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
             const localVarPath = `/api/octoprint-devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6222,37 +5693,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
-                : (octoPrintDeviceRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintDeviceRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6265,7 +5718,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         octoprintDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6279,12 +5732,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -6292,19 +5740,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6317,13 +5758,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         octoprintDevicesPartialUpdate: async (id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling octoprintDevicesPartialUpdate.');
-            }
+            assertParamExists('octoprintDevicesPartialUpdate', 'id', id)
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6337,37 +5776,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedOctoPrintDeviceRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedOctoPrintDeviceRequest !== undefined ? patchedOctoPrintDeviceRequest : {})
-                : (patchedOctoPrintDeviceRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedOctoPrintDeviceRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6379,13 +5800,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         octoprintDevicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling octoprintDevicesRetrieve.');
-            }
+            assertParamExists('octoprintDevicesRetrieve', 'id', id)
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6399,28 +5818,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6433,17 +5840,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         octoprintDevicesUpdate: async (id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling octoprintDevicesUpdate.');
-            }
+            assertParamExists('octoprintDevicesUpdate', 'id', id)
             // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
-            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesUpdate.');
-            }
+            assertParamExists('octoprintDevicesUpdate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6457,37 +5860,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
-                : (octoPrintDeviceRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintDeviceRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6499,12 +5884,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         octoprintDevicesUpdateOrCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
-            if (octoPrintDeviceRequest === null || octoPrintDeviceRequest === undefined) {
-                throw new RequiredError('octoPrintDeviceRequest','Required parameter octoPrintDeviceRequest was null or undefined when calling octoprintDevicesUpdateOrCreate.');
-            }
+            assertParamExists('octoprintDevicesUpdateOrCreate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
             const localVarPath = `/api/octoprint-devices/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6518,37 +5901,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintDeviceRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintDeviceRequest !== undefined ? octoPrintDeviceRequest : {})
-                : (octoPrintDeviceRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintDeviceRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6561,13 +5926,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printSessionPartialUpdate: async (session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'session' is not null or undefined
-            if (session === null || session === undefined) {
-                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionPartialUpdate.');
-            }
+            assertParamExists('printSessionPartialUpdate', 'session', session)
             const localVarPath = `/api/print-sessions/{session}/`
                 .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6581,37 +5944,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedPrintSessionRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedPrintSessionRequest !== undefined ? patchedPrintSessionRequest : {})
-                : (patchedPrintSessionRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrintSessionRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6624,17 +5969,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printSessionUpdate: async (session: string, printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'session' is not null or undefined
-            if (session === null || session === undefined) {
-                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionUpdate.');
-            }
+            assertParamExists('printSessionUpdate', 'session', session)
             // verify required parameter 'printSessionRequest' is not null or undefined
-            if (printSessionRequest === null || printSessionRequest === undefined) {
-                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionUpdate.');
-            }
+            assertParamExists('printSessionUpdate', 'printSessionRequest', printSessionRequest)
             const localVarPath = `/api/print-sessions/{session}/`
                 .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6648,37 +5989,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printSessionRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
-                : (printSessionRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(printSessionRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6690,12 +6013,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printSessionsCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'printSessionRequest' is not null or undefined
-            if (printSessionRequest === null || printSessionRequest === undefined) {
-                throw new RequiredError('printSessionRequest','Required parameter printSessionRequest was null or undefined when calling printSessionsCreate.');
-            }
+            assertParamExists('printSessionsCreate', 'printSessionRequest', printSessionRequest)
             const localVarPath = `/api/print-sessions/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6709,37 +6030,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printSessionRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printSessionRequest !== undefined ? printSessionRequest : {})
-                : (printSessionRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(printSessionRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6752,7 +6055,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         printSessionsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/print-sessions/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6766,12 +6069,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -6779,19 +6077,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6803,13 +6094,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printSessionsRetrieve: async (session: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'session' is not null or undefined
-            if (session === null || session === undefined) {
-                throw new RequiredError('session','Required parameter session was null or undefined when calling printSessionsRetrieve.');
-            }
+            assertParamExists('printSessionsRetrieve', 'session', session)
             const localVarPath = `/api/print-sessions/{session}/`
                 .replace(`{${"session"}}`, encodeURIComponent(String(session)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6823,28 +6112,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6856,12 +6133,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printerProfilesCreate: async (printerProfileRequest: PrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'printerProfileRequest' is not null or undefined
-            if (printerProfileRequest === null || printerProfileRequest === undefined) {
-                throw new RequiredError('printerProfileRequest','Required parameter printerProfileRequest was null or undefined when calling printerProfilesCreate.');
-            }
+            assertParamExists('printerProfilesCreate', 'printerProfileRequest', printerProfileRequest)
             const localVarPath = `/api/printer-profiles/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6875,37 +6150,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printerProfileRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printerProfileRequest !== undefined ? printerProfileRequest : {})
-                : (printerProfileRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfileRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6920,7 +6177,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         printerProfilesList: async (name?: string, page?: number, user?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/printer-profiles/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -6934,12 +6191,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (name !== undefined) {
                 localVarQueryParameter['name'] = name;
@@ -6955,19 +6207,12 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -6980,13 +6225,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printerProfilesPartialUpdate: async (id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printerProfilesPartialUpdate.');
-            }
+            assertParamExists('printerProfilesPartialUpdate', 'id', id)
             const localVarPath = `/api/printer-profiles/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -7000,37 +6243,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedPrinterProfileRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedPrinterProfileRequest !== undefined ? patchedPrinterProfileRequest : {})
-                : (patchedPrinterProfileRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterProfileRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -7042,13 +6267,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printerProfilesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printerProfilesRetrieve.');
-            }
+            assertParamExists('printerProfilesRetrieve', 'id', id)
             const localVarPath = `/api/printer-profiles/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -7062,28 +6285,16 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -7096,17 +6307,13 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printerProfilesUpdate: async (id: number, printerProfileRequest: PrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling printerProfilesUpdate.');
-            }
+            assertParamExists('printerProfilesUpdate', 'id', id)
             // verify required parameter 'printerProfileRequest' is not null or undefined
-            if (printerProfileRequest === null || printerProfileRequest === undefined) {
-                throw new RequiredError('printerProfileRequest','Required parameter printerProfileRequest was null or undefined when calling printerProfilesUpdate.');
-            }
+            assertParamExists('printerProfilesUpdate', 'printerProfileRequest', printerProfileRequest)
             const localVarPath = `/api/printer-profiles/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -7120,37 +6327,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printerProfileRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printerProfileRequest !== undefined ? printerProfileRequest : {})
-                : (printerProfileRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfileRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -7162,12 +6351,10 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          */
         printerProfilesUpdateOrCreate: async (printerProfileRequest: PrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'printerProfileRequest' is not null or undefined
-            if (printerProfileRequest === null || printerProfileRequest === undefined) {
-                throw new RequiredError('printerProfileRequest','Required parameter printerProfileRequest was null or undefined when calling printerProfilesUpdateOrCreate.');
-            }
+            assertParamExists('printerProfilesUpdateOrCreate', 'printerProfileRequest', printerProfileRequest)
             const localVarPath = `/api/printer-profiles/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -7181,37 +6368,19 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof printerProfileRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(printerProfileRequest !== undefined ? printerProfileRequest : {})
-                : (printerProfileRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfileRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -7223,6 +6392,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
  * @export
  */
 export const RemoteControlApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RemoteControlApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -7231,11 +6401,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async commandsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlCommandList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7245,11 +6412,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7258,11 +6422,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async commandsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7272,11 +6433,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).commandsUpdate(id, remoteControlCommandRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsUpdate(id, remoteControlCommandRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7288,11 +6446,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesCreate(name, file, fileHash, octoprintDevice, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesCreate(name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7301,11 +6456,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGcodeFileList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7318,11 +6470,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7331,11 +6480,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7348,11 +6494,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7364,11 +6507,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7377,11 +6517,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesCreate(octoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7390,11 +6527,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7404,11 +6538,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7417,11 +6548,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7431,11 +6559,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesUpdate(id, octoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7444,11 +6569,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7458,11 +6580,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionPartialUpdate(session, patchedPrintSessionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7472,11 +6591,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionUpdate(session, printSessionRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionUpdate(session, printSessionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7485,11 +6601,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsCreate(printSessionRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsCreate(printSessionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7498,11 +6611,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printSessionsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7511,11 +6621,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printSessionsRetrieve(session: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printSessionsRetrieve(session, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsRetrieve(session, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7524,11 +6631,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesCreate(printerProfileRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesCreate(printerProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7539,11 +6643,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesList(name?: string, page?: number, user?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesList(name, page, user, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesList(name, page, user, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7553,11 +6654,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7566,11 +6664,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7580,11 +6675,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesUpdate(id, printerProfileRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesUpdate(id, printerProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -7593,11 +6685,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async printerProfilesUpdateOrCreate(printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await RemoteControlApiAxiosParamCreator(configuration).printerProfilesUpdateOrCreate(printerProfileRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesUpdateOrCreate(printerProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -7607,6 +6696,7 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const RemoteControlApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RemoteControlApiFp(configuration)
     return {
         /**
          * 
@@ -7615,7 +6705,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         commandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList> {
-            return RemoteControlApiFp(configuration).commandsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.commandsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7625,7 +6715,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
-            return RemoteControlApiFp(configuration).commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7634,7 +6724,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         commandsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlCommand> {
-            return RemoteControlApiFp(configuration).commandsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.commandsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7644,7 +6734,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
-            return RemoteControlApiFp(configuration).commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7656,7 +6746,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7665,7 +6755,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList> {
-            return RemoteControlApiFp(configuration).gcodeFilesList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7678,7 +6768,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7687,7 +6777,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7700,7 +6790,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7712,7 +6802,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         gcodeFilesUpdateOrCreate(name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
-            return RemoteControlApiFp(configuration).gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+            return localVarFp.gcodeFilesUpdateOrCreate(name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7721,7 +6811,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7730,7 +6820,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList> {
-            return RemoteControlApiFp(configuration).octoprintDevicesList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7740,7 +6830,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7749,7 +6839,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7759,7 +6849,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7768,7 +6858,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return RemoteControlApiFp(configuration).octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.octoprintDevicesUpdateOrCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7778,7 +6868,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printSessionPartialUpdate(session: string, patchedPrintSessionRequest?: PatchedPrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printSessionPartialUpdate(session, patchedPrintSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7788,7 +6878,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printSessionUpdate(session: string, printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionUpdate(session, printSessionRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printSessionUpdate(session, printSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7797,7 +6887,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7806,7 +6896,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList> {
-            return RemoteControlApiFp(configuration).printSessionsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.printSessionsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7815,7 +6905,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printSessionsRetrieve(session, options).then((request) => request(axios, basePath));
+            return localVarFp.printSessionsRetrieve(session, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7824,7 +6914,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintSession> {
-            return RemoteControlApiFp(configuration).printerProfilesCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7835,7 +6925,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
-            return RemoteControlApiFp(configuration).printerProfilesList(name, page, user, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesList(name, page, user, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7845,7 +6935,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
-            return RemoteControlApiFp(configuration).printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7854,7 +6944,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesRetrieve(id: number, options?: any): AxiosPromise<PrinterProfile> {
-            return RemoteControlApiFp(configuration).printerProfilesRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7864,7 +6954,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
-            return RemoteControlApiFp(configuration).printerProfilesUpdate(id, printerProfileRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesUpdate(id, printerProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7873,7 +6963,7 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @throws {RequiredError}
          */
         printerProfilesUpdateOrCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
-            return RemoteControlApiFp(configuration).printerProfilesUpdateOrCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.printerProfilesUpdateOrCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8498,7 +7588,7 @@ export const SchemaApiAxiosParamCreator = function (configuration?: Configuratio
         schemaRetrieve: async (lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/schema/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8512,12 +7602,7 @@ export const SchemaApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (lang !== undefined) {
                 localVarQueryParameter['lang'] = lang;
@@ -8525,19 +7610,12 @@ export const SchemaApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8549,6 +7627,7 @@ export const SchemaApiAxiosParamCreator = function (configuration?: Configuratio
  * @export
  */
 export const SchemaApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SchemaApiAxiosParamCreator(configuration)
     return {
         /**
          * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
@@ -8557,11 +7636,8 @@ export const SchemaApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
-            const localVarAxiosArgs = await SchemaApiAxiosParamCreator(configuration).schemaRetrieve(lang, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.schemaRetrieve(lang, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -8571,6 +7647,7 @@ export const SchemaApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const SchemaApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SchemaApiFp(configuration)
     return {
         /**
          * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
@@ -8579,7 +7656,7 @@ export const SchemaApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): AxiosPromise<{ [key: string]: any; }> {
-            return SchemaApiFp(configuration).schemaRetrieve(lang, options).then((request) => request(axios, basePath));
+            return localVarFp.schemaRetrieve(lang, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8635,12 +7712,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          */
         telemetryOctoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintEventRequest' is not null or undefined
-            if (octoPrintEventRequest === null || octoPrintEventRequest === undefined) {
-                throw new RequiredError('octoPrintEventRequest','Required parameter octoPrintEventRequest was null or undefined when calling telemetryOctoprintEventsCreate.');
-            }
+            assertParamExists('telemetryOctoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
             const localVarPath = `/api/telemetry/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8654,37 +7729,19 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof octoPrintEventRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(octoPrintEventRequest !== undefined ? octoPrintEventRequest : {})
-                : (octoPrintEventRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintEventRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8697,7 +7754,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         telemetryOctoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/telemetry/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8711,12 +7768,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -8724,19 +7776,12 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8748,13 +7793,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          */
         telemetryOctoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling telemetryOctoprintEventsRetrieve.');
-            }
+            assertParamExists('telemetryOctoprintEventsRetrieve', 'id', id)
             const localVarPath = `/api/telemetry/octoprint-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8768,28 +7811,16 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8802,7 +7833,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         telemetryOctoprintPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/telemetry/octoprint-plugin-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8816,12 +7847,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -8829,19 +7855,12 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8853,13 +7872,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          */
         telemetryOctoprintPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling telemetryOctoprintPluginEventsRetrieve.');
-            }
+            assertParamExists('telemetryOctoprintPluginEventsRetrieve', 'id', id)
             const localVarPath = `/api/telemetry/octoprint-plugin-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8873,28 +7890,16 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8907,7 +7912,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         telemetryPrintStatusEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/telemetry/print-status-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8921,12 +7926,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -8934,19 +7934,12 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -8958,13 +7951,11 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          */
         telemetryPrintStatusEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling telemetryPrintStatusEventsRetrieve.');
-            }
+            assertParamExists('telemetryPrintStatusEventsRetrieve', 'id', id)
             const localVarPath = `/api/telemetry/print-status-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -8978,28 +7969,16 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9011,6 +7990,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
  * @export
  */
 export const TelemetryApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TelemetryApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -9019,11 +7999,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryOctoprintEventsCreate(octoPrintEventRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsCreate(octoPrintEventRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9032,11 +8009,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryOctoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryOctoprintEventsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9045,11 +8019,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryOctoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryOctoprintEventsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9058,11 +8029,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryOctoprintPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintPluginEventList>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryOctoprintPluginEventsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintPluginEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9071,11 +8039,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryOctoprintPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintPluginEvent>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryOctoprintPluginEventsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintPluginEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9084,11 +8049,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryPrintStatusEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryPrintStatusEventsList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9097,11 +8059,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async telemetryPrintStatusEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
-            const localVarAxiosArgs = await TelemetryApiAxiosParamCreator(configuration).telemetryPrintStatusEventsRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -9111,6 +8070,7 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const TelemetryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TelemetryApiFp(configuration)
     return {
         /**
          * 
@@ -9119,7 +8079,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
-            return TelemetryApiFp(configuration).telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9128,7 +8088,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
-            return TelemetryApiFp(configuration).telemetryOctoprintEventsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryOctoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9137,7 +8097,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
-            return TelemetryApiFp(configuration).telemetryOctoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryOctoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9146,7 +8106,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryOctoprintPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintPluginEventList> {
-            return TelemetryApiFp(configuration).telemetryOctoprintPluginEventsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryOctoprintPluginEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9155,7 +8115,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryOctoprintPluginEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintPluginEvent> {
-            return TelemetryApiFp(configuration).telemetryOctoprintPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryOctoprintPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9164,7 +8124,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryPrintStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
-            return TelemetryApiFp(configuration).telemetryPrintStatusEventsList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryPrintStatusEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9173,7 +8133,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @throws {RequiredError}
          */
         telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
-            return TelemetryApiFp(configuration).telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9350,7 +8310,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         usersList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/users/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -9364,12 +8324,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -9377,19 +8332,12 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9401,7 +8349,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         usersMeRetrieve: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/users/me/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -9415,28 +8363,16 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9449,13 +8385,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          */
         usersPartialUpdate: async (id: number, patchedUserRequest?: PatchedUserRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling usersPartialUpdate.');
-            }
+            assertParamExists('usersPartialUpdate', 'id', id)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -9469,37 +8403,19 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof patchedUserRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(patchedUserRequest !== undefined ? patchedUserRequest : {})
-                : (patchedUserRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedUserRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9511,13 +8427,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          */
         usersRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling usersRetrieve.');
-            }
+            assertParamExists('usersRetrieve', 'id', id)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -9531,28 +8445,16 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9565,17 +8467,13 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          */
         usersUpdate: async (id: number, userRequest: UserRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling usersUpdate.');
-            }
+            assertParamExists('usersUpdate', 'id', id)
             // verify required parameter 'userRequest' is not null or undefined
-            if (userRequest === null || userRequest === undefined) {
-                throw new RequiredError('userRequest','Required parameter userRequest was null or undefined when calling usersUpdate.');
-            }
+            assertParamExists('usersUpdate', 'userRequest', userRequest)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
@@ -9589,37 +8487,19 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication tokenAuth required
             // http bearer authentication required
-            if (configuration && configuration.accessToken) {
-                const accessToken = typeof configuration.accessToken === 'function'
-                    ? await configuration.accessToken()
-                    : await configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
-            }
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            const queryParameters = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                queryParameters.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                queryParameters.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(queryParameters)).toString();
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const nonString = typeof userRequest !== 'string';
-            const needsSerialization = nonString && configuration && configuration.isJsonMime
-                ? configuration.isJsonMime(localVarRequestOptions.headers['Content-Type'])
-                : nonString;
-            localVarRequestOptions.data =  needsSerialization
-                ? JSON.stringify(userRequest !== undefined ? userRequest : {})
-                : (userRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(userRequest, localVarRequestOptions, configuration)
 
             return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -9631,6 +8511,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
  * @export
  */
 export const UsersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UsersApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -9639,11 +8520,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async usersList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedUserList>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersList(page, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9651,11 +8529,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async usersMeRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersMeRetrieve(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersMeRetrieve(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9665,11 +8540,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersPartialUpdate(id, patchedUserRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersPartialUpdate(id, patchedUserRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9678,11 +8550,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async usersRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersRetrieve(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -9692,11 +8561,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async usersUpdate(id: number, userRequest: UserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).usersUpdate(id, userRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersUpdate(id, userRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -9706,6 +8572,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const UsersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UsersApiFp(configuration)
     return {
         /**
          * 
@@ -9714,7 +8581,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         usersList(page?: number, options?: any): AxiosPromise<PaginatedUserList> {
-            return UsersApiFp(configuration).usersList(page, options).then((request) => request(axios, basePath));
+            return localVarFp.usersList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9722,7 +8589,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         usersMeRetrieve(options?: any): AxiosPromise<User> {
-            return UsersApiFp(configuration).usersMeRetrieve(options).then((request) => request(axios, basePath));
+            return localVarFp.usersMeRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9732,7 +8599,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
-            return UsersApiFp(configuration).usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9741,7 +8608,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         usersRetrieve(id: number, options?: any): AxiosPromise<User> {
-            return UsersApiFp(configuration).usersRetrieve(id, options).then((request) => request(axios, basePath));
+            return localVarFp.usersRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9751,7 +8618,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         usersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User> {
-            return UsersApiFp(configuration).usersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.usersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
         },
     };
 };

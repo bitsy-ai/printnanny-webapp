@@ -1,5 +1,6 @@
 # AuthToken
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

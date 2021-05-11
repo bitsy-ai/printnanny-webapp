@@ -1,5 +1,6 @@
 # ModelArtifact
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

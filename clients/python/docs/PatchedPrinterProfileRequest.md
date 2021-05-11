@@ -1,5 +1,6 @@
 # PatchedPrinterProfileRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -2,8 +2,8 @@
 
 ## Requires
 
-* Kotlin 1.3.61
-* Gradle 4.9
+* Kotlin 1.4.30
+* Gradle 6.8.3
 
 ## Build
 
@@ -115,7 +115,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
- - [com.print-nanny.client.models.GcodeFileRequest](docs/GcodeFileRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.MonitoringModeEnum](docs/MonitoringModeEnum.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
@@ -146,7 +145,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
- - [com.print-nanny.client.models.PatchedGcodeFileRequest](docs/PatchedGcodeFileRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)

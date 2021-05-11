@@ -18,10 +18,12 @@ from .forms import (
     RemoteControlCommandForm,
     RemoveDeviceForm,
 )
-from print_nanny_webapp.alerts.tasks.timelapse_alert import (
-    create_analyze_video_task,
-    annotate_job_error,
-)
+
+# TODO re-enable as dataflow pipeline
+# from print_nanny_webapp.alerts.tasks.timelapse_alert import (
+#     create_analyze_video_task,
+#     annotate_job_error,
+# )
 from django.http import HttpResponseRedirect
 
 from django.db.models import Q, Count
@@ -199,7 +201,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
             alert_method=AlertSettings.AlertMethod.PARTNER_3DGEEKS,
             event_type=AlertMessage.AlertMessageType.TEST,
             user=self.request.user,
-            octoprint_device_id=octoprint_device_id
+            octoprint_device_id=octoprint_device_id,
         )
         task = AlertTask(alert_message)
         task.trigger_alert()

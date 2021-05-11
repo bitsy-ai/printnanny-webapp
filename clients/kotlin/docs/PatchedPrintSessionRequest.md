@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **printerProfile** | **kotlin.Int** |  |  [optional]
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
+**octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 
 
 

@@ -45,7 +45,10 @@ class TestPatchedPrintSessionRequest(unittest.TestCase):
                 status = 'monitoring_active', 
                 printer_profile = 56, 
                 gcode_file = 56, 
-                gcode_filename = ''
+                gcode_filename = '', 
+                octoprint_job = {
+                    'key' : null
+                    }
             )
         else :
             return PatchedPrintSessionRequest(

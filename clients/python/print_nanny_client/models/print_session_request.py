@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -42,7 +45,8 @@ class PrintSessionRequest(object):
         'status': 'StatusEnum',
         'printer_profile': 'int',
         'gcode_file': 'int',
-        'gcode_filename': 'str'
+        'gcode_filename': 'str',
+        'octoprint_job': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -55,13 +59,14 @@ class PrintSessionRequest(object):
         'status': 'status',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
-        'gcode_filename': 'gcode_filename'
+        'gcode_filename': 'gcode_filename',
+        'octoprint_job': 'octoprint_job'
     }
 
-    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, printer_profile=None, gcode_file=None, gcode_filename=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._octoprint_device = None
@@ -74,6 +79,7 @@ class PrintSessionRequest(object):
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
+        self._octoprint_job = None
         self.discriminator = None
 
         self.octoprint_device = octoprint_device
@@ -87,6 +93,7 @@ class PrintSessionRequest(object):
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
+        self.octoprint_job = octoprint_job
 
     @property
     def octoprint_device(self):
@@ -332,13 +339,34 @@ class PrintSessionRequest(object):
 
         self._gcode_filename = gcode_filename
 
+    @property
+    def octoprint_job(self):
+        """Gets the octoprint_job of this PrintSessionRequest.  # noqa: E501
+
+
+        :return: The octoprint_job of this PrintSessionRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_job
+
+    @octoprint_job.setter
+    def octoprint_job(self, octoprint_job):
+        """Sets the octoprint_job of this PrintSessionRequest.
+
+
+        :param octoprint_job: The octoprint_job of this PrintSessionRequest.  # noqa: E501
+        :type octoprint_job: dict(str, object)
+        """
+
+        self._octoprint_job = octoprint_job
+
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

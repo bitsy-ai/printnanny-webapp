@@ -42,6 +42,8 @@ class TelemetryEvent(models.Model):
     plugin_version = models.CharField(max_length=60)
     client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
+    metadata = JSONField(null=True)
+    octoprint_job = JSONField(null=True)
 
 
 def _upload_to(instance, filename):
@@ -109,7 +111,7 @@ class OctoPrintPluginEvent(TelemetryEvent):
     """
 
     plugin_identifier = "octoprint_nanny"
-    octoprint_event_prefix = "PLUGIN_OCTOPRINT_NANNY"
+    octoprint_event_prefix = "plugin_octoprint_nanny_"
 
     class EventType(models.TextChoices):
 
@@ -130,6 +132,42 @@ class OctoPrintPluginEvent(TelemetryEvent):
             "Printer profile sync failed",
         )
 
+        CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
+        CONNECT_TEST_REST_API_FAILED = (
+            "connect_test_rest_api_failed",
+            "Test connection to REST API failed",
+        )
+        CONNECT_TEST_REST_API_SUCCESS = (
+            "connect_test_rest_api_success",
+            "Test connection to REST API success",
+        )
+
+        CONNECT_TEST_MQTT_PING = (
+            "connect_test_mqtt_ping",
+            "Test connection to REST API",
+        )
+        CONNECT_TEST_MQTT_PING_FAILED = (
+            "connect_test_mqtt_ping_failed",
+            "Test connection to REST API failed",
+        )
+        CONNECT_TEST_MQTT_PING_SUCCESS = (
+            "connect_test_mqtt_ping_success",
+            "Test connection to REST API success",
+        )
+
+        CONNECT_TEST_MQTT_PONG = (
+            "connect_test_mqtt_pong",
+            "Test connection to REST API",
+        )
+        CONNECT_TEST_MQTT_PONG_FAILED = (
+            "connect_test_mqtt_pong_failed",
+            "Test connection to REST API failed",
+        )
+        CONNECT_TEST_MQTT_PONG_SUCCESS = (
+            "connect_test_mqtt_pong_success",
+            "Test connection to REST API success",
+        )
+
     event_codes = [x.value for x in EventType.__members__.values()]
 
     event_type = models.CharField(
@@ -137,8 +175,9 @@ class OctoPrintPluginEvent(TelemetryEvent):
     )
 
     @classmethod
-    def strip_plugin_identifier(self, event_type):
-        return event_type.replace(self.plugin_identifier, "")
+    def strip_octoprint_prefix(self, event_type):
+
+        return event_type.replace(self.octoprint_event_prefix, "")
 
 
 class OctoPrintEvent(TelemetryEvent):

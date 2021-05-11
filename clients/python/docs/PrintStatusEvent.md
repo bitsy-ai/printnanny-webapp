@@ -1,5 +1,6 @@
 # PrintStatusEvent
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -11,6 +12,8 @@ Name | Type | Description | Notes
 **plugin_version** | **str** |  | 
 **client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
+**metadata** | **dict(str, object)** |  | [optional] 
+**octoprint_job** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
 **state** | **dict(str, object)** |  | [optional] 
 **current_z** | **float** |  | [optional] 

@@ -29,6 +29,8 @@ import java.io.Serializable
  * @param createdDt 
  * @param eventData 
  * @param user 
+ * @param metadata 
+ * @param octoprintJob 
  * @param state 
  * @param currentZ 
  * @param progress 
@@ -57,6 +59,10 @@ data class PrintStatusEvent (
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "user")
     val user: kotlin.Int? = null,
+    @Json(name = "metadata")
+    val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "octoprint_job")
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "state")
     val state: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "current_z")
