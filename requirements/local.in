@@ -1,5 +1,6 @@
 
 aiohttp
+argon2
 celery[redis]==4.4.7
 channels
 channels-redis

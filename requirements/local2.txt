@@ -14,6 +14,8 @@ amqp==2.6.1
     # via kombu
 appdirs==1.4.4
     # via black
+argon2==0.1.10
+    # via -r requirements/local.in
 asgiref==3.3.4
     # via
     #   channels
