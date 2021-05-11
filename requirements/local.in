@@ -2,6 +2,7 @@
 aiohttp
 celery[redis]==4.4.7
 channels
+channels-redis
 discord.py
 dj-stripe
 django
@@ -38,8 +39,12 @@ honeycomb-beeline
 imageio
 imageio-ffmpeg
 pandas
+plotly
+psycopg2
 pyarrow
 qrcode[pil]
+scikit-image
+stringcase
 uvicorn
 whitenoise
 

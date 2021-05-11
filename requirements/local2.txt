@@ -8,6 +8,8 @@ aiohttp==3.7.4.post0
     # via
     #   -r requirements/local.in
     #   discord.py
+aioredis==1.3.1
+    # via channels-redis
 amqp==2.6.1
     # via kombu
 appdirs==1.4.4
@@ -15,10 +17,13 @@ appdirs==1.4.4
 asgiref==3.3.4
     # via
     #   channels
+    #   channels-redis
     #   daphne
     #   django
 async-timeout==3.0.1
-    # via aiohttp
+    # via
+    #   aiohttp
+    #   aioredis
 attrs==21.2.0
     # via
     #   aiohttp
@@ -47,8 +52,12 @@ cffi==1.14.5
     # via
     #   cryptography
     #   google-crc32c
-channels==3.0.3
+channels-redis==3.2.0
     # via -r requirements/local.in
+channels==3.0.3
+    # via
+    #   -r requirements/local.in
+    #   channels-redis
 chardet==4.0.0
     # via
     #   aiohttp
@@ -68,8 +77,12 @@ cryptography==3.4.7
     #   pyjwt
     #   pyopenssl
     #   service-identity
+cycler==0.10.0
+    # via matplotlib
 daphne==3.0.2
     # via channels
+decorator==4.4.2
+    # via networkx
 defusedxml==0.7.1
     # via python3-openid
 discord.py==1.7.2
@@ -204,6 +217,8 @@ grpcio==1.37.1
     #   grpc-google-iam-v1
 h11==0.12.0
     # via uvicorn
+hiredis==2.0.0
+    # via aioredis
 honeycomb-beeline==2.16.2
     # via -r requirements/local.in
 humanize==3.5.0
@@ -221,7 +236,9 @@ idna==2.10
 imageio-ffmpeg==0.4.3
     # via -r requirements/local.in
 imageio==2.9.0
-    # via -r requirements/local.in
+    # via
+    #   -r requirements/local.in
+    #   scikit-image
 incremental==21.3.0
     # via twisted
 inflection==0.5.1
@@ -230,6 +247,8 @@ jsonfield==3.1.0
     # via dj-stripe
 jsonschema==3.2.0
     # via drf-spectacular
+kiwisolver==1.3.1
+    # via matplotlib
 kombu==4.6.11
     # via celery
 libcst==0.3.18
@@ -238,6 +257,10 @@ libcst==0.3.18
     #   google-cloud-pubsub
 libhoney==1.10.0
     # via honeycomb-beeline
+matplotlib==3.4.2
+    # via scikit-image
+msgpack==1.0.2
+    # via channels-redis
 multidict==5.1.0
     # via
     #   aiohttp
@@ -251,11 +274,18 @@ mypy==0.812
     # via
     #   -r requirements/local.in
     #   django-stubs
+networkx==2.5.1
+    # via scikit-image
 numpy==1.20.3
     # via
     #   imageio
+    #   matplotlib
     #   pandas
     #   pyarrow
+    #   pywavelets
+    #   scikit-image
+    #   scipy
+    #   tifffile
 oauthlib==3.1.0
     # via requests-oauthlib
 packaging==20.9
@@ -269,8 +299,12 @@ pep517==0.10.0
 pillow==8.2.0
     # via
     #   imageio
+    #   matplotlib
     #   qrcode
+    #   scikit-image
 pip-tools==6.1.0
+    # via -r requirements/local.in
+plotly==4.14.3
     # via -r requirements/local.in
 prometheus-client==0.8.0
     # via
@@ -286,6 +320,8 @@ protobuf==3.16.0
     #   google-api-core
     #   googleapis-common-protos
     #   proto-plus
+psycopg2==2.8.6
+    # via -r requirements/local.in
 pyarrow==4.0.0
     # via -r requirements/local.in
 pyasn1-modules==0.2.8
@@ -304,13 +340,16 @@ pyjwt[crypto]==2.1.0
 pyopenssl==20.0.1
     # via twisted
 pyparsing==2.4.7
-    # via packaging
+    # via
+    #   matplotlib
+    #   packaging
 pyrsistent==0.17.3
     # via jsonschema
 python-crontab==2.5.1
     # via django-celery-beat
 python-dateutil==2.8.1
     # via
+    #   matplotlib
     #   pandas
     #   python-crontab
 python3-openid==3.2.0
@@ -323,6 +362,8 @@ pytz==2021.1
     #   flower
     #   google-api-core
     #   pandas
+pywavelets==1.1.1
+    # via scikit-image
 pyyaml==5.4.1
     # via
     #   drf-spectacular
@@ -346,15 +387,22 @@ requests==2.25.1
     #   libhoney
     #   requests-oauthlib
     #   stripe
+retrying==1.3.3
+    # via plotly
 rjsmin==1.1.0
     # via django-compressor
 rsa==4.7.2
     # via google-auth
+scikit-image==0.18.1
+    # via -r requirements/local.in
+scipy==1.6.3
+    # via scikit-image
 service-identity==21.1.0
     # via twisted
 six==1.16.0
     # via
     #   automat
+    #   cycler
     #   django-compressor
     #   django-coverage-plugin
     #   django-rest-polymorphic
@@ -365,10 +413,12 @@ six==1.16.0
     #   grpcio
     #   jsonschema
     #   libhoney
+    #   plotly
     #   protobuf
     #   pyopenssl
     #   python-dateutil
     #   qrcode
+    #   retrying
     #   service-identity
 sqlparse==0.4.1
     # via
@@ -376,8 +426,12 @@ sqlparse==0.4.1
     #   django-debug-toolbar
 statsd==3.3.0
     # via libhoney
+stringcase==1.2.0
+    # via -r requirements/local.in
 stripe==2.56.0
     # via dj-stripe
+tifffile==2021.4.8
+    # via scikit-image
 toml==0.10.2
     # via
     #   black
