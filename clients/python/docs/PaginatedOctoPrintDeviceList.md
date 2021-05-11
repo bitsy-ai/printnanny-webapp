@@ -1,5 +1,6 @@
 # PaginatedOctoPrintDeviceList
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

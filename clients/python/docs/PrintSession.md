@@ -1,5 +1,6 @@
 # PrintSession
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

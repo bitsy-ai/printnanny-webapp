@@ -1,5 +1,6 @@
 # StatusEnum
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

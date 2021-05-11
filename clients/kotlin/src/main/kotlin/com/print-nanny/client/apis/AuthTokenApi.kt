@@ -46,18 +46,10 @@ class AuthTokenApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun authTokenCreate(username: kotlin.String, password: kotlin.String) : AuthToken {
-        val localVariableBody: kotlin.Any? = mapOf("username" to username, "password" to password)
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/api/auth-token/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = authTokenCreateRequestConfig(username = username, password = password)
+
         val localVarResponse = request<AuthToken>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -73,6 +65,29 @@ class AuthTokenApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation authTokenCreate
+    *
+    * @param username  
+    * @param password  
+    * @return RequestConfig
+    */
+    fun authTokenCreateRequestConfig(username: kotlin.String, password: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = mapOf("username" to username, "password" to password)
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/auth-token/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

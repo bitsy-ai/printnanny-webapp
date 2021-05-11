@@ -1,5 +1,6 @@
 # PatchedPrintSessionRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

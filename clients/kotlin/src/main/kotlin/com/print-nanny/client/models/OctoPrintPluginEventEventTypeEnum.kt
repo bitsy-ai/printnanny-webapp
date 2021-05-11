@@ -19,32 +19,26 @@ import com.squareup.moshi.Json
 * Values: deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed
 */
 
-enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String){
+enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String) {
 
 
     @Json(name = "device_register_start")
     deviceRegisterStart("device_register_start"),
 
-
     @Json(name = "device_register_done")
     deviceRegisterDone("device_register_done"),
-
 
     @Json(name = "device_register_failed")
     deviceRegisterFailed("device_register_failed"),
 
-
     @Json(name = "printer_profile_sync_start")
     printerProfileSyncStart("printer_profile_sync_start"),
-
 
     @Json(name = "printer_profile_sync_done")
     printerProfileSyncDone("printer_profile_sync_done"),
 
-
     @Json(name = "printer_profile_sync_failed")
     printerProfileSyncFailed("printer_profile_sync_failed");
-
 
 
     /**
@@ -54,6 +48,5 @@ enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

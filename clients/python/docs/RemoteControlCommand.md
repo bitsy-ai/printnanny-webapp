@@ -1,5 +1,6 @@
 # RemoteControlCommand
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

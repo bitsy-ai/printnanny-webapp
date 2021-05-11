@@ -1,6 +1,7 @@
 # Partner3DGeeksAlert
 
 Do not use underscores in this serializer - linitation of Firebase Cloud Messaging
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

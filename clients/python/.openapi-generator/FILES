@@ -20,7 +20,6 @@ docs/DeviceCalibrationRequest.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/GcodeFileRequest.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
 docs/MonitoringModeEnum.md
@@ -54,7 +53,6 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
-docs/PatchedGcodeFileRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
@@ -105,7 +103,6 @@ print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
-print_nanny_client/models/gcode_file_request.py
 print_nanny_client/models/model_artifact.py
 print_nanny_client/models/monitoring_mode_enum.py
 print_nanny_client/models/nested.py
@@ -136,7 +133,6 @@ print_nanny_client/models/partner3_d_geeks_metadata.py
 print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_device_calibration_request.py
-print_nanny_client/models/patched_gcode_file_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
 print_nanny_client/models/patched_print_session_request.py
 print_nanny_client/models/patched_printer_profile_request.py
@@ -175,7 +171,6 @@ test/test_device_calibration_request.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
-test/test_gcode_file_request.py
 test/test_ml_ops_api.py
 test/test_model_artifact.py
 test/test_monitoring_mode_enum.py
@@ -209,7 +204,6 @@ test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
 test/test_patched_device_calibration_request.py
-test/test_patched_gcode_file_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_print_session_request.py
 test/test_patched_printer_profile_request.py

@@ -1,5 +1,6 @@
 # ArtifactTypesEnum
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

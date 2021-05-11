@@ -45,18 +45,10 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun alertsList2(id: kotlin.String) : Partner3DGeeksAlert {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/partners/3d-geeks/{id}/alerts/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = alertsList2RequestConfig(id = id)
+
         val localVarResponse = request<Partner3DGeeksAlert>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -72,6 +64,28 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation alertsList2
+    *
+    * @param id  
+    * @return RequestConfig
+    */
+    fun alertsList2RequestConfig(id: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/partners/3d-geeks/{id}/alerts/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

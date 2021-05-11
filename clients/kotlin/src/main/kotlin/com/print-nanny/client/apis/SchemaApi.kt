@@ -44,23 +44,10 @@ class SchemaApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun schemaRetrieve(lang: kotlin.String?) : kotlin.collections.Map<kotlin.String, AnyType> {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (lang != null) {
-                    put("lang", listOf(lang.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/schema/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = schemaRetrieveRequestConfig(lang = lang)
+
         val localVarResponse = request<kotlin.collections.Map<kotlin.String, AnyType>>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -76,6 +63,33 @@ class SchemaApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation schemaRetrieve
+    *
+    * @param lang  (optional)
+    * @return RequestConfig
+    */
+    fun schemaRetrieveRequestConfig(lang: kotlin.String?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (lang != null) {
+                    put("lang", listOf(lang.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/schema/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

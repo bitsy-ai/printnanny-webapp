@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.6.0-rc7"
+__version__ = "0.6.1-rc1"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -51,7 +51,6 @@ from print_nanny_client.models.device_calibration_request import DeviceCalibrati
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
-from print_nanny_client.models.gcode_file_request import GcodeFileRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
 from print_nanny_client.models.monitoring_mode_enum import MonitoringModeEnum
 from print_nanny_client.models.nested import Nested
@@ -82,7 +81,6 @@ from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMe
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest
 from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
-from print_nanny_client.models.patched_gcode_file_request import PatchedGcodeFileRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from print_nanny_client.models.patched_print_session_request import PatchedPrintSessionRequest
 from print_nanny_client.models.patched_printer_profile_request import PatchedPrinterProfileRequest

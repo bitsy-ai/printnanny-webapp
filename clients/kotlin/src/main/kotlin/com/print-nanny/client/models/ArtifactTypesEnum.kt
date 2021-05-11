@@ -19,24 +19,20 @@ import com.squareup.moshi.Json
 * Values: tFLITE,tF1,tF2SAVEDMODEL,tF2HDF5
 */
 
-enum class ArtifactTypesEnum(val value: kotlin.String){
+enum class ArtifactTypesEnum(val value: kotlin.String) {
 
 
     @Json(name = "TFLITE")
     tFLITE("TFLITE"),
 
-
     @Json(name = "TF1")
     tF1("TF1"),
-
 
     @Json(name = "TF2_SAVED_MODEL")
     tF2SAVEDMODEL("TF2_SAVED_MODEL"),
 
-
     @Json(name = "TF2_HDF5")
     tF2HDF5("TF2_HDF5");
-
 
 
     /**
@@ -46,6 +42,5 @@ enum class ArtifactTypesEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

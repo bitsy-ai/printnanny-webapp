@@ -17,7 +17,6 @@ docs/DeviceCalibrationRequest.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
-docs/GcodeFileRequest.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
 docs/MonitoringModeEnum.md
@@ -51,7 +50,6 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
-docs/PatchedGcodeFileRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
@@ -72,6 +70,10 @@ docs/TelemetryApi.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
 settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthTokenApi.kt
@@ -86,6 +88,8 @@ src/main/kotlin/com/print-nanny/client/infrastructure/ApiAbstractions.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ApiClient.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ApiInfrastructureResponse.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ApplicationDelegates.kt
+src/main/kotlin/com/print-nanny/client/infrastructure/BigDecimalAdapter.kt
+src/main/kotlin/com/print-nanny/client/infrastructure/BigIntegerAdapter.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ByteArrayAdapter.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/Errors.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/LocalDateAdapter.kt
@@ -110,7 +114,6 @@ src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/Experiment.kt
 src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
-src/main/kotlin/com/print-nanny/client/models/GcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
 src/main/kotlin/com/print-nanny/client/models/MonitoringModeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/Nested.kt
@@ -141,7 +144,6 @@ src/main/kotlin/com/print-nanny/client/models/Partner3DGeeksMetadata.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
-src/main/kotlin/com/print-nanny/client/models/PatchedGcodeFileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfileRequest.kt

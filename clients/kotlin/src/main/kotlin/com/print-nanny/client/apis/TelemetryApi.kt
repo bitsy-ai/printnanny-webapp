@@ -51,18 +51,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest) : OctoPrintEvent {
-        val localVariableBody: kotlin.Any? = octoPrintEventRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/api/telemetry/octoprint-events/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryOctoprintEventsCreateRequestConfig(octoPrintEventRequest = octoPrintEventRequest)
+
         val localVarResponse = request<OctoPrintEvent>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -81,6 +73,28 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryOctoprintEventsCreate
+    *
+    * @param octoPrintEventRequest  
+    * @return RequestConfig
+    */
+    fun telemetryOctoprintEventsCreateRequestConfig(octoPrintEventRequest: OctoPrintEventRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = octoPrintEventRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/telemetry/octoprint-events/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -92,23 +106,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryOctoprintEventsList(page: kotlin.Int?) : PaginatedOctoPrintEventList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/octoprint-events/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryOctoprintEventsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedOctoPrintEventList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -127,6 +128,33 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryOctoprintEventsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun telemetryOctoprintEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/octoprint-events/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this octo print event. 
@@ -138,18 +166,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryOctoprintEventsRetrieve(id: kotlin.Int) : OctoPrintEvent {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/octoprint-events/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryOctoprintEventsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<OctoPrintEvent>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -168,6 +188,28 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryOctoprintEventsRetrieve
+    *
+    * @param id A unique integer value identifying this octo print event. 
+    * @return RequestConfig
+    */
+    fun telemetryOctoprintEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/octoprint-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -179,23 +221,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryOctoprintPluginEventsList(page: kotlin.Int?) : PaginatedOctoPrintPluginEventList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/octoprint-plugin-events/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryOctoprintPluginEventsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedOctoPrintPluginEventList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -214,6 +243,33 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryOctoprintPluginEventsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun telemetryOctoprintPluginEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/octoprint-plugin-events/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this octo print plugin event. 
@@ -225,18 +281,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryOctoprintPluginEventsRetrieve(id: kotlin.Int) : OctoPrintPluginEvent {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/octoprint-plugin-events/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryOctoprintPluginEventsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<OctoPrintPluginEvent>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -255,6 +303,28 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryOctoprintPluginEventsRetrieve
+    *
+    * @param id A unique integer value identifying this octo print plugin event. 
+    * @return RequestConfig
+    */
+    fun telemetryOctoprintPluginEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/octoprint-plugin-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
@@ -266,23 +336,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryPrintStatusEventsList(page: kotlin.Int?) : PaginatedPrintStatusEventList {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/print-status-events/",
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryPrintStatusEventsListRequestConfig(page = page)
+
         val localVarResponse = request<PaginatedPrintStatusEventList>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -301,6 +358,33 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
+    * To obtain the request config of the operation telemetryPrintStatusEventsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun telemetryPrintStatusEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/print-status-events/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
     * 
     * 
     * @param id A unique integer value identifying this print status event. 
@@ -312,18 +396,10 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun telemetryPrintStatusEventsRetrieve(id: kotlin.Int) : PrintStatusEvent {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/api/telemetry/print-status-events/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders
-        )
+        val localVariableConfig = telemetryPrintStatusEventsRetrieveRequestConfig(id = id)
+
         val localVarResponse = request<PrintStatusEvent>(
-            localVariableConfig,
-            localVariableBody
+            localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
@@ -339,6 +415,28 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
                 throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
             }
         }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryPrintStatusEventsRetrieve
+    *
+    * @param id A unique integer value identifying this print status event. 
+    * @return RequestConfig
+    */
+    fun telemetryPrintStatusEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/print-status-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
 }

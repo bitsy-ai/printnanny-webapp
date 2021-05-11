@@ -19,24 +19,20 @@ import com.squareup.moshi.Json
 * Values: uI,eMAIL,dISCORD,pARTNER3DGEEKS
 */
 
-enum class AlertMethodEnum(val value: kotlin.String){
+enum class AlertMethodEnum(val value: kotlin.String) {
 
 
     @Json(name = "UI")
     uI("UI"),
 
-
     @Json(name = "EMAIL")
     eMAIL("EMAIL"),
-
 
     @Json(name = "DISCORD")
     dISCORD("DISCORD"),
 
-
     @Json(name = "PARTNER_3DGEEKS")
     pARTNER3DGEEKS("PARTNER_3DGEEKS");
-
 
 
     /**
@@ -46,6 +42,5 @@ enum class AlertMethodEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

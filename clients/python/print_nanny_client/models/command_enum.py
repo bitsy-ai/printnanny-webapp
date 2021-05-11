@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -35,8 +38,9 @@ class CommandEnum(object):
     PRINT_PAUSE = "print_pause"
     PRINT_RESUME = "print_resume"
     MOVE_NOZZLE = "move_nozzle"
+    CONNECTION_TEST_MQTT_PONG = "connection_test_mqtt_pong"
 
-    allowable_values = [MONITORING_STOP, MONITORING_START, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE]  # noqa: E501
+    allowable_values = [MONITORING_STOP, MONITORING_START, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE, CONNECTION_TEST_MQTT_PONG]  # noqa: E501
 
     """
     Attributes:
@@ -54,7 +58,7 @@ class CommandEnum(object):
     def __init__(self, local_vars_configuration=None):  # noqa: E501
         """CommandEnum - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
         self.discriminator = None
 
@@ -64,7 +68,7 @@ class CommandEnum(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

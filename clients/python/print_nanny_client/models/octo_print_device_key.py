@@ -10,7 +10,10 @@
 """
 
 
-import inspect
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
 import six
@@ -111,7 +114,7 @@ class OctoPrintDeviceKey(object):
     def __init__(self, id=None, deleted=None, created_dt=None, name=None, user=None, last_session=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
@@ -1019,7 +1022,7 @@ class OctoPrintDeviceKey(object):
 
         def convert(x):
             if hasattr(x, "to_dict"):
-                args = inspect.getargspec(x.to_dict).args
+                args = getfullargspec(x.to_dict).args
                 if len(args) == 1:
                     return x.to_dict()
                 else:

@@ -19,16 +19,14 @@ import com.squareup.moshi.Json
 * Values: activeLearning,lite
 */
 
-enum class MonitoringModeEnum(val value: kotlin.String){
+enum class MonitoringModeEnum(val value: kotlin.String) {
 
 
     @Json(name = "active_learning")
     activeLearning("active_learning"),
 
-
     @Json(name = "lite")
     lite("lite");
-
 
 
     /**
@@ -38,6 +36,5 @@ enum class MonitoringModeEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

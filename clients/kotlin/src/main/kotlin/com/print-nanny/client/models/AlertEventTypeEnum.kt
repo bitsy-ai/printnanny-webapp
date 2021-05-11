@@ -19,64 +19,50 @@ import com.squareup.moshi.Json
 * Values: test,videoDone,printHealth,printProgress,printDone,printFailed,printPaused,printResumed,printStarted,printCancelled,shutdown,startup,connected,disconnected
 */
 
-enum class AlertEventTypeEnum(val value: kotlin.String){
+enum class AlertEventTypeEnum(val value: kotlin.String) {
 
 
     @Json(name = "Test")
     test("Test"),
 
-
     @Json(name = "VideoDone")
     videoDone("VideoDone"),
-
 
     @Json(name = "PrintHealth")
     printHealth("PrintHealth"),
 
-
     @Json(name = "PrintProgress")
     printProgress("PrintProgress"),
-
 
     @Json(name = "PrintDone")
     printDone("PrintDone"),
 
-
     @Json(name = "PrintFailed")
     printFailed("PrintFailed"),
-
 
     @Json(name = "PrintPaused")
     printPaused("PrintPaused"),
 
-
     @Json(name = "PrintResumed")
     printResumed("PrintResumed"),
-
 
     @Json(name = "PrintStarted")
     printStarted("PrintStarted"),
 
-
     @Json(name = "PrintCancelled")
     printCancelled("PrintCancelled"),
-
 
     @Json(name = "Shutdown")
     shutdown("Shutdown"),
 
-
     @Json(name = "Startup")
     startup("Startup"),
-
 
     @Json(name = "Connected")
     connected("Connected"),
 
-
     @Json(name = "Disconnected")
     disconnected("Disconnected");
-
 
 
     /**
@@ -86,6 +72,5 @@ enum class AlertEventTypeEnum(val value: kotlin.String){
     override fun toString(): String {
         return value
     }
-
 }
 

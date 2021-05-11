@@ -1,5 +1,6 @@
 # PatchedOctoPrintDeviceRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,5 +1,6 @@
 # PrinterProfileRequest
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

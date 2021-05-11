@@ -1,5 +1,6 @@
 # OctoPrintDevice
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
