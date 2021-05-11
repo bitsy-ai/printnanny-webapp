@@ -24,7 +24,7 @@ from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 import google.api_core.exceptions
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
+OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintPluginEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
@@ -75,6 +75,7 @@ def handle_print_status(octoprint_event):
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
     pass
+
 def handle_ping(octoprint_event):
     device_id = octoprint_event.get("octoprint_device_id")
     device = OctoPrintDevice.objects.get(id=device_id)
@@ -92,6 +93,8 @@ HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEvent.EventType.choices}
 )
 
+HANDLER_FNS.update({ OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping })
+
 
 def on_octoprint_event(message):
     try:
@@ -104,10 +107,9 @@ def on_octoprint_event(message):
     data = json.loads(data)
 
     event_type = data["event_type"]
-    if event_type == "plugin_octoprint_nanny_connection_test_mqtt_ping":
-        handle_ping(message)
 
     logger.info(f"Received {event_type} with data {data}")
+
     if data.get("octoprint_device_id") is None:
         logger.warning(f"Received {event_type} without octoprint_device_id {data}")
         message.ack()
@@ -168,8 +170,13 @@ def on_octoprint_event(message):
                 plugin_version=data["plugin_version"],
                 user_id=data["user_id"],
             )
+            handler_fn = HANDLER_FNS.get(event_type)
+            if handler_fn is not None:
+                handler_fn(event)
         except Exception as e:
             logger.error({"error": e, "data": data})
+    elif event_type == "plugin_octoprint_nanny_connection_test_mqtt_ping":
+        handle_ping(message)
     else:
         logger.error(f"Unrecognized event_type={event_type} with data {data}")
     message.ack()
