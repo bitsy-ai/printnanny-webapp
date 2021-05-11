@@ -413,7 +413,7 @@ conf = print_nanny_client.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 0.0.0\n"\
-               "SDK Package Version: 0.6.1-rc2".\
+               "SDK Package Version: 0.6.1-rc3".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

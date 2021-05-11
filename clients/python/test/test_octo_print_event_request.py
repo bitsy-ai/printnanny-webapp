@@ -43,6 +43,12 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                 plugin_version = '', 
                 client_version = '', 
                 octoprint_version = '', 
+                metadata = {
+                    'key' : null
+                    }, 
+                octoprint_job = {
+                    'key' : null
+                    }, 
                 event_type = 'ClientAuthed', 
                 print_session = 56
             )

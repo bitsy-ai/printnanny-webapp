@@ -25,6 +25,8 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param eventType 
  * @param eventData 
+ * @param metadata 
+ * @param octoprintJob 
  * @param printSession 
  */
 
@@ -41,6 +43,10 @@ data class OctoPrintEventRequest (
     val eventType: OctoPrintEventEventTypeEnum,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "metadata")
+    val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "octoprint_job")
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null
 ) : Serializable {

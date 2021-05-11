@@ -1190,6 +1190,18 @@ export interface OctoPrintEvent {
     octoprint_version: string;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
@@ -1296,6 +1308,18 @@ export interface OctoPrintEventRequest {
     octoprint_version: string;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
@@ -1361,6 +1385,18 @@ export interface OctoPrintPluginEvent {
      * @memberof OctoPrintPluginEvent
      */
     octoprint_version: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintPluginEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintPluginEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {OctoPrintPluginEventEventTypeEnum}
@@ -2209,6 +2245,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedPrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2509,6 +2551,12 @@ export interface PrintSession {
     gcode_filename?: string | null;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSession
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSession
      */
@@ -2580,6 +2628,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2635,6 +2689,18 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     octoprint_version: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {PrintStatusEventEventTypeEnum}
