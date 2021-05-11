@@ -18,10 +18,11 @@ from .forms import (
     RemoteControlCommandForm,
     RemoveDeviceForm,
 )
-from print_nanny_webapp.alerts.tasks.timelapse_alert import (
-    create_analyze_video_task,
-    annotate_job_error,
-)
+# TODO re-enable as dataflow pipeline
+# from print_nanny_webapp.alerts.tasks.timelapse_alert import (
+#     create_analyze_video_task,
+#     annotate_job_error,
+# )
 from django.http import HttpResponseRedirect
 
 from django.db.models import Q, Count

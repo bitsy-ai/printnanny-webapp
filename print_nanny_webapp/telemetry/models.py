@@ -42,6 +42,8 @@ class TelemetryEvent(models.Model):
     plugin_version = models.CharField(max_length=60)
     client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
+    metadata = JSONField(null=True)
+    octoprint_job = JSONField(null=True)
 
 
 def _upload_to(instance, filename):
@@ -109,7 +111,7 @@ class OctoPrintPluginEvent(TelemetryEvent):
     """
 
     plugin_identifier = "octoprint_nanny"
-    octoprint_event_prefix = "PLUGIN_OCTOPRINT_NANNY"
+    octoprint_event_prefix = "plugin_octoprint_nanny_"
 
     class EventType(models.TextChoices):
 
@@ -173,8 +175,9 @@ class OctoPrintPluginEvent(TelemetryEvent):
     )
 
     @classmethod
-    def strip_plugin_identifier(self, event_type):
-        return event_type.replace(self.plugin_identifier, "")
+    def strip_octoprint_prefix(self, event_type):
+
+        return event_type.replace(self.octoprint_event_prefix, "")
 
 
 class OctoPrintEvent(TelemetryEvent):
