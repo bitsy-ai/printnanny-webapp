@@ -259,7 +259,7 @@ export enum CommandEnum {
     PrintPause = 'print_pause',
     PrintResume = 'print_resume',
     MoveNozzle = 'move_nozzle',
-    ConnectionTestMqttPong = 'connection_test_mqtt_pong'
+    ConnectTestMqttPong = 'connect_test_mqtt_pong'
 }
 
 /**

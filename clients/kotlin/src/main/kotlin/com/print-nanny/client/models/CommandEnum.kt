@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: monitoringStop,monitoringStart,printStart,printStop,printPause,printResume,moveNozzle,connectionTestMqttPong
+* Values: monitoringStop,monitoringStart,printStart,printStop,printPause,printResume,moveNozzle,connectTestMqttPong
 */
 
 enum class CommandEnum(val value: kotlin.String) {
@@ -43,8 +43,8 @@ enum class CommandEnum(val value: kotlin.String) {
     @Json(name = "move_nozzle")
     moveNozzle("move_nozzle"),
 
-    @Json(name = "connection_test_mqtt_pong")
-    connectionTestMqttPong("connection_test_mqtt_pong");
+    @Json(name = "connect_test_mqtt_pong")
+    connectTestMqttPong("connect_test_mqtt_pong");
 
 
     /**

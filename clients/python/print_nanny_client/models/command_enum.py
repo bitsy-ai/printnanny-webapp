@@ -38,9 +38,9 @@ class CommandEnum(object):
     PRINT_PAUSE = "print_pause"
     PRINT_RESUME = "print_resume"
     MOVE_NOZZLE = "move_nozzle"
-    CONNECTION_TEST_MQTT_PONG = "connection_test_mqtt_pong"
+    CONNECT_TEST_MQTT_PONG = "connect_test_mqtt_pong"
 
-    allowable_values = [MONITORING_STOP, MONITORING_START, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE, CONNECTION_TEST_MQTT_PONG]  # noqa: E501
+    allowable_values = [MONITORING_STOP, MONITORING_START, PRINT_START, PRINT_STOP, PRINT_PAUSE, PRINT_RESUME, MOVE_NOZZLE, CONNECT_TEST_MQTT_PONG]  # noqa: E501
 
     """
     Attributes:
