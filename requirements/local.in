@@ -27,6 +27,7 @@ django-rest-polymorphic
 django-safedelete
 django-storages[google]
 django-stubs
+django-redis
 djangorestframework
 drf-spectacular
 flatbuffers

@@ -25,6 +25,7 @@ django-model-utils
 django-polymorphic
 django-prometheus
 django-rest-polymorphic
+django-redis
 django-safedelete
 django-storages[google]
 django-stubs
