@@ -145,7 +145,7 @@ def on_octoprint_event(message):
                 event_data=data,
                 event_type=event_type,
                 octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["plugin_version"],
+                plugin_version=data["metadata"]["plugin_version"],
                 user_id=user_id,
             )
             handler_fn = HANDLER_FNS.get(event_type)
@@ -163,7 +163,7 @@ def on_octoprint_event(message):
                 event_type=event_type,
                 job_data_file=data["printer_data"]["job"]["file"],
                 octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["plugin_version"],
+                plugin_version=data["metadata"}["plugin_version"],
                 progress=data["printer_data"]["progress"],
                 state=data["printer_data"]["state"],
                 user_id=user_id,
