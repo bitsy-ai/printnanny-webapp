@@ -105,7 +105,7 @@ local-up:
 	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
 		docker-compose -f local.yml up
 
-clean-local-up: local-clean local-up
+local-up-clean: local-clean local-up
 
 
 cluster-config:
