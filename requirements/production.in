@@ -8,6 +8,7 @@ discord.py
 dj-stripe
 django
 django-allauth
+django-allow-cidr
 django-anymail[mailgun]
 django-celery-beat
 django-compressor
@@ -24,10 +25,10 @@ django-model-utils
 django-polymorphic
 django-prometheus
 django-rest-polymorphic
+django-redis
 django-safedelete
 django-storages[google]
 django-stubs
-django-redis
 djangorestframework
 drf-spectacular
 flatbuffers
@@ -47,11 +48,6 @@ pyarrow
 qrcode[pil]
 scikit-image
 stringcase
-twisted<=21 # https://github.com/django/channels/issues/1639
+twisted[http2,tls]<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-
-# dev / testing
-mypy
-pip-tools
-black
