@@ -14,7 +14,7 @@ amqp==2.6.1
     # via kombu
 appdirs==1.4.4
     # via black
-argon2==0.1.10
+argon2-cffi==20.1.0
     # via -r requirements/local.in
 asgiref==3.3.4
     # via
@@ -52,6 +52,7 @@ certifi==2020.12.5
     # via requests
 cffi==1.14.5
     # via
+    #   argon2-cffi
     #   cryptography
     #   google-crc32c
 channels-redis==3.2.0
@@ -403,6 +404,7 @@ service-identity==21.1.0
     # via twisted
 six==1.16.0
     # via
+    #   argon2-cffi
     #   automat
     #   cycler
     #   django-compressor

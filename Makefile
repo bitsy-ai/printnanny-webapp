@@ -80,7 +80,7 @@ docker-image:
 	.
 build: vue ui docker-image
 
-local-clean:
+local-clean: local-build
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
