@@ -224,6 +224,8 @@ hiredis==2.0.0
     # via aioredis
 honeycomb-beeline==2.16.2
     # via -r requirements/local.in
+httptools==0.1.2
+    # via uvicorn
 humanize==3.5.0
     # via flower
 hyperlink==21.0.0
@@ -338,6 +340,8 @@ pyasn1==0.4.8
     #   service-identity
 pycparser==2.20
     # via cffi
+pyhamcrest==2.0.2
+    # via twisted
 pyjwt[crypto]==2.1.0
     # via django-allauth
 pyopenssl==20.0.1
@@ -355,6 +359,8 @@ python-dateutil==2.8.1
     #   matplotlib
     #   pandas
     #   python-crontab
+python-dotenv==0.17.1
+    # via uvicorn
 python3-openid==3.2.0
     # via django-allauth
 pytz==2021.1
@@ -371,6 +377,7 @@ pyyaml==5.4.1
     # via
     #   drf-spectacular
     #   libcst
+    #   uvicorn
 qrcode[pil]==6.1
     # via -r requirements/local.in
 rcssmin==1.0.6
@@ -442,8 +449,10 @@ toml==0.10.2
     #   pep517
 tornado==6.1
     # via flower
-twisted[tls]==21.2.0
-    # via daphne
+twisted[tls]==20.3.0
+    # via
+    #   -r requirements/local.in
+    #   daphne
 txaio==21.2.1
     # via autobahn
 typed-ast==1.4.3
@@ -461,13 +470,19 @@ uritemplate==3.0.1
     # via drf-spectacular
 urllib3==1.26.4
     # via requests
-uvicorn==0.13.4
+uvicorn[standard]==0.13.4
     # via -r requirements/local.in
+uvloop==0.15.2
+    # via uvicorn
 vine==1.3.0
     # via
     #   amqp
     #   celery
     #   flower
+watchgod==0.7
+    # via uvicorn
+websockets==8.1
+    # via uvicorn
 whitenoise==5.2.0
     # via -r requirements/local.in
 wrapt==1.12.1

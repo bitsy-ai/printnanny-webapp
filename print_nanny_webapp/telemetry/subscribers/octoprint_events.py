@@ -40,8 +40,9 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
+    user = User.objects.get(octoprint_event["metadata"]["user_id"])
     alert_settings, created = AlertSettings.objects.get_or_create(
-        user=octoprint_event.user
+        user=user
     )
     progress = octoprint_event.get("print_progress")
 
@@ -68,7 +69,7 @@ def handle_print_progress(octoprint_event):
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
                 print_session=print_session,
-                user=self.user,
+                user=user,
                 octoprint_device=octoprint_device_id,
             )
             task = AlertTask(alert_message)
@@ -145,12 +146,12 @@ def on_octoprint_event(message):
                 event_data=data,
                 event_type=event_type,
                 octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["plugin_version"],
+                plugin_version=data["metadata"]["plugin_version"],
                 user_id=user_id,
             )
             handler_fn = HANDLER_FNS.get(event_type)
             if handler_fn is not None:
-                handler_fn(event)
+                handler_fn(data)
         except Exception as e:
             logger.error({"error": e, "data": data}, exc_info=True)
     elif event_type in PrintStatusEvent.EventType:
@@ -163,7 +164,7 @@ def on_octoprint_event(message):
                 event_type=event_type,
                 job_data_file=data["printer_data"]["job"]["file"],
                 octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["plugin_version"],
+                plugin_version=data["metadata"]["plugin_version"],
                 progress=data["printer_data"]["progress"],
                 state=data["printer_data"]["state"],
                 user_id=user_id,

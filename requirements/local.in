@@ -46,7 +46,8 @@ pyarrow
 qrcode[pil]
 scikit-image
 stringcase
-uvicorn
+twisted<=21 # https://github.com/django/channels/issues/1639
+uvicorn[standard]
 whitenoise
 
 # dev / testing
