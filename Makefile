@@ -5,7 +5,7 @@
 # silence targets where credentials are passed
 .SILENT: cypress-open cypress-run cypress-ci local-up
 
-PROJECT ?= "print-nanny-sandbox"
+GCP_PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
 ZONE ?= "us-central1-c"
 
@@ -25,6 +25,8 @@ PRINT_NANNY_DATAFLOW_SHA ?= $(shell curl https://api.github.com/repos/bitsy-ai/o
 
 GIT_SHA ?= $(shell git rev-parse HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
+
+DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 
 token:
 	echo $(PRINT_NANNY_TOKEN)
@@ -80,12 +82,12 @@ docker-image:
 	.
 build: vue ui docker-image
 
-local-clean: local-build
+local-clean: 
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
-	yes | docker-compose -f local.yml rm
-	yes | docker volume rm \
+	yes | docker-compose -p $(DOCKER_COMPOSE_PROJECT_NAME) -f local.yml rm
+	yes | docker volume rm -p $(DOCKER_COMPOSE_PROJECT_NAME) \
 		print_nanny_webapp_local_file_data \
 		print_nanny_webapp_local_octoprint_data \
 		print_nanny_webapp_local_postgres_data \
@@ -96,7 +98,7 @@ local-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
 
 local-up:
-	. .envs/.sandbox/.env && PROJECT=$(PROJECT) \
+	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
 	PRINT_NANNY_HONEYCOMB_API_KEY=$(PRINT_NANNY_HONEYCOMB_API_KEY) \
@@ -105,11 +107,11 @@ local-up:
 	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
 		docker-compose -f local.yml up
 
-local-up-clean: local-clean local-up
+local-up-clean: local-clean local-build local-up
 
 
 cluster-config:
-	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(PROJECT)
+	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
 
 sandbox-config:
 	GIT_SHA=$(GIT_SHA) \
@@ -145,7 +147,7 @@ sandbox-email:
 	PLUGIN_SHA=$(PRINT_NANNY_PLUGIN_SHA) \
 	DATAFLOW_SHA=$(PRINT_NANNY_DATAFLOW_SHA) \
 	PRINT_NANNY_RELEASE_CHANNEL=$(PRINT_NANNY_RELEASE_CHANNEL) \
-	PROJECT=$(PROJECT) \
+	PROJECT=$(GCP_PROJECT) \
 	CLUSTER=$(CLUSTER) \
 	PRINT_NANNY_PASSWORD=$(PRINT_NANNY_PASSWORD) \
 	ZONE=$(ZONE) \
