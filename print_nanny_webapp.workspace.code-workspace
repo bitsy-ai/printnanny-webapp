@@ -1,9 +1,5 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
+	"folders": [],
 	"settings": {
 		"jupyter.jupyterServerType": "remote"
 	}
