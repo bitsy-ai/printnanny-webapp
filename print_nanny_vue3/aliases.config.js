@@ -3,7 +3,7 @@ const fs = require('fs')
 const prettier = require('prettier')
 
 const aliases = {
-  '@': '.',
+  '@': 'src',
   '@src': 'src',
   '@router': 'src/router',
   '@views': 'src/router/views',
@@ -13,7 +13,9 @@ const aliases = {
   '@assets': 'src/assets',
   '@utils': 'src/utils',
   '@state': 'src/state',
+  '@store': 'src/store',
   '@design': 'src/design/app.scss',
+  '@print-nanny-client': '../clients/typescript'
 }
 
 module.exports = {

@@ -12,6 +12,13 @@ const pages = {
 }
 /** @type import('@vue/cli-service').ProjectOptions */
 module.exports = {
+  pages: pages,
+  outputDir: '../print_nanny_webapp/static/vue/',
+  filenameHashing: false,
+  publicPath: process.env.NODE_ENV === 'production'
+  ? ''
+  : 'http://localhost:8080/',
+
   configureWebpack: {
     // We provide the app's title in Webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -28,11 +35,17 @@ module.exports = {
         !process.env.VUE_APP_TEST &&
         'warning',
     },
+    // resolve: {
+    //   alias: {
+    //     '@': path.resolve('src')
+    //   }
+    // },
   },
   css: {
     // Enable CSS source maps.
     sourceMap: true,
   },
+
   chainWebpack: config => {
 
     config.module
@@ -82,8 +95,7 @@ module.exports = {
     config.resolve.alias
         .set('__STATIC__', path.resolve(__dirname, '../print_nanny_webapp/static'))
 
-    config.resolve.alias
-    .set('@', path.resolve(__dirname, 'src'))
+
         
     config.devServer
         .public('http://localhost:8080')
