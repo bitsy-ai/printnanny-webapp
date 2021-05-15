@@ -7,7 +7,6 @@ import store from '@store'
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-import '@design'
 
 Vue.config.productionTip = false
 

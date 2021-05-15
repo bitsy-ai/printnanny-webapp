@@ -97,14 +97,21 @@ module.exports = {
         .use(BundleTracker, [{filename: '../vue_frontend3/webpack-stats.json'}]);
     // config.plugin('VueLoaderPlugin')
     //     .use(VueLoaderPlugin)
-    config.resolve.symlinks(false)
+    // config.resolve.symlinks(false)
+
     config.resolve.alias
         .set('__STATIC__', path.resolve(__dirname, '../print_nanny_webapp/static'))
 
 
         
     config.devServer
-        .public('http://localhost:8080')
+        .proxy({
+          '^/ws': {
+            target: 'ws://localhost:8000/ws',
+            ws: true,
+            changeOrigin: true
+          }
+        })
         .host('localhost')
         .port(8080)
         .hotOnly(true)
