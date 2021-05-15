@@ -1,14 +1,11 @@
 const BundleTracker = require("webpack-bundle-tracker");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const pages = {
-    'vue_app_01': {
-        entry: './src/main.js',
+    'vue_alerts_dropdown': {
+        entry: './src/apps/alertsDropdown.js',
         chunks: ['chunk-vendors']
-    },
-    'vue_app_02': {
-        entry: './src/app2.js',
-        chunks: ['chunk-vendors']
-    },
+    }
 }
 
 module.exports = {
@@ -19,8 +16,21 @@ module.exports = {
         ? ''
         : 'http://localhost:8080/',
     outputDir: '../print_nanny_webapp/static/vue/',
-
+    css: {
+        loaderOptions: {
+            scss: {}
+        }
+    },
     chainWebpack: config => {
+        config.module
+        .rule('ts')
+        .use('ts-loader')
+          .loader('ts-loader')
+          .tap(options => {
+            // modify the ts options...
+            return options
+          })
+
 
         config.optimization
             .splitChunks({
@@ -41,9 +51,13 @@ module.exports = {
         })
 
         config
+            .plugin('ESLintPlugin')
+            .use(ESLintPlugin)
+        config
             .plugin('BundleTracker')
             .use(BundleTracker, [{filename: '../vue_frontend/webpack-stats.json'}]);
 
+        config.resolve.symlinks(false)
         config.resolve.alias
             .set('__STATIC__', 'static')
 
