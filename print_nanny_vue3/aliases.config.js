@@ -44,33 +44,7 @@ for (const alias in aliases) {
       ]
 }
 
-const jsconfigTemplate = require('./jsconfig.template') || {}
-const jsconfigPath = path.resolve(__dirname, 'jsconfig.json')
 
-fs.writeFile(
-  jsconfigPath,
-  prettier.format(
-    JSON.stringify({
-      ...jsconfigTemplate,
-      compilerOptions: {
-        ...(jsconfigTemplate.compilerOptions || {}),
-        paths: module.exports.jsconfig,
-      },
-    }),
-    {
-      ...require('./.prettierrc'),
-      parser: 'json',
-    }
-  ),
-  (error) => {
-    if (error) {
-      console.error(
-        'Error while creating jsconfig.json from aliases.config.js.'
-      )
-      throw error
-    }
-  }
-)
 
 function resolveSrc(_path) {
   return path.resolve(__dirname, _path)

@@ -105,13 +105,7 @@ module.exports = {
 
         
     config.devServer
-        .proxy({
-          '^/ws': {
-            target: 'ws://localhost:8000/ws',
-            ws: true,
-            changeOrigin: true
-          }
-        })
+        .proxy('http://localhost:8000/')
         .host('localhost')
         .port(8080)
         .hotOnly(true)
