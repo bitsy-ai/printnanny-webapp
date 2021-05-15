@@ -1,0 +1,41 @@
+//
+// formm-wizard.scss
+//
+@import '~vue-form-wizard/dist/vue-form-wizard.min.css';
+
+.wizard-header {
+    display: none;
+}
+
+.form-wizard-header {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    background-color: $form-wizard-header-bg;
+}
+
+.wizard-icon-container.tab_shape,
+.wizard-icon-circle.md {
+    &:focus {
+        outline: none !important;
+    }
+}
+
+.wizard-icon-circle.checked {
+    color: $primary;
+}
+
+.vue-form-wizard.md .wizard-icon-circle.tab_shape {
+    height: 50px !important;
+}
+
+.vue-form-wizard .wizard-icon-circle.tab_shape {
+    background-color: $gray-100;
+}
+
+.vue-form-wizard .wizard-icon-circle {
+    border: 3px solid $gray-100;
+}
+
+.vue-form-wizard .wizard-nav-pills>li>a {
+    color: inherit;
+}
