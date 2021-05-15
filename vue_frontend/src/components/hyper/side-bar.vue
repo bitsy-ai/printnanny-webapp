@@ -131,7 +131,7 @@ export default {
       >
         <a href="javascript: void(0);">
           <img
-            src="@assets/images/users/avatar-1.jpg"
+            src="~__STATIC_URL__/images/users/avatar-1.jpg"
             alt="user-image"
             height="42"
             class="rounded-circle shadow-sm"
@@ -147,7 +147,7 @@ export default {
         <span class="logo-lg">
           <img
             id="side-main-logo"
-            src="@assets/images/logo.png"
+            src="~__STATIC_URL__/images/logo.png"
             alt
             height="16"
           />
@@ -155,7 +155,7 @@ export default {
         <span class="logo-sm">
           <img
             id="side-sm-main-logo"
-            src="@assets/images/logo_sm.png"
+            src="~__STATIC_URL__/images/logo_sm.png"
             alt
             height="16"
           />
@@ -172,7 +172,7 @@ export default {
           <i class="mdi mdi-close"></i>
         </a>
         <img
-          src="@assets/images/help-icon.svg"
+          src="~__STATIC_URL__/images/help-icon.svg"
           height="90"
           alt="Helper Icon Image"
         />
@@ -192,7 +192,7 @@ export default {
       >
         <a href="javascript: void(0);">
           <img
-            src="@assets/images/users/avatar-1.jpg"
+            src="~__STATIC_URL__/images/users/avatar-1.jpg"
             alt="user-image"
             height="42"
             class="rounded-circle shadow-sm"
@@ -209,7 +209,7 @@ export default {
         <span class="logo-lg">
           <img
             id="side-main-logo"
-            src="@assets/images/logo.png"
+            src="~__STATIC_URL__/images/logo.png"
             alt
             height="16"
           />
@@ -217,7 +217,7 @@ export default {
         <span class="logo-sm">
           <img
             id="side-sm-main-logo"
-            src="@assets/images/logo_sm.png"
+            src="~__STATIC_URL__/images/logo_sm.png"
             alt
             height="16"
           />
@@ -234,7 +234,7 @@ export default {
           <i class="mdi mdi-close"></i>
         </a>
         <img
-          src="@assets/images/help-icon.svg"
+          src="~__STATIC_URL__/images/help-icon.svg"
           height="90"
           alt="Helper Icon Image"
         />

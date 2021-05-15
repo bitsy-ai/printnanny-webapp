@@ -18,7 +18,7 @@ export default {
   <div class="media">
     <span class="float-left m-2 mr-4">
       <img
-        src="@assets/images/users/avatar-2.jpg"
+        src="~__STATIC_URL__/images/users/avatar-2.jpg"
         style="height: 100px;"
         alt
         class="rounded-circle img-thumbnail"

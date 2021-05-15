@@ -62,7 +62,7 @@ export default {
 
         // Message Push in Chat
         this.chatMessages.push({
-          image: require('@assets/images/users/avatar-5.jpg'),
+          image: require('~__STATIC_URL__/images/users/avatar-5.jpg'),
           id: id + 1,
           name: 'Smith',
           message,

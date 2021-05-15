@@ -1,5 +1,6 @@
 const BundleTracker = require("webpack-bundle-tracker");
 const ESLintPlugin = require('eslint-webpack-plugin');
+const path = require('path');
 
 const pages = {
     'vue_alerts_dropdown': {
@@ -31,6 +32,20 @@ module.exports = {
             return options
           })
 
+        config.module
+        .rule('fonts')
+        .test(/\.(ttf|otf|eot|woff|woff2)$/)
+        .use("file-loader")
+        .loader("file-loader")
+        .tap(options => {
+            options = {
+            // limit: 10000,
+            name: '/assets/fonts/[name].[ext]',
+            }
+            return options
+        })
+        .end()
+    
 
         config.optimization
             .splitChunks({
@@ -59,8 +74,11 @@ module.exports = {
 
         config.resolve.symlinks(false)
         config.resolve.alias
-            .set('__STATIC__', 'static')
+            .set('__STATIC__', path.resolve(__dirname, '../print_nanny_webapp/static'))
 
+        config.resolve.alias
+        .set('@', path.resolve(__dirname, 'src'))
+            
         config.devServer
             .public('http://localhost:8080')
             .host('localhost')

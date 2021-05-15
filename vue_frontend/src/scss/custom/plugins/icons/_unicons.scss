@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'unicons';
-  src: url('~~~@assets/fonts/unicons.eot?34404611');
-  src: url('~~~@assets/fonts/unicons.eot?34404611#iefix') format('embedded-opentype'),
-       url('~~~@assets/fonts/unicons.woff2?34404611') format('woff2'),
-       url('~~~@assets/fonts/unicons.woff?34404611') format('woff'),
-       url('~~~@assets/fonts/unicons.ttf?34404611') format('truetype'),
-       url('~~~@assets/fonts/unicons.svg?34404611#unicons') format('svg');
+  src: url('~__STATIC_URL__/fonts/unicons.eot?34404611');
+  src: url('~__STATIC_URL__/fonts/unicons.eot?34404611#iefix') format('embedded-opentype'),
+       url('~__STATIC_URL__/fonts/unicons.woff2?34404611') format('woff2'),
+       url('~__STATIC_URL__/fonts/unicons.woff?34404611') format('woff'),
+       url('~__STATIC_URL__/fonts/unicons.ttf?34404611') format('truetype'),
+       url('~__STATIC_URL__/fonts/unicons.svg?34404611#unicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

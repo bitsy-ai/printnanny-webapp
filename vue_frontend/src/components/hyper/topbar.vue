@@ -35,7 +35,7 @@ export default {
         },
         {
           id: 3,
-          user: require('@assets/images/users/avatar-2.jpg'),
+          user: require('~__STATIC_URL__/images/users/avatar-2.jpg'),
           text: 'Cristina Pride',
           subText: 'Hi, How are you? What about our next meeting',
         },
@@ -48,7 +48,7 @@ export default {
         },
         {
           id: 5,
-          user: require('@assets/images/users/avatar-4.jpg'),
+          user: require('~__STATIC_URL__/images/users/avatar-4.jpg'),
           text: 'Karen Robinson',
           subText: 'Wow ! this admin looks good and awesome design',
         },
@@ -100,7 +100,7 @@ export default {
           class="nav-link dropdown-toggle mr-0"
         >
           <img
-            src="@assets/images/flags/us.jpg"
+            src="~__STATIC_URL__/images/flags/us.jpg"
             alt="user-image"
             class="mr-0 mr-sm-1"
             height="12"
@@ -115,7 +115,7 @@ export default {
           class="dropdown-item notify-item"
         >
           <img
-            src="@assets/images/flags/germany.jpg"
+            src="~__STATIC_URL__/images/flags/germany.jpg"
             alt="user-image"
             class="mr-1"
             height="12"
@@ -129,7 +129,7 @@ export default {
           class="dropdown-item notify-item"
         >
           <img
-            src="@assets/images/flags/italy.jpg"
+            src="~__STATIC_URL__/images/flags/italy.jpg"
             alt="user-image"
             class="mr-1"
             height="12"
@@ -143,7 +143,7 @@ export default {
           class="dropdown-item notify-item"
         >
           <img
-            src="@assets/images/flags/spain.jpg"
+            src="~__STATIC_URL__/images/flags/spain.jpg"
             alt="user-image"
             class="mr-1"
             height="12"
@@ -157,7 +157,7 @@ export default {
           class="dropdown-item notify-item"
         >
           <img
-            src="@assets/images/flags/russia.jpg"
+            src="~__STATIC_URL__/images/flags/russia.jpg"
             alt="user-image"
             class="mr-1"
             height="12"
@@ -241,7 +241,7 @@ export default {
         <template v-slot:button-content>
           <span class="account-user-avatar">
             <img
-              src="@assets/images/users/avatar-1.jpg"
+              src="~__STATIC_URL__/images/users/avatar-1.jpg"
               alt="user-image"
               class="rounded-circle"
             />
