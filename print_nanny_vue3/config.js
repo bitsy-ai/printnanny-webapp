@@ -31,7 +31,9 @@
       '@assets': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/assets',
       '@utils': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/utils',
       '@state': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/state',
-      '@design': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/design/app.scss'
+      '@store': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/store',
+      '@design': '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/src/design/app.scss',
+      '@print-nanny-client': '/home/leigh/projects/octoprint-nanny-webapp/clients/typescript'
     },
     extensions: [
       '.mjs',
@@ -82,7 +84,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/node_modules/.cache/vue-loader',
-              cacheIdentifier: '4f035a8f'
+              cacheIdentifier: '6b9cbc53'
             }
           },
           {
@@ -92,7 +94,7 @@
                 preserveWhitespace: false
               },
               cacheDirectory: '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/node_modules/.cache/vue-loader',
-              cacheIdentifier: '4f035a8f'
+              cacheIdentifier: '6b9cbc53'
             }
           }
         ]
@@ -1110,7 +1112,7 @@
             loader: 'cache-loader',
             options: {
               cacheDirectory: '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/node_modules/.cache/babel-loader',
-              cacheIdentifier: 'fabbbfd2'
+              cacheIdentifier: '6114ebd5'
             }
           },
           {
@@ -1136,7 +1138,7 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: '5cc454c2',
+              cacheIdentifier: '7811395a',
               emitWarning: true,
               emitError: false,
               eslintPath: '/home/leigh/projects/octoprint-nanny-webapp/print_nanny_vue3/node_modules/eslint/lib/api.js',
@@ -1214,7 +1216,9 @@
       {
         filename: '../vue_frontend3/webpack-stats.json'
       }
-    )
+    ),
+    /* config.plugin('VueLoaderPlugin') */
+    new VueLoaderPlugin()
   ],
   entry: {
     vue_alerts_dropdown: [

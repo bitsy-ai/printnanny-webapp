@@ -1,7 +1,10 @@
 const appConfig = require('./src/app.config')
 const BundleTracker = require("webpack-bundle-tracker");
 // const ESLintPlugin = require('eslint-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader')
+
 const path = require('path');
+const loader = require('sass-loader');
 
 
 const pages = {
@@ -59,13 +62,15 @@ module.exports = {
     
     config.module
     .rule('vue')
+
     .use('vue-loader')
+      .loader('vue-loader')
       .tap(options => {
         // modify the options...
         return options
       })
 
-
+  
     config.optimization
         .splitChunks({
             cacheGroups: {
@@ -90,7 +95,8 @@ module.exports = {
     config
         .plugin('BundleTracker')
         .use(BundleTracker, [{filename: '../vue_frontend3/webpack-stats.json'}]);
-
+    // config.plugin('VueLoaderPlugin')
+    //     .use(VueLoaderPlugin)
     config.resolve.symlinks(false)
     config.resolve.alias
         .set('__STATIC__', path.resolve(__dirname, '../print_nanny_webapp/static'))
