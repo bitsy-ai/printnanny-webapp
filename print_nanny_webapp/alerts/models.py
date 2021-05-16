@@ -11,14 +11,12 @@ from django.contrib.postgres.fields import ArrayField
 from django.template.loader import render_to_string
 from django.utils import timezone, dateformat
 from django.utils.text import capfirst
-from polymorphic.models import PolymorphicModel
-from polymorphic.managers import PolymorphicManager
-from channels.layers import get_channel_layer
-from rest_framework.renderers import JSONRenderer
 from anymail.message import AnymailMessage
 from asgiref.sync import async_to_sync
 from django.urls import reverse
 import stringcase
+from django.template import Context, Template
+
 
 from django.contrib.postgres.fields import JSONField
 
@@ -117,6 +115,27 @@ class AlertMessage(models.Model):
             "Disconnected",
             "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
         )
+    
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data = {
+            "FIRST_NAME": self.user.first_name,
+            "EMAIL": self.user.email,
+        }
+        if self.octoprint_device:
+            merge_data.update({
+                "DEVICE_NAME": self.octoprint_device.name
+            })
+
+        if self.print_session:
+            merge_data.update({
+                "PRINT_SESSION": self.print_session.session,
+                "GCODE_FILE": self.print_session.gcode_file
+            })
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,

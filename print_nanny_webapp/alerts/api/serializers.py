@@ -1,6 +1,7 @@
 import logging
 import inspect
 import time
+from typing import Optional
 
 from django.utils import timezone
 from django.apps import apps
@@ -55,16 +56,23 @@ class AlertSerializer(serializers.ModelSerializer):
 
     manage_device_url = serializers.SerializerMethodField()
 
-    def get_manage_device_url(self, obj):
-        device_url = reverse(
-            "dashboard:octoprint-devices:detail",
-            kwargs={"pk": obj.octoprint_device.id},
-        )
-        return device_url
+    def get_manage_device_url(self, obj) -> Optional[str]:
+        if obj.octoprint_device:
+            device_url = reverse(
+                "dashboard:octoprint-devices:detail",
+                kwargs={"pk": obj.octoprint_device.id},
+            )
+            return device_url
+    
+    message = serializers.SerializerMethodField()
+
+    def get_message(self, obj) -> str:
+        return obj.message
 
     class Meta:
         model = Alert
         fields = [
+            "id",
             "time",
             "gcode_file",
             "print_progress",
@@ -79,6 +87,7 @@ class AlertSerializer(serializers.ModelSerializer):
             "sent",
             "created_dt",
             "updated_dt",
+            "message"
         ]
         read_only_fields = ("user",)
 

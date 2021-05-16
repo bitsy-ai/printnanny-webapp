@@ -30,7 +30,7 @@ export default {
   async seenAll (opts) {
     const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
     const response = await instance.alertsSeen(opts)
-    console.log('seenAll', response)
+    console.log('seenAll', response, opts)
     return response
   }
 }
