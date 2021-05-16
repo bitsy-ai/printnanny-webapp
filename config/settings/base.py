@@ -164,7 +164,7 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 
 
-VUE_APP_DIR = os.path.join(ROOT_DIR, 'print_nanny_vue3')
+VUE_APP_DIR = os.path.join(ROOT_DIR, 'print_nanny_vue')
 # @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [
     ('css', str(APPS_DIR / "static/css")),

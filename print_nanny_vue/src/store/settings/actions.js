@@ -1,10 +1,8 @@
 import api from '@/services/alerts'
 import {
   SET_DATA,
-  SET_PAGINATION,
-  APPEND_DATA
+  SET_ALERT_METHODS
 } from './mutations'
-import state, { ALERTS } from './state'
 
 export const FETCH_SETTINGS = 'load_settings'
 export const SAVE_SETTING = 'save_setting'
@@ -19,6 +17,7 @@ export default {
 
   async [SAVE_SETTING] ({ commit }, opts) {
     const data = await api.updateAlertSetting(opts)
+    return data
   },
 
   async [FETCH_SETTINGS] ({ commit, state }, opts) {
