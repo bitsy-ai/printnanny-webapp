@@ -30,7 +30,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: config.build.assetsRoot,
-    filename: 'js/[name]-[hash].js',
+    filename: 'js/[name].js',
   },
   optimization: {
     moduleIds: 'named'
@@ -40,6 +40,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '__STATIC__': resolve('../print_nanny_webapp/static')
     }
   },
   plugins: [
