@@ -9,7 +9,7 @@ module.exports = {
 
   ],
   rules: {
-    "@typescript-eslint/no-unused-vars": "warn",
+    // "@typescript-eslint/no-unused-vars": "warn",
     // Only allow debugger in development
     'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
     // Only allow `console.log` in development
@@ -34,6 +34,7 @@ module.exports = {
     'vue/space-infix-ops': 'error',
     'vue/space-unary-ops': 'error',
     'vue/v-on-function-call': 'error',
+    'vue/no-deprecated-slot-attribute': 'warn',
     'vue/v-slot-style': [
       'error',
       {

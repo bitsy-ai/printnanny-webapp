@@ -62,13 +62,21 @@ module.exports = {
     
     config.module
     .rule('vue')
-
     .use('vue-loader')
       .loader('vue-loader')
       .tap(options => {
         // modify the options...
         return options
       })
+    
+      config.module
+        .rule('scss')
+        .use('sass-loader')
+          .loader('sass-loader')
+          .end()
+        .use('vue-loader')
+          .loader('vue-loader')
+          .end()
 
   
     config.optimization
@@ -106,8 +114,6 @@ module.exports = {
         
     config.devServer
         .proxy('http://localhost:8000/')
-        .host('localhost')
-        .port(8080)
         .hotOnly(true)
         .watchOptions({poll: 1000})
         .https(false)
