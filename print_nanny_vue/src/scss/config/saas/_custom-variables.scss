@@ -17,9 +17,17 @@ $bg-detached-leftbar:             #ffffff;
 
 // Topbar Height
 $topbar-height:                     70px;
+$footer-height:                     210px;
 
 // Leftbar width
 $leftbar-width:                     260px;
+
+// Logo Display
+$logo-light-display:                block;
+$logo-dark-display:                 none;
+// Logo auth display
+$logo-auth-light-display:                none;
+$logo-auth-dark-display:                 block;
 
 // Boxed Layout
 $boxed-layout-width:                1300px;

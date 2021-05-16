@@ -93,9 +93,15 @@ local-clean:
 		print_nanny_webapp_local_postgres_data \
 		print_nanny_webapp_local_postgres_data_backups \
 		print_nanny_webapp_local_prometheus_data || echo "No volumes found"
- 
-local-build:
+
+
+local-vue-build:
+	cd print_nanny_vue && yarn install && yarn run dev
+
+local-image-build:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f local.yml build
+
+local-build: local-image-build local-vue-build
 
 local-up:
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
@@ -107,7 +113,7 @@ local-up:
 	DJANGO_SUPERUSER_EMAIL=$(PRINT_NANNY_EMAIL) \
 		docker-compose -f local.yml up
 
-local-up-clean: local-clean local-build local-up
+local-up-clean: local-clean local-image-build local-up
 
 
 cluster-config:
