@@ -45,11 +45,11 @@ export default {
         <span class="noti-icon-badge" v-if="unreadAlerts.length"></span>
     </template>
 
-    <a
-    href="javascript: void(0);"
-    class="dropdown-item noti-title"
-    >
-    </a>
+    <div class="dropdown-item noti-title">
+        <h5 class="m-0">
+            Notification
+        </h5>
+    </div>
 
     <simplebar style="max-height: 230px;" v-if="!alerts.results.length">
        <p class="text-muted mb-0 user-msg"><center>You're all caught up!</center></p>

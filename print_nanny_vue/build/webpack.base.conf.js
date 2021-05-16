@@ -27,13 +27,26 @@ const createLintingRule = () => ({
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    alerts: './src/apps/AlertsDropdown.js'
+  },
   output: {
     path: config.build.assetsRoot,
     filename: 'js/[name].js',
   },
   optimization: {
-    moduleIds: 'named'
+    moduleIds: 'named',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "chunk-vendors",
+            chunks: "all",
+            priority: 1
+        },
+      },
+    }
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],

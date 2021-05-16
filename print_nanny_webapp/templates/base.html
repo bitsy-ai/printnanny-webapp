@@ -22,6 +22,9 @@
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
         <!-- other browsers -->
         <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
+        {% load render_bundle from webpack_loader %}
+
+        {% render_bundle 'index' %}
 
         {% block css %}
 
