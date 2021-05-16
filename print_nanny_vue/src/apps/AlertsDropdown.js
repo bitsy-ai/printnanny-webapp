@@ -1,4 +1,4 @@
-import { Vue, store } from './appFactory'
+import { Vue, store } from './AppFactory'
 import AlertsDropdown from '@/components/AlertsDropdown'
 // import router from './router'
 

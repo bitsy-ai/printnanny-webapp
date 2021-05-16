@@ -3,11 +3,11 @@
 import Vue from 'vue'
 import VueCookies from 'vue-cookies'
 import VueNativeSock from 'vue-native-websocket'
-import store from './store'
+import store from '../store'
 // eslint-disable-next-line
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-import './scss/app.scss'
+import '@/scss/app.scss'
 
 Vue.config.productionTip = false
 

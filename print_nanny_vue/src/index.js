@@ -1,1 +1,1 @@
-import './alertsDropdown'
+import './apps/AlertsDropdown'
