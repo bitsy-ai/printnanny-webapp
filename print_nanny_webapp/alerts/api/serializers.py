@@ -63,7 +63,7 @@ class AlertSerializer(serializers.ModelSerializer):
                 kwargs={"pk": obj.octoprint_device.id},
             )
             return device_url
-    
+
     message = serializers.SerializerMethodField()
 
     def get_message(self, obj) -> str:
@@ -87,7 +87,7 @@ class AlertSerializer(serializers.ModelSerializer):
             "sent",
             "created_dt",
             "updated_dt",
-            "message"
+            "message",
         ]
         read_only_fields = ("user",)
 

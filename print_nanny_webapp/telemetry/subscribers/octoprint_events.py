@@ -41,9 +41,7 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(octoprint_event):
     user = User.objects.get(octoprint_event["metadata"]["user_id"])
-    alert_settings, created = AlertSettings.objects.get_or_create(
-        user=user
-    )
+    alert_settings, created = AlertSettings.objects.get_or_create(user=user)
     progress = octoprint_event.get("print_progress")
 
     # update print session progress

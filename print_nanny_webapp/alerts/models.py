@@ -115,7 +115,7 @@ class AlertMessage(models.Model):
             "Disconnected",
             "{{ DEVICE_NAME }} - OctoPrint disconnected from printer 💥",
         )
-    
+
     @property
     def message(self) -> str:
         template = Template(self.get_event_type_display())
@@ -124,18 +124,17 @@ class AlertMessage(models.Model):
             "EMAIL": self.user.email,
         }
         if self.octoprint_device:
-            merge_data.update({
-                "DEVICE_NAME": self.octoprint_device.name
-            })
+            merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
 
         if self.print_session:
-            merge_data.update({
-                "PRINT_SESSION": self.print_session.session,
-                "GCODE_FILE": self.print_session.gcode_file
-            })
+            merge_data.update(
+                {
+                    "PRINT_SESSION": self.print_session.session,
+                    "GCODE_FILE": self.print_session.gcode_file,
+                }
+            )
         ctx = Context(merge_data)
         return template.render(ctx)
-
 
     alert_method = models.CharField(
         choices=AlertSettings.AlertMethod.choices,
