@@ -49,8 +49,11 @@ data-layout-qconfig='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSideba
 
 {% endblock %}
 
-{% block extra_javascript %}
 
-<script type="text/javascript" src="{% static 'vue/js/alertsDropdown.js' %}"></script>
+{% block extra_javascript %}
+{% load render_bundle from webpack_loader %}
+
+
+{% render_bundle 'alerts' %}
 
 {% endblock %}

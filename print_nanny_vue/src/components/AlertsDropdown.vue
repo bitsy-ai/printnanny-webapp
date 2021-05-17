@@ -3,7 +3,6 @@ import { mapActions, mapState } from 'vuex'
 import {
   FETCH_ALERTS,
   SEEN_ALL,
-  DISMISS_ALL,
   ALERTS_DROPDOWN_MODULE,
   ALERTS
 } from '@/store/alerts'
@@ -15,8 +14,7 @@ export default {
   methods: {
     ...mapActions(ALERTS_DROPDOWN_MODULE, {
       fetchAlerts: FETCH_ALERTS,
-      seenAll: SEEN_ALL,
-      dismissAll: DISMISS_ALL
+      seenAll: SEEN_ALL
     })
   },
   computed: {
@@ -29,7 +27,7 @@ export default {
     }
   },
   created () {
-    this.fetchAlerts({ page: '1', dismissed: false })
+    this.fetchAlerts({ page: '1', seen: false })
   }
 }
 </script>
@@ -47,22 +45,11 @@ export default {
         <span class="noti-icon-badge" v-if="unreadAlerts.length"></span>
     </template>
 
-    <a
-    href="javascript: void(0);"
-    class="dropdown-item noti-title"
-    >
-    <h5 class="m-0">
-        <span class="float-right">
-        <a
-            class="text-dark"
-            v-on:click="dismissAll"
-            v-if="alerts.length"
-        >
-            <small>Clear All</small>
-        </a>
-        </span>Notification
-    </h5>
-    </a>
+    <div class="dropdown-item noti-title">
+        <h5 class="m-0">
+            Notification
+        </h5>
+    </div>
 
     <simplebar style="max-height: 230px;" v-if="!alerts.results.length">
        <p class="text-muted mb-0 user-msg"><center>You're all caught up!</center></p>
@@ -75,14 +62,13 @@ export default {
         class="dropdown-item notify-item"
     >
         <div
-        class="notify-icon"
-        :class="`bg-${item.color}`"
+        class="notify-icon bg-info"
         >
-        <i :class="`${item.icon}`"></i>
+        <i class="mdi mdi-bell-outline"></i>
         </div>
-        <p class="notify-details">{{item.title}}</p>
+        <p class="notify-details">{{item.message}}</p>
         <p class="text-muted mb-0 user-msg">
-        <small>{{item.alert_subtype}} {{item.naturaltime}}</small>
+        <small>{{item.event_type}} {{item.time}}</small>
         </p>
     </a>
     </simplebar>

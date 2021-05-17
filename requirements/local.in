@@ -28,6 +28,7 @@ django-safedelete
 django-storages[google]
 django-stubs
 django-redis
+django-webpack-loader
 djangorestframework
 drf-spectacular
 flatbuffers

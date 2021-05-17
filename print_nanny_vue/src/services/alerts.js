@@ -1,5 +1,4 @@
-import { AlertsApiFactory } from 'print-nanny-client/api'
-import { Configuration } from 'print-nanny-client/configuration'
+import { AlertsApiFactory, Configuration } from 'print-nanny-client'
 
 const configuration = new Configuration({
   basePath: process.env.BASE_API_URL,
@@ -31,7 +30,7 @@ export default {
   async seenAll (opts) {
     const instance = AlertsApiFactory(configuration, process.env.BASE_API_URL)
     const response = await instance.alertsSeen(opts)
-    console.log('seenAll', response)
+    console.log('seenAll', response, opts)
     return response
   }
 }

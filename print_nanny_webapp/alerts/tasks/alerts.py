@@ -11,10 +11,14 @@ from print_nanny_webapp.partners.api.serializers import (
     Partner3DGeeksAlertSerializer,
     PartnersEnum,
 )
+from asgiref.sync import async_to_sync
+from rest_framework.renderers import JSONRenderer
+
 from django.conf import settings
 from django.template.loader import render_to_string
 from anymail.message import AnymailMessage
 from django.template import Context, Template
+from channels.layers import get_channel_layer
 
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")

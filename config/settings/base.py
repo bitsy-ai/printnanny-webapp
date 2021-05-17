@@ -142,6 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -162,6 +163,10 @@ STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+
+
+VUE_APP_DIR = os.path.join(ROOT_DIR, 'print_nanny_vue')
+# @TODO rm these staticfiles dirs
 STATICFILES_DIRS = [
     ('css', str(APPS_DIR / "static/css")),
     ('fonts', str(APPS_DIR / "static/fonts")),
@@ -174,6 +179,23 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+
+# Webpack loader
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ['webpack_loader']
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'vue/', # must end with slash
+        'STATS_FILE': os.path.join(VUE_APP_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+    }
+}
+
 
 # MEDIA
 # ------------------------------------------------------------------------------

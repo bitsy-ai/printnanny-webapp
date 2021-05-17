@@ -10,6 +10,7 @@ django
 django-allauth
 django-allow-cidr
 django-anymail[mailgun]
+django-cors-headers
 django-celery-beat
 django-compressor
 django-coverage-plugin
@@ -29,6 +30,7 @@ django-redis
 django-safedelete
 django-storages[google]
 django-stubs
+django-webpack-loader
 djangorestframework
 drf-spectacular
 flatbuffers

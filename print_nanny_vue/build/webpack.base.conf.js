@@ -3,7 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleTracker = require('webpack-bundle-tracker');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -23,26 +23,42 @@ const createLintingRule = () => ({
   }
 })
 
+
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    alertsDropdown: './src/alertsDropdown.js',
-    alertsTable: './src/alertsTable.js',
+    index: './src/index.js',
+    alerts: './src/apps/AlertsDropdown.js'
   },
   output: {
     path: config.build.assetsRoot,
     filename: 'js/[name].js',
   },
   optimization: {
-    moduleIds: 'named'
+    moduleIds: 'named',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "chunk-vendors",
+            chunks: "all",
+            priority: 1
+        },
+      },
+    }
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '__STATIC__': resolve('../print_nanny_webapp/static')
     }
   },
+  plugins: [
+    new BundleTracker({filename: './webpack-stats.json'})
+  ],
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
@@ -57,8 +73,9 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)(\?.*)?$/,
         use: 'ts-loader',
+        include: [resolve('src'), resolve('node_modules/print-nanny-client')],
         exclude: /node_modules/,
       },
       {

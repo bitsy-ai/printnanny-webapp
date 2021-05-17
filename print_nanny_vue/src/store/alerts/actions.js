@@ -4,7 +4,7 @@ import {
   SET_PAGINATION,
   APPEND_DATA
 } from './mutations'
-import state, { ALERTS } from './state'
+import { ALERTS } from './state'
 
 export const FETCH_ALERTS = 'load_alerts'
 export const DISMISS_ALL = 'dismiss_alerts'
