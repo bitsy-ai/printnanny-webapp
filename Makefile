@@ -73,7 +73,7 @@ ui:
 	npm install && npm run build
 
 vue:
-	cd print_nanny_vue && npm install && npm run build
+	cd print_nanny_vue && yarn install && yarn run build
 
 docker-image:
 	DOCKER_BUILDKIT=1 docker build \
