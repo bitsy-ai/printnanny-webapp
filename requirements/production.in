@@ -10,6 +10,7 @@ django
 django-allauth
 django-allow-cidr
 django-anymail[mailgun]
+django-cors-headers
 django-celery-beat
 django-compressor
 django-coverage-plugin

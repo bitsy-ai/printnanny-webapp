@@ -197,7 +197,10 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # CORS
 # ------------------------------------------------------------------------------
-CORS_ORIGIN_WHITELIST = [
+MIDDLEWARE += [
+    'corsheaders.middleware.CorsMiddleware',
+]
+CORS_ALLOWED_ORIGINS = [
     'https://print-nanny.com',
     'https://www.print-nanny.com',
 ]
