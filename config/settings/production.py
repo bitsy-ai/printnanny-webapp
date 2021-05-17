@@ -197,6 +197,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # CORS
 # ------------------------------------------------------------------------------
+INSTALLED_APPS += ['corsheaders']
 MIDDLEWARE += [
     'corsheaders.middleware.CorsMiddleware',
 ]
