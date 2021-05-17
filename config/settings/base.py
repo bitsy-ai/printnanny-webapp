@@ -142,6 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'print_nanny_webapp.middleware.honeycomb.HoneyMiddlewareIgnoreHealthCheck',
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
