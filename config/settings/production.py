@@ -202,3 +202,5 @@ CORS_ALLOWED_ORIGINS = [
     'https://print-nanny.com',
     'https://www.print-nanny.com',
 ]
+# insert CORS middleware as early in the middleware stack as possible after Prometheus / Honeycomb instrumentation
+MIDDLEWARE.insert(2, 'corsheaders.middleware.CorsMiddleware')
