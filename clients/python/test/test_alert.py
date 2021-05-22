@@ -36,6 +36,7 @@ class TestAlert(unittest.TestCase):
         # model = print_nanny_client.models.alert.Alert()  # noqa: E501
         if include_optional :
             return Alert(
+                id = 56, 
                 time = '', 
                 gcode_file = '', 
                 print_progress = '', 
@@ -49,7 +50,8 @@ class TestAlert(unittest.TestCase):
                 seen = True, 
                 sent = True, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                message = ''
             )
         else :
             return Alert(

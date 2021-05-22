@@ -20,6 +20,7 @@ import java.io.Serializable
 /**
  * 
  * @param alertMethod 
+ * @param id 
  * @param time 
  * @param gcodeFile 
  * @param printProgress 
@@ -33,11 +34,14 @@ import java.io.Serializable
  * @param sent 
  * @param createdDt 
  * @param updatedDt 
+ * @param message 
  */
 
 data class Alert (
     @Json(name = "alert_method")
     val alertMethod: AlertMethodEnum,
+    @Json(name = "id")
+    val id: kotlin.Int? = null,
     @Json(name = "time")
     val time: kotlin.String? = null,
     @Json(name = "gcode_file")
@@ -63,7 +67,9 @@ data class Alert (
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null
+    val updatedDt: java.time.OffsetDateTime? = null,
+    @Json(name = "message")
+    val message: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

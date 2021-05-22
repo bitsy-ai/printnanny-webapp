@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **time** | **str** |  | [optional] [readonly] 
 **gcode_file** | **str** |  | [optional] [readonly] 
 **print_progress** | **str** |  | [optional] [readonly] 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **sent** | **bool** |  | [optional] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
+**message** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

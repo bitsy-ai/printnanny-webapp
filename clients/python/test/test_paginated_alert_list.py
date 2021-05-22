@@ -41,6 +41,7 @@ class TestPaginatedAlertList(unittest.TestCase):
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
                     print_nanny_client.models.alert.Alert(
+                        id = 56, 
                         time = '', 
                         gcode_file = '', 
                         print_progress = '', 
@@ -54,7 +55,8 @@ class TestPaginatedAlertList(unittest.TestCase):
                         seen = True, 
                         sent = True, 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        message = '', )
                     ]
             )
         else :

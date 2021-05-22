@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
+**id** | **kotlin.Int** |  |  [optional] [readonly]
 **time** | **kotlin.String** |  |  [optional] [readonly]
 **gcodeFile** | **kotlin.String** |  |  [optional] [readonly]
 **printProgress** | **kotlin.String** |  |  [optional] [readonly]
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **sent** | **kotlin.Boolean** |  |  [optional]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**message** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

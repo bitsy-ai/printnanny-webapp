@@ -29,6 +29,12 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export interface Alert {
     /**
      * 
+     * @type {number}
+     * @memberof Alert
+     */
+    id?: number;
+    /**
+     * 
      * @type {string}
      * @memberof Alert
      */
@@ -62,7 +68,7 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
-    manage_device_url?: string;
+    manage_device_url?: string | null;
     /**
      * 
      * @type {number}
@@ -111,6 +117,12 @@ export interface Alert {
      * @memberof Alert
      */
     updated_dt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
+     */
+    message?: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests

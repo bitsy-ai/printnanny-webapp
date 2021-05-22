@@ -36,6 +36,7 @@ class Alert(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'id': 'int',
         'time': 'str',
         'gcode_file': 'str',
         'print_progress': 'str',
@@ -49,10 +50,12 @@ class Alert(object):
         'seen': 'bool',
         'sent': 'bool',
         'created_dt': 'datetime',
-        'updated_dt': 'datetime'
+        'updated_dt': 'datetime',
+        'message': 'str'
     }
 
     attribute_map = {
+        'id': 'id',
         'time': 'time',
         'gcode_file': 'gcode_file',
         'print_progress': 'print_progress',
@@ -66,15 +69,17 @@ class Alert(object):
         'seen': 'seen',
         'sent': 'sent',
         'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt'
+        'updated_dt': 'updated_dt',
+        'message': 'message'
     }
 
-    def __init__(self, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, message=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._id = None
         self._time = None
         self._gcode_file = None
         self._print_progress = None
@@ -89,8 +94,11 @@ class Alert(object):
         self._sent = None
         self._created_dt = None
         self._updated_dt = None
+        self._message = None
         self.discriminator = None
 
+        if id is not None:
+            self.id = id
         if time is not None:
             self.time = time
         if gcode_file is not None:
@@ -101,8 +109,7 @@ class Alert(object):
             self.time_elapsed = time_elapsed
         if time_remaining is not None:
             self.time_remaining = time_remaining
-        if manage_device_url is not None:
-            self.manage_device_url = manage_device_url
+        self.manage_device_url = manage_device_url
         if user is not None:
             self.user = user
         self.octoprint_device = octoprint_device
@@ -116,6 +123,29 @@ class Alert(object):
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
+        if message is not None:
+            self.message = message
+
+    @property
+    def id(self):
+        """Gets the id of this Alert.  # noqa: E501
+
+
+        :return: The id of this Alert.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this Alert.
+
+
+        :param id: The id of this Alert.  # noqa: E501
+        :type id: int
+        """
+
+        self._id = id
 
     @property
     def time(self):
@@ -412,6 +442,27 @@ class Alert(object):
         """
 
         self._updated_dt = updated_dt
+
+    @property
+    def message(self):
+        """Gets the message of this Alert.  # noqa: E501
+
+
+        :return: The message of this Alert.  # noqa: E501
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """Sets the message of this Alert.
+
+
+        :param message: The message of this Alert.  # noqa: E501
+        :type message: str
+        """
+
+        self._message = message
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
