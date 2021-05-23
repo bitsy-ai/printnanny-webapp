@@ -4,35 +4,43 @@
 ## Enum
 
 
-    * `deviceRegisterStart` (value: `"device_register_start"`)
+    * `pluginOctoprintNannyMonitoringStart` (value: `"plugin_octoprint_nanny_monitoring_start"`)
 
-    * `deviceRegisterDone` (value: `"device_register_done"`)
+    * `pluginOctoprintNannyMonitoringStop` (value: `"plugin_octoprint_nanny_monitoring_stop"`)
 
-    * `deviceRegisterFailed` (value: `"device_register_failed"`)
+    * `pluginOctoprintNannyMonitoringReset` (value: `"plugin_octoprint_nanny_monitoring_reset"`)
 
-    * `printerProfileSyncStart` (value: `"printer_profile_sync_start"`)
+    * `pluginOctoprintNannyDeviceRegisterStart` (value: `"plugin_octoprint_nanny_device_register_start"`)
 
-    * `printerProfileSyncDone` (value: `"printer_profile_sync_done"`)
+    * `pluginOctoprintNannyDeviceRegisterDone` (value: `"plugin_octoprint_nanny_device_register_done"`)
 
-    * `printerProfileSyncFailed` (value: `"printer_profile_sync_failed"`)
+    * `pluginOctoprintNannyDeviceRegisterFailed` (value: `"plugin_octoprint_nanny_device_register_failed"`)
+
+    * `pluginOctoprintNannyDeviceReset` (value: `"plugin_octoprint_nanny_device_reset"`)
+
+    * `pluginOctoprintNannyPrinterProfileSyncStart` (value: `"plugin_octoprint_nanny_printer_profile_sync_start"`)
+
+    * `pluginOctoprintNannyPrinterProfileSyncDone` (value: `"plugin_octoprint_nanny_printer_profile_sync_done"`)
+
+    * `pluginOctoprintNannyPrinterProfileSyncFailed` (value: `"plugin_octoprint_nanny_printer_profile_sync_failed"`)
 
     * `connectTestRestApi` (value: `"connect_test_rest_api"`)
 
-    * `connectTestRestApiFailed` (value: `"connect_test_rest_api_failed"`)
+    * `pluginOctoprintNannyConnectTestRestApiFailed` (value: `"plugin_octoprint_nanny_connect_test_rest_api_failed"`)
 
-    * `connectTestRestApiSuccess` (value: `"connect_test_rest_api_success"`)
+    * `pluginOctoprintNannyConnectTestRestApiSuccess` (value: `"plugin_octoprint_nanny_connect_test_rest_api_success"`)
 
-    * `connectTestMqttPing` (value: `"connect_test_mqtt_ping"`)
+    * `pluginOctoprintNannyConnectTestMqttPing` (value: `"plugin_octoprint_nanny_connect_test_mqtt_ping"`)
 
-    * `connectTestMqttPingFailed` (value: `"connect_test_mqtt_ping_failed"`)
+    * `pluginOctoprintNannyConnectTestMqttPingFailed` (value: `"plugin_octoprint_nanny_connect_test_mqtt_ping_failed"`)
 
-    * `connectTestMqttPingSuccess` (value: `"connect_test_mqtt_ping_success"`)
+    * `pluginOctoprintNannyConnectTestMqttPingSuccess` (value: `"plugin_octoprint_nanny_connect_test_mqtt_ping_success"`)
 
-    * `connectTestMqttPong` (value: `"connect_test_mqtt_pong"`)
+    * `pluginOctoprintNannyConnectTestMqttPong` (value: `"plugin_octoprint_nanny_connect_test_mqtt_pong"`)
 
-    * `connectTestMqttPongFailed` (value: `"connect_test_mqtt_pong_failed"`)
+    * `pluginOctoprintNannyConnectTestMqttPongFailed` (value: `"plugin_octoprint_nanny_connect_test_mqtt_pong_failed"`)
 
-    * `connectTestMqttPongSuccess` (value: `"connect_test_mqtt_pong_success"`)
+    * `pluginOctoprintNannyConnectTestMqttPongSuccess` (value: `"plugin_octoprint_nanny_connect_test_mqtt_pong_success"`)
 
 
 

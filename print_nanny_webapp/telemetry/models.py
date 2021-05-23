@@ -116,78 +116,78 @@ class OctoPrintPluginEvent(TelemetryEvent):
     class EventType(models.TextChoices):
 
         MONITORING_START = (
-            "plugin_octoprint_nanny_monitoring_start",
+            "monitoring_start",
             "Print Nanny Monitoring started",
         )
         MONITORING_STOP = (
-            "plugin_octoprint_nanny_monitoring_stop",
+            "monitoring_stop",
             "Print Nanny Monitoring stopped",
         )
         MONITORING_RESET = (
-            "plugin_octoprint_nanny_monitoring_reset",
+            "monitoring_reset",
             "Print Nanny Monitoring reset",
         )
 
         DEVICE_REGISTER_START = (
-            "plugin_octoprint_nanny_device_register_start",
+            "device_register_start",
             "Device registration started",
         )
         DEVICE_REGISTER_DONE = (
-            "plugin_octoprint_nanny_device_register_done",
+            "device_register_done",
             "Device registration succeeded",
         )
         DEVICE_REGISTER_FAILED = (
-            "plugin_octoprint_nanny_device_register_failed",
+            "device_register_failed",
             "Device registration failed",
         )
-        DEVICE_RESET = "plugin_octoprint_nanny_device_reset", "Device identity reset"
+        DEVICE_RESET = "device_reset", "Device identity reset"
 
         PRINTER_PROFILE_SYNC_START = (
-            "plugin_octoprint_nanny_printer_profile_sync_start",
+            "printer_profile_sync_start",
             "Printer profile sync started",
         )
         PRINTER_PROFILE_SYNC_DONE = (
-            "plugin_octoprint_nanny_printer_profile_sync_done",
+            "printer_profile_sync_done",
             "Printer profile sync succeeded",
         )
         PRINTER_PROFILE_SYNC_FAILED = (
-            "plugin_octoprint_nanny_printer_profile_sync_failed",
+            "printer_profile_sync_failed",
             "Printer profile sync failed",
         )
 
         CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
         CONNECT_TEST_REST_API_FAILED = (
-            "plugin_octoprint_nanny_connect_test_rest_api_failed",
+            "connect_test_rest_api_failed",
             "Test connection to REST API failed",
         )
         CONNECT_TEST_REST_API_SUCCESS = (
-            "plugin_octoprint_nanny_connect_test_rest_api_success",
+            "connect_test_rest_api_success",
             "Test connection to REST API success",
         )
 
         CONNECT_TEST_MQTT_PING = (
-            "plugin_octoprint_nanny_connect_test_mqtt_ping",
+            "connect_test_mqtt_ping",
             "Test connection to REST API",
         )
         CONNECT_TEST_MQTT_PING_FAILED = (
-            "plugin_octoprint_nanny_connect_test_mqtt_ping_failed",
+            "connect_test_mqtt_ping_failed",
             "Test connection to REST API failed",
         )
         CONNECT_TEST_MQTT_PING_SUCCESS = (
-            "plugin_octoprint_nanny_connect_test_mqtt_ping_success",
+            "connect_test_mqtt_ping_success",
             "Test connection to REST API success",
         )
 
         CONNECT_TEST_MQTT_PONG = (
-            "plugin_octoprint_nanny_connect_test_mqtt_pong",
+            "connect_test_mqtt_pong",
             "Test connection to REST API",
         )
         CONNECT_TEST_MQTT_PONG_FAILED = (
-            "plugin_octoprint_nanny_connect_test_mqtt_pong_failed",
+            "connect_test_mqtt_pong_failed",
             "Test connection to REST API failed",
         )
         CONNECT_TEST_MQTT_PONG_SUCCESS = (
-            "plugin_octoprint_nanny_connect_test_mqtt_pong_success",
+            "connect_test_mqtt_pong_success",
             "Test connection to REST API success",
         )
 
