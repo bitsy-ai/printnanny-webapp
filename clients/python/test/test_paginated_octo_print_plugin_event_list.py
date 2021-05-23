@@ -57,7 +57,7 @@ class TestPaginatedOctoPrintPluginEventList(unittest.TestCase):
                         octoprint_job = {
                             'key' : null
                             }, 
-                        event_type = 'plugin_octoprint_nanny_monitoring_start', 
+                        event_type = 'monitoring_start', 
                         url = '', )
                     ]
             )

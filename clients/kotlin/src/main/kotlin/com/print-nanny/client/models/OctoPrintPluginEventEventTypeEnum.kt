@@ -16,68 +16,68 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: pluginOctoprintNannyMonitoringStart,pluginOctoprintNannyMonitoringStop,pluginOctoprintNannyMonitoringReset,pluginOctoprintNannyDeviceRegisterStart,pluginOctoprintNannyDeviceRegisterDone,pluginOctoprintNannyDeviceRegisterFailed,pluginOctoprintNannyDeviceReset,pluginOctoprintNannyPrinterProfileSyncStart,pluginOctoprintNannyPrinterProfileSyncDone,pluginOctoprintNannyPrinterProfileSyncFailed,connectTestRestApi,pluginOctoprintNannyConnectTestRestApiFailed,pluginOctoprintNannyConnectTestRestApiSuccess,pluginOctoprintNannyConnectTestMqttPing,pluginOctoprintNannyConnectTestMqttPingFailed,pluginOctoprintNannyConnectTestMqttPingSuccess,pluginOctoprintNannyConnectTestMqttPong,pluginOctoprintNannyConnectTestMqttPongFailed,pluginOctoprintNannyConnectTestMqttPongSuccess
+* Values: monitoringStart,monitoringStop,monitoringReset,deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,deviceReset,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed,connectTestRestApi,connectTestRestApiFailed,connectTestRestApiSuccess,connectTestMqttPing,connectTestMqttPingFailed,connectTestMqttPingSuccess,connectTestMqttPong,connectTestMqttPongFailed,connectTestMqttPongSuccess
 */
 
 enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String) {
 
 
-    @Json(name = "plugin_octoprint_nanny_monitoring_start")
-    pluginOctoprintNannyMonitoringStart("plugin_octoprint_nanny_monitoring_start"),
+    @Json(name = "monitoring_start")
+    monitoringStart("monitoring_start"),
 
-    @Json(name = "plugin_octoprint_nanny_monitoring_stop")
-    pluginOctoprintNannyMonitoringStop("plugin_octoprint_nanny_monitoring_stop"),
+    @Json(name = "monitoring_stop")
+    monitoringStop("monitoring_stop"),
 
-    @Json(name = "plugin_octoprint_nanny_monitoring_reset")
-    pluginOctoprintNannyMonitoringReset("plugin_octoprint_nanny_monitoring_reset"),
+    @Json(name = "monitoring_reset")
+    monitoringReset("monitoring_reset"),
 
-    @Json(name = "plugin_octoprint_nanny_device_register_start")
-    pluginOctoprintNannyDeviceRegisterStart("plugin_octoprint_nanny_device_register_start"),
+    @Json(name = "device_register_start")
+    deviceRegisterStart("device_register_start"),
 
-    @Json(name = "plugin_octoprint_nanny_device_register_done")
-    pluginOctoprintNannyDeviceRegisterDone("plugin_octoprint_nanny_device_register_done"),
+    @Json(name = "device_register_done")
+    deviceRegisterDone("device_register_done"),
 
-    @Json(name = "plugin_octoprint_nanny_device_register_failed")
-    pluginOctoprintNannyDeviceRegisterFailed("plugin_octoprint_nanny_device_register_failed"),
+    @Json(name = "device_register_failed")
+    deviceRegisterFailed("device_register_failed"),
 
-    @Json(name = "plugin_octoprint_nanny_device_reset")
-    pluginOctoprintNannyDeviceReset("plugin_octoprint_nanny_device_reset"),
+    @Json(name = "device_reset")
+    deviceReset("device_reset"),
 
-    @Json(name = "plugin_octoprint_nanny_printer_profile_sync_start")
-    pluginOctoprintNannyPrinterProfileSyncStart("plugin_octoprint_nanny_printer_profile_sync_start"),
+    @Json(name = "printer_profile_sync_start")
+    printerProfileSyncStart("printer_profile_sync_start"),
 
-    @Json(name = "plugin_octoprint_nanny_printer_profile_sync_done")
-    pluginOctoprintNannyPrinterProfileSyncDone("plugin_octoprint_nanny_printer_profile_sync_done"),
+    @Json(name = "printer_profile_sync_done")
+    printerProfileSyncDone("printer_profile_sync_done"),
 
-    @Json(name = "plugin_octoprint_nanny_printer_profile_sync_failed")
-    pluginOctoprintNannyPrinterProfileSyncFailed("plugin_octoprint_nanny_printer_profile_sync_failed"),
+    @Json(name = "printer_profile_sync_failed")
+    printerProfileSyncFailed("printer_profile_sync_failed"),
 
     @Json(name = "connect_test_rest_api")
     connectTestRestApi("connect_test_rest_api"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_rest_api_failed")
-    pluginOctoprintNannyConnectTestRestApiFailed("plugin_octoprint_nanny_connect_test_rest_api_failed"),
+    @Json(name = "connect_test_rest_api_failed")
+    connectTestRestApiFailed("connect_test_rest_api_failed"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_rest_api_success")
-    pluginOctoprintNannyConnectTestRestApiSuccess("plugin_octoprint_nanny_connect_test_rest_api_success"),
+    @Json(name = "connect_test_rest_api_success")
+    connectTestRestApiSuccess("connect_test_rest_api_success"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping")
-    pluginOctoprintNannyConnectTestMqttPing("plugin_octoprint_nanny_connect_test_mqtt_ping"),
+    @Json(name = "connect_test_mqtt_ping")
+    connectTestMqttPing("connect_test_mqtt_ping"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping_failed")
-    pluginOctoprintNannyConnectTestMqttPingFailed("plugin_octoprint_nanny_connect_test_mqtt_ping_failed"),
+    @Json(name = "connect_test_mqtt_ping_failed")
+    connectTestMqttPingFailed("connect_test_mqtt_ping_failed"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping_success")
-    pluginOctoprintNannyConnectTestMqttPingSuccess("plugin_octoprint_nanny_connect_test_mqtt_ping_success"),
+    @Json(name = "connect_test_mqtt_ping_success")
+    connectTestMqttPingSuccess("connect_test_mqtt_ping_success"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong")
-    pluginOctoprintNannyConnectTestMqttPong("plugin_octoprint_nanny_connect_test_mqtt_pong"),
+    @Json(name = "connect_test_mqtt_pong")
+    connectTestMqttPong("connect_test_mqtt_pong"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong_failed")
-    pluginOctoprintNannyConnectTestMqttPongFailed("plugin_octoprint_nanny_connect_test_mqtt_pong_failed"),
+    @Json(name = "connect_test_mqtt_pong_failed")
+    connectTestMqttPongFailed("connect_test_mqtt_pong_failed"),
 
-    @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong_success")
-    pluginOctoprintNannyConnectTestMqttPongSuccess("plugin_octoprint_nanny_connect_test_mqtt_pong_success");
+    @Json(name = "connect_test_mqtt_pong_success")
+    connectTestMqttPongSuccess("connect_test_mqtt_pong_success");
 
 
     /**
