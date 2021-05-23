@@ -6,13 +6,88 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('telemetry', '0004_auto_20210511_0003'),
+        ("telemetry", "0004_auto_20210511_0003"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintpluginevent',
-            name='event_type',
-            field=models.CharField(choices=[('plugin_octoprint_nanny_monitoring_start', 'Print Nanny Monitoring started'), ('plugin_octoprint_nanny_monitoring_stop', 'Print Nanny Monitoring stopped'), ('plugin_octoprint_nanny_monitoring_reset', 'Print Nanny Monitoring reset'), ('plugin_octoprint_nanny_device_register_start', 'Device registration started'), ('plugin_octoprint_nanny_device_register_done', 'Device registration succeeded'), ('plugin_octoprint_nanny_device_register_failed', 'Device registration failed'), ('plugin_octoprint_nanny_device_reset', 'Device identity reset'), ('plugin_octoprint_nanny_printer_profile_sync_start', 'Printer profile sync started'), ('plugin_octoprint_nanny_printer_profile_sync_done', 'Printer profile sync succeeded'), ('plugin_octoprint_nanny_printer_profile_sync_failed', 'Printer profile sync failed'), ('connect_test_rest_api', 'Test connection to REST API'), ('plugin_octoprint_nanny_connect_test_rest_api_failed', 'Test connection to REST API failed'), ('plugin_octoprint_nanny_connect_test_rest_api_success', 'Test connection to REST API success'), ('plugin_octoprint_nanny_connect_test_mqtt_ping', 'Test connection to REST API'), ('plugin_octoprint_nanny_connect_test_mqtt_ping_failed', 'Test connection to REST API failed'), ('plugin_octoprint_nanny_connect_test_mqtt_ping_success', 'Test connection to REST API success'), ('plugin_octoprint_nanny_connect_test_mqtt_pong', 'Test connection to REST API'), ('plugin_octoprint_nanny_connect_test_mqtt_pong_failed', 'Test connection to REST API failed'), ('plugin_octoprint_nanny_connect_test_mqtt_pong_success', 'Test connection to REST API success')], db_index=True, max_length=255),
+            model_name="octoprintpluginevent",
+            name="event_type",
+            field=models.CharField(
+                choices=[
+                    (
+                        "plugin_octoprint_nanny_monitoring_start",
+                        "Print Nanny Monitoring started",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_monitoring_stop",
+                        "Print Nanny Monitoring stopped",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_monitoring_reset",
+                        "Print Nanny Monitoring reset",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_device_register_start",
+                        "Device registration started",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_device_register_done",
+                        "Device registration succeeded",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_device_register_failed",
+                        "Device registration failed",
+                    ),
+                    ("plugin_octoprint_nanny_device_reset", "Device identity reset"),
+                    (
+                        "plugin_octoprint_nanny_printer_profile_sync_start",
+                        "Printer profile sync started",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_printer_profile_sync_done",
+                        "Printer profile sync succeeded",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_printer_profile_sync_failed",
+                        "Printer profile sync failed",
+                    ),
+                    ("connect_test_rest_api", "Test connection to REST API"),
+                    (
+                        "plugin_octoprint_nanny_connect_test_rest_api_failed",
+                        "Test connection to REST API failed",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_rest_api_success",
+                        "Test connection to REST API success",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_ping",
+                        "Test connection to REST API",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_ping_failed",
+                        "Test connection to REST API failed",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_ping_success",
+                        "Test connection to REST API success",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_pong",
+                        "Test connection to REST API",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_pong_failed",
+                        "Test connection to REST API failed",
+                    ),
+                    (
+                        "plugin_octoprint_nanny_connect_test_mqtt_pong_success",
+                        "Test connection to REST API success",
+                    ),
+                ],
+                db_index=True,
+                max_length=255,
+            ),
         ),
     ]

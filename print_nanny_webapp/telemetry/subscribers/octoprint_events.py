@@ -173,10 +173,7 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error({"error": e, "data": data})
 
-    elif (
-        event_type
-        in OctoPrintPluginEvent.EventType
-    ):
+    elif event_type in OctoPrintPluginEvent.EventType:
         try:
             obj = OctoPrintPluginEvent.objects.create(
                 created_dt=data["metadata"]["ts"],
@@ -190,9 +187,7 @@ def on_octoprint_event(message):
                 octoprint_job=data["octoprint_job"],
             )
 
-            handler_fn = HANDLER_FNS.get(
-               event_type
-            )
+            handler_fn = HANDLER_FNS.get(event_type)
             if handler_fn is not None:
                 handler_fn(data)
         except Exception as e:

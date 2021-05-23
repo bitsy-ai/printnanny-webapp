@@ -115,16 +115,32 @@ class OctoPrintPluginEvent(TelemetryEvent):
 
     class EventType(models.TextChoices):
 
-        MONITORING_START = "plugin_octoprint_nanny_monitoring_start", "Print Nanny Monitoring started"
-        MONITORING_STOP = "plugin_octoprint_nanny_monitoring_stop", "Print Nanny Monitoring stopped"
-        MONITORING_RESET = "plugin_octoprint_nanny_monitoring_reset", "Print Nanny Monitoring reset"
+        MONITORING_START = (
+            "plugin_octoprint_nanny_monitoring_start",
+            "Print Nanny Monitoring started",
+        )
+        MONITORING_STOP = (
+            "plugin_octoprint_nanny_monitoring_stop",
+            "Print Nanny Monitoring stopped",
+        )
+        MONITORING_RESET = (
+            "plugin_octoprint_nanny_monitoring_reset",
+            "Print Nanny Monitoring reset",
+        )
 
-
-        DEVICE_REGISTER_START = "plugin_octoprint_nanny_device_register_start", "Device registration started"
-        DEVICE_REGISTER_DONE = "plugin_octoprint_nanny_device_register_done", "Device registration succeeded"
-        DEVICE_REGISTER_FAILED = "plugin_octoprint_nanny_device_register_failed", "Device registration failed"
+        DEVICE_REGISTER_START = (
+            "plugin_octoprint_nanny_device_register_start",
+            "Device registration started",
+        )
+        DEVICE_REGISTER_DONE = (
+            "plugin_octoprint_nanny_device_register_done",
+            "Device registration succeeded",
+        )
+        DEVICE_REGISTER_FAILED = (
+            "plugin_octoprint_nanny_device_register_failed",
+            "Device registration failed",
+        )
         DEVICE_RESET = "plugin_octoprint_nanny_device_reset", "Device identity reset"
-        
 
         PRINTER_PROFILE_SYNC_START = (
             "plugin_octoprint_nanny_printer_profile_sync_start",
