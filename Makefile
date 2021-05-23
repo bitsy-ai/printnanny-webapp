@@ -1,9 +1,9 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run
+.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds
 
 # silence targets where credentials are passed
-.SILENT: cypress-open cypress-run cypress-ci local-up
+.SILENT: cypress-open cypress-run cypress-ci local-up local-creds
 
 GCP_PROJECT ?= "print-nanny-sandbox"
 CLUSTER ?= "www-sandbox"
@@ -94,6 +94,11 @@ local-clean:
 		print_nanny_webapp_local_postgres_data_backups \
 		print_nanny_webapp_local_prometheus_data || echo "No volumes found"
 
+.envs/.local/key.json:
+	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com
+
+local-creds: .envs/.local/key.json
+	echo "Mounted Google Cloud Platform service account key from .envs/.local/key.json with id $(shell cat .envs/.local/key.json | jq .private_key_id)"
 
 local-vue-build:
 	cd print_nanny_vue && yarn install && yarn run dev
@@ -103,7 +108,7 @@ local-image-build:
 
 local-build: local-image-build local-vue-build
 
-local-up:
+local-up: local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
