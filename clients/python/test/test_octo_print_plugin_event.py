@@ -52,7 +52,7 @@ class TestOctoPrintPluginEvent(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
-                event_type = 'device_register_start', 
+                event_type = 'monitoring_start', 
                 url = ''
             )
         else :
@@ -61,7 +61,7 @@ class TestOctoPrintPluginEvent(unittest.TestCase):
                 plugin_version = '',
                 client_version = '',
                 octoprint_version = '',
-                event_type = 'device_register_start',
+                event_type = 'monitoring_start',
         )
 
     def testOctoPrintPluginEvent(self):

@@ -115,9 +115,32 @@ class OctoPrintPluginEvent(TelemetryEvent):
 
     class EventType(models.TextChoices):
 
-        DEVICE_REGISTER_START = "device_register_start", "Device registration started"
-        DEVICE_REGISTER_DONE = "device_register_done", "Device registration succeeded"
-        DEVICE_REGISTER_FAILED = "device_register_failed", "Device registration failed"
+        MONITORING_START = (
+            "monitoring_start",
+            "Print Nanny Monitoring started",
+        )
+        MONITORING_STOP = (
+            "monitoring_stop",
+            "Print Nanny Monitoring stopped",
+        )
+        MONITORING_RESET = (
+            "monitoring_reset",
+            "Print Nanny Monitoring reset",
+        )
+
+        DEVICE_REGISTER_START = (
+            "device_register_start",
+            "Device registration started",
+        )
+        DEVICE_REGISTER_DONE = (
+            "device_register_done",
+            "Device registration succeeded",
+        )
+        DEVICE_REGISTER_FAILED = (
+            "device_register_failed",
+            "Device registration failed",
+        )
+        DEVICE_RESET = "device_reset", "Device identity reset"
 
         PRINTER_PROFILE_SYNC_START = (
             "printer_profile_sync_start",

@@ -1428,9 +1428,13 @@ export interface OctoPrintPluginEvent {
  * @enum {string}
  */
 export enum OctoPrintPluginEventEventTypeEnum {
+    MonitoringStart = 'monitoring_start',
+    MonitoringStop = 'monitoring_stop',
+    MonitoringReset = 'monitoring_reset',
     DeviceRegisterStart = 'device_register_start',
     DeviceRegisterDone = 'device_register_done',
     DeviceRegisterFailed = 'device_register_failed',
+    DeviceReset = 'device_reset',
     PrinterProfileSyncStart = 'printer_profile_sync_start',
     PrinterProfileSyncDone = 'printer_profile_sync_done',
     PrinterProfileSyncFailed = 'printer_profile_sync_failed',

@@ -16,11 +16,20 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed,connectTestRestApi,connectTestRestApiFailed,connectTestRestApiSuccess,connectTestMqttPing,connectTestMqttPingFailed,connectTestMqttPingSuccess,connectTestMqttPong,connectTestMqttPongFailed,connectTestMqttPongSuccess
+* Values: monitoringStart,monitoringStop,monitoringReset,deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,deviceReset,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed,connectTestRestApi,connectTestRestApiFailed,connectTestRestApiSuccess,connectTestMqttPing,connectTestMqttPingFailed,connectTestMqttPingSuccess,connectTestMqttPong,connectTestMqttPongFailed,connectTestMqttPongSuccess
 */
 
 enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String) {
 
+
+    @Json(name = "monitoring_start")
+    monitoringStart("monitoring_start"),
+
+    @Json(name = "monitoring_stop")
+    monitoringStop("monitoring_stop"),
+
+    @Json(name = "monitoring_reset")
+    monitoringReset("monitoring_reset"),
 
     @Json(name = "device_register_start")
     deviceRegisterStart("device_register_start"),
@@ -30,6 +39,9 @@ enum class OctoPrintPluginEventEventTypeEnum(val value: kotlin.String) {
 
     @Json(name = "device_register_failed")
     deviceRegisterFailed("device_register_failed"),
+
+    @Json(name = "device_reset")
+    deviceReset("device_reset"),
 
     @Json(name = "printer_profile_sync_start")
     printerProfileSyncStart("printer_profile_sync_start"),
