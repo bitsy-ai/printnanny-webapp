@@ -174,7 +174,7 @@ def on_octoprint_event(message):
             logger.error({"error": e, "data": data})
 
     elif (
-        OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+        event_type
         in OctoPrintPluginEvent.EventType
     ):
         try:
@@ -191,7 +191,7 @@ def on_octoprint_event(message):
             )
 
             handler_fn = HANDLER_FNS.get(
-                OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+               event_type
             )
             if handler_fn is not None:
                 handler_fn(data)
