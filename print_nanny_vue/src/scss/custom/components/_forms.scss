@@ -64,3 +64,25 @@ select.form-control-sm {
     background: $dropdown-bg !important;
     border: 1px solid $dropdown-border-color !important;
 }
+
+// Show Password
+.password-eye {
+    &:before {
+        font-family: "Material Design Icons";
+        content: "\F6CF";
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        vertical-align: middle;
+        line-height: 1.2;
+        font-size: 16px;
+    }
+}
+
+.show-password {
+    .password-eye {
+        &:before {
+            content: "\F6D0";
+        }
+    }  
+}
