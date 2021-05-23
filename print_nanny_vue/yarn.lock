@@ -3803,16 +3803,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^4.0.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.5.0.tgz#2f3cfd84dbe3b487f18f2db2ef1e064a571ca5ec"
-  integrity sha512-Nv9m36S/vxpsI+Hc4/ZGRs0n9mXqSWGGq49zxb/cJfPAQMbUtttJAlNPS4AQzaBdw/pKskw5bMbekT/Y7W/Wlg==
-  dependencies:
-    graceful-fs "^4.1.2"
-    memory-fs "^0.5.0"
-    tapable "^1.0.0"
-
-enhanced-resolve@^5.8.0:
+enhanced-resolve@^5.0.0, enhanced-resolve@^5.8.0:
   version "5.8.2"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.8.2.tgz#15ddc779345cbb73e97c611cd00c01c1e7bf4d8b"
   integrity sha512-F27oB3WuHDzvR2DOGNTaYy0D5o0cnrv8TeI482VM4kYgQd/FT9lUQwuNsJ0oOHtBUq7eiW5ytqzp7nBFknL+GA==
@@ -6420,14 +6411,6 @@ memory-fs@^0.4.1:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
-memory-fs@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.5.0.tgz#324c01288b88652966d161db77838720845a8e3c"
-  integrity sha512-jA0rdU5KoQMC0e6ppoNRtpp6vjFq6+NY7r8hywnC7V+1Xj/MtHwGIbB1QaK/dunyjWteJzmkpd7ooeWg10T7GA==
-  dependencies:
-    errno "^0.1.3"
-    readable-stream "^2.0.1"
-
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
@@ -7678,7 +7661,7 @@ pretty@2.0.0:
     js-beautify "^1.6.12"
 
 "print-nanny-client@file:../clients/typescript":
-  version "0.6.1-rc4"
+  version "0.6.2"
   dependencies:
     axios "^0.21.1"
 
@@ -8994,7 +8977,7 @@ table@^6.0.4:
     string-width "^4.2.0"
     strip-ansi "^6.0.0"
 
-tapable@^1.0.0, tapable@^1.1.3:
+tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
@@ -9160,14 +9143,13 @@ tr46@^2.0.2:
   dependencies:
     punycode "^2.1.1"
 
-ts-loader@^8.0.14:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.2.0.tgz#6a3aeaa378aecda543e2ed2c332d3123841d52e0"
-  integrity sha512-ebXBFrNyMSmbWgjnb3WBloUBK+VSx1xckaXsMXxlZRDqce/OPdYBVN5efB0W3V0defq0Gcy4YuzvPGqRgjj85A==
+ts-loader@^9.2.2:
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-9.2.2.tgz#416333900621c82d5eb1b1f6dea4114111f096bf"
+  integrity sha512-hNIhGTQHtNKjOzR2ZtQ2OSVbXPykOae+zostf1IlHCf61Mt41GMJurKNqrYUbzHgpmj6UWRu8eBfb7q0XliV0g==
   dependencies:
     chalk "^4.1.0"
-    enhanced-resolve "^4.0.0"
-    loader-utils "^2.0.0"
+    enhanced-resolve "^5.0.0"
     micromatch "^4.0.0"
     semver "^7.3.4"
 
@@ -9267,7 +9249,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.1.3:
+typescript@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
   integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
