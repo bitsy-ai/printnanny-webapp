@@ -1,11 +1,10 @@
-import asyncio
 import json
 import os
 import logging
 
 from google.cloud import pubsub_v1
-from google.protobuf.json_format import MessageToDict
-import sys
+
+from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -20,7 +19,6 @@ from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
 from django.apps import apps
-from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 import google.api_core.exceptions
 
 from django.contrib.auth import get_user_model
@@ -33,6 +31,7 @@ AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
+AlertMessage = apps.get_model("alerts", "AlertMessage")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -40,10 +39,10 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
-    user = User.objects.get(octoprint_event["metadata"]["user_id"])
+    user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
     alert_settings, created = AlertSettings.objects.get_or_create(user=user)
     progress = octoprint_event.get("print_progress")
-
+    
     # update print session progress
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
@@ -55,23 +54,24 @@ def handle_print_progress(octoprint_event):
         )
 
     if (
-        progress % self.on_progress_percent == 0 and progress != 100
+        progress % alert_settings.print_progress_percent == 0 and progress != 100
     ):  # PrintDone / VideoDone events capture the case where a print is 100% complete
         # @TODO write octoprint_event serializer
         print_session = octoprint_event.get("metadata", {}).get("print_session")
         octoprint_device = octoprint_event.get("metadata", {}).get(
             "octoprint_device_id"
         )
-        for alert_method in self.alert_methods:
-            alert_message = AlertMessage(
+        for alert_method in alert_settings.alert_methods:
+            alert_message = AlertMessage.objects.create(
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
-                print_session=print_session,
                 user=user,
-                octoprint_device=octoprint_device_id,
+                print_session=print_session,
+                octoprint_device=octoprint_device
             )
             task = AlertTask(alert_message)
             task.trigger_alert()
+
 
 
 def handle_print_status(octoprint_event):

@@ -6,22 +6,12 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.conf import settings
-from django.contrib.postgres.fields import ArrayField
-from django.template.loader import render_to_string
 from django.utils import timezone, dateformat
-from django.utils.text import capfirst
-from anymail.message import AnymailMessage
-from asgiref.sync import async_to_sync
-from django.urls import reverse
 import stringcase
 from django.template import Context, Template
 
 
-from django.contrib.postgres.fields import JSONField
-
 from print_nanny_webapp.utils.fields import ChoiceArrayField
-from print_nanny_webapp.alerts.tasks.common import trigger_alerts_task
 
 
 User = get_user_model()
