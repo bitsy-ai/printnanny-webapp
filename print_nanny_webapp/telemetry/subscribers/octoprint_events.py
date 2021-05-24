@@ -4,8 +4,6 @@ import logging
 
 from google.cloud import pubsub_v1
 
-from print_nanny_webapp.alerts.tasks.alerts import AlertTask
-
 # import sys
 # sys.path.insert(0,'/app')
 
@@ -39,6 +37,8 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
 def handle_print_progress(octoprint_event):
+    from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+
     user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
     alert_settings, created = AlertSettings.objects.get_or_create(user=user)
     progress = octoprint_event.get("print_progress")
