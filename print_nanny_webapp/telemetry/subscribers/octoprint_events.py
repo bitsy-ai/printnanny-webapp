@@ -152,7 +152,7 @@ def on_octoprint_event(message):
                 handler_fn(data)
         except Exception as e:
             logger.error({"error": e, "data": data}, exc_info=True)
-    elif event_type in PrintStatusEvent.EventType:
+    if event_type in PrintStatusEvent.EventType:
         try:
             PrintStatusEvent.objects.create(
                 created_dt=data["created_dt"],
@@ -173,7 +173,7 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error({"error": e, "data": data})
 
-    elif (
+    if (
         OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
         in OctoPrintPluginEvent.EventType
     ):

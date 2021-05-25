@@ -258,9 +258,9 @@ class OctoPrintEvent(TelemetryEvent):
         CONNECTED = "Connected", "Connected"
         DISCONNECTED = "Disconnected", "Disconnected"
         PRINTER_RESET = "PrinterReset", "PrinterReset"
-        PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
         FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-
+        PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
+        
         # printer profile
         PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
         PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
@@ -280,6 +280,16 @@ class OctoPrintEvent(TelemetryEvent):
         # CONNECTIVITY_CHANGED = "ConnectivityChanged"
         SHUTDOWN = "Shutdown", "Shutdown"
         STARTUP = "Startup", "Startup"
+
+        # print job
+        PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
+        PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
+        PRINT_DONE = "PrintDone", "PrintDone"
+        PRINT_FAILED = "PrintFailed", "PrintFailed"
+        PRINT_PAUSED = "PrintPaused", "PrintPaused"
+        PRINT_RESUMED = "PrintResumed", "PrintResumed"
+        PRINT_STARTED = "PrintStarted", "PrintStarted"
+
 
     event_codes = [x.value for x in EventType.__members__.values()]
     event_type = models.CharField(
