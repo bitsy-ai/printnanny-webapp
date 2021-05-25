@@ -42,12 +42,12 @@ def handle_print_progress(octoprint_event):
     user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
     alert_settings, created = AlertSettings.objects.get_or_create(user=user)
     progress = octoprint_event.get("print_progress")
-    
+
     # update print session progress
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
-        print_session = PrintSession.objects.get(session=print_session).update(
-            progress=progress,
+        print_session = PrintSession.objects.filter(session=print_session).update(
+            print_progress=progress,
             filepos=octoprint_event.get("filepos"),
             time_elapsed=octoprint_event.get("time_elapsed"),
             time_remaining=octoprint_event.get("time_remaining"),
@@ -67,11 +67,10 @@ def handle_print_progress(octoprint_event):
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
                 user=user,
                 print_session=print_session,
-                octoprint_device=octoprint_device
+                octoprint_device=octoprint_device,
             )
             task = AlertTask(alert_message)
             task.trigger_alert()
-
 
 
 def handle_print_status(octoprint_event):
@@ -152,7 +151,7 @@ def on_octoprint_event(message):
                 handler_fn(data)
         except Exception as e:
             logger.error({"error": e, "data": data}, exc_info=True)
-    elif event_type in PrintStatusEvent.EventType:
+    if event_type in PrintStatusEvent.EventType:
         try:
             PrintStatusEvent.objects.create(
                 created_dt=data["created_dt"],
@@ -173,7 +172,7 @@ def on_octoprint_event(message):
         except Exception as e:
             logger.error({"error": e, "data": data})
 
-    elif (
+    if (
         OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
         in OctoPrintPluginEvent.EventType
     ):

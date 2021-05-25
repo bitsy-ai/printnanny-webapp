@@ -1271,15 +1271,22 @@ export enum OctoPrintEventEventTypeEnum {
     Connected = 'Connected',
     Disconnected = 'Disconnected',
     PrinterReset = 'PrinterReset',
-    PrinterStateChanged = 'PrinterStateChanged',
     FirmwareData = 'FirmwareData',
+    PrinterStateChanged = 'PrinterStateChanged',
     PrinterProfileAdded = 'PrinterProfileAdded',
     PrinterProfileDeleted = 'PrinterProfileDeleted',
     PrinterProfileModified = 'PrinterProfileModified',
     PrintProgress = 'PrintProgress',
     PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
     Shutdown = 'Shutdown',
-    Startup = 'Startup'
+    Startup = 'Startup',
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
 }
 
 /**

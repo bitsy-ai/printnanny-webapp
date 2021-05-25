@@ -72,9 +72,9 @@
 
     * `printerReset` (value: `"PrinterReset"`)
 
-    * `printerStateChanged` (value: `"PrinterStateChanged"`)
-
     * `firmwareData` (value: `"FirmwareData"`)
+
+    * `printerStateChanged` (value: `"PrinterStateChanged"`)
 
     * `printerProfileAdded` (value: `"PrinterProfileAdded"`)
 
@@ -89,6 +89,20 @@
     * `shutdown` (value: `"Shutdown"`)
 
     * `startup` (value: `"Startup"`)
+
+    * `printCancelled` (value: `"PrintCancelled"`)
+
+    * `printCancelling` (value: `"PrintCancelling"`)
+
+    * `printDone` (value: `"PrintDone"`)
+
+    * `printFailed` (value: `"PrintFailed"`)
+
+    * `printPaused` (value: `"PrintPaused"`)
+
+    * `printResumed` (value: `"PrintResumed"`)
+
+    * `printStarted` (value: `"PrintStarted"`)
 
 
 
