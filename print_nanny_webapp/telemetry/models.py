@@ -260,7 +260,7 @@ class OctoPrintEvent(TelemetryEvent):
         PRINTER_RESET = "PrinterReset", "PrinterReset"
         FIRMWARE_DATA = "FirmwareData", "FirmwareData"
         PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
-        
+
         # printer profile
         PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
         PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
@@ -289,7 +289,6 @@ class OctoPrintEvent(TelemetryEvent):
         PRINT_PAUSED = "PrintPaused", "PrintPaused"
         PRINT_RESUMED = "PrintResumed", "PrintResumed"
         PRINT_STARTED = "PrintStarted", "PrintStarted"
-
 
     event_codes = [x.value for x in EventType.__members__.values()]
     event_type = models.CharField(
