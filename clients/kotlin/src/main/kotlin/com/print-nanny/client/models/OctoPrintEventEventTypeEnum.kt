@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,printerStateChanged,firmwareData,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup
+* Values: clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,firmwareData,printerStateChanged,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup,printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted
 */
 
 enum class OctoPrintEventEventTypeEnum(val value: kotlin.String) {
@@ -124,11 +124,11 @@ enum class OctoPrintEventEventTypeEnum(val value: kotlin.String) {
     @Json(name = "PrinterReset")
     printerReset("PrinterReset"),
 
-    @Json(name = "PrinterStateChanged")
-    printerStateChanged("PrinterStateChanged"),
-
     @Json(name = "FirmwareData")
     firmwareData("FirmwareData"),
+
+    @Json(name = "PrinterStateChanged")
+    printerStateChanged("PrinterStateChanged"),
 
     @Json(name = "PrinterProfileAdded")
     printerProfileAdded("PrinterProfileAdded"),
@@ -149,7 +149,28 @@ enum class OctoPrintEventEventTypeEnum(val value: kotlin.String) {
     shutdown("Shutdown"),
 
     @Json(name = "Startup")
-    startup("Startup");
+    startup("Startup"),
+
+    @Json(name = "PrintCancelled")
+    printCancelled("PrintCancelled"),
+
+    @Json(name = "PrintCancelling")
+    printCancelling("PrintCancelling"),
+
+    @Json(name = "PrintDone")
+    printDone("PrintDone"),
+
+    @Json(name = "PrintFailed")
+    printFailed("PrintFailed"),
+
+    @Json(name = "PrintPaused")
+    printPaused("PrintPaused"),
+
+    @Json(name = "PrintResumed")
+    printResumed("PrintResumed"),
+
+    @Json(name = "PrintStarted")
+    printStarted("PrintStarted");
 
 
     /**
