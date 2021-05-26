@@ -45,14 +45,14 @@ def handle_print_progress(octoprint_event):
     # update print session progress
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
-        print_session = PrintSession.objects.filter(session=print_session).update(
-            print_progress=progress,
-            # TODO
-            # enrich print progress event with the following fields
-            # filepos=octoprint_event.get("filepos"),
-            # time_elapsed=octoprint_event.get("time_elapsed"),
-            # time_remaining=octoprint_event.get("time_remaining"),
-        )
+        print_session = PrintSession.objects.get(session=print_session)
+        print_session.print_progress = progress
+        print_session.save()
+        # TODO
+        # enrich print progress event with the following fields
+        # filepos=octoprint_event.get("filepos"),
+        # time_elapsed=octoprint_event.get("time_elapsed"),
+        # time_remaining=octoprint_event.get("time_remaining")
 
     if (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
