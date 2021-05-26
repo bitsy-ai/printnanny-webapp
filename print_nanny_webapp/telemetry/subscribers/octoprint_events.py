@@ -106,14 +106,16 @@ HANDLER_FNS.update(
 
 HANDLER_FNS.update({OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping})
 
+
 def event_is_tracked(event_type):
     return (
-        event_type in OctoPrintEvent.EventType or
-        event_type in PrintStatusEvent.EventType or
-        event_type in OctoPrintPluginEvent.EventType or
-        OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+        event_type in OctoPrintEvent.EventType
+        or event_type in PrintStatusEvent.EventType
+        or event_type in OctoPrintPluginEvent.EventType
+        or OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
         in OctoPrintPluginEvent.EventType
     )
+
 
 def on_octoprint_event(message):
     try:
@@ -129,7 +131,9 @@ def on_octoprint_event(message):
 
     logger.info(f"Received {event_type} with data {data}")
     if not event_is_tracked(event_type):
-        logger.error(f"Tracking event is not registered, ignoring event_type={}")
+        logger.error(
+            f"Tracking event is not registered, ignoring event_type={event_type}"
+        )
         return message.ack()
 
     # TODO enforce a schema on this topic :facepalm:
