@@ -42,7 +42,9 @@ def handle_print_progress(octoprint_event):
     user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
     alert_settings, created = AlertSettings.objects.get_or_create(user=user)
     progress = octoprint_event.get("print_progress")
-
+    if progress is None:
+        logger.error(f"Received nil progress in PrintProgress event {octoprint_event}")
+        return
     # update print session progress
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
