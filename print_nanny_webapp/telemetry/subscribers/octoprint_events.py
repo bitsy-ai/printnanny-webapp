@@ -133,6 +133,9 @@ def on_octoprint_event(message):
         return message.ack()
 
     # TODO enforce a schema on this topic :facepalm:
+    event_data = data["event_data"]
+    metadata = data["metadata"]
+
     octoprint_device_id = data.get("octoprint_device_id") or data.get(
         "metadata", {}
     ).get("octoprint_device_id")
@@ -149,12 +152,12 @@ def on_octoprint_event(message):
     if event_type in OctoPrintEvent.EventType:
         try:
             event = OctoPrintEvent.objects.create(
-                created_dt=data["metadata"]["ts"],
+                created_dt=metadata["ts"],
                 octoprint_device_id=octoprint_device_id,
                 event_data=data,
                 event_type=event_type,
-                octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["metadata"]["plugin_version"],
+                octoprint_version=metadata["octoprint_version"],
+                plugin_version=metadata["plugin_version"],
                 user_id=user_id,
             )
             handler_fn = HANDLER_FNS.get(event_type)
@@ -165,16 +168,16 @@ def on_octoprint_event(message):
     if event_type in PrintStatusEvent.EventType:
         try:
             PrintStatusEvent.objects.create(
-                created_dt=data["created_dt"],
-                current_z=data["printer_data"]["currentZ"],
+                created_dt=metadata["ts"],
+                # current_z=data["printer_data"]["currentZ"],
                 octoprint_device_id=octoprint_device_id,
                 event_data=data,
                 event_type=event_type,
                 job_data_file=data["printer_data"]["job"]["file"],
-                octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["metadata"]["plugin_version"],
-                progress=data["printer_data"]["progress"],
-                state=data["printer_data"]["state"],
+                octoprint_version=metadata["octoprint_version"],
+                plugin_version=metadata["plugin_version"],
+                # progress=data["printer_data"]["progress"],
+                # state=data["printer_data"]["state"],
                 user_id=user_id,
             )
             handler_fn = HANDLER_FNS.get(event_type)
@@ -189,15 +192,15 @@ def on_octoprint_event(message):
     ):
         try:
             obj = OctoPrintPluginEvent.objects.create(
-                created_dt=data["metadata"]["ts"],
+                created_dt=metadata["ts"],
                 octoprint_device_id=octoprint_device_id,
                 event_data=data,
                 event_type=event_type,
-                octoprint_version=data["metadata"]["octoprint_version"],
-                plugin_version=data["metadata"]["plugin_version"],
+                octoprint_version=metadata["octoprint_version"],
+                plugin_version=metadata["plugin_version"],
                 user_id=user_id,
-                metadata=data["metadata"],
-                octoprint_job=data["octoprint_job"],
+                metadata=metadata,
+                octoprint_job=data.get("octoprint_job"),
             )
 
             handler_fn = HANDLER_FNS.get(
