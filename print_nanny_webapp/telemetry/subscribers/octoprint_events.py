@@ -45,14 +45,14 @@ def handle_print_progress(octoprint_event):
     # update print session progress
     print_session = octoprint_event.get("metadata", {}).get("print_session")
     if print_session:
-        print_session = PrintSession.objects.get(session=print_session)
-        print_session.print_progress = progress
-        print_session.save()
-        # TODO
-        # enrich print progress event with the following fields
-        # filepos=octoprint_event.get("filepos"),
-        # time_elapsed=octoprint_event.get("time_elapsed"),
-        # time_remaining=octoprint_event.get("time_remaining")
+        PrintSession.objects.filter(session=print_session).update(
+            print_progress=progress,
+            # TODO
+            # enrich print progress event with the following fields
+            # filepos=octoprint_event.get("filepos"),
+            # time_elapsed=octoprint_event.get("time_elapsed"),
+            # time_remaining=octoprint_event.get("time_remaining"),
+        )
 
     if (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
@@ -66,7 +66,7 @@ def handle_print_progress(octoprint_event):
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
                 user=user,
-                print_session=print_session,
+                print_session__session=print_session,
                 octoprint_device=octoprint_device,
             )
             task = AlertTask(alert_message)
@@ -106,16 +106,14 @@ HANDLER_FNS.update(
 
 HANDLER_FNS.update({OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping})
 
-
 def event_is_tracked(event_type):
     return (
-        event_type in OctoPrintEvent.EventType
-        or event_type in PrintStatusEvent.EventType
-        or event_type in OctoPrintPluginEvent.EventType
-        or OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+        event_type in OctoPrintEvent.EventType or
+        event_type in PrintStatusEvent.EventType or
+        event_type in OctoPrintPluginEvent.EventType or
+        OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
         in OctoPrintPluginEvent.EventType
     )
-
 
 def on_octoprint_event(message):
     try:
@@ -131,9 +129,7 @@ def on_octoprint_event(message):
 
     logger.info(f"Received {event_type} with data {data}")
     if not event_is_tracked(event_type):
-        logger.error(
-            f"Tracking event is not registered, ignoring event_type={event_type}"
-        )
+        logger.error(f"Tracking event is not registered, ignoring event_type={event_type}")
         return message.ack()
 
     # TODO enforce a schema on this topic :facepalm:
