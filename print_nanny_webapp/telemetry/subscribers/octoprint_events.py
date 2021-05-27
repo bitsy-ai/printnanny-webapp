@@ -53,6 +53,7 @@ def handle_print_progress(octoprint_event):
             # time_elapsed=octoprint_event.get("time_elapsed"),
             # time_remaining=octoprint_event.get("time_remaining"),
         )
+        print_session = PrintSession.objects.get(session=print_session)    
 
     if (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
@@ -66,7 +67,7 @@ def handle_print_progress(octoprint_event):
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
                 user=user,
-                print_session_session=print_session,
+                print_session=print_session,
                 octoprint_device_id=octoprint_device,
             )
             task = AlertTask(alert_message)
