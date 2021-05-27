@@ -53,11 +53,14 @@ def handle_print_progress(octoprint_event):
             # time_elapsed=octoprint_event.get("time_elapsed"),
             # time_remaining=octoprint_event.get("time_remaining"),
         )
-        print_session = PrintSession.objects.get(session=print_session)    
+        print_session = PrintSession.objects.get(session=print_session)
 
-    if (
+    should_alert = (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
-    ):  # PrintDone / VideoDone events capture the case where a print is 100% complete
+    )
+    logger.info(f"Received event={octoprint_event} should_alert={should_alert}")
+    if should_alert:
+        # PrintDone / VideoDone events capture the case where a print is 100% complete
         # @TODO write octoprint_event serializer
         octoprint_device = octoprint_event.get("metadata", {}).get(
             "octoprint_device_id"
@@ -107,14 +110,16 @@ HANDLER_FNS.update(
 
 HANDLER_FNS.update({OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping})
 
+
 def event_is_tracked(event_type):
     return (
-        event_type in OctoPrintEvent.EventType or
-        event_type in PrintStatusEvent.EventType or
-        event_type in OctoPrintPluginEvent.EventType or
-        OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
+        event_type in OctoPrintEvent.EventType
+        or event_type in PrintStatusEvent.EventType
+        or event_type in OctoPrintPluginEvent.EventType
+        or OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
         in OctoPrintPluginEvent.EventType
     )
+
 
 def on_octoprint_event(message):
     try:
@@ -130,7 +135,9 @@ def on_octoprint_event(message):
 
     logger.info(f"Received {event_type} with data {data}")
     if not event_is_tracked(event_type):
-        logger.error(f"Tracking event is not registered, ignoring event_type={event_type}")
+        logger.error(
+            f"Tracking event is not registered, ignoring event_type={event_type}"
+        )
         return message.ack()
 
     # TODO enforce a schema on this topic :facepalm:
