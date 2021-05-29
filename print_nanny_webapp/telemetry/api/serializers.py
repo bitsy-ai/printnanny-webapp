@@ -1,11 +1,18 @@
-
 from rest_framework import serializers
 
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintStatusEvent,
     OctoPrintPluginEvent,
+    TelemetryEventTypes,
 )
+
+
+class TelemetryEventSerializer(serializers.ModelSerializer):
+    event_type = serializers.SerializerMethodField()
+
+    def get_event_type(self, obj) -> TelemetryEventTypes:
+        return obj.event_type
 
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
