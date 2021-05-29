@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**telemetry_octoprint_events_create**](TelemetryApi.md#telemetry_octoprint_events_create) | **POST** /api/telemetry/octoprint-events/ | 
 [**telemetry_octoprint_events_list**](TelemetryApi.md#telemetry_octoprint_events_list) | **GET** /api/telemetry/octoprint-events/ | 
 [**telemetry_octoprint_events_retrieve**](TelemetryApi.md#telemetry_octoprint_events_retrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
-[**telemetry_octoprint_plugin_events_list**](TelemetryApi.md#telemetry_octoprint_plugin_events_list) | **GET** /api/telemetry/octoprint-plugin-events/ | 
-[**telemetry_octoprint_plugin_events_retrieve**](TelemetryApi.md#telemetry_octoprint_plugin_events_retrieve) | **GET** /api/telemetry/octoprint-plugin-events/{id}/ | 
+[**telemetry_print_nanny_plugin_events_list**](TelemetryApi.md#telemetry_print_nanny_plugin_events_list) | **GET** /api/telemetry/print-nanny-plugin-events/ | 
+[**telemetry_print_nanny_plugin_events_retrieve**](TelemetryApi.md#telemetry_print_nanny_plugin_events_retrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
 [**telemetry_print_status_events_list**](TelemetryApi.md#telemetry_print_status_events_list) | **GET** /api/telemetry/print-status-events/ | 
 [**telemetry_print_status_events_retrieve**](TelemetryApi.md#telemetry_print_status_events_retrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
 
@@ -365,8 +365,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **telemetry_octoprint_plugin_events_list**
-> PaginatedOctoPrintPluginEventList telemetry_octoprint_plugin_events_list(page=page)
+# **telemetry_print_nanny_plugin_events_list**
+> PaginatedPrintNannyPluginEventList telemetry_print_nanny_plugin_events_list(page=page)
 
 
 
@@ -408,10 +408,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.telemetry_octoprint_plugin_events_list(page=page)
+        api_response = api_instance.telemetry_print_nanny_plugin_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_octoprint_plugin_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->telemetry_print_nanny_plugin_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -450,10 +450,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.telemetry_octoprint_plugin_events_list(page=page)
+        api_response = api_instance.telemetry_print_nanny_plugin_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_octoprint_plugin_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->telemetry_print_nanny_plugin_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrintPluginEventList**](PaginatedOctoPrintPluginEventList.md)
+[**PaginatedPrintNannyPluginEventList**](PaginatedPrintNannyPluginEventList.md)
 
 ### Authorization
 
@@ -482,8 +482,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **telemetry_octoprint_plugin_events_retrieve**
-> OctoPrintPluginEvent telemetry_octoprint_plugin_events_retrieve(id)
+# **telemetry_print_nanny_plugin_events_retrieve**
+> PrintNannyPluginEvent telemetry_print_nanny_plugin_events_retrieve(id)
 
 
 
@@ -522,13 +522,13 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.TelemetryApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print plugin event.
+    id = 56 # int | A unique integer value identifying this print nanny plugin event.
 
     try:
-        api_response = api_instance.telemetry_octoprint_plugin_events_retrieve(id)
+        api_response = api_instance.telemetry_print_nanny_plugin_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_octoprint_plugin_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->telemetry_print_nanny_plugin_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -564,24 +564,24 @@ configuration = print_nanny_client.Configuration(
 with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.TelemetryApi(api_client)
-    id = 56 # int | A unique integer value identifying this octo print plugin event.
+    id = 56 # int | A unique integer value identifying this print nanny plugin event.
 
     try:
-        api_response = api_instance.telemetry_octoprint_plugin_events_retrieve(id)
+        api_response = api_instance.telemetry_print_nanny_plugin_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_octoprint_plugin_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->telemetry_print_nanny_plugin_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this octo print plugin event. | 
+ **id** | **int**| A unique integer value identifying this print nanny plugin event. | 
 
 ### Return type
 
-[**OctoPrintPluginEvent**](OctoPrintPluginEvent.md)
+[**PrintNannyPluginEvent**](PrintNannyPluginEvent.md)
 
 ### Authorization
 

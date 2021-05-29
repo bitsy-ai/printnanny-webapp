@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_plugin_event_event_type_enum import OctoPrintPluginEventEventTypeEnum  # noqa: E501
+from print_nanny_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintPluginEventEventTypeEnum(unittest.TestCase):
-    """OctoPrintPluginEventEventTypeEnum unit test stubs"""
+class TestPrintNannyPluginEventEventTypeEnum(unittest.TestCase):
+    """PrintNannyPluginEventEventTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestOctoPrintPluginEventEventTypeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintPluginEventEventTypeEnum
+        """Test PrintNannyPluginEventEventTypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_plugin_event_event_type_enum.OctoPrintPluginEventEventTypeEnum()  # noqa: E501
+        # model = print_nanny_client.models.print_nanny_plugin_event_event_type_enum.PrintNannyPluginEventEventTypeEnum()  # noqa: E501
         if include_optional :
-            return OctoPrintPluginEventEventTypeEnum(
+            return PrintNannyPluginEventEventTypeEnum(
             )
         else :
-            return OctoPrintPluginEventEventTypeEnum(
+            return PrintNannyPluginEventEventTypeEnum(
         )
 
-    def testOctoPrintPluginEventEventTypeEnum(self):
-        """Test OctoPrintPluginEventEventTypeEnum"""
+    def testPrintNannyPluginEventEventTypeEnum(self):
+        """Test PrintNannyPluginEventEventTypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -46,14 +46,14 @@ class TestTelemetryApi(unittest.TestCase):
         """
         pass
 
-    def test_telemetry_octoprint_plugin_events_list(self):
-        """Test case for telemetry_octoprint_plugin_events_list
+    def test_telemetry_print_nanny_plugin_events_list(self):
+        """Test case for telemetry_print_nanny_plugin_events_list
 
         """
         pass
 
-    def test_telemetry_octoprint_plugin_events_retrieve(self):
-        """Test case for telemetry_octoprint_plugin_events_retrieve
+    def test_telemetry_print_nanny_plugin_events_retrieve(self):
+        """Test case for telemetry_print_nanny_plugin_events_retrieve
 
         """
         pass

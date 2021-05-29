@@ -4,9 +4,20 @@ from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintStatusEvent,
     PrintNannyPluginEvent,
+    TelemetryEvent
 )
 
 from print_nanny_webapp.telemetry.types import TelemetryEventType
+
+
+class TelemetryEventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TelemetryEvent
+        fields = [field.name for field in PrintNannyPluginEvent._meta.fields] + ["url"]
+        read_only_fields = (
+            'user',
+        )
 
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):

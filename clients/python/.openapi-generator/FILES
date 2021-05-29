@@ -30,8 +30,6 @@ docs/OctoPrintDeviceRequest.md
 docs/OctoPrintEvent.md
 docs/OctoPrintEventEventTypeEnum.md
 docs/OctoPrintEventRequest.md
-docs/OctoPrintPluginEvent.md
-docs/OctoPrintPluginEventEventTypeEnum.md
 docs/PaginatedAlertList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
@@ -40,7 +38,7 @@ docs/PaginatedGcodeFileList.md
 docs/PaginatedModelArtifactList.md
 docs/PaginatedOctoPrintDeviceList.md
 docs/PaginatedOctoPrintEventList.md
-docs/PaginatedOctoPrintPluginEventList.md
+docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
@@ -58,6 +56,8 @@ docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
+docs/PrintNannyPluginEvent.md
+docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
 docs/PrintStatusEvent.md
@@ -112,8 +112,6 @@ print_nanny_client/models/octo_print_device_request.py
 print_nanny_client/models/octo_print_event.py
 print_nanny_client/models/octo_print_event_event_type_enum.py
 print_nanny_client/models/octo_print_event_request.py
-print_nanny_client/models/octo_print_plugin_event.py
-print_nanny_client/models/octo_print_plugin_event_event_type_enum.py
 print_nanny_client/models/paginated_alert_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
@@ -122,7 +120,7 @@ print_nanny_client/models/paginated_gcode_file_list.py
 print_nanny_client/models/paginated_model_artifact_list.py
 print_nanny_client/models/paginated_octo_print_device_list.py
 print_nanny_client/models/paginated_octo_print_event_list.py
-print_nanny_client/models/paginated_octo_print_plugin_event_list.py
+print_nanny_client/models/paginated_print_nanny_plugin_event_list.py
 print_nanny_client/models/paginated_print_session_list.py
 print_nanny_client/models/paginated_print_status_event_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
@@ -138,6 +136,8 @@ print_nanny_client/models/patched_print_session_request.py
 print_nanny_client/models/patched_printer_profile_request.py
 print_nanny_client/models/patched_remote_control_command_request.py
 print_nanny_client/models/patched_user_request.py
+print_nanny_client/models/print_nanny_plugin_event.py
+print_nanny_client/models/print_nanny_plugin_event_event_type_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_status_event.py
@@ -181,8 +181,6 @@ test/test_octo_print_device_request.py
 test/test_octo_print_event.py
 test/test_octo_print_event_event_type_enum.py
 test/test_octo_print_event_request.py
-test/test_octo_print_plugin_event.py
-test/test_octo_print_plugin_event_event_type_enum.py
 test/test_paginated_alert_list.py
 test/test_paginated_device_calibration_list.py
 test/test_paginated_experiment_device_config_list.py
@@ -191,7 +189,7 @@ test/test_paginated_gcode_file_list.py
 test/test_paginated_model_artifact_list.py
 test/test_paginated_octo_print_device_list.py
 test/test_paginated_octo_print_event_list.py
-test/test_paginated_octo_print_plugin_event_list.py
+test/test_paginated_print_nanny_plugin_event_list.py
 test/test_paginated_print_session_list.py
 test/test_paginated_print_status_event_list.py
 test/test_paginated_printer_profile_list.py
@@ -209,6 +207,8 @@ test/test_patched_print_session_request.py
 test/test_patched_printer_profile_request.py
 test/test_patched_remote_control_command_request.py
 test/test_patched_user_request.py
+test/test_print_nanny_plugin_event.py
+test/test_print_nanny_plugin_event_event_type_enum.py
 test/test_print_session.py
 test/test_print_session_request.py
 test/test_print_status_event.py

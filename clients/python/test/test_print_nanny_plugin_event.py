@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_plugin_event import OctoPrintPluginEvent  # noqa: E501
+from print_nanny_client.models.print_nanny_plugin_event import PrintNannyPluginEvent  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintPluginEvent(unittest.TestCase):
-    """OctoPrintPluginEvent unit test stubs"""
+class TestPrintNannyPluginEvent(unittest.TestCase):
+    """PrintNannyPluginEvent unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,13 +29,13 @@ class TestOctoPrintPluginEvent(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintPluginEvent
+        """Test PrintNannyPluginEvent
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_plugin_event.OctoPrintPluginEvent()  # noqa: E501
+        # model = print_nanny_client.models.print_nanny_plugin_event.PrintNannyPluginEvent()  # noqa: E501
         if include_optional :
-            return OctoPrintPluginEvent(
+            return PrintNannyPluginEvent(
                 id = 56, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_data = {
@@ -52,20 +52,20 @@ class TestOctoPrintPluginEvent(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
-                event_type = 'monitoring_start', 
+                event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 url = ''
             )
         else :
-            return OctoPrintPluginEvent(
+            return PrintNannyPluginEvent(
                 octoprint_device = 56,
                 plugin_version = '',
                 client_version = '',
                 octoprint_version = '',
-                event_type = 'monitoring_start',
+                event_type = 'plugin_octoprint_nanny_monitoring_start',
         )
 
-    def testOctoPrintPluginEvent(self):
-        """Test OctoPrintPluginEvent"""
+    def testPrintNannyPluginEvent(self):
+        """Test PrintNannyPluginEvent"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

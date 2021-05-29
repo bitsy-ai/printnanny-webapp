@@ -147,8 +147,8 @@ Class | Method | HTTP request | Description
 *TelemetryApi* | [**telemetry_octoprint_events_create**](docs/TelemetryApi.md#telemetry_octoprint_events_create) | **POST** /api/telemetry/octoprint-events/ | 
 *TelemetryApi* | [**telemetry_octoprint_events_list**](docs/TelemetryApi.md#telemetry_octoprint_events_list) | **GET** /api/telemetry/octoprint-events/ | 
 *TelemetryApi* | [**telemetry_octoprint_events_retrieve**](docs/TelemetryApi.md#telemetry_octoprint_events_retrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
-*TelemetryApi* | [**telemetry_octoprint_plugin_events_list**](docs/TelemetryApi.md#telemetry_octoprint_plugin_events_list) | **GET** /api/telemetry/octoprint-plugin-events/ | 
-*TelemetryApi* | [**telemetry_octoprint_plugin_events_retrieve**](docs/TelemetryApi.md#telemetry_octoprint_plugin_events_retrieve) | **GET** /api/telemetry/octoprint-plugin-events/{id}/ | 
+*TelemetryApi* | [**telemetry_print_nanny_plugin_events_list**](docs/TelemetryApi.md#telemetry_print_nanny_plugin_events_list) | **GET** /api/telemetry/print-nanny-plugin-events/ | 
+*TelemetryApi* | [**telemetry_print_nanny_plugin_events_retrieve**](docs/TelemetryApi.md#telemetry_print_nanny_plugin_events_retrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
 *TelemetryApi* | [**telemetry_print_status_events_list**](docs/TelemetryApi.md#telemetry_print_status_events_list) | **GET** /api/telemetry/print-status-events/ | 
 *TelemetryApi* | [**telemetry_print_status_events_retrieve**](docs/TelemetryApi.md#telemetry_print_status_events_retrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
 *UsersApi* | [**users_list**](docs/UsersApi.md#users_list) | **GET** /api/users/ | 
@@ -183,8 +183,6 @@ Class | Method | HTTP request | Description
  - [OctoPrintEvent](docs/OctoPrintEvent.md)
  - [OctoPrintEventEventTypeEnum](docs/OctoPrintEventEventTypeEnum.md)
  - [OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
- - [OctoPrintPluginEvent](docs/OctoPrintPluginEvent.md)
- - [OctoPrintPluginEventEventTypeEnum](docs/OctoPrintPluginEventEventTypeEnum.md)
  - [PaginatedAlertList](docs/PaginatedAlertList.md)
  - [PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
@@ -193,7 +191,7 @@ Class | Method | HTTP request | Description
  - [PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
  - [PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
  - [PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)
- - [PaginatedOctoPrintPluginEventList](docs/PaginatedOctoPrintPluginEventList.md)
+ - [PaginatedPrintNannyPluginEventList](docs/PaginatedPrintNannyPluginEventList.md)
  - [PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
  - [PaginatedPrintStatusEventList](docs/PaginatedPrintStatusEventList.md)
  - [PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
@@ -209,6 +207,8 @@ Class | Method | HTTP request | Description
  - [PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
  - [PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [PatchedUserRequest](docs/PatchedUserRequest.md)
+ - [PrintNannyPluginEvent](docs/PrintNannyPluginEvent.md)
+ - [PrintNannyPluginEventEventTypeEnum](docs/PrintNannyPluginEventEventTypeEnum.md)
  - [PrintSession](docs/PrintSession.md)
  - [PrintSessionRequest](docs/PrintSessionRequest.md)
  - [PrintStatusEvent](docs/PrintStatusEvent.md)

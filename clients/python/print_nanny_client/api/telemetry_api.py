@@ -436,13 +436,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def telemetry_octoprint_plugin_events_list(self, **kwargs):  # noqa: E501
-        """telemetry_octoprint_plugin_events_list  # noqa: E501
+    def telemetry_print_nanny_plugin_events_list(self, **kwargs):  # noqa: E501
+        """telemetry_print_nanny_plugin_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_octoprint_plugin_events_list(async_req=True)
+        >>> thread = api.telemetry_print_nanny_plugin_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -460,18 +460,18 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedOctoPrintPluginEventList
+        :rtype: PaginatedPrintNannyPluginEventList
         """
         kwargs['_return_http_data_only'] = True
-        return self.telemetry_octoprint_plugin_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.telemetry_print_nanny_plugin_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def telemetry_octoprint_plugin_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """telemetry_octoprint_plugin_events_list  # noqa: E501
+    def telemetry_print_nanny_plugin_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """telemetry_print_nanny_plugin_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_octoprint_plugin_events_list_with_http_info(async_req=True)
+        >>> thread = api.telemetry_print_nanny_plugin_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -496,7 +496,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedOctoPrintPluginEventList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedPrintNannyPluginEventList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -518,7 +518,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method telemetry_octoprint_plugin_events_list" % key
+                    " to method telemetry_print_nanny_plugin_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -545,11 +545,11 @@ class TelemetryApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedOctoPrintPluginEventList",
+            200: "PaginatedPrintNannyPluginEventList",
         }
 
         return self.api_client.call_api(
-            '/api/telemetry/octoprint-plugin-events/', 'GET',
+            '/api/telemetry/print-nanny-plugin-events/', 'GET',
             path_params,
             query_params,
             header_params,
@@ -565,16 +565,16 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def telemetry_octoprint_plugin_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """telemetry_octoprint_plugin_events_retrieve  # noqa: E501
+    def telemetry_print_nanny_plugin_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """telemetry_print_nanny_plugin_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_octoprint_plugin_events_retrieve(id, async_req=True)
+        >>> thread = api.telemetry_print_nanny_plugin_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print plugin event. (required)
+        :param id: A unique integer value identifying this print nanny plugin event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -589,21 +589,21 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: OctoPrintPluginEvent
+        :rtype: PrintNannyPluginEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.telemetry_octoprint_plugin_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.telemetry_print_nanny_plugin_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def telemetry_octoprint_plugin_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """telemetry_octoprint_plugin_events_retrieve  # noqa: E501
+    def telemetry_print_nanny_plugin_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """telemetry_print_nanny_plugin_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_octoprint_plugin_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.telemetry_print_nanny_plugin_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this octo print plugin event. (required)
+        :param id: A unique integer value identifying this print nanny plugin event. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -625,7 +625,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(OctoPrintPluginEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PrintNannyPluginEvent, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -647,14 +647,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method telemetry_octoprint_plugin_events_retrieve" % key
+                    " to method telemetry_print_nanny_plugin_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `telemetry_octoprint_plugin_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `telemetry_print_nanny_plugin_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -678,11 +678,11 @@ class TelemetryApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "OctoPrintPluginEvent",
+            200: "PrintNannyPluginEvent",
         }
 
         return self.api_client.call_api(
-            '/api/telemetry/octoprint-plugin-events/{id}/', 'GET',
+            '/api/telemetry/print-nanny-plugin-events/{id}/', 'GET',
             path_params,
             query_params,
             header_params,
