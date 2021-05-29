@@ -3,16 +3,10 @@ from rest_framework import serializers
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintStatusEvent,
-    OctoPrintPluginEvent,
-    TelemetryEventTypes,
+    PrintNannyPluginEvent,
 )
 
-
-class TelemetryEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.SerializerMethodField()
-
-    def get_event_type(self, obj) -> TelemetryEventTypes:
-        return obj.event_type
+from print_nanny_webapp.telemetry.types import TelemetryEventType
 
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
@@ -25,10 +19,10 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 
-class OctoPrintPluginEventSerializer(serializers.ModelSerializer):
+class PrintNannyPluginEventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OctoPrintPluginEvent
-        fields = [field.name for field in OctoPrintPluginEvent._meta.fields] + ["url"]
+        model = PrintNannyPluginEvent
+        fields = [field.name for field in PrintNannyPluginEvent._meta.fields] + ["url"]
         extra_kwargs = {
             "url": {"view_name": "api:plugin-event-detail", "lookup_field": "id"}
         }

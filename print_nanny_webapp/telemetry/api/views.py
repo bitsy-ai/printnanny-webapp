@@ -1,33 +1,26 @@
-import base64
-import hashlib
 import logging
 
-from rest_framework import status
-from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
     CreateModelMixin,
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 
 from .serializers import (
     OctoPrintEventSerializer,
-    OctoPrintPluginEventSerializer,
+    PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
 )
 import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
-OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintPluginEvent")
+PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
@@ -71,14 +64,14 @@ class OctoPrintEventViewSet(
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: OctoPrintPluginEventSerializer,
-            400: OctoPrintPluginEventSerializer,
+            201: PrintNannyPluginEventSerializer,
+            400: PrintNannyPluginEventSerializer,
         }
     )
 )
-class OctoPrintPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = OctoPrintPluginEventSerializer
-    queryset = OctoPrintPluginEvent.objects.all()
+class PrintNannyPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = PrintNannyPluginEventSerializer
+    queryset = PrintNannyPluginEvent.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):

@@ -16,7 +16,7 @@ from print_nanny_webapp.remote_control.api.views import (
 
 from print_nanny_webapp.telemetry.api.views import (
     OctoPrintEventViewSet,
-    OctoPrintPluginEventViewSet,
+    PrintNannyPluginEventViewSet,
     PrintStatusEventViewSet
 )
 
@@ -32,7 +32,7 @@ router.register("alerts", AlertViewSet)
 # router.register("print-session-alerts", PrintSessionAlertViewSet, basename="print-session-alerts")
 
 router.register("telemetry/octoprint-events", OctoPrintEventViewSet, basename="octoprint-events")
-router.register("telemetry/octoprint-plugin-events", OctoPrintPluginEventViewSet, basename="octoprint-plugin-events")
+router.register("telemetry/print-nanny-plugin-events", PrintNannyPluginEventViewSet, basename="print-nanny-plugin-events")
 router.register("telemetry/print-status-events", PrintStatusEventViewSet, basename="print-status-events")
 
 router.register("users", UserViewSet)

@@ -5,7 +5,6 @@ from django.db import models
 from django.apps import apps
 
 from django.apps import apps
-from django.conf import settings
 from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.telemetry.types import (
     PrintNannyPluginEventType,
@@ -95,16 +94,6 @@ class OctoPrintEvent(TelemetryEvent):
 
 
 class PrintStatusEvent(TelemetryEvent):
-    class EventType(models.TextChoices):
-        # print job
-        PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
-        PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
-        PRINT_DONE = "PrintDone", "PrintDone"
-        PRINT_FAILED = "PrintFailed", "PrintFailed"
-        PRINT_PAUSED = "PrintPaused", "PrintPaused"
-        PRINT_RESUMED = "PrintResumed", "PrintResumed"
-        PRINT_STARTED = "PrintStarted", "PrintStarted"
-
     event_codes = [x.value for x in PrintStatusEventType.__members__.values()]
     JOB_EVENT_TYPE_CSS_CLASS = {
         "Error": "text-danger",
