@@ -12,12 +12,9 @@ from django.utils import timezone
 
 from urllib.parse import urljoin
 
-from polymorphic.models import PolymorphicModel
 from django.apps import apps
 from django.conf import settings
-from django.core.files.base import ContentFile
 from django.contrib.postgres.fields import ArrayField, JSONField
-from django.contrib.sites.shortcuts import get_current_site
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -44,13 +41,6 @@ class TelemetryEvent(models.Model):
     octoprint_version = models.CharField(max_length=60)
     metadata = JSONField(null=True)
     octoprint_job = JSONField(null=True)
-
-
-def _upload_to(instance, filename):
-    datesegment = dateformat.format(timezone.now(), "Y/M/d/")
-    path = os.path.join(f"uploads/{instance.__class__.__name__}", datesegment, filename)
-    logger.info("Uploading to path")
-    return path
 
 
 class RemoteCommandEvent(TelemetryEvent):

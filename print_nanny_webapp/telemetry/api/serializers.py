@@ -1,7 +1,5 @@
-from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
-from rest_polymorphic.serializers import PolymorphicSerializer
 
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
