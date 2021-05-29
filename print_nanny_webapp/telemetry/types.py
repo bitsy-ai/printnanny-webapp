@@ -13,6 +13,11 @@ from django.db import models
 # django-db-model makes it easy to
 ##
 
+class EventSource(models.TextChoices):
+    OCTOPRINT = ("octoprint", "Events originating from octoprint")
+    PRINT_NANNY_PLUGIN = ("plugin_octoprint_nanny", "Events originating from Print Nanny octoprint plugin")
+    REMOTE_COMMAND = ("remote_command", 'Events originating from a remote control command')
+
 
 # Catch-all for all event types
 class TelemetryEventType(models.TextChoices):
