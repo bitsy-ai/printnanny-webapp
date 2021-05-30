@@ -72,7 +72,8 @@ class OctoprintPrinterData(object):
 
         self.job = job
         self.state = state
-        self.user = user
+        if user is not None:
+            self.user = user
         self.current_z = current_z
         self.progress = progress
         self.resends = resends
@@ -142,8 +143,6 @@ class OctoprintPrinterData(object):
         :param user: The user of this OctoprintPrinterData.  # noqa: E501
         :type user: str
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 

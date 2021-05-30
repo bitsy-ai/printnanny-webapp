@@ -23,11 +23,11 @@ import java.io.Serializable
  * 
  * @param job 
  * @param state 
- * @param user 
  * @param currentZ 
  * @param progress 
  * @param resends 
  * @param offsets 
+ * @param user 
  */
 
 data class OctoprintPrinterData (
@@ -35,8 +35,6 @@ data class OctoprintPrinterData (
     val job: OctoprintJob,
     @Json(name = "state")
     val state: OctoprintPrinterState,
-    @Json(name = "user")
-    val user: kotlin.String,
     @Json(name = "currentZ")
     val currentZ: kotlin.Float,
     @Json(name = "progress")
@@ -44,7 +42,9 @@ data class OctoprintPrinterData (
     @Json(name = "resends")
     val resends: kotlin.collections.Map<kotlin.String, AnyType>,
     @Json(name = "offsets")
-    val offsets: kotlin.collections.Map<kotlin.String, AnyType>
+    val offsets: kotlin.collections.Map<kotlin.String, AnyType>,
+    @Json(name = "user")
+    val user: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

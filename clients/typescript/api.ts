@@ -1582,7 +1582,7 @@ export interface OctoprintPrinterData {
      * @type {string}
      * @memberof OctoprintPrinterData
      */
-    user: string;
+    user?: string;
     /**
      * 
      * @type {number}
