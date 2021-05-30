@@ -37,7 +37,9 @@ class TestPrintNannyPluginEvent(unittest.TestCase):
         if include_optional :
             return PrintNannyPluginEvent(
                 id = 56, 
+                polymorphic_ctype = 56, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                event_source = 'octoprint', 
                 event_data = {
                     'key' : null
                     }, 
@@ -52,6 +54,8 @@ class TestPrintNannyPluginEvent(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
+                print_session = 56, 
+                telemetryevent_ptr = 56, 
                 event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 url = ''
             )

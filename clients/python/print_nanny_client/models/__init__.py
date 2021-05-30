@@ -25,6 +25,7 @@ from print_nanny_client.models.auth_token_request import AuthTokenRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
+from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
@@ -50,6 +51,7 @@ from print_nanny_client.models.paginated_print_session_list import PaginatedPrin
 from print_nanny_client.models.paginated_print_status_event_list import PaginatedPrintStatusEventList
 from print_nanny_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
 from print_nanny_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
+from print_nanny_client.models.paginated_telemetry_event_list import PaginatedTelemetryEventList
 from print_nanny_client.models.paginated_user_list import PaginatedUserList
 from print_nanny_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
 from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
@@ -72,5 +74,6 @@ from print_nanny_client.models.printer_profile_request import PrinterProfileRequ
 from print_nanny_client.models.remote_control_command import RemoteControlCommand
 from print_nanny_client.models.remote_control_command_request import RemoteControlCommandRequest
 from print_nanny_client.models.status_enum import StatusEnum
+from print_nanny_client.models.telemetry_event import TelemetryEvent
 from print_nanny_client.models.user import User
 from print_nanny_client.models.user_request import UserRequest

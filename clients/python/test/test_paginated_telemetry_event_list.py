@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList  # noqa: E501
+from print_nanny_client.models.paginated_telemetry_event_list import PaginatedTelemetryEventList  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPaginatedOctoPrintEventList(unittest.TestCase):
-    """PaginatedOctoPrintEventList unit test stubs"""
+class TestPaginatedTelemetryEventList(unittest.TestCase):
+    """PaginatedTelemetryEventList unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,27 +29,25 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedOctoPrintEventList
+        """Test PaginatedTelemetryEventList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.paginated_octo_print_event_list.PaginatedOctoPrintEventList()  # noqa: E501
+        # model = print_nanny_client.models.paginated_telemetry_event_list.PaginatedTelemetryEventList()  # noqa: E501
         if include_optional :
-            return PaginatedOctoPrintEventList(
+            return PaginatedTelemetryEventList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    print_nanny_client.models.octo_print_event.OctoPrintEvent(
+                    print_nanny_client.models.telemetry_event.TelemetryEvent(
                         id = 56, 
-                        polymorphic_ctype = 56, 
+                        print_session = '', 
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         event_source = 'octoprint', 
                         event_data = {
                             'key' : null
                             }, 
-                        octoprint_device = 56, 
-                        user = 56, 
                         plugin_version = '', 
                         client_version = '', 
                         octoprint_version = '', 
@@ -59,18 +57,17 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                         octoprint_job = {
                             'key' : null
                             }, 
-                        print_session = 56, 
-                        telemetryevent_ptr = 56, 
-                        event_type = 'ClientAuthed', 
-                        url = '', )
+                        polymorphic_ctype = 56, 
+                        octoprint_device = 56, 
+                        user = 56, )
                     ]
             )
         else :
-            return PaginatedOctoPrintEventList(
+            return PaginatedTelemetryEventList(
         )
 
-    def testPaginatedOctoPrintEventList(self):
-        """Test PaginatedOctoPrintEventList"""
+    def testPaginatedTelemetryEventList(self):
+        """Test PaginatedTelemetryEventList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

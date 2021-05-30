@@ -37,7 +37,9 @@ class PrintStatusEvent(object):
     """
     openapi_types = {
         'id': 'int',
+        'polymorphic_ctype': 'int',
         'created_dt': 'datetime',
+        'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
         'octoprint_device': 'int',
         'user': 'int',
@@ -46,18 +48,21 @@ class PrintStatusEvent(object):
         'octoprint_version': 'str',
         'metadata': 'dict(str, object)',
         'octoprint_job': 'dict(str, object)',
+        'print_session': 'int',
+        'telemetryevent_ptr': 'int',
         'event_type': 'PrintStatusEventEventTypeEnum',
         'state': 'dict(str, object)',
         'current_z': 'float',
         'progress': 'dict(str, object)',
         'job_data_file': 'str',
-        'print_session': 'int',
         'url': 'str'
     }
 
     attribute_map = {
         'id': 'id',
+        'polymorphic_ctype': 'polymorphic_ctype',
         'created_dt': 'created_dt',
+        'event_source': 'event_source',
         'event_data': 'event_data',
         'octoprint_device': 'octoprint_device',
         'user': 'user',
@@ -66,23 +71,26 @@ class PrintStatusEvent(object):
         'octoprint_version': 'octoprint_version',
         'metadata': 'metadata',
         'octoprint_job': 'octoprint_job',
+        'print_session': 'print_session',
+        'telemetryevent_ptr': 'telemetryevent_ptr',
         'event_type': 'event_type',
         'state': 'state',
         'current_z': 'current_z',
         'progress': 'progress',
         'job_data_file': 'job_data_file',
-        'print_session': 'print_session',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, polymorphic_ctype=None, created_dt=None, event_source=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, print_session=None, telemetryevent_ptr=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintStatusEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._polymorphic_ctype = None
         self._created_dt = None
+        self._event_source = None
         self._event_data = None
         self._octoprint_device = None
         self._user = None
@@ -91,19 +99,24 @@ class PrintStatusEvent(object):
         self._octoprint_version = None
         self._metadata = None
         self._octoprint_job = None
+        self._print_session = None
+        self._telemetryevent_ptr = None
         self._event_type = None
         self._state = None
         self._current_z = None
         self._progress = None
         self._job_data_file = None
-        self._print_session = None
         self._url = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
         if created_dt is not None:
             self.created_dt = created_dt
+        if event_source is not None:
+            self.event_source = event_source
         self.event_data = event_data
         self.octoprint_device = octoprint_device
         if user is not None:
@@ -113,6 +126,9 @@ class PrintStatusEvent(object):
         self.octoprint_version = octoprint_version
         self.metadata = metadata
         self.octoprint_job = octoprint_job
+        self.print_session = print_session
+        if telemetryevent_ptr is not None:
+            self.telemetryevent_ptr = telemetryevent_ptr
         self.event_type = event_type
         if state is not None:
             self.state = state
@@ -120,7 +136,6 @@ class PrintStatusEvent(object):
         if progress is not None:
             self.progress = progress
         self.job_data_file = job_data_file
-        self.print_session = print_session
         if url is not None:
             self.url = url
 
@@ -146,6 +161,27 @@ class PrintStatusEvent(object):
         self._id = id
 
     @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this PrintStatusEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this PrintStatusEvent.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this PrintStatusEvent.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
+
+    @property
     def created_dt(self):
         """Gets the created_dt of this PrintStatusEvent.  # noqa: E501
 
@@ -165,6 +201,27 @@ class PrintStatusEvent(object):
         """
 
         self._created_dt = created_dt
+
+    @property
+    def event_source(self):
+        """Gets the event_source of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The event_source of this PrintStatusEvent.  # noqa: E501
+        :rtype: EventSourceEnum
+        """
+        return self._event_source
+
+    @event_source.setter
+    def event_source(self, event_source):
+        """Sets the event_source of this PrintStatusEvent.
+
+
+        :param event_source: The event_source of this PrintStatusEvent.  # noqa: E501
+        :type event_source: EventSourceEnum
+        """
+
+        self._event_source = event_source
 
     @property
     def event_data(self):
@@ -352,6 +409,48 @@ class PrintStatusEvent(object):
         self._octoprint_job = octoprint_job
 
     @property
+    def print_session(self):
+        """Gets the print_session of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The print_session of this PrintStatusEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this PrintStatusEvent.
+
+
+        :param print_session: The print_session of this PrintStatusEvent.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
+
+    @property
+    def telemetryevent_ptr(self):
+        """Gets the telemetryevent_ptr of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The telemetryevent_ptr of this PrintStatusEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._telemetryevent_ptr
+
+    @telemetryevent_ptr.setter
+    def telemetryevent_ptr(self, telemetryevent_ptr):
+        """Sets the telemetryevent_ptr of this PrintStatusEvent.
+
+
+        :param telemetryevent_ptr: The telemetryevent_ptr of this PrintStatusEvent.  # noqa: E501
+        :type telemetryevent_ptr: int
+        """
+
+        self._telemetryevent_ptr = telemetryevent_ptr
+
+    @property
     def event_type(self):
         """Gets the event_type of this PrintStatusEvent.  # noqa: E501
 
@@ -462,27 +561,6 @@ class PrintStatusEvent(object):
             raise ValueError("Invalid value for `job_data_file`, length must be less than or equal to `255`")  # noqa: E501
 
         self._job_data_file = job_data_file
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The print_session of this PrintStatusEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this PrintStatusEvent.
-
-
-        :param print_session: The print_session of this PrintStatusEvent.  # noqa: E501
-        :type print_session: int
-        """
-
-        self._print_session = print_session
 
     @property
     def url(self):

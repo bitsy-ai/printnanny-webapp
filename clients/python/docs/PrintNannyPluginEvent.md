@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
+**polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
+**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 
@@ -14,6 +16,8 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **metadata** | **dict(str, object)** |  | [optional] 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
+**print_session** | **int** |  | [optional] 
+**telemetryevent_ptr** | **int** |  | [optional] [readonly] 
 **event_type** | [**PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
 **url** | **str** |  | [optional] [readonly] 
 

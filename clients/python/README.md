@@ -144,6 +144,7 @@ Class | Method | HTTP request | Description
 *RemoteControlApi* | [**printer_profiles_update**](docs/RemoteControlApi.md#printer_profiles_update) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**printer_profiles_update_or_create**](docs/RemoteControlApi.md#printer_profiles_update_or_create) | **POST** /api/printer-profiles/update-or-create/ | 
 *SchemaApi* | [**schema_retrieve**](docs/SchemaApi.md#schema_retrieve) | **GET** /api/schema/ | 
+*TelemetryApi* | [**telemetry_list**](docs/TelemetryApi.md#telemetry_list) | **GET** /api/telemetry/ | 
 *TelemetryApi* | [**telemetry_octoprint_events_create**](docs/TelemetryApi.md#telemetry_octoprint_events_create) | **POST** /api/telemetry/octoprint-events/ | 
 *TelemetryApi* | [**telemetry_octoprint_events_list**](docs/TelemetryApi.md#telemetry_octoprint_events_list) | **GET** /api/telemetry/octoprint-events/ | 
 *TelemetryApi* | [**telemetry_octoprint_events_retrieve**](docs/TelemetryApi.md#telemetry_octoprint_events_retrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
@@ -151,6 +152,7 @@ Class | Method | HTTP request | Description
 *TelemetryApi* | [**telemetry_print_nanny_plugin_events_retrieve**](docs/TelemetryApi.md#telemetry_print_nanny_plugin_events_retrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
 *TelemetryApi* | [**telemetry_print_status_events_list**](docs/TelemetryApi.md#telemetry_print_status_events_list) | **GET** /api/telemetry/print-status-events/ | 
 *TelemetryApi* | [**telemetry_print_status_events_retrieve**](docs/TelemetryApi.md#telemetry_print_status_events_retrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
+*TelemetryApi* | [**telemetry_retrieve**](docs/TelemetryApi.md#telemetry_retrieve) | **GET** /api/telemetry/{id}/ | 
 *UsersApi* | [**users_list**](docs/UsersApi.md#users_list) | **GET** /api/users/ | 
 *UsersApi* | [**users_me_retrieve**](docs/UsersApi.md#users_me_retrieve) | **GET** /api/users/me/ | 
 *UsersApi* | [**users_partial_update**](docs/UsersApi.md#users_partial_update) | **PATCH** /api/users/{id}/ | 
@@ -171,6 +173,7 @@ Class | Method | HTTP request | Description
  - [CommandEnum](docs/CommandEnum.md)
  - [DeviceCalibration](docs/DeviceCalibration.md)
  - [DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [EventSourceEnum](docs/EventSourceEnum.md)
  - [Experiment](docs/Experiment.md)
  - [ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [GcodeFile](docs/GcodeFile.md)
@@ -196,6 +199,7 @@ Class | Method | HTTP request | Description
  - [PaginatedPrintStatusEventList](docs/PaginatedPrintStatusEventList.md)
  - [PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
+ - [PaginatedTelemetryEventList](docs/PaginatedTelemetryEventList.md)
  - [PaginatedUserList](docs/PaginatedUserList.md)
  - [Partner3DGeeksAlert](docs/Partner3DGeeksAlert.md)
  - [Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
@@ -218,6 +222,7 @@ Class | Method | HTTP request | Description
  - [RemoteControlCommand](docs/RemoteControlCommand.md)
  - [RemoteControlCommandRequest](docs/RemoteControlCommandRequest.md)
  - [StatusEnum](docs/StatusEnum.md)
+ - [TelemetryEvent](docs/TelemetryEvent.md)
  - [User](docs/User.md)
  - [UserRequest](docs/UserRequest.md)
 

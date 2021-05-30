@@ -37,7 +37,9 @@ class TestPrintStatusEvent(unittest.TestCase):
         if include_optional :
             return PrintStatusEvent(
                 id = 56, 
+                polymorphic_ctype = 56, 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                event_source = 'octoprint', 
                 event_data = {
                     'key' : null
                     }, 
@@ -52,6 +54,8 @@ class TestPrintStatusEvent(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
+                print_session = 56, 
+                telemetryevent_ptr = 56, 
                 event_type = 'PrintCancelled', 
                 state = {
                     'key' : null
@@ -61,7 +65,6 @@ class TestPrintStatusEvent(unittest.TestCase):
                     'key' : null
                     }, 
                 job_data_file = '', 
-                print_session = 56, 
                 url = ''
             )
         else :

@@ -28,6 +28,12 @@ class TestTelemetryApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_telemetry_list(self):
+        """Test case for telemetry_list
+
+        """
+        pass
+
     def test_telemetry_octoprint_events_create(self):
         """Test case for telemetry_octoprint_events_create
 
@@ -66,6 +72,12 @@ class TestTelemetryApi(unittest.TestCase):
 
     def test_telemetry_print_status_events_retrieve(self):
         """Test case for telemetry_print_status_events_retrieve
+
+        """
+        pass
+
+    def test_telemetry_retrieve(self):
+        """Test case for telemetry_retrieve
 
         """
         pass

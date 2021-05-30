@@ -1,3 +1,4 @@
+from typing import Optional
 from rest_framework import serializers
 
 from print_nanny_webapp.telemetry.models import (
