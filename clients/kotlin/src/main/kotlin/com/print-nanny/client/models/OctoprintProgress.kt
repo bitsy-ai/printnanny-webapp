@@ -29,11 +29,11 @@ data class OctoprintProgress (
     val completion: kotlin.Float,
     @Json(name = "filepos")
     val filepos: kotlin.Int,
-    @Json(name = "print_time")
+    @Json(name = "printTime")
     val printTime: kotlin.Int,
-    @Json(name = "print_time_left")
+    @Json(name = "printTimeLeft")
     val printTimeLeft: kotlin.Int,
-    @Json(name = "print_time_origin")
+    @Json(name = "printTimeOrigin")
     val printTimeOrigin: kotlin.String
 ) : Serializable {
     companion object {

@@ -43,7 +43,7 @@ data class OctoprintPrinterFlags (
     val resuming: kotlin.Boolean,
     @Json(name = "finishing")
     val finishing: kotlin.Boolean,
-    @Json(name = "closed_or_error")
+    @Json(name = "closedOrError")
     val closedOrError: kotlin.Boolean,
     @Json(name = "error")
     val error: kotlin.Boolean,
@@ -51,7 +51,7 @@ data class OctoprintPrinterFlags (
     val paused: kotlin.Boolean,
     @Json(name = "ready")
     val ready: kotlin.Boolean,
-    @Json(name = "sd_ready")
+    @Json(name = "sdReady")
     val sdReady: kotlin.Boolean
 ) : Serializable {
     companion object {
