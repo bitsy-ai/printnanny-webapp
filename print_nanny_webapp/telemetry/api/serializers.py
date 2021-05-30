@@ -39,7 +39,9 @@ class OctoprintHardwareSerializer(serializers.Serializer):
     cores = serializers.IntegerField()
     freq = serializers.FloatField()
     ram = serializers.IntegerField()
-    pi_model = serializers.CharField()
+
+class OctoprintPiSupportSerializer(serializers.Serializer):
+    model = serializers.CharField()
     throttle_state = serializers.CharField()
     octopi_version = serializers.CharField()
 
@@ -47,6 +49,7 @@ class OctoprintEnvironmentSerializer(serializers.Serializer):
     os = OctoprintPlatformSerializer()
     python = OctoprintPythonSerializer()
     hardware = OctoprintHardwareSerializer()
+    pi_support = OctoprintPiSupportSerializer()
 
 class OctoprintPrinterFlagsSerializer(serializers.Serializer):
     operational = serializers.BooleanField()
