@@ -6,10 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **print_session** | **str** |  | [optional] [readonly] 
-**environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
-**printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
-**temperature** | **dict(str, object)** |  | 
 **event_type** | [**RemoteCommandEventEventTypeEnum**](RemoteCommandEventEventTypeEnum.md) |  | 
+**octoprint_metadata** | [**OctoprintMetadata**](OctoprintMetadata.md) |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 

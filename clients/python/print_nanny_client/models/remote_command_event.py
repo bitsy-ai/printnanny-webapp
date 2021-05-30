@@ -38,10 +38,8 @@ class RemoteCommandEvent(object):
     openapi_types = {
         'id': 'int',
         'print_session': 'str',
-        'environment': 'OctoprintEnvironment',
-        'printer_data': 'OctoprintPrinterData',
-        'temperature': 'dict(str, object)',
         'event_type': 'RemoteCommandEventEventTypeEnum',
+        'octoprint_metadata': 'OctoprintMetadata',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -57,10 +55,8 @@ class RemoteCommandEvent(object):
     attribute_map = {
         'id': 'id',
         'print_session': 'print_session',
-        'environment': 'environment',
-        'printer_data': 'printer_data',
-        'temperature': 'temperature',
         'event_type': 'event_type',
+        'octoprint_metadata': 'octoprint_metadata',
         'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
@@ -73,7 +69,7 @@ class RemoteCommandEvent(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, print_session=None, environment=None, printer_data=None, temperature=None, event_type=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, event_type=None, octoprint_metadata=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """RemoteCommandEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,10 +77,8 @@ class RemoteCommandEvent(object):
 
         self._id = None
         self._print_session = None
-        self._environment = None
-        self._printer_data = None
-        self._temperature = None
         self._event_type = None
+        self._octoprint_metadata = None
         self._ts = None
         self._event_source = None
         self._event_data = None
@@ -101,15 +95,14 @@ class RemoteCommandEvent(object):
             self.id = id
         if print_session is not None:
             self.print_session = print_session
-        self.environment = environment
-        self.printer_data = printer_data
-        self.temperature = temperature
         self.event_type = event_type
+        self.octoprint_metadata = octoprint_metadata
         if ts is not None:
             self.ts = ts
         if event_source is not None:
             self.event_source = event_source
-        self.event_data = event_data
+        if event_data is not None:
+            self.event_data = event_data
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
@@ -163,75 +156,6 @@ class RemoteCommandEvent(object):
         self._print_session = print_session
 
     @property
-    def environment(self):
-        """Gets the environment of this RemoteCommandEvent.  # noqa: E501
-
-
-        :return: The environment of this RemoteCommandEvent.  # noqa: E501
-        :rtype: OctoprintEnvironment
-        """
-        return self._environment
-
-    @environment.setter
-    def environment(self, environment):
-        """Sets the environment of this RemoteCommandEvent.
-
-
-        :param environment: The environment of this RemoteCommandEvent.  # noqa: E501
-        :type environment: OctoprintEnvironment
-        """
-        if self.local_vars_configuration.client_side_validation and environment is None:  # noqa: E501
-            raise ValueError("Invalid value for `environment`, must not be `None`")  # noqa: E501
-
-        self._environment = environment
-
-    @property
-    def printer_data(self):
-        """Gets the printer_data of this RemoteCommandEvent.  # noqa: E501
-
-
-        :return: The printer_data of this RemoteCommandEvent.  # noqa: E501
-        :rtype: OctoprintPrinterData
-        """
-        return self._printer_data
-
-    @printer_data.setter
-    def printer_data(self, printer_data):
-        """Sets the printer_data of this RemoteCommandEvent.
-
-
-        :param printer_data: The printer_data of this RemoteCommandEvent.  # noqa: E501
-        :type printer_data: OctoprintPrinterData
-        """
-        if self.local_vars_configuration.client_side_validation and printer_data is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_data`, must not be `None`")  # noqa: E501
-
-        self._printer_data = printer_data
-
-    @property
-    def temperature(self):
-        """Gets the temperature of this RemoteCommandEvent.  # noqa: E501
-
-
-        :return: The temperature of this RemoteCommandEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._temperature
-
-    @temperature.setter
-    def temperature(self, temperature):
-        """Sets the temperature of this RemoteCommandEvent.
-
-
-        :param temperature: The temperature of this RemoteCommandEvent.  # noqa: E501
-        :type temperature: dict(str, object)
-        """
-        if self.local_vars_configuration.client_side_validation and temperature is None:  # noqa: E501
-            raise ValueError("Invalid value for `temperature`, must not be `None`")  # noqa: E501
-
-        self._temperature = temperature
-
-    @property
     def event_type(self):
         """Gets the event_type of this RemoteCommandEvent.  # noqa: E501
 
@@ -253,6 +177,29 @@ class RemoteCommandEvent(object):
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
+
+    @property
+    def octoprint_metadata(self):
+        """Gets the octoprint_metadata of this RemoteCommandEvent.  # noqa: E501
+
+
+        :return: The octoprint_metadata of this RemoteCommandEvent.  # noqa: E501
+        :rtype: OctoprintMetadata
+        """
+        return self._octoprint_metadata
+
+    @octoprint_metadata.setter
+    def octoprint_metadata(self, octoprint_metadata):
+        """Sets the octoprint_metadata of this RemoteCommandEvent.
+
+
+        :param octoprint_metadata: The octoprint_metadata of this RemoteCommandEvent.  # noqa: E501
+        :type octoprint_metadata: OctoprintMetadata
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_metadata is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_metadata`, must not be `None`")  # noqa: E501
+
+        self._octoprint_metadata = octoprint_metadata
 
     @property
     def ts(self):

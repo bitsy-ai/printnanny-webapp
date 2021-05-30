@@ -196,6 +196,8 @@ Class | Method | HTTP request | Description
  - [OctoprintHardwareRequest](docs/OctoprintHardwareRequest.md)
  - [OctoprintJob](docs/OctoprintJob.md)
  - [OctoprintJobRequest](docs/OctoprintJobRequest.md)
+ - [OctoprintMetadata](docs/OctoprintMetadata.md)
+ - [OctoprintMetadataRequest](docs/OctoprintMetadataRequest.md)
  - [OctoprintPiSupport](docs/OctoprintPiSupport.md)
  - [OctoprintPiSupportRequest](docs/OctoprintPiSupportRequest.md)
  - [OctoprintPlatform](docs/OctoprintPlatform.md)

@@ -95,6 +95,8 @@ class OctoprintMetadata(serializers.Serializer):
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
     print_session = serializers.StringRelatedField(required=False, read_only=False)
+    event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
+
     octoprint_metadata = OctoprintMetadata()
     class Meta:
         model = TelemetryEvent

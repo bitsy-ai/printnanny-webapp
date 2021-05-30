@@ -32,6 +32,11 @@ class TelemetryEvent(PolymorphicModel):
     event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)
     event_data = models.JSONField(default=dict)
     octoprint_metadata = models.JSONField(default=dict)
+    octoprint_device = models.ForeignKey(
+        "remote_control.OctoPrintDevice",
+        db_index=True,
+        on_delete=models.CASCADE,
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_nanny_plugin_version = models.CharField(max_length=60)
     print_nanny_client_version = models.CharField(max_length=60)

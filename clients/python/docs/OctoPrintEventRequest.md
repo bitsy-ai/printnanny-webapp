@@ -4,10 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**environment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
-**printer_data** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
-**temperature** | **dict(str, object)** |  | 
 **event_type** | [**OctoPrintEventEventTypeEnum**](OctoPrintEventEventTypeEnum.md) |  | 
+**octoprint_metadata** | [**OctoprintMetadataRequest**](OctoprintMetadataRequest.md) |  | 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 
 **print_nanny_plugin_version** | **str** |  | 

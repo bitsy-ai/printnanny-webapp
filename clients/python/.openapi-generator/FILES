@@ -39,6 +39,8 @@ docs/OctoprintHardware.md
 docs/OctoprintHardwareRequest.md
 docs/OctoprintJob.md
 docs/OctoprintJobRequest.md
+docs/OctoprintMetadata.md
+docs/OctoprintMetadataRequest.md
 docs/OctoprintPiSupport.md
 docs/OctoprintPiSupportRequest.md
 docs/OctoprintPlatform.md
@@ -151,6 +153,8 @@ print_nanny_client/models/octoprint_hardware.py
 print_nanny_client/models/octoprint_hardware_request.py
 print_nanny_client/models/octoprint_job.py
 print_nanny_client/models/octoprint_job_request.py
+print_nanny_client/models/octoprint_metadata.py
+print_nanny_client/models/octoprint_metadata_request.py
 print_nanny_client/models/octoprint_pi_support.py
 print_nanny_client/models/octoprint_pi_support_request.py
 print_nanny_client/models/octoprint_platform.py
@@ -250,6 +254,8 @@ test/test_octoprint_hardware.py
 test/test_octoprint_hardware_request.py
 test/test_octoprint_job.py
 test/test_octoprint_job_request.py
+test/test_octoprint_metadata.py
+test/test_octoprint_metadata_request.py
 test/test_octoprint_pi_support.py
 test/test_octoprint_pi_support_request.py
 test/test_octoprint_platform.py
