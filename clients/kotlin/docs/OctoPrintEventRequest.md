@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
+**octoprintVersion** | **kotlin.String** |  | 
 **eventType** | [**OctoPrintEventEventTypeEnum**](OctoPrintEventEventTypeEnum.md) |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]

@@ -1201,6 +1201,12 @@ export interface OctoPrintEvent {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {string}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEvent
      */
@@ -1324,6 +1330,12 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_version: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2870,6 +2882,12 @@ export interface PrintNannyPluginEvent {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof PrintNannyPluginEvent
      */
@@ -3156,6 +3174,12 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_version: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3578,6 +3602,12 @@ export interface RemoteCommandEvent {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof RemoteCommandEvent
      */
@@ -3829,6 +3859,12 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEvent
+     */
+    octoprint_version: string;
     /**
      * 
      * @type {{ [key: string]: any; }}

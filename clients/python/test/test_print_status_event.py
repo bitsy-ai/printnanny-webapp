@@ -45,6 +45,7 @@ class TestPrintStatusEvent(unittest.TestCase):
                     }, 
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
+                octoprint_version = '', 
                 octoprint_job = {
                     'key' : null
                     }, 
@@ -65,6 +66,7 @@ class TestPrintStatusEvent(unittest.TestCase):
             return PrintStatusEvent(
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
+                octoprint_version = '',
                 event_type = 'PrintCancelled',
                 job_data_file = '',
                 octoprint_device = 56,

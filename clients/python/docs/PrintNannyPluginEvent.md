@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **event_data** | **dict(str, object)** |  | [optional] 
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
+**octoprint_version** | **str** |  | 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
 **event_type** | [**PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 

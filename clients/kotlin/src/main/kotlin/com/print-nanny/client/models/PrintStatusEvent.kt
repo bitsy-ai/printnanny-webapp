@@ -22,6 +22,7 @@ import java.io.Serializable
  * 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
+ * @param octoprintVersion 
  * @param eventType 
  * @param jobDataFile 
  * @param octoprintDevice 
@@ -43,6 +44,8 @@ data class PrintStatusEvent (
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
+    @Json(name = "octoprint_version")
+    val octoprintVersion: kotlin.String,
     @Json(name = "event_type")
     val eventType: PrintStatusEventEventTypeEnum,
     @Json(name = "job_data_file")

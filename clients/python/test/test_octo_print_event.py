@@ -44,6 +44,7 @@ class TestOctoPrintEvent(unittest.TestCase):
                     }, 
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
+                octoprint_version = '', 
                 octoprint_job = {
                     'key' : null
                     }, 
@@ -57,6 +58,7 @@ class TestOctoPrintEvent(unittest.TestCase):
             return OctoPrintEvent(
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
+                octoprint_version = '',
                 event_type = 'ClientAuthed',
                 octoprint_device = 56,
         )

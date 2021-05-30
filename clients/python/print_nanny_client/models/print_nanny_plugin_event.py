@@ -42,6 +42,7 @@ class PrintNannyPluginEvent(object):
         'event_data': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
+        'octoprint_version': 'str',
         'octoprint_job': 'dict(str, object)',
         'event_type': 'PrintNannyPluginEventEventTypeEnum',
         'polymorphic_ctype': 'int',
@@ -57,6 +58,7 @@ class PrintNannyPluginEvent(object):
         'event_data': 'event_data',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
+        'octoprint_version': 'octoprint_version',
         'octoprint_job': 'octoprint_job',
         'event_type': 'event_type',
         'polymorphic_ctype': 'polymorphic_ctype',
@@ -65,7 +67,7 @@ class PrintNannyPluginEvent(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_job=None, event_type=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, event_type=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrintNannyPluginEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,6 +79,7 @@ class PrintNannyPluginEvent(object):
         self._event_data = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
+        self._octoprint_version = None
         self._octoprint_job = None
         self._event_type = None
         self._polymorphic_ctype = None
@@ -94,6 +97,7 @@ class PrintNannyPluginEvent(object):
         self.event_data = event_data
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
+        self.octoprint_version = octoprint_version
         self.octoprint_job = octoprint_job
         self.event_type = event_type
         if polymorphic_ctype is not None:
@@ -238,6 +242,32 @@ class PrintNannyPluginEvent(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `60`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def octoprint_version(self):
+        """Gets the octoprint_version of this PrintNannyPluginEvent.  # noqa: E501
+
+
+        :return: The octoprint_version of this PrintNannyPluginEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._octoprint_version
+
+    @octoprint_version.setter
+    def octoprint_version(self, octoprint_version):
+        """Sets the octoprint_version of this PrintNannyPluginEvent.
+
+
+        :param octoprint_version: The octoprint_version of this PrintNannyPluginEvent.  # noqa: E501
+        :type octoprint_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                octoprint_version is not None and len(octoprint_version) > 36):
+            raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
+
+        self._octoprint_version = octoprint_version
 
     @property
     def octoprint_job(self):

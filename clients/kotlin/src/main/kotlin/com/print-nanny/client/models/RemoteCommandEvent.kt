@@ -22,6 +22,7 @@ import java.io.Serializable
  * 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
+ * @param octoprintVersion 
  * @param eventType 
  * @param octoprintDevice 
  * @param id 
@@ -39,6 +40,8 @@ data class RemoteCommandEvent (
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
+    @Json(name = "octoprint_version")
+    val octoprintVersion: kotlin.String,
     @Json(name = "event_type")
     val eventType: RemoteCommandEventEventTypeEnum,
     @Json(name = "octoprint_device")

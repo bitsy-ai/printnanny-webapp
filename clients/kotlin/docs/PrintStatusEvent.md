@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
+**octoprintVersion** | **kotlin.String** |  | 
 **eventType** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
 **jobDataFile** | **kotlin.String** |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
