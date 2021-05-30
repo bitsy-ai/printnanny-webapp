@@ -1160,6 +1160,31 @@ export interface OctoPrintDeviceRequest {
 /**
  * 
  * @export
+ * @interface OctoPrintEnvironment
+ */
+export interface OctoPrintEnvironment {
+    /**
+     * 
+     * @type {OctoPrintPlatform}
+     * @memberof OctoPrintEnvironment
+     */
+    os: OctoPrintPlatform;
+    /**
+     * 
+     * @type {OctoPrintPython}
+     * @memberof OctoPrintEnvironment
+     */
+    python: OctoPrintPython;
+    /**
+     * 
+     * @type {OctoPrintHardware}
+     * @memberof OctoPrintEnvironment
+     */
+    hardware: OctoPrintHardware;
+}
+/**
+ * 
+ * @export
  * @interface OctoPrintEvent
  */
 export interface OctoPrintEvent {
@@ -1376,198 +1401,173 @@ export interface OctoPrintEventRequest {
 /**
  * 
  * @export
- * @interface OctoprintEnvironment
+ * @interface OctoPrintFile
  */
-export interface OctoprintEnvironment {
-    /**
-     * 
-     * @type {OctoprintPlatform}
-     * @memberof OctoprintEnvironment
-     */
-    os: OctoprintPlatform;
-    /**
-     * 
-     * @type {OctoprintPython}
-     * @memberof OctoprintEnvironment
-     */
-    python: OctoprintPython;
-    /**
-     * 
-     * @type {OctoprintHardware}
-     * @memberof OctoprintEnvironment
-     */
-    hardware: OctoprintHardware;
-}
-/**
- * 
- * @export
- * @interface OctoprintFile
- */
-export interface OctoprintFile {
+export interface OctoPrintFile {
     /**
      * 
      * @type {string}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     path: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     display: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     origin: string;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     size: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintFile
+     * @memberof OctoPrintFile
      */
     date: number;
 }
 /**
  * 
  * @export
- * @interface OctoprintHardware
+ * @interface OctoPrintHardware
  */
-export interface OctoprintHardware {
+export interface OctoPrintHardware {
     /**
      * 
      * @type {number}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     cores: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     freq: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     ram: number;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     pi_model: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     throttle_state: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintHardware
+     * @memberof OctoPrintHardware
      */
     octopi_version: string;
 }
 /**
  * 
  * @export
- * @interface OctoprintJob
+ * @interface OctoPrintJob
  */
-export interface OctoprintJob {
+export interface OctoPrintJob {
     /**
      * 
-     * @type {OctoprintFile}
-     * @memberof OctoprintJob
+     * @type {OctoPrintFile}
+     * @memberof OctoPrintJob
      */
-    file: OctoprintFile;
+    file: OctoPrintFile;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintJob
+     * @memberof OctoPrintJob
      */
     estimatedPrintTime: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintJob
+     * @memberof OctoPrintJob
      */
     averagePrintTime: number;
     /**
      * 
      * @type {number}
-     * @memberof OctoprintJob
+     * @memberof OctoPrintJob
      */
     lastPrintTime: number;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof OctoprintJob
+     * @memberof OctoPrintJob
      */
     filament: { [key: string]: any; };
 }
 /**
  * 
  * @export
- * @interface OctoprintPlatform
+ * @interface OctoPrintPlatform
  */
-export interface OctoprintPlatform {
+export interface OctoPrintPlatform {
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPlatform
+     * @memberof OctoPrintPlatform
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPlatform
+     * @memberof OctoPrintPlatform
      */
     platform: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPlatform
+     * @memberof OctoPrintPlatform
      */
     bits: string;
 }
 /**
  * 
  * @export
- * @interface OctoprintPython
+ * @interface OctoPrintPython
  */
-export interface OctoprintPython {
+export interface OctoPrintPython {
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPython
+     * @memberof OctoPrintPython
      */
     version: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPython
+     * @memberof OctoPrintPython
      */
     pip: string;
     /**
      * 
      * @type {string}
-     * @memberof OctoprintPython
+     * @memberof OctoPrintPython
      */
     virtualenv: string;
 }
@@ -3519,16 +3519,16 @@ export interface TelemetryEvent {
     event_type: TelemetryEventEventTypeEnum;
     /**
      * 
-     * @type {OctoprintEnvironment}
+     * @type {OctoPrintEnvironment}
      * @memberof TelemetryEvent
      */
-    environment: OctoprintEnvironment;
+    environment: OctoPrintEnvironment;
     /**
      * 
-     * @type {OctoprintJob}
+     * @type {OctoPrintJob}
      * @memberof TelemetryEvent
      */
-    octoprint_job?: OctoprintJob;
+    octoprint_job?: OctoPrintJob;
     /**
      * 
      * @type {string}

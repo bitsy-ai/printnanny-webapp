@@ -1,5 +1,5 @@
 
-# OctoprintPlatform
+# OctoPrintPlatform
 
 ## Properties
 Name | Type | Description | Notes

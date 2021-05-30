@@ -1,4 +1,4 @@
-# OctoprintHardware
+# OctoPrintHardware
 
 
 ## Properties

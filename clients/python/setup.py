@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "print-nanny-client"
-VERSION = "0.6.5rc1"
+VERSION = "0.6.5rc2"
 # To install the library, run the following
 #
 # python setup.py install

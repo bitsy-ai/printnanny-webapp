@@ -1,10 +1,10 @@
 
-# OctoprintJob
+# OctoPrintJob
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file** | [**OctoprintFile**](OctoprintFile.md) |  | 
+**file** | [**OctoPrintFile**](OctoPrintFile.md) |  | 
 **estimatedPrintTime** | **kotlin.Float** |  | 
 **averagePrintTime** | **kotlin.Float** |  | 
 **lastPrintTime** | **kotlin.Float** |  | 

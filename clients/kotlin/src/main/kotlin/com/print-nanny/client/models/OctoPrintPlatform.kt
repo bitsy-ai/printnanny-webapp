@@ -22,7 +22,7 @@ import java.io.Serializable
  * @param bits 
  */
 
-data class OctoprintPlatform (
+data class OctoPrintPlatform (
     @Json(name = "id")
     val id: kotlin.String,
     @Json(name = "platform")

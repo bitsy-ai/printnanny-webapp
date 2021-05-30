@@ -13,8 +13,8 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
-import com.print-nanny.client.models.OctoprintEnvironment
-import com.print-nanny.client.models.OctoprintJob
+import com.print-nanny.client.models.OctoPrintEnvironment
+import com.print-nanny.client.models.OctoPrintJob
 import com.print-nanny.client.models.TelemetryEventEventTypeEnum
 
 import com.squareup.moshi.Json
@@ -43,7 +43,7 @@ data class TelemetryEvent (
     @Json(name = "event_type")
     val eventType: TelemetryEventEventTypeEnum,
     @Json(name = "environment")
-    val environment: OctoprintEnvironment,
+    val environment: OctoPrintEnvironment,
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String,
     @Json(name = "client_version")
@@ -57,7 +57,7 @@ data class TelemetryEvent (
     @Json(name = "print_session")
     val printSession: kotlin.String? = null,
     @Json(name = "octoprint_job")
-    val octoprintJob: OctoprintJob? = null,
+    val octoprintJob: OctoPrintJob? = null,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")

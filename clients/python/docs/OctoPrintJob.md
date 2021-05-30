@@ -1,12 +1,14 @@
-# OctoprintPlatform
+# OctoPrintJob
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**platform** | **str** |  | 
-**bits** | **str** |  | 
+**file** | [**OctoPrintFile**](OctoPrintFile.md) |  | 
+**estimated_print_time** | **float** |  | 
+**average_print_time** | **float** |  | 
+**last_print_time** | **float** |  | 
+**filament** | **dict(str, object)** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

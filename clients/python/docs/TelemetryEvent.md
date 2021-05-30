@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **print_session** | **str** |  | [optional] [readonly] 
 **event_type** | [**TelemetryEventEventTypeEnum**](TelemetryEventEventTypeEnum.md) |  | 
-**environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
-**octoprint_job** | [**OctoprintJob**](OctoprintJob.md) |  | [optional] 
+**environment** | [**OctoPrintEnvironment**](OctoPrintEnvironment.md) |  | 
+**octoprint_job** | [**OctoPrintJob**](OctoPrintJob.md) |  | [optional] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 

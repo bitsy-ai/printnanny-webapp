@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octoprint_hardware import OctoprintHardware  # noqa: E501
+from print_nanny_client.models.octo_print_python import OctoPrintPython  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoprintHardware(unittest.TestCase):
-    """OctoprintHardware unit test stubs"""
+class TestOctoPrintPython(unittest.TestCase):
+    """OctoPrintPython unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,32 +29,26 @@ class TestOctoprintHardware(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoprintHardware
+        """Test OctoPrintPython
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octoprint_hardware.OctoprintHardware()  # noqa: E501
+        # model = print_nanny_client.models.octo_print_python.OctoPrintPython()  # noqa: E501
         if include_optional :
-            return OctoprintHardware(
-                cores = 56, 
-                freq = 1.337, 
-                ram = 56, 
-                pi_model = '', 
-                throttle_state = '', 
-                octopi_version = ''
+            return OctoPrintPython(
+                version = '', 
+                pip = '', 
+                virtualenv = ''
             )
         else :
-            return OctoprintHardware(
-                cores = 56,
-                freq = 1.337,
-                ram = 56,
-                pi_model = '',
-                throttle_state = '',
-                octopi_version = '',
+            return OctoPrintPython(
+                version = '',
+                pip = '',
+                virtualenv = '',
         )
 
-    def testOctoprintHardware(self):
-        """Test OctoprintHardware"""
+    def testOctoPrintPython(self):
+        """Test OctoPrintPython"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

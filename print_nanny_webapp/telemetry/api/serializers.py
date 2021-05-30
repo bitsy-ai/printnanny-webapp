@@ -10,7 +10,7 @@ from print_nanny_webapp.telemetry.models import (
 )
 from print_nanny_webapp.telemetry.types import TelemetryEventType
 
-class OctoPrintFileSerializer(serializers.Serializer):
+class OctoprintFileSerializer(serializers.Serializer):
     name = serializers.CharField()
     path = serializers.CharField()
     display = serializers.CharField()
@@ -18,24 +18,24 @@ class OctoPrintFileSerializer(serializers.Serializer):
     size = serializers.IntegerField()
     date = serializers.IntegerField()
 
-class OctoPrintJobSerializer(serializers.Serializer):
-    file = OctoPrintFileSerializer()
+class OctoprintJobSerializer(serializers.Serializer):
+    file = OctoprintFileSerializer()
     estimatedPrintTime = serializers.FloatField()
     averagePrintTime = serializers.FloatField()
     lastPrintTime = serializers.FloatField()
     filament = serializers.DictField()
 
-class OctoPrintPlatformSerializer(serializers.Serializer):
+class OctoprintPlatformSerializer(serializers.Serializer):
     id = serializers.CharField()
     platform = serializers.CharField()
     bits = serializers.CharField()  
 
-class OctoPrintPythonSerializer(serializers.Serializer):
+class OctoprintPythonSerializer(serializers.Serializer):
     version = serializers.CharField()
     pip = serializers.CharField()
     virtualenv = serializers.CharField()
 
-class OctoPrintHardwareSerializer(serializers.Serializer):
+class OctoprintHardwareSerializer(serializers.Serializer):
     cores = serializers.IntegerField()
     freq = serializers.FloatField()
     ram = serializers.IntegerField()
@@ -43,16 +43,16 @@ class OctoPrintHardwareSerializer(serializers.Serializer):
     throttle_state = serializers.CharField()
     octopi_version = serializers.CharField()
 
-class OctoPrintEnvironmentSerializer(serializers.Serializer):
-    os = OctoPrintPlatformSerializer()
-    python = OctoPrintPythonSerializer()
-    hardware = OctoPrintHardwareSerializer()
+class OctoprintEnvironmentSerializer(serializers.Serializer):
+    os = OctoprintPlatformSerializer()
+    python = OctoprintPythonSerializer()
+    hardware = OctoprintHardwareSerializer()
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
     print_session = serializers.StringRelatedField()
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
-    environment = OctoPrintEnvironmentSerializer()
-    octoprint_job = OctoPrintJobSerializer(required=False)
+    environment = OctoprintEnvironmentSerializer()
+    octoprint_job = OctoprintJobSerializer(required=False)
     class Meta:
         model = TelemetryEvent
         fields = "__all__"

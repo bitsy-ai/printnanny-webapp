@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.6.5rc1"
+__version__ = "0.6.5rc2"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -58,15 +58,15 @@ from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest
+from print_nanny_client.models.octo_print_environment import OctoPrintEnvironment
 from print_nanny_client.models.octo_print_event import OctoPrintEvent
 from print_nanny_client.models.octo_print_event_event_type_enum import OctoPrintEventEventTypeEnum
 from print_nanny_client.models.octo_print_event_request import OctoPrintEventRequest
-from print_nanny_client.models.octoprint_environment import OctoprintEnvironment
-from print_nanny_client.models.octoprint_file import OctoprintFile
-from print_nanny_client.models.octoprint_hardware import OctoprintHardware
-from print_nanny_client.models.octoprint_job import OctoprintJob
-from print_nanny_client.models.octoprint_platform import OctoprintPlatform
-from print_nanny_client.models.octoprint_python import OctoprintPython
+from print_nanny_client.models.octo_print_file import OctoPrintFile
+from print_nanny_client.models.octo_print_hardware import OctoPrintHardware
+from print_nanny_client.models.octo_print_job import OctoPrintJob
+from print_nanny_client.models.octo_print_platform import OctoPrintPlatform
+from print_nanny_client.models.octo_print_python import OctoPrintPython
 from print_nanny_client.models.paginated_alert_list import PaginatedAlertList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
