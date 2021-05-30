@@ -53,7 +53,7 @@ class TelemetryEventType(models.TextChoices):
         "plugin_octoprint_nanny_device_register_failed",
         "Device registration failed",
     )
-    DEVICE_RESET = "device_reset", "Device identity reset"
+    DEVICE_RESET = "plugin_octoprint_nanny_device_reset", "Device identity reset"
 
     PRINTER_PROFILE_SYNC_START = (
         "plugin_octoprint_nanny_printer_profile_sync_start",
@@ -68,7 +68,7 @@ class TelemetryEventType(models.TextChoices):
         "Printer profile sync failed",
     )
 
-    CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
+    CONNECT_TEST_REST_API = ("plugin_octoprint_nanny_connect_test_rest_api", "Test connection to REST API")
     CONNECT_TEST_REST_API_FAILED = (
         "plugin_octoprint_nanny_connect_test_rest_api_failed",
         "Test connection to REST API failed",
@@ -244,7 +244,7 @@ class PrintNannyPluginEventType(models.TextChoices):
         "plugin_octoprint_nanny_device_register_failed",
         "Device registration failed",
     )
-    DEVICE_RESET = "device_reset", "Device identity reset"
+    DEVICE_RESET = "plugin_octoprint_nanny_device_reset", "Device identity reset"
 
     PRINTER_PROFILE_SYNC_START = (
         "plugin_octoprint_nanny_printer_profile_sync_start",
@@ -259,7 +259,7 @@ class PrintNannyPluginEventType(models.TextChoices):
         "Printer profile sync failed",
     )
 
-    CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
+    CONNECT_TEST_REST_API = ("plugin_octoprint_nanny_connect_test_rest_api", "Test connection to REST API")
     CONNECT_TEST_REST_API_FAILED = (
         "plugin_octoprint_nanny_connect_test_rest_api_failed",
         "Test connection to REST API failed",
