@@ -10,12 +10,20 @@ from print_nanny_webapp.telemetry.models import (
 )
 from print_nanny_webapp.telemetry.types import TelemetryEventType
 
-class PlatformSerializer(serializers.DictField):
-    id = serializers.StringField()
+class OctoprintJobSerializer(serializers.DictField):
+    file = serializers.DictField(
+        name = serializers.CharField(),
+        path = serializers.CharField(),
+        display = serializers.CharField(),
+        origin = serializers.CharField(),
+        size = serializers.IntegerField(),
+        date = serializers.IntegerField()
+    )
+    estimatedPrintTime = serializers.FloatField()
+    averagePrintTime = serializers.FloatField()
+    lastPrintTime = serializers.FloatField()
+    filament = serializers.DictField()
 
-# 'environment': {'os': {'id': 'linux', 'platform': 'linux', 'bits': 32}, 'python': {'version': '3.7.3', 'pip': '21.1.2', 'virtualenv': '/home/pi/oprint'}, 
-# 'hardware': {'cores': 4, 'freq': 1200.0, 'ram': 917016576}, 'plugins': 
-# {'pi_support': {'model': 'Raspberry Pi 3 Model B Rev 1.2', 'throttle_state': '0x50000', 'octopi_version': '0.17.0'}}}, 'model_version': None}
 class OctoprintEnvironmentSerializer(serializers.DictField):
     os = serializers.DictField(
         id=serializers.CharField(),
@@ -44,6 +52,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
     print_session = serializers.StringRelatedField()
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     environment = OctoprintEnvironmentSerializer()
+    octoprint_job = OctoprintJobSerializer()
     class Meta:
         model = TelemetryEvent
         fields = "__all__"
