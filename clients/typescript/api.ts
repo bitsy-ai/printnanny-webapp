@@ -1397,6 +1397,12 @@ export interface OctoprintEnvironment {
      * @memberof OctoprintEnvironment
      */
     hardware: OctoprintHardware;
+    /**
+     * 
+     * @type {OctoprintPiSupport}
+     * @memberof OctoprintEnvironment
+     */
+    pi_support: OctoprintPiSupport;
 }
 /**
  * 
@@ -1465,24 +1471,6 @@ export interface OctoprintHardware {
      * @memberof OctoprintHardware
      */
     ram: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintHardware
-     */
-    pi_model: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintHardware
-     */
-    throttle_state: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintHardware
-     */
-    octopi_version: string;
 }
 /**
  * 
@@ -1520,6 +1508,31 @@ export interface OctoprintJob {
      * @memberof OctoprintJob
      */
     filament: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPiSupport
+ */
+export interface OctoprintPiSupport {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    throttle_state: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    octopi_version: string;
 }
 /**
  * 

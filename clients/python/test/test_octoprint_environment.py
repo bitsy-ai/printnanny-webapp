@@ -47,8 +47,9 @@ class TestOctoprintEnvironment(unittest.TestCase):
                 hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                     cores = 56, 
                     freq = 1.337, 
-                    ram = 56, 
-                    pi_model = '', 
+                    ram = 56, ), 
+                pi_support = print_nanny_client.models.octoprint_pi_support.OctoprintPiSupport(
+                    model = '', 
                     throttle_state = '', 
                     octopi_version = '', )
             )
@@ -65,8 +66,9 @@ class TestOctoprintEnvironment(unittest.TestCase):
                 hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                     cores = 56, 
                     freq = 1.337, 
-                    ram = 56, 
-                    pi_model = '', 
+                    ram = 56, ),
+                pi_support = print_nanny_client.models.octoprint_pi_support.OctoprintPiSupport(
+                    model = '', 
                     throttle_state = '', 
                     octopi_version = '', ),
         )

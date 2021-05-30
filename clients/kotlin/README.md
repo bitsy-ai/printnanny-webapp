@@ -133,6 +133,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintFile](docs/OctoprintFile.md)
  - [com.print-nanny.client.models.OctoprintHardware](docs/OctoprintHardware.md)
  - [com.print-nanny.client.models.OctoprintJob](docs/OctoprintJob.md)
+ - [com.print-nanny.client.models.OctoprintPiSupport](docs/OctoprintPiSupport.md)
  - [com.print-nanny.client.models.OctoprintPlatform](docs/OctoprintPlatform.md)
  - [com.print-nanny.client.models.OctoprintPrinterData](docs/OctoprintPrinterData.md)
  - [com.print-nanny.client.models.OctoprintPrinterFlags](docs/OctoprintPrinterFlags.md)

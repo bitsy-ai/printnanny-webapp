@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octoprint_hardware import OctoprintHardware  # noqa: E501
+from print_nanny_client.models.octoprint_pi_support import OctoprintPiSupport  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoprintHardware(unittest.TestCase):
-    """OctoprintHardware unit test stubs"""
+class TestOctoprintPiSupport(unittest.TestCase):
+    """OctoprintPiSupport unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,26 @@ class TestOctoprintHardware(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoprintHardware
+        """Test OctoprintPiSupport
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octoprint_hardware.OctoprintHardware()  # noqa: E501
+        # model = print_nanny_client.models.octoprint_pi_support.OctoprintPiSupport()  # noqa: E501
         if include_optional :
-            return OctoprintHardware(
-                cores = 56, 
-                freq = 1.337, 
-                ram = 56
+            return OctoprintPiSupport(
+                model = '', 
+                throttle_state = '', 
+                octopi_version = ''
             )
         else :
-            return OctoprintHardware(
-                cores = 56,
-                freq = 1.337,
-                ram = 56,
+            return OctoprintPiSupport(
+                model = '',
+                throttle_state = '',
+                octopi_version = '',
         )
 
-    def testOctoprintHardware(self):
-        """Test OctoprintHardware"""
+    def testOctoprintPiSupport(self):
+        """Test OctoprintPiSupport"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

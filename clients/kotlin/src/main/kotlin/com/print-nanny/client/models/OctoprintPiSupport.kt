@@ -17,18 +17,18 @@ import java.io.Serializable
 
 /**
  * 
- * @param cores 
- * @param freq 
- * @param ram 
+ * @param model 
+ * @param throttleState 
+ * @param octopiVersion 
  */
 
-data class OctoprintHardware (
-    @Json(name = "cores")
-    val cores: kotlin.Int,
-    @Json(name = "freq")
-    val freq: kotlin.Float,
-    @Json(name = "ram")
-    val ram: kotlin.Int
+data class OctoprintPiSupport (
+    @Json(name = "model")
+    val model: kotlin.String,
+    @Json(name = "throttle_state")
+    val throttleState: kotlin.String,
+    @Json(name = "octopi_version")
+    val octopiVersion: kotlin.String
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -51,8 +51,9 @@ class TestTelemetryEvent(unittest.TestCase):
                     hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                         cores = 56, 
                         freq = 1.337, 
-                        ram = 56, 
-                        pi_model = '', 
+                        ram = 56, ), 
+                    pi_support = print_nanny_client.models.octoprint_pi_support.OctoprintPiSupport(
+                        model = '', 
                         throttle_state = '', 
                         octopi_version = '', ), ), 
                 printer_data = print_nanny_client.models.octoprint_printer_data.OctoprintPrinterData(
@@ -131,8 +132,9 @@ class TestTelemetryEvent(unittest.TestCase):
                     hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                         cores = 56, 
                         freq = 1.337, 
-                        ram = 56, 
-                        pi_model = '', 
+                        ram = 56, ), 
+                    pi_support = print_nanny_client.models.octoprint_pi_support.OctoprintPiSupport(
+                        model = '', 
                         throttle_state = '', 
                         octopi_version = '', ), ),
                 printer_data = print_nanny_client.models.octoprint_printer_data.OctoprintPrinterData(

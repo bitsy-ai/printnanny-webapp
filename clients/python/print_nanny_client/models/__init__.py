@@ -42,6 +42,7 @@ from print_nanny_client.models.octoprint_environment import OctoprintEnvironment
 from print_nanny_client.models.octoprint_file import OctoprintFile
 from print_nanny_client.models.octoprint_hardware import OctoprintHardware
 from print_nanny_client.models.octoprint_job import OctoprintJob
+from print_nanny_client.models.octoprint_pi_support import OctoprintPiSupport
 from print_nanny_client.models.octoprint_platform import OctoprintPlatform
 from print_nanny_client.models.octoprint_printer_data import OctoprintPrinterData
 from print_nanny_client.models.octoprint_printer_flags import OctoprintPrinterFlags

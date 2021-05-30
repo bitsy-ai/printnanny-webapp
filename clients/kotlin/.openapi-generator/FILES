@@ -32,6 +32,7 @@ docs/OctoprintEnvironment.md
 docs/OctoprintFile.md
 docs/OctoprintHardware.md
 docs/OctoprintJob.md
+docs/OctoprintPiSupport.md
 docs/OctoprintPlatform.md
 docs/OctoprintPrinterData.md
 docs/OctoprintPrinterFlags.md
@@ -145,6 +146,7 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintEnvironment.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintFile.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintHardware.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintJob.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPiSupport.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPlatform.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterData.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterFlags.kt

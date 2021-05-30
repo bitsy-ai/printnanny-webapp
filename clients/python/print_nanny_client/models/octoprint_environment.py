@@ -38,16 +38,18 @@ class OctoprintEnvironment(object):
     openapi_types = {
         'os': 'OctoprintPlatform',
         'python': 'OctoprintPython',
-        'hardware': 'OctoprintHardware'
+        'hardware': 'OctoprintHardware',
+        'pi_support': 'OctoprintPiSupport'
     }
 
     attribute_map = {
         'os': 'os',
         'python': 'python',
-        'hardware': 'hardware'
+        'hardware': 'hardware',
+        'pi_support': 'pi_support'
     }
 
-    def __init__(self, os=None, python=None, hardware=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, os=None, python=None, hardware=None, pi_support=None, local_vars_configuration=None):  # noqa: E501
         """OctoprintEnvironment - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -56,11 +58,13 @@ class OctoprintEnvironment(object):
         self._os = None
         self._python = None
         self._hardware = None
+        self._pi_support = None
         self.discriminator = None
 
         self.os = os
         self.python = python
         self.hardware = hardware
+        self.pi_support = pi_support
 
     @property
     def os(self):
@@ -130,6 +134,29 @@ class OctoprintEnvironment(object):
             raise ValueError("Invalid value for `hardware`, must not be `None`")  # noqa: E501
 
         self._hardware = hardware
+
+    @property
+    def pi_support(self):
+        """Gets the pi_support of this OctoprintEnvironment.  # noqa: E501
+
+
+        :return: The pi_support of this OctoprintEnvironment.  # noqa: E501
+        :rtype: OctoprintPiSupport
+        """
+        return self._pi_support
+
+    @pi_support.setter
+    def pi_support(self, pi_support):
+        """Sets the pi_support of this OctoprintEnvironment.
+
+
+        :param pi_support: The pi_support of this OctoprintEnvironment.  # noqa: E501
+        :type pi_support: OctoprintPiSupport
+        """
+        if self.local_vars_configuration.client_side_validation and pi_support is None:  # noqa: E501
+            raise ValueError("Invalid value for `pi_support`, must not be `None`")  # noqa: E501
+
+        self._pi_support = pi_support
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

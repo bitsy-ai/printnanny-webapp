@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.OctoprintHardware
+import com.print-nanny.client.models.OctoprintPiSupport
 import com.print-nanny.client.models.OctoprintPlatform
 import com.print-nanny.client.models.OctoprintPython
 
@@ -23,6 +24,7 @@ import java.io.Serializable
  * @param os 
  * @param python 
  * @param hardware 
+ * @param piSupport 
  */
 
 data class OctoprintEnvironment (
@@ -31,7 +33,9 @@ data class OctoprintEnvironment (
     @Json(name = "python")
     val python: OctoprintPython,
     @Json(name = "hardware")
-    val hardware: OctoprintHardware
+    val hardware: OctoprintHardware,
+    @Json(name = "pi_support")
+    val piSupport: OctoprintPiSupport
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123
