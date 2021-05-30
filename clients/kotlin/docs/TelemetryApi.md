@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 <a name="telemetryList"></a>
 # **telemetryList**
-> PaginatedTelemetryEventList telemetryList(page)
+> PaginatedTelemetryEventPolymorphicList telemetryList(page)
 
 
 
@@ -32,7 +32,7 @@ Method | HTTP request | Description
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedTelemetryEventList = apiInstance.telemetryList(page)
+    val result : PaginatedTelemetryEventPolymorphicList = apiInstance.telemetryList(page)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling TelemetryApi#telemetryList")
@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedTelemetryEventList**](PaginatedTelemetryEventList.md)
+[**PaginatedTelemetryEventPolymorphicList**](PaginatedTelemetryEventPolymorphicList.md)
 
 ### Authorization
 
@@ -519,7 +519,7 @@ Configure tokenAuth:
 
 <a name="telemetryRetrieve"></a>
 # **telemetryRetrieve**
-> TelemetryEvent telemetryRetrieve(id)
+> TelemetryEventPolymorphic telemetryRetrieve(id)
 
 
 
@@ -532,7 +532,7 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this telemetry event.
 try {
-    val result : TelemetryEvent = apiInstance.telemetryRetrieve(id)
+    val result : TelemetryEventPolymorphic = apiInstance.telemetryRetrieve(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling TelemetryApi#telemetryRetrieve")
@@ -551,7 +551,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TelemetryEvent**](TelemetryEvent.md)
+[**TelemetryEventPolymorphic**](TelemetryEventPolymorphic.md)
 
 ### Authorization
 

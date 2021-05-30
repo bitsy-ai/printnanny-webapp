@@ -1,5 +1,5 @@
 
-# PaginatedTelemetryEventList
+# PaginatedTelemetryEventPolymorphicList
 
 ## Properties
 Name | Type | Description | Notes
@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **count** | **kotlin.Int** |  |  [optional]
 **next** | [**java.net.URI**](java.net.URI.md) |  |  [optional]
 **previous** | [**java.net.URI**](java.net.URI.md) |  |  [optional]
-**results** | [**kotlin.collections.List&lt;TelemetryEvent&gt;**](TelemetryEvent.md) |  |  [optional]
+**results** | [**kotlin.collections.List&lt;TelemetryEventPolymorphic&gt;**](TelemetryEventPolymorphic.md) |  |  [optional]
 
 
 

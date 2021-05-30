@@ -26,13 +26,13 @@ import java.io.Serializable
  * @param eventType 
  * @param octoprintDevice 
  * @param id 
+ * @param printSession 
  * @param ts 
  * @param eventSource 
  * @param eventData 
  * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
- * @param printSession 
  */
 
 data class PrintNannyPluginEvent (
@@ -48,6 +48,8 @@ data class PrintNannyPluginEvent (
     val octoprintDevice: kotlin.Int,
     @Json(name = "id")
     val id: kotlin.Int? = null,
+    @Json(name = "print_session")
+    val printSession: kotlin.String? = null,
     @Json(name = "ts")
     val ts: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")
@@ -59,9 +61,7 @@ data class PrintNannyPluginEvent (
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")
-    val user: kotlin.Int? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.Int? = null
+    val user: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

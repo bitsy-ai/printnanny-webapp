@@ -1174,6 +1174,12 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
+    print_session?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEvent
+     */
     ts?: string;
     /**
      * 
@@ -1235,12 +1241,6 @@ export interface OctoPrintEvent {
      * @memberof OctoPrintEvent
      */
     user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintEvent
-     */
-    print_session?: number | null;
 }
 /**
  * 
@@ -1354,12 +1354,6 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     octoprint_device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintEventRequest
-     */
-    print_session?: number | null;
 }
 /**
  * 
@@ -1403,37 +1397,37 @@ export interface OctoprintFile {
      * @type {string}
      * @memberof OctoprintFile
      */
-    name: string;
+    name: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoprintFile
      */
-    path: string;
+    path: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoprintFile
      */
-    display: string;
+    display?: string;
     /**
      * 
      * @type {string}
      * @memberof OctoprintFile
      */
-    origin: string;
+    origin: string | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintFile
      */
-    size: number;
+    size: number | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintFile
      */
-    date: number;
+    date: number | null;
 }
 /**
  * 
@@ -1477,19 +1471,19 @@ export interface OctoprintJob {
      * @type {number}
      * @memberof OctoprintJob
      */
-    estimatedPrintTime: number;
+    estimatedPrintTime?: number | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintJob
      */
-    averagePrintTime: number;
+    averagePrintTime?: number;
     /**
      * 
      * @type {number}
      * @memberof OctoprintJob
      */
-    lastPrintTime: number;
+    lastPrintTime?: number | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1520,7 +1514,7 @@ export interface OctoprintPiSupport {
      * @type {string}
      * @memberof OctoprintPiSupport
      */
-    octopi_version: string;
+    octopi_version?: string;
 }
 /**
  * 
@@ -1570,7 +1564,7 @@ export interface OctoprintPrinterData {
      * @type {string}
      * @memberof OctoprintPrinterData
      */
-    user?: string;
+    user?: string | null;
     /**
      * 
      * @type {number}
@@ -1699,31 +1693,31 @@ export interface OctoprintProgress {
      * @type {number}
      * @memberof OctoprintProgress
      */
-    completion: number;
+    completion: number | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintProgress
      */
-    filepos: number;
+    filepos: number | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintProgress
      */
-    printTime: number;
+    printTime: number | null;
     /**
      * 
      * @type {number}
      * @memberof OctoprintProgress
      */
-    printTimeLeft: number;
+    printTimeLeft: number | null;
     /**
      * 
      * @type {string}
      * @memberof OctoprintProgress
      */
-    printTimeOrigin: string;
+    printTimeOrigin: string | null;
 }
 /**
  * 
@@ -2187,33 +2181,33 @@ export interface PaginatedRemoteControlCommandList {
 /**
  * 
  * @export
- * @interface PaginatedTelemetryEventList
+ * @interface PaginatedTelemetryEventPolymorphicList
  */
-export interface PaginatedTelemetryEventList {
+export interface PaginatedTelemetryEventPolymorphicList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedTelemetryEventList
+     * @memberof PaginatedTelemetryEventPolymorphicList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedTelemetryEventList
+     * @memberof PaginatedTelemetryEventPolymorphicList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedTelemetryEventList
+     * @memberof PaginatedTelemetryEventPolymorphicList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<TelemetryEvent>}
-     * @memberof PaginatedTelemetryEventList
+     * @type {Array<TelemetryEventPolymorphic>}
+     * @memberof PaginatedTelemetryEventPolymorphicList
      */
-    results?: Array<TelemetryEvent>;
+    results?: Array<TelemetryEventPolymorphic>;
 }
 /**
  * 
@@ -2855,6 +2849,12 @@ export interface PrintNannyPluginEvent {
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
+    print_session?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
     ts?: string;
     /**
      * 
@@ -2916,12 +2916,6 @@ export interface PrintNannyPluginEvent {
      * @memberof PrintNannyPluginEvent
      */
     user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintNannyPluginEvent
-     */
-    print_session?: number | null;
 }
 /**
  * 
@@ -3575,6 +3569,12 @@ export interface RemoteCommandEvent {
      * @type {string}
      * @memberof RemoteCommandEvent
      */
+    print_session?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
     ts?: string;
     /**
      * 
@@ -3636,12 +3636,6 @@ export interface RemoteCommandEvent {
      * @memberof RemoteCommandEvent
      */
     user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoteCommandEvent
-     */
-    print_session?: number | null;
 }
 /**
  * 
@@ -3969,6 +3963,12 @@ export enum TelemetryEventEventTypeEnum {
     PrintResumed = 'PrintResumed',
     PrintStarted = 'PrintStarted'
 }
+
+/**
+ * @type TelemetryEventPolymorphic
+ * @export
+ */
+export type TelemetryEventPolymorphic = OctoPrintEvent | PrintNannyPluginEvent | PrintStatusEvent | RemoteCommandEvent | TelemetryEvent;
 
 /**
  * 
@@ -8926,7 +8926,7 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventList>> {
+        async telemetryList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9026,7 +9026,7 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEvent>> {
+        async telemetryRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -9046,7 +9046,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventList> {
+        telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
             return localVarFp.telemetryList(page, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9136,7 +9136,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEvent> {
+        telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
             return localVarFp.telemetryRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
@@ -9155,7 +9155,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventList>;
+    telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
 
     /**
      * 
@@ -9245,7 +9245,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEvent>;
+    telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
 
 }
 

@@ -20,23 +20,23 @@ import java.io.Serializable
 /**
  * 
  * @param file 
+ * @param filament 
  * @param estimatedPrintTime 
  * @param averagePrintTime 
  * @param lastPrintTime 
- * @param filament 
  */
 
 data class OctoprintJob (
     @Json(name = "file")
     val file: OctoprintFile,
-    @Json(name = "estimatedPrintTime")
-    val estimatedPrintTime: kotlin.Float,
-    @Json(name = "averagePrintTime")
-    val averagePrintTime: kotlin.Float,
-    @Json(name = "lastPrintTime")
-    val lastPrintTime: kotlin.Float,
     @Json(name = "filament")
-    val filament: kotlin.collections.Map<kotlin.String, AnyType>
+    val filament: kotlin.collections.Map<kotlin.String, AnyType>,
+    @Json(name = "estimatedPrintTime")
+    val estimatedPrintTime: kotlin.Float? = null,
+    @Json(name = "averagePrintTime")
+    val averagePrintTime: kotlin.Float? = null,
+    @Json(name = "lastPrintTime")
+    val lastPrintTime: kotlin.Float? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

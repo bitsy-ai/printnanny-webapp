@@ -26,15 +26,15 @@ import java.io.Serializable
 
 data class OctoprintProgress (
     @Json(name = "completion")
-    val completion: kotlin.Float,
+    val completion: kotlin.Float?,
     @Json(name = "filepos")
-    val filepos: kotlin.Int,
+    val filepos: kotlin.Int?,
     @Json(name = "printTime")
-    val printTime: kotlin.Int,
+    val printTime: kotlin.Int?,
     @Json(name = "printTimeLeft")
-    val printTimeLeft: kotlin.Int,
+    val printTimeLeft: kotlin.Int?,
     @Json(name = "printTimeOrigin")
-    val printTimeOrigin: kotlin.String
+    val printTimeOrigin: kotlin.String?
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

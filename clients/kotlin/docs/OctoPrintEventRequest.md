@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**printSession** | **kotlin.Int** |  |  [optional]
 
 
 

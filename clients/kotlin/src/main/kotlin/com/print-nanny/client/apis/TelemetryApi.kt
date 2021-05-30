@@ -17,11 +17,11 @@ import com.print-nanny.client.models.PaginatedOctoPrintEventList
 import com.print-nanny.client.models.PaginatedPrintNannyPluginEventList
 import com.print-nanny.client.models.PaginatedPrintStatusEventList
 import com.print-nanny.client.models.PaginatedRemoteCommandEventList
-import com.print-nanny.client.models.PaginatedTelemetryEventList
+import com.print-nanny.client.models.PaginatedTelemetryEventPolymorphicList
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintStatusEvent
 import com.print-nanny.client.models.RemoteCommandEvent
-import com.print-nanny.client.models.TelemetryEvent
+import com.print-nanny.client.models.TelemetryEventPolymorphic
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -47,22 +47,22 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedTelemetryEventList
+    * @return PaginatedTelemetryEventPolymorphicList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun telemetryList(page: kotlin.Int?) : PaginatedTelemetryEventList {
+    fun telemetryList(page: kotlin.Int?) : PaginatedTelemetryEventPolymorphicList {
         val localVariableConfig = telemetryListRequestConfig(page = page)
 
-        val localVarResponse = request<PaginatedTelemetryEventList>(
+        val localVarResponse = request<PaginatedTelemetryEventPolymorphicList>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedTelemetryEventList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedTelemetryEventPolymorphicList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -622,22 +622,22 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     * 
     * 
     * @param id A unique integer value identifying this telemetry event. 
-    * @return TelemetryEvent
+    * @return TelemetryEventPolymorphic
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun telemetryRetrieve(id: kotlin.Int) : TelemetryEvent {
+    fun telemetryRetrieve(id: kotlin.Int) : TelemetryEventPolymorphic {
         val localVariableConfig = telemetryRetrieveRequestConfig(id = id)
 
-        val localVarResponse = request<TelemetryEvent>(
+        val localVarResponse = request<TelemetryEventPolymorphic>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as TelemetryEvent
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TelemetryEventPolymorphic
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

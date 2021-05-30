@@ -28,7 +28,6 @@ import java.io.Serializable
  * @param eventSource 
  * @param eventData 
  * @param octoprintJob 
- * @param printSession 
  */
 
 data class OctoPrintEventRequest (
@@ -47,9 +46,7 @@ data class OctoPrintEventRequest (
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.Int? = null
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

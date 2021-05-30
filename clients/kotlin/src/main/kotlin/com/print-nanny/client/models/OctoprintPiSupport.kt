@@ -28,7 +28,7 @@ data class OctoprintPiSupport (
     @Json(name = "throttle_state")
     val throttleState: kotlin.String,
     @Json(name = "octopi_version")
-    val octopiVersion: kotlin.String
+    val octopiVersion: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

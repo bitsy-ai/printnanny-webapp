@@ -154,7 +154,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
- - [com.print-nanny.client.models.PaginatedTelemetryEventList](docs/PaginatedTelemetryEventList.md)
+ - [com.print-nanny.client.models.PaginatedTelemetryEventPolymorphicList](docs/PaginatedTelemetryEventPolymorphicList.md)
  - [com.print-nanny.client.models.PaginatedUserList](docs/PaginatedUserList.md)
  - [com.print-nanny.client.models.Partner3DGeeksAlert](docs/Partner3DGeeksAlert.md)
  - [com.print-nanny.client.models.Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.StatusEnum](docs/StatusEnum.md)
  - [com.print-nanny.client.models.TelemetryEvent](docs/TelemetryEvent.md)
  - [com.print-nanny.client.models.TelemetryEventEventTypeEnum](docs/TelemetryEventEventTypeEnum.md)
+ - [com.print-nanny.client.models.TelemetryEventPolymorphic](docs/TelemetryEventPolymorphic.md)
  - [com.print-nanny.client.models.User](docs/User.md)
  - [com.print-nanny.client.models.UserRequest](docs/UserRequest.md)
 
