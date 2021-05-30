@@ -95,6 +95,9 @@ class TestTelemetryEvent(unittest.TestCase):
                         print_time_origin = '', ), 
                     resends = {
                         'key' : null
+                        }, 
+                    offsets = {
+                        'key' : null
                         }, ), 
                 temperature = {
                     'key' : null
@@ -175,6 +178,9 @@ class TestTelemetryEvent(unittest.TestCase):
                         print_time_left = 56, 
                         print_time_origin = '', ), 
                     resends = {
+                        'key' : null
+                        }, 
+                    offsets = {
                         'key' : null
                         }, ),
                 temperature = {

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **currentZ** | **kotlin.Float** |  | 
 **progress** | [**OctoprintProgress**](OctoprintProgress.md) |  | 
 **resends** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
+**offsets** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
 
 
 

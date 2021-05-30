@@ -1601,6 +1601,12 @@ export interface OctoprintPrinterData {
      * @memberof OctoprintPrinterData
      */
     resends: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterData
+     */
+    offsets: { [key: string]: any; };
 }
 /**
  * 
@@ -1649,7 +1655,7 @@ export interface OctoprintPrinterFlags {
      * @type {boolean}
      * @memberof OctoprintPrinterFlags
      */
-    closedOrError: boolean;
+    closed_or_error: boolean;
     /**
      * 
      * @type {boolean}
@@ -1673,7 +1679,7 @@ export interface OctoprintPrinterFlags {
      * @type {boolean}
      * @memberof OctoprintPrinterFlags
      */
-    sdReady: boolean;
+    sd_ready: boolean;
 }
 /**
  * 
@@ -1717,19 +1723,19 @@ export interface OctoprintProgress {
      * @type {number}
      * @memberof OctoprintProgress
      */
-    printTime: number;
+    print_time: number;
     /**
      * 
      * @type {number}
      * @memberof OctoprintProgress
      */
-    printTimeLeft: number;
+    print_time_left: number;
     /**
      * 
      * @type {string}
      * @memberof OctoprintProgress
      */
-    printTimeOrigin: string;
+    print_time_origin: string;
 }
 /**
  * 

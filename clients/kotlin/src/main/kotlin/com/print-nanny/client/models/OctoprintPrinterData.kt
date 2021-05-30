@@ -27,6 +27,7 @@ import java.io.Serializable
  * @param currentZ 
  * @param progress 
  * @param resends 
+ * @param offsets 
  */
 
 data class OctoprintPrinterData (
@@ -41,7 +42,9 @@ data class OctoprintPrinterData (
     @Json(name = "progress")
     val progress: OctoprintProgress,
     @Json(name = "resends")
-    val resends: kotlin.collections.Map<kotlin.String, AnyType>
+    val resends: kotlin.collections.Map<kotlin.String, AnyType>,
+    @Json(name = "offsets")
+    val offsets: kotlin.collections.Map<kotlin.String, AnyType>
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

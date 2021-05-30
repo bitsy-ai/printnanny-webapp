@@ -58,11 +58,11 @@ class OctoprintPrinterFlagsSerializer(serializers.Serializer):
     pausing = serializers.BooleanField()
     resuming = serializers.BooleanField()
     finishing = serializers.BooleanField()
-    closed_or_error = serializers.BooleanField()
+    closedOrError = serializers.BooleanField()
     error = serializers.BooleanField()
     paused = serializers.BooleanField()
     ready = serializers.BooleanField()
-    sd_ready = serializers.BooleanField()
+    sdReady = serializers.BooleanField()
 
 class OctoprintPrinterStateSerializer(serializers.Serializer):
     text = serializers.CharField()
@@ -71,9 +71,9 @@ class OctoprintPrinterStateSerializer(serializers.Serializer):
 class OctoprintProgressSerializer(serializers.Serializer):
     completion = serializers.FloatField()
     filepos = serializers.IntegerField()
-    print_time = serializers.IntegerField()
-    print_time_left = serializers.IntegerField()
-    print_time_origin = serializers.CharField()
+    printTime = serializers.IntegerField()
+    printTimeLeft = serializers.IntegerField()
+    printTimeOrigin = serializers.CharField()
 
 class OctoprintPrinterDataSerializer(serializers.Serializer):
     job = OctoprintJobSerializer()

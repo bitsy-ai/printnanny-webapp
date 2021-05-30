@@ -100,6 +100,9 @@ class TestPaginatedTelemetryEventList(unittest.TestCase):
                                 print_time_origin = '', ), 
                             resends = {
                                 'key' : null
+                                }, 
+                            offsets = {
+                                'key' : null
                                 }, ), 
                         temperature = {
                             'key' : null

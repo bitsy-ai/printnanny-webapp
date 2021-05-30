@@ -41,7 +41,8 @@ class OctoprintPrinterData(object):
         'user': 'str',
         'current_z': 'float',
         'progress': 'OctoprintProgress',
-        'resends': 'dict(str, object)'
+        'resends': 'dict(str, object)',
+        'offsets': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -50,10 +51,11 @@ class OctoprintPrinterData(object):
         'user': 'user',
         'current_z': 'currentZ',
         'progress': 'progress',
-        'resends': 'resends'
+        'resends': 'resends',
+        'offsets': 'offsets'
     }
 
-    def __init__(self, job=None, state=None, user=None, current_z=None, progress=None, resends=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, job=None, state=None, user=None, current_z=None, progress=None, resends=None, offsets=None, local_vars_configuration=None):  # noqa: E501
         """OctoprintPrinterData - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -65,6 +67,7 @@ class OctoprintPrinterData(object):
         self._current_z = None
         self._progress = None
         self._resends = None
+        self._offsets = None
         self.discriminator = None
 
         self.job = job
@@ -73,6 +76,7 @@ class OctoprintPrinterData(object):
         self.current_z = current_z
         self.progress = progress
         self.resends = resends
+        self.offsets = offsets
 
     @property
     def job(self):
@@ -211,6 +215,29 @@ class OctoprintPrinterData(object):
             raise ValueError("Invalid value for `resends`, must not be `None`")  # noqa: E501
 
         self._resends = resends
+
+    @property
+    def offsets(self):
+        """Gets the offsets of this OctoprintPrinterData.  # noqa: E501
+
+
+        :return: The offsets of this OctoprintPrinterData.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._offsets
+
+    @offsets.setter
+    def offsets(self, offsets):
+        """Sets the offsets of this OctoprintPrinterData.
+
+
+        :param offsets: The offsets of this OctoprintPrinterData.  # noqa: E501
+        :type offsets: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and offsets is None:  # noqa: E501
+            raise ValueError("Invalid value for `offsets`, must not be `None`")  # noqa: E501
+
+        self._offsets = offsets
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
