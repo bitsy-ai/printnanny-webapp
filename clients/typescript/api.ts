@@ -1549,6 +1549,178 @@ export interface OctoprintPlatform {
 /**
  * 
  * @export
+ * @interface OctoprintPrinterData
+ */
+export interface OctoprintPrinterData {
+    /**
+     * 
+     * @type {OctoprintJob}
+     * @memberof OctoprintPrinterData
+     */
+    job: OctoprintJob;
+    /**
+     * 
+     * @type {OctoprintPrinterState}
+     * @memberof OctoprintPrinterData
+     */
+    state: OctoprintPrinterState;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterData
+     */
+    user: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterData
+     */
+    currentZ: number;
+    /**
+     * 
+     * @type {OctoprintProgress}
+     * @memberof OctoprintPrinterData
+     */
+    progress: OctoprintProgress;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterData
+     */
+    resends: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterFlags
+ */
+export interface OctoprintPrinterFlags {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    operational: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    printing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    cancelling: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    pausing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    resuming: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    finishing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    closedOrError: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    error: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    paused: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    ready: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    sdReady: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterState
+ */
+export interface OctoprintPrinterState {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterState
+     */
+    text: string;
+    /**
+     * 
+     * @type {OctoprintPrinterFlags}
+     * @memberof OctoprintPrinterState
+     */
+    flags: OctoprintPrinterFlags;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintProgress
+ */
+export interface OctoprintProgress {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    completion: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    filepos: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    printTime: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    printTimeLeft: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintProgress
+     */
+    printTimeOrigin: string;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPython
  */
 export interface OctoprintPython {
@@ -3658,10 +3830,16 @@ export interface TelemetryEvent {
     environment: OctoprintEnvironment;
     /**
      * 
-     * @type {OctoprintJob}
+     * @type {OctoprintPrinterData}
      * @memberof TelemetryEvent
      */
-    octoprint_job?: OctoprintJob;
+    printer_data: OctoprintPrinterData;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEvent
+     */
+    temperature: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -3704,6 +3882,12 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}

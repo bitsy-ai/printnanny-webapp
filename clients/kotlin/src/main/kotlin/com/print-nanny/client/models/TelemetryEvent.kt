@@ -14,7 +14,7 @@ package com.print-nanny.client.models
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.OctoprintEnvironment
-import com.print-nanny.client.models.OctoprintJob
+import com.print-nanny.client.models.OctoprintPrinterData
 import com.print-nanny.client.models.TelemetryEventEventTypeEnum
 
 import com.squareup.moshi.Json
@@ -24,17 +24,19 @@ import java.io.Serializable
  * 
  * @param eventType 
  * @param environment 
+ * @param printerData 
+ * @param temperature 
  * @param pluginVersion 
  * @param clientVersion 
  * @param octoprintVersion 
  * @param octoprintDevice 
  * @param id 
  * @param printSession 
- * @param octoprintJob 
  * @param createdDt 
  * @param eventSource 
  * @param eventData 
  * @param metadata 
+ * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
  */
@@ -44,6 +46,10 @@ data class TelemetryEvent (
     val eventType: TelemetryEventEventTypeEnum,
     @Json(name = "environment")
     val environment: OctoprintEnvironment,
+    @Json(name = "printer_data")
+    val printerData: OctoprintPrinterData,
+    @Json(name = "temperature")
+    val temperature: kotlin.collections.Map<kotlin.String, AnyType>,
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String,
     @Json(name = "client_version")
@@ -56,8 +62,6 @@ data class TelemetryEvent (
     val id: kotlin.Int? = null,
     @Json(name = "print_session")
     val printSession: kotlin.String? = null,
-    @Json(name = "octoprint_job")
-    val octoprintJob: OctoprintJob? = null,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")
@@ -66,6 +70,8 @@ data class TelemetryEvent (
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "metadata")
     val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "octoprint_job")
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")

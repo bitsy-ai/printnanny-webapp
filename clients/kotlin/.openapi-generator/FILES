@@ -33,6 +33,10 @@ docs/OctoprintFile.md
 docs/OctoprintHardware.md
 docs/OctoprintJob.md
 docs/OctoprintPlatform.md
+docs/OctoprintPrinterData.md
+docs/OctoprintPrinterFlags.md
+docs/OctoprintPrinterState.md
+docs/OctoprintProgress.md
 docs/OctoprintPython.md
 docs/PaginatedAlertList.md
 docs/PaginatedDeviceCalibrationList.md
@@ -142,6 +146,10 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintFile.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintHardware.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintJob.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPlatform.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterData.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterFlags.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterState.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintProgress.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPython.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedAlertList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
