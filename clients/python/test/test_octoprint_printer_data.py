@@ -109,7 +109,6 @@ class TestOctoprintPrinterData(unittest.TestCase):
                         paused = True, 
                         ready = True, 
                         sd_ready = True, ), ),
-                current_z = 1.337,
                 progress = print_nanny_client.models.octoprint_progress.OctoprintProgress(
                     completion = 1.337, 
                     filepos = 56, 

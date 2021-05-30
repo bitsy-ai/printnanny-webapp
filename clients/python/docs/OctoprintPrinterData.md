@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **job** | [**OctoprintJob**](OctoprintJob.md) |  | 
 **state** | [**OctoprintPrinterState**](OctoprintPrinterState.md) |  | 
 **user** | **str** |  | [optional] 
-**current_z** | **float** |  | 
+**current_z** | **float** |  | [optional] 
 **progress** | [**OctoprintProgress**](OctoprintProgress.md) |  | 
 **resends** | **dict(str, object)** |  | 
 **offsets** | **dict(str, object)** |  | 

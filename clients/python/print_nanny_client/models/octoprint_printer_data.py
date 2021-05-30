@@ -74,7 +74,8 @@ class OctoprintPrinterData(object):
         self.state = state
         if user is not None:
             self.user = user
-        self.current_z = current_z
+        if current_z is not None:
+            self.current_z = current_z
         self.progress = progress
         self.resends = resends
         self.offsets = offsets
@@ -164,8 +165,6 @@ class OctoprintPrinterData(object):
         :param current_z: The current_z of this OctoprintPrinterData.  # noqa: E501
         :type current_z: float
         """
-        if self.local_vars_configuration.client_side_validation and current_z is None:  # noqa: E501
-            raise ValueError("Invalid value for `current_z`, must not be `None`")  # noqa: E501
 
         self._current_z = current_z
 

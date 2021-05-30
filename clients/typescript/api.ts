@@ -1588,7 +1588,7 @@ export interface OctoprintPrinterData {
      * @type {number}
      * @memberof OctoprintPrinterData
      */
-    currentZ: number;
+    currentZ?: number;
     /**
      * 
      * @type {OctoprintProgress}
