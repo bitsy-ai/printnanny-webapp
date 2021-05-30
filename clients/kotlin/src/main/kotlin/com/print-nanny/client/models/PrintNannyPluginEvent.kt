@@ -22,14 +22,12 @@ import java.io.Serializable
  * 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
- * @param octoprintVersion 
  * @param eventType 
  * @param octoprintDevice 
  * @param id 
- * @param createdDt 
+ * @param ts 
  * @param eventSource 
  * @param eventData 
- * @param metadata 
  * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
@@ -41,22 +39,18 @@ data class PrintNannyPluginEvent (
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
-    @Json(name = "octoprint_version")
-    val octoprintVersion: kotlin.String,
     @Json(name = "event_type")
     val eventType: PrintNannyPluginEventEventTypeEnum,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "id")
     val id: kotlin.Int? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    @Json(name = "ts")
+    val ts: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")
     val eventSource: EventSourceEnum? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "metadata")
-    val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")

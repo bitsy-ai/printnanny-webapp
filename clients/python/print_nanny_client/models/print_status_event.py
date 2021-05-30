@@ -38,13 +38,11 @@ class PrintStatusEvent(object):
     openapi_types = {
         'id': 'int',
         'print_session': 'str',
-        'created_dt': 'datetime',
+        'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
-        'octoprint_version': 'str',
-        'metadata': 'dict(str, object)',
         'octoprint_job': 'dict(str, object)',
         'event_type': 'PrintStatusEventEventTypeEnum',
         'state': 'dict(str, object)',
@@ -59,13 +57,11 @@ class PrintStatusEvent(object):
     attribute_map = {
         'id': 'id',
         'print_session': 'print_session',
-        'created_dt': 'created_dt',
+        'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
-        'octoprint_version': 'octoprint_version',
-        'metadata': 'metadata',
         'octoprint_job': 'octoprint_job',
         'event_type': 'event_type',
         'state': 'state',
@@ -77,7 +73,7 @@ class PrintStatusEvent(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, print_session=None, created_dt=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_job=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """PrintStatusEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -85,13 +81,11 @@ class PrintStatusEvent(object):
 
         self._id = None
         self._print_session = None
-        self._created_dt = None
+        self._ts = None
         self._event_source = None
         self._event_data = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
-        self._octoprint_version = None
-        self._metadata = None
         self._octoprint_job = None
         self._event_type = None
         self._state = None
@@ -107,15 +101,13 @@ class PrintStatusEvent(object):
             self.id = id
         if print_session is not None:
             self.print_session = print_session
-        if created_dt is not None:
-            self.created_dt = created_dt
+        if ts is not None:
+            self.ts = ts
         if event_source is not None:
             self.event_source = event_source
         self.event_data = event_data
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        self.octoprint_version = octoprint_version
-        self.metadata = metadata
         self.octoprint_job = octoprint_job
         self.event_type = event_type
         if state is not None:
@@ -173,25 +165,25 @@ class PrintStatusEvent(object):
         self._print_session = print_session
 
     @property
-    def created_dt(self):
-        """Gets the created_dt of this PrintStatusEvent.  # noqa: E501
+    def ts(self):
+        """Gets the ts of this PrintStatusEvent.  # noqa: E501
 
 
-        :return: The created_dt of this PrintStatusEvent.  # noqa: E501
+        :return: The ts of this PrintStatusEvent.  # noqa: E501
         :rtype: datetime
         """
-        return self._created_dt
+        return self._ts
 
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this PrintStatusEvent.
+    @ts.setter
+    def ts(self, ts):
+        """Sets the ts of this PrintStatusEvent.
 
 
-        :param created_dt: The created_dt of this PrintStatusEvent.  # noqa: E501
-        :type created_dt: datetime
+        :param ts: The ts of this PrintStatusEvent.  # noqa: E501
+        :type ts: datetime
         """
 
-        self._created_dt = created_dt
+        self._ts = ts
 
     @property
     def event_source(self):
@@ -286,53 +278,6 @@ class PrintStatusEvent(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `60`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
-
-    @property
-    def octoprint_version(self):
-        """Gets the octoprint_version of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The octoprint_version of this PrintStatusEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._octoprint_version
-
-    @octoprint_version.setter
-    def octoprint_version(self, octoprint_version):
-        """Sets the octoprint_version of this PrintStatusEvent.
-
-
-        :param octoprint_version: The octoprint_version of this PrintStatusEvent.  # noqa: E501
-        :type octoprint_version: str
-        """
-        if self.local_vars_configuration.client_side_validation and octoprint_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                octoprint_version is not None and len(octoprint_version) > 60):
-            raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `60`")  # noqa: E501
-
-        self._octoprint_version = octoprint_version
-
-    @property
-    def metadata(self):
-        """Gets the metadata of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The metadata of this PrintStatusEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._metadata
-
-    @metadata.setter
-    def metadata(self, metadata):
-        """Sets the metadata of this PrintStatusEvent.
-
-
-        :param metadata: The metadata of this PrintStatusEvent.  # noqa: E501
-        :type metadata: dict(str, object)
-        """
-
-        self._metadata = metadata
 
     @property
     def octoprint_job(self):

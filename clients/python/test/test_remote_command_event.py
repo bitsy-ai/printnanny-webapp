@@ -37,17 +37,13 @@ class TestRemoteCommandEvent(unittest.TestCase):
         if include_optional :
             return RemoteCommandEvent(
                 id = 56, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_source = 'octoprint', 
                 event_data = {
                     'key' : null
                     }, 
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
-                octoprint_version = '', 
-                metadata = {
-                    'key' : null
-                    }, 
                 octoprint_job = {
                     'key' : null
                     }, 
@@ -61,7 +57,6 @@ class TestRemoteCommandEvent(unittest.TestCase):
             return RemoteCommandEvent(
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
-                octoprint_version = '',
                 event_type = 'remote_command_received',
                 octoprint_device = 56,
         )

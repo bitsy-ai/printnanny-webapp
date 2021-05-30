@@ -1174,7 +1174,7 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    created_dt?: string;
+    ts?: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -1199,18 +1199,6 @@ export interface OctoPrintEvent {
      * @memberof OctoPrintEvent
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1336,18 +1324,6 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintEventRequest
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEventRequest
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2867,7 +2843,7 @@ export interface PrintNannyPluginEvent {
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
-    created_dt?: string;
+    ts?: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -2892,18 +2868,6 @@ export interface PrintNannyPluginEvent {
      * @memberof PrintNannyPluginEvent
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintNannyPluginEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEvent
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3167,7 +3131,7 @@ export interface PrintStatusEvent {
      * @type {string}
      * @memberof PrintStatusEvent
      */
-    created_dt?: string;
+    ts?: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -3192,18 +3156,6 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3599,7 +3551,7 @@ export interface RemoteCommandEvent {
      * @type {string}
      * @memberof RemoteCommandEvent
      */
-    created_dt?: string;
+    ts?: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -3624,18 +3576,6 @@ export interface RemoteCommandEvent {
      * @memberof RemoteCommandEvent
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RemoteCommandEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEvent
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3864,7 +3804,7 @@ export interface TelemetryEvent {
      * @type {string}
      * @memberof TelemetryEvent
      */
-    created_dt?: string;
+    ts?: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -3889,18 +3829,6 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof TelemetryEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof TelemetryEvent
-     */
-    metadata?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}

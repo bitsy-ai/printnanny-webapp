@@ -38,17 +38,13 @@ class TestPrintStatusEvent(unittest.TestCase):
             return PrintStatusEvent(
                 id = 56, 
                 print_session = '', 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_source = 'octoprint', 
                 event_data = {
                     'key' : null
                     }, 
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
-                octoprint_version = '', 
-                metadata = {
-                    'key' : null
-                    }, 
                 octoprint_job = {
                     'key' : null
                     }, 
@@ -69,7 +65,6 @@ class TestPrintStatusEvent(unittest.TestCase):
             return PrintStatusEvent(
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
-                octoprint_version = '',
                 event_type = 'PrintCancelled',
                 job_data_file = '',
                 octoprint_device = 56,

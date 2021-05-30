@@ -22,12 +22,10 @@ import java.io.Serializable
  * 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
- * @param octoprintVersion 
  * @param eventType 
  * @param octoprintDevice 
  * @param eventSource 
  * @param eventData 
- * @param metadata 
  * @param octoprintJob 
  * @param printSession 
  */
@@ -37,8 +35,6 @@ data class OctoPrintEventRequest (
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
-    @Json(name = "octoprint_version")
-    val octoprintVersion: kotlin.String,
     @Json(name = "event_type")
     val eventType: OctoPrintEventEventTypeEnum,
     @Json(name = "octoprint_device")
@@ -47,8 +43,6 @@ data class OctoPrintEventRequest (
     val eventSource: EventSourceEnum? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "metadata")
-    val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "print_session")
