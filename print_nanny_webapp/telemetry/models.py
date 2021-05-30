@@ -14,6 +14,7 @@ from print_nanny_webapp.telemetry.types import (
     RemoteCommandEventType,
     PrintStatusEventType,
     EventSource,
+    TelemetryEventType,
 )
 
 User = get_user_model()
@@ -24,16 +25,13 @@ class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
-    event_type = RemoteCommandEventType.choices
-
+    event_type = models.CharField(
+        max_length=255, db_index=True, choices=TelemetryEventType.choices
+    )
     ts = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)
-    event_data = models.JSONField(null=True)
-    octoprint_device = models.ForeignKey(
-        "remote_control.OctoPrintDevice",
-        db_index=True,
-        on_delete=models.CASCADE,
-    )
+    event_data = models.JSONField(default=dict)
+    octoprint_metadata = models.JSONField(default=dict)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_nanny_plugin_version = models.CharField(max_length=60)
     print_nanny_client_version = models.CharField(max_length=60)
@@ -55,9 +53,6 @@ class RemoteCommandEvent(TelemetryEvent):
         return super().__init__(*args, event_source=EventSource.REMOTE_COMMAND, **kwargs)
 
     event_codes = [x.value for x in RemoteCommandEventType.__members__.values()]
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=RemoteCommandEventType.choices
-    )
 
 
 class PrintNannyPluginEvent(TelemetryEvent):
@@ -76,10 +71,6 @@ class PrintNannyPluginEvent(TelemetryEvent):
 
     event_codes = [x.value for x in PrintNannyPluginEventType.__members__.values()]
 
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=PrintNannyPluginEventType.choices
-    )
-
     @classmethod
     def strip_octoprint_prefix(self, event_type):
 
@@ -95,9 +86,6 @@ class OctoPrintEvent(TelemetryEvent):
         return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
     event_codes = [x.value for x in OctoprintEventType.__members__.values()]
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=OctoprintEventType.choices
-    )
 
 
 
@@ -117,11 +105,9 @@ class PrintStatusEvent(TelemetryEvent):
         "PrintStarted": "text-success",
         "Idle": "text-warning",
     }
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=PrintStatusEventType.choices
-    )
-    state = JSONField(default=dict)
-    current_z = models.FloatField(null=True)
-    # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
-    progress = JSONField(default=dict)
-    job_data_file = models.CharField(max_length=255)
+
+    # state = JSONField(default=dict)
+    # current_z = models.FloatField(null=True)
+    # # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
+    # progress = JSONField(default=dict)
+    # job_data_file = models.CharField(max_length=255)

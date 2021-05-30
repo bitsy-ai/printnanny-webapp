@@ -36,43 +36,56 @@ class OctoPrintEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'environment': 'OctoprintEnvironmentRequest',
+        'printer_data': 'OctoprintPrinterDataRequest',
+        'temperature': 'dict(str, object)',
+        'event_type': 'OctoPrintEventEventTypeEnum',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
         'octoprint_job': 'dict(str, object)',
-        'event_type': 'OctoPrintEventEventTypeEnum',
         'octoprint_device': 'int'
     }
 
     attribute_map = {
+        'environment': 'environment',
+        'printer_data': 'printer_data',
+        'temperature': 'temperature',
+        'event_type': 'event_type',
         'event_source': 'event_source',
         'event_data': 'event_data',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
         'octoprint_job': 'octoprint_job',
-        'event_type': 'event_type',
         'octoprint_device': 'octoprint_device'
     }
 
-    def __init__(self, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, event_type=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, environment=None, printer_data=None, temperature=None, event_type=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, octoprint_device=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._environment = None
+        self._printer_data = None
+        self._temperature = None
+        self._event_type = None
         self._event_source = None
         self._event_data = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
         self._octoprint_job = None
-        self._event_type = None
         self._octoprint_device = None
         self.discriminator = None
 
+        self.environment = environment
+        self.printer_data = printer_data
+        self.temperature = temperature
+        self.event_type = event_type
         if event_source is not None:
             self.event_source = event_source
         self.event_data = event_data
@@ -80,8 +93,99 @@ class OctoPrintEventRequest(object):
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
         self.octoprint_job = octoprint_job
-        self.event_type = event_type
         self.octoprint_device = octoprint_device
+
+    @property
+    def environment(self):
+        """Gets the environment of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The environment of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: OctoprintEnvironmentRequest
+        """
+        return self._environment
+
+    @environment.setter
+    def environment(self, environment):
+        """Sets the environment of this OctoPrintEventRequest.
+
+
+        :param environment: The environment of this OctoPrintEventRequest.  # noqa: E501
+        :type environment: OctoprintEnvironmentRequest
+        """
+        if self.local_vars_configuration.client_side_validation and environment is None:  # noqa: E501
+            raise ValueError("Invalid value for `environment`, must not be `None`")  # noqa: E501
+
+        self._environment = environment
+
+    @property
+    def printer_data(self):
+        """Gets the printer_data of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The printer_data of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: OctoprintPrinterDataRequest
+        """
+        return self._printer_data
+
+    @printer_data.setter
+    def printer_data(self, printer_data):
+        """Sets the printer_data of this OctoPrintEventRequest.
+
+
+        :param printer_data: The printer_data of this OctoPrintEventRequest.  # noqa: E501
+        :type printer_data: OctoprintPrinterDataRequest
+        """
+        if self.local_vars_configuration.client_side_validation and printer_data is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_data`, must not be `None`")  # noqa: E501
+
+        self._printer_data = printer_data
+
+    @property
+    def temperature(self):
+        """Gets the temperature of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The temperature of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._temperature
+
+    @temperature.setter
+    def temperature(self, temperature):
+        """Sets the temperature of this OctoPrintEventRequest.
+
+
+        :param temperature: The temperature of this OctoPrintEventRequest.  # noqa: E501
+        :type temperature: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and temperature is None:  # noqa: E501
+            raise ValueError("Invalid value for `temperature`, must not be `None`")  # noqa: E501
+
+        self._temperature = temperature
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this OctoPrintEventRequest.  # noqa: E501
+
+
+        :return: The event_type of this OctoPrintEventRequest.  # noqa: E501
+        :rtype: OctoPrintEventEventTypeEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this OctoPrintEventRequest.
+
+
+        :param event_type: The event_type of this OctoPrintEventRequest.  # noqa: E501
+        :type event_type: OctoPrintEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def event_source(self):
@@ -223,29 +327,6 @@ class OctoPrintEventRequest(object):
         """
 
         self._octoprint_job = octoprint_job
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this OctoPrintEventRequest.  # noqa: E501
-
-
-        :return: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: OctoPrintEventEventTypeEnum
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this OctoPrintEventRequest.
-
-
-        :param event_type: The event_type of this OctoPrintEventRequest.  # noqa: E501
-        :type event_type: OctoPrintEventEventTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
 
     @property
     def octoprint_device(self):

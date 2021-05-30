@@ -38,6 +38,10 @@ class PrintStatusEvent(object):
     openapi_types = {
         'id': 'int',
         'print_session': 'str',
+        'environment': 'OctoprintEnvironment',
+        'printer_data': 'OctoprintPrinterData',
+        'temperature': 'dict(str, object)',
+        'event_type': 'PrintStatusEventEventTypeEnum',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -45,11 +49,6 @@ class PrintStatusEvent(object):
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
         'octoprint_job': 'dict(str, object)',
-        'event_type': 'PrintStatusEventEventTypeEnum',
-        'state': 'dict(str, object)',
-        'current_z': 'float',
-        'progress': 'dict(str, object)',
-        'job_data_file': 'str',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'user': 'int'
@@ -58,6 +57,10 @@ class PrintStatusEvent(object):
     attribute_map = {
         'id': 'id',
         'print_session': 'print_session',
+        'environment': 'environment',
+        'printer_data': 'printer_data',
+        'temperature': 'temperature',
+        'event_type': 'event_type',
         'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
@@ -65,17 +68,12 @@ class PrintStatusEvent(object):
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
         'octoprint_job': 'octoprint_job',
-        'event_type': 'event_type',
-        'state': 'state',
-        'current_z': 'current_z',
-        'progress': 'progress',
-        'job_data_file': 'job_data_file',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'user': 'user'
     }
 
-    def __init__(self, id=None, print_session=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, event_type=None, state=None, current_z=None, progress=None, job_data_file=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, environment=None, printer_data=None, temperature=None, event_type=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """PrintStatusEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -83,6 +81,10 @@ class PrintStatusEvent(object):
 
         self._id = None
         self._print_session = None
+        self._environment = None
+        self._printer_data = None
+        self._temperature = None
+        self._event_type = None
         self._ts = None
         self._event_source = None
         self._event_data = None
@@ -90,11 +92,6 @@ class PrintStatusEvent(object):
         self._print_nanny_client_version = None
         self._octoprint_version = None
         self._octoprint_job = None
-        self._event_type = None
-        self._state = None
-        self._current_z = None
-        self._progress = None
-        self._job_data_file = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
@@ -104,6 +101,10 @@ class PrintStatusEvent(object):
             self.id = id
         if print_session is not None:
             self.print_session = print_session
+        self.environment = environment
+        self.printer_data = printer_data
+        self.temperature = temperature
+        self.event_type = event_type
         if ts is not None:
             self.ts = ts
         if event_source is not None:
@@ -113,13 +114,6 @@ class PrintStatusEvent(object):
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
         self.octoprint_job = octoprint_job
-        self.event_type = event_type
-        if state is not None:
-            self.state = state
-        self.current_z = current_z
-        if progress is not None:
-            self.progress = progress
-        self.job_data_file = job_data_file
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
@@ -167,6 +161,98 @@ class PrintStatusEvent(object):
         """
 
         self._print_session = print_session
+
+    @property
+    def environment(self):
+        """Gets the environment of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The environment of this PrintStatusEvent.  # noqa: E501
+        :rtype: OctoprintEnvironment
+        """
+        return self._environment
+
+    @environment.setter
+    def environment(self, environment):
+        """Sets the environment of this PrintStatusEvent.
+
+
+        :param environment: The environment of this PrintStatusEvent.  # noqa: E501
+        :type environment: OctoprintEnvironment
+        """
+        if self.local_vars_configuration.client_side_validation and environment is None:  # noqa: E501
+            raise ValueError("Invalid value for `environment`, must not be `None`")  # noqa: E501
+
+        self._environment = environment
+
+    @property
+    def printer_data(self):
+        """Gets the printer_data of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The printer_data of this PrintStatusEvent.  # noqa: E501
+        :rtype: OctoprintPrinterData
+        """
+        return self._printer_data
+
+    @printer_data.setter
+    def printer_data(self, printer_data):
+        """Sets the printer_data of this PrintStatusEvent.
+
+
+        :param printer_data: The printer_data of this PrintStatusEvent.  # noqa: E501
+        :type printer_data: OctoprintPrinterData
+        """
+        if self.local_vars_configuration.client_side_validation and printer_data is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_data`, must not be `None`")  # noqa: E501
+
+        self._printer_data = printer_data
+
+    @property
+    def temperature(self):
+        """Gets the temperature of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The temperature of this PrintStatusEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._temperature
+
+    @temperature.setter
+    def temperature(self, temperature):
+        """Sets the temperature of this PrintStatusEvent.
+
+
+        :param temperature: The temperature of this PrintStatusEvent.  # noqa: E501
+        :type temperature: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and temperature is None:  # noqa: E501
+            raise ValueError("Invalid value for `temperature`, must not be `None`")  # noqa: E501
+
+        self._temperature = temperature
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The event_type of this PrintStatusEvent.  # noqa: E501
+        :rtype: PrintStatusEventEventTypeEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this PrintStatusEvent.
+
+
+        :param event_type: The event_type of this PrintStatusEvent.  # noqa: E501
+        :type event_type: PrintStatusEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def ts(self):
@@ -329,118 +415,6 @@ class PrintStatusEvent(object):
         """
 
         self._octoprint_job = octoprint_job
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The event_type of this PrintStatusEvent.  # noqa: E501
-        :rtype: PrintStatusEventEventTypeEnum
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this PrintStatusEvent.
-
-
-        :param event_type: The event_type of this PrintStatusEvent.  # noqa: E501
-        :type event_type: PrintStatusEventEventTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
-
-    @property
-    def state(self):
-        """Gets the state of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The state of this PrintStatusEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._state
-
-    @state.setter
-    def state(self, state):
-        """Sets the state of this PrintStatusEvent.
-
-
-        :param state: The state of this PrintStatusEvent.  # noqa: E501
-        :type state: dict(str, object)
-        """
-
-        self._state = state
-
-    @property
-    def current_z(self):
-        """Gets the current_z of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The current_z of this PrintStatusEvent.  # noqa: E501
-        :rtype: float
-        """
-        return self._current_z
-
-    @current_z.setter
-    def current_z(self, current_z):
-        """Sets the current_z of this PrintStatusEvent.
-
-
-        :param current_z: The current_z of this PrintStatusEvent.  # noqa: E501
-        :type current_z: float
-        """
-
-        self._current_z = current_z
-
-    @property
-    def progress(self):
-        """Gets the progress of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The progress of this PrintStatusEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._progress
-
-    @progress.setter
-    def progress(self, progress):
-        """Sets the progress of this PrintStatusEvent.
-
-
-        :param progress: The progress of this PrintStatusEvent.  # noqa: E501
-        :type progress: dict(str, object)
-        """
-
-        self._progress = progress
-
-    @property
-    def job_data_file(self):
-        """Gets the job_data_file of this PrintStatusEvent.  # noqa: E501
-
-
-        :return: The job_data_file of this PrintStatusEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._job_data_file
-
-    @job_data_file.setter
-    def job_data_file(self, job_data_file):
-        """Sets the job_data_file of this PrintStatusEvent.
-
-
-        :param job_data_file: The job_data_file of this PrintStatusEvent.  # noqa: E501
-        :type job_data_file: str
-        """
-        if self.local_vars_configuration.client_side_validation and job_data_file is None:  # noqa: E501
-            raise ValueError("Invalid value for `job_data_file`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                job_data_file is not None and len(job_data_file) > 255):
-            raise ValueError("Invalid value for `job_data_file`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._job_data_file = job_data_file
 
     @property
     def polymorphic_ctype(self):

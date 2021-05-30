@@ -144,17 +144,17 @@ Class | Method | HTTP request | Description
 *RemoteControlApi* | [**printer_profiles_update**](docs/RemoteControlApi.md#printer_profiles_update) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**printer_profiles_update_or_create**](docs/RemoteControlApi.md#printer_profiles_update_or_create) | **POST** /api/printer-profiles/update-or-create/ | 
 *SchemaApi* | [**schema_retrieve**](docs/SchemaApi.md#schema_retrieve) | **GET** /api/schema/ | 
-*TelemetryApi* | [**telemetry_list**](docs/TelemetryApi.md#telemetry_list) | **GET** /api/telemetry/ | 
-*TelemetryApi* | [**telemetry_octoprint_events_create**](docs/TelemetryApi.md#telemetry_octoprint_events_create) | **POST** /api/telemetry/octoprint-events/ | 
-*TelemetryApi* | [**telemetry_octoprint_events_list**](docs/TelemetryApi.md#telemetry_octoprint_events_list) | **GET** /api/telemetry/octoprint-events/ | 
-*TelemetryApi* | [**telemetry_octoprint_events_retrieve**](docs/TelemetryApi.md#telemetry_octoprint_events_retrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
-*TelemetryApi* | [**telemetry_print_nanny_plugin_events_list**](docs/TelemetryApi.md#telemetry_print_nanny_plugin_events_list) | **GET** /api/telemetry/print-nanny-plugin-events/ | 
-*TelemetryApi* | [**telemetry_print_nanny_plugin_events_retrieve**](docs/TelemetryApi.md#telemetry_print_nanny_plugin_events_retrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
-*TelemetryApi* | [**telemetry_print_status_events_list**](docs/TelemetryApi.md#telemetry_print_status_events_list) | **GET** /api/telemetry/print-status-events/ | 
-*TelemetryApi* | [**telemetry_print_status_events_retrieve**](docs/TelemetryApi.md#telemetry_print_status_events_retrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
-*TelemetryApi* | [**telemetry_remote_command_events_list**](docs/TelemetryApi.md#telemetry_remote_command_events_list) | **GET** /api/telemetry/remote-command-events/ | 
-*TelemetryApi* | [**telemetry_remote_command_events_retrieve**](docs/TelemetryApi.md#telemetry_remote_command_events_retrieve) | **GET** /api/telemetry/remote-command-events/{id}/ | 
-*TelemetryApi* | [**telemetry_retrieve**](docs/TelemetryApi.md#telemetry_retrieve) | **GET** /api/telemetry/{id}/ | 
+*TelemetryApi* | [**octoprint_events_create**](docs/TelemetryApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
+*TelemetryApi* | [**octoprint_events_list**](docs/TelemetryApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
+*TelemetryApi* | [**octoprint_events_retrieve**](docs/TelemetryApi.md#octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
+*TelemetryApi* | [**print_nanny_plugin_events_list**](docs/TelemetryApi.md#print_nanny_plugin_events_list) | **GET** /api/print-nanny-plugin-events/ | 
+*TelemetryApi* | [**print_nanny_plugin_events_retrieve**](docs/TelemetryApi.md#print_nanny_plugin_events_retrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+*TelemetryApi* | [**print_status_events_list**](docs/TelemetryApi.md#print_status_events_list) | **GET** /api/print-status-events/ | 
+*TelemetryApi* | [**print_status_events_retrieve**](docs/TelemetryApi.md#print_status_events_retrieve) | **GET** /api/print-status-events/{id}/ | 
+*TelemetryApi* | [**remote_command_events_list**](docs/TelemetryApi.md#remote_command_events_list) | **GET** /api/remote-command-events/ | 
+*TelemetryApi* | [**remote_command_events_retrieve**](docs/TelemetryApi.md#remote_command_events_retrieve) | **GET** /api/remote-command-events/{id}/ | 
+*TelemetryApi* | [**telemetry_events_list**](docs/TelemetryApi.md#telemetry_events_list) | **GET** /api/telemetry-events/ | 
+*TelemetryApi* | [**telemetry_events_retrieve**](docs/TelemetryApi.md#telemetry_events_retrieve) | **GET** /api/telemetry-events/{id}/ | 
 *UsersApi* | [**users_list**](docs/UsersApi.md#users_list) | **GET** /api/users/ | 
 *UsersApi* | [**users_me_retrieve**](docs/UsersApi.md#users_me_retrieve) | **GET** /api/users/me/ | 
 *UsersApi* | [**users_partial_update**](docs/UsersApi.md#users_partial_update) | **PATCH** /api/users/{id}/ | 
@@ -189,16 +189,27 @@ Class | Method | HTTP request | Description
  - [OctoPrintEventEventTypeEnum](docs/OctoPrintEventEventTypeEnum.md)
  - [OctoPrintEventRequest](docs/OctoPrintEventRequest.md)
  - [OctoprintEnvironment](docs/OctoprintEnvironment.md)
+ - [OctoprintEnvironmentRequest](docs/OctoprintEnvironmentRequest.md)
  - [OctoprintFile](docs/OctoprintFile.md)
+ - [OctoprintFileRequest](docs/OctoprintFileRequest.md)
  - [OctoprintHardware](docs/OctoprintHardware.md)
+ - [OctoprintHardwareRequest](docs/OctoprintHardwareRequest.md)
  - [OctoprintJob](docs/OctoprintJob.md)
+ - [OctoprintJobRequest](docs/OctoprintJobRequest.md)
  - [OctoprintPiSupport](docs/OctoprintPiSupport.md)
+ - [OctoprintPiSupportRequest](docs/OctoprintPiSupportRequest.md)
  - [OctoprintPlatform](docs/OctoprintPlatform.md)
+ - [OctoprintPlatformRequest](docs/OctoprintPlatformRequest.md)
  - [OctoprintPrinterData](docs/OctoprintPrinterData.md)
+ - [OctoprintPrinterDataRequest](docs/OctoprintPrinterDataRequest.md)
  - [OctoprintPrinterFlags](docs/OctoprintPrinterFlags.md)
+ - [OctoprintPrinterFlagsRequest](docs/OctoprintPrinterFlagsRequest.md)
  - [OctoprintPrinterState](docs/OctoprintPrinterState.md)
+ - [OctoprintPrinterStateRequest](docs/OctoprintPrinterStateRequest.md)
  - [OctoprintProgress](docs/OctoprintProgress.md)
+ - [OctoprintProgressRequest](docs/OctoprintProgressRequest.md)
  - [OctoprintPython](docs/OctoprintPython.md)
+ - [OctoprintPythonRequest](docs/OctoprintPythonRequest.md)
  - [PaginatedAlertList](docs/PaginatedAlertList.md)
  - [PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)

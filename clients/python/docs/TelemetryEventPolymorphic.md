@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **print_session** | **str** |  | [optional] [readonly] 
-**event_type** | [**PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
 **environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **temperature** | **dict(str, object)** |  | 
+**event_type** | [**PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 
@@ -20,10 +20,6 @@ Name | Type | Description | Notes
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 
-**state** | **dict(str, object)** |  | [optional] 
-**current_z** | **float** |  | [optional] 
-**progress** | **dict(str, object)** |  | [optional] 
-**job_data_file** | **str** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -6,6 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **print_session** | **str** |  | [optional] [readonly] 
+**environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
+**printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
+**temperature** | **dict(str, object)** |  | 
+**event_type** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
 **event_data** | **dict(str, object)** |  | [optional] 
@@ -13,11 +17,6 @@ Name | Type | Description | Notes
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
-**event_type** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
-**state** | **dict(str, object)** |  | [optional] 
-**current_z** | **float** |  | [optional] 
-**progress** | **dict(str, object)** |  | [optional] 
-**job_data_file** | **str** |  | 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 

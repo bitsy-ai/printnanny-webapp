@@ -38,7 +38,6 @@ class TestTelemetryEvent(unittest.TestCase):
             return TelemetryEvent(
                 id = 56, 
                 print_session = '', 
-                event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
@@ -102,6 +101,7 @@ class TestTelemetryEvent(unittest.TestCase):
                 temperature = {
                     'key' : null
                     }, 
+                event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_source = None, 
                 event_data = {
@@ -119,7 +119,6 @@ class TestTelemetryEvent(unittest.TestCase):
             )
         else :
             return TelemetryEvent(
-                event_type = 'plugin_octoprint_nanny_monitoring_start',
                 environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
@@ -183,6 +182,7 @@ class TestTelemetryEvent(unittest.TestCase):
                 temperature = {
                     'key' : null
                     },
+                event_type = 'plugin_octoprint_nanny_monitoring_start',
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',

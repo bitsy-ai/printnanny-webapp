@@ -38,10 +38,10 @@ class TelemetryEvent(object):
     openapi_types = {
         'id': 'int',
         'print_session': 'str',
-        'event_type': 'TelemetryEventEventTypeEnum',
         'environment': 'OctoprintEnvironment',
         'printer_data': 'OctoprintPrinterData',
         'temperature': 'dict(str, object)',
+        'event_type': 'TelemetryEventEventTypeEnum',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -57,10 +57,10 @@ class TelemetryEvent(object):
     attribute_map = {
         'id': 'id',
         'print_session': 'print_session',
-        'event_type': 'event_type',
         'environment': 'environment',
         'printer_data': 'printer_data',
         'temperature': 'temperature',
+        'event_type': 'event_type',
         'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
@@ -73,7 +73,7 @@ class TelemetryEvent(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, print_session=None, event_type=None, environment=None, printer_data=None, temperature=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, environment=None, printer_data=None, temperature=None, event_type=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,10 +81,10 @@ class TelemetryEvent(object):
 
         self._id = None
         self._print_session = None
-        self._event_type = None
         self._environment = None
         self._printer_data = None
         self._temperature = None
+        self._event_type = None
         self._ts = None
         self._event_source = None
         self._event_data = None
@@ -101,10 +101,10 @@ class TelemetryEvent(object):
             self.id = id
         if print_session is not None:
             self.print_session = print_session
-        self.event_type = event_type
         self.environment = environment
         self.printer_data = printer_data
         self.temperature = temperature
+        self.event_type = event_type
         if ts is not None:
             self.ts = ts
         if event_source is not None:
@@ -161,29 +161,6 @@ class TelemetryEvent(object):
         """
 
         self._print_session = print_session
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this TelemetryEvent.  # noqa: E501
-
-
-        :return: The event_type of this TelemetryEvent.  # noqa: E501
-        :rtype: TelemetryEventEventTypeEnum
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this TelemetryEvent.
-
-
-        :param event_type: The event_type of this TelemetryEvent.  # noqa: E501
-        :type event_type: TelemetryEventEventTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
 
     @property
     def environment(self):
@@ -253,6 +230,29 @@ class TelemetryEvent(object):
             raise ValueError("Invalid value for `temperature`, must not be `None`")  # noqa: E501
 
         self._temperature = temperature
+
+    @property
+    def event_type(self):
+        """Gets the event_type of this TelemetryEvent.  # noqa: E501
+
+
+        :return: The event_type of this TelemetryEvent.  # noqa: E501
+        :rtype: TelemetryEventEventTypeEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this TelemetryEvent.
+
+
+        :param event_type: The event_type of this TelemetryEvent.  # noqa: E501
+        :type event_type: TelemetryEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
 
     @property
     def ts(self):

@@ -1,6 +1,6 @@
 from typing import Optional
 from rest_framework import serializers
-
+from django.apps import apps
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintStatusEvent,
@@ -8,8 +8,11 @@ from print_nanny_webapp.telemetry.models import (
     RemoteCommandEvent,
     TelemetryEvent
 )
-from print_nanny_webapp.telemetry.types import PrintStatusEventType, TelemetryEventType
+from print_nanny_webapp.telemetry.types import (
+    PrintStatusEventType, TelemetryEventType, PrintNannyPluginEventType, OctoprintEventType, RemoteCommandEventType
+)
 from rest_polymorphic.serializers import PolymorphicSerializer
+
 
 class OctoprintFileSerializer(serializers.Serializer):
     name = serializers.CharField(allow_null=True)
@@ -85,27 +88,29 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
     resends = serializers.DictField()
     offsets = serializers.DictField()
 
-class TelemetryEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False)
-    event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
+class OctoprintMetadata(serializers.Serializer):
     environment = OctoprintEnvironmentSerializer()
     printer_data = OctoprintPrinterDataSerializer()
     temperature = serializers.DictField()
+
+class TelemetryEventSerializer(serializers.ModelSerializer):
+    print_session = serializers.StringRelatedField(required=False, read_only=False)
+    octoprint_metadata = OctoprintMetadata()
     class Meta:
         model = TelemetryEvent
         fields = "__all__"
         read_only_fields = ("user", "event_source")
 
-class PrintStatusEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False)
+class PrintStatusEventSerializer( TelemetryEventSerializer):
+    event_type = serializers.ChoiceField(choices=PrintStatusEventType.choices)
 
     class Meta:
         model = PrintStatusEvent
         fields = "__all__"
         read_only_fields = ("user",)
 
-class OctoPrintEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False)
+class OctoPrintEventSerializer(TelemetryEventSerializer):
+    event_type = serializers.ChoiceField(choices=OctoprintEventType.choices)
 
     class Meta:
         model = OctoPrintEvent
@@ -113,16 +118,16 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 
-class PrintNannyPluginEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False)
+class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
+    event_type = serializers.ChoiceField(choices=PrintNannyPluginEventType.choices)
 
     class Meta:
         model = PrintNannyPluginEvent
         fields = "__all__"
         read_only_fields = ("user",)
 
-class RemoteCommandEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False)
+class RemoteCommandEventSerializer(TelemetryEventSerializer):
+    event_type = serializers.ChoiceField(choices=RemoteCommandEventType.choices)
 
     class Meta:
         model = RemoteCommandEvent
@@ -130,8 +135,7 @@ class RemoteCommandEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
 
 class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
-    print_session = serializers.StringRelatedField(required=False)
-
+    resource_type_field_name = "polymorphic_ctype"
     model_serializer_mapping = {
         TelemetryEvent: TelemetryEventSerializer,
         RemoteCommandEvent: RemoteCommandEventSerializer,
@@ -139,3 +143,5 @@ class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
         OctoPrintEvent: OctoPrintEventSerializer,
         PrintNannyPluginEvent: PrintNannyPluginEventSerializer
     }
+    def to_resource_type(self, model_or_instance):
+        return model_or_instance._meta.object_name.lower()
