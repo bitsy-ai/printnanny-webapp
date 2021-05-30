@@ -37,7 +37,6 @@ class TestTelemetryEvent(unittest.TestCase):
         if include_optional :
             return TelemetryEvent(
                 id = 56, 
-                print_session = '', 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_source = 'octoprint', 
                 event_data = {
@@ -54,7 +53,8 @@ class TestTelemetryEvent(unittest.TestCase):
                     }, 
                 polymorphic_ctype = 56, 
                 octoprint_device = 56, 
-                user = 56
+                user = 56, 
+                print_session = 56
             )
         else :
             return TelemetryEvent(
