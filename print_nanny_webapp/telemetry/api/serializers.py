@@ -85,7 +85,7 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
     offsets = serializers.DictField()
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField()
+    print_session = serializers.StringRelatedField(required=False)
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     environment = OctoprintEnvironmentSerializer()
     printer_data = OctoprintPrinterDataSerializer()
