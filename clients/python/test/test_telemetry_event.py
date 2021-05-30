@@ -103,7 +103,7 @@ class TestTelemetryEvent(unittest.TestCase):
                     'key' : null
                     }, 
                 ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                event_source = 'octoprint', 
+                event_source = None, 
                 event_data = {
                     'key' : null
                     }, 

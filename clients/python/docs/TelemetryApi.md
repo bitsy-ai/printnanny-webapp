@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **telemetry_list**
-> PaginatedTelemetryEventList telemetry_list(page=page)
+> PaginatedTelemetryEventPolymorphicList telemetry_list(page=page)
 
 
 
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedTelemetryEventList**](PaginatedTelemetryEventList.md)
+[**PaginatedTelemetryEventPolymorphicList**](PaginatedTelemetryEventPolymorphicList.md)
 
 ### Authorization
 
@@ -1189,7 +1189,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **telemetry_retrieve**
-> TelemetryEvent telemetry_retrieve(id)
+> TelemetryEventPolymorphic telemetry_retrieve(id)
 
 
 
@@ -1287,7 +1287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TelemetryEvent**](TelemetryEvent.md)
+[**TelemetryEventPolymorphic**](TelemetryEventPolymorphic.md)
 
 ### Authorization
 

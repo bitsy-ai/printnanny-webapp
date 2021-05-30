@@ -37,6 +37,7 @@ class OctoPrintEvent(object):
     """
     openapi_types = {
         'id': 'int',
+        'print_session': 'str',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -47,12 +48,12 @@ class OctoPrintEvent(object):
         'event_type': 'OctoPrintEventEventTypeEnum',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
-        'user': 'int',
-        'print_session': 'int'
+        'user': 'int'
     }
 
     attribute_map = {
         'id': 'id',
+        'print_session': 'print_session',
         'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
@@ -63,17 +64,17 @@ class OctoPrintEvent(object):
         'event_type': 'event_type',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
-        'user': 'user',
-        'print_session': 'print_session'
+        'user': 'user'
     }
 
-    def __init__(self, id=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, event_type=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, event_type=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._print_session = None
         self._ts = None
         self._event_source = None
         self._event_data = None
@@ -85,11 +86,12 @@ class OctoPrintEvent(object):
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
-        self._print_session = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
+        if print_session is not None:
+            self.print_session = print_session
         if ts is not None:
             self.ts = ts
         if event_source is not None:
@@ -105,7 +107,6 @@ class OctoPrintEvent(object):
         self.octoprint_device = octoprint_device
         if user is not None:
             self.user = user
-        self.print_session = print_session
 
     @property
     def id(self):
@@ -127,6 +128,27 @@ class OctoPrintEvent(object):
         """
 
         self._id = id
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The print_session of this OctoPrintEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this OctoPrintEvent.
+
+
+        :param print_session: The print_session of this OctoPrintEvent.  # noqa: E501
+        :type print_session: str
+        """
+
+        self._print_session = print_session
 
     @property
     def ts(self):
@@ -377,27 +399,6 @@ class OctoPrintEvent(object):
         """
 
         self._user = user
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The print_session of this OctoPrintEvent.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this OctoPrintEvent.
-
-
-        :param print_session: The print_session of this OctoPrintEvent.  # noqa: E501
-        :type print_session: int
-        """
-
-        self._print_session = print_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

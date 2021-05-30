@@ -60,7 +60,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: PaginatedTelemetryEventList
+        :rtype: PaginatedTelemetryEventPolymorphicList
         """
         kwargs['_return_http_data_only'] = True
         return self.telemetry_list_with_http_info(**kwargs)  # noqa: E501
@@ -96,7 +96,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(PaginatedTelemetryEventList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(PaginatedTelemetryEventPolymorphicList, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -145,7 +145,7 @@ class TelemetryApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "PaginatedTelemetryEventList",
+            200: "PaginatedTelemetryEventPolymorphicList",
         }
 
         return self.api_client.call_api(
@@ -1375,7 +1375,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TelemetryEvent
+        :rtype: TelemetryEventPolymorphic
         """
         kwargs['_return_http_data_only'] = True
         return self.telemetry_retrieve_with_http_info(id, **kwargs)  # noqa: E501
@@ -1411,7 +1411,7 @@ class TelemetryApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TelemetryEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TelemetryEventPolymorphic, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -1464,7 +1464,7 @@ class TelemetryApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            200: "TelemetryEvent",
+            200: "TelemetryEventPolymorphic",
         }
 
         return self.api_client.call_api(

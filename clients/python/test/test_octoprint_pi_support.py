@@ -44,7 +44,6 @@ class TestOctoprintPiSupport(unittest.TestCase):
             return OctoprintPiSupport(
                 model = '',
                 throttle_state = '',
-                octopi_version = '',
         )
 
     def testOctoprintPiSupport(self):

@@ -72,8 +72,7 @@ class OctoprintPrinterData(object):
 
         self.job = job
         self.state = state
-        if user is not None:
-            self.user = user
+        self.user = user
         if current_z is not None:
             self.current_z = current_z
         self.progress = progress

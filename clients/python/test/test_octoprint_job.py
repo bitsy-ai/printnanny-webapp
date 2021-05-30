@@ -59,9 +59,6 @@ class TestOctoprintJob(unittest.TestCase):
                     origin = '', 
                     size = 56, 
                     date = 56, ),
-                estimated_print_time = 1.337,
-                average_print_time = 1.337,
-                last_print_time = 1.337,
                 filament = {
                     'key' : null
                     },

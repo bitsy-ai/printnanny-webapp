@@ -88,8 +88,6 @@ class OctoprintProgress(object):
         :param completion: The completion of this OctoprintProgress.  # noqa: E501
         :type completion: float
         """
-        if self.local_vars_configuration.client_side_validation and completion is None:  # noqa: E501
-            raise ValueError("Invalid value for `completion`, must not be `None`")  # noqa: E501
 
         self._completion = completion
 
@@ -111,8 +109,6 @@ class OctoprintProgress(object):
         :param filepos: The filepos of this OctoprintProgress.  # noqa: E501
         :type filepos: int
         """
-        if self.local_vars_configuration.client_side_validation and filepos is None:  # noqa: E501
-            raise ValueError("Invalid value for `filepos`, must not be `None`")  # noqa: E501
 
         self._filepos = filepos
 
@@ -134,8 +130,6 @@ class OctoprintProgress(object):
         :param print_time: The print_time of this OctoprintProgress.  # noqa: E501
         :type print_time: int
         """
-        if self.local_vars_configuration.client_side_validation and print_time is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_time`, must not be `None`")  # noqa: E501
 
         self._print_time = print_time
 
@@ -157,8 +151,6 @@ class OctoprintProgress(object):
         :param print_time_left: The print_time_left of this OctoprintProgress.  # noqa: E501
         :type print_time_left: int
         """
-        if self.local_vars_configuration.client_side_validation and print_time_left is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_time_left`, must not be `None`")  # noqa: E501
 
         self._print_time_left = print_time_left
 
@@ -180,8 +172,6 @@ class OctoprintProgress(object):
         :param print_time_origin: The print_time_origin of this OctoprintProgress.  # noqa: E501
         :type print_time_origin: str
         """
-        if self.local_vars_configuration.client_side_validation and print_time_origin is None:  # noqa: E501
-            raise ValueError("Invalid value for `print_time_origin`, must not be `None`")  # noqa: E501
 
         self._print_time_origin = print_time_origin
 

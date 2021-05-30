@@ -213,7 +213,7 @@ Class | Method | HTTP request | Description
  - [PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
- - [PaginatedTelemetryEventList](docs/PaginatedTelemetryEventList.md)
+ - [PaginatedTelemetryEventPolymorphicList](docs/PaginatedTelemetryEventPolymorphicList.md)
  - [PaginatedUserList](docs/PaginatedUserList.md)
  - [Partner3DGeeksAlert](docs/Partner3DGeeksAlert.md)
  - [Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
@@ -240,6 +240,7 @@ Class | Method | HTTP request | Description
  - [StatusEnum](docs/StatusEnum.md)
  - [TelemetryEvent](docs/TelemetryEvent.md)
  - [TelemetryEventEventTypeEnum](docs/TelemetryEventEventTypeEnum.md)
+ - [TelemetryEventPolymorphic](docs/TelemetryEventPolymorphic.md)
  - [User](docs/User.md)
  - [UserRequest](docs/UserRequest.md)
 

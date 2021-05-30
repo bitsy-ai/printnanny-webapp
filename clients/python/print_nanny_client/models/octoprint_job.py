@@ -66,7 +66,8 @@ class OctoprintJob(object):
 
         self.file = file
         self.estimated_print_time = estimated_print_time
-        self.average_print_time = average_print_time
+        if average_print_time is not None:
+            self.average_print_time = average_print_time
         self.last_print_time = last_print_time
         self.filament = filament
 
@@ -111,8 +112,6 @@ class OctoprintJob(object):
         :param estimated_print_time: The estimated_print_time of this OctoprintJob.  # noqa: E501
         :type estimated_print_time: float
         """
-        if self.local_vars_configuration.client_side_validation and estimated_print_time is None:  # noqa: E501
-            raise ValueError("Invalid value for `estimated_print_time`, must not be `None`")  # noqa: E501
 
         self._estimated_print_time = estimated_print_time
 
@@ -134,8 +133,6 @@ class OctoprintJob(object):
         :param average_print_time: The average_print_time of this OctoprintJob.  # noqa: E501
         :type average_print_time: float
         """
-        if self.local_vars_configuration.client_side_validation and average_print_time is None:  # noqa: E501
-            raise ValueError("Invalid value for `average_print_time`, must not be `None`")  # noqa: E501
 
         self._average_print_time = average_print_time
 
@@ -157,8 +154,6 @@ class OctoprintJob(object):
         :param last_print_time: The last_print_time of this OctoprintJob.  # noqa: E501
         :type last_print_time: float
         """
-        if self.local_vars_configuration.client_side_validation and last_print_time is None:  # noqa: E501
-            raise ValueError("Invalid value for `last_print_time`, must not be `None`")  # noqa: E501
 
         self._last_print_time = last_print_time
 

@@ -47,8 +47,7 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                     'key' : null
                     }, 
                 event_type = 'ClientAuthed', 
-                octoprint_device = 56, 
-                print_session = 56
+                octoprint_device = 56
             )
         else :
             return OctoPrintEventRequest(

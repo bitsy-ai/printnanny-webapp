@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **temperature** | **dict(str, object)** |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
-**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] 
+**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] [readonly] 
 **event_data** | **dict(str, object)** |  | [optional] 
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 

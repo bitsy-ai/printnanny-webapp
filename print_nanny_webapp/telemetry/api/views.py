@@ -17,7 +17,7 @@ from .serializers import (
     OctoPrintEventSerializer,
     PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
-    TelemetryEventSerializer,
+    TelemetryEventPolymorphicSerializer,
     RemoteCommandEventSerializer
 )
 
@@ -34,15 +34,15 @@ logger = logging.getLogger(__name__)
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: TelemetryEventSerializer,
-            400: TelemetryEventSerializer,
+            201: TelemetryEventPolymorphicSerializer,
+            400: TelemetryEventPolymorphicSerializer,
         }
     )
 )
 class TelemetryEventViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin
 ):
-    serializer_class = TelemetryEventSerializer
+    serializer_class = TelemetryEventPolymorphicSerializer
     queryset = TelemetryEvent.objects.all()
     lookup_field = "id"
 

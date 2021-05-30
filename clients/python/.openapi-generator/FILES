@@ -56,7 +56,7 @@ docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
-docs/PaginatedTelemetryEventList.md
+docs/PaginatedTelemetryEventPolymorphicList.md
 docs/PaginatedUserList.md
 docs/Partner3DGeeksAlert.md
 docs/Partner3DGeeksMetadata.md
@@ -88,6 +88,7 @@ docs/StatusEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
+docs/TelemetryEventPolymorphic.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -156,7 +157,7 @@ print_nanny_client/models/paginated_print_status_event_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
 print_nanny_client/models/paginated_remote_command_event_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
-print_nanny_client/models/paginated_telemetry_event_list.py
+print_nanny_client/models/paginated_telemetry_event_polymorphic_list.py
 print_nanny_client/models/paginated_user_list.py
 print_nanny_client/models/partner3_d_geeks_alert.py
 print_nanny_client/models/partner3_d_geeks_metadata.py
@@ -183,6 +184,7 @@ print_nanny_client/models/remote_control_command_request.py
 print_nanny_client/models/status_enum.py
 print_nanny_client/models/telemetry_event.py
 print_nanny_client/models/telemetry_event_event_type_enum.py
+print_nanny_client/models/telemetry_event_polymorphic.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
 print_nanny_client/rest.py
@@ -243,7 +245,7 @@ test/test_paginated_print_status_event_list.py
 test/test_paginated_printer_profile_list.py
 test/test_paginated_remote_command_event_list.py
 test/test_paginated_remote_control_command_list.py
-test/test_paginated_telemetry_event_list.py
+test/test_paginated_telemetry_event_polymorphic_list.py
 test/test_paginated_user_list.py
 test/test_partner3_d_geeks_alert.py
 test/test_partner3_d_geeks_metadata.py
@@ -275,6 +277,7 @@ test/test_status_enum.py
 test/test_telemetry_api.py
 test/test_telemetry_event.py
 test/test_telemetry_event_event_type_enum.py
+test/test_telemetry_event_polymorphic.py
 test/test_user.py
 test/test_user_request.py
 test/test_users_api.py

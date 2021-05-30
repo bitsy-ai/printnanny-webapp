@@ -418,7 +418,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'print_nanny_webapp.utils.pagination.PageNumberPagination',
-    'PAGE_SIZE': PAGE_SIZE
+    'PAGE_SIZE': PAGE_SIZE,
 }
 
 # Your stuff...

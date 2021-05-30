@@ -42,6 +42,7 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.octo_print_event.OctoPrintEvent(
                         id = 56, 
+                        print_session = '', 
                         ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         event_source = 'octoprint', 
                         event_data = {
@@ -56,8 +57,7 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                         event_type = 'ClientAuthed', 
                         polymorphic_ctype = 56, 
                         octoprint_device = 56, 
-                        user = 56, 
-                        print_session = 56, )
+                        user = 56, )
                     ]
             )
         else :

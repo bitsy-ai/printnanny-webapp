@@ -60,7 +60,8 @@ class OctoprintPiSupport(object):
 
         self.model = model
         self.throttle_state = throttle_state
-        self.octopi_version = octopi_version
+        if octopi_version is not None:
+            self.octopi_version = octopi_version
 
     @property
     def model(self):
@@ -126,8 +127,6 @@ class OctoprintPiSupport(object):
         :param octopi_version: The octopi_version of this OctoprintPiSupport.  # noqa: E501
         :type octopi_version: str
         """
-        if self.local_vars_configuration.client_side_validation and octopi_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `octopi_version`, must not be `None`")  # noqa: E501
 
         self._octopi_version = octopi_version
 

@@ -69,7 +69,8 @@ class OctoprintFile(object):
 
         self.name = name
         self.path = path
-        self.display = display
+        if display is not None:
+            self.display = display
         self.origin = origin
         self.size = size
         self.date = date
@@ -92,8 +93,6 @@ class OctoprintFile(object):
         :param name: The name of this OctoprintFile.  # noqa: E501
         :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -115,8 +114,6 @@ class OctoprintFile(object):
         :param path: The path of this OctoprintFile.  # noqa: E501
         :type path: str
         """
-        if self.local_vars_configuration.client_side_validation and path is None:  # noqa: E501
-            raise ValueError("Invalid value for `path`, must not be `None`")  # noqa: E501
 
         self._path = path
 
@@ -138,8 +135,6 @@ class OctoprintFile(object):
         :param display: The display of this OctoprintFile.  # noqa: E501
         :type display: str
         """
-        if self.local_vars_configuration.client_side_validation and display is None:  # noqa: E501
-            raise ValueError("Invalid value for `display`, must not be `None`")  # noqa: E501
 
         self._display = display
 
@@ -161,8 +156,6 @@ class OctoprintFile(object):
         :param origin: The origin of this OctoprintFile.  # noqa: E501
         :type origin: str
         """
-        if self.local_vars_configuration.client_side_validation and origin is None:  # noqa: E501
-            raise ValueError("Invalid value for `origin`, must not be `None`")  # noqa: E501
 
         self._origin = origin
 
@@ -184,8 +177,6 @@ class OctoprintFile(object):
         :param size: The size of this OctoprintFile.  # noqa: E501
         :type size: int
         """
-        if self.local_vars_configuration.client_side_validation and size is None:  # noqa: E501
-            raise ValueError("Invalid value for `size`, must not be `None`")  # noqa: E501
 
         self._size = size
 
@@ -207,8 +198,6 @@ class OctoprintFile(object):
         :param date: The date of this OctoprintFile.  # noqa: E501
         :type date: int
         """
-        if self.local_vars_configuration.client_side_validation and date is None:  # noqa: E501
-            raise ValueError("Invalid value for `date`, must not be `None`")  # noqa: E501
 
         self._date = date
 
