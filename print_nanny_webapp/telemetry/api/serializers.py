@@ -59,7 +59,7 @@ class OctoprintPrinterFlagsSerializer(serializers.Serializer):
     error = serializers.BooleanField()
     paused = serializers.BooleanField()
     ready = serializers.BooleanField()
-    sdReady = serializers.BooleanFIeld()
+    sdReady = serializers.BooleanField()
 
 class OctoprintPrinterStateSerializer(serializers.Serializer):
     text = serializers.CharField()
