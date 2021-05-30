@@ -79,7 +79,7 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
     job = OctoprintJobSerializer()
     state = OctoprintPrinterStateSerializer()
     user = serializers.CharField(required=False)
-    currentZ = serializers.FloatField()
+    currentZ = serializers.FloatField(required=None)
     progress = OctoprintProgressSerializer()
     resends = serializers.DictField()
     offsets = serializers.DictField()
