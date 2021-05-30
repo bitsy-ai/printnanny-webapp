@@ -37,7 +37,6 @@ class TelemetryEvent(PolymorphicModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     print_nanny_plugin_version = models.CharField(max_length=60)
     print_nanny_client_version = models.CharField(max_length=60)
-    metadata = JSONField(null=True)
     octoprint_job = JSONField(null=True)
     print_session = models.ForeignKey(
         "remote_control.PrintSession",
