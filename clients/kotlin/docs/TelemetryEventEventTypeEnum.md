@@ -16,7 +16,7 @@
 
     * `pluginOctoprintNannyDeviceRegisterFailed` (value: `"plugin_octoprint_nanny_device_register_failed"`)
 
-    * `deviceReset` (value: `"device_reset"`)
+    * `pluginOctoprintNannyDeviceReset` (value: `"plugin_octoprint_nanny_device_reset"`)
 
     * `pluginOctoprintNannyPrinterProfileSyncStart` (value: `"plugin_octoprint_nanny_printer_profile_sync_start"`)
 
@@ -24,7 +24,7 @@
 
     * `pluginOctoprintNannyPrinterProfileSyncFailed` (value: `"plugin_octoprint_nanny_printer_profile_sync_failed"`)
 
-    * `connectTestRestApi` (value: `"connect_test_rest_api"`)
+    * `pluginOctoprintNannyConnectTestRestApi` (value: `"plugin_octoprint_nanny_connect_test_rest_api"`)
 
     * `pluginOctoprintNannyConnectTestRestApiFailed` (value: `"plugin_octoprint_nanny_connect_test_rest_api_failed"`)
 

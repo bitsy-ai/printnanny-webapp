@@ -16,68 +16,68 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: pluginOctoprintNannyMonitoringStart,pluginOctoprintNannyMonitoringStop,pluginOctoprintNannyMonitoringReset,pluginOctoprintNannyDeviceRegisterStart,pluginOctoprintNannyDeviceRegisterDone,pluginOctoprintNannyDeviceRegisterFailed,deviceReset,pluginOctoprintNannyPrinterProfileSyncStart,pluginOctoprintNannyPrinterProfileSyncDone,pluginOctoprintNannyPrinterProfileSyncFailed,connectTestRestApi,pluginOctoprintNannyConnectTestRestApiFailed,pluginOctoprintNannyConnectTestRestApiSuccess,pluginOctoprintNannyConnectTestMqttPing,pluginOctoprintNannyConnectTestMqttPingFailed,pluginOctoprintNannyConnectTestMqttPingSuccess,pluginOctoprintNannyConnectTestMqttPong,pluginOctoprintNannyConnectTestMqttPongFailed,pluginOctoprintNannyConnectTestMqttPongSuccess
+* Values: monitoringStart,monitoringStop,monitoringReset,deviceRegisterStart,deviceRegisterDone,deviceRegisterFailed,deviceReset,printerProfileSyncStart,printerProfileSyncDone,printerProfileSyncFailed,connectTestRestApi,connectTestRestApiFailed,connectTestRestApiSuccess,connectTestMqttPing,connectTestMqttPingFailed,connectTestMqttPingSuccess,connectTestMqttPong,connectTestMqttPongFailed,connectTestMqttPongSuccess
 */
 
 enum class PrintNannyPluginEventEventTypeEnum(val value: kotlin.String) {
 
 
     @Json(name = "plugin_octoprint_nanny_monitoring_start")
-    pluginOctoprintNannyMonitoringStart("plugin_octoprint_nanny_monitoring_start"),
+    monitoringStart("plugin_octoprint_nanny_monitoring_start"),
 
     @Json(name = "plugin_octoprint_nanny_monitoring_stop")
-    pluginOctoprintNannyMonitoringStop("plugin_octoprint_nanny_monitoring_stop"),
+    monitoringStop("plugin_octoprint_nanny_monitoring_stop"),
 
     @Json(name = "plugin_octoprint_nanny_monitoring_reset")
-    pluginOctoprintNannyMonitoringReset("plugin_octoprint_nanny_monitoring_reset"),
+    monitoringReset("plugin_octoprint_nanny_monitoring_reset"),
 
     @Json(name = "plugin_octoprint_nanny_device_register_start")
-    pluginOctoprintNannyDeviceRegisterStart("plugin_octoprint_nanny_device_register_start"),
+    deviceRegisterStart("plugin_octoprint_nanny_device_register_start"),
 
     @Json(name = "plugin_octoprint_nanny_device_register_done")
-    pluginOctoprintNannyDeviceRegisterDone("plugin_octoprint_nanny_device_register_done"),
+    deviceRegisterDone("plugin_octoprint_nanny_device_register_done"),
 
     @Json(name = "plugin_octoprint_nanny_device_register_failed")
-    pluginOctoprintNannyDeviceRegisterFailed("plugin_octoprint_nanny_device_register_failed"),
+    deviceRegisterFailed("plugin_octoprint_nanny_device_register_failed"),
 
-    @Json(name = "device_reset")
-    deviceReset("device_reset"),
+    @Json(name = "plugin_octoprint_nanny_device_reset")
+    deviceReset("plugin_octoprint_nanny_device_reset"),
 
     @Json(name = "plugin_octoprint_nanny_printer_profile_sync_start")
-    pluginOctoprintNannyPrinterProfileSyncStart("plugin_octoprint_nanny_printer_profile_sync_start"),
+    printerProfileSyncStart("plugin_octoprint_nanny_printer_profile_sync_start"),
 
     @Json(name = "plugin_octoprint_nanny_printer_profile_sync_done")
-    pluginOctoprintNannyPrinterProfileSyncDone("plugin_octoprint_nanny_printer_profile_sync_done"),
+    printerProfileSyncDone("plugin_octoprint_nanny_printer_profile_sync_done"),
 
     @Json(name = "plugin_octoprint_nanny_printer_profile_sync_failed")
-    pluginOctoprintNannyPrinterProfileSyncFailed("plugin_octoprint_nanny_printer_profile_sync_failed"),
+    printerProfileSyncFailed("plugin_octoprint_nanny_printer_profile_sync_failed"),
 
-    @Json(name = "connect_test_rest_api")
-    connectTestRestApi("connect_test_rest_api"),
+    @Json(name = "plugin_octoprint_nanny_connect_test_rest_api")
+    connectTestRestApi("plugin_octoprint_nanny_connect_test_rest_api"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_rest_api_failed")
-    pluginOctoprintNannyConnectTestRestApiFailed("plugin_octoprint_nanny_connect_test_rest_api_failed"),
+    connectTestRestApiFailed("plugin_octoprint_nanny_connect_test_rest_api_failed"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_rest_api_success")
-    pluginOctoprintNannyConnectTestRestApiSuccess("plugin_octoprint_nanny_connect_test_rest_api_success"),
+    connectTestRestApiSuccess("plugin_octoprint_nanny_connect_test_rest_api_success"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping")
-    pluginOctoprintNannyConnectTestMqttPing("plugin_octoprint_nanny_connect_test_mqtt_ping"),
+    connectTestMqttPing("plugin_octoprint_nanny_connect_test_mqtt_ping"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping_failed")
-    pluginOctoprintNannyConnectTestMqttPingFailed("plugin_octoprint_nanny_connect_test_mqtt_ping_failed"),
+    connectTestMqttPingFailed("plugin_octoprint_nanny_connect_test_mqtt_ping_failed"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_ping_success")
-    pluginOctoprintNannyConnectTestMqttPingSuccess("plugin_octoprint_nanny_connect_test_mqtt_ping_success"),
+    connectTestMqttPingSuccess("plugin_octoprint_nanny_connect_test_mqtt_ping_success"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong")
-    pluginOctoprintNannyConnectTestMqttPong("plugin_octoprint_nanny_connect_test_mqtt_pong"),
+    connectTestMqttPong("plugin_octoprint_nanny_connect_test_mqtt_pong"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong_failed")
-    pluginOctoprintNannyConnectTestMqttPongFailed("plugin_octoprint_nanny_connect_test_mqtt_pong_failed"),
+    connectTestMqttPongFailed("plugin_octoprint_nanny_connect_test_mqtt_pong_failed"),
 
     @Json(name = "plugin_octoprint_nanny_connect_test_mqtt_pong_success")
-    pluginOctoprintNannyConnectTestMqttPongSuccess("plugin_octoprint_nanny_connect_test_mqtt_pong_success");
+    connectTestMqttPongSuccess("plugin_octoprint_nanny_connect_test_mqtt_pong_success");
 
 
     /**
