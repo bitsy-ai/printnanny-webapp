@@ -24,6 +24,7 @@ class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)
     event_data = models.JSONField(null=True)
@@ -38,7 +39,12 @@ class TelemetryEvent(PolymorphicModel):
     octoprint_version = models.CharField(max_length=60)
     metadata = JSONField(null=True)
     octoprint_job = JSONField(null=True)
-
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession",
+        null=True,
+        on_delete=models.CASCADE,
+        db_index=True,
+    )
 
 class RemoteCommandEvent(TelemetryEvent):
     """
@@ -92,12 +98,7 @@ class OctoPrintEvent(TelemetryEvent):
     event_type = models.CharField(
         max_length=255, db_index=True, choices=OctoprintEventType.choices
     )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession",
-        null=True,
-        on_delete=models.CASCADE,
-        db_index=True,
-    )
+
 
 
 class PrintStatusEvent(TelemetryEvent):
@@ -124,9 +125,3 @@ class PrintStatusEvent(TelemetryEvent):
     # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
     progress = JSONField(default=dict)
     job_data_file = models.CharField(max_length=255)
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession",
-        null=True,
-        on_delete=models.CASCADE,
-        db_index=True,
-    )
