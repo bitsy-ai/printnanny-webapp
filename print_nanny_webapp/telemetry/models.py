@@ -35,8 +35,8 @@ class TelemetryEvent(PolymorphicModel):
         on_delete=models.CASCADE,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    plugin_version = models.CharField(max_length=60)
-    client_version = models.CharField(max_length=60)
+    print_nanny_plugin_version = models.CharField(max_length=60)
+    print_nanny_client_version = models.CharField(max_length=60)
     octoprint_version = models.CharField(max_length=60)
     metadata = JSONField(null=True)
     octoprint_job = JSONField(null=True)
