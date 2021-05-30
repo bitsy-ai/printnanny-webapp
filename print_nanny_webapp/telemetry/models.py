@@ -13,7 +13,8 @@ from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
     RemoteCommandEventType,
     PrintStatusEventType,
-    EventSource
+    EventSource,
+    TelemetryEventType
 )
 
 User = get_user_model()
@@ -24,6 +25,7 @@ class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
+    event_type = RemoteCommandEventType.choices
 
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)

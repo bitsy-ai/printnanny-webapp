@@ -16,15 +16,36 @@ from .serializers import (
     OctoPrintEventSerializer,
     PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
+    TelemetryEventSerializer
 )
 import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
+TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
 logger = logging.getLogger(__name__)
+
+@extend_schema(tags=["telemetry"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201: TelemetryEventSerializer,
+            400: TelemetryEventSerializer,
+        }
+    )
+)
+class TelemetryEventViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin
+):
+    serializer_class = TelemetryEventSerializer
+    queryset = TelemetryEvent.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
 
 
 @extend_schema(tags=["telemetry"])
