@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pluginVersion** | **kotlin.String** |  | 
-**clientVersion** | **kotlin.String** |  | 
+**printNannyPluginVersion** | **kotlin.String** |  | 
+**printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
 **eventType** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
 **jobDataFile** | **kotlin.String** |  | 

@@ -26,8 +26,8 @@ import java.io.Serializable
  * @param environment 
  * @param printerData 
  * @param temperature 
- * @param pluginVersion 
- * @param clientVersion 
+ * @param printNannyPluginVersion 
+ * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param octoprintDevice 
  * @param id 
@@ -50,10 +50,10 @@ data class TelemetryEvent (
     val printerData: OctoprintPrinterData,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>,
-    @Json(name = "plugin_version")
-    val pluginVersion: kotlin.String,
-    @Json(name = "client_version")
-    val clientVersion: kotlin.String,
+    @Json(name = "print_nanny_plugin_version")
+    val printNannyPluginVersion: kotlin.String,
+    @Json(name = "print_nanny_client_version")
+    val printNannyClientVersion: kotlin.String,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
     @Json(name = "octoprint_device")

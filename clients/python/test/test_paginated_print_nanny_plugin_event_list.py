@@ -47,8 +47,8 @@ class TestPaginatedPrintNannyPluginEventList(unittest.TestCase):
                         event_data = {
                             'key' : null
                             }, 
-                        plugin_version = '', 
-                        client_version = '', 
+                        print_nanny_plugin_version = '', 
+                        print_nanny_client_version = '', 
                         octoprint_version = '', 
                         metadata = {
                             'key' : null

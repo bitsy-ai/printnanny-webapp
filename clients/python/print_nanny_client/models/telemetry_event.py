@@ -45,8 +45,8 @@ class TelemetryEvent(object):
         'created_dt': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
-        'plugin_version': 'str',
-        'client_version': 'str',
+        'print_nanny_plugin_version': 'str',
+        'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
         'metadata': 'dict(str, object)',
         'octoprint_job': 'dict(str, object)',
@@ -65,8 +65,8 @@ class TelemetryEvent(object):
         'created_dt': 'created_dt',
         'event_source': 'event_source',
         'event_data': 'event_data',
-        'plugin_version': 'plugin_version',
-        'client_version': 'client_version',
+        'print_nanny_plugin_version': 'print_nanny_plugin_version',
+        'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
         'metadata': 'metadata',
         'octoprint_job': 'octoprint_job',
@@ -75,7 +75,7 @@ class TelemetryEvent(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, print_session=None, event_type=None, environment=None, printer_data=None, temperature=None, created_dt=None, event_source=None, event_data=None, plugin_version=None, client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, event_type=None, environment=None, printer_data=None, temperature=None, created_dt=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -90,8 +90,8 @@ class TelemetryEvent(object):
         self._created_dt = None
         self._event_source = None
         self._event_data = None
-        self._plugin_version = None
-        self._client_version = None
+        self._print_nanny_plugin_version = None
+        self._print_nanny_client_version = None
         self._octoprint_version = None
         self._metadata = None
         self._octoprint_job = None
@@ -113,8 +113,8 @@ class TelemetryEvent(object):
         if event_source is not None:
             self.event_source = event_source
         self.event_data = event_data
-        self.plugin_version = plugin_version
-        self.client_version = client_version
+        self.print_nanny_plugin_version = print_nanny_plugin_version
+        self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
         self.metadata = metadata
         self.octoprint_job = octoprint_job
@@ -322,56 +322,56 @@ class TelemetryEvent(object):
         self._event_data = event_data
 
     @property
-    def plugin_version(self):
-        """Gets the plugin_version of this TelemetryEvent.  # noqa: E501
+    def print_nanny_plugin_version(self):
+        """Gets the print_nanny_plugin_version of this TelemetryEvent.  # noqa: E501
 
 
-        :return: The plugin_version of this TelemetryEvent.  # noqa: E501
+        :return: The print_nanny_plugin_version of this TelemetryEvent.  # noqa: E501
         :rtype: str
         """
-        return self._plugin_version
+        return self._print_nanny_plugin_version
 
-    @plugin_version.setter
-    def plugin_version(self, plugin_version):
-        """Sets the plugin_version of this TelemetryEvent.
+    @print_nanny_plugin_version.setter
+    def print_nanny_plugin_version(self, print_nanny_plugin_version):
+        """Sets the print_nanny_plugin_version of this TelemetryEvent.
 
 
-        :param plugin_version: The plugin_version of this TelemetryEvent.  # noqa: E501
-        :type plugin_version: str
+        :param print_nanny_plugin_version: The print_nanny_plugin_version of this TelemetryEvent.  # noqa: E501
+        :type print_nanny_plugin_version: str
         """
-        if self.local_vars_configuration.client_side_validation and plugin_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `plugin_version`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and print_nanny_plugin_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_nanny_plugin_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                plugin_version is not None and len(plugin_version) > 60):
-            raise ValueError("Invalid value for `plugin_version`, length must be less than or equal to `60`")  # noqa: E501
+                print_nanny_plugin_version is not None and len(print_nanny_plugin_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_plugin_version`, length must be less than or equal to `60`")  # noqa: E501
 
-        self._plugin_version = plugin_version
+        self._print_nanny_plugin_version = print_nanny_plugin_version
 
     @property
-    def client_version(self):
-        """Gets the client_version of this TelemetryEvent.  # noqa: E501
+    def print_nanny_client_version(self):
+        """Gets the print_nanny_client_version of this TelemetryEvent.  # noqa: E501
 
 
-        :return: The client_version of this TelemetryEvent.  # noqa: E501
+        :return: The print_nanny_client_version of this TelemetryEvent.  # noqa: E501
         :rtype: str
         """
-        return self._client_version
+        return self._print_nanny_client_version
 
-    @client_version.setter
-    def client_version(self, client_version):
-        """Sets the client_version of this TelemetryEvent.
+    @print_nanny_client_version.setter
+    def print_nanny_client_version(self, print_nanny_client_version):
+        """Sets the print_nanny_client_version of this TelemetryEvent.
 
 
-        :param client_version: The client_version of this TelemetryEvent.  # noqa: E501
-        :type client_version: str
+        :param print_nanny_client_version: The print_nanny_client_version of this TelemetryEvent.  # noqa: E501
+        :type print_nanny_client_version: str
         """
-        if self.local_vars_configuration.client_side_validation and client_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `client_version`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and print_nanny_client_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_nanny_client_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                client_version is not None and len(client_version) > 60):
-            raise ValueError("Invalid value for `client_version`, length must be less than or equal to `60`")  # noqa: E501
+                print_nanny_client_version is not None and len(print_nanny_client_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `60`")  # noqa: E501
 
-        self._client_version = client_version
+        self._print_nanny_client_version = print_nanny_client_version
 
     @property
     def octoprint_version(self):

@@ -1192,13 +1192,13 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -1329,13 +1329,13 @@ export interface OctoPrintEventRequest {
      * @type {string}
      * @memberof OctoPrintEventRequest
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintEventRequest
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -2885,13 +2885,13 @@ export interface PrintNannyPluginEvent {
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -3185,13 +3185,13 @@ export interface PrintStatusEvent {
      * @type {string}
      * @memberof PrintStatusEvent
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof PrintStatusEvent
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -3617,13 +3617,13 @@ export interface RemoteCommandEvent {
      * @type {string}
      * @memberof RemoteCommandEvent
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof RemoteCommandEvent
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -3882,13 +3882,13 @@ export interface TelemetryEvent {
      * @type {string}
      * @memberof TelemetryEvent
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof TelemetryEvent
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}

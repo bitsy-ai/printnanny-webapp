@@ -43,8 +43,8 @@ class TestPrintStatusEvent(unittest.TestCase):
                 event_data = {
                     'key' : null
                     }, 
-                plugin_version = '', 
-                client_version = '', 
+                print_nanny_plugin_version = '', 
+                print_nanny_client_version = '', 
                 octoprint_version = '', 
                 metadata = {
                     'key' : null
@@ -67,8 +67,8 @@ class TestPrintStatusEvent(unittest.TestCase):
             )
         else :
             return PrintStatusEvent(
-                plugin_version = '',
-                client_version = '',
+                print_nanny_plugin_version = '',
+                print_nanny_client_version = '',
                 octoprint_version = '',
                 event_type = 'PrintCancelled',
                 job_data_file = '',

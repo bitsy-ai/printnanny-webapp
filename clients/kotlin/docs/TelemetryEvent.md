@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **printerData** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
-**pluginVersion** | **kotlin.String** |  | 
-**clientVersion** | **kotlin.String** |  | 
+**printNannyPluginVersion** | **kotlin.String** |  | 
+**printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]

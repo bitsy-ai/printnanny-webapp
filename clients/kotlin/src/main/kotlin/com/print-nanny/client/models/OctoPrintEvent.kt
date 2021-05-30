@@ -20,8 +20,8 @@ import java.io.Serializable
 
 /**
  * 
- * @param pluginVersion 
- * @param clientVersion 
+ * @param printNannyPluginVersion 
+ * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param eventType 
  * @param octoprintDevice 
@@ -37,10 +37,10 @@ import java.io.Serializable
  */
 
 data class OctoPrintEvent (
-    @Json(name = "plugin_version")
-    val pluginVersion: kotlin.String,
-    @Json(name = "client_version")
-    val clientVersion: kotlin.String,
+    @Json(name = "print_nanny_plugin_version")
+    val printNannyPluginVersion: kotlin.String,
+    @Json(name = "print_nanny_client_version")
+    val printNannyClientVersion: kotlin.String,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
     @Json(name = "event_type")

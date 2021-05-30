@@ -42,8 +42,8 @@ class TestRemoteCommandEvent(unittest.TestCase):
                 event_data = {
                     'key' : null
                     }, 
-                plugin_version = '', 
-                client_version = '', 
+                print_nanny_plugin_version = '', 
+                print_nanny_client_version = '', 
                 octoprint_version = '', 
                 metadata = {
                     'key' : null
@@ -59,8 +59,8 @@ class TestRemoteCommandEvent(unittest.TestCase):
             )
         else :
             return RemoteCommandEvent(
-                plugin_version = '',
-                client_version = '',
+                print_nanny_plugin_version = '',
+                print_nanny_client_version = '',
                 octoprint_version = '',
                 event_type = 'remote_command_received',
                 octoprint_device = 56,
