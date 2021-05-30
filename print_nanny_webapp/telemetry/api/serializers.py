@@ -48,11 +48,44 @@ class OctoprintEnvironmentSerializer(serializers.Serializer):
     python = OctoprintPythonSerializer()
     hardware = OctoprintHardwareSerializer()
 
+class OctoprintPrinterFlagsSerializer(serializers.Serializer):
+    operational = serializers.BooleanField()
+    printing = serializers.BooleanField()
+    cancelling = serializers.BooleanField()
+    pausing = serializers.BooleanField()
+    resuming = serializers.BooleanField()
+    finishing = serializers.BooleanField()
+    closedOrError = serializers.BooleanField()
+    error = serializers.BooleanField()
+    paused = serializers.BooleanField()
+    ready = serializers.BooleanField()
+    sdReady = serializers.BooleanFIeld()
+
+class OctoprintPrinterStateSerializer(serializers.Serializer):
+    text = serializers.CharField()
+    flags = OctoprintPrinterFlagsSerializer()
+
+class OctoprintProgressSerializer(serializers.Serializer):
+    completion = serializers.FloatField()
+    filepos = serializers.IntegerField()
+    printTime = serializers.IntegerField()
+    printTimeLeft = serializers.IntegerField()
+    printTimeOrigin = serializers.CharField()
+
+class OctoprintPrinterDataSerializer(serializers.Serializer):
+    job = OctoprintJobSerializer()
+    state = OctoprintPrinterStateSerializer()
+    user = serializers.CharField()
+    currentZ = serializers.FloatField()
+    progress = OctoprintProgressSerializer()
+    resends = serializers.DictField()
+
 class TelemetryEventSerializer(serializers.ModelSerializer):
     print_session = serializers.StringRelatedField()
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     environment = OctoprintEnvironmentSerializer()
-    octoprint_job = OctoprintJobSerializer(required=False)
+    printer_data = OctoprintPrinterDataSerializer()
+    temperature = serializers.DictField()
     class Meta:
         model = TelemetryEvent
         fields = "__all__"
