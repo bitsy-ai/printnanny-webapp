@@ -1946,6 +1946,37 @@ export interface PaginatedPrinterProfileList {
 /**
  * 
  * @export
+ * @interface PaginatedRemoteCommandEventList
+ */
+export interface PaginatedRemoteCommandEventList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<RemoteCommandEvent>}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    results?: Array<RemoteCommandEvent>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedRemoteControlCommandList
  */
 export interface PaginatedRemoteControlCommandList {
@@ -3360,6 +3391,108 @@ export interface PrinterProfileRequest {
      */
     volume_width?: number | null;
 }
+/**
+ * 
+ * @export
+ * @interface RemoteCommandEvent
+ */
+export interface RemoteCommandEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    id?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    created_dt?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof RemoteCommandEvent
+     */
+    event_source?: EventSourceEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    metadata?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {RemoteCommandEventEventTypeEnum}
+     * @memberof RemoteCommandEvent
+     */
+    event_type: RemoteCommandEventEventTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum RemoteCommandEventEventTypeEnum {
+    Received = 'remote_command_received',
+    Failed = 'remote_command_failed',
+    Success = 'remote_command_success'
+}
+
 /**
  * 
  * @export
@@ -8494,6 +8627,85 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryRemoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/telemetry/remote-command-events/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryRemoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('telemetryRemoteCommandEventsRetrieve', 'id', id)
+            const localVarPath = `/api/telemetry/remote-command-events/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this telemetry event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8623,6 +8835,26 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryRemoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRemoteCommandEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryRemoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRemoteCommandEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this telemetry event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8715,6 +8947,24 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
+            return localVarFp.telemetryRemoteCommandEventsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
+            return localVarFp.telemetryRemoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this telemetry event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -8802,6 +9052,24 @@ export interface TelemetryApiInterface {
      * @memberof TelemetryApiInterface
      */
     telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote command event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
 
     /**
      * 
@@ -8907,6 +9175,28 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      */
     public telemetryPrintStatusEventsRetrieve(id: number, options?: any) {
         return TelemetryApiFp(this.configuration).telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryRemoteCommandEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryRemoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote command event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryRemoteCommandEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryRemoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -16,9 +16,11 @@ import com.print-nanny.client.models.OctoPrintEventRequest
 import com.print-nanny.client.models.PaginatedOctoPrintEventList
 import com.print-nanny.client.models.PaginatedPrintNannyPluginEventList
 import com.print-nanny.client.models.PaginatedPrintStatusEventList
+import com.print-nanny.client.models.PaginatedRemoteCommandEventList
 import com.print-nanny.client.models.PaginatedTelemetryEventList
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintStatusEvent
+import com.print-nanny.client.models.RemoteCommandEvent
 import com.print-nanny.client.models.TelemetryEvent
 
 import com.print-nanny.client.infrastructure.ApiClient
@@ -493,6 +495,121 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/api/telemetry/print-status-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedRemoteCommandEventList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun telemetryRemoteCommandEventsList(page: kotlin.Int?) : PaginatedRemoteCommandEventList {
+        val localVariableConfig = telemetryRemoteCommandEventsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedRemoteCommandEventList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedRemoteCommandEventList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryRemoteCommandEventsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun telemetryRemoteCommandEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/remote-command-events/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this remote command event. 
+    * @return RemoteCommandEvent
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun telemetryRemoteCommandEventsRetrieve(id: kotlin.Int) : RemoteCommandEvent {
+        val localVariableConfig = telemetryRemoteCommandEventsRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<RemoteCommandEvent>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as RemoteCommandEvent
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryRemoteCommandEventsRetrieve
+    *
+    * @param id A unique integer value identifying this remote command event. 
+    * @return RequestConfig
+    */
+    fun telemetryRemoteCommandEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/remote-command-events/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

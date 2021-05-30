@@ -49,6 +49,7 @@ docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
+docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedTelemetryEventList.md
 docs/PaginatedUserList.md
@@ -72,6 +73,8 @@ docs/PrintStatusEvent.md
 docs/PrintStatusEventEventTypeEnum.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
+docs/RemoteCommandEvent.md
+docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
@@ -141,6 +144,7 @@ print_nanny_client/models/paginated_print_nanny_plugin_event_list.py
 print_nanny_client/models/paginated_print_session_list.py
 print_nanny_client/models/paginated_print_status_event_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
+print_nanny_client/models/paginated_remote_command_event_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
 print_nanny_client/models/paginated_telemetry_event_list.py
 print_nanny_client/models/paginated_user_list.py
@@ -162,6 +166,8 @@ print_nanny_client/models/print_status_event.py
 print_nanny_client/models/print_status_event_event_type_enum.py
 print_nanny_client/models/printer_profile.py
 print_nanny_client/models/printer_profile_request.py
+print_nanny_client/models/remote_command_event.py
+print_nanny_client/models/remote_command_event_event_type_enum.py
 print_nanny_client/models/remote_control_command.py
 print_nanny_client/models/remote_control_command_request.py
 print_nanny_client/models/status_enum.py
@@ -220,6 +226,7 @@ test/test_paginated_print_nanny_plugin_event_list.py
 test/test_paginated_print_session_list.py
 test/test_paginated_print_status_event_list.py
 test/test_paginated_printer_profile_list.py
+test/test_paginated_remote_command_event_list.py
 test/test_paginated_remote_control_command_list.py
 test/test_paginated_telemetry_event_list.py
 test/test_paginated_user_list.py
@@ -243,6 +250,8 @@ test/test_print_status_event.py
 test/test_print_status_event_event_type_enum.py
 test/test_printer_profile.py
 test/test_printer_profile_request.py
+test/test_remote_command_event.py
+test/test_remote_command_event_event_type_enum.py
 test/test_remote_control_api.py
 test/test_remote_control_command.py
 test/test_remote_control_command_request.py

@@ -46,6 +46,7 @@ docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrintStatusEventList.md
 docs/PaginatedPrinterProfileList.md
+docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedTelemetryEventList.md
 docs/PaginatedUserList.md
@@ -69,6 +70,8 @@ docs/PrintStatusEvent.md
 docs/PrintStatusEventEventTypeEnum.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
+docs/RemoteCommandEvent.md
+docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
@@ -152,6 +155,7 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedPrintNannyPluginEventList
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintSessionList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintStatusEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfileList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteCommandEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteControlCommandList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedTelemetryEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedUserList.kt
@@ -173,6 +177,8 @@ src/main/kotlin/com/print-nanny/client/models/PrintStatusEvent.kt
 src/main/kotlin/com/print-nanny/client/models/PrintStatusEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfile.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfileRequest.kt
+src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
+src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommandRequest.kt
 src/main/kotlin/com/print-nanny/client/models/StatusEnum.kt

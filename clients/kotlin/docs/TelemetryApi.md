@@ -12,6 +12,8 @@ Method | HTTP request | Description
 [**telemetryPrintNannyPluginEventsRetrieve**](TelemetryApi.md#telemetryPrintNannyPluginEventsRetrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
 [**telemetryPrintStatusEventsList**](TelemetryApi.md#telemetryPrintStatusEventsList) | **GET** /api/telemetry/print-status-events/ | 
 [**telemetryPrintStatusEventsRetrieve**](TelemetryApi.md#telemetryPrintStatusEventsRetrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
+[**telemetryRemoteCommandEventsList**](TelemetryApi.md#telemetryRemoteCommandEventsList) | **GET** /api/telemetry/remote-command-events/ | 
+[**telemetryRemoteCommandEventsRetrieve**](TelemetryApi.md#telemetryRemoteCommandEventsRetrieve) | **GET** /api/telemetry/remote-command-events/{id}/ | 
 [**telemetryRetrieve**](TelemetryApi.md#telemetryRetrieve) | **GET** /api/telemetry/{id}/ | 
 
 
@@ -400,6 +402,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrintStatusEvent**](PrintStatusEvent.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="telemetryRemoteCommandEventsList"></a>
+# **telemetryRemoteCommandEventsList**
+> PaginatedRemoteCommandEventList telemetryRemoteCommandEventsList(page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedRemoteCommandEventList = apiInstance.telemetryRemoteCommandEventsList(page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#telemetryRemoteCommandEventsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#telemetryRemoteCommandEventsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedRemoteCommandEventList**](PaginatedRemoteCommandEventList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="telemetryRemoteCommandEventsRetrieve"></a>
+# **telemetryRemoteCommandEventsRetrieve**
+> RemoteCommandEvent telemetryRemoteCommandEventsRetrieve(id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote command event.
+try {
+    val result : RemoteCommandEvent = apiInstance.telemetryRemoteCommandEventsRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#telemetryRemoteCommandEventsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#telemetryRemoteCommandEventsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this remote command event. |
+
+### Return type
+
+[**RemoteCommandEvent**](RemoteCommandEvent.md)
 
 ### Authorization
 

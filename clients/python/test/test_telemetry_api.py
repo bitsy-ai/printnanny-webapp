@@ -76,6 +76,18 @@ class TestTelemetryApi(unittest.TestCase):
         """
         pass
 
+    def test_telemetry_remote_command_events_list(self):
+        """Test case for telemetry_remote_command_events_list
+
+        """
+        pass
+
+    def test_telemetry_remote_command_events_retrieve(self):
+        """Test case for telemetry_remote_command_events_retrieve
+
+        """
+        pass
+
     def test_telemetry_retrieve(self):
         """Test case for telemetry_retrieve
 

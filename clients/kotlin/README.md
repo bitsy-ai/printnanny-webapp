@@ -92,6 +92,8 @@ Class | Method | HTTP request | Description
 *TelemetryApi* | [**telemetryPrintNannyPluginEventsRetrieve**](docs/TelemetryApi.md#telemetryprintnannyplugineventsretrieve) | **GET** /api/telemetry/print-nanny-plugin-events/{id}/ | 
 *TelemetryApi* | [**telemetryPrintStatusEventsList**](docs/TelemetryApi.md#telemetryprintstatuseventslist) | **GET** /api/telemetry/print-status-events/ | 
 *TelemetryApi* | [**telemetryPrintStatusEventsRetrieve**](docs/TelemetryApi.md#telemetryprintstatuseventsretrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
+*TelemetryApi* | [**telemetryRemoteCommandEventsList**](docs/TelemetryApi.md#telemetryremotecommandeventslist) | **GET** /api/telemetry/remote-command-events/ | 
+*TelemetryApi* | [**telemetryRemoteCommandEventsRetrieve**](docs/TelemetryApi.md#telemetryremotecommandeventsretrieve) | **GET** /api/telemetry/remote-command-events/{id}/ | 
 *TelemetryApi* | [**telemetryRetrieve**](docs/TelemetryApi.md#telemetryretrieve) | **GET** /api/telemetry/{id}/ | 
 *UsersApi* | [**usersList**](docs/UsersApi.md#userslist) | **GET** /api/users/ | 
 *UsersApi* | [**usersMeRetrieve**](docs/UsersApi.md#usersmeretrieve) | **GET** /api/users/me/ | 
@@ -145,6 +147,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
  - [com.print-nanny.client.models.PaginatedPrintStatusEventList](docs/PaginatedPrintStatusEventList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
+ - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedTelemetryEventList](docs/PaginatedTelemetryEventList.md)
  - [com.print-nanny.client.models.PaginatedUserList](docs/PaginatedUserList.md)
@@ -166,6 +169,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrintStatusEventEventTypeEnum](docs/PrintStatusEventEventTypeEnum.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
+ - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)
+ - [com.print-nanny.client.models.RemoteCommandEventEventTypeEnum](docs/RemoteCommandEventEventTypeEnum.md)
  - [com.print-nanny.client.models.RemoteControlCommand](docs/RemoteControlCommand.md)
  - [com.print-nanny.client.models.RemoteControlCommandRequest](docs/RemoteControlCommandRequest.md)
  - [com.print-nanny.client.models.StatusEnum](docs/StatusEnum.md)
