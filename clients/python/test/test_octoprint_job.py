@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_job import OctoPrintJob  # noqa: E501
+from print_nanny_client.models.octoprint_job import OctoprintJob  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintJob(unittest.TestCase):
-    """OctoPrintJob unit test stubs"""
+class TestOctoprintJob(unittest.TestCase):
+    """OctoprintJob unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,14 +29,14 @@ class TestOctoPrintJob(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintJob
+        """Test OctoprintJob
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_job.OctoPrintJob()  # noqa: E501
+        # model = print_nanny_client.models.octoprint_job.OctoprintJob()  # noqa: E501
         if include_optional :
-            return OctoPrintJob(
-                file = print_nanny_client.models.octo_print_file.OctoPrintFile(
+            return OctoprintJob(
+                file = print_nanny_client.models.octoprint_file.OctoprintFile(
                     name = '', 
                     path = '', 
                     display = '', 
@@ -51,8 +51,8 @@ class TestOctoPrintJob(unittest.TestCase):
                     }
             )
         else :
-            return OctoPrintJob(
-                file = print_nanny_client.models.octo_print_file.OctoPrintFile(
+            return OctoprintJob(
+                file = print_nanny_client.models.octoprint_file.OctoprintFile(
                     name = '', 
                     path = '', 
                     display = '', 
@@ -67,8 +67,8 @@ class TestOctoPrintJob(unittest.TestCase):
                     },
         )
 
-    def testOctoPrintJob(self):
-        """Test OctoPrintJob"""
+    def testOctoprintJob(self):
+        """Test OctoprintJob"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

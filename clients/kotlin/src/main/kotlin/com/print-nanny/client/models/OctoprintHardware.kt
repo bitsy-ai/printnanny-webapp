@@ -25,7 +25,7 @@ import java.io.Serializable
  * @param octopiVersion 
  */
 
-data class OctoPrintHardware (
+data class OctoprintHardware (
     @Json(name = "cores")
     val cores: kotlin.Int,
     @Json(name = "freq")

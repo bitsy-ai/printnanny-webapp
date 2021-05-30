@@ -11,27 +11,24 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.OctoPrintHardware
-import com.print-nanny.client.models.OctoPrintPlatform
-import com.print-nanny.client.models.OctoPrintPython
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
- * @param os 
- * @param python 
- * @param hardware 
+ * @param version 
+ * @param pip 
+ * @param virtualenv 
  */
 
-data class OctoPrintEnvironment (
-    @Json(name = "os")
-    val os: OctoPrintPlatform,
-    @Json(name = "python")
-    val python: OctoPrintPython,
-    @Json(name = "hardware")
-    val hardware: OctoPrintHardware
+data class OctoprintPython (
+    @Json(name = "version")
+    val version: kotlin.String,
+    @Json(name = "pip")
+    val pip: kotlin.String,
+    @Json(name = "virtualenv")
+    val virtualenv: kotlin.String
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

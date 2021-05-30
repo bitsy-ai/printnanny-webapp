@@ -1,5 +1,5 @@
 
-# OctoPrintPython
+# OctoprintPython
 
 ## Properties
 Name | Type | Description | Notes

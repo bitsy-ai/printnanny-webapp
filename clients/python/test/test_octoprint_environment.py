@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_environment import OctoPrintEnvironment  # noqa: E501
+from print_nanny_client.models.octoprint_environment import OctoprintEnvironment  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintEnvironment(unittest.TestCase):
-    """OctoPrintEnvironment unit test stubs"""
+class TestOctoprintEnvironment(unittest.TestCase):
+    """OctoprintEnvironment unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,22 +29,22 @@ class TestOctoPrintEnvironment(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintEnvironment
+        """Test OctoprintEnvironment
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_environment.OctoPrintEnvironment()  # noqa: E501
+        # model = print_nanny_client.models.octoprint_environment.OctoprintEnvironment()  # noqa: E501
         if include_optional :
-            return OctoPrintEnvironment(
-                os = print_nanny_client.models.octo_print_platform.OctoPrintPlatform(
+            return OctoprintEnvironment(
+                os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                     id = '', 
                     platform = '', 
                     bits = '', ), 
-                python = print_nanny_client.models.octo_print_python.OctoPrintPython(
+                python = print_nanny_client.models.octoprint_python.OctoprintPython(
                     version = '', 
                     pip = '', 
                     virtualenv = '', ), 
-                hardware = print_nanny_client.models.octo_print_hardware.OctoPrintHardware(
+                hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                     cores = 56, 
                     freq = 1.337, 
                     ram = 56, 
@@ -53,16 +53,16 @@ class TestOctoPrintEnvironment(unittest.TestCase):
                     octopi_version = '', )
             )
         else :
-            return OctoPrintEnvironment(
-                os = print_nanny_client.models.octo_print_platform.OctoPrintPlatform(
+            return OctoprintEnvironment(
+                os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                     id = '', 
                     platform = '', 
                     bits = '', ),
-                python = print_nanny_client.models.octo_print_python.OctoPrintPython(
+                python = print_nanny_client.models.octoprint_python.OctoprintPython(
                     version = '', 
                     pip = '', 
                     virtualenv = '', ),
-                hardware = print_nanny_client.models.octo_print_hardware.OctoPrintHardware(
+                hardware = print_nanny_client.models.octoprint_hardware.OctoprintHardware(
                     cores = 56, 
                     freq = 1.337, 
                     ram = 56, 
@@ -71,8 +71,8 @@ class TestOctoPrintEnvironment(unittest.TestCase):
                     octopi_version = '', ),
         )
 
-    def testOctoPrintEnvironment(self):
-        """Test OctoPrintEnvironment"""
+    def testOctoprintEnvironment(self):
+        """Test OctoprintEnvironment"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

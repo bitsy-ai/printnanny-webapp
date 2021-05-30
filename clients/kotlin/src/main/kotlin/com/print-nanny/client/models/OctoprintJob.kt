@@ -12,7 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
-import com.print-nanny.client.models.OctoPrintFile
+import com.print-nanny.client.models.OctoprintFile
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -26,9 +26,9 @@ import java.io.Serializable
  * @param filament 
  */
 
-data class OctoPrintJob (
+data class OctoprintJob (
     @Json(name = "file")
-    val file: OctoPrintFile,
+    val file: OctoprintFile,
     @Json(name = "estimatedPrintTime")
     val estimatedPrintTime: kotlin.Float,
     @Json(name = "averagePrintTime")

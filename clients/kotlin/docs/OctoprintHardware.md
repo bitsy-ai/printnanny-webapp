@@ -1,5 +1,5 @@
 
-# OctoPrintHardware
+# OctoprintHardware
 
 ## Properties
 Name | Type | Description | Notes

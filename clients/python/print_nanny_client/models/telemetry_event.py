@@ -39,8 +39,8 @@ class TelemetryEvent(object):
         'id': 'int',
         'print_session': 'str',
         'event_type': 'TelemetryEventEventTypeEnum',
-        'environment': 'OctoPrintEnvironment',
-        'octoprint_job': 'OctoPrintJob',
+        'environment': 'OctoprintEnvironment',
+        'octoprint_job': 'OctoprintJob',
         'created_dt': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -188,7 +188,7 @@ class TelemetryEvent(object):
 
 
         :return: The environment of this TelemetryEvent.  # noqa: E501
-        :rtype: OctoPrintEnvironment
+        :rtype: OctoprintEnvironment
         """
         return self._environment
 
@@ -198,7 +198,7 @@ class TelemetryEvent(object):
 
 
         :param environment: The environment of this TelemetryEvent.  # noqa: E501
-        :type environment: OctoPrintEnvironment
+        :type environment: OctoprintEnvironment
         """
         if self.local_vars_configuration.client_side_validation and environment is None:  # noqa: E501
             raise ValueError("Invalid value for `environment`, must not be `None`")  # noqa: E501
@@ -211,7 +211,7 @@ class TelemetryEvent(object):
 
 
         :return: The octoprint_job of this TelemetryEvent.  # noqa: E501
-        :rtype: OctoPrintJob
+        :rtype: OctoprintJob
         """
         return self._octoprint_job
 
@@ -221,7 +221,7 @@ class TelemetryEvent(object):
 
 
         :param octoprint_job: The octoprint_job of this TelemetryEvent.  # noqa: E501
-        :type octoprint_job: OctoPrintJob
+        :type octoprint_job: OctoprintJob
         """
 
         self._octoprint_job = octoprint_job

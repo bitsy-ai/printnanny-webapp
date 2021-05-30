@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_hardware import OctoPrintHardware  # noqa: E501
+from print_nanny_client.models.octoprint_platform import OctoprintPlatform  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintHardware(unittest.TestCase):
-    """OctoPrintHardware unit test stubs"""
+class TestOctoprintPlatform(unittest.TestCase):
+    """OctoprintPlatform unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,32 +29,26 @@ class TestOctoPrintHardware(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintHardware
+        """Test OctoprintPlatform
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_hardware.OctoPrintHardware()  # noqa: E501
+        # model = print_nanny_client.models.octoprint_platform.OctoprintPlatform()  # noqa: E501
         if include_optional :
-            return OctoPrintHardware(
-                cores = 56, 
-                freq = 1.337, 
-                ram = 56, 
-                pi_model = '', 
-                throttle_state = '', 
-                octopi_version = ''
+            return OctoprintPlatform(
+                id = '', 
+                platform = '', 
+                bits = ''
             )
         else :
-            return OctoPrintHardware(
-                cores = 56,
-                freq = 1.337,
-                ram = 56,
-                pi_model = '',
-                throttle_state = '',
-                octopi_version = '',
+            return OctoprintPlatform(
+                id = '',
+                platform = '',
+                bits = '',
         )
 
-    def testOctoPrintHardware(self):
-        """Test OctoPrintHardware"""
+    def testOctoprintPlatform(self):
+        """Test OctoprintPlatform"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

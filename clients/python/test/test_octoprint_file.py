@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.octo_print_platform import OctoPrintPlatform  # noqa: E501
+from print_nanny_client.models.octoprint_file import OctoprintFile  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestOctoPrintPlatform(unittest.TestCase):
-    """OctoPrintPlatform unit test stubs"""
+class TestOctoprintFile(unittest.TestCase):
+    """OctoprintFile unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,26 +29,32 @@ class TestOctoPrintPlatform(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test OctoPrintPlatform
+        """Test OctoprintFile
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.octo_print_platform.OctoPrintPlatform()  # noqa: E501
+        # model = print_nanny_client.models.octoprint_file.OctoprintFile()  # noqa: E501
         if include_optional :
-            return OctoPrintPlatform(
-                id = '', 
-                platform = '', 
-                bits = ''
+            return OctoprintFile(
+                name = '', 
+                path = '', 
+                display = '', 
+                origin = '', 
+                size = 56, 
+                date = 56
             )
         else :
-            return OctoPrintPlatform(
-                id = '',
-                platform = '',
-                bits = '',
+            return OctoprintFile(
+                name = '',
+                path = '',
+                display = '',
+                origin = '',
+                size = 56,
+                date = 56,
         )
 
-    def testOctoPrintPlatform(self):
-        """Test OctoPrintPlatform"""
+    def testOctoprintFile(self):
+        """Test OctoprintFile"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

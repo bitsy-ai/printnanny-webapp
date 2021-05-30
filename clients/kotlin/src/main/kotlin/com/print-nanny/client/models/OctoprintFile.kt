@@ -17,18 +17,27 @@ import java.io.Serializable
 
 /**
  * 
- * @param version 
- * @param pip 
- * @param virtualenv 
+ * @param name 
+ * @param path 
+ * @param display 
+ * @param origin 
+ * @param size 
+ * @param date 
  */
 
-data class OctoPrintPython (
-    @Json(name = "version")
-    val version: kotlin.String,
-    @Json(name = "pip")
-    val pip: kotlin.String,
-    @Json(name = "virtualenv")
-    val virtualenv: kotlin.String
+data class OctoprintFile (
+    @Json(name = "name")
+    val name: kotlin.String,
+    @Json(name = "path")
+    val path: kotlin.String,
+    @Json(name = "display")
+    val display: kotlin.String,
+    @Json(name = "origin")
+    val origin: kotlin.String,
+    @Json(name = "size")
+    val size: kotlin.Int,
+    @Json(name = "date")
+    val date: kotlin.Int
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -1,5 +1,5 @@
 
-# OctoPrintFile
+# OctoprintFile
 
 ## Properties
 Name | Type | Description | Notes
