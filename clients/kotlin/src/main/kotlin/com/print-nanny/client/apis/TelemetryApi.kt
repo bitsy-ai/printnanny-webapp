@@ -13,11 +13,13 @@ package com.print-nanny.client.apis
 
 import com.print-nanny.client.models.OctoPrintEvent
 import com.print-nanny.client.models.OctoPrintEventRequest
-import com.print-nanny.client.models.OctoPrintPluginEvent
 import com.print-nanny.client.models.PaginatedOctoPrintEventList
-import com.print-nanny.client.models.PaginatedOctoPrintPluginEventList
+import com.print-nanny.client.models.PaginatedPrintNannyPluginEventList
 import com.print-nanny.client.models.PaginatedPrintStatusEventList
+import com.print-nanny.client.models.PaginatedTelemetryEventList
+import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintStatusEvent
+import com.print-nanny.client.models.TelemetryEvent
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -37,6 +39,66 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty("com.print-nanny.client.baseUrl", "http://localhost")
         }
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedTelemetryEventList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun telemetryList(page: kotlin.Int?) : PaginatedTelemetryEventList {
+        val localVariableConfig = telemetryListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedTelemetryEventList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedTelemetryEventList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun telemetryListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
     /**
@@ -213,22 +275,22 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedOctoPrintPluginEventList
+    * @return PaginatedPrintNannyPluginEventList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun telemetryOctoprintPluginEventsList(page: kotlin.Int?) : PaginatedOctoPrintPluginEventList {
-        val localVariableConfig = telemetryOctoprintPluginEventsListRequestConfig(page = page)
+    fun telemetryPrintNannyPluginEventsList(page: kotlin.Int?) : PaginatedPrintNannyPluginEventList {
+        val localVariableConfig = telemetryPrintNannyPluginEventsListRequestConfig(page = page)
 
-        val localVarResponse = request<PaginatedOctoPrintPluginEventList>(
+        val localVarResponse = request<PaginatedPrintNannyPluginEventList>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedOctoPrintPluginEventList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrintNannyPluginEventList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -243,12 +305,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation telemetryOctoprintPluginEventsList
+    * To obtain the request config of the operation telemetryPrintNannyPluginEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun telemetryOctoprintPluginEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun telemetryPrintNannyPluginEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -260,7 +322,7 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/telemetry/octoprint-plugin-events/",
+            path = "/api/telemetry/print-nanny-plugin-events/",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -272,23 +334,23 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     /**
     * 
     * 
-    * @param id A unique integer value identifying this octo print plugin event. 
-    * @return OctoPrintPluginEvent
+    * @param id A unique integer value identifying this print nanny plugin event. 
+    * @return PrintNannyPluginEvent
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun telemetryOctoprintPluginEventsRetrieve(id: kotlin.Int) : OctoPrintPluginEvent {
-        val localVariableConfig = telemetryOctoprintPluginEventsRetrieveRequestConfig(id = id)
+    fun telemetryPrintNannyPluginEventsRetrieve(id: kotlin.Int) : PrintNannyPluginEvent {
+        val localVariableConfig = telemetryPrintNannyPluginEventsRetrieveRequestConfig(id = id)
 
-        val localVarResponse = request<OctoPrintPluginEvent>(
+        val localVarResponse = request<PrintNannyPluginEvent>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as OctoPrintPluginEvent
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrintNannyPluginEvent
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -303,19 +365,19 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation telemetryOctoprintPluginEventsRetrieve
+    * To obtain the request config of the operation telemetryPrintNannyPluginEventsRetrieve
     *
-    * @param id A unique integer value identifying this octo print plugin event. 
+    * @param id A unique integer value identifying this print nanny plugin event. 
     * @return RequestConfig
     */
-    fun telemetryOctoprintPluginEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun telemetryPrintNannyPluginEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/telemetry/octoprint-plugin-events/{id}/".replace("{"+"id"+"}", "$id"),
+            path = "/api/telemetry/print-nanny-plugin-events/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -431,6 +493,61 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/api/telemetry/print-status-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this telemetry event. 
+    * @return TelemetryEvent
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun telemetryRetrieve(id: kotlin.Int) : TelemetryEvent {
+        val localVariableConfig = telemetryRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<TelemetryEvent>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TelemetryEvent
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryRetrieve
+    *
+    * @param id A unique integer value identifying this telemetry event. 
+    * @return RequestConfig
+    */
+    fun telemetryRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/telemetry/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

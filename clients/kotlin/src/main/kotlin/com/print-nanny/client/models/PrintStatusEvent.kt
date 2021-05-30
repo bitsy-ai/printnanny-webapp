@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.PrintStatusEventEventTypeEnum
 
 import com.squareup.moshi.Json
@@ -19,28 +20,27 @@ import java.io.Serializable
 
 /**
  * 
- * @param octoprintDevice 
  * @param pluginVersion 
  * @param clientVersion 
  * @param octoprintVersion 
  * @param eventType 
  * @param jobDataFile 
+ * @param octoprintDevice 
  * @param id 
+ * @param printSession 
  * @param createdDt 
+ * @param eventSource 
  * @param eventData 
- * @param user 
  * @param metadata 
  * @param octoprintJob 
  * @param state 
  * @param currentZ 
  * @param progress 
- * @param printSession 
- * @param url 
+ * @param polymorphicCtype 
+ * @param user 
  */
 
 data class PrintStatusEvent (
-    @Json(name = "octoprint_device")
-    val octoprintDevice: kotlin.Int,
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String,
     @Json(name = "client_version")
@@ -51,14 +51,18 @@ data class PrintStatusEvent (
     val eventType: PrintStatusEventEventTypeEnum,
     @Json(name = "job_data_file")
     val jobDataFile: kotlin.String,
+    @Json(name = "octoprint_device")
+    val octoprintDevice: kotlin.Int,
     @Json(name = "id")
     val id: kotlin.Int? = null,
+    @Json(name = "print_session")
+    val printSession: kotlin.String? = null,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime? = null,
+    @Json(name = "event_source")
+    val eventSource: EventSourceEnum? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
     @Json(name = "metadata")
     val metadata: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
@@ -69,10 +73,10 @@ data class PrintStatusEvent (
     val currentZ: kotlin.Float? = null,
     @Json(name = "progress")
     val progress: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.Int? = null,
-    @Json(name = "url")
-    val url: java.net.URI? = null
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int? = null,
+    @Json(name = "user")
+    val user: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123
