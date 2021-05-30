@@ -1,4 +1,5 @@
 import logging
+from print_nanny_webapp.telemetry.models import RemoteCommandEvent
 
 from rest_framework.mixins import (
     ListModelMixin,
@@ -16,15 +17,16 @@ from .serializers import (
     OctoPrintEventSerializer,
     PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
-    TelemetryEventSerializer
+    TelemetryEventSerializer,
+    RemoteCommandEventSerializer
 )
-import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +48,27 @@ class TelemetryEventViewSet(
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
+
+
+@extend_schema(tags=["telemetry"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201: RemoteCommandEventSerializer,
+            400: RemoteCommandEventSerializer,
+        }
+    )
+)
+class RemoteCommandqEventViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin
+):
+    serializer_class = RemoteCommandEventSerializer
+    queryset = RemoteCommandEvent.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
 
 
 @extend_schema(tags=["telemetry"])

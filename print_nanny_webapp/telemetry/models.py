@@ -14,7 +14,6 @@ from print_nanny_webapp.telemetry.types import (
     RemoteCommandEventType,
     PrintStatusEventType,
     EventSource,
-    TelemetryEventType
 )
 
 User = get_user_model()
