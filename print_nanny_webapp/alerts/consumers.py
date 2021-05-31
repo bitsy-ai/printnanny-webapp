@@ -34,7 +34,7 @@ class AlertConsumer(WebsocketConsumer):
             f"alerts_{self.user.id}", self.channel_name
         )
 
-        logger.info(f"Consumer for {self.user.id} connected")
+        logger.info(f"AlertConsumer for {self.user} connected")
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
