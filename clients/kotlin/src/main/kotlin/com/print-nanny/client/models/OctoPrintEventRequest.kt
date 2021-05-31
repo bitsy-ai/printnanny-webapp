@@ -28,7 +28,6 @@ import java.io.Serializable
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param temperature 
- * @param octoprintJob 
  * @param printSession 
  */
 
@@ -51,8 +50,6 @@ data class OctoPrintEventRequest (
     val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null
 ) : Serializable {

@@ -48,7 +48,6 @@ class TestOctoprintProgress(unittest.TestCase):
                 filepos = 56,
                 print_time = 56,
                 print_time_left = 56,
-                print_time_origin = '',
         )
 
     def testOctoprintProgress(self):

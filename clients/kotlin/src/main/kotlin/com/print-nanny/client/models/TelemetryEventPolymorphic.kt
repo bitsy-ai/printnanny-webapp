@@ -33,14 +33,13 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param octoprintDevice 
  * @param id 
- * @param printSession 
  * @param ts 
  * @param eventSource 
  * @param eventData 
  * @param temperature 
- * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
+ * @param printSession 
  */
 
 interface TelemetryEventPolymorphic : Serializable {
@@ -64,8 +63,6 @@ interface TelemetryEventPolymorphic : Serializable {
     val octoprintDevice: kotlin.Int
     @Json(name = "id")
     val id: kotlin.Int?
-    @Json(name = "print_session")
-    val printSession: kotlin.Int?
     @Json(name = "ts")
     val ts: java.time.OffsetDateTime?
     @Json(name = "event_source")
@@ -74,11 +71,11 @@ interface TelemetryEventPolymorphic : Serializable {
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>?
-    @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int?
     @Json(name = "user")
     val user: kotlin.Int?
+    @Json(name = "print_session")
+    val printSession: kotlin.Int?
 }
 

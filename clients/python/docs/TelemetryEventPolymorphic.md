@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**print_session** | **int** |  | [optional] 
 **event_type** | [**PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
 **octoprint_environment** | **dict(str, object)** |  | 
 **octoprint_printer_data** | **dict(str, object)** |  | 
@@ -16,10 +15,10 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
-**octoprint_job** | **dict(str, object)** |  | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 
+**print_session** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

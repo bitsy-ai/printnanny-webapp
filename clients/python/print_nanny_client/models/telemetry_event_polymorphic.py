@@ -37,7 +37,6 @@ class TelemetryEventPolymorphic(object):
     """
     openapi_types = {
         'id': 'int',
-        'print_session': 'int',
         'event_type': 'PrintNannyPluginEventEventTypeEnum',
         'octoprint_environment': 'dict(str, object)',
         'octoprint_printer_data': 'dict(str, object)',
@@ -48,15 +47,14 @@ class TelemetryEventPolymorphic(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
-        'octoprint_job': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
-        'user': 'int'
+        'user': 'int',
+        'print_session': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'print_session': 'print_session',
         'event_type': 'event_type',
         'octoprint_environment': 'octoprint_environment',
         'octoprint_printer_data': 'octoprint_printer_data',
@@ -67,23 +65,22 @@ class TelemetryEventPolymorphic(object):
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
-        'octoprint_job': 'octoprint_job',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
-        'user': 'user'
+        'user': 'user',
+        'print_session': 'print_session'
     }
 
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, print_session=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, ts=None, event_source=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, ts=None, event_source=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEventPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._print_session = None
         self._event_type = None
         self._octoprint_environment = None
         self._octoprint_printer_data = None
@@ -94,15 +91,14 @@ class TelemetryEventPolymorphic(object):
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
-        self._octoprint_job = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
+        self._print_session = None
         self.discriminator = 'resourcetype'
 
         if id is not None:
             self.id = id
-        self.print_session = print_session
         self.event_type = event_type
         self.octoprint_environment = octoprint_environment
         self.octoprint_printer_data = octoprint_printer_data
@@ -117,12 +113,12 @@ class TelemetryEventPolymorphic(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
-        self.octoprint_job = octoprint_job
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
         if user is not None:
             self.user = user
+        self.print_session = print_session
 
     @property
     def id(self):
@@ -144,27 +140,6 @@ class TelemetryEventPolymorphic(object):
         """
 
         self._id = id
-
-    @property
-    def print_session(self):
-        """Gets the print_session of this TelemetryEventPolymorphic.  # noqa: E501
-
-
-        :return: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: int
-        """
-        return self._print_session
-
-    @print_session.setter
-    def print_session(self, print_session):
-        """Sets the print_session of this TelemetryEventPolymorphic.
-
-
-        :param print_session: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
-        :type print_session: int
-        """
-
-        self._print_session = print_session
 
     @property
     def event_type(self):
@@ -398,27 +373,6 @@ class TelemetryEventPolymorphic(object):
         self._octoprint_version = octoprint_version
 
     @property
-    def octoprint_job(self):
-        """Gets the octoprint_job of this TelemetryEventPolymorphic.  # noqa: E501
-
-
-        :return: The octoprint_job of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._octoprint_job
-
-    @octoprint_job.setter
-    def octoprint_job(self, octoprint_job):
-        """Sets the octoprint_job of this TelemetryEventPolymorphic.
-
-
-        :param octoprint_job: The octoprint_job of this TelemetryEventPolymorphic.  # noqa: E501
-        :type octoprint_job: dict(str, object)
-        """
-
-        self._octoprint_job = octoprint_job
-
-    @property
     def polymorphic_ctype(self):
         """Gets the polymorphic_ctype of this TelemetryEventPolymorphic.  # noqa: E501
 
@@ -482,6 +436,27 @@ class TelemetryEventPolymorphic(object):
         """
 
         self._user = user
+
+    @property
+    def print_session(self):
+        """Gets the print_session of this TelemetryEventPolymorphic.  # noqa: E501
+
+
+        :return: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
+        :rtype: int
+        """
+        return self._print_session
+
+    @print_session.setter
+    def print_session(self, print_session):
+        """Sets the print_session of this TelemetryEventPolymorphic.
+
+
+        :param print_session: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
+        :type print_session: int
+        """
+
+        self._print_session = print_session
 
     def get_real_child_model(self, data):
         """Returns the real base class specified by the discriminator"""

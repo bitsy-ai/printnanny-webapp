@@ -47,7 +47,6 @@ class RemoteCommandEvent(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
-        'octoprint_job': 'dict(str, object)',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'user': 'int',
@@ -66,14 +65,13 @@ class RemoteCommandEvent(object):
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
-        'octoprint_job': 'octoprint_job',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'user': 'user',
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """RemoteCommandEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -90,7 +88,6 @@ class RemoteCommandEvent(object):
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
-        self._octoprint_job = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
@@ -115,7 +112,6 @@ class RemoteCommandEvent(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
-        self.octoprint_job = octoprint_job
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
@@ -370,27 +366,6 @@ class RemoteCommandEvent(object):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
-
-    @property
-    def octoprint_job(self):
-        """Gets the octoprint_job of this RemoteCommandEvent.  # noqa: E501
-
-
-        :return: The octoprint_job of this RemoteCommandEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._octoprint_job
-
-    @octoprint_job.setter
-    def octoprint_job(self, octoprint_job):
-        """Sets the octoprint_job of this RemoteCommandEvent.
-
-
-        :param octoprint_job: The octoprint_job of this RemoteCommandEvent.  # noqa: E501
-        :type octoprint_job: dict(str, object)
-        """
-
-        self._octoprint_job = octoprint_job
 
     @property
     def polymorphic_ctype(self):

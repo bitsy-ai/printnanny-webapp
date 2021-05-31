@@ -44,7 +44,6 @@ class OctoPrintEventRequest(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
-        'octoprint_job': 'dict(str, object)',
         'octoprint_device': 'int',
         'print_session': 'int'
     }
@@ -58,12 +57,11 @@ class OctoPrintEventRequest(object):
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
-        'octoprint_job': 'octoprint_job',
         'octoprint_device': 'octoprint_device',
         'print_session': 'print_session'
     }
 
-    def __init__(self, event_type=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, event_type=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,7 +75,6 @@ class OctoPrintEventRequest(object):
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
-        self._octoprint_job = None
         self._octoprint_device = None
         self._print_session = None
         self.discriminator = None
@@ -94,7 +91,6 @@ class OctoPrintEventRequest(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
-        self.octoprint_job = octoprint_job
         self.octoprint_device = octoprint_device
         self.print_session = print_session
 
@@ -282,27 +278,6 @@ class OctoPrintEventRequest(object):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
-
-    @property
-    def octoprint_job(self):
-        """Gets the octoprint_job of this OctoPrintEventRequest.  # noqa: E501
-
-
-        :return: The octoprint_job of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._octoprint_job
-
-    @octoprint_job.setter
-    def octoprint_job(self, octoprint_job):
-        """Sets the octoprint_job of this OctoPrintEventRequest.
-
-
-        :param octoprint_job: The octoprint_job of this OctoPrintEventRequest.  # noqa: E501
-        :type octoprint_job: dict(str, object)
-        """
-
-        self._octoprint_job = octoprint_job
 
     @property
     def octoprint_device(self):

@@ -1231,12 +1231,6 @@ export interface OctoPrintEvent {
     octoprint_version: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
      * @type {number}
      * @memberof OctoPrintEvent
      */
@@ -1365,12 +1359,6 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEventRequest
-     */
-    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
@@ -1746,7 +1734,7 @@ export interface OctoprintProgress {
      * @type {string}
      * @memberof OctoprintProgress
      */
-    printTimeOrigin: string | null;
+    printTimeOrigin?: string | null;
 }
 /**
  * 
@@ -2935,12 +2923,6 @@ export interface PrintNannyPluginEvent {
     octoprint_version: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
@@ -3239,12 +3221,6 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {number}
@@ -3667,12 +3643,6 @@ export interface RemoteCommandEvent {
     octoprint_version: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
      * @type {number}
      * @memberof RemoteCommandEvent
      */
@@ -3854,12 +3824,6 @@ export interface TelemetryEvent {
     id?: number;
     /**
      * 
-     * @type {string}
-     * @memberof TelemetryEvent
-     */
-    print_session?: string;
-    /**
-     * 
      * @type {TelemetryEventEventTypeEnum}
      * @memberof TelemetryEvent
      */
@@ -3920,12 +3884,6 @@ export interface TelemetryEvent {
     octoprint_version: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof TelemetryEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
      * @type {number}
      * @memberof TelemetryEvent
      */
@@ -3942,6 +3900,12 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    print_session?: number | null;
 }
 /**
  * 

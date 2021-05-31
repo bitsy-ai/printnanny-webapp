@@ -37,7 +37,6 @@ class TestTelemetryEvent(unittest.TestCase):
         if include_optional :
             return TelemetryEvent(
                 id = 56, 
-                print_session = '', 
                 event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
@@ -110,12 +109,10 @@ class TestTelemetryEvent(unittest.TestCase):
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
                 octoprint_version = '', 
-                octoprint_job = {
-                    'key' : null
-                    }, 
                 polymorphic_ctype = 56, 
                 octoprint_device = 56, 
-                user = 56
+                user = 56, 
+                print_session = 56
             )
         else :
             return TelemetryEvent(

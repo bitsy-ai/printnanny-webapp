@@ -32,7 +32,6 @@ import java.io.Serializable
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param temperature 
- * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
  * @param printSession 
@@ -63,8 +62,6 @@ data class PrintNannyPluginEvent (
     val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")

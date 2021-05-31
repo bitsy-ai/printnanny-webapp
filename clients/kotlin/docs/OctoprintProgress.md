@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **filepos** | **kotlin.Int** |  | 
 **printTime** | **kotlin.Int** |  | 
 **printTimeLeft** | **kotlin.Int** |  | 
-**printTimeOrigin** | **kotlin.String** |  | 
+**printTimeOrigin** | **kotlin.String** |  |  [optional]
 
 
 

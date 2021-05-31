@@ -30,14 +30,13 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param octoprintDevice 
  * @param id 
- * @param printSession 
  * @param ts 
  * @param eventSource 
  * @param eventData 
  * @param temperature 
- * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
+ * @param printSession 
  */
 
 data class TelemetryEvent (
@@ -57,8 +56,6 @@ data class TelemetryEvent (
     val octoprintDevice: kotlin.Int,
     @Json(name = "id")
     val id: kotlin.Int? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.String? = null,
     @Json(name = "ts")
     val ts: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")
@@ -67,12 +64,12 @@ data class TelemetryEvent (
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")
-    val user: kotlin.Int? = null
+    val user: kotlin.Int? = null,
+    @Json(name = "print_session")
+    val printSession: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

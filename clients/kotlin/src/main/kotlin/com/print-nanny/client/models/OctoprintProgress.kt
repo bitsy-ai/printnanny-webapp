@@ -34,7 +34,7 @@ data class OctoprintProgress (
     @Json(name = "printTimeLeft")
     val printTimeLeft: kotlin.Int?,
     @Json(name = "printTimeOrigin")
-    val printTimeOrigin: kotlin.String?
+    val printTimeOrigin: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123
