@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('telemetry', '0007_alter_octoprintevent_event_type'),
+        ("telemetry", "0007_alter_octoprintevent_event_type"),
     ]
 
     operations = [
-        migrations.DeleteModel('RemoteCommandEvent'),
-        migrations.DeleteModel('OctoPrintPluginEvent'),
-        migrations.DeleteModel('OctoprintEvent'),
-        migrations.DeleteModel('PrintStatusEvent')
+        migrations.DeleteModel("RemoteCommandEvent"),
+        migrations.DeleteModel("OctoPrintPluginEvent"),
+        migrations.DeleteModel("OctoprintEvent"),
+        migrations.DeleteModel("PrintStatusEvent"),
     ]

@@ -151,6 +151,7 @@ class AlertMessage(models.Model):
     )
     needs_review = models.BooleanField(default=False)
 
+
 ##
 # @ todo re-enable ManualVideoUpload feature
 ##

@@ -13,10 +13,17 @@ from django.db import models
 # django-db-model makes it easy to
 ##
 
+
 class EventSource(models.TextChoices):
     OCTOPRINT = ("octoprint", "Events originating from octoprint")
-    PRINT_NANNY_PLUGIN = ("plugin_octoprint_nanny", "Events originating from Print Nanny octoprint plugin")
-    REMOTE_COMMAND = ("remote_command", 'Events originating from a remote control command')
+    PRINT_NANNY_PLUGIN = (
+        "plugin_octoprint_nanny",
+        "Events originating from Print Nanny octoprint plugin",
+    )
+    REMOTE_COMMAND = (
+        "remote_command",
+        "Events originating from a remote control command",
+    )
 
 
 # Catch-all for all event types
@@ -68,7 +75,10 @@ class TelemetryEventType(models.TextChoices):
         "Printer profile sync failed",
     )
 
-    CONNECT_TEST_REST_API = ("plugin_octoprint_nanny_connect_test_rest_api", "Test connection to REST API")
+    CONNECT_TEST_REST_API = (
+        "plugin_octoprint_nanny_connect_test_rest_api",
+        "Test connection to REST API",
+    )
     CONNECT_TEST_REST_API_FAILED = (
         "plugin_octoprint_nanny_connect_test_rest_api_failed",
         "Test connection to REST API failed",
@@ -259,7 +269,10 @@ class PrintNannyPluginEventType(models.TextChoices):
         "Printer profile sync failed",
     )
 
-    CONNECT_TEST_REST_API = ("plugin_octoprint_nanny_connect_test_rest_api", "Test connection to REST API")
+    CONNECT_TEST_REST_API = (
+        "plugin_octoprint_nanny_connect_test_rest_api",
+        "Test connection to REST API",
+    )
     CONNECT_TEST_REST_API_FAILED = (
         "plugin_octoprint_nanny_connect_test_rest_api_failed",
         "Test connection to REST API failed",

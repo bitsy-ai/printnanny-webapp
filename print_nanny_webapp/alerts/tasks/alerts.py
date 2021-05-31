@@ -137,7 +137,11 @@ class AlertTask:
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
                 "DEVICE_NAME": self.instance.octoprint_device.name,
                 "EVENT_TYPE": self.instance.event_type,
-                "GCODE_FILENAME": self.instance.event.octoprint_printer_data.get("job", {}).get("file", {}).get("name"),
+                "GCODE_FILENAME": self.instance.event.octoprint_printer_data.get(
+                    "job", {}
+                )
+                .get("file", {})
+                .get("name"),
             }
             if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
                 videos_url = reverse("dashboard:videos:list")
@@ -149,12 +153,16 @@ class AlertTask:
                     }
                 )
             else:
-                time_remaining = self.instance.event.octoprint_printer_data.get("progress").get("printTimeLeft")
-                time_remaining = time.strftime('%H:%M:%S', time.gmtime(time_remaining))
+                time_remaining = self.instance.event.octoprint_printer_data.get(
+                    "progress"
+                ).get("printTimeLeft")
+                time_remaining = time.strftime("%H:%M:%S", time.gmtime(time_remaining))
                 merge_data.update(
                     {
-                        "PRINT_PROGRESS": self.instance.event.event_data.get("print_progress"),
-                        "TIME_REMAINING": time_remaining
+                        "PRINT_PROGRESS": self.instance.event.event_data.get(
+                            "print_progress"
+                        ),
+                        "TIME_REMAINING": time_remaining,
                     }
                 )
             tags = [

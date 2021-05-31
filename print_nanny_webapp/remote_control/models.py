@@ -364,7 +364,7 @@ class PrintSession(models.Model):
         max_length=36,
         db_index=True,
         choices=PrintStatusEventType.choices,
-        default=PrintStatusEventType.PRINT_STARTED
+        default=PrintStatusEventType.PRINT_STARTED,
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

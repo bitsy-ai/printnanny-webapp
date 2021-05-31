@@ -24,7 +24,7 @@ from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
     PrintStatusEventType,
     RemoteCommandEventType,
-    PrintNannyPluginEventType
+    PrintNannyPluginEventType,
 )
 
 User = get_user_model()
@@ -46,17 +46,20 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(event: PrintStatusEvent):
     from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+
     progress = event.event_data["print_progress"]
     alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
     should_alert = (
-        progress % alert_settings.print_progress_percent == 0 and progress != 100 and progress != 0
+        progress % alert_settings.print_progress_percent == 0
+        and progress != 100
+        and progress != 0
     )
     if event.print_session:
         PrintSession.objects.filter(id=event.print_session.id).update(
             filepos=event.octoprint_printer_data["progress"]["filepos"],
             print_progress=progress,
             time_elapsed=event.octoprint_printer_data["progress"]["printTime"],
-            time_remaining=event.octoprint_printer_data["progress"]["printTimeLeft"]
+            time_remaining=event.octoprint_printer_data["progress"]["printTimeLeft"],
         )
 
     if should_alert:
@@ -67,7 +70,7 @@ def handle_print_progress(event: PrintStatusEvent):
                 user=event.user,
                 print_session=event.print_session,
                 octoprint_device=event.octoprint_device,
-                event=event
+                event=event,
             )
             task = AlertTask(alert_message)
             task.trigger_alert()
@@ -103,7 +106,8 @@ HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEventType.choices}
 )
 
-HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping })
+HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping})
+
 
 def get_resourcetype(validated_data):
     event_type = validated_data["event_type"]
@@ -117,11 +121,18 @@ def get_resourcetype(validated_data):
         resourcetype = PrintNannyPluginEvent._meta.object_name
     else:
         resourcetype = TelemetryEvent._meta.object_name
-        logger.warning(f"Using base TelemetryEvent for event_type={event_type} - you probably want to create a more specific subclass. Recevied data={validated_data}")
+        logger.warning(
+            f"Using base TelemetryEvent for event_type={event_type} - you probably want to create a more specific subclass. Recevied data={validated_data}"
+        )
     return resourcetype
 
+
 def on_octoprint_event(message):
-    from print_nanny_webapp.telemetry.api.serializers import TelemetryEventSerializer, TelemetryEventPolymorphicSerializer
+    from print_nanny_webapp.telemetry.api.serializers import (
+        TelemetryEventSerializer,
+        TelemetryEventPolymorphicSerializer,
+    )
+
     try:
         data = message.data.decode("utf-8")
     except UnicodeDecodeError as e:
@@ -136,15 +147,18 @@ def on_octoprint_event(message):
     logger.info(f"Received {data}")
 
     if not meta_serializer.is_valid():
-        logger.error(f"Meta deserialization failed with errors {meta_serializer.errors} and data {data}")
+        logger.error(
+            f"Meta deserialization failed with errors {meta_serializer.errors} and data {data}"
+        )
         return message.ack()
     resourcetype = get_resourcetype(meta_serializer.validated_data)
-    poly_serializer = TelemetryEventPolymorphicSerializer(data=dict(
-        resourcetype=resourcetype,
-        **data
-    ))
+    poly_serializer = TelemetryEventPolymorphicSerializer(
+        data=dict(resourcetype=resourcetype, **data)
+    )
     if not poly_serializer.is_valid():
-        logger.error(f"Polymorphic deserialization failed with errors {poly_serializer.errors} and data {data}")
+        logger.error(
+            f"Polymorphic deserialization failed with errors {poly_serializer.errors} and data {data}"
+        )
         return message.ack()
     instance = poly_serializer.save()
     logger.info(f"Created event {instance} event_type={instance.event_type}")

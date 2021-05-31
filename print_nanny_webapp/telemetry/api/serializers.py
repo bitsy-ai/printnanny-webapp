@@ -7,10 +7,14 @@ from print_nanny_webapp.telemetry.models import (
     PrintStatusEvent,
     PrintNannyPluginEvent,
     RemoteCommandEvent,
-    TelemetryEvent
+    TelemetryEvent,
 )
 from print_nanny_webapp.telemetry.types import (
-    PrintStatusEventType, TelemetryEventType, PrintNannyPluginEventType, OctoprintEventType, RemoteCommandEventType
+    PrintStatusEventType,
+    TelemetryEventType,
+    PrintNannyPluginEventType,
+    OctoprintEventType,
+    RemoteCommandEventType,
 )
 from rest_polymorphic.serializers import PolymorphicSerializer
 
@@ -23,6 +27,7 @@ class OctoprintFileSerializer(serializers.Serializer):
     size = serializers.IntegerField(allow_null=True)
     date = serializers.IntegerField(allow_null=True)
 
+
 class OctoprintJobSerializer(serializers.Serializer):
     file = OctoprintFileSerializer()
     estimatedPrintTime = serializers.FloatField(required=False, allow_null=True)
@@ -30,31 +35,37 @@ class OctoprintJobSerializer(serializers.Serializer):
     lastPrintTime = serializers.FloatField(required=False, allow_null=True)
     filament = serializers.DictField()
 
+
 class OctoprintPlatformSerializer(serializers.Serializer):
     id = serializers.CharField()
     platform = serializers.CharField()
-    bits = serializers.CharField()  
+    bits = serializers.CharField()
+
 
 class OctoprintPythonSerializer(serializers.Serializer):
     version = serializers.CharField()
     pip = serializers.CharField()
     virtualenv = serializers.CharField()
 
+
 class OctoprintHardwareSerializer(serializers.Serializer):
     cores = serializers.IntegerField()
     freq = serializers.FloatField()
     ram = serializers.IntegerField()
+
 
 class OctoprintPiSupportSerializer(serializers.Serializer):
     model = serializers.CharField()
     throttle_state = serializers.CharField()
     octopi_version = serializers.CharField(required=False)
 
+
 class OctoprintEnvironmentSerializer(serializers.Serializer):
     os = OctoprintPlatformSerializer()
     python = OctoprintPythonSerializer()
     hardware = OctoprintHardwareSerializer()
     pi_support = OctoprintPiSupportSerializer()
+
 
 class OctoprintPrinterFlagsSerializer(serializers.Serializer):
     operational = serializers.BooleanField()
@@ -69,9 +80,11 @@ class OctoprintPrinterFlagsSerializer(serializers.Serializer):
     ready = serializers.BooleanField()
     sdReady = serializers.BooleanField()
 
+
 class OctoprintPrinterStateSerializer(serializers.Serializer):
     text = serializers.CharField()
     flags = OctoprintPrinterFlagsSerializer()
+
 
 class OctoprintProgressSerializer(serializers.Serializer):
     completion = serializers.FloatField(allow_null=True)
@@ -79,6 +92,7 @@ class OctoprintProgressSerializer(serializers.Serializer):
     printTime = serializers.IntegerField(allow_null=True)
     printTimeLeft = serializers.IntegerField(allow_null=True)
     printTimeOrigin = serializers.CharField(allow_null=True, required=False)
+
 
 class OctoprintPrinterDataSerializer(serializers.Serializer):
     job = OctoprintJobSerializer()
@@ -89,16 +103,17 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
     resends = serializers.DictField()
     offsets = serializers.DictField()
 
+
 class TelemetryEventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
 
-
     class Meta:
         model = TelemetryEvent
         fields = "__all__"
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
+
 
 class PrintStatusEventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=PrintStatusEventType.choices)
@@ -107,6 +122,7 @@ class PrintStatusEventSerializer(serializers.ModelSerializer):
         model = PrintStatusEvent
         fields = "__all__"
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
+
 
 class OctoPrintEventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=OctoprintEventType.choices)
@@ -125,6 +141,7 @@ class PrintNannyPluginEventSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
 
+
 class RemoteCommandEventSerializer(serializers.ModelSerializer):
     event_type = serializers.ChoiceField(choices=RemoteCommandEventType.choices)
 
@@ -133,15 +150,15 @@ class RemoteCommandEventSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
 
-class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
 
+class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
 
     model_serializer_mapping = {
         TelemetryEvent: TelemetryEventSerializer,
         RemoteCommandEvent: RemoteCommandEventSerializer,
         PrintStatusEvent: PrintStatusEventSerializer,
         OctoPrintEvent: OctoPrintEventSerializer,
-        PrintNannyPluginEvent: PrintNannyPluginEventSerializer
+        PrintNannyPluginEvent: PrintNannyPluginEventSerializer,
     }
 
     def to_representation(self, instance):

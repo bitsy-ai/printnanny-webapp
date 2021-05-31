@@ -21,8 +21,8 @@ from polymorphic.managers import PolymorphicManager
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
-class TelemetryEventManager(PolymorphicManager):
 
+class TelemetryEventManager(PolymorphicManager):
     def create(self, user=None, **kwargs):
         from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
@@ -37,18 +37,22 @@ class TelemetryEventManager(PolymorphicManager):
         return super().create(user=user, **kwargs)
 
 
-
 class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
+
     objects = TelemetryEventManager()
 
     event_type = models.CharField(
         max_length=255, db_index=True, choices=TelemetryEventType.choices
     )
     ts = models.DateTimeField(auto_now_add=True, db_index=True)
-    event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)
+    event_source = models.CharField(
+        max_length=36,
+        choices=EventSource.choices,
+        default=EventSource.PRINT_NANNY_PLUGIN,
+    )
     event_data = models.JSONField(default=dict, null=True)
     octoprint_environment = models.JSONField(default=dict)
     octoprint_printer_data = models.JSONField(default=dict)
@@ -69,13 +73,16 @@ class TelemetryEvent(PolymorphicModel):
         db_index=True,
     )
 
+
 class RemoteCommandEvent(TelemetryEvent):
     """
     Commands sent to the OctoPrint device
     """
 
     def __init__(self, *args, **kwargs):
-        return super().__init__(*args, event_source=EventSource.REMOTE_COMMAND, **kwargs)
+        return super().__init__(
+            *args, event_source=EventSource.REMOTE_COMMAND, **kwargs
+        )
 
     event_codes = [x.value for x in RemoteCommandEventType.__members__.values()]
 
@@ -88,8 +95,11 @@ class PrintNannyPluginEvent(TelemetryEvent):
 
     For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
     """
+
     def __init__(self, *args, **kwargs):
-        return super().__init__(*args, event_source=EventSource.PRINT_NANNY_PLUGIN, **kwargs)
+        return super().__init__(
+            *args, event_source=EventSource.PRINT_NANNY_PLUGIN, **kwargs
+        )
 
     plugin_identifier = "octoprint_nanny"
     octoprint_event_prefix = "plugin_octoprint_nanny_"
@@ -107,17 +117,17 @@ class OctoPrintEvent(TelemetryEvent):
     Events emitted by OctoPrint Core and plugins bundled with core
     PascalCased strings
     """
+
     def __init__(self, *args, **kwargs):
         return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
     event_codes = [x.value for x in OctoprintEventType.__members__.values()]
 
 
-
 class PrintStatusEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
         return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
-        
+
     event_codes = [x.value for x in PrintStatusEventType.__members__.values()]
     JOB_EVENT_TYPE_CSS_CLASS = {
         "Error": "text-danger",

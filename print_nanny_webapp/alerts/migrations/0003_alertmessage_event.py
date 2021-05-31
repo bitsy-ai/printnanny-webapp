@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('telemetry', '0011_remove_telemetryevent_octoprint_job'),
-        ('alerts', '0002_auto_20210505_1018'),
+        ("telemetry", "0011_remove_telemetryevent_octoprint_job"),
+        ("alerts", "0002_auto_20210505_1018"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='alertmessage',
-            name='event',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='telemetry.telemetryevent'),
+            model_name="alertmessage",
+            name="event",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="telemetry.telemetryevent",
+            ),
         ),
     ]

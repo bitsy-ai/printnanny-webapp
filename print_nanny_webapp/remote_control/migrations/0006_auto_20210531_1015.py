@@ -6,23 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0005_alter_remotecontrolcommand_command'),
+        ("remote_control", "0005_alter_remotecontrolcommand_command"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='octoprintdevice',
-            old_name='last_session',
-            new_name='active_session',
+            model_name="octoprintdevice",
+            old_name="last_session",
+            new_name="active_session",
         ),
         migrations.RenameField(
-            model_name='printsession',
-            old_name='status',
-            new_name='monitoring_status',
+            model_name="printsession",
+            old_name="status",
+            new_name="monitoring_status",
         ),
         migrations.AddField(
-            model_name='printsession',
-            name='print_job_status',
-            field=models.CharField(choices=[('PrintCancelled', 'PrintCancelled'), ('PrintCancelling', 'PrintCancelling'), ('PrintDone', 'PrintDone'), ('PrintFailed', 'PrintFailed'), ('PrintPaused', 'PrintPaused'), ('PrintResumed', 'PrintResumed'), ('PrintStarted', 'PrintStarted')], db_index=True, default='PrintStarted', max_length=36),
+            model_name="printsession",
+            name="print_job_status",
+            field=models.CharField(
+                choices=[
+                    ("PrintCancelled", "PrintCancelled"),
+                    ("PrintCancelling", "PrintCancelling"),
+                    ("PrintDone", "PrintDone"),
+                    ("PrintFailed", "PrintFailed"),
+                    ("PrintPaused", "PrintPaused"),
+                    ("PrintResumed", "PrintResumed"),
+                    ("PrintStarted", "PrintStarted"),
+                ],
+                db_index=True,
+                default="PrintStarted",
+                max_length=36,
+            ),
         ),
     ]

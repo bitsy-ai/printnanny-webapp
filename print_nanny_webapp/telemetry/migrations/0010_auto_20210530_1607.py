@@ -6,27 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('telemetry', '0009_octoprintevent_printnannypluginevent_printstatusevent_remotecommandevent_telemetryevent'),
+        (
+            "telemetry",
+            "0009_octoprintevent_printnannypluginevent_printstatusevent_remotecommandevent_telemetryevent",
+        ),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='telemetryevent',
-            name='octoprint_metadata',
+            model_name="telemetryevent",
+            name="octoprint_metadata",
         ),
         migrations.AddField(
-            model_name='telemetryevent',
-            name='octoprint_environment',
+            model_name="telemetryevent",
+            name="octoprint_environment",
             field=models.JSONField(default=dict),
         ),
         migrations.AddField(
-            model_name='telemetryevent',
-            name='octoprint_printer_data',
+            model_name="telemetryevent",
+            name="octoprint_printer_data",
             field=models.JSONField(default=dict),
         ),
         migrations.AddField(
-            model_name='telemetryevent',
-            name='temperature',
+            model_name="telemetryevent",
+            name="temperature",
             field=models.JSONField(default=dict),
         ),
     ]

@@ -17,7 +17,7 @@ from .serializers import (
     PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
     TelemetryEventPolymorphicSerializer,
-    RemoteCommandEventSerializer
+    RemoteCommandEventSerializer,
 )
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
@@ -29,6 +29,7 @@ RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
 
 logger = logging.getLogger(__name__)
 
+
 @extend_schema(tags=["telemetry"])
 @extend_schema_view(
     create=extend_schema(
@@ -38,9 +39,7 @@ logger = logging.getLogger(__name__)
         }
     )
 )
-class TelemetryEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
+class TelemetryEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = TelemetryEventPolymorphicSerializer
     queryset = TelemetryEvent.objects.all()
     lookup_field = "id"
@@ -58,16 +57,13 @@ class TelemetryEventViewSet(
         }
     )
 )
-class RemoteCommandEventViewSet(
-    GenericViewSet, ListModelMixin, RetrieveModelMixin
-):
+class RemoteCommandEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     serializer_class = RemoteCommandEventSerializer
     queryset = RemoteCommandEvent.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user_id=self.request.user.id)
-
 
 
 @extend_schema(tags=["telemetry"])

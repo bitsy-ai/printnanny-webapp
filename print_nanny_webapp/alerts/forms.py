@@ -1,4 +1,3 @@
-
 from django.apps import apps
 from django.forms import ModelForm, Form
 
