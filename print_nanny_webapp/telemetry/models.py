@@ -154,6 +154,7 @@ class PrintStatusEvent(TelemetryEvent):
         "Offline": "text-warning",
         "Connecting": "text-warning",
         "Opening serial connection": "text-warning",
+        "Resuming": "text-warning"
     }
     # https://docs.octoprint.org/en/master/api/datamodel.html?highlight=flags#printer-state (text)
     printer_state = models.CharField(

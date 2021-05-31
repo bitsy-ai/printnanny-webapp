@@ -425,3 +425,5 @@ class PrinterState(models.TextChoices):
     OFFLINE = "Offline", "Printer Offline"
     OPEN_SERIAL = "Opening serial connection", "Opening serial connection"
     CONNECTING = "Connection", "Establishing printer connection"
+    RESUMING = "Resuming", "Resuming"
+    FINISHING = "Finishing", "Finishing"
