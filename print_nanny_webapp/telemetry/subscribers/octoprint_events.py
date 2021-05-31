@@ -46,40 +46,20 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 def handle_print_progress(event: PrintStatusEvent):
     from print_nanny_webapp.alerts.tasks.alerts import AlertTask
-
-    # user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
-    # progress = octoprint_event.get("event_data", {}).get("print_progress")
-    # # update print session progress
-    # print_session = octoprint_event.get("metadata", {}).get("print_session")
-    # if print_session:
-    #     PrintSession.objects.filter(session=print_session).update(
-    #         print_progress=progress,
-    #         # TODO
-    #         # enrich print progress event with the following fields
-    #         # filepos=octoprint_event.get("filepos"),
-    #         # time_elapsed=octoprint_event.get("time_elapsed"),
-    #         # time_remaining=octoprint_event.get("time_remaining"),
-    #     )
-    #     print_session = PrintSession.objects.get(session=print_session)
+    progress = event.event_data["print_progress"]
     alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
-
     should_alert = (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
     )
-    logger.info(f"Received event={octoprint_event} should_alert={should_alert}")
+    logger.info(f"should_alert={should_alert} for event_type={event.event_type}")
     if should_alert:
-        # PrintDone / VideoDone events capture the case where a print is 100% complete
-        # @TODO write octoprint_event serializer
-        octoprint_device = octoprint_event.get("metadata", {}).get(
-            "octoprint_device_id"
-        )
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
-                user=user,
-                print_session=print_session,
-                octoprint_device_id=octoprint_device,
+                user=event.user,
+                print_session=event.print_session,
+                octoprint_device=event.octoprint_device,
             )
             task = AlertTask(alert_message)
             task.trigger_alert()
