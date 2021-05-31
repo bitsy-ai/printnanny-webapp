@@ -51,7 +51,7 @@ def handle_print_progress(event: PrintStatusEvent):
     should_alert = (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
     )
-    logger.info(f"should_alert={should_alert} for event_type={event.event_type}")
+    logger.info(f"should_alert={should_alert} progress={progress} for event_type={event.event_type}")
     if should_alert:
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
@@ -60,6 +60,7 @@ def handle_print_progress(event: PrintStatusEvent):
                 user=event.user,
                 print_session=event.print_session,
                 octoprint_device=event.octoprint_device,
+                event=event
             )
             task = AlertTask(alert_message)
             task.trigger_alert()

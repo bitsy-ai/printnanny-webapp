@@ -136,7 +136,7 @@ class AlertTask:
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
                 "DEVICE_NAME": self.instance.octoprint_device.name,
                 "EVENT_TYPE": self.instance.event_type,
-                "GCODE_FILENAME": self.instance.print_session.gcode_file,
+                "GCODE_FILENAME": self.instance.event.octoprint_printer_data.get("job", {}).get("file", {}).get("name"),
             }
             if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
                 videos_url = reverse("dashboard:videos:list")
@@ -150,16 +150,17 @@ class AlertTask:
             else:
                 merge_data.update(
                     {
-                        "PRINT_PROGRESS": data["print_progress"],
-                        "TIME_REMAINING": data["time_remaining"],
+                        "PRINT_PROGRESS": self.instance.event.event_data.get("print_progress"),
+                        "TIME_REMAINING": self.instance.event.octoprint_printer_data.get("progress").get("printTimeLeft")
                     }
                 )
             tags = [
                 f"User:{self.instance.user.id}",
-                f"Device:{self.instance.octoprint_device.id}",
-                f"PrintSessionID:{self.instance.print_session.id}",
-                f"PrintSession:{self.instance.print_session.session}",
+                f"OctoprintDevice:{self.instance.octoprint_device.id}",
             ]
+            if self.instance.print_session:
+                tags += [f"PrintSession:{self.instance.print_session.id}"]
+
         subject_end_template = Template(self.instance.get_event_type_display())
         ctx = Context(merge_data)
 
