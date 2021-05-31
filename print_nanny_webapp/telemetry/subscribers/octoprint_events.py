@@ -158,11 +158,11 @@ def on_octoprint_event(message):
     else:
         data = dict(
             resourcetype=resourcetype,
-            printer_state=data["octoprint_printer_data"]["state"]["text"]
+            printer_state=data["octoprint_printer_data"]["state"]["text"],
             **data
             )
     poly_serializer = TelemetryEventPolymorphicSerializer(
-        data=dict(resourcetype=resourcetype, **data)
+        data=data
     )
     if not poly_serializer.is_valid():
         logger.error(
