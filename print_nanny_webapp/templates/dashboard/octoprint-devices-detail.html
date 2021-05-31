@@ -40,6 +40,11 @@
         
                         <dt class="col-sm-3">Printer Status</dt>
                         <dd class="col-sm-9"><i class="mdi mdi-circle {{object.printer_state_css_class}}"></i> {{object.printer_state}}</dd>
+                        <dt class="col-sm-3">Job Status</dt>
+                        <dd class="col-sm-9">{%if device.last_session.print_progress %}{{device.last_session.print_progress}}% {% endif %}</dd>
+
+                        <dt class="col-sm-3">Job Progress</dt>
+                        <dd class="col-sm-9">{%if device.last_session.print_progress %}{{device.last_session.print_progress}}% {% endif %}</dd>
 
                         <dt class="col-sm-3">Monitoring Active</dt>
                         <dd class="col-sm-9"><i class="mdi mdi-circle {{object.monitoring_active_css_class}}"></i> {{object.monitoring_active}}</dd>
