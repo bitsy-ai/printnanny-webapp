@@ -49,9 +49,16 @@ def handle_print_progress(event: PrintStatusEvent):
     progress = event.event_data["print_progress"]
     alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
     should_alert = (
-        progress % alert_settings.print_progress_percent == 0 and progress != 100
+        progress % alert_settings.print_progress_percent == 0 and progress != 100 and progress != 0
     )
-    logger.info(f"should_alert={should_alert} progress={progress} for event_type={event.event_type}")
+    if event.print_session:
+        PrintSession.objects.filter(id=event.print_session.id).update(
+            filepos=event.octoprint_printer_data["progress"]["filepos"],
+            print_progress=progress,
+            time_elapsed=event.octoprint_printer_data["progress"]["printTime"],
+            time_remaining=event.octoprint_printer_data["progress"]["printTimeLeft"]
+        )
+
     if should_alert:
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
@@ -102,7 +109,7 @@ def get_resourcetype(validated_data):
         resourcetype = PrintStatusEvent._meta.object_name
     elif event_type in RemoteCommandEventType:
         resourcetype = RemoteCommandEvent._meta.object_name
-    elif event_type in PrintNannyPluginEvent:
+    elif event_type in PrintNannyPluginEventType:
         resourcetype = PrintNannyPluginEvent._meta.object_name
     else:
         resourcetype = TelemetryEvent._meta.object_name

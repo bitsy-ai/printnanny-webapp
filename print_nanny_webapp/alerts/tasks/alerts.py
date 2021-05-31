@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
 from django.template import engines
+import time
 import logging
 
 import requests
@@ -148,10 +149,12 @@ class AlertTask:
                     }
                 )
             else:
+                time_remaining = self.instance.event.octoprint_printer_data.get("progress").get("printTimeLeft")
+                time_remaining = time.strftime('%H:%M:%S', time.gmtime(time_remaining))
                 merge_data.update(
                     {
                         "PRINT_PROGRESS": self.instance.event.event_data.get("print_progress"),
-                        "TIME_REMAINING": self.instance.event.octoprint_printer_data.get("progress").get("printTimeLeft")
+                        "TIME_REMAINING": time_remaining
                     }
                 )
             tags = [
