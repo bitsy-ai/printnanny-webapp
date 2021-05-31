@@ -80,8 +80,7 @@ class OctoPrintEventRequest(object):
         self.discriminator = None
 
         self.event_type = event_type
-        if event_data is not None:
-            self.event_data = event_data
+        self.event_data = event_data
         if octoprint_environment is not None:
             self.octoprint_environment = octoprint_environment
         if octoprint_printer_data is not None:

@@ -1,4 +1,4 @@
-# StatusEnum
+# MonitoringStatusEnum
 
 
 ## Properties

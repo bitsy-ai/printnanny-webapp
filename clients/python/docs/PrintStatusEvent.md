@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**event_type** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
+**event_type** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] [readonly] 
 **event_data** | **dict(str, object)** |  | [optional] 

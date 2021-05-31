@@ -12,7 +12,8 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
-import com.print-nanny.client.models.StatusEnum
+import com.print-nanny.client.models.MonitoringStatusEnum
+import com.print-nanny.client.models.PrintJobStatusEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -28,7 +29,8 @@ import java.io.Serializable
  * @param printProgress 
  * @param timeElapsed 
  * @param timeRemaining 
- * @param status 
+ * @param monitoringStatus 
+ * @param printJobStatus 
  * @param user 
  * @param printerProfile 
  * @param gcodeFile 
@@ -56,8 +58,10 @@ data class PrintSession (
     val timeElapsed: kotlin.Int? = null,
     @Json(name = "time_remaining")
     val timeRemaining: kotlin.Int? = null,
-    @Json(name = "status")
-    val status: StatusEnum? = null,
+    @Json(name = "monitoring_status")
+    val monitoringStatus: MonitoringStatusEnum? = null,
+    @Json(name = "print_job_status")
+    val printJobStatus: PrintJobStatusEnum? = null,
     @Json(name = "user")
     val user: kotlin.Int? = null,
     @Json(name = "printer_profile")

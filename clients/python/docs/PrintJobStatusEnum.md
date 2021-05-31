@@ -1,4 +1,4 @@
-# PrintStatusEventEventTypeEnum
+# PrintJobStatusEnum
 
 
 ## Properties

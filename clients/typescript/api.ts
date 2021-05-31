@@ -386,6 +386,21 @@ export enum EventSourceEnum {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum EventTypeD9eEnum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
+}
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -586,6 +601,17 @@ export enum MonitoringModeEnum {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum MonitoringStatusEnum {
+    MonitoringActive = 'monitoring_active',
+    RenderingVideo = 'rendering_video',
+    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
+}
+
+/**
+ * 
+ * @export
  * @interface Nested
  */
 export interface Nested {
@@ -679,7 +705,7 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    last_session?: number | null;
+    active_session?: number | null;
     /**
      * 
      * @type {string}
@@ -866,7 +892,7 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    last_session?: number | null;
+    active_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1059,7 +1085,7 @@ export interface OctoPrintDeviceRequest {
      * @type {number}
      * @memberof OctoPrintDeviceRequest
      */
-    last_session?: number | null;
+    active_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1192,7 +1218,7 @@ export interface OctoPrintEvent {
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEvent
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1322,7 +1348,7 @@ export interface OctoPrintEventRequest {
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -2471,7 +2497,7 @@ export interface PatchedOctoPrintDeviceRequest {
      * @type {number}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    last_session?: number | null;
+    active_session?: number | null;
     /**
      * 
      * @type {string}
@@ -2613,10 +2639,16 @@ export interface PatchedPrintSessionRequest {
     time_remaining?: number | null;
     /**
      * 
-     * @type {StatusEnum}
+     * @type {MonitoringStatusEnum}
      * @memberof PatchedPrintSessionRequest
      */
-    status?: StatusEnum;
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PatchedPrintSessionRequest
+     */
+    print_job_status?: PrintJobStatusEnum;
     /**
      * 
      * @type {number}
@@ -2852,6 +2884,21 @@ export interface PatchedUserRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum PrintJobStatusEnum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted'
+}
+
+/**
+ * 
+ * @export
  * @interface PrintNannyPluginEvent
  */
 export interface PrintNannyPluginEvent {
@@ -2884,7 +2931,7 @@ export interface PrintNannyPluginEvent {
      * @type {{ [key: string]: any; }}
      * @memberof PrintNannyPluginEvent
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3035,10 +3082,16 @@ export interface PrintSession {
     time_remaining?: number | null;
     /**
      * 
-     * @type {StatusEnum}
+     * @type {MonitoringStatusEnum}
      * @memberof PrintSession
      */
-    status?: StatusEnum;
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PrintSession
+     */
+    print_job_status?: PrintJobStatusEnum;
     /**
      * 
      * @type {number}
@@ -3120,10 +3173,16 @@ export interface PrintSessionRequest {
     time_remaining?: number | null;
     /**
      * 
-     * @type {StatusEnum}
+     * @type {MonitoringStatusEnum}
      * @memberof PrintSessionRequest
      */
-    status?: StatusEnum;
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PrintSessionRequest
+     */
+    print_job_status?: PrintJobStatusEnum;
     /**
      * 
      * @type {number}
@@ -3163,10 +3222,10 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
-     * @type {PrintStatusEventEventTypeEnum}
+     * @type {EventTypeD9eEnum}
      * @memberof PrintStatusEvent
      */
-    event_type: PrintStatusEventEventTypeEnum;
+    event_type: EventTypeD9eEnum;
     /**
      * 
      * @type {string}
@@ -3184,7 +3243,7 @@ export interface PrintStatusEvent {
      * @type {{ [key: string]: any; }}
      * @memberof PrintStatusEvent
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3246,21 +3305,6 @@ export interface PrintStatusEvent {
      */
     print_session?: number | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintStatusEventEventTypeEnum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
 /**
  * 
  * @export
@@ -3604,7 +3648,7 @@ export interface RemoteCommandEvent {
      * @type {{ [key: string]: any; }}
      * @memberof RemoteCommandEvent
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3802,17 +3846,6 @@ export interface RemoteControlCommandRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum StatusEnum {
-    MonitoringActive = 'monitoring_active',
-    RenderingVideo = 'rendering_video',
-    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
-}
-
-/**
- * 
- * @export
  * @interface TelemetryEvent
  */
 export interface TelemetryEvent {
@@ -3857,7 +3890,7 @@ export interface TelemetryEvent {
      * @type {{ [key: string]: any; }}
      * @memberof TelemetryEvent
      */
-    event_data?: { [key: string]: any; };
+    event_data?: { [key: string]: any; } | null;
     /**
      * 
      * @type {{ [key: string]: any; }}

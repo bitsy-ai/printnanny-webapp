@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
-**lastSession** | **kotlin.Int** |  |  [optional]
+**activeSession** | **kotlin.Int** |  |  [optional]
 **publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **fingerprint** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional] [readonly]

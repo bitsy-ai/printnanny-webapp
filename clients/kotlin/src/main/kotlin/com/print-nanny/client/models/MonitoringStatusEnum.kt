@@ -19,7 +19,7 @@ import com.squareup.moshi.Json
 * Values: monitoringActive,renderingVideo,doneATimelapseOfYourPrintJobIsReadyExclamation
 */
 
-enum class StatusEnum(val value: kotlin.String) {
+enum class MonitoringStatusEnum(val value: kotlin.String) {
 
 
     @Json(name = "monitoring_active")

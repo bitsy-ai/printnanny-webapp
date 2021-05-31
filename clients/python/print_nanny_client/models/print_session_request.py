@@ -42,7 +42,8 @@ class PrintSessionRequest(object):
         'print_progress': 'int',
         'time_elapsed': 'int',
         'time_remaining': 'int',
-        'status': 'StatusEnum',
+        'monitoring_status': 'MonitoringStatusEnum',
+        'print_job_status': 'PrintJobStatusEnum',
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
@@ -56,14 +57,15 @@ class PrintSessionRequest(object):
         'print_progress': 'print_progress',
         'time_elapsed': 'time_elapsed',
         'time_remaining': 'time_remaining',
-        'status': 'status',
+        'monitoring_status': 'monitoring_status',
+        'print_job_status': 'print_job_status',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
         'octoprint_job': 'octoprint_job'
     }
 
-    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, monitoring_status=None, print_job_status=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -75,7 +77,8 @@ class PrintSessionRequest(object):
         self._print_progress = None
         self._time_elapsed = None
         self._time_remaining = None
-        self._status = None
+        self._monitoring_status = None
+        self._print_job_status = None
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
@@ -88,8 +91,10 @@ class PrintSessionRequest(object):
         self.print_progress = print_progress
         self.time_elapsed = time_elapsed
         self.time_remaining = time_remaining
-        if status is not None:
-            self.status = status
+        if monitoring_status is not None:
+            self.monitoring_status = monitoring_status
+        if print_job_status is not None:
+            self.print_job_status = print_job_status
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
@@ -253,25 +258,46 @@ class PrintSessionRequest(object):
         self._time_remaining = time_remaining
 
     @property
-    def status(self):
-        """Gets the status of this PrintSessionRequest.  # noqa: E501
+    def monitoring_status(self):
+        """Gets the monitoring_status of this PrintSessionRequest.  # noqa: E501
 
 
-        :return: The status of this PrintSessionRequest.  # noqa: E501
-        :rtype: StatusEnum
+        :return: The monitoring_status of this PrintSessionRequest.  # noqa: E501
+        :rtype: MonitoringStatusEnum
         """
-        return self._status
+        return self._monitoring_status
 
-    @status.setter
-    def status(self, status):
-        """Sets the status of this PrintSessionRequest.
+    @monitoring_status.setter
+    def monitoring_status(self, monitoring_status):
+        """Sets the monitoring_status of this PrintSessionRequest.
 
 
-        :param status: The status of this PrintSessionRequest.  # noqa: E501
-        :type status: StatusEnum
+        :param monitoring_status: The monitoring_status of this PrintSessionRequest.  # noqa: E501
+        :type monitoring_status: MonitoringStatusEnum
         """
 
-        self._status = status
+        self._monitoring_status = monitoring_status
+
+    @property
+    def print_job_status(self):
+        """Gets the print_job_status of this PrintSessionRequest.  # noqa: E501
+
+
+        :return: The print_job_status of this PrintSessionRequest.  # noqa: E501
+        :rtype: PrintJobStatusEnum
+        """
+        return self._print_job_status
+
+    @print_job_status.setter
+    def print_job_status(self, print_job_status):
+        """Sets the print_job_status of this PrintSessionRequest.
+
+
+        :param print_job_status: The print_job_status of this PrintSessionRequest.  # noqa: E501
+        :type print_job_status: PrintJobStatusEnum
+        """
+
+        self._print_job_status = print_job_status
 
     @property
     def printer_profile(self):

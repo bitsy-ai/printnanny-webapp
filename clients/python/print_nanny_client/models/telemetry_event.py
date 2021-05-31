@@ -103,8 +103,7 @@ class TelemetryEvent(object):
             self.ts = ts
         if event_source is not None:
             self.event_source = event_source
-        if event_data is not None:
-            self.event_data = event_data
+        self.event_data = event_data
         if temperature is not None:
             self.temperature = temperature
         self.print_nanny_plugin_version = print_nanny_plugin_version
