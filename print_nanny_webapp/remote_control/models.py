@@ -218,13 +218,13 @@ class OctoPrintDevice(SafeDeleteModel):
         default=PrinterState.OFFLINE
     )
     def to_json(self):
-        # from print_nanny_webapp.remote_control.api.serializers import (
-        #     OctoPrintDeviceSerializer,
-        # )
+        from print_nanny_webapp.remote_control.api.serializers import (
+            OctoPrintDeviceSerializer,
+        )
 
-        # serializer = OctoPrintDeviceSerializer(instance=self)
+        serializer = OctoPrintDeviceSerializer(instance=self, context={'request': None})
         # TODO HyperLinkedIdentitySerialzier requires request context
-        return json.dumps({}, sort_keys=True, indent=2)
+        return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property
     def manage_url(self):
