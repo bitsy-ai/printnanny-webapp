@@ -257,10 +257,10 @@ class OctoPrintDevice(SafeDeleteModel):
             return ""
 
     @property
-    def print_session_status_css_class(self):
+    def print_job_status_css_class(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
-        return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
+        return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -460,7 +460,7 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     @classmethod
-    def get_valid_actions(cls, print_session_status):
+    def get_valid_actions(cls, print_job_status):
         valid_actions = {
             PrintStatusEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
@@ -484,7 +484,7 @@ class RemoteControlCommand(models.Model):
                 cls.Command.MONITORING_STOP,
             ],
         }
-        return valid_actions[print_session_status]
+        return valid_actions[print_job_status]
 
     ACTION_CSS_CLASSES = {
         Command.PRINT_STOP: "danger",
