@@ -133,6 +133,9 @@ class AlertMessage(models.Model):
     event_type = models.CharField(
         choices=AlertMessageType.choices, max_length=255, null=True
     )
+    event = models.ForeignKey(
+        "telemetry.TelemetryEvent", on_delete=models.CASCADE, null=True
+    )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True
     )
@@ -147,7 +150,6 @@ class AlertMessage(models.Model):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
     needs_review = models.BooleanField(default=False)
-
 
 ##
 # @ todo re-enable ManualVideoUpload feature
