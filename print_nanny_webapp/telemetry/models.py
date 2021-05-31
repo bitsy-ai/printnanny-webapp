@@ -15,7 +15,7 @@ from print_nanny_webapp.telemetry.types import (
     PrintStatusEventType,
     EventSource,
     TelemetryEventType,
-    PrinterState
+    PrinterState,
 )
 from polymorphic.managers import PolymorphicManager
 
@@ -153,11 +153,12 @@ class PrintStatusEvent(TelemetryEvent):
         "Printing": "text-success",
         "Offline": "text-warning",
         "Connecting": "text-warning",
-        "Opening serial connection": "text-warning"
+        "Opening serial connection": "text-warning",
     }
     # https://docs.octoprint.org/en/master/api/datamodel.html?highlight=flags#printer-state (text)
-    printer_state = models.CharField(max_length=255, choices=PrinterState.choices, null=True)
-
+    printer_state = models.CharField(
+        max_length=255, choices=PrinterState.choices, null=True
+    )
 
     # state = JSONField(default=dict)
     # current_z = models.FloatField(null=True)

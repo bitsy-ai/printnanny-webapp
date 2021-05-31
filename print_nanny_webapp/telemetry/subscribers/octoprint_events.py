@@ -86,6 +86,7 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
         event.octoprint_device.print_job_status = event.event_type
     return event.octoprint_device.save()
 
+
 def handle_ping(event: OctoPrintEvent):
     try:
         RemoteControlCommand.objects.create(
@@ -99,7 +100,7 @@ def handle_ping(event: OctoPrintEvent):
         )
 
 
-HANDLER_FNS = { OctoprintEventType.PRINT_PROGRESS: handle_print_progress }
+HANDLER_FNS = {OctoprintEventType.PRINT_PROGRESS: handle_print_progress}
 
 HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEventType.choices}
@@ -151,16 +152,13 @@ def on_octoprint_event(message):
         )
         return message.ack()
     resourcetype = get_resourcetype(meta_serializer.validated_data)
-    
 
     data = dict(
         resourcetype=resourcetype,
         printer_state=data["octoprint_printer_data"]["state"]["text"],
-        **data
+        **data,
     )
-    poly_serializer = TelemetryEventPolymorphicSerializer(
-        data=data
-    )
+    poly_serializer = TelemetryEventPolymorphicSerializer(data=data)
     if not poly_serializer.is_valid():
         logger.error(
             f"Polymorphic deserialization failed with errors {poly_serializer.errors} and data {data}"

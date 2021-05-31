@@ -6,13 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('telemetry', '0012_alter_telemetryevent_event_data'),
+        ("telemetry", "0012_alter_telemetryevent_event_data"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='printstatusevent',
-            name='printer_state',
-            field=models.CharField(choices=[('operational', 'Printer Connected'), ('paused', 'Paused'), ('cancelling', 'Cancelling'), ('printing', 'Printing'), ('pausing', 'Pausing'), ('sdReady', 'SD Card Available'), ('error', 'Error'), ('readyPrinter Ready', 'Ready'), ('closedOrError', 'Printer Disconnected')], max_length=255, null=True),
+            model_name="printstatusevent",
+            name="printer_state",
+            field=models.CharField(
+                choices=[
+                    ("operational", "Printer Connected"),
+                    ("paused", "Paused"),
+                    ("cancelling", "Cancelling"),
+                    ("printing", "Printing"),
+                    ("pausing", "Pausing"),
+                    ("sdReady", "SD Card Available"),
+                    ("error", "Error"),
+                    ("readyPrinter Ready", "Ready"),
+                    ("closedOrError", "Printer Disconnected"),
+                ],
+                max_length=255,
+                null=True,
+            ),
         ),
     ]

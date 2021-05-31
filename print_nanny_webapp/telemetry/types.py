@@ -411,6 +411,7 @@ class PrintStatusEventType(models.TextChoices):
     PRINT_STARTED = "PrintStarted", "PrintStarted"
     PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
+
 class PrinterState(models.TextChoices):
     OPERATIONAL = "Operational", "Printer Connected"
     PAUSED = "Paused", "Paused"

@@ -267,9 +267,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     def create_remote_command_form(self, **kwargs):
         obj = self.get_object()
-        command_choices = RemoteControlCommand.get_valid_actions(
-            obj.print_job_status
-        )
+        command_choices = RemoteControlCommand.get_valid_actions(obj.print_job_status)
         form = RemoteControlCommandForm(command_choices=command_choices, **kwargs)
         return form
 

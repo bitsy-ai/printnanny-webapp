@@ -6,30 +6,60 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0007_auto_20210531_1119'),
+        ("remote_control", "0007_auto_20210531_1119"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='printsession',
-            name='monitoring_status',
+            model_name="printsession",
+            name="monitoring_status",
         ),
         migrations.RemoveField(
-            model_name='printsession',
-            name='print_job_status',
+            model_name="printsession",
+            name="print_job_status",
         ),
         migrations.RemoveField(
-            model_name='printsession',
-            name='printer_state',
+            model_name="printsession",
+            name="printer_state",
         ),
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='monitoring_status',
-            field=models.CharField(choices=[('monitoring_active', 'Print Nanny is currently monitoring your print job'), ('rendering_video', 'Print Nanny is creating a timelapse video of your print job'), ('doneA timelapse of your print job is ready!', 'Done')], db_index=True, default='monitoring_active', max_length=255),
+            model_name="octoprintdevice",
+            name="monitoring_status",
+            field=models.CharField(
+                choices=[
+                    (
+                        "monitoring_active",
+                        "Print Nanny is currently monitoring your print job",
+                    ),
+                    (
+                        "rendering_video",
+                        "Print Nanny is creating a timelapse video of your print job",
+                    ),
+                    ("doneA timelapse of your print job is ready!", "Done"),
+                ],
+                db_index=True,
+                default="monitoring_active",
+                max_length=255,
+            ),
         ),
         migrations.AddField(
-            model_name='octoprintdevice',
-            name='printer_state',
-            field=models.CharField(choices=[('operational', 'Printer Connected'), ('paused', 'Paused'), ('cancelling', 'Cancelling'), ('printing', 'Printing'), ('pausing', 'Pausing'), ('sdReady', 'SD Card Available'), ('error', 'Error'), ('readyPrinter Ready', 'Ready'), ('closedOrError', 'Printer Disconnected')], db_index=True, max_length=36, null=True),
+            model_name="octoprintdevice",
+            name="printer_state",
+            field=models.CharField(
+                choices=[
+                    ("operational", "Printer Connected"),
+                    ("paused", "Paused"),
+                    ("cancelling", "Cancelling"),
+                    ("printing", "Printing"),
+                    ("pausing", "Pausing"),
+                    ("sdReady", "SD Card Available"),
+                    ("error", "Error"),
+                    ("readyPrinter Ready", "Ready"),
+                    ("closedOrError", "Printer Disconnected"),
+                ],
+                db_index=True,
+                max_length=36,
+                null=True,
+            ),
         ),
     ]

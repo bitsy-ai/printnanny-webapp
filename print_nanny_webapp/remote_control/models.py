@@ -159,7 +159,6 @@ class OctoPrintDevice(SafeDeleteModel):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
-
     last_session = models.ForeignKey(
         "remote_control.PrintSession",
         on_delete=models.CASCADE,
@@ -205,24 +204,22 @@ class OctoPrintDevice(SafeDeleteModel):
     )
 
     print_job_status = models.CharField(
-        max_length=36,
-        db_index=True,
-        choices=PrintStatusEventType.choices,
-        null=True
+        max_length=36, db_index=True, choices=PrintStatusEventType.choices, null=True
     )
 
     printer_state = models.CharField(
         max_length=36,
         db_index=True,
         choices=PrinterState.choices,
-        default=PrinterState.OFFLINE
+        default=PrinterState.OFFLINE,
     )
+
     def to_json(self):
         from print_nanny_webapp.remote_control.api.serializers import (
             OctoPrintDeviceSerializer,
         )
 
-        serializer = OctoPrintDeviceSerializer(instance=self, context={'request': None})
+        serializer = OctoPrintDeviceSerializer(instance=self, context={"request": None})
         # TODO HyperLinkedIdentitySerialzier requires request context
         return json.dumps(serializer.data, sort_keys=True, indent=2)
 
@@ -260,7 +257,7 @@ class OctoPrintDevice(SafeDeleteModel):
         self.cloudiot_device = cloudiot_device_dict
         self.save()
         return cloudiot_device_dict
-    
+
     @property
     def printer_status(self):
         if self.last_session:

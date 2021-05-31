@@ -6,18 +6,48 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0009_octoprintdevice_print_job_status'),
+        ("remote_control", "0009_octoprintdevice_print_job_status"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='print_job_status',
-            field=models.CharField(choices=[('PrintCancelled', 'PrintCancelled'), ('PrintCancelling', 'PrintCancelling'), ('PrintDone', 'PrintDone'), ('PrintFailed', 'PrintFailed'), ('PrintPaused', 'PrintPaused'), ('PrintResumed', 'PrintResumed'), ('PrintStarted', 'PrintStarted'), ('PrinterStateChanged', 'PrinterStateChanged')], db_index=True, max_length=36, null=True),
+            model_name="octoprintdevice",
+            name="print_job_status",
+            field=models.CharField(
+                choices=[
+                    ("PrintCancelled", "PrintCancelled"),
+                    ("PrintCancelling", "PrintCancelling"),
+                    ("PrintDone", "PrintDone"),
+                    ("PrintFailed", "PrintFailed"),
+                    ("PrintPaused", "PrintPaused"),
+                    ("PrintResumed", "PrintResumed"),
+                    ("PrintStarted", "PrintStarted"),
+                    ("PrinterStateChanged", "PrinterStateChanged"),
+                ],
+                db_index=True,
+                max_length=36,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='octoprintdevice',
-            name='printer_state',
-            field=models.CharField(choices=[('operational', 'Printer Connected'), ('paused', 'Paused'), ('cancelling', 'Cancelling'), ('printing', 'Printing'), ('pausing', 'Pausing'), ('sdReady', 'SD Card Available'), ('error', 'Error'), ('readyPrinter Ready', 'Ready'), ('closedOrError', 'Printer Connection Closed'), ('offline', 'Printer Offline')], db_index=True, max_length=36, null=True),
+            model_name="octoprintdevice",
+            name="printer_state",
+            field=models.CharField(
+                choices=[
+                    ("operational", "Printer Connected"),
+                    ("paused", "Paused"),
+                    ("cancelling", "Cancelling"),
+                    ("printing", "Printing"),
+                    ("pausing", "Pausing"),
+                    ("sdReady", "SD Card Available"),
+                    ("error", "Error"),
+                    ("readyPrinter Ready", "Ready"),
+                    ("closedOrError", "Printer Connection Closed"),
+                    ("offline", "Printer Offline"),
+                ],
+                db_index=True,
+                max_length=36,
+                null=True,
+            ),
         ),
     ]
