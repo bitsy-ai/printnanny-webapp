@@ -22,6 +22,7 @@ from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
+from print_nanny_webapp.telemetry.types import PrintStatusEventType
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -145,7 +146,7 @@ class OctoPrintDevice(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    last_session = models.ForeignKey(
+    active_session = models.ForeignKey(
         "remote_control.PrintSession",
         on_delete=models.CASCADE,
         db_index=True,
@@ -228,15 +229,8 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def print_session_status(self):
-        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-
-        last_print_session_event = (
-            PrintStatusEvent.objects.filter(octoprint_device=self)
-            .order_by("-ts")
-            .first()
-        )
-        if last_print_session_event:
-            return last_print_session_event.event_type
+        if self.active_session:
+            return self.active_session.print_job_status
         else:
             return "Idle"
 
@@ -359,11 +353,18 @@ class PrintSession(models.Model):
     time_elapsed = models.IntegerField(null=True)
     time_remaining = models.IntegerField(null=True)
 
-    status = models.CharField(
+    monitoring_status = models.CharField(
         max_length=255,
         db_index=True,
         choices=StatusChoices.choices,
         default=StatusChoices.MONITORING_ACTIVE,
+    )
+
+    print_job_status = models.CharField(
+        max_length=36,
+        db_index=True,
+        choices=PrintStatusEventType.choices,
+        default=PrintStatusEventType.PRINT_STARTED
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -445,26 +446,24 @@ class RemoteControlCommand(models.Model):
 
     @classmethod
     def get_valid_actions(cls, print_session_status):
-        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-
         valid_actions = {
-            PrintStatusEvent.EventType.PRINT_STARTED: [
+            PrintStatusEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_PAUSE,
             ],
-            PrintStatusEvent.EventType.PRINT_DONE: [
+            PrintStatusEventType.PRINT_DONE: [
                 cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
-            PrintStatusEvent.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
-            PrintStatusEvent.EventType.PRINT_CANCELLING: [],
-            PrintStatusEvent.EventType.PRINT_PAUSED: [
+            PrintStatusEventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintStatusEventType.PRINT_CANCELLING: [],
+            PrintStatusEventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
                 cls.Command.MOVE_NOZZLE,
             ],
-            PrintStatusEvent.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            PrintStatusEventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
             "Idle": [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,

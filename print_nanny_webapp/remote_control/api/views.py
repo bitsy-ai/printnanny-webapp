@@ -124,7 +124,8 @@ class PrintSessionViewSet(
 
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
-        # prometheus_metrics.print_session_status.state(instance.last_status)
+        instance.octoprint_device.active_session = instance
+        instance.octoprint_device.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @extend_schema(

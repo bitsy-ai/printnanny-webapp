@@ -77,7 +77,11 @@ def handle_print_status(event: PrintStatusEvent):
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
-    pass
+    event.print_session.print_event_status = event.event_type
+    event.print_session.save()
+    if event.event_type == PrintStatusEventType.PRINT_DONE:
+        event.octoprint_device.active_session = None
+        event.octoprint_device.save()
 
 
 def handle_ping(event: OctoPrintEvent):
@@ -149,90 +153,6 @@ def on_octoprint_event(message):
         logger.info(f"Calling {handler_fn}({instance})")
         handler_fn(instance)
 
-    # if not event_is_tracked(event_type):
-    #     logger.error(
-    #         f"Tracking event is not registered, ignoring event_type={event_type}"
-    #     )
-    #     return message.ack()
-
-    # # TODO enforce a schema on this topic :facepalm:
-    # event_data = data["event_data"]
-    # metadata = data["metadata"]
-
-    # octoprint_device_id = data.get("octoprint_device_id") or data.get(
-    #     "metadata", {}
-    # ).get("octoprint_device_id")
-    # user_id = data.get("user_id") or data.get("metadata", {}).get("user_id")
-
-    # if octoprint_device_id is None:
-    #     logger.warning(f"Received {event_type} without octoprint_device_id {data}")
-    #     message.ack()
-    #     return
-    # if user_id is None:
-    #     logger.warning(f"Received {event_type} without user_id {data}")
-    #     message.ack()
-    #     return
-    # if event_type in OctoPrintEventType:
-    #     try:
-    #         event = OctoPrintEvent.objects.create(
-    #             created_dt=metadata["ts"],
-    #             octoprint_device_id=octoprint_device_id,
-    #             event_data=data,
-    #             event_type=event_type,
-    #             octoprint_version=metadata["octoprint_version"],
-    #             plugin_version=metadata["plugin_version"],
-    #             user_id=user_id,
-    #         )
-    #         handler_fn = HANDLER_FNS.get(event_type)
-    #         if handler_fn is not None:
-    #             handler_fn(data)
-    #     except Exception as e:
-    #         logger.error({"error": e, "data": data}, exc_info=True)
-    # if event_type in PrintStatusEventType:
-    #     try:
-    #         PrintStatusEvent.objects.create(
-    #             created_dt=metadata["ts"],
-    #             # current_z=data["printer_data"]["currentZ"],
-    #             octoprint_device_id=octoprint_device_id,
-    #             event_data=data,
-    #             event_type=event_type,
-    #             job_data_file=data["printer_data"]["job"]["file"],
-    #             octoprint_version=metadata["octoprint_version"],
-    #             plugin_version=metadata["plugin_version"],
-    #             # progress=data["printer_data"]["progress"],
-    #             # state=data["printer_data"]["state"],
-    #             user_id=user_id,
-    #         )
-    #         handler_fn = HANDLER_FNS.get(event_type)
-    #         if handler_fn is not None:
-    #             handler_fn(event)
-    #     except Exception as e:
-    #         logger.error({"error": e, "data": data})
-
-    # if (
-    #     OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-    #     in OctoPrintPluginEvent.EventType
-    # ):
-    #     try:
-    #         obj = OctoPrintPluginEvent.objects.create(
-    #             created_dt=metadata["ts"],
-    #             octoprint_device_id=octoprint_device_id,
-    #             event_data=data,
-    #             event_type=event_type,
-    #             octoprint_version=metadata["octoprint_version"],
-    #             plugin_version=metadata["plugin_version"],
-    #             user_id=user_id,
-    #             metadata=metadata,
-    #             octoprint_job=data.get("octoprint_job"),
-    #         )
-
-    #         handler_fn = HANDLER_FNS.get(
-    #             OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-    #         )
-    #         if handler_fn is not None:
-    #             handler_fn(data)
-    #     except Exception as e:
-    #         logger.error({"error": e, "data": data})
     message.ack()
 
 
