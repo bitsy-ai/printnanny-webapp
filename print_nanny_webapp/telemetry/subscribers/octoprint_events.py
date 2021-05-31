@@ -86,6 +86,8 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
         event.octoprint_device.print_job_status = event.event_type
     if event.event_type == PrintStatusEventType.PRINT_DONE:
         event.octoprint_device.print_progress = 100
+    if event.event_type == PrintStatusEventType.OFFLINE :
+        event.octoprint_device.print_progress = 0
     return event.octoprint_device.save()
 
 
@@ -134,6 +136,8 @@ def on_octoprint_event(message):
         TelemetryEventSerializer,
         TelemetryEventPolymorphicSerializer,
     )
+
+
 
     try:
         data = message.data.decode("utf-8")
