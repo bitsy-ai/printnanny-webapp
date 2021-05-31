@@ -84,6 +84,8 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
         event.octoprint_device.printer_state = event.printer_state
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
+    if event.event_type == PrintStatusEventType.PRINT_DONE:
+        event.octoprint_device.print_progress = 100
     return event.octoprint_device.save()
 
 
