@@ -1,46 +1,78 @@
-import base64
-import hashlib
 import logging
-import subprocess
-import tempfile
-import enum
 
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.apps import apps
-from django.utils import timezone
 
-from urllib.parse import urljoin
+from polymorphic.models import PolymorphicModel
 
 from django.apps import apps
-from django.conf import settings
-from django.contrib.postgres.fields import ArrayField, JSONField
+from django.contrib.postgres.fields import JSONField
+from print_nanny_webapp.telemetry.types import (
+    PrintNannyPluginEventType,
+    OctoprintEventType,
+    RemoteCommandEventType,
+    PrintStatusEventType,
+    EventSource,
+    TelemetryEventType,
+    PrinterState,
+)
+from polymorphic.managers import PolymorphicManager
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-class TelemetryEvent(models.Model):
+class TelemetryEventManager(PolymorphicManager):
+    def create(self, user=None, **kwargs):
+        from print_nanny_webapp.remote_control.models import OctoPrintDevice
+
+        if user is None:
+            octoprint_device = kwargs.get("octoprint_device")
+            if octoprint_device is None:
+                octoprint_device_id = kwargs.get("octoprint_device_id")
+                if octoprint_device_id is None:
+                    raise ValueError("octoprint_device is required")
+                octoprint_device = OctoPrintDevice.objects.get(id=octoprint_device_id)
+            user = octoprint_device.user
+        return super().create(user=user, **kwargs)
+
+
+class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
 
-    class Meta:
-        abstract = True
+    objects = TelemetryEventManager()
 
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
-    event_data = models.JSONField(null=True)
+    event_type = models.CharField(
+        max_length=255, db_index=True, choices=TelemetryEventType.choices
+    )
+    ts = models.DateTimeField(auto_now_add=True, db_index=True)
+    event_source = models.CharField(
+        max_length=36,
+        choices=EventSource.choices,
+        default=EventSource.PRINT_NANNY_PLUGIN,
+    )
+    event_data = models.JSONField(default=dict, null=True)
+    octoprint_environment = models.JSONField(default=dict)
+    octoprint_printer_data = models.JSONField(default=dict)
+    temperature = models.JSONField(default=dict)
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
         on_delete=models.CASCADE,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    plugin_version = models.CharField(max_length=60)
-    client_version = models.CharField(max_length=60)
-    octoprint_version = models.CharField(max_length=60)
-    metadata = JSONField(null=True)
-    octoprint_job = JSONField(null=True)
+    print_nanny_plugin_version = models.CharField(max_length=60)
+    print_nanny_client_version = models.CharField(max_length=60)
+    octoprint_version = models.CharField(max_length=36)
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession",
+        null=True,
+        on_delete=models.CASCADE,
+        db_index=True,
+    )
 
 
 class RemoteCommandEvent(TelemetryEvent):
@@ -48,50 +80,15 @@ class RemoteCommandEvent(TelemetryEvent):
     Commands sent to the OctoPrint device
     """
 
-    class EventType(models.TextChoices):
-
-        RECEIVED = (
-            "received",
-            "Command was received by device",
-        )
-        FAILED = (
-            "failed",
-            "Command failed. Please download your Octoprint logs and open a Github issue to get this fixed.",
-        )
-        SUCCESS = (
-            "success",
-            "Command succeeded",
+    def __init__(self, *args, **kwargs):
+        return super().__init__(
+            *args, event_source=EventSource.REMOTE_COMMAND, **kwargs
         )
 
-        # @todo
-        # PRINT_START_RECEIVED
-        # PRINT_START_FAILED
-        # PRINT_START_SUCCESS
-
-        # PRINT_STOP_RECEIVED
-        # PRINT_STOP_FAILED
-        # PRINT_STOP_SUCCESS
-
-        # PRINT_PAUSE_RECEIVED
-        # PRINT_PAUSE_FAILED
-        # PRINT_PAUSE_SUCCESS
-
-        # PRINT_RESUME_RECEIVED
-        # PRINT_RESUME_FAILED
-        # PRINT_RESUME_SUCCESS
-
-        # MOVE_NOZZLE_RECEIVED
-        # MOVE_NOZZLE_FAILED
-        # MOVE_NOZZLE_SUCCESS
-
-    event_codes = [x.value for x in EventType.__members__.values()]
-
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=EventType.choices
-    )
+    event_codes = [x.value for x in RemoteCommandEventType.__members__.values()]
 
 
-class OctoPrintPluginEvent(TelemetryEvent):
+class PrintNannyPluginEvent(TelemetryEvent):
     """
     Events emitted by OctoPrint Nanny plugin
 
@@ -100,92 +97,15 @@ class OctoPrintPluginEvent(TelemetryEvent):
     For use with: https://docs.octoprint.org/en/master/plugins/hooks.html?highlight=custom_events#octoprint-events-register-custom-events
     """
 
+    def __init__(self, *args, **kwargs):
+        return super().__init__(
+            *args, event_source=EventSource.PRINT_NANNY_PLUGIN, **kwargs
+        )
+
     plugin_identifier = "octoprint_nanny"
     octoprint_event_prefix = "plugin_octoprint_nanny_"
 
-    class EventType(models.TextChoices):
-
-        MONITORING_START = (
-            "monitoring_start",
-            "Print Nanny Monitoring started",
-        )
-        MONITORING_STOP = (
-            "monitoring_stop",
-            "Print Nanny Monitoring stopped",
-        )
-        MONITORING_RESET = (
-            "monitoring_reset",
-            "Print Nanny Monitoring reset",
-        )
-
-        DEVICE_REGISTER_START = (
-            "device_register_start",
-            "Device registration started",
-        )
-        DEVICE_REGISTER_DONE = (
-            "device_register_done",
-            "Device registration succeeded",
-        )
-        DEVICE_REGISTER_FAILED = (
-            "device_register_failed",
-            "Device registration failed",
-        )
-        DEVICE_RESET = "device_reset", "Device identity reset"
-
-        PRINTER_PROFILE_SYNC_START = (
-            "printer_profile_sync_start",
-            "Printer profile sync started",
-        )
-        PRINTER_PROFILE_SYNC_DONE = (
-            "printer_profile_sync_done",
-            "Printer profile sync succeeded",
-        )
-        PRINTER_PROFILE_SYNC_FAILED = (
-            "printer_profile_sync_failed",
-            "Printer profile sync failed",
-        )
-
-        CONNECT_TEST_REST_API = ("connect_test_rest_api", "Test connection to REST API")
-        CONNECT_TEST_REST_API_FAILED = (
-            "connect_test_rest_api_failed",
-            "Test connection to REST API failed",
-        )
-        CONNECT_TEST_REST_API_SUCCESS = (
-            "connect_test_rest_api_success",
-            "Test connection to REST API success",
-        )
-
-        CONNECT_TEST_MQTT_PING = (
-            "connect_test_mqtt_ping",
-            "Test connection to REST API",
-        )
-        CONNECT_TEST_MQTT_PING_FAILED = (
-            "connect_test_mqtt_ping_failed",
-            "Test connection to REST API failed",
-        )
-        CONNECT_TEST_MQTT_PING_SUCCESS = (
-            "connect_test_mqtt_ping_success",
-            "Test connection to REST API success",
-        )
-
-        CONNECT_TEST_MQTT_PONG = (
-            "connect_test_mqtt_pong",
-            "Test connection to REST API",
-        )
-        CONNECT_TEST_MQTT_PONG_FAILED = (
-            "connect_test_mqtt_pong_failed",
-            "Test connection to REST API failed",
-        )
-        CONNECT_TEST_MQTT_PONG_SUCCESS = (
-            "connect_test_mqtt_pong_success",
-            "Test connection to REST API success",
-        )
-
-    event_codes = [x.value for x in EventType.__members__.values()]
-
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=EventType.choices
-    )
+    event_codes = [x.value for x in PrintNannyPluginEventType.__members__.values()]
 
     @classmethod
     def strip_octoprint_prefix(self, event_type):
@@ -199,111 +119,17 @@ class OctoPrintEvent(TelemetryEvent):
     PascalCased strings
     """
 
-    class EventType(models.TextChoices):
-        # OctoPrint javascript client / browser -> OctoPrint server (not Print Nanny webapp)
-        CLIENT_AUTHED = "ClientAuthed", "ClientAuthed"
-        CLIENT_CLOSED = "ClientClosed", "ClientClosed"
-        CLIENT_DEAUTHED = "ClientDeauthed", "ClientDeauthed"
-        CLIENT_OPENED = "ClientOpened", "ClientOpened"
-        SETTINGS_UPDATED = "SettingsUpdated", "SettingsUpdated"
+    def __init__(self, *args, **kwargs):
+        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
-        USER_LOGGED_IN = "UserLoggedIn"
-        USER_LOGGED_OUT = "UserLoggedOut"
-
-        # file events
-        # FILE_DESELECTED = "FileDeselected"
-        # FILE_SELECTED = "FileSelected"
-        # METADATA_ANALYSIS_FINISHED = "MetadataAnalysisFinished"
-        # METADATA_STATISTICS_UPDATED = "MetadataStatisticsUpdated"
-        FILE_ADDED = "FileAdded", "FileAdded"
-        FILE_REMOVED = "FileRemoved", "FileRemoved"
-        FOLDER_ADDED = "FolderAdded", "FolderAdded"
-        FOLDER_REMOVED = "FolderRemoved", "FolderRemoved"
-        TRANSFER_DONE = "TransferDone", "TransferDone"
-        TRANSFER_FAILED = "TransferFailed", "TransferFailed"
-        TRANSFER_STARTED = "TransferStarted", "TransferStarted"
-        UPDATED_FILES = "UpdatedFiles", "UpdatedFiles"
-        UPLOAD = "Upload", "Upload"
-
-        # timelapse
-        CAPTURE_DONE = "CaptureDone", "CaptureDone"
-        CAPTURE_FAILED = "CaptureFailed", "CaptureFailed"
-        CAPTURE_START = "CaptureStart", "CaptureStart"
-        MOVIE_DONE = "MovieDone", "MovieDone"
-        MOVIE_FAILED = "MovieFailed", "MovieFailed"
-        MOVIE_RENDERING = "MovieRendering", "MovieRendering"
-        POSTROLL_END = "PostRollEnd", "PostRollEnd"
-        POSTROLL_START = "PostRollStart", "PostRollStart"
-
-        # slicer
-        SLICING_CANCELLED = "SlicingCancelled", "SlicingCancelled"
-        SLICING_DONE = "SlicingDone", "SlicingDone"
-        SLICING_FAILED = "SlicingFailed", "SlicingFailed"
-        SLICING_PROFILE_ADDED = "SlicingProfileAdded", "SlicingProfileAdded"
-        SLICING_PROFILE_DELETED = "SlicingProfileDeleted", "SlicingProfileDeleted"
-        SLICING_PROFILE_MODIFIED = "SlicingProfileModified", "SlicingProfileModified"
-        SLICING_STARTED = "SlicingStarted", "SlicingStarted"
-
-        # octoprint server <-> printer telemetry
-        CONNECTED = "Connected", "Connected"
-        DISCONNECTED = "Disconnected", "Disconnected"
-        PRINTER_RESET = "PrinterReset", "PrinterReset"
-        FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-        PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
-
-        # printer profile
-        PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
-        PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
-        PRINTER_PROFILE_MODIFIED = "PrinterProfileModified", "PrinterProfileModified"
-
-        # print progress
-        PRINT_PROGRESS = "PrintProgress", "PrintProgress"
-
-        # pi throttle state
-        # @todo (not sure why this event is formatted different by octoprint)
-        PI_THROTTLE_STATE = (
-            "plugin_pi_support_throttle_state",
-            "plugin_pi_support_throttle_state",
-        )
-
-        # octoprint server
-        # CONNECTIVITY_CHANGED = "ConnectivityChanged"
-        SHUTDOWN = "Shutdown", "Shutdown"
-        STARTUP = "Startup", "Startup"
-
-        # print job
-        PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
-        PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
-        PRINT_DONE = "PrintDone", "PrintDone"
-        PRINT_FAILED = "PrintFailed", "PrintFailed"
-        PRINT_PAUSED = "PrintPaused", "PrintPaused"
-        PRINT_RESUMED = "PrintResumed", "PrintResumed"
-        PRINT_STARTED = "PrintStarted", "PrintStarted"
-
-    event_codes = [x.value for x in EventType.__members__.values()]
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=EventType.choices
-    )
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession",
-        null=True,
-        on_delete=models.CASCADE,
-        db_index=True,
-    )
+    event_codes = [x.value for x in OctoprintEventType.__members__.values()]
 
 
 class PrintStatusEvent(TelemetryEvent):
-    class EventType(models.TextChoices):
-        # print job
-        PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
-        PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
-        PRINT_DONE = "PrintDone", "PrintDone"
-        PRINT_FAILED = "PrintFailed", "PrintFailed"
-        PRINT_PAUSED = "PrintPaused", "PrintPaused"
-        PRINT_RESUMED = "PrintResumed", "PrintResumed"
-        PRINT_STARTED = "PrintStarted", "PrintStarted"
+    def __init__(self, *args, **kwargs):
+        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
-    event_codes = [x.value for x in EventType.__members__.values()]
+    event_codes = [x.value for x in PrintStatusEventType.__members__.values()]
     JOB_EVENT_TYPE_CSS_CLASS = {
         "Error": "text-danger",
         "PrintCancelled": "text-danger",
@@ -315,17 +141,28 @@ class PrintStatusEvent(TelemetryEvent):
         "PrintStarted": "text-success",
         "Idle": "text-warning",
     }
-    event_type = models.CharField(
-        max_length=255, db_index=True, choices=EventType.choices
+    PRINTER_STATE_CSS_CLASS = {
+        "closedOrError": "text-danger",
+        "Error": "text-danger",
+        "Ready": "text-success",
+        "sdReady": "text-success",
+        "Pausing": "text-warning",
+        "Cancelling": "text-warning",
+        "Paused": "text-warning",
+        "Operational": "text-success",
+        "Printing": "text-success",
+        "Offline": "text-warning",
+        "Connecting": "text-warning",
+        "Opening serial connection": "text-warning",
+        "Resuming": "text-warning"
+    }
+    # https://docs.octoprint.org/en/master/api/datamodel.html?highlight=flags#printer-state (text)
+    printer_state = models.CharField(
+        max_length=255, choices=PrinterState.choices, null=True
     )
-    state = JSONField(default=dict)
-    current_z = models.FloatField(null=True)
-    # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
-    progress = JSONField(default=dict)
-    job_data_file = models.CharField(max_length=255)
-    print_session = models.ForeignKey(
-        "remote_control.PrintSession",
-        null=True,
-        on_delete=models.CASCADE,
-        db_index=True,
-    )
+
+    # state = JSONField(default=dict)
+    # current_z = models.FloatField(null=True)
+    # # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
+    # progress = JSONField(default=dict)
+    # job_data_file = models.CharField(max_length=255)

@@ -37,74 +37,86 @@ class OctoPrintEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'created_dt': 'datetime',
+        'event_type': 'OctoPrintEventEventTypeEnum',
+        'ts': 'datetime',
+        'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
+        'octoprint_environment': 'dict(str, object)',
+        'octoprint_printer_data': 'dict(str, object)',
+        'temperature': 'dict(str, object)',
+        'print_nanny_plugin_version': 'str',
+        'print_nanny_client_version': 'str',
+        'octoprint_version': 'str',
+        'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'user': 'int',
-        'plugin_version': 'str',
-        'client_version': 'str',
-        'octoprint_version': 'str',
-        'metadata': 'dict(str, object)',
-        'octoprint_job': 'dict(str, object)',
-        'event_type': 'OctoPrintEventEventTypeEnum',
-        'print_session': 'int',
-        'url': 'str'
+        'print_session': 'int'
     }
 
     attribute_map = {
         'id': 'id',
-        'created_dt': 'created_dt',
+        'event_type': 'event_type',
+        'ts': 'ts',
+        'event_source': 'event_source',
         'event_data': 'event_data',
+        'octoprint_environment': 'octoprint_environment',
+        'octoprint_printer_data': 'octoprint_printer_data',
+        'temperature': 'temperature',
+        'print_nanny_plugin_version': 'print_nanny_plugin_version',
+        'print_nanny_client_version': 'print_nanny_client_version',
+        'octoprint_version': 'octoprint_version',
+        'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'user': 'user',
-        'plugin_version': 'plugin_version',
-        'client_version': 'client_version',
-        'octoprint_version': 'octoprint_version',
-        'metadata': 'metadata',
-        'octoprint_job': 'octoprint_job',
-        'event_type': 'event_type',
-        'print_session': 'print_session',
-        'url': 'url'
+        'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, created_dt=None, event_data=None, octoprint_device=None, user=None, plugin_version=None, client_version=None, octoprint_version=None, metadata=None, octoprint_job=None, event_type=None, print_session=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._created_dt = None
+        self._event_type = None
+        self._ts = None
+        self._event_source = None
         self._event_data = None
+        self._octoprint_environment = None
+        self._octoprint_printer_data = None
+        self._temperature = None
+        self._print_nanny_plugin_version = None
+        self._print_nanny_client_version = None
+        self._octoprint_version = None
+        self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
-        self._plugin_version = None
-        self._client_version = None
-        self._octoprint_version = None
-        self._metadata = None
-        self._octoprint_job = None
-        self._event_type = None
         self._print_session = None
-        self._url = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
+        self.event_type = event_type
+        if ts is not None:
+            self.ts = ts
+        if event_source is not None:
+            self.event_source = event_source
         self.event_data = event_data
+        if octoprint_environment is not None:
+            self.octoprint_environment = octoprint_environment
+        if octoprint_printer_data is not None:
+            self.octoprint_printer_data = octoprint_printer_data
+        if temperature is not None:
+            self.temperature = temperature
+        self.print_nanny_plugin_version = print_nanny_plugin_version
+        self.print_nanny_client_version = print_nanny_client_version
+        self.octoprint_version = octoprint_version
+        if polymorphic_ctype is not None:
+            self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
         if user is not None:
             self.user = user
-        self.plugin_version = plugin_version
-        self.client_version = client_version
-        self.octoprint_version = octoprint_version
-        self.metadata = metadata
-        self.octoprint_job = octoprint_job
-        self.event_type = event_type
         self.print_session = print_session
-        if url is not None:
-            self.url = url
 
     @property
     def id(self):
@@ -128,25 +140,69 @@ class OctoPrintEvent(object):
         self._id = id
 
     @property
-    def created_dt(self):
-        """Gets the created_dt of this OctoPrintEvent.  # noqa: E501
+    def event_type(self):
+        """Gets the event_type of this OctoPrintEvent.  # noqa: E501
 
 
-        :return: The created_dt of this OctoPrintEvent.  # noqa: E501
+        :return: The event_type of this OctoPrintEvent.  # noqa: E501
+        :rtype: OctoPrintEventEventTypeEnum
+        """
+        return self._event_type
+
+    @event_type.setter
+    def event_type(self, event_type):
+        """Sets the event_type of this OctoPrintEvent.
+
+
+        :param event_type: The event_type of this OctoPrintEvent.  # noqa: E501
+        :type event_type: OctoPrintEventEventTypeEnum
+        """
+        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
+
+        self._event_type = event_type
+
+    @property
+    def ts(self):
+        """Gets the ts of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The ts of this OctoPrintEvent.  # noqa: E501
         :rtype: datetime
         """
-        return self._created_dt
+        return self._ts
 
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this OctoPrintEvent.
+    @ts.setter
+    def ts(self, ts):
+        """Sets the ts of this OctoPrintEvent.
 
 
-        :param created_dt: The created_dt of this OctoPrintEvent.  # noqa: E501
-        :type created_dt: datetime
+        :param ts: The ts of this OctoPrintEvent.  # noqa: E501
+        :type ts: datetime
         """
 
-        self._created_dt = created_dt
+        self._ts = ts
+
+    @property
+    def event_source(self):
+        """Gets the event_source of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The event_source of this OctoPrintEvent.  # noqa: E501
+        :rtype: EventSourceEnum
+        """
+        return self._event_source
+
+    @event_source.setter
+    def event_source(self, event_source):
+        """Sets the event_source of this OctoPrintEvent.
+
+
+        :param event_source: The event_source of this OctoPrintEvent.  # noqa: E501
+        :type event_source: EventSourceEnum
+        """
+
+        self._event_source = event_source
 
     @property
     def event_data(self):
@@ -168,6 +224,168 @@ class OctoPrintEvent(object):
         """
 
         self._event_data = event_data
+
+    @property
+    def octoprint_environment(self):
+        """Gets the octoprint_environment of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The octoprint_environment of this OctoPrintEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_environment
+
+    @octoprint_environment.setter
+    def octoprint_environment(self, octoprint_environment):
+        """Sets the octoprint_environment of this OctoPrintEvent.
+
+
+        :param octoprint_environment: The octoprint_environment of this OctoPrintEvent.  # noqa: E501
+        :type octoprint_environment: dict(str, object)
+        """
+
+        self._octoprint_environment = octoprint_environment
+
+    @property
+    def octoprint_printer_data(self):
+        """Gets the octoprint_printer_data of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The octoprint_printer_data of this OctoPrintEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_printer_data
+
+    @octoprint_printer_data.setter
+    def octoprint_printer_data(self, octoprint_printer_data):
+        """Sets the octoprint_printer_data of this OctoPrintEvent.
+
+
+        :param octoprint_printer_data: The octoprint_printer_data of this OctoPrintEvent.  # noqa: E501
+        :type octoprint_printer_data: dict(str, object)
+        """
+
+        self._octoprint_printer_data = octoprint_printer_data
+
+    @property
+    def temperature(self):
+        """Gets the temperature of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The temperature of this OctoPrintEvent.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._temperature
+
+    @temperature.setter
+    def temperature(self, temperature):
+        """Sets the temperature of this OctoPrintEvent.
+
+
+        :param temperature: The temperature of this OctoPrintEvent.  # noqa: E501
+        :type temperature: dict(str, object)
+        """
+
+        self._temperature = temperature
+
+    @property
+    def print_nanny_plugin_version(self):
+        """Gets the print_nanny_plugin_version of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The print_nanny_plugin_version of this OctoPrintEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_nanny_plugin_version
+
+    @print_nanny_plugin_version.setter
+    def print_nanny_plugin_version(self, print_nanny_plugin_version):
+        """Sets the print_nanny_plugin_version of this OctoPrintEvent.
+
+
+        :param print_nanny_plugin_version: The print_nanny_plugin_version of this OctoPrintEvent.  # noqa: E501
+        :type print_nanny_plugin_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and print_nanny_plugin_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_nanny_plugin_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_plugin_version is not None and len(print_nanny_plugin_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_plugin_version`, length must be less than or equal to `60`")  # noqa: E501
+
+        self._print_nanny_plugin_version = print_nanny_plugin_version
+
+    @property
+    def print_nanny_client_version(self):
+        """Gets the print_nanny_client_version of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The print_nanny_client_version of this OctoPrintEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._print_nanny_client_version
+
+    @print_nanny_client_version.setter
+    def print_nanny_client_version(self, print_nanny_client_version):
+        """Sets the print_nanny_client_version of this OctoPrintEvent.
+
+
+        :param print_nanny_client_version: The print_nanny_client_version of this OctoPrintEvent.  # noqa: E501
+        :type print_nanny_client_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and print_nanny_client_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `print_nanny_client_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                print_nanny_client_version is not None and len(print_nanny_client_version) > 60):
+            raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `60`")  # noqa: E501
+
+        self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def octoprint_version(self):
+        """Gets the octoprint_version of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The octoprint_version of this OctoPrintEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._octoprint_version
+
+    @octoprint_version.setter
+    def octoprint_version(self, octoprint_version):
+        """Sets the octoprint_version of this OctoPrintEvent.
+
+
+        :param octoprint_version: The octoprint_version of this OctoPrintEvent.  # noqa: E501
+        :type octoprint_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                octoprint_version is not None and len(octoprint_version) > 36):
+            raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
+
+        self._octoprint_version = octoprint_version
+
+    @property
+    def polymorphic_ctype(self):
+        """Gets the polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+
+
+        :return: The polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+        :rtype: int
+        """
+        return self._polymorphic_ctype
+
+    @polymorphic_ctype.setter
+    def polymorphic_ctype(self, polymorphic_ctype):
+        """Sets the polymorphic_ctype of this OctoPrintEvent.
+
+
+        :param polymorphic_ctype: The polymorphic_ctype of this OctoPrintEvent.  # noqa: E501
+        :type polymorphic_ctype: int
+        """
+
+        self._polymorphic_ctype = polymorphic_ctype
 
     @property
     def octoprint_device(self):
@@ -214,149 +432,6 @@ class OctoPrintEvent(object):
         self._user = user
 
     @property
-    def plugin_version(self):
-        """Gets the plugin_version of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The plugin_version of this OctoPrintEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._plugin_version
-
-    @plugin_version.setter
-    def plugin_version(self, plugin_version):
-        """Sets the plugin_version of this OctoPrintEvent.
-
-
-        :param plugin_version: The plugin_version of this OctoPrintEvent.  # noqa: E501
-        :type plugin_version: str
-        """
-        if self.local_vars_configuration.client_side_validation and plugin_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `plugin_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                plugin_version is not None and len(plugin_version) > 60):
-            raise ValueError("Invalid value for `plugin_version`, length must be less than or equal to `60`")  # noqa: E501
-
-        self._plugin_version = plugin_version
-
-    @property
-    def client_version(self):
-        """Gets the client_version of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The client_version of this OctoPrintEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._client_version
-
-    @client_version.setter
-    def client_version(self, client_version):
-        """Sets the client_version of this OctoPrintEvent.
-
-
-        :param client_version: The client_version of this OctoPrintEvent.  # noqa: E501
-        :type client_version: str
-        """
-        if self.local_vars_configuration.client_side_validation and client_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `client_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                client_version is not None and len(client_version) > 60):
-            raise ValueError("Invalid value for `client_version`, length must be less than or equal to `60`")  # noqa: E501
-
-        self._client_version = client_version
-
-    @property
-    def octoprint_version(self):
-        """Gets the octoprint_version of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The octoprint_version of this OctoPrintEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._octoprint_version
-
-    @octoprint_version.setter
-    def octoprint_version(self, octoprint_version):
-        """Sets the octoprint_version of this OctoPrintEvent.
-
-
-        :param octoprint_version: The octoprint_version of this OctoPrintEvent.  # noqa: E501
-        :type octoprint_version: str
-        """
-        if self.local_vars_configuration.client_side_validation and octoprint_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                octoprint_version is not None and len(octoprint_version) > 60):
-            raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `60`")  # noqa: E501
-
-        self._octoprint_version = octoprint_version
-
-    @property
-    def metadata(self):
-        """Gets the metadata of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The metadata of this OctoPrintEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._metadata
-
-    @metadata.setter
-    def metadata(self, metadata):
-        """Sets the metadata of this OctoPrintEvent.
-
-
-        :param metadata: The metadata of this OctoPrintEvent.  # noqa: E501
-        :type metadata: dict(str, object)
-        """
-
-        self._metadata = metadata
-
-    @property
-    def octoprint_job(self):
-        """Gets the octoprint_job of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The octoprint_job of this OctoPrintEvent.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._octoprint_job
-
-    @octoprint_job.setter
-    def octoprint_job(self, octoprint_job):
-        """Sets the octoprint_job of this OctoPrintEvent.
-
-
-        :param octoprint_job: The octoprint_job of this OctoPrintEvent.  # noqa: E501
-        :type octoprint_job: dict(str, object)
-        """
-
-        self._octoprint_job = octoprint_job
-
-    @property
-    def event_type(self):
-        """Gets the event_type of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The event_type of this OctoPrintEvent.  # noqa: E501
-        :rtype: OctoPrintEventEventTypeEnum
-        """
-        return self._event_type
-
-    @event_type.setter
-    def event_type(self, event_type):
-        """Sets the event_type of this OctoPrintEvent.
-
-
-        :param event_type: The event_type of this OctoPrintEvent.  # noqa: E501
-        :type event_type: OctoPrintEventEventTypeEnum
-        """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
-
-        self._event_type = event_type
-
-    @property
     def print_session(self):
         """Gets the print_session of this OctoPrintEvent.  # noqa: E501
 
@@ -376,27 +451,6 @@ class OctoPrintEvent(object):
         """
 
         self._print_session = print_session
-
-    @property
-    def url(self):
-        """Gets the url of this OctoPrintEvent.  # noqa: E501
-
-
-        :return: The url of this OctoPrintEvent.  # noqa: E501
-        :rtype: str
-        """
-        return self._url
-
-    @url.setter
-    def url(self, url):
-        """Sets the url of this OctoPrintEvent.
-
-
-        :param url: The url of this OctoPrintEvent.  # noqa: E501
-        :type url: str
-        """
-
-        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

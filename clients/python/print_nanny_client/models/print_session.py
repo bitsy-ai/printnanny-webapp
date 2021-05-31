@@ -45,7 +45,6 @@ class PrintSession(object):
         'print_progress': 'int',
         'time_elapsed': 'int',
         'time_remaining': 'int',
-        'status': 'StatusEnum',
         'user': 'int',
         'printer_profile': 'int',
         'gcode_file': 'int',
@@ -64,7 +63,6 @@ class PrintSession(object):
         'print_progress': 'print_progress',
         'time_elapsed': 'time_elapsed',
         'time_remaining': 'time_remaining',
-        'status': 'status',
         'user': 'user',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
@@ -73,7 +71,7 @@ class PrintSession(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,7 +86,6 @@ class PrintSession(object):
         self._print_progress = None
         self._time_elapsed = None
         self._time_remaining = None
-        self._status = None
         self._user = None
         self._printer_profile = None
         self._gcode_file = None
@@ -109,8 +106,6 @@ class PrintSession(object):
         self.print_progress = print_progress
         self.time_elapsed = time_elapsed
         self.time_remaining = time_remaining
-        if status is not None:
-            self.status = status
         if user is not None:
             self.user = user
         self.printer_profile = printer_profile
@@ -339,27 +334,6 @@ class PrintSession(object):
             raise ValueError("Invalid value for `time_remaining`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._time_remaining = time_remaining
-
-    @property
-    def status(self):
-        """Gets the status of this PrintSession.  # noqa: E501
-
-
-        :return: The status of this PrintSession.  # noqa: E501
-        :rtype: StatusEnum
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this PrintSession.
-
-
-        :param status: The status of this PrintSession.  # noqa: E501
-        :type status: StatusEnum
-        """
-
-        self._status = status
 
     @property
     def user(self):

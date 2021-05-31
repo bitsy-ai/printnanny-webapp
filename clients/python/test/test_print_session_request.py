@@ -42,7 +42,6 @@ class TestPrintSessionRequest(unittest.TestCase):
                 print_progress = -2147483648, 
                 time_elapsed = -2147483648, 
                 time_remaining = -2147483648, 
-                status = 'monitoring_active', 
                 printer_profile = 56, 
                 gcode_file = 56, 
                 gcode_filename = '', 

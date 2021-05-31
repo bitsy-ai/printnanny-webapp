@@ -1,6 +1,7 @@
 import logging
 import tempfile
 import os
+from django import db
 from django.contrib.auth import get_user_model
 
 import json
@@ -17,11 +18,12 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
-from safedelete.models import SafeDeleteModel, SOFT_DELETE_CASCADE
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
+from print_nanny_webapp.telemetry.types import PrintStatusEventType, PrinterState
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -104,7 +106,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
 
 class OctoPrintDevice(SafeDeleteModel):
 
-    _safedelete_policy = SOFT_DELETE_CASCADE
+    _safedelete_policy = SOFT_DELETE
 
     objects = OctoPrintDeviceManager()
 
@@ -112,6 +114,17 @@ class OctoPrintDevice(SafeDeleteModel):
         True: "text-success",
         False: "text-secondary",
     }
+
+    class MonitoringStatusChoices(models.TextChoices):
+        MONITORING_ACTIVE = (
+            "monitoring_active",
+            "Print Nanny is currently monitoring your print job",
+        )
+        RENDERING_VIDEO = (
+            "rendering_video",
+            "Print Nanny is creating a timelapse video of your print job",
+        )
+        DONE = "done" "A timelapse of your print job is ready!"
 
     class MonitoringMode(models.TextChoices):
         ACTIVE_LEARNING = "active_learning", "Active Learning"
@@ -145,6 +158,7 @@ class OctoPrintDevice(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
     last_session = models.ForeignKey(
         "remote_control.PrintSession",
         on_delete=models.CASCADE,
@@ -182,14 +196,32 @@ class OctoPrintDevice(SafeDeleteModel):
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
 
-    def to_json(self):
-        # from print_nanny_webapp.remote_control.api.serializers import (
-        #     OctoPrintDeviceSerializer,
-        # )
+    monitoring_status = models.CharField(
+        max_length=255,
+        db_index=True,
+        choices=MonitoringStatusChoices.choices,
+        default=MonitoringStatusChoices.MONITORING_ACTIVE,
+    )
 
-        # serializer = OctoPrintDeviceSerializer(instance=self)
+    print_job_status = models.CharField(
+        max_length=36, db_index=True, choices=PrintStatusEventType.choices, null=True
+    )
+
+    printer_state = models.CharField(
+        max_length=36,
+        db_index=True,
+        choices=PrinterState.choices,
+        default=PrinterState.OFFLINE,
+    )
+
+    def to_json(self):
+        from print_nanny_webapp.remote_control.api.serializers import (
+            OctoPrintDeviceSerializer,
+        )
+
+        serializer = OctoPrintDeviceSerializer(instance=self, context={"request": None})
         # TODO HyperLinkedIdentitySerialzier requires request context
-        return json.dumps({}, sort_keys=True, indent=2)
+        return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property
     def manage_url(self):
@@ -227,18 +259,9 @@ class OctoPrintDevice(SafeDeleteModel):
         return cloudiot_device_dict
 
     @property
-    def print_session_status(self):
-        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-
-        last_print_session_event = (
-            PrintStatusEvent.objects.filter(octoprint_device=self)
-            .order_by("-created_dt")
-            .first()
-        )
-        if last_print_session_event:
-            return last_print_session_event.event_type
-        else:
-            return "Idle"
+    def printer_status(self):
+        if self.last_session:
+            return self.last_session.event
 
     @property
     def print_session_gcode_file(self):
@@ -246,7 +269,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
         last_print_session_event = (
             PrintStatusEvent.objects.filter(octoprint_device=self)
-            .order_by("-created_dt")
+            .order_by("-ts")
             .first()
         )
         if last_print_session_event:
@@ -255,10 +278,15 @@ class OctoPrintDevice(SafeDeleteModel):
             return ""
 
     @property
-    def print_session_status_css_class(self):
+    def printer_state_css_class(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+        return PrintStatusEvent.PRINTER_STATE_CSS_CLASS[self.printer_state]
 
-        return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_session_status]
+    @property
+    def print_job_status_css_class(self):
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+        if self.print_job_status:
+            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -333,17 +361,6 @@ class PrintSession(models.Model):
     Represents a unique print job/session
     """
 
-    class StatusChoices(models.TextChoices):
-        MONITORING_ACTIVE = (
-            "monitoring_active",
-            "Print Nanny is currently monitoring your print job",
-        )
-        RENDERING_VIDEO = (
-            "rendering_video",
-            "Print Nanny is creating a timelapse video of your print job",
-        )
-        DONE = "done" "A timelapse of your print job is ready!"
-
     class Meta:
         unique_together = ("octoprint_device", "session")
 
@@ -358,13 +375,6 @@ class PrintSession(models.Model):
     print_progress = models.IntegerField(null=True)
     time_elapsed = models.IntegerField(null=True)
     time_remaining = models.IntegerField(null=True)
-
-    status = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=StatusChoices.choices,
-        default=StatusChoices.MONITORING_ACTIVE,
-    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(
@@ -444,33 +454,31 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     @classmethod
-    def get_valid_actions(cls, print_session_status):
-        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-
+    def get_valid_actions(cls, print_job_status):
         valid_actions = {
-            PrintStatusEvent.EventType.PRINT_STARTED: [
+            PrintStatusEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_PAUSE,
             ],
-            PrintStatusEvent.EventType.PRINT_DONE: [
-                cls.Command.MOVE_NOZZLE,
+            PrintStatusEventType.PRINT_DONE: [
+                # cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
-            PrintStatusEvent.EventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
-            PrintStatusEvent.EventType.PRINT_CANCELLING: [],
-            PrintStatusEvent.EventType.PRINT_PAUSED: [
+            PrintStatusEventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintStatusEventType.PRINT_CANCELLING: [],
+            PrintStatusEventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
-                cls.Command.MOVE_NOZZLE,
+                # cls.Command.MOVE_NOZZLE,
             ],
-            PrintStatusEvent.EventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
-            "Idle": [
+            PrintStatusEventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            None: [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
         }
-        return valid_actions[print_session_status]
+        return valid_actions[print_job_status]
 
     ACTION_CSS_CLASSES = {
         Command.PRINT_STOP: "danger",

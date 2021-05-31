@@ -86,13 +86,13 @@ local-clean:
 	rm .token || echo "Skipping .token cleanup"
 	rm .password || echo "Skipping .password cleanup"
 	docker-compose -f local.yml stop
-	yes | docker-compose -p $(DOCKER_COMPOSE_PROJECT_NAME) -f local.yml rm
-	yes | docker volume rm -p $(DOCKER_COMPOSE_PROJECT_NAME) \
-		print_nanny_webapp_local_file_data \
-		print_nanny_webapp_local_octoprint_data \
-		print_nanny_webapp_local_postgres_data \
-		print_nanny_webapp_local_postgres_data_backups \
-		print_nanny_webapp_local_prometheus_data || echo "No volumes found"
+	yes | docker-compose -f local.yml rm
+	yes | docker volume rm \
+		octoprint-nanny-webapp_local_file_data \
+		octoprint-nanny-webapp_local_octoprint_data \
+		octoprint-nanny-webapp_local_postgres_data \
+		octoprint-nanny-webapp_local_postgres_data_backups \
+		octoprint-nanny-webapp_local_prometheus_data || echo "No volumes found"
 
 .envs/.local/key.json:
 	gcloud iam service-accounts keys create .envs/.local/key.json --iam-account=owner-service-account@print-nanny-sandbox.iam.gserviceaccount.com

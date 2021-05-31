@@ -1,37 +1,69 @@
-import base64
-import hashlib
 import logging
 
-from rest_framework import status
-from rest_framework.decorators import action
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
     CreateModelMixin,
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter
 from django.apps import apps
 from django.conf import settings
 
 from .serializers import (
     OctoPrintEventSerializer,
-    OctoPrintPluginEventSerializer,
+    PrintNannyPluginEventSerializer,
     PrintStatusEventSerializer,
+    TelemetryEventPolymorphicSerializer,
+    RemoteCommandEventSerializer,
 )
-import print_nanny_webapp.telemetry.api.exceptions
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
-OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintPluginEvent")
+TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
+PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
 
 logger = logging.getLogger(__name__)
+
+
+@extend_schema(tags=["telemetry"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201: TelemetryEventPolymorphicSerializer,
+            400: TelemetryEventPolymorphicSerializer,
+        }
+    )
+)
+class TelemetryEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = TelemetryEventPolymorphicSerializer
+    queryset = TelemetryEvent.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
+
+
+@extend_schema(tags=["telemetry"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201: RemoteCommandEventSerializer,
+            400: RemoteCommandEventSerializer,
+        }
+    )
+)
+class RemoteCommandEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = RemoteCommandEventSerializer
+    queryset = RemoteCommandEvent.objects.all()
+    lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(user_id=self.request.user.id)
 
 
 @extend_schema(tags=["telemetry"])
@@ -71,14 +103,14 @@ class OctoPrintEventViewSet(
 @extend_schema_view(
     create=extend_schema(
         responses={
-            201: OctoPrintPluginEventSerializer,
-            400: OctoPrintPluginEventSerializer,
+            201: PrintNannyPluginEventSerializer,
+            400: PrintNannyPluginEventSerializer,
         }
     )
 )
-class OctoPrintPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
-    serializer_class = OctoPrintPluginEventSerializer
-    queryset = OctoPrintPluginEvent.objects.all()
+class PrintNannyPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+    serializer_class = PrintNannyPluginEventSerializer
+    queryset = PrintNannyPluginEvent.objects.all()
     lookup_field = "id"
 
     def get_queryset(self, *args, **kwargs):

@@ -20,11 +20,19 @@ from django.apps import apps
 import google.api_core.exceptions
 
 from django.contrib.auth import get_user_model
+from print_nanny_webapp.telemetry.types import (
+    OctoprintEventType,
+    PrintStatusEventType,
+    RemoteCommandEventType,
+    PrintNannyPluginEventType,
+)
 
 User = get_user_model()
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintPluginEvent")
+PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
+TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
@@ -36,92 +44,97 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
-def handle_print_progress(octoprint_event):
+def handle_print_progress(event: OctoPrintEvent):
     from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
-    user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
-    alert_settings, created = AlertSettings.objects.get_or_create(user=user)
-    progress = octoprint_event.get("event_data", {}).get("print_progress")
-    # update print session progress
-    print_session = octoprint_event.get("metadata", {}).get("print_session")
-    if print_session:
-        PrintSession.objects.filter(session=print_session).update(
-            print_progress=progress,
-            # TODO
-            # enrich print progress event with the following fields
-            # filepos=octoprint_event.get("filepos"),
-            # time_elapsed=octoprint_event.get("time_elapsed"),
-            # time_remaining=octoprint_event.get("time_remaining"),
-        )
-        print_session = PrintSession.objects.get(session=print_session)
-
+    progress = event.event_data["print_progress"]
+    alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
     should_alert = (
-        progress % alert_settings.print_progress_percent == 0 and progress != 100
+        progress % alert_settings.print_progress_percent == 0
+        # and progress != 100
+        and progress != 0
     )
-    logger.info(f"Received event={octoprint_event} should_alert={should_alert}")
-    if should_alert:
-        # PrintDone / VideoDone events capture the case where a print is 100% complete
-        # @TODO write octoprint_event serializer
-        octoprint_device = octoprint_event.get("metadata", {}).get(
-            "octoprint_device_id"
+    if event.print_session:
+        PrintSession.objects.filter(id=event.print_session.id).update(
+            filepos=event.octoprint_printer_data["progress"]["filepos"],
+            print_progress=progress,
+            time_elapsed=event.octoprint_printer_data["progress"]["printTime"],
+            time_remaining=event.octoprint_printer_data["progress"]["printTimeLeft"],
         )
+
+    if should_alert:
         for alert_method in alert_settings.alert_methods:
             alert_message = AlertMessage.objects.create(
                 alert_method=alert_method,
                 event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
-                user=user,
-                print_session=print_session,
-                octoprint_device_id=octoprint_device,
+                user=event.user,
+                print_session=event.print_session,
+                octoprint_device=event.octoprint_device,
+                event=event,
             )
             task = AlertTask(alert_message)
             task.trigger_alert()
 
 
-def handle_print_status(octoprint_event):
+def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
-    pass
+    if event.printer_state:
+        event.octoprint_device.printer_state = event.printer_state
+    if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
+        event.octoprint_device.print_job_status = event.event_type
+    if event.event_type == PrintStatusEventType.PRINT_DONE:
+        event.octoprint_device.print_progress = 100
+    return event.octoprint_device.save()
 
 
-def handle_ping(octoprint_event):
-    device_id = octoprint_event["metadata"]["octoprint_device_id"]
-    user_id = octoprint_event["metadata"]["user_id"]
-    device = OctoPrintDevice.objects.get(id=device_id)
-    user = User.objects.get(id=user_id)
+def handle_ping(event: OctoPrintEvent):
     try:
-
         RemoteControlCommand.objects.create(
-            user=user,
-            device=device,
+            user=event.user,
+            device=event.octoprint_device,
             command=RemoteControlCommand.Command.PONG,
         )
     except google.api_core.exceptions.FailedPrecondition as e:
         logger.error(
-            f"Ping response for octoprint_device={octoprint_device} failed with error={e}"
+            f"Ping response for octoprint_event={event} octoprint_device={event.octoprint_device} failed with error={e}"
         )
 
 
-HANDLER_FNS = {OctoPrintEvent.EventType.PRINT_PROGRESS: handle_print_progress}
+HANDLER_FNS = {OctoprintEventType.PRINT_PROGRESS: handle_print_progress}
 
 HANDLER_FNS.update(
-    {value: handle_print_status for label, value in PrintStatusEvent.EventType.choices}
+    {value: handle_print_status for label, value in PrintStatusEventType.choices}
 )
 
-HANDLER_FNS.update({OctoPrintPluginEvent.EventType.CONNECT_TEST_MQTT_PING: handle_ping})
+HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping})
 
 
-def event_is_tracked(event_type):
-    return (
-        event_type in OctoPrintEvent.EventType
-        or event_type in PrintStatusEvent.EventType
-        or event_type in OctoPrintPluginEvent.EventType
-        or OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-        in OctoPrintPluginEvent.EventType
-    )
+def get_resourcetype(validated_data):
+    event_type = validated_data["event_type"]
+    if event_type in OctoprintEventType:
+        resourcetype = OctoPrintEvent._meta.object_name
+    elif event_type in PrintStatusEventType:
+        resourcetype = PrintStatusEvent._meta.object_name
+    elif event_type in RemoteCommandEventType:
+        resourcetype = RemoteCommandEvent._meta.object_name
+    elif event_type in PrintNannyPluginEventType:
+        resourcetype = PrintNannyPluginEvent._meta.object_name
+    else:
+        resourcetype = TelemetryEvent._meta.object_name
+        logger.warning(
+            f"Using base TelemetryEvent for event_type={event_type} - you probably want to create a more specific subclass. Recevied data={validated_data}"
+        )
+    return resourcetype
 
 
 def on_octoprint_event(message):
+    from print_nanny_webapp.telemetry.api.serializers import (
+        TelemetryEventSerializer,
+        TelemetryEventPolymorphicSerializer,
+    )
+
     try:
         data = message.data.decode("utf-8")
     except UnicodeDecodeError as e:
@@ -130,94 +143,36 @@ def on_octoprint_event(message):
         message.ack()
         return
     data = json.loads(data)
+    logger.info(f"Received {data}")
 
-    event_type = data["event_type"]
+    meta_serializer = TelemetryEventSerializer(data=data)
+    logger.info(f"Received {data}")
 
-    logger.info(f"Received {event_type} with data {data}")
-    if not event_is_tracked(event_type):
+    if not meta_serializer.is_valid():
         logger.error(
-            f"Tracking event is not registered, ignoring event_type={event_type}"
+            f"Meta deserialization failed with errors {meta_serializer.errors} and data {data}"
         )
         return message.ack()
+    resourcetype = get_resourcetype(meta_serializer.validated_data)
 
-    # TODO enforce a schema on this topic :facepalm:
-    event_data = data["event_data"]
-    metadata = data["metadata"]
+    data = dict(
+        resourcetype=resourcetype,
+        printer_state=data["octoprint_printer_data"]["state"]["text"],
+        **data,
+    )
+    poly_serializer = TelemetryEventPolymorphicSerializer(data=data)
+    if not poly_serializer.is_valid():
+        logger.error(
+            f"Polymorphic deserialization failed with errors {poly_serializer.errors} and data {data}"
+        )
+        return message.ack()
+    instance = poly_serializer.save()
+    logger.info(f"Created event {instance} event_type={instance.event_type}")
+    handler_fn = HANDLER_FNS.get(instance.event_type)
+    if handler_fn is not None:
+        logger.info(f"Calling {handler_fn}({instance})")
+        handler_fn(instance)
 
-    octoprint_device_id = data.get("octoprint_device_id") or data.get(
-        "metadata", {}
-    ).get("octoprint_device_id")
-    user_id = data.get("user_id") or data.get("metadata", {}).get("user_id")
-
-    if octoprint_device_id is None:
-        logger.warning(f"Received {event_type} without octoprint_device_id {data}")
-        message.ack()
-        return
-    if user_id is None:
-        logger.warning(f"Received {event_type} without user_id {data}")
-        message.ack()
-        return
-    if event_type in OctoPrintEvent.EventType:
-        try:
-            event = OctoPrintEvent.objects.create(
-                created_dt=metadata["ts"],
-                octoprint_device_id=octoprint_device_id,
-                event_data=data,
-                event_type=event_type,
-                octoprint_version=metadata["octoprint_version"],
-                plugin_version=metadata["plugin_version"],
-                user_id=user_id,
-            )
-            handler_fn = HANDLER_FNS.get(event_type)
-            if handler_fn is not None:
-                handler_fn(data)
-        except Exception as e:
-            logger.error({"error": e, "data": data}, exc_info=True)
-    if event_type in PrintStatusEvent.EventType:
-        try:
-            PrintStatusEvent.objects.create(
-                created_dt=metadata["ts"],
-                # current_z=data["printer_data"]["currentZ"],
-                octoprint_device_id=octoprint_device_id,
-                event_data=data,
-                event_type=event_type,
-                job_data_file=data["printer_data"]["job"]["file"],
-                octoprint_version=metadata["octoprint_version"],
-                plugin_version=metadata["plugin_version"],
-                # progress=data["printer_data"]["progress"],
-                # state=data["printer_data"]["state"],
-                user_id=user_id,
-            )
-            handler_fn = HANDLER_FNS.get(event_type)
-            if handler_fn is not None:
-                handler_fn(event)
-        except Exception as e:
-            logger.error({"error": e, "data": data})
-
-    if (
-        OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-        in OctoPrintPluginEvent.EventType
-    ):
-        try:
-            obj = OctoPrintPluginEvent.objects.create(
-                created_dt=metadata["ts"],
-                octoprint_device_id=octoprint_device_id,
-                event_data=data,
-                event_type=event_type,
-                octoprint_version=metadata["octoprint_version"],
-                plugin_version=metadata["plugin_version"],
-                user_id=user_id,
-                metadata=metadata,
-                octoprint_job=data.get("octoprint_job"),
-            )
-
-            handler_fn = HANDLER_FNS.get(
-                OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-            )
-            if handler_fn is not None:
-                handler_fn(data)
-        except Exception as e:
-            logger.error({"error": e, "data": data})
     message.ack()
 
 

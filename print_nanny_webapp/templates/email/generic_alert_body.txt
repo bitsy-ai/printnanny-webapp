@@ -7,7 +7,7 @@ Status update for job running on {{ DEVICE_NAME }} 💜
 🔔 Event - {{ EVENT_TYPE }}
 {% if VIDEO_DASHBOARD_URL %}* Time elapsed - {{ TIME_ELAPSED }}
 📹 Check out the timelapse video - {{ VIDEO_DASHBOARD_URL }}{% else %}
-⌛ Progress - {{ PRINT_PROGRESS }}
+⌛ Progress - {{ PRINT_PROGRESS }}%
 ⌛ Time remaining - {{ TIME_REMAINING }}
 {% endif %}
 💜 Click to manage this printer: {{ DEVICE_URL }}

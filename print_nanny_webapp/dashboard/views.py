@@ -258,7 +258,6 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
         self.get_object()
 
         context = super(OctoPrintDevicesDetailView, self).get_context_data(**kwargs)
-        # context["valid_actions"] = RemoteControlCommand.VALID_ACTIONS[context["object"].print_session_status]
 
         context["sent_commands"] = RemoteControlCommand.objects.filter(
             user_id=self.request.user
@@ -268,9 +267,7 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     def create_remote_command_form(self, **kwargs):
         obj = self.get_object()
-        command_choices = RemoteControlCommand.get_valid_actions(
-            obj.print_session_status
-        )
+        command_choices = RemoteControlCommand.get_valid_actions(obj.print_job_status)
         form = RemoteControlCommandForm(command_choices=command_choices, **kwargs)
         return form
 

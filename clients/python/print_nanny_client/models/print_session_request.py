@@ -42,7 +42,6 @@ class PrintSessionRequest(object):
         'print_progress': 'int',
         'time_elapsed': 'int',
         'time_remaining': 'int',
-        'status': 'StatusEnum',
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
@@ -56,14 +55,13 @@ class PrintSessionRequest(object):
         'print_progress': 'print_progress',
         'time_elapsed': 'time_elapsed',
         'time_remaining': 'time_remaining',
-        'status': 'status',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
         'octoprint_job': 'octoprint_job'
     }
 
-    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, status=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
         """PrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -75,7 +73,6 @@ class PrintSessionRequest(object):
         self._print_progress = None
         self._time_elapsed = None
         self._time_remaining = None
-        self._status = None
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
@@ -88,8 +85,6 @@ class PrintSessionRequest(object):
         self.print_progress = print_progress
         self.time_elapsed = time_elapsed
         self.time_remaining = time_remaining
-        if status is not None:
-            self.status = status
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
@@ -251,27 +246,6 @@ class PrintSessionRequest(object):
             raise ValueError("Invalid value for `time_remaining`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._time_remaining = time_remaining
-
-    @property
-    def status(self):
-        """Gets the status of this PrintSessionRequest.  # noqa: E501
-
-
-        :return: The status of this PrintSessionRequest.  # noqa: E501
-        :rtype: StatusEnum
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """Sets the status of this PrintSessionRequest.
-
-
-        :param status: The status of this PrintSessionRequest.  # noqa: E501
-        :type status: StatusEnum
-        """
-
-        self._status = status
 
     @property
     def printer_profile(self):

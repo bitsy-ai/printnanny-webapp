@@ -50,7 +50,6 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
                         print_progress = -2147483648, 
                         time_elapsed = -2147483648, 
                         time_remaining = -2147483648, 
-                        status = 'monitoring_active', 
                         user = 56, 
                         printer_profile = 56, 
                         gcode_file = 56, 

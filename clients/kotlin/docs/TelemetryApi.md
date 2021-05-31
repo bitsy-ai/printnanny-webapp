@@ -4,18 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**telemetryOctoprintEventsCreate**](TelemetryApi.md#telemetryOctoprintEventsCreate) | **POST** /api/telemetry/octoprint-events/ | 
-[**telemetryOctoprintEventsList**](TelemetryApi.md#telemetryOctoprintEventsList) | **GET** /api/telemetry/octoprint-events/ | 
-[**telemetryOctoprintEventsRetrieve**](TelemetryApi.md#telemetryOctoprintEventsRetrieve) | **GET** /api/telemetry/octoprint-events/{id}/ | 
-[**telemetryOctoprintPluginEventsList**](TelemetryApi.md#telemetryOctoprintPluginEventsList) | **GET** /api/telemetry/octoprint-plugin-events/ | 
-[**telemetryOctoprintPluginEventsRetrieve**](TelemetryApi.md#telemetryOctoprintPluginEventsRetrieve) | **GET** /api/telemetry/octoprint-plugin-events/{id}/ | 
-[**telemetryPrintStatusEventsList**](TelemetryApi.md#telemetryPrintStatusEventsList) | **GET** /api/telemetry/print-status-events/ | 
-[**telemetryPrintStatusEventsRetrieve**](TelemetryApi.md#telemetryPrintStatusEventsRetrieve) | **GET** /api/telemetry/print-status-events/{id}/ | 
+[**octoprintEventsCreate**](TelemetryApi.md#octoprintEventsCreate) | **POST** /api/octoprint-events/ | 
+[**octoprintEventsList**](TelemetryApi.md#octoprintEventsList) | **GET** /api/octoprint-events/ | 
+[**octoprintEventsRetrieve**](TelemetryApi.md#octoprintEventsRetrieve) | **GET** /api/octoprint-events/{id}/ | 
+[**printNannyPluginEventsList**](TelemetryApi.md#printNannyPluginEventsList) | **GET** /api/print-nanny-plugin-events/ | 
+[**printNannyPluginEventsRetrieve**](TelemetryApi.md#printNannyPluginEventsRetrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+[**printStatusEventsList**](TelemetryApi.md#printStatusEventsList) | **GET** /api/print-status-events/ | 
+[**printStatusEventsRetrieve**](TelemetryApi.md#printStatusEventsRetrieve) | **GET** /api/print-status-events/{id}/ | 
+[**remoteCommandEventsList**](TelemetryApi.md#remoteCommandEventsList) | **GET** /api/remote-command-events/ | 
+[**remoteCommandEventsRetrieve**](TelemetryApi.md#remoteCommandEventsRetrieve) | **GET** /api/remote-command-events/{id}/ | 
+[**telemetryEventsList**](TelemetryApi.md#telemetryEventsList) | **GET** /api/telemetry-events/ | 
+[**telemetryEventsRetrieve**](TelemetryApi.md#telemetryEventsRetrieve) | **GET** /api/telemetry-events/{id}/ | 
 
 
-<a name="telemetryOctoprintEventsCreate"></a>
-# **telemetryOctoprintEventsCreate**
-> OctoPrintEvent telemetryOctoprintEventsCreate(octoPrintEventRequest)
+<a name="octoprintEventsCreate"></a>
+# **octoprintEventsCreate**
+> OctoPrintEvent octoprintEventsCreate(octoPrintEventRequest)
 
 
 
@@ -28,13 +32,13 @@ Method | HTTP request | Description
 val apiInstance = TelemetryApi()
 val octoPrintEventRequest : OctoPrintEventRequest =  // OctoPrintEventRequest | 
 try {
-    val result : OctoPrintEvent = apiInstance.telemetryOctoprintEventsCreate(octoPrintEventRequest)
+    val result : OctoPrintEvent = apiInstance.octoprintEventsCreate(octoPrintEventRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryOctoprintEventsCreate")
+    println("4xx response calling TelemetryApi#octoprintEventsCreate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryOctoprintEventsCreate")
+    println("5xx response calling TelemetryApi#octoprintEventsCreate")
     e.printStackTrace()
 }
 ```
@@ -63,9 +67,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="telemetryOctoprintEventsList"></a>
-# **telemetryOctoprintEventsList**
-> PaginatedOctoPrintEventList telemetryOctoprintEventsList(page)
+<a name="octoprintEventsList"></a>
+# **octoprintEventsList**
+> PaginatedOctoPrintEventList octoprintEventsList(page)
 
 
 
@@ -78,13 +82,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedOctoPrintEventList = apiInstance.telemetryOctoprintEventsList(page)
+    val result : PaginatedOctoPrintEventList = apiInstance.octoprintEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryOctoprintEventsList")
+    println("4xx response calling TelemetryApi#octoprintEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryOctoprintEventsList")
+    println("5xx response calling TelemetryApi#octoprintEventsList")
     e.printStackTrace()
 }
 ```
@@ -113,9 +117,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="telemetryOctoprintEventsRetrieve"></a>
-# **telemetryOctoprintEventsRetrieve**
-> OctoPrintEvent telemetryOctoprintEventsRetrieve(id)
+<a name="octoprintEventsRetrieve"></a>
+# **octoprintEventsRetrieve**
+> OctoPrintEvent octoprintEventsRetrieve(id)
 
 
 
@@ -128,13 +132,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print event.
 try {
-    val result : OctoPrintEvent = apiInstance.telemetryOctoprintEventsRetrieve(id)
+    val result : OctoPrintEvent = apiInstance.octoprintEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryOctoprintEventsRetrieve")
+    println("4xx response calling TelemetryApi#octoprintEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryOctoprintEventsRetrieve")
+    println("5xx response calling TelemetryApi#octoprintEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -163,9 +167,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="telemetryOctoprintPluginEventsList"></a>
-# **telemetryOctoprintPluginEventsList**
-> PaginatedOctoPrintPluginEventList telemetryOctoprintPluginEventsList(page)
+<a name="printNannyPluginEventsList"></a>
+# **printNannyPluginEventsList**
+> PaginatedPrintNannyPluginEventList printNannyPluginEventsList(page)
 
 
 
@@ -178,13 +182,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedOctoPrintPluginEventList = apiInstance.telemetryOctoprintPluginEventsList(page)
+    val result : PaginatedPrintNannyPluginEventList = apiInstance.printNannyPluginEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryOctoprintPluginEventsList")
+    println("4xx response calling TelemetryApi#printNannyPluginEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryOctoprintPluginEventsList")
+    println("5xx response calling TelemetryApi#printNannyPluginEventsList")
     e.printStackTrace()
 }
 ```
@@ -197,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOctoPrintPluginEventList**](PaginatedOctoPrintPluginEventList.md)
+[**PaginatedPrintNannyPluginEventList**](PaginatedPrintNannyPluginEventList.md)
 
 ### Authorization
 
@@ -213,9 +217,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="telemetryOctoprintPluginEventsRetrieve"></a>
-# **telemetryOctoprintPluginEventsRetrieve**
-> OctoPrintPluginEvent telemetryOctoprintPluginEventsRetrieve(id)
+<a name="printNannyPluginEventsRetrieve"></a>
+# **printNannyPluginEventsRetrieve**
+> PrintNannyPluginEvent printNannyPluginEventsRetrieve(id)
 
 
 
@@ -226,15 +230,15 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = TelemetryApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print plugin event.
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print nanny plugin event.
 try {
-    val result : OctoPrintPluginEvent = apiInstance.telemetryOctoprintPluginEventsRetrieve(id)
+    val result : PrintNannyPluginEvent = apiInstance.printNannyPluginEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryOctoprintPluginEventsRetrieve")
+    println("4xx response calling TelemetryApi#printNannyPluginEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryOctoprintPluginEventsRetrieve")
+    println("5xx response calling TelemetryApi#printNannyPluginEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -243,11 +247,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this octo print plugin event. |
+ **id** | **kotlin.Int**| A unique integer value identifying this print nanny plugin event. |
 
 ### Return type
 
-[**OctoPrintPluginEvent**](OctoPrintPluginEvent.md)
+[**PrintNannyPluginEvent**](PrintNannyPluginEvent.md)
 
 ### Authorization
 
@@ -263,9 +267,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="telemetryPrintStatusEventsList"></a>
-# **telemetryPrintStatusEventsList**
-> PaginatedPrintStatusEventList telemetryPrintStatusEventsList(page)
+<a name="printStatusEventsList"></a>
+# **printStatusEventsList**
+> PaginatedPrintStatusEventList printStatusEventsList(page)
 
 
 
@@ -278,13 +282,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedPrintStatusEventList = apiInstance.telemetryPrintStatusEventsList(page)
+    val result : PaginatedPrintStatusEventList = apiInstance.printStatusEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryPrintStatusEventsList")
+    println("4xx response calling TelemetryApi#printStatusEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryPrintStatusEventsList")
+    println("5xx response calling TelemetryApi#printStatusEventsList")
     e.printStackTrace()
 }
 ```
@@ -313,9 +317,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="telemetryPrintStatusEventsRetrieve"></a>
-# **telemetryPrintStatusEventsRetrieve**
-> PrintStatusEvent telemetryPrintStatusEventsRetrieve(id)
+<a name="printStatusEventsRetrieve"></a>
+# **printStatusEventsRetrieve**
+> PrintStatusEvent printStatusEventsRetrieve(id)
 
 
 
@@ -328,13 +332,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print status event.
 try {
-    val result : PrintStatusEvent = apiInstance.telemetryPrintStatusEventsRetrieve(id)
+    val result : PrintStatusEvent = apiInstance.printStatusEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#telemetryPrintStatusEventsRetrieve")
+    println("4xx response calling TelemetryApi#printStatusEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#telemetryPrintStatusEventsRetrieve")
+    println("5xx response calling TelemetryApi#printStatusEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -348,6 +352,206 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrintStatusEvent**](PrintStatusEvent.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="remoteCommandEventsList"></a>
+# **remoteCommandEventsList**
+> PaginatedRemoteCommandEventList remoteCommandEventsList(page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedRemoteCommandEventList = apiInstance.remoteCommandEventsList(page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#remoteCommandEventsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#remoteCommandEventsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedRemoteCommandEventList**](PaginatedRemoteCommandEventList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="remoteCommandEventsRetrieve"></a>
+# **remoteCommandEventsRetrieve**
+> RemoteCommandEvent remoteCommandEventsRetrieve(id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote command event.
+try {
+    val result : RemoteCommandEvent = apiInstance.remoteCommandEventsRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#remoteCommandEventsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#remoteCommandEventsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this remote command event. |
+
+### Return type
+
+[**RemoteCommandEvent**](RemoteCommandEvent.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="telemetryEventsList"></a>
+# **telemetryEventsList**
+> PaginatedTelemetryEventPolymorphicList telemetryEventsList(page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedTelemetryEventPolymorphicList = apiInstance.telemetryEventsList(page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#telemetryEventsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#telemetryEventsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedTelemetryEventPolymorphicList**](PaginatedTelemetryEventPolymorphicList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="telemetryEventsRetrieve"></a>
+# **telemetryEventsRetrieve**
+> TelemetryEventPolymorphic telemetryEventsRetrieve(id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this telemetry event.
+try {
+    val result : TelemetryEventPolymorphic = apiInstance.telemetryEventsRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#telemetryEventsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#telemetryEventsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this telemetry event. |
+
+### Return type
+
+[**TelemetryEventPolymorphic**](TelemetryEventPolymorphic.md)
 
 ### Authorization
 

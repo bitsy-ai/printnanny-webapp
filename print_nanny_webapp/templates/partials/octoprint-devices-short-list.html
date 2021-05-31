@@ -14,8 +14,11 @@
                       <th>Name</th>
                       <th>Monitoring Active</th>
 
-                      <th>Print Job Status</th>
-                      <th>Gcode File</th>
+                      <th>Printer Status</th>
+                      <!-- <th>Job Status</th> -->
+        
+                      <th>File</th>
+                      <th>Progress</th>
 
                       <th>Remote Control</th>
                       <th>Metadata</th>
@@ -40,8 +43,11 @@
                     </td> -->
                     <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td>
 
-                    <td><i class="mdi mdi-circle {{device.print_session_status_css_class}}"></i> {{device.print_session_status}}</td>
-                    <td>{{device.gcode_file}}</td>
+                    <td><i class="mdi mdi-circle {{device.printer_state_css_class}}"></i> {{device.printer_state}}</td>
+                    <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
+
+                    <td>{{device.last_session.octoprint_job.file.name}}</td>
+                    <td>{{device.last_session.print_progress}}%</td>
 
 
                     <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>

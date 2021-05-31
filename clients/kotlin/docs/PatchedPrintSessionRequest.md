@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **printProgress** | **kotlin.Int** |  |  [optional]
 **timeElapsed** | **kotlin.Int** |  |  [optional]
 **timeRemaining** | **kotlin.Int** |  |  [optional]
-**status** | [**StatusEnum**](StatusEnum.md) |  |  [optional]
 **printerProfile** | **kotlin.Int** |  |  [optional]
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]

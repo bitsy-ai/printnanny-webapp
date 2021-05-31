@@ -133,6 +133,9 @@ class AlertMessage(models.Model):
     event_type = models.CharField(
         choices=AlertMessageType.choices, max_length=255, null=True
     )
+    event = models.ForeignKey(
+        "telemetry.TelemetryEvent", on_delete=models.CASCADE, null=True
+    )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE, null=True
     )

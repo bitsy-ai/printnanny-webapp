@@ -42,24 +42,28 @@ class TestPaginatedOctoPrintEventList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.octo_print_event.OctoPrintEvent(
                         id = 56, 
-                        created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        event_type = 'ClientAuthed', 
+                        ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        event_source = null, 
                         event_data = {
                             'key' : null
                             }, 
+                        octoprint_environment = {
+                            'key' : null
+                            }, 
+                        octoprint_printer_data = {
+                            'key' : null
+                            }, 
+                        temperature = {
+                            'key' : null
+                            }, 
+                        print_nanny_plugin_version = '', 
+                        print_nanny_client_version = '', 
+                        octoprint_version = '', 
+                        polymorphic_ctype = 56, 
                         octoprint_device = 56, 
                         user = 56, 
-                        plugin_version = '', 
-                        client_version = '', 
-                        octoprint_version = '', 
-                        metadata = {
-                            'key' : null
-                            }, 
-                        octoprint_job = {
-                            'key' : null
-                            }, 
-                        event_type = 'ClientAuthed', 
-                        print_session = 56, 
-                        url = '', )
+                        print_session = 56, )
                     ]
             )
         else :

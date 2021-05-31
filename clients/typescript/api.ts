@@ -375,6 +375,33 @@ export interface DeviceCalibrationRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum EventSourceEnum {
+    Octoprint = 'octoprint',
+    PluginOctoprintNanny = 'plugin_octoprint_nanny',
+    RemoteCommand = 'remote_command'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum EventType0e3Enum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
+}
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -570,6 +597,17 @@ export interface ModelArtifact {
 export enum MonitoringModeEnum {
     ActiveLearning = 'active_learning',
     Lite = 'lite'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum MonitoringStatusEnum {
+    MonitoringActive = 'monitoring_active',
+    RenderingVideo = 'rendering_video',
+    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
 }
 
 /**
@@ -803,6 +841,24 @@ export interface OctoPrintDevice {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDevice
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDevice
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDevice
+     */
+    printer_state?: PrinterStateEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -990,6 +1046,24 @@ export interface OctoPrintDeviceKey {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    printer_state?: PrinterStateEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
@@ -1145,6 +1219,24 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    printer_state?: PrinterStateEnum;
 }
 /**
  * 
@@ -1160,16 +1252,70 @@ export interface OctoPrintEvent {
     id?: number;
     /**
      * 
+     * @type {OctoPrintEventEventTypeEnum}
+     * @memberof OctoPrintEvent
+     */
+    event_type: OctoPrintEventEventTypeEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    created_dt?: string;
+    ts?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof OctoPrintEvent
+     */
+    event_source?: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEvent
      */
     event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEvent
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEvent
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintEvent
+     */
+    polymorphic_ctype?: number;
     /**
      * 
      * @type {number}
@@ -1184,52 +1330,10 @@ export interface OctoPrintEvent {
     user?: number;
     /**
      * 
-     * @type {string}
-     * @memberof OctoPrintEvent
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintEvent
-     */
-    client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    metadata?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {OctoPrintEventEventTypeEnum}
-     * @memberof OctoPrintEvent
-     */
-    event_type: OctoPrintEventEventTypeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof OctoPrintEvent
      */
     print_session?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintEvent
-     */
-    url?: string;
 }
 /**
  * 
@@ -1272,21 +1376,13 @@ export enum OctoPrintEventEventTypeEnum {
     Disconnected = 'Disconnected',
     PrinterReset = 'PrinterReset',
     FirmwareData = 'FirmwareData',
-    PrinterStateChanged = 'PrinterStateChanged',
     PrinterProfileAdded = 'PrinterProfileAdded',
     PrinterProfileDeleted = 'PrinterProfileDeleted',
     PrinterProfileModified = 'PrinterProfileModified',
     PrintProgress = 'PrintProgress',
     PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
     Shutdown = 'Shutdown',
-    Startup = 'Startup',
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
+    Startup = 'Startup'
 }
 
 /**
@@ -1297,28 +1393,46 @@ export enum OctoPrintEventEventTypeEnum {
 export interface OctoPrintEventRequest {
     /**
      * 
+     * @type {OctoPrintEventEventTypeEnum}
+     * @memberof OctoPrintEventRequest
+     */
+    event_type: OctoPrintEventEventTypeEnum;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
     event_data?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {number}
+     * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
-    octoprint_device: number;
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintEventRequest
      */
-    plugin_version: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintEventRequest
      */
-    client_version: string;
+    print_nanny_client_version: string;
     /**
      * 
      * @type {string}
@@ -1327,22 +1441,10 @@ export interface OctoPrintEventRequest {
     octoprint_version: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    metadata?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEventRequest
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {OctoPrintEventEventTypeEnum}
-     * @memberof OctoPrintEventRequest
-     */
-    event_type: OctoPrintEventEventTypeEnum;
+    octoprint_device: number;
     /**
      * 
      * @type {number}
@@ -1353,109 +1455,392 @@ export interface OctoPrintEventRequest {
 /**
  * 
  * @export
- * @interface OctoPrintPluginEvent
+ * @interface OctoprintEnvironment
  */
-export interface OctoPrintPluginEvent {
+export interface OctoprintEnvironment {
     /**
      * 
-     * @type {number}
-     * @memberof OctoPrintPluginEvent
+     * @type {OctoprintPlatform}
+     * @memberof OctoprintEnvironment
      */
-    id?: number;
+    os: OctoprintPlatform;
     /**
      * 
-     * @type {string}
-     * @memberof OctoPrintPluginEvent
+     * @type {OctoprintPython}
+     * @memberof OctoprintEnvironment
      */
-    created_dt?: string;
+    python: OctoprintPython;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintPluginEvent
+     * @type {OctoprintHardware}
+     * @memberof OctoprintEnvironment
      */
-    event_data?: { [key: string]: any; } | null;
+    hardware: OctoprintHardware;
     /**
      * 
-     * @type {number}
-     * @memberof OctoPrintPluginEvent
+     * @type {OctoprintPiSupport}
+     * @memberof OctoprintEnvironment
      */
-    octoprint_device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintPluginEvent
-     */
-    user?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintPluginEvent
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintPluginEvent
-     */
-    client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintPluginEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintPluginEvent
-     */
-    metadata?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintPluginEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {OctoPrintPluginEventEventTypeEnum}
-     * @memberof OctoPrintPluginEvent
-     */
-    event_type: OctoPrintPluginEventEventTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintPluginEvent
-     */
-    url?: string;
+    pi_support: OctoprintPiSupport;
 }
 /**
  * 
  * @export
- * @enum {string}
+ * @interface OctoprintFile
  */
-export enum OctoPrintPluginEventEventTypeEnum {
-    MonitoringStart = 'monitoring_start',
-    MonitoringStop = 'monitoring_stop',
-    MonitoringReset = 'monitoring_reset',
-    DeviceRegisterStart = 'device_register_start',
-    DeviceRegisterDone = 'device_register_done',
-    DeviceRegisterFailed = 'device_register_failed',
-    DeviceReset = 'device_reset',
-    PrinterProfileSyncStart = 'printer_profile_sync_start',
-    PrinterProfileSyncDone = 'printer_profile_sync_done',
-    PrinterProfileSyncFailed = 'printer_profile_sync_failed',
-    ConnectTestRestApi = 'connect_test_rest_api',
-    ConnectTestRestApiFailed = 'connect_test_rest_api_failed',
-    ConnectTestRestApiSuccess = 'connect_test_rest_api_success',
-    ConnectTestMqttPing = 'connect_test_mqtt_ping',
-    ConnectTestMqttPingFailed = 'connect_test_mqtt_ping_failed',
-    ConnectTestMqttPingSuccess = 'connect_test_mqtt_ping_success',
-    ConnectTestMqttPong = 'connect_test_mqtt_pong',
-    ConnectTestMqttPongFailed = 'connect_test_mqtt_pong_failed',
-    ConnectTestMqttPongSuccess = 'connect_test_mqtt_pong_success'
+export interface OctoprintFile {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFile
+     */
+    name: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFile
+     */
+    path: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFile
+     */
+    display?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFile
+     */
+    origin: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintFile
+     */
+    size: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintFile
+     */
+    date: number | null;
 }
-
+/**
+ * 
+ * @export
+ * @interface OctoprintHardware
+ */
+export interface OctoprintHardware {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardware
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardware
+     */
+    freq: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardware
+     */
+    ram: number;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintJob
+ */
+export interface OctoprintJob {
+    /**
+     * 
+     * @type {OctoprintFile}
+     * @memberof OctoprintJob
+     */
+    file: OctoprintFile | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJob
+     */
+    estimatedPrintTime?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJob
+     */
+    averagePrintTime?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJob
+     */
+    lastPrintTime?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintJob
+     */
+    filament: { [key: string]: any; } | null;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPiSupport
+ */
+export interface OctoprintPiSupport {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    throttle_state: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupport
+     */
+    octopi_version?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPlatform
+ */
+export interface OctoprintPlatform {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatform
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatform
+     */
+    platform: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatform
+     */
+    bits: string;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterData
+ */
+export interface OctoprintPrinterData {
+    /**
+     * 
+     * @type {OctoprintJob}
+     * @memberof OctoprintPrinterData
+     */
+    job: OctoprintJob;
+    /**
+     * 
+     * @type {OctoprintPrinterState}
+     * @memberof OctoprintPrinterData
+     */
+    state: OctoprintPrinterState;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterData
+     */
+    user?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterData
+     */
+    currentZ?: number;
+    /**
+     * 
+     * @type {OctoprintProgress}
+     * @memberof OctoprintPrinterData
+     */
+    progress: OctoprintProgress;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterData
+     */
+    resends: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterData
+     */
+    offsets: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterFlags
+ */
+export interface OctoprintPrinterFlags {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    operational: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    printing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    cancelling: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    pausing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    resuming: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    finishing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    closedOrError: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    error: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    paused: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    ready: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlags
+     */
+    sdReady: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterState
+ */
+export interface OctoprintPrinterState {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterState
+     */
+    text: string;
+    /**
+     * 
+     * @type {OctoprintPrinterFlags}
+     * @memberof OctoprintPrinterState
+     */
+    flags: OctoprintPrinterFlags;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintProgress
+ */
+export interface OctoprintProgress {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    completion: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    filepos: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    printTime: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgress
+     */
+    printTimeLeft: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintProgress
+     */
+    printTimeOrigin?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPython
+ */
+export interface OctoprintPython {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPython
+     */
+    version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPython
+     */
+    pip: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPython
+     */
+    virtualenv: string;
+}
 /**
  * 
  * @export
@@ -1707,33 +2092,33 @@ export interface PaginatedOctoPrintEventList {
 /**
  * 
  * @export
- * @interface PaginatedOctoPrintPluginEventList
+ * @interface PaginatedPrintNannyPluginEventList
  */
-export interface PaginatedOctoPrintPluginEventList {
+export interface PaginatedPrintNannyPluginEventList {
     /**
      * 
      * @type {number}
-     * @memberof PaginatedOctoPrintPluginEventList
+     * @memberof PaginatedPrintNannyPluginEventList
      */
     count?: number;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedOctoPrintPluginEventList
+     * @memberof PaginatedPrintNannyPluginEventList
      */
     next?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof PaginatedOctoPrintPluginEventList
+     * @memberof PaginatedPrintNannyPluginEventList
      */
     previous?: string | null;
     /**
      * 
-     * @type {Array<OctoPrintPluginEvent>}
-     * @memberof PaginatedOctoPrintPluginEventList
+     * @type {Array<PrintNannyPluginEvent>}
+     * @memberof PaginatedPrintNannyPluginEventList
      */
-    results?: Array<OctoPrintPluginEvent>;
+    results?: Array<PrintNannyPluginEvent>;
 }
 /**
  * 
@@ -1831,6 +2216,37 @@ export interface PaginatedPrinterProfileList {
 /**
  * 
  * @export
+ * @interface PaginatedRemoteCommandEventList
+ */
+export interface PaginatedRemoteCommandEventList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<RemoteCommandEvent>}
+     * @memberof PaginatedRemoteCommandEventList
+     */
+    results?: Array<RemoteCommandEvent>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedRemoteControlCommandList
  */
 export interface PaginatedRemoteControlCommandList {
@@ -1858,6 +2274,37 @@ export interface PaginatedRemoteControlCommandList {
      * @memberof PaginatedRemoteControlCommandList
      */
     results?: Array<RemoteControlCommand>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedTelemetryEventPolymorphicList
+ */
+export interface PaginatedTelemetryEventPolymorphicList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedTelemetryEventPolymorphicList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTelemetryEventPolymorphicList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedTelemetryEventPolymorphicList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<TelemetryEventPolymorphic>}
+     * @memberof PaginatedTelemetryEventPolymorphicList
+     */
+    results?: Array<TelemetryEventPolymorphic>;
 }
 /**
  * 
@@ -2201,6 +2648,24 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
+    /**
+     * 
+     * @type {MonitoringStatusEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    printer_state?: PrinterStateEnum;
 }
 /**
  * 
@@ -2244,12 +2709,6 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     time_remaining?: number | null;
-    /**
-     * 
-     * @type {StatusEnum}
-     * @memberof PatchedPrintSessionRequest
-     */
-    status?: StatusEnum;
     /**
      * 
      * @type {number}
@@ -2485,6 +2944,146 @@ export interface PatchedUserRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum PrintJobStatusEnum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrintNannyPluginEvent
+ */
+export interface PrintNannyPluginEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    id?: number;
+    /**
+     * 
+     * @type {PrintNannyPluginEventEventTypeEnum}
+     * @memberof PrintNannyPluginEvent
+     */
+    event_type: PrintNannyPluginEventEventTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
+    ts?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof PrintNannyPluginEvent
+     */
+    event_source?: EventSourceEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintNannyPluginEventEventTypeEnum {
+    MonitoringStart = 'plugin_octoprint_nanny_monitoring_start',
+    MonitoringStop = 'plugin_octoprint_nanny_monitoring_stop',
+    MonitoringReset = 'plugin_octoprint_nanny_monitoring_reset',
+    DeviceRegisterStart = 'plugin_octoprint_nanny_device_register_start',
+    DeviceRegisterDone = 'plugin_octoprint_nanny_device_register_done',
+    DeviceRegisterFailed = 'plugin_octoprint_nanny_device_register_failed',
+    DeviceReset = 'plugin_octoprint_nanny_device_reset',
+    PrinterProfileSyncStart = 'plugin_octoprint_nanny_printer_profile_sync_start',
+    PrinterProfileSyncDone = 'plugin_octoprint_nanny_printer_profile_sync_done',
+    PrinterProfileSyncFailed = 'plugin_octoprint_nanny_printer_profile_sync_failed',
+    ConnectTestRestApi = 'plugin_octoprint_nanny_connect_test_rest_api',
+    ConnectTestRestApiFailed = 'plugin_octoprint_nanny_connect_test_rest_api_failed',
+    ConnectTestRestApiSuccess = 'plugin_octoprint_nanny_connect_test_rest_api_success',
+    ConnectTestMqttPing = 'plugin_octoprint_nanny_connect_test_mqtt_ping',
+    ConnectTestMqttPingFailed = 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
+    ConnectTestMqttPingSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
+    ConnectTestMqttPong = 'plugin_octoprint_nanny_connect_test_mqtt_pong',
+    ConnectTestMqttPongFailed = 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
+    ConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success'
+}
+
+/**
+ * 
+ * @export
  * @interface PrintSession
  */
 export interface PrintSession {
@@ -2542,12 +3141,6 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     time_remaining?: number | null;
-    /**
-     * 
-     * @type {StatusEnum}
-     * @memberof PrintSession
-     */
-    status?: StatusEnum;
     /**
      * 
      * @type {number}
@@ -2629,12 +3222,6 @@ export interface PrintSessionRequest {
     time_remaining?: number | null;
     /**
      * 
-     * @type {StatusEnum}
-     * @memberof PrintSessionRequest
-     */
-    status?: StatusEnum;
-    /**
-     * 
      * @type {number}
      * @memberof PrintSessionRequest
      */
@@ -2672,16 +3259,76 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
+     * @type {EventType0e3Enum}
+     * @memberof PrintStatusEvent
+     */
+    event_type: EventType0e3Enum;
+    /**
+     * 
      * @type {string}
      * @memberof PrintStatusEvent
      */
-    created_dt?: string;
+    ts?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof PrintStatusEvent
+     */
+    event_source?: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof PrintStatusEvent
      */
     event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatusEvent
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatusEvent
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PrintStatusEvent
+     */
+    printer_state?: PrinterStateEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatusEvent
+     */
+    polymorphic_ctype?: number;
     /**
      * 
      * @type {number}
@@ -2696,92 +3343,11 @@ export interface PrintStatusEvent {
     user?: number;
     /**
      * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    plugin_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    client_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    octoprint_version: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    metadata?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    octoprint_job?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {PrintStatusEventEventTypeEnum}
-     * @memberof PrintStatusEvent
-     */
-    event_type: PrintStatusEventEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    state?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatusEvent
-     */
-    current_z?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    job_data_file: string;
-    /**
-     * 
      * @type {number}
      * @memberof PrintStatusEvent
      */
     print_session?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    url?: string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintStatusEventEventTypeEnum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
-}
-
 /**
  * 
  * @export
@@ -3093,6 +3659,134 @@ export interface PrinterProfileRequest {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum PrinterStateEnum {
+    Operational = 'Operational',
+    Paused = 'Paused',
+    Cancelling = 'Cancelling',
+    Printing = 'Printing',
+    Pausing = 'Pausing',
+    SdReady = 'sdReady',
+    Error = 'Error',
+    ReadyPrinterReady = 'ReadyPrinter Ready',
+    ClosedOrError = 'closedOrError',
+    Offline = 'Offline',
+    OpeningSerialConnection = 'Opening serial connection',
+    Connection = 'Connection'
+}
+
+/**
+ * 
+ * @export
+ * @interface RemoteCommandEvent
+ */
+export interface RemoteCommandEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    id?: number;
+    /**
+     * 
+     * @type {RemoteCommandEventEventTypeEnum}
+     * @memberof RemoteCommandEvent
+     */
+    event_type: RemoteCommandEventEventTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    ts?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof RemoteCommandEvent
+     */
+    event_source?: EventSourceEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum RemoteCommandEventEventTypeEnum {
+    Received = 'remote_command_received',
+    Failed = 'remote_command_failed',
+    Success = 'remote_command_success'
+}
+
+/**
+ * 
+ * @export
  * @interface RemoteControlCommand
  */
 export interface RemoteControlCommand {
@@ -3215,13 +3909,185 @@ export interface RemoteControlCommandRequest {
 /**
  * 
  * @export
+ * @interface TelemetryEvent
+ */
+export interface TelemetryEvent {
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    id?: number;
+    /**
+     * 
+     * @type {TelemetryEventEventTypeEnum}
+     * @memberof TelemetryEvent
+     */
+    event_type: TelemetryEventEventTypeEnum;
+    /**
+     * 
+     * @type {OctoprintEnvironment}
+     * @memberof TelemetryEvent
+     */
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof TelemetryEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEvent
+     */
+    ts?: string;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof TelemetryEvent
+     */
+    event_source?: EventSourceEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEvent
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEvent
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEvent
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEvent
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEvent
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    polymorphic_ctype?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
-export enum StatusEnum {
-    MonitoringActive = 'monitoring_active',
-    RenderingVideo = 'rendering_video',
-    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
+export enum TelemetryEventEventTypeEnum {
+    PluginOctoprintNannyMonitoringStart = 'plugin_octoprint_nanny_monitoring_start',
+    PluginOctoprintNannyMonitoringStop = 'plugin_octoprint_nanny_monitoring_stop',
+    PluginOctoprintNannyMonitoringReset = 'plugin_octoprint_nanny_monitoring_reset',
+    PluginOctoprintNannyDeviceRegisterStart = 'plugin_octoprint_nanny_device_register_start',
+    PluginOctoprintNannyDeviceRegisterDone = 'plugin_octoprint_nanny_device_register_done',
+    PluginOctoprintNannyDeviceRegisterFailed = 'plugin_octoprint_nanny_device_register_failed',
+    PluginOctoprintNannyDeviceReset = 'plugin_octoprint_nanny_device_reset',
+    PluginOctoprintNannyPrinterProfileSyncStart = 'plugin_octoprint_nanny_printer_profile_sync_start',
+    PluginOctoprintNannyPrinterProfileSyncDone = 'plugin_octoprint_nanny_printer_profile_sync_done',
+    PluginOctoprintNannyPrinterProfileSyncFailed = 'plugin_octoprint_nanny_printer_profile_sync_failed',
+    PluginOctoprintNannyConnectTestRestApi = 'plugin_octoprint_nanny_connect_test_rest_api',
+    PluginOctoprintNannyConnectTestRestApiFailed = 'plugin_octoprint_nanny_connect_test_rest_api_failed',
+    PluginOctoprintNannyConnectTestRestApiSuccess = 'plugin_octoprint_nanny_connect_test_rest_api_success',
+    PluginOctoprintNannyConnectTestMqttPing = 'plugin_octoprint_nanny_connect_test_mqtt_ping',
+    PluginOctoprintNannyConnectTestMqttPingFailed = 'plugin_octoprint_nanny_connect_test_mqtt_ping_failed',
+    PluginOctoprintNannyConnectTestMqttPingSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_ping_success',
+    PluginOctoprintNannyConnectTestMqttPong = 'plugin_octoprint_nanny_connect_test_mqtt_pong',
+    PluginOctoprintNannyConnectTestMqttPongFailed = 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
+    PluginOctoprintNannyConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success',
+    ClientAuthed = 'ClientAuthed',
+    ClientClosed = 'ClientClosed',
+    ClientDeauthed = 'ClientDeauthed',
+    ClientOpened = 'ClientOpened',
+    SettingsUpdated = 'SettingsUpdated',
+    UserLoggedIn = 'UserLoggedIn',
+    UserLoggedOut = 'UserLoggedOut',
+    FileAdded = 'FileAdded',
+    FileRemoved = 'FileRemoved',
+    FolderAdded = 'FolderAdded',
+    FolderRemoved = 'FolderRemoved',
+    TransferDone = 'TransferDone',
+    TransferFailed = 'TransferFailed',
+    TransferStarted = 'TransferStarted',
+    UpdatedFiles = 'UpdatedFiles',
+    Upload = 'Upload',
+    CaptureDone = 'CaptureDone',
+    CaptureFailed = 'CaptureFailed',
+    CaptureStart = 'CaptureStart',
+    MovieDone = 'MovieDone',
+    MovieFailed = 'MovieFailed',
+    MovieRendering = 'MovieRendering',
+    PostRollEnd = 'PostRollEnd',
+    PostRollStart = 'PostRollStart',
+    SlicingCancelled = 'SlicingCancelled',
+    SlicingDone = 'SlicingDone',
+    SlicingFailed = 'SlicingFailed',
+    SlicingProfileAdded = 'SlicingProfileAdded',
+    SlicingProfileDeleted = 'SlicingProfileDeleted',
+    SlicingProfileModified = 'SlicingProfileModified',
+    SlicingStarted = 'SlicingStarted',
+    Connected = 'Connected',
+    Disconnected = 'Disconnected',
+    PrinterReset = 'PrinterReset',
+    FirmwareData = 'FirmwareData',
+    PrinterProfileAdded = 'PrinterProfileAdded',
+    PrinterProfileDeleted = 'PrinterProfileDeleted',
+    PrinterProfileModified = 'PrinterProfileModified',
+    PrintProgress = 'PrintProgress',
+    PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
+    Shutdown = 'Shutdown',
+    Startup = 'Startup',
+    RemoteCommandReceived = 'remote_command_received',
+    RemoteCommandFailed = 'remote_command_failed',
+    RemoteCommandSuccess = 'remote_command_success',
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
 }
+
+/**
+ * @type TelemetryEventPolymorphic
+ * @export
+ */
+export type TelemetryEventPolymorphic = OctoPrintEvent | PrintNannyPluginEvent | PrintStatusEvent | RemoteCommandEvent | TelemetryEvent;
 
 /**
  * 
@@ -7733,10 +8599,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintEventRequest' is not null or undefined
-            assertParamExists('telemetryOctoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
-            const localVarPath = `/api/telemetry/octoprint-events/`;
+            assertParamExists('octoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
+            const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7774,8 +8640,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/octoprint-events/`;
+        octoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7814,10 +8680,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryOctoprintEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/octoprint-events/{id}/`
+            assertParamExists('octoprintEventsRetrieve', 'id', id)
+            const localVarPath = `/api/octoprint-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7853,8 +8719,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/octoprint-plugin-events/`;
+        printNannyPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-nanny-plugin-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7889,14 +8755,14 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print plugin event.
+         * @param {number} id A unique integer value identifying this print nanny plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printNannyPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryOctoprintPluginEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/octoprint-plugin-events/{id}/`
+            assertParamExists('printNannyPluginEventsRetrieve', 'id', id)
+            const localVarPath = `/api/print-nanny-plugin-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7932,8 +8798,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/print-status-events/`;
+        printStatusEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-status-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -7972,10 +8838,168 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printStatusEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryPrintStatusEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/print-status-events/{id}/`
+            assertParamExists('printStatusEventsRetrieve', 'id', id)
+            const localVarPath = `/api/print-status-events/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        remoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/remote-command-events/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        remoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('remoteCommandEventsRetrieve', 'id', id)
+            const localVarPath = `/api/remote-command-events/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/telemetry-events/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this telemetry event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('telemetryEventsRetrieve', 'id', id)
+            const localVarPath = `/api/telemetry-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8021,8 +9045,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsCreate(octoPrintEventRequest, options);
+        async octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsCreate(octoPrintEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8031,8 +9055,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsList(page, options);
+        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8041,8 +9065,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsRetrieve(id, options);
+        async octoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8051,18 +9075,18 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintPluginEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintPluginEventsList(page, options);
+        async printNannyPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintNannyPluginEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print plugin event.
+         * @param {number} id A unique integer value identifying this print nanny plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintPluginEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintPluginEventsRetrieve(id, options);
+        async printNannyPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyPluginEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8071,8 +9095,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintStatusEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsList(page, options);
+        async printStatusEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printStatusEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8081,8 +9105,48 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintStatusEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsRetrieve(id, options);
+        async printStatusEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printStatusEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async remoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async remoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this telemetry event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -8101,8 +9165,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
+        octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8110,8 +9174,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
-            return localVarFp.telemetryOctoprintEventsList(page, options).then((request) => request(axios, basePath));
+        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
+            return localVarFp.octoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8119,8 +9183,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.telemetryOctoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8128,17 +9192,17 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintPluginEventList> {
-            return localVarFp.telemetryOctoprintPluginEventsList(page, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList> {
+            return localVarFp.printNannyPluginEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {number} id A unique integer value identifying this octo print plugin event.
+         * @param {number} id A unique integer value identifying this print nanny plugin event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintPluginEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintPluginEvent> {
-            return localVarFp.telemetryOctoprintPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent> {
+            return localVarFp.printNannyPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8146,8 +9210,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
-            return localVarFp.telemetryPrintStatusEventsList(page, options).then((request) => request(axios, basePath));
+        printStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
+            return localVarFp.printStatusEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -8155,8 +9219,44 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
-            return localVarFp.telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
+            return localVarFp.printStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
+            return localVarFp.remoteCommandEventsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this remote command event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
+            return localVarFp.remoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
+            return localVarFp.telemetryEventsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this telemetry event.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
+            return localVarFp.telemetryEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -8174,7 +9274,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -8183,7 +9283,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
+    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
 
     /**
      * 
@@ -8192,7 +9292,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -8201,16 +9301,16 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintPluginEventList>;
+    printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList>;
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print plugin event.
+     * @param {number} id A unique integer value identifying this print nanny plugin event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintPluginEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintPluginEvent>;
+    printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent>;
 
     /**
      * 
@@ -8219,7 +9319,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList>;
+    printStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList>;
 
     /**
      * 
@@ -8228,7 +9328,43 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
+    printStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote command event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this telemetry event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
 
 }
 
@@ -8246,8 +9382,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8257,8 +9393,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8268,8 +9404,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8279,19 +9415,19 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintPluginEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {number} id A unique integer value identifying this octo print plugin event.
+     * @param {number} id A unique integer value identifying this print nanny plugin event.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintPluginEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8301,8 +9437,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintStatusEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintStatusEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printStatusEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printStatusEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8312,8 +9448,52 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintStatusEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printStatusEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printStatusEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public remoteCommandEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this remote command event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public remoteCommandEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this telemetry event.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

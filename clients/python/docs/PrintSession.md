@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **print_progress** | **int** |  | [optional] 
 **time_elapsed** | **int** |  | [optional] 
 **time_remaining** | **int** |  | [optional] 
-**status** | [**StatusEnum**](StatusEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **printer_profile** | **int** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 

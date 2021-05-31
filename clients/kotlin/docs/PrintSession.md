@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **printProgress** | **kotlin.Int** |  |  [optional]
 **timeElapsed** | **kotlin.Int** |  |  [optional]
 **timeRemaining** | **kotlin.Int** |  |  [optional]
-**status** | [**StatusEnum**](StatusEnum.md) |  |  [optional]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printerProfile** | **kotlin.Int** |  |  [optional]
 **gcodeFile** | **kotlin.Int** |  |  [optional]

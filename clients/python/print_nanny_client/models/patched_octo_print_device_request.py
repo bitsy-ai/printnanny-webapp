@@ -53,7 +53,10 @@ class PatchedOctoPrintDeviceRequest(object):
         'monitoring_mode': 'MonitoringModeEnum',
         'octoprint_version': 'str',
         'plugin_version': 'str',
-        'print_nanny_client_version': 'str'
+        'print_nanny_client_version': 'str',
+        'monitoring_status': 'MonitoringStatusEnum',
+        'print_job_status': 'PrintJobStatusEnum',
+        'printer_state': 'PrinterStateEnum'
     }
 
     attribute_map = {
@@ -74,10 +77,13 @@ class PatchedOctoPrintDeviceRequest(object):
         'monitoring_mode': 'monitoring_mode',
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
-        'print_nanny_client_version': 'print_nanny_client_version'
+        'print_nanny_client_version': 'print_nanny_client_version',
+        'monitoring_status': 'monitoring_status',
+        'print_job_status': 'print_job_status',
+        'printer_state': 'printer_state'
     }
 
-    def __init__(self, name=None, last_session=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, last_session=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, monitoring_status=None, print_job_status=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -101,6 +107,9 @@ class PatchedOctoPrintDeviceRequest(object):
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
+        self._monitoring_status = None
+        self._print_job_status = None
+        self._printer_state = None
         self.discriminator = None
 
         if name is not None:
@@ -134,6 +143,11 @@ class PatchedOctoPrintDeviceRequest(object):
             self.plugin_version = plugin_version
         if print_nanny_client_version is not None:
             self.print_nanny_client_version = print_nanny_client_version
+        if monitoring_status is not None:
+            self.monitoring_status = monitoring_status
+        self.print_job_status = print_job_status
+        if printer_state is not None:
+            self.printer_state = printer_state
 
     @property
     def name(self):
@@ -560,6 +574,69 @@ class PatchedOctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
+
+    @property
+    def monitoring_status(self):
+        """Gets the monitoring_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The monitoring_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :rtype: MonitoringStatusEnum
+        """
+        return self._monitoring_status
+
+    @monitoring_status.setter
+    def monitoring_status(self, monitoring_status):
+        """Sets the monitoring_status of this PatchedOctoPrintDeviceRequest.
+
+
+        :param monitoring_status: The monitoring_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :type monitoring_status: MonitoringStatusEnum
+        """
+
+        self._monitoring_status = monitoring_status
+
+    @property
+    def print_job_status(self):
+        """Gets the print_job_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The print_job_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :rtype: PrintJobStatusEnum
+        """
+        return self._print_job_status
+
+    @print_job_status.setter
+    def print_job_status(self, print_job_status):
+        """Sets the print_job_status of this PatchedOctoPrintDeviceRequest.
+
+
+        :param print_job_status: The print_job_status of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :type print_job_status: PrintJobStatusEnum
+        """
+
+        self._print_job_status = print_job_status
+
+    @property
+    def printer_state(self):
+        """Gets the printer_state of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The printer_state of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :rtype: PrinterStateEnum
+        """
+        return self._printer_state
+
+    @printer_state.setter
+    def printer_state(self, printer_state):
+        """Sets the printer_state of this PatchedOctoPrintDeviceRequest.
+
+
+        :param printer_state: The printer_state of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :type printer_state: PrinterStateEnum
+        """
+
+        self._printer_state = printer_state
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

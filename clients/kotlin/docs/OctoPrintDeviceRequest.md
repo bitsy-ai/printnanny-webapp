@@ -22,6 +22,9 @@ Name | Type | Description | Notes
 **virtualenv** | **kotlin.String** |  |  [optional]
 **monitoringActive** | **kotlin.Boolean** |  |  [optional]
 **monitoringMode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  |  [optional]
+**monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
+**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 
 
