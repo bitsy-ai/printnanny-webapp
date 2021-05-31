@@ -44,7 +44,7 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
-def handle_print_progress(event: PrintStatusEvent):
+def handle_print_progress(event: OctoPrintEvent):
     from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
     progress = event.event_data["print_progress"]

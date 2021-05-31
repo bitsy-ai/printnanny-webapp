@@ -44,7 +44,10 @@ class TestPatchedPrintSessionRequest(unittest.TestCase):
                 time_remaining = -2147483648, 
                 printer_profile = 56, 
                 gcode_file = 56, 
-                gcode_filename = ''
+                gcode_filename = '', 
+                octoprint_job = {
+                    'key' : null
+                    }
             )
         else :
             return PatchedPrintSessionRequest(

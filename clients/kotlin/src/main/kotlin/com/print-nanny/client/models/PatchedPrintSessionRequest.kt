@@ -11,6 +11,7 @@
 */
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.AnyType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -26,6 +27,7 @@ import java.io.Serializable
  * @param printerProfile 
  * @param gcodeFile 
  * @param gcodeFilename 
+ * @param octoprintJob 
  */
 
 data class PatchedPrintSessionRequest (
@@ -46,7 +48,9 @@ data class PatchedPrintSessionRequest (
     @Json(name = "gcode_file")
     val gcodeFile: kotlin.Int? = null,
     @Json(name = "gcode_filename")
-    val gcodeFilename: kotlin.String? = null
+    val gcodeFilename: kotlin.String? = null,
+    @Json(name = "octoprint_job")
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -42,8 +42,8 @@
                     <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td>
 
                     <td><i class="mdi mdi-circle {{device.printer_state_css_class}}"></i> {{device.printer_state}}</td>
-                    <td>{{device.gcode_file}}</td>
-                    <td>{{device.print_progress}}</td>
+                    <td>{{device.last_session.octoprint_job.file.name}}</td>
+                    <td>{{device.last_session.print_progress}}%</td>
 
 
                     <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>

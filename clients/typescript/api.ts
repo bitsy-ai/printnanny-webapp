@@ -2727,6 +2727,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedPrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -3161,6 +3167,12 @@ export interface PrintSession {
     gcode_filename?: string | null;
     /**
      * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSession
+     */
+    octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSession
      */
@@ -3226,6 +3238,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     gcode_filename?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintSessionRequest
+     */
+    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
