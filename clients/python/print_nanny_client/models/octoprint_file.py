@@ -69,8 +69,7 @@ class OctoprintFile(object):
 
         self.name = name
         self.path = path
-        if display is not None:
-            self.display = display
+        self.display = display
         self.origin = origin
         self.size = size
         self.date = date

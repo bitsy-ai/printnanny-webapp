@@ -388,14 +388,15 @@ export enum EventSourceEnum {
  * @export
  * @enum {string}
  */
-export enum EventTypeD9eEnum {
+export enum EventType0e3Enum {
     PrintCancelled = 'PrintCancelled',
     PrintCancelling = 'PrintCancelling',
     PrintDone = 'PrintDone',
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
 }
 
 /**
@@ -840,6 +841,24 @@ export interface OctoPrintDevice {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDevice
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDevice
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDevice
+     */
+    printer_state?: PrinterStateEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -1027,6 +1046,24 @@ export interface OctoPrintDeviceKey {
     print_nanny_client_version: string;
     /**
      * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDeviceKey
+     */
+    printer_state?: PrinterStateEnum;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
@@ -1182,6 +1219,24 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     print_nanny_client_version: string;
+    /**
+     * 
+     * @type {MonitoringStatusEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof OctoPrintDeviceRequest
+     */
+    printer_state?: PrinterStateEnum;
 }
 /**
  * 
@@ -1321,7 +1376,6 @@ export enum OctoPrintEventEventTypeEnum {
     Disconnected = 'Disconnected',
     PrinterReset = 'PrinterReset',
     FirmwareData = 'FirmwareData',
-    PrinterStateChanged = 'PrinterStateChanged',
     PrinterProfileAdded = 'PrinterProfileAdded',
     PrinterProfileDeleted = 'PrinterProfileDeleted',
     PrinterProfileModified = 'PrinterProfileModified',
@@ -1452,7 +1506,7 @@ export interface OctoprintFile {
      * @type {string}
      * @memberof OctoprintFile
      */
-    display?: string;
+    display?: string | null;
     /**
      * 
      * @type {string}
@@ -1508,7 +1562,7 @@ export interface OctoprintJob {
      * @type {OctoprintFile}
      * @memberof OctoprintJob
      */
-    file: OctoprintFile;
+    file: OctoprintFile | null;
     /**
      * 
      * @type {number}
@@ -1520,7 +1574,7 @@ export interface OctoprintJob {
      * @type {number}
      * @memberof OctoprintJob
      */
-    averagePrintTime?: number;
+    averagePrintTime?: number | null;
     /**
      * 
      * @type {number}
@@ -1532,7 +1586,7 @@ export interface OctoprintJob {
      * @type {{ [key: string]: any; }}
      * @memberof OctoprintJob
      */
-    filament: { [key: string]: any; };
+    filament: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2594,6 +2648,24 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
+    /**
+     * 
+     * @type {MonitoringStatusEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    monitoring_status?: MonitoringStatusEnum;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PatchedOctoPrintDeviceRequest
+     */
+    printer_state?: PrinterStateEnum;
 }
 /**
  * 
@@ -2639,24 +2711,6 @@ export interface PatchedPrintSessionRequest {
     time_remaining?: number | null;
     /**
      * 
-     * @type {MonitoringStatusEnum}
-     * @memberof PatchedPrintSessionRequest
-     */
-    monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof PatchedPrintSessionRequest
-     */
-    print_job_status?: PrintJobStatusEnum;
-    /**
-     * 
-     * @type {PrinterStateEnum}
-     * @memberof PatchedPrintSessionRequest
-     */
-    printer_state?: PrinterStateEnum | null;
-    /**
-     * 
      * @type {number}
      * @memberof PatchedPrintSessionRequest
      */
@@ -2673,12 +2727,6 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     gcode_filename?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PatchedPrintSessionRequest
-     */
-    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -2899,7 +2947,8 @@ export enum PrintJobStatusEnum {
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
 }
 
 /**
@@ -3088,24 +3137,6 @@ export interface PrintSession {
     time_remaining?: number | null;
     /**
      * 
-     * @type {MonitoringStatusEnum}
-     * @memberof PrintSession
-     */
-    monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof PrintSession
-     */
-    print_job_status?: PrintJobStatusEnum;
-    /**
-     * 
-     * @type {PrinterStateEnum}
-     * @memberof PrintSession
-     */
-    printer_state?: PrinterStateEnum | null;
-    /**
-     * 
      * @type {number}
      * @memberof PrintSession
      */
@@ -3128,12 +3159,6 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     gcode_filename?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintSession
-     */
-    octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
      * @type {string}
@@ -3185,24 +3210,6 @@ export interface PrintSessionRequest {
     time_remaining?: number | null;
     /**
      * 
-     * @type {MonitoringStatusEnum}
-     * @memberof PrintSessionRequest
-     */
-    monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof PrintSessionRequest
-     */
-    print_job_status?: PrintJobStatusEnum;
-    /**
-     * 
-     * @type {PrinterStateEnum}
-     * @memberof PrintSessionRequest
-     */
-    printer_state?: PrinterStateEnum | null;
-    /**
-     * 
      * @type {number}
      * @memberof PrintSessionRequest
      */
@@ -3219,12 +3226,6 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     gcode_filename?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintSessionRequest
-     */
-    octoprint_job?: { [key: string]: any; } | null;
 }
 /**
  * 
@@ -3240,10 +3241,10 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
-     * @type {EventTypeD9eEnum}
+     * @type {EventType0e3Enum}
      * @memberof PrintStatusEvent
      */
-    event_type: EventTypeD9eEnum;
+    event_type: EventType0e3Enum;
     /**
      * 
      * @type {string}
@@ -3643,15 +3644,18 @@ export interface PrinterProfileRequest {
  * @enum {string}
  */
 export enum PrinterStateEnum {
-    Operational = 'operational',
-    Paused = 'paused',
-    Cancelling = 'cancelling',
-    Printing = 'printing',
-    Pausing = 'pausing',
+    Operational = 'Operational',
+    Paused = 'Paused',
+    Cancelling = 'Cancelling',
+    Printing = 'Printing',
+    Pausing = 'Pausing',
     SdReady = 'sdReady',
-    Error = 'error',
-    ReadyPrinterReady = 'readyPrinter Ready',
-    ClosedOrError = 'closedOrError'
+    Error = 'Error',
+    ReadyPrinterReady = 'ReadyPrinter Ready',
+    ClosedOrError = 'closedOrError',
+    Offline = 'Offline',
+    OpeningSerialConnection = 'Opening serial connection',
+    Connection = 'Connection'
 }
 
 /**
@@ -4041,7 +4045,6 @@ export enum TelemetryEventEventTypeEnum {
     Disconnected = 'Disconnected',
     PrinterReset = 'PrinterReset',
     FirmwareData = 'FirmwareData',
-    PrinterStateChanged = 'PrinterStateChanged',
     PrinterProfileAdded = 'PrinterProfileAdded',
     PrinterProfileDeleted = 'PrinterProfileDeleted',
     PrinterProfileModified = 'PrinterProfileModified',
@@ -4058,7 +4061,8 @@ export enum TelemetryEventEventTypeEnum {
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
 }
 
 /**

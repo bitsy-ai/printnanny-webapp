@@ -18,5 +18,7 @@
 
     * `printStarted` (value: `"PrintStarted"`)
 
+    * `printerStateChanged` (value: `"PrinterStateChanged"`)
+
 
 

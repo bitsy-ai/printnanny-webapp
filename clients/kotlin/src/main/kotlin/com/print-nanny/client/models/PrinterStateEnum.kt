@@ -16,38 +16,47 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError
+* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError,offline,openingSerialConnection,connection
 */
 
 enum class PrinterStateEnum(val value: kotlin.String) {
 
 
-    @Json(name = "operational")
-    operational("operational"),
+    @Json(name = "Operational")
+    operational("Operational"),
 
-    @Json(name = "paused")
-    paused("paused"),
+    @Json(name = "Paused")
+    paused("Paused"),
 
-    @Json(name = "cancelling")
-    cancelling("cancelling"),
+    @Json(name = "Cancelling")
+    cancelling("Cancelling"),
 
-    @Json(name = "printing")
-    printing("printing"),
+    @Json(name = "Printing")
+    printing("Printing"),
 
-    @Json(name = "pausing")
-    pausing("pausing"),
+    @Json(name = "Pausing")
+    pausing("Pausing"),
 
     @Json(name = "sdReady")
     sdReady("sdReady"),
 
-    @Json(name = "error")
-    error("error"),
+    @Json(name = "Error")
+    error("Error"),
 
-    @Json(name = "readyPrinter Ready")
-    readyPrinterReady("readyPrinter Ready"),
+    @Json(name = "ReadyPrinter Ready")
+    readyPrinterReady("ReadyPrinter Ready"),
 
     @Json(name = "closedOrError")
-    closedOrError("closedOrError");
+    closedOrError("closedOrError"),
+
+    @Json(name = "Offline")
+    offline("Offline"),
+
+    @Json(name = "Opening serial connection")
+    openingSerialConnection("Opening serial connection"),
+
+    @Json(name = "Connection")
+    connection("Connection");
 
 
     /**

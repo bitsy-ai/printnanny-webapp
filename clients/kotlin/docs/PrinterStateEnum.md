@@ -4,23 +4,29 @@
 ## Enum
 
 
-    * `operational` (value: `"operational"`)
+    * `operational` (value: `"Operational"`)
 
-    * `paused` (value: `"paused"`)
+    * `paused` (value: `"Paused"`)
 
-    * `cancelling` (value: `"cancelling"`)
+    * `cancelling` (value: `"Cancelling"`)
 
-    * `printing` (value: `"printing"`)
+    * `printing` (value: `"Printing"`)
 
-    * `pausing` (value: `"pausing"`)
+    * `pausing` (value: `"Pausing"`)
 
     * `sdReady` (value: `"sdReady"`)
 
-    * `error` (value: `"error"`)
+    * `error` (value: `"Error"`)
 
-    * `readyPrinterReady` (value: `"readyPrinter Ready"`)
+    * `readyPrinterReady` (value: `"ReadyPrinter Ready"`)
 
     * `closedOrError` (value: `"closedOrError"`)
+
+    * `offline` (value: `"Offline"`)
+
+    * `openingSerialConnection` (value: `"Opening serial connection"`)
+
+    * `connection` (value: `"Connection"`)
 
 
 

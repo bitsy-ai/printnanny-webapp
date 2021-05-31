@@ -36,13 +36,7 @@ class TestOctoprintJob(unittest.TestCase):
         # model = print_nanny_client.models.octoprint_job.OctoprintJob()  # noqa: E501
         if include_optional :
             return OctoprintJob(
-                file = print_nanny_client.models.octoprint_file.OctoprintFile(
-                    name = '', 
-                    path = '', 
-                    display = '', 
-                    origin = '', 
-                    size = 56, 
-                    date = 56, ), 
+                file = None, 
                 estimated_print_time = 1.337, 
                 average_print_time = 1.337, 
                 last_print_time = 1.337, 
@@ -52,13 +46,7 @@ class TestOctoprintJob(unittest.TestCase):
             )
         else :
             return OctoprintJob(
-                file = print_nanny_client.models.octoprint_file.OctoprintFile(
-                    name = '', 
-                    path = '', 
-                    display = '', 
-                    origin = '', 
-                    size = 56, 
-                    date = 56, ),
+                file = None,
                 filament = {
                     'key' : null
                     },

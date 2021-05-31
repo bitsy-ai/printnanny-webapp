@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: pluginOctoprintNannyMonitoringStart,pluginOctoprintNannyMonitoringStop,pluginOctoprintNannyMonitoringReset,pluginOctoprintNannyDeviceRegisterStart,pluginOctoprintNannyDeviceRegisterDone,pluginOctoprintNannyDeviceRegisterFailed,pluginOctoprintNannyDeviceReset,pluginOctoprintNannyPrinterProfileSyncStart,pluginOctoprintNannyPrinterProfileSyncDone,pluginOctoprintNannyPrinterProfileSyncFailed,pluginOctoprintNannyConnectTestRestApi,pluginOctoprintNannyConnectTestRestApiFailed,pluginOctoprintNannyConnectTestRestApiSuccess,pluginOctoprintNannyConnectTestMqttPing,pluginOctoprintNannyConnectTestMqttPingFailed,pluginOctoprintNannyConnectTestMqttPingSuccess,pluginOctoprintNannyConnectTestMqttPong,pluginOctoprintNannyConnectTestMqttPongFailed,pluginOctoprintNannyConnectTestMqttPongSuccess,clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,firmwareData,printerStateChanged,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup,remoteCommandReceived,remoteCommandFailed,remoteCommandSuccess,printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted
+* Values: pluginOctoprintNannyMonitoringStart,pluginOctoprintNannyMonitoringStop,pluginOctoprintNannyMonitoringReset,pluginOctoprintNannyDeviceRegisterStart,pluginOctoprintNannyDeviceRegisterDone,pluginOctoprintNannyDeviceRegisterFailed,pluginOctoprintNannyDeviceReset,pluginOctoprintNannyPrinterProfileSyncStart,pluginOctoprintNannyPrinterProfileSyncDone,pluginOctoprintNannyPrinterProfileSyncFailed,pluginOctoprintNannyConnectTestRestApi,pluginOctoprintNannyConnectTestRestApiFailed,pluginOctoprintNannyConnectTestRestApiSuccess,pluginOctoprintNannyConnectTestMqttPing,pluginOctoprintNannyConnectTestMqttPingFailed,pluginOctoprintNannyConnectTestMqttPingSuccess,pluginOctoprintNannyConnectTestMqttPong,pluginOctoprintNannyConnectTestMqttPongFailed,pluginOctoprintNannyConnectTestMqttPongSuccess,clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,firmwareData,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup,remoteCommandReceived,remoteCommandFailed,remoteCommandSuccess,printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted,printerStateChanged
 */
 
 enum class TelemetryEventEventTypeEnum(val value: kotlin.String) {
@@ -184,9 +184,6 @@ enum class TelemetryEventEventTypeEnum(val value: kotlin.String) {
     @Json(name = "FirmwareData")
     firmwareData("FirmwareData"),
 
-    @Json(name = "PrinterStateChanged")
-    printerStateChanged("PrinterStateChanged"),
-
     @Json(name = "PrinterProfileAdded")
     printerProfileAdded("PrinterProfileAdded"),
 
@@ -236,7 +233,10 @@ enum class TelemetryEventEventTypeEnum(val value: kotlin.String) {
     printResumed("PrintResumed"),
 
     @Json(name = "PrintStarted")
-    printStarted("PrintStarted");
+    printStarted("PrintStarted"),
+
+    @Json(name = "PrinterStateChanged")
+    printerStateChanged("PrinterStateChanged");
 
 
     /**

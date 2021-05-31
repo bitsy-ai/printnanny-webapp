@@ -11,10 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
-import com.print-nanny.client.models.MonitoringStatusEnum
-import com.print-nanny.client.models.PrintJobStatusEnum
-import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -27,13 +23,9 @@ import java.io.Serializable
  * @param printProgress 
  * @param timeElapsed 
  * @param timeRemaining 
- * @param monitoringStatus 
- * @param printJobStatus 
- * @param printerState 
  * @param printerProfile 
  * @param gcodeFile 
  * @param gcodeFilename 
- * @param octoprintJob 
  */
 
 data class PrintSessionRequest (
@@ -49,20 +41,12 @@ data class PrintSessionRequest (
     val timeElapsed: kotlin.Int? = null,
     @Json(name = "time_remaining")
     val timeRemaining: kotlin.Int? = null,
-    @Json(name = "monitoring_status")
-    val monitoringStatus: MonitoringStatusEnum? = null,
-    @Json(name = "print_job_status")
-    val printJobStatus: PrintJobStatusEnum? = null,
-    @Json(name = "printer_state")
-    val printerState: PrinterStateEnum? = null,
     @Json(name = "printer_profile")
     val printerProfile: kotlin.Int? = null,
     @Json(name = "gcode_file")
     val gcodeFile: kotlin.Int? = null,
     @Json(name = "gcode_filename")
-    val gcodeFilename: kotlin.String? = null,
-    @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null
+    val gcodeFilename: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -74,8 +74,6 @@
 
     * `firmwareData` (value: `"FirmwareData"`)
 
-    * `printerStateChanged` (value: `"PrinterStateChanged"`)
-
     * `printerProfileAdded` (value: `"PrinterProfileAdded"`)
 
     * `printerProfileDeleted` (value: `"PrinterProfileDeleted"`)

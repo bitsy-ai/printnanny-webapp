@@ -37,13 +37,7 @@ class TestOctoprintPrinterData(unittest.TestCase):
         if include_optional :
             return OctoprintPrinterData(
                 job = print_nanny_client.models.octoprint_job.OctoprintJob(
-                    file = print_nanny_client.models.octoprint_file.OctoprintFile(
-                        name = '', 
-                        path = '', 
-                        display = '', 
-                        origin = '', 
-                        size = 56, 
-                        date = 56, ), 
+                    file = null, 
                     estimated_print_time = 1.337, 
                     average_print_time = 1.337, 
                     last_print_time = 1.337, 
@@ -82,13 +76,7 @@ class TestOctoprintPrinterData(unittest.TestCase):
         else :
             return OctoprintPrinterData(
                 job = print_nanny_client.models.octoprint_job.OctoprintJob(
-                    file = print_nanny_client.models.octoprint_file.OctoprintFile(
-                        name = '', 
-                        path = '', 
-                        display = '', 
-                        origin = '', 
-                        size = 56, 
-                        date = 56, ), 
+                    file = null, 
                     estimated_print_time = 1.337, 
                     average_print_time = 1.337, 
                     last_print_time = 1.337, 

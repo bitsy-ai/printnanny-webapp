@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,firmwareData,printerStateChanged,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup
+* Values: clientAuthed,clientClosed,clientDeauthed,clientOpened,settingsUpdated,userLoggedIn,userLoggedOut,fileAdded,fileRemoved,folderAdded,folderRemoved,transferDone,transferFailed,transferStarted,updatedFiles,upload,captureDone,captureFailed,captureStart,movieDone,movieFailed,movieRendering,postRollEnd,postRollStart,slicingCancelled,slicingDone,slicingFailed,slicingProfileAdded,slicingProfileDeleted,slicingProfileModified,slicingStarted,connected,disconnected,printerReset,firmwareData,printerProfileAdded,printerProfileDeleted,printerProfileModified,printProgress,pluginPiSupportThrottleState,shutdown,startup
 */
 
 enum class OctoPrintEventEventTypeEnum(val value: kotlin.String) {
@@ -126,9 +126,6 @@ enum class OctoPrintEventEventTypeEnum(val value: kotlin.String) {
 
     @Json(name = "FirmwareData")
     firmwareData("FirmwareData"),
-
-    @Json(name = "PrinterStateChanged")
-    printerStateChanged("PrinterStateChanged"),
 
     @Json(name = "PrinterProfileAdded")
     printerProfileAdded("PrinterProfileAdded"),

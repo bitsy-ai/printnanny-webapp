@@ -32,6 +32,9 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
+**monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
+**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
+**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 **manage_url** | **str** |  | [optional] [readonly] 
 

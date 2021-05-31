@@ -31,17 +31,20 @@ class PrinterStateEnum(object):
     """
     allowed enum values
     """
-    OPERATIONAL = "operational"
-    PAUSED = "paused"
-    CANCELLING = "cancelling"
-    PRINTING = "printing"
-    PAUSING = "pausing"
+    OPERATIONAL = "Operational"
+    PAUSED = "Paused"
+    CANCELLING = "Cancelling"
+    PRINTING = "Printing"
+    PAUSING = "Pausing"
     SDREADY = "sdReady"
-    ERROR = "error"
-    READYPRINTER_READY = "readyPrinter Ready"
+    ERROR = "Error"
+    READYPRINTER_READY = "ReadyPrinter Ready"
     CLOSEDORERROR = "closedOrError"
+    OFFLINE = "Offline"
+    OPENING_SERIAL_CONNECTION = "Opening serial connection"
+    CONNECTION = "Connection"
 
-    allowable_values = [OPERATIONAL, PAUSED, CANCELLING, PRINTING, PAUSING, SDREADY, ERROR, READYPRINTER_READY, CLOSEDORERROR]  # noqa: E501
+    allowable_values = [OPERATIONAL, PAUSED, CANCELLING, PRINTING, PAUSING, SDREADY, ERROR, READYPRINTER_READY, CLOSEDORERROR, OFFLINE, OPENING_SERIAL_CONNECTION, CONNECTION]  # noqa: E501
 
     """
     Attributes:

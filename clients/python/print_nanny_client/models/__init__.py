@@ -26,7 +26,7 @@ from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
-from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
+from print_nanny_client.models.event_type0e3_enum import EventType0e3Enum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile

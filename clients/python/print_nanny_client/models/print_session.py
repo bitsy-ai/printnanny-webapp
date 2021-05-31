@@ -45,14 +45,10 @@ class PrintSession(object):
         'print_progress': 'int',
         'time_elapsed': 'int',
         'time_remaining': 'int',
-        'monitoring_status': 'MonitoringStatusEnum',
-        'print_job_status': 'PrintJobStatusEnum',
-        'printer_state': 'PrinterStateEnum',
         'user': 'int',
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
-        'octoprint_job': 'dict(str, object)',
         'url': 'str'
     }
 
@@ -66,18 +62,14 @@ class PrintSession(object):
         'print_progress': 'print_progress',
         'time_elapsed': 'time_elapsed',
         'time_remaining': 'time_remaining',
-        'monitoring_status': 'monitoring_status',
-        'print_job_status': 'print_job_status',
-        'printer_state': 'printer_state',
         'user': 'user',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
-        'octoprint_job': 'octoprint_job',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, monitoring_status=None, print_job_status=None, printer_state=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -92,14 +84,10 @@ class PrintSession(object):
         self._print_progress = None
         self._time_elapsed = None
         self._time_remaining = None
-        self._monitoring_status = None
-        self._print_job_status = None
-        self._printer_state = None
         self._user = None
         self._printer_profile = None
         self._gcode_file = None
         self._gcode_filename = None
-        self._octoprint_job = None
         self._url = None
         self.discriminator = None
 
@@ -115,17 +103,11 @@ class PrintSession(object):
         self.print_progress = print_progress
         self.time_elapsed = time_elapsed
         self.time_remaining = time_remaining
-        if monitoring_status is not None:
-            self.monitoring_status = monitoring_status
-        if print_job_status is not None:
-            self.print_job_status = print_job_status
-        self.printer_state = printer_state
         if user is not None:
             self.user = user
         self.printer_profile = printer_profile
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
-        self.octoprint_job = octoprint_job
         if url is not None:
             self.url = url
 
@@ -350,69 +332,6 @@ class PrintSession(object):
         self._time_remaining = time_remaining
 
     @property
-    def monitoring_status(self):
-        """Gets the monitoring_status of this PrintSession.  # noqa: E501
-
-
-        :return: The monitoring_status of this PrintSession.  # noqa: E501
-        :rtype: MonitoringStatusEnum
-        """
-        return self._monitoring_status
-
-    @monitoring_status.setter
-    def monitoring_status(self, monitoring_status):
-        """Sets the monitoring_status of this PrintSession.
-
-
-        :param monitoring_status: The monitoring_status of this PrintSession.  # noqa: E501
-        :type monitoring_status: MonitoringStatusEnum
-        """
-
-        self._monitoring_status = monitoring_status
-
-    @property
-    def print_job_status(self):
-        """Gets the print_job_status of this PrintSession.  # noqa: E501
-
-
-        :return: The print_job_status of this PrintSession.  # noqa: E501
-        :rtype: PrintJobStatusEnum
-        """
-        return self._print_job_status
-
-    @print_job_status.setter
-    def print_job_status(self, print_job_status):
-        """Sets the print_job_status of this PrintSession.
-
-
-        :param print_job_status: The print_job_status of this PrintSession.  # noqa: E501
-        :type print_job_status: PrintJobStatusEnum
-        """
-
-        self._print_job_status = print_job_status
-
-    @property
-    def printer_state(self):
-        """Gets the printer_state of this PrintSession.  # noqa: E501
-
-
-        :return: The printer_state of this PrintSession.  # noqa: E501
-        :rtype: PrinterStateEnum
-        """
-        return self._printer_state
-
-    @printer_state.setter
-    def printer_state(self, printer_state):
-        """Sets the printer_state of this PrintSession.
-
-
-        :param printer_state: The printer_state of this PrintSession.  # noqa: E501
-        :type printer_state: PrinterStateEnum
-        """
-
-        self._printer_state = printer_state
-
-    @property
     def user(self):
         """Gets the user of this PrintSession.  # noqa: E501
 
@@ -498,27 +417,6 @@ class PrintSession(object):
             raise ValueError("Invalid value for `gcode_filename`, length must be less than or equal to `255`")  # noqa: E501
 
         self._gcode_filename = gcode_filename
-
-    @property
-    def octoprint_job(self):
-        """Gets the octoprint_job of this PrintSession.  # noqa: E501
-
-
-        :return: The octoprint_job of this PrintSession.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._octoprint_job
-
-    @octoprint_job.setter
-    def octoprint_job(self, octoprint_job):
-        """Sets the octoprint_job of this PrintSession.
-
-
-        :param octoprint_job: The octoprint_job of this PrintSession.  # noqa: E501
-        :type octoprint_job: dict(str, object)
-        """
-
-        self._octoprint_job = octoprint_job
 
     @property
     def url(self):

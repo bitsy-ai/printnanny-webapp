@@ -66,8 +66,7 @@ class OctoprintJob(object):
 
         self.file = file
         self.estimated_print_time = estimated_print_time
-        if average_print_time is not None:
-            self.average_print_time = average_print_time
+        self.average_print_time = average_print_time
         self.last_print_time = last_print_time
         self.filament = filament
 
@@ -89,8 +88,6 @@ class OctoprintJob(object):
         :param file: The file of this OctoprintJob.  # noqa: E501
         :type file: OctoprintFile
         """
-        if self.local_vars_configuration.client_side_validation and file is None:  # noqa: E501
-            raise ValueError("Invalid value for `file`, must not be `None`")  # noqa: E501
 
         self._file = file
 
@@ -175,8 +172,6 @@ class OctoprintJob(object):
         :param filament: The filament of this OctoprintJob.  # noqa: E501
         :type filament: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and filament is None:  # noqa: E501
-            raise ValueError("Invalid value for `filament`, must not be `None`")  # noqa: E501
 
         self._filament = filament
 

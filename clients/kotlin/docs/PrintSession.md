@@ -13,14 +13,10 @@ Name | Type | Description | Notes
 **printProgress** | **kotlin.Int** |  |  [optional]
 **timeElapsed** | **kotlin.Int** |  |  [optional]
 **timeRemaining** | **kotlin.Int** |  |  [optional]
-**monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
-**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printerProfile** | **kotlin.Int** |  |  [optional]
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
-**octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 
