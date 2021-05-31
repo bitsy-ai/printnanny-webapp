@@ -410,3 +410,14 @@ class PrintStatusEventType(models.TextChoices):
     PRINT_PAUSED = "PrintPaused", "PrintPaused"
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
+
+class PrinterState(models.TextChoices):
+    OPERATIONAL = "operational", "Printer Connected"
+    PAUSED = "paused", "Paused"
+    CANCELLING = "cancelling", "Cancelling"
+    PRINTING = "printing", "Printing"
+    PAUSING = "pausing", "Pausing"
+    SD_READY = "sdReady", "SD Card Available"
+    ERROR = "error", "Error"
+    READY = "ready" "Printer Ready"
+    CLOSED_OR_ERROR = "closedOrError", "Printer Disconnected"

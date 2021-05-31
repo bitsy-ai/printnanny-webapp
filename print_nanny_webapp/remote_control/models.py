@@ -1,6 +1,7 @@
 import logging
 import tempfile
 import os
+from django import db
 from django.contrib.auth import get_user_model
 
 import json
@@ -22,7 +23,7 @@ from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
-from print_nanny_webapp.telemetry.types import PrintStatusEventType
+from print_nanny_webapp.telemetry.types import PrintStatusEventType, PrinterState
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -146,7 +147,9 @@ class OctoPrintDevice(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
-    active_session = models.ForeignKey(
+
+
+    last_session = models.ForeignKey(
         "remote_control.PrintSession",
         on_delete=models.CASCADE,
         db_index=True,
@@ -228,11 +231,16 @@ class OctoPrintDevice(SafeDeleteModel):
         return cloudiot_device_dict
 
     @property
-    def print_session_status(self):
-        if self.active_session:
-            return self.active_session.print_job_status
+    def print_job_status(self):
+        if self.last_session and self.last_session.active:
+            return self.last_session.print_job_status
         else:
             return "Idle"
+    
+    @property
+    def printer_status(self):
+        if self.last_session:
+            return self.last_session.event
 
     @property
     def print_session_gcode_file(self):
@@ -327,7 +335,7 @@ class PrintSession(models.Model):
     Represents a unique print job/session
     """
 
-    class StatusChoices(models.TextChoices):
+    class MonitoringStatusChoices(models.TextChoices):
         MONITORING_ACTIVE = (
             "monitoring_active",
             "Print Nanny is currently monitoring your print job",
@@ -356,8 +364,8 @@ class PrintSession(models.Model):
     monitoring_status = models.CharField(
         max_length=255,
         db_index=True,
-        choices=StatusChoices.choices,
-        default=StatusChoices.MONITORING_ACTIVE,
+        choices=MonitoringStatusChoices.choices,
+        default=MonitoringStatusChoices.MONITORING_ACTIVE,
     )
 
     print_job_status = models.CharField(
@@ -365,6 +373,13 @@ class PrintSession(models.Model):
         db_index=True,
         choices=PrintStatusEventType.choices,
         default=PrintStatusEventType.PRINT_STARTED,
+    )
+
+    printer_state = models.CharField(
+        max_length=36,
+        db_index=True,
+        choices=PrinterState.choices,
+        null=True
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
