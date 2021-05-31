@@ -37,72 +37,16 @@ class TestOctoPrintEventRequest(unittest.TestCase):
         if include_optional :
             return OctoPrintEventRequest(
                 event_type = 'ClientAuthed', 
-                octoprint_metadata = print_nanny_client.models.octoprint_metadata_request.OctoprintMetadataRequest(
-                    environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
-                        os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                            id = '', 
-                            platform = '', 
-                            bits = '', ), 
-                        python = print_nanny_client.models.octoprint_python_request.OctoprintPythonRequest(
-                            version = '', 
-                            pip = '', 
-                            virtualenv = '', ), 
-                        hardware = print_nanny_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
-                            cores = 56, 
-                            freq = 1.337, 
-                            ram = 56, ), 
-                        pi_support = print_nanny_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                            model = '', 
-                            throttle_state = '', 
-                            octopi_version = '', ), ), 
-                    printer_data = print_nanny_client.models.octoprint_printer_data_request.OctoprintPrinterDataRequest(
-                        job = print_nanny_client.models.octoprint_job_request.OctoprintJobRequest(
-                            file = print_nanny_client.models.octoprint_file_request.OctoprintFileRequest(
-                                name = '', 
-                                path = '', 
-                                display = '', 
-                                origin = '', 
-                                size = 56, 
-                                date = 56, ), 
-                            estimated_print_time = 1.337, 
-                            average_print_time = 1.337, 
-                            last_print_time = 1.337, 
-                            filament = {
-                                'key' : null
-                                }, ), 
-                        state = print_nanny_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                            text = '', 
-                            flags = print_nanny_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
-                                operational = True, 
-                                printing = True, 
-                                cancelling = True, 
-                                pausing = True, 
-                                resuming = True, 
-                                finishing = True, 
-                                closed_or_error = True, 
-                                error = True, 
-                                paused = True, 
-                                ready = True, 
-                                sd_ready = True, ), ), 
-                        user = '', 
-                        current_z = 1.337, 
-                        progress = print_nanny_client.models.octoprint_progress_request.OctoprintProgressRequest(
-                            completion = 1.337, 
-                            filepos = 56, 
-                            print_time = 56, 
-                            print_time_left = 56, 
-                            print_time_origin = '', ), 
-                        resends = {
-                            'key' : null
-                            }, 
-                        offsets = {
-                            'key' : null
-                            }, ), 
-                    temperature = {
-                        'key' : null
-                        }, ), 
-                event_source = 'octoprint', 
                 event_data = {
+                    'key' : null
+                    }, 
+                octoprint_environment = {
+                    'key' : null
+                    }, 
+                octoprint_printer_data = {
+                    'key' : null
+                    }, 
+                temperature = {
                     'key' : null
                     }, 
                 print_nanny_plugin_version = '', 
@@ -111,75 +55,12 @@ class TestOctoPrintEventRequest(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
-                octoprint_device = 56
+                octoprint_device = 56, 
+                print_session = 56
             )
         else :
             return OctoPrintEventRequest(
                 event_type = 'ClientAuthed',
-                octoprint_metadata = print_nanny_client.models.octoprint_metadata_request.OctoprintMetadataRequest(
-                    environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
-                        os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
-                            id = '', 
-                            platform = '', 
-                            bits = '', ), 
-                        python = print_nanny_client.models.octoprint_python_request.OctoprintPythonRequest(
-                            version = '', 
-                            pip = '', 
-                            virtualenv = '', ), 
-                        hardware = print_nanny_client.models.octoprint_hardware_request.OctoprintHardwareRequest(
-                            cores = 56, 
-                            freq = 1.337, 
-                            ram = 56, ), 
-                        pi_support = print_nanny_client.models.octoprint_pi_support_request.OctoprintPiSupportRequest(
-                            model = '', 
-                            throttle_state = '', 
-                            octopi_version = '', ), ), 
-                    printer_data = print_nanny_client.models.octoprint_printer_data_request.OctoprintPrinterDataRequest(
-                        job = print_nanny_client.models.octoprint_job_request.OctoprintJobRequest(
-                            file = print_nanny_client.models.octoprint_file_request.OctoprintFileRequest(
-                                name = '', 
-                                path = '', 
-                                display = '', 
-                                origin = '', 
-                                size = 56, 
-                                date = 56, ), 
-                            estimated_print_time = 1.337, 
-                            average_print_time = 1.337, 
-                            last_print_time = 1.337, 
-                            filament = {
-                                'key' : null
-                                }, ), 
-                        state = print_nanny_client.models.octoprint_printer_state_request.OctoprintPrinterStateRequest(
-                            text = '', 
-                            flags = print_nanny_client.models.octoprint_printer_flags_request.OctoprintPrinterFlagsRequest(
-                                operational = True, 
-                                printing = True, 
-                                cancelling = True, 
-                                pausing = True, 
-                                resuming = True, 
-                                finishing = True, 
-                                closed_or_error = True, 
-                                error = True, 
-                                paused = True, 
-                                ready = True, 
-                                sd_ready = True, ), ), 
-                        user = '', 
-                        current_z = 1.337, 
-                        progress = print_nanny_client.models.octoprint_progress_request.OctoprintProgressRequest(
-                            completion = 1.337, 
-                            filepos = 56, 
-                            print_time = 56, 
-                            print_time_left = 56, 
-                            print_time_origin = '', ), 
-                        resends = {
-                            'key' : null
-                            }, 
-                        offsets = {
-                            'key' : null
-                            }, ), 
-                    temperature = {
-                        'key' : null
-                        }, ),
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',

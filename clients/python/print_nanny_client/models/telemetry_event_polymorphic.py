@@ -37,12 +37,14 @@ class TelemetryEventPolymorphic(object):
     """
     openapi_types = {
         'id': 'int',
-        'print_session': 'str',
+        'print_session': 'int',
         'event_type': 'PrintNannyPluginEventEventTypeEnum',
-        'octoprint_metadata': 'OctoprintMetadata',
+        'octoprint_environment': 'dict(str, object)',
+        'octoprint_printer_data': 'dict(str, object)',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
+        'temperature': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
@@ -56,10 +58,12 @@ class TelemetryEventPolymorphic(object):
         'id': 'id',
         'print_session': 'print_session',
         'event_type': 'event_type',
-        'octoprint_metadata': 'octoprint_metadata',
+        'octoprint_environment': 'octoprint_environment',
+        'octoprint_printer_data': 'octoprint_printer_data',
         'ts': 'ts',
         'event_source': 'event_source',
         'event_data': 'event_data',
+        'temperature': 'temperature',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
@@ -72,7 +76,7 @@ class TelemetryEventPolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, print_session=None, event_type=None, octoprint_metadata=None, ts=None, event_source=None, event_data=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, print_session=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, ts=None, event_source=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_job=None, polymorphic_ctype=None, octoprint_device=None, user=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEventPolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,10 +85,12 @@ class TelemetryEventPolymorphic(object):
         self._id = None
         self._print_session = None
         self._event_type = None
-        self._octoprint_metadata = None
+        self._octoprint_environment = None
+        self._octoprint_printer_data = None
         self._ts = None
         self._event_source = None
         self._event_data = None
+        self._temperature = None
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
@@ -92,20 +98,22 @@ class TelemetryEventPolymorphic(object):
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
-        self.discriminator = 'polymorphic_ctype'
+        self.discriminator = 'resourcetype'
 
         if id is not None:
             self.id = id
-        if print_session is not None:
-            self.print_session = print_session
+        self.print_session = print_session
         self.event_type = event_type
-        self.octoprint_metadata = octoprint_metadata
+        self.octoprint_environment = octoprint_environment
+        self.octoprint_printer_data = octoprint_printer_data
         if ts is not None:
             self.ts = ts
         if event_source is not None:
             self.event_source = event_source
         if event_data is not None:
             self.event_data = event_data
+        if temperature is not None:
+            self.temperature = temperature
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
@@ -143,7 +151,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :return: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: str
+        :rtype: int
         """
         return self._print_session
 
@@ -153,7 +161,7 @@ class TelemetryEventPolymorphic(object):
 
 
         :param print_session: The print_session of this TelemetryEventPolymorphic.  # noqa: E501
-        :type print_session: str
+        :type print_session: int
         """
 
         self._print_session = print_session
@@ -182,27 +190,50 @@ class TelemetryEventPolymorphic(object):
         self._event_type = event_type
 
     @property
-    def octoprint_metadata(self):
-        """Gets the octoprint_metadata of this TelemetryEventPolymorphic.  # noqa: E501
+    def octoprint_environment(self):
+        """Gets the octoprint_environment of this TelemetryEventPolymorphic.  # noqa: E501
 
 
-        :return: The octoprint_metadata of this TelemetryEventPolymorphic.  # noqa: E501
-        :rtype: OctoprintMetadata
+        :return: The octoprint_environment of this TelemetryEventPolymorphic.  # noqa: E501
+        :rtype: dict(str, object)
         """
-        return self._octoprint_metadata
+        return self._octoprint_environment
 
-    @octoprint_metadata.setter
-    def octoprint_metadata(self, octoprint_metadata):
-        """Sets the octoprint_metadata of this TelemetryEventPolymorphic.
+    @octoprint_environment.setter
+    def octoprint_environment(self, octoprint_environment):
+        """Sets the octoprint_environment of this TelemetryEventPolymorphic.
 
 
-        :param octoprint_metadata: The octoprint_metadata of this TelemetryEventPolymorphic.  # noqa: E501
-        :type octoprint_metadata: OctoprintMetadata
+        :param octoprint_environment: The octoprint_environment of this TelemetryEventPolymorphic.  # noqa: E501
+        :type octoprint_environment: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and octoprint_metadata is None:  # noqa: E501
-            raise ValueError("Invalid value for `octoprint_metadata`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and octoprint_environment is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_environment`, must not be `None`")  # noqa: E501
 
-        self._octoprint_metadata = octoprint_metadata
+        self._octoprint_environment = octoprint_environment
+
+    @property
+    def octoprint_printer_data(self):
+        """Gets the octoprint_printer_data of this TelemetryEventPolymorphic.  # noqa: E501
+
+
+        :return: The octoprint_printer_data of this TelemetryEventPolymorphic.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._octoprint_printer_data
+
+    @octoprint_printer_data.setter
+    def octoprint_printer_data(self, octoprint_printer_data):
+        """Sets the octoprint_printer_data of this TelemetryEventPolymorphic.
+
+
+        :param octoprint_printer_data: The octoprint_printer_data of this TelemetryEventPolymorphic.  # noqa: E501
+        :type octoprint_printer_data: dict(str, object)
+        """
+        if self.local_vars_configuration.client_side_validation and octoprint_printer_data is None:  # noqa: E501
+            raise ValueError("Invalid value for `octoprint_printer_data`, must not be `None`")  # noqa: E501
+
+        self._octoprint_printer_data = octoprint_printer_data
 
     @property
     def ts(self):
@@ -266,6 +297,27 @@ class TelemetryEventPolymorphic(object):
         """
 
         self._event_data = event_data
+
+    @property
+    def temperature(self):
+        """Gets the temperature of this TelemetryEventPolymorphic.  # noqa: E501
+
+
+        :return: The temperature of this TelemetryEventPolymorphic.  # noqa: E501
+        :rtype: dict(str, object)
+        """
+        return self._temperature
+
+    @temperature.setter
+    def temperature(self, temperature):
+        """Sets the temperature of this TelemetryEventPolymorphic.
+
+
+        :param temperature: The temperature of this TelemetryEventPolymorphic.  # noqa: E501
+        :type temperature: dict(str, object)
+        """
+
+        self._temperature = temperature
 
     @property
     def print_nanny_plugin_version(self):

@@ -368,15 +368,6 @@ class OctoprintEventType(models.TextChoices):
     SHUTDOWN = "Shutdown", "Shutdown"
     STARTUP = "Startup", "Startup"
 
-    # print job
-    PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
-    PRINT_CANCELLING = "PrintCancelling", "PrintCancelling"
-    PRINT_DONE = "PrintDone", "PrintDone"
-    PRINT_FAILED = "PrintFailed", "PrintFailed"
-    PRINT_PAUSED = "PrintPaused", "PrintPaused"
-    PRINT_RESUMED = "PrintResumed", "PrintResumed"
-    PRINT_STARTED = "PrintStarted", "PrintStarted"
-
 
 class RemoteCommandEventType(models.TextChoices):
 

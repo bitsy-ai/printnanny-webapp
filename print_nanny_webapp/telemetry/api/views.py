@@ -12,7 +12,7 @@ from rest_framework.viewsets import GenericViewSet, ViewSet
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from django.apps import apps
 from django.conf import settings
-from drf_spectacular.utils import PolymorphicProxySerializer
+
 from .serializers import (
     OctoPrintEventSerializer,
     PrintNannyPluginEventSerializer,
@@ -30,8 +30,14 @@ RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
 
 logger = logging.getLogger(__name__)
 
-@extend_schema(
-    tags=["telemetry"], 
+@extend_schema(tags=["telemetry"])
+@extend_schema_view(
+    create=extend_schema(
+        responses={
+            201: TelemetryEventPolymorphicSerializer,
+            400: TelemetryEventPolymorphicSerializer,
+        }
+    )
 )
 class TelemetryEventViewSet(
     GenericViewSet, ListModelMixin, RetrieveModelMixin

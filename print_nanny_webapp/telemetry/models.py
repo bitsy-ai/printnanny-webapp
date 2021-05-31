@@ -31,7 +31,9 @@ class TelemetryEvent(PolymorphicModel):
     ts = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(max_length=36, choices=EventSource.choices, default=EventSource.PRINT_NANNY_PLUGIN)
     event_data = models.JSONField(default=dict)
-    octoprint_metadata = models.JSONField(default=dict)
+    octoprint_environment = models.JSONField(default=dict)
+    octoprint_printer_data = models.JSONField(default=dict)
+    temperature = models.JSONField(default=dict)
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice",
         db_index=True,
