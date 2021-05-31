@@ -31,6 +31,8 @@ User = get_user_model()
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
+TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
@@ -42,24 +44,24 @@ subscriber = pubsub_v1.SubscriberClient()
 subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
 
 
-def handle_print_progress(octoprint_event):
+def handle_print_progress(event: PrintStatusEvent):
     from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
-    user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
-    alert_settings, created = AlertSettings.objects.get_or_create(user=user)
-    progress = octoprint_event.get("event_data", {}).get("print_progress")
-    # update print session progress
-    print_session = octoprint_event.get("metadata", {}).get("print_session")
-    if print_session:
-        PrintSession.objects.filter(session=print_session).update(
-            print_progress=progress,
-            # TODO
-            # enrich print progress event with the following fields
-            # filepos=octoprint_event.get("filepos"),
-            # time_elapsed=octoprint_event.get("time_elapsed"),
-            # time_remaining=octoprint_event.get("time_remaining"),
-        )
-        print_session = PrintSession.objects.get(session=print_session)
+    # user = User.objects.get(id=octoprint_event["metadata"]["user_id"])
+    # progress = octoprint_event.get("event_data", {}).get("print_progress")
+    # # update print session progress
+    # print_session = octoprint_event.get("metadata", {}).get("print_session")
+    # if print_session:
+    #     PrintSession.objects.filter(session=print_session).update(
+    #         print_progress=progress,
+    #         # TODO
+    #         # enrich print progress event with the following fields
+    #         # filepos=octoprint_event.get("filepos"),
+    #         # time_elapsed=octoprint_event.get("time_elapsed"),
+    #         # time_remaining=octoprint_event.get("time_remaining"),
+    #     )
+    #     print_session = PrintSession.objects.get(session=print_session)
+    alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
 
     should_alert = (
         progress % alert_settings.print_progress_percent == 0 and progress != 100
@@ -83,28 +85,23 @@ def handle_print_progress(octoprint_event):
             task.trigger_alert()
 
 
-def handle_print_status(octoprint_event):
+def handle_print_status(event: PrintStatusEvent):
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
     pass
 
 
-def handle_ping(octoprint_event):
-    device_id = octoprint_event["metadata"]["octoprint_device_id"]
-    user_id = octoprint_event["metadata"]["user_id"]
-    device = OctoPrintDevice.objects.get(id=device_id)
-    user = User.objects.get(id=user_id)
+def handle_ping(event: OctoPrintEvent):
     try:
-
         RemoteControlCommand.objects.create(
-            user=user,
-            device=device,
+            user=event.user,
+            device=event.octoprint_device,
             command=RemoteControlCommand.Command.PONG,
         )
     except google.api_core.exceptions.FailedPrecondition as e:
         logger.error(
-            f"Ping response for octoprint_device={device} failed with error={e}"
+            f"Ping response for octoprint_event={event} octoprint_device={event.octoprint_device} failed with error={e}"
         )
 
 
@@ -116,19 +113,23 @@ HANDLER_FNS.update(
 
 HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping })
 
-
-def event_is_tracked(event_type):
-    return (
-        event_type in OctoprintEventType
-        or event_type in PrintStatusEventType
-        or event_type in PrintNannyPluginEventType
-        # or OctoPrintPluginEvent.strip_octoprint_prefix(event_type)
-        # in OctoPrintPluginEvent.EventType
-    )
-
+def get_resourcetype(validated_data):
+    event_type = validated_data["event_type"]
+    if event_type in OctoprintEventType:
+        resourcetype = OctoPrintEvent._meta.object_name
+    elif event_type in PrintStatusEventType:
+        resourcetype = PrintStatusEvent._meta.object_name
+    elif event_type in RemoteCommandEventType:
+        resourcetype = RemoteCommandEvent._meta.object_name
+    elif event_type in PrintNannyPluginEvent:
+        resourcetype = PrintNannyPluginEvent._meta.object_name
+    else:
+        resourcetype = TelemetryEvent._meta.object_name
+        logger.warning(f"Using base TelemetryEvent for event_type={event_type} - you probably want to create a more specific subclass. Recevied data={validated_data}")
+    return resourcetype
 
 def on_octoprint_event(message):
-    from print_nanny_webapp.telemetry.api.serializers import TelemetryEventSerializer
+    from print_nanny_webapp.telemetry.api.serializers import TelemetryEventSerializer, TelemetryEventPolymorphicSerializer
     try:
         data = message.data.decode("utf-8")
     except UnicodeDecodeError as e:
@@ -139,15 +140,27 @@ def on_octoprint_event(message):
     data = json.loads(data)
     logger.info(f"Received {data}")
 
-    serializer = TelemetryEventSerializer(data=data)
+    meta_serializer = TelemetryEventSerializer(data=data)
     logger.info(f"Received {data}")
 
-    if not serializer.is_valid():
-        logger.error(f"Deserialization failed with errors {serializer.errors} and data {data}")
+    if not meta_serializer.is_valid():
+        logger.error(f"Meta deserialization failed with errors {meta_serializer.errors} and data {data}")
         return message.ack()
-    event = serializer.save()
+    resourcetype = get_resourcetype(meta_serializer.validated_data)
+    poly_serializer = TelemetryEventPolymorphicSerializer(data=dict(
+        resourcetype=resourcetype,
+        **data
+    ))
+    if not poly_serializer.is_valid():
+        logger.error(f"Polymorphic deserialization failed with errors {poly_serializer.errors} and data {data}")
+        return message.ack()
+    instance = poly_serializer.save()
+    logger.info(f"Created event {instance} event_type={instance.event_type}")
+    handler_fn = HANDLER_FNS.get(instance.event_type)
+    if handler_fn is not None:
+        logger.info(f"Calling {handler_fn}({instance})")
+        handler_fn(instance)
 
-    logger.info(f"Received event {serializer.instance}")
     # if not event_is_tracked(event_type):
     #     logger.error(
     #         f"Tracking event is not registered, ignoring event_type={event_type}"

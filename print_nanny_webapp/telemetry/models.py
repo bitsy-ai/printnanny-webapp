@@ -16,15 +16,34 @@ from print_nanny_webapp.telemetry.types import (
     EventSource,
     TelemetryEventType,
 )
+from polymorphic.managers import PolymorphicManager
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
+
+class TelemetryEventManager(PolymorphicManager):
+
+    def create(self, user=None, **kwargs):
+        from print_nanny_webapp.remote_control.models import OctoPrintDevice
+
+        if user is None:
+            octoprint_device = kwargs.get("octoprint_device")
+            if octoprint_device is None:
+                octoprint_device_id = kwargs.get("octoprint_device_id")
+                if octoprint_device_id is None:
+                    raise ValueError("octoprint_device is required")
+                octoprint_device = OctoPrintDevice.objects.get(id=octoprint_device_id)
+            user = octoprint_device.user
+        return super().create(user=user, **kwargs)
+
 
 
 class TelemetryEvent(PolymorphicModel):
     """
     Base class for client-side events
     """
+    objects = TelemetryEventManager()
+
     event_type = models.CharField(
         max_length=255, db_index=True, choices=TelemetryEventType.choices
     )

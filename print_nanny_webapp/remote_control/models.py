@@ -232,7 +232,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
         last_print_session_event = (
             PrintStatusEvent.objects.filter(octoprint_device=self)
-            .order_by("-created_dt")
+            .order_by("-ts")
             .first()
         )
         if last_print_session_event:
@@ -246,7 +246,7 @@ class OctoPrintDevice(SafeDeleteModel):
 
         last_print_session_event = (
             PrintStatusEvent.objects.filter(octoprint_device=self)
-            .order_by("-created_dt")
+            .order_by("-ts")
             .first()
         )
         if last_print_session_event:

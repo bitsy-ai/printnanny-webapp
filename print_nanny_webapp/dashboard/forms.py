@@ -4,10 +4,7 @@ from django.apps import apps
 
 from crispy_forms.helper import FormHelper
 
-from django.core.files.uploadedfile import SimpleUploadedFile
-
 logger = logging.getLogger(__name__)
-RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 
 
 class PushNotificationsForm(forms.Form):

@@ -1,5 +1,4 @@
 import logging
-from print_nanny_webapp.telemetry.models import RemoteCommandEvent
 
 from rest_framework.mixins import (
     ListModelMixin,

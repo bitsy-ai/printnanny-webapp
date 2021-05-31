@@ -1,4 +1,5 @@
 from collections.abc import Mapping
+from print_nanny_webapp.dashboard.views import OctoPrintDevice
 from rest_framework import serializers
 from django.apps import apps
 from print_nanny_webapp.telemetry.models import (
@@ -77,7 +78,7 @@ class OctoprintProgressSerializer(serializers.Serializer):
     filepos = serializers.IntegerField(allow_null=True)
     printTime = serializers.IntegerField(allow_null=True)
     printTimeLeft = serializers.IntegerField(allow_null=True)
-    printTimeOrigin = serializers.CharField(allow_null=True)
+    printTimeOrigin = serializers.CharField(allow_null=True, required=False)
 
 class OctoprintPrinterDataSerializer(serializers.Serializer):
     job = OctoprintJobSerializer()
@@ -89,7 +90,6 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
     offsets = serializers.DictField()
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
-    print_session = serializers.StringRelatedField(required=False, read_only=False)
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
@@ -134,6 +134,8 @@ class RemoteCommandEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
 
 class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
+
+
     model_serializer_mapping = {
         TelemetryEvent: TelemetryEventSerializer,
         RemoteCommandEvent: RemoteCommandEventSerializer,
@@ -141,8 +143,6 @@ class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
         OctoPrintEvent: OctoPrintEventSerializer,
         PrintNannyPluginEvent: PrintNannyPluginEventSerializer
     }
-
-
 
     def to_representation(self, instance):
         if isinstance(instance, Mapping):

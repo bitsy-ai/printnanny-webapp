@@ -1,9 +1,9 @@
-from enum import unique
-from print_nanny_webapp.utils import fields
-from print_nanny_webapp.partners.models import GeeksToken
+
+from django.apps import apps
 from django.forms import ModelForm, Form
-from django.forms import modelformset_factory
-from .models import AlertSettings
+
+
+AlertSettings = apps.get_model("alerts", "AlertSettings")
 
 
 class AlertTestForm(Form):
