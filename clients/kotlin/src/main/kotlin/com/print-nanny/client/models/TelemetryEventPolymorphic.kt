@@ -14,8 +14,6 @@ package com.print-nanny.client.models
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.OctoPrintEvent
-import com.print-nanny.client.models.OctoprintEnvironment
-import com.print-nanny.client.models.OctoprintPrinterData
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintNannyPluginEventEventTypeEnum
 import com.print-nanny.client.models.PrintStatusEvent
@@ -28,25 +26,21 @@ import java.io.Serializable
 /**
  * 
  * @param eventType 
- * @param environment 
- * @param printerData 
- * @param temperature 
+ * @param octoprintEnvironment 
+ * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param octoprintDevice 
- * @param jobDataFile 
  * @param id 
  * @param printSession 
  * @param ts 
  * @param eventSource 
  * @param eventData 
+ * @param temperature 
  * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
- * @param state 
- * @param currentZ 
- * @param progress 
  */
 
 interface TelemetryEventPolymorphic : Serializable {
@@ -56,12 +50,10 @@ interface TelemetryEventPolymorphic : Serializable {
 
     @Json(name = "event_type")
     val eventType: PrintNannyPluginEventEventTypeEnum
-    @Json(name = "environment")
-    val environment: OctoprintEnvironment
-    @Json(name = "printer_data")
-    val printerData: OctoprintPrinterData
-    @Json(name = "temperature")
-    val temperature: kotlin.collections.Map<kotlin.String, AnyType>
+    @Json(name = "octoprint_environment")
+    val octoprintEnvironment: kotlin.collections.Map<kotlin.String, AnyType>
+    @Json(name = "octoprint_printer_data")
+    val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String
     @Json(name = "print_nanny_client_version")
@@ -70,29 +62,23 @@ interface TelemetryEventPolymorphic : Serializable {
     val octoprintVersion: kotlin.String
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int
-    @Json(name = "job_data_file")
-    val jobDataFile: kotlin.String
     @Json(name = "id")
     val id: kotlin.Int?
     @Json(name = "print_session")
-    val printSession: kotlin.String?
+    val printSession: kotlin.Int?
     @Json(name = "ts")
     val ts: java.time.OffsetDateTime?
     @Json(name = "event_source")
     val eventSource: EventSourceEnum?
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>?
+    @Json(name = "temperature")
+    val temperature: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int?
     @Json(name = "user")
     val user: kotlin.Int?
-    @Json(name = "state")
-    val state: kotlin.collections.Map<kotlin.String, AnyType>?
-    @Json(name = "current_z")
-    val currentZ: kotlin.Float?
-    @Json(name = "progress")
-    val progress: kotlin.collections.Map<kotlin.String, AnyType>?
 }
 

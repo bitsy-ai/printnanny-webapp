@@ -1171,10 +1171,10 @@ export interface OctoPrintEvent {
     id?: number;
     /**
      * 
-     * @type {string}
+     * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
-    print_session?: string;
+    event_type: OctoPrintEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -1192,7 +1192,25 @@ export interface OctoPrintEvent {
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEvent
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEvent
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -1219,12 +1237,6 @@ export interface OctoPrintEvent {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {OctoPrintEventEventTypeEnum}
-     * @memberof OctoPrintEvent
-     */
-    event_type: OctoPrintEventEventTypeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof OctoPrintEvent
      */
@@ -1241,6 +1253,12 @@ export interface OctoPrintEvent {
      * @memberof OctoPrintEvent
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintEvent
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -1290,14 +1308,7 @@ export enum OctoPrintEventEventTypeEnum {
     PrintProgress = 'PrintProgress',
     PluginPiSupportThrottleState = 'plugin_pi_support_throttle_state',
     Shutdown = 'Shutdown',
-    Startup = 'Startup',
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted'
+    Startup = 'Startup'
 }
 
 /**
@@ -1308,16 +1319,34 @@ export enum OctoPrintEventEventTypeEnum {
 export interface OctoPrintEventRequest {
     /**
      * 
-     * @type {EventSourceEnum}
+     * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
-    event_source?: EventSourceEnum;
+    event_type: OctoPrintEventEventTypeEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoPrintEventRequest
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -1344,16 +1373,16 @@ export interface OctoPrintEventRequest {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {OctoPrintEventEventTypeEnum}
+     * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    event_type: OctoPrintEventEventTypeEnum;
+    octoprint_device: number;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintEventRequest
      */
-    octoprint_device: number;
+    print_session?: number | null;
 }
 /**
  * 
@@ -2846,10 +2875,10 @@ export interface PrintNannyPluginEvent {
     id?: number;
     /**
      * 
-     * @type {string}
+     * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEvent
      */
-    print_session?: string;
+    event_type: PrintNannyPluginEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -2867,7 +2896,25 @@ export interface PrintNannyPluginEvent {
      * @type {{ [key: string]: any; }}
      * @memberof PrintNannyPluginEvent
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEvent
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -2894,12 +2941,6 @@ export interface PrintNannyPluginEvent {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintNannyPluginEventEventTypeEnum}
-     * @memberof PrintNannyPluginEvent
-     */
-    event_type: PrintNannyPluginEventEventTypeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
@@ -2916,6 +2957,12 @@ export interface PrintNannyPluginEvent {
      * @memberof PrintNannyPluginEvent
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -3134,10 +3181,10 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
-     * @type {string}
+     * @type {PrintStatusEventEventTypeEnum}
      * @memberof PrintStatusEvent
      */
-    print_session?: string;
+    event_type: PrintStatusEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -3155,7 +3202,25 @@ export interface PrintStatusEvent {
      * @type {{ [key: string]: any; }}
      * @memberof PrintStatusEvent
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintStatusEvent
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -3182,36 +3247,6 @@ export interface PrintStatusEvent {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {PrintStatusEventEventTypeEnum}
-     * @memberof PrintStatusEvent
-     */
-    event_type: PrintStatusEventEventTypeEnum;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    state?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrintStatusEvent
-     */
-    current_z?: number | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintStatusEvent
-     */
-    progress?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PrintStatusEvent
-     */
-    job_data_file: string;
-    /**
-     * 
      * @type {number}
      * @memberof PrintStatusEvent
      */
@@ -3228,6 +3263,12 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintStatusEvent
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -3566,10 +3607,10 @@ export interface RemoteCommandEvent {
     id?: number;
     /**
      * 
-     * @type {string}
+     * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEvent
      */
-    print_session?: string;
+    event_type: RemoteCommandEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -3587,7 +3628,25 @@ export interface RemoteCommandEvent {
      * @type {{ [key: string]: any; }}
      * @memberof RemoteCommandEvent
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEvent
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -3614,12 +3673,6 @@ export interface RemoteCommandEvent {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {RemoteCommandEventEventTypeEnum}
-     * @memberof RemoteCommandEvent
-     */
-    event_type: RemoteCommandEventEventTypeEnum;
-    /**
-     * 
      * @type {number}
      * @memberof RemoteCommandEvent
      */
@@ -3636,6 +3689,12 @@ export interface RemoteCommandEvent {
      * @memberof RemoteCommandEvent
      */
     user?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    print_session?: number | null;
 }
 /**
  * 
@@ -3810,19 +3869,13 @@ export interface TelemetryEvent {
      * @type {OctoprintEnvironment}
      * @memberof TelemetryEvent
      */
-    environment: OctoprintEnvironment;
+    octoprint_environment: OctoprintEnvironment;
     /**
      * 
      * @type {OctoprintPrinterData}
      * @memberof TelemetryEvent
      */
-    printer_data: OctoprintPrinterData;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof TelemetryEvent
-     */
-    temperature: { [key: string]: any; };
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {string}
@@ -3840,7 +3893,13 @@ export interface TelemetryEvent {
      * @type {{ [key: string]: any; }}
      * @memberof TelemetryEvent
      */
-    event_data?: { [key: string]: any; } | null;
+    event_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEvent
+     */
+    temperature?: { [key: string]: any; };
     /**
      * 
      * @type {string}
@@ -8476,54 +8535,14 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        telemetryList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintEventRequest' is not null or undefined
-            assertParamExists('telemetryOctoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
-            const localVarPath = `/api/telemetry/octoprint-events/`;
+            assertParamExists('octoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
+            const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8561,8 +8580,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/octoprint-events/`;
+        octoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8601,10 +8620,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryOctoprintEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/octoprint-events/{id}/`
+            assertParamExists('octoprintEventsRetrieve', 'id', id)
+            const localVarPath = `/api/octoprint-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8640,8 +8659,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintNannyPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/print-nanny-plugin-events/`;
+        printNannyPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-nanny-plugin-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8680,10 +8699,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintNannyPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printNannyPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryPrintNannyPluginEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/print-nanny-plugin-events/{id}/`
+            assertParamExists('printNannyPluginEventsRetrieve', 'id', id)
+            const localVarPath = `/api/print-nanny-plugin-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8719,8 +8738,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/print-status-events/`;
+        printStatusEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-status-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8759,10 +8778,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printStatusEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryPrintStatusEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/print-status-events/{id}/`
+            assertParamExists('printStatusEventsRetrieve', 'id', id)
+            const localVarPath = `/api/print-status-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8798,8 +8817,8 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRemoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/telemetry/remote-command-events/`;
+        remoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/remote-command-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -8838,10 +8857,10 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRemoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        remoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryRemoteCommandEventsRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/remote-command-events/{id}/`
+            assertParamExists('remoteCommandEventsRetrieve', 'id', id)
+            const localVarPath = `/api/remote-command-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8873,14 +8892,54 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/telemetry-events/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this telemetry event.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        telemetryEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('telemetryRetrieve', 'id', id)
-            const localVarPath = `/api/telemetry/{id}/`
+            assertParamExists('telemetryEventsRetrieve', 'id', id)
+            const localVarPath = `/api/telemetry-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8922,22 +8981,12 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async telemetryList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsCreate(octoPrintEventRequest, options);
+        async octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsCreate(octoPrintEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8946,8 +8995,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsList(page, options);
+        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8956,8 +9005,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryOctoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryOctoprintEventsRetrieve(id, options);
+        async octoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8966,8 +9015,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintNannyPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintNannyPluginEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintNannyPluginEventsList(page, options);
+        async printNannyPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintNannyPluginEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8976,8 +9025,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintNannyPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyPluginEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintNannyPluginEventsRetrieve(id, options);
+        async printNannyPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyPluginEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8986,8 +9035,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintStatusEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsList(page, options);
+        async printStatusEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintStatusEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printStatusEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -8996,8 +9045,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryPrintStatusEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryPrintStatusEventsRetrieve(id, options);
+        async printStatusEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintStatusEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printStatusEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9006,8 +9055,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryRemoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRemoteCommandEventsList(page, options);
+        async remoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9016,8 +9065,18 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryRemoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRemoteCommandEventsRetrieve(id, options);
+        async remoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9026,8 +9085,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telemetryRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryRetrieve(id, options);
+        async telemetryEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -9042,21 +9101,12 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
-            return localVarFp.telemetryList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {OctoPrintEventRequest} octoPrintEventRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
+        octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9064,8 +9114,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
-            return localVarFp.telemetryOctoprintEventsList(page, options).then((request) => request(axios, basePath));
+        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
+            return localVarFp.octoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9073,8 +9123,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.telemetryOctoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9082,8 +9132,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList> {
-            return localVarFp.telemetryPrintNannyPluginEventsList(page, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList> {
+            return localVarFp.printNannyPluginEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9091,8 +9141,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent> {
-            return localVarFp.telemetryPrintNannyPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent> {
+            return localVarFp.printNannyPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9100,8 +9150,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
-            return localVarFp.telemetryPrintStatusEventsList(page, options).then((request) => request(axios, basePath));
+        printStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList> {
+            return localVarFp.printStatusEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9109,8 +9159,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
-            return localVarFp.telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent> {
+            return localVarFp.printStatusEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9118,8 +9168,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
-            return localVarFp.telemetryRemoteCommandEventsList(page, options).then((request) => request(axios, basePath));
+        remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
+            return localVarFp.remoteCommandEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9127,8 +9177,17 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
-            return localVarFp.telemetryRemoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
+            return localVarFp.remoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
+            return localVarFp.telemetryEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9136,8 +9195,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
-            return localVarFp.telemetryRetrieve(id, options).then((request) => request(axios, basePath));
+        telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
+            return localVarFp.telemetryEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9150,21 +9209,12 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
 export interface TelemetryApiInterface {
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TelemetryApiInterface
-     */
-    telemetryList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
-
-    /**
-     * 
      * @param {OctoPrintEventRequest} octoPrintEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -9173,7 +9223,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
+    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
 
     /**
      * 
@@ -9182,7 +9232,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -9191,7 +9241,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList>;
+    printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList>;
 
     /**
      * 
@@ -9200,7 +9250,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent>;
+    printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent>;
 
     /**
      * 
@@ -9209,7 +9259,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList>;
+    printStatusEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintStatusEventList>;
 
     /**
      * 
@@ -9218,7 +9268,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryPrintStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
+    printStatusEventsRetrieve(id: number, options?: any): AxiosPromise<PrintStatusEvent>;
 
     /**
      * 
@@ -9227,7 +9277,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
+    remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
 
     /**
      * 
@@ -9236,7 +9286,16 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
+    remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
 
     /**
      * 
@@ -9245,7 +9304,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    telemetryRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
+    telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
 
 }
 
@@ -9258,24 +9317,13 @@ export interface TelemetryApiInterface {
 export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
     /**
      * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TelemetryApi
-     */
-    public telemetryList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @param {OctoPrintEventRequest} octoPrintEventRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9285,8 +9333,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9296,8 +9344,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryOctoprintEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryOctoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9307,8 +9355,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintNannyPluginEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintNannyPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9318,8 +9366,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintNannyPluginEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintNannyPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9329,8 +9377,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintStatusEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintStatusEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printStatusEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printStatusEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9340,8 +9388,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryPrintStatusEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryPrintStatusEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printStatusEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printStatusEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9351,8 +9399,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryRemoteCommandEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryRemoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public remoteCommandEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9362,8 +9410,19 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryRemoteCommandEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryRemoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public remoteCommandEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9373,8 +9432,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public telemetryRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).telemetryRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public telemetryEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

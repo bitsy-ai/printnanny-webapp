@@ -20,48 +20,57 @@ import java.io.Serializable
 
 /**
  * 
+ * @param eventType 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
- * @param eventType 
  * @param octoprintDevice 
  * @param id 
- * @param printSession 
  * @param ts 
  * @param eventSource 
  * @param eventData 
+ * @param octoprintEnvironment 
+ * @param octoprintPrinterData 
+ * @param temperature 
  * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
+ * @param printSession 
  */
 
 data class PrintNannyPluginEvent (
+    @Json(name = "event_type")
+    val eventType: PrintNannyPluginEventEventTypeEnum,
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
-    @Json(name = "event_type")
-    val eventType: PrintNannyPluginEventEventTypeEnum,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "id")
     val id: kotlin.Int? = null,
-    @Json(name = "print_session")
-    val printSession: kotlin.String? = null,
     @Json(name = "ts")
     val ts: java.time.OffsetDateTime? = null,
     @Json(name = "event_source")
     val eventSource: EventSourceEnum? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "octoprint_environment")
+    val octoprintEnvironment: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "octoprint_printer_data")
+    val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "temperature")
+    val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")
-    val user: kotlin.Int? = null
+    val user: kotlin.Int? = null,
+    @Json(name = "print_session")
+    val printSession: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

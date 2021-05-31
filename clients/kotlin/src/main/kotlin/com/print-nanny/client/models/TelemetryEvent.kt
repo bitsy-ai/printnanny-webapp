@@ -23,9 +23,8 @@ import java.io.Serializable
 /**
  * 
  * @param eventType 
- * @param environment 
- * @param printerData 
- * @param temperature 
+ * @param octoprintEnvironment 
+ * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
@@ -35,6 +34,7 @@ import java.io.Serializable
  * @param ts 
  * @param eventSource 
  * @param eventData 
+ * @param temperature 
  * @param octoprintJob 
  * @param polymorphicCtype 
  * @param user 
@@ -43,12 +43,10 @@ import java.io.Serializable
 data class TelemetryEvent (
     @Json(name = "event_type")
     val eventType: TelemetryEventEventTypeEnum,
-    @Json(name = "environment")
-    val environment: OctoprintEnvironment,
-    @Json(name = "printer_data")
-    val printerData: OctoprintPrinterData,
-    @Json(name = "temperature")
-    val temperature: kotlin.collections.Map<kotlin.String, AnyType>,
+    @Json(name = "octoprint_environment")
+    val octoprintEnvironment: OctoprintEnvironment,
+    @Json(name = "octoprint_printer_data")
+    val octoprintPrinterData: OctoprintPrinterData,
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
@@ -67,6 +65,8 @@ data class TelemetryEvent (
     val eventSource: EventSourceEnum? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "temperature")
+    val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "polymorphic_ctype")
