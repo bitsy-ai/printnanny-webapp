@@ -16,6 +16,7 @@
 
                       <th>Printer Status</th>
                       <th>Gcode File</th>
+                      <th>Progress</th>
 
                       <th>Remote Control</th>
                       <th>Metadata</th>
@@ -42,6 +43,7 @@
 
                     <td><i class="mdi mdi-circle {{device.printer_state_css_class}}"></i> {{device.printer_state}}</td>
                     <td>{{device.gcode_file}}</td>
+                    <td>{{device.print_progress}}</td>
 
 
                     <td><a href="{% url 'dashboard:octoprint-devices:detail' pk=device.id %}"><button class="btn btn-primary">Manage Device</button></a></td>

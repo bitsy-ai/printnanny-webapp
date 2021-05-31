@@ -150,7 +150,7 @@ class PrintStatusEvent(TelemetryEvent):
         "Cancelling": "text-warning",
         "Paused": "text-warning",
         "Operational": "text-success",
-        "Printing": "text-sucess",
+        "Printing": "text-success",
         "Offline": "text-warning",
         "Connecting": "text-warning",
         "Opening serial connection": "text-warning"
