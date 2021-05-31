@@ -18,7 +18,7 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 import google.api_core.exceptions
 import stringcase
-from safedelete.models import SafeDeleteModel, SOFT_DELETE_CASCADE
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
@@ -106,7 +106,7 @@ class OctoPrintDeviceManager(SafeDeleteManager):
 
 class OctoPrintDevice(SafeDeleteModel):
 
-    _safedelete_policy = SOFT_DELETE_CASCADE
+    _safedelete_policy = SOFT_DELETE
 
     objects = OctoPrintDeviceManager()
 
@@ -114,6 +114,17 @@ class OctoPrintDevice(SafeDeleteModel):
         True: "text-success",
         False: "text-secondary",
     }
+
+    class MonitoringStatusChoices(models.TextChoices):
+        MONITORING_ACTIVE = (
+            "monitoring_active",
+            "Print Nanny is currently monitoring your print job",
+        )
+        RENDERING_VIDEO = (
+            "rendering_video",
+            "Print Nanny is creating a timelapse video of your print job",
+        )
+        DONE = "done" "A timelapse of your print job is ready!"
 
     class MonitoringMode(models.TextChoices):
         ACTIVE_LEARNING = "active_learning", "Active Learning"
@@ -186,6 +197,26 @@ class OctoPrintDevice(SafeDeleteModel):
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
 
+    monitoring_status = models.CharField(
+        max_length=255,
+        db_index=True,
+        choices=MonitoringStatusChoices.choices,
+        default=MonitoringStatusChoices.MONITORING_ACTIVE,
+    )
+
+    print_job_status = models.CharField(
+        max_length=36,
+        db_index=True,
+        choices=PrintStatusEventType.choices,
+        null=True
+    )
+
+    printer_state = models.CharField(
+        max_length=36,
+        db_index=True,
+        choices=PrinterState.choices,
+        default=PrinterState.OFFLINE
+    )
     def to_json(self):
         # from print_nanny_webapp.remote_control.api.serializers import (
         #     OctoPrintDeviceSerializer,
@@ -229,13 +260,6 @@ class OctoPrintDevice(SafeDeleteModel):
         self.cloudiot_device = cloudiot_device_dict
         self.save()
         return cloudiot_device_dict
-
-    @property
-    def print_job_status(self):
-        if self.last_session and self.last_session.active:
-            return self.last_session.print_job_status
-        else:
-            return "Idle"
     
     @property
     def printer_status(self):
@@ -257,10 +281,15 @@ class OctoPrintDevice(SafeDeleteModel):
             return ""
 
     @property
+    def printer_state_css_class(self):
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+        return PrintStatusEvent.PRINTER_STATE_CSS_CLASS[self.printer_state]
+
+    @property
     def print_job_status_css_class(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-
-        return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+        if self.print_job_status:
+            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
 
     @property
     def monitoring_active_css_class(self):
@@ -335,17 +364,6 @@ class PrintSession(models.Model):
     Represents a unique print job/session
     """
 
-    class MonitoringStatusChoices(models.TextChoices):
-        MONITORING_ACTIVE = (
-            "monitoring_active",
-            "Print Nanny is currently monitoring your print job",
-        )
-        RENDERING_VIDEO = (
-            "rendering_video",
-            "Print Nanny is creating a timelapse video of your print job",
-        )
-        DONE = "done" "A timelapse of your print job is ready!"
-
     class Meta:
         unique_together = ("octoprint_device", "session")
 
@@ -360,27 +378,6 @@ class PrintSession(models.Model):
     print_progress = models.IntegerField(null=True)
     time_elapsed = models.IntegerField(null=True)
     time_remaining = models.IntegerField(null=True)
-
-    monitoring_status = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=MonitoringStatusChoices.choices,
-        default=MonitoringStatusChoices.MONITORING_ACTIVE,
-    )
-
-    print_job_status = models.CharField(
-        max_length=36,
-        db_index=True,
-        choices=PrintStatusEventType.choices,
-        default=PrintStatusEventType.PRINT_STARTED,
-    )
-
-    printer_state = models.CharField(
-        max_length=36,
-        db_index=True,
-        choices=PrinterState.choices,
-        null=True
-    )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     printer_profile = models.ForeignKey(
@@ -467,7 +464,7 @@ class RemoteControlCommand(models.Model):
                 cls.Command.PRINT_PAUSE,
             ],
             PrintStatusEventType.PRINT_DONE: [
-                cls.Command.MOVE_NOZZLE,
+                # cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
@@ -476,10 +473,10 @@ class RemoteControlCommand(models.Model):
             PrintStatusEventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
-                cls.Command.MOVE_NOZZLE,
+                # cls.Command.MOVE_NOZZLE,
             ],
             PrintStatusEventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
-            "Idle": [
+            None: [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],

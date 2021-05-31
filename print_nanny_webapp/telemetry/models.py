@@ -141,6 +141,20 @@ class PrintStatusEvent(TelemetryEvent):
         "PrintStarted": "text-success",
         "Idle": "text-warning",
     }
+    PRINTER_STATE_CSS_CLASS = {
+        "closedOrError": "text-danger",
+        "Error": "text-danger",
+        "Ready": "text-success",
+        "sdReady": "text-success",
+        "Pausing": "text-warning",
+        "Cancelling": "text-warning",
+        "Paused": "text-warning",
+        "Operational": "text-success",
+        "Printing": "text-sucess",
+        "Offline": "text-warning",
+        "Connecting": "text-warning",
+        "Opening serial connection": "text-warning"
+    }
     # https://docs.octoprint.org/en/master/api/datamodel.html?highlight=flags#printer-state (text)
     printer_state = models.CharField(max_length=255, choices=PrinterState.choices, null=True)
 

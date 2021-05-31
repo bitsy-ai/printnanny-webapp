@@ -167,7 +167,6 @@ class TelemetryEventType(models.TextChoices):
     DISCONNECTED = "Disconnected", "Disconnected"
     PRINTER_RESET = "PrinterReset", "PrinterReset"
     FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
     # printer profile
     PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
@@ -219,6 +218,7 @@ class TelemetryEventType(models.TextChoices):
     PRINT_PAUSED = "PrintPaused", "PrintPaused"
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
+    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
 
 class PrintNannyPluginEventType(models.TextChoices):
@@ -359,7 +359,6 @@ class OctoprintEventType(models.TextChoices):
     DISCONNECTED = "Disconnected", "Disconnected"
     PRINTER_RESET = "PrinterReset", "PrinterReset"
     FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
     # printer profile
     PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
@@ -410,14 +409,18 @@ class PrintStatusEventType(models.TextChoices):
     PRINT_PAUSED = "PrintPaused", "PrintPaused"
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
+    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
 class PrinterState(models.TextChoices):
-    OPERATIONAL = "operational", "Printer Connected"
-    PAUSED = "paused", "Paused"
-    CANCELLING = "cancelling", "Cancelling"
-    PRINTING = "printing", "Printing"
-    PAUSING = "pausing", "Pausing"
+    OPERATIONAL = "Operational", "Printer Connected"
+    PAUSED = "Paused", "Paused"
+    CANCELLING = "Cancelling", "Cancelling"
+    PRINTING = "Printing", "Printing"
+    PAUSING = "Pausing", "Pausing"
     SD_READY = "sdReady", "SD Card Available"
-    ERROR = "error", "Error"
-    READY = "ready" "Printer Ready"
-    CLOSED_OR_ERROR = "closedOrError", "Printer Disconnected"
+    ERROR = "Error", "Error"
+    READY = "Ready" "Printer Ready"
+    CLOSED_OR_ERROR = "closedOrError", "Printer Connection Closed"
+    OFFLINE = "Offline", "Printer Offline"
+    OPEN_SERIAL = "Opening serial connection", "Opening serial connection"
+    CONNECTING = "Connection", "Establishing printer connection"

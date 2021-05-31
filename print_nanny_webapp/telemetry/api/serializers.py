@@ -22,18 +22,18 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 class OctoprintFileSerializer(serializers.Serializer):
     name = serializers.CharField(allow_null=True)
     path = serializers.CharField(allow_null=True)
-    display = serializers.CharField(required=False)
+    display = serializers.CharField(required=False, allow_null=True)
     origin = serializers.CharField(allow_null=True)
     size = serializers.IntegerField(allow_null=True)
     date = serializers.IntegerField(allow_null=True)
 
 
 class OctoprintJobSerializer(serializers.Serializer):
-    file = OctoprintFileSerializer()
+    file = OctoprintFileSerializer(allow_null=True)
     estimatedPrintTime = serializers.FloatField(required=False, allow_null=True)
-    averagePrintTime = serializers.FloatField(required=False)
+    averagePrintTime = serializers.FloatField(required=False, allow_null=True)
     lastPrintTime = serializers.FloatField(required=False, allow_null=True)
-    filament = serializers.DictField()
+    filament = serializers.DictField(allow_null=True)
 
 
 class OctoprintPlatformSerializer(serializers.Serializer):

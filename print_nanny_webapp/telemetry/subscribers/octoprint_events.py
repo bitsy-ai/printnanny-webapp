@@ -76,16 +76,15 @@ def handle_print_progress(event: PrintStatusEvent):
             task.trigger_alert()
 
 
-def handle_print_status(event: PrintStatusEvent):
+def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
-    event.print_session.print_event_status = event.event_type
-    event.print_session.printer_state = event.printer_state
-    if event.event_type == PrintStatusEventType.PRINT_DONE:
-        event.print_session.active = False
-    event.print_session.save()
-
+    if event.printer_state:
+        event.octoprint_device.printer_state = event.printer_state
+    if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
+        event.octoprint_device.print_job_status = event.event_type
+    return event.octoprint_device.save()
 
 def handle_ping(event: OctoPrintEvent):
     try:
@@ -100,7 +99,7 @@ def handle_ping(event: OctoPrintEvent):
         )
 
 
-HANDLER_FNS = {OctoprintEventType.PRINT_PROGRESS: handle_print_progress}
+HANDLER_FNS = { OctoprintEventType.PRINT_PROGRESS: handle_print_progress }
 
 HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEventType.choices}
@@ -153,14 +152,12 @@ def on_octoprint_event(message):
         return message.ack()
     resourcetype = get_resourcetype(meta_serializer.validated_data)
     
-    if resourcetype == 'PrintStatusEvent':
-        data = dict(resourcetype=resourcetype, **data)
-    else:
-        data = dict(
-            resourcetype=resourcetype,
-            printer_state=data["octoprint_printer_data"]["state"]["text"],
-            **data
-            )
+
+    data = dict(
+        resourcetype=resourcetype,
+        printer_state=data["octoprint_printer_data"]["state"]["text"],
+        **data
+    )
     poly_serializer = TelemetryEventPolymorphicSerializer(
         data=data
     )
