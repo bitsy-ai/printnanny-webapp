@@ -176,6 +176,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrintStatusEvent](docs/PrintStatusEvent.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
+ - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)
  - [com.print-nanny.client.models.RemoteCommandEventEventTypeEnum](docs/RemoteCommandEventEventTypeEnum.md)
  - [com.print-nanny.client.models.RemoteControlCommand](docs/RemoteControlCommand.md)

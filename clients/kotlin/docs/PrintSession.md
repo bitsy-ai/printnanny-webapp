@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **timeRemaining** | **kotlin.Int** |  |  [optional]
 **monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
 **printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printerProfile** | **kotlin.Int** |  |  [optional]
 **gcodeFile** | **kotlin.Int** |  |  [optional]

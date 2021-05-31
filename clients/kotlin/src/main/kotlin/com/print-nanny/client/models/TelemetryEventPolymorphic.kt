@@ -17,6 +17,7 @@ import com.print-nanny.client.models.OctoPrintEvent
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintNannyPluginEventEventTypeEnum
 import com.print-nanny.client.models.PrintStatusEvent
+import com.print-nanny.client.models.PrinterStateEnum
 import com.print-nanny.client.models.RemoteCommandEvent
 import com.print-nanny.client.models.TelemetryEvent
 
@@ -40,6 +41,7 @@ import java.io.Serializable
  * @param polymorphicCtype 
  * @param user 
  * @param printSession 
+ * @param printerState 
  */
 
 interface TelemetryEventPolymorphic : Serializable {
@@ -77,5 +79,7 @@ interface TelemetryEventPolymorphic : Serializable {
     val user: kotlin.Int?
     @Json(name = "print_session")
     val printSession: kotlin.Int?
+    @Json(name = "printer_state")
+    val printerState: PrinterStateEnum?
 }
 

@@ -19,7 +19,7 @@ import java.io.Serializable
 /**
  * 
  * @param name 
- * @param activeSession 
+ * @param lastSession 
  * @param model 
  * @param platform 
  * @param cpuFlags 
@@ -41,8 +41,8 @@ import java.io.Serializable
 data class PatchedOctoPrintDeviceRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
-    @Json(name = "active_session")
-    val activeSession: kotlin.Int? = null,
+    @Json(name = "last_session")
+    val lastSession: kotlin.Int? = null,
     @Json(name = "model")
     val model: kotlin.String? = null,
     @Json(name = "platform")

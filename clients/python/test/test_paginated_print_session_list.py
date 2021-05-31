@@ -52,6 +52,7 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
                         time_remaining = -2147483648, 
                         monitoring_status = 'monitoring_active', 
                         print_job_status = 'PrintCancelled', 
+                        printer_state = null, 
                         user = 56, 
                         printer_profile = 56, 
                         gcode_file = 56, 

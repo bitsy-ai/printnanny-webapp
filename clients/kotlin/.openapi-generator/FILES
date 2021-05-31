@@ -77,6 +77,7 @@ docs/PrintSessionRequest.md
 docs/PrintStatusEvent.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
+docs/PrinterStateEnum.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
@@ -191,6 +192,7 @@ src/main/kotlin/com/print-nanny/client/models/PrintSessionRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrintStatusEvent.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfile.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfileRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PrinterStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt

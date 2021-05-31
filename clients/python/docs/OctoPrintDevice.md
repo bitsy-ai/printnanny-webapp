@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **user** | **int** |  | [optional] [readonly] 
-**active_session** | **int** |  | [optional] 
+**last_session** | **int** |  | [optional] 
 **public_key** | **str** |  | [optional] [readonly] 
 **fingerprint** | **str** |  | [optional] [readonly] 
 **cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 

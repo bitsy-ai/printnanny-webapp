@@ -55,6 +55,7 @@ class TestPrintStatusEvent(unittest.TestCase):
                 print_nanny_plugin_version = '', 
                 print_nanny_client_version = '', 
                 octoprint_version = '', 
+                printer_state = None, 
                 polymorphic_ctype = 56, 
                 octoprint_device = 56, 
                 user = 56, 

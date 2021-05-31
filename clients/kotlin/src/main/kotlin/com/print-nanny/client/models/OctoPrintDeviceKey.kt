@@ -36,7 +36,7 @@ import java.io.Serializable
  * @param deleted 
  * @param createdDt 
  * @param user 
- * @param activeSession 
+ * @param lastSession 
  * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDevice 
@@ -91,8 +91,8 @@ data class OctoPrintDeviceKey (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "user")
     val user: kotlin.Int? = null,
-    @Json(name = "active_session")
-    val activeSession: kotlin.Int? = null,
+    @Json(name = "last_session")
+    val lastSession: kotlin.Int? = null,
     @Json(name = "public_key")
     val publicKey: kotlin.String? = null,
     @Json(name = "fingerprint")

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **octoprintEnvironment** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **octoprintPrinterData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printSession** | **kotlin.Int** |  |  [optional]

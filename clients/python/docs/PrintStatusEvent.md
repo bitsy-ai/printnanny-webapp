@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
+**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 

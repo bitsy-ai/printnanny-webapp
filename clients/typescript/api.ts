@@ -705,7 +705,7 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    active_session?: number | null;
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -892,7 +892,7 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    active_session?: number | null;
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1085,7 +1085,7 @@ export interface OctoPrintDeviceRequest {
      * @type {number}
      * @memberof OctoPrintDeviceRequest
      */
-    active_session?: number | null;
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -2497,7 +2497,7 @@ export interface PatchedOctoPrintDeviceRequest {
      * @type {number}
      * @memberof PatchedOctoPrintDeviceRequest
      */
-    active_session?: number | null;
+    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -2649,6 +2649,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     print_job_status?: PrintJobStatusEnum;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PatchedPrintSessionRequest
+     */
+    printer_state?: PrinterStateEnum | null;
     /**
      * 
      * @type {number}
@@ -3094,6 +3100,12 @@ export interface PrintSession {
     print_job_status?: PrintJobStatusEnum;
     /**
      * 
+     * @type {PrinterStateEnum}
+     * @memberof PrintSession
+     */
+    printer_state?: PrinterStateEnum | null;
+    /**
+     * 
      * @type {number}
      * @memberof PrintSession
      */
@@ -3183,6 +3195,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     print_job_status?: PrintJobStatusEnum;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PrintSessionRequest
+     */
+    printer_state?: PrinterStateEnum | null;
     /**
      * 
      * @type {number}
@@ -3280,6 +3298,12 @@ export interface PrintStatusEvent {
      * @memberof PrintStatusEvent
      */
     octoprint_version: string;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PrintStatusEvent
+     */
+    printer_state?: PrinterStateEnum | null;
     /**
      * 
      * @type {number}
@@ -3613,6 +3637,23 @@ export interface PrinterProfileRequest {
      */
     volume_width?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrinterStateEnum {
+    Operational = 'operational',
+    Paused = 'paused',
+    Cancelling = 'cancelling',
+    Printing = 'printing',
+    Pausing = 'pausing',
+    SdReady = 'sdReady',
+    Error = 'error',
+    ReadyPrinterReady = 'readyPrinter Ready',
+    ClosedOrError = 'closedOrError'
+}
+
 /**
  * 
  * @export

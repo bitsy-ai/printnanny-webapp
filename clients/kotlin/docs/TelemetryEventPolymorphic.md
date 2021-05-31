@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printSession** | **kotlin.Int** |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 
 

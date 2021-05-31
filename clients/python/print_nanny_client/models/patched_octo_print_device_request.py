@@ -37,7 +37,7 @@ class PatchedOctoPrintDeviceRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'active_session': 'int',
+        'last_session': 'int',
         'model': 'str',
         'platform': 'str',
         'cpu_flags': 'list[str]',
@@ -58,7 +58,7 @@ class PatchedOctoPrintDeviceRequest(object):
 
     attribute_map = {
         'name': 'name',
-        'active_session': 'active_session',
+        'last_session': 'last_session',
         'model': 'model',
         'platform': 'platform',
         'cpu_flags': 'cpu_flags',
@@ -77,14 +77,14 @@ class PatchedOctoPrintDeviceRequest(object):
         'print_nanny_client_version': 'print_nanny_client_version'
     }
 
-    def __init__(self, name=None, active_session=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, last_session=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
-        self._active_session = None
+        self._last_session = None
         self._model = None
         self._platform = None
         self._cpu_flags = None
@@ -105,7 +105,7 @@ class PatchedOctoPrintDeviceRequest(object):
 
         if name is not None:
             self.name = name
-        self.active_session = active_session
+        self.last_session = last_session
         if model is not None:
             self.model = model
         if platform is not None:
@@ -160,25 +160,25 @@ class PatchedOctoPrintDeviceRequest(object):
         self._name = name
 
     @property
-    def active_session(self):
-        """Gets the active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+    def last_session(self):
+        """Gets the last_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
 
 
-        :return: The active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :return: The last_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
         :rtype: int
         """
-        return self._active_session
+        return self._last_session
 
-    @active_session.setter
-    def active_session(self, active_session):
-        """Sets the active_session of this PatchedOctoPrintDeviceRequest.
+    @last_session.setter
+    def last_session(self, last_session):
+        """Sets the last_session of this PatchedOctoPrintDeviceRequest.
 
 
-        :param active_session: The active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
-        :type active_session: int
+        :param last_session: The last_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :type last_session: int
         """
 
-        self._active_session = active_session
+        self._last_session = last_session
 
     @property
     def model(self):

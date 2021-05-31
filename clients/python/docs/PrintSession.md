@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **time_remaining** | **int** |  | [optional] 
 **monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
 **print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
+**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **user** | **int** |  | [optional] [readonly] 
 **printer_profile** | **int** |  | [optional] 
 **gcode_file** | **int** |  | [optional] 

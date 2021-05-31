@@ -14,6 +14,7 @@ package com.print-nanny.client.models
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.EventTypeD9eEnum
+import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,6 +33,7 @@ import java.io.Serializable
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param temperature 
+ * @param printerState 
  * @param polymorphicCtype 
  * @param user 
  * @param printSession 
@@ -62,6 +64,8 @@ data class PrintStatusEvent (
     val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "printer_state")
+    val printerState: PrinterStateEnum? = null,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int? = null,
     @Json(name = "user")

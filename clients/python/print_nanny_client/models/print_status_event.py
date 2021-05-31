@@ -47,6 +47,7 @@ class PrintStatusEvent(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
+        'printer_state': 'PrinterStateEnum',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'user': 'int',
@@ -65,13 +66,14 @@ class PrintStatusEvent(object):
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
+        'printer_state': 'printer_state',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'user': 'user',
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, printer_state=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrintStatusEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,6 +90,7 @@ class PrintStatusEvent(object):
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
+        self._printer_state = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
@@ -111,6 +114,7 @@ class PrintStatusEvent(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
+        self.printer_state = printer_state
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
@@ -365,6 +369,27 @@ class PrintStatusEvent(object):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
+
+    @property
+    def printer_state(self):
+        """Gets the printer_state of this PrintStatusEvent.  # noqa: E501
+
+
+        :return: The printer_state of this PrintStatusEvent.  # noqa: E501
+        :rtype: PrinterStateEnum
+        """
+        return self._printer_state
+
+    @printer_state.setter
+    def printer_state(self, printer_state):
+        """Sets the printer_state of this PrintStatusEvent.
+
+
+        :param printer_state: The printer_state of this PrintStatusEvent.  # noqa: E501
+        :type printer_state: PrinterStateEnum
+        """
+
+        self._printer_state = printer_state
 
     @property
     def polymorphic_ctype(self):

@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.6.5rc21"
+__version__ = "0.6.5rc22"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -108,6 +108,7 @@ from print_nanny_client.models.print_session_request import PrintSessionRequest
 from print_nanny_client.models.print_status_event import PrintStatusEvent
 from print_nanny_client.models.printer_profile import PrinterProfile
 from print_nanny_client.models.printer_profile_request import PrinterProfileRequest
+from print_nanny_client.models.printer_state_enum import PrinterStateEnum
 from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_control_command import RemoteControlCommand

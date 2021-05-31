@@ -47,6 +47,7 @@ class PrintSession(object):
         'time_remaining': 'int',
         'monitoring_status': 'MonitoringStatusEnum',
         'print_job_status': 'PrintJobStatusEnum',
+        'printer_state': 'PrinterStateEnum',
         'user': 'int',
         'printer_profile': 'int',
         'gcode_file': 'int',
@@ -67,6 +68,7 @@ class PrintSession(object):
         'time_remaining': 'time_remaining',
         'monitoring_status': 'monitoring_status',
         'print_job_status': 'print_job_status',
+        'printer_state': 'printer_state',
         'user': 'user',
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
@@ -75,7 +77,7 @@ class PrintSession(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, monitoring_status=None, print_job_status=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, monitoring_status=None, print_job_status=None, printer_state=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -92,6 +94,7 @@ class PrintSession(object):
         self._time_remaining = None
         self._monitoring_status = None
         self._print_job_status = None
+        self._printer_state = None
         self._user = None
         self._printer_profile = None
         self._gcode_file = None
@@ -116,6 +119,7 @@ class PrintSession(object):
             self.monitoring_status = monitoring_status
         if print_job_status is not None:
             self.print_job_status = print_job_status
+        self.printer_state = printer_state
         if user is not None:
             self.user = user
         self.printer_profile = printer_profile
@@ -386,6 +390,27 @@ class PrintSession(object):
         """
 
         self._print_job_status = print_job_status
+
+    @property
+    def printer_state(self):
+        """Gets the printer_state of this PrintSession.  # noqa: E501
+
+
+        :return: The printer_state of this PrintSession.  # noqa: E501
+        :rtype: PrinterStateEnum
+        """
+        return self._printer_state
+
+    @printer_state.setter
+    def printer_state(self, printer_state):
+        """Sets the printer_state of this PrintSession.
+
+
+        :param printer_state: The printer_state of this PrintSession.  # noqa: E501
+        :type printer_state: PrinterStateEnum
+        """
+
+        self._printer_state = printer_state
 
     @property
     def user(self):

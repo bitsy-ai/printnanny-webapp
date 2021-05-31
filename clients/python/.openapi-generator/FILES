@@ -80,6 +80,7 @@ docs/PrintSessionRequest.md
 docs/PrintStatusEvent.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
+docs/PrinterStateEnum.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
@@ -180,6 +181,7 @@ print_nanny_client/models/print_session_request.py
 print_nanny_client/models/print_status_event.py
 print_nanny_client/models/printer_profile.py
 print_nanny_client/models/printer_profile_request.py
+print_nanny_client/models/printer_state_enum.py
 print_nanny_client/models/remote_command_event.py
 print_nanny_client/models/remote_command_event_event_type_enum.py
 print_nanny_client/models/remote_control_command.py
@@ -271,6 +273,7 @@ test/test_print_session_request.py
 test/test_print_status_event.py
 test/test_printer_profile.py
 test/test_printer_profile_request.py
+test/test_printer_state_enum.py
 test/test_remote_command_event.py
 test/test_remote_command_event_event_type_enum.py
 test/test_remote_control_api.py
