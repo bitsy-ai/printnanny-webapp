@@ -14,8 +14,8 @@
                       <th>Name</th>
                       <th>Monitoring Active</th>
 
-                      <th>Printer</th>
-                      <th>Job</th>
+                      <th>Printer Status</th>
+                      <!-- <th>Job Status</th> -->
         
                       <th>File</th>
                       <th>Progress</th>
@@ -44,7 +44,7 @@
                     <td><i class="mdi mdi-circle {{device.monitoring_active_css_class}}"></i> {{device.monitoring_active}}</td>
 
                     <td><i class="mdi mdi-circle {{device.printer_state_css_class}}"></i> {{device.printer_state}}</td>
-                    <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td>
+                    <!-- <td><i class="mdi mdi-circle {{device.print_job_status_css_class}}"></i> {{device.print_job_status}}</td> -->
 
                     <td>{{device.last_session.octoprint_job.file.name}}</td>
                     <td>{{device.last_session.print_progress}}%</td>
