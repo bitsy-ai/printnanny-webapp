@@ -104,7 +104,6 @@ class PrintSessionViewSet(
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
     GenericViewSet,
 ):
     serializer_class = PrintSessionSerializer
@@ -127,17 +126,6 @@ class PrintSessionViewSet(
         instance = serializer.save(user=self.request.user)
         # prometheus_metrics.print_session_status.state(instance.last_status)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def perform_update(self, serializer):
-
-        instance = serializer.save()
-        if (
-            instance.progress > 0
-            and instance % user.user_settings.alert_on_progress_percent == 0
-        ):
-            create_progress_video_task.delay(instance.id, instance.progress)
-        prometheus_metrics.print_session_status.state(instance.last_status)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         tags=["remote-control"],
