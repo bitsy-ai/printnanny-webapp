@@ -19,10 +19,10 @@ spec:
         resources:
           requests:
             memory: "1024Mi"
-            cpu: "1000m"
+            cpu: "400m"
           limits:
             memory: "2048Mi"
-            cpu: "1500m"
+            cpu: "800m"
         imagePullPolicy: Always
         image: us.gcr.io/print-nanny/print_nanny_webapp:latest
         livenessProbe:
