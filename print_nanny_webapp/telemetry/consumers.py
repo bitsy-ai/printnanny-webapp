@@ -33,7 +33,7 @@ class MonitoringFramePublisher(WebsocketConsumer):
             f"video_{self.octoprint_device_id}", self.channel_name
         )
 
-        logger.info(f"Consumer for {self.octoprint_device_id} connected")
+        logger.info(f"MonitoringFrameConsumer for {self.scope} connected")
 
         annotated_ws_consumer_connected_metric.inc()
 

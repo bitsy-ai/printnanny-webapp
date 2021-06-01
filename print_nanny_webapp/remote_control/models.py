@@ -280,13 +280,17 @@ class OctoPrintDevice(SafeDeleteModel):
     @property
     def printer_state_css_class(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-        return PrintStatusEvent.PRINTER_STATE_CSS_CLASS[self.printer_state]
+        return PrintStatusEvent.PRINTER_STATE_CSS_CLASS.get(
+            self.printer_state, "text-warning"
+        )
 
     @property
     def print_job_status_css_class(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
         if self.print_job_status:
-            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS[self.print_job_status]
+            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS.get(
+                self.print_job_status, "text-warning"
+            )
 
     @property
     def monitoring_active_css_class(self):
