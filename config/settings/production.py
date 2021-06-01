@@ -119,10 +119,6 @@ LOGGING = {
         }
     },
     'filters': {
-        'special': {
-            '()': 'project.logging.SpecialFilter',
-            'foo': 'bar',
-        },
         'exclude_health_endpoint': {
             '()': 'print_nanny_webapp.utils.logging.ExcludeHealthEndpoint',
         },
