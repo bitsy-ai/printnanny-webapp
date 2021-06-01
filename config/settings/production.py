@@ -118,10 +118,19 @@ LOGGING = {
             "formatter": "verbose",
         }
     },
+    'filters': {
+        'special': {
+            '()': 'project.logging.SpecialFilter',
+            'foo': 'bar',
+        },
+        'exclude_health_endpoint': {
+            '()': 'print_nanny_webapp.utils.logging.ExcludeHealthEndpoint',
+        },
+    },
     "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {
         "django.db.backends": {
-            "level": "ERROR",
+            "level": "WARNING",
             "handlers": ["console"],
             "propagate": False,
         },
@@ -135,6 +144,9 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'WARNING',
             'propagate': True,
+        },
+        'daphne': {
+            "filters": ["exclude_health_endpoint"],
         }
     },
 }

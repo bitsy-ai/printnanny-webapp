@@ -138,8 +138,6 @@ def on_octoprint_event(message):
         TelemetryEventPolymorphicSerializer,
     )
 
-
-
     try:
         data = message.data.decode("utf-8")
     except UnicodeDecodeError as e:
