@@ -55,4 +55,4 @@ whitenoise
 # dev / testing
 mypy
 pip-tools
-black
+django-stubs
