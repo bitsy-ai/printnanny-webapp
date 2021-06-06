@@ -1,6 +1,6 @@
 
 
-.PHONY: build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds
+.PHONY: mypy build prod-up dev-up python-client clean-python-client-build ui vue prod-up deploy cypress-open cypress-run local-creds
 
 # silence targets where credentials are passed
 .SILENT: cypress-open cypress-run cypress-ci local-up local-creds
@@ -28,6 +28,9 @@ GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 
+mypy:
+	DATABASE_URL="postgres://debug:debug@postgres:5432/print_nanny" \
+	mypy print_nanny_webapp/telemetry
 token:
 	echo $(PRINT_NANNY_TOKEN)
 octoprint-wait:

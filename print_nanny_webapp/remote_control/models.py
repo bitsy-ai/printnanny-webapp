@@ -259,11 +259,6 @@ class OctoPrintDevice(SafeDeleteModel):
         return cloudiot_device_dict
 
     @property
-    def printer_status(self):
-        if self.last_session:
-            return self.last_session.event
-
-    @property
     def print_session_gcode_file(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 

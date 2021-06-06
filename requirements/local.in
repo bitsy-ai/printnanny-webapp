@@ -56,3 +56,4 @@ whitenoise
 mypy
 pip-tools
 django-stubs
+djangorestframework-stubs

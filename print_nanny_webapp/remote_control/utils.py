@@ -124,8 +124,7 @@ def generate_keypair():
             ],
             capture_output=True,
         )
-        fingerprint = p.stdout
-        fingerprint = fingerprint.decode().split("=")[-1]
+        fingerprint = p.stdout.decode().split("=")[-1]
         fingerprint = fingerprint.strip()
 
         with open(public_key_filename, "rb") as f:
