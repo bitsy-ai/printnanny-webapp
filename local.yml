@@ -194,17 +194,6 @@ services:
     command:
       - python
       - print_nanny_webapp/alerts/subscribers/alerts.py
-  discord:
-    container_name: discord
-    <<: *django
-    ports: []
-    command:
-      - python
-      - manage.py
-      - runworker
-      - discord
-    depends_on:
-      - django
   # Stripe websocket proxy
   stripe:
     container_name: stripe

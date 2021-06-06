@@ -1,6 +1,5 @@
 from .base import *  # noqa
 from .base import env
-
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
@@ -11,7 +10,7 @@ SECRET_KEY = env(
     default="dsgQKRAGB8mqGmMfYYq6wkqJtvulQz0PnqkRXfuIXZL7THCK5zGlp1xC5gyxksvj",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "9c99269ffb46.ngrok.io", "desktop.lan", "django", "aurora.local"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "9c99269ffb46.ngrok.io", "desktop.lan", "django", "aurora.local", "aurora"]
 # CACHES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -71,6 +70,12 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [env("CELERY_BROKER_URL")],
+            "group_expiry": 1800,
+            # "channel_capacity": {
+            #     "http.request": 100,
+            #     "http.response!*": 100,
+            #     re.compile(r"^websocket.send\!.+"): 10,
+            # }
         },
     },
 }
@@ -91,3 +96,33 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000'
 ]
+
+# LOGGING
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#logging
+# See https://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s "
+            "%(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        }
+    },
+    "root": {"level": "INFO", "handlers": ["console"]},
+    "loggers": {
+        "django.channels.worker": {"level": "DEBUG", "handlers": ["console"]},
+        "django.channels.server": {"level": "DEBUG", "handlers": ["console"]},
+        "uvicorn": {"handlers": ["console"], "level": "DEBUG"},
+    }
+
+}

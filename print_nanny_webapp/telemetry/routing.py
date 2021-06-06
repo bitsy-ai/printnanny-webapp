@@ -1,14 +1,10 @@
-from django.urls import path, re_path
+from django.urls import path
 
-from .consumers import MonitoringFrameReceiver, MonitoringFramePublisher
+from .consumers import MonitoringFrameReceiver
 
 
 websocket_urlpatterns = [
     path(
         "ws/<int:octoprint_device_id>/video/upload/", MonitoringFrameReceiver.as_asgi()
-    ),
-    path(
-        "ws/<int:octoprint_device_id>/video/download/",
-        MonitoringFramePublisher.as_asgi(),
-    ),
+    )
 ]
