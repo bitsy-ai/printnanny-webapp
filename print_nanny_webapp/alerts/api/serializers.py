@@ -61,6 +61,7 @@ class AlertSerializer(serializers.ModelSerializer):
                 kwargs={"pk": obj.octoprint_device.id},
             )
             return device_url
+        return
 
     message = serializers.SerializerMethodField()
 

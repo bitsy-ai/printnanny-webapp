@@ -62,7 +62,7 @@ class UserCreationForm(admin_forms.UserCreationForm):
         email = self.cleaned_data["email"]
 
         try:
-            User.objects.get(email=email)
+            User.objects.get(email=email)  # type: ignore
         except User.DoesNotExist:
             return email
 

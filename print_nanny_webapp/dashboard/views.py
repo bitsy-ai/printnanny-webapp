@@ -32,8 +32,7 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 import google.api_core.exceptions
 
-from print_nanny_webapp.utils.multiform import MultiFormsView, BaseMultipleFormsView
-from print_nanny_webapp.users.forms import UserSettingsForm
+from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 from django.contrib import messages
@@ -78,17 +77,11 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class HomeDashboardView(DashboardView, MultiFormsView):
+class HomeDashboardView(DashboardView):
 
     model = User
     template_name = "dashboard/home.html"
-    success_url = "/dashboard"  # type: ignore
-    # Incompatible types in assignment (expression has type "str", base class "MultiFormMixin" defined the type as "None")
-
-    form_classes = {
-        "upload": TimelapseUploadForm,
-        "user_settings": UserSettingsForm,
-    }
+    success_url = "/dashboard"
 
     def get_user_settings_initial(self):
         settings = UserSettings.objects.filter(user=self.request.user.id).first()
@@ -96,20 +89,8 @@ class HomeDashboardView(DashboardView, MultiFormsView):
             return model_to_dict(settings)
         return None
 
-    def user_settings_form_valid(self, form):
-
-        if form.is_valid():
-            form.instance.user = self.request.user
-            settings = UserSettings.objects.filter(user=self.request.user.id).first()
-            if settings:
-                form = UserSettingsForm(self.request.POST, instance=settings)
-            form.save()
-        return redirect(self.get_success_url())
-
     def get_context_data(self, *args, **kwargs):
-        form_classes = self.get_form_classes()
-        forms = self.get_forms(form_classes)
-        context = super().get_context_data(forms=forms, **kwargs)
+        context = super().get_context_data(**kwargs)
         logger.info(context)
         # logger.info(context)
         token, created = Token.objects.get_or_create(user=self.request.user)
@@ -280,8 +261,6 @@ octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
     template_name = "dashboard/video-list.html"
     success_url = "/dashboard/videos/"  # type: ignore
-    # Incompatible types in assignment (expression has type "str", base class "MultiFormMixin" defined the type as "None")
-
     form_classes = {
         "needs_review": FeedbackForm,
     }

@@ -111,7 +111,7 @@ class AlertMessage(models.Model):
     def message(self) -> str:
         template = Template(self.get_event_type_display())
         merge_data: Dict[str, Any] = {
-            "FIRST_NAME": self.user.first_name,
+            "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
         if self.octoprint_device:

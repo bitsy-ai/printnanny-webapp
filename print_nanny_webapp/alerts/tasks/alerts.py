@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Any, Optional, Union, Dict
 from urllib.parse import urljoin
 from django.apps import apps
 from django.urls import reverse
@@ -20,7 +20,9 @@ from django.template.loader import render_to_string
 from anymail.message import AnymailMessage
 from django.template import Context, Template
 from channels.layers import get_channel_layer
+
 from print_nanny_webapp.alerts.models import AlertMessage
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
@@ -55,6 +57,7 @@ class AlertTask:
             AlertSettings.AlertMethod.DISCORD: self.trigger_discord_alert,
             AlertSettings.AlertMethod.PARTNER_3DGEEKS: self.trigger_geeks3d_alert,
         }
+        self.octoprint_device: OctoPrintDevice = self.instance.octoprint_device
 
     def trigger_alert(self) -> bool:
         """
@@ -109,7 +112,7 @@ class AlertTask:
 
     def trigger_email_alert(self):
         if self.instance.event_type is AlertMessage.AlertMessageType.TEST:
-            merge_data = {
+            merge_data: Dict[str, Any] = {
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
                 "GCODE_FILENAME": "my_test_print.gcode",
                 "DEVICE_NAME": "My Test Printer",

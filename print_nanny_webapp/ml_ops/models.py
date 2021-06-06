@@ -60,7 +60,7 @@ class Experiment(models.Model):
     )
 
     def randomize_group(self):
-        num_groups = len(self.treatments.all()) + 1
+        num_groups = len(self.treatments.all()) + 1  # type: ignore
         return random.randrange(num_groups)
 
     def activate(self):
