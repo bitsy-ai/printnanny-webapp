@@ -12,10 +12,9 @@ import requests  # pip install requests
 import jwt  # pip install pyjwt
 from datetime import datetime as date
 from celery import group, chord, shared_task
-from django.contrib.auth import get_user_model
 from django.conf import settings
+from print_nanny_webapp.users.models import User
 
-User = get_user_model()
 GhostMember = apps.get_model("users", "GhostMember")
 InviteRequest = apps.get_model("users", "InviteRequest")
 
@@ -35,9 +34,8 @@ def create_ghost_member(ghost_member):
     payload = {"iat": iat, "exp": iat + 5 * 60, "aud": "/v3/admin/"}
 
     # Create the token (including decoding secret)
-    token = jwt.encode(
-        payload, bytes.fromhex(secret), algorithm="HS256", headers=header
-    )
+    key = bytes.fromhex(secret)
+    token = jwt.encode(payload, key, algorithm="HS256", headers=header)  # type: ignore
 
     # Make an authenticated request to create a post
     url = "https://blog.print-nanny.com/ghost/api/v3/admin/members/"
@@ -61,7 +59,7 @@ def create_ghost_member(ghost_member):
 
     for member in data.get("members"):
 
-        user = User.objects.filter(email=member["email"]).first()
+        user = User.objects.filter(email=member["email"]).first()  # type: ignore
         invite_request = InviteRequest.objects.filter(email=member["email"]).first()
         try:
             obj = GhostMember.objects.filter(email=member["email"]).first()

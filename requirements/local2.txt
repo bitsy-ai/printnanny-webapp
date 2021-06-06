@@ -12,8 +12,6 @@ aioredis==1.3.1
     # via channels-redis
 amqp==2.6.1
     # via kombu
-appdirs==1.4.4
-    # via black
 argon2-cffi==20.1.0
     # via -r requirements/local.in
 asgiref==3.3.4
@@ -39,8 +37,6 @@ automat==20.2.0
     # via twisted
 billiard==3.6.4.0
     # via celery
-black==21.5b1
-    # via -r requirements/local.in
 cachetools==4.2.2
     # via google-auth
 celery[redis]==4.4.7
@@ -67,11 +63,14 @@ chardet==4.0.0
     #   requests
 click==7.1.2
     # via
-    #   black
     #   pip-tools
     #   uvicorn
 constantly==15.1.0
     # via twisted
+coreapi==2.3.3
+    # via djangorestframework-stubs
+coreschema==0.0.4
+    # via coreapi
 coverage==5.5
     # via django-coverage-plugin
 cryptography==3.4.7
@@ -139,7 +138,9 @@ django-storages[google]==1.11.1
 django-stubs-ext==0.2.0
     # via django-stubs
 django-stubs==1.8.0
-    # via -r requirements/local.in
+    # via
+    #   -r requirements/local.in
+    #   djangorestframework-stubs
 django-timezone-field==4.1.2
     # via django-celery-beat
 django-webpack-loader==1.0.0
@@ -170,6 +171,8 @@ django==3.2.2
     #   djangorestframework
     #   drf-spectacular
     #   jsonfield
+djangorestframework-stubs==1.4.0
+    # via -r requirements/local.in
 djangorestframework==3.12.4
     # via
     #   -r requirements/local.in
@@ -253,6 +256,10 @@ incremental==21.3.0
     # via twisted
 inflection==0.5.1
     # via drf-spectacular
+itypes==1.2.0
+    # via coreapi
+jinja2==3.0.1
+    # via coreschema
 jsonfield==3.1.0
     # via dj-stripe
 jsonschema==3.2.0
@@ -267,6 +274,8 @@ libcst==0.3.18
     #   google-cloud-pubsub
 libhoney==1.10.0
     # via honeycomb-beeline
+markupsafe==2.0.1
+    # via jinja2
 matplotlib==3.4.2
     # via scikit-image
 msgpack==1.0.2
@@ -277,13 +286,13 @@ multidict==5.1.0
     #   yarl
 mypy-extensions==0.4.3
     # via
-    #   black
     #   mypy
     #   typing-inspect
 mypy==0.812
     # via
     #   -r requirements/local.in
     #   django-stubs
+    #   djangorestframework-stubs
 networkx==2.5.1
     # via scikit-image
 numpy==1.20.3
@@ -302,8 +311,6 @@ packaging==20.9
     # via google-api-core
 pandas==1.2.4
     # via -r requirements/local.in
-pathspec==0.8.1
-    # via black
 pep517==0.10.0
     # via pip-tools
 pillow==8.2.0
@@ -391,14 +398,14 @@ redis==3.5.3
     # via
     #   celery
     #   django-redis
-regex==2021.4.4
-    # via black
 requests-oauthlib==1.3.0
     # via django-allauth
 requests==2.25.1
     # via
+    #   coreapi
     #   django-allauth
     #   django-anymail
+    #   djangorestframework-stubs
     #   google-api-core
     #   google-cloud-storage
     #   libhoney
@@ -451,9 +458,7 @@ stripe==2.56.0
 tifffile==2021.4.8
     # via scikit-image
 toml==0.10.2
-    # via
-    #   black
-    #   pep517
+    # via pep517
 tornado==6.1
     # via flower
 twisted[tls]==20.3.0
@@ -468,13 +473,16 @@ typing-extensions==3.10.0.0
     # via
     #   aiohttp
     #   django-stubs
+    #   djangorestframework-stubs
     #   libcst
     #   mypy
     #   typing-inspect
 typing-inspect==0.6.0
     # via libcst
 uritemplate==3.0.1
-    # via drf-spectacular
+    # via
+    #   coreapi
+    #   drf-spectacular
 urllib3==1.26.4
     # via requests
 uvicorn[standard]==0.13.4

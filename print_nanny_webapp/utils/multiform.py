@@ -1,3 +1,5 @@
+from typing import Optional, Dict, Any
+from django import forms
 from django.views.generic.base import ContextMixin, TemplateResponseMixin
 from django.views.generic.edit import ProcessFormView
 from django.http.response import HttpResponseRedirect, HttpResponseForbidden
@@ -5,7 +7,7 @@ from django.http.response import HttpResponseRedirect, HttpResponseForbidden
 
 class MultiFormMixin(ContextMixin):
 
-    form_classes = {}
+    form_classes: Dict[str, Any] = {}
     prefixes = {}
     success_urls = {}
     grouped_forms = {}
@@ -40,7 +42,7 @@ class MultiFormMixin(ContextMixin):
 
         return kwargs
 
-    def forms_valid(self, forms, form_name):
+    def forms_valid(self, forms, form_name: Optional[str] = None):
         form_valid_method = "%s_form_valid" % form_name
         if hasattr(self, form_valid_method):
             return getattr(self, form_valid_method)(forms[form_name])
@@ -81,7 +83,7 @@ class MultiFormMixin(ContextMixin):
         return {}
 
 
-class ProcessMultipleFormsView(ProcessFormView):
+class BaseMultipleFormsView(MultiFormMixin, ProcessFormView):
     def get(self, request, *args, **kwargs):
         form_classes = self.get_form_classes()
         forms = self.get_forms(form_classes)
@@ -127,14 +129,6 @@ class ProcessMultipleFormsView(ProcessFormView):
             return self.forms_valid(forms)
         else:
             return self.forms_invalid(forms)
-
-
-class BaseMultipleFormsView(MultiFormMixin, ProcessMultipleFormsView):
-    """
-    A base view for displaying several forms.
-    """
-
-    pass
 
 
 class MultiFormsView(TemplateResponseMixin, BaseMultipleFormsView):

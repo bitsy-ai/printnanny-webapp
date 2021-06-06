@@ -49,3 +49,7 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+BETA_NOTIFY_EMAIL = "test@print-nanny.com"
+GHOST_ADMIN_API_KEY = ""
+WS_BASE_URL = env('PRINT_NANNY_WS_URL', default='ws://localhost:8000/ws')
+BASE_URL = env('PRINT_NANNY_BASE_URL', default='http://localhost:8000/')

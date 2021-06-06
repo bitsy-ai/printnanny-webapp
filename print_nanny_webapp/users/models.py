@@ -1,14 +1,9 @@
-import binascii
-import os
+from typing import Dict, Union, List
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-from django import forms
-from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework import serializers
 from anymail.message import AnymailMessage
 from rest_framework.authtoken.models import Token
@@ -17,7 +12,7 @@ from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 import json
 
-from .managers import CustomUserManager, InviteRequestManager
+from .managers import CustomUserManager
 
 
 class InviteRequest(models.Model):
@@ -129,25 +124,26 @@ class InviteRequestSerializer(serializers.ModelSerializer):
 
 
 class User(AbstractUser):
-    username = None
+    username = None  # type: ignore
 
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    last_login = models.DateTimeField(default=timezone.now)
-    first_name = models.CharField(blank=True, null=True, max_length=30)
-    last_name = models.CharField(blank=True, null=True, max_length=30)
+    last_login = models.DateTimeField(default=timezone.now)  # type: ignore
+    first_name = models.CharField(blank=True, null=True, max_length=30)  # type: ignore
+    last_name = models.CharField(blank=True, null=True, max_length=30)  # type: ignore
     email = models.EmailField(_("email address"), unique=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS: List[str] = []
 
-    objects = CustomUserManager()
+    objects = CustomUserManager()  # type: ignore
 
     def to_ghost_member(self):
-        return {
-            "name": f"{self.first_name} {self.last_name}",
+        name = f"{self.first_name} {self.last_name}"  # type: ignore
+        data: Dict[str, Union[str, bool]] = {
+            "name": name,
             "email": self.email,
             "subscribed": True,
         }

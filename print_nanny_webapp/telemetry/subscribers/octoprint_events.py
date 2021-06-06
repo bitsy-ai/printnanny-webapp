@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-
+from typing import Dict, Callable
 from google.cloud import pubsub_v1
 
 # import sys
@@ -29,15 +29,23 @@ from print_nanny_webapp.telemetry.types import (
 )
 
 User = get_user_model()
-OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
-PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
-TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
+from print_nanny_webapp.telemetry.models import (
+    OctoPrintEvent,
+    PrintNannyPluginEvent,
+    PrintStatusEvent,
+    RemoteCommandEvent,
+    TelemetryEvent,
+)
+from print_nanny_webapp.remote_control.models import OctoPrintDevice
+
+# OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
+# PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
+# PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+# RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
+# TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
-OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 
 logger = logging.getLogger(__name__)
@@ -81,14 +89,14 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
-    if event.printer_state:
-        event.octoprint_device.printer_state = event.printer_state
-        if event.printer_state == PrinterState.OFFLINE:
-            event.octoprint_device.last_session.print_progress = 0
+    # if event.printer_state:
+    #     event.octoprint_device.printer_state = event.printer_state
+    #     if event.printer_state == PrinterState.OFFLINE:
+    #         event.octoprint_device.last_session.print_progress = 0
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
-    if event.event_type == PrintStatusEventType.PRINT_DONE:
-        event.octoprint_device.last_session.print_progress = 100
+    # if event.event_type == PrintStatusEventType.PRINT_DONE:
+    #     event.octoprint_device.last_session.print_progress = 100
     return event.octoprint_device.save()
 
 
@@ -105,7 +113,9 @@ def handle_ping(event: OctoPrintEvent):
         )
 
 
-HANDLER_FNS = {OctoprintEventType.PRINT_PROGRESS: handle_print_progress}
+HANDLER_FNS: Dict[str, Callable] = {
+    OctoprintEventType.PRINT_PROGRESS: handle_print_progress
+}
 
 HANDLER_FNS.update(
     {value: handle_print_status for label, value in PrintStatusEventType.choices}

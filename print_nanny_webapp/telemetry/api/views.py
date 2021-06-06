@@ -19,11 +19,11 @@ from .serializers import (
     TelemetryEventPolymorphicSerializer,
     RemoteCommandEventSerializer,
 )
+from print_nanny_webapp.telemetry.models import OctoPrintEvent
 
 PrintSession = apps.get_model("remote_control", "PrintSession")
 TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
-OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
 
@@ -93,10 +93,9 @@ class OctoPrintEventViewSet(
         if print_session is not None:
             print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
-            user = self.request.user
+            serializer.save(user=self.request.user, print_session=print_session)
         else:
-            user = None
-        instance = serializer.save(user=user, print_session=print_session)
+            serializer.save(print_session=print_session)
 
 
 @extend_schema(tags=["telemetry"])
@@ -124,10 +123,9 @@ class PrintNannyPluginEventViewSet(GenericViewSet, ListModelMixin, RetrieveModel
         if print_session is not None:
             print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
-            user = self.request.user
+            serializer.save(user=self.request.user, print_session=print_session)
         else:
-            user = None
-        instance = serializer.save(user=user, print_session=print_session)
+            serializer.save(print_session=print_session)
 
 
 @extend_schema(tags=["telemetry"])
@@ -155,7 +153,6 @@ class PrintStatusEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin
         if print_session is not None:
             print_session = PrintSession.objects.get(id=print_session)
         if self.request.user:
-            user = self.request.user
+            serializer.save(user=self.request.user, print_session=print_session)
         else:
-            user = None
-        instance = serializer.save(user=user, print_session=print_session)
+            serializer.save(print_session=print_session)

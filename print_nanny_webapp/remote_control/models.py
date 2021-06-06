@@ -1,22 +1,15 @@
 import logging
-import tempfile
-import os
-from django import db
+from typing import Dict, Any
 from django.contrib.auth import get_user_model
 
 import json
 from django.urls import reverse
 from django.apps import apps
 from django.db import models
-from django.utils import timezone
-from urllib.parse import urljoin
-from django.core.files.base import ContentFile, File
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField, JSONField
-from django.contrib.sites.shortcuts import get_current_site
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
-import google.api_core.exceptions
 import stringcase
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
@@ -51,12 +44,12 @@ class OctoPrintDeviceManager(SafeDeleteManager):
 
         keypair = generate_keypair()
 
-        serial = kwargs.get("serial")
+        serial = kwargs["serial"]
         cloudiot_device_name = f"serial-{serial}"
         cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
             name=cloudiot_device_name,
             serial=serial,
-            user_id=kwargs.get("user").id,
+            user_id=kwargs["user"].id,
             metadata=kwargs,
             fingerprint=keypair["fingerprint"],
             public_key_content=keypair["public_key_content"].strip(),
@@ -259,11 +252,6 @@ class OctoPrintDevice(SafeDeleteModel):
         return cloudiot_device_dict
 
     @property
-    def printer_status(self):
-        if self.last_session:
-            return self.last_session.event
-
-    @property
     def print_session_gcode_file(self):
         PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 
@@ -295,13 +283,6 @@ class OctoPrintDevice(SafeDeleteModel):
     @property
     def monitoring_active_css_class(self):
         return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
-
-    @property
-    def manage_url(self):
-        return reverse(
-            "dashboard:octoprint-devices:detail",
-            kwargs={"pk": self.id},
-        )
 
 
 class GcodeFile(models.Model):
@@ -399,8 +380,7 @@ class PrintSession(models.Model):
 class RemoteControlCommandManager(models.Manager):
     def create(self, **kwargs):
         client = cloudiot_v1.DeviceManagerClient()
-
-        device = kwargs.get("device")
+        device: OctoPrintDevice = kwargs["device"]
         device_path = client.device_path(
             settings.GCP_PROJECT_ID,
             settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
@@ -413,19 +393,19 @@ class RemoteControlCommandManager(models.Manager):
             **kwargs,
         )
 
-        data = {
+        data: Dict[str, Any] = {
             "remote_control_command_id": obj.id,
             "command": kwargs.get("command"),
             "octoprint_event_type": obj.octoprint_event_type,
         }
-        data = json.dumps(data).encode("utf-8")
+        data_b: bytes = json.dumps(data).encode("utf-8")
 
         # https://cloud.google.com/iot/docs/how-tos/commands#commands_compared_to_configurations
         # for faster commands (without state / version checking)
         response = client.send_command_to_device(
             request={
                 "name": device_path,
-                "binary_data": data,
+                "binary_data": data_b,
                 "subfolder": "remote_control",
             }
         )

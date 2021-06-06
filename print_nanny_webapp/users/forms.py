@@ -1,13 +1,8 @@
 from django.contrib.auth import forms as admin_forms
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django import forms
-from django.contrib.postgres.fields import ArrayField
-
-from print_nanny_webapp.users.models import InviteRequest, UserSettings
-
-User = get_user_model()
+from print_nanny_webapp.users.models import User, InviteRequest, UserSettings
 
 
 class UserSettingsForm(forms.ModelForm):
@@ -67,7 +62,7 @@ class UserCreationForm(admin_forms.UserCreationForm):
         email = self.cleaned_data["email"]
 
         try:
-            User.objects.get(email=email)
+            User.objects.get(email=email)  # type: ignore
         except User.DoesNotExist:
             return email
 

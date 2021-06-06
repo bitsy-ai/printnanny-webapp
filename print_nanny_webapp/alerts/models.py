@@ -1,3 +1,4 @@
+from typing import Any, Dict
 import os
 import logging
 import asyncio
@@ -109,8 +110,8 @@ class AlertMessage(models.Model):
     @property
     def message(self) -> str:
         template = Template(self.get_event_type_display())
-        merge_data = {
-            "FIRST_NAME": self.user.first_name,
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
             "EMAIL": self.user.email,
         }
         if self.octoprint_device:
