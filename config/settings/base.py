@@ -5,6 +5,8 @@ from pathlib import Path
 import os
 import environ
 
+from print_nanny_webapp import __version__ as PRINT_NANNY_WEBAPP_VERSION
+
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # print_nanny_webapp/
 APPS_DIR = ROOT_DIR / "print_nanny_webapp"
