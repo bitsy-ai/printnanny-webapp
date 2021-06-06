@@ -1,5 +1,5 @@
 import logging
-
+from typing import Optional
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
@@ -82,7 +82,8 @@ class HomeDashboardView(DashboardView, MultiFormsView):
 
     model = User
     template_name = "dashboard/home.html"
-    success_url = "/dashboard"
+    success_url = "/dashboard"  # type: ignore
+    # Incompatible types in assignment (expression has type "str", base class "MultiFormMixin" defined the type as "None")
 
     form_classes = {
         "upload": TimelapseUploadForm,
@@ -105,29 +106,6 @@ class HomeDashboardView(DashboardView, MultiFormsView):
             form.save()
         return redirect(self.get_success_url())
 
-    def upload_form_valid(self, form):
-
-        video_file = self.request.FILES.get("video_file")
-        if video_file is not None:
-            timelapse_alert = ManualVideoUploadAlert.objects.create(
-                user=self.request.user,
-                original_video=self.request.FILES["video_file"],
-            )
-            if isinstance(video_file, InMemoryUploadedFile):
-                logging.info(f"File processed asInMemoryUploadedFile")
-                logging.info(f"File info {timelapse_alert.original_video}")
-                create_analyze_video_task.apply_async(
-                    (timelapse_alert.id,),
-                    link_error=annotate_job_error.si(timelapse_alert.id),
-                )
-            elif isinstance(video_file, TemporaryUploadedFile):
-                logging.info(f"File processed as TemporaryUploadedFile")
-                create_analyze_video_task.apply_async(
-                    (timelapse_alert.id,),
-                    link_error=annotate_job_error.si(timelapse_alert.id),
-                )
-        return redirect(reverse("dashboard:report-cards:list"))
-
     def get_context_data(self, *args, **kwargs):
         form_classes = self.get_form_classes()
         forms = self.get_forms(form_classes)
@@ -146,6 +124,7 @@ home_dashboard_view = HomeDashboardView.as_view()
 class AppDashboardListView(DashboardView, FormView):
     template_name = "dashboard/apps-list.html"
     success_url = "/dashboard/apps/"
+    # Incompatible types in assignment (expression has type "str", base class "MultiFormMixin" defined the type as "None")
 
     form_class = AppNotificationForm
 
@@ -280,8 +259,7 @@ class OctoPrintDeviceListView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(OctoPrintDeviceListView, self).get_context_data(**kwargs)
-        token, created = Token.objects.get_or_create(user=self.request.user)
-        self.request.user.token = token
+        Token.objects.get_or_create(user=self.request.user)
 
         context["user"] = self.request.user
 
@@ -301,7 +279,8 @@ octoprint_device_dashboard_list_view = OctoPrintDeviceListView.as_view()
 
 class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
     template_name = "dashboard/video-list.html"
-    success_url = "/dashboard/videos/"
+    success_url = "/dashboard/videos/"  # type: ignore
+    # Incompatible types in assignment (expression has type "str", base class "MultiFormMixin" defined the type as "None")
 
     form_classes = {
         "needs_review": FeedbackForm,
@@ -309,10 +288,9 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
 
     def needs_review_form_valid(self, form):
         alert_id = self.request.POST.get("alert_id")
-        needs_review = self.request.POST.get("needs_review")
+        needs_review = bool(int(self.request.POST.get("needs_review", False)))
         if alert_id is not None and needs_review is not None:
             # python, i love you, but i'm breaking up with your type system
-            needs_review = bool(int(needs_review))
             Alert.objects.filter(id=alert_id).update(needs_review=needs_review)
 
         return redirect(reverse("dashboard:videos:list"))

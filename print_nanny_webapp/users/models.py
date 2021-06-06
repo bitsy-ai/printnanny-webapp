@@ -1,5 +1,4 @@
-import binascii
-import os
+from typing import Dict
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.urls import reverse
@@ -129,7 +128,7 @@ class InviteRequestSerializer(serializers.ModelSerializer):
 
 
 class User(AbstractUser):
-    username = None
+    username = None  # type: ignore
 
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -146,7 +145,7 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
     def to_ghost_member(self):
-        return {
+        data: Dict[str, Union[str, bool]] = {
             "name": f"{self.first_name} {self.last_name}",
             "email": self.email,
             "subscribed": True,

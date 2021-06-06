@@ -20,8 +20,8 @@ from django.template.loader import render_to_string
 from anymail.message import AnymailMessage
 from django.template import Context, Template
 from channels.layers import get_channel_layer
+from print_nanny_webapp.alerts.models import AlertMessage
 
-AlertMessage = apps.get_model("alerts", "AlertMessage")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 

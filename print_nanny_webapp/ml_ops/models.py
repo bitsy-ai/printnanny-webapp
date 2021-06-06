@@ -1,6 +1,6 @@
 import json
 import random
-
+import os
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 
