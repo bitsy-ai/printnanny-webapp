@@ -30,10 +30,14 @@ from print_nanny_webapp.telemetry.types import (
 
 User = get_user_model()
 from print_nanny_webapp.telemetry.models import (
-    OctoPrintEvent, PrintNannyPluginEvent, PrintStatusEvent,
-    RemoteCommandEvent, TelemetryEvent
+    OctoPrintEvent,
+    PrintNannyPluginEvent,
+    PrintStatusEvent,
+    RemoteCommandEvent,
+    TelemetryEvent,
 )
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
+
 # OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 # PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
 # PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
@@ -109,10 +113,12 @@ def handle_ping(event: OctoPrintEvent):
         )
 
 
-HANDLER_FNS: Dict[str, Callable] = { OctoprintEventType.PRINT_PROGRESS: handle_print_progress }
+HANDLER_FNS: Dict[str, Callable] = {
+    OctoprintEventType.PRINT_PROGRESS: handle_print_progress
+}
 
 HANDLER_FNS.update(
-    { value: handle_print_status for label, value in PrintStatusEventType.choices}
+    {value: handle_print_status for label, value in PrintStatusEventType.choices}
 )
 
 HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping})

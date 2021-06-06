@@ -95,8 +95,7 @@ class OctoPrintEventViewSet(
         if self.request.user:
             serializer.save(user=self.request.user, print_session=print_session)
         else:
-           serializer.save(print_session=print_session)
-
+            serializer.save(print_session=print_session)
 
 
 @extend_schema(tags=["telemetry"])
