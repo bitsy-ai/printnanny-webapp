@@ -28,9 +28,14 @@ GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
 DOCKER_COMPOSE_PROJECT_NAME="print_nanny_webapp"
 
+# TODO:
+# https://django-environ.readthedocs.io/en/latest/
+# base.py requires certain env vars to be present ; move these or create an env harness for CI tests
+docker-mypy:
+	docker-compose -f local.yml run --rm django mypy print_nanny_webapp/telemetry
 mypy:
-	DATABASE_URL="postgres://debug:debug@postgres:5432/print_nanny" \
-	mypy print_nanny_webapp/telemetry
+	. .envs/.local/.tests && \
+	mypy print_nanny_webapp/telemetry/
 token:
 	echo $(PRINT_NANNY_TOKEN)
 octoprint-wait:

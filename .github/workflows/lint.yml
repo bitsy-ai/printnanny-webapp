@@ -32,7 +32,11 @@ jobs:
           .venv/bin/pip install --upgrade pip
           .venv/bin/pip install --upgrade setuptools wheel twine octoprint pip-tools black
         # Runs a set of commands using the runners shell
-      - name: Run linter
+      - name: Linter
         run: |
           source .venv/bin/activate
           make lint
+      - name: Mypy
+        run: |
+          source .venv/bin/activate
+          make docker-mypy

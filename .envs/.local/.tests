@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export DATABASE_URL="postgres://debug:debug@postgres:5432/print_nanny"
+export MAILGUN_API_KEY=""
+export MAILGUN_DOMAIN=""
+export DISCORD_TOKEN=""
+export CELERY_BROKER_URL=""
+export REDIS_URL=""
+export HONEYCOMB_API_KEY=""
