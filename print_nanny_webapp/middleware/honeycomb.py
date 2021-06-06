@@ -8,7 +8,7 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
     ignored = ["health", "static"]
 
     def __call__(self, request):
-        
+
         if any(
             [
                 ignored_path in request.get_full_path_info()
@@ -27,6 +27,7 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
             response = self.create_http_event(request)
 
         return response
+
     def get_context_from_request(self, request):
         trace_name = "django_http_%s" % request.method.lower()
         return {
@@ -35,12 +36,12 @@ class HoneyMiddlewareIgnoreHealthCheck(HoneyMiddlewareBase):
             "request.host": request.get_host(),
             "request.method": request.method,
             "request.path": request.path,
-            "request.remote_addr": request.META.get('REMOTE_ADDR'),
-            "request.content_length": request.META.get('CONTENT_LENGTH', 0),
-            "request.user_agent": request.META.get('HTTP_USER_AGENT'),
+            "request.remote_addr": request.META.get("REMOTE_ADDR"),
+            "request.content_length": request.META.get("CONTENT_LENGTH", 0),
+            "request.user_agent": request.META.get("HTTP_USER_AGENT"),
             "request.scheme": request.scheme,
             "request.secure": request.is_secure(),
             "request.query": request.GET.dict(),
-            "request.xhr": request.headers.get('x-requested-with') == 'XMLHttpRequest',
+            "request.xhr": request.headers.get("x-requested-with") == "XMLHttpRequest",
             "request.post": request.POST.dict(),
         }
