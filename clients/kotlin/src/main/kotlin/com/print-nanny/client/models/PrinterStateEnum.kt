@@ -16,7 +16,7 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError,offline,openingSerialConnection,connection
+* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError,offline,openingSerialConnection,connection,resuming,finishing
 */
 
 enum class PrinterStateEnum(val value: kotlin.String) {
@@ -56,7 +56,13 @@ enum class PrinterStateEnum(val value: kotlin.String) {
     openingSerialConnection("Opening serial connection"),
 
     @Json(name = "Connection")
-    connection("Connection");
+    connection("Connection"),
+
+    @Json(name = "Resuming")
+    resuming("Resuming"),
+
+    @Json(name = "Finishing")
+    finishing("Finishing");
 
 
     /**

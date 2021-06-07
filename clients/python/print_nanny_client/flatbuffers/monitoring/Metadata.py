@@ -45,8 +45,8 @@ class Metadata(object):
     def Ts(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
 
     # Metadata
     def PrintSession(self):
@@ -80,7 +80,7 @@ def MetadataStart(builder): builder.StartObject(8)
 def MetadataAddUserId(builder, userId): builder.PrependUint32Slot(0, userId, 0)
 def MetadataAddOctoprintDeviceId(builder, octoprintDeviceId): builder.PrependUint32Slot(1, octoprintDeviceId, 0)
 def MetadataAddCloudiotDeviceId(builder, cloudiotDeviceId): builder.PrependUint64Slot(2, cloudiotDeviceId, 0)
-def MetadataAddTs(builder, ts): builder.PrependUint32Slot(3, ts, 0)
+def MetadataAddTs(builder, ts): builder.PrependFloat32Slot(3, ts, 0.0)
 def MetadataAddPrintSession(builder, printSession): builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(printSession), 0)
 def MetadataAddClientVersion(builder, clientVersion): builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(clientVersion), 0)
 def MetadataAddModelVersion(builder, modelVersion): builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelVersion), 0)
@@ -95,7 +95,7 @@ class MetadataT(object):
         self.userId = 0  # type: int
         self.octoprintDeviceId = 0  # type: int
         self.cloudiotDeviceId = 0  # type: int
-        self.ts = 0  # type: int
+        self.ts = 0.0  # type: float
         self.printSession = None  # type: str
         self.clientVersion = None  # type: str
         self.modelVersion = None  # type: str
