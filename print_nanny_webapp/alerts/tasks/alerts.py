@@ -192,4 +192,5 @@ class AlertTask:
         return message
 
     def trigger_discord_alert(self):
-        raise NotImplementedError
+        if settings.DEBUG:
+            raise NotImplementedError
