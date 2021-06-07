@@ -28,5 +28,9 @@
 
     * `connection` (value: `"Connection"`)
 
+    * `resuming` (value: `"Resuming"`)
+
+    * `finishing` (value: `"Finishing"`)
+
 
 

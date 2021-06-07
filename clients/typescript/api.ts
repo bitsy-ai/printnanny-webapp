@@ -3673,7 +3673,9 @@ export enum PrinterStateEnum {
     ClosedOrError = 'closedOrError',
     Offline = 'Offline',
     OpeningSerialConnection = 'Opening serial connection',
-    Connection = 'Connection'
+    Connection = 'Connection',
+    Resuming = 'Resuming',
+    Finishing = 'Finishing'
 }
 
 /**
