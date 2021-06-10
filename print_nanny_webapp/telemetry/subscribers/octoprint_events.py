@@ -110,15 +110,19 @@ class RenderVideoMessage:
 
 
 def publish_video_render_msg(event: PrintStatusEvent) -> str:
-    msg = RenderVideoMessage(
-        print_session=event.print_session.session,
-        print_session_id=event.print_session.id,
-        user_id=event.user.id,
-        octoprint_device_id=event.octoprint_device.id,
-        cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
+    if event.print_session:
+        msg = RenderVideoMessage(
+            print_session=event.print_session.session,
+            print_session_id=event.print_session.id,
+            user_id=event.user.id,
+            octoprint_device_id=event.octoprint_device.id,
+            cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
+        )
+        future = publisher.publish(video_render_topic_path, json.dumps(msg))
+        return future.result()
+    raise ValueError(
+        f"Expected PrintStatusEvent.session to be set but received {event.print_session}"
     )
-    future = publisher.publish(video_render_topic_path, json.dumps(msg))
-    return future.result()
 
 
 def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
