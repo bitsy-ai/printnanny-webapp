@@ -98,6 +98,7 @@ def print_event_is_final(event_type: str) -> bool:
         or event_type == PrintStatusEventType.PRINT_FAILED
     )
 
+
 def publish_video_render_msg(event: PrintStatusEvent) -> str:
     if event.print_session:
         msg = VideoRenderRequest(
