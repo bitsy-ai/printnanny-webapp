@@ -1,0 +1,10 @@
+syntax = "proto3";
+package print_nanny_client.monitoring;
+
+message VideoRenderRequest {
+    string print_session = 1;
+    int32 print_session_id = 2;
+    int32 user_id = 3;
+    int32 octoprint_id = 4;
+    int32 cloudiot_device_num_id = 5;
+}
