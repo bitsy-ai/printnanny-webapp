@@ -230,7 +230,8 @@ python-flatbuffer:
 	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/*.fbs
 
 python-protobuf:
-	protoc --python_out=clients/python/print_nanny_client/protobuf output --mypy_out=clients/python/print_nanny_client/protobuf clients/protobuf/proto.proto
+	mkdir -p clients/python/print_nanny_client/protobuf
+	protoc --python_out=clients/python/print_nanny_client/protobuf --mypy_out=clients/python/print_nanny_client/protobuf clients/protobuf/*.proto
 
 python-client: clean-python-client python-flatbuffer
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
