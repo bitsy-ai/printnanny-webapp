@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message VideoRenderRequest {
+    required string print_session = 1;
+    required int32 print_session_id = 2;
+    required int32 user_id = 3;
+    required int32 octoprint_id = 4;
+    required int32 cloudiot_device_num_id = 5;
+}
