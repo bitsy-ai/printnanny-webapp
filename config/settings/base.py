@@ -589,3 +589,7 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+# messages
+# ------------------------------------------------------------------------------
+GCP_RENDER_VIDEO_TOPIC = "monitoring-video-render"

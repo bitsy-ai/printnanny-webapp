@@ -1,8 +1,9 @@
 import json
 import os
 import logging
-from typing import Dict, Callable
+from typing import Dict, Callable, Optional
 from google.cloud import pubsub_v1
+from dataclasses import dataclass
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -50,7 +51,13 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
-subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
+
+gcp_project = settings.GCP_PROJECT_ID
+event_subscription_name = settings.GCP_PUBSUB_OCTOPRINT_EVENTS_SUBSCRIPTION
+video_render_topic = settings.GCP_RENDER_VIDEO_TOPIC
+
+publisher = pubsub_v1.PublisherClient()
+video_render_topic_path = publisher.topic_path(gcp_project, video_render_topic)
 
 
 def handle_print_progress(event: OctoPrintEvent):
@@ -85,6 +92,39 @@ def handle_print_progress(event: OctoPrintEvent):
             task.trigger_alert()
 
 
+def print_event_is_final(event_type: str) -> bool:
+    return (
+        event_type == PrintStatusEventType.PRINT_DONE
+        or event_type == PrintStatusEventType.PRINT_CANCELLED
+        or event_type == PrintStatusEventType.PRINT_FAILED
+    )
+
+
+@dataclass
+class RenderVideoMessage:
+    print_session: str
+    print_session_id: int
+    user_id: int
+    octoprint_device_id: int
+    cloudiot_device_num_id: int
+
+
+def publish_video_render_msg(event: PrintStatusEvent) -> str:
+    if event.print_session:
+        msg = RenderVideoMessage(
+            print_session=event.print_session.session,
+            print_session_id=event.print_session.id,
+            user_id=event.user.id,
+            octoprint_device_id=event.octoprint_device.id,
+            cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
+        )
+        future = publisher.publish(video_render_topic_path, json.dumps(msg))
+        return future.result()
+    raise ValueError(
+        f"Expected PrintStatusEvent.session to be set but received {event.print_session}"
+    )
+
+
 def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
@@ -95,8 +135,9 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     #         event.octoprint_device.last_session.print_progress = 0
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
-    # if event.event_type == PrintStatusEventType.PRINT_DONE:
-    #     event.octoprint_device.last_session.print_progress = 100
+    if print_event_is_final(event.event_type):
+        publish_video_render_msg(event)
+
     return event.octoprint_device.save()
 
 
@@ -189,8 +230,8 @@ def on_octoprint_event(message):
     message.ack()
 
 
-future = subscriber.subscribe(subscription_name, on_octoprint_event)
+future = subscriber.subscribe(event_subscription_name, on_octoprint_event)
 
 if __name__ == "__main__":
-    logger.info(f"Initializing subscription to {subscription_name}")
+    logger.info(f"Initializing subscription to {event_subscription_name}")
     future.result()
