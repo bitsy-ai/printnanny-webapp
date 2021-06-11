@@ -326,7 +326,7 @@ pip-tools==6.1.0
     # via -r requirements/local.in
 plotly==4.14.3
     # via -r requirements/local.in
-print-nanny-client==0.7.0.dev2
+print-nanny-client==0.7.0.dev3
     # via -r requirements/local.in
 prometheus-client==0.8.0
     # via
