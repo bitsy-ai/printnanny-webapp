@@ -51,7 +51,6 @@ class MonitoringFrameReceiver(AsyncWebsocketConsumer):
             if event_type == "video_subscribe":
                 await self.channel_layer.group_add(self.group_name, self.channel_name)
         if bytes_data is not None:
-            logger.info(f"Recevied {len(bytes_data)} bytes")
             await self.channel_layer.group_send(
                 f"video_{self.octoprint_device_id}",
                 {"type": "video.frame", "image": bytes_data},
