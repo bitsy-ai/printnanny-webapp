@@ -231,9 +231,8 @@ python-flatbuffer:
 
 python-protobuf:
 	mkdir -p clients/python/print_nanny_client/protobuf && touch clients/python/print_nanny_client/protobuf/__init__.py
-
 	protoc --python_out=clients/python/print_nanny_client/protobuf --mypy_out=clients/python/print_nanny_client/protobuf --proto_path=clients/protobuf clients/protobuf/*.proto
-
+	find clients/python/print_nanny_client/protobuf -name '*.py*' | xargs sed -i '1s/^/from __future__ import absolute_import\n/'
 python-client: clean-python-client python-flatbuffer python-protobuf
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
