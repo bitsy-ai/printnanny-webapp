@@ -7,19 +7,19 @@ message OctoprintEnvironment {
     string python_version = 3;
     string pip_version = 4;
     string octopi_version = 5;
-    string virtualenv = 6;
-    string platform = 7;
-    string bits = 8;
-    uint32 cores = 9;
-    float freq = 10;
-    uint64 ram = 11;
-    string pi_model = 12;
-    string pi_throttle_state = 13;
+    string octoprint_version = 6;
+    string virtualenv = 7;
+    string platform = 8;
+    string bits = 9;
+    uint32 cores = 10;
+    float freq = 11;
+    uint64 ram = 12;
+    string pi_model = 13;
+    string pi_throttle_state = 14;
 
 }
 
 message Metadata {
-    string octoprint_version = 1;
     string print_session = 2;
     uint32 print_session_id = 3;
     uint32 user_id = 4;
