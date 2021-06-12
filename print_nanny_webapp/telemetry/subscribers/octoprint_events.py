@@ -112,7 +112,7 @@ def publish_video_render_msg(event: PrintStatusEvent) -> str:
             print_session_datesegment=event.print_session.datesegment,
             user_id=event.user.id,
             octoprint_device_id=event.octoprint_device.id,
-            cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
+            cloudiot_device_id=event.octoprint_device.cloudiot_device_num_id,
             ts=ts,
             cdn_output_path=cdn_output_path,
         )

@@ -6,7 +6,7 @@ message VideoRenderRequest {
     int32 print_session_id = 2;
     int32 user_id = 3;
     int32 octoprint_device_id = 4;
-    int32 cloudiot_device_num_id = 5;
+    int64 cloudiot_device_id = 5;
     float ts = 6;
     string cdn_output_path = 7;
     string print_session_datesegment = 8;
