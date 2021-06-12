@@ -6,3 +6,4 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
 recursive-include docs *.md
+recursive-include print_nanny_client *.pyi
