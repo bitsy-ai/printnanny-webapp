@@ -12,7 +12,7 @@ import typing
 import typing_extensions
 from .common_pb2 import (
     Metadata as Metadata,
-    OctoPrintEnvironment as OctoPrintEnvironment,
+    OctoprintEnvironment as OctoprintEnvironment,
 )
 
 
