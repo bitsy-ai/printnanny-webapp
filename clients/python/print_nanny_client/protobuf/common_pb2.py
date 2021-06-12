@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny.common',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"\xb1\x02\n\x14OctoprintEnvironment\x12\x16\n\x0e\x63lient_version\x18\x01 \x01(\t\x12\x16\n\x0eplugin_version\x18\x02 \x01(\t\x12\x16\n\x0epython_version\x18\x03 \x01(\t\x12\x13\n\x0bpip_version\x18\x04 \x01(\t\x12\x16\n\x0eoctopi_version\x18\x05 \x01(\t\x12\x19\n\x11octoprint_version\x18\x06 \x01(\t\x12\x12\n\nvirtualenv\x18\x07 \x01(\t\x12\x10\n\x08platform\x18\x08 \x01(\t\x12\x0c\n\x04\x62its\x18\t \x01(\t\x12\r\n\x05\x63ores\x18\n \x01(\r\x12\x0c\n\x04\x66req\x18\x0b \x01(\x02\x12\x0b\n\x03ram\x18\x0c \x01(\x04\x12\x10\n\x08pi_model\x18\r \x01(\t\x12\x19\n\x11pi_throttle_state\x18\x0e \x01(\t\"\xce\x01\n\x08Metadata\x12\x15\n\rprint_session\x18\x02 \x01(\t\x12\x18\n\x10print_session_id\x18\x03 \x01(\r\x12\x0f\n\x07user_id\x18\x04 \x01(\r\x12\x1b\n\x13octoprint_device_id\x18\x05 \x01(\r\x12\x1a\n\x12\x63loudiot_device_id\x18\x06 \x01(\x04\x12G\n\x15octoprint_environment\x18\x07 \x01(\x0b\x32(.print_nanny.common.OctoprintEnvironmentb\x06proto3')
+  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"\xb1\x02\n\x14OctoprintEnvironment\x12\x16\n\x0e\x63lient_version\x18\x01 \x01(\t\x12\x16\n\x0eplugin_version\x18\x02 \x01(\t\x12\x16\n\x0epython_version\x18\x03 \x01(\t\x12\x13\n\x0bpip_version\x18\x04 \x01(\t\x12\x16\n\x0eoctopi_version\x18\x05 \x01(\t\x12\x19\n\x11octoprint_version\x18\x06 \x01(\t\x12\x12\n\nvirtualenv\x18\x07 \x01(\t\x12\x10\n\x08platform\x18\x08 \x01(\t\x12\x0c\n\x04\x62its\x18\t \x01(\x05\x12\r\n\x05\x63ores\x18\n \x01(\r\x12\x0c\n\x04\x66req\x18\x0b \x01(\x02\x12\x0b\n\x03ram\x18\x0c \x01(\x04\x12\x10\n\x08pi_model\x18\r \x01(\t\x12\x19\n\x11pi_throttle_state\x18\x0e \x01(\t\"\xce\x01\n\x08Metadata\x12\x15\n\rprint_session\x18\x02 \x01(\t\x12\x18\n\x10print_session_id\x18\x03 \x01(\r\x12\x0f\n\x07user_id\x18\x04 \x01(\r\x12\x1b\n\x13octoprint_device_id\x18\x05 \x01(\r\x12\x1a\n\x12\x63loudiot_device_id\x18\x06 \x01(\x04\x12G\n\x15octoprint_environment\x18\x07 \x01(\x0b\x32(.print_nanny.common.OctoprintEnvironmentb\x06proto3')
 )
 
 
@@ -90,8 +90,8 @@ _OCTOPRINTENVIRONMENT = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='bits', full_name='print_nanny.common.OctoprintEnvironment.bits', index=8,
-      number=9, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=9, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
