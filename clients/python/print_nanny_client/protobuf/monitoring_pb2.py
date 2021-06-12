@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny_client.monitoring',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x10monitoring.proto\x12\x1dprint_nanny_client.monitoring\"\x93\x01\n\x12VideoRenderRequest\x12\x15\n\rprint_session\x18\x01 \x01(\t\x12\x18\n\x10print_session_id\x18\x02 \x01(\x05\x12\x0f\n\x07user_id\x18\x03 \x01(\x05\x12\x1b\n\x13octoprint_device_id\x18\x04 \x01(\x05\x12\x1e\n\x16\x63loudiot_device_num_id\x18\x05 \x01(\x05\x62\x06proto3')
+  serialized_pb=_b('\n\x10monitoring.proto\x12\x1dprint_nanny_client.monitoring\"\x9f\x01\n\x12VideoRenderRequest\x12\x15\n\rprint_session\x18\x01 \x01(\t\x12\x18\n\x10print_session_id\x18\x02 \x01(\x05\x12\x0f\n\x07user_id\x18\x03 \x01(\x05\x12\x1b\n\x13octoprint_device_id\x18\x04 \x01(\x05\x12\x1e\n\x16\x63loudiot_device_num_id\x18\x05 \x01(\x05\x12\n\n\x02ts\x18\x06 \x01(\x02\x62\x06proto3')
 )
 
 
@@ -67,6 +67,13 @@ _VIDEORENDERREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='ts', full_name='print_nanny_client.monitoring.VideoRenderRequest.ts', index=5,
+      number=6, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -80,7 +87,7 @@ _VIDEORENDERREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=52,
-  serialized_end=199,
+  serialized_end=211,
 )
 
 DESCRIPTOR.message_types_by_name['VideoRenderRequest'] = _VIDEORENDERREQUEST
