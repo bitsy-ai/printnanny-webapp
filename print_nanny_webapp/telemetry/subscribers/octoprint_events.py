@@ -4,6 +4,7 @@ import logging
 from datetime import datetime
 from typing import Dict, Callable
 from google.cloud import pubsub_v1
+from django.utils import dateformat
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -100,14 +101,20 @@ def print_event_is_final(event_type: str) -> bool:
 
 
 def publish_video_render_msg(event: PrintStatusEvent) -> str:
+
     if event.print_session:
+        now = datetime.utcnow()
+        ts = now.timestamp()
+        cdn_output_path = f"media/uploads/PrintSessionAlert/{event.print_session.datesegment}/{event.print_session.session}"
         msg = VideoRenderRequest(
             print_session=event.print_session.session,
             print_session_id=event.print_session.id,
+            print_session_datesegment=event.print_session.datesegment,
             user_id=event.user.id,
             octoprint_device_id=event.octoprint_device.id,
             cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
-            ts=datetime.utcnow().timestamp(),
+            ts=ts,
+            cdn_output_path=cdn_output_path,
         )
         future = publisher.publish(video_render_topic_path, msg.SerializeToString())
         return future.result()
