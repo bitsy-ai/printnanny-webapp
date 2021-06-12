@@ -10,7 +10,7 @@ message OctoprintEnvironment {
     string octoprint_version = 6;
     string virtualenv = 7;
     string platform = 8;
-    string bits = 9;
+    int32 bits = 9;
     uint32 cores = 10;
     float freq = 11;
     uint64 ram = 12;
