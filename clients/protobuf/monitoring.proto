@@ -1,13 +1,56 @@
 syntax = "proto3";
-package print_nanny_client.monitoring;
+import "common.proto";
 
-message VideoRenderRequest {
-    string print_session = 1;
-    int32 print_session_id = 2;
-    int32 user_id = 3;
-    int32 octoprint_device_id = 4;
-    int64 cloudiot_device_id = 5;
-    float ts = 6;
-    string cdn_output_path = 7;
-    string print_session_datesegment = 8;
+package print_nanny.monitoring;
+
+
+message MonitoringImage {
+    print_nanny.common.Metadata metadata = 1;
+    float ts = 2;
+    int32 height = 3;
+    int32 width = 4;
+    bytes data = 5;
+}
+
+message Box {
+    float ymin = 1;
+    float xmin = 2;
+    float ymax = 3;
+    float xmax = 4;
+}
+
+message DeviceCalibration {
+    repeated float coordinates = 1;
+    repeated bool mask = 2;
+    float fps  = 3;
+}
+
+message BoxAnnotations {
+    int32 num_detections = 2;
+    repeated float detection_scores = 3;
+    repeated int32 detection_classes = 4;
+    repeated Box detection_boxes = 5;
+}
+
+message AnnotatedMonitoringImage {
+    MonitoringImage image = 1;
+    BoxAnnotations annotations_all = 2;
+    BoxAnnotations annotations_filtered = 3;
+    float score_threshold = 4;
+    float min_calibration_area_overlap = 5;
+    DeviceCalibration calibration = 6;
+}
+
+message AnnotatedMonitoringImagesWindow {
+    repeated AnnotatedMonitoringImage annotated_images = 1;    
+    float window_start = 2;
+    float window_end = 3;
+    enum WindowType {
+        GLOBAL = 0;
+        FIXED = 1;
+        SLIDING = 2;
+        SESSION = 3;
+      }
+    WindowType window_type = 4;
+    float health_weight = 5;
 }

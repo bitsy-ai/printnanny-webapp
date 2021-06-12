@@ -1,0 +1,12 @@
+syntax = "proto3";
+package print_nanny.common;
+message Metadata {
+    string print_nanny_client_version = 1;
+    string octoprint_plugin_version = 2;
+    string octoprint_version = 3;
+    string print_session = 4;
+    int32 print_session_id = 5;
+    int32 user_id = 6;
+    int32 octoprint_device_id = 7;
+    int64 cloudiot_device_id = 8;
+}
