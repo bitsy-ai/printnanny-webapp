@@ -19,10 +19,34 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny.common',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"\xe6\x01\n\x08Metadata\x12\"\n\x1aprint_nanny_client_version\x18\x01 \x01(\t\x12 \n\x18octoprint_plugin_version\x18\x02 \x01(\t\x12\x19\n\x11octoprint_version\x18\x03 \x01(\t\x12\x15\n\rprint_session\x18\x04 \x01(\t\x12\x18\n\x10print_session_id\x18\x05 \x01(\x05\x12\x0f\n\x07user_id\x18\x06 \x01(\x05\x12\x1b\n\x13octoprint_device_id\x18\x07 \x01(\x05\x12\x1a\n\x12\x63loudiot_device_id\x18\x08 \x01(\x03\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"\x16\n\x14OctoPrintEnvironment\"\xd0\x01\n\x08Metadata\x12\x16\n\x0e\x63lient_version\x18\x01 \x01(\t\x12\x16\n\x0eplugin_version\x18\x02 \x01(\t\x12\x19\n\x11octoprint_version\x18\x03 \x01(\t\x12\x15\n\rprint_session\x18\x04 \x01(\t\x12\x18\n\x10print_session_id\x18\x05 \x01(\x05\x12\x0f\n\x07user_id\x18\x06 \x01(\x05\x12\x1b\n\x13octoprint_device_id\x18\x07 \x01(\x05\x12\x1a\n\x12\x63loudiot_device_id\x18\x08 \x01(\x03\x62\x06proto3')
 )
 
 
+
+
+_OCTOPRINTENVIRONMENT = _descriptor.Descriptor(
+  name='OctoPrintEnvironment',
+  full_name='print_nanny.common.OctoPrintEnvironment',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=36,
+  serialized_end=58,
+)
 
 
 _METADATA = _descriptor.Descriptor(
@@ -33,14 +57,14 @@ _METADATA = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='print_nanny_client_version', full_name='print_nanny.common.Metadata.print_nanny_client_version', index=0,
+      name='client_version', full_name='print_nanny.common.Metadata.client_version', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='octoprint_plugin_version', full_name='print_nanny.common.Metadata.octoprint_plugin_version', index=1,
+      name='plugin_version', full_name='print_nanny.common.Metadata.plugin_version', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -100,12 +124,20 @@ _METADATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=267,
+  serialized_start=61,
+  serialized_end=269,
 )
 
+DESCRIPTOR.message_types_by_name['OctoPrintEnvironment'] = _OCTOPRINTENVIRONMENT
 DESCRIPTOR.message_types_by_name['Metadata'] = _METADATA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+OctoPrintEnvironment = _reflection.GeneratedProtocolMessageType('OctoPrintEnvironment', (_message.Message,), dict(
+  DESCRIPTOR = _OCTOPRINTENVIRONMENT,
+  __module__ = 'common_pb2'
+  # @@protoc_insertion_point(class_scope:print_nanny.common.OctoPrintEnvironment)
+  ))
+_sym_db.RegisterMessage(OctoPrintEnvironment)
 
 Metadata = _reflection.GeneratedProtocolMessageType('Metadata', (_message.Message,), dict(
   DESCRIPTOR = _METADATA,

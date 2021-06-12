@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "common.proto";
+import public "common.proto";
 
 package print_nanny.monitoring;
 

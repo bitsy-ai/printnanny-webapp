@@ -10,18 +10,25 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
+class OctoPrintEnvironment(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+
+    def __init__(self,
+        ) -> None: ...
+global___OctoPrintEnvironment = OctoPrintEnvironment
+
 class Metadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    PRINT_NANNY_CLIENT_VERSION_FIELD_NUMBER: builtins.int
-    OCTOPRINT_PLUGIN_VERSION_FIELD_NUMBER: builtins.int
+    CLIENT_VERSION_FIELD_NUMBER: builtins.int
+    PLUGIN_VERSION_FIELD_NUMBER: builtins.int
     OCTOPRINT_VERSION_FIELD_NUMBER: builtins.int
     PRINT_SESSION_FIELD_NUMBER: builtins.int
     PRINT_SESSION_ID_FIELD_NUMBER: builtins.int
     USER_ID_FIELD_NUMBER: builtins.int
     OCTOPRINT_DEVICE_ID_FIELD_NUMBER: builtins.int
     CLOUDIOT_DEVICE_ID_FIELD_NUMBER: builtins.int
-    print_nanny_client_version: typing.Text = ...
-    octoprint_plugin_version: typing.Text = ...
+    client_version: typing.Text = ...
+    plugin_version: typing.Text = ...
     octoprint_version: typing.Text = ...
     print_session: typing.Text = ...
     print_session_id: builtins.int = ...
@@ -31,8 +38,8 @@ class Metadata(google.protobuf.message.Message):
 
     def __init__(self,
         *,
-        print_nanny_client_version : typing.Text = ...,
-        octoprint_plugin_version : typing.Text = ...,
+        client_version : typing.Text = ...,
+        plugin_version : typing.Text = ...,
         octoprint_version : typing.Text = ...,
         print_session : typing.Text = ...,
         print_session_id : builtins.int = ...,
@@ -40,5 +47,5 @@ class Metadata(google.protobuf.message.Message):
         octoprint_device_id : builtins.int = ...,
         cloudiot_device_id : builtins.int = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal[u"cloudiot_device_id",b"cloudiot_device_id",u"octoprint_device_id",b"octoprint_device_id",u"octoprint_plugin_version",b"octoprint_plugin_version",u"octoprint_version",b"octoprint_version",u"print_nanny_client_version",b"print_nanny_client_version",u"print_session",b"print_session",u"print_session_id",b"print_session_id",u"user_id",b"user_id"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal[u"client_version",b"client_version",u"cloudiot_device_id",b"cloudiot_device_id",u"octoprint_device_id",b"octoprint_device_id",u"octoprint_version",b"octoprint_version",u"plugin_version",b"plugin_version",u"print_session",b"print_session",u"print_session_id",b"print_session_id",u"user_id",b"user_id"]) -> None: ...
 global___Metadata = Metadata

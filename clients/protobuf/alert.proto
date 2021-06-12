@@ -1,6 +1,6 @@
 syntax = "proto3";
 package print_nanny.alert;
-import "common.proto";
+import public "common.proto";
 
 message VideoRenderRequest {
     print_nanny.common.Metadata metadata = 1;

@@ -14,15 +14,17 @@ _sym_db = _symbol_database.Default()
 
 import common_pb2 as common__pb2
 
+from common_pb2 import *
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='alert.proto',
   package='print_nanny.alert',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0b\x61lert.proto\x12\x11print_nanny.alert\x1a\x0c\x63ommon.proto\"\x8c\x01\n\x12VideoRenderRequest\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\n\n\x02ts\x18\x02 \x01(\x02\x12\x17\n\x0f\x63\x64n_output_path\x18\x03 \x01(\t\x12!\n\x19print_session_datesegment\x18\x04 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\x0b\x61lert.proto\x12\x11print_nanny.alert\x1a\x0c\x63ommon.proto\"\x8c\x01\n\x12VideoRenderRequest\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\n\n\x02ts\x18\x02 \x01(\x02\x12\x17\n\x0f\x63\x64n_output_path\x18\x03 \x01(\t\x12!\n\x19print_session_datesegment\x18\x04 \x01(\tP\x00\x62\x06proto3')
   ,
-  dependencies=[common__pb2.DESCRIPTOR,])
+  dependencies=[common__pb2.DESCRIPTOR,],
+  public_dependencies=[common__pb2.DESCRIPTOR,])
 
 
 
