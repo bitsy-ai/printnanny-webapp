@@ -1,9 +1,9 @@
 import json
 import os
 import logging
-from typing import Dict, Callable, Optional
+from datetime import datetime
+from typing import Dict, Callable
 from google.cloud import pubsub_v1
-from dataclasses import dataclass
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -107,6 +107,7 @@ def publish_video_render_msg(event: PrintStatusEvent) -> str:
             user_id=event.user.id,
             octoprint_device_id=event.octoprint_device.id,
             cloudiot_device_num_id=event.octoprint_device.cloudiot_device_num_id,
+            ts=datetime.utcnow().timestamp(),
         )
         future = publisher.publish(video_render_topic_path, msg.SerializeToString())
         return future.result()

@@ -7,4 +7,5 @@ message VideoRenderRequest {
     int32 user_id = 3;
     int32 octoprint_device_id = 4;
     int32 cloudiot_device_num_id = 5;
+    float ts = 6;
 }
