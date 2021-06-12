@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "print-nanny-client"
-VERSION = "0.7.0dev6"
+VERSION = "0.7.0dev7"
 # To install the library, run the following
 #
 # python setup.py install
@@ -21,7 +21,7 @@ VERSION = "0.7.0dev6"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil"]
+REQUIRES = ["urllib3 >= 1.25.3", "six >= 1.10", "python-dateutil", "protobuf"]
 REQUIRES.append("aiohttp >= 3.7.0")
 setup(
     name=NAME,
