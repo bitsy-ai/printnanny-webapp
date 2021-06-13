@@ -12,10 +12,7 @@ message MonitoringImage {
 }
 
 message Box {
-    float ymin = 1;
-    float xmin = 2;
-    float ymax = 3;
-    float xmax = 4;
+    repeated float xy0_xy1 = 1;
 }
 
 message DeviceCalibration {
