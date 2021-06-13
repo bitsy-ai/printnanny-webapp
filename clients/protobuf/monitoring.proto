@@ -34,12 +34,13 @@ message BoxAnnotations {
 }
 
 message AnnotatedMonitoringImage {
-    MonitoringImage image = 1;
+    MonitoringImage monitoring_image = 1;
     BoxAnnotations annotations_all = 2;
     BoxAnnotations annotations_filtered = 3;
     float score_threshold = 4;
     float min_calibration_area_overlap = 5;
     DeviceCalibration calibration = 6;
+    bytes annotated_image = 7;
 }
 
 message AnnotatedMonitoringImagesWindow {
