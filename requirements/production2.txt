@@ -8,6 +8,7 @@ aiohttp==3.7.4.post0
     # via
     #   -r requirements/production.in
     #   discord.py
+    #   print-nanny-client
 aioredis==1.3.1
     # via channels-redis
 amqp==2.6.1
@@ -314,6 +315,8 @@ pillow==8.2.0
     #   scikit-image
 plotly==4.14.3
     # via -r requirements/production.in
+print-nanny-client==0.7.0.dev7
+    # via -r requirements/production.in
 priority==1.3.0
     # via twisted
 prometheus-client==0.8.0
@@ -329,6 +332,7 @@ protobuf==3.16.0
     # via
     #   google-api-core
     #   googleapis-common-protos
+    #   print-nanny-client
     #   proto-plus
 psycopg2==2.8.6
     # via -r requirements/production.in
@@ -363,6 +367,7 @@ python-dateutil==2.8.1
     # via
     #   matplotlib
     #   pandas
+    #   print-nanny-client
     #   python-crontab
 python-dotenv==0.17.1
     # via uvicorn
@@ -430,6 +435,7 @@ six==1.16.0
     #   jsonschema
     #   libhoney
     #   plotly
+    #   print-nanny-client
     #   protobuf
     #   pyopenssl
     #   python-dateutil
@@ -470,7 +476,9 @@ typing-inspect==0.6.0
 uritemplate==3.0.1
     # via drf-spectacular
 urllib3==1.26.4
-    # via requests
+    # via
+    #   print-nanny-client
+    #   requests
 uvicorn[standard]==0.13.4
     # via -r requirements/production.in
 uvloop==0.15.2

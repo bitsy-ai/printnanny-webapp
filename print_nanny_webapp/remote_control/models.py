@@ -3,6 +3,7 @@ from typing import Dict, Any
 from django.contrib.auth import get_user_model
 
 import json
+from django.utils import dateformat
 from django.urls import reverse
 from django.apps import apps
 from django.db import models
@@ -368,6 +369,10 @@ class PrintSession(models.Model):
     gcode_file = models.ForeignKey(GcodeFile, on_delete=models.CASCADE, null=True)
     gcode_filename = models.CharField(max_length=255, null=True)
     octoprint_job = JSONField(null=True)
+
+    @property
+    def datesegment(self):
+        return dateformat.format(self.created_dt, "Y/M/d/")
 
     @property
     def duration(self):

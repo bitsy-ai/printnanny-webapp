@@ -8,7 +8,6 @@ from django.db import models
 from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone, dateformat
-import stringcase
 from django.template import Context, Template
 
 

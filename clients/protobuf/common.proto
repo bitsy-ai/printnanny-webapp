@@ -1,0 +1,29 @@
+syntax = "proto3";
+package print_nanny.common;
+
+message OctoprintEnvironment {
+    string client_version = 1;
+    string plugin_version = 2;
+    string python_version = 3;
+    string pip_version = 4;
+    string octopi_version = 5;
+    string octoprint_version = 6;
+    string virtualenv = 7;
+    string platform = 8;
+    int32 bits = 9;
+    uint32 cores = 10;
+    float freq = 11;
+    uint64 ram = 12;
+    string pi_model = 13;
+    string pi_throttle_state = 14;
+
+}
+
+message Metadata {
+    string print_session = 2;
+    uint32 print_session_id = 3;
+    uint32 user_id = 4;
+    uint32 octoprint_device_id = 5;
+    uint64 cloudiot_device_id = 6;
+    OctoprintEnvironment octoprint_environment = 7;
+}
