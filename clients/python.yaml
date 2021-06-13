@@ -19,4 +19,7 @@ files:
   MANIFEST.mustache:
     templateType: SupportingFiles
     destinationFilename: MANIFEST.in
+  py.typed.mustache:
+    templateType: SupportingFiles
+    destinationFilename: print_nanny_client/py.typed
   
