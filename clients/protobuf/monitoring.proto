@@ -12,7 +12,7 @@ message MonitoringImage {
 }
 
 message Box {
-    repeated float xy0_xy1 = 1;
+    repeated float xy = 1;
 }
 
 message DeviceCalibration {
