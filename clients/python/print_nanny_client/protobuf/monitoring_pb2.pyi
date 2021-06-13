@@ -112,17 +112,19 @@ global___BoxAnnotations = BoxAnnotations
 
 class AnnotatedMonitoringImage(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    IMAGE_FIELD_NUMBER: builtins.int
+    MONITORING_IMAGE_FIELD_NUMBER: builtins.int
     ANNOTATIONS_ALL_FIELD_NUMBER: builtins.int
     ANNOTATIONS_FILTERED_FIELD_NUMBER: builtins.int
     SCORE_THRESHOLD_FIELD_NUMBER: builtins.int
     MIN_CALIBRATION_AREA_OVERLAP_FIELD_NUMBER: builtins.int
     CALIBRATION_FIELD_NUMBER: builtins.int
+    ANNOTATED_IMAGE_FIELD_NUMBER: builtins.int
     score_threshold: builtins.float = ...
     min_calibration_area_overlap: builtins.float = ...
+    annotated_image: builtins.bytes = ...
 
     @property
-    def image(self) -> global___MonitoringImage: ...
+    def monitoring_image(self) -> global___MonitoringImage: ...
 
     @property
     def annotations_all(self) -> global___BoxAnnotations: ...
@@ -135,15 +137,16 @@ class AnnotatedMonitoringImage(google.protobuf.message.Message):
 
     def __init__(self,
         *,
-        image : typing.Optional[global___MonitoringImage] = ...,
+        monitoring_image : typing.Optional[global___MonitoringImage] = ...,
         annotations_all : typing.Optional[global___BoxAnnotations] = ...,
         annotations_filtered : typing.Optional[global___BoxAnnotations] = ...,
         score_threshold : builtins.float = ...,
         min_calibration_area_overlap : builtins.float = ...,
         calibration : typing.Optional[global___DeviceCalibration] = ...,
+        annotated_image : builtins.bytes = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal[u"annotations_all",b"annotations_all",u"annotations_filtered",b"annotations_filtered",u"calibration",b"calibration",u"image",b"image"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal[u"annotations_all",b"annotations_all",u"annotations_filtered",b"annotations_filtered",u"calibration",b"calibration",u"image",b"image",u"min_calibration_area_overlap",b"min_calibration_area_overlap",u"score_threshold",b"score_threshold"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal[u"annotations_all",b"annotations_all",u"annotations_filtered",b"annotations_filtered",u"calibration",b"calibration",u"monitoring_image",b"monitoring_image"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal[u"annotated_image",b"annotated_image",u"annotations_all",b"annotations_all",u"annotations_filtered",b"annotations_filtered",u"calibration",b"calibration",u"min_calibration_area_overlap",b"min_calibration_area_overlap",u"monitoring_image",b"monitoring_image",u"score_threshold",b"score_threshold"]) -> None: ...
 global___AnnotatedMonitoringImage = AnnotatedMonitoringImage
 
 class AnnotatedMonitoringImagesWindow(google.protobuf.message.Message):
