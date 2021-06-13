@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **session** | **kotlin.String** |  | 
 **filepos** | **kotlin.Int** |  |  [optional]

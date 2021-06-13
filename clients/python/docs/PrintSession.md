@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
+**created_dt** | **datetime** |  | 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **session** | **str** |  | 

@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **session** | **kotlin.String** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **filepos** | **kotlin.Int** |  |  [optional]
 **printProgress** | **kotlin.Int** |  |  [optional]

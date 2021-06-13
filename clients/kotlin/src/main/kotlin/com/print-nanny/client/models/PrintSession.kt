@@ -18,10 +18,10 @@ import java.io.Serializable
 
 /**
  * 
+ * @param createdDt 
  * @param octoprintDevice 
  * @param session 
  * @param id 
- * @param createdDt 
  * @param updatedDt 
  * @param filepos 
  * @param printProgress 
@@ -37,14 +37,14 @@ import java.io.Serializable
  */
 
 data class PrintSession (
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "session")
     val session: kotlin.String,
     @Json(name = "id")
     val id: kotlin.Int? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
     @Json(name = "filepos")

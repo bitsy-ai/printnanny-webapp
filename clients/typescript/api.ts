@@ -2675,6 +2675,12 @@ export interface PatchedOctoPrintDeviceRequest {
 export interface PatchedPrintSessionRequest {
     /**
      * 
+     * @type {string}
+     * @memberof PatchedPrintSessionRequest
+     */
+    created_dt?: string;
+    /**
+     * 
      * @type {number}
      * @memberof PatchedPrintSessionRequest
      */
@@ -3098,7 +3104,7 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
@@ -3190,6 +3196,12 @@ export interface PrintSession {
  * @interface PrintSessionRequest
  */
 export interface PrintSessionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSessionRequest
+     */
+    created_dt: string;
     /**
      * 
      * @type {number}
