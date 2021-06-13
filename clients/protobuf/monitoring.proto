@@ -30,6 +30,7 @@ message BoxAnnotations {
     repeated float detection_scores = 3;
     repeated int32 detection_classes = 4;
     repeated Box detection_boxes = 5;
+    repeated float health_weights = 6;
 }
 
 message AnnotatedMonitoringImage {
@@ -52,5 +53,4 @@ message AnnotatedMonitoringImagesWindow {
         SESSION = 3;
       }
     WindowType window_type = 4;
-    float health_weight = 5;
 }
