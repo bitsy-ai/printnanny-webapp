@@ -21,8 +21,7 @@ message Box {
 
 message DeviceCalibration {
     repeated float coordinates = 1;
-    repeated bool mask = 2;
-    float fps  = 3;
+    float fps  = 2;
 }
 
 message BoxAnnotations {
