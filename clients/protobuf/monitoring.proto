@@ -6,7 +6,6 @@ package print_nanny.monitoring;
 
 message MonitoringImage {
     print_nanny.common.Metadata metadata = 1;
-    float ts = 2;
     int32 height = 3;
     int32 width = 4;
     bytes data = 5;
