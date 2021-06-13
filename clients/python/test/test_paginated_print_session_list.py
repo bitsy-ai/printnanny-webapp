@@ -57,7 +57,8 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
                         octoprint_job = {
                             'key' : null
                             }, 
-                        url = '', )
+                        url = '', 
+                        datesegment = '', )
                     ]
             )
         else :

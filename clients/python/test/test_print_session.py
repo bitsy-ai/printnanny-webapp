@@ -52,7 +52,8 @@ class TestPrintSession(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
-                url = ''
+                url = '', 
+                datesegment = ''
             )
         else :
             return PrintSession(

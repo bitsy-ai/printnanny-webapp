@@ -3177,6 +3177,12 @@ export interface PrintSession {
      * @memberof PrintSession
      */
     url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintSession
+     */
+    datesegment?: string;
 }
 /**
  * 

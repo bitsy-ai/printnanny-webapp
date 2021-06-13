@@ -33,6 +33,7 @@ import java.io.Serializable
  * @param gcodeFilename 
  * @param octoprintJob 
  * @param url 
+ * @param datesegment 
  */
 
 data class PrintSession (
@@ -65,7 +66,9 @@ data class PrintSession (
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "url")
-    val url: java.net.URI? = null
+    val url: java.net.URI? = null,
+    @Json(name = "datesegment")
+    val datesegment: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

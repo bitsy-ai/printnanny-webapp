@@ -50,7 +50,8 @@ class PrintSession(object):
         'gcode_file': 'int',
         'gcode_filename': 'str',
         'octoprint_job': 'dict(str, object)',
-        'url': 'str'
+        'url': 'str',
+        'datesegment': 'str'
     }
 
     attribute_map = {
@@ -68,10 +69,11 @@ class PrintSession(object):
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
         'octoprint_job': 'octoprint_job',
-        'url': 'url'
+        'url': 'url',
+        'datesegment': 'datesegment'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, datesegment=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -92,6 +94,7 @@ class PrintSession(object):
         self._gcode_filename = None
         self._octoprint_job = None
         self._url = None
+        self._datesegment = None
         self.discriminator = None
 
         if id is not None:
@@ -114,6 +117,8 @@ class PrintSession(object):
         self.octoprint_job = octoprint_job
         if url is not None:
             self.url = url
+        if datesegment is not None:
+            self.datesegment = datesegment
 
     @property
     def id(self):
@@ -463,6 +468,27 @@ class PrintSession(object):
         """
 
         self._url = url
+
+    @property
+    def datesegment(self):
+        """Gets the datesegment of this PrintSession.  # noqa: E501
+
+
+        :return: The datesegment of this PrintSession.  # noqa: E501
+        :rtype: str
+        """
+        return self._datesegment
+
+    @datesegment.setter
+    def datesegment(self, datesegment):
+        """Sets the datesegment of this PrintSession.
+
+
+        :param datesegment: The datesegment of this PrintSession.  # noqa: E501
+        :type datesegment: str
+        """
+
+        self._datesegment = datesegment
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
