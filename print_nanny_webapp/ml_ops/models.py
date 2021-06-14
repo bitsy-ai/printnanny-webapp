@@ -10,21 +10,16 @@ from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 
 
-def _upload_to(instance, filename):
-    path = os.path.join(f"uploads/{instance.__class__.__name__}", instance.id, filename)
-    return path
-
-
 class DeviceCalibration(models.Model):
     created_dt = models.fields.DateTimeField(auto_now_add=True)
     updated_dt = models.fields.DateTimeField(auto_now=True)
     octoprint_device = models.OneToOneField(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
-    fpm = models.IntegerField(null=True)
-    coordinates = JSONField(null=True)
-    mask = JSONField(null=True)
-    config_file = models.FileField(null=True)
+    fps = models.FloatField(default=1.0)
+    xy = JSONField(null=True)
+    height = models.IntegerField(default=480)
+    width = models.IntegerField(default=640)
 
 
 class ModelArtifact(models.Model):

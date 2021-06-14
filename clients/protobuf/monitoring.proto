@@ -13,11 +13,15 @@ message MonitoringImage {
 
 message Box {
     repeated float xy = 1;
+    int32 height = 2;
+    int32 width = 3;
 }
 
 message DeviceCalibration {
-    repeated float coordinates = 1;
+    Box box = 1;
     float fps  = 2;
+    int32 height = 3;
+    int32 width = 4;
 }
 
 message BoxAnnotations {
