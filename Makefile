@@ -230,7 +230,7 @@ python-flatbuffer:
 	~/projects/flatbuffers/flatc -b -t --python --gen-object-api -o clients/python/ clients/flatbuffers/*.fbs
 
 python-protobuf:
-	mkdir -p clients/python/print_nanny_client/protobuf && touch clients/python/print_nanny_client/protobuf/__init__.py
+	mkdir -p clients/python/print_nanny_client/protobuf && touch clients/python/print_nanny_client/protobuf/modinit__.py
 	protoc --python_out=clients/python/print_nanny_client/protobuf --mypy_out=clients/python/print_nanny_client/protobuf --proto_path=clients/protobuf clients/protobuf/*.proto
 	find clients/python/print_nanny_client/protobuf -name '*.py*' | xargs sed -i 's/import common_pb2/from . import common_pb2/'
 	find clients/python/print_nanny_client/protobuf -name '*.py*' | xargs sed -i 's/from common_pb2/from .common_pb2/'
