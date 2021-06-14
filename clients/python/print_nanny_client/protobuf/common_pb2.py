@@ -273,21 +273,21 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 OctoprintEnvironment = _reflection.GeneratedProtocolMessageType('OctoprintEnvironment', (_message.Message,), dict(
   DESCRIPTOR = _OCTOPRINTENVIRONMENT,
-  __module__ = 'common_pb2'
+  __module__ = 'print_nanny_client.protobuf.common_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.common.OctoprintEnvironment)
   ))
 _sym_db.RegisterMessage(OctoprintEnvironment)
 
 PrintSession = _reflection.GeneratedProtocolMessageType('PrintSession', (_message.Message,), dict(
   DESCRIPTOR = _PRINTSESSION,
-  __module__ = 'common_pb2'
+  __module__ = 'print_nanny_client.protobuf.common_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.common.PrintSession)
   ))
 _sym_db.RegisterMessage(PrintSession)
 
 Metadata = _reflection.GeneratedProtocolMessageType('Metadata', (_message.Message,), dict(
   DESCRIPTOR = _METADATA,
-  __module__ = 'common_pb2'
+  __module__ = 'print_nanny_client.protobuf.common_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.common.Metadata)
   ))
 _sym_db.RegisterMessage(Metadata)

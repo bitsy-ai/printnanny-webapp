@@ -80,7 +80,7 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 VideoRenderRequest = _reflection.GeneratedProtocolMessageType('VideoRenderRequest', (_message.Message,), dict(
   DESCRIPTOR = _VIDEORENDERREQUEST,
-  __module__ = 'alert_pb2'
+  __module__ = 'print_nanny_client.protobuf.alert_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.alert.VideoRenderRequest)
   ))
 _sym_db.RegisterMessage(VideoRenderRequest)

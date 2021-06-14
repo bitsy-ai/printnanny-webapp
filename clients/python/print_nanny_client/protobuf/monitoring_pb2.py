@@ -383,42 +383,42 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 MonitoringImage = _reflection.GeneratedProtocolMessageType('MonitoringImage', (_message.Message,), dict(
   DESCRIPTOR = _MONITORINGIMAGE,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.MonitoringImage)
   ))
 _sym_db.RegisterMessage(MonitoringImage)
 
 Box = _reflection.GeneratedProtocolMessageType('Box', (_message.Message,), dict(
   DESCRIPTOR = _BOX,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.Box)
   ))
 _sym_db.RegisterMessage(Box)
 
 DeviceCalibration = _reflection.GeneratedProtocolMessageType('DeviceCalibration', (_message.Message,), dict(
   DESCRIPTOR = _DEVICECALIBRATION,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.DeviceCalibration)
   ))
 _sym_db.RegisterMessage(DeviceCalibration)
 
 BoxAnnotations = _reflection.GeneratedProtocolMessageType('BoxAnnotations', (_message.Message,), dict(
   DESCRIPTOR = _BOXANNOTATIONS,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.BoxAnnotations)
   ))
 _sym_db.RegisterMessage(BoxAnnotations)
 
 AnnotatedMonitoringImage = _reflection.GeneratedProtocolMessageType('AnnotatedMonitoringImage', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEDMONITORINGIMAGE,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.AnnotatedMonitoringImage)
   ))
 _sym_db.RegisterMessage(AnnotatedMonitoringImage)
 
 AnnotatedMonitoringImagesWindow = _reflection.GeneratedProtocolMessageType('AnnotatedMonitoringImagesWindow', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEDMONITORINGIMAGESWINDOW,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.AnnotatedMonitoringImagesWindow)
   ))
 _sym_db.RegisterMessage(AnnotatedMonitoringImagesWindow)

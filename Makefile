@@ -234,7 +234,7 @@ python-protobuf:
 	protoc --python_out=clients/python/print_nanny_client/protobuf --mypy_out=clients/python/print_nanny_client/protobuf --proto_path=clients/protobuf clients/protobuf/*.proto
 	find clients/python/print_nanny_client/protobuf -name '*.py*' | xargs sed -i 's/import common_pb2/from . import common_pb2/'
 	find clients/python/print_nanny_client/protobuf -name '*.py*' | xargs sed -i 's/from common_pb2/from .common_pb2/'
-	sed -i 's/alert_pb2/print_nanny_client.protobuf.alert_pb2/' clients/python/print_nanny_client/protobuf/alerts_pb2.py
+	sed -i 's/alert_pb2/print_nanny_client.protobuf.alert_pb2/' clients/python/print_nanny_client/protobuf/alert_pb2.py
 	sed -i 's/common_pb2/print_nanny_client.protobuf.common_pb2/' clients/python/print_nanny_client/protobuf/common_pb2.py
 	sed -i 's/monitoring_pb2/print_nanny_client.protobuf.monitoring_pb2/' clients/python/print_nanny_client/protobuf/monitoring_pb2.py
 
