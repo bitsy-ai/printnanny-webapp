@@ -11,7 +11,7 @@ from django.utils import dateformat
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-from print_nanny_client.protobuf.monitoring_pb2 import VideoRenderRequest
+from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
 
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
