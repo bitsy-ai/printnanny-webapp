@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny.alert',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0b\x61lert.proto\x12\x11print_nanny.alert\x1a\x0c\x63ommon.proto\"\x96\x01\n\x12VideoRenderRequest\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\x37\n\rprint_session\x18\x02 \x01(\x0b\x32 .print_nanny.common.PrintSession\x12\x17\n\x0f\x63\x64n_output_path\x18\x03 \x01(\tP\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0b\x61lert.proto\x12\x11print_nanny.alert\x1a\x0c\x63ommon.proto\"]\n\x12VideoRenderRequest\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\x17\n\x0f\x63\x64n_output_path\x18\x03 \x01(\tP\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,],
   public_dependencies=[common__pb2.DESCRIPTOR,])
@@ -44,14 +44,7 @@ _VIDEORENDERREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='print_session', full_name='print_nanny.alert.VideoRenderRequest.print_session', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='cdn_output_path', full_name='print_nanny.alert.VideoRenderRequest.cdn_output_path', index=2,
+      name='cdn_output_path', full_name='print_nanny.alert.VideoRenderRequest.cdn_output_path', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -69,12 +62,11 @@ _VIDEORENDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=49,
-  serialized_end=199,
+  serialized_start=48,
+  serialized_end=141,
 )
 
 _VIDEORENDERREQUEST.fields_by_name['metadata'].message_type = common__pb2._METADATA
-_VIDEORENDERREQUEST.fields_by_name['print_session'].message_type = common__pb2._PRINTSESSION
 DESCRIPTOR.message_types_by_name['VideoRenderRequest'] = _VIDEORENDERREQUEST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
