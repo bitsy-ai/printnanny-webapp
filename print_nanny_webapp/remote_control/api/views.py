@@ -1,7 +1,4 @@
-from asgiref.sync import async_to_sync
 import logging
-from django.apps import apps
-from django.core.files.base import ContentFile
 
 from rest_framework.mixins import (
     ListModelMixin,
@@ -22,8 +19,6 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import (
     MultiPartParser,
     FormParser,
-    JSONParser,
-    FileUploadParser,
 )
 import django_filters.rest_framework
 
@@ -101,6 +96,7 @@ class CommandViewSet(
     )
 )
 class PrintSessionViewSet(
+    UpdateModelMixin,
     CreateModelMixin,
     ListModelMixin,
     RetrieveModelMixin,

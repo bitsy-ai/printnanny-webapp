@@ -191,6 +191,7 @@ print_nanny_client/models/telemetry_event_event_type_enum.py
 print_nanny_client/models/telemetry_event_polymorphic.py
 print_nanny_client/models/user.py
 print_nanny_client/models/user_request.py
+print_nanny_client/py.typed
 print_nanny_client/rest.py
 requirements.txt
 setup.cfg

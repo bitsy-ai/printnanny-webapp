@@ -350,7 +350,7 @@ class PrintSession(models.Model):
     class Meta:
         unique_together = ("octoprint_device", "session")
 
-    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    created_dt = models.DateTimeField(db_index=True)
     updated_dt = models.DateTimeField(auto_now=True)
     octoprint_device = models.ForeignKey(
         OctoPrintDevice, on_delete=models.CASCADE, db_index=True

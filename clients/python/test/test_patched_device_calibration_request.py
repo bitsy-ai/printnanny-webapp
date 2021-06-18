@@ -37,14 +37,12 @@ class TestPatchedDeviceCalibrationRequest(unittest.TestCase):
         if include_optional :
             return PatchedDeviceCalibrationRequest(
                 octoprint_device = 56, 
-                fpm = -2147483648, 
-                coordinates = {
+                fps = 1.337, 
+                xy = {
                     'key' : null
                     }, 
-                mask = [
-                    1.337
-                    ], 
-                config_file = bytes(b'blah')
+                height = -2147483648, 
+                width = -2147483648
             )
         else :
             return PatchedDeviceCalibrationRequest(

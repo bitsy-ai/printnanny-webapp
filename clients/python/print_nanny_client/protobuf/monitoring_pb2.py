@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny.monitoring',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x10monitoring.proto\x12\x16print_nanny.monitoring\x1a\x0c\x63ommon.proto\"z\n\x0fMonitoringImage\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\n\n\x02ts\x18\x02 \x01(\x02\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\"=\n\x03\x42ox\x12\x0c\n\x04ymin\x18\x01 \x01(\x02\x12\x0c\n\x04xmin\x18\x02 \x01(\x02\x12\x0c\n\x04ymax\x18\x03 \x01(\x02\x12\x0c\n\x04xmax\x18\x04 \x01(\x02\"C\n\x11\x44\x65viceCalibration\x12\x13\n\x0b\x63oordinates\x18\x01 \x03(\x02\x12\x0c\n\x04mask\x18\x02 \x03(\x08\x12\x0b\n\x03\x66ps\x18\x03 \x01(\x02\"\xab\x01\n\x0e\x42oxAnnotations\x12\x16\n\x0enum_detections\x18\x02 \x01(\x05\x12\x18\n\x10\x64\x65tection_scores\x18\x03 \x03(\x02\x12\x19\n\x11\x64\x65tection_classes\x18\x04 \x03(\x05\x12\x34\n\x0f\x64\x65tection_boxes\x18\x05 \x03(\x0b\x32\x1b.print_nanny.monitoring.Box\x12\x16\n\x0ehealth_weights\x18\x06 \x03(\x02\"\xfc\x02\n\x18\x41nnotatedMonitoringImage\x12\x41\n\x10monitoring_image\x18\x01 \x01(\x0b\x32\'.print_nanny.monitoring.MonitoringImage\x12?\n\x0f\x61nnotations_all\x18\x02 \x01(\x0b\x32&.print_nanny.monitoring.BoxAnnotations\x12\x44\n\x14\x61nnotations_filtered\x18\x03 \x01(\x0b\x32&.print_nanny.monitoring.BoxAnnotations\x12\x17\n\x0fscore_threshold\x18\x04 \x01(\x02\x12$\n\x1cmin_calibration_area_overlap\x18\x05 \x01(\x02\x12>\n\x0b\x63\x61libration\x18\x06 \x01(\x0b\x32).print_nanny.monitoring.DeviceCalibration\x12\x17\n\x0f\x61nnotated_image\x18\x07 \x01(\x0c\"\xaf\x02\n\x1f\x41nnotatedMonitoringImagesWindow\x12J\n\x10\x61nnotated_images\x18\x01 \x03(\x0b\x32\x30.print_nanny.monitoring.AnnotatedMonitoringImage\x12\x14\n\x0cwindow_start\x18\x02 \x01(\x02\x12\x12\n\nwindow_end\x18\x03 \x01(\x02\x12W\n\x0bwindow_type\x18\x04 \x01(\x0e\x32\x42.print_nanny.monitoring.AnnotatedMonitoringImagesWindow.WindowType\"=\n\nWindowType\x12\n\n\x06GLOBAL\x10\x00\x12\t\n\x05\x46IXED\x10\x01\x12\x0b\n\x07SLIDING\x10\x02\x12\x0b\n\x07SESSION\x10\x03P\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x10monitoring.proto\x12\x16print_nanny.monitoring\x1a\x0c\x63ommon.proto\"n\n\x0fMonitoringImage\x12.\n\x08metadata\x18\x01 \x01(\x0b\x32\x1c.print_nanny.common.Metadata\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x05 \x01(\x0c\"0\n\x03\x42ox\x12\n\n\x02xy\x18\x01 \x03(\x02\x12\x0e\n\x06height\x18\x02 \x01(\x05\x12\r\n\x05width\x18\x03 \x01(\x05\"i\n\x11\x44\x65viceCalibration\x12(\n\x03\x62ox\x18\x01 \x01(\x0b\x32\x1b.print_nanny.monitoring.Box\x12\x0b\n\x03\x66ps\x18\x02 \x01(\x02\x12\x0e\n\x06height\x18\x03 \x01(\x05\x12\r\n\x05width\x18\x04 \x01(\x05\"\xab\x01\n\x0e\x42oxAnnotations\x12\x16\n\x0enum_detections\x18\x02 \x01(\x05\x12\x18\n\x10\x64\x65tection_scores\x18\x03 \x03(\x02\x12\x19\n\x11\x64\x65tection_classes\x18\x04 \x03(\x05\x12\x34\n\x0f\x64\x65tection_boxes\x18\x05 \x03(\x0b\x32\x1b.print_nanny.monitoring.Box\x12\x16\n\x0ehealth_weights\x18\x06 \x03(\x02\"\xfc\x02\n\x18\x41nnotatedMonitoringImage\x12\x41\n\x10monitoring_image\x18\x01 \x01(\x0b\x32\'.print_nanny.monitoring.MonitoringImage\x12?\n\x0f\x61nnotations_all\x18\x02 \x01(\x0b\x32&.print_nanny.monitoring.BoxAnnotations\x12\x44\n\x14\x61nnotations_filtered\x18\x03 \x01(\x0b\x32&.print_nanny.monitoring.BoxAnnotations\x12\x17\n\x0fscore_threshold\x18\x04 \x01(\x02\x12$\n\x1cmin_calibration_area_overlap\x18\x05 \x01(\x02\x12>\n\x0b\x63\x61libration\x18\x06 \x01(\x0b\x32).print_nanny.monitoring.DeviceCalibration\x12\x17\n\x0f\x61nnotated_image\x18\x07 \x01(\x0c\"\xaf\x02\n\x1f\x41nnotatedMonitoringImagesWindow\x12J\n\x10\x61nnotated_images\x18\x01 \x03(\x0b\x32\x30.print_nanny.monitoring.AnnotatedMonitoringImage\x12\x14\n\x0cwindow_start\x18\x02 \x01(\x02\x12\x12\n\nwindow_end\x18\x03 \x01(\x02\x12W\n\x0bwindow_type\x18\x04 \x01(\x0e\x32\x42.print_nanny.monitoring.AnnotatedMonitoringImagesWindow.WindowType\"=\n\nWindowType\x12\n\n\x06GLOBAL\x10\x00\x12\t\n\x05\x46IXED\x10\x01\x12\x0b\n\x07SLIDING\x10\x02\x12\x0b\n\x07SESSION\x10\x03P\x00\x62\x06proto3')
   ,
   dependencies=[common__pb2.DESCRIPTOR,],
   public_dependencies=[common__pb2.DESCRIPTOR,])
@@ -53,8 +53,8 @@ _ANNOTATEDMONITORINGIMAGESWINDOW_WINDOWTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1114,
-  serialized_end=1175,
+  serialized_start=1127,
+  serialized_end=1188,
 )
 _sym_db.RegisterEnumDescriptor(_ANNOTATEDMONITORINGIMAGESWINDOW_WINDOWTYPE)
 
@@ -74,28 +74,21 @@ _MONITORINGIMAGE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='ts', full_name='print_nanny.monitoring.MonitoringImage.ts', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='height', full_name='print_nanny.monitoring.MonitoringImage.height', index=2,
+      name='height', full_name='print_nanny.monitoring.MonitoringImage.height', index=1,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='width', full_name='print_nanny.monitoring.MonitoringImage.width', index=3,
+      name='width', full_name='print_nanny.monitoring.MonitoringImage.width', index=2,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='data', full_name='print_nanny.monitoring.MonitoringImage.data', index=4,
+      name='data', full_name='print_nanny.monitoring.MonitoringImage.data', index=3,
       number=5, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
@@ -114,7 +107,7 @@ _MONITORINGIMAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=58,
-  serialized_end=180,
+  serialized_end=168,
 )
 
 
@@ -126,30 +119,23 @@ _BOX = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='ymin', full_name='print_nanny.monitoring.Box.ymin', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='xy', full_name='print_nanny.monitoring.Box.xy', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='xmin', full_name='print_nanny.monitoring.Box.xmin', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='height', full_name='print_nanny.monitoring.Box.height', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='ymax', full_name='print_nanny.monitoring.Box.ymax', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='xmax', full_name='print_nanny.monitoring.Box.xmax', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='width', full_name='print_nanny.monitoring.Box.width', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -165,8 +151,8 @@ _BOX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=182,
-  serialized_end=243,
+  serialized_start=170,
+  serialized_end=218,
 )
 
 
@@ -178,23 +164,30 @@ _DEVICECALIBRATION = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='coordinates', full_name='print_nanny.monitoring.DeviceCalibration.coordinates', index=0,
-      number=1, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
+      name='box', full_name='print_nanny.monitoring.DeviceCalibration.box', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='mask', full_name='print_nanny.monitoring.DeviceCalibration.mask', index=1,
-      number=2, type=8, cpp_type=7, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='fps', full_name='print_nanny.monitoring.DeviceCalibration.fps', index=2,
-      number=3, type=2, cpp_type=6, label=1,
+      name='fps', full_name='print_nanny.monitoring.DeviceCalibration.fps', index=1,
+      number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='height', full_name='print_nanny.monitoring.DeviceCalibration.height', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='width', full_name='print_nanny.monitoring.DeviceCalibration.width', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -210,8 +203,8 @@ _DEVICECALIBRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=245,
-  serialized_end=312,
+  serialized_start=220,
+  serialized_end=325,
 )
 
 
@@ -269,8 +262,8 @@ _BOXANNOTATIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=315,
-  serialized_end=486,
+  serialized_start=328,
+  serialized_end=499,
 )
 
 
@@ -342,8 +335,8 @@ _ANNOTATEDMONITORINGIMAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=489,
-  serialized_end=869,
+  serialized_start=502,
+  serialized_end=882,
 )
 
 
@@ -395,11 +388,12 @@ _ANNOTATEDMONITORINGIMAGESWINDOW = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=872,
-  serialized_end=1175,
+  serialized_start=885,
+  serialized_end=1188,
 )
 
 _MONITORINGIMAGE.fields_by_name['metadata'].message_type = common__pb2._METADATA
+_DEVICECALIBRATION.fields_by_name['box'].message_type = _BOX
 _BOXANNOTATIONS.fields_by_name['detection_boxes'].message_type = _BOX
 _ANNOTATEDMONITORINGIMAGE.fields_by_name['monitoring_image'].message_type = _MONITORINGIMAGE
 _ANNOTATEDMONITORINGIMAGE.fields_by_name['annotations_all'].message_type = _BOXANNOTATIONS
@@ -418,42 +412,42 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 MonitoringImage = _reflection.GeneratedProtocolMessageType('MonitoringImage', (_message.Message,), dict(
   DESCRIPTOR = _MONITORINGIMAGE,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.MonitoringImage)
   ))
 _sym_db.RegisterMessage(MonitoringImage)
 
 Box = _reflection.GeneratedProtocolMessageType('Box', (_message.Message,), dict(
   DESCRIPTOR = _BOX,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.Box)
   ))
 _sym_db.RegisterMessage(Box)
 
 DeviceCalibration = _reflection.GeneratedProtocolMessageType('DeviceCalibration', (_message.Message,), dict(
   DESCRIPTOR = _DEVICECALIBRATION,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.DeviceCalibration)
   ))
 _sym_db.RegisterMessage(DeviceCalibration)
 
 BoxAnnotations = _reflection.GeneratedProtocolMessageType('BoxAnnotations', (_message.Message,), dict(
   DESCRIPTOR = _BOXANNOTATIONS,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.BoxAnnotations)
   ))
 _sym_db.RegisterMessage(BoxAnnotations)
 
 AnnotatedMonitoringImage = _reflection.GeneratedProtocolMessageType('AnnotatedMonitoringImage', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEDMONITORINGIMAGE,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.AnnotatedMonitoringImage)
   ))
 _sym_db.RegisterMessage(AnnotatedMonitoringImage)
 
 AnnotatedMonitoringImagesWindow = _reflection.GeneratedProtocolMessageType('AnnotatedMonitoringImagesWindow', (_message.Message,), dict(
   DESCRIPTOR = _ANNOTATEDMONITORINGIMAGESWINDOW,
-  __module__ = 'monitoring_pb2'
+  __module__ = 'print_nanny_client.protobuf.monitoring_pb2'
   # @@protoc_insertion_point(class_scope:print_nanny.monitoring.AnnotatedMonitoringImagesWindow)
   ))
 _sym_db.RegisterMessage(AnnotatedMonitoringImagesWindow)

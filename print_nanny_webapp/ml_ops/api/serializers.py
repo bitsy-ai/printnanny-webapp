@@ -15,7 +15,7 @@ class JSONArrayField(serializers.JSONField):
 
 class DeviceCalibrationSerializer(serializers.ModelSerializer):
 
-    mask = JSONArrayField()
+    # mask = JSONArrayField()
 
     class Meta:
         model = DeviceCalibration

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
+**created_dt** | **datetime** |  | 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **session** | **str** |  | 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **gcode_filename** | **str** |  | [optional] 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
+**datesegment** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

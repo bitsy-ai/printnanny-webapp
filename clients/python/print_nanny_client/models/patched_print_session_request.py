@@ -36,6 +36,7 @@ class PatchedPrintSessionRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'created_dt': 'datetime',
         'octoprint_device': 'int',
         'session': 'str',
         'filepos': 'int',
@@ -49,6 +50,7 @@ class PatchedPrintSessionRequest(object):
     }
 
     attribute_map = {
+        'created_dt': 'created_dt',
         'octoprint_device': 'octoprint_device',
         'session': 'session',
         'filepos': 'filepos',
@@ -61,12 +63,13 @@ class PatchedPrintSessionRequest(object):
         'octoprint_job': 'octoprint_job'
     }
 
-    def __init__(self, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._created_dt = None
         self._octoprint_device = None
         self._session = None
         self._filepos = None
@@ -79,6 +82,8 @@ class PatchedPrintSessionRequest(object):
         self._octoprint_job = None
         self.discriminator = None
 
+        if created_dt is not None:
+            self.created_dt = created_dt
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
         if session is not None:
@@ -91,6 +96,27 @@ class PatchedPrintSessionRequest(object):
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
         self.octoprint_job = octoprint_job
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this PatchedPrintSessionRequest.  # noqa: E501
+
+
+        :return: The created_dt of this PatchedPrintSessionRequest.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this PatchedPrintSessionRequest.
+
+
+        :param created_dt: The created_dt of this PatchedPrintSessionRequest.  # noqa: E501
+        :type created_dt: datetime
+        """
+
+        self._created_dt = created_dt
 
     @property
     def octoprint_device(self):

@@ -18,10 +18,10 @@ import java.io.Serializable
 
 /**
  * 
+ * @param createdDt 
  * @param octoprintDevice 
  * @param session 
  * @param id 
- * @param createdDt 
  * @param updatedDt 
  * @param filepos 
  * @param printProgress 
@@ -33,17 +33,18 @@ import java.io.Serializable
  * @param gcodeFilename 
  * @param octoprintJob 
  * @param url 
+ * @param datesegment 
  */
 
 data class PrintSession (
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "session")
     val session: kotlin.String,
     @Json(name = "id")
     val id: kotlin.Int? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
     @Json(name = "filepos")
@@ -65,7 +66,9 @@ data class PrintSession (
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "url")
-    val url: java.net.URI? = null
+    val url: java.net.URI? = null,
+    @Json(name = "datesegment")
+    val datesegment: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

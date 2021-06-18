@@ -168,6 +168,8 @@ class PrintSessionSerializer(serializers.ModelSerializer):
         model = PrintSession
         fields = [field.name for field in PrintSession._meta.fields] + [
             "url",
+            "datesegment",
+            "created_dt",
         ]
         read_only_fields = ("user",)
         extra_kwargs = {

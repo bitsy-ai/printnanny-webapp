@@ -19,23 +19,23 @@ import java.io.Serializable
 /**
  * 
  * @param octoprintDevice 
- * @param fpm 
- * @param coordinates 
- * @param mask 
- * @param configFile 
+ * @param fps 
+ * @param xy 
+ * @param height 
+ * @param width 
  */
 
 data class PatchedDeviceCalibrationRequest (
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null,
-    @Json(name = "fpm")
-    val fpm: kotlin.Int? = null,
-    @Json(name = "coordinates")
-    val coordinates: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "mask")
-    val mask: kotlin.collections.List<java.math.BigDecimal>? = null,
-    @Json(name = "config_file")
-    val configFile: java.io.File? = null
+    @Json(name = "fps")
+    val fps: kotlin.Float? = null,
+    @Json(name = "xy")
+    val xy: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "height")
+    val height: kotlin.Int? = null,
+    @Json(name = "width")
+    val width: kotlin.Int? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

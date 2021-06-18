@@ -6,22 +6,22 @@ package print_nanny.monitoring;
 
 message MonitoringImage {
     print_nanny.common.Metadata metadata = 1;
-    float ts = 2;
     int32 height = 3;
     int32 width = 4;
     bytes data = 5;
 }
 
 message Box {
-    float ymin = 1;
-    float xmin = 2;
-    float ymax = 3;
-    float xmax = 4;
+    repeated float xy = 1;
+    int32 height = 2;
+    int32 width = 3;
 }
 
 message DeviceCalibration {
-    repeated float coordinates = 1;
+    Box box = 1;
     float fps  = 2;
+    int32 height = 3;
+    int32 width = 4;
 }
 
 message BoxAnnotations {

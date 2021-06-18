@@ -11,7 +11,8 @@ from django.utils import dateformat
 
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-from print_nanny_client.protobuf.monitoring_pb2 import VideoRenderRequest
+from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
+from print_nanny_client.protobuf.metadata_pb2 import Metadata, PrintSession
 
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
@@ -24,7 +25,6 @@ from django.contrib.auth import get_user_model
 from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
     PrintStatusEventType,
-    PrinterState,
     RemoteCommandEventType,
     PrintNannyPluginEventType,
 )
@@ -106,14 +106,20 @@ def publish_video_render_msg(event: PrintStatusEvent) -> str:
         now = datetime.utcnow()
         ts = now.timestamp()
         cdn_output_path = f"media/uploads/PrintSessionAlert/{event.print_session.datesegment}/{event.print_session.session}"
-        msg = VideoRenderRequest(
-            print_session=event.print_session.session,
-            print_session_id=event.print_session.id,
-            print_session_datesegment=event.print_session.datesegment,
+        print_session = PrintSession(
+            session=event.print_session.session,
+            id=event.print_session.id,
+            datesegment=event.print_session.datesegment,
+        )
+        metadata = Metadata(
             user_id=event.user.id,
             octoprint_device_id=event.octoprint_device.id,
             cloudiot_device_id=event.octoprint_device.cloudiot_device_num_id,
             ts=ts,
+            print_session=print_session,
+        )
+        msg = VideoRenderRequest(
+            metadata=metadata,
             cdn_output_path=cdn_output_path,
         )
         future = publisher.publish(video_render_topic_path, msg.SerializeToString())

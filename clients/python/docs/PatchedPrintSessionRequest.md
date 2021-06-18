@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**created_dt** | **datetime** |  | [optional] 
 **octoprint_device** | **int** |  | [optional] 
 **session** | **str** |  | [optional] 
 **filepos** | **int** |  | [optional] 

@@ -40,10 +40,10 @@ class DeviceCalibration(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'octoprint_device': 'int',
-        'fpm': 'int',
-        'coordinates': 'dict(str, object)',
-        'mask': 'list[float]',
-        'config_file': 'str',
+        'fps': 'float',
+        'xy': 'dict(str, object)',
+        'height': 'int',
+        'width': 'int',
         'url': 'str'
     }
 
@@ -52,14 +52,14 @@ class DeviceCalibration(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'octoprint_device': 'octoprint_device',
-        'fpm': 'fpm',
-        'coordinates': 'coordinates',
-        'mask': 'mask',
-        'config_file': 'config_file',
+        'fps': 'fps',
+        'xy': 'xy',
+        'height': 'height',
+        'width': 'width',
         'url': 'url'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, fpm=None, coordinates=None, mask=None, config_file=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, fps=None, xy=None, height=None, width=None, url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceCalibration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -69,10 +69,10 @@ class DeviceCalibration(object):
         self._created_dt = None
         self._updated_dt = None
         self._octoprint_device = None
-        self._fpm = None
-        self._coordinates = None
-        self._mask = None
-        self._config_file = None
+        self._fps = None
+        self._xy = None
+        self._height = None
+        self._width = None
         self._url = None
         self.discriminator = None
 
@@ -83,10 +83,13 @@ class DeviceCalibration(object):
         if updated_dt is not None:
             self.updated_dt = updated_dt
         self.octoprint_device = octoprint_device
-        self.fpm = fpm
-        self.coordinates = coordinates
-        self.mask = mask
-        self.config_file = config_file
+        if fps is not None:
+            self.fps = fps
+        self.xy = xy
+        if height is not None:
+            self.height = height
+        if width is not None:
+            self.width = width
         if url is not None:
             self.url = url
 
@@ -177,96 +180,100 @@ class DeviceCalibration(object):
         self._octoprint_device = octoprint_device
 
     @property
-    def fpm(self):
-        """Gets the fpm of this DeviceCalibration.  # noqa: E501
+    def fps(self):
+        """Gets the fps of this DeviceCalibration.  # noqa: E501
 
 
-        :return: The fpm of this DeviceCalibration.  # noqa: E501
-        :rtype: int
+        :return: The fps of this DeviceCalibration.  # noqa: E501
+        :rtype: float
         """
-        return self._fpm
+        return self._fps
 
-    @fpm.setter
-    def fpm(self, fpm):
-        """Sets the fpm of this DeviceCalibration.
+    @fps.setter
+    def fps(self, fps):
+        """Sets the fps of this DeviceCalibration.
 
 
-        :param fpm: The fpm of this DeviceCalibration.  # noqa: E501
-        :type fpm: int
+        :param fps: The fps of this DeviceCalibration.  # noqa: E501
+        :type fps: float
         """
-        if (self.local_vars_configuration.client_side_validation and
-                fpm is not None and fpm > 2147483647):  # noqa: E501
-            raise ValueError("Invalid value for `fpm`, must be a value less than or equal to `2147483647`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                fpm is not None and fpm < -2147483648):  # noqa: E501
-            raise ValueError("Invalid value for `fpm`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
-        self._fpm = fpm
+        self._fps = fps
 
     @property
-    def coordinates(self):
-        """Gets the coordinates of this DeviceCalibration.  # noqa: E501
+    def xy(self):
+        """Gets the xy of this DeviceCalibration.  # noqa: E501
 
 
-        :return: The coordinates of this DeviceCalibration.  # noqa: E501
+        :return: The xy of this DeviceCalibration.  # noqa: E501
         :rtype: dict(str, object)
         """
-        return self._coordinates
+        return self._xy
 
-    @coordinates.setter
-    def coordinates(self, coordinates):
-        """Sets the coordinates of this DeviceCalibration.
+    @xy.setter
+    def xy(self, xy):
+        """Sets the xy of this DeviceCalibration.
 
 
-        :param coordinates: The coordinates of this DeviceCalibration.  # noqa: E501
-        :type coordinates: dict(str, object)
+        :param xy: The xy of this DeviceCalibration.  # noqa: E501
+        :type xy: dict(str, object)
         """
 
-        self._coordinates = coordinates
+        self._xy = xy
 
     @property
-    def mask(self):
-        """Gets the mask of this DeviceCalibration.  # noqa: E501
+    def height(self):
+        """Gets the height of this DeviceCalibration.  # noqa: E501
 
 
-        :return: The mask of this DeviceCalibration.  # noqa: E501
-        :rtype: list[float]
+        :return: The height of this DeviceCalibration.  # noqa: E501
+        :rtype: int
         """
-        return self._mask
+        return self._height
 
-    @mask.setter
-    def mask(self, mask):
-        """Sets the mask of this DeviceCalibration.
+    @height.setter
+    def height(self, height):
+        """Sets the height of this DeviceCalibration.
 
 
-        :param mask: The mask of this DeviceCalibration.  # noqa: E501
-        :type mask: list[float]
+        :param height: The height of this DeviceCalibration.  # noqa: E501
+        :type height: int
         """
-        if self.local_vars_configuration.client_side_validation and mask is None:  # noqa: E501
-            raise ValueError("Invalid value for `mask`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                height is not None and height > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `height`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                height is not None and height < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `height`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
-        self._mask = mask
+        self._height = height
 
     @property
-    def config_file(self):
-        """Gets the config_file of this DeviceCalibration.  # noqa: E501
+    def width(self):
+        """Gets the width of this DeviceCalibration.  # noqa: E501
 
 
-        :return: The config_file of this DeviceCalibration.  # noqa: E501
-        :rtype: str
+        :return: The width of this DeviceCalibration.  # noqa: E501
+        :rtype: int
         """
-        return self._config_file
+        return self._width
 
-    @config_file.setter
-    def config_file(self, config_file):
-        """Sets the config_file of this DeviceCalibration.
+    @width.setter
+    def width(self, width):
+        """Sets the width of this DeviceCalibration.
 
 
-        :param config_file: The config_file of this DeviceCalibration.  # noqa: E501
-        :type config_file: str
+        :param width: The width of this DeviceCalibration.  # noqa: E501
+        :type width: int
         """
+        if (self.local_vars_configuration.client_side_validation and
+                width is not None and width > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `width`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                width is not None and width < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `width`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
-        self._config_file = config_file
+        self._width = width
 
     @property
     def url(self):

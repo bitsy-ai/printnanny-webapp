@@ -1,4 +1,5 @@
 import logging
+import json
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from drf_spectacular.utils import extend_schema
@@ -58,7 +59,7 @@ class DeviceCalibrationViewSet(
         if serializer.is_valid():
             config_file_content = json.dumps(
                 dict(
-                    fpm=serializer.validated_data["fpm"],
+                    fps=serializer.validated_data["fps"],
                     mask=serializer.validated_data["mask"],
                     coordinates=serializer.validated_data["coordinates"],
                 )

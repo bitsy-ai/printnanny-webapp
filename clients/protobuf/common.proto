@@ -19,11 +19,18 @@ message OctoprintEnvironment {
 
 }
 
+message PrintSession {
+    string session = 1;
+    int32 id = 2;
+    float created_ts = 3;
+    string datesegment = 4;
+}
+
 message Metadata {
-    string print_session = 2;
-    uint32 print_session_id = 3;
-    uint32 user_id = 4;
-    uint32 octoprint_device_id = 5;
-    uint64 cloudiot_device_id = 6;
-    OctoprintEnvironment octoprint_environment = 7;
+    float ts = 1;
+    uint32 user_id = 2;
+    uint32 octoprint_device_id = 3;
+    uint64 cloudiot_device_id = 4;
+    OctoprintEnvironment octoprint_environment = 5;
+    PrintSession print_session = 6;
 }

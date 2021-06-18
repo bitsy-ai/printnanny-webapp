@@ -4,7 +4,5 @@ import public "common.proto";
 
 message VideoRenderRequest {
     print_nanny.common.Metadata metadata = 1;
-    float ts = 2;
     string cdn_output_path = 3;
-    string print_session_datesegment = 4;
 }
