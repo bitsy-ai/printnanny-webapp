@@ -67,7 +67,7 @@ def handle_print_progress(event: OctoPrintEvent):
     alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
     should_alert = (
         progress % alert_settings.print_progress_percent == 0
-        # and progress != 100
+        and progress != 100
         and progress != 0
     )
     if event.print_session:
