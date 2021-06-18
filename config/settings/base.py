@@ -592,4 +592,4 @@ MESSAGE_TAGS = {
 
 # messages
 # ------------------------------------------------------------------------------
-GCP_RENDER_VIDEO_TOPIC = "monitoring-video-render"
+GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"

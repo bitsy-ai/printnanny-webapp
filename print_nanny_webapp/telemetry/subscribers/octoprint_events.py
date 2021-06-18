@@ -12,7 +12,7 @@ from django.utils import dateformat
 # If DJANGO_SETTINGS_MODULE is unset, default to the local settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
-from print_nanny_client.protobuf.metadata_pb2 import Metadata, PrintSession
+import print_nanny_client.protobuf.common_pb2
 
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
@@ -106,12 +106,12 @@ def publish_video_render_msg(event: PrintStatusEvent) -> str:
         now = datetime.utcnow()
         ts = now.timestamp()
         cdn_output_path = f"media/uploads/PrintSessionAlert/{event.print_session.datesegment}/{event.print_session.session}"
-        print_session = PrintSession(
+        print_session = print_nanny_client.protobuf.common_pb2.PrintSession(
             session=event.print_session.session,
             id=event.print_session.id,
             datesegment=event.print_session.datesegment,
         )
-        metadata = Metadata(
+        metadata = print_nanny_client.protobuf.common_pb2.Metadata(
             user_id=event.user.id,
             octoprint_device_id=event.octoprint_device.id,
             cloudiot_device_id=event.octoprint_device.cloudiot_device_num_id,
