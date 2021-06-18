@@ -309,25 +309,25 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    fpm?: number | null;
+    fps?: number;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof DeviceCalibration
      */
-    coordinates?: { [key: string]: any; } | null;
+    xy?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {number}
      * @memberof DeviceCalibration
      */
-    mask: Array<number>;
+    height?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof DeviceCalibration
      */
-    config_file?: string | null;
+    width?: number;
     /**
      * 
      * @type {string}
@@ -352,25 +352,25 @@ export interface DeviceCalibrationRequest {
      * @type {number}
      * @memberof DeviceCalibrationRequest
      */
-    fpm?: number | null;
+    fps?: number;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof DeviceCalibrationRequest
      */
-    coordinates?: { [key: string]: any; } | null;
+    xy?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {number}
      * @memberof DeviceCalibrationRequest
      */
-    mask: Array<number>;
+    height?: number;
     /**
      * 
-     * @type {any}
+     * @type {number}
      * @memberof DeviceCalibrationRequest
      */
-    config_file?: any | null;
+    width?: number;
 }
 /**
  * 
@@ -2514,25 +2514,25 @@ export interface PatchedDeviceCalibrationRequest {
      * @type {number}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    fpm?: number | null;
+    fps?: number;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    coordinates?: { [key: string]: any; } | null;
+    xy?: { [key: string]: any; } | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {number}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    mask?: Array<number>;
+    height?: number;
     /**
      * 
-     * @type {any}
+     * @type {number}
      * @memberof PatchedDeviceCalibrationRequest
      */
-    config_file?: any | null;
+    width?: number;
 }
 /**
  * 
