@@ -51,7 +51,12 @@ def on_alert_event(message):
     print_session_str = render_video_msg.metadata.print_session.session
     print_session_id = render_video_msg.metadata.print_session.id
     octoprint_device_id = render_video_msg.metadata.octoprint_device_id
-    cdn_output_path = render_video_msg.cdn_output_path
+    annotated_video_path = os.path.join(
+        render_video_msg.cdn_output_path, "annotated_video.mp4"
+    )
+    annotated_video_path = annotated_video_path.replace(
+        "media/", ""
+    )  # django will prepend media root, this prevents a string like print-nanny-sandbox/media/media/path/to/upload
 
     alert_settings, created = AlertSettings.objects.get_or_create(
         user_id=user_id,
@@ -63,7 +68,7 @@ def on_alert_event(message):
             user_id=user_id,
             event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
             octoprint_device_id=octoprint_device_id,
-            annotated_video=cdn_output_path,
+            annotated_video=annotated_video_path,
             print_session=print_session,
             alert_method=alert_method,
         )
