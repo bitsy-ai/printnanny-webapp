@@ -34,7 +34,7 @@ class AlertSettings(models.Model):
         PRINT_HEALTH = "PrintHealth", "Print health alerts"
         PRINT_STATUS = (
             "PrintStatus",
-            "Print status updates (started, percent progress, paused, resumed, cancelling, cancelled, failed, done)",
+            "Print status updates (percent progress, paused, resumed, failed)",
         )
 
     class AlertMethod(models.TextChoices):

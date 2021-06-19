@@ -372,7 +372,7 @@ class PrintSession(models.Model):
 
     @property
     def datesegment(self):
-        return dateformat.format(self.created_dt, "Y/M/d/")
+        return dateformat.format(self.created_dt, "Y/m/d/")
 
     @property
     def duration(self):

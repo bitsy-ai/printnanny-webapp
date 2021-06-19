@@ -139,8 +139,8 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     #         event.octoprint_device.last_session.print_progress = 0
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
-    if print_event_is_final(event.event_type):
-        publish_video_render_msg(event)
+    # if print_event_is_final(event.event_type):
+    #     publish_video_render_msg(event)
 
     return event.octoprint_device.save()
 
