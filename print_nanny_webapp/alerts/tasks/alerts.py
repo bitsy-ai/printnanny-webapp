@@ -135,16 +135,17 @@ class AlertTask:
             serializer = self.get_serializer()
             data = serializer.data
 
+            gcode_filename = (
+                self.instance.print_session.gcode_filename
+                if self.instance.print_session.gcode_filename
+                else None
+            )
             merge_data = {
                 "DEVICE_URL": device_url,
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
                 "DEVICE_NAME": self.instance.octoprint_device.name,
                 "EVENT_TYPE": self.instance.event_type,
-                "GCODE_FILENAME": self.instance.event.octoprint_printer_data.get(
-                    "job", {}
-                )
-                .get("file", {})
-                .get("name"),
+                "GCODE_FILENAME": gcode_filename,
             }
             if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
                 videos_url = reverse("dashboard:videos:list")
@@ -152,13 +153,11 @@ class AlertTask:
                 merge_data.update(
                     {
                         "VIDEO_DASHBOARD_URL": videos_url,
-                        "TIME_ELAPSED": data["time_elapsed"],
+                        "TIME_ELAPSED": self.instance.print_session.time_elapsed,
                     }
                 )
             else:
-                time_remaining = self.instance.event.octoprint_printer_data.get(
-                    "progress"
-                ).get("printTimeLeft")
+                time_remaining = self.instance.print_session.time_remaining
                 time_remaining = time.strftime("%H:%M:%S", time.gmtime(time_remaining))
                 merge_data.update(
                     {

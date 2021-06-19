@@ -21,8 +21,9 @@ import stringcase
 
 application = get_wsgi_application()
 from django.apps import apps
+from google.protobuf.message import DecodeError
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
-from print_nanny_client.protobuf.alerts_pb import RenderVideoRequest
+from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
@@ -37,14 +38,20 @@ subscription_name = settings.GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION
 
 
 def on_alert_event(message):
-    render_video_msg = RenderVideoRequest()
-    render_video_msg.SerializeFromString(message.data)
+    render_video_msg = VideoRenderRequest()
+    try:
+        render_video_msg.ParseFromString(message.data)
+    except DecodeError as e:
+        logger.exception(e)
+        logger.error(message)
+        return message.ack()
 
+    logger.info(render_video_msg)
     user_id = render_video_msg.metadata.user_id
     print_session_str = render_video_msg.metadata.print_session.session
     print_session_id = render_video_msg.metadata.print_session.id
     octoprint_device_id = render_video_msg.metadata.octoprint_device_id
-    cdn_upload_path = render_video_msg.cdn_upload_path
+    cdn_output_path = render_video_msg.cdn_output_path
 
     alert_settings, created = AlertSettings.objects.get_or_create(
         user_id=user_id,
@@ -56,7 +63,7 @@ def on_alert_event(message):
             user_id=user_id,
             event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
             octoprint_device_id=octoprint_device_id,
-            annotated_video=cdn_upload_path,
+            annotated_video=cdn_output_path,
             print_session=print_session,
             alert_method=alert_method,
         )
