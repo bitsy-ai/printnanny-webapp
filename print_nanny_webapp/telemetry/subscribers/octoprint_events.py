@@ -39,11 +39,6 @@ from print_nanny_webapp.telemetry.models import (
 )
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
-# OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-# PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
-# PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-# RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
-# TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
