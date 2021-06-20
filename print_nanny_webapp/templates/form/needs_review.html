@@ -6,7 +6,7 @@
     <input type="hidden" value="{{ obj.id }}" name="alert_id">
     {% if obj.needs_review == False %}
             <input type="hidden" value="1" name="needs_review">
-            <p>Flag for review</p>
+            <p>Flag video for review.</p>
             <button name="action" value="needs_review" type="submit" class="btn btn-lg btn-light">🚩</button> 
     {% elif obj.needs_review == True %}
         <input type="hidden" value="0" name="needs_review">

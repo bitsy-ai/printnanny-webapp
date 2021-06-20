@@ -1,6 +1,11 @@
 syntax = "proto3";
 package print_nanny.common;
 
+message Window {
+    float window_start = 1;
+    float window_end = 2;
+}
+
 message OctoprintEnvironment {
     string client_version = 1;
     string plugin_version = 2;
@@ -10,7 +15,7 @@ message OctoprintEnvironment {
     string octoprint_version = 6;
     string virtualenv = 7;
     string platform = 8;
-    int32 bits = 9;
+    uint32 bits = 9;
     uint32 cores = 10;
     float freq = 11;
     uint64 ram = 12;
@@ -22,12 +27,12 @@ message OctoprintEnvironment {
 message PrintSession {
     string session = 1;
     int32 id = 2;
-    float created_ts = 3;
+    double created_ts = 3;
     string datesegment = 4;
 }
 
 message Metadata {
-    float ts = 1;
+    double ts = 1;
     uint32 user_id = 2;
     uint32 octoprint_device_id = 3;
     uint64 cloudiot_device_id = 4;
