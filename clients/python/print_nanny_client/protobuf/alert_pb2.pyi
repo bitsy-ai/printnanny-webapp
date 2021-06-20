@@ -12,6 +12,7 @@ from .common_pb2 import (
     Metadata as Metadata,
     OctoprintEnvironment as OctoprintEnvironment,
     PrintSession as PrintSession,
+    Window as Window,
 )
 
 
