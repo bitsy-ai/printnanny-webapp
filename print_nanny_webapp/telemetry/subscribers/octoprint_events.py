@@ -39,11 +39,6 @@ from print_nanny_webapp.telemetry.models import (
 )
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
-# OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
-# PrintNannyPluginEvent = apps.get_model("telemetry", "PrintNannyPluginEvent")
-# PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-# RemoteCommandEvent = apps.get_model("telemetry", "RemoteCommandEvent")
-# TelemetryEvent = apps.get_model("telemetry", "TelemetryEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
@@ -67,7 +62,7 @@ def handle_print_progress(event: OctoPrintEvent):
     alert_settings, created = AlertSettings.objects.get_or_create(user=event.user)
     should_alert = (
         progress % alert_settings.print_progress_percent == 0
-        # and progress != 100
+        and progress != 100
         and progress != 0
     )
     if event.print_session:
@@ -139,8 +134,8 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     #         event.octoprint_device.last_session.print_progress = 0
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
-    if print_event_is_final(event.event_type):
-        publish_video_render_msg(event)
+    # if print_event_is_final(event.event_type):
+    #     publish_video_render_msg(event)
 
     return event.octoprint_device.save()
 

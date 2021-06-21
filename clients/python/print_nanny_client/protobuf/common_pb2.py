@@ -19,10 +19,48 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='print_nanny.common',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"\xb1\x02\n\x14OctoprintEnvironment\x12\x16\n\x0e\x63lient_version\x18\x01 \x01(\t\x12\x16\n\x0eplugin_version\x18\x02 \x01(\t\x12\x16\n\x0epython_version\x18\x03 \x01(\t\x12\x13\n\x0bpip_version\x18\x04 \x01(\t\x12\x16\n\x0eoctopi_version\x18\x05 \x01(\t\x12\x19\n\x11octoprint_version\x18\x06 \x01(\t\x12\x12\n\nvirtualenv\x18\x07 \x01(\t\x12\x10\n\x08platform\x18\x08 \x01(\t\x12\x0c\n\x04\x62its\x18\t \x01(\x05\x12\r\n\x05\x63ores\x18\n \x01(\r\x12\x0c\n\x04\x66req\x18\x0b \x01(\x02\x12\x0b\n\x03ram\x18\x0c \x01(\x04\x12\x10\n\x08pi_model\x18\r \x01(\t\x12\x19\n\x11pi_throttle_state\x18\x0e \x01(\t\"T\n\x0cPrintSession\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x12\n\ncreated_ts\x18\x03 \x01(\x02\x12\x13\n\x0b\x64\x61tesegment\x18\x04 \x01(\t\"\xe2\x01\n\x08Metadata\x12\n\n\x02ts\x18\x01 \x01(\x02\x12\x0f\n\x07user_id\x18\x02 \x01(\r\x12\x1b\n\x13octoprint_device_id\x18\x03 \x01(\r\x12\x1a\n\x12\x63loudiot_device_id\x18\x04 \x01(\x04\x12G\n\x15octoprint_environment\x18\x05 \x01(\x0b\x32(.print_nanny.common.OctoprintEnvironment\x12\x37\n\rprint_session\x18\x06 \x01(\x0b\x32 .print_nanny.common.PrintSessionb\x06proto3')
+  serialized_pb=_b('\n\x0c\x63ommon.proto\x12\x12print_nanny.common\"2\n\x06Window\x12\x14\n\x0cwindow_start\x18\x01 \x01(\x02\x12\x12\n\nwindow_end\x18\x02 \x01(\x02\"\xb1\x02\n\x14OctoprintEnvironment\x12\x16\n\x0e\x63lient_version\x18\x01 \x01(\t\x12\x16\n\x0eplugin_version\x18\x02 \x01(\t\x12\x16\n\x0epython_version\x18\x03 \x01(\t\x12\x13\n\x0bpip_version\x18\x04 \x01(\t\x12\x16\n\x0eoctopi_version\x18\x05 \x01(\t\x12\x19\n\x11octoprint_version\x18\x06 \x01(\t\x12\x12\n\nvirtualenv\x18\x07 \x01(\t\x12\x10\n\x08platform\x18\x08 \x01(\t\x12\x0c\n\x04\x62its\x18\t \x01(\r\x12\r\n\x05\x63ores\x18\n \x01(\r\x12\x0c\n\x04\x66req\x18\x0b \x01(\x02\x12\x0b\n\x03ram\x18\x0c \x01(\x04\x12\x10\n\x08pi_model\x18\r \x01(\t\x12\x19\n\x11pi_throttle_state\x18\x0e \x01(\t\"T\n\x0cPrintSession\x12\x0f\n\x07session\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\x12\n\ncreated_ts\x18\x03 \x01(\x01\x12\x13\n\x0b\x64\x61tesegment\x18\x04 \x01(\t\"\xe2\x01\n\x08Metadata\x12\n\n\x02ts\x18\x01 \x01(\x01\x12\x0f\n\x07user_id\x18\x02 \x01(\r\x12\x1b\n\x13octoprint_device_id\x18\x03 \x01(\r\x12\x1a\n\x12\x63loudiot_device_id\x18\x04 \x01(\x04\x12G\n\x15octoprint_environment\x18\x05 \x01(\x0b\x32(.print_nanny.common.OctoprintEnvironment\x12\x37\n\rprint_session\x18\x06 \x01(\x0b\x32 .print_nanny.common.PrintSessionb\x06proto3')
 )
 
 
+
+
+_WINDOW = _descriptor.Descriptor(
+  name='Window',
+  full_name='print_nanny.common.Window',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='window_start', full_name='print_nanny.common.Window.window_start', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='window_end', full_name='print_nanny.common.Window.window_end', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=36,
+  serialized_end=86,
+)
 
 
 _OCTOPRINTENVIRONMENT = _descriptor.Descriptor(
@@ -90,7 +128,7 @@ _OCTOPRINTENVIRONMENT = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='bits', full_name='print_nanny.common.OctoprintEnvironment.bits', index=8,
-      number=9, type=5, cpp_type=1, label=1,
+      number=9, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -142,8 +180,8 @@ _OCTOPRINTENVIRONMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=342,
+  serialized_start=89,
+  serialized_end=394,
 )
 
 
@@ -170,7 +208,7 @@ _PRINTSESSION = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='created_ts', full_name='print_nanny.common.PrintSession.created_ts', index=2,
-      number=3, type=2, cpp_type=6, label=1,
+      number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -194,8 +232,8 @@ _PRINTSESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=344,
-  serialized_end=428,
+  serialized_start=396,
+  serialized_end=480,
 )
 
 
@@ -208,7 +246,7 @@ _METADATA = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='ts', full_name='print_nanny.common.Metadata.ts', index=0,
-      number=1, type=2, cpp_type=6, label=1,
+      number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -260,16 +298,24 @@ _METADATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=431,
-  serialized_end=657,
+  serialized_start=483,
+  serialized_end=709,
 )
 
 _METADATA.fields_by_name['octoprint_environment'].message_type = _OCTOPRINTENVIRONMENT
 _METADATA.fields_by_name['print_session'].message_type = _PRINTSESSION
+DESCRIPTOR.message_types_by_name['Window'] = _WINDOW
 DESCRIPTOR.message_types_by_name['OctoprintEnvironment'] = _OCTOPRINTENVIRONMENT
 DESCRIPTOR.message_types_by_name['PrintSession'] = _PRINTSESSION
 DESCRIPTOR.message_types_by_name['Metadata'] = _METADATA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+Window = _reflection.GeneratedProtocolMessageType('Window', (_message.Message,), dict(
+  DESCRIPTOR = _WINDOW,
+  __module__ = 'print_nanny_client.protobuf.common_pb2'
+  # @@protoc_insertion_point(class_scope:print_nanny.common.Window)
+  ))
+_sym_db.RegisterMessage(Window)
 
 OctoprintEnvironment = _reflection.GeneratedProtocolMessageType('OctoprintEnvironment', (_message.Message,), dict(
   DESCRIPTOR = _OCTOPRINTENVIRONMENT,
