@@ -51,6 +51,7 @@ class PrintSession(object):
         'gcode_file': 'int',
         'gcode_filename': 'str',
         'octoprint_job': 'dict(str, object)',
+        'print_job_status': 'PrintJobStatusEnum',
         'url': 'str',
         'datesegment': 'str'
     }
@@ -71,11 +72,12 @@ class PrintSession(object):
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
         'octoprint_job': 'octoprint_job',
+        'print_job_status': 'print_job_status',
         'url': 'url',
         'datesegment': 'datesegment'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, active=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, url=None, datesegment=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, octoprint_device=None, active=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, user=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, print_job_status=None, url=None, datesegment=None, local_vars_configuration=None):  # noqa: E501
         """PrintSession - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -96,6 +98,7 @@ class PrintSession(object):
         self._gcode_file = None
         self._gcode_filename = None
         self._octoprint_job = None
+        self._print_job_status = None
         self._url = None
         self._datesegment = None
         self.discriminator = None
@@ -119,6 +122,7 @@ class PrintSession(object):
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
         self.octoprint_job = octoprint_job
+        self.print_job_status = print_job_status
         if url is not None:
             self.url = url
         if datesegment is not None:
@@ -474,6 +478,27 @@ class PrintSession(object):
         """
 
         self._octoprint_job = octoprint_job
+
+    @property
+    def print_job_status(self):
+        """Gets the print_job_status of this PrintSession.  # noqa: E501
+
+
+        :return: The print_job_status of this PrintSession.  # noqa: E501
+        :rtype: PrintJobStatusEnum
+        """
+        return self._print_job_status
+
+    @print_job_status.setter
+    def print_job_status(self, print_job_status):
+        """Sets the print_job_status of this PrintSession.
+
+
+        :param print_job_status: The print_job_status of this PrintSession.  # noqa: E501
+        :type print_job_status: PrintJobStatusEnum
+        """
+
+        self._print_job_status = print_job_status
 
     @property
     def url(self):

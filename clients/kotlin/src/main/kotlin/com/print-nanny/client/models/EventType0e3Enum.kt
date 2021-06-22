@@ -19,7 +19,7 @@ import com.squareup.moshi.Json
 * Values: printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted,printerStateChanged
 */
 
-enum class PrintStatusEventEventTypeEnum(val value: kotlin.String) {
+enum class EventType0e3Enum(val value: kotlin.String) {
 
 
     @Json(name = "PrintCancelled")

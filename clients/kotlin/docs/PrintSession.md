@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
 **octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **datesegment** | **kotlin.String** |  |  [optional] [readonly]
 

@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from django.contrib.auth import get_user_model
 import json
 from django.utils import dateformat
@@ -109,17 +109,6 @@ class OctoPrintDevice(SafeDeleteModel):
         False: "text-secondary",
     }
 
-    class MonitoringStatusChoices(models.TextChoices):
-        MONITORING_ACTIVE = (
-            "monitoring_active",
-            "Print Nanny is currently monitoring your print job",
-        )
-        RENDERING_VIDEO = (
-            "rendering_video",
-            "Print Nanny is creating a timelapse video of your print job",
-        )
-        DONE = "done" "A timelapse of your print job is ready!"
-
     def pre_softdelete(self):
         return delete_cloudiot_device(self.cloudiot_device_num_id)
 
@@ -173,13 +162,6 @@ class OctoPrintDevice(SafeDeleteModel):
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
-
-    monitoring_status = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=MonitoringStatusChoices.choices,
-        default=MonitoringStatusChoices.MONITORING_ACTIVE,
-    )
 
     printer_state = models.CharField(
         max_length=36,
@@ -264,15 +246,7 @@ class OctoPrintDevice(SafeDeleteModel):
         )
 
     @property
-    def print_job_status_css_class(self):
-        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
-        if self.print_job_status:
-            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS.get(
-                self.print_job_status, "text-warning"
-            )
-
-    @property
-    def monitoring_active_css_class(self):
+    def monitoring_active_css_class(self) -> str:
         return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
 
 
@@ -332,10 +306,20 @@ class PrinterProfile(models.Model):
     volume_width = models.FloatField(null=True)
 
 
+class PrintSessionManager(models.Manager):
+    def create(self, *args, **kwargs):
+        octoprint_device = kwargs.get("octoprint_device")
+        # on print session create, set all other sessions to inactive
+        PrintSession.objects.filter(octoprint_device).update(active=False)
+        return super().create(*args, **kwargs)
+
+
 class PrintSession(models.Model):
     """
     Represents a unique print job/session
     """
+
+    objects = PrintSessionManager()
 
     class Meta:
         unique_together = ("octoprint_device", "session")
@@ -367,6 +351,14 @@ class PrintSession(models.Model):
     print_job_status = models.CharField(
         max_length=36, db_index=True, choices=PrintStatusEventType.choices, null=True
     )
+
+    @property
+    def print_job_status_css_class(self):
+        PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
+        if self.print_job_status:
+            return PrintStatusEvent.JOB_EVENT_TYPE_CSS_CLASS.get(
+                self.print_job_status, "text-warning"
+            )
 
     @property
     def datesegment(self):
@@ -443,7 +435,7 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     @classmethod
-    def get_valid_actions(cls, print_job_status):
+    def get_valid_actions(cls, print_job_status: Optional[str] = None):
         valid_actions = {
             PrintStatusEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,

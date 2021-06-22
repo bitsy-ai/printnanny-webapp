@@ -386,6 +386,22 @@ export enum EventSourceEnum {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum EventType0e3Enum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
+}
+
+/**
+ * 
+ * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -2647,6 +2663,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PatchedPrintSessionRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
 }
 /**
  * 
@@ -2855,6 +2877,22 @@ export interface PatchedUserRequest {
      */
     email?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintJobStatusEnum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
+}
+
 /**
  * 
  * @export
@@ -3077,6 +3115,12 @@ export interface PrintSession {
     octoprint_job?: { [key: string]: any; } | null;
     /**
      * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PrintSession
+     */
+    print_job_status?: PrintJobStatusEnum | null;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSession
      */
@@ -3166,6 +3210,12 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     octoprint_job?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {PrintJobStatusEnum}
+     * @memberof PrintSessionRequest
+     */
+    print_job_status?: PrintJobStatusEnum | null;
 }
 /**
  * 
@@ -3181,10 +3231,10 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
-     * @type {PrintStatusEventEventTypeEnum}
+     * @type {EventType0e3Enum}
      * @memberof PrintStatusEvent
      */
-    event_type: PrintStatusEventEventTypeEnum;
+    event_type: EventType0e3Enum;
     /**
      * 
      * @type {string}
@@ -3270,22 +3320,6 @@ export interface PrintStatusEvent {
      */
     print_session?: number | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrintStatusEventEventTypeEnum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
-}
-
 /**
  * 
  * @export

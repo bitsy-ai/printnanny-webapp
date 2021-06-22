@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.PrintJobStatusEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -33,6 +34,7 @@ import java.io.Serializable
  * @param gcodeFile 
  * @param gcodeFilename 
  * @param octoprintJob 
+ * @param printJobStatus 
  * @param url 
  * @param datesegment 
  */
@@ -68,6 +70,8 @@ data class PrintSession (
     val gcodeFilename: kotlin.String? = null,
     @Json(name = "octoprint_job")
     val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "print_job_status")
+    val printJobStatus: PrintJobStatusEnum? = null,
     @Json(name = "url")
     val url: java.net.URI? = null,
     @Json(name = "datesegment")

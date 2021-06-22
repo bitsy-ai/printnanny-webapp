@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **gcode_file** | **int** |  | [optional] 
 **gcode_filename** | **str** |  | [optional] 
 **octoprint_job** | **dict(str, object)** |  | [optional] 
+**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 **datesegment** | **str** |  | [optional] [readonly] 
 

@@ -49,7 +49,8 @@ class TestPrintSessionRequest(unittest.TestCase):
                 gcode_filename = '', 
                 octoprint_job = {
                     'key' : null
-                    }
+                    }, 
+                print_job_status = None
             )
         else :
             return PrintSessionRequest(

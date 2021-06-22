@@ -43,7 +43,7 @@
 
                         <dt class="col-sm-3">Current Job</dt>
                         {%if object.active_session %}
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.print_job_status_css_class}}"></i>{{object.print_job_status}} (object.active_session.progress) </dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.print_job_status_css_class}}"></i>{{object.active_session.print_job_status}} (object.active_session.progress) </dd>
                         {% else %}
                         <dd class="col-sm-9">No active print job</dd>
                         {% endif %}

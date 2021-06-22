@@ -53,6 +53,7 @@ class TestPrintSession(unittest.TestCase):
                 octoprint_job = {
                     'key' : null
                     }, 
+                print_job_status = None, 
                 url = '', 
                 datesegment = ''
             )
