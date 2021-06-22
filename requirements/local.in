@@ -51,7 +51,7 @@ stringcase
 twisted<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-print-nanny-client>=0.7.1dev2
+print-nanny-client>=0.7.1dev3
 
 # dev / testing
 mypy
