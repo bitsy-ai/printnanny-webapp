@@ -11,9 +11,7 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.MonitoringModeEnum
 import com.print-nanny.client.models.MonitoringStatusEnum
-import com.print-nanny.client.models.PrintJobStatusEnum
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -34,13 +32,10 @@ import java.io.Serializable
  * @param pythonVersion 
  * @param pipVersion 
  * @param virtualenv 
- * @param monitoringActive 
- * @param monitoringMode 
  * @param octoprintVersion 
  * @param pluginVersion 
  * @param printNannyClientVersion 
  * @param monitoringStatus 
- * @param printJobStatus 
  * @param printerState 
  */
 
@@ -71,10 +66,6 @@ data class PatchedOctoPrintDeviceRequest (
     val pipVersion: kotlin.String? = null,
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-    @Json(name = "monitoring_active")
-    val monitoringActive: kotlin.Boolean? = null,
-    @Json(name = "monitoring_mode")
-    val monitoringMode: MonitoringModeEnum? = null,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String? = null,
     @Json(name = "plugin_version")
@@ -83,8 +74,6 @@ data class PatchedOctoPrintDeviceRequest (
     val printNannyClientVersion: kotlin.String? = null,
     @Json(name = "monitoring_status")
     val monitoringStatus: MonitoringStatusEnum? = null,
-    @Json(name = "print_job_status")
-    val printJobStatus: PrintJobStatusEnum? = null,
     @Json(name = "printer_state")
     val printerState: PrinterStateEnum? = null
 ) : Serializable {

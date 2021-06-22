@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**eventType** | [**EventType0e3Enum**](EventType0e3Enum.md) |  | 
+**eventType** | [**PrintStatusEventEventTypeEnum**](PrintStatusEventEventTypeEnum.md) |  | 
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 

@@ -23,6 +23,7 @@ import java.io.Serializable
  * @param session 
  * @param id 
  * @param updatedDt 
+ * @param active 
  * @param filepos 
  * @param printProgress 
  * @param timeElapsed 
@@ -47,6 +48,8 @@ data class PrintSession (
     val id: kotlin.Int? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
+    @Json(name = "active")
+    val active: kotlin.Boolean? = null,
     @Json(name = "filepos")
     val filepos: kotlin.Int? = null,
     @Json(name = "print_progress")

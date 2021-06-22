@@ -32,16 +32,15 @@ Name | Type | Description | Notes
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
-**monitoringActive** | **kotlin.Boolean** |  |  [optional]
-**monitoringMode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  |  [optional]
 **monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
-**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **privateKey** | **kotlin.String** |  |  [optional] [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
+**monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
+**activeSession** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

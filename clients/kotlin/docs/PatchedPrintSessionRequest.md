@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional]
 **octoprintDevice** | **kotlin.Int** |  |  [optional]
+**active** | **kotlin.Boolean** |  |  [optional]
 **session** | **kotlin.String** |  |  [optional]
 **filepos** | **kotlin.Int** |  |  [optional]
 **printProgress** | **kotlin.Int** |  |  [optional]

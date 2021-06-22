@@ -20,6 +20,7 @@ import java.io.Serializable
  * 
  * @param createdDt 
  * @param octoprintDevice 
+ * @param active 
  * @param session 
  * @param filepos 
  * @param printProgress 
@@ -36,6 +37,8 @@ data class PatchedPrintSessionRequest (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null,
+    @Json(name = "active")
+    val active: kotlin.Boolean? = null,
     @Json(name = "session")
     val session: kotlin.String? = null,
     @Json(name = "filepos")

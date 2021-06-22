@@ -17,13 +17,10 @@ Name | Type | Description | Notes
 **pythonVersion** | **kotlin.String** |  |  [optional]
 **pipVersion** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
-**monitoringActive** | **kotlin.Boolean** |  |  [optional]
-**monitoringMode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  |  [optional]
 **octoprintVersion** | **kotlin.String** |  |  [optional]
 **pluginVersion** | **kotlin.String** |  |  [optional]
 **printNannyClientVersion** | **kotlin.String** |  |  [optional]
 **monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
-**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 

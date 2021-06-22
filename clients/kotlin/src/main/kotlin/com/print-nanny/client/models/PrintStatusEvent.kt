@@ -13,7 +13,7 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
-import com.print-nanny.client.models.EventType0e3Enum
+import com.print-nanny.client.models.PrintStatusEventEventTypeEnum
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -41,7 +41,7 @@ import java.io.Serializable
 
 data class PrintStatusEvent (
     @Json(name = "event_type")
-    val eventType: EventType0e3Enum,
+    val eventType: PrintStatusEventEventTypeEnum,
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")

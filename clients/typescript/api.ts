@@ -386,22 +386,6 @@ export enum EventSourceEnum {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum EventType0e3Enum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
-}
-
-/**
- * 
- * @export
  * @interface Experiment
  */
 export interface Experiment {
@@ -589,16 +573,6 @@ export interface ModelArtifact {
      */
     url?: string;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum MonitoringModeEnum {
-    ActiveLearning = 'active_learning',
-    Lite = 'lite'
-}
-
 /**
  * 
  * @export
@@ -811,18 +785,6 @@ export interface OctoPrintDevice {
     virtualenv?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof OctoPrintDevice
-     */
-    monitoring_active?: boolean;
-    /**
-     * 
-     * @type {MonitoringModeEnum}
-     * @memberof OctoPrintDevice
-     */
-    monitoring_mode?: MonitoringModeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -847,12 +809,6 @@ export interface OctoPrintDevice {
     monitoring_status?: MonitoringStatusEnum;
     /**
      * 
-     * @type {PrintJobStatusEnum}
-     * @memberof OctoPrintDevice
-     */
-    print_job_status?: PrintJobStatusEnum | null;
-    /**
-     * 
      * @type {PrinterStateEnum}
      * @memberof OctoPrintDevice
      */
@@ -869,6 +825,18 @@ export interface OctoPrintDevice {
      * @memberof OctoPrintDevice
      */
     manage_url?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoPrintDevice
+     */
+    monitoring_active?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDevice
+     */
+    active_session?: string;
 }
 /**
  * 
@@ -1016,18 +984,6 @@ export interface OctoPrintDeviceKey {
     virtualenv?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof OctoPrintDeviceKey
-     */
-    monitoring_active?: boolean;
-    /**
-     * 
-     * @type {MonitoringModeEnum}
-     * @memberof OctoPrintDeviceKey
-     */
-    monitoring_mode?: MonitoringModeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
@@ -1050,12 +1006,6 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof OctoPrintDeviceKey
-     */
-    print_job_status?: PrintJobStatusEnum | null;
     /**
      * 
      * @type {PrinterStateEnum}
@@ -1104,6 +1054,18 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     manage_url?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoPrintDeviceKey
+     */
+    monitoring_active?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    active_session?: string;
 }
 /**
  * 
@@ -1191,18 +1153,6 @@ export interface OctoPrintDeviceRequest {
     virtualenv?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof OctoPrintDeviceRequest
-     */
-    monitoring_active?: boolean;
-    /**
-     * 
-     * @type {MonitoringModeEnum}
-     * @memberof OctoPrintDeviceRequest
-     */
-    monitoring_mode?: MonitoringModeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintDeviceRequest
      */
@@ -1225,12 +1175,6 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof OctoPrintDeviceRequest
-     */
-    print_job_status?: PrintJobStatusEnum | null;
     /**
      * 
      * @type {PrinterStateEnum}
@@ -2620,18 +2564,6 @@ export interface PatchedOctoPrintDeviceRequest {
     virtualenv?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    monitoring_active?: boolean;
-    /**
-     * 
-     * @type {MonitoringModeEnum}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    monitoring_mode?: MonitoringModeEnum;
-    /**
-     * 
      * @type {string}
      * @memberof PatchedOctoPrintDeviceRequest
      */
@@ -2654,12 +2586,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
-     * @type {PrintJobStatusEnum}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    print_job_status?: PrintJobStatusEnum | null;
     /**
      * 
      * @type {PrinterStateEnum}
@@ -2685,6 +2611,12 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     octoprint_device?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrintSessionRequest
+     */
+    active?: boolean;
     /**
      * 
      * @type {string}
@@ -2950,22 +2882,6 @@ export interface PatchedUserRequest {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum PrintJobStatusEnum {
-    PrintCancelled = 'PrintCancelled',
-    PrintCancelling = 'PrintCancelling',
-    PrintDone = 'PrintDone',
-    PrintFailed = 'PrintFailed',
-    PrintPaused = 'PrintPaused',
-    PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
-}
-
-/**
- * 
- * @export
  * @interface PrintNannyPluginEvent
  */
 export interface PrintNannyPluginEvent {
@@ -3119,6 +3035,12 @@ export interface PrintSession {
     octoprint_device: number;
     /**
      * 
+     * @type {boolean}
+     * @memberof PrintSession
+     */
+    active?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSession
      */
@@ -3210,6 +3132,12 @@ export interface PrintSessionRequest {
     octoprint_device: number;
     /**
      * 
+     * @type {boolean}
+     * @memberof PrintSessionRequest
+     */
+    active?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof PrintSessionRequest
      */
@@ -3277,10 +3205,10 @@ export interface PrintStatusEvent {
     id?: number;
     /**
      * 
-     * @type {EventType0e3Enum}
+     * @type {PrintStatusEventEventTypeEnum}
      * @memberof PrintStatusEvent
      */
-    event_type: EventType0e3Enum;
+    event_type: PrintStatusEventEventTypeEnum;
     /**
      * 
      * @type {string}
@@ -3366,6 +3294,22 @@ export interface PrintStatusEvent {
      */
     print_session?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrintStatusEventEventTypeEnum {
+    PrintCancelled = 'PrintCancelled',
+    PrintCancelling = 'PrintCancelling',
+    PrintDone = 'PrintDone',
+    PrintFailed = 'PrintFailed',
+    PrintPaused = 'PrintPaused',
+    PrintResumed = 'PrintResumed',
+    PrintStarted = 'PrintStarted',
+    PrinterStateChanged = 'PrinterStateChanged'
+}
+
 /**
  * 
  * @export

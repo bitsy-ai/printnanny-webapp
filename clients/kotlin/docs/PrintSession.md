@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **session** | **kotlin.String** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**active** | **kotlin.Boolean** |  |  [optional]
 **filepos** | **kotlin.Int** |  |  [optional]
 **printProgress** | **kotlin.Int** |  |  [optional]
 **timeElapsed** | **kotlin.Int** |  |  [optional]
