@@ -364,6 +364,10 @@ class PrintSession(models.Model):
     gcode_filename = models.CharField(max_length=255, null=True)
     octoprint_job = JSONField(null=True)
 
+    print_job_status = models.CharField(
+        max_length=36, db_index=True, choices=PrintStatusEventType.choices, null=True
+    )
+
     @property
     def datesegment(self):
         return dateformat.format(self.created_dt, "Y/m/d/")
