@@ -128,15 +128,14 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
-    # if event.printer_state:
-    #     event.octoprint_device.printer_state = event.printer_state
-    #     if event.printer_state == PrinterState.OFFLINE:
-    #         event.octoprint_device.last_session.print_progress = 0
+
+    # update OctoprintDevice.printer_state
+
+    printer_state = event.octoprint_printer_data["state"]["text"]
+    event.octoprint_device.printer_state = printer_state
     if event.event_type != PrintStatusEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
-    # if print_event_is_final(event.event_type):
-    #     publish_video_render_msg(event)
-
+    event.octoprint_device.save()
     return event.octoprint_device.save()
 
 
@@ -154,7 +153,7 @@ def handle_ping(event: OctoPrintEvent):
 
 
 HANDLER_FNS: Dict[str, Callable] = {
-    OctoprintEventType.PRINT_PROGRESS: handle_print_progress
+    OctoprintEventType.PRINT_PROGRESS: handle_print_progress,
 }
 
 HANDLER_FNS.update(
@@ -220,7 +219,9 @@ def on_octoprint_event(message):
         )
         return message.ack()
     instance = poly_serializer.save()
+
     logger.info(f"Created event {instance} event_type={instance.event_type}")
+
     handler_fn = HANDLER_FNS.get(instance.event_type)
     if handler_fn is not None:
         logger.info(f"Calling {handler_fn}({instance})")

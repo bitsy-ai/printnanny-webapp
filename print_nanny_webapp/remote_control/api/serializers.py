@@ -64,6 +64,8 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cloudiot_device_configs",
             "ca_certs",
             "manage_url",
+            "monitoring_active",
+            "active_session",
         ]
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
@@ -78,6 +80,8 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cloudiot_device_name",
             "cloudiot_device_path",
             "cloudiot_device_configs",
+            "active_session",
+            "monitoring_active",
         )
 
     def update_or_create(self, user, serial, validated_data):
@@ -107,6 +111,8 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
         fields = [field.name for field in OctoPrintDevice._meta.fields] + [
             "cloudiot_device_configs",
             "manage_url",
+            "monitoring_active",
+            "active_session",
         ]
 
         extra_kwargs = {
@@ -122,6 +128,8 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
             "cloudiot_device_name",
             "cloudiot_device_path",
             "cloudiot_device_configs",
+            "monitoring_active",
+            "active_session",
         )
 
     def update_or_create(self, user, serial, validated_data):
@@ -175,7 +183,7 @@ class PrintSessionSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
         }
-        lookup_field = ("session",)
+        lookup_field = ("session", "id")
 
 
 class PrinterProfileSerializer(serializers.ModelSerializer):

@@ -120,10 +120,6 @@ class OctoPrintDevice(SafeDeleteModel):
         )
         DONE = "done" "A timelapse of your print job is ready!"
 
-    class MonitoringMode(models.TextChoices):
-        ACTIVE_LEARNING = "active_learning", "Active Learning"
-        LITE = "lite", "Lite"
-
     def pre_softdelete(self):
         return delete_cloudiot_device(self.cloudiot_device_num_id)
 
@@ -181,11 +177,6 @@ class OctoPrintDevice(SafeDeleteModel):
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255, null=True)
 
-    monitoring_active = models.BooleanField(default=False)
-    monitoring_mode = models.CharField(
-        max_length=32, choices=MonitoringMode.choices, default=MonitoringMode.LITE
-    )
-
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
@@ -195,10 +186,6 @@ class OctoPrintDevice(SafeDeleteModel):
         db_index=True,
         choices=MonitoringStatusChoices.choices,
         default=MonitoringStatusChoices.MONITORING_ACTIVE,
-    )
-
-    print_job_status = models.CharField(
-        max_length=36, db_index=True, choices=PrintStatusEventType.choices, null=True
     )
 
     printer_state = models.CharField(
@@ -218,12 +205,22 @@ class OctoPrintDevice(SafeDeleteModel):
         return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property
+    def monitoring_active(self) -> bool:
+        if self.active_session is None:
+            return False
+        return True
+
+    @property
+    def active_session(self) -> "PrintSession":
+        return self.print_sessions.filter(active=True).first()
+
+    @property
     def manage_url(self):
         reverse("dashboard:octoprint-devices:detail", kwargs={"pk": self.id})
 
     @property
     def cloudiot_device_configs(self):
-        """
+        """pa
         Lists the last 10 device configurations
         """
         client = cloudiot_v1.DeviceManagerClient()
@@ -353,8 +350,12 @@ class PrintSession(models.Model):
     created_dt = models.DateTimeField(db_index=True)
     updated_dt = models.DateTimeField(auto_now=True)
     octoprint_device = models.ForeignKey(
-        OctoPrintDevice, on_delete=models.CASCADE, db_index=True
+        OctoPrintDevice,
+        on_delete=models.CASCADE,
+        db_index=True,
+        related_name="print_sessions",
     )
+    active = models.BooleanField(default=True)
     session = models.CharField(max_length=255, db_index=True)
 
     filepos = models.IntegerField(null=True)
