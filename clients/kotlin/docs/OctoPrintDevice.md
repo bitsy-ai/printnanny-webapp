@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
+**activeSession** | [**PrintSession**](PrintSession.md) |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
@@ -33,7 +34,6 @@ Name | Type | Description | Notes
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
-**activeSession** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

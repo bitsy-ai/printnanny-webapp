@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **pluginVersion** | **kotlin.String** |  |  [optional]
 **printNannyClientVersion** | **kotlin.String** |  |  [optional]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
+**activeSession** | [**PrintSessionRequest**](PrintSessionRequest.md) |  |  [optional]
 
 
 

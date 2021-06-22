@@ -65,7 +65,7 @@ class OctoPrintDevice(object):
         'cloudiot_device_configs': 'str',
         'manage_url': 'str',
         'monitoring_active': 'bool',
-        'active_session': 'str'
+        'active_session': 'PrintSession'
     }
 
     attribute_map = {
@@ -182,8 +182,7 @@ class OctoPrintDevice(object):
             self.manage_url = manage_url
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
-        if active_session is not None:
-            self.active_session = active_session
+        self.active_session = active_session
 
     @property
     def id(self):
@@ -870,7 +869,7 @@ class OctoPrintDevice(object):
 
 
         :return: The active_session of this OctoPrintDevice.  # noqa: E501
-        :rtype: str
+        :rtype: PrintSession
         """
         return self._active_session
 
@@ -880,8 +879,10 @@ class OctoPrintDevice(object):
 
 
         :param active_session: The active_session of this OctoPrintDevice.  # noqa: E501
-        :type active_session: str
+        :type active_session: PrintSession
         """
+        if self.local_vars_configuration.client_side_validation and active_session is None:  # noqa: E501
+            raise ValueError("Invalid value for `active_session`, must not be `None`")  # noqa: E501
 
         self._active_session = active_session
 

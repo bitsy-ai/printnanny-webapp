@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.PrintSession
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -32,6 +33,7 @@ import java.io.Serializable
  * @param printNannyClientVersion 
  * @param publicKeyChecksum 
  * @param caCerts 
+ * @param activeSession 
  * @param id 
  * @param deleted 
  * @param createdDt 
@@ -53,7 +55,6 @@ import java.io.Serializable
  * @param cloudiotDeviceConfigs 
  * @param manageUrl 
  * @param monitoringActive 
- * @param activeSession 
  */
 
 data class OctoPrintDeviceKey (
@@ -83,6 +84,8 @@ data class OctoPrintDeviceKey (
     val publicKeyChecksum: kotlin.String,
     @Json(name = "ca_certs")
     val caCerts: kotlin.collections.Map<kotlin.String, kotlin.String>,
+    @Json(name = "active_session")
+    val activeSession: PrintSession,
     @Json(name = "id")
     val id: kotlin.Int? = null,
     @Json(name = "deleted")
@@ -124,9 +127,7 @@ data class OctoPrintDeviceKey (
     @Json(name = "manage_url")
     val manageUrl: java.net.URI? = null,
     @Json(name = "monitoring_active")
-    val monitoringActive: kotlin.Boolean? = null,
-    @Json(name = "active_session")
-    val activeSession: kotlin.String? = null
+    val monitoringActive: kotlin.Boolean? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

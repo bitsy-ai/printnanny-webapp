@@ -38,7 +38,7 @@ Name | Type | Description | Notes
 **ca_certs** | **dict(str, str)** |  | 
 **manage_url** | **str** |  | [optional] [readonly] 
 **monitoring_active** | **bool** |  | [optional] [readonly] 
-**active_session** | **str** |  | [optional] [readonly] 
+**active_session** | [**PrintSession**](PrintSession.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

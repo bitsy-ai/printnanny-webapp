@@ -51,7 +51,8 @@ class PatchedOctoPrintDeviceRequest(object):
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
-        'printer_state': 'PrinterStateEnum'
+        'printer_state': 'PrinterStateEnum',
+        'active_session': 'PrintSessionRequest'
     }
 
     attribute_map = {
@@ -70,10 +71,11 @@ class PatchedOctoPrintDeviceRequest(object):
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
-        'printer_state': 'printer_state'
+        'printer_state': 'printer_state',
+        'active_session': 'active_session'
     }
 
-    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, printer_state=None, active_session=None, local_vars_configuration=None):  # noqa: E501
         """PatchedOctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -95,6 +97,7 @@ class PatchedOctoPrintDeviceRequest(object):
         self._plugin_version = None
         self._print_nanny_client_version = None
         self._printer_state = None
+        self._active_session = None
         self.discriminator = None
 
         if name is not None:
@@ -125,6 +128,8 @@ class PatchedOctoPrintDeviceRequest(object):
             self.print_nanny_client_version = print_nanny_client_version
         if printer_state is not None:
             self.printer_state = printer_state
+        if active_session is not None:
+            self.active_session = active_session
 
     @property
     def name(self):
@@ -509,6 +514,27 @@ class PatchedOctoPrintDeviceRequest(object):
         """
 
         self._printer_state = printer_state
+
+    @property
+    def active_session(self):
+        """Gets the active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+
+
+        :return: The active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :rtype: PrintSessionRequest
+        """
+        return self._active_session
+
+    @active_session.setter
+    def active_session(self, active_session):
+        """Sets the active_session of this PatchedOctoPrintDeviceRequest.
+
+
+        :param active_session: The active_session of this PatchedOctoPrintDeviceRequest.  # noqa: E501
+        :type active_session: PrintSessionRequest
+        """
+
+        self._active_session = active_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
