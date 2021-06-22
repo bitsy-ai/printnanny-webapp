@@ -34,6 +34,23 @@ spec:
         - name: webapp-service-account
           mountPath: /etc/service-account
           readOnly: true
+      - name: alerts
+        imagePullPolicy: Always
+        command:
+          - python
+          - /app/print_nanny_webapp/alerts/subscribers/alerts.py
+
+        image: us.gcr.io/print-nanny/print_nanny_webapp:latest
+        envFrom:
+          - configMapRef:
+              name: webapp
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: octoprint-events
+        volumeMounts:
+        - name: webapp-service-account
+          mountPath: /etc/service-account
+          readOnly: true
       - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
