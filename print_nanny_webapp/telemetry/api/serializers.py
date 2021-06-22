@@ -10,7 +10,7 @@ from print_nanny_webapp.telemetry.models import (
     TelemetryEvent,
 )
 from print_nanny_webapp.telemetry.types import (
-    PrintStatusEventType,
+    PrintJobStatusEventType,
     TelemetryEventType,
     PrintNannyPluginEventType,
     OctoprintEventType,
@@ -116,7 +116,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
 
 
 class PrintStatusEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=PrintStatusEventType.choices)
+    event_type = serializers.ChoiceField(choices=PrintJobStatusEventType.choices)
 
     class Meta:
         model = PrintStatusEvent

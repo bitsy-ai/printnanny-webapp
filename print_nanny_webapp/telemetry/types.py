@@ -5,7 +5,7 @@ from django.db import models
 # Instead, I've just duplicated event types where inheritance is needed
 
 # Example:
-# TelemetryEventTypes is the Union of [OctoprintPluginEventTypes, OctoprintEventTypes, PrintStatusEventTypes] etc
+# TelemetryEventTypes is the Union of [OctoprintPluginEventTypes, OctoprintEventTypes, PrintJobStatusEventTypes] etc
 # but TelemetryEventTypes cannot be defined as inheriting from multiple enums with members defined
 #
 # I think the best long-term approach is to use Protobuf as the source of truth for schemas
@@ -208,7 +208,7 @@ class TelemetryEventType(models.TextChoices):
     )
 
     ##
-    # source: PrintStatusEventType
+    # source: PrintJobStatusEventType
     ##
 
     PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
@@ -399,7 +399,7 @@ class RemoteCommandEventType(models.TextChoices):
     )
 
 
-class PrintStatusEventType(models.TextChoices):
+class PrintJobStatusEventType(models.TextChoices):
 
     # print job
     PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"

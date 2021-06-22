@@ -12,7 +12,7 @@ from print_nanny_webapp.telemetry.types import (
     PrintNannyPluginEventType,
     OctoprintEventType,
     RemoteCommandEventType,
-    PrintStatusEventType,
+    PrintJobStatusEventType,
     EventSource,
     TelemetryEventType,
     PrinterState,
@@ -129,7 +129,7 @@ class PrintStatusEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
         return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
-    event_codes = [x.value for x in PrintStatusEventType.__members__.values()]
+    event_codes = [x.value for x in PrintJobStatusEventType.__members__.values()]
     JOB_EVENT_TYPE_CSS_CLASS = {
         "Error": "text-danger",
         "PrintCancelled": "text-danger",
