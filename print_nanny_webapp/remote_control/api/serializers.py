@@ -23,9 +23,25 @@ class RemoteControlCommandSerializer(serializers.ModelSerializer):
         }
 
 
+class PrintSessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrintSession
+        fields = [field.name for field in PrintSession._meta.fields] + [
+            "url",
+            "datesegment",
+            "created_dt",
+        ]
+        read_only_fields = ("user",)
+        extra_kwargs = {
+            "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
+        }
+        lookup_field = ("session", "id")
+
+
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     cloudiot_device_configs = serializers.SerializerMethodField()
+    active_session = PrintSessionSerializer()
 
     def get_cloudiot_device_configs(self, obj):
         return obj.cloudiot_device_configs
@@ -97,6 +113,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
+    active_session = PrintSessionSerializer()
     cloudiot_device_configs = serializers.SerializerMethodField()
 
     def get_cloudiot_device_configs(self, obj):
@@ -169,21 +186,6 @@ class GcodeFileSerializer(serializers.ModelSerializer):
         return GcodeFile.objects.filter(
             **unique_together_fields, user=user
         ).update_or_create(**unique_together_fields, user=user, defaults=defaults)
-
-
-class PrintSessionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrintSession
-        fields = [field.name for field in PrintSession._meta.fields] + [
-            "url",
-            "datesegment",
-            "created_dt",
-        ]
-        read_only_fields = ("user",)
-        extra_kwargs = {
-            "url": {"view_name": "api:print-session-detail", "lookup_field": "session"}
-        }
-        lookup_field = ("session", "id")
 
 
 class PrinterProfileSerializer(serializers.ModelSerializer):
