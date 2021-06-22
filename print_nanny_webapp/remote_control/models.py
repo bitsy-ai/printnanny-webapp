@@ -376,7 +376,9 @@ class PrintSession(models.Model):
 
     @property
     def duration(self):
-        return pretty_time_delta((self.created_dt - self.updated_dt).total_seconds())
+        return pretty_time_delta(
+            int((self.created_dt - self.updated_dt).total_seconds())
+        )
 
     def __str__(self):
         return self.session
