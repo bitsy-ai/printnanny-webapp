@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
+**active** | **bool** |  | [optional] 
 **session** | **str** |  | 
 **filepos** | **int** |  | [optional] 
 **print_progress** | **int** |  | [optional] 

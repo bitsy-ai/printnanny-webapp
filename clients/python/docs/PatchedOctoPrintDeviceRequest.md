@@ -17,13 +17,10 @@ Name | Type | Description | Notes
 **python_version** | **str** |  | [optional] 
 **pip_version** | **str** |  | [optional] 
 **virtualenv** | **str** |  | [optional] 
-**monitoring_active** | **bool** |  | [optional] 
-**monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | [optional] 
 **plugin_version** | **str** |  | [optional] 
 **print_nanny_client_version** | **str** |  | [optional] 
 **monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
-**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
 **printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

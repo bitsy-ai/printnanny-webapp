@@ -45,6 +45,7 @@ class TestPaginatedPrintSessionList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         octoprint_device = 56, 
+                        active = True, 
                         session = '', 
                         filepos = -2147483648, 
                         print_progress = -2147483648, 

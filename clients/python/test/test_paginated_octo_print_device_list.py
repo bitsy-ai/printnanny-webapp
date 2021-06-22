@@ -68,16 +68,15 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                         python_version = '', 
                         pip_version = '', 
                         virtualenv = '', 
-                        monitoring_active = True, 
-                        monitoring_mode = 'active_learning', 
                         octoprint_version = '', 
                         plugin_version = '', 
                         print_nanny_client_version = '', 
                         monitoring_status = 'monitoring_active', 
-                        print_job_status = null, 
                         printer_state = 'Operational', 
                         cloudiot_device_configs = '', 
-                        manage_url = '', )
+                        manage_url = '', 
+                        monitoring_active = True, 
+                        active_session = '', )
                     ]
             )
         else :

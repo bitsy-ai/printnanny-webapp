@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_dt** | **datetime** |  | [optional] 
 **octoprint_device** | **int** |  | [optional] 
+**active** | **bool** |  | [optional] 
 **session** | **str** |  | [optional] 
 **filepos** | **int** |  | [optional] 
 **print_progress** | **int** |  | [optional] 

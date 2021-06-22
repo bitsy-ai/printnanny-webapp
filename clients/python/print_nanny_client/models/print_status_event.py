@@ -37,7 +37,7 @@ class PrintStatusEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'EventType0e3Enum',
+        'event_type': 'PrintStatusEventEventTypeEnum',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -149,7 +149,7 @@ class PrintStatusEvent(object):
 
 
         :return: The event_type of this PrintStatusEvent.  # noqa: E501
-        :rtype: EventType0e3Enum
+        :rtype: PrintStatusEventEventTypeEnum
         """
         return self._event_type
 
@@ -159,7 +159,7 @@ class PrintStatusEvent(object):
 
 
         :param event_type: The event_type of this PrintStatusEvent.  # noqa: E501
-        :type event_type: EventType0e3Enum
+        :type event_type: PrintStatusEventEventTypeEnum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501

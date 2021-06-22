@@ -27,13 +27,10 @@ Name | Type | Description | Notes
 **python_version** | **str** |  | 
 **pip_version** | **str** |  | 
 **virtualenv** | **str** |  | [optional] 
-**monitoring_active** | **bool** |  | [optional] 
-**monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
-**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
 **printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 **private_key** | **str** |  | [optional] [readonly] 
@@ -42,6 +39,8 @@ Name | Type | Description | Notes
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 **ca_certs** | **dict(str, str)** |  | 
 **manage_url** | **str** |  | [optional] [readonly] 
+**monitoring_active** | **bool** |  | [optional] [readonly] 
+**active_session** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
