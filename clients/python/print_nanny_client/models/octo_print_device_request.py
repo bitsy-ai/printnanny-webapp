@@ -51,7 +51,6 @@ class OctoPrintDeviceRequest(object):
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
-        'monitoring_status': 'MonitoringStatusEnum',
         'printer_state': 'PrinterStateEnum'
     }
 
@@ -71,11 +70,10 @@ class OctoPrintDeviceRequest(object):
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
-        'monitoring_status': 'monitoring_status',
         'printer_state': 'printer_state'
     }
 
-    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, monitoring_status=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -96,7 +94,6 @@ class OctoPrintDeviceRequest(object):
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
-        self._monitoring_status = None
         self._printer_state = None
         self.discriminator = None
 
@@ -115,8 +112,6 @@ class OctoPrintDeviceRequest(object):
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        if monitoring_status is not None:
-            self.monitoring_status = monitoring_status
         if printer_state is not None:
             self.printer_state = printer_state
 
@@ -504,27 +499,6 @@ class OctoPrintDeviceRequest(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
-
-    @property
-    def monitoring_status(self):
-        """Gets the monitoring_status of this OctoPrintDeviceRequest.  # noqa: E501
-
-
-        :return: The monitoring_status of this OctoPrintDeviceRequest.  # noqa: E501
-        :rtype: MonitoringStatusEnum
-        """
-        return self._monitoring_status
-
-    @monitoring_status.setter
-    def monitoring_status(self, monitoring_status):
-        """Sets the monitoring_status of this OctoPrintDeviceRequest.
-
-
-        :param monitoring_status: The monitoring_status of this OctoPrintDeviceRequest.  # noqa: E501
-        :type monitoring_status: MonitoringStatusEnum
-        """
-
-        self._monitoring_status = monitoring_status
 
     @property
     def printer_state(self):

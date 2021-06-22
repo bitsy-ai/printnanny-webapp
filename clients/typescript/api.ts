@@ -592,17 +592,6 @@ export interface ModelArtifact {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum MonitoringStatusEnum {
-    MonitoringActive = 'monitoring_active',
-    RenderingVideo = 'rendering_video',
-    DoneATimelapseOfYourPrintJobIsReady = 'doneA timelapse of your print job is ready!'
-}
-
-/**
- * 
- * @export
  * @interface Nested
  */
 export interface Nested {
@@ -813,12 +802,6 @@ export interface OctoPrintDevice {
     print_nanny_client_version: string;
     /**
      * 
-     * @type {MonitoringStatusEnum}
-     * @memberof OctoPrintDevice
-     */
-    monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
      * @type {PrinterStateEnum}
      * @memberof OctoPrintDevice
      */
@@ -1006,12 +989,6 @@ export interface OctoPrintDeviceKey {
     print_nanny_client_version: string;
     /**
      * 
-     * @type {MonitoringStatusEnum}
-     * @memberof OctoPrintDeviceKey
-     */
-    monitoring_status?: MonitoringStatusEnum;
-    /**
-     * 
      * @type {PrinterStateEnum}
      * @memberof OctoPrintDeviceKey
      */
@@ -1167,12 +1144,6 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {MonitoringStatusEnum}
-     * @memberof OctoPrintDeviceRequest
-     */
-    monitoring_status?: MonitoringStatusEnum;
     /**
      * 
      * @type {PrinterStateEnum}
@@ -2572,12 +2543,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
-    /**
-     * 
-     * @type {MonitoringStatusEnum}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    monitoring_status?: MonitoringStatusEnum;
     /**
      * 
      * @type {PrinterStateEnum}

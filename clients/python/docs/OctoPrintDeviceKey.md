@@ -29,7 +29,6 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
 **printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **url** | **str** |  | [optional] [readonly] 
 **private_key** | **str** |  | [optional] [readonly] 

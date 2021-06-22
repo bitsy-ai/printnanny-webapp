@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | [optional] 
 **plugin_version** | **str** |  | [optional] 
 **print_nanny_client_version** | **str** |  | [optional] 
-**monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
 **printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

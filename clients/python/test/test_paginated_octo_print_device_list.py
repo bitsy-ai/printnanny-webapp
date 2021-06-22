@@ -70,7 +70,6 @@ class TestPaginatedOctoPrintDeviceList(unittest.TestCase):
                         octoprint_version = '', 
                         plugin_version = '', 
                         print_nanny_client_version = '', 
-                        monitoring_status = 'monitoring_active', 
                         printer_state = 'Operational', 
                         cloudiot_device_configs = '', 
                         manage_url = '', 

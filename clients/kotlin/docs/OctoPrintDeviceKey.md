@@ -31,7 +31,6 @@ Name | Type | Description | Notes
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
-**monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **privateKey** | **kotlin.String** |  |  [optional] [readonly]

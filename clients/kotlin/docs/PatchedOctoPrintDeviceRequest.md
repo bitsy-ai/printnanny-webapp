@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  |  [optional]
 **pluginVersion** | **kotlin.String** |  |  [optional]
 **printNannyClientVersion** | **kotlin.String** |  |  [optional]
-**monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 

@@ -24,7 +24,6 @@ docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/MlOpsApi.md
 docs/ModelArtifact.md
-docs/MonitoringStatusEnum.md
 docs/Nested.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
@@ -126,7 +125,6 @@ print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
 print_nanny_client/models/model_artifact.py
-print_nanny_client/models/monitoring_status_enum.py
 print_nanny_client/models/nested.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
@@ -216,7 +214,6 @@ test/test_experiment_device_config.py
 test/test_gcode_file.py
 test/test_ml_ops_api.py
 test/test_model_artifact.py
-test/test_monitoring_status_enum.py
 test/test_nested.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py

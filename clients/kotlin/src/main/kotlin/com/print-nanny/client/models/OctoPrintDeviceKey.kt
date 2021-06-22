@@ -12,7 +12,6 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
-import com.print-nanny.client.models.MonitoringStatusEnum
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -47,7 +46,6 @@ import java.io.Serializable
  * @param hardware 
  * @param revision 
  * @param virtualenv 
- * @param monitoringStatus 
  * @param printerState 
  * @param url 
  * @param privateKey 
@@ -113,8 +111,6 @@ data class OctoPrintDeviceKey (
     val revision: kotlin.String? = null,
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-    @Json(name = "monitoring_status")
-    val monitoringStatus: MonitoringStatusEnum? = null,
     @Json(name = "printer_state")
     val printerState: PrinterStateEnum? = null,
     @Json(name = "url")

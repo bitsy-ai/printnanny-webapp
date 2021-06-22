@@ -122,7 +122,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
- - [com.print-nanny.client.models.MonitoringStatusEnum](docs/MonitoringStatusEnum.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)

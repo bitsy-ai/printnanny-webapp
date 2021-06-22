@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.7.1dev3"
+__version__ = "0.7.1dev4"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -54,7 +54,6 @@ from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.model_artifact import ModelArtifact
-from print_nanny_client.models.monitoring_status_enum import MonitoringStatusEnum
 from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
