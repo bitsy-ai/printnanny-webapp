@@ -1,7 +1,6 @@
 import logging
 from typing import Dict, Any
 from django.contrib.auth import get_user_model
-
 import json
 from django.utils import dateformat
 from django.urls import reverse
@@ -16,6 +15,7 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
+from print_nanny_webapp.utils.time import pretty_time_delta
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
 from print_nanny_webapp.telemetry.types import PrintStatusEventType, PrinterState
 from print_nanny_webapp.remote_control.utils import (
@@ -376,7 +376,9 @@ class PrintSession(models.Model):
 
     @property
     def duration(self):
-        return self.updated_dt - self.created_dt
+        return pretty_time_delta(
+            int((self.created_dt - self.updated_dt).total_seconds())
+        )
 
     def __str__(self):
         return self.session
