@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **kotlin.String** |  |  [optional]
-**lastSession** | **kotlin.Int** |  |  [optional]
 **model** | **kotlin.String** |  |  [optional]
 **platform** | **kotlin.String** |  |  [optional]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]

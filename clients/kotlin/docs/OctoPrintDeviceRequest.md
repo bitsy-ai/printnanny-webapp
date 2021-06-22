@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
-**lastSession** | **kotlin.Int** |  |  [optional]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]

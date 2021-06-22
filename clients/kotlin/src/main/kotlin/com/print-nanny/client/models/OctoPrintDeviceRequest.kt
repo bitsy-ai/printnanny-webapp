@@ -30,7 +30,6 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param pluginVersion 
  * @param printNannyClientVersion 
- * @param lastSession 
  * @param cpuFlags 
  * @param hardware 
  * @param revision 
@@ -62,8 +61,6 @@ data class OctoPrintDeviceRequest (
     val pluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
-    @Json(name = "last_session")
-    val lastSession: kotlin.Int? = null,
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.collections.List<kotlin.String>? = null,
     @Json(name = "hardware")

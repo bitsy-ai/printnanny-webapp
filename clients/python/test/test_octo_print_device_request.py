@@ -37,7 +37,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return OctoPrintDeviceRequest(
                 name = '', 
-                last_session = 56, 
                 model = '', 
                 platform = '', 
                 cpu_flags = [

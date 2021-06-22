@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**last_session** | **int** |  | [optional] 
 **model** | **str** |  | [optional] 
 **platform** | **str** |  | [optional] 
 **cpu_flags** | **list[str]** |  | [optional] 

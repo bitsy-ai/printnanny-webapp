@@ -677,12 +677,6 @@ export interface OctoPrintDevice {
     user?: number;
     /**
      * 
-     * @type {number}
-     * @memberof OctoPrintDevice
-     */
-    last_session?: number | null;
-    /**
-     * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
@@ -874,12 +868,6 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     user?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintDeviceKey
-     */
-    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -1079,12 +1067,6 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     name: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintDeviceRequest
-     */
-    last_session?: number | null;
     /**
      * 
      * @type {string}
@@ -2490,12 +2472,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     name?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    last_session?: number | null;
     /**
      * 
      * @type {string}
