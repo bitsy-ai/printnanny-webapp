@@ -4,17 +4,19 @@ from rest_framework import serializers
 from django.apps import apps
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
-    PrintStatusEvent,
+    PrintJobEvent,
     PrintNannyPluginEvent,
+    PrinterEvent,
     RemoteCommandEvent,
     TelemetryEvent,
 )
 from print_nanny_webapp.telemetry.types import (
-    PrintJobStatusEventType,
+    PrintJobEventType,
     TelemetryEventType,
     PrintNannyPluginEventType,
     OctoprintEventType,
     RemoteCommandEventType,
+    PrinterEventType,
 )
 from rest_polymorphic.serializers import PolymorphicSerializer
 
@@ -115,11 +117,20 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
 
 
-class PrintStatusEventSerializer(serializers.ModelSerializer):
-    event_type = serializers.ChoiceField(choices=PrintJobStatusEventType.choices)
+class PrinterEventSerializer(serializers.ModelSerializer):
+    event_type = serializers.ChoiceField(choices=PrinterEventType.choices)
 
     class Meta:
-        model = PrintStatusEvent
+        model = PrinterEvent
+        fields = "__all__"
+        read_only_fields = ("user", "event_source", "polymorphic_ctype")
+
+
+class PrintJobEventSerializer(serializers.ModelSerializer):
+    event_type = serializers.ChoiceField(choices=PrintJobEventType.choices)
+
+    class Meta:
+        model = PrintJobEvent
         fields = "__all__"
         read_only_fields = ("user", "event_source", "polymorphic_ctype")
 
@@ -156,7 +167,8 @@ class TelemetryEventPolymorphicSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         TelemetryEvent: TelemetryEventSerializer,
         RemoteCommandEvent: RemoteCommandEventSerializer,
-        PrintStatusEvent: PrintStatusEventSerializer,
+        PrintJobEvent: PrintJobEventSerializer,
+        PrinterEvent: PrinterEventSerializer,
         OctoPrintEvent: OctoPrintEventSerializer,
         PrintNannyPluginEvent: PrintNannyPluginEventSerializer,
     }

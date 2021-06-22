@@ -7,15 +7,14 @@ from django.apps import apps
 from polymorphic.models import PolymorphicModel
 
 from django.apps import apps
-from django.contrib.postgres.fields import JSONField
 from print_nanny_webapp.telemetry.types import (
     PrintNannyPluginEventType,
     OctoprintEventType,
     RemoteCommandEventType,
-    PrintJobStatusEventType,
+    PrintJobEventType,
     EventSource,
     TelemetryEventType,
-    PrinterState,
+    PrinterEventType,
 )
 from polymorphic.managers import PolymorphicManager
 
@@ -125,23 +124,11 @@ class OctoPrintEvent(TelemetryEvent):
     event_codes = [x.value for x in OctoprintEventType.__members__.values()]
 
 
-class PrintStatusEvent(TelemetryEvent):
+class PrinterEvent(TelemetryEvent):
     def __init__(self, *args, **kwargs):
         return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
 
-    event_codes = [x.value for x in PrintJobStatusEventType.__members__.values()]
-    JOB_EVENT_TYPE_CSS_CLASS = {
-        "Error": "text-danger",
-        "PrintCancelled": "text-danger",
-        "PrintCancelling": "text-danger",
-        "PrintDone": "text-success",
-        "PrintFailed": "text-danger",
-        "PrintPaused": "text-warning",
-        "PrintResumed": "text-success",
-        "PrintStarted": "text-success",
-        "Idle": "text-warning",
-    }
-    PRINTER_STATE_CSS_CLASS = {
+    CSS_CLASS_MAP = {
         "closedOrError": "text-danger",
         "Error": "text-danger",
         "Ready": "text-success",
@@ -158,13 +145,30 @@ class PrintStatusEvent(TelemetryEvent):
         "Resuming": "text-warning",
         "Finishing": "text-warning",
     }
-    # https://docs.octoprint.org/en/master/api/datamodel.html?highlight=flags#printer-state (text)
-    printer_state = models.CharField(
-        max_length=255, choices=PrinterState.choices, null=True
-    )
+    event_codes = [x.value for x in PrinterEventType.__members__.values()]
 
-    # state = JSONField(default=dict)
-    # current_z = models.FloatField(null=True)
-    # # {'completion': 0.0008570890761342134, 'filepos': 552, 'printTime': 0, 'printTimeLeft': 29826, 'printTimeLeftOrigin': 'analysis'}.
-    # progress = JSONField(default=dict)
-    # job_data_file = models.CharField(max_length=255)
+    @property
+    def css_class(self):
+        return self.CSS_CLASS_MAP[self.event_type]
+
+
+class PrintJobEvent(TelemetryEvent):
+    def __init__(self, *args, **kwargs):
+        return super().__init__(*args, event_source=EventSource.OCTOPRINT, **kwargs)
+
+    event_codes = [x.value for x in PrintJobEventType.__members__.values()]
+    CSS_CLASS_MAP = {
+        "Error": "text-danger",
+        "PrintCancelled": "text-danger",
+        "PrintCancelling": "text-danger",
+        "PrintDone": "text-success",
+        "PrintFailed": "text-danger",
+        "PrintPaused": "text-warning",
+        "PrintResumed": "text-success",
+        "PrintStarted": "text-success",
+        "Idle": "text-warning",
+    }
+
+    @property
+    def css_class(self):
+        return self.CSS_CLASS_MAP[self.event_type]

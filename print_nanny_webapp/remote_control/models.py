@@ -17,7 +17,7 @@ from safedelete.signals import pre_softdelete
 
 from print_nanny_webapp.utils.time import pretty_time_delta
 from print_nanny_webapp.utils.storages import PublicGoogleCloudStorage
-from print_nanny_webapp.telemetry.types import PrintJobStatusEventType, PrinterState
+from print_nanny_webapp.telemetry.types import PrintJobEventType
 from print_nanny_webapp.remote_control.utils import (
     delete_cloudiot_device,
     update_or_create_cloudiot_device,
@@ -163,13 +163,6 @@ class OctoPrintDevice(SafeDeleteModel):
     plugin_version = models.CharField(max_length=255)
     print_nanny_client_version = models.CharField(max_length=255)
 
-    printer_state = models.CharField(
-        max_length=36,
-        db_index=True,
-        choices=PrinterState.choices,
-        default=PrinterState.OFFLINE,
-    )
-
     def to_json(self):
         from print_nanny_webapp.remote_control.api.serializers import (
             OctoPrintDeviceSerializer,
@@ -178,6 +171,14 @@ class OctoPrintDevice(SafeDeleteModel):
         serializer = OctoPrintDeviceSerializer(instance=self, context={"request": None})
         # TODO HyperLinkedIdentitySerialzier requires request context
         return json.dumps(serializer.data, sort_keys=True, indent=2)
+
+    @property
+    def last_printer_event(self):
+        pass
+
+    @property
+    def last_print_job_event(self):
+        pass
 
     @property
     def monitoring_active(self) -> bool:
@@ -349,7 +350,7 @@ class PrintSession(models.Model):
     octoprint_job = JSONField(null=True)
 
     print_job_status = models.CharField(
-        max_length=36, db_index=True, choices=PrintJobStatusEventType.choices, null=True
+        max_length=36, db_index=True, choices=PrintJobEventType.choices, null=True
     )
 
     @property
@@ -437,23 +438,23 @@ class RemoteControlCommand(models.Model):
     @classmethod
     def get_valid_actions(cls, print_job_status: Optional[str] = None):
         valid_actions = {
-            PrintJobStatusEventType.PRINT_STARTED: [
+            PrintJobEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_PAUSE,
             ],
-            PrintJobStatusEventType.PRINT_DONE: [
+            PrintJobEventType.PRINT_DONE: [
                 # cls.Command.MOVE_NOZZLE,
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,
             ],
-            PrintJobStatusEventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
-            PrintJobStatusEventType.PRINT_CANCELLING: [],
-            PrintJobStatusEventType.PRINT_PAUSED: [
+            PrintJobEventType.PRINT_CANCELLED: [cls.Command.MOVE_NOZZLE],
+            PrintJobEventType.PRINT_CANCELLING: [],
+            PrintJobEventType.PRINT_PAUSED: [
                 cls.Command.PRINT_STOP,
                 cls.Command.PRINT_RESUME,
                 # cls.Command.MOVE_NOZZLE,
             ],
-            PrintJobStatusEventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
+            PrintJobEventType.PRINT_FAILED: [cls.Command.MOVE_NOZZLE],
             None: [
                 cls.Command.MONITORING_START,
                 cls.Command.MONITORING_STOP,

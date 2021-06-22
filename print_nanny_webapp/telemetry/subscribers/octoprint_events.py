@@ -24,7 +24,7 @@ import google.api_core.exceptions
 from django.contrib.auth import get_user_model
 from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
-    PrintJobStatusEventType,
+    PrintJobEventType,
     RemoteCommandEventType,
     PrintNannyPluginEventType,
 )
@@ -33,7 +33,7 @@ User = get_user_model()
 from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintNannyPluginEvent,
-    PrintStatusEvent,
+    PrintJobEvent,
     RemoteCommandEvent,
     TelemetryEvent,
 )
@@ -89,13 +89,13 @@ def handle_print_progress(event: OctoPrintEvent):
 
 def print_event_is_final(event_type: str) -> bool:
     return (
-        event_type == PrintJobStatusEventType.PRINT_DONE
-        or event_type == PrintJobStatusEventType.PRINT_CANCELLED
-        or event_type == PrintJobStatusEventType.PRINT_FAILED
+        event_type == PrintJobEventType.PRINT_DONE
+        or event_type == PrintJobEventType.PRINT_CANCELLED
+        or event_type == PrintJobEventType.PRINT_FAILED
     )
 
 
-def publish_video_render_msg(event: PrintStatusEvent) -> str:
+def publish_video_render_msg(event: PrintJobEvent) -> str:
 
     if event.print_session:
         now = datetime.utcnow()
@@ -120,11 +120,11 @@ def publish_video_render_msg(event: PrintStatusEvent) -> str:
         future = publisher.publish(video_render_topic_path, msg.SerializeToString())
         return future.result()
     raise ValueError(
-        f"Expected PrintStatusEvent.session to be set but received {event.print_session}"
+        f"Expected PrintJobEvent.session to be set but received {event.print_session}"
     )
 
 
-def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
+def handle_print_status(event: PrintJobEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
@@ -135,7 +135,7 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
     print_session = event.print_session
 
     if print_session:
-        if event.event_type != PrintJobStatusEventType.PRINTER_STATE_CHANGED:
+        if event.event_type != PrintJobEventType.PRINTER_STATE_CHANGED:
             event.octoprint_device.print_job_status = event.event_type
 
     else:
@@ -144,7 +144,7 @@ def handle_print_status(event: PrintStatusEvent) -> OctoPrintDevice:
         )
 
     event.octoprint_device.printer_state = printer_state
-    if event.event_type != PrintJobStatusEventType.PRINTER_STATE_CHANGED:
+    if event.event_type != PrintJobEventType.PRINTER_STATE_CHANGED:
         event.octoprint_device.print_job_status = event.event_type
     event.octoprint_device.save()
     return event.octoprint_device.save()
@@ -168,7 +168,7 @@ HANDLER_FNS: Dict[str, Callable] = {
 }
 
 HANDLER_FNS.update(
-    {value: handle_print_status for label, value in PrintJobStatusEventType.choices}
+    {value: handle_print_status for label, value in PrintJobEventType.choices}
 )
 
 HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping})
@@ -178,8 +178,8 @@ def get_resourcetype(validated_data):
     event_type = validated_data["event_type"]
     if event_type in OctoprintEventType:
         resourcetype = OctoPrintEvent._meta.object_name
-    elif event_type in PrintJobStatusEventType:
-        resourcetype = PrintStatusEvent._meta.object_name
+    elif event_type in PrintJobEventType:
+        resourcetype = PrintJobEvent._meta.object_name
     elif event_type in RemoteCommandEventType:
         resourcetype = RemoteCommandEvent._meta.object_name
     elif event_type in PrintNannyPluginEventType:
