@@ -72,6 +72,10 @@ def handle_print_progress(event: OctoPrintEvent):
             time_elapsed=event.octoprint_printer_data["progress"]["printTime"],
             time_remaining=event.octoprint_printer_data["progress"]["printTimeLeft"],
         )
+    else:
+        logger.warning(
+            f"handle_print_progress() called without event.print_session relation event={event}"
+        )
 
     if should_alert:
         for alert_method in alert_settings.alert_methods:
@@ -124,7 +128,7 @@ def publish_video_render_msg(event: PrintJobEvent) -> str:
     )
 
 
-def handle_print_status(event: PrintJobEvent) -> OctoPrintDevice:
+def handle_print_job_event(event: PrintJobEvent) -> OctoPrintDevice:
     """
     Exclude PrintDone if monitoring is active (video render will duplicate alert)
     """
@@ -140,14 +144,8 @@ def handle_print_status(event: PrintJobEvent) -> OctoPrintDevice:
 
     else:
         logger.warning(
-            f"handle_print_status() called without event.print_session relation event={event}"
+            f"handle_print_job_event() called without event.print_session relation event={event}"
         )
-
-    event.octoprint_device.printer_state = printer_state
-    if event.event_type != PrintJobEventType.PRINTER_STATE_CHANGED:
-        event.octoprint_device.print_job_status = event.event_type
-    event.octoprint_device.save()
-    return event.octoprint_device.save()
 
 
 def handle_ping(event: OctoPrintEvent):
@@ -168,7 +166,7 @@ HANDLER_FNS: Dict[str, Callable] = {
 }
 
 HANDLER_FNS.update(
-    {value: handle_print_status for label, value in PrintJobEventType.choices}
+    {value: handle_print_job_event for label, value in PrintJobEventType.choices}
 )
 
 HANDLER_FNS.update({PrintNannyPluginEventType.CONNECT_TEST_MQTT_PING: handle_ping})
