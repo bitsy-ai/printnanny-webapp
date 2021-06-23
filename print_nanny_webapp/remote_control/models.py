@@ -176,7 +176,7 @@ class OctoPrintDevice(SafeDeleteModel):
     @property
     def last_printer_event_css_class(self) -> str:
         return PrinterEvent.CSS_CLASS_MAP[self.last_printer_event_display]
-    
+
     @property
     def last_printer_event_display(self) -> str:
         if self.last_printer_event is None:
@@ -185,7 +185,9 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def last_printer_event(self) -> Tuple[str, str]:
-        return PrinterEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
+        return (
+            PrinterEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
+        )
 
     @property
     def last_print_job_event(self):

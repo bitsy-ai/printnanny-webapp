@@ -6,13 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('remote_control', '0023_remove_octoprintdevice_printer_state'),
+        ("remote_control", "0023_remove_octoprintdevice_printer_state"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='printsession',
-            name='print_job_status',
-            field=models.CharField(choices=[('PrintCancelled', 'PrintCancelled'), ('PrintCancelling', 'PrintCancelling'), ('PrintDone', 'PrintDone'), ('PrintFailed', 'PrintFailed'), ('PrintPaused', 'PrintPaused'), ('PrintResumed', 'PrintResumed'), ('PrintStarted', 'PrintStarted')], db_index=True, max_length=36, null=True),
+            model_name="printsession",
+            name="print_job_status",
+            field=models.CharField(
+                choices=[
+                    ("PrintCancelled", "PrintCancelled"),
+                    ("PrintCancelling", "PrintCancelling"),
+                    ("PrintDone", "PrintDone"),
+                    ("PrintFailed", "PrintFailed"),
+                    ("PrintPaused", "PrintPaused"),
+                    ("PrintResumed", "PrintResumed"),
+                    ("PrintStarted", "PrintStarted"),
+                ],
+                db_index=True,
+                max_length=36,
+                null=True,
+            ),
         ),
     ]
