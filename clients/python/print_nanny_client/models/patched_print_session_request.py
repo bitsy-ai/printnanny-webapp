@@ -38,6 +38,7 @@ class PatchedPrintSessionRequest(object):
     openapi_types = {
         'created_dt': 'datetime',
         'octoprint_device': 'int',
+        'active': 'bool',
         'session': 'str',
         'filepos': 'int',
         'print_progress': 'int',
@@ -46,12 +47,14 @@ class PatchedPrintSessionRequest(object):
         'printer_profile': 'int',
         'gcode_file': 'int',
         'gcode_filename': 'str',
-        'octoprint_job': 'dict(str, object)'
+        'octoprint_job': 'dict(str, object)',
+        'print_job_status': 'PrintJobStatusEnum'
     }
 
     attribute_map = {
         'created_dt': 'created_dt',
         'octoprint_device': 'octoprint_device',
+        'active': 'active',
         'session': 'session',
         'filepos': 'filepos',
         'print_progress': 'print_progress',
@@ -60,10 +63,11 @@ class PatchedPrintSessionRequest(object):
         'printer_profile': 'printer_profile',
         'gcode_file': 'gcode_file',
         'gcode_filename': 'gcode_filename',
-        'octoprint_job': 'octoprint_job'
+        'octoprint_job': 'octoprint_job',
+        'print_job_status': 'print_job_status'
     }
 
-    def __init__(self, created_dt=None, octoprint_device=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, octoprint_device=None, active=None, session=None, filepos=None, print_progress=None, time_elapsed=None, time_remaining=None, printer_profile=None, gcode_file=None, gcode_filename=None, octoprint_job=None, print_job_status=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrintSessionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -71,6 +75,7 @@ class PatchedPrintSessionRequest(object):
 
         self._created_dt = None
         self._octoprint_device = None
+        self._active = None
         self._session = None
         self._filepos = None
         self._print_progress = None
@@ -80,12 +85,15 @@ class PatchedPrintSessionRequest(object):
         self._gcode_file = None
         self._gcode_filename = None
         self._octoprint_job = None
+        self._print_job_status = None
         self.discriminator = None
 
         if created_dt is not None:
             self.created_dt = created_dt
         if octoprint_device is not None:
             self.octoprint_device = octoprint_device
+        if active is not None:
+            self.active = active
         if session is not None:
             self.session = session
         self.filepos = filepos
@@ -96,6 +104,7 @@ class PatchedPrintSessionRequest(object):
         self.gcode_file = gcode_file
         self.gcode_filename = gcode_filename
         self.octoprint_job = octoprint_job
+        self.print_job_status = print_job_status
 
     @property
     def created_dt(self):
@@ -138,6 +147,27 @@ class PatchedPrintSessionRequest(object):
         """
 
         self._octoprint_device = octoprint_device
+
+    @property
+    def active(self):
+        """Gets the active of this PatchedPrintSessionRequest.  # noqa: E501
+
+
+        :return: The active of this PatchedPrintSessionRequest.  # noqa: E501
+        :rtype: bool
+        """
+        return self._active
+
+    @active.setter
+    def active(self, active):
+        """Sets the active of this PatchedPrintSessionRequest.
+
+
+        :param active: The active of this PatchedPrintSessionRequest.  # noqa: E501
+        :type active: bool
+        """
+
+        self._active = active
 
     @property
     def session(self):
@@ -357,6 +387,27 @@ class PatchedPrintSessionRequest(object):
         """
 
         self._octoprint_job = octoprint_job
+
+    @property
+    def print_job_status(self):
+        """Gets the print_job_status of this PatchedPrintSessionRequest.  # noqa: E501
+
+
+        :return: The print_job_status of this PatchedPrintSessionRequest.  # noqa: E501
+        :rtype: PrintJobStatusEnum
+        """
+        return self._print_job_status
+
+    @print_job_status.setter
+    def print_job_status(self, print_job_status):
+        """Sets the print_job_status of this PatchedPrintSessionRequest.
+
+
+        :param print_job_status: The print_job_status of this PatchedPrintSessionRequest.  # noqa: E501
+        :type print_job_status: PrintJobStatusEnum
+        """
+
+        self._print_job_status = print_job_status
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

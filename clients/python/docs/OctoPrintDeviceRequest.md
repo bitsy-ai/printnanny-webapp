@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**last_session** | **int** |  | [optional] 
 **model** | **str** |  | 
 **platform** | **str** |  | 
 **cpu_flags** | **list[str]** |  | [optional] 
@@ -17,14 +16,9 @@ Name | Type | Description | Notes
 **python_version** | **str** |  | 
 **pip_version** | **str** |  | 
 **virtualenv** | **str** |  | [optional] 
-**monitoring_active** | **bool** |  | [optional] 
-**monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
-**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
-**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

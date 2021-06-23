@@ -27,7 +27,6 @@ from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
 
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
-PrintStatusEvent = apps.get_model("telemetry", "PrintStatusEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 PrintSession = apps.get_model("remote_control", "PrintSession")

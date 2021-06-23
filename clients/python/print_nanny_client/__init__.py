@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.7.0dev27"
+__version__ = "0.7.1"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -49,13 +49,12 @@ from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
-from print_nanny_client.models.event_type0e3_enum import EventType0e3Enum
+from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
+from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.model_artifact import ModelArtifact
-from print_nanny_client.models.monitoring_mode_enum import MonitoringModeEnum
-from print_nanny_client.models.monitoring_status_enum import MonitoringStatusEnum
 from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
@@ -82,9 +81,9 @@ from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFi
 from print_nanny_client.models.paginated_model_artifact_list import PaginatedModelArtifactList
 from print_nanny_client.models.paginated_octo_print_device_list import PaginatedOctoPrintDeviceList
 from print_nanny_client.models.paginated_octo_print_event_list import PaginatedOctoPrintEventList
+from print_nanny_client.models.paginated_print_job_event_list import PaginatedPrintJobEventList
 from print_nanny_client.models.paginated_print_nanny_plugin_event_list import PaginatedPrintNannyPluginEventList
 from print_nanny_client.models.paginated_print_session_list import PaginatedPrintSessionList
-from print_nanny_client.models.paginated_print_status_event_list import PaginatedPrintStatusEventList
 from print_nanny_client.models.paginated_printer_profile_list import PaginatedPrinterProfileList
 from print_nanny_client.models.paginated_remote_command_event_list import PaginatedRemoteCommandEventList
 from print_nanny_client.models.paginated_remote_control_command_list import PaginatedRemoteControlCommandList
@@ -100,12 +99,13 @@ from print_nanny_client.models.patched_print_session_request import PatchedPrint
 from print_nanny_client.models.patched_printer_profile_request import PatchedPrinterProfileRequest
 from print_nanny_client.models.patched_remote_control_command_request import PatchedRemoteControlCommandRequest
 from print_nanny_client.models.patched_user_request import PatchedUserRequest
+from print_nanny_client.models.print_job_event import PrintJobEvent
 from print_nanny_client.models.print_job_status_enum import PrintJobStatusEnum
 from print_nanny_client.models.print_nanny_plugin_event import PrintNannyPluginEvent
 from print_nanny_client.models.print_nanny_plugin_event_event_type_enum import PrintNannyPluginEventEventTypeEnum
 from print_nanny_client.models.print_session import PrintSession
 from print_nanny_client.models.print_session_request import PrintSessionRequest
-from print_nanny_client.models.print_status_event import PrintStatusEvent
+from print_nanny_client.models.printer_event import PrinterEvent
 from print_nanny_client.models.printer_profile import PrinterProfile
 from print_nanny_client.models.printer_profile_request import PrinterProfileRequest
 from print_nanny_client.models.printer_state_enum import PrinterStateEnum

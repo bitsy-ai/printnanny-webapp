@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **user** | **int** |  | [optional] [readonly] 
-**last_session** | **int** |  | [optional] 
 **public_key** | **str** |  | [optional] [readonly] 
 **fingerprint** | **str** |  | [optional] [readonly] 
 **cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
@@ -27,16 +26,13 @@ Name | Type | Description | Notes
 **python_version** | **str** |  | 
 **pip_version** | **str** |  | 
 **virtualenv** | **str** |  | [optional] 
-**monitoring_active** | **bool** |  | [optional] 
-**monitoring_mode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  | [optional] 
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**monitoring_status** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  | [optional] 
-**print_job_status** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  | [optional] 
-**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 **manage_url** | **str** |  | [optional] [readonly] 
+**monitoring_active** | **bool** |  | [optional] [readonly] 
+**active_session** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

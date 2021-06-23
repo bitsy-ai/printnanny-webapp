@@ -37,7 +37,6 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
         if include_optional :
             return OctoPrintDeviceRequest(
                 name = '', 
-                last_session = 56, 
                 model = '', 
                 platform = '', 
                 cpu_flags = [
@@ -51,14 +50,9 @@ class TestOctoPrintDeviceRequest(unittest.TestCase):
                 python_version = '', 
                 pip_version = '', 
                 virtualenv = '', 
-                monitoring_active = True, 
-                monitoring_mode = 'active_learning', 
                 octoprint_version = '', 
                 plugin_version = '', 
-                print_nanny_client_version = '', 
-                monitoring_status = 'monitoring_active', 
-                print_job_status = None, 
-                printer_state = 'Operational'
+                print_nanny_client_version = ''
             )
         else :
             return OctoPrintDeviceRequest(

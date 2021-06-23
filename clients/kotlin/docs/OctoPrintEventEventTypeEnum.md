@@ -66,14 +66,6 @@
 
     * `slicingStarted` (value: `"SlicingStarted"`)
 
-    * `connected` (value: `"Connected"`)
-
-    * `disconnected` (value: `"Disconnected"`)
-
-    * `printerReset` (value: `"PrinterReset"`)
-
-    * `firmwareData` (value: `"FirmwareData"`)
-
     * `printerProfileAdded` (value: `"PrinterProfileAdded"`)
 
     * `printerProfileDeleted` (value: `"PrinterProfileDeleted"`)

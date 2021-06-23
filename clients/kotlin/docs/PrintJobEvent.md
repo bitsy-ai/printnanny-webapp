@@ -1,10 +1,10 @@
 
-# PrintStatusEvent
+# PrintJobEvent
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**eventType** | [**EventType0e3Enum**](EventType0e3Enum.md) |  | 
+**eventType** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **octoprintEnvironment** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **octoprintPrinterData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printSession** | **kotlin.Int** |  |  [optional]

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.monitoring_status_enum import MonitoringStatusEnum  # noqa: E501
+from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestMonitoringStatusEnum(unittest.TestCase):
-    """MonitoringStatusEnum unit test stubs"""
+class TestEventType0c4Enum(unittest.TestCase):
+    """EventType0c4Enum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestMonitoringStatusEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test MonitoringStatusEnum
+        """Test EventType0c4Enum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.monitoring_status_enum.MonitoringStatusEnum()  # noqa: E501
+        # model = print_nanny_client.models.event_type0c4_enum.EventType0c4Enum()  # noqa: E501
         if include_optional :
-            return MonitoringStatusEnum(
+            return EventType0c4Enum(
             )
         else :
-            return MonitoringStatusEnum(
+            return EventType0c4Enum(
         )
 
-    def testMonitoringStatusEnum(self):
-        """Test MonitoringStatusEnum"""
+    def testEventType0c4Enum(self):
+        """Test EventType0c4Enum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

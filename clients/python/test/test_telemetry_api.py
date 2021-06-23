@@ -46,6 +46,18 @@ class TestTelemetryApi(unittest.TestCase):
         """
         pass
 
+    def test_print_job_events_list(self):
+        """Test case for print_job_events_list
+
+        """
+        pass
+
+    def test_print_job_events_retrieve(self):
+        """Test case for print_job_events_retrieve
+
+        """
+        pass
+
     def test_print_nanny_plugin_events_list(self):
         """Test case for print_nanny_plugin_events_list
 
@@ -54,18 +66,6 @@ class TestTelemetryApi(unittest.TestCase):
 
     def test_print_nanny_plugin_events_retrieve(self):
         """Test case for print_nanny_plugin_events_retrieve
-
-        """
-        pass
-
-    def test_print_status_events_list(self):
-        """Test case for print_status_events_list
-
-        """
-        pass
-
-    def test_print_status_events_retrieve(self):
-        """Test case for print_status_events_retrieve
 
         """
         pass

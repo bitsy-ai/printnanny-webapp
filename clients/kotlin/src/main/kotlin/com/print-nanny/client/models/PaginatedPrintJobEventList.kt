@@ -11,7 +11,7 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.PrintStatusEvent
+import com.print-nanny.client.models.PrintJobEvent
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -24,7 +24,7 @@ import java.io.Serializable
  * @param results 
  */
 
-data class PaginatedPrintStatusEventList (
+data class PaginatedPrintJobEventList (
     @Json(name = "count")
     val count: kotlin.Int? = null,
     @Json(name = "next")
@@ -32,7 +32,7 @@ data class PaginatedPrintStatusEventList (
     @Json(name = "previous")
     val previous: java.net.URI? = null,
     @Json(name = "results")
-    val results: kotlin.collections.List<PrintStatusEvent>? = null
+    val results: kotlin.collections.List<PrintJobEvent>? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

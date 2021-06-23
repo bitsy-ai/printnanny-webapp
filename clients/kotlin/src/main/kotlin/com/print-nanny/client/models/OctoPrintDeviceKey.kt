@@ -12,10 +12,6 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
-import com.print-nanny.client.models.MonitoringModeEnum
-import com.print-nanny.client.models.MonitoringStatusEnum
-import com.print-nanny.client.models.PrintJobStatusEnum
-import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -39,7 +35,6 @@ import java.io.Serializable
  * @param deleted 
  * @param createdDt 
  * @param user 
- * @param lastSession 
  * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDevice 
@@ -50,16 +45,13 @@ import java.io.Serializable
  * @param hardware 
  * @param revision 
  * @param virtualenv 
- * @param monitoringActive 
- * @param monitoringMode 
- * @param monitoringStatus 
- * @param printJobStatus 
- * @param printerState 
  * @param url 
  * @param privateKey 
  * @param privateKeyChecksum 
  * @param cloudiotDeviceConfigs 
  * @param manageUrl 
+ * @param monitoringActive 
+ * @param activeSession 
  */
 
 data class OctoPrintDeviceKey (
@@ -97,8 +89,6 @@ data class OctoPrintDeviceKey (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "user")
     val user: kotlin.Int? = null,
-    @Json(name = "last_session")
-    val lastSession: kotlin.Int? = null,
     @Json(name = "public_key")
     val publicKey: kotlin.String? = null,
     @Json(name = "fingerprint")
@@ -119,16 +109,6 @@ data class OctoPrintDeviceKey (
     val revision: kotlin.String? = null,
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-    @Json(name = "monitoring_active")
-    val monitoringActive: kotlin.Boolean? = null,
-    @Json(name = "monitoring_mode")
-    val monitoringMode: MonitoringModeEnum? = null,
-    @Json(name = "monitoring_status")
-    val monitoringStatus: MonitoringStatusEnum? = null,
-    @Json(name = "print_job_status")
-    val printJobStatus: PrintJobStatusEnum? = null,
-    @Json(name = "printer_state")
-    val printerState: PrinterStateEnum? = null,
     @Json(name = "url")
     val url: java.net.URI? = null,
     @Json(name = "private_key")
@@ -138,7 +118,11 @@ data class OctoPrintDeviceKey (
     @Json(name = "cloudiot_device_configs")
     val cloudiotDeviceConfigs: kotlin.String? = null,
     @Json(name = "manage_url")
-    val manageUrl: java.net.URI? = null
+    val manageUrl: java.net.URI? = null,
+    @Json(name = "monitoring_active")
+    val monitoringActive: kotlin.Boolean? = null,
+    @Json(name = "active_session")
+    val activeSession: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

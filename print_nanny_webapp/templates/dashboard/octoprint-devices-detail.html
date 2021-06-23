@@ -38,16 +38,18 @@
                     <dl class="row">
         
         
-                        <dt class="col-sm-3">Printer Status</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.printer_state_css_class}}"></i> {{object.printer_state}}</dd>
-                        <!-- <dt class="col-sm-3">Job Status</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.print_job_status_css_class}}"></i>{{object.print_job_status}}</dd> -->
-
-                        <dt class="col-sm-3">Job Progress</dt>
-                        <dd class="col-sm-9">{%if object.last_session.print_progress %}{{object.last_session.print_progress}}% {% endif %}</dd>
-
+                        <dt class="col-sm-3">Printer Connection</dt>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i> {{object.last_printer_event.printer_state}}</dd>
                         <dt class="col-sm-3">Monitoring Active</dt>
                         <dd class="col-sm-9"><i class="mdi mdi-circle {{object.monitoring_active_css_class}}"></i> {{object.monitoring_active}}</dd>
+
+
+                        <dt class="col-sm-3">Current Job</dt>
+                        {%if object.active_session %}
+                        <dd class="col-sm-9">{{object.active_session.gcode_filename }} {%if object.active_session.print_progress %} - {{object.active_session.print_progress}}% complete {% endif %} </dd>
+                        {% else %}
+                        <dd class="col-sm-9">No active print job</dd>
+                        {% endif %}
 
                         <dt class="col-sm-3">Last Telemetry</dt>
                         <dd class="col-sm-9">{{ object.cloudiot_device_status.lastEventTime }}</dd>

@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.monitoring_mode_enum import MonitoringModeEnum  # noqa: E501
+from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestMonitoringModeEnum(unittest.TestCase):
-    """MonitoringModeEnum unit test stubs"""
+class TestEventTypeD9eEnum(unittest.TestCase):
+    """EventTypeD9eEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestMonitoringModeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test MonitoringModeEnum
+        """Test EventTypeD9eEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.monitoring_mode_enum.MonitoringModeEnum()  # noqa: E501
+        # model = print_nanny_client.models.event_type_d9e_enum.EventTypeD9eEnum()  # noqa: E501
         if include_optional :
-            return MonitoringModeEnum(
+            return EventTypeD9eEnum(
             )
         else :
-            return MonitoringModeEnum(
+            return EventTypeD9eEnum(
         )
 
-    def testMonitoringModeEnum(self):
-        """Test MonitoringModeEnum"""
+    def testEventTypeD9eEnum(self):
+        """Test EventTypeD9eEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

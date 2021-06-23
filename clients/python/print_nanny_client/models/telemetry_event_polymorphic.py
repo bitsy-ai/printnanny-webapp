@@ -479,6 +479,8 @@ class TelemetryEventPolymorphic(object):
         :param printer_state: The printer_state of this TelemetryEventPolymorphic.  # noqa: E501
         :type printer_state: PrinterStateEnum
         """
+        if self.local_vars_configuration.client_side_validation and printer_state is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_state`, must not be `None`")  # noqa: E501
 
         self._printer_state = printer_state
 

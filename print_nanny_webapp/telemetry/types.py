@@ -5,7 +5,7 @@ from django.db import models
 # Instead, I've just duplicated event types where inheritance is needed
 
 # Example:
-# TelemetryEventTypes is the Union of [OctoprintPluginEventTypes, OctoprintEventTypes, PrintStatusEventTypes] etc
+# TelemetryEventTypes is the Union of [OctoprintPluginEventTypes, OctoprintEventTypes, PrintJobEventTypes] etc
 # but TelemetryEventTypes cannot be defined as inheriting from multiple enums with members defined
 #
 # I think the best long-term approach is to use Protobuf as the source of truth for schemas
@@ -208,7 +208,7 @@ class TelemetryEventType(models.TextChoices):
     )
 
     ##
-    # source: PrintStatusEventType
+    # source: PrintJobEventType
     ##
 
     PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
@@ -354,12 +354,6 @@ class OctoprintEventType(models.TextChoices):
     SLICING_PROFILE_MODIFIED = "SlicingProfileModified", "SlicingProfileModified"
     SLICING_STARTED = "SlicingStarted", "SlicingStarted"
 
-    # octoprint server <-> printer telemetry
-    CONNECTED = "Connected", "Connected"
-    DISCONNECTED = "Disconnected", "Disconnected"
-    PRINTER_RESET = "PrinterReset", "PrinterReset"
-    FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-
     # printer profile
     PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
     PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
@@ -399,7 +393,7 @@ class RemoteCommandEventType(models.TextChoices):
     )
 
 
-class PrintStatusEventType(models.TextChoices):
+class PrintJobEventType(models.TextChoices):
 
     # print job
     PRINT_CANCELLED = "PrintCancelled", "PrintCancelled"
@@ -409,10 +403,9 @@ class PrintStatusEventType(models.TextChoices):
     PRINT_PAUSED = "PrintPaused", "PrintPaused"
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
-    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
 
-class PrinterState(models.TextChoices):
+class PrinterEventType(models.TextChoices):
     OPERATIONAL = "Operational", "Printer Connected"
     PAUSED = "Paused", "Paused"
     CANCELLING = "Cancelling", "Cancelling"
@@ -427,3 +420,10 @@ class PrinterState(models.TextChoices):
     CONNECTING = "Connection", "Establishing printer connection"
     RESUMING = "Resuming", "Resuming"
     FINISHING = "Finishing", "Finishing"
+    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
+
+    # octoprint server <-> printer telemetry
+    CONNECTED = "Connected", "Connected"
+    DISCONNECTED = "Disconnected", "Disconnected"
+    PRINTER_RESET = "PrinterReset", "PrinterReset"
+    FIRMWARE_DATA = "FirmwareData", "FirmwareData"

@@ -11,10 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.MonitoringModeEnum
-import com.print-nanny.client.models.MonitoringStatusEnum
-import com.print-nanny.client.models.PrintJobStatusEnum
-import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -22,7 +18,6 @@ import java.io.Serializable
 /**
  * 
  * @param name 
- * @param lastSession 
  * @param model 
  * @param platform 
  * @param cpuFlags 
@@ -34,21 +29,14 @@ import java.io.Serializable
  * @param pythonVersion 
  * @param pipVersion 
  * @param virtualenv 
- * @param monitoringActive 
- * @param monitoringMode 
  * @param octoprintVersion 
  * @param pluginVersion 
  * @param printNannyClientVersion 
- * @param monitoringStatus 
- * @param printJobStatus 
- * @param printerState 
  */
 
 data class PatchedOctoPrintDeviceRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
-    @Json(name = "last_session")
-    val lastSession: kotlin.Int? = null,
     @Json(name = "model")
     val model: kotlin.String? = null,
     @Json(name = "platform")
@@ -71,22 +59,12 @@ data class PatchedOctoPrintDeviceRequest (
     val pipVersion: kotlin.String? = null,
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-    @Json(name = "monitoring_active")
-    val monitoringActive: kotlin.Boolean? = null,
-    @Json(name = "monitoring_mode")
-    val monitoringMode: MonitoringModeEnum? = null,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String? = null,
     @Json(name = "plugin_version")
     val pluginVersion: kotlin.String? = null,
     @Json(name = "print_nanny_client_version")
-    val printNannyClientVersion: kotlin.String? = null,
-    @Json(name = "monitoring_status")
-    val monitoringStatus: MonitoringStatusEnum? = null,
-    @Json(name = "print_job_status")
-    val printJobStatus: PrintJobStatusEnum? = null,
-    @Json(name = "printer_state")
-    val printerState: PrinterStateEnum? = null
+    val printNannyClientVersion: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

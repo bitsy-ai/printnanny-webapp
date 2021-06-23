@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.paginated_print_status_event_list import PaginatedPrintStatusEventList  # noqa: E501
+from print_nanny_client.models.paginated_print_job_event_list import PaginatedPrintJobEventList  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestPaginatedPrintStatusEventList(unittest.TestCase):
-    """PaginatedPrintStatusEventList unit test stubs"""
+class TestPaginatedPrintJobEventList(unittest.TestCase):
+    """PaginatedPrintJobEventList unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,18 +29,18 @@ class TestPaginatedPrintStatusEventList(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test PaginatedPrintStatusEventList
+        """Test PaginatedPrintJobEventList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.paginated_print_status_event_list.PaginatedPrintStatusEventList()  # noqa: E501
+        # model = print_nanny_client.models.paginated_print_job_event_list.PaginatedPrintJobEventList()  # noqa: E501
         if include_optional :
-            return PaginatedPrintStatusEventList(
+            return PaginatedPrintJobEventList(
                 count = 123, 
                 next = 'http://api.example.org/accounts/?page=4', 
                 previous = 'http://api.example.org/accounts/?page=2', 
                 results = [
-                    print_nanny_client.models.print_status_event.PrintStatusEvent(
+                    print_nanny_client.models.print_job_event.PrintJobEvent(
                         id = 56, 
                         event_type = 'PrintCancelled', 
                         ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -60,7 +60,6 @@ class TestPaginatedPrintStatusEventList(unittest.TestCase):
                         print_nanny_plugin_version = '', 
                         print_nanny_client_version = '', 
                         octoprint_version = '', 
-                        printer_state = null, 
                         polymorphic_ctype = 56, 
                         octoprint_device = 56, 
                         user = 56, 
@@ -68,11 +67,11 @@ class TestPaginatedPrintStatusEventList(unittest.TestCase):
                     ]
             )
         else :
-            return PaginatedPrintStatusEventList(
+            return PaginatedPrintJobEventList(
         )
 
-    def testPaginatedPrintStatusEventList(self):
-        """Test PaginatedPrintStatusEventList"""
+    def testPaginatedPrintJobEventList(self):
+        """Test PaginatedPrintJobEventList"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

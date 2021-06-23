@@ -41,7 +41,6 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'datetime',
         'name': 'str',
         'user': 'int',
-        'last_session': 'int',
         'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
@@ -59,21 +58,18 @@ class OctoPrintDeviceKey(object):
         'python_version': 'str',
         'pip_version': 'str',
         'virtualenv': 'str',
-        'monitoring_active': 'bool',
-        'monitoring_mode': 'MonitoringModeEnum',
         'octoprint_version': 'str',
         'plugin_version': 'str',
         'print_nanny_client_version': 'str',
-        'monitoring_status': 'MonitoringStatusEnum',
-        'print_job_status': 'PrintJobStatusEnum',
-        'printer_state': 'PrinterStateEnum',
         'url': 'str',
         'private_key': 'str',
         'private_key_checksum': 'str',
         'public_key_checksum': 'str',
         'cloudiot_device_configs': 'str',
         'ca_certs': 'dict(str, str)',
-        'manage_url': 'str'
+        'manage_url': 'str',
+        'monitoring_active': 'bool',
+        'active_session': 'str'
     }
 
     attribute_map = {
@@ -82,7 +78,6 @@ class OctoPrintDeviceKey(object):
         'created_dt': 'created_dt',
         'name': 'name',
         'user': 'user',
-        'last_session': 'last_session',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
@@ -100,24 +95,21 @@ class OctoPrintDeviceKey(object):
         'python_version': 'python_version',
         'pip_version': 'pip_version',
         'virtualenv': 'virtualenv',
-        'monitoring_active': 'monitoring_active',
-        'monitoring_mode': 'monitoring_mode',
         'octoprint_version': 'octoprint_version',
         'plugin_version': 'plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
-        'monitoring_status': 'monitoring_status',
-        'print_job_status': 'print_job_status',
-        'printer_state': 'printer_state',
         'url': 'url',
         'private_key': 'private_key',
         'private_key_checksum': 'private_key_checksum',
         'public_key_checksum': 'public_key_checksum',
         'cloudiot_device_configs': 'cloudiot_device_configs',
         'ca_certs': 'ca_certs',
-        'manage_url': 'manage_url'
+        'manage_url': 'manage_url',
+        'monitoring_active': 'monitoring_active',
+        'active_session': 'active_session'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, name=None, user=None, last_session=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, monitoring_active=None, monitoring_mode=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, monitoring_status=None, print_job_status=None, printer_state=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, name=None, user=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, model=None, platform=None, cpu_flags=None, hardware=None, revision=None, serial=None, cores=None, ram=None, python_version=None, pip_version=None, virtualenv=None, octoprint_version=None, plugin_version=None, print_nanny_client_version=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, monitoring_active=None, active_session=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -128,7 +120,6 @@ class OctoPrintDeviceKey(object):
         self._created_dt = None
         self._name = None
         self._user = None
-        self._last_session = None
         self._public_key = None
         self._fingerprint = None
         self._cloudiot_device = None
@@ -146,14 +137,9 @@ class OctoPrintDeviceKey(object):
         self._python_version = None
         self._pip_version = None
         self._virtualenv = None
-        self._monitoring_active = None
-        self._monitoring_mode = None
         self._octoprint_version = None
         self._plugin_version = None
         self._print_nanny_client_version = None
-        self._monitoring_status = None
-        self._print_job_status = None
-        self._printer_state = None
         self._url = None
         self._private_key = None
         self._private_key_checksum = None
@@ -161,6 +147,8 @@ class OctoPrintDeviceKey(object):
         self._cloudiot_device_configs = None
         self._ca_certs = None
         self._manage_url = None
+        self._monitoring_active = None
+        self._active_session = None
         self.discriminator = None
 
         if id is not None:
@@ -172,7 +160,6 @@ class OctoPrintDeviceKey(object):
         self.name = name
         if user is not None:
             self.user = user
-        self.last_session = last_session
         if public_key is not None:
             self.public_key = public_key
         if fingerprint is not None:
@@ -196,18 +183,9 @@ class OctoPrintDeviceKey(object):
         self.python_version = python_version
         self.pip_version = pip_version
         self.virtualenv = virtualenv
-        if monitoring_active is not None:
-            self.monitoring_active = monitoring_active
-        if monitoring_mode is not None:
-            self.monitoring_mode = monitoring_mode
         self.octoprint_version = octoprint_version
         self.plugin_version = plugin_version
         self.print_nanny_client_version = print_nanny_client_version
-        if monitoring_status is not None:
-            self.monitoring_status = monitoring_status
-        self.print_job_status = print_job_status
-        if printer_state is not None:
-            self.printer_state = printer_state
         if url is not None:
             self.url = url
         if private_key is not None:
@@ -220,6 +198,10 @@ class OctoPrintDeviceKey(object):
         self.ca_certs = ca_certs
         if manage_url is not None:
             self.manage_url = manage_url
+        if monitoring_active is not None:
+            self.monitoring_active = monitoring_active
+        if active_session is not None:
+            self.active_session = active_session
 
     @property
     def id(self):
@@ -330,27 +312,6 @@ class OctoPrintDeviceKey(object):
         """
 
         self._user = user
-
-    @property
-    def last_session(self):
-        """Gets the last_session of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The last_session of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: int
-        """
-        return self._last_session
-
-    @last_session.setter
-    def last_session(self, last_session):
-        """Sets the last_session of this OctoPrintDeviceKey.
-
-
-        :param last_session: The last_session of this OctoPrintDeviceKey.  # noqa: E501
-        :type last_session: int
-        """
-
-        self._last_session = last_session
 
     @property
     def public_key(self):
@@ -760,48 +721,6 @@ class OctoPrintDeviceKey(object):
         self._virtualenv = virtualenv
 
     @property
-    def monitoring_active(self):
-        """Gets the monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: bool
-        """
-        return self._monitoring_active
-
-    @monitoring_active.setter
-    def monitoring_active(self, monitoring_active):
-        """Sets the monitoring_active of this OctoPrintDeviceKey.
-
-
-        :param monitoring_active: The monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
-        :type monitoring_active: bool
-        """
-
-        self._monitoring_active = monitoring_active
-
-    @property
-    def monitoring_mode(self):
-        """Gets the monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: MonitoringModeEnum
-        """
-        return self._monitoring_mode
-
-    @monitoring_mode.setter
-    def monitoring_mode(self, monitoring_mode):
-        """Sets the monitoring_mode of this OctoPrintDeviceKey.
-
-
-        :param monitoring_mode: The monitoring_mode of this OctoPrintDeviceKey.  # noqa: E501
-        :type monitoring_mode: MonitoringModeEnum
-        """
-
-        self._monitoring_mode = monitoring_mode
-
-    @property
     def octoprint_version(self):
         """Gets the octoprint_version of this OctoPrintDeviceKey.  # noqa: E501
 
@@ -878,69 +797,6 @@ class OctoPrintDeviceKey(object):
             raise ValueError("Invalid value for `print_nanny_client_version`, length must be less than or equal to `255`")  # noqa: E501
 
         self._print_nanny_client_version = print_nanny_client_version
-
-    @property
-    def monitoring_status(self):
-        """Gets the monitoring_status of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The monitoring_status of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: MonitoringStatusEnum
-        """
-        return self._monitoring_status
-
-    @monitoring_status.setter
-    def monitoring_status(self, monitoring_status):
-        """Sets the monitoring_status of this OctoPrintDeviceKey.
-
-
-        :param monitoring_status: The monitoring_status of this OctoPrintDeviceKey.  # noqa: E501
-        :type monitoring_status: MonitoringStatusEnum
-        """
-
-        self._monitoring_status = monitoring_status
-
-    @property
-    def print_job_status(self):
-        """Gets the print_job_status of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The print_job_status of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: PrintJobStatusEnum
-        """
-        return self._print_job_status
-
-    @print_job_status.setter
-    def print_job_status(self, print_job_status):
-        """Sets the print_job_status of this OctoPrintDeviceKey.
-
-
-        :param print_job_status: The print_job_status of this OctoPrintDeviceKey.  # noqa: E501
-        :type print_job_status: PrintJobStatusEnum
-        """
-
-        self._print_job_status = print_job_status
-
-    @property
-    def printer_state(self):
-        """Gets the printer_state of this OctoPrintDeviceKey.  # noqa: E501
-
-
-        :return: The printer_state of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: PrinterStateEnum
-        """
-        return self._printer_state
-
-    @printer_state.setter
-    def printer_state(self, printer_state):
-        """Sets the printer_state of this OctoPrintDeviceKey.
-
-
-        :param printer_state: The printer_state of this OctoPrintDeviceKey.  # noqa: E501
-        :type printer_state: PrinterStateEnum
-        """
-
-        self._printer_state = printer_state
 
     @property
     def url(self):
@@ -1092,6 +948,48 @@ class OctoPrintDeviceKey(object):
         """
 
         self._manage_url = manage_url
+
+    @property
+    def monitoring_active(self):
+        """Gets the monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: bool
+        """
+        return self._monitoring_active
+
+    @monitoring_active.setter
+    def monitoring_active(self, monitoring_active):
+        """Sets the monitoring_active of this OctoPrintDeviceKey.
+
+
+        :param monitoring_active: The monitoring_active of this OctoPrintDeviceKey.  # noqa: E501
+        :type monitoring_active: bool
+        """
+
+        self._monitoring_active = monitoring_active
+
+    @property
+    def active_session(self):
+        """Gets the active_session of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The active_session of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._active_session
+
+    @active_session.setter
+    def active_session(self, active_session):
+        """Sets the active_session of this OctoPrintDeviceKey.
+
+
+        :param active_session: The active_session of this OctoPrintDeviceKey.  # noqa: E501
+        :type active_session: str
+        """
+
+        self._active_session = active_session
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional]
 **octoprintDevice** | **kotlin.Int** |  |  [optional]
+**active** | **kotlin.Boolean** |  |  [optional]
 **session** | **kotlin.String** |  |  [optional]
 **filepos** | **kotlin.Int** |  |  [optional]
 **printProgress** | **kotlin.Int** |  |  [optional]
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **gcodeFile** | **kotlin.Int** |  |  [optional]
 **gcodeFilename** | **kotlin.String** |  |  [optional]
 **octoprintJob** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
 
 
 

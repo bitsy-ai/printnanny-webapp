@@ -87,10 +87,10 @@ Class | Method | HTTP request | Description
 *TelemetryApi* | [**octoprintEventsCreate**](docs/TelemetryApi.md#octoprinteventscreate) | **POST** /api/octoprint-events/ | 
 *TelemetryApi* | [**octoprintEventsList**](docs/TelemetryApi.md#octoprinteventslist) | **GET** /api/octoprint-events/ | 
 *TelemetryApi* | [**octoprintEventsRetrieve**](docs/TelemetryApi.md#octoprinteventsretrieve) | **GET** /api/octoprint-events/{id}/ | 
+*TelemetryApi* | [**printJobEventsList**](docs/TelemetryApi.md#printjobeventslist) | **GET** /api/print-job-events/ | 
+*TelemetryApi* | [**printJobEventsRetrieve**](docs/TelemetryApi.md#printjobeventsretrieve) | **GET** /api/print-job-events/{id}/ | 
 *TelemetryApi* | [**printNannyPluginEventsList**](docs/TelemetryApi.md#printnannyplugineventslist) | **GET** /api/print-nanny-plugin-events/ | 
 *TelemetryApi* | [**printNannyPluginEventsRetrieve**](docs/TelemetryApi.md#printnannyplugineventsretrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
-*TelemetryApi* | [**printStatusEventsList**](docs/TelemetryApi.md#printstatuseventslist) | **GET** /api/print-status-events/ | 
-*TelemetryApi* | [**printStatusEventsRetrieve**](docs/TelemetryApi.md#printstatuseventsretrieve) | **GET** /api/print-status-events/{id}/ | 
 *TelemetryApi* | [**remoteCommandEventsList**](docs/TelemetryApi.md#remotecommandeventslist) | **GET** /api/remote-command-events/ | 
 *TelemetryApi* | [**remoteCommandEventsRetrieve**](docs/TelemetryApi.md#remotecommandeventsretrieve) | **GET** /api/remote-command-events/{id}/ | 
 *TelemetryApi* | [**telemetryEventsList**](docs/TelemetryApi.md#telemetryeventslist) | **GET** /api/telemetry-events/ | 
@@ -117,13 +117,12 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
- - [com.print-nanny.client.models.EventType0e3Enum](docs/EventType0e3Enum.md)
+ - [com.print-nanny.client.models.EventType0c4Enum](docs/EventType0c4Enum.md)
+ - [com.print-nanny.client.models.EventTypeD9eEnum](docs/EventTypeD9eEnum.md)
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
- - [com.print-nanny.client.models.MonitoringModeEnum](docs/MonitoringModeEnum.md)
- - [com.print-nanny.client.models.MonitoringStatusEnum](docs/MonitoringStatusEnum.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
@@ -150,9 +149,9 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedModelArtifactList](docs/PaginatedModelArtifactList.md)
  - [com.print-nanny.client.models.PaginatedOctoPrintDeviceList](docs/PaginatedOctoPrintDeviceList.md)
  - [com.print-nanny.client.models.PaginatedOctoPrintEventList](docs/PaginatedOctoPrintEventList.md)
+ - [com.print-nanny.client.models.PaginatedPrintJobEventList](docs/PaginatedPrintJobEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintNannyPluginEventList](docs/PaginatedPrintNannyPluginEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
- - [com.print-nanny.client.models.PaginatedPrintStatusEventList](docs/PaginatedPrintStatusEventList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
@@ -168,12 +167,13 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [com.print-nanny.client.models.PatchedUserRequest](docs/PatchedUserRequest.md)
+ - [com.print-nanny.client.models.PrintJobEvent](docs/PrintJobEvent.md)
  - [com.print-nanny.client.models.PrintJobStatusEnum](docs/PrintJobStatusEnum.md)
  - [com.print-nanny.client.models.PrintNannyPluginEvent](docs/PrintNannyPluginEvent.md)
  - [com.print-nanny.client.models.PrintNannyPluginEventEventTypeEnum](docs/PrintNannyPluginEventEventTypeEnum.md)
  - [com.print-nanny.client.models.PrintSession](docs/PrintSession.md)
  - [com.print-nanny.client.models.PrintSessionRequest](docs/PrintSessionRequest.md)
- - [com.print-nanny.client.models.PrintStatusEvent](docs/PrintStatusEvent.md)
+ - [com.print-nanny.client.models.PrinterEvent](docs/PrinterEvent.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)

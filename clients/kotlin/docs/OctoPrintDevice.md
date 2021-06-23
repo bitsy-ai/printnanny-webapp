@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
-**lastSession** | **kotlin.Int** |  |  [optional]
 **publicKey** | **kotlin.String** |  |  [optional] [readonly]
 **fingerprint** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional] [readonly]
@@ -30,13 +29,10 @@ Name | Type | Description | Notes
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
-**monitoringActive** | **kotlin.Boolean** |  |  [optional]
-**monitoringMode** | [**MonitoringModeEnum**](MonitoringModeEnum.md) |  |  [optional]
-**monitoringStatus** | [**MonitoringStatusEnum**](MonitoringStatusEnum.md) |  |  [optional]
-**printJobStatus** | [**PrintJobStatusEnum**](PrintJobStatusEnum.md) |  |  [optional]
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
+**monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
+**activeSession** | **kotlin.String** |  |  [optional] [readonly]
 
 
 

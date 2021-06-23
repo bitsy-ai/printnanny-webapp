@@ -16,17 +16,32 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: activeLearning,lite
+* Values: printCancelled,printCancelling,printDone,printFailed,printPaused,printResumed,printStarted
 */
 
-enum class MonitoringModeEnum(val value: kotlin.String) {
+enum class EventTypeD9eEnum(val value: kotlin.String) {
 
 
-    @Json(name = "active_learning")
-    activeLearning("active_learning"),
+    @Json(name = "PrintCancelled")
+    printCancelled("PrintCancelled"),
 
-    @Json(name = "lite")
-    lite("lite");
+    @Json(name = "PrintCancelling")
+    printCancelling("PrintCancelling"),
+
+    @Json(name = "PrintDone")
+    printDone("PrintDone"),
+
+    @Json(name = "PrintFailed")
+    printFailed("PrintFailed"),
+
+    @Json(name = "PrintPaused")
+    printPaused("PrintPaused"),
+
+    @Json(name = "PrintResumed")
+    printResumed("PrintResumed"),
+
+    @Json(name = "PrintStarted")
+    printStarted("PrintStarted");
 
 
     /**

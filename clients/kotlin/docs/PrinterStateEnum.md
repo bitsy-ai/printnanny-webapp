@@ -32,5 +32,15 @@
 
     * `finishing` (value: `"Finishing"`)
 
+    * `printerStateChanged` (value: `"PrinterStateChanged"`)
+
+    * `connected` (value: `"Connected"`)
+
+    * `disconnected` (value: `"Disconnected"`)
+
+    * `printerReset` (value: `"PrinterReset"`)
+
+    * `firmwareData` (value: `"FirmwareData"`)
+
 
 

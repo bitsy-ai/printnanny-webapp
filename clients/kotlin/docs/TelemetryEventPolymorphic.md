@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **ts** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional] [readonly]
@@ -19,7 +20,6 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [optional] [readonly]
 **user** | **kotlin.Int** |  |  [optional] [readonly]
 **printSession** | **kotlin.Int** |  |  [optional]
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 
 

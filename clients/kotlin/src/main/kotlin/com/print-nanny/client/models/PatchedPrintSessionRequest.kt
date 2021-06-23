@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.PrintJobStatusEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -20,6 +21,7 @@ import java.io.Serializable
  * 
  * @param createdDt 
  * @param octoprintDevice 
+ * @param active 
  * @param session 
  * @param filepos 
  * @param printProgress 
@@ -29,6 +31,7 @@ import java.io.Serializable
  * @param gcodeFile 
  * @param gcodeFilename 
  * @param octoprintJob 
+ * @param printJobStatus 
  */
 
 data class PatchedPrintSessionRequest (
@@ -36,6 +39,8 @@ data class PatchedPrintSessionRequest (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null,
+    @Json(name = "active")
+    val active: kotlin.Boolean? = null,
     @Json(name = "session")
     val session: kotlin.String? = null,
     @Json(name = "filepos")
@@ -53,7 +58,9 @@ data class PatchedPrintSessionRequest (
     @Json(name = "gcode_filename")
     val gcodeFilename: kotlin.String? = null,
     @Json(name = "octoprint_job")
-    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null
+    val octoprintJob: kotlin.collections.Map<kotlin.String, AnyType>? = null,
+    @Json(name = "print_job_status")
+    val printJobStatus: PrintJobStatusEnum? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

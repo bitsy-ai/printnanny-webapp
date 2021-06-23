@@ -1,4 +1,4 @@
-# MonitoringModeEnum
+# EventTypeD9eEnum
 
 
 ## Properties

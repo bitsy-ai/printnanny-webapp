@@ -41,7 +41,6 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 user = 56, 
-                last_session = 56, 
                 public_key = '', 
                 fingerprint = '', 
                 cloudiot_device = {
@@ -63,14 +62,9 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 python_version = '', 
                 pip_version = '', 
                 virtualenv = '', 
-                monitoring_active = True, 
-                monitoring_mode = 'active_learning', 
                 octoprint_version = '', 
                 plugin_version = '', 
                 print_nanny_client_version = '', 
-                monitoring_status = 'monitoring_active', 
-                print_job_status = None, 
-                printer_state = 'Operational', 
                 url = '', 
                 private_key = '', 
                 private_key_checksum = '', 
@@ -79,7 +73,9 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 ca_certs = {
                     'key' : ''
                     }, 
-                manage_url = ''
+                manage_url = '', 
+                monitoring_active = True, 
+                active_session = ''
             )
         else :
             return OctoPrintDeviceKey(
