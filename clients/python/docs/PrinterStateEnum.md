@@ -1,4 +1,4 @@
-# EventType0e3Enum
+# PrinterStateEnum
 
 
 ## Properties

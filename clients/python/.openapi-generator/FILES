@@ -18,7 +18,8 @@ docs/CommandEnum.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/EventSourceEnum.md
-docs/EventType0e3Enum.md
+docs/EventType0c4Enum.md
+docs/EventTypeD9eEnum.md
 docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
@@ -77,9 +78,9 @@ docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
 docs/PrinterEvent.md
-docs/PrinterEventEventTypeEnum.md
 docs/PrinterProfile.md
 docs/PrinterProfileRequest.md
+docs/PrinterStateEnum.md
 docs/RemoteCommandEvent.md
 docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
@@ -121,7 +122,8 @@ print_nanny_client/models/command_enum.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/event_source_enum.py
-print_nanny_client/models/event_type0e3_enum.py
+print_nanny_client/models/event_type0c4_enum.py
+print_nanny_client/models/event_type_d9e_enum.py
 print_nanny_client/models/experiment.py
 print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
@@ -177,9 +179,9 @@ print_nanny_client/models/print_nanny_plugin_event_event_type_enum.py
 print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/printer_event.py
-print_nanny_client/models/printer_event_event_type_enum.py
 print_nanny_client/models/printer_profile.py
 print_nanny_client/models/printer_profile_request.py
+print_nanny_client/models/printer_state_enum.py
 print_nanny_client/models/remote_command_event.py
 print_nanny_client/models/remote_command_event_event_type_enum.py
 print_nanny_client/models/remote_control_command.py
@@ -210,7 +212,8 @@ test/test_command_enum.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
 test/test_event_source_enum.py
-test/test_event_type0e3_enum.py
+test/test_event_type0c4_enum.py
+test/test_event_type_d9e_enum.py
 test/test_experiment.py
 test/test_experiment_device_config.py
 test/test_gcode_file.py
@@ -269,9 +272,9 @@ test/test_print_nanny_plugin_event_event_type_enum.py
 test/test_print_session.py
 test/test_print_session_request.py
 test/test_printer_event.py
-test/test_printer_event_event_type_enum.py
 test/test_printer_profile.py
 test/test_printer_profile_request.py
+test/test_printer_state_enum.py
 test/test_remote_command_event.py
 test/test_remote_command_event_event_type_enum.py
 test/test_remote_control_api.py

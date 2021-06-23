@@ -37,7 +37,7 @@ class PrinterEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'PrinterEventEventTypeEnum',
+        'event_type': 'EventType0c4Enum',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -47,6 +47,7 @@ class PrinterEvent(object):
         'print_nanny_plugin_version': 'str',
         'print_nanny_client_version': 'str',
         'octoprint_version': 'str',
+        'printer_state': 'PrinterStateEnum',
         'polymorphic_ctype': 'int',
         'octoprint_device': 'int',
         'user': 'int',
@@ -65,13 +66,14 @@ class PrinterEvent(object):
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
         'print_nanny_client_version': 'print_nanny_client_version',
         'octoprint_version': 'octoprint_version',
+        'printer_state': 'printer_state',
         'polymorphic_ctype': 'polymorphic_ctype',
         'octoprint_device': 'octoprint_device',
         'user': 'user',
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, event_type=None, ts=None, event_source=None, event_data=None, octoprint_environment=None, octoprint_printer_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, printer_state=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrinterEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,6 +90,7 @@ class PrinterEvent(object):
         self._print_nanny_plugin_version = None
         self._print_nanny_client_version = None
         self._octoprint_version = None
+        self._printer_state = None
         self._polymorphic_ctype = None
         self._octoprint_device = None
         self._user = None
@@ -111,6 +114,7 @@ class PrinterEvent(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
+        self.printer_state = printer_state
         if polymorphic_ctype is not None:
             self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
@@ -145,7 +149,7 @@ class PrinterEvent(object):
 
 
         :return: The event_type of this PrinterEvent.  # noqa: E501
-        :rtype: PrinterEventEventTypeEnum
+        :rtype: EventType0c4Enum
         """
         return self._event_type
 
@@ -155,7 +159,7 @@ class PrinterEvent(object):
 
 
         :param event_type: The event_type of this PrinterEvent.  # noqa: E501
-        :type event_type: PrinterEventEventTypeEnum
+        :type event_type: EventType0c4Enum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
@@ -365,6 +369,29 @@ class PrinterEvent(object):
             raise ValueError("Invalid value for `octoprint_version`, length must be less than or equal to `36`")  # noqa: E501
 
         self._octoprint_version = octoprint_version
+
+    @property
+    def printer_state(self):
+        """Gets the printer_state of this PrinterEvent.  # noqa: E501
+
+
+        :return: The printer_state of this PrinterEvent.  # noqa: E501
+        :rtype: PrinterStateEnum
+        """
+        return self._printer_state
+
+    @printer_state.setter
+    def printer_state(self, printer_state):
+        """Sets the printer_state of this PrinterEvent.
+
+
+        :param printer_state: The printer_state of this PrinterEvent.  # noqa: E501
+        :type printer_state: PrinterStateEnum
+        """
+        if self.local_vars_configuration.client_side_validation and printer_state is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_state`, must not be `None`")  # noqa: E501
+
+        self._printer_state = printer_state
 
     @property
     def polymorphic_ctype(self):

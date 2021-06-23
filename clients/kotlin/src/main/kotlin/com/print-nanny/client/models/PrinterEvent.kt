@@ -13,7 +13,8 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
-import com.print-nanny.client.models.PrinterEventEventTypeEnum
+import com.print-nanny.client.models.EventType0c4Enum
+import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -24,6 +25,7 @@ import java.io.Serializable
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
+ * @param printerState 
  * @param octoprintDevice 
  * @param id 
  * @param ts 
@@ -39,13 +41,15 @@ import java.io.Serializable
 
 data class PrinterEvent (
     @Json(name = "event_type")
-    val eventType: PrinterEventEventTypeEnum,
+    val eventType: EventType0c4Enum,
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String,
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
+    @Json(name = "printer_state")
+    val printerState: PrinterStateEnum,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "id")

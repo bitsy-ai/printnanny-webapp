@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.7.1dev8"
+__version__ = "0.7.1"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -49,7 +49,8 @@ from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
-from print_nanny_client.models.event_type0e3_enum import EventType0e3Enum
+from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
+from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
@@ -105,9 +106,9 @@ from print_nanny_client.models.print_nanny_plugin_event_event_type_enum import P
 from print_nanny_client.models.print_session import PrintSession
 from print_nanny_client.models.print_session_request import PrintSessionRequest
 from print_nanny_client.models.printer_event import PrinterEvent
-from print_nanny_client.models.printer_event_event_type_enum import PrinterEventEventTypeEnum
 from print_nanny_client.models.printer_profile import PrinterProfile
 from print_nanny_client.models.printer_profile_request import PrinterProfileRequest
+from print_nanny_client.models.printer_state_enum import PrinterStateEnum
 from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_control_command import RemoteControlCommand

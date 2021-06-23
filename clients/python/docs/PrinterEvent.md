@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**event_type** | [**PrinterEventEventTypeEnum**](PrinterEventEventTypeEnum.md) |  | 
+**event_type** | [**EventType0c4Enum**](EventType0c4Enum.md) |  | 
 **ts** | **datetime** |  | [optional] [readonly] 
 **event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] [readonly] 
 **event_data** | **dict(str, object)** |  | [optional] 
@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
+**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **polymorphic_ctype** | **int** |  | [optional] [readonly] 
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [optional] [readonly] 

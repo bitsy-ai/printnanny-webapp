@@ -37,7 +37,7 @@ class PrintJobEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'event_type': 'EventType0e3Enum',
+        'event_type': 'EventTypeD9eEnum',
         'ts': 'datetime',
         'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
@@ -145,7 +145,7 @@ class PrintJobEvent(object):
 
 
         :return: The event_type of this PrintJobEvent.  # noqa: E501
-        :rtype: EventType0e3Enum
+        :rtype: EventTypeD9eEnum
         """
         return self._event_type
 
@@ -155,7 +155,7 @@ class PrintJobEvent(object):
 
 
         :param event_type: The event_type of this PrintJobEvent.  # noqa: E501
-        :type event_type: EventType0e3Enum
+        :type event_type: EventTypeD9eEnum
         """
         if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
             raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501

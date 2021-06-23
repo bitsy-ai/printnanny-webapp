@@ -388,15 +388,41 @@ export enum EventSourceEnum {
  * @export
  * @enum {string}
  */
-export enum EventType0e3Enum {
+export enum EventType0c4Enum {
+    Operational = 'Operational',
+    Paused = 'Paused',
+    Cancelling = 'Cancelling',
+    Printing = 'Printing',
+    Pausing = 'Pausing',
+    SdReady = 'sdReady',
+    Error = 'Error',
+    ReadyPrinterReady = 'ReadyPrinter Ready',
+    ClosedOrError = 'closedOrError',
+    Offline = 'Offline',
+    OpeningSerialConnection = 'Opening serial connection',
+    Connection = 'Connection',
+    Resuming = 'Resuming',
+    Finishing = 'Finishing',
+    PrinterStateChanged = 'PrinterStateChanged',
+    Connected = 'Connected',
+    Disconnected = 'Disconnected',
+    PrinterReset = 'PrinterReset',
+    FirmwareData = 'FirmwareData'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum EventTypeD9eEnum {
     PrintCancelled = 'PrintCancelled',
     PrintCancelling = 'PrintCancelling',
     PrintDone = 'PrintDone',
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
+    PrintStarted = 'PrintStarted'
 }
 
 /**
@@ -1267,10 +1293,6 @@ export enum OctoPrintEventEventTypeEnum {
     SlicingProfileDeleted = 'SlicingProfileDeleted',
     SlicingProfileModified = 'SlicingProfileModified',
     SlicingStarted = 'SlicingStarted',
-    Connected = 'Connected',
-    Disconnected = 'Disconnected',
-    PrinterReset = 'PrinterReset',
-    FirmwareData = 'FirmwareData',
     PrinterProfileAdded = 'PrinterProfileAdded',
     PrinterProfileDeleted = 'PrinterProfileDeleted',
     PrinterProfileModified = 'PrinterProfileModified',
@@ -2832,10 +2854,10 @@ export interface PrintJobEvent {
     id?: number;
     /**
      * 
-     * @type {EventType0e3Enum}
+     * @type {EventTypeD9eEnum}
      * @memberof PrintJobEvent
      */
-    event_type: EventType0e3Enum;
+    event_type: EventTypeD9eEnum;
     /**
      * 
      * @type {string}
@@ -2927,8 +2949,7 @@ export enum PrintJobStatusEnum {
     PrintFailed = 'PrintFailed',
     PrintPaused = 'PrintPaused',
     PrintResumed = 'PrintResumed',
-    PrintStarted = 'PrintStarted',
-    PrinterStateChanged = 'PrinterStateChanged'
+    PrintStarted = 'PrintStarted'
 }
 
 /**
@@ -3269,10 +3290,10 @@ export interface PrinterEvent {
     id?: number;
     /**
      * 
-     * @type {PrinterEventEventTypeEnum}
+     * @type {EventType0c4Enum}
      * @memberof PrinterEvent
      */
-    event_type: PrinterEventEventTypeEnum;
+    event_type: EventType0c4Enum;
     /**
      * 
      * @type {string}
@@ -3329,6 +3350,12 @@ export interface PrinterEvent {
     octoprint_version: string;
     /**
      * 
+     * @type {PrinterStateEnum}
+     * @memberof PrinterEvent
+     */
+    printer_state: PrinterStateEnum;
+    /**
+     * 
      * @type {number}
      * @memberof PrinterEvent
      */
@@ -3352,28 +3379,6 @@ export interface PrinterEvent {
      */
     print_session?: number | null;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum PrinterEventEventTypeEnum {
-    Operational = 'Operational',
-    Paused = 'Paused',
-    Cancelling = 'Cancelling',
-    Printing = 'Printing',
-    Pausing = 'Pausing',
-    SdReady = 'sdReady',
-    Error = 'Error',
-    ReadyPrinterReady = 'ReadyPrinter Ready',
-    ClosedOrError = 'closedOrError',
-    Offline = 'Offline',
-    OpeningSerialConnection = 'Opening serial connection',
-    Connection = 'Connection',
-    Resuming = 'Resuming',
-    Finishing = 'Finishing'
-}
-
 /**
  * 
  * @export
@@ -3682,6 +3687,33 @@ export interface PrinterProfileRequest {
      */
     volume_width?: number | null;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum PrinterStateEnum {
+    Operational = 'Operational',
+    Paused = 'Paused',
+    Cancelling = 'Cancelling',
+    Printing = 'Printing',
+    Pausing = 'Pausing',
+    SdReady = 'sdReady',
+    Error = 'Error',
+    ReadyPrinterReady = 'ReadyPrinter Ready',
+    ClosedOrError = 'closedOrError',
+    Offline = 'Offline',
+    OpeningSerialConnection = 'Opening serial connection',
+    Connection = 'Connection',
+    Resuming = 'Resuming',
+    Finishing = 'Finishing',
+    PrinterStateChanged = 'PrinterStateChanged',
+    Connected = 'Connected',
+    Disconnected = 'Disconnected',
+    PrinterReset = 'PrinterReset',
+    FirmwareData = 'FirmwareData'
+}
+
 /**
  * 
  * @export

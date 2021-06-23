@@ -4,10 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**eventType** | [**PrinterEventEventTypeEnum**](PrinterEventEventTypeEnum.md) |  | 
+**eventType** | [**EventType0c4Enum**](EventType0c4Enum.md) |  | 
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **ts** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]

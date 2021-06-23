@@ -18,6 +18,7 @@ import com.print-nanny.client.models.PrintJobEvent
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.PrintNannyPluginEventEventTypeEnum
 import com.print-nanny.client.models.PrinterEvent
+import com.print-nanny.client.models.PrinterStateEnum
 import com.print-nanny.client.models.RemoteCommandEvent
 import com.print-nanny.client.models.TelemetryEvent
 
@@ -33,6 +34,7 @@ import java.io.Serializable
  * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param octoprintDevice 
+ * @param printerState 
  * @param id 
  * @param ts 
  * @param eventSource 
@@ -62,6 +64,8 @@ interface TelemetryEventPolymorphic : Serializable {
     val octoprintVersion: kotlin.String
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int
+    @Json(name = "printer_state")
+    val printerState: PrinterStateEnum
     @Json(name = "id")
     val id: kotlin.Int?
     @Json(name = "ts")

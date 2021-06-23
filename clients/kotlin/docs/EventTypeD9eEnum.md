@@ -1,5 +1,5 @@
 
-# EventType0e3Enum
+# EventTypeD9eEnum
 
 ## Enum
 
@@ -17,8 +17,6 @@
     * `printResumed` (value: `"PrintResumed"`)
 
     * `printStarted` (value: `"PrintStarted"`)
-
-    * `printerStateChanged` (value: `"PrinterStateChanged"`)
 
 
 

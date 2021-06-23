@@ -16,10 +16,10 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError,offline,openingSerialConnection,connection,resuming,finishing
+* Values: operational,paused,cancelling,printing,pausing,sdReady,error,readyPrinterReady,closedOrError,offline,openingSerialConnection,connection,resuming,finishing,printerStateChanged,connected,disconnected,printerReset,firmwareData
 */
 
-enum class PrinterEventEventTypeEnum(val value: kotlin.String) {
+enum class PrinterStateEnum(val value: kotlin.String) {
 
 
     @Json(name = "Operational")
@@ -62,7 +62,22 @@ enum class PrinterEventEventTypeEnum(val value: kotlin.String) {
     resuming("Resuming"),
 
     @Json(name = "Finishing")
-    finishing("Finishing");
+    finishing("Finishing"),
+
+    @Json(name = "PrinterStateChanged")
+    printerStateChanged("PrinterStateChanged"),
+
+    @Json(name = "Connected")
+    connected("Connected"),
+
+    @Json(name = "Disconnected")
+    disconnected("Disconnected"),
+
+    @Json(name = "PrinterReset")
+    printerReset("PrinterReset"),
+
+    @Json(name = "FirmwareData")
+    firmwareData("FirmwareData");
 
 
     /**
