@@ -178,6 +178,10 @@ class OctoPrintDevice(SafeDeleteModel):
         return PrinterEvent.CSS_CLASS_MAP[self.last_printer_event_display]
 
     @property
+    def last_printer_event_css_class(self) -> str:
+        return PrinterEvent.CSS_CLASS_MAP[self.last_printer_event_display]
+
+    @property
     def last_printer_event_display(self) -> str:
         if self.last_printer_event is None:
             return PrinterEventType.OFFLINE
@@ -260,7 +264,9 @@ class OctoPrintDevice(SafeDeleteModel):
 
     @property
     def monitoring_active_css_class(self) -> str:
-        return self.MONITORING_ACTIVE_CSS[self.monitoring_active]
+        if self.active_session:
+            return "text-success"
+        return "text-warning"
 
 
 class GcodeFile(models.Model):
