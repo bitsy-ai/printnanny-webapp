@@ -188,13 +188,13 @@ class OctoPrintDevice(SafeDeleteModel):
         return self.last_printer_event.printer_state
 
     @property
-    def last_printer_event(self) -> Tuple[str, str]:
+    def last_printer_event(self) -> Optional[PrinterEvent]:
         return (
             PrinterEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
         )
 
     @property
-    def last_print_job_event(self):
+    def last_print_job_event(self) -> Optional[PrintJobEvent]:
         event = (
             PrintJobEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
         )
@@ -456,7 +456,7 @@ class RemoteControlCommand(models.Model):
     COMMAND_CODES = [x.value for x in Command.__members__.values()]
 
     @classmethod
-    def get_valid_actions(cls, print_job_status: Optional[str] = None):
+    def get_valid_actions(cls, print_job_status):
         valid_actions = {
             PrintJobEventType.PRINT_STARTED: [
                 cls.Command.PRINT_STOP,

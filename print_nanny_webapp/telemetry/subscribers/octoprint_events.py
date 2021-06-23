@@ -141,13 +141,12 @@ def handle_print_job_event(event: PrintJobEvent) -> OctoPrintDevice:
     print_session = event.print_session
 
     if print_session:
-        if event.event_type != PrintJobEventType.PRINTER_STATE_CHANGED:
-            event.octoprint_device.print_job_status = event.event_type
-
+        pass
     else:
         logger.warning(
             f"handle_print_job_event() called without event.print_session relation event={event}"
         )
+    return event
 
 
 def handle_ping(event: OctoPrintEvent):
