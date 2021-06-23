@@ -39,11 +39,11 @@
         
         
                         <dt class="col-sm-3">Printer Connection</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.printer_state_css_class}}"></i> {{object.printer_state}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i> {{object.last_printer_event}}</dd>
 
                         <dt class="col-sm-3">Current Job</dt>
                         {%if object.active_session %}
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.print_job_status_css_class}}"></i>{{object.active_session.print_job_status}} (object.active_session.progress) </dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_print_job_event_css_class}}"></i>{{object.last_print_job_event.event_type }} {{object.active_session.progress}} </dd>
                         {% else %}
                         <dd class="col-sm-9">No active print job</dd>
                         {% endif %}

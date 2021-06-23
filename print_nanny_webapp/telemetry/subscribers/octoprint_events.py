@@ -25,6 +25,7 @@ from django.contrib.auth import get_user_model
 from print_nanny_webapp.telemetry.types import (
     OctoprintEventType,
     PrintJobEventType,
+    PrinterEventType,
     RemoteCommandEventType,
     PrintNannyPluginEventType,
 )
@@ -34,6 +35,7 @@ from print_nanny_webapp.telemetry.models import (
     OctoPrintEvent,
     PrintNannyPluginEvent,
     PrintJobEvent,
+    PrinterEvent,
     RemoteCommandEvent,
     TelemetryEvent,
 )
@@ -182,6 +184,8 @@ def get_resourcetype(validated_data):
         resourcetype = RemoteCommandEvent._meta.object_name
     elif event_type in PrintNannyPluginEventType:
         resourcetype = PrintNannyPluginEvent._meta.object_name
+    elif event_type in PrinterEventType:
+        resourcetype = PrinterEvent._meta.object_name
     else:
         resourcetype = TelemetryEvent._meta.object_name
         logger.warning(
