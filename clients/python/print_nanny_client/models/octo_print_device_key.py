@@ -69,7 +69,7 @@ class OctoPrintDeviceKey(object):
         'ca_certs': 'dict(str, str)',
         'manage_url': 'str',
         'monitoring_active': 'bool',
-        'active_session': 'PrintSession'
+        'active_session': 'str'
     }
 
     attribute_map = {
@@ -200,7 +200,8 @@ class OctoPrintDeviceKey(object):
             self.manage_url = manage_url
         if monitoring_active is not None:
             self.monitoring_active = monitoring_active
-        self.active_session = active_session
+        if active_session is not None:
+            self.active_session = active_session
 
     @property
     def id(self):
@@ -975,7 +976,7 @@ class OctoPrintDeviceKey(object):
 
 
         :return: The active_session of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: PrintSession
+        :rtype: str
         """
         return self._active_session
 
@@ -985,10 +986,8 @@ class OctoPrintDeviceKey(object):
 
 
         :param active_session: The active_session of this OctoPrintDeviceKey.  # noqa: E501
-        :type active_session: PrintSession
+        :type active_session: str
         """
-        if self.local_vars_configuration.client_side_validation and active_session is None:  # noqa: E501
-            raise ValueError("Invalid value for `active_session`, must not be `None`")  # noqa: E501
 
         self._active_session = active_session
 

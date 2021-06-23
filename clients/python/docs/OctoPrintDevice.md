@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **cloudiot_device_configs** | **str** |  | [optional] [readonly] 
 **manage_url** | **str** |  | [optional] [readonly] 
 **monitoring_active** | **bool** |  | [optional] [readonly] 
-**active_session** | [**PrintSession**](PrintSession.md) |  | 
+**active_session** | **str** |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

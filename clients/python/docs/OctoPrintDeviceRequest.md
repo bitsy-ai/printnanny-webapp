@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **octoprint_version** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**active_session** | [**PrintSessionRequest**](PrintSessionRequest.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

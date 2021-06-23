@@ -820,10 +820,10 @@ export interface OctoPrintDevice {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {PrintSession}
+     * @type {string}
      * @memberof OctoPrintDevice
      */
-    active_session: PrintSession;
+    active_session?: string;
 }
 /**
  * 
@@ -1031,10 +1031,10 @@ export interface OctoPrintDeviceKey {
     monitoring_active?: boolean;
     /**
      * 
-     * @type {PrintSession}
+     * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    active_session: PrintSession;
+    active_session?: string;
 }
 /**
  * 
@@ -1132,12 +1132,6 @@ export interface OctoPrintDeviceRequest {
      * @memberof OctoPrintDeviceRequest
      */
     print_nanny_client_version: string;
-    /**
-     * 
-     * @type {PrintSessionRequest}
-     * @memberof OctoPrintDeviceRequest
-     */
-    active_session: PrintSessionRequest;
 }
 /**
  * 
@@ -2531,12 +2525,6 @@ export interface PatchedOctoPrintDeviceRequest {
      * @memberof PatchedOctoPrintDeviceRequest
      */
     print_nanny_client_version?: string;
-    /**
-     * 
-     * @type {PrintSessionRequest}
-     * @memberof PatchedOctoPrintDeviceRequest
-     */
-    active_session?: PrintSessionRequest;
 }
 /**
  * 

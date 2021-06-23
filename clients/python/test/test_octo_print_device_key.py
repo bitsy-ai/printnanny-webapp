@@ -75,27 +75,7 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                     }, 
                 manage_url = '', 
                 monitoring_active = True, 
-                active_session = print_nanny_client.models.print_session.PrintSession(
-                    id = 56, 
-                    created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    octoprint_device = 56, 
-                    active = True, 
-                    session = '', 
-                    filepos = -2147483648, 
-                    print_progress = -2147483648, 
-                    time_elapsed = -2147483648, 
-                    time_remaining = -2147483648, 
-                    user = 56, 
-                    printer_profile = 56, 
-                    gcode_file = 56, 
-                    gcode_filename = '', 
-                    octoprint_job = {
-                        'key' : null
-                        }, 
-                    print_job_status = null, 
-                    url = '', 
-                    datesegment = '', )
+                active_session = ''
             )
         else :
             return OctoPrintDeviceKey(
@@ -114,27 +94,6 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 ca_certs = {
                     'key' : ''
                     },
-                active_session = print_nanny_client.models.print_session.PrintSession(
-                    id = 56, 
-                    created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    octoprint_device = 56, 
-                    active = True, 
-                    session = '', 
-                    filepos = -2147483648, 
-                    print_progress = -2147483648, 
-                    time_elapsed = -2147483648, 
-                    time_remaining = -2147483648, 
-                    user = 56, 
-                    printer_profile = 56, 
-                    gcode_file = 56, 
-                    gcode_filename = '', 
-                    octoprint_job = {
-                        'key' : null
-                        }, 
-                    print_job_status = null, 
-                    url = '', 
-                    datesegment = '', ),
         )
 
     def testOctoPrintDeviceKey(self):
