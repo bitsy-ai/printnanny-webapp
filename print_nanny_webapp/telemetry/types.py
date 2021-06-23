@@ -354,12 +354,6 @@ class OctoprintEventType(models.TextChoices):
     SLICING_PROFILE_MODIFIED = "SlicingProfileModified", "SlicingProfileModified"
     SLICING_STARTED = "SlicingStarted", "SlicingStarted"
 
-    # octoprint server <-> printer telemetry
-    CONNECTED = "Connected", "Connected"
-    DISCONNECTED = "Disconnected", "Disconnected"
-    PRINTER_RESET = "PrinterReset", "PrinterReset"
-    FIRMWARE_DATA = "FirmwareData", "FirmwareData"
-
     # printer profile
     PRINTER_PROFILE_ADDED = "PrinterProfileAdded", "PrinterProfileAdded"
     PRINTER_PROFILE_DELETED = "PrinterProfileDeleted", "PrinterProfileDeleted"
@@ -409,7 +403,6 @@ class PrintJobEventType(models.TextChoices):
     PRINT_PAUSED = "PrintPaused", "PrintPaused"
     PRINT_RESUMED = "PrintResumed", "PrintResumed"
     PRINT_STARTED = "PrintStarted", "PrintStarted"
-    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
 
 
 class PrinterEventType(models.TextChoices):
@@ -427,3 +420,10 @@ class PrinterEventType(models.TextChoices):
     CONNECTING = "Connection", "Establishing printer connection"
     RESUMING = "Resuming", "Resuming"
     FINISHING = "Finishing", "Finishing"
+    PRINTER_STATE_CHANGED = "PrinterStateChanged", "PrinterStateChanged"
+
+    # octoprint server <-> printer telemetry
+    CONNECTED = "Connected", "Connected"
+    DISCONNECTED = "Disconnected", "Disconnected"
+    PRINTER_RESET = "PrinterReset", "PrinterReset"
+    FIRMWARE_DATA = "FirmwareData", "FirmwareData"

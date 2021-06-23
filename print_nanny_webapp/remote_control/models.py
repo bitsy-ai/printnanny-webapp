@@ -174,13 +174,18 @@ class OctoPrintDevice(SafeDeleteModel):
         return json.dumps(serializer.data, sort_keys=True, indent=2)
 
     @property
-    def last_printer_event(self) -> Tuple[str, str]:
-        event = (
-            PrinterEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
-        )
-        if event is None:
+    def last_printer_event_css_class(self) -> str:
+        return PrinterEvent.CSS_CLASS_MAP[self.last_printer_event_display]
+    
+    @property
+    def last_printer_event_display(self) -> str:
+        if self.last_printer_event is None:
             return PrinterEventType.OFFLINE
-        return event
+        return self.last_printer_event.printer_state
+
+    @property
+    def last_printer_event(self) -> Tuple[str, str]:
+        return PrinterEvent.objects.filter(octoprint_device=self).order_by("-ts").first()
 
     @property
     def last_print_job_event(self):

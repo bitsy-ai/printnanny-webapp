@@ -39,7 +39,7 @@
         
         
                         <dt class="col-sm-3">Printer Connection</dt>
-                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i> {{object.last_printer_event}}</dd>
+                        <dd class="col-sm-9"><i class="mdi mdi-circle {{object.last_printer_event_css_class}}"></i> {{object.last_printer_event.printer_state}}</dd>
 
                         <dt class="col-sm-3">Current Job</dt>
                         {%if object.active_session %}

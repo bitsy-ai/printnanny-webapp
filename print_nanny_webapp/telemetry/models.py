@@ -146,6 +146,7 @@ class PrinterEvent(TelemetryEvent):
         "Finishing": "text-warning",
     }
     event_codes = [x.value for x in PrinterEventType.__members__.values()]
+    printer_state = models.CharField(max_length=36, choices=PrinterEventType.choices)
 
     @property
     def css_class(self):
