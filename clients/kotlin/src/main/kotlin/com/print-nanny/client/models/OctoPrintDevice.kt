@@ -13,7 +13,6 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.PrintSession
-import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -46,7 +45,6 @@ import java.io.Serializable
  * @param hardware 
  * @param revision 
  * @param virtualenv 
- * @param printerState 
  * @param cloudiotDeviceConfigs 
  * @param manageUrl 
  * @param monitoringActive 
@@ -105,8 +103,6 @@ data class OctoPrintDevice (
     val revision: kotlin.String? = null,
     @Json(name = "virtualenv")
     val virtualenv: kotlin.String? = null,
-    @Json(name = "printer_state")
-    val printerState: PrinterStateEnum? = null,
     @Json(name = "cloudiot_device_configs")
     val cloudiotDeviceConfigs: kotlin.String? = null,
     @Json(name = "manage_url")

@@ -7,10 +7,10 @@ Method | HTTP request | Description
 [**octoprintEventsCreate**](TelemetryApi.md#octoprintEventsCreate) | **POST** /api/octoprint-events/ | 
 [**octoprintEventsList**](TelemetryApi.md#octoprintEventsList) | **GET** /api/octoprint-events/ | 
 [**octoprintEventsRetrieve**](TelemetryApi.md#octoprintEventsRetrieve) | **GET** /api/octoprint-events/{id}/ | 
+[**printJobEventsList**](TelemetryApi.md#printJobEventsList) | **GET** /api/print-job-events/ | 
+[**printJobEventsRetrieve**](TelemetryApi.md#printJobEventsRetrieve) | **GET** /api/print-job-events/{id}/ | 
 [**printNannyPluginEventsList**](TelemetryApi.md#printNannyPluginEventsList) | **GET** /api/print-nanny-plugin-events/ | 
 [**printNannyPluginEventsRetrieve**](TelemetryApi.md#printNannyPluginEventsRetrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
-[**printStatusEventsList**](TelemetryApi.md#printStatusEventsList) | **GET** /api/print-status-events/ | 
-[**printStatusEventsRetrieve**](TelemetryApi.md#printStatusEventsRetrieve) | **GET** /api/print-status-events/{id}/ | 
 [**remoteCommandEventsList**](TelemetryApi.md#remoteCommandEventsList) | **GET** /api/remote-command-events/ | 
 [**remoteCommandEventsRetrieve**](TelemetryApi.md#remoteCommandEventsRetrieve) | **GET** /api/remote-command-events/{id}/ | 
 [**telemetryEventsList**](TelemetryApi.md#telemetryEventsList) | **GET** /api/telemetry-events/ | 
@@ -167,6 +167,106 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="printJobEventsList"></a>
+# **printJobEventsList**
+> PaginatedPrintJobEventList printJobEventsList(page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedPrintJobEventList = apiInstance.printJobEventsList(page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#printJobEventsList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#printJobEventsList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedPrintJobEventList**](PaginatedPrintJobEventList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="printJobEventsRetrieve"></a>
+# **printJobEventsRetrieve**
+> PrintJobEvent printJobEventsRetrieve(id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print job event.
+try {
+    val result : PrintJobEvent = apiInstance.printJobEventsRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#printJobEventsRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#printJobEventsRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this print job event. |
+
+### Return type
+
+[**PrintJobEvent**](PrintJobEvent.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="printNannyPluginEventsList"></a>
 # **printNannyPluginEventsList**
 > PaginatedPrintNannyPluginEventList printNannyPluginEventsList(page)
@@ -252,106 +352,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrintNannyPluginEvent**](PrintNannyPluginEvent.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="printStatusEventsList"></a>
-# **printStatusEventsList**
-> PaginatedPrintStatusEventList printStatusEventsList(page)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = TelemetryApi()
-val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
-try {
-    val result : PaginatedPrintStatusEventList = apiInstance.printStatusEventsList(page)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#printStatusEventsList")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#printStatusEventsList")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
-
-### Return type
-
-[**PaginatedPrintStatusEventList**](PaginatedPrintStatusEventList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="printStatusEventsRetrieve"></a>
-# **printStatusEventsRetrieve**
-> PrintStatusEvent printStatusEventsRetrieve(id)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = TelemetryApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print status event.
-try {
-    val result : PrintStatusEvent = apiInstance.printStatusEventsRetrieve(id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#printStatusEventsRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#printStatusEventsRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this print status event. |
-
-### Return type
-
-[**PrintStatusEvent**](PrintStatusEvent.md)
 
 ### Authorization
 
