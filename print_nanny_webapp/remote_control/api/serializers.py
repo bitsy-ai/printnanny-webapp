@@ -41,7 +41,6 @@ class PrintSessionSerializer(serializers.ModelSerializer):
 class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     cloudiot_device_configs = serializers.SerializerMethodField()
-    active_session = PrintSessionSerializer()
 
     def get_cloudiot_device_configs(self, obj):
         return obj.cloudiot_device_configs
@@ -113,7 +112,6 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
 class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
-    active_session = PrintSessionSerializer()
     cloudiot_device_configs = serializers.SerializerMethodField()
 
     def get_cloudiot_device_configs(self, obj):
