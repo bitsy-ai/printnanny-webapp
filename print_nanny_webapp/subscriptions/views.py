@@ -1,14 +1,21 @@
 from django.http.response import JsonResponse
+from typing import Any
+from django.views.generic.base import RedirectView
 import stripe
 import json, logging
+from django.apps import apps
 from django.urls import reverse
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
 from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
+from django.conf import settings
 
 import djstripe.models
+import djstripe.enums
 import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
@@ -22,6 +29,21 @@ User = get_user_model()
 
 class SubscriptionSoldoutView(TemplateView):
     template_name = "subscriptions/sold-out.html"
+
+
+class SubscriptionFoundingMemberView(TemplateView):
+    template_name = "subscriptions/founding-member.html"
+
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        sold_out = (
+            djstripe.models.Subscription.objects.filter(
+                status=djstripe.enums.SubscriptionStatus.active
+            ).count()
+            >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
+        )
+        if sold_out:
+            return redirect("subscriptions:sold_out")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class SubscriptionsListView(DashboardView):

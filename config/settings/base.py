@@ -549,7 +549,7 @@ HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-set
 # ------------------------------------------------------------------------------
 
 # @TODO implement with django-flags
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
+STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=True)
 if STRIPE_ENABLE_SUBSCRIPTIONS:
     DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
     DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"

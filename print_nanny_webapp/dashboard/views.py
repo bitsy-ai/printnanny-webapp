@@ -57,7 +57,7 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     @method_decorator(
         (
             ensure_csrf_cookie,
-            user_passes_test(is_beta_tester, login_url="subscriptions/sold-out"),
+            user_passes_test(is_beta_tester, login_url="subscriptions/founding-member"),
         ),
         name="dispatch",
     )
