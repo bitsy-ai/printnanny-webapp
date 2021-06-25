@@ -84,7 +84,6 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "print_nanny_webapp.analytics.apps.AnalyticsConfig",
     "print_nanny_webapp.partners.apps.PartnersConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
@@ -438,9 +437,11 @@ SPECTACULAR_SETTINGS = {
 }
 
 # django-filters
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += ['django_filters']
 
 # django-prometheus
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += ['django_prometheus']
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
@@ -450,7 +451,7 @@ PROMETHEUS_EXPORT_MIGRATIONS = False
 
 PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'
 
-
+# ------------------------------------------------------------------------------
 # django-polymorphic
 
 INSTALLED_APPS += [
@@ -458,18 +459,19 @@ INSTALLED_APPS += [
 ]
 
 # django-invitations
-
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'invitations',
 ]
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 INVITATIONS_ADAPTER = ACCOUNT_ADAPTER
-INVITATIONS_INVITATION_ONLY=True
+INVITATIONS_INVITATION_ONLY=False
 INVITATIONS_INVITATION_EXPIRY=30
 INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP=True
-# channels
 
+# channels
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'channels',
 ]
@@ -477,6 +479,7 @@ INSTALLED_APPS += [
 APPEND_SLASH = True
 
 # pubsub and cloud iot
+# ------------------------------------------------------------------------------
 GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
 GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
@@ -525,7 +528,7 @@ HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
 
 # django-health-check
-
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'health_check',                             # required
     'health_check.db',                          # stock Django health checkers
@@ -536,6 +539,7 @@ INSTALLED_APPS += [
     'health_check.contrib.redis',               # requires Redis broker
 ]
 
+# ------------------------------------------------------------------------------
 # help guides
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"

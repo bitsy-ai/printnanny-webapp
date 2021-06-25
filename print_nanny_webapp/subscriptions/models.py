@@ -13,18 +13,22 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+class MemberBadgeType(models.TextChoices):
+
+    FREE_BETA = (
+        "FreeBeta",
+        "Participated in free beta program between January 2021 - July 2021",
+    )
+    PAID_BETA = "PaidBeta", "Participated in paid beta program starting July 2021"
+
+
 class MemberBadge(models.Model):
     class Meta:
         unique_together = ("type", "user")
 
-    class BadgeTypes(models.TextChoices):
-        BETA_TESTER = "BETA_TESTER", "Early access Beta tester"
-        FOUNDING_MEMBER = (
-            "FOUNDING_MEMBER",
-            "Become a Founding Member to receive early access to Print Nanny",
-        )
-
-    type = models.CharField(choices=BadgeTypes.choices, max_length=255)
+    created_dt = models.DateTimeField(auto_now_add=True)
+    updated_dt = models.DateTimeField(auto_now=True)
+    type = models.CharField(choices=MemberBadgeType.choices, max_length=24)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

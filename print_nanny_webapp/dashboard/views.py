@@ -3,16 +3,13 @@ from typing import Optional
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse
 from django.apps import apps
-from django.views.generic import TemplateView, DetailView, FormView, ListView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import BaseDetailView
-from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import (
-    TimelapseUploadForm,
-    TimelapseCancelForm,
     FeedbackForm,
     AppNotificationForm,
     RemoteControlCommandForm,
@@ -53,10 +50,13 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 logger = logging.getLogger(__name__)
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     @method_decorator(ensure_csrf_cookie)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.analytics_tags.filter
 
     def get_context_data(self, *args, **kwargs):
 
