@@ -556,6 +556,9 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
     INSTALLED_APPS += ["djstripe"]
     INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
+from django.utils.dateparse import parse_date
+FREE_BETA_TESTER_DATE = parse_date('2021-06-30')
+
 # django-safedelete
 # ------------------------------------------------------------------------------
 INSTALLED_APPS += [

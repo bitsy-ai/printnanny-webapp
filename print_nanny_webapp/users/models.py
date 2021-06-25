@@ -1,4 +1,6 @@
+from print_nanny_webapp.subscriptions.models import MemberBadge
 from typing import Dict, Union, List
+from django.apps import apps
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
@@ -9,6 +11,7 @@ from anymail.message import AnymailMessage
 from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
+from print_nanny_webapp.subscriptions.models import MemberBadge
 
 import json
 
@@ -150,6 +153,25 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    # @property
+    # def is_subscribed(self) -> bool:
+    #     customer = djstripe.models.Customer.objects.get(subscriber=self)
+    #     return customer.has_any_active_subscription()
+
+    @property
+    def is_paid_beta_tester(self) -> bool:
+        badge = self.member_badges.filter(type=MemberBadge.Types.PAID_BETA).first()
+        return badge is not None
+
+    @property
+    def is_free_beta_tester(self) -> bool:
+        badge = self.member_badges.filter(type=MemberBadge.Types.FREE_BETA).first()
+        return badge is not None
+
+    @property
+    def is_beta_tester(self) -> bool:
+        return self.is_free_beta_tester or self.is_paid_beta_tester or self.is_superuser
 
 
 class UserSettings(models.Model):
