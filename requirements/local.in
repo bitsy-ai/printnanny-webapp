@@ -62,4 +62,5 @@ mypy-protobuf
 wheel
 pytest-django
 pytest-dotenv
+pytest-mock
 factory_boy

@@ -4,19 +4,19 @@ USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 # Redis
 # ------------------------------------------------------------------------------
-REDIS_URL=redis://redis:6379/0
+REDIS_URL="redis://redis:6379/0"
 
 # Celery
 # ------------------------------------------------------------------------------
-CELERY_BROKER_URL=REDIS_URL
-CELERY_EXPORTER_BROKER_URL=REDIS_URL
+CELERY_BROKER_URL="redis://redis:6379/0"
+CELERY_EXPORTER_BROKER_URL="redis://redis:6379/0"
 C_FORCE_ROOT=1
 
 # Flower
 CELERY_FLOWER_USER=debug
 CELERY_FLOWER_PASSWORD=debug
 
-GOOGLE_APPLICATION_CREDENTIALS =/tmp/keys/keyfile.json
+GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/keyfile.json
 GOOGLE_CLOUD_PROJECT=print-nanny-sandbox
 DJANGO_GCP_STORAGE_BUCKET_NAME=print-nanny-sandbox
 STRIPE_ENABLE_SUBSCRIPTIONS=True

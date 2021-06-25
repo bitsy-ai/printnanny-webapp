@@ -16,4 +16,4 @@ class UserTag(PolymorphicModel):
 
 class MembershipTag(UserTag):
 
-    value = models.CharField(choices=MembershipTagType.choices)
+    value = models.CharField(max_length=36, choices=MembershipTagType.choices)

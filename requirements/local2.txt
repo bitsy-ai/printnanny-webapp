@@ -41,7 +41,7 @@ billiard==3.6.4.0
     # via celery
 cachetools==4.2.2
     # via google-auth
-celery[redis]==4.4.7
+celery[pytest,redis]==4.4.7
     # via
     #   -r requirements/local.in
     #   django-celery-beat
@@ -388,10 +388,13 @@ pytest-django==4.4.0
     # via -r requirements/local.in
 pytest-dotenv==0.5.2
     # via -r requirements/local.in
+pytest-mock==3.6.1
+    # via -r requirements/local.in
 pytest==6.2.4
     # via
     #   pytest-django
     #   pytest-dotenv
+    #   pytest-mock
 python-crontab==2.5.1
     # via django-celery-beat
 python-dateutil==2.8.1

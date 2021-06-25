@@ -427,10 +427,6 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# redis is used as a request cache and brokers celery tasks
-REDIS_URL = env("REDIS_URL")
-
-
 SPECTACULAR_SETTINGS = {
     'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
