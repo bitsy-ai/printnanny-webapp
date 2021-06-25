@@ -171,7 +171,7 @@ class User(AbstractUser):
 
     @property
     def is_beta_tester(self) -> bool:
-        return self.is_free_beta_tester or self.is_paid_beta_tester
+        return self.is_free_beta_tester or self.is_paid_beta_tester or self.is_superuser
 
 
 class UserSettings(models.Model):

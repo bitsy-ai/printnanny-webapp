@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block head_title %}{% trans "Error 403" %}{% endblock head_title %}
+
+
+{% block page_content %}
+<div class="account-pages mt-5 mb-5">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card">
+                    <!-- Logo-->
+                    <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <a href="{% url 'dashboard:home' %}">
+                            <span><img src="{% static 'images/logo-text-white.svg' %}" alt="" height="18"></span>
+                        </a>
+                    </div>
+
+                    <div class="card-body p-4">
+                        
+                        <div class="text-center w-75 m-auto">
+                            <h1 class="text-dark-50 text-center mt-0 font-weight-bold">Sold Out</h1>
+
+                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Sorry, Print Nanny subscriptions are currently sold out." %}</h4>
+                            <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Join the waiting list to get notified when more become available." %}</h4>
+
+                            {% if settings.SOLD_OUT %}
+                            <a href="{% url 'subscriptions:sold-out' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
+                            {% else %}
+                            <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Join the Beta Waitlist<i class="mdi mdi-arrow-right ml-1"></i></a>
+                            {% endif %}
+                            
+
+                        </div>
+                    </div> <!-- end card-body -->
+
+                    <img class="d-block mx-auto col-sm-6" src="{% static 'images/confused.svg' %}" />
+                </div>
+                <!-- end card -->
+
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</div>
+{% endblock page_content %}
