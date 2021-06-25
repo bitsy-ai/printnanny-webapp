@@ -14,7 +14,7 @@ class SubscriptionRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_beta_tester
 
 
-class DashboardView(TemplateView):
+class DashboardView(SubscriptionRequiredMixin, TemplateView):
     @method_decorator(
         (ensure_csrf_cookie,),
         name="dispatch",

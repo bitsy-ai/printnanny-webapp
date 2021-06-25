@@ -233,7 +233,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "print_nanny_webapp.utils.context_processors.settings_context",
-                
+
             ],
         },
     }
