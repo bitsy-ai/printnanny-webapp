@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "print_nanny_webapp.analytics.apps.AnalyticsConfig",
     "print_nanny_webapp.partners.apps.PartnersConfig",
     "print_nanny_webapp.users.apps.UsersConfig",
     "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
