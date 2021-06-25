@@ -1,9 +1,11 @@
 import logging
+
+# from print_nanny_webapp.subscriptions.views import SubscriptionRequiredMixin
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.apps import apps
 from django.views.generic import TemplateView, FormView
@@ -53,7 +55,7 @@ def is_beta_tester(user: User) -> bool:
     return user.is_beta_tester
 
 
-class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class DashboardView(TemplateView):
     @method_decorator(
         (
             ensure_csrf_cookie,

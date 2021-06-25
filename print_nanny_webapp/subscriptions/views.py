@@ -19,6 +19,7 @@ import djstripe.enums
 import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
@@ -27,12 +28,17 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
+class SubscriptionRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_beta_tester
+
+
 class SubscriptionSoldoutView(TemplateView):
     template_name = "subscriptions/sold-out.html"
 
 
 class SubscriptionFoundingMemberView(TemplateView):
-    template_name = "subscriptions/founding-member.html"
+    template_name = "subscriptions/founding-member-offer.html"
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         sold_out = (
