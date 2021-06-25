@@ -1,9 +1,4 @@
 import logging
-
-# from print_nanny_webapp.subscriptions.views import SubscriptionRequiredMixin
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.contrib.auth.decorators import user_passes_test
-from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
@@ -18,11 +13,6 @@ from .forms import (
     RemoveDeviceForm,
 )
 
-# TODO re-enable as dataflow pipeline
-# from print_nanny_webapp.alerts.tasks.timelapse_alert import (
-#     create_analyze_video_task,
-#     annotate_job_error,
-# )
 from django.http import HttpResponseRedirect
 
 from django.db.models import Q, Count
@@ -33,11 +23,11 @@ from django.shortcuts import redirect
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+from print_nanny_webapp.utils.views import DashboardView
 from django.contrib import messages
 
 User = get_user_model()
 Alert = apps.get_model("alerts", "AlertMessage")
-# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
 UserSettings = apps.get_model("users", "UserSettings")
@@ -49,43 +39,6 @@ AppNotification = apps.get_model("dashboard", "AppNotification")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 logger = logging.getLogger(__name__)
-
-
-def is_beta_tester(user: User) -> bool:
-    return user.is_beta_tester
-
-
-class DashboardView(TemplateView):
-    @method_decorator(
-        (
-            ensure_csrf_cookie,
-            user_passes_test(is_beta_tester, login_url="subscriptions/founding-member"),
-        ),
-        name="dispatch",
-    )
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def test_func(self):
-        return self.request.is_beta_tester
-
-    def get_context_data(self, *args, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-
-        context["user"] = self.request.user
-        context["recent_alerts"] = (
-            Alert.objects.filter(
-                user=self.request.user,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
-        return context
 
 
 class HomeDashboardView(DashboardView):

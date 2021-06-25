@@ -10,8 +10,6 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
 from django.views.generic import TemplateView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import user_passes_test
 from django.conf import settings
 
 import djstripe.models
@@ -19,18 +17,12 @@ import djstripe.enums
 import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from print_nanny_webapp.dashboard.views import DashboardView
+from print_nanny_webapp.utils.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
-
-
-class SubscriptionRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
-    def test_func(self):
-        return self.request.user.is_beta_tester
 
 
 class SubscriptionSoldoutView(TemplateView):

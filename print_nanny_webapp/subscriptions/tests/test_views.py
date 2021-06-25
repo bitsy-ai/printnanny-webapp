@@ -2,7 +2,7 @@ import pytest
 from pytest_django.asserts import assertRedirects
 from django.test import RequestFactory
 from print_nanny_webapp.users.models import User
-from print_nanny_webapp.subscriptions.views import SubscriptionRequiredMixin
+from print_nanny_webapp.utils.views import SubscriptionRequiredMixin
 from django.views.generic import View
 from django.http import HttpResponse
 from django.contrib.auth.models import AnonymousUser
