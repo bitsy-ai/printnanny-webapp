@@ -558,6 +558,7 @@ if STRIPE_ENABLE_SUBSCRIPTIONS:
 
 from django.utils.dateparse import parse_date
 FREE_BETA_TESTER_DATE = parse_date('2021-06-30')
+PAID_BETA_SUBSCRIPTION_LIMIT = 10
 
 # django-safedelete
 # ------------------------------------------------------------------------------

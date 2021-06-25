@@ -1,6 +1,6 @@
 import logging
-from typing import Optional
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -49,8 +49,18 @@ AlertMessage = apps.get_model("alerts", "AlertMessage")
 logger = logging.getLogger(__name__)
 
 
+def is_beta_tester(user: User) -> bool:
+    return user.is_beta_tester
+
+
 class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
-    @method_decorator(ensure_csrf_cookie)
+    @method_decorator(
+        (
+            ensure_csrf_cookie,
+            user_passes_test(is_beta_tester, login_url="subscriptions/sold-out"),
+        ),
+        name="dispatch",
+    )
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 

@@ -2,10 +2,11 @@ from django.http.response import JsonResponse
 import stripe
 import json, logging
 from django.urls import reverse
-from django.http import HttpRequest, request
+from django.http import HttpRequest
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
+from django.views.generic import TemplateView
 
 import djstripe.models
 import djstripe.settings
@@ -17,6 +18,10 @@ from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
+
+
+class SubscriptionSoldoutView(TemplateView):
+    template_name = "subscriptions/sold-out.html"
 
 
 class SubscriptionsListView(DashboardView):
