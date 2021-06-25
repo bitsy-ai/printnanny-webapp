@@ -27,7 +27,6 @@ from django.db.models import Q, Count
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect
-import google.api_core.exceptions
 
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
@@ -56,7 +55,7 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         return super().dispatch(*args, **kwargs)
 
     def test_func(self):
-        return self.request.user.analytics_tags.filter
+        return self.request.is_beta_tester
 
     def get_context_data(self, *args, **kwargs):
 

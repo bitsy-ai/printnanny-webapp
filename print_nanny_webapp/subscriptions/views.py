@@ -12,7 +12,6 @@ import djstripe.settings
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
 
-# from .models import start_trial
 from print_nanny_webapp.dashboard.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
@@ -22,7 +21,6 @@ User = get_user_model()
 
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
-    # template_name = "components/base-ui/cards.html"
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)

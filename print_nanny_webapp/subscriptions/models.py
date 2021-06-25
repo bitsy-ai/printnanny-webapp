@@ -2,9 +2,6 @@ from django.utils import timezone
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
-from django.dispatch import receiver
-from djstripe.enums import SubscriptionStatus
-from django.db.models import Q
 
 import djstripe.models
 import logging
@@ -51,7 +48,7 @@ def is_free_beta_tester(self) -> bool:
 
 
 def is_beta_tester(self) -> bool:
-    return self.is_free_beta_tester or self.is_paid_beta_tester
+    return self.is_free_beta_tester or self.is_paid_beta_tester or self.is_superuser
 
 
 User.add_to_class("is_paid_beta_tester", is_paid_beta_tester)
