@@ -49,12 +49,10 @@
                                 Register
                             </a>
                         </li> -->
+
                         <li class="nav-item mr-0">
-                            {% comment %} <a href="{% url 'account_login' %}" class="nav-link d-lg-none">Login</a> {% endcomment %}
-                            <a href="#" class="nav-link d-lg-none">Login</a>
-                            {% comment %} <a href="{% url 'account_login' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"> {% endcomment %}
-                            <a href="{% url 'account_login' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                                <i class="mdi mdi-login mr-2"></i> Login
+                            <a href="{% url 'subscriptions:founding_member_account_signup' %}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                                <i class="mdi mdi-login mr-2"></i> Get Access Now
                             </a>
                         </li>
                     </ul>
@@ -86,7 +84,7 @@
                             <h3 class="text-white mb-4 mt-4">
                                 Automate shipping & post-processing 🦾
                             </h3>
-                            <a href="{% url 'request-invite' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Get Access Now</strong></a>
+                            <a href="{% url 'subscriptions:founding_member_account_signup' %}" target="_blank" class="btn btn-success btn-lg"><strong class="h1">Get Access Now</strong></a>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 offset-md-2">
@@ -351,7 +349,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mt-5">
-                            <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2020 Bitsy.ai </p>
+                            <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2021 Print Nanny, Bitsy AI Labs </p>
                         </div>
                     </div>
                 </div>

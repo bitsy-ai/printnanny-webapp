@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block head_title %}{% trans "Error 403" %}{% endblock head_title %}
+{% block head_title %}{% trans "Sold Out" %}{% endblock head_title %}
 
 
 {% block page_content %}
@@ -25,7 +25,7 @@
                             <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Sorry, Print Nanny subscriptions are currently sold out." %}</h4>
                             <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Join the waiting list to get notified when more become available." %}</h4>
 
-                            {% if settings.SOLD_OUT %}
+                            {% if IS_SOLD_OUT %}
                             <a href="{% url 'subscriptions:sold-out' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
                             {% else %}
                             <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Join the Beta Waitlist<i class="mdi mdi-arrow-right ml-1"></i></a>

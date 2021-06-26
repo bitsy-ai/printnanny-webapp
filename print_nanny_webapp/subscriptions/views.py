@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 from djstripe import webhooks
 from django.views.generic import TemplateView
 from django.conf import settings
-
+from allauth.account.views import SignupView
 import djstripe.models
 import djstripe.enums
 import djstripe.settings
@@ -27,6 +27,11 @@ User = get_user_model()
 
 class SubscriptionSoldoutView(TemplateView):
     template_name = "subscriptions/sold-out.html"
+
+
+class FoundingMemberSignupView(SignupView):
+
+    template_name = "subscriptions/founding-member-signup.html"
 
 
 class SubscriptionFoundingMemberView(TemplateView):

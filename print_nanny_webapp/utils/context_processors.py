@@ -7,11 +7,14 @@ def settings_context(_request):
     """Settings available by default to the templates context."""
     # Note: we intentionally do NOT expose the entire settings
     # to prevent accidental leaking of sensitive information
-    sold_out = (
-        djstripe.models.Subscription.objects.filter(
-            status=djstripe.enums.SubscriptionStatus.active
-        ).count()
-        >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
+    num_subscriptions = djstripe.models.Subscription.objects.filter(
+        status=djstripe.enums.SubscriptionStatus.active
+    ).count()
+
+    sold_out = num_subscriptions >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
+
+    num_subscriptions_available = int(
+        settings.PAID_BETA_SUBSCRIPTION_LIMIT - num_subscriptions
     )
     return {
         "DEBUG": settings.DEBUG,
@@ -21,5 +24,6 @@ def settings_context(_request):
         "GITHUB_ISSUE_URL": settings.GITHUB_ISSUE_URL,
         "STRIPE_ENABLE_SUBSCRIPTIONS": settings.STRIPE_ENABLE_SUBSCRIPTIONS,
         "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
-        "SOLD_OUT": sold_out,
+        "IS_SOLD_OUT": sold_out,
+        "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
     }
