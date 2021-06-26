@@ -209,3 +209,4 @@ services:
       - listen
       - --forward-to
       - django:8000/stripe/webhook/
+      - --print-json
