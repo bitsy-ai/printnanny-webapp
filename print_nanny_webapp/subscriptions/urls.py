@@ -5,6 +5,7 @@ from print_nanny_webapp.subscriptions.views import (
     SubscriptionSoldoutView,
     SubscriptionFoundingMemberView,
     FoundingMemberSignupView,
+    FoundingMemberCheckoutView,
     subscriptions_payment_intent_view_create,
 )
 
@@ -19,7 +20,12 @@ urlpatterns = [
     path(
         "founding-member-signup",
         FoundingMemberSignupView.as_view(),
-        name="founding_member_account_signup",
+        name="signup",
+    ),
+    path(
+        "founding-member-checkout",
+        FoundingMemberCheckoutView.as_view(),
+        name="checkout",
     ),
     path("sold-out", SubscriptionSoldoutView.as_view(), name="sold_out"),
     path("", SubscriptionsListView.as_view(), name="list"),

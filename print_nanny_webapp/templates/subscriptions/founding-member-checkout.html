@@ -19,7 +19,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     <!-- Logo-->
                     <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
                         <h1><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
-                            Print Nanny</h1>
+                            Get Early Access</h1>
                     </div>
 
                     <div class="card-body p-4">
@@ -104,5 +104,66 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
         </div>
     </div>
 </footer> <!-- end footer -->
+<!-- Source based on https://medium.com/@berat703/django-stripe-integration-with-using-dj-stripe-1df59d17fa73 -->
+<script>
+    function getCookie(name) {
+        if (!document.cookie) {
+            return null;
+        }
+        const xsrfCookies = document.cookie.split(';')
+            .map(c => c.trim())
+            .filter(c => c.startsWith(name + '='));
+        if (xsrfCookies.length === 0) {
+            return null;
+        }
+        return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+    }
+
+    function paySubscription(price_id) {
+        var devices = $("input:checkbox[name=devices]:checked").map(function() { return $(this).val() }).get();
+        var displayError = $("#card-errors");
+        displayError.text("");
+        displayError.hide();
+
+        if (devices.length === 0) {
+            displayError.text("Please select at least one device");
+            displayError.show();
+            return
+        }
+
+        fetch("{% url 'subscriptions:payment_intent' %}", {
+            method: 'POST',
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify({ price_id, devices })
+        }).then(function (result) {
+            result.json().then(function (json) {
+                // Something went wrong with a message too
+                if (typeof json.err !== "undefined") {
+                    displayError.text(json.err);
+                    displayError.show();
+                }
+
+                // Something went wrong - HTTP status code
+                if (!result.ok) return
+
+                const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+                stripe.redirectToCheckout({
+                    sessionId: json.session_id
+                }).then(function(result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, display the localized error message to your customer
+                    // using `result.error.message`.
+                    displayError.text(result.error.message);
+                    displayError.show();
+                });
+            })
+        });
+    }
+</script>
 {% endblock page_content %}
 

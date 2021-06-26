@@ -1,6 +1,7 @@
 from django.http.response import JsonResponse
 from typing import Any
 from django.views.generic.base import RedirectView
+from django.contrib.auth.mixins import LoginRequiredMixin
 import stripe
 import json, logging
 from django.apps import apps
@@ -32,6 +33,11 @@ class SubscriptionSoldoutView(TemplateView):
 class FoundingMemberSignupView(SignupView):
 
     template_name = "subscriptions/founding-member-signup.html"
+
+
+class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
+    login_url = "subscriptions:signup"
+    template_name = "subscriptions/founding-member-checkout.html"
 
 
 class SubscriptionFoundingMemberView(TemplateView):

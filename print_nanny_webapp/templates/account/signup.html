@@ -44,7 +44,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p class="text-muted">{% trans "Already have account?" %} <a href="{{ login_url }}" class="text-muted ml-1"><b>{% trans "Log In" %}</b></a></p>
+                                <p class="text-muted">{% trans "Already have account?" %} <a href="{{ login_url }}?next={{ url 'subscriptions:checkout' }}" class="text-muted ml-1"><b>{% trans "Log In" %}</b></a></p>
                             </div> <!-- end col-->
                         </div>
                         <!-- end row -->
