@@ -29,7 +29,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
                             <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
 
-                            <p class="text-muted mb-4">{% trans "Create your account to get started." %} </p>
+                            <p class="text-muted mb-4">{% trans "Enter your email and password to begin" %} </p>
 
                         </div>
 
@@ -39,12 +39,14 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                             {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                             {% endif %}
-                            <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+                            <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
                         </form>
                     
                     </div> <!-- end card-body -->
                     <div class="col-12 text-center">
-                        <p class="text-muted">{% trans "Already have account?" %} <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-muted ml-1"><b>{% trans "Log In" %}</b></a></p>
+                        <p class="text-muted">{% trans "Already have account?" %} 
+                            <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
+                            to finish checkout.</p>
                     </div> <!-- end col-->
                 </div>
                 <!-- end card -->

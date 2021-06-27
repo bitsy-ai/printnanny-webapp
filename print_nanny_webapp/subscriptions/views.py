@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import json, logging
 import stripe
 from django.urls import reverse
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, request
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
@@ -44,6 +44,13 @@ class FoundingMemberSignupView(SignupView):
         if sold_out:
             return redirect(reverse("subscriptions:sold_out"))
         return super().dispatch(request, *args, **kwargs)
+
+    def get_initial(self) -> Dict[str, Any]:
+
+        email = self.request.GET.get("email")
+        if email:
+            return dict(email=self.request.GET["email"])
+        return super().get_initial()
 
 
 class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
