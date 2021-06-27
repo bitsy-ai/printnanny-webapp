@@ -7,13 +7,26 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
+from django.urls import reverse
+
+
+@pytest.mark.django_db
+def test_checkout_redirects_anonymous_user(client):
+    url = reverse("subscriptions:checkout")
+    response = client.get(url)
+    assertRedirects(
+        response,
+        "/subscriptions/signup?next=/subscriptions/checkout",
+    )
 
 
 @pytest.mark.django_db
 def test_sold_out_redirect(user: User, client, settings: "django.conf.settings"):
     settings.PAID_BETA_SUBSCRIPTION_LIMIT = 0
     client.force_login(user)
-    response = client.get("/subscriptions/founding-member")
+    response = client.get("/subscriptions/signup")
+    assertRedirects(response, "/subscriptions/sold-out")
+    response = client.get("/subscriptions/checkout")
     assertRedirects(response, "/subscriptions/sold-out")
 
 
@@ -21,7 +34,7 @@ def test_sold_out_redirect(user: User, client, settings: "django.conf.settings")
 def test_membership_available(user: User, client, settings: "django.conf.settings"):
     settings.PAID_BETA_SUBSCRIPTION_LIMIT = 10
     client.force_login(user)
-    response = client.get("/subscriptions/founding-member")
+    response = client.get("/subscriptions/checkout")
     assert response.status_code == 200
 
 

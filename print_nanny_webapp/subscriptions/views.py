@@ -4,7 +4,6 @@ from django.views.generic.base import RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
 import stripe
 import json, logging
-from django.apps import apps
 from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
@@ -31,17 +30,8 @@ class SubscriptionSoldoutView(TemplateView):
 
 
 class FoundingMemberSignupView(SignupView):
-
     template_name = "subscriptions/founding-member-signup.html"
-
-
-class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
-    login_url = "subscriptions:signup"
-    template_name = "subscriptions/founding-member-checkout.html"
-
-
-class SubscriptionFoundingMemberView(TemplateView):
-    template_name = "subscriptions/founding-member-offer.html"
+    success_url = "checkout"
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         sold_out = (
@@ -51,7 +41,23 @@ class SubscriptionFoundingMemberView(TemplateView):
             >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
         )
         if sold_out:
-            return redirect("subscriptions:sold_out")
+            return redirect(reverse("subscriptions:sold_out"))
+        return super().dispatch(request, *args, **kwargs)
+
+
+class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
+    login_url = "subscriptions:signup"
+    template_name = "subscriptions/founding-member-checkout.html"
+
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        sold_out = (
+            djstripe.models.Subscription.objects.filter(
+                status=djstripe.enums.SubscriptionStatus.active
+            ).count()
+            >= settings.PAID_BETA_SUBSCRIPTION_LIMIT
+        )
+        if sold_out:
+            return redirect(reverse("subscriptions:sold_out"))
         return super().dispatch(request, *args, **kwargs)
 
 

@@ -3,7 +3,6 @@ from django.urls import include, path
 from print_nanny_webapp.subscriptions.views import (
     SubscriptionsListView,
     SubscriptionSoldoutView,
-    SubscriptionFoundingMemberView,
     FoundingMemberSignupView,
     FoundingMemberCheckoutView,
     subscriptions_payment_intent_view_create,
@@ -13,17 +12,12 @@ app_name = "subscriptions"
 
 urlpatterns = [
     path(
-        "founding-member",
-        SubscriptionFoundingMemberView.as_view(),
-        name="founding_member_offer",
-    ),
-    path(
-        "founding-member-signup",
+        "signup",
         FoundingMemberSignupView.as_view(),
         name="signup",
     ),
     path(
-        "founding-member-checkout",
+        "checkout",
         FoundingMemberCheckoutView.as_view(),
         name="checkout",
     ),
