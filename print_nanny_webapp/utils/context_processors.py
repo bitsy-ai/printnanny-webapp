@@ -1,6 +1,7 @@
 import djstripe.models
 import djstripe.enums
 from django.conf import settings
+from djstripe.settings import STRIPE_PUBLIC_KEY
 
 
 def settings_context(_request):
@@ -25,4 +26,5 @@ def settings_context(_request):
         "HELP_OCTOPRINT_PLUGIN_SETUP": settings.HELP_OCTOPRINT_PLUGIN_SETUP,
         "IS_SOLD_OUT": sold_out,
         "AVAILABLE_SUBSCRIPTIONS_COUNT": num_subscriptions_available,
+        "STRIPE_PUBLIC_KEY": STRIPE_PUBLIC_KEY,
     }

@@ -19,34 +19,24 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                     <!-- Logo-->
                     <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
                         <h1><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
-                            Get Early Access</h1>
+                            Print Nanny</h1>
                     </div>
 
                     <div class="card-body p-4">
                         
                         <div class="text-center w-75 m-auto">
-                            <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "<strong>Founding Members</strong> enjoy unlimited access." %}</p> 
-
                             <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
-
                             {% for product in PRODUCTS %}
-                            <div class="card d-block">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ product.name }}</h5>
-                                    <p class="card-text">{{ product.description }}</p>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             {% for device in DEVICES %}
                                                 <input class="custom-control-input" type="checkbox" name="devices" value="{{ device.id }}" id="subscribe-device-{{ device.id }}" />
-                                                <label class="custom-control-label" for="subscribe-device-{{ device.id }}">{{ device.name }}</label>
                                             {% endfor %}
                                         </div>
                                     </div>
                                     {% for price in product.prices_list %}
-                                        <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary">{{ price.human_readable_price }}</a>
+                                        <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary btn-lg"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
                                     {% endfor %}
-                                </div> <!-- end card-body-->
-                            </div> <!-- end card-->
                             {% endfor %}
                             <!-- </div> -->
         
@@ -114,6 +104,8 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
         </div>
     </div>
 </footer> <!-- end footer -->
+<script src="https://js.stripe.com/v3/"></script>
+
 <!-- Source based on https://medium.com/@berat703/django-stripe-integration-with-using-dj-stripe-1df59d17fa73 -->
 <script>
     function getCookie(name) {
@@ -130,18 +122,11 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
     }
 
     function paySubscription(price_id) {
-        var devices = $("input:checkbox[name=devices]:checked").map(function() { return $(this).val() }).get();
         var displayError = $("#card-errors");
         displayError.text("");
         displayError.hide();
 
-        if (devices.length === 0) {
-            displayError.text("Please select at least one device");
-            displayError.show();
-            return
-        }
-
-        fetch("{% url 'subscriptions:payment_intent' %}", {
+        fetch("{% url 'subscriptions:checkout' %}", {
             method: 'POST',
             headers: {
                 "X-CSRFToken": getCookie("csrftoken"),
@@ -149,7 +134,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                 "Content-Type": "application/json",
                 "X-Requested-With": "XMLHttpRequest"
             },
-            body: JSON.stringify({ price_id, devices })
+            body: JSON.stringify({ price_id })
         }).then(function (result) {
             result.json().then(function (json) {
                 // Something went wrong with a message too
