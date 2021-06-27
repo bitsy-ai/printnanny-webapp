@@ -59,9 +59,3 @@ BASE_URL = env('PRINT_NANNY_BASE_URL', default='http://localhost:8000/')
 
 WHITENOISE_MANIFEST_STRICT = False
 GOOGLE_ANALYTICS=""
-
-# dj-stripe
-# ------------------------------------------------------------------------------
-STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-STRIPE_LIVE_MODE = False

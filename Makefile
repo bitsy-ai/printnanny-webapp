@@ -274,3 +274,6 @@ cloudsql:
 
 test:
 	docker-compose -f local.yml run --rm django pytest
+
+stripe-local-webhooks:
+	stripe listen --forward-to localhost:8000/stripe/webhook

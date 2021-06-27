@@ -29,14 +29,33 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
                             <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
 
-                            <p class="text-muted mb-4">{% trans "Create your account to get started." %} </p>
+                            {% for product in PRODUCTS %}
+                            <div class="card d-block">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <p class="card-text">{{ product.description }}</p>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            {% for device in DEVICES %}
+                                                <input class="custom-control-input" type="checkbox" name="devices" value="{{ device.id }}" id="subscribe-device-{{ device.id }}" />
+                                                <label class="custom-control-label" for="subscribe-device-{{ device.id }}">{{ device.name }}</label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% for price in product.prices_list %}
+                                        <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary">{{ price.human_readable_price }}</a>
+                                    {% endfor %}
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                            {% endfor %}
+                            <!-- </div> -->
+        
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
 
                         </div>
                     
                     </div> <!-- end card-body -->
-                    <div class="col-12 text-center">
-                        <p class="text-muted">{% trans "Already have account?" %} <a href="{{ login_url }}" class="text-muted ml-1"><b>{% trans "Log In" %}</b></a></p>
-                    </div> <!-- end col-->
                 </div>
                 <!-- end card -->
             </div> <!-- end col -->

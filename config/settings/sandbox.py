@@ -74,11 +74,6 @@ CELERY_TASK_EAGER_PROPAGATES = True
 
 GOOGLE_ANALYTICS=""
 
-# dj-stripe
-# ------------------------------------------------------------------------------
-STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-STRIPE_LIVE_MODE = False
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
