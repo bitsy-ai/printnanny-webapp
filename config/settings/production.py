@@ -1,5 +1,7 @@
 import logging
 
+from djstripe.settings import STRIPE_PUBLIC_KEY
+
 from .base import *  # noqa
 from .base import env
 
@@ -187,12 +189,10 @@ DEBUG=False
 
 # dj-stripe
 # ------------------------------------------------------------------------------
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
-    STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
-    STRIPE_LIVE_MODE = True
 
+STRIPE_LIVE_PUBLIC_KEY = env("STRIPE_LIVE_PUBLIC_KEY")
+STRIPE_LIVE_SECRET_KEY = env("STRIPE_LIVE_SECRET_KEY")
+STRIPE_LIVE_MODE = True
 
 # ghost member sync
 # Celery task: print_nanny_webapp/users/tasks.py

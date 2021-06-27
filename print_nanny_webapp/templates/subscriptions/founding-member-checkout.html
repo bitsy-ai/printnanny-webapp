@@ -32,15 +32,6 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                             <p class="text-muted mb-4">{% trans "Create your account to get started." %} </p>
 
                         </div>
-
-                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}" novalidate>
-                            {% csrf_token %}
-                            {{ form|crispy }}
-                            {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                            {% endif %}
-                            <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
-                        </form>
                     
                     </div> <!-- end card-body -->
                     <div class="col-12 text-center">

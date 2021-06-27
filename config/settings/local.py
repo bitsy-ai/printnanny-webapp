@@ -1,3 +1,4 @@
+from djstripe.settings import STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY
 from .base import *  # noqa
 from .base import env
 # GENERAL
@@ -89,12 +90,9 @@ BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
 
 # dj-stripe
 # ------------------------------------------------------------------------------
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-    STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-    STRIPE_LIVE_MODE = False
-
+STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
+STRIPE_LIVE_MODE = False
 
 # CORS
 # ------------------------------------------------------------------------------

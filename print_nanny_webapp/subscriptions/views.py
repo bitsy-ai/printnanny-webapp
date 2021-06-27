@@ -9,20 +9,25 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.conf import settings
 from allauth.account.views import SignupView
 import djstripe.models
 import djstripe.enums
 import djstripe.settings
+from djstripe.settings import STRIPE_PUBLIC_KEY
+
 from anymail.message import AnymailMessage
 from django.template.loader import render_to_string
 
 from print_nanny_webapp.utils.views import DashboardView
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
+from .forms import StripeCheckoutForm
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
+
+stripe.api_key = STRIPE_PUBLIC_KEY
 
 
 class SubscriptionSoldoutView(TemplateView):
@@ -45,9 +50,13 @@ class FoundingMemberSignupView(SignupView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
+class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView, FormView):
+    form_class = StripeCheckoutForm
     login_url = "subscriptions:signup"
     template_name = "subscriptions/founding-member-checkout.html"
+
+    def form_valid(self, form):
+        pass
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         sold_out = (

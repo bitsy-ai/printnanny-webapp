@@ -548,13 +548,11 @@ HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-set
 # dj-stripe
 # ------------------------------------------------------------------------------
 
-# @TODO implement with django-flags
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=True)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-    DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
-    INSTALLED_APPS += ["djstripe"]
-    INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
+DJSTRIPE_USE_NATIVE_JSONFIELD = True
+DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+INSTALLED_APPS += ["djstripe"]
+INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
 from django.utils.dateparse import parse_date
 FREE_BETA_TESTER_DATE = parse_date('2021-06-30')
