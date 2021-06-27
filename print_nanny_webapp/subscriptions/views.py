@@ -55,7 +55,6 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         for p in ctx["PRODUCTS"]:
             p.prices_list = p.prices.filter(active=True)
 
-
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         sold_out = (
             djstripe.models.Subscription.objects.filter(

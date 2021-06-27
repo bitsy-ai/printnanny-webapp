@@ -118,7 +118,7 @@ local-image-build:
 
 local-build: local-image-build local-vue-build
 
-local-up: local-creds
+local-up: local-image-build local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
@@ -276,4 +276,4 @@ test:
 	docker-compose -f local.yml run --rm django pytest
 
 stripe-local-webhooks:
-	stripe listen --forward-to localhost:8000/stripe/webhook
+	stripe listen --forward-to localhost:8000/stripe/webhook/

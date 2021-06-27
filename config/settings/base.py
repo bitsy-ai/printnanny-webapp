@@ -552,11 +552,12 @@ INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
 DJSTRIPE_USE_NATIVE_JSONFIELD = True
 STRIPE_LIVE_MODE = env('STRIPE_LIVE_MODE', default=False)
-DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-STRIPE_LIVE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY', default=None)
-STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default=None)
+# https://github.com/dj-stripe/dj-stripe/issues/1360
+DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET", default="whsec_x")
+STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY", default="pk_test_x")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY", default="sk_test_x")
+STRIPE_LIVE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY', default="pk_live_x")
+STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default="sk_live_x")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 from django.utils.dateparse import parse_date

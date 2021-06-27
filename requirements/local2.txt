@@ -91,7 +91,7 @@ defusedxml==0.7.1
     # via python3-openid
 discord.py==1.7.2
     # via -r requirements/local.in
-dj-stripe==2.4.3
+dj-stripe==2.5.0
     # via -r requirements/local.in
 django-allauth==0.44.0
     # via -r requirements/local.in

@@ -1,4 +1,3 @@
-from djstripe.settings import STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY
 from .base import *  # noqa
 from .base import env
 # GENERAL
