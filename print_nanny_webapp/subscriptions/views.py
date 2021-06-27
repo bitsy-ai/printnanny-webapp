@@ -55,7 +55,7 @@ class FoundingMemberSignupView(SignupView):
 
 class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
     login_url = "subscriptions:signup"
-    template_name = "subscriptions/founding-member-checkout.html"
+    template_name = "subscriptions/founding-member-signup.html"
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)

@@ -104,61 +104,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
         </div>
     </div>
 </footer> <!-- end footer -->
-<script src="https://js.stripe.com/v3/"></script>
 
-<!-- Source based on https://medium.com/@berat703/django-stripe-integration-with-using-dj-stripe-1df59d17fa73 -->
-<script>
-    function getCookie(name) {
-        if (!document.cookie) {
-            return null;
-        }
-        const xsrfCookies = document.cookie.split(';')
-            .map(c => c.trim())
-            .filter(c => c.startsWith(name + '='));
-        if (xsrfCookies.length === 0) {
-            return null;
-        }
-        return decodeURIComponent(xsrfCookies[0].split('=')[1]);
-    }
-
-    function paySubscription(price_id) {
-        var displayError = $("#card-errors");
-        displayError.text("");
-        displayError.hide();
-
-        fetch("{% url 'subscriptions:checkout' %}", {
-            method: 'POST',
-            headers: {
-                "X-CSRFToken": getCookie("csrftoken"),
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "X-Requested-With": "XMLHttpRequest"
-            },
-            body: JSON.stringify({ price_id })
-        }).then(function (result) {
-            result.json().then(function (json) {
-                // Something went wrong with a message too
-                if (typeof json.err !== "undefined") {
-                    displayError.text(json.err);
-                    displayError.show();
-                }
-
-                // Something went wrong - HTTP status code
-                if (!result.ok) return
-
-                const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
-                stripe.redirectToCheckout({
-                    sessionId: json.session_id
-                }).then(function(result) {
-                    // If `redirectToCheckout` fails due to a browser or network
-                    // error, display the localized error message to your customer
-                    // using `result.error.message`.
-                    displayError.text(result.error.message);
-                    displayError.show();
-                });
-            })
-        });
-    }
-</script>
+{% include 'subscriptions/stripe-js.html' %}
 {% endblock page_content %}
 
