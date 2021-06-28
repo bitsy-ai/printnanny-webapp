@@ -357,13 +357,16 @@ LOGGING = {
 
 # Celery
 # ------------------------------------------------------------------------------
-if USE_TZ:
-    # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-timezone
-    CELERY_TIMEZONE = TIME_ZONE
+
+REDIS_URL = env("REDIS_URL")
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-broker_url
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+
+if USE_TZ:
+    # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-timezone
+    CELERY_TIMEZONE = TIME_ZONE
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-accept_content
 CELERY_ACCEPT_CONTENT = ["json", "pickle"]
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-task_serializer
