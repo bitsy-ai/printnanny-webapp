@@ -1,6 +1,4 @@
-#!/bin/bash
-
-DATABASE_URL=postgres://debug:debug@localhost:5432/print_nanny
+DATABASE_URL="postgres://debug:debug@localhost:5432/print_nanny"
 REDIS_URL=redis://localhost:6379/0
 CELERY_BROKER_URL=redis://localhost:6379/0
 MAILGUN_API_KEY=""

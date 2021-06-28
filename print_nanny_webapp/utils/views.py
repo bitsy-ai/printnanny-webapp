@@ -11,7 +11,7 @@ OctoPrintDevice = apps.get_model("remote_control", "OctoPrintDevice")
 
 class SubscriptionRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_beta_tester
+        return self.request.user.is_beta_tester  # type: ignore
 
 
 class DashboardView(SubscriptionRequiredMixin, TemplateView):

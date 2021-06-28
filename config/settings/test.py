@@ -2,7 +2,6 @@
 With these settings, tests run faster.
 """
 
-from config.settings.local import GOOGLE_ANALYTICS
 from .base import *  # noqa
 from .base import env
 
