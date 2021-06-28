@@ -16,6 +16,37 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 <div class="account-pages mt-5 mb-5">
     <div class="container-fluid">
         <div class="row justify-content-center">
+            <div class="card col-lg-8">
+                <div class="card-body p-4 text-center">
+                    <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
+                        <h2><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
+                            Sick of babysitting your 3D printer?</h2>
+                    </div>
+                    <h4>Real-time Monitoring</h4>
+                    <h4>Automated Failure Detection</h4>
+                    <h4>Status Updates & Alerts</h4>
+
+                    <div class="text-center w-75 m-auto">
+
+                        {% for product in PRODUCTS %}
+                                {% for price in product.prices_list %}
+                                    <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
+                                {% endfor %}
+                        {% endfor %}
+                        <!-- </div> -->
+    
+                        <!-- Used to display form errors. -->
+                        <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+                    {% include 'partials/demo-carousel.html' %}
+
+                    <p class="text-muted text-center mt-2">Use next and previous arrows to see more videos. </p>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+        <div class="row justify-content-center">
             <!-- <div class="card-deck"> -->
 
                     <div class="card col-lg-4">
@@ -51,12 +82,10 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                         {% else %}
                             <div class="card-body p-4">
                                 
-                                <div class="text-center w-75 m-auto">
-                                    <p class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "<strong>Founding Members</strong> enjoy unlimited access." %}</p> 
-
+                                <div class="text-center">
                                     <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
-
-                                    <p class="text-muted mb-4">{% trans "Enter your email and password to begin" %} </p>
+                                    <p class="text-dark-50 text-center mt-0 mb-0 font-weight-bold">{% trans "<strong>Founding Members</strong> enjoy unlimited access." %}</p> 
+                                    <p class="text-muted mt-0">{% trans "Enter your email and password to begin" %} </p>
 
                                 </div>
 
@@ -72,7 +101,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                             </div> <!-- end card-body -->
                             <div class="card-footer bg-transparent text-center">
 
-                                <p class="text-muted">{% trans "Already have account?" %} 
+                                <p class="text-muted">{% trans "Already have account?" %} <br>
                                     <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
                                     to finish checkout.</p>
                             </div>
@@ -88,31 +117,6 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
             <!-- </div> end card group -->
         </div> <!-- end row -->
         
-        <div class="row justify-content-center">
-            <div class="card col-lg-8">
-                <div class="card-body p-4 text-center">
-                    <h2>Stop Babysitting Your 3D Printer</h2>
-                    <h4>Automated Failure Detection & Alerts</h4>
-                    <div class="text-center w-75 m-auto">
-
-                        {% for product in PRODUCTS %}
-                                {% for price in product.prices_list %}
-                                    <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
-                                {% endfor %}
-                        {% endfor %}
-                        <!-- </div> -->
-    
-                        <!-- Used to display form errors. -->
-                        <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
-
-                    {% include 'partials/demo-carousel.html' %}
-
-                    <p class="text-muted text-center mt-2">Use next and previous arrows to see more videos. </p>
-
-                    </div>
-                </div>
-            </div> <!-- end col -->
-        </div> <!-- end row -->
     </div>
     <!-- end container -->
 </div>
