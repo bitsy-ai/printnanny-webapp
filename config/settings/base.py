@@ -561,8 +561,10 @@ STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default="sk_live_x")
 DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
 
 from django.utils.dateparse import parse_date
-FREE_BETA_TESTER_DATE = parse_date('2021-06-30')
+FREE_BETA_TESTER_DATE = parse_date('2021-06-01')
+PAID_BETA_LAUNCH_TIMESTAMP = 1625155200000 # 9 AM PDT 2021-07-01
 PAID_BETA_SUBSCRIPTION_LIMIT = 10
+
 
 # django-safedelete
 # ------------------------------------------------------------------------------

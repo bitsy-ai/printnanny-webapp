@@ -22,9 +22,7 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                         <h2><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
                             Sick of babysitting your 3D printer?</h2>
                     </div>
-                    <h4>Real-time Monitoring</h4>
-                    <h4>Automated Failure Detection</h4>
-                    <h4>Status Updates & Alerts</h4>
+                    <h4>Real-time Monitoring ● Automated Failure Detection ● Status Alerts </h4>
 
                     <div class="text-center w-75 m-auto">
 
@@ -55,32 +53,29 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                             <h1><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
                                 Print Nanny</h1>
                         </div>
+                        <div class="card-body p-4 text-center">
 
-                        {% if user.is_authenticated %} 
+                        {% if CURRENT_UTC_TS < PAID_BETA_LAUNCH_TIMESTAMP %}
+                            {% include 'subscriptions/launch-timestamp.html' %}
 
-                            <div class="card-body p-4 text-center">
-                                <div class="text-center w-75 m-auto">
-                                    
-                                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
-                                    {% for product in PRODUCTS %}
-                                            
-                                            {% for price in product.prices_list %}
-                                                <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
-                                            {% endfor %}
-                                    {% endfor %}
-                                    <!-- </div> -->
-                                    <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
+                        {% elif user.is_authenticated %} 
 
-                                    <img class="card-img rounded-circle img-thumbnail col-sm-10 col-md-8" src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
+                                <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
+                                {% for product in PRODUCTS %}
+                                        
+                                        {% for price in product.prices_list %}
+                                            <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
+                                        {% endfor %}
+                                {% endfor %}
+                                <!-- </div> -->
+                                <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
 
-                                    <!-- Used to display form errors. -->
-                                    <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+                                <img class="card-img rounded-circle img-thumbnail col-sm-10 col-md-8" src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
 
-                                </div>
-                            </div>
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
 
                         {% else %}
-                            <div class="card-body p-4">
                                 
                                 <div class="text-center">
                                     <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
@@ -98,7 +93,6 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                                     <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
                                 </form>
                             
-                            </div> <!-- end card-body -->
                             <div class="card-footer bg-transparent text-center">
 
                                 <p class="text-muted">{% trans "Already have account?" %} <br>
@@ -107,6 +101,8 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                             </div>
 
                         {% endif %}
+                        </div> <!-- end card-body -->
+
                     </div>
                     <!-- end card -->
 
@@ -144,17 +140,23 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
 
 
             <div class="col-lg-2 mt-3 mt-lg-0">
-                <h5 class="text-white">Features</h5>
+                <h5 class="text-white">Learn More/h5>
 
                 <ul class="list-unstyled pl-0 mb-0 mt-3">
-                    <li class="mt-2"><a href="#live-monitoring" class="text-white-50">Live Monitoring</a></li>
-                    <li class="mt-2"><a href="#remote-management" class="text-white-50">Remote Management</a></li>
-                    <li class="mt-2"><a href="#automation" class="text-white-50">Automation</a></li>
-                    <li class="mt-2"><a href="#faq" class="text-white-50">FAQ</a></li>
+                    <li class="mt-2"><a href="https://print-nanny.com/#live-monitoring" class="text-white-50">Live Monitoring</a></li>
+                    <li class="mt-2"><a href="https://print-nanny.com/#remote-management" class="text-white-50">Remote Management</a></li>
+                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">FAQ</a></li>
                     <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help</a></li>
                 </ul>
             </div>
+            <div class="col-lg-2 mt-3 mt-lg-0">
+                <h5 class="text-white">Links/h5>
 
+                <ul class="list-unstyled pl-0 mb-0 mt-3">
+                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help & FAQ</a></li>
+                    <li class="mt-2"><a href="https://blog.print-nanny.com/" class="text-white-50">Blog & Newsletters</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="row">
