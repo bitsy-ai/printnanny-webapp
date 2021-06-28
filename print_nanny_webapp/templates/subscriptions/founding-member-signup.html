@@ -54,26 +54,37 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
                                 Print Nanny</h1>
                         </div>
                         {% if CURRENT_UTC_TS < PAID_BETA_LAUNCH_TIMESTAMP %}
-                            <div class="card-body p-4 text-center">
-                                {% include 'subscriptions/launch-timestamp.html' %}
 
-                                <form class="signup text-left" id="signup_form" method="post" action="{% url 'subscriptions:signup' %}" novalidate>
-                                        {% csrf_token %}
-                                        {{ form|crispy }}
-                                        {% if redirect_field_value %}
-                                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                                        {% endif %}
-                                        <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
-                                </form>
-                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="card-body p-4 text-center">
+                                    {% include 'subscriptions/launch-timestamp.html' %}
+                                    <p>Check back in soon!</p>
+                                    <img class="card-img rounded-circle img-thumbnail col-sm-10 mt-2" src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
 
-                            <div class="card-footer bg-transparent text-center">
+                                </div>
 
-                                <p class="text-muted">{% trans "Already have account?" %} <br>
-                                    <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
-                                    to finish checkout.</p>
-                            </div>
+                                
+                            {% else %}
+                                <div class="card-body p-4 text-center">
+                                    {% include 'subscriptions/launch-timestamp.html' %}
+                                    <p class="text-muted">Prepare to checkout by finishing your account setup below.</p>
+                                    <form class="signup text-left" id="signup_form" method="post" action="{% url 'subscriptions:signup' %}" novalidate>
+                                            {% csrf_token %}
+                                            {{ form|crispy }}
+                                            {% if redirect_field_value %}
+                                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                            {% endif %}
+                                            <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
+                                    </form>
+                                </div>
 
+                                <div class="card-footer bg-transparent text-center">
+
+                                    <p class="text-muted">{% trans "Already have account?" %} <br>
+                                        <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
+                                        to finish checkout.</p>
+                                </div>
+                            {% endif %}
                         {% elif user.is_authenticated %} 
                             <div class="card-body p-4 text-center">
 
