@@ -1,7 +1,4 @@
 import logging
-
-from djstripe.settings import STRIPE_PUBLIC_KEY
-
 from .base import *  # noqa
 from .base import env
 
