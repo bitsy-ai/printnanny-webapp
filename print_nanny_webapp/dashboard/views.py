@@ -1,45 +1,35 @@
 import logging
-from typing import Optional
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.utils.decorators import method_decorator
+
+import google.api_core.exceptions
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.apps import apps
-from django.views.generic import TemplateView, DetailView, FormView, ListView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import BaseDetailView
-from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.authtoken.models import Token
 from .forms import (
-    TimelapseUploadForm,
-    TimelapseCancelForm,
     FeedbackForm,
     AppNotificationForm,
     RemoteControlCommandForm,
     RemoveDeviceForm,
 )
 
-# TODO re-enable as dataflow pipeline
-# from print_nanny_webapp.alerts.tasks.timelapse_alert import (
-#     create_analyze_video_task,
-#     annotate_job_error,
-# )
 from django.http import HttpResponseRedirect
 
 from django.db.models import Q, Count
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect
-import google.api_core.exceptions
 
 from print_nanny_webapp.utils.multiform import MultiFormsView
 from print_nanny_webapp.partners.forms import RevokeGeeksTokenForm
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
+from print_nanny_webapp.utils.views import DashboardView
 from django.contrib import messages
 
 User = get_user_model()
 Alert = apps.get_model("alerts", "AlertMessage")
-# ManualVideoUploadAlert = apps.get_model("alerts", "ManualVideoUploadAlert")
 GeeksToken = apps.get_model("partners", "GeeksToken")
 
 UserSettings = apps.get_model("users", "UserSettings")
@@ -51,30 +41,6 @@ AppNotification = apps.get_model("dashboard", "AppNotification")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
 logger = logging.getLogger(__name__)
-
-
-class DashboardView(LoginRequiredMixin, TemplateView):
-    @method_decorator(ensure_csrf_cookie)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def get_context_data(self, *args, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-
-        context["user"] = self.request.user
-        context["recent_alerts"] = (
-            Alert.objects.filter(
-                user=self.request.user,
-            )
-            .order_by("-created_dt")
-            .all()
-        )
-
-        context["octoprint_devices"] = OctoPrintDevice.objects.filter(
-            user=self.request.user
-        ).all()
-        return context
 
 
 class HomeDashboardView(DashboardView):

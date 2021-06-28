@@ -5,6 +5,7 @@ With these settings, tests run faster.
 from .base import *  # noqa
 from .base import env
 
+
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
@@ -53,3 +54,7 @@ BETA_NOTIFY_EMAIL = "test@print-nanny.com"
 GHOST_ADMIN_API_KEY = ""
 WS_BASE_URL = env('PRINT_NANNY_WS_URL', default='ws://localhost:8000/ws')
 BASE_URL = env('PRINT_NANNY_BASE_URL', default='http://localhost:8000/')
+
+
+WHITENOISE_MANIFEST_STRICT = False
+GOOGLE_ANALYTICS=""

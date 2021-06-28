@@ -16,10 +16,28 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
     model = User
-    list_display = ("email", "is_staff", "is_active", "is_superuser")
-    list_filter = ("email", "is_staff", "is_active", "is_superuser")
+    list_display = (
+        "email",
+        "is_staff",
+        "is_free_beta_tester",
+        "is_paid_beta_tester",
+        "is_superuser",
+    )
+    list_filter = ("email", "is_staff", "is_superuser")
+    read_only_fields = ("is_free_beta_tester", "is_paid_beta_tester")
+
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (
+            None,
+            {
+                "fields": (
+                    "email",
+                    "password",
+                    "is_free_beta_tester",
+                    "is_paid_beta_tester",
+                )
+            },
+        ),
         ("Permissions", {"fields": ("is_staff", "is_active")}),
     )
     add_fieldsets = (

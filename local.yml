@@ -8,6 +8,7 @@ volumes:
   local_octoprint_data: {}
 services:
   octoprint:
+    hostname: octoprint
     image: octoprint/octoprint
     container_name: octoprint
     ports:
@@ -25,6 +26,7 @@ services:
       - local_octoprint_data:/octoprint
   django: &django
     # enables use of pdb
+    hostname: django
     stdin_open: true
     tty: true
     build:
@@ -57,7 +59,7 @@ services:
     command: /start
 
   postgres:
-
+    hostname: postgres
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
@@ -93,7 +95,7 @@ services:
   #     - "7000:7000"
 
   ngrok:
-
+    hostname: ngrok
     image: wernight/ngrok
     container_name: ngrok
     environment:
@@ -102,11 +104,13 @@ services:
     ports:
       - "4040:4040"
   redis:
-
+    hostname: redis
     build:
       context: .
       dockerfile: ./compose/local/redis/Dockerfile
     container_name: redis
+    ports:
+      - "6379:6379"
 
   celeryworker:
     <<: *django
@@ -140,6 +144,7 @@ services:
 
   flower:
     <<: *django
+    hostname: flower
     user: 1000:1000
 
     image: print_nanny_webapp_local_flower
@@ -166,7 +171,7 @@ services:
   #   command: /start-notebook
 
   prometheus:
-
+    hostname: prometheus
     image: prom/prometheus
     ports:
       - 9000:9090
@@ -177,6 +182,7 @@ services:
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
 
   celery-exporter:
+    hostname: celery-exporter
     image: ovalmoney/celery-exporter
     ports:
       - 9540:9540
@@ -195,10 +201,12 @@ services:
       - python
       - print_nanny_webapp/alerts/subscribers/alerts.py
   # Stripe websocket proxy
-  stripe:
-    container_name: stripe
-    image: stripe/stripe-cli
-    command:
-      - listen
-      - --forward-to
-      - django:8000/stripe/webhook/
+  # stripe:
+  #   hostname: stripe-cli
+  #   container_name: stripe
+  #   image: stripe/stripe-cli
+  #   command:
+  #     - listen
+  #     - --forward-to
+  #     - django:8000/stripe/webhook/
+  #     - --print-json

@@ -1,3 +1,4 @@
+from djstripe.settings import STRIPE_PUBLIC_KEY
 from .base import *  # noqa
 from .base import env
 
@@ -72,14 +73,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 CELERY_TASK_EAGER_PROPAGATES = True
 
 GOOGLE_ANALYTICS=""
-
-# dj-stripe
-# ------------------------------------------------------------------------------
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-    STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-    STRIPE_LIVE_MODE = False
 
 # LOGGING
 # ------------------------------------------------------------------------------

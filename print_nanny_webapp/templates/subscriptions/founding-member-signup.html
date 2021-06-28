@@ -1,0 +1,198 @@
+{% extends "account/base.html" %}
+
+{% load static i18n %}
+
+{% block head_title %}{% trans "Get Access to" %}{% endblock head_title %}
+{% load crispy_forms_tags %}
+
+{% block body_extra %}
+class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'
+{% endblock body_extra %}
+
+
+{% block page_content %}
+{% include 'subscriptions/stripe-checkout-js.html' %}
+
+<div class="account-pages mt-5 mb-5">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="card col-lg-8">
+                <div class="card-body p-4 text-center">
+                    <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
+                        <h2><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
+                            Sick of babysitting your 3D printer?</h2>
+                    </div>
+                    <h4>Real-time Monitoring ● Automated Failure Detection ● Status Alerts </h4>
+
+                    <div class="text-center w-75 m-auto">
+
+                        {% for product in PRODUCTS %}
+                                {% for price in product.prices_list %}
+                                    <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
+                                {% endfor %}
+                        {% endfor %}
+                        <!-- </div> -->
+    
+                        <!-- Used to display form errors. -->
+                        <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+                    {% include 'partials/demo-carousel.html' %}
+
+                    <p class="text-muted text-center mt-2">Use next and previous arrows to see more videos. </p>
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+        <div class="row justify-content-center">
+            <!-- <div class="card-deck"> -->
+
+                    <div class="card col-lg-4">
+                        <!-- Logo-->
+                        <div class="card-header pt-4 pb-4 text-center bg-primary text-white">
+                            <h1><img src="{% static 'images/logo-square/square-color-no-text-180-by-180.png' %}" alt="Print Nanny logo" height="80">
+                                Print Nanny</h1>
+                        </div>
+                        {% if CURRENT_UTC_TS < PAID_BETA_LAUNCH_TIMESTAMP %}
+
+                            {% if user.is_authenticated %}
+                                <div class="card-body p-4 text-center">
+                                    {% include 'subscriptions/launch-timestamp.html' %}
+                                    <p>Check back in soon!</p>
+                                    <img class="card-img rounded-circle img-thumbnail col-sm-10 mt-2" src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
+
+                                </div>
+
+                                
+                            {% else %}
+                                <div class="card-body p-4 text-center">
+                                    {% include 'subscriptions/launch-timestamp.html' %}
+                                    <p class="text-muted">Prepare to checkout by finishing your account setup below.</p>
+                                    <form class="signup text-left" id="signup_form" method="post" action="{% url 'subscriptions:signup' %}" novalidate>
+                                            {% csrf_token %}
+                                            {{ form|crispy }}
+                                            {% if redirect_field_value %}
+                                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                            {% endif %}
+                                            <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
+                                    </form>
+                                </div>
+
+                                <div class="card-footer bg-transparent text-center">
+
+                                    <p class="text-muted">{% trans "Already have account?" %} <br>
+                                        <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
+                                        to finish checkout.</p>
+                                </div>
+                            {% endif %}
+                        {% elif user.is_authenticated %} 
+                            <div class="card-body p-4 text-center">
+
+                                <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
+                                {% for product in PRODUCTS %}
+                                        
+                                        {% for price in product.prices_list %}
+                                            <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg"><h4>Get Early Access for {{ price.human_readable_price }}</h4></a>
+                                        {% endfor %}
+                                {% endfor %}
+                                <!-- </div> -->
+                                <p class="text">{% trans "Click to checkout securely with Stripe" %} </p>
+
+                                <img class="card-img rounded-circle img-thumbnail col-sm-10 col-md-8" src="{% static 'images/swag/print-nanny-coaster.jpg' %}" alt="Print Nanny Swag">
+
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
+                            
+                        {% else %}
+                                
+                                <div class="text-center">
+                                    <h3 class="text-dark-50 text-center mt-0 font-weight-bold">{{ AVAILABLE_SUBSCRIPTIONS_COUNT }} Memberships Remaining </h3>
+                                    <p class="text-dark-50 text-center mt-0 mb-0 font-weight-bold">{% trans "<strong>Founding Members</strong> enjoy unlimited access." %}</p> 
+                                    <p class="text-muted mt-0">{% trans "Enter your email and password to begin" %} </p>
+
+                                </div>
+
+                                <form class="signup" id="signup_form" method="post" action="{% url 'subscriptions:signup' %}" novalidate>
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                    {% endif %}
+                                    <button class="btn btn-primary" type="submit">{% trans "Next" %} &raquo;</button>
+                                </form>
+                            </div>
+                            <div class="card-footer bg-transparent text-center">
+
+                                <p class="text-muted">{% trans "Already have account?" %} <br>
+                                    <a href="{{ login_url }}?next={% url 'subscriptions:checkout' %}" class="text-primaru ml-1"><b>{% trans "Log In" %}</b></a> or <a href="{% url 'account_reset_password' %}"><b>{% trans "Reset Password" %}</b></a>
+                                    to finish checkout.</p>
+                            </div>
+
+                        {% endif %}
+                    </div> <!-- end card -->
+
+                    <div class="col-lg-4">
+                        {% include 'subscriptions/founding-member-cards.html' %}
+        
+                    </div> <!-- end col -->
+            <!-- </div> end card group -->
+        </div> <!-- end row -->
+        
+    </div>
+    <!-- end container -->
+</div>
+<!-- end page -->
+<footer class="bg-dark py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{% static 'images/logo-text-white.svg' %}" alt="" class="logo-dark" height="18" />
+                <p class="text-white-50 mt-4">Print Nanny was created by Leigh Johnson. Read more about her at <a href="https://www.bitsy.ai/about/">bitsy.ai</a>.</p>
+
+                <ul class="social-list list-inline mt-3">
+                    <li class="list-inline-item text-center">
+                        <a target="_blank" href="https://twitter.com/grepLeigh" class="social-list-item border-info text-info"><i class="uil uil-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item text-center">
+                        <a  target="_blank"href="https://medium.com/@grepLeigh" class="social-list-item border-secondary text-secondary"><i class="uil uil-medium-m"></i></a>
+                    </li>
+                    <li class="list-inline-item text-center">
+                        <a  target="_blank" href="https://github.com/bitsy-ai" class="social-list-item border-secondary text-secondary"><i class="uil uil-github"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-2 mt-3 mt-lg-0">
+                <h5 class="text-white">Learn More</h5>
+
+                <ul class="list-unstyled pl-0 mb-0 mt-3">
+                    <li class="mt-2"><a href="https://print-nanny.com/#live-monitoring" class="text-white-50">Live Monitoring</a></li>
+                    <li class="mt-2"><a href="https://print-nanny.com/#remote-management" class="text-white-50">Remote Management</a></li>
+                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">FAQ</a></li>
+                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 mt-3 mt-lg-0">
+                <h5 class="text-white">Links</h5>
+
+                <ul class="list-unstyled pl-0 mb-0 mt-3">
+                    <li class="mt-2"><a href="https://help.print-nanny.com/" class="text-white-50">Help & FAQ</a></li>
+                    <li class="mt-2"><a href="https://blog.print-nanny.com/" class="text-white-50">Blog & Newsletters</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="mt-5">
+                    <p a href="https://www.bitsy.ai/about/" class="text-white-50 mt-4 text-center mb-0">© 2021 Print Nanny, Bitsy AI Labs </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> <!-- end footer -->
+
+{% endblock page_content %}
+

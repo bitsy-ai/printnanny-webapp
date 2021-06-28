@@ -36,7 +36,7 @@ install-git-hooks:
 docker-mypy:
 	docker-compose -f local.yml run --rm django mypy -m print_nanny_webapp.telemetry
 mypy:
-	. .envs/.local/.tests && \
+	. .envs/.local/.tests.sh && \
 	mypy print_nanny_webapp/telemetry/
 token:
 	echo $(PRINT_NANNY_TOKEN)
@@ -118,7 +118,7 @@ local-image-build:
 
 local-build: local-image-build local-vue-build
 
-local-up: local-creds
+local-up: local-image-build local-creds
 	. .envs/.sandbox/.env && PROJECT=$(GCP_PROJECT) \
 	PRINT_NANNY_IOT_DEVICE_REGISTRY=$(PRINT_NANNY_IOT_DEVICE_REGISTRY) \
 	PRINT_NANNY_HONEYCOMB_DATASET=$(PRINT_NANNY_HONEYCOMB_DATASET) \
@@ -274,3 +274,6 @@ cloudsql:
 
 test:
 	docker-compose -f local.yml run --rm django pytest
+
+stripe-local-webhooks:
+	stripe listen --forward-to localhost:8000/stripe/webhook/

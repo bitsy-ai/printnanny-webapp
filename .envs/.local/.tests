@@ -1,9 +1,10 @@
-#!/bin/bash
-
-export DATABASE_URL="postgres://debug:debug@postgres:5432/print_nanny"
-export MAILGUN_API_KEY=""
-export MAILGUN_DOMAIN=""
-export DISCORD_TOKEN=""
-export CELERY_BROKER_URL=""
-export REDIS_URL=""
-export HONEYCOMB_API_KEY=""
+DATABASE_URL="postgres://debug:debug@localhost:5432/print_nanny"
+REDIS_URL=redis://localhost:6379/0
+CELERY_BROKER_URL=redis://localhost:6379/0
+MAILGUN_API_KEY=""
+MAILGUN_DOMAIN=""
+DISCORD_TOKEN=""
+HONEYCOMB_API_KEY=""
+CELERY_FLOWER_USER=debug
+CELERY_FLOWER_PASSWORD=debug
+LOGLEVEL=debug

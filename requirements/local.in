@@ -60,3 +60,9 @@ django-stubs
 djangorestframework-stubs
 mypy-protobuf
 wheel
+pytest-django
+pytest-dotenv
+pytest-mock
+pytest-sugar
+django-coverage-plugin
+factory_boy

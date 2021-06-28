@@ -233,7 +233,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "print_nanny_webapp.utils.context_processors.settings_context",
-                
+
             ],
         },
     }
@@ -426,10 +426,6 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-# redis is used as a request cache and brokers celery tasks
-REDIS_URL = env("REDIS_URL")
-
-
 SPECTACULAR_SETTINGS = {
     'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
@@ -441,9 +437,11 @@ SPECTACULAR_SETTINGS = {
 }
 
 # django-filters
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += ['django_filters']
 
 # django-prometheus
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += ['django_prometheus']
 
 PROMETHEUS_METRICS_EXPORT_PORT_RANGE = range(8001, 8050)
@@ -453,7 +451,7 @@ PROMETHEUS_EXPORT_MIGRATIONS = False
 
 PRINT_NANNY_CLIENT_VERSION = '>=0.1.0'
 
-
+# ------------------------------------------------------------------------------
 # django-polymorphic
 
 INSTALLED_APPS += [
@@ -461,7 +459,7 @@ INSTALLED_APPS += [
 ]
 
 # django-invitations
-
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'invitations',
 ]
@@ -471,8 +469,9 @@ INVITATIONS_INVITATION_ONLY=True
 INVITATIONS_INVITATION_EXPIRY=30
 INVITATIONS_EMAIL_SUBJECT_PREFIX='[Print Nanny]'
 INVITATIONS_ACCEPT_INVITE_AFTER_SIGNUP=True
-# channels
 
+# channels
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'channels',
 ]
@@ -480,6 +479,7 @@ INSTALLED_APPS += [
 APPEND_SLASH = True
 
 # pubsub and cloud iot
+# ------------------------------------------------------------------------------
 GCP_LTS_CA_PRIMARY = "https://pki.goog/gtsltsr/gtsltsr.crt"
 GCP_LTS_CA_BACKUP = "https://pki.goog/gsr4/GSR4.crt"
 GCP_PUBSUB_UNDELIVERED_HEALTH_THRESHOLD_MINUTES=10
@@ -528,7 +528,7 @@ HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
 HONEYCOMB_API_KEY = env('HONEYCOMB_API_KEY')
 
 # django-health-check
-
+# ------------------------------------------------------------------------------
 INSTALLED_APPS += [
     'health_check',                             # required
     'health_check.db',                          # stock Django health checkers
@@ -539,6 +539,7 @@ INSTALLED_APPS += [
     'health_check.contrib.redis',               # requires Redis broker
 ]
 
+# ------------------------------------------------------------------------------
 # help guides
 
 HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-setup/"
@@ -546,14 +547,24 @@ HELP_OCTOPRINT_PLUGIN_SETUP = "https://help.print-nanny.com/octoprint-plugin-set
 
 # dj-stripe
 # ------------------------------------------------------------------------------
+INSTALLED_APPS += ["djstripe"]
+INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
 
-# @TODO implement with django-flags
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET")
-    DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
-    INSTALLED_APPS += ["djstripe"]
-    INSTALLED_APPS += ["print_nanny_webapp.subscriptions.apps.SubscriptionsConfig"]
+DJSTRIPE_USE_NATIVE_JSONFIELD = True
+STRIPE_LIVE_MODE = env('STRIPE_LIVE_MODE', default=False)
+# https://github.com/dj-stripe/dj-stripe/issues/1360
+DJSTRIPE_WEBHOOK_SECRET = env("DJSTRIPE_WEBHOOK_SECRET", default="whsec_x")
+STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY", default="pk_test_x")
+STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY", default="sk_test_x")
+STRIPE_LIVE_PUBLIC_KEY = env('STRIPE_LIVE_PUBLIC_KEY', default="pk_live_x")
+STRIPE_LIVE_SECRET_KEY = env('STRIPE_LIVE_SECRET_KEY', default="sk_live_x")
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+
+from django.utils.dateparse import parse_date
+FREE_BETA_TESTER_DATE = parse_date('2021-06-01')
+PAID_BETA_LAUNCH_TIMESTAMP = 1625155200000 # 9 AM PDT 2021-07-01
+PAID_BETA_SUBSCRIPTION_LIMIT = 10
+
 
 # django-safedelete
 # ------------------------------------------------------------------------------

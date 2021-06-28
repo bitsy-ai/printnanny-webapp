@@ -40,7 +40,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
 INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
-if env("USE_DOCKER") == "yes":
+if env("USE_DOCKER", default=False) == "yes":
     import socket
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
@@ -53,6 +53,11 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 # Celery
 # ------------------------------------------------------------------------------
 
+REDIS_URL = env("REDIS_URL")
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-broker_url
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-eager-propagates
 CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
@@ -81,15 +86,6 @@ CHANNEL_LAYERS = {
 }
 
 BETA_NOTIFY_EMAIL = ["leigh+testing@bitsy.ai"]
-
-# dj-stripe
-# ------------------------------------------------------------------------------
-STRIPE_ENABLE_SUBSCRIPTIONS = env("STRIPE_ENABLE_SUBSCRIPTIONS", default=False)
-if STRIPE_ENABLE_SUBSCRIPTIONS:
-    STRIPE_TEST_PUBLIC_KEY = env("STRIPE_TEST_PUBLIC_KEY")
-    STRIPE_TEST_SECRET_KEY = env("STRIPE_TEST_SECRET_KEY")
-    STRIPE_LIVE_MODE = False
-
 
 # CORS
 # ------------------------------------------------------------------------------
