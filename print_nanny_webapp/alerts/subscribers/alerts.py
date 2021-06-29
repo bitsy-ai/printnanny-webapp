@@ -61,7 +61,13 @@ def on_alert_event(message):
         user_id=user_id,
     )
     logger.info(f"Retrieving print_session={print_session_str}")
-    print_session = PrintSession.objects.get(id=print_session_id)
+    try:
+        print_session = PrintSession.objects.get(session=print_session_str)
+    except PrintSession.DoesNotExist as e:
+        logger.error(e)
+        logger.error(render_video_msg)
+        return message.ack()
+
     for alert_method in alert_settings.alert_methods:
         alert_message = AlertMessage.objects.create(
             user_id=user_id,

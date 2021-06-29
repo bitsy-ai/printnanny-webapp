@@ -69,6 +69,7 @@ def handle_print_progress(event: OctoPrintEvent):
     )
     if event.print_session:
         PrintSession.objects.filter(id=event.print_session.id).update(
+            gcode_filename=event.octoprint_printer_data["job"]["file"]["name"],
             filepos=event.octoprint_printer_data["progress"]["filepos"],
             print_progress=progress,
             time_elapsed=event.octoprint_printer_data["progress"]["printTime"],

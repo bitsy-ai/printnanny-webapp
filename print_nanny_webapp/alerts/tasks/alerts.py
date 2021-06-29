@@ -135,11 +135,7 @@ class AlertTask:
             serializer = self.get_serializer()
             data = serializer.data
 
-            gcode_filename = (
-                self.instance.print_session.gcode_filename
-                if self.instance.print_session.gcode_filename
-                else None
-            )
+            gcode_filename = self.instance.print_session.gcode_filename
             merge_data = {
                 "DEVICE_URL": device_url,
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
