@@ -14,7 +14,8 @@ MemberBadge = apps.get_model("subscriptions", "MemberBadge")
 
 @shared_task
 def create_free_beta_tester_badges():
-    users = User.objects.filter(Q(created__lte=settings.FREE_BETA_TESTER_DATE))
+    max_id = list(settings.FREE_BETA_TESTER_IDS)[-1]
+    users = User.objects.filter(Q(id__lte=max_id))
     for user in users:
         obj, created = MemberBadge.get_or_create(
             user=user, type=MemberBadge.Types.FREE_BETA
