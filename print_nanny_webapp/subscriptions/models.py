@@ -7,18 +7,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class MemberBadgeType(models.TextChoices):
-
-    FREE_BETA = (
-        "FreeBeta",
-        "Participated in free beta program between January 2021 - July 2021",
-    )
-    PAID_BETA = "PaidBeta", "Participated in paid beta program starting July 2021"
-
-
 class MemberBadge(models.Model):
+    class MemberBadgeType(models.TextChoices):
 
-    Types = MemberBadgeType
+        FREE_BETA = (
+            "FreeBeta",
+            "Participated in free beta program between January 2021 - July 2021",
+        )
+        PAID_BETA = "PaidBeta", "Participated in paid beta program starting July 2021"
 
     class Meta:
         unique_together = ("type", "user")
