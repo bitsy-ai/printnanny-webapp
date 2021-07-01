@@ -15,31 +15,34 @@ class="loading authentication-bg" data-layout-config='{"leftSideBarTheme":"dark"
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <h1 class="display-4">Thank you!</h1>
+                        <div class="card">
+                            <div class="card-body">
+                                    <h1 class="display-4">Thank you!</h1>
 
 
-                        <p>If you're selected as a Beta tester, you'll receive an invitation by email. 
-                            We send invites out in small batches - thank you for your patience!
-                            
-                        </p>
+                                    <p>You'll get an email when space becomes available in the Beta program. I'm excited to hear what you think! If you have questions in the meantime, join Discord or send me an email.
+                                        - Leigh
+                                    </p>
+                                    <img class="col-sm-3 col-lg-2 img-fluid" src="{% static 'images/love.svg' %}">
 
-                        <p>Let us know if you have any questions.
-                        </p>
-                        <a  target="_blank"  href="{{DISCORD_URL}}">
-                            <button target="_blank" href="{{DISCORD_URL}}" type="button" class="discord btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i> Ask on Discord</button>
+                                    <a  target="_blank"  href="{{DISCORD_URL}}">
+                                        <button target="_blank" href="{{DISCORD_URL}}" type="button" class="discord btn btn-primary btn-sm mt-2 ml-1"><i class="mdi mdi-discord mr-1"></i>Join Discord</button>
+            
+                                    </a>
+                                    <a target="_blank" href="mailto:leigh@print-nanny.com">
+                                        <button  type="button" id="support-email" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email</button>
+            
+                                    </a>
+                                    <a target="_blank" id="twitter" href="https://twitter.com/intent/tweet?text=Hey%20@grepLeigh%20-%20question%20about%20PrintNanny">
+                                        <button  type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i>Tweet</button>
+                  
+                                    </a>
 
-                        </a>
-                        <a target="_blank" href="mailto:hi@print-nanny.com">
-                            <button  type="button" id="support-email" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i> Email us your question</button>
+                            </div>
 
-                        </a>
-                        <a target="_blank" id="twitter" href="https://twitter.com/intent/tweet?text=Hey%20@grepLeigh%20-%20question%20about%20PrintNanny">
-                            <button  type="button" class="btn btn-info btn-sm mt-2 ml-1"><i class="mdi mdi-twitter mr-1"></i> Send a tweet</button>
-      
-                        </a>
-                        
+                        </div>
                     </div>
-                    <img class="col-lg-2 img-fluid" src="{% static 'images/love.svg' %}">
+
 
                     <!-- end col -->
                 </div>
