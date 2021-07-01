@@ -109,37 +109,37 @@
 
 
         </ul>
-
-        <!-- Help Box -->
-        <div class="help-box text-white text-center">
-            <!-- <a href="javascript: void(0);" class="float-right close-btn text-white">
-                <i class="mdi mdi-close"></i>
-            </a> -->
-            <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
-            <h3 class="mt-3">Beta Test 🚧</h3>
-            <!-- <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p> -->
-            <p class="mb-3">{% trans "Report bugs by opening a Github Issue."%}</p>
-
-            <a href="{{GITHUB_ISSUE_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Open Github Issue" %}</a>
-        </div>
-
-        <div class="help-box text-white text-center">
-            <!-- <a href="javascript: void(0);" class="float-right close-btn text-white">
-                <i class="mdi mdi-close"></i>
-            </a> -->
-            <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
-            <h5 class="mt-3">{% trans "Discord Server" %}</h5>
-            <p class="mb-3">{% trans "Hang out with 3D print fanatics and makers."%}</p>
-            <a href="{{DISCORD_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Join" %}</a>
-        </div>
-        <!-- end Help Box -->
-        <!-- Help Box -->
         <div class="help-box text-white text-center">
             <h4>Achievements 🏆</h4>
                 {% for badge in user.member_badges.all %}
                     <span class="badge badge-secondary">{{badge.type}}</span>
                 {% endfor %}
         </div>
+
+        <!-- Help Box -->
+        <div class="help-box text-white text-center">
+            <!-- <a href="javascript: void(0);" class="float-right close-btn text-white">
+                <i class="mdi mdi-close"></i>
+            </a> -->
+            <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
+            <h4>Beta Test 🚧</h4>
+            <!-- <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p> -->
+            <p>{% trans "Report bugs by emailing leigh@print-nanny.com"%}</p>
+
+            <a href="mailto:leigh@print-nanny.com" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Report Issue" %}</a>
+        </div>
+
+        <div class="help-box text-white text-center">
+            <!-- <a href="javascript: void(0);" class="float-right close-btn text-white">
+                <i class="mdi mdi-close"></i>
+            </a> -->
+            <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
+            <h5>{% trans "Discord Server" %}</h5>
+            <p>{% trans "Hang out with 3D print fanatics and makers."%}</p>
+            <a href="{{DISCORD_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Join" %}</a>
+        </div>
+        <!-- end Help Box -->
+        <!-- Help Box -->
 
         <!-- End Sidebar -->
 
