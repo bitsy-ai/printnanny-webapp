@@ -29,6 +29,7 @@ User = get_user_model()
 
 stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
 
+
 class SubscriptionSoldoutView(TemplateView):
     template_name = "subscriptions/sold-out.html"
 
@@ -55,22 +56,27 @@ class FoundingMemberSignupView(SignupView):
             return dict(email=self.request.GET["email"])
         return super().get_initial()
 
-class MemberBadgeRedirectView(RedirectView):
+
+class CheckoutSuccessView(RedirectView):
 
     permanent = False
 
-    def get_redirect_url(self, session_id=None,  *args, **kwargs):
+    def get_redirect_url(self, session_id=None, *args, **kwargs):
         MemberBadge = apps.get_model("subscriptions", "MemberBadge")
 
-        session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
-        logger.info(f'Checkout session succeeded {session}')
+        session = stripe.checkout.Session.retrieve(request.args.get("session_id"))
+        logger.info(f"Checkout session succeeded {session}")
         customer = stripe.Customer.retrieve(session.customer)
         user = User.objects.get(email=customer.email)
-        logger.info(f'Customer info stripee customer={customer} user={user}')
+        logger.info(f"Customer info stripee customer={customer} user={user}")
 
-        MemberBadge.objects.get_or_create(type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.user)
+        badge, created = MemberBadge.objects.get_or_create(
+            type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.user
+        )
+        logger.info(f"Created MemberBadge={badge}")
 
         return redirect(reverse("dashboard:home"))
+
 
 class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
     login_url = "subscriptions:signup"
@@ -103,8 +109,10 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
                 status=400,
             )
 
-        success_url_base = request.build_absolute_uri(reverse("dashboard:home"))
-        success_url_query = '?session_id={CHECKOUT_SESSION_ID}'
+        success_url_base = request.build_absolute_uri(
+            reverse("subscriptions:checkout_success")
+        )
+        success_url_query = "?session_id={CHECKOUT_SESSION_ID}"
         success_url = success_url_base + success_url_query
 
         session = stripe.checkout.Session.create(
