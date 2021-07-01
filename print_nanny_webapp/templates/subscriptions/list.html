@@ -57,7 +57,11 @@
     <div class="row">
         <div class="card col-12 col-lg-6 d-flex align-items-stretch">
             <div class="card-body">
+
+
                 <h4>Payment History</h4>
+                {% if SUBSCRIPTIONS %}
+
                 <table id="subscription-history" class="table table-hover table-centered">
                     <thead>
                         <tr>
@@ -96,7 +100,16 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                
+
+                {% else %}
+                    <p>You have no active subscriptions. </p>
+
+                    {% for product in PRODUCTS %}
+                        {% for price in product.prices_list %}
+                            <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Purchase Founding Membership for {{ price.human_readable_price }}</h4></a>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
