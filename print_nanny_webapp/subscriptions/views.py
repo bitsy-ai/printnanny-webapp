@@ -62,20 +62,23 @@ class CheckoutSuccessView(RedirectView):
     permanent = False
 
     def get_redirect_url(self, session_id=None, *args, **kwargs):
+        if not session_id:
+            return reverse("subscriptions:checkout")
+
         MemberBadge = apps.get_model("subscriptions", "MemberBadge")
 
-        session = stripe.checkout.Session.retrieve(request.args.get("session_id"))
+        session = stripe.checkout.Session.retrieve(session_id)
         logger.info(f"Checkout session succeeded {session}")
         customer = stripe.Customer.retrieve(session.customer)
         user = User.objects.get(email=customer.email)
         logger.info(f"Customer info stripee customer={customer} user={user}")
 
         badge, created = MemberBadge.objects.get_or_create(
-            type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.user
+            type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.id
         )
         logger.info(f"Created MemberBadge={badge}")
 
-        return redirect(reverse("dashboard:home"))
+        return reverse("dashboard:home")
 
 
 class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
@@ -112,7 +115,7 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         success_url_base = request.build_absolute_uri(
             reverse("subscriptions:checkout_success")
         )
-        success_url_query = "?session_id={CHECKOUT_SESSION_ID}"
+        success_url_query = "/{CHECKOUT_SESSION_ID}"
         success_url = success_url_base + success_url_query
 
         session = stripe.checkout.Session.create(

@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 from print_nanny_webapp.subscriptions.views import (
     SubscriptionsListView,
@@ -25,6 +25,10 @@ urlpatterns = [
         "checkout-success",
         CheckoutSuccessView.as_view(),
         name="checkout_success",
+    ),
+    path(
+        "checkout-success/<slug:session_id>",
+        CheckoutSuccessView.as_view(),
     ),
     path("sold-out", SubscriptionSoldoutView.as_view(), name="sold_out"),
     path("", SubscriptionsListView.as_view(), name="list"),
