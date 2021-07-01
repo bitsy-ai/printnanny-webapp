@@ -1,14 +1,17 @@
 from django.contrib.postgres.fields import ArrayField
 from django.core import exceptions
 from django import forms
+from django.core import validators
 
 
 class ChoiceArrayField(ArrayField):
     """
     A postgres ArrayField that supports the choices property.
 
-    Ref. https://gist.github.com/danni/f55c4ce19598b2b345ef.
+    Ref https://gist.github.com/danni/f55c4ce19598b2b345ef#gistcomment-3408902
     """
+
+    empty_values = list(validators.EMPTY_VALUES)
 
     def formfield(self, **kwargs):
         defaults = {
@@ -30,7 +33,7 @@ class ChoiceArrayField(ArrayField):
             # Skip validation for non-editable fields.
             return
 
-        if self.choices is not None:  # and value not in self.empty_values:
+        if self.choices is not None and value not in self.empty_values:
             if set(value).issubset({option_key for option_key, _ in self.choices}):
                 return
             raise exceptions.ValidationError(
@@ -42,5 +45,5 @@ class ChoiceArrayField(ArrayField):
         if value is None and not self.null:
             raise exceptions.ValidationError(self.error_messages["null"], code="null")
 
-        if not self.blank:  # and value in self.empty_values:
+        if not self.blank and value in self.empty_values:
             raise exceptions.ValidationError(self.error_messages["blank"], code="blank")
