@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.core import exceptions
 from django import forms
+from django.core import validators
 
 
 class ChoiceArrayField(ArrayField):
@@ -9,6 +10,8 @@ class ChoiceArrayField(ArrayField):
 
     Ref https://gist.github.com/danni/f55c4ce19598b2b345ef#gistcomment-3408902
     """
+
+    empty_values = list(validators.EMPTY_VALUES)
 
     def formfield(self, **kwargs):
         defaults = {
