@@ -61,18 +61,16 @@
                 <table id="subscription-history" class="table table-hover table-centered">
                     <thead>
                         <tr>
-                            <th>Date</th>
+
                             <th>Price</th>
-                            <th>Status</th>
+                            <th>Subscription Status</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for subscription in SUBSCRIPTIONS %}
                             <tr>
-                                <td>{{ subscription.created }}</td>
                                 <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
                                 <td>
                                     {% if subscription.status == "active" %}
@@ -86,18 +84,19 @@
                                     {% endif %}
                                     &nbsp;{{ subscription.status | title }}
                                 </td>
-                                <td>{{ subscription.current_period_start }}</td>
-                                <td>{{ subscription.current_period_end }}</td>
-                                <td class="table-action">
+                                <td>{{ subscription.current_period_start | date }}</td>
+                                <td>{{ subscription.current_period_end | date }}</td>
+                                <!-- <td class="table-action">
                                     <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                     {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
                                         <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                     {% endif %}
-                                </td>
+                                </td> -->
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>

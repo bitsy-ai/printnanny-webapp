@@ -138,15 +138,16 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
 
 
 def link_customer_by_email(user: User) -> djstripe.models.Customer:
-    customer = djstripe.models.Customer.objects.get(
-        email=user.email
-    )
+    customer = djstripe.models.Customer.objects.get(email=user.email)
     if customer.subscriber is None:
         customer.subscriber = user
         customer.save()
     elif customer.subscriber_id != user.id:
-        logger.warning(f"Tried to associate djstripe.models.Customer with email={customer.email} with user={user}, but customer already linked to user={customer.subscriber}")
+        logger.warning(
+            f"Tried to associate djstripe.models.Customer with email={customer.email} with user={user}, but customer already linked to user={customer.subscriber}"
+        )
     return customer
+
 
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
@@ -161,7 +162,9 @@ class SubscriptionsListView(DashboardView):
                 link_customer_by_email(self.request.user)
             # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
-            logger.warning(f"No stripe customer associated with user={self.request.user}")
+            logger.warning(
+                f"No stripe customer associated with user={self.request.user}"
+            )
             customer = None
         if customer:
             ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by("-created")
