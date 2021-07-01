@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import json, logging
 import stripe
 from django.urls import reverse
-from django.http import HttpRequest, HttpResponse, request
+from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
@@ -17,12 +17,9 @@ from allauth.account.views import SignupView
 import djstripe.models
 import djstripe.enums
 import djstripe.settings
-
-from anymail.message import AnymailMessage
-from django.template.loader import render_to_string
+from django.db.models import Q
 
 from print_nanny_webapp.utils.views import DashboardView
-from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -140,6 +137,18 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
         return JsonResponse({"session_id": session.id}, status=200)
 
 
+def link_customer_by_email(user: User) -> djstripe.models.Customer:
+    customer = djstripe.models.Customer.objects.get(email=user.email)
+    if customer.subscriber is None:
+        customer.subscriber = user
+        customer.save()
+    elif customer.subscriber_id != user.id:
+        logger.warning(
+            f"Tried to associate djstripe.models.Customer with email={customer.email} with user={user}, but customer already linked to user={customer.subscriber}"
+        )
+    return customer
+
+
 class SubscriptionsListView(DashboardView):
     template_name = "subscriptions/list.html"
 
@@ -147,112 +156,113 @@ class SubscriptionsListView(DashboardView):
         ctx = super().get_context_data(*args, **kwargs)
 
         try:
-            customer = djstripe.models.Customer.objects.get(
-                subscriber=self.request.user
-            )
+            query = Q(subscriber=self.request.user) | Q(email=self.request.user.email)
+            customer = djstripe.models.Customer.objects.get(query)
+            if not customer.subscriber:
+                link_customer_by_email(self.request.user)
+            # attempt to link customer by email
         except djstripe.models.Customer.DoesNotExist:
-            # start_trial(self.request.user, instance=self.request.user, created=True)
-            customer = djstripe.models.Customer.objects.get(
-                subscriber=self.request.user
+            logger.warning(
+                f"No stripe customer associated with user={self.request.user}"
             )
+            customer = None
+        if customer:
+            ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by("-created")
+        else:
+            ctx["SUBSCRIPTIONS"] = None
 
-        # Populate template with current subscriptions and stripe public key
-        ctx["STRIPE_PUBLIC_KEY"] = djstripe.settings.STRIPE_PUBLIC_KEY
-        ctx["SUBSCRIPTIONS"] = customer.subscriptions.all().order_by("-created")
         ctx["PRODUCTS"] = djstripe.models.Product.objects.filter(active=True)
         for p in ctx["PRODUCTS"]:
             p.prices_list = p.prices.filter(active=True)
 
-        ctx["DEVICES"] = OctoPrintDevice.objects.filter(user=self.request.user)
-
         return ctx
 
 
-@webhooks.handler("subscription_schedule.expiring")
-def subscriptions_subscription_expiring(event):
-    logger.info(
-        f"User {event.customer.email} subscription <X> is expiring, sending email"
-    )
-    user = User.objects.get(email=event.customer.email)
+# @webhooks.handler("subscription_schedule.expiring")
+# def subscriptions_subscription_expiring(event):
+#     logger.info(
+#         f"User {event.customer.email} subscription <X> is expiring, sending email"
+#     )
+#     user = User.objects.get(email=event.customer.email)
 
-    merge_data = {
-        "FIRST_NAME": user.first_name or "Maker",
-    }
+#     merge_data = {
+#         "FIRST_NAME": user.first_name or "Maker",
+#     }
 
-    text_body = render_to_string(
-        "email/subscriptions_subscription_expiring_body.txt", merge_data
-    )
-    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
-    subject = render_to_string(
-        "email/subscriptions_subscription_expiring_subject.txt", merge_data
-    )
+#     text_body = render_to_string(
+#         "email/subscriptions_subscription_expiring_body.txt", merge_data
+#     )
+#     # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+#     subject = render_to_string(
+#         "email/subscriptions_subscription_expiring_subject.txt", merge_data
+#     )
 
-    message = AnymailMessage(
-        subject=subject,
-        body=text_body,
-        to=[event.customer.email],
-    )
-    # message.attach_alternative(html_body, "text/html")
-    message.send()
-
-
-# @webhooks.handler("charge.failed")
-@webhooks.handler("invoice.payment_failed")
-def subscriptions_payment_failed(event):
-    logger.info(
-        f"User's {event.customer.email} subscription <X> payment <X> failed, sending email"
-    )
-    user = User.objects.get(email=event.customer.email)
-
-    merge_data = {
-        "FIRST_NAME": user.first_name or "Maker",
-    }
-
-    text_body = render_to_string(
-        "email/subscriptions_payment_failed_body.txt", merge_data
-    )
-    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
-    subject = render_to_string(
-        "email/subscriptions_payment_failed_subject.txt", merge_data
-    )
-
-    message = AnymailMessage(
-        subject=subject,
-        body=text_body,
-        to=[event.customer.email],
-    )
-    # message.attach_alternative(html_body, "text/html")
-    message.send()
+#     message = AnymailMessage(
+#         subject=subject,
+#         body=text_body,
+#         to=[event.customer.email],
+#     )
+#     # message.attach_alternative(html_body, "text/html")
+#     message.send()
 
 
-# Payment action required is handled during the payment step inside the view
-# There are both invoice.paid and invoice.payment_succeeded but docs lean on the first
-# https://stripe.com/docs/billing/subscriptions/webhooks#tracking
-# @webhooks.handler("charge.succeeded")
-@webhooks.handler("invoice.paid")
-def subscriptions_invoice_paid(event):
-    # TODO: When a trial was paid, do nothing
-    logger.info(
-        f"User {event.customer.email} paid subscription <X> successfully, sending email"
-    )
-    user = User.objects.get(email=event.customer.email)
+# # @webhooks.handler("charge.failed")
+# @webhooks.handler("invoice.payment_failed")
+# def subscriptions_payment_failed(event):
+#     logger.info(
+#         f"User's {event.customer.email} subscription <X> payment <X> failed, sending email"
+#     )
+#     user = User.objects.get(email=event.customer.email)
 
-    merge_data = {
-        "FIRST_NAME": user.first_name or "Maker",
-    }
+#     merge_data = {
+#         "FIRST_NAME": user.first_name or "Maker",
+#     }
 
-    text_body = render_to_string(
-        "email/subscriptions_payment_succeeded_body.txt", merge_data
-    )
-    # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
-    subject = render_to_string(
-        "email/subscriptions_payment_succeeded_subject.txt", merge_data
-    )
+#     text_body = render_to_string(
+#         "email/subscriptions_payment_failed_body.txt", merge_data
+#     )
+#     # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+#     subject = render_to_string(
+#         "email/subscriptions_payment_failed_subject.txt", merge_data
+#     )
 
-    message = AnymailMessage(
-        subject=subject,
-        body=text_body,
-        to=[event.customer.email],
-    )
-    # message.attach_alternative(html_body, "text/html")
-    message.send()
+#     message = AnymailMessage(
+#         subject=subject,
+#         body=text_body,
+#         to=[event.customer.email],
+#     )
+#     # message.attach_alternative(html_body, "text/html")
+#     message.send()
+
+
+# # Payment action required is handled during the payment step inside the view
+# # There are both invoice.paid and invoice.payment_succeeded but docs lean on the first
+# # https://stripe.com/docs/billing/subscriptions/webhooks#tracking
+# # @webhooks.handler("charge.succeeded")
+# @webhooks.handler("invoice.paid")
+# def subscriptions_invoice_paid(event):
+#     # TODO: When a trial was paid, do nothing
+#     logger.info(
+#         f"User {event.customer.email} paid subscription <X> successfully, sending email"
+#     )
+#     user = User.objects.get(email=event.customer.email)
+
+#     merge_data = {
+#         "FIRST_NAME": user.first_name or "Maker",
+#     }
+
+#     text_body = render_to_string(
+#         "email/subscriptions_payment_succeeded_body.txt", merge_data
+#     )
+#     # html_body = render_to_string("email/subscriptions_subscription_expiring_body.html", merge_data)
+#     subject = render_to_string(
+#         "email/subscriptions_payment_succeeded_subject.txt", merge_data
+#     )
+
+#     message = AnymailMessage(
+#         subject=subject,
+#         body=text_body,
+#         to=[event.customer.email],
+#     )
+#     # message.attach_alternative(html_body, "text/html")
+#     message.send()

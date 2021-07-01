@@ -24,8 +24,8 @@
 
                             <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{% trans "Sorry, you are not authorized to view this page." %}</h4>
 
-                            {% if settings.IS_SOLD_OUT %}
-                            <a href="{% url 'subscriptions:sold_out' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
+                            {% if not settings.IS_SOLD_OUT %}
+                                <a href="{% url 'subscriptions:checkout' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Get Access Now</a>
                             {% else %}
                             <a href="{% url 'request-invite' %}" class="btn btn-primary btn-lg btn-rounded mt-3">Join the Beta Waitlist<i class="mdi mdi-arrow-right ml-1"></i></a>
                             {% endif %}

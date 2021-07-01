@@ -45,102 +45,75 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">Dashboard</a></li>
 
-                        <li class="breadcrumb-item active">Subscription History</li>
+                        <li class="breadcrumb-item active">Subscriptions</li>
                     </ol>
                 </div>
-                <h4 class="page-title d-inline-block">Subscription History
-                    {% if DEVICES %}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#subscribe-modal">Subscribe</button>
-                    {% else %}
-                        &nbsp;| Please <a href="{% url 'dashboard:octoprint-devices:list' %}">add a device</a> to be able to subscribe!
-                    {% endif %}
+                <h4 class="page-title d-inline-block">Subscriptions
                 </h4>
             </div>
         </div>
     </div>
 
-    <div id="subscribe-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-colored-header bg-primary">
-                    <h4 class="modal-title">Subscribe to Print Nanny Cloud!</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <p class="form-row" />
-                    <!-- <div class="col-md-12"> -->
+    <div class="row">
+        <div class="card col-12 col-lg-6 d-flex align-items-stretch">
+            <div class="card-body">
+
+
+                <h4>Payment History</h4>
+                {% if SUBSCRIPTIONS %}
+
+                <table id="subscription-history" class="table table-hover table-centered">
+                    <thead>
+                        <tr>
+
+                            <th>Price</th>
+                            <th>Subscription Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subscription in SUBSCRIPTIONS %}
+                            <tr>
+                                <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
+                                <td>
+                                    {% if subscription.status == "active" %}
+                                        <i class="mdi mdi-circle text-success"></i>
+                                    {% elif subscription.status == "unpaid" or subscription.status == "past_due" %}
+                                        <i class="mdi mdi-circle text-warning"></i>
+                                    {% elif subscription.status == "past_due" %}
+                                        <i class="mdi mdi-circle text-dange"></i>
+                                    {% else %}
+                                        <i class="mdi mdi-circle"></i>
+                                    {% endif %}
+                                    &nbsp;{{ subscription.status | title }}
+                                </td>
+                                <td>{{ subscription.current_period_start | date }}</td>
+                                <td>{{ subscription.current_period_end | date }}</td>
+                                <!-- <td class="table-action">
+                                    <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                    {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
+                                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    {% endif %}
+                                </td> -->
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                    <p>You have no active subscriptions. </p>
+
                     {% for product in PRODUCTS %}
-                        <div class="card d-block">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ product.name }}</h5>
-                                <p class="card-text">{{ product.description }}</p>
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        {% for device in DEVICES %}
-                                            <input class="custom-control-input" type="checkbox" name="devices" value="{{ device.id }}" id="subscribe-device-{{ device.id }}" />
-                                            <label class="custom-control-label" for="subscribe-device-{{ device.id }}">{{ device.name }}</label>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                {% for price in product.prices_list %}
-                                    <a href="javascript: paySubscription('{{ price.id }}');" class="btn btn-primary">{{ price.human_readable_price }}</a>
-                                {% endfor %}
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
+                        {% for price in product.prices_list %}
+                            <a href="javascript: redirectToStripeCheckout('{{ price.id }}');" class="btn btn-primary btn-lg mb-3 mt-3"><h4>Purchase Founding Membership for {{ price.human_readable_price }}</h4></a>
+                        {% endfor %}
                     {% endfor %}
-                    <!-- </div> -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-                    <!-- Used to display form errors. -->
-                    <div id="card-errors" class="alert alert-danger" style="display: none;" role="alert"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="card-button">Submit Payment</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <table id="subscription-history" class="table table-hover table-centered">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for subscription in SUBSCRIPTIONS %}
-                <tr>
-                    <td>{{ subscription.created }}</td>
-                    <td>{{ subscription.plan.amount | floatformat:2 | intcomma }} {{ subscription.plan.currency | upper }}</td>
-                    <td>
-                        {% if subscription.status == "active" %}
-                            <i class="mdi mdi-circle text-success"></i>
-                        {% elif subscription.status == "unpaid" or subscription.status == "past_due" %}
-                            <i class="mdi mdi-circle text-warning"></i>
-                        {% elif subscription.status == "past_due" %}
-                            <i class="mdi mdi-circle text-dange"></i>
-                        {% else %}
-                            <i class="mdi mdi-circle"></i>
-                        {% endif %}
-                        &nbsp;{{ subscription.status | title }}
-                    </td>
-                    <td>{{ subscription.current_period_start }}</td>
-                    <td>{{ subscription.current_period_end }}</td>
-                    <td class="table-action">
-                        <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                        {% if subscription.status == "active" or subscription.status == "unpaid" or subscription.status == "past_due" %}
-                            <a href="javascript: void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </div>
 {% endblock content %}
 
@@ -175,7 +148,7 @@
             return
         }
 
-        fetch("{% url 'subscriptions:payment_intent' %}", {
+        fetch("{% url 'subscriptions:checkout' %}", {
             method: 'POST',
             headers: {
                 "X-CSRFToken": getCookie("csrftoken"),
