@@ -8,7 +8,6 @@ from django.utils import timezone
 from django.db import models
 from rest_framework import serializers
 from anymail.message import AnymailMessage
-from rest_framework.authtoken.models import Token
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
 from print_nanny_webapp.subscriptions.models import MemberBadge
@@ -161,12 +160,16 @@ class User(AbstractUser):
 
     @property
     def is_paid_beta_tester(self) -> bool:
-        badge = self.member_badges.filter(type=MemberBadge.Types.PAID_BETA).first()
+        badge = self.member_badges.filter(
+            type=MemberBadge.MemberBadgeType.PAID_BETA
+        ).first()
         return badge is not None
 
     @property
     def is_free_beta_tester(self) -> bool:
-        badge = self.member_badges.filter(type=MemberBadge.Types.FREE_BETA).first()
+        badge = self.member_badges.filter(
+            type=MemberBadge.MemberBadgeType.FREE_BETA
+        ).first()
         return badge is not None
 
     @property
