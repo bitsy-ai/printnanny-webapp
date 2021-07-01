@@ -1,5 +1,6 @@
 from django.http.response import JsonResponse
 from typing import Any, Dict
+from django.apps import apps
 from django.views.generic.base import RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json, logging
@@ -9,7 +10,8 @@ from django.http import HttpRequest, HttpResponse, request
 from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from djstripe import webhooks
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView
+
 from django.conf import settings
 from allauth.account.views import SignupView
 import djstripe.models
@@ -25,6 +27,7 @@ from print_nanny_webapp.remote_control.models import OctoPrintDevice
 logger = logging.getLogger(__name__)
 User = get_user_model()
 
+stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
 
 class SubscriptionSoldoutView(TemplateView):
     template_name = "subscriptions/sold-out.html"
@@ -52,6 +55,22 @@ class FoundingMemberSignupView(SignupView):
             return dict(email=self.request.GET["email"])
         return super().get_initial()
 
+class MemberBadgeRedirectView(RedirectView):
+
+    permanent = False
+
+    def get_redirect_url(self, session_id=None,  *args, **kwargs):
+        MemberBadge = apps.get_model("subscriptions", "MemberBadge")
+
+        session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
+        logger.info(f'Checkout session succeeded {session}')
+        customer = stripe.Customer.retrieve(session.customer)
+        user = User.objects.get(email=customer.email)
+        logger.info(f'Customer info stripee customer={customer} user={user}')
+
+        MemberBadge.objects.get_or_create(type=MemberBadge.MemberBadgeType.PAID_BETA, user_id=user.user)
+
+        return redirect(reverse("dashboard:home"))
 
 class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
     login_url = "subscriptions:signup"
@@ -84,11 +103,15 @@ class FoundingMemberCheckoutView(LoginRequiredMixin, TemplateView):
                 status=400,
             )
 
+        success_url_base = request.build_absolute_uri(reverse("dashboard:home"))
+        success_url_query = '?session_id={CHECKOUT_SESSION_ID}'
+        success_url = success_url_base + success_url_query
+
         session = stripe.checkout.Session.create(
             customer_email=request.user.email,
             payment_method_types=["card"],
             mode="subscription",
-            success_url=request.build_absolute_uri(reverse("dashboard:home")),
+            success_url=success_url,
             cancel_url=request.build_absolute_uri(reverse("subscriptions:checkout")),
             line_items=[
                 {
