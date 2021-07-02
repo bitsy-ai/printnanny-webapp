@@ -45,6 +45,7 @@ imageio
 imageio-ffmpeg
 pandas
 plotly
+posthog
 psycopg2
 pyarrow
 qrcode[pil]

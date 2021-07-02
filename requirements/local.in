@@ -43,6 +43,7 @@ imageio
 imageio-ffmpeg
 pandas
 plotly
+posthog
 psycopg2
 pyarrow
 qrcode[pil]
@@ -52,6 +53,7 @@ twisted<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
 print-nanny-client>=0.7.1
+
 
 # dev / testing
 mypy
