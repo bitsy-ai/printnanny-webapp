@@ -606,3 +606,10 @@ MESSAGE_TAGS = {
 # messages
 # ------------------------------------------------------------------------------
 GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
+
+# posthog
+# ------------------------------------------------------------------------------
+# https://posthog.com/docs/libraries/python
+import posthog
+posthog.project_api_key = env('POSTHOG_API_KEY')
+posthog.debug = True

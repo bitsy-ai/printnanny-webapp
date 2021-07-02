@@ -203,3 +203,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 # insert CORS middleware as early in the middleware stack as possible after Prometheus / Honeycomb instrumentation
 MIDDLEWARE.insert(2, 'corsheaders.middleware.CorsMiddleware')
+
+# posthog
+# ------------------------------------------------------------------------------
+# https://posthog.com/docs/libraries/python
+import posthog
+posthog.project_api_key = env('POSTHOG_API_KEY')
+posthog.debug = False
