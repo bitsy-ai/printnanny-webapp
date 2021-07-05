@@ -102,10 +102,11 @@ class ExperimentDeviceConfig(models.Model):
         serializer = ExperimentDeviceConfigSerializer(instance=self)
         client = cloudiot_v1.DeviceManagerClient()
         data = json.dumps(serializer.data, sort_keys=True).encode("utf-8")
-        return client.modify_cloud_to_device_config(
-            request={
+        request = cloudiot_v1.types.ModifyCloudToDeviceConfigRequest(
+            {
                 "name": self.device.cloudiot_device_path,
                 "binary_data": data,
                 "version_to_update": 0,  # a value of 0 will always update the last version seen
             }
         )
+        return client.modify_cloud_to_device_config(request=request)

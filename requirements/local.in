@@ -1,7 +1,7 @@
 
 aiohttp
 argon2-cffi
-celery[redis]==4.4.7
+celery[redis]
 channels
 channels-redis
 discord.py
@@ -56,11 +56,7 @@ print-nanny-client>=0.7.1
 
 
 # dev / testing
-mypy
 pip-tools
-django-stubs
-djangorestframework-stubs
-mypy-protobuf
 wheel
 pytest-django
 pytest-dotenv
@@ -68,3 +64,11 @@ pytest-mock
 pytest-sugar
 django-coverage-plugin
 factory_boy
+
+# mypy
+mypy
+django-stubs
+djangorestframework-stubs
+mypy-protobuf
+types-requests
+types-protobuf

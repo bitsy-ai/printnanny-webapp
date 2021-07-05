@@ -145,14 +145,14 @@ def generate_keypair():
         )
 
 
-def delete_cloudiot_device(device_id: int):
+def delete_cloudiot_device(device_id_int64: int):
 
     client = cloudiot_v1.DeviceManagerClient()
     device_path = client.device_path(
         settings.GCP_PROJECT_ID,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
         settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-        device_id,
+        str(device_id_int64),
     )
     try:
         return client.delete_device(name=device_path)
@@ -176,24 +176,25 @@ def create_cloudiot_device(
     )
 
     string_kwargs = {k: str(v) for k, v in metadata.items()}
-    device_template = {
-        "id": name,
-        "credentials": [
-            {
-                "public_key": {
-                    "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
-                    "key": public_key_content,
-                }
+
+    device = cloudiot_v1.types.Device()
+    device.id = name
+    device.credentials = [
+        {
+            "public_key": {
+                "format": cloudiot_v1.PublicKeyFormat.ES256_PEM,
+                "key": public_key_content,
             }
-        ],
-        "metadata": {
-            "user_id": str(user_id),
-            "serial": serial,
-            "fingerprint": fingerprint,
-            **string_kwargs,
-        },
+        }
+    ]
+    device.metadata = {
+        "user_id": str(user_id),
+        "serial": serial,
+        "fingerprint": fingerprint,
+        **string_kwargs,
     }
-    return client.create_device(parent=parent, device=device_template)
+
+    return client.create_device(parent=parent, device=device)
 
 
 def update_cloudiot_device(
@@ -223,9 +224,11 @@ def update_cloudiot_device(
     }
     del device.id
     del device.num_id
-    return client.update_device(
+
+    request = cloudiot_v1.types.UpdateDeviceRequest(
         device=device, update_mask={"paths": ["credentials", "metadata"]}
     )
+    return client.update_device(request=request)
 
 
 def update_or_create_cloudiot_device(

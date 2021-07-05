@@ -126,7 +126,7 @@
             <!-- <p class="mb-3">{% trans "New releases and features rolled out weekly."%}</p> -->
             <p>{% trans "Report bugs by emailing leigh@print-nanny.com"%}</p>
 
-            <a href="mailto:leigh@print-nanny.com" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Report Issue" %}</a>
+            <a href="{{ REPORT_ISSUE_URL }}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Report an Issue" %}</a>
         </div>
 
         <div class="help-box text-white text-center">
@@ -136,7 +136,7 @@
             <!-- <img src="{% static 'images/help-icon.svg' %}" height="90" alt="Helper Icon Image" /> -->
             <h5>{% trans "Discord Server" %}</h5>
             <p>{% trans "Hang out with 3D print fanatics and makers."%}</p>
-            <a href="{{DISCORD_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Join" %}</a>
+            <a href="{{DISCORD_URL}}" id="discord-sidebar" class="discord btn btn-outline-light btn-sm">{% trans "Join Discord" %}</a>
         </div>
         <!-- end Help Box -->
         <!-- Help Box -->

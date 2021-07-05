@@ -520,11 +520,7 @@ GCP_PUBSUB_OCTOPRINT_ALERTS_SUBSCRIPTION = env('GCP_PUBSUB_OCTOPRINT_ALERTS_SUBS
     )
 )
 
-DISCORD_URL="https://discord.gg/sf23bk2hPr"
-
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
-GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
-
 
 HONEYCOMB_DATASET = env('HONEYCOMB_DATASET', default="print_nanny_webapp_sandbox")
 HONEYCOMB_SERVICE_NAME = env('HONEYCOMB_SERVICE_NAME', default='django')
@@ -613,3 +609,13 @@ GCP_RENDER_VIDEO_TOPIC = "VideoRenderRequest"
 import posthog
 posthog.project_api_key = env('POSTHOG_API_KEY', default=None)
 posthog.debug = True
+
+
+# links
+# ------------------------------------------------------------------------------
+DISCORD_URL="https://discord.gg/sf23bk2hPr"
+REPORT_ISSUE_URL = "https://help.print-nanny.com/faq/how-to-report-issue-with-octoprint-logs"
+HELP_SITE_URL="https://help.print-nanny.com"
+BLOG_SITE_URL="https://blog.print-nanny.com"
+ABOUT_URL="https://blog.print-nanny.com/about"
+GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
