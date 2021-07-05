@@ -79,7 +79,10 @@ def on_alert_event(message):
         )
         logger.info(f"Created AlertMessage with id={alert_message.id}")
         task = AlertTask(alert_message)
-        task.trigger_alert()
+        try:
+            task.trigger_alert()
+        except Exception as e:
+            logger.exception(e)
     message.ack()
 
 
