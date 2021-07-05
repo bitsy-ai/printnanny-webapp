@@ -225,13 +225,10 @@ def update_cloudiot_device(
     del device.id
     del device.num_id
 
-    # request = cloudiot_v1.types.UpdateDeviceRequest(
-    #     device,
-    #     update_mask={"paths": ["credentials", "metadata"] }
-    # )
-    return client.update_device(
+    request = cloudiot_v1.types.UpdateDeviceRequest(
         device=device, update_mask={"paths": ["credentials", "metadata"]}
     )
+    return client.update_device(request=request)
 
 
 def update_or_create_cloudiot_device(
