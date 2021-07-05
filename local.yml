@@ -10,7 +10,7 @@ services:
   octoprint:
     hostname: octoprint
     image: octoprint/octoprint
-    container_name: octoprint
+    container_name: print_nanny_webapp_octoprint
     ports:
       - "5005:5000"
     environment:
@@ -33,10 +33,9 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: print_nanny_webapp_local_django
-    container_name: django
+    container_name: print_nanny_webapp_django
     depends_on:
       - postgres
-      - ngrok
       - prometheus
     volumes:
       - .:/app:z
@@ -64,7 +63,7 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: print_nanny_webapp_production_postgres
-    container_name: postgres
+    container_name: print_nanny_webapp_postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:z
       - local_postgres_data_backups:/backups:z
@@ -72,43 +71,13 @@ services:
       - ./.envs/.local/.postgres
     ports:
       - "5432:5432"
-  
-  # TODO evaluate whether these generated docs are of any value (swagger ones are probably more accurate)
-  # docs:
 
-  #   image: print_nanny_webapp_local_docs
-  #   container_name: docs
-  #   build:
-  #     context: .
-  #     dockerfile: ./compose/local/docs/Dockerfile
-  #   env_file:
-  #     - ./.envs/.local/.django
-  #     - ./.envs/.local/.secrets
-  #   volumes:
-  #     - ./docs:/docs:z
-  #     - ./.envs/.production/print-nanny-dataflow-owner.json:/app/.envs/.production/print-nanny-dataflow-owner.json
-  #     - ./config:/app/config:z
-  #     - ./print_nanny_webapp:/app/print_nanny_webapp:z
-  #     - .envs/.local/key.json:/tmp/keys/keyfile.json:ro
-
-  #   ports:
-  #     - "7000:7000"
-
-  ngrok:
-    hostname: ngrok
-    image: wernight/ngrok
-    container_name: ngrok
-    environment:
-      NGROK_PROTOCOL: http
-      NGROK_PORT: django:8000
-    ports:
-      - "4040:4040"
   redis:
     hostname: redis
     build:
       context: .
       dockerfile: ./compose/local/redis/Dockerfile
-    container_name: redis
+    container_name: print_nanny_webapp_redis
     ports:
       - "6379:6379"
 
@@ -118,7 +87,7 @@ services:
     stdin_open: false
     tty: false
     image: print_nanny_webapp_local_celeryworker
-    container_name: celeryworker
+    container_name: print_nanny_webapp_celeryworker
     depends_on:
       - django
       - redis
@@ -133,7 +102,7 @@ services:
     stdin_open: false
     tty: false
     image: print_nanny_webapp_local_celerybeat
-    container_name: celerybeat
+    container_name: print_nanny_webapp_celerybeat
     depends_on:
       - celeryworker
       - django
@@ -148,7 +117,7 @@ services:
     user: 1000:1000
 
     image: print_nanny_webapp_local_flower
-    container_name: flower
+    container_name: print_nanny_webapp_flower
     ports:
       - "5555:5555"
     command: /start-flower
@@ -157,20 +126,8 @@ services:
       - django
       - redis
       - postgres
-
-  # @todo setup jupyter notebook lab / colab env
-  # notebook:
-  #   <<: *django
-  #   image: print_nanny_webapp_local_notebook
-
-  #   user: 1000:1000
-
-  #   container_name: notebook
-  #   ports:
-  #     - "8888:8888"
-  #   command: /start-notebook
-
   prometheus:
+    container_name: print_nanny_webapp_prometheus
     hostname: prometheus
     image: prom/prometheus
     ports:
@@ -182,6 +139,7 @@ services:
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
 
   celery-exporter:
+    container_name: print_nanny_webapp_celery_exporter
     hostname: celery-exporter
     image: ovalmoney/celery-exporter
     ports:
@@ -200,13 +158,3 @@ services:
     command:
       - python
       - print_nanny_webapp/alerts/subscribers/alerts.py
-  # Stripe websocket proxy
-  # stripe:
-  #   hostname: stripe-cli
-  #   container_name: stripe
-  #   image: stripe/stripe-cli
-  #   command:
-  #     - listen
-  #     - --forward-to
-  #     - django:8000/stripe/webhook/
-  #     - --print-json
