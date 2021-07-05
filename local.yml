@@ -138,12 +138,6 @@ services:
       - local_prometheus_data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
 
-  celery-exporter:
-    container_name: print_nanny_webapp_celery_exporter
-    hostname: celery-exporter
-    image: ovalmoney/celery-exporter
-    ports:
-      - 9540:9540
   events:
     container_name: print_nanny_webapp_octoprint_events
     <<: *django
