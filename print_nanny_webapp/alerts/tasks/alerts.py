@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.template import engines
 import time
 import logging
+from flags.state import flag_enabled
 
 import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
@@ -78,17 +79,19 @@ class AlertTask:
 
     def trigger_geeks3d_alert(self):
         serializer = self.get_serializer()
-        data = serializer.data
-        token = data["token"]
-        headers = {"Authorization": f"Bearer {token}"}
-        logger.info(f"3DGeeks alerts_push headers={headers} request={data}")
-        res = requests.post(
-            settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"],
-            json=data,
-            headers=headers,
-        )
-        logger.warning(f"3DGeeks alerts_push response: {res.json()}")
-        return res
+
+        if flag_enabled("PARTNER_3DGEEKS_ENABLED"):
+            data = serializer.data
+            token = data["token"]
+            headers = {"Authorization": f"Bearer {token}"}
+            logger.info(f"3DGeeks alerts_push headers={headers} request={data}")
+            res = requests.post(
+                settings.PARTNERS_3DGEEKS_SETTINGS["alerts_push"],
+                json=data,
+                headers=headers,
+            )
+            logger.warning(f"3DGeeks alerts_push response: {res.json()}")
+            return res
 
     def trigger_ui_alert(self):
         serializer = self.get_serializer()
