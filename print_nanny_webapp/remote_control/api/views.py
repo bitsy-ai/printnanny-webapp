@@ -34,7 +34,6 @@ from .serializers import (
 from print_nanny_webapp.remote_control.models import (
     PrinterProfile,
     PrintSession,
-    GcodeFile,
     OctoPrintDevice,
     RemoteControlCommand,
 )
@@ -46,7 +45,6 @@ User = get_user_model()
 
 import google.api_core.exceptions
 
-from print_nanny_webapp.utils import prometheus_metrics
 
 logger = logging.getLogger(__name__)
 
@@ -119,7 +117,7 @@ class PrintSessionViewSet(
         return super().update(*args, **kwargs)
 
     def perform_create(self, serializer):
-        instance = serializer.save(user=self.request.user)
+        serializer.save(user=self.request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @extend_schema(
