@@ -86,16 +86,18 @@ class AlertSettings(models.Model):
 
 
 class Alert(PolymorphicModel):
+
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_dt = models.DateTimeField(auto_now=True, db_index=True)
-    alert_method = models.CharField(
-        choices=AlertSettings.AlertMethod.choices,
-        max_length=255,
-    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
 
 class TestAlert(Alert):
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
+
     class TestAlertEventType(models.TextChoices):
         PRINT_NANNY_WEBAPP = (
             "PrintNannyWebapp",
@@ -122,6 +124,10 @@ class PrintProgressAlert(Alert):
 
     event_type = models.CharField(
         max_length=36, choices=PrintProgressAlertEventType.choices
+    )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
     )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
@@ -154,6 +160,10 @@ class PrintStatusAlert(Alert):
     event_type = models.CharField(
         max_length=36, choices=PrintStatusAlertEventType.choices
     )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
+    )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
     )
@@ -177,6 +187,10 @@ class VideoStatusAlert(Alert):
 
     event_type = models.CharField(
         max_length=36, choices=VideoStatusAlertEventType.choices
+    )
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=36,
     )
     print_session = models.ForeignKey(
         "remote_control.PrintSession", on_delete=models.CASCADE
