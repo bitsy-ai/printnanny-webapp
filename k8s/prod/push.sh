@@ -21,3 +21,4 @@ kubectl apply -f k8s/prod/django.yml
 kubectl set image deployment/django django=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA} --record
 kubectl set image deployment/celery-worker celery-worker=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA} --record
 kubectl set image deployment/octoprint-events octoprint-events=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA} --record
+kubectl set image deployment/octoprint-events alerts=us.gcr.io/print-nanny/print_nanny_webapp:${GIT_SHA} --record
