@@ -48,7 +48,6 @@ def on_alert_event(message):
     logger.info(render_video_msg)
     user_id = render_video_msg.metadata.user_id
     print_session_str = render_video_msg.metadata.print_session.session
-    print_session_id = render_video_msg.metadata.print_session.id
     octoprint_device_id = render_video_msg.metadata.octoprint_device_id
     annotated_video_path = os.path.join(
         render_video_msg.cdn_output_path, "annotated_video.mp4"
@@ -68,21 +67,33 @@ def on_alert_event(message):
         logger.error(render_video_msg)
         return message.ack()
 
-    for alert_method in alert_settings.alert_methods:
-        alert_message = AlertMessage.objects.create(
-            user_id=user_id,
-            event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
-            octoprint_device_id=octoprint_device_id,
-            annotated_video=annotated_video_path,
-            print_session=print_session,
-            alert_method=alert_method,
+    alert_exists_for_session = AlertMessage.objects.filter(
+        print_session=print_session,
+        event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
+    ).first()
+
+    # pubsub guarantees message deliver *at least* once, but potentially more than once. Ignore duplicate alert requests for session
+    # also prevents late session data from causing alert to fire more than once
+    if alert_exists_for_session:
+        logger.warning(
+            f"{AlertMessage.AlertMessageType.VIDEO_DONE} slert issued for session {print_session} - ignoring VideoRenderRequest {render_video_msg}"
         )
-        logger.info(f"Created AlertMessage with id={alert_message.id}")
-        task = AlertTask(alert_message)
-        try:
-            task.trigger_alert()
-        except Exception as e:
-            logger.exception(e)
+    else:
+        for alert_method in alert_settings.alert_methods:
+            alert_message = AlertMessage.objects.create(
+                user_id=user_id,
+                event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
+                octoprint_device_id=octoprint_device_id,
+                annotated_video=annotated_video_path,
+                print_session=print_session,
+                alert_method=alert_method,
+            )
+            logger.info(f"Created AlertMessage with id={alert_message.id}")
+            task = AlertTask(alert_message)
+            try:
+                task.trigger_alert()
+            except Exception as e:
+                logger.exception(e)
     message.ack()
 
 
