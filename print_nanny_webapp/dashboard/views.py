@@ -1,6 +1,4 @@
 import logging
-from print_nanny_webapp.alerts.models import TestAlert, VideoStatusAlert
-
 import google.api_core.exceptions
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -248,9 +246,11 @@ class VideoDashboardView(LoginRequiredMixin, TemplateView, MultiFormsView):
         context = super(VideoDashboardView, self).get_context_data(**kwargs)
 
         context["user"] = self.request.user
-        alerts = VideoStatusAlert.objects.filter(
-            user=self.request.user
-        ).order_by("-created_dt").all()
+        alerts = (
+            VideoStatusAlert.objects.filter(user=self.request.user)
+            .order_by("-created_dt")
+            .all()
+        )
         context["alerts"] = alerts
         return context
 
