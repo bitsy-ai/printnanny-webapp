@@ -109,7 +109,7 @@ class PrintProgressAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "print_progress"],
+                fields=["print_session", "alert_method", "print_progress"],
                 name="unique_print_progress_alert",
             )
         ]
@@ -138,7 +138,7 @@ class PrintStatusAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "event_type"],
+                fields=["print_session", "alert_method", "event_type"],
                 name="unique_print_status_alert",
             )
         ]
@@ -167,7 +167,7 @@ class VideoStatusAlert(Alert):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["print_session", "event_type"],
+                fields=["print_session", "alert_method", "event_type"],
                 name="unique_video_status_alert",
             )
         ]
