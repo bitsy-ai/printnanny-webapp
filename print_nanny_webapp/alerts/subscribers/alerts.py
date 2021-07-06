@@ -1,6 +1,5 @@
 import os
 import logging
-from print_nanny_webapp.alerts.models import VideoStatusAlert
 from django.db import IntegrityError
 
 from google.cloud import pubsub_v1
