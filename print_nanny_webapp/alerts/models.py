@@ -9,6 +9,7 @@ from django.apps import apps
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone, dateformat
 from django.template import Context, Template
+from polymorphic.models import PolymorphicModel
 
 
 from print_nanny_webapp.utils.fields import ChoiceArrayField
@@ -76,6 +77,113 @@ class AlertSettings(models.Model):
         default=25,
         validators=[MinValueValidator(1), MaxValueValidator(100)],
         help_text="Progress notification interval. Example: 25 will notify you at 25%, 50%, 75%, and 100% progress",
+    )
+
+
+##
+# Base Alert
+###
+
+
+class Alert(PolymorphicModel):
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_dt = models.DateTimeField(auto_now=True, db_index=True)
+    alert_method = models.CharField(
+        choices=AlertSettings.AlertMethod.choices,
+        max_length=255,
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
+
+
+class TestAlert(Alert):
+    class TestAlertEventType(models.TextChoices):
+        PRINT_NANNY_WEBAPP = (
+            "PrintNannyWebapp",
+            "Test triggered via Print Nanny UI or webapp",
+        )
+
+    event_type = models.CharField(max_length=36, choices=TestAlertEventType.choices)
+
+
+class PrintProgressAlert(Alert):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["print_session", "print_progress"],
+                name="unique_print_progress_alert",
+            )
+        ]
+
+    class PrintProgressAlertEventType(models.TextChoices):
+        PRINT_PROGRESS = (
+            "PrintProgress",
+            "{{ GCODE_FILE }} - {{ PRINT_PROGRESS }}% complete ⏳",
+        )
+
+    event_type = models.CharField(
+        max_length=36, choices=PrintProgressAlertEventType.choices
+    )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
+    print_progress = models.IntegerField()
+    needs_review = models.BooleanField(default=False)
+    octoprint_device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
+    )
+    event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
+
+
+class PrintStatusAlert(Alert):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["print_session", "event_type"],
+                name="unique_print_status_alert",
+            )
+        ]
+
+    class PrintStatusAlertEventType(models.TextChoices):
+        PRINT_DONE = "PrintDone", "{{ GCODE_FILE }} - job finished ✅"
+        PRINT_FAILED = "PrintFailed", "{{ GCODE_FILE }} - job failed ❌"
+        PRINT_PAUSED = "PrintPaused", "{{ GCODE_FILE }} - job paused ⏸️"
+        PRINT_RESUMED = "PrintResumed", "{{ GCODE_FILE }} - job resumed ⏯️"
+        PRINT_STARTED = "PrintStarted", "{{ GCODE_FILE }} - job started 🏁"
+        PRINT_CANCELLED = "PrintCancelled", "{{ GCODE_FILE }} - job cancelled ❌"
+
+    event_type = models.CharField(
+        max_length=36, choices=PrintStatusAlertEventType.choices
+    )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
+    octoprint_device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
+    )
+    event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
+
+
+class VideoStatusAlert(Alert):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["print_session", "event_type"],
+                name="unique_video_status_alert",
+            )
+        ]
+
+    class VideoStatusAlertEventType(models.TextChoices):
+        VIDEO_DONE = "VideoDone", "{{ GCODE_FILE }} - timelapse done 🎥"
+
+    event_type = models.CharField(
+        max_length=36, choices=VideoStatusAlertEventType.choices
+    )
+    print_session = models.ForeignKey(
+        "remote_control.PrintSession", on_delete=models.CASCADE
+    )
+    annotated_video = models.FileField(upload_to=_upload_to)
+    octoprint_device = models.ForeignKey(
+        "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
 
 
@@ -150,60 +258,3 @@ class AlertMessage(models.Model):
         "remote_control.OctoPrintDevice", null=True, on_delete=models.CASCADE
     )
     needs_review = models.BooleanField(default=False)
-
-
-##
-# @ todo re-enable ManualVideoUpload feature
-##
-
-# class ManualVideoUploadAlert(Alert):
-#     """
-#     Base class for a prediction alert .gif or timelapse mp4 / mjpeg
-#     """
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(
-#             *args, alert_type=Alert.AlertTypeChoices.MANUAL_VIDEO_UPLOAD, **kwargs
-#         )
-
-#     class JobStatusChoices(models.TextChoices):
-#         PROCESSING = "Processing", "Processing"
-#         SUCCESS = "SUCCESS", "Success"
-#         FAILURE = "FAILURE", "Failure"
-#         CANCELLED = "CANCELLED", "Cancelled"
-
-#     class Backend(models.TextChoices):
-#         EMAIL = "EMAIL", "Email"
-
-#     job_status = models.CharField(
-#         max_length=32,
-#         choices=JobStatusChoices.choices,
-#         default=JobStatusChoices.PROCESSING,
-#     )
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, alert_type=Alert.AlertTypeChoices.COMMAND, **kwargs)
-
-#     dataframe = models.FileField(upload_to=_upload_to, null=True)
-#     original_video = models.FileField(upload_to=_upload_to, null=True)
-#     annotated_video = models.FileField(upload_to=_upload_to, null=True)
-
-#     feedback = models.BooleanField(null=True)
-#     length = models.FloatField(null=True)
-#     fps = models.FloatField(null=True)
-
-#     notify_seconds = models.IntegerField(null=True)
-#     notify_timecode = models.CharField(max_length=32, null=True)
-
-#     @property
-#     def original_filename(self):
-#         return os.path.basename(self.original_video.name)
-
-
-# class AlertPlot(models.Model):
-#     image = models.ImageField(upload_to=_upload_to)
-#     html = models.FileField(upload_to=_upload_to)
-#     title = models.CharField(max_length=65)
-#     description = models.CharField(max_length=255)
-#     function = models.CharField(max_length=65)
-#     alert = models.ForeignKey(ManualVideoUploadAlert, on_delete=models.CASCADE)
