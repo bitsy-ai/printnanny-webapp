@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from typing import Dict, Callable
 from google.cloud import pubsub_v1
-from django.utils import dateformat
+from django.db import IntegrityError
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -45,6 +45,7 @@ AlertSettings = apps.get_model("alerts", "AlertSettings")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AlertMessage = apps.get_model("alerts", "AlertMessage")
+PrintProgressAlert = apps.get_model("alerts", "PrintProgressAlert")
 
 logger = logging.getLogger(__name__)
 subscriber = pubsub_v1.SubscriberClient()
@@ -83,16 +84,20 @@ def handle_print_progress(event: OctoPrintEvent):
 
     if should_alert:
         for alert_method in alert_settings.alert_methods:
-            alert_message = AlertMessage.objects.create(
-                alert_method=alert_method,
-                event_type=AlertMessage.AlertMessageType.PRINT_PROGRESS,
-                user=event.user,
-                print_session=event.print_session,
-                octoprint_device=event.octoprint_device,
-                event=event,
-            )
-            task = AlertTask(alert_message)
-            task.trigger_alert()
+            try:
+                alert_message = PrintProgressAlert.objects.create(
+                    alert_method=alert_method,
+                    event_type=PrintProgressAlert.PrintProgressAlertEventType.PRINT_PROGRESS,
+                    user=event.user,
+                    print_session=event.print_session,
+                    octoprint_device=event.octoprint_device,
+                    event=event,
+                    print_progress=progress,
+                )
+                task = AlertTask(alert_message)
+                task.trigger_alert()
+            except IntegrityError as e:
+                logger.warning(e)
 
 
 def print_event_is_final(event_type: str) -> bool:

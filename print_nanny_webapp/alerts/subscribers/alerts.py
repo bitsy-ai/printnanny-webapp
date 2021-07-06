@@ -1,11 +1,8 @@
-import asyncio
-import json
 import os
 import logging
+from django.db import IntegrityError
 
 from google.cloud import pubsub_v1
-from google.protobuf.json_format import MessageToDict
-import sys
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -28,7 +25,7 @@ from print_nanny_client.protobuf.alert_pb2 import VideoRenderRequest
 OctoPrintEvent = apps.get_model("telemetry", "OctoPrintEvent")
 OctoPrintPluginEvent = apps.get_model("telemetry", "OctoPrintEvent")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
-AlertMessage = apps.get_model("alerts", "AlertMessage")
+VideoStatusAlert = apps.get_model("alerts", "VideoStatusAlert")
 PrintSession = apps.get_model("remote_control", "PrintSession")
 
 logger = logging.getLogger(__name__)
@@ -67,33 +64,23 @@ def on_alert_event(message):
         logger.error(render_video_msg)
         return message.ack()
 
-    alert_exists_for_session = AlertMessage.objects.filter(
-        print_session=print_session,
-        event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
-    ).first()
-
-    # pubsub guarantees message deliver *at least* once, but potentially more than once. Ignore duplicate alert requests for session
-    # also prevents late session data from causing alert to fire more than once
-    if alert_exists_for_session:
-        logger.warning(
-            f"{AlertMessage.AlertMessageType.VIDEO_DONE} slert issued for session {print_session} - ignoring VideoRenderRequest {render_video_msg}"
-        )
-    else:
-        for alert_method in alert_settings.alert_methods:
-            alert_message = AlertMessage.objects.create(
+    for alert_method in alert_settings.alert_methods:
+        try:
+            alert = VideoStatusAlert.objects.create(
                 user_id=user_id,
-                event_type=AlertMessage.AlertMessageType.VIDEO_DONE,
+                event_type=VideoStatusAlert.VideoStatusAlertEventType.VIDEO_DONE,
                 octoprint_device_id=octoprint_device_id,
                 annotated_video=annotated_video_path,
                 print_session=print_session,
                 alert_method=alert_method,
             )
-            logger.info(f"Created AlertMessage with id={alert_message.id}")
-            task = AlertTask(alert_message)
-            try:
-                task.trigger_alert()
-            except Exception as e:
-                logger.exception(e)
+            logger.info(f"Created AlertMessage with id={alert.id}")
+            task = AlertTask(alert)
+            task.trigger_alert()
+        except IntegrityError as e:
+            logger.warning(e)
+        except Exception as e:
+            logger.exception(e)
     message.ack()
 
 

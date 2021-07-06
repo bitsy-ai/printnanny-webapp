@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
-from .models import AlertSettings, AlertMessage
+from .models import AlertSettings, TestAlert
 
 from print_nanny_webapp.alerts.tasks.alerts import AlertTask
 
@@ -39,9 +39,9 @@ class AlertSettingsView(DashboardView, MultiFormsView):
             user=self.request.user,
         )
         for alert_method in instance.alert_methods:
-            alert_message = AlertMessage.objects.create(
+            alert_message = TestAlert.objects.create(
                 alert_method=alert_method,
-                event_type=AlertMessage.AlertMessageType.TEST,
+                event_type=TestAlert.TestAlertEventType.PRINT_NANNY_WEBAPP,
                 user=instance.user,
             )
             task = AlertTask(alert_message)

@@ -10,7 +10,6 @@ import requests
 from print_nanny_webapp.alerts.api.serializers import AlertSerializer
 from print_nanny_webapp.partners.api.serializers import (
     Partner3DGeeksAlertSerializer,
-    PartnersEnum,
 )
 from asgiref.sync import async_to_sync
 from rest_framework.renderers import JSONRenderer
@@ -21,7 +20,12 @@ from anymail.message import AnymailMessage
 from django.template import Context, Template
 from channels.layers import get_channel_layer
 
-from print_nanny_webapp.alerts.models import AlertMessage
+from print_nanny_webapp.alerts.models import (
+    TestAlert,
+    PrintProgressAlert,
+    PrintStatusAlert,
+    VideoStatusAlert,
+)
 from print_nanny_webapp.remote_control.models import OctoPrintDevice
 
 AlertSettings = apps.get_model("alerts", "AlertSettings")
@@ -38,7 +42,9 @@ class AlertTask:
 
     def __init__(
         self,
-        instance: AlertMessage,
+        instance: Union[
+            TestAlert, PrintStatusAlert, PrintProgressAlert, VideoStatusAlert
+        ],
         email_body_txt_template: str = "email/generic_alert_body.txt",
         email_body_html_template: Optional[str] = None,
         email_subject_template: str = "email/generic_alert_subject.txt",
@@ -57,19 +63,13 @@ class AlertTask:
             AlertSettings.AlertMethod.DISCORD: self.trigger_discord_alert,
             AlertSettings.AlertMethod.PARTNER_3DGEEKS: self.trigger_geeks3d_alert,
         }
-        self.octoprint_device: OctoPrintDevice = self.instance.octoprint_device
 
     def trigger_alert(self) -> bool:
         """
         Returns a bool expressing whether method call resulted in alert being triggered
         Duplicate alert triggers will be ignored
         """
-        if self.instance.sent is False:
-            self.alert_trigger_method_map[self.instance.alert_method]()
-            self.instance.sent = True
-            self.instance.save()
-            return True
-        return False
+        return self.alert_trigger_method_map[self.instance.alert_method]()
 
     def get_serializer(self) -> Union[AlertSerializer, Partner3DGeeksAlertSerializer]:
         if self.instance.alert_method is AlertSettings.AlertMethod.PARTNER_3DGEEKS:
@@ -111,12 +111,12 @@ class AlertTask:
         )
 
     def trigger_email_alert(self):
-        if self.instance.event_type is AlertMessage.AlertMessageType.TEST:
+        if isinstance(self.instance, TestAlert):
             merge_data: Dict[str, Any] = {
                 "FIRST_NAME": self.instance.user.first_name or "Maker",
                 "GCODE_FILENAME": "my_test_print.gcode",
                 "DEVICE_NAME": "My Test Printer",
-                "EVENT_TYPE": AlertMessage.AlertMessageType.TEST,
+                "EVENT_TYPE": self.instance.event_type,
                 "DEVICE_URL": urljoin(
                     settings.BASE_URL, "dashboard/octoprint-devices/"
                 ),
@@ -143,7 +143,7 @@ class AlertTask:
                 "EVENT_TYPE": self.instance.event_type,
                 "GCODE_FILENAME": gcode_filename,
             }
-            if self.instance.event_type is AlertMessage.AlertMessageType.VIDEO_DONE:
+            if isinstance(self.instance, VideoStatusAlert):
                 videos_url = reverse("dashboard:videos:list")
                 videos_url = urljoin(settings.BASE_URL, videos_url)
                 merge_data.update(
