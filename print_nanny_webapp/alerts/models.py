@@ -106,6 +106,17 @@ class TestAlert(Alert):
 
     event_type = models.CharField(max_length=36, choices=TestAlertEventType.choices)
 
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
 
 class PrintProgressAlert(Alert):
     class Meta:
@@ -138,6 +149,24 @@ class PrintProgressAlert(Alert):
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
     event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
+
+        merge_data.update(
+            {
+                "PRINT_SESSION": self.print_session.session,
+                "GCODE_FILE": self.print_session.gcode_file,
+            }
+        )
+        ctx = Context(merge_data)
+        return template.render(ctx)
 
 
 class PrintStatusAlert(Alert):
@@ -172,6 +201,23 @@ class PrintStatusAlert(Alert):
     )
     event = models.ForeignKey("telemetry.TelemetryEvent", on_delete=models.CASCADE)
 
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
+        merge_data.update(
+            {
+                "PRINT_SESSION": self.print_session.session,
+                "GCODE_FILE": self.print_session.gcode_file,
+            }
+        )
+        ctx = Context(merge_data)
+        return template.render(ctx)
+
 
 class VideoStatusAlert(Alert):
     class Meta:
@@ -199,6 +245,23 @@ class VideoStatusAlert(Alert):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
+
+    @property
+    def message(self) -> str:
+        template = Template(self.get_event_type_display())
+        merge_data: Dict[str, Any] = {
+            "FIRST_NAME": self.user.first_name,  # type: ignore
+            "EMAIL": self.user.email,
+        }
+        merge_data.update({"DEVICE_NAME": self.octoprint_device.name})
+        merge_data.update(
+            {
+                "PRINT_SESSION": self.print_session.session,
+                "GCODE_FILE": self.print_session.gcode_file,
+            }
+        )
+        ctx = Context(merge_data)
+        return template.render(ctx)
 
 
 class AlertMessage(models.Model):
