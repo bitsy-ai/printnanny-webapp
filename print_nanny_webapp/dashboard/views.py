@@ -1,4 +1,5 @@
 import logging
+from print_nanny_webapp.alerts.models import TestAlert
 
 import google.api_core.exceptions
 from django.contrib.auth import get_user_model
@@ -39,7 +40,7 @@ RemoteControlCommand = apps.get_model("remote_control", "RemoteControlCommand")
 AppCard = apps.get_model("dashboard", "AppCard")
 AppNotification = apps.get_model("dashboard", "AppNotification")
 AlertSettings = apps.get_model("alerts", "AlertSettings")
-AlertMessage = apps.get_model("alerts", "AlertMessage")
+TestAlert = apps.get_model("alerts", "TestAlert")
 logger = logging.getLogger(__name__)
 
 
@@ -123,11 +124,10 @@ class OctoPrintDevicesDetailView(MultiFormsView, LoginRequiredMixin, BaseDetailV
 
     def test_3dgeeks_form_valid(self, form):
         octoprint_device_id = self.request.POST.get("octoprint_device_id")
-        alert_message = AlertMessage.objects.create(
+        alert_message = TestAlert.objects.create(
             alert_method=AlertSettings.AlertMethod.PARTNER_3DGEEKS,
-            event_type=AlertMessage.AlertMessageType.TEST,
+            event_type=TestAlert.TestAlertEventType.PRINT_NANNY_WEBAPP,
             user=self.request.user,
-            octoprint_device_id=octoprint_device_id,
         )
         task = AlertTask(alert_message)
         task.trigger_alert()

@@ -1,12 +1,9 @@
-import asyncio
-import json
 import os
 import logging
 from print_nanny_webapp.alerts.models import VideoStatusAlert
+from django.db import IntegrityError
 
 from google.cloud import pubsub_v1
-from google.protobuf.json_format import MessageToDict
-import sys
 
 # import sys
 # sys.path.insert(0,'/app')
@@ -81,7 +78,7 @@ def on_alert_event(message):
             logger.info(f"Created AlertMessage with id={alert.id}")
             task = AlertTask(alert)
             task.trigger_alert()
-        except VideoStatusAlert.IntegrityError as e:
+        except IntegrityError as e:
             logger.warning(e)
         except Exception as e:
             logger.exception(e)
