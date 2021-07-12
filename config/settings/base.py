@@ -626,4 +626,7 @@ GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/ne
 INSTALLED_APPS += ["drfpasswordless"]
 PASSWORDLESS_AUTH = {
    'PASSWORDLESS_AUTH_TYPES': ['EMAIL'],
+   'PASSWORDLESS_USER_MARK_EMAIL_VERIFIED': True,
+   'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'noreply@print-nanny.com',
+   'PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE': "Enter this token to sign in: %s",
 }
