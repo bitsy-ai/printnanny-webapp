@@ -1,0 +1,7 @@
+---
+packageName: "print-nanny-client"
+packageVersion: "0.7.1"
+files:
+  Cargo.mustache:
+    templateType: SupportingFiles
+    destinationFilename: Cargo.toml

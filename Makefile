@@ -196,6 +196,9 @@ clean-ts-client:
 clean-kotlin-client:
 	sudo rm -rf clients/kotlin
 
+clean-rust-client:
+	sudo rm -rf clients/rust
+
 kotlin-client: clean-kotlin-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
@@ -215,6 +218,18 @@ ts-client: clean-ts-client
 		-g typescript-axios \
 		-o /local/clients/typescript \
 		-c /local/clients/typescript.yaml
+
+rust-client: clean-rust-client
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+		-i http://localhost:8000/api/schema --recommend
+
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+		-i http://localhost:8000/api/schema \
+		-g rust \
+		-o /local/clients/rust \
+		-c /local/clients/rust.yaml \
+		-t /local/client-templates/rust
+	sed -i "s/Box::new(file)/None/g" clients/rust/src/models/octoprint_job.rs
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
@@ -267,7 +282,10 @@ dist: sdist bdist_wheel
 python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
-clients-release: python-client-release ts-client kotlin-client
+rust-client-release: rust-client
+	cd clients/rust && cargo publish
+
+clients-release: python-client-release rust-client-release ts-client kotlin-client 
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
