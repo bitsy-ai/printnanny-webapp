@@ -225,7 +225,7 @@ rust-client: clean-rust-client
 
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
 		-i http://localhost:8000/api/schema \
-		-g tust \
+		-g rust \
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml
 
