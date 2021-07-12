@@ -227,7 +227,8 @@ rust-client: clean-rust-client
 		-i http://localhost:8000/api/schema \
 		-g rust \
 		-o /local/clients/rust \
-		-c /local/clients/rust.yaml
+		-c /local/clients/rust.yaml \
+		-t /local/client-templates/rust
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
