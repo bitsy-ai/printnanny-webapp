@@ -26,7 +26,7 @@ pub struct OctoprintJob {
 impl OctoprintJob {
     pub fn new(file: Option<crate::models::OctoprintFile>, filament: Option<::std::collections::HashMap<String, serde_json::Value>>) -> OctoprintJob {
         OctoprintJob {
-            file: Box::new(file),
+            file: None,
             estimated_print_time: None,
             average_print_time: None,
             last_print_time: None,
