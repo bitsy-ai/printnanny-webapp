@@ -229,6 +229,7 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
+	sed -i "s/Box::new(file)/None/g" clients/rust/src/models/octoprint_job.rs
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
