@@ -619,3 +619,11 @@ HELP_SITE_URL="https://help.print-nanny.com"
 BLOG_SITE_URL="https://blog.print-nanny.com"
 ABOUT_URL="https://blog.print-nanny.com/about"
 GITHUB_ISSUE_URL = 'https://github.com/bitsy-ai/octoprint-nanny-plugin/issues/new'
+
+# drfpasswordless
+# https://github.com/aaronn/django-rest-framework-passwordless
+# ------------------------------------------------------------------------------
+INSTALLED_APPS += ["drfpasswordless"]
+PASSWORDLESS_AUTH = {
+   'PASSWORDLESS_AUTH_TYPES': ['EMAIL'],
+}
