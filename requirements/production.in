@@ -32,6 +32,7 @@ django-storages[google]
 django-stubs
 django-webpack-loader
 djangorestframework
+drfpasswordless
 drf-spectacular
 flatbuffers
 flower
