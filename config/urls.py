@@ -74,6 +74,8 @@ urlpatterns += [
     path('', include('django_prometheus.urls')),
     path('anymail/', include('anymail.urls')),
 
+    # https://github.com/aaronn/django-rest-framework-passwordless
+    path('', include('drfpasswordless.urls')),
 
 ]
 

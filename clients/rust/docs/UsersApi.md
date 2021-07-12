@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**users_list**](UsersApi.md#users_list) | **get** /api/users/ | 
-[**users_me_retrieve**](UsersApi.md#users_me_retrieve) | **get** /api/users/me/ | 
-[**users_partial_update**](UsersApi.md#users_partial_update) | **patch** /api/users/{id}/ | 
-[**users_retrieve**](UsersApi.md#users_retrieve) | **get** /api/users/{id}/ | 
-[**users_update**](UsersApi.md#users_update) | **put** /api/users/{id}/ | 
+[**api_users_list**](UsersApi.md#api_users_list) | **get** /api/users/ | 
+[**api_users_me_retrieve**](UsersApi.md#api_users_me_retrieve) | **get** /api/users/me/ | 
+[**api_users_partial_update**](UsersApi.md#api_users_partial_update) | **patch** /api/users/{id}/ | 
+[**api_users_retrieve**](UsersApi.md#api_users_retrieve) | **get** /api/users/{id}/ | 
+[**api_users_update**](UsersApi.md#api_users_update) | **put** /api/users/{id}/ | 
 
 
 
-## users_list
+## api_users_list
 
-> crate::models::PaginatedUserList users_list(page)
+> crate::models::PaginatedUserList api_users_list(page)
 
 
 ### Parameters
@@ -40,9 +40,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## users_me_retrieve
+## api_users_me_retrieve
 
-> crate::models::User users_me_retrieve()
+> crate::models::User api_users_me_retrieve()
 
 
 ### Parameters
@@ -65,9 +65,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## users_partial_update
+## api_users_partial_update
 
-> crate::models::User users_partial_update(id, patched_user_request)
+> crate::models::User api_users_partial_update(id, patched_user_request)
 
 
 ### Parameters
@@ -94,9 +94,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## users_retrieve
+## api_users_retrieve
 
-> crate::models::User users_retrieve(id)
+> crate::models::User api_users_retrieve(id)
 
 
 ### Parameters
@@ -122,9 +122,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## users_update
+## api_users_update
 
-> crate::models::User users_update(id, user_request)
+> crate::models::User api_users_update(id, user_request)
 
 
 ### Parameters

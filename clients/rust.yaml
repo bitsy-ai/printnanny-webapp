@@ -1,7 +1,4 @@
 ---
 packageName: "print-nanny-client"
-packageVersion: "0.7.1"
-files:
-  Cargo.mustache:
-    templateType: SupportingFiles
-    destinationFilename: Cargo.toml
+packageVersion: "0.8.0"
+appDescription: "Official Rust Print Nanny API Client"

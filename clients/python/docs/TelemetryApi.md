@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**octoprint_events_create**](TelemetryApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
-[**octoprint_events_list**](TelemetryApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
-[**octoprint_events_retrieve**](TelemetryApi.md#octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
-[**print_job_events_list**](TelemetryApi.md#print_job_events_list) | **GET** /api/print-job-events/ | 
-[**print_job_events_retrieve**](TelemetryApi.md#print_job_events_retrieve) | **GET** /api/print-job-events/{id}/ | 
-[**print_nanny_plugin_events_list**](TelemetryApi.md#print_nanny_plugin_events_list) | **GET** /api/print-nanny-plugin-events/ | 
-[**print_nanny_plugin_events_retrieve**](TelemetryApi.md#print_nanny_plugin_events_retrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
-[**remote_command_events_list**](TelemetryApi.md#remote_command_events_list) | **GET** /api/remote-command-events/ | 
-[**remote_command_events_retrieve**](TelemetryApi.md#remote_command_events_retrieve) | **GET** /api/remote-command-events/{id}/ | 
-[**telemetry_events_list**](TelemetryApi.md#telemetry_events_list) | **GET** /api/telemetry-events/ | 
-[**telemetry_events_retrieve**](TelemetryApi.md#telemetry_events_retrieve) | **GET** /api/telemetry-events/{id}/ | 
+[**api_octoprint_events_create**](TelemetryApi.md#api_octoprint_events_create) | **POST** /api/octoprint-events/ | 
+[**api_octoprint_events_list**](TelemetryApi.md#api_octoprint_events_list) | **GET** /api/octoprint-events/ | 
+[**api_octoprint_events_retrieve**](TelemetryApi.md#api_octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
+[**api_print_job_events_list**](TelemetryApi.md#api_print_job_events_list) | **GET** /api/print-job-events/ | 
+[**api_print_job_events_retrieve**](TelemetryApi.md#api_print_job_events_retrieve) | **GET** /api/print-job-events/{id}/ | 
+[**api_print_nanny_plugin_events_list**](TelemetryApi.md#api_print_nanny_plugin_events_list) | **GET** /api/print-nanny-plugin-events/ | 
+[**api_print_nanny_plugin_events_retrieve**](TelemetryApi.md#api_print_nanny_plugin_events_retrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+[**api_remote_command_events_list**](TelemetryApi.md#api_remote_command_events_list) | **GET** /api/remote-command-events/ | 
+[**api_remote_command_events_retrieve**](TelemetryApi.md#api_remote_command_events_retrieve) | **GET** /api/remote-command-events/{id}/ | 
+[**api_telemetry_events_list**](TelemetryApi.md#api_telemetry_events_list) | **GET** /api/telemetry-events/ | 
+[**api_telemetry_events_retrieve**](TelemetryApi.md#api_telemetry_events_retrieve) | **GET** /api/telemetry-events/{id}/ | 
 
 
-# **octoprint_events_create**
-> OctoPrintEvent octoprint_events_create(octo_print_event_request)
+# **api_octoprint_events_create**
+> OctoPrintEvent api_octoprint_events_create(octo_print_event_request)
 
 
 
@@ -60,10 +60,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(octo_print_event_request)
+        api_response = api_instance.api_octoprint_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_create: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -102,10 +102,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     octo_print_event_request = print_nanny_client.OctoPrintEventRequest() # OctoPrintEventRequest | 
 
     try:
-        api_response = api_instance.octoprint_events_create(octo_print_event_request)
+        api_response = api_instance.api_octoprint_events_create(octo_print_event_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_create: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_create: %s\n" % e)
 ```
 
 ### Parameters
@@ -135,8 +135,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_events_list**
-> PaginatedOctoPrintEventList octoprint_events_list(page=page)
+# **api_octoprint_events_list**
+> PaginatedOctoPrintEventList api_octoprint_events_list(page=page)
 
 
 
@@ -178,10 +178,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.octoprint_events_list(page=page)
+        api_response = api_instance.api_octoprint_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -220,10 +220,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.octoprint_events_list(page=page)
+        api_response = api_instance.api_octoprint_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -252,8 +252,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_events_retrieve**
-> OctoPrintEvent octoprint_events_retrieve(id)
+# **api_octoprint_events_retrieve**
+> OctoPrintEvent api_octoprint_events_retrieve(id)
 
 
 
@@ -295,10 +295,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this octo print event.
 
     try:
-        api_response = api_instance.octoprint_events_retrieve(id)
+        api_response = api_instance.api_octoprint_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -337,10 +337,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this octo print event.
 
     try:
-        api_response = api_instance.octoprint_events_retrieve(id)
+        api_response = api_instance.api_octoprint_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->octoprint_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_octoprint_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -369,8 +369,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_job_events_list**
-> PaginatedPrintJobEventList print_job_events_list(page=page)
+# **api_print_job_events_list**
+> PaginatedPrintJobEventList api_print_job_events_list(page=page)
 
 
 
@@ -412,10 +412,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_job_events_list(page=page)
+        api_response = api_instance.api_print_job_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_job_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_job_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -454,10 +454,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_job_events_list(page=page)
+        api_response = api_instance.api_print_job_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_job_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_job_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -486,8 +486,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_job_events_retrieve**
-> PrintJobEvent print_job_events_retrieve(id)
+# **api_print_job_events_retrieve**
+> PrintJobEvent api_print_job_events_retrieve(id)
 
 
 
@@ -529,10 +529,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this print job event.
 
     try:
-        api_response = api_instance.print_job_events_retrieve(id)
+        api_response = api_instance.api_print_job_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_job_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_job_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -571,10 +571,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this print job event.
 
     try:
-        api_response = api_instance.print_job_events_retrieve(id)
+        api_response = api_instance.api_print_job_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_job_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_job_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -603,8 +603,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_nanny_plugin_events_list**
-> PaginatedPrintNannyPluginEventList print_nanny_plugin_events_list(page=page)
+# **api_print_nanny_plugin_events_list**
+> PaginatedPrintNannyPluginEventList api_print_nanny_plugin_events_list(page=page)
 
 
 
@@ -646,10 +646,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_nanny_plugin_events_list(page=page)
+        api_response = api_instance.api_print_nanny_plugin_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_nanny_plugin_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_nanny_plugin_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -688,10 +688,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.print_nanny_plugin_events_list(page=page)
+        api_response = api_instance.api_print_nanny_plugin_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_nanny_plugin_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_nanny_plugin_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -720,8 +720,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **print_nanny_plugin_events_retrieve**
-> PrintNannyPluginEvent print_nanny_plugin_events_retrieve(id)
+# **api_print_nanny_plugin_events_retrieve**
+> PrintNannyPluginEvent api_print_nanny_plugin_events_retrieve(id)
 
 
 
@@ -763,10 +763,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this print nanny plugin event.
 
     try:
-        api_response = api_instance.print_nanny_plugin_events_retrieve(id)
+        api_response = api_instance.api_print_nanny_plugin_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_nanny_plugin_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_nanny_plugin_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -805,10 +805,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this print nanny plugin event.
 
     try:
-        api_response = api_instance.print_nanny_plugin_events_retrieve(id)
+        api_response = api_instance.api_print_nanny_plugin_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->print_nanny_plugin_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_print_nanny_plugin_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -837,8 +837,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **remote_command_events_list**
-> PaginatedRemoteCommandEventList remote_command_events_list(page=page)
+# **api_remote_command_events_list**
+> PaginatedRemoteCommandEventList api_remote_command_events_list(page=page)
 
 
 
@@ -880,10 +880,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.remote_command_events_list(page=page)
+        api_response = api_instance.api_remote_command_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->remote_command_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_remote_command_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -922,10 +922,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.remote_command_events_list(page=page)
+        api_response = api_instance.api_remote_command_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->remote_command_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_remote_command_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -954,8 +954,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **remote_command_events_retrieve**
-> RemoteCommandEvent remote_command_events_retrieve(id)
+# **api_remote_command_events_retrieve**
+> RemoteCommandEvent api_remote_command_events_retrieve(id)
 
 
 
@@ -997,10 +997,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this remote command event.
 
     try:
-        api_response = api_instance.remote_command_events_retrieve(id)
+        api_response = api_instance.api_remote_command_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->remote_command_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_remote_command_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1039,10 +1039,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this remote command event.
 
     try:
-        api_response = api_instance.remote_command_events_retrieve(id)
+        api_response = api_instance.api_remote_command_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->remote_command_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_remote_command_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
@@ -1071,8 +1071,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **telemetry_events_list**
-> PaginatedTelemetryEventPolymorphicList telemetry_events_list(page=page)
+# **api_telemetry_events_list**
+> PaginatedTelemetryEventPolymorphicList api_telemetry_events_list(page=page)
 
 
 
@@ -1114,10 +1114,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.telemetry_events_list(page=page)
+        api_response = api_instance.api_telemetry_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_telemetry_events_list: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1156,10 +1156,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = api_instance.telemetry_events_list(page=page)
+        api_response = api_instance.api_telemetry_events_list(page=page)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_events_list: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_telemetry_events_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -1188,8 +1188,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **telemetry_events_retrieve**
-> TelemetryEventPolymorphic telemetry_events_retrieve(id)
+# **api_telemetry_events_retrieve**
+> TelemetryEventPolymorphic api_telemetry_events_retrieve(id)
 
 
 
@@ -1231,10 +1231,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this telemetry event.
 
     try:
-        api_response = api_instance.telemetry_events_retrieve(id)
+        api_response = api_instance.api_telemetry_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_telemetry_events_retrieve: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1273,10 +1273,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this telemetry event.
 
     try:
-        api_response = api_instance.telemetry_events_retrieve(id)
+        api_response = api_instance.api_telemetry_events_retrieve(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling TelemetryApi->telemetry_events_retrieve: %s\n" % e)
+        print("Exception when calling TelemetryApi->api_telemetry_events_retrieve: %s\n" % e)
 ```
 
 ### Parameters
