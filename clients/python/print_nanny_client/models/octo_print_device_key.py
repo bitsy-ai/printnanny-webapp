@@ -69,7 +69,7 @@ class OctoPrintDeviceKey(object):
         'ca_certs': 'dict(str, str)',
         'manage_url': 'str',
         'monitoring_active': 'bool',
-        'active_session': 'str'
+        'active_session': 'PrintSession'
     }
 
     attribute_map = {
@@ -976,7 +976,7 @@ class OctoPrintDeviceKey(object):
 
 
         :return: The active_session of this OctoPrintDeviceKey.  # noqa: E501
-        :rtype: str
+        :rtype: PrintSession
         """
         return self._active_session
 
@@ -986,7 +986,7 @@ class OctoPrintDeviceKey(object):
 
 
         :param active_session: The active_session of this OctoPrintDeviceKey.  # noqa: E501
-        :type active_session: str
+        :type active_session: PrintSession
         """
 
         self._active_session = active_session

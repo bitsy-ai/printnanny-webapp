@@ -36,13 +36,13 @@ class TelemetryApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def octoprint_events_create(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """octoprint_events_create  # noqa: E501
+    def api_octoprint_events_create(self, octo_print_event_request, **kwargs):  # noqa: E501
+        """api_octoprint_events_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_create(octo_print_event_request, async_req=True)
+        >>> thread = api.api_octoprint_events_create(octo_print_event_request, async_req=True)
         >>> result = thread.get()
 
         :param octo_print_event_request: (required)
@@ -63,15 +63,15 @@ class TelemetryApi(object):
         :rtype: OctoPrintEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_events_create_with_http_info(octo_print_event_request, **kwargs)  # noqa: E501
+        return self.api_octoprint_events_create_with_http_info(octo_print_event_request, **kwargs)  # noqa: E501
 
-    def octoprint_events_create_with_http_info(self, octo_print_event_request, **kwargs):  # noqa: E501
-        """octoprint_events_create  # noqa: E501
+    def api_octoprint_events_create_with_http_info(self, octo_print_event_request, **kwargs):  # noqa: E501
+        """api_octoprint_events_create  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_create_with_http_info(octo_print_event_request, async_req=True)
+        >>> thread = api.api_octoprint_events_create_with_http_info(octo_print_event_request, async_req=True)
         >>> result = thread.get()
 
         :param octo_print_event_request: (required)
@@ -118,14 +118,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_events_create" % key
+                    " to method api_octoprint_events_create" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'octo_print_event_request' is set
         if self.api_client.client_side_validation and ('octo_print_event_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['octo_print_event_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `octo_print_event_request` when calling `octoprint_events_create`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `octo_print_event_request` when calling `api_octoprint_events_create`")  # noqa: E501
 
         collection_formats = {}
 
@@ -174,13 +174,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_events_list(self, **kwargs):  # noqa: E501
-        """octoprint_events_list  # noqa: E501
+    def api_octoprint_events_list(self, **kwargs):  # noqa: E501
+        """api_octoprint_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_list(async_req=True)
+        >>> thread = api.api_octoprint_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -201,15 +201,15 @@ class TelemetryApi(object):
         :rtype: PaginatedOctoPrintEventList
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_octoprint_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def octoprint_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """octoprint_events_list  # noqa: E501
+    def api_octoprint_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_octoprint_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_list_with_http_info(async_req=True)
+        >>> thread = api.api_octoprint_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -256,7 +256,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_events_list" % key
+                    " to method api_octoprint_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -303,13 +303,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def octoprint_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """octoprint_events_retrieve  # noqa: E501
+    def api_octoprint_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_octoprint_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_retrieve(id, async_req=True)
+        >>> thread = api.api_octoprint_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print event. (required)
@@ -330,15 +330,15 @@ class TelemetryApi(object):
         :rtype: OctoPrintEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.octoprint_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_octoprint_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def octoprint_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """octoprint_events_retrieve  # noqa: E501
+    def api_octoprint_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_octoprint_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.octoprint_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_octoprint_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this octo print event. (required)
@@ -385,14 +385,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method octoprint_events_retrieve" % key
+                    " to method api_octoprint_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `octoprint_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_octoprint_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -436,13 +436,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_job_events_list(self, **kwargs):  # noqa: E501
-        """print_job_events_list  # noqa: E501
+    def api_print_job_events_list(self, **kwargs):  # noqa: E501
+        """api_print_job_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_events_list(async_req=True)
+        >>> thread = api.api_print_job_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -463,15 +463,15 @@ class TelemetryApi(object):
         :rtype: PaginatedPrintJobEventList
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_job_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_print_job_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def print_job_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """print_job_events_list  # noqa: E501
+    def api_print_job_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_print_job_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_events_list_with_http_info(async_req=True)
+        >>> thread = api.api_print_job_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -518,7 +518,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_job_events_list" % key
+                    " to method api_print_job_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -565,13 +565,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_job_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """print_job_events_retrieve  # noqa: E501
+    def api_print_job_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_print_job_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_events_retrieve(id, async_req=True)
+        >>> thread = api.api_print_job_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this print job event. (required)
@@ -592,15 +592,15 @@ class TelemetryApi(object):
         :rtype: PrintJobEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_job_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_print_job_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def print_job_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """print_job_events_retrieve  # noqa: E501
+    def api_print_job_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_print_job_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_job_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_print_job_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this print job event. (required)
@@ -647,14 +647,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_job_events_retrieve" % key
+                    " to method api_print_job_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_job_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_print_job_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -698,13 +698,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_nanny_plugin_events_list(self, **kwargs):  # noqa: E501
-        """print_nanny_plugin_events_list  # noqa: E501
+    def api_print_nanny_plugin_events_list(self, **kwargs):  # noqa: E501
+        """api_print_nanny_plugin_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_nanny_plugin_events_list(async_req=True)
+        >>> thread = api.api_print_nanny_plugin_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -725,15 +725,15 @@ class TelemetryApi(object):
         :rtype: PaginatedPrintNannyPluginEventList
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_nanny_plugin_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_print_nanny_plugin_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def print_nanny_plugin_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """print_nanny_plugin_events_list  # noqa: E501
+    def api_print_nanny_plugin_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_print_nanny_plugin_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_nanny_plugin_events_list_with_http_info(async_req=True)
+        >>> thread = api.api_print_nanny_plugin_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -780,7 +780,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_nanny_plugin_events_list" % key
+                    " to method api_print_nanny_plugin_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -827,13 +827,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def print_nanny_plugin_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """print_nanny_plugin_events_retrieve  # noqa: E501
+    def api_print_nanny_plugin_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_print_nanny_plugin_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_nanny_plugin_events_retrieve(id, async_req=True)
+        >>> thread = api.api_print_nanny_plugin_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this print nanny plugin event. (required)
@@ -854,15 +854,15 @@ class TelemetryApi(object):
         :rtype: PrintNannyPluginEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.print_nanny_plugin_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_print_nanny_plugin_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def print_nanny_plugin_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """print_nanny_plugin_events_retrieve  # noqa: E501
+    def api_print_nanny_plugin_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_print_nanny_plugin_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.print_nanny_plugin_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_print_nanny_plugin_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this print nanny plugin event. (required)
@@ -909,14 +909,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method print_nanny_plugin_events_retrieve" % key
+                    " to method api_print_nanny_plugin_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `print_nanny_plugin_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_print_nanny_plugin_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -960,13 +960,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def remote_command_events_list(self, **kwargs):  # noqa: E501
-        """remote_command_events_list  # noqa: E501
+    def api_remote_command_events_list(self, **kwargs):  # noqa: E501
+        """api_remote_command_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.remote_command_events_list(async_req=True)
+        >>> thread = api.api_remote_command_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -987,15 +987,15 @@ class TelemetryApi(object):
         :rtype: PaginatedRemoteCommandEventList
         """
         kwargs['_return_http_data_only'] = True
-        return self.remote_command_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_remote_command_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def remote_command_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """remote_command_events_list  # noqa: E501
+    def api_remote_command_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_remote_command_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.remote_command_events_list_with_http_info(async_req=True)
+        >>> thread = api.api_remote_command_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -1042,7 +1042,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method remote_command_events_list" % key
+                    " to method api_remote_command_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -1089,13 +1089,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def remote_command_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """remote_command_events_retrieve  # noqa: E501
+    def api_remote_command_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_remote_command_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.remote_command_events_retrieve(id, async_req=True)
+        >>> thread = api.api_remote_command_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this remote command event. (required)
@@ -1116,15 +1116,15 @@ class TelemetryApi(object):
         :rtype: RemoteCommandEvent
         """
         kwargs['_return_http_data_only'] = True
-        return self.remote_command_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_remote_command_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def remote_command_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """remote_command_events_retrieve  # noqa: E501
+    def api_remote_command_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_remote_command_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.remote_command_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_remote_command_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this remote command event. (required)
@@ -1171,14 +1171,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method remote_command_events_retrieve" % key
+                    " to method api_remote_command_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `remote_command_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_remote_command_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -1222,13 +1222,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def telemetry_events_list(self, **kwargs):  # noqa: E501
-        """telemetry_events_list  # noqa: E501
+    def api_telemetry_events_list(self, **kwargs):  # noqa: E501
+        """api_telemetry_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_events_list(async_req=True)
+        >>> thread = api.api_telemetry_events_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -1249,15 +1249,15 @@ class TelemetryApi(object):
         :rtype: PaginatedTelemetryEventPolymorphicList
         """
         kwargs['_return_http_data_only'] = True
-        return self.telemetry_events_list_with_http_info(**kwargs)  # noqa: E501
+        return self.api_telemetry_events_list_with_http_info(**kwargs)  # noqa: E501
 
-    def telemetry_events_list_with_http_info(self, **kwargs):  # noqa: E501
-        """telemetry_events_list  # noqa: E501
+    def api_telemetry_events_list_with_http_info(self, **kwargs):  # noqa: E501
+        """api_telemetry_events_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_events_list_with_http_info(async_req=True)
+        >>> thread = api.api_telemetry_events_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -1304,7 +1304,7 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method telemetry_events_list" % key
+                    " to method api_telemetry_events_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -1351,13 +1351,13 @@ class TelemetryApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def telemetry_events_retrieve(self, id, **kwargs):  # noqa: E501
-        """telemetry_events_retrieve  # noqa: E501
+    def api_telemetry_events_retrieve(self, id, **kwargs):  # noqa: E501
+        """api_telemetry_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_events_retrieve(id, async_req=True)
+        >>> thread = api.api_telemetry_events_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this telemetry event. (required)
@@ -1378,15 +1378,15 @@ class TelemetryApi(object):
         :rtype: TelemetryEventPolymorphic
         """
         kwargs['_return_http_data_only'] = True
-        return self.telemetry_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.api_telemetry_events_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def telemetry_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """telemetry_events_retrieve  # noqa: E501
+    def api_telemetry_events_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """api_telemetry_events_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.telemetry_events_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.api_telemetry_events_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this telemetry event. (required)
@@ -1433,14 +1433,14 @@ class TelemetryApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method telemetry_events_retrieve" % key
+                    " to method api_telemetry_events_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `telemetry_events_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `api_telemetry_events_retrieve`")  # noqa: E501
 
         collection_formats = {}
 

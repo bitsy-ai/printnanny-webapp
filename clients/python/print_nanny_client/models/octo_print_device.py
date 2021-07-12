@@ -64,7 +64,7 @@ class OctoPrintDevice(object):
         'cloudiot_device_configs': 'str',
         'manage_url': 'str',
         'monitoring_active': 'bool',
-        'active_session': 'str'
+        'active_session': 'PrintSession'
     }
 
     attribute_map = {
@@ -844,7 +844,7 @@ class OctoPrintDevice(object):
 
 
         :return: The active_session of this OctoPrintDevice.  # noqa: E501
-        :rtype: str
+        :rtype: PrintSession
         """
         return self._active_session
 
@@ -854,7 +854,7 @@ class OctoPrintDevice(object):
 
 
         :param active_session: The active_session of this OctoPrintDevice.  # noqa: E501
-        :type active_session: str
+        :type active_session: PrintSession
         """
 
         self._active_session = active_session

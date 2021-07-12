@@ -14,16 +14,16 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.7.1"
+__version__ = "0.8.0rc1"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
-from print_nanny_client.api.auth_token_api import AuthTokenApi
+from print_nanny_client.api.api_api import ApiApi
+from print_nanny_client.api.auth_api import AuthApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.partners_geeks3_api import PartnersGeeks3Api
 from print_nanny_client.api.partners_geeks3d_api import PartnersGeeks3dApi
 from print_nanny_client.api.remote_control_api import RemoteControlApi
-from print_nanny_client.api.schema_api import SchemaApi
 from print_nanny_client.api.telemetry_api import TelemetryApi
 from print_nanny_client.api.users_api import UsersApi
 
@@ -45,15 +45,23 @@ from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.auth_token import AuthToken
 from print_nanny_client.models.auth_token_request import AuthTokenRequest
+from print_nanny_client.models.callback_token_auth import CallbackTokenAuth
+from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
+from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
+from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
+from print_nanny_client.models.email_auth import EmailAuth
+from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
 from print_nanny_client.models.event_type_d9e_enum import EventTypeD9eEnum
 from print_nanny_client.models.experiment import Experiment
 from print_nanny_client.models.experiment_device_config import ExperimentDeviceConfig
 from print_nanny_client.models.gcode_file import GcodeFile
+from print_nanny_client.models.mobile_auth import MobileAuth
+from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
 from print_nanny_client.models.nested import Nested
 from print_nanny_client.models.octo_print_device import OctoPrintDevice

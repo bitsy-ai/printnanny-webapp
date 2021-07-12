@@ -49,7 +49,9 @@ class Box(google.protobuf.message.Message):
     XY_FIELD_NUMBER: builtins.int
     HEIGHT_FIELD_NUMBER: builtins.int
     WIDTH_FIELD_NUMBER: builtins.int
-    xy: google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float] = ...
+
+    @property
+    def xy(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     height: builtins.int = ...
     width: builtins.int = ...
 
@@ -94,9 +96,15 @@ class BoxAnnotations(google.protobuf.message.Message):
     DETECTION_BOXES_FIELD_NUMBER: builtins.int
     HEALTH_WEIGHTS_FIELD_NUMBER: builtins.int
     num_detections: builtins.int = ...
-    detection_scores: google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float] = ...
-    detection_classes: google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int] = ...
-    health_weights: google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float] = ...
+
+    @property
+    def detection_scores(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
+
+    @property
+    def detection_classes(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]: ...
+
+    @property
+    def health_weights(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
 
     @property
     def detection_boxes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Box]: ...
@@ -153,18 +161,20 @@ global___AnnotatedMonitoringImage = AnnotatedMonitoringImage
 
 class AnnotatedMonitoringImagesWindow(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class WindowType(metaclass=_WindowType):
+        V = typing.NewType('V', builtins.int)
+
+    GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
+    FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
+    SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
+    SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
+
     class _WindowType(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[WindowType.V], builtins.type):
         DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
         GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
         FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
         SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
         SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
-    class WindowType(metaclass=_WindowType):
-        V = typing.NewType('V', builtins.int)
-    GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
-    FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
-    SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
-    SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
 
     ANNOTATED_IMAGES_FIELD_NUMBER: builtins.int
     WINDOW_START_FIELD_NUMBER: builtins.int
