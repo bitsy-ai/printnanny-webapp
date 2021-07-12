@@ -196,6 +196,9 @@ clean-ts-client:
 clean-kotlin-client:
 	sudo rm -rf clients/kotlin
 
+clean-rust-client:
+	sudo rm -rf clients/rust
+
 kotlin-client: clean-kotlin-client
 	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
 		-i http://localhost:8000/api/schema --recommend
@@ -215,6 +218,16 @@ ts-client: clean-ts-client
 		-g typescript-axios \
 		-o /local/clients/typescript \
 		-c /local/clients/typescript.yaml
+
+rust-client: clean-rust-client
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli validate \
+		-i http://localhost:8000/api/schema --recommend
+
+	docker run -u `id -u` --net=host --rm -v "$${PWD}:/local" openapitools/openapi-generator-cli generate \
+		-i http://localhost:8000/api/schema \
+		-g tust \
+		-o /local/clients/rust \
+		-c /local/clients/rust.yaml
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
