@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
+**activeSession** | [**PrintSessionRequest**](PrintSessionRequest.md) |  |  [optional]
 
 
 

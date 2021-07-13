@@ -35,71 +35,77 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AlertsApi* | [**alertsList**](docs/AlertsApi.md#alertslist) | **GET** /api/alerts/ | 
-*AlertsApi* | [**alertsPartialUpdate**](docs/AlertsApi.md#alertspartialupdate) | **PATCH** /api/alerts/{id}/ | 
 *AlertsApi* | [**alertsRecent**](docs/AlertsApi.md#alertsrecent) | **GET** /api/alerts/recent/ | 
-*AlertsApi* | [**alertsRetrieve**](docs/AlertsApi.md#alertsretrieve) | **GET** /api/alerts/{id}/ | 
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
-*AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
-*AuthTokenApi* | [**authTokenCreate**](docs/AuthTokenApi.md#authtokencreate) | **POST** /api/auth-token/ | 
+*ApiApi* | [**apiAlertsList**](docs/ApiApi.md#apialertslist) | **GET** /api/alerts/ | 
+*ApiApi* | [**apiAlertsPartialUpdate**](docs/ApiApi.md#apialertspartialupdate) | **PATCH** /api/alerts/{id}/ | 
+*ApiApi* | [**apiAlertsRetrieve**](docs/ApiApi.md#apialertsretrieve) | **GET** /api/alerts/{id}/ | 
+*ApiApi* | [**apiAlertsUpdate**](docs/ApiApi.md#apialertsupdate) | **PUT** /api/alerts/{id}/ | 
+*ApiApi* | [**apiAuthTokenCreate**](docs/ApiApi.md#apiauthtokencreate) | **POST** /api/auth-token/ | 
+*ApiApi* | [**apiSchemaRetrieve**](docs/ApiApi.md#apischemaretrieve) | **GET** /api/schema/ | 
+*AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
+*AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
+*AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
+*AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
+*AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
+*AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
+*MlOpsApi* | [**apiDeviceCalibrationsList**](docs/MlOpsApi.md#apidevicecalibrationslist) | **GET** /api/device-calibrations/ | 
+*MlOpsApi* | [**apiDeviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#apidevicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
+*MlOpsApi* | [**apiDeviceCalibrationsRetrieve**](docs/MlOpsApi.md#apidevicecalibrationsretrieve) | **GET** /api/device-calibrations/{id}/ | 
+*MlOpsApi* | [**apiDeviceCalibrationsUpdate**](docs/MlOpsApi.md#apidevicecalibrationsupdate) | **PUT** /api/device-calibrations/{id}/ | 
+*MlOpsApi* | [**apiExperimentDeviceConfigsList**](docs/MlOpsApi.md#apiexperimentdeviceconfigslist) | **GET** /api/experiment-device-configs/ | 
+*MlOpsApi* | [**apiExperimentDeviceConfigsRetrieve**](docs/MlOpsApi.md#apiexperimentdeviceconfigsretrieve) | **GET** /api/experiment-device-configs/{id}/ | 
+*MlOpsApi* | [**apiExperimentsList**](docs/MlOpsApi.md#apiexperimentslist) | **GET** /api/experiments/ | 
+*MlOpsApi* | [**apiExperimentsRetrieve**](docs/MlOpsApi.md#apiexperimentsretrieve) | **GET** /api/experiments/{id}/ | 
+*MlOpsApi* | [**apiModelArtifactsList**](docs/MlOpsApi.md#apimodelartifactslist) | **GET** /api/model-artifacts/ | 
+*MlOpsApi* | [**apiModelArtifactsRetrieve**](docs/MlOpsApi.md#apimodelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
-*MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 
-*MlOpsApi* | [**deviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#devicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
-*MlOpsApi* | [**deviceCalibrationsRetrieve**](docs/MlOpsApi.md#devicecalibrationsretrieve) | **GET** /api/device-calibrations/{id}/ | 
-*MlOpsApi* | [**deviceCalibrationsUpdate**](docs/MlOpsApi.md#devicecalibrationsupdate) | **PUT** /api/device-calibrations/{id}/ | 
-*MlOpsApi* | [**experimentDeviceConfigsList**](docs/MlOpsApi.md#experimentdeviceconfigslist) | **GET** /api/experiment-device-configs/ | 
-*MlOpsApi* | [**experimentDeviceConfigsRetrieve**](docs/MlOpsApi.md#experimentdeviceconfigsretrieve) | **GET** /api/experiment-device-configs/{id}/ | 
-*MlOpsApi* | [**experimentsList**](docs/MlOpsApi.md#experimentslist) | **GET** /api/experiments/ | 
-*MlOpsApi* | [**experimentsRetrieve**](docs/MlOpsApi.md#experimentsretrieve) | **GET** /api/experiments/{id}/ | 
-*MlOpsApi* | [**modelArtifactsList**](docs/MlOpsApi.md#modelartifactslist) | **GET** /api/model-artifacts/ | 
-*MlOpsApi* | [**modelArtifactsRetrieve**](docs/MlOpsApi.md#modelartifactsretrieve) | **GET** /api/model-artifacts/{id}/ | 
-*PartnersGeeks3Api* | [**alertsList2**](docs/PartnersGeeks3Api.md#alertslist2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
+*PartnersGeeks3Api* | [**alertsList**](docs/PartnersGeeks3Api.md#alertslist) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 *PartnersGeeks3dApi* | [**metadataRetrieve**](docs/PartnersGeeks3dApi.md#metadataretrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
-*RemoteControlApi* | [**commandsList**](docs/RemoteControlApi.md#commandslist) | **GET** /api/commands/ | 
-*RemoteControlApi* | [**commandsPartialUpdate**](docs/RemoteControlApi.md#commandspartialupdate) | **PATCH** /api/commands/{id}/ | 
-*RemoteControlApi* | [**commandsRetrieve**](docs/RemoteControlApi.md#commandsretrieve) | **GET** /api/commands/{id}/ | 
-*RemoteControlApi* | [**commandsUpdate**](docs/RemoteControlApi.md#commandsupdate) | **PUT** /api/commands/{id}/ | 
+*RemoteControlApi* | [**apiCommandsList**](docs/RemoteControlApi.md#apicommandslist) | **GET** /api/commands/ | 
+*RemoteControlApi* | [**apiCommandsPartialUpdate**](docs/RemoteControlApi.md#apicommandspartialupdate) | **PATCH** /api/commands/{id}/ | 
+*RemoteControlApi* | [**apiCommandsRetrieve**](docs/RemoteControlApi.md#apicommandsretrieve) | **GET** /api/commands/{id}/ | 
+*RemoteControlApi* | [**apiCommandsUpdate**](docs/RemoteControlApi.md#apicommandsupdate) | **PUT** /api/commands/{id}/ | 
+*RemoteControlApi* | [**apiGcodeFilesList**](docs/RemoteControlApi.md#apigcodefileslist) | **GET** /api/gcode-files/ | 
+*RemoteControlApi* | [**apiGcodeFilesPartialUpdate**](docs/RemoteControlApi.md#apigcodefilespartialupdate) | **PATCH** /api/gcode-files/{id}/ | 
+*RemoteControlApi* | [**apiGcodeFilesRetrieve**](docs/RemoteControlApi.md#apigcodefilesretrieve) | **GET** /api/gcode-files/{id}/ | 
+*RemoteControlApi* | [**apiGcodeFilesUpdate**](docs/RemoteControlApi.md#apigcodefilesupdate) | **PUT** /api/gcode-files/{id}/ | 
+*RemoteControlApi* | [**apiOctoprintDevicesCreate**](docs/RemoteControlApi.md#apioctoprintdevicescreate) | **POST** /api/octoprint-devices/ | 
+*RemoteControlApi* | [**apiOctoprintDevicesList**](docs/RemoteControlApi.md#apioctoprintdeviceslist) | **GET** /api/octoprint-devices/ | 
+*RemoteControlApi* | [**apiOctoprintDevicesRetrieve**](docs/RemoteControlApi.md#apioctoprintdevicesretrieve) | **GET** /api/octoprint-devices/{id}/ | 
+*RemoteControlApi* | [**apiPrintSessionsCreate**](docs/RemoteControlApi.md#apiprintsessionscreate) | **POST** /api/print-sessions/ | 
+*RemoteControlApi* | [**apiPrintSessionsList**](docs/RemoteControlApi.md#apiprintsessionslist) | **GET** /api/print-sessions/ | 
+*RemoteControlApi* | [**apiPrintSessionsRetrieve**](docs/RemoteControlApi.md#apiprintsessionsretrieve) | **GET** /api/print-sessions/{session}/ | 
+*RemoteControlApi* | [**apiPrinterProfilesList**](docs/RemoteControlApi.md#apiprinterprofileslist) | **GET** /api/printer-profiles/ | 
+*RemoteControlApi* | [**apiPrinterProfilesPartialUpdate**](docs/RemoteControlApi.md#apiprinterprofilespartialupdate) | **PATCH** /api/printer-profiles/{id}/ | 
+*RemoteControlApi* | [**apiPrinterProfilesRetrieve**](docs/RemoteControlApi.md#apiprinterprofilesretrieve) | **GET** /api/printer-profiles/{id}/ | 
+*RemoteControlApi* | [**apiPrinterProfilesUpdate**](docs/RemoteControlApi.md#apiprinterprofilesupdate) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**gcodeFilesCreate**](docs/RemoteControlApi.md#gcodefilescreate) | **POST** /api/gcode-files/ | 
-*RemoteControlApi* | [**gcodeFilesList**](docs/RemoteControlApi.md#gcodefileslist) | **GET** /api/gcode-files/ | 
-*RemoteControlApi* | [**gcodeFilesPartialUpdate**](docs/RemoteControlApi.md#gcodefilespartialupdate) | **PATCH** /api/gcode-files/{id}/ | 
-*RemoteControlApi* | [**gcodeFilesRetrieve**](docs/RemoteControlApi.md#gcodefilesretrieve) | **GET** /api/gcode-files/{id}/ | 
-*RemoteControlApi* | [**gcodeFilesUpdate**](docs/RemoteControlApi.md#gcodefilesupdate) | **PUT** /api/gcode-files/{id}/ | 
 *RemoteControlApi* | [**gcodeFilesUpdateOrCreate**](docs/RemoteControlApi.md#gcodefilesupdateorcreate) | **POST** /api/gcode-files/update-or-create/ | 
-*RemoteControlApi* | [**octoprintDevicesCreate**](docs/RemoteControlApi.md#octoprintdevicescreate) | **POST** /api/octoprint-devices/ | 
-*RemoteControlApi* | [**octoprintDevicesList**](docs/RemoteControlApi.md#octoprintdeviceslist) | **GET** /api/octoprint-devices/ | 
 *RemoteControlApi* | [**octoprintDevicesPartialUpdate**](docs/RemoteControlApi.md#octoprintdevicespartialupdate) | **PATCH** /api/octoprint-devices/{id}/ | 
-*RemoteControlApi* | [**octoprintDevicesRetrieve**](docs/RemoteControlApi.md#octoprintdevicesretrieve) | **GET** /api/octoprint-devices/{id}/ | 
 *RemoteControlApi* | [**octoprintDevicesUpdate**](docs/RemoteControlApi.md#octoprintdevicesupdate) | **PUT** /api/octoprint-devices/{id}/ | 
 *RemoteControlApi* | [**octoprintDevicesUpdateOrCreate**](docs/RemoteControlApi.md#octoprintdevicesupdateorcreate) | **POST** /api/octoprint-devices/update-or-create/ | 
 *RemoteControlApi* | [**printSessionPartialUpdate**](docs/RemoteControlApi.md#printsessionpartialupdate) | **PATCH** /api/print-sessions/{session}/ | 
 *RemoteControlApi* | [**printSessionUpdate**](docs/RemoteControlApi.md#printsessionupdate) | **PUT** /api/print-sessions/{session}/ | 
-*RemoteControlApi* | [**printSessionsCreate**](docs/RemoteControlApi.md#printsessionscreate) | **POST** /api/print-sessions/ | 
-*RemoteControlApi* | [**printSessionsList**](docs/RemoteControlApi.md#printsessionslist) | **GET** /api/print-sessions/ | 
-*RemoteControlApi* | [**printSessionsRetrieve**](docs/RemoteControlApi.md#printsessionsretrieve) | **GET** /api/print-sessions/{session}/ | 
 *RemoteControlApi* | [**printerProfilesCreate**](docs/RemoteControlApi.md#printerprofilescreate) | **POST** /api/printer-profiles/ | 
-*RemoteControlApi* | [**printerProfilesList**](docs/RemoteControlApi.md#printerprofileslist) | **GET** /api/printer-profiles/ | 
-*RemoteControlApi* | [**printerProfilesPartialUpdate**](docs/RemoteControlApi.md#printerprofilespartialupdate) | **PATCH** /api/printer-profiles/{id}/ | 
-*RemoteControlApi* | [**printerProfilesRetrieve**](docs/RemoteControlApi.md#printerprofilesretrieve) | **GET** /api/printer-profiles/{id}/ | 
-*RemoteControlApi* | [**printerProfilesUpdate**](docs/RemoteControlApi.md#printerprofilesupdate) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**printerProfilesUpdateOrCreate**](docs/RemoteControlApi.md#printerprofilesupdateorcreate) | **POST** /api/printer-profiles/update-or-create/ | 
-*SchemaApi* | [**schemaRetrieve**](docs/SchemaApi.md#schemaretrieve) | **GET** /api/schema/ | 
-*TelemetryApi* | [**octoprintEventsCreate**](docs/TelemetryApi.md#octoprinteventscreate) | **POST** /api/octoprint-events/ | 
-*TelemetryApi* | [**octoprintEventsList**](docs/TelemetryApi.md#octoprinteventslist) | **GET** /api/octoprint-events/ | 
-*TelemetryApi* | [**octoprintEventsRetrieve**](docs/TelemetryApi.md#octoprinteventsretrieve) | **GET** /api/octoprint-events/{id}/ | 
-*TelemetryApi* | [**printJobEventsList**](docs/TelemetryApi.md#printjobeventslist) | **GET** /api/print-job-events/ | 
-*TelemetryApi* | [**printJobEventsRetrieve**](docs/TelemetryApi.md#printjobeventsretrieve) | **GET** /api/print-job-events/{id}/ | 
-*TelemetryApi* | [**printNannyPluginEventsList**](docs/TelemetryApi.md#printnannyplugineventslist) | **GET** /api/print-nanny-plugin-events/ | 
-*TelemetryApi* | [**printNannyPluginEventsRetrieve**](docs/TelemetryApi.md#printnannyplugineventsretrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
-*TelemetryApi* | [**remoteCommandEventsList**](docs/TelemetryApi.md#remotecommandeventslist) | **GET** /api/remote-command-events/ | 
-*TelemetryApi* | [**remoteCommandEventsRetrieve**](docs/TelemetryApi.md#remotecommandeventsretrieve) | **GET** /api/remote-command-events/{id}/ | 
-*TelemetryApi* | [**telemetryEventsList**](docs/TelemetryApi.md#telemetryeventslist) | **GET** /api/telemetry-events/ | 
-*TelemetryApi* | [**telemetryEventsRetrieve**](docs/TelemetryApi.md#telemetryeventsretrieve) | **GET** /api/telemetry-events/{id}/ | 
-*UsersApi* | [**usersList**](docs/UsersApi.md#userslist) | **GET** /api/users/ | 
-*UsersApi* | [**usersMeRetrieve**](docs/UsersApi.md#usersmeretrieve) | **GET** /api/users/me/ | 
-*UsersApi* | [**usersPartialUpdate**](docs/UsersApi.md#userspartialupdate) | **PATCH** /api/users/{id}/ | 
-*UsersApi* | [**usersRetrieve**](docs/UsersApi.md#usersretrieve) | **GET** /api/users/{id}/ | 
-*UsersApi* | [**usersUpdate**](docs/UsersApi.md#usersupdate) | **PUT** /api/users/{id}/ | 
+*TelemetryApi* | [**apiOctoprintEventsCreate**](docs/TelemetryApi.md#apioctoprinteventscreate) | **POST** /api/octoprint-events/ | 
+*TelemetryApi* | [**apiOctoprintEventsList**](docs/TelemetryApi.md#apioctoprinteventslist) | **GET** /api/octoprint-events/ | 
+*TelemetryApi* | [**apiOctoprintEventsRetrieve**](docs/TelemetryApi.md#apioctoprinteventsretrieve) | **GET** /api/octoprint-events/{id}/ | 
+*TelemetryApi* | [**apiPrintJobEventsList**](docs/TelemetryApi.md#apiprintjobeventslist) | **GET** /api/print-job-events/ | 
+*TelemetryApi* | [**apiPrintJobEventsRetrieve**](docs/TelemetryApi.md#apiprintjobeventsretrieve) | **GET** /api/print-job-events/{id}/ | 
+*TelemetryApi* | [**apiPrintNannyPluginEventsList**](docs/TelemetryApi.md#apiprintnannyplugineventslist) | **GET** /api/print-nanny-plugin-events/ | 
+*TelemetryApi* | [**apiPrintNannyPluginEventsRetrieve**](docs/TelemetryApi.md#apiprintnannyplugineventsretrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+*TelemetryApi* | [**apiRemoteCommandEventsList**](docs/TelemetryApi.md#apiremotecommandeventslist) | **GET** /api/remote-command-events/ | 
+*TelemetryApi* | [**apiRemoteCommandEventsRetrieve**](docs/TelemetryApi.md#apiremotecommandeventsretrieve) | **GET** /api/remote-command-events/{id}/ | 
+*TelemetryApi* | [**apiTelemetryEventsList**](docs/TelemetryApi.md#apitelemetryeventslist) | **GET** /api/telemetry-events/ | 
+*TelemetryApi* | [**apiTelemetryEventsRetrieve**](docs/TelemetryApi.md#apitelemetryeventsretrieve) | **GET** /api/telemetry-events/{id}/ | 
+*UsersApi* | [**apiUsersList**](docs/UsersApi.md#apiuserslist) | **GET** /api/users/ | 
+*UsersApi* | [**apiUsersMeRetrieve**](docs/UsersApi.md#apiusersmeretrieve) | **GET** /api/users/me/ | 
+*UsersApi* | [**apiUsersPartialUpdate**](docs/UsersApi.md#apiuserspartialupdate) | **PATCH** /api/users/{id}/ | 
+*UsersApi* | [**apiUsersRetrieve**](docs/UsersApi.md#apiusersretrieve) | **GET** /api/users/{id}/ | 
+*UsersApi* | [**apiUsersUpdate**](docs/UsersApi.md#apiusersupdate) | **PUT** /api/users/{id}/ | 
 
 
 <a name="documentation-for-models"></a>
@@ -113,15 +119,21 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.AuthToken](docs/AuthToken.md)
  - [com.print-nanny.client.models.AuthTokenRequest](docs/AuthTokenRequest.md)
+ - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
+ - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
+ - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
+ - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
  - [com.print-nanny.client.models.EventType0c4Enum](docs/EventType0c4Enum.md)
  - [com.print-nanny.client.models.EventTypeD9eEnum](docs/EventTypeD9eEnum.md)
  - [com.print-nanny.client.models.Experiment](docs/Experiment.md)
  - [com.print-nanny.client.models.ExperimentDeviceConfig](docs/ExperimentDeviceConfig.md)
  - [com.print-nanny.client.models.GcodeFile](docs/GcodeFile.md)
+ - [com.print-nanny.client.models.MobileAuthRequest](docs/MobileAuthRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
@@ -184,6 +196,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.TelemetryEvent](docs/TelemetryEvent.md)
  - [com.print-nanny.client.models.TelemetryEventEventTypeEnum](docs/TelemetryEventEventTypeEnum.md)
  - [com.print-nanny.client.models.TelemetryEventPolymorphic](docs/TelemetryEventPolymorphic.md)
+ - [com.print-nanny.client.models.TokenResponse](docs/TokenResponse.md)
  - [com.print-nanny.client.models.User](docs/User.md)
  - [com.print-nanny.client.models.UserRequest](docs/UserRequest.md)
 

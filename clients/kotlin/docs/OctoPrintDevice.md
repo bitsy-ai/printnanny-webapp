@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
-**activeSession** | **kotlin.String** |  |  [optional] [readonly]
+**activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
 
 
 

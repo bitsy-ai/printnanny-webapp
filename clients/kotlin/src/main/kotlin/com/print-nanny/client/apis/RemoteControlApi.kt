@@ -62,8 +62,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun commandsList(page: kotlin.Int?) : PaginatedRemoteControlCommandList {
-        val localVariableConfig = commandsListRequestConfig(page = page)
+    fun apiCommandsList(page: kotlin.Int?) : PaginatedRemoteControlCommandList {
+        val localVariableConfig = apiCommandsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedRemoteControlCommandList>(
             localVariableConfig
@@ -85,12 +85,12 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation commandsList
+    * To obtain the request config of the operation apiCommandsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun commandsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun apiCommandsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -123,8 +123,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun commandsPartialUpdate(id: kotlin.Int, patchedRemoteControlCommandRequest: PatchedRemoteControlCommandRequest?) : RemoteControlCommand {
-        val localVariableConfig = commandsPartialUpdateRequestConfig(id = id, patchedRemoteControlCommandRequest = patchedRemoteControlCommandRequest)
+    fun apiCommandsPartialUpdate(id: kotlin.Int, patchedRemoteControlCommandRequest: PatchedRemoteControlCommandRequest?) : RemoteControlCommand {
+        val localVariableConfig = apiCommandsPartialUpdateRequestConfig(id = id, patchedRemoteControlCommandRequest = patchedRemoteControlCommandRequest)
 
         val localVarResponse = request<RemoteControlCommand>(
             localVariableConfig
@@ -146,13 +146,13 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation commandsPartialUpdate
+    * To obtain the request config of the operation apiCommandsPartialUpdate
     *
     * @param id A unique integer value identifying this remote control command. 
     * @param patchedRemoteControlCommandRequest  (optional)
     * @return RequestConfig
     */
-    fun commandsPartialUpdateRequestConfig(id: kotlin.Int, patchedRemoteControlCommandRequest: PatchedRemoteControlCommandRequest?) : RequestConfig {
+    fun apiCommandsPartialUpdateRequestConfig(id: kotlin.Int, patchedRemoteControlCommandRequest: PatchedRemoteControlCommandRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = patchedRemoteControlCommandRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -179,8 +179,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun commandsRetrieve(id: kotlin.Int) : RemoteControlCommand {
-        val localVariableConfig = commandsRetrieveRequestConfig(id = id)
+    fun apiCommandsRetrieve(id: kotlin.Int) : RemoteControlCommand {
+        val localVariableConfig = apiCommandsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<RemoteControlCommand>(
             localVariableConfig
@@ -202,12 +202,12 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation commandsRetrieve
+    * To obtain the request config of the operation apiCommandsRetrieve
     *
     * @param id A unique integer value identifying this remote control command. 
     * @return RequestConfig
     */
-    fun commandsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun apiCommandsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -235,8 +235,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun commandsUpdate(id: kotlin.Int, remoteControlCommandRequest: RemoteControlCommandRequest) : RemoteControlCommand {
-        val localVariableConfig = commandsUpdateRequestConfig(id = id, remoteControlCommandRequest = remoteControlCommandRequest)
+    fun apiCommandsUpdate(id: kotlin.Int, remoteControlCommandRequest: RemoteControlCommandRequest) : RemoteControlCommand {
+        val localVariableConfig = apiCommandsUpdateRequestConfig(id = id, remoteControlCommandRequest = remoteControlCommandRequest)
 
         val localVarResponse = request<RemoteControlCommand>(
             localVariableConfig
@@ -258,13 +258,13 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation commandsUpdate
+    * To obtain the request config of the operation apiCommandsUpdate
     *
     * @param id A unique integer value identifying this remote control command. 
     * @param remoteControlCommandRequest  
     * @return RequestConfig
     */
-    fun commandsUpdateRequestConfig(id: kotlin.Int, remoteControlCommandRequest: RemoteControlCommandRequest) : RequestConfig {
+    fun apiCommandsUpdateRequestConfig(id: kotlin.Int, remoteControlCommandRequest: RemoteControlCommandRequest) : RequestConfig {
         val localVariableBody: kotlin.Any? = remoteControlCommandRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -272,6 +272,826 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PUT,
             path = "/api/commands/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedGcodeFileList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiGcodeFilesList(page: kotlin.Int?) : PaginatedGcodeFileList {
+        val localVariableConfig = apiGcodeFilesListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedGcodeFileList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedGcodeFileList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiGcodeFilesList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun apiGcodeFilesListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/gcode-files/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id  
+    * @param name  (optional)
+    * @param file  (optional)
+    * @param fileHash  (optional)
+    * @param octoprintDevice  (optional)
+    * @return GcodeFile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiGcodeFilesPartialUpdate(id: kotlin.String, name: kotlin.String?, file: java.io.File?, fileHash: kotlin.String?, octoprintDevice: kotlin.String?) : GcodeFile {
+        val localVariableConfig = apiGcodeFilesPartialUpdateRequestConfig(id = id, name = name, file = file, fileHash = fileHash, octoprintDevice = octoprintDevice)
+
+        val localVarResponse = request<GcodeFile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiGcodeFilesPartialUpdate
+    *
+    * @param id  
+    * @param name  (optional)
+    * @param file  (optional)
+    * @param fileHash  (optional)
+    * @param octoprintDevice  (optional)
+    * @return RequestConfig
+    */
+    fun apiGcodeFilesPartialUpdateRequestConfig(id: kotlin.String, name: kotlin.String?, file: java.io.File?, fileHash: kotlin.String?, octoprintDevice: kotlin.String?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = mapOf("name" to name, "file" to file, "file_hash" to fileHash, "octoprint_device" to octoprintDevice)
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "multipart/form-data")
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id  
+    * @return GcodeFile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiGcodeFilesRetrieve(id: kotlin.String) : GcodeFile {
+        val localVariableConfig = apiGcodeFilesRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<GcodeFile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiGcodeFilesRetrieve
+    *
+    * @param id  
+    * @return RequestConfig
+    */
+    fun apiGcodeFilesRetrieveRequestConfig(id: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id  
+    * @param name  
+    * @param file  
+    * @param fileHash  
+    * @param octoprintDevice  
+    * @return GcodeFile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiGcodeFilesUpdate(id: kotlin.String, name: kotlin.String, file: java.io.File, fileHash: kotlin.String, octoprintDevice: kotlin.String) : GcodeFile {
+        val localVariableConfig = apiGcodeFilesUpdateRequestConfig(id = id, name = name, file = file, fileHash = fileHash, octoprintDevice = octoprintDevice)
+
+        val localVarResponse = request<GcodeFile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiGcodeFilesUpdate
+    *
+    * @param id  
+    * @param name  
+    * @param file  
+    * @param fileHash  
+    * @param octoprintDevice  
+    * @return RequestConfig
+    */
+    fun apiGcodeFilesUpdateRequestConfig(id: kotlin.String, name: kotlin.String, file: java.io.File, fileHash: kotlin.String, octoprintDevice: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = mapOf("name" to name, "file" to file, "file_hash" to fileHash, "octoprint_device" to octoprintDevice)
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "multipart/form-data")
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param octoPrintDeviceRequest  
+    * @return OctoPrintDevice
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiOctoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest) : OctoPrintDevice {
+        val localVariableConfig = apiOctoprintDevicesCreateRequestConfig(octoPrintDeviceRequest = octoPrintDeviceRequest)
+
+        val localVarResponse = request<OctoPrintDevice>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as OctoPrintDevice
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiOctoprintDevicesCreate
+    *
+    * @param octoPrintDeviceRequest  
+    * @return RequestConfig
+    */
+    fun apiOctoprintDevicesCreateRequestConfig(octoPrintDeviceRequest: OctoPrintDeviceRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = octoPrintDeviceRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/octoprint-devices/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedOctoPrintDeviceList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiOctoprintDevicesList(page: kotlin.Int?) : PaginatedOctoPrintDeviceList {
+        val localVariableConfig = apiOctoprintDevicesListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedOctoPrintDeviceList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedOctoPrintDeviceList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiOctoprintDevicesList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun apiOctoprintDevicesListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/octoprint-devices/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this octo print device. 
+    * @return OctoPrintDevice
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiOctoprintDevicesRetrieve(id: kotlin.Int) : OctoPrintDevice {
+        val localVariableConfig = apiOctoprintDevicesRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<OctoPrintDevice>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as OctoPrintDevice
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiOctoprintDevicesRetrieve
+    *
+    * @param id A unique integer value identifying this octo print device. 
+    * @return RequestConfig
+    */
+    fun apiOctoprintDevicesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/octoprint-devices/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param printSessionRequest  
+    * @return PrintSession
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrintSessionsCreate(printSessionRequest: PrintSessionRequest) : PrintSession {
+        val localVariableConfig = apiPrintSessionsCreateRequestConfig(printSessionRequest = printSessionRequest)
+
+        val localVarResponse = request<PrintSession>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrintSession
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrintSessionsCreate
+    *
+    * @param printSessionRequest  
+    * @return RequestConfig
+    */
+    fun apiPrintSessionsCreateRequestConfig(printSessionRequest: PrintSessionRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = printSessionRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/print-sessions/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedPrintSessionList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrintSessionsList(page: kotlin.Int?) : PaginatedPrintSessionList {
+        val localVariableConfig = apiPrintSessionsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedPrintSessionList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrintSessionList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrintSessionsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun apiPrintSessionsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/print-sessions/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param session  
+    * @return PrintSession
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrintSessionsRetrieve(session: kotlin.String) : PrintSession {
+        val localVariableConfig = apiPrintSessionsRetrieveRequestConfig(session = session)
+
+        val localVarResponse = request<PrintSession>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrintSession
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrintSessionsRetrieve
+    *
+    * @param session  
+    * @return RequestConfig
+    */
+    fun apiPrintSessionsRetrieveRequestConfig(session: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/print-sessions/{session}/".replace("{"+"session"+"}", "$session"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param name  (optional)
+    * @param page A page number within the paginated result set. (optional)
+    * @param user  (optional)
+    * @return PaginatedPrinterProfileList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrinterProfilesList(name: kotlin.String?, page: kotlin.Int?, user: kotlin.Int?) : PaginatedPrinterProfileList {
+        val localVariableConfig = apiPrinterProfilesListRequestConfig(name = name, page = page, user = user)
+
+        val localVarResponse = request<PaginatedPrinterProfileList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrinterProfileList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrinterProfilesList
+    *
+    * @param name  (optional)
+    * @param page A page number within the paginated result set. (optional)
+    * @param user  (optional)
+    * @return RequestConfig
+    */
+    fun apiPrinterProfilesListRequestConfig(name: kotlin.String?, page: kotlin.Int?, user: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (name != null) {
+                    put("name", listOf(name.toString()))
+                }
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+                if (user != null) {
+                    put("user", listOf(user.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/printer-profiles/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this printer profile. 
+    * @param patchedPrinterProfileRequest  (optional)
+    * @return PrinterProfile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrinterProfilesPartialUpdate(id: kotlin.Int, patchedPrinterProfileRequest: PatchedPrinterProfileRequest?) : PrinterProfile {
+        val localVariableConfig = apiPrinterProfilesPartialUpdateRequestConfig(id = id, patchedPrinterProfileRequest = patchedPrinterProfileRequest)
+
+        val localVarResponse = request<PrinterProfile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrinterProfilesPartialUpdate
+    *
+    * @param id A unique integer value identifying this printer profile. 
+    * @param patchedPrinterProfileRequest  (optional)
+    * @return RequestConfig
+    */
+    fun apiPrinterProfilesPartialUpdateRequestConfig(id: kotlin.Int, patchedPrinterProfileRequest: PatchedPrinterProfileRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedPrinterProfileRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this printer profile. 
+    * @return PrinterProfile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrinterProfilesRetrieve(id: kotlin.Int) : PrinterProfile {
+        val localVariableConfig = apiPrinterProfilesRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<PrinterProfile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrinterProfilesRetrieve
+    *
+    * @param id A unique integer value identifying this printer profile. 
+    * @return RequestConfig
+    */
+    fun apiPrinterProfilesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this printer profile. 
+    * @param printerProfileRequest  
+    * @return PrinterProfile
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiPrinterProfilesUpdate(id: kotlin.Int, printerProfileRequest: PrinterProfileRequest) : PrinterProfile {
+        val localVariableConfig = apiPrinterProfilesUpdateRequestConfig(id = id, printerProfileRequest = printerProfileRequest)
+
+        val localVarResponse = request<PrinterProfile>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiPrinterProfilesUpdate
+    *
+    * @param id A unique integer value identifying this printer profile. 
+    * @param printerProfileRequest  
+    * @return RequestConfig
+    */
+    fun apiPrinterProfilesUpdateRequestConfig(id: kotlin.Int, printerProfileRequest: PrinterProfileRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = printerProfileRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -344,247 +1164,6 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     /**
     * 
     * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedGcodeFileList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gcodeFilesList(page: kotlin.Int?) : PaginatedGcodeFileList {
-        val localVariableConfig = gcodeFilesListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedGcodeFileList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedGcodeFileList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation gcodeFilesList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun gcodeFilesListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/gcode-files/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id  
-    * @param name  (optional)
-    * @param file  (optional)
-    * @param fileHash  (optional)
-    * @param octoprintDevice  (optional)
-    * @return GcodeFile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gcodeFilesPartialUpdate(id: kotlin.String, name: kotlin.String?, file: java.io.File?, fileHash: kotlin.String?, octoprintDevice: kotlin.String?) : GcodeFile {
-        val localVariableConfig = gcodeFilesPartialUpdateRequestConfig(id = id, name = name, file = file, fileHash = fileHash, octoprintDevice = octoprintDevice)
-
-        val localVarResponse = request<GcodeFile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation gcodeFilesPartialUpdate
-    *
-    * @param id  
-    * @param name  (optional)
-    * @param file  (optional)
-    * @param fileHash  (optional)
-    * @param octoprintDevice  (optional)
-    * @return RequestConfig
-    */
-    fun gcodeFilesPartialUpdateRequestConfig(id: kotlin.String, name: kotlin.String?, file: java.io.File?, fileHash: kotlin.String?, octoprintDevice: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = mapOf("name" to name, "file" to file, "file_hash" to fileHash, "octoprint_device" to octoprintDevice)
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "multipart/form-data")
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PATCH,
-            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id  
-    * @return GcodeFile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gcodeFilesRetrieve(id: kotlin.String) : GcodeFile {
-        val localVariableConfig = gcodeFilesRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<GcodeFile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation gcodeFilesRetrieve
-    *
-    * @param id  
-    * @return RequestConfig
-    */
-    fun gcodeFilesRetrieveRequestConfig(id: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id  
-    * @param name  
-    * @param file  
-    * @param fileHash  
-    * @param octoprintDevice  
-    * @return GcodeFile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gcodeFilesUpdate(id: kotlin.String, name: kotlin.String, file: java.io.File, fileHash: kotlin.String, octoprintDevice: kotlin.String) : GcodeFile {
-        val localVariableConfig = gcodeFilesUpdateRequestConfig(id = id, name = name, file = file, fileHash = fileHash, octoprintDevice = octoprintDevice)
-
-        val localVarResponse = request<GcodeFile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GcodeFile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation gcodeFilesUpdate
-    *
-    * @param id  
-    * @param name  
-    * @param file  
-    * @param fileHash  
-    * @param octoprintDevice  
-    * @return RequestConfig
-    */
-    fun gcodeFilesUpdateRequestConfig(id: kotlin.String, name: kotlin.String, file: java.io.File, fileHash: kotlin.String, octoprintDevice: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = mapOf("name" to name, "file" to file, "file_hash" to fileHash, "octoprint_device" to octoprintDevice)
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "multipart/form-data")
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PUT,
-            path = "/api/gcode-files/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
     * @param name  
     * @param file  
     * @param fileHash  
@@ -646,121 +1225,6 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     /**
     * 
     * 
-    * @param octoPrintDeviceRequest  
-    * @return OctoPrintDevice
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest) : OctoPrintDevice {
-        val localVariableConfig = octoprintDevicesCreateRequestConfig(octoPrintDeviceRequest = octoPrintDeviceRequest)
-
-        val localVarResponse = request<OctoPrintDevice>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as OctoPrintDevice
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation octoprintDevicesCreate
-    *
-    * @param octoPrintDeviceRequest  
-    * @return RequestConfig
-    */
-    fun octoprintDevicesCreateRequestConfig(octoPrintDeviceRequest: OctoPrintDeviceRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = octoPrintDeviceRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/octoprint-devices/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedOctoPrintDeviceList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun octoprintDevicesList(page: kotlin.Int?) : PaginatedOctoPrintDeviceList {
-        val localVariableConfig = octoprintDevicesListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedOctoPrintDeviceList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedOctoPrintDeviceList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation octoprintDevicesList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun octoprintDevicesListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/octoprint-devices/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
     * @param id A unique integer value identifying this octo print device. 
     * @param patchedOctoPrintDeviceRequest  (optional)
     * @return OctoPrintDevice
@@ -806,61 +1270,6 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/api/octoprint-devices/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this octo print device. 
-    * @return OctoPrintDevice
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun octoprintDevicesRetrieve(id: kotlin.Int) : OctoPrintDevice {
-        val localVariableConfig = octoprintDevicesRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<OctoPrintDevice>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as OctoPrintDevice
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation octoprintDevicesRetrieve
-    *
-    * @param id A unique integer value identifying this octo print device. 
-    * @return RequestConfig
-    */
-    fun octoprintDevicesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
             path = "/api/octoprint-devices/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
@@ -1099,176 +1508,6 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     /**
     * 
     * 
-    * @param printSessionRequest  
-    * @return PrintSession
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printSessionsCreate(printSessionRequest: PrintSessionRequest) : PrintSession {
-        val localVariableConfig = printSessionsCreateRequestConfig(printSessionRequest = printSessionRequest)
-
-        val localVarResponse = request<PrintSession>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PrintSession
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printSessionsCreate
-    *
-    * @param printSessionRequest  
-    * @return RequestConfig
-    */
-    fun printSessionsCreateRequestConfig(printSessionRequest: PrintSessionRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = printSessionRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/print-sessions/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedPrintSessionList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printSessionsList(page: kotlin.Int?) : PaginatedPrintSessionList {
-        val localVariableConfig = printSessionsListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedPrintSessionList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrintSessionList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printSessionsList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun printSessionsListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/print-sessions/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param session  
-    * @return PrintSession
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printSessionsRetrieve(session: kotlin.String) : PrintSession {
-        val localVariableConfig = printSessionsRetrieveRequestConfig(session = session)
-
-        val localVarResponse = request<PrintSession>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PrintSession
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printSessionsRetrieve
-    *
-    * @param session  
-    * @return RequestConfig
-    */
-    fun printSessionsRetrieveRequestConfig(session: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/print-sessions/{session}/".replace("{"+"session"+"}", "$session"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
     * @param printerProfileRequest  
     * @return PrintSession
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -1313,245 +1552,6 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/api/printer-profiles/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param name  (optional)
-    * @param page A page number within the paginated result set. (optional)
-    * @param user  (optional)
-    * @return PaginatedPrinterProfileList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printerProfilesList(name: kotlin.String?, page: kotlin.Int?, user: kotlin.Int?) : PaginatedPrinterProfileList {
-        val localVariableConfig = printerProfilesListRequestConfig(name = name, page = page, user = user)
-
-        val localVarResponse = request<PaginatedPrinterProfileList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrinterProfileList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printerProfilesList
-    *
-    * @param name  (optional)
-    * @param page A page number within the paginated result set. (optional)
-    * @param user  (optional)
-    * @return RequestConfig
-    */
-    fun printerProfilesListRequestConfig(name: kotlin.String?, page: kotlin.Int?, user: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (name != null) {
-                    put("name", listOf(name.toString()))
-                }
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-                if (user != null) {
-                    put("user", listOf(user.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/printer-profiles/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this printer profile. 
-    * @param patchedPrinterProfileRequest  (optional)
-    * @return PrinterProfile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printerProfilesPartialUpdate(id: kotlin.Int, patchedPrinterProfileRequest: PatchedPrinterProfileRequest?) : PrinterProfile {
-        val localVariableConfig = printerProfilesPartialUpdateRequestConfig(id = id, patchedPrinterProfileRequest = patchedPrinterProfileRequest)
-
-        val localVarResponse = request<PrinterProfile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printerProfilesPartialUpdate
-    *
-    * @param id A unique integer value identifying this printer profile. 
-    * @param patchedPrinterProfileRequest  (optional)
-    * @return RequestConfig
-    */
-    fun printerProfilesPartialUpdateRequestConfig(id: kotlin.Int, patchedPrinterProfileRequest: PatchedPrinterProfileRequest?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = patchedPrinterProfileRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PATCH,
-            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this printer profile. 
-    * @return PrinterProfile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printerProfilesRetrieve(id: kotlin.Int) : PrinterProfile {
-        val localVariableConfig = printerProfilesRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<PrinterProfile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printerProfilesRetrieve
-    *
-    * @param id A unique integer value identifying this printer profile. 
-    * @return RequestConfig
-    */
-    fun printerProfilesRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this printer profile. 
-    * @param printerProfileRequest  
-    * @return PrinterProfile
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun printerProfilesUpdate(id: kotlin.Int, printerProfileRequest: PrinterProfileRequest) : PrinterProfile {
-        val localVariableConfig = printerProfilesUpdateRequestConfig(id = id, printerProfileRequest = printerProfileRequest)
-
-        val localVarResponse = request<PrinterProfile>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfile
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation printerProfilesUpdate
-    *
-    * @param id A unique integer value identifying this printer profile. 
-    * @param printerProfileRequest  
-    * @return RequestConfig
-    */
-    fun printerProfilesUpdateRequestConfig(id: kotlin.Int, printerProfileRequest: PrinterProfileRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = printerProfileRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PUT,
-            path = "/api/printer-profiles/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

@@ -11,10 +11,11 @@
 */
 package com.print-nanny.client.apis
 
-import com.print-nanny.client.models.PaginatedUserList
-import com.print-nanny.client.models.PatchedUserRequest
-import com.print-nanny.client.models.User
-import com.print-nanny.client.models.UserRequest
+import com.print-nanny.client.models.Alert
+import com.print-nanny.client.models.AlertRequest
+import com.print-nanny.client.models.AuthToken
+import com.print-nanny.client.models.PaginatedAlertList
+import com.print-nanny.client.models.PatchedAlertRequest
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -28,7 +29,7 @@ import com.print-nanny.client.infrastructure.ResponseType
 import com.print-nanny.client.infrastructure.Success
 import com.print-nanny.client.infrastructure.toMultiValue
 
-class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class ApiApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -40,22 +41,22 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     * 
     * 
     * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedUserList
+    * @return PaginatedAlertList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiUsersList(page: kotlin.Int?) : PaginatedUserList {
-        val localVariableConfig = apiUsersListRequestConfig(page = page)
+    fun apiAlertsList(page: kotlin.Int?) : PaginatedAlertList {
+        val localVariableConfig = apiAlertsListRequestConfig(page = page)
 
-        val localVarResponse = request<PaginatedUserList>(
+        val localVarResponse = request<PaginatedAlertList>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedUserList
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedAlertList
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -70,12 +71,12 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation apiUsersList
+    * To obtain the request config of the operation apiAlertsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiUsersListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun apiAlertsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -87,7 +88,7 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/users/",
+            path = "/api/alerts/",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -99,22 +100,24 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     /**
     * 
     * 
-    * @return User
+    * @param id A unique integer value identifying this alert message. 
+    * @param patchedAlertRequest  (optional)
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiUsersMeRetrieve() : User {
-        val localVariableConfig = apiUsersMeRetrieveRequestConfig()
+    fun apiAlertsPartialUpdate(id: kotlin.Int, patchedAlertRequest: PatchedAlertRequest?) : Alert {
+        val localVariableConfig = apiAlertsPartialUpdateRequestConfig(id = id, patchedAlertRequest = patchedAlertRequest)
 
-        val localVarResponse = request<User>(
+        val localVarResponse = request<Alert>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as User
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -129,75 +132,20 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation apiUsersMeRetrieve
+    * To obtain the request config of the operation apiAlertsPartialUpdate
     *
+    * @param id A unique integer value identifying this alert message. 
+    * @param patchedAlertRequest  (optional)
     * @return RequestConfig
     */
-    fun apiUsersMeRetrieveRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/users/me/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this user. 
-    * @param patchedUserRequest  (optional)
-    * @return User
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiUsersPartialUpdate(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : User {
-        val localVariableConfig = apiUsersPartialUpdateRequestConfig(id = id, patchedUserRequest = patchedUserRequest)
-
-        val localVarResponse = request<User>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as User
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiUsersPartialUpdate
-    *
-    * @param id A unique integer value identifying this user. 
-    * @param patchedUserRequest  (optional)
-    * @return RequestConfig
-    */
-    fun apiUsersPartialUpdateRequestConfig(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = patchedUserRequest
+    fun apiAlertsPartialUpdateRequestConfig(id: kotlin.Int, patchedAlertRequest: PatchedAlertRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedAlertRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
-            path = "/api/users/{id}/".replace("{"+"id"+"}", "$id"),
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -209,23 +157,23 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     /**
     * 
     * 
-    * @param id A unique integer value identifying this user. 
-    * @return User
+    * @param id A unique integer value identifying this alert message. 
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiUsersRetrieve(id: kotlin.Int) : User {
-        val localVariableConfig = apiUsersRetrieveRequestConfig(id = id)
+    fun apiAlertsRetrieve(id: kotlin.Int) : Alert {
+        val localVariableConfig = apiAlertsRetrieveRequestConfig(id = id)
 
-        val localVarResponse = request<User>(
+        val localVarResponse = request<Alert>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as User
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -240,19 +188,19 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation apiUsersRetrieve
+    * To obtain the request config of the operation apiAlertsRetrieve
     *
-    * @param id A unique integer value identifying this user. 
+    * @param id A unique integer value identifying this alert message. 
     * @return RequestConfig
     */
-    fun apiUsersRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun apiAlertsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
-            path = "/api/users/{id}/".replace("{"+"id"+"}", "$id"),
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -264,24 +212,24 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     /**
     * 
     * 
-    * @param id A unique integer value identifying this user. 
-    * @param userRequest  
-    * @return User
+    * @param id A unique integer value identifying this alert message. 
+    * @param alertRequest  
+    * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiUsersUpdate(id: kotlin.Int, userRequest: UserRequest) : User {
-        val localVariableConfig = apiUsersUpdateRequestConfig(id = id, userRequest = userRequest)
+    fun apiAlertsUpdate(id: kotlin.Int, alertRequest: AlertRequest) : Alert {
+        val localVariableConfig = apiAlertsUpdateRequestConfig(id = id, alertRequest = alertRequest)
 
-        val localVarResponse = request<User>(
+        val localVarResponse = request<Alert>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as User
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Alert
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -296,20 +244,137 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation apiUsersUpdate
+    * To obtain the request config of the operation apiAlertsUpdate
     *
-    * @param id A unique integer value identifying this user. 
-    * @param userRequest  
+    * @param id A unique integer value identifying this alert message. 
+    * @param alertRequest  
     * @return RequestConfig
     */
-    fun apiUsersUpdateRequestConfig(id: kotlin.Int, userRequest: UserRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = userRequest
+    fun apiAlertsUpdateRequestConfig(id: kotlin.Int, alertRequest: AlertRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = alertRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PUT,
-            path = "/api/users/{id}/".replace("{"+"id"+"}", "$id"),
+            path = "/api/alerts/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param username  
+    * @param password  
+    * @return AuthToken
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiAuthTokenCreate(username: kotlin.String, password: kotlin.String) : AuthToken {
+        val localVariableConfig = apiAuthTokenCreateRequestConfig(username = username, password = password)
+
+        val localVarResponse = request<AuthToken>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AuthToken
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiAuthTokenCreate
+    *
+    * @param username  
+    * @param password  
+    * @return RequestConfig
+    */
+    fun apiAuthTokenCreateRequestConfig(username: kotlin.String, password: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = mapOf("username" to username, "password" to password)
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/auth-token/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+    * @param lang  (optional)
+    * @return kotlin.collections.Map<kotlin.String, AnyType>
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun apiSchemaRetrieve(lang: kotlin.String?) : kotlin.collections.Map<kotlin.String, AnyType> {
+        val localVariableConfig = apiSchemaRetrieveRequestConfig(lang = lang)
+
+        val localVarResponse = request<kotlin.collections.Map<kotlin.String, AnyType>>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.collections.Map<kotlin.String, AnyType>
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation apiSchemaRetrieve
+    *
+    * @param lang  (optional)
+    * @return RequestConfig
+    */
+    fun apiSchemaRetrieveRequestConfig(lang: kotlin.String?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (lang != null) {
+                    put("lang", listOf(lang.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/schema/",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

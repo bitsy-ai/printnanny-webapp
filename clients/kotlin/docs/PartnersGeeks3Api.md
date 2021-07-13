@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alertsList2**](PartnersGeeks3Api.md#alertsList2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
+[**alertsList**](PartnersGeeks3Api.md#alertsList) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 
 
-<a name="alertsList2"></a>
-# **alertsList2**
-> Partner3DGeeksAlert alertsList2(id)
+<a name="alertsList"></a>
+# **alertsList**
+> Partner3DGeeksAlert alertsList(id)
 
 
 
@@ -22,13 +22,13 @@ Method | HTTP request | Description
 val apiInstance = PartnersGeeks3Api()
 val id : kotlin.String = id_example // kotlin.String | 
 try {
-    val result : Partner3DGeeksAlert = apiInstance.alertsList2(id)
+    val result : Partner3DGeeksAlert = apiInstance.alertsList(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PartnersGeeks3Api#alertsList2")
+    println("4xx response calling PartnersGeeks3Api#alertsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PartnersGeeks3Api#alertsList2")
+    println("5xx response calling PartnersGeeks3Api#alertsList")
     e.printStackTrace()
 }
 ```

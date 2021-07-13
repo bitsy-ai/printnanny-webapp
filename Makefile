@@ -286,7 +286,7 @@ rust-client-release: rust-client
 	git add -A && git commit -m "0.8.3 client codegen ✨"
 	cd clients/rust && cargo publish
 
-clients-release: python-client-release rust-client-release ts-client kotlin-client 
+clients-release: python-client-release ts-client kotlin-client rust-client-release
 
 cloudsql:
 	cloud_sql_proxy -dir=$(HOME)/cloudsql -instances=print-nanny:us-central1:print-nanny=tcp:5433
