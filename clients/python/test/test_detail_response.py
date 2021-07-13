@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.email_auth import EmailAuth  # noqa: E501
+from print_nanny_client.models.detail_response import DetailResponse  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestEmailAuth(unittest.TestCase):
-    """EmailAuth unit test stubs"""
+class TestDetailResponse(unittest.TestCase):
+    """DetailResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,22 +29,22 @@ class TestEmailAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test EmailAuth
+        """Test DetailResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.email_auth.EmailAuth()  # noqa: E501
+        # model = print_nanny_client.models.detail_response.DetailResponse()  # noqa: E501
         if include_optional :
-            return EmailAuth(
-                email = ''
+            return DetailResponse(
+                detail = ''
             )
         else :
-            return EmailAuth(
-                email = '',
+            return DetailResponse(
+                detail = '',
         )
 
-    def testEmailAuth(self):
-        """Test EmailAuth"""
+    def testDetailResponse(self):
+        """Test DetailResponse"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

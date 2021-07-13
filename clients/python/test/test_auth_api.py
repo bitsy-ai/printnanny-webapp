@@ -28,38 +28,8 @@ class TestAuthApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_auth_email_create(self):
-        """Test case for auth_email_create
-
-        """
-        pass
-
-    def test_auth_mobile_create(self):
-        """Test case for auth_mobile_create
-
-        """
-        pass
-
-    def test_auth_token_create(self):
-        """Test case for auth_token_create
-
-        """
-        pass
-
     def test_auth_verify_create(self):
         """Test case for auth_verify_create
-
-        """
-        pass
-
-    def test_auth_verify_email_create(self):
-        """Test case for auth_verify_email_create
-
-        """
-        pass
-
-    def test_auth_verify_mobile_create(self):
-        """Test case for auth_verify_mobile_create
 
         """
         pass
