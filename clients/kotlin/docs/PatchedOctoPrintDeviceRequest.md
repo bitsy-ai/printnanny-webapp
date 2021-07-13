@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  |  [optional]
 **pluginVersion** | **kotlin.String** |  |  [optional]
 **printNannyClientVersion** | **kotlin.String** |  |  [optional]
+**activeSession** | [**PrintSessionRequest**](PrintSessionRequest.md) |  |  [optional]
 
 
 

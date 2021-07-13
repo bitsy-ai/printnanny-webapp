@@ -11,6 +11,7 @@
 */
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.PrintSessionRequest
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,6 +33,7 @@ import java.io.Serializable
  * @param hardware 
  * @param revision 
  * @param virtualenv 
+ * @param activeSession 
  */
 
 data class OctoPrintDeviceRequest (
@@ -64,7 +66,9 @@ data class OctoPrintDeviceRequest (
     @Json(name = "revision")
     val revision: kotlin.String? = null,
     @Json(name = "virtualenv")
-    val virtualenv: kotlin.String? = null
+    val virtualenv: kotlin.String? = null,
+    @Json(name = "active_session")
+    val activeSession: PrintSessionRequest? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

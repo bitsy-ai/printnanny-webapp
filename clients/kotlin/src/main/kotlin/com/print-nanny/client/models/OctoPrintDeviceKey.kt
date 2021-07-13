@@ -12,6 +12,7 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.PrintSession
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -122,7 +123,7 @@ data class OctoPrintDeviceKey (
     @Json(name = "monitoring_active")
     val monitoringActive: kotlin.Boolean? = null,
     @Json(name = "active_session")
-    val activeSession: kotlin.String? = null
+    val activeSession: PrintSession? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

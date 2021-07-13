@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.callback_token_auth import CallbackTokenAuth  # noqa: E501
+from print_nanny_client.models.token_response import TokenResponse  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestCallbackTokenAuth(unittest.TestCase):
-    """CallbackTokenAuth unit test stubs"""
+class TestTokenResponse(unittest.TestCase):
+    """TokenResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,24 +29,22 @@ class TestCallbackTokenAuth(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test CallbackTokenAuth
+        """Test TokenResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.callback_token_auth.CallbackTokenAuth()  # noqa: E501
+        # model = print_nanny_client.models.token_response.TokenResponse()  # noqa: E501
         if include_optional :
-            return CallbackTokenAuth(
-                email = '', 
-                mobile = '+680728880015', 
-                token = '012345'
+            return TokenResponse(
+                token = ''
             )
         else :
-            return CallbackTokenAuth(
-                token = '012345',
+            return TokenResponse(
+                token = '',
         )
 
-    def testCallbackTokenAuth(self):
-        """Test CallbackTokenAuth"""
+    def testTokenResponse(self):
+        """Test TokenResponse"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

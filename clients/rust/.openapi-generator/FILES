@@ -14,14 +14,13 @@ docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthToken.md
 docs/AuthTokenRequest.md
-docs/CallbackTokenAuth.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CommandEnum.md
+docs/DetailResponse.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
-docs/EmailAuth.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
@@ -30,7 +29,6 @@ docs/Experiment.md
 docs/ExperimentDeviceConfig.md
 docs/GcodeFile.md
 docs/MlOpsApi.md
-docs/MobileAuth.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
 docs/Nested.md
@@ -98,6 +96,7 @@ docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
 docs/TelemetryEventPolymorphic.md
+docs/TokenResponse.md
 docs/User.md
 docs/UserRequest.md
 docs/UsersApi.md
@@ -122,14 +121,13 @@ src/models/alert_request.rs
 src/models/artifact_types_enum.rs
 src/models/auth_token.rs
 src/models/auth_token_request.rs
-src/models/callback_token_auth.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
 src/models/command_enum.rs
+src/models/detail_response.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
-src/models/email_auth.rs
 src/models/email_auth_request.rs
 src/models/event_source_enum.rs
 src/models/event_type0c4_enum.rs
@@ -137,7 +135,6 @@ src/models/event_type_d9e_enum.rs
 src/models/experiment.rs
 src/models/experiment_device_config.rs
 src/models/gcode_file.rs
-src/models/mobile_auth.rs
 src/models/mobile_auth_request.rs
 src/models/mod.rs
 src/models/model_artifact.rs
@@ -202,5 +199,6 @@ src/models/remote_control_command_request.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs
+src/models/token_response.rs
 src/models/user.rs
 src/models/user_request.rs

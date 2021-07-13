@@ -47,8 +47,8 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun usersList(page: kotlin.Int?) : PaginatedUserList {
-        val localVariableConfig = usersListRequestConfig(page = page)
+    fun apiUsersList(page: kotlin.Int?) : PaginatedUserList {
+        val localVariableConfig = apiUsersListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedUserList>(
             localVariableConfig
@@ -70,12 +70,12 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation usersList
+    * To obtain the request config of the operation apiUsersList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun usersListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun apiUsersListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -106,8 +106,8 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun usersMeRetrieve() : User {
-        val localVariableConfig = usersMeRetrieveRequestConfig()
+    fun apiUsersMeRetrieve() : User {
+        val localVariableConfig = apiUsersMeRetrieveRequestConfig()
 
         val localVarResponse = request<User>(
             localVariableConfig
@@ -129,11 +129,11 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation usersMeRetrieve
+    * To obtain the request config of the operation apiUsersMeRetrieve
     *
     * @return RequestConfig
     */
-    fun usersMeRetrieveRequestConfig() : RequestConfig {
+    fun apiUsersMeRetrieveRequestConfig() : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -161,8 +161,8 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun usersPartialUpdate(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : User {
-        val localVariableConfig = usersPartialUpdateRequestConfig(id = id, patchedUserRequest = patchedUserRequest)
+    fun apiUsersPartialUpdate(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : User {
+        val localVariableConfig = apiUsersPartialUpdateRequestConfig(id = id, patchedUserRequest = patchedUserRequest)
 
         val localVarResponse = request<User>(
             localVariableConfig
@@ -184,13 +184,13 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation usersPartialUpdate
+    * To obtain the request config of the operation apiUsersPartialUpdate
     *
     * @param id A unique integer value identifying this user. 
     * @param patchedUserRequest  (optional)
     * @return RequestConfig
     */
-    fun usersPartialUpdateRequestConfig(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : RequestConfig {
+    fun apiUsersPartialUpdateRequestConfig(id: kotlin.Int, patchedUserRequest: PatchedUserRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = patchedUserRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -217,8 +217,8 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun usersRetrieve(id: kotlin.Int) : User {
-        val localVariableConfig = usersRetrieveRequestConfig(id = id)
+    fun apiUsersRetrieve(id: kotlin.Int) : User {
+        val localVariableConfig = apiUsersRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<User>(
             localVariableConfig
@@ -240,12 +240,12 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation usersRetrieve
+    * To obtain the request config of the operation apiUsersRetrieve
     *
     * @param id A unique integer value identifying this user. 
     * @return RequestConfig
     */
-    fun usersRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun apiUsersRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -273,8 +273,8 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun usersUpdate(id: kotlin.Int, userRequest: UserRequest) : User {
-        val localVariableConfig = usersUpdateRequestConfig(id = id, userRequest = userRequest)
+    fun apiUsersUpdate(id: kotlin.Int, userRequest: UserRequest) : User {
+        val localVariableConfig = apiUsersUpdateRequestConfig(id = id, userRequest = userRequest)
 
         val localVarResponse = request<User>(
             localVariableConfig
@@ -296,13 +296,13 @@ class UsersApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     }
 
     /**
-    * To obtain the request config of the operation usersUpdate
+    * To obtain the request config of the operation apiUsersUpdate
     *
     * @param id A unique integer value identifying this user. 
     * @param userRequest  
     * @return RequestConfig
     */
-    fun usersUpdateRequestConfig(id: kotlin.Int, userRequest: UserRequest) : RequestConfig {
+    fun apiUsersUpdateRequestConfig(id: kotlin.Int, userRequest: UserRequest) : RequestConfig {
         val localVariableBody: kotlin.Any? = userRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

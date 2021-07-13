@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from print_nanny_client.api.alerts_api import AlertsApi
 from print_nanny_client.api.api_api import ApiApi
 from print_nanny_client.api.auth_api import AuthApi
+from print_nanny_client.api.auth__api import AuthApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.partners_geeks3_api import PartnersGeeks3Api
 from print_nanny_client.api.partners_geeks3d_api import PartnersGeeks3dApi
