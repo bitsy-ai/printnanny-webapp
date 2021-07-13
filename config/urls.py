@@ -16,8 +16,6 @@ import django_prometheus
 from print_nanny_webapp.users.views import InviteRequestView, ThanksView
 from drf_spectacular.views import SpectacularJSONAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-#from config.api_schema import CustomOpenAPISchemaGenerator
-
 # Webapp urls
 urlpatterns = [
     re_path(r'^health/', include('health_check.urls'), name='health'),
@@ -59,6 +57,10 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
 
 # API URLS
+
+# https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
+# do not remove the following line!
+import print_nanny_webapp.drfpasswordless.schema
 
 urlpatterns += [
     # API base url
