@@ -199,7 +199,6 @@ def create_cloudiot_device(
 
 def update_cloudiot_device(
     device: cloudiot_v1.types.Device,
-    name: str,
     serial: str,
     user_id: int,
     metadata: dict,
