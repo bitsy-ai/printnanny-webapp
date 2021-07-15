@@ -1,6 +1,8 @@
+import re
 from django.contrib.postgres.fields.jsonb import JSONField
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models.fields import related
 from django.urls import reverse
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
@@ -40,7 +42,9 @@ class Device(SafeDeleteModel):
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="devices"
+    )
 
     hostname = models.CharField(max_length=255)
 
@@ -99,8 +103,12 @@ class PrinterController(SafeDeleteModel, PolymorphicModel):
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
+    )
+    device = models.ForeignKey(
+        Device, on_delete=models.CASCADE, related_name="printer_controllers"
+    )
     cli_version = models.CharField(max_length=255)
 
 
@@ -123,23 +131,28 @@ class OctoprintController(PrinterController):
 
 
 class PrinterProfile(SafeDeleteModel, PolymorphicModel):
+    class Meta:
+        unique_together = (
+            "user",
+            "name",
+        )
+
     _safedelete_policy = SOFT_DELETE
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    controller = models.ForeignKey(PrinterController, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="printer_profiles"
+    )
+    controller = models.ForeignKey(
+        PrinterController, on_delete=models.CASCADE, related_name="printer_profiles"
+    )
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     local_webcam = models.CharField(max_length=255)
 
 
 class OctoprintPrinterProfile(PrinterProfile):
     _safedelete_policy = SOFT_DELETE
-
-    class Meta:
-        unique_together = (
-            "user",
-            "octoprint_key",
-        )
 
     octoprint_controller = models.ForeignKey(
         OctoprintController, on_delete=models.CASCADE, db_index=True
@@ -165,8 +178,6 @@ class OctoprintPrinterProfile(PrinterProfile):
     heated_chamber = models.BooleanField(null=True)
 
     model = models.CharField(max_length=255, null=True, blank=True)
-    name = models.CharField(max_length=255)
-    octoprint_key = models.CharField(max_length=255, db_index=True)
 
     volume_custom_box = JSONField(default={})
     volume_depth = models.FloatField(null=True)
