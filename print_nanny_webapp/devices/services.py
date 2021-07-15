@@ -251,7 +251,6 @@ def update_or_create_cloudiot_device(
         cloudiot_device = client.get_device(name=device_path)
         cloudiot_device = update_cloudiot_device(
             cloudiot_device,
-            name,
             serial,
             user_id,
             metadata,
