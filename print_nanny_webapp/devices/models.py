@@ -2,7 +2,6 @@ import re
 from django.contrib.postgres.fields.jsonb import JSONField
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models.fields import related
 from django.urls import reverse
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
@@ -23,7 +22,9 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
     if hasattr(fn, "__call__"):
         return fn()
 
+
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
+
 
 class Device(SafeDeleteModel):
     """
