@@ -1,6 +1,9 @@
 from django.conf import settings
-from rest_framework.routers import DefaultRouter, SimpleRouter
-from django.urls import include, path, re_path
+from rest_framework.routers import DefaultRouter
+
+from print_nanny_webapp.devices.api.views import (
+    DeviceViewSet
+)
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
 )
@@ -32,6 +35,7 @@ from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
+router.register("devices", DeviceViewSet)
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
