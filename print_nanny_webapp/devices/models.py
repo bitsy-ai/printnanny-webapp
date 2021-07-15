@@ -40,7 +40,7 @@ class Device(SafeDeleteModel):
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
     hostname = models.CharField(max_length=255)
 
@@ -99,7 +99,7 @@ class PrinterController(SafeDeleteModel, PolymorphicModel):
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(UserModel)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     cli_version = models.CharField(max_length=255)
 
