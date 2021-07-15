@@ -23,16 +23,13 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
     if hasattr(fn, "__call__"):
         return fn()
 
-
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
-
 
 class Device(SafeDeleteModel):
     """
     1-1 relationship with Cloud Iot Device (GCP)
     1-many relationship with PrinterController models
     System-level information
-
     """
 
     def pre_softdelete(self):
@@ -45,7 +42,6 @@ class Device(SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
-
     hostname = models.CharField(max_length=255)
 
     # PKI
