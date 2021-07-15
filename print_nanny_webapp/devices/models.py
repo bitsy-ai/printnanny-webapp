@@ -6,11 +6,23 @@ from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 from django.conf import settings
 
+from polymorphic.models import PolymorphicModel
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
+from print_nanny_webapp.devices.services import delete_cloudiot_device
+
 UserModel = get_user_model()
+
+
+def pre_softdelete_cloudiot_device(instance=None, **kwargs):
+    fn = getattr(instance, "pre_softdelete", None)
+    if hasattr(fn, "__call__"):
+        return fn()
+
+
+pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
 class Device(SafeDeleteModel):
@@ -81,18 +93,93 @@ class Device(SafeDeleteModel):
         return configs_dict
 
 
-class OctoprintController(SafeDeleteModel):
+class PrinterController(SafeDeleteModel, PolymorphicModel):
+
     _safedelete_policy = SOFT_DELETE
 
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(UserModel)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    cli_version = models.CharField(max_length=255)
+
+
+class OctoprintController(PrinterController):
 
     python_version = models.CharField(max_length=255)
     pip_version = models.CharField(max_length=255)
     virtualenv = models.CharField(max_length=255, null=True)
-
     octoprint_version = models.CharField(max_length=255)
     plugin_version = models.CharField(max_length=255)
-    print_nanny_client_version = models.CharField(max_length=255)
+
+
+# TODO
+# class RepetierController(PrinterController):
+#     pass
+
+# TODO
+# class MainsailController(PrinterController):
+#     pass
+
+
+class PrinterProfile(SafeDeleteModel, PolymorphicModel):
+    _safedelete_policy = SOFT_DELETE
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    controller = models.ForeignKey(PrinterController, on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    local_webcam = models.CharField(max_length=255)
+
+
+class OctoprintPrinterProfile(PrinterProfile):
+    _safedelete_policy = SOFT_DELETE
+
+    class Meta:
+        unique_together = (
+            "user",
+            "octoprint_key",
+        )
+
+    octoprint_controller = models.ForeignKey(
+        OctoprintController, on_delete=models.CASCADE, db_index=True
+    )
+
+    axes_e_inverted = models.BooleanField(null=True)
+    axes_e_speed = models.IntegerField(null=True)
+
+    axes_x_speed = models.IntegerField(null=True)
+    axes_x_inverted = models.BooleanField(null=True)
+
+    axes_y_inverted = models.BooleanField(null=True)
+    axes_y_speed = models.IntegerField(null=True)
+
+    axes_z_inverted = models.BooleanField(null=True)
+    axes_z_speed = models.IntegerField(null=True)
+
+    extruder_count = models.IntegerField(null=True)
+    extruder_nozzle_diameter = models.FloatField(null=True)
+    extruder_shared_nozzle = models.BooleanField(null=True)
+
+    heated_bed = models.BooleanField(null=True)
+    heated_chamber = models.BooleanField(null=True)
+
+    model = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    octoprint_key = models.CharField(max_length=255, db_index=True)
+
+    volume_custom_box = JSONField(default={})
+    volume_depth = models.FloatField(null=True)
+    volume_formfactor = models.CharField(null=True, max_length=255)
+    volume_height = models.FloatField(null=True)
+    volume_origin = models.CharField(null=True, max_length=255)
+    volume_width = models.FloatField(null=True)
+
+
+# TODO
+# class RepetierPrinterProfile(PrinterProfile):
+#     pass
+
+# TODO
+# class MainsailPrinterProfile(PrinterProfile):
+#     pass
