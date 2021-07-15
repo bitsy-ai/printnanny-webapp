@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**apiPrinterProfilesUpdate**](RemoteControlApi.md#apiPrinterProfilesUpdate) | **PUT** /api/printer-profiles/{id}/ | 
 [**gcodeFilesCreate**](RemoteControlApi.md#gcodeFilesCreate) | **POST** /api/gcode-files/ | 
 [**gcodeFilesUpdateOrCreate**](RemoteControlApi.md#gcodeFilesUpdateOrCreate) | **POST** /api/gcode-files/update-or-create/ | 
-[**octoprintDevicesPartialUpdate**](RemoteControlApi.md#octoprintDevicesPartialUpdate) | **PATCH** /api/octoprint-devices/{id}/ | 
-[**octoprintDevicesUpdate**](RemoteControlApi.md#octoprintDevicesUpdate) | **PUT** /api/octoprint-devices/{id}/ | 
+[**octoprintDevicesPartialUpdate2**](RemoteControlApi.md#octoprintDevicesPartialUpdate2) | **PATCH** /api/octoprint-devices/{id}/ | 
+[**octoprintDevicesUpdate2**](RemoteControlApi.md#octoprintDevicesUpdate2) | **PUT** /api/octoprint-devices/{id}/ | 
 [**octoprintDevicesUpdateOrCreate**](RemoteControlApi.md#octoprintDevicesUpdateOrCreate) | **POST** /api/octoprint-devices/update-or-create/ | 
 [**printSessionPartialUpdate**](RemoteControlApi.md#printSessionPartialUpdate) | **PATCH** /api/print-sessions/{session}/ | 
 [**printSessionUpdate**](RemoteControlApi.md#printSessionUpdate) | **PUT** /api/print-sessions/{session}/ | 
@@ -1073,9 +1073,9 @@ Configure tokenAuth:
  - **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="octoprintDevicesPartialUpdate"></a>
-# **octoprintDevicesPartialUpdate**
-> OctoPrintDevice octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest)
+<a name="octoprintDevicesPartialUpdate2"></a>
+# **octoprintDevicesPartialUpdate2**
+> OctoPrintDevice octoprintDevicesPartialUpdate2(id, patchedOctoPrintDeviceRequest)
 
 
 
@@ -1089,13 +1089,13 @@ val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print device.
 val patchedOctoPrintDeviceRequest : PatchedOctoPrintDeviceRequest =  // PatchedOctoPrintDeviceRequest | 
 try {
-    val result : OctoPrintDevice = apiInstance.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest)
+    val result : OctoPrintDevice = apiInstance.octoprintDevicesPartialUpdate2(id, patchedOctoPrintDeviceRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling RemoteControlApi#octoprintDevicesPartialUpdate")
+    println("4xx response calling RemoteControlApi#octoprintDevicesPartialUpdate2")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling RemoteControlApi#octoprintDevicesPartialUpdate")
+    println("5xx response calling RemoteControlApi#octoprintDevicesPartialUpdate2")
     e.printStackTrace()
 }
 ```
@@ -1125,9 +1125,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="octoprintDevicesUpdate"></a>
-# **octoprintDevicesUpdate**
-> OctoPrintDevice octoprintDevicesUpdate(id, octoPrintDeviceRequest)
+<a name="octoprintDevicesUpdate2"></a>
+# **octoprintDevicesUpdate2**
+> OctoPrintDevice octoprintDevicesUpdate2(id, octoPrintDeviceRequest)
 
 
 
@@ -1141,13 +1141,13 @@ val apiInstance = RemoteControlApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print device.
 val octoPrintDeviceRequest : OctoPrintDeviceRequest =  // OctoPrintDeviceRequest | 
 try {
-    val result : OctoPrintDevice = apiInstance.octoprintDevicesUpdate(id, octoPrintDeviceRequest)
+    val result : OctoPrintDevice = apiInstance.octoprintDevicesUpdate2(id, octoPrintDeviceRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling RemoteControlApi#octoprintDevicesUpdate")
+    println("4xx response calling RemoteControlApi#octoprintDevicesUpdate2")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling RemoteControlApi#octoprintDevicesUpdate")
+    println("5xx response calling RemoteControlApi#octoprintDevicesUpdate2")
     e.printStackTrace()
 }
 ```

@@ -17,8 +17,12 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
+docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/DeviceIdentity.md
+docs/DeviceRequest.md
+docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
@@ -49,6 +53,7 @@ docs/OctoprintProgress.md
 docs/OctoprintPython.md
 docs/PaginatedAlertList.md
 docs/PaginatedDeviceCalibrationList.md
+docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
@@ -70,6 +75,7 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
+docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
@@ -106,6 +112,7 @@ settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/ApiApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthApi.kt
+src/main/kotlin/com/print-nanny/client/apis/DevicesApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3Api.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3dApi.kt
@@ -141,8 +148,11 @@ src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
+src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceIdentity.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EmailAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EventSourceEnum.kt
 src/main/kotlin/com/print-nanny/client/models/EventType0c4Enum.kt
@@ -172,6 +182,7 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintProgress.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPython.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedAlertList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedGcodeFileList.kt
@@ -191,6 +202,7 @@ src/main/kotlin/com/print-nanny/client/models/Partner3DGeeksMetadata.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfileRequest.kt

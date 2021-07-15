@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**api_printer_profiles_update**](RemoteControlApi.md#api_printer_profiles_update) | **PUT** /api/printer-profiles/{id}/ | 
 [**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **POST** /api/gcode-files/ | 
 [**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **POST** /api/gcode-files/update-or-create/ | 
-[**octoprint_devices_partial_update**](RemoteControlApi.md#octoprint_devices_partial_update) | **PATCH** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_partial_update2**](RemoteControlApi.md#octoprint_devices_partial_update2) | **PATCH** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_update2**](RemoteControlApi.md#octoprint_devices_update2) | **PUT** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
 [**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{session}/ | 
 [**print_session_update**](RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{session}/ | 
@@ -2437,8 +2437,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_devices_partial_update**
-> OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
+# **octoprint_devices_partial_update2**
+> OctoPrintDevice octoprint_devices_partial_update2(id, patched_octo_print_device_request=patched_octo_print_device_request)
 
 
 
@@ -2481,10 +2481,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
+        api_response = api_instance.octoprint_devices_partial_update2(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->octoprint_devices_partial_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->octoprint_devices_partial_update2: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2524,10 +2524,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 patched_octo_print_device_request = print_nanny_client.PatchedOctoPrintDeviceRequest() # PatchedOctoPrintDeviceRequest |  (optional)
 
     try:
-        api_response = api_instance.octoprint_devices_partial_update(id, patched_octo_print_device_request=patched_octo_print_device_request)
+        api_response = api_instance.octoprint_devices_partial_update2(id, patched_octo_print_device_request=patched_octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->octoprint_devices_partial_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->octoprint_devices_partial_update2: %s\n" % e)
 ```
 
 ### Parameters
@@ -2558,8 +2558,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **octoprint_devices_update**
-> OctoPrintDevice octoprint_devices_update(id, octo_print_device_request)
+# **octoprint_devices_update2**
+> OctoPrintDevice octoprint_devices_update2(id, octo_print_device_request)
 
 
 
@@ -2602,10 +2602,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
+        api_response = api_instance.octoprint_devices_update2(id, octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->octoprint_devices_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->octoprint_devices_update2: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -2645,10 +2645,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
 octo_print_device_request = print_nanny_client.OctoPrintDeviceRequest() # OctoPrintDeviceRequest | 
 
     try:
-        api_response = api_instance.octoprint_devices_update(id, octo_print_device_request)
+        api_response = api_instance.octoprint_devices_update2(id, octo_print_device_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling RemoteControlApi->octoprint_devices_update: %s\n" % e)
+        print("Exception when calling RemoteControlApi->octoprint_devices_update2: %s\n" % e)
 ```
 
 ### Parameters

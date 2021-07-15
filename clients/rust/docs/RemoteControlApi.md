@@ -24,8 +24,8 @@ Method | HTTP request | Description
 [**api_printer_profiles_update**](RemoteControlApi.md#api_printer_profiles_update) | **put** /api/printer-profiles/{id}/ | 
 [**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **post** /api/gcode-files/ | 
 [**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **post** /api/gcode-files/update-or-create/ | 
-[**octoprint_devices_partial_update**](RemoteControlApi.md#octoprint_devices_partial_update) | **patch** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **put** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_partial_update2**](RemoteControlApi.md#octoprint_devices_partial_update2) | **patch** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_update2**](RemoteControlApi.md#octoprint_devices_update2) | **put** /api/octoprint-devices/{id}/ | 
 [**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **post** /api/octoprint-devices/update-or-create/ | 
 [**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **patch** /api/print-sessions/{session}/ | 
 [**print_session_update**](RemoteControlApi.md#print_session_update) | **put** /api/print-sessions/{session}/ | 
@@ -614,9 +614,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## octoprint_devices_partial_update
+## octoprint_devices_partial_update2
 
-> crate::models::OctoPrintDevice octoprint_devices_partial_update(id, patched_octo_print_device_request)
+> crate::models::OctoPrintDevice octoprint_devices_partial_update2(id, patched_octo_print_device_request)
 
 
 ### Parameters
@@ -643,9 +643,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## octoprint_devices_update
+## octoprint_devices_update2
 
-> crate::models::OctoPrintDevice octoprint_devices_update(id, octo_print_device_request)
+> crate::models::OctoPrintDevice octoprint_devices_update2(id, octo_print_device_request)
 
 
 ### Parameters

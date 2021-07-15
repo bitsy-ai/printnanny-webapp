@@ -21,8 +21,12 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
+docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/DeviceIdentity.md
+docs/DeviceRequest.md
+docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
@@ -53,6 +57,7 @@ docs/OctoprintProgress.md
 docs/OctoprintPython.md
 docs/PaginatedAlertList.md
 docs/PaginatedDeviceCalibrationList.md
+docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
@@ -74,6 +79,7 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
+docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
@@ -109,6 +115,7 @@ print_nanny_client/api/alerts_api.py
 print_nanny_client/api/api_api.py
 print_nanny_client/api/auth__api.py
 print_nanny_client/api/auth_api.py
+print_nanny_client/api/devices_api.py
 print_nanny_client/api/ml_ops_api.py
 print_nanny_client/api/partners_geeks3_api.py
 print_nanny_client/api/partners_geeks3d_api.py
@@ -132,8 +139,11 @@ print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/detail_response.py
+print_nanny_client/models/device.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
+print_nanny_client/models/device_identity.py
+print_nanny_client/models/device_request.py
 print_nanny_client/models/email_auth_request.py
 print_nanny_client/models/event_source_enum.py
 print_nanny_client/models/event_type0c4_enum.py
@@ -163,6 +173,7 @@ print_nanny_client/models/octoprint_progress.py
 print_nanny_client/models/octoprint_python.py
 print_nanny_client/models/paginated_alert_list.py
 print_nanny_client/models/paginated_device_calibration_list.py
+print_nanny_client/models/paginated_device_list.py
 print_nanny_client/models/paginated_experiment_device_config_list.py
 print_nanny_client/models/paginated_experiment_list.py
 print_nanny_client/models/paginated_gcode_file_list.py
@@ -182,6 +193,7 @@ print_nanny_client/models/partner3_d_geeks_metadata.py
 print_nanny_client/models/patched_alert_bulk_request_request.py
 print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_device_calibration_request.py
+print_nanny_client/models/patched_device_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
 print_nanny_client/models/patched_print_session_request.py
 print_nanny_client/models/patched_printer_profile_request.py
@@ -231,8 +243,12 @@ test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
 test/test_command_enum.py
 test/test_detail_response.py
+test/test_device.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
+test/test_device_identity.py
+test/test_device_request.py
+test/test_devices_api.py
 test/test_email_auth_request.py
 test/test_event_source_enum.py
 test/test_event_type0c4_enum.py
@@ -263,6 +279,7 @@ test/test_octoprint_progress.py
 test/test_octoprint_python.py
 test/test_paginated_alert_list.py
 test/test_paginated_device_calibration_list.py
+test/test_paginated_device_list.py
 test/test_paginated_experiment_device_config_list.py
 test/test_paginated_experiment_list.py
 test/test_paginated_gcode_file_list.py
@@ -284,6 +301,7 @@ test/test_partners_geeks3d_api.py
 test/test_patched_alert_bulk_request_request.py
 test/test_patched_alert_request.py
 test/test_patched_device_calibration_request.py
+test/test_patched_device_request.py
 test/test_patched_octo_print_device_request.py
 test/test_patched_print_session_request.py
 test/test_patched_printer_profile_request.py

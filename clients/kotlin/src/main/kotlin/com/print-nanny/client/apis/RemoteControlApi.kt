@@ -1234,8 +1234,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun octoprintDevicesPartialUpdate(id: kotlin.Int, patchedOctoPrintDeviceRequest: PatchedOctoPrintDeviceRequest?) : OctoPrintDevice {
-        val localVariableConfig = octoprintDevicesPartialUpdateRequestConfig(id = id, patchedOctoPrintDeviceRequest = patchedOctoPrintDeviceRequest)
+    fun octoprintDevicesPartialUpdate2(id: kotlin.Int, patchedOctoPrintDeviceRequest: PatchedOctoPrintDeviceRequest?) : OctoPrintDevice {
+        val localVariableConfig = octoprintDevicesPartialUpdate2RequestConfig(id = id, patchedOctoPrintDeviceRequest = patchedOctoPrintDeviceRequest)
 
         val localVarResponse = request<OctoPrintDevice>(
             localVariableConfig
@@ -1257,13 +1257,13 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation octoprintDevicesPartialUpdate
+    * To obtain the request config of the operation octoprintDevicesPartialUpdate2
     *
     * @param id A unique integer value identifying this octo print device. 
     * @param patchedOctoPrintDeviceRequest  (optional)
     * @return RequestConfig
     */
-    fun octoprintDevicesPartialUpdateRequestConfig(id: kotlin.Int, patchedOctoPrintDeviceRequest: PatchedOctoPrintDeviceRequest?) : RequestConfig {
+    fun octoprintDevicesPartialUpdate2RequestConfig(id: kotlin.Int, patchedOctoPrintDeviceRequest: PatchedOctoPrintDeviceRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = patchedOctoPrintDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -1291,8 +1291,8 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun octoprintDevicesUpdate(id: kotlin.Int, octoPrintDeviceRequest: OctoPrintDeviceRequest) : OctoPrintDevice {
-        val localVariableConfig = octoprintDevicesUpdateRequestConfig(id = id, octoPrintDeviceRequest = octoPrintDeviceRequest)
+    fun octoprintDevicesUpdate2(id: kotlin.Int, octoPrintDeviceRequest: OctoPrintDeviceRequest) : OctoPrintDevice {
+        val localVariableConfig = octoprintDevicesUpdate2RequestConfig(id = id, octoPrintDeviceRequest = octoPrintDeviceRequest)
 
         val localVarResponse = request<OctoPrintDevice>(
             localVariableConfig
@@ -1314,13 +1314,13 @@ class RemoteControlApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
     }
 
     /**
-    * To obtain the request config of the operation octoprintDevicesUpdate
+    * To obtain the request config of the operation octoprintDevicesUpdate2
     *
     * @param id A unique integer value identifying this octo print device. 
     * @param octoPrintDeviceRequest  
     * @return RequestConfig
     */
-    fun octoprintDevicesUpdateRequestConfig(id: kotlin.Int, octoPrintDeviceRequest: OctoPrintDeviceRequest) : RequestConfig {
+    fun octoprintDevicesUpdate2RequestConfig(id: kotlin.Int, octoPrintDeviceRequest: OctoPrintDeviceRequest) : RequestConfig {
         val localVariableBody: kotlin.Any? = octoPrintDeviceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
