@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import DeviceSerializer, DeviceIdentitySerializer
+from ..models import Device
 
 
 @extend_schema(tags=["devices"])
@@ -23,7 +24,7 @@ class DeviceViewSet(
 ):
 
     serializer_class = DeviceSerializer
-    queryset = DeviceSerializer.objects.all()
+    queryset = Device.objects.all()
     lookup_field = "id"
 
     @extend_schema(
