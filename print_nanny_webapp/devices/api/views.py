@@ -30,8 +30,8 @@ class DeviceViewSet(
     @extend_schema(
         operation_id="devices_update_or_create",
         responses={
-            400: DeviceSerializer,
-            200: DeviceSerializer,
+            400: DeviceIdentitySerializer,
+            200: DeviceIdentitySerializer,
             201: DeviceIdentitySerializer,
             202: DeviceIdentitySerializer,
         },

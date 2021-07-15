@@ -33,6 +33,9 @@ class Device(SafeDeleteModel):
     System-level information
     """
 
+    class Meta:
+        unique_together = ("user", "name")
+
     def pre_softdelete(self):
         return delete_cloudiot_device(self.cloudiot_device_num_id)
 
@@ -43,8 +46,7 @@ class Device(SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="devices"
     )
-    hostname = models.CharField(max_length=255)
-
+    name = models.CharField(max_length=255)
     # PKI
     public_key = models.TextField()
     fingerprint = models.CharField(max_length=255)
@@ -55,15 +57,16 @@ class Device(SafeDeleteModel):
     cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
 
-    # System info
+    # platform info
+    os_version = models.CharField(max_length=255)
+    os = models.CharField(max_length=255)
+    kernel_version = models.CharField(max_length=255)
 
-    platform = models.CharField(max_length=255)
-    cpu_flags = models.CharField(max_length=255)
-
+    # hardware info
     # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255, null=True)
+    hardware = models.CharField(max_length=255)
     # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255, null=True)
+    revision = models.CharField(max_length=255)
     # /proc/cpuinfo MODEL
     model = models.CharField(max_length=255)
     # /proc/cpuinfo SERIAL
@@ -71,6 +74,7 @@ class Device(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.IntegerField()
+    cpu_flags = models.CharField(max_length=255)
 
     # TODO enable front-end views in release v0.8 go-live
     # @property
@@ -94,7 +98,7 @@ class Device(SafeDeleteModel):
         return configs_dict
 
 
-class PrinterController(SafeDeleteModel, PolymorphicModel):
+class PrinterController(PolymorphicModel, SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE
 
@@ -127,7 +131,7 @@ class OctoprintController(PrinterController):
 #     pass
 
 
-class PrinterProfile(SafeDeleteModel, PolymorphicModel):
+class PrinterProfile(PolymorphicModel, SafeDeleteModel):
     class Meta:
         unique_together = (
             "user",

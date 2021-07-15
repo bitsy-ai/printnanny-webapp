@@ -8,28 +8,40 @@ from print_nanny_webapp.devices.models import (
     PrinterProfile,
     OctoprintPrinterProfile,
 )
+from print_nanny_webapp.devices.services import CACerts
 
 
 class DeviceIdentitySerializer(serializers.ModelSerializer):
 
+    ca_certs = serializers.SerializerMethodField()
+
+    def get_ca_certs(self, obj) -> CACerts:
+        return getattr(obj, "ca_certs")
+
     cloudiot_device_configs = serializers.SerializerMethodField()
 
-    def get_cloudiot_device_configs(self, obj):
+    def get_cloudiot_device_configs(self, obj) -> str:
         return obj.cloudiot_device_configs
 
     private_key = serializers.SerializerMethodField()
 
-    def get_private_key(self, obj):
-        return getattr(obj, "private_key", None)
+    def get_private_key(self, obj) -> str:
+        return getattr(obj, "private_key")
 
     private_key_checksum = serializers.SerializerMethodField()
 
-    def get_private_key_checksum(self, obj):
-        return getattr(obj, "private_key_checksum", None)
+    def get_private_key_checksum(self, obj) -> str:
+        return getattr(obj, "private_key_checksum")
 
-    public_key_checksum = serializers.CharField()
+    public_key = serializers.SerializerMethodField()
 
-    ca_certs = serializers.DictField(child=serializers.CharField())
+    def get_public_key(self, obj) -> str:
+        return getattr(obj, "public_key")
+
+    public_key_checksum = serializers.SerializerMethodField()
+
+    def get_public_key_checksum(self, obj) -> str:
+        return getattr(obj, "public_key_checksum")
 
     manage_url = serializers.HyperlinkedIdentityField(
         view_name="dashboard:devices:detail", lookup_field="pk"
@@ -41,6 +53,7 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "url",
             "private_key",
             "private_key_checksum",
+            "public_key",
             "public_key_checksum",
             "cloudiot_device_configs",
             "ca_certs",
@@ -51,8 +64,12 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
         }
 
         read_only_fields = (
+            "ca_certs",
             "user",
             "public_key",
+            "public_key_checksum",
+            "private_key",
+            "private_key_checksum",
             "fingerprint",
             "cloudiot_device_num_id",
             "cloudiot_device",
