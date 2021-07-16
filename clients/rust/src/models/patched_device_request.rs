@@ -13,8 +13,8 @@
 pub struct PatchedDeviceRequest {
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<i32>,
-    #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
-    pub hostname: Option<String>,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
     pub public_key: Option<String>,
     #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
@@ -27,10 +27,12 @@ pub struct PatchedDeviceRequest {
     pub cloudiot_device_path: Option<String>,
     #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
     pub cloudiot_device_num_id: Option<i64>,
-    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
-    pub platform: Option<String>,
-    #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
-    pub cpu_flags: Option<String>,
+    #[serde(rename = "os_version", skip_serializing_if = "Option::is_none")]
+    pub os_version: Option<String>,
+    #[serde(rename = "os", skip_serializing_if = "Option::is_none")]
+    pub os: Option<String>,
+    #[serde(rename = "kernel_version", skip_serializing_if = "Option::is_none")]
+    pub kernel_version: Option<String>,
     #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
     pub hardware: Option<String>,
     #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
@@ -43,27 +45,31 @@ pub struct PatchedDeviceRequest {
     pub cores: Option<i32>,
     #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
     pub ram: Option<i32>,
+    #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
+    pub cpu_flags: Option<String>,
 }
 
 impl PatchedDeviceRequest {
     pub fn new() -> PatchedDeviceRequest {
         PatchedDeviceRequest {
             user: None,
-            hostname: None,
+            name: None,
             public_key: None,
             fingerprint: None,
             cloudiot_device: None,
             cloudiot_device_name: None,
             cloudiot_device_path: None,
             cloudiot_device_num_id: None,
-            platform: None,
-            cpu_flags: None,
+            os_version: None,
+            os: None,
+            kernel_version: None,
             hardware: None,
             revision: None,
             model: None,
             serial: None,
             cores: None,
             ram: None,
+            cpu_flags: None,
         }
     }
 }

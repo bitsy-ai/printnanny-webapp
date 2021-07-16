@@ -37,70 +37,76 @@ class PatchedDeviceRequest(object):
     """
     openapi_types = {
         'user': 'int',
-        'hostname': 'str',
+        'name': 'str',
         'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
         'cloudiot_device_name': 'str',
         'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
-        'platform': 'str',
-        'cpu_flags': 'str',
+        'os_version': 'str',
+        'os': 'str',
+        'kernel_version': 'str',
         'hardware': 'str',
         'revision': 'str',
         'model': 'str',
         'serial': 'str',
         'cores': 'int',
-        'ram': 'int'
+        'ram': 'int',
+        'cpu_flags': 'str'
     }
 
     attribute_map = {
         'user': 'user',
-        'hostname': 'hostname',
+        'name': 'name',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
         'cloudiot_device_name': 'cloudiot_device_name',
         'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
-        'platform': 'platform',
-        'cpu_flags': 'cpu_flags',
+        'os_version': 'os_version',
+        'os': 'os',
+        'kernel_version': 'kernel_version',
         'hardware': 'hardware',
         'revision': 'revision',
         'model': 'model',
         'serial': 'serial',
         'cores': 'cores',
-        'ram': 'ram'
+        'ram': 'ram',
+        'cpu_flags': 'cpu_flags'
     }
 
-    def __init__(self, user=None, hostname=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, platform=None, cpu_flags=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._user = None
-        self._hostname = None
+        self._name = None
         self._public_key = None
         self._fingerprint = None
         self._cloudiot_device = None
         self._cloudiot_device_name = None
         self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
-        self._platform = None
-        self._cpu_flags = None
+        self._os_version = None
+        self._os = None
+        self._kernel_version = None
         self._hardware = None
         self._revision = None
         self._model = None
         self._serial = None
         self._cores = None
         self._ram = None
+        self._cpu_flags = None
         self.discriminator = None
 
         if user is not None:
             self.user = user
-        if hostname is not None:
-            self.hostname = hostname
+        if name is not None:
+            self.name = name
         if public_key is not None:
             self.public_key = public_key
         if fingerprint is not None:
@@ -113,12 +119,16 @@ class PatchedDeviceRequest(object):
             self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
-        if platform is not None:
-            self.platform = platform
-        if cpu_flags is not None:
-            self.cpu_flags = cpu_flags
-        self.hardware = hardware
-        self.revision = revision
+        if os_version is not None:
+            self.os_version = os_version
+        if os is not None:
+            self.os = os
+        if kernel_version is not None:
+            self.kernel_version = kernel_version
+        if hardware is not None:
+            self.hardware = hardware
+        if revision is not None:
+            self.revision = revision
         if model is not None:
             self.model = model
         if serial is not None:
@@ -127,6 +137,8 @@ class PatchedDeviceRequest(object):
             self.cores = cores
         if ram is not None:
             self.ram = ram
+        if cpu_flags is not None:
+            self.cpu_flags = cpu_flags
 
     @property
     def user(self):
@@ -150,28 +162,28 @@ class PatchedDeviceRequest(object):
         self._user = user
 
     @property
-    def hostname(self):
-        """Gets the hostname of this PatchedDeviceRequest.  # noqa: E501
+    def name(self):
+        """Gets the name of this PatchedDeviceRequest.  # noqa: E501
 
 
-        :return: The hostname of this PatchedDeviceRequest.  # noqa: E501
+        :return: The name of this PatchedDeviceRequest.  # noqa: E501
         :rtype: str
         """
-        return self._hostname
+        return self._name
 
-    @hostname.setter
-    def hostname(self, hostname):
-        """Sets the hostname of this PatchedDeviceRequest.
+    @name.setter
+    def name(self, name):
+        """Sets the name of this PatchedDeviceRequest.
 
 
-        :param hostname: The hostname of this PatchedDeviceRequest.  # noqa: E501
-        :type hostname: str
+        :param name: The name of this PatchedDeviceRequest.  # noqa: E501
+        :type name: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                hostname is not None and len(hostname) > 255):
-            raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._hostname = hostname
+        self._name = name
 
     @property
     def public_key(self):
@@ -315,52 +327,76 @@ class PatchedDeviceRequest(object):
         self._cloudiot_device_num_id = cloudiot_device_num_id
 
     @property
-    def platform(self):
-        """Gets the platform of this PatchedDeviceRequest.  # noqa: E501
+    def os_version(self):
+        """Gets the os_version of this PatchedDeviceRequest.  # noqa: E501
 
 
-        :return: The platform of this PatchedDeviceRequest.  # noqa: E501
+        :return: The os_version of this PatchedDeviceRequest.  # noqa: E501
         :rtype: str
         """
-        return self._platform
+        return self._os_version
 
-    @platform.setter
-    def platform(self, platform):
-        """Sets the platform of this PatchedDeviceRequest.
+    @os_version.setter
+    def os_version(self, os_version):
+        """Sets the os_version of this PatchedDeviceRequest.
 
 
-        :param platform: The platform of this PatchedDeviceRequest.  # noqa: E501
-        :type platform: str
+        :param os_version: The os_version of this PatchedDeviceRequest.  # noqa: E501
+        :type os_version: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                platform is not None and len(platform) > 255):
-            raise ValueError("Invalid value for `platform`, length must be less than or equal to `255`")  # noqa: E501
+                os_version is not None and len(os_version) > 255):
+            raise ValueError("Invalid value for `os_version`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._platform = platform
+        self._os_version = os_version
 
     @property
-    def cpu_flags(self):
-        """Gets the cpu_flags of this PatchedDeviceRequest.  # noqa: E501
+    def os(self):
+        """Gets the os of this PatchedDeviceRequest.  # noqa: E501
 
 
-        :return: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
+        :return: The os of this PatchedDeviceRequest.  # noqa: E501
         :rtype: str
         """
-        return self._cpu_flags
+        return self._os
 
-    @cpu_flags.setter
-    def cpu_flags(self, cpu_flags):
-        """Sets the cpu_flags of this PatchedDeviceRequest.
+    @os.setter
+    def os(self, os):
+        """Sets the os of this PatchedDeviceRequest.
 
 
-        :param cpu_flags: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
-        :type cpu_flags: str
+        :param os: The os of this PatchedDeviceRequest.  # noqa: E501
+        :type os: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                cpu_flags is not None and len(cpu_flags) > 255):
-            raise ValueError("Invalid value for `cpu_flags`, length must be less than or equal to `255`")  # noqa: E501
+                os is not None and len(os) > 255):
+            raise ValueError("Invalid value for `os`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._cpu_flags = cpu_flags
+        self._os = os
+
+    @property
+    def kernel_version(self):
+        """Gets the kernel_version of this PatchedDeviceRequest.  # noqa: E501
+
+
+        :return: The kernel_version of this PatchedDeviceRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._kernel_version
+
+    @kernel_version.setter
+    def kernel_version(self, kernel_version):
+        """Sets the kernel_version of this PatchedDeviceRequest.
+
+
+        :param kernel_version: The kernel_version of this PatchedDeviceRequest.  # noqa: E501
+        :type kernel_version: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                kernel_version is not None and len(kernel_version) > 255):
+            raise ValueError("Invalid value for `kernel_version`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._kernel_version = kernel_version
 
     @property
     def hardware(self):
@@ -511,6 +547,30 @@ class PatchedDeviceRequest(object):
             raise ValueError("Invalid value for `ram`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
 
         self._ram = ram
+
+    @property
+    def cpu_flags(self):
+        """Gets the cpu_flags of this PatchedDeviceRequest.  # noqa: E501
+
+
+        :return: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._cpu_flags
+
+    @cpu_flags.setter
+    def cpu_flags(self, cpu_flags):
+        """Sets the cpu_flags of this PatchedDeviceRequest.
+
+
+        :param cpu_flags: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
+        :type cpu_flags: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                cpu_flags is not None and len(cpu_flags) > 255):
+            raise ValueError("Invalid value for `cpu_flags`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._cpu_flags = cpu_flags
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

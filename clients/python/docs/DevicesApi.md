@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **devices_update_or_create**
-> Device devices_update_or_create(device_request)
+> DeviceIdentity devices_update_or_create(device_request)
 
 
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Device**](Device.md)
+[**DeviceIdentity**](DeviceIdentity.md)
 
 ### Authorization
 

@@ -211,22 +211,22 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceRequest  
-    * @return Device
+    * @return DeviceIdentity
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesUpdateOrCreate(deviceRequest: DeviceRequest) : Device {
+    fun devicesUpdateOrCreate(deviceRequest: DeviceRequest) : DeviceIdentity {
         val localVariableConfig = devicesUpdateOrCreateRequestConfig(deviceRequest = deviceRequest)
 
-        val localVarResponse = request<Device>(
+        val localVarResponse = request<DeviceIdentity>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as Device
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceIdentity
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

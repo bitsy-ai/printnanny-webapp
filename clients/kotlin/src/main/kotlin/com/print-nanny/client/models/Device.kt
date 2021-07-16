@@ -19,33 +19,35 @@ import java.io.Serializable
 /**
  * 
  * @param user 
- * @param hostname 
+ * @param name 
  * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDevice 
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
- * @param platform 
- * @param cpuFlags 
+ * @param osVersion 
+ * @param os 
+ * @param kernelVersion 
+ * @param hardware 
+ * @param revision 
  * @param model 
  * @param serial 
  * @param cores 
  * @param ram 
+ * @param cpuFlags 
  * @param id 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
- * @param hardware 
- * @param revision 
  * @param url 
  */
 
 data class Device (
     @Json(name = "user")
     val user: kotlin.Int,
-    @Json(name = "hostname")
-    val hostname: kotlin.String,
+    @Json(name = "name")
+    val name: kotlin.String,
     @Json(name = "public_key")
     val publicKey: kotlin.String,
     @Json(name = "fingerprint")
@@ -58,10 +60,16 @@ data class Device (
     val cloudiotDevicePath: kotlin.String,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Long,
-    @Json(name = "platform")
-    val platform: kotlin.String,
-    @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.String,
+    @Json(name = "os_version")
+    val osVersion: kotlin.String,
+    @Json(name = "os")
+    val os: kotlin.String,
+    @Json(name = "kernel_version")
+    val kernelVersion: kotlin.String,
+    @Json(name = "hardware")
+    val hardware: kotlin.String,
+    @Json(name = "revision")
+    val revision: kotlin.String,
     @Json(name = "model")
     val model: kotlin.String,
     @Json(name = "serial")
@@ -70,6 +78,8 @@ data class Device (
     val cores: kotlin.Int,
     @Json(name = "ram")
     val ram: kotlin.Int,
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.String,
     @Json(name = "id")
     val id: kotlin.Int? = null,
     @Json(name = "deleted")
@@ -78,10 +88,6 @@ data class Device (
     val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "updated_dt")
     val updatedDt: java.time.OffsetDateTime? = null,
-    @Json(name = "hardware")
-    val hardware: kotlin.String? = null,
-    @Json(name = "revision")
-    val revision: kotlin.String? = null,
     @Json(name = "url")
     val url: java.net.URI? = null
 ) : Serializable {

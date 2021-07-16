@@ -164,7 +164,7 @@ Configure tokenAuth:
 
 <a name="devicesUpdateOrCreate"></a>
 # **devicesUpdateOrCreate**
-> Device devicesUpdateOrCreate(deviceRequest)
+> DeviceIdentity devicesUpdateOrCreate(deviceRequest)
 
 
 
@@ -177,7 +177,7 @@ Configure tokenAuth:
 val apiInstance = DevicesApi()
 val deviceRequest : DeviceRequest =  // DeviceRequest | 
 try {
-    val result : Device = apiInstance.devicesUpdateOrCreate(deviceRequest)
+    val result : DeviceIdentity = apiInstance.devicesUpdateOrCreate(deviceRequest)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DevicesApi#devicesUpdateOrCreate")
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Device**](Device.md)
+[**DeviceIdentity**](DeviceIdentity.md)
 
 ### Authorization
 

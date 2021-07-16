@@ -38,7 +38,7 @@ pub enum ApiDevicesRetrieveError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesUpdateOrCreateError {
-    Status400(crate::models::Device),
+    Status400(crate::models::DeviceIdentity),
     UnknownValue(serde_json::Value),
 }
 
@@ -148,7 +148,7 @@ pub async fn api_devices_retrieve(configuration: &configuration::Configuration, 
     }
 }
 
-pub async fn devices_update_or_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesUpdateOrCreateError>> {
+pub async fn devices_update_or_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::DeviceIdentity, Error<DevicesUpdateOrCreateError>> {
 
     let local_var_client = &configuration.client;
 

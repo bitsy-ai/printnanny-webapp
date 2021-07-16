@@ -21,8 +21,8 @@ pub struct DeviceIdentity {
     pub updated_dt: Option<String>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<i32>,
-    #[serde(rename = "hostname")]
-    pub hostname: String,
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
     pub public_key: Option<String>,
     #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
@@ -35,14 +35,16 @@ pub struct DeviceIdentity {
     pub cloudiot_device_path: Option<String>,
     #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
     pub cloudiot_device_num_id: Option<i32>,
-    #[serde(rename = "platform")]
-    pub platform: String,
-    #[serde(rename = "cpu_flags")]
-    pub cpu_flags: String,
-    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
-    pub hardware: Option<String>,
-    #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
-    pub revision: Option<String>,
+    #[serde(rename = "os_version")]
+    pub os_version: String,
+    #[serde(rename = "os")]
+    pub os: String,
+    #[serde(rename = "kernel_version")]
+    pub kernel_version: String,
+    #[serde(rename = "hardware")]
+    pub hardware: String,
+    #[serde(rename = "revision")]
+    pub revision: String,
     #[serde(rename = "model")]
     pub model: String,
     #[serde(rename = "serial")]
@@ -51,51 +53,55 @@ pub struct DeviceIdentity {
     pub cores: i32,
     #[serde(rename = "ram")]
     pub ram: i32,
+    #[serde(rename = "cpu_flags")]
+    pub cpu_flags: String,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
     #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
     pub private_key: Option<String>,
     #[serde(rename = "private_key_checksum", skip_serializing_if = "Option::is_none")]
     pub private_key_checksum: Option<String>,
-    #[serde(rename = "public_key_checksum")]
-    pub public_key_checksum: String,
+    #[serde(rename = "public_key_checksum", skip_serializing_if = "Option::is_none")]
+    pub public_key_checksum: Option<String>,
     #[serde(rename = "cloudiot_device_configs", skip_serializing_if = "Option::is_none")]
     pub cloudiot_device_configs: Option<String>,
-    #[serde(rename = "ca_certs")]
-    pub ca_certs: ::std::collections::HashMap<String, String>,
+    #[serde(rename = "ca_certs", skip_serializing_if = "Option::is_none")]
+    pub ca_certs: Option<Box<crate::models::DeviceIdentityCaCerts>>,
     #[serde(rename = "manage_url", skip_serializing_if = "Option::is_none")]
     pub manage_url: Option<String>,
 }
 
 impl DeviceIdentity {
-    pub fn new(hostname: String, platform: String, cpu_flags: String, model: String, serial: String, cores: i32, ram: i32, public_key_checksum: String, ca_certs: ::std::collections::HashMap<String, String>) -> DeviceIdentity {
+    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i32, cpu_flags: String) -> DeviceIdentity {
         DeviceIdentity {
             id: None,
             deleted: None,
             created_dt: None,
             updated_dt: None,
             user: None,
-            hostname,
+            name,
             public_key: None,
             fingerprint: None,
             cloudiot_device: None,
             cloudiot_device_name: None,
             cloudiot_device_path: None,
             cloudiot_device_num_id: None,
-            platform,
-            cpu_flags,
-            hardware: None,
-            revision: None,
+            os_version,
+            os,
+            kernel_version,
+            hardware,
+            revision,
             model,
             serial,
             cores,
             ram,
+            cpu_flags,
             url: None,
             private_key: None,
             private_key_checksum: None,
-            public_key_checksum,
+            public_key_checksum: None,
             cloudiot_device_configs: None,
-            ca_certs,
+            ca_certs: None,
             manage_url: None,
         }
     }

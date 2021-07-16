@@ -99,7 +99,7 @@ Name | Type | Description  | Required | Notes
 
 ## devices_update_or_create
 
-> crate::models::Device devices_update_or_create(device_request)
+> crate::models::DeviceIdentity devices_update_or_create(device_request)
 
 
 ### Parameters
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Device**](Device.md)
+[**crate::models::DeviceIdentity**](DeviceIdentity.md)
 
 ### Authorization
 

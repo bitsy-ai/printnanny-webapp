@@ -23,6 +23,7 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceIdentity.md
+docs/DeviceIdentityCaCerts.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -137,6 +138,7 @@ src/models/device.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
 src/models/device_identity.rs
+src/models/device_identity_ca_certs.rs
 src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/event_source_enum.rs

@@ -41,27 +41,29 @@ class DeviceIdentity(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
-        'hostname': 'str',
+        'name': 'str',
         'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device': 'dict(str, object)',
         'cloudiot_device_name': 'str',
         'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
-        'platform': 'str',
-        'cpu_flags': 'str',
+        'os_version': 'str',
+        'os': 'str',
+        'kernel_version': 'str',
         'hardware': 'str',
         'revision': 'str',
         'model': 'str',
         'serial': 'str',
         'cores': 'int',
         'ram': 'int',
+        'cpu_flags': 'str',
         'url': 'str',
         'private_key': 'str',
         'private_key_checksum': 'str',
         'public_key_checksum': 'str',
         'cloudiot_device_configs': 'str',
-        'ca_certs': 'dict(str, str)',
+        'ca_certs': 'DeviceIdentityCaCerts',
         'manage_url': 'str'
     }
 
@@ -71,21 +73,23 @@ class DeviceIdentity(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
-        'hostname': 'hostname',
+        'name': 'name',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device': 'cloudiot_device',
         'cloudiot_device_name': 'cloudiot_device_name',
         'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
-        'platform': 'platform',
-        'cpu_flags': 'cpu_flags',
+        'os_version': 'os_version',
+        'os': 'os',
+        'kernel_version': 'kernel_version',
         'hardware': 'hardware',
         'revision': 'revision',
         'model': 'model',
         'serial': 'serial',
         'cores': 'cores',
         'ram': 'ram',
+        'cpu_flags': 'cpu_flags',
         'url': 'url',
         'private_key': 'private_key',
         'private_key_checksum': 'private_key_checksum',
@@ -95,7 +99,7 @@ class DeviceIdentity(object):
         'manage_url': 'manage_url'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, hostname=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, platform=None, cpu_flags=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, manage_url=None, local_vars_configuration=None):  # noqa: E501
         """DeviceIdentity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -106,21 +110,23 @@ class DeviceIdentity(object):
         self._created_dt = None
         self._updated_dt = None
         self._user = None
-        self._hostname = None
+        self._name = None
         self._public_key = None
         self._fingerprint = None
         self._cloudiot_device = None
         self._cloudiot_device_name = None
         self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
-        self._platform = None
-        self._cpu_flags = None
+        self._os_version = None
+        self._os = None
+        self._kernel_version = None
         self._hardware = None
         self._revision = None
         self._model = None
         self._serial = None
         self._cores = None
         self._ram = None
+        self._cpu_flags = None
         self._url = None
         self._private_key = None
         self._private_key_checksum = None
@@ -140,7 +146,7 @@ class DeviceIdentity(object):
             self.updated_dt = updated_dt
         if user is not None:
             self.user = user
-        self.hostname = hostname
+        self.name = name
         if public_key is not None:
             self.public_key = public_key
         if fingerprint is not None:
@@ -153,24 +159,28 @@ class DeviceIdentity(object):
             self.cloudiot_device_path = cloudiot_device_path
         if cloudiot_device_num_id is not None:
             self.cloudiot_device_num_id = cloudiot_device_num_id
-        self.platform = platform
-        self.cpu_flags = cpu_flags
+        self.os_version = os_version
+        self.os = os
+        self.kernel_version = kernel_version
         self.hardware = hardware
         self.revision = revision
         self.model = model
         self.serial = serial
         self.cores = cores
         self.ram = ram
+        self.cpu_flags = cpu_flags
         if url is not None:
             self.url = url
         if private_key is not None:
             self.private_key = private_key
         if private_key_checksum is not None:
             self.private_key_checksum = private_key_checksum
-        self.public_key_checksum = public_key_checksum
+        if public_key_checksum is not None:
+            self.public_key_checksum = public_key_checksum
         if cloudiot_device_configs is not None:
             self.cloudiot_device_configs = cloudiot_device_configs
-        self.ca_certs = ca_certs
+        if ca_certs is not None:
+            self.ca_certs = ca_certs
         if manage_url is not None:
             self.manage_url = manage_url
 
@@ -280,30 +290,30 @@ class DeviceIdentity(object):
         self._user = user
 
     @property
-    def hostname(self):
-        """Gets the hostname of this DeviceIdentity.  # noqa: E501
+    def name(self):
+        """Gets the name of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The hostname of this DeviceIdentity.  # noqa: E501
+        :return: The name of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._hostname
+        return self._name
 
-    @hostname.setter
-    def hostname(self, hostname):
-        """Sets the hostname of this DeviceIdentity.
+    @name.setter
+    def name(self, name):
+        """Sets the name of this DeviceIdentity.
 
 
-        :param hostname: The hostname of this DeviceIdentity.  # noqa: E501
-        :type hostname: str
+        :param name: The name of this DeviceIdentity.  # noqa: E501
+        :type name: str
         """
-        if self.local_vars_configuration.client_side_validation and hostname is None:  # noqa: E501
-            raise ValueError("Invalid value for `hostname`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                hostname is not None and len(hostname) > 255):
-            raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._hostname = hostname
+        self._name = name
 
     @property
     def public_key(self):
@@ -432,56 +442,82 @@ class DeviceIdentity(object):
         self._cloudiot_device_num_id = cloudiot_device_num_id
 
     @property
-    def platform(self):
-        """Gets the platform of this DeviceIdentity.  # noqa: E501
+    def os_version(self):
+        """Gets the os_version of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The platform of this DeviceIdentity.  # noqa: E501
+        :return: The os_version of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._platform
+        return self._os_version
 
-    @platform.setter
-    def platform(self, platform):
-        """Sets the platform of this DeviceIdentity.
+    @os_version.setter
+    def os_version(self, os_version):
+        """Sets the os_version of this DeviceIdentity.
 
 
-        :param platform: The platform of this DeviceIdentity.  # noqa: E501
-        :type platform: str
+        :param os_version: The os_version of this DeviceIdentity.  # noqa: E501
+        :type os_version: str
         """
-        if self.local_vars_configuration.client_side_validation and platform is None:  # noqa: E501
-            raise ValueError("Invalid value for `platform`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and os_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `os_version`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                platform is not None and len(platform) > 255):
-            raise ValueError("Invalid value for `platform`, length must be less than or equal to `255`")  # noqa: E501
+                os_version is not None and len(os_version) > 255):
+            raise ValueError("Invalid value for `os_version`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._platform = platform
+        self._os_version = os_version
 
     @property
-    def cpu_flags(self):
-        """Gets the cpu_flags of this DeviceIdentity.  # noqa: E501
+    def os(self):
+        """Gets the os of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The cpu_flags of this DeviceIdentity.  # noqa: E501
+        :return: The os of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._cpu_flags
+        return self._os
 
-    @cpu_flags.setter
-    def cpu_flags(self, cpu_flags):
-        """Sets the cpu_flags of this DeviceIdentity.
+    @os.setter
+    def os(self, os):
+        """Sets the os of this DeviceIdentity.
 
 
-        :param cpu_flags: The cpu_flags of this DeviceIdentity.  # noqa: E501
-        :type cpu_flags: str
+        :param os: The os of this DeviceIdentity.  # noqa: E501
+        :type os: str
         """
-        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
-            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and os is None:  # noqa: E501
+            raise ValueError("Invalid value for `os`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                cpu_flags is not None and len(cpu_flags) > 255):
-            raise ValueError("Invalid value for `cpu_flags`, length must be less than or equal to `255`")  # noqa: E501
+                os is not None and len(os) > 255):
+            raise ValueError("Invalid value for `os`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._cpu_flags = cpu_flags
+        self._os = os
+
+    @property
+    def kernel_version(self):
+        """Gets the kernel_version of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The kernel_version of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._kernel_version
+
+    @kernel_version.setter
+    def kernel_version(self, kernel_version):
+        """Sets the kernel_version of this DeviceIdentity.
+
+
+        :param kernel_version: The kernel_version of this DeviceIdentity.  # noqa: E501
+        :type kernel_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and kernel_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `kernel_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                kernel_version is not None and len(kernel_version) > 255):
+            raise ValueError("Invalid value for `kernel_version`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._kernel_version = kernel_version
 
     @property
     def hardware(self):
@@ -501,6 +537,8 @@ class DeviceIdentity(object):
         :param hardware: The hardware of this DeviceIdentity.  # noqa: E501
         :type hardware: str
         """
+        if self.local_vars_configuration.client_side_validation and hardware is None:  # noqa: E501
+            raise ValueError("Invalid value for `hardware`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 hardware is not None and len(hardware) > 255):
             raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
@@ -525,6 +563,8 @@ class DeviceIdentity(object):
         :param revision: The revision of this DeviceIdentity.  # noqa: E501
         :type revision: str
         """
+        if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
+            raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 revision is not None and len(revision) > 255):
             raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
@@ -642,6 +682,32 @@ class DeviceIdentity(object):
         self._ram = ram
 
     @property
+    def cpu_flags(self):
+        """Gets the cpu_flags of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The cpu_flags of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._cpu_flags
+
+    @cpu_flags.setter
+    def cpu_flags(self, cpu_flags):
+        """Sets the cpu_flags of this DeviceIdentity.
+
+
+        :param cpu_flags: The cpu_flags of this DeviceIdentity.  # noqa: E501
+        :type cpu_flags: str
+        """
+        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
+            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cpu_flags is not None and len(cpu_flags) > 255):
+            raise ValueError("Invalid value for `cpu_flags`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._cpu_flags = cpu_flags
+
+    @property
     def url(self):
         """Gets the url of this DeviceIdentity.  # noqa: E501
 
@@ -722,8 +788,6 @@ class DeviceIdentity(object):
         :param public_key_checksum: The public_key_checksum of this DeviceIdentity.  # noqa: E501
         :type public_key_checksum: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
 
         self._public_key_checksum = public_key_checksum
 
@@ -754,7 +818,7 @@ class DeviceIdentity(object):
 
 
         :return: The ca_certs of this DeviceIdentity.  # noqa: E501
-        :rtype: dict(str, str)
+        :rtype: DeviceIdentityCaCerts
         """
         return self._ca_certs
 
@@ -764,10 +828,8 @@ class DeviceIdentity(object):
 
 
         :param ca_certs: The ca_certs of this DeviceIdentity.  # noqa: E501
-        :type ca_certs: dict(str, str)
+        :type ca_certs: DeviceIdentityCaCerts
         """
-        if self.local_vars_configuration.client_side_validation and ca_certs is None:  # noqa: E501
-            raise ValueError("Invalid value for `ca_certs`, must not be `None`")  # noqa: E501
 
         self._ca_certs = ca_certs
 

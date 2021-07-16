@@ -21,6 +21,7 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceIdentity.md
+docs/DeviceIdentityCaCerts.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -152,6 +153,7 @@ src/main/kotlin/com/print-nanny/client/models/Device.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibration.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceIdentity.kt
+src/main/kotlin/com/print-nanny/client/models/DeviceIdentityCaCerts.kt
 src/main/kotlin/com/print-nanny/client/models/DeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EmailAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/EventSourceEnum.kt

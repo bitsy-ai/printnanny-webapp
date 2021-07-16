@@ -19,28 +19,30 @@ import java.io.Serializable
 /**
  * 
  * @param user 
- * @param hostname 
+ * @param name 
  * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDevice 
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
- * @param platform 
- * @param cpuFlags 
+ * @param osVersion 
+ * @param os 
+ * @param kernelVersion 
  * @param hardware 
  * @param revision 
  * @param model 
  * @param serial 
  * @param cores 
  * @param ram 
+ * @param cpuFlags 
  */
 
 data class PatchedDeviceRequest (
     @Json(name = "user")
     val user: kotlin.Int? = null,
-    @Json(name = "hostname")
-    val hostname: kotlin.String? = null,
+    @Json(name = "name")
+    val name: kotlin.String? = null,
     @Json(name = "public_key")
     val publicKey: kotlin.String? = null,
     @Json(name = "fingerprint")
@@ -53,10 +55,12 @@ data class PatchedDeviceRequest (
     val cloudiotDevicePath: kotlin.String? = null,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Long? = null,
-    @Json(name = "platform")
-    val platform: kotlin.String? = null,
-    @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.String? = null,
+    @Json(name = "os_version")
+    val osVersion: kotlin.String? = null,
+    @Json(name = "os")
+    val os: kotlin.String? = null,
+    @Json(name = "kernel_version")
+    val kernelVersion: kotlin.String? = null,
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,
     @Json(name = "revision")
@@ -68,7 +72,9 @@ data class PatchedDeviceRequest (
     @Json(name = "cores")
     val cores: kotlin.Int? = null,
     @Json(name = "ram")
-    val ram: kotlin.Int? = null
+    val ram: kotlin.Int? = null,
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -5,21 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **user** | **kotlin.Int** |  | 
-**hostname** | **kotlin.String** |  | 
+**name** | **kotlin.String** |  | 
 **publicKey** | **kotlin.String** |  | 
 **fingerprint** | **kotlin.String** |  | 
 **cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
 **cloudiotDeviceName** | **kotlin.String** |  | 
 **cloudiotDevicePath** | **kotlin.String** |  | 
 **cloudiotDeviceNumId** | **kotlin.Long** |  | 
-**platform** | **kotlin.String** |  | 
-**cpuFlags** | **kotlin.String** |  | 
+**osVersion** | **kotlin.String** |  | 
+**os** | **kotlin.String** |  | 
+**kernelVersion** | **kotlin.String** |  | 
+**hardware** | **kotlin.String** |  | 
+**revision** | **kotlin.String** |  | 
 **model** | **kotlin.String** |  | 
 **serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Int** |  | 
-**hardware** | **kotlin.String** |  |  [optional]
-**revision** | **kotlin.String** |  |  [optional]
+**cpuFlags** | **kotlin.String** |  | 
 
 
 

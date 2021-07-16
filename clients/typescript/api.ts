@@ -403,7 +403,7 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    hostname: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -445,25 +445,31 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    platform: string;
+    os_version: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    cpu_flags: string;
+    os: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    hardware?: string | null;
+    kernel_version: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    revision?: string | null;
+    hardware: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    revision: string;
     /**
      * 
      * @type {string}
@@ -488,6 +494,12 @@ export interface Device {
      * @memberof Device
      */
     ram: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    cpu_flags: string;
     /**
      * 
      * @type {string}
@@ -634,7 +646,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    hostname: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -676,25 +688,31 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    platform: string;
+    os_version: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    cpu_flags: string;
+    os: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    hardware?: string | null;
+    kernel_version: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    revision?: string | null;
+    hardware: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    revision: string;
     /**
      * 
      * @type {string}
@@ -724,6 +742,12 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
+    cpu_flags: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
     url?: string;
     /**
      * 
@@ -742,7 +766,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key_checksum: string;
+    public_key_checksum?: string;
     /**
      * 
      * @type {string}
@@ -751,16 +775,47 @@ export interface DeviceIdentity {
     cloudiot_device_configs?: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {DeviceIdentityCaCerts}
      * @memberof DeviceIdentity
      */
-    ca_certs: { [key: string]: string; };
+    ca_certs?: DeviceIdentityCaCerts;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
     manage_url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceIdentityCaCerts
+ */
+export interface DeviceIdentityCaCerts {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    primary?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    primary_checksum?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    backup?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    backup_checksum?: string;
 }
 /**
  * 
@@ -779,7 +834,7 @@ export interface DeviceRequest {
      * @type {string}
      * @memberof DeviceRequest
      */
-    hostname: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -821,25 +876,31 @@ export interface DeviceRequest {
      * @type {string}
      * @memberof DeviceRequest
      */
-    platform: string;
+    os_version: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    cpu_flags: string;
+    os: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    hardware?: string | null;
+    kernel_version: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    revision?: string | null;
+    hardware: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    revision: string;
     /**
      * 
      * @type {string}
@@ -864,6 +925,12 @@ export interface DeviceRequest {
      * @memberof DeviceRequest
      */
     ram: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    cpu_flags: string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -3024,7 +3091,7 @@ export interface PatchedDeviceRequest {
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    hostname?: string;
+    name?: string;
     /**
      * 
      * @type {string}
@@ -3066,25 +3133,31 @@ export interface PatchedDeviceRequest {
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    platform?: string;
+    os_version?: string;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    cpu_flags?: string;
+    os?: string;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    hardware?: string | null;
+    kernel_version?: string;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    revision?: string | null;
+    hardware?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    revision?: string;
     /**
      * 
      * @type {string}
@@ -3109,6 +3182,12 @@ export interface PatchedDeviceRequest {
      * @memberof PatchedDeviceRequest
      */
     ram?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    cpu_flags?: string;
 }
 /**
  * 
@@ -6467,7 +6546,7 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+        async devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceIdentity>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdateOrCreate(deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6536,7 +6615,7 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+        devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity> {
             return localVarFp.devicesUpdateOrCreate(deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6602,7 +6681,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+    devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity>;
 
     /**
      * 

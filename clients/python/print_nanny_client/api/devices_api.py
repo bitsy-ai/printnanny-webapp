@@ -459,7 +459,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Device
+        :rtype: DeviceIdentity
         """
         kwargs['_return_http_data_only'] = True
         return self.devices_update_or_create_with_http_info(device_request, **kwargs)  # noqa: E501
@@ -495,7 +495,7 @@ class DevicesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Device, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(DeviceIdentity, status_code(int), headers(HTTPHeaderDict))
         """
 
         local_var_params = locals()
@@ -552,8 +552,8 @@ class DevicesApi(object):
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
         
         response_types_map = {
-            400: "Device",
-            200: "Device",
+            400: "DeviceIdentity",
+            200: "DeviceIdentity",
             201: "DeviceIdentity",
             202: "DeviceIdentity",
         }

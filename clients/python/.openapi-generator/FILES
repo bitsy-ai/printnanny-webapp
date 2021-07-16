@@ -25,6 +25,7 @@ docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
 docs/DeviceIdentity.md
+docs/DeviceIdentityCaCerts.md
 docs/DeviceRequest.md
 docs/DevicesApi.md
 docs/EmailAuthRequest.md
@@ -143,6 +144,7 @@ print_nanny_client/models/device.py
 print_nanny_client/models/device_calibration.py
 print_nanny_client/models/device_calibration_request.py
 print_nanny_client/models/device_identity.py
+print_nanny_client/models/device_identity_ca_certs.py
 print_nanny_client/models/device_request.py
 print_nanny_client/models/email_auth_request.py
 print_nanny_client/models/event_source_enum.py
@@ -247,6 +249,7 @@ test/test_device.py
 test/test_device_calibration.py
 test/test_device_calibration_request.py
 test/test_device_identity.py
+test/test_device_identity_ca_certs.py
 test/test_device_request.py
 test/test_devices_api.py
 test/test_email_auth_request.py

@@ -12,21 +12,24 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
+import com.print-nanny.client.models.DeviceIdentityCaCerts
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
- * @param hostname 
- * @param platform 
- * @param cpuFlags 
+ * @param name 
+ * @param osVersion 
+ * @param os 
+ * @param kernelVersion 
+ * @param hardware 
+ * @param revision 
  * @param model 
  * @param serial 
  * @param cores 
  * @param ram 
- * @param publicKeyChecksum 
- * @param caCerts 
+ * @param cpuFlags 
  * @param id 
  * @param deleted 
  * @param createdDt 
@@ -38,22 +41,28 @@ import java.io.Serializable
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
- * @param hardware 
- * @param revision 
  * @param url 
  * @param privateKey 
  * @param privateKeyChecksum 
+ * @param publicKeyChecksum 
  * @param cloudiotDeviceConfigs 
+ * @param caCerts 
  * @param manageUrl 
  */
 
 data class DeviceIdentity (
-    @Json(name = "hostname")
-    val hostname: kotlin.String,
-    @Json(name = "platform")
-    val platform: kotlin.String,
-    @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.String,
+    @Json(name = "name")
+    val name: kotlin.String,
+    @Json(name = "os_version")
+    val osVersion: kotlin.String,
+    @Json(name = "os")
+    val os: kotlin.String,
+    @Json(name = "kernel_version")
+    val kernelVersion: kotlin.String,
+    @Json(name = "hardware")
+    val hardware: kotlin.String,
+    @Json(name = "revision")
+    val revision: kotlin.String,
     @Json(name = "model")
     val model: kotlin.String,
     @Json(name = "serial")
@@ -62,10 +71,8 @@ data class DeviceIdentity (
     val cores: kotlin.Int,
     @Json(name = "ram")
     val ram: kotlin.Int,
-    @Json(name = "public_key_checksum")
-    val publicKeyChecksum: kotlin.String,
-    @Json(name = "ca_certs")
-    val caCerts: kotlin.collections.Map<kotlin.String, kotlin.String>,
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.String,
     @Json(name = "id")
     val id: kotlin.Int? = null,
     @Json(name = "deleted")
@@ -88,18 +95,18 @@ data class DeviceIdentity (
     val cloudiotDevicePath: kotlin.String? = null,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Int? = null,
-    @Json(name = "hardware")
-    val hardware: kotlin.String? = null,
-    @Json(name = "revision")
-    val revision: kotlin.String? = null,
     @Json(name = "url")
     val url: java.net.URI? = null,
     @Json(name = "private_key")
     val privateKey: kotlin.String? = null,
     @Json(name = "private_key_checksum")
     val privateKeyChecksum: kotlin.String? = null,
+    @Json(name = "public_key_checksum")
+    val publicKeyChecksum: kotlin.String? = null,
     @Json(name = "cloudiot_device_configs")
     val cloudiotDeviceConfigs: kotlin.String? = null,
+    @Json(name = "ca_certs")
+    val caCerts: DeviceIdentityCaCerts? = null,
     @Json(name = "manage_url")
     val manageUrl: java.net.URI? = null
 ) : Serializable {

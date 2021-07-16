@@ -41,7 +41,7 @@ class TestDevice(unittest.TestCase):
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 user = 56, 
-                hostname = '', 
+                name = '', 
                 public_key = '', 
                 fingerprint = '', 
                 cloudiot_device = {
@@ -50,20 +50,22 @@ class TestDevice(unittest.TestCase):
                 cloudiot_device_name = '', 
                 cloudiot_device_path = '', 
                 cloudiot_device_num_id = -9223372036854775808, 
-                platform = '', 
-                cpu_flags = '', 
+                os_version = '', 
+                os = '', 
+                kernel_version = '', 
                 hardware = '', 
                 revision = '', 
                 model = '', 
                 serial = '', 
                 cores = -2147483648, 
                 ram = -2147483648, 
+                cpu_flags = '', 
                 url = ''
             )
         else :
             return Device(
                 user = 56,
-                hostname = '',
+                name = '',
                 public_key = '',
                 fingerprint = '',
                 cloudiot_device = {
@@ -72,12 +74,16 @@ class TestDevice(unittest.TestCase):
                 cloudiot_device_name = '',
                 cloudiot_device_path = '',
                 cloudiot_device_num_id = -9223372036854775808,
-                platform = '',
-                cpu_flags = '',
+                os_version = '',
+                os = '',
+                kernel_version = '',
+                hardware = '',
+                revision = '',
                 model = '',
                 serial = '',
                 cores = -2147483648,
                 ram = -2147483648,
+                cpu_flags = '',
         )
 
     def testDevice(self):

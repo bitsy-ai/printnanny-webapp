@@ -134,6 +134,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.DeviceIdentity](docs/DeviceIdentity.md)
+ - [com.print-nanny.client.models.DeviceIdentityCaCerts](docs/DeviceIdentityCaCerts.md)
  - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)

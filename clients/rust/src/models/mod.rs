@@ -32,6 +32,8 @@ pub mod device_calibration_request;
 pub use self::device_calibration_request::DeviceCalibrationRequest;
 pub mod device_identity;
 pub use self::device_identity::DeviceIdentity;
+pub mod device_identity_ca_certs;
+pub use self::device_identity_ca_certs::DeviceIdentityCaCerts;
 pub mod device_request;
 pub use self::device_request::DeviceRequest;
 pub mod email_auth_request;

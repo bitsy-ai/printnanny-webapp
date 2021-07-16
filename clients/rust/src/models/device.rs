@@ -21,8 +21,8 @@ pub struct Device {
     pub updated_dt: Option<String>,
     #[serde(rename = "user")]
     pub user: i32,
-    #[serde(rename = "hostname")]
-    pub hostname: String,
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "public_key")]
     pub public_key: String,
     #[serde(rename = "fingerprint")]
@@ -35,14 +35,16 @@ pub struct Device {
     pub cloudiot_device_path: String,
     #[serde(rename = "cloudiot_device_num_id")]
     pub cloudiot_device_num_id: i64,
-    #[serde(rename = "platform")]
-    pub platform: String,
-    #[serde(rename = "cpu_flags")]
-    pub cpu_flags: String,
-    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
-    pub hardware: Option<String>,
-    #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
-    pub revision: Option<String>,
+    #[serde(rename = "os_version")]
+    pub os_version: String,
+    #[serde(rename = "os")]
+    pub os: String,
+    #[serde(rename = "kernel_version")]
+    pub kernel_version: String,
+    #[serde(rename = "hardware")]
+    pub hardware: String,
+    #[serde(rename = "revision")]
+    pub revision: String,
     #[serde(rename = "model")]
     pub model: String,
     #[serde(rename = "serial")]
@@ -51,33 +53,37 @@ pub struct Device {
     pub cores: i32,
     #[serde(rename = "ram")]
     pub ram: i32,
+    #[serde(rename = "cpu_flags")]
+    pub cpu_flags: String,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
 }
 
 impl Device {
-    pub fn new(user: i32, hostname: String, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i64, platform: String, cpu_flags: String, model: String, serial: String, cores: i32, ram: i32) -> Device {
+    pub fn new(user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i64, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i32, cpu_flags: String) -> Device {
         Device {
             id: None,
             deleted: None,
             created_dt: None,
             updated_dt: None,
             user,
-            hostname,
+            name,
             public_key,
             fingerprint,
             cloudiot_device,
             cloudiot_device_name,
             cloudiot_device_path,
             cloudiot_device_num_id,
-            platform,
-            cpu_flags,
-            hardware: None,
-            revision: None,
+            os_version,
+            os,
+            kernel_version,
+            hardware,
+            revision,
             model,
             serial,
             cores,
             ram,
+            cpu_flags,
             url: None,
         }
     }

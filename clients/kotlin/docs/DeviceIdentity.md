@@ -4,15 +4,17 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hostname** | **kotlin.String** |  | 
-**platform** | **kotlin.String** |  | 
-**cpuFlags** | **kotlin.String** |  | 
+**name** | **kotlin.String** |  | 
+**osVersion** | **kotlin.String** |  | 
+**os** | **kotlin.String** |  | 
+**kernelVersion** | **kotlin.String** |  | 
+**hardware** | **kotlin.String** |  | 
+**revision** | **kotlin.String** |  | 
 **model** | **kotlin.String** |  | 
 **serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Int** |  | 
-**publicKeyChecksum** | **kotlin.String** |  | 
-**caCerts** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  | 
+**cpuFlags** | **kotlin.String** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
@@ -24,12 +26,12 @@ Name | Type | Description | Notes
 **cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
-**hardware** | **kotlin.String** |  |  [optional]
-**revision** | **kotlin.String** |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **privateKey** | **kotlin.String** |  |  [optional] [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
+**publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
+**caCerts** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  |  [optional]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 

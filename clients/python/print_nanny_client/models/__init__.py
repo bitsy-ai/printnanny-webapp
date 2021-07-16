@@ -31,6 +31,7 @@ from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
 from print_nanny_client.models.device_identity import DeviceIdentity
+from print_nanny_client.models.device_identity_ca_certs import DeviceIdentityCaCerts
 from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
