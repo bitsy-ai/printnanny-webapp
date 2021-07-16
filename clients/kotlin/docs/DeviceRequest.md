@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **model** | **kotlin.String** |  | 
 **serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
-**ram** | **kotlin.Int** |  | 
+**ram** | **kotlin.Long** |  | 
 **cpuFlags** | **kotlin.String** |  | 
 
 

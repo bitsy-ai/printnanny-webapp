@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **model** | **String** |  | 
 **serial** | **String** |  | 
 **cores** | **i32** |  | 
-**ram** | **i32** |  | 
+**ram** | **i64** |  | 
 **cpu_flags** | **String** |  | 
 **url** | Option<**String**> |  | [optional][readonly]
 

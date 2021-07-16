@@ -52,7 +52,7 @@ pub struct Device {
     #[serde(rename = "cores")]
     pub cores: i32,
     #[serde(rename = "ram")]
-    pub ram: i32,
+    pub ram: i64,
     #[serde(rename = "cpu_flags")]
     pub cpu_flags: String,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
@@ -60,7 +60,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i32, cpu_flags: String) -> Device {
+    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, cpu_flags: String) -> Device {
         Device {
             id: None,
             deleted: None,

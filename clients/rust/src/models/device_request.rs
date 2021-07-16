@@ -30,13 +30,13 @@ pub struct DeviceRequest {
     #[serde(rename = "cores")]
     pub cores: i32,
     #[serde(rename = "ram")]
-    pub ram: i32,
+    pub ram: i64,
     #[serde(rename = "cpu_flags")]
     pub cpu_flags: String,
 }
 
 impl DeviceRequest {
-    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i32, cpu_flags: String) -> DeviceRequest {
+    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, cpu_flags: String) -> DeviceRequest {
         DeviceRequest {
             name,
             os_version,

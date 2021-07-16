@@ -45,7 +45,7 @@ class TestPatchedDeviceRequest(unittest.TestCase):
                 model = '', 
                 serial = '', 
                 cores = -2147483648, 
-                ram = -2147483648, 
+                ram = -9223372036854775808, 
                 cpu_flags = ''
             )
         else :

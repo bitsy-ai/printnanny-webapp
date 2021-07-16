@@ -343,11 +343,11 @@ class PatchedDeviceRequest(object):
         :type ram: int
         """
         if (self.local_vars_configuration.client_side_validation and
-                ram is not None and ram > 2147483647):  # noqa: E501
-            raise ValueError("Invalid value for `ram`, must be a value less than or equal to `2147483647`")  # noqa: E501
+                ram is not None and ram > 9223372036854775807):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                ram is not None and ram < -2147483648):  # noqa: E501
-            raise ValueError("Invalid value for `ram`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+                ram is not None and ram < -9223372036854775808):  # noqa: E501
+            raise ValueError("Invalid value for `ram`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
 
         self._ram = ram
 

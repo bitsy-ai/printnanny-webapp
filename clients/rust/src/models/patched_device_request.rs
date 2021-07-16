@@ -30,7 +30,7 @@ pub struct PatchedDeviceRequest {
     #[serde(rename = "cores", skip_serializing_if = "Option::is_none")]
     pub cores: Option<i32>,
     #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
-    pub ram: Option<i32>,
+    pub ram: Option<i64>,
     #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
     pub cpu_flags: Option<String>,
 }

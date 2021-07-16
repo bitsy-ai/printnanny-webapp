@@ -50,7 +50,7 @@ data class PatchedDeviceRequest (
     @Json(name = "cores")
     val cores: kotlin.Int? = null,
     @Json(name = "ram")
-    val ram: kotlin.Int? = null,
+    val ram: kotlin.Long? = null,
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.String? = null
 ) : Serializable {

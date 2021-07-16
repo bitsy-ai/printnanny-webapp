@@ -63,7 +63,7 @@ data class Device (
     @Json(name = "cores")
     val cores: kotlin.Int,
     @Json(name = "ram")
-    val ram: kotlin.Int,
+    val ram: kotlin.Long,
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.String,
     @Json(name = "id")
