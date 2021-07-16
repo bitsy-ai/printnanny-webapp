@@ -156,17 +156,17 @@ pub enum GcodeFilesUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_partial_update2`
+/// struct for typed errors of method `octoprint_devices_partial_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum OctoprintDevicesPartialUpdate2Error {
+pub enum OctoprintDevicesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_update2`
+/// struct for typed errors of method `octoprint_devices_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum OctoprintDevicesUpdate2Error {
+pub enum OctoprintDevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -847,7 +847,7 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
     }
 }
 
-pub async fn octoprint_devices_partial_update2(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesPartialUpdate2Error>> {
+pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesPartialUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -871,13 +871,13 @@ pub async fn octoprint_devices_partial_update2(configuration: &configuration::Co
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<OctoprintDevicesPartialUpdate2Error> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<OctoprintDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn octoprint_devices_update2(configuration: &configuration::Configuration, id: i32, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdate2Error>> {
+pub async fn octoprint_devices_update(configuration: &configuration::Configuration, id: i32, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -901,7 +901,7 @@ pub async fn octoprint_devices_update2(configuration: &configuration::Configurat
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<OctoprintDevicesUpdate2Error> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<OctoprintDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

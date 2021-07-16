@@ -4,14 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | Option<**i32**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
-**public_key** | Option<**String**> |  | [optional]
-**fingerprint** | Option<**String**> |  | [optional]
-**cloudiot_device** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**cloudiot_device_name** | Option<**String**> |  | [optional]
-**cloudiot_device_path** | Option<**String**> |  | [optional]
-**cloudiot_device_num_id** | Option<**i64**> |  | [optional]
 **os_version** | Option<**String**> |  | [optional]
 **os** | Option<**String**> |  | [optional]
 **kernel_version** | Option<**String**> |  | [optional]

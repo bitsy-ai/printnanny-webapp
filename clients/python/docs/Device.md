@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **deleted** | **datetime** |  | [optional] [readonly] 
 **created_dt** | **datetime** |  | [optional] [readonly] 
 **updated_dt** | **datetime** |  | [optional] [readonly] 
-**user** | **int** |  | 
+**user** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
-**public_key** | **str** |  | 
-**fingerprint** | **str** |  | 
-**cloudiot_device** | **dict(str, object)** |  | 
-**cloudiot_device_name** | **str** |  | 
-**cloudiot_device_path** | **str** |  | 
-**cloudiot_device_num_id** | **int** |  | 
+**public_key** | **str** |  | [optional] [readonly] 
+**fingerprint** | **str** |  | [optional] [readonly] 
+**cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
+**cloudiot_device_name** | **str** |  | [optional] [readonly] 
+**cloudiot_device_path** | **str** |  | [optional] [readonly] 
+**cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 

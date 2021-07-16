@@ -46,20 +46,20 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_devices_partial_update(self):
+        """Test case for devices_partial_update
+
+        """
+        pass
+
+    def test_devices_update(self):
+        """Test case for devices_update
+
+        """
+        pass
+
     def test_devices_update_or_create(self):
         """Test case for devices_update_or_create
-
-        """
-        pass
-
-    def test_octoprint_devices_partial_update(self):
-        """Test case for octoprint_devices_partial_update
-
-        """
-        pass
-
-    def test_octoprint_devices_update(self):
-        """Test case for octoprint_devices_update
 
         """
         pass

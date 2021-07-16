@@ -4,14 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **kotlin.Int** |  | 
 **name** | **kotlin.String** |  | 
-**publicKey** | **kotlin.String** |  | 
-**fingerprint** | **kotlin.String** |  | 
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
-**cloudiotDeviceName** | **kotlin.String** |  | 
-**cloudiotDevicePath** | **kotlin.String** |  | 
-**cloudiotDeviceNumId** | **kotlin.Long** |  | 
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 
@@ -26,6 +19,13 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**user** | **kotlin.Int** |  |  [optional] [readonly]
+**publicKey** | **kotlin.String** |  |  [optional] [readonly]
+**fingerprint** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional] [readonly]
+**cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
+**cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 

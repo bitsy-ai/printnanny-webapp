@@ -148,14 +148,14 @@ class TestRemoteControlApi(unittest.TestCase):
         """
         pass
 
-    def test_octoprint_devices_partial_update2(self):
-        """Test case for octoprint_devices_partial_update2
+    def test_octoprint_devices_partial_update(self):
+        """Test case for octoprint_devices_partial_update
 
         """
         pass
 
-    def test_octoprint_devices_update2(self):
-        """Test case for octoprint_devices_update2
+    def test_octoprint_devices_update(self):
+        """Test case for octoprint_devices_update
 
         """
         pass

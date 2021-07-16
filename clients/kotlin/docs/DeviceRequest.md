@@ -4,14 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **kotlin.Int** |  | 
 **name** | **kotlin.String** |  | 
-**publicKey** | **kotlin.String** |  | 
-**fingerprint** | **kotlin.String** |  | 
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  | 
-**cloudiotDeviceName** | **kotlin.String** |  | 
-**cloudiotDevicePath** | **kotlin.String** |  | 
-**cloudiotDeviceNumId** | **kotlin.Long** |  | 
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 

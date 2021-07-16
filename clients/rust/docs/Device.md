@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **deleted** | Option<**String**> |  | [optional][readonly]
 **created_dt** | Option<**String**> |  | [optional][readonly]
 **updated_dt** | Option<**String**> |  | [optional][readonly]
-**user** | **i32** |  | 
+**user** | Option<**i32**> |  | [optional][readonly]
 **name** | **String** |  | 
-**public_key** | **String** |  | 
-**fingerprint** | **String** |  | 
-**cloudiot_device** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
-**cloudiot_device_name** | **String** |  | 
-**cloudiot_device_path** | **String** |  | 
-**cloudiot_device_num_id** | **i64** |  | 
+**public_key** | Option<**String**> |  | [optional][readonly]
+**fingerprint** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional][readonly]
+**cloudiot_device_name** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device_path** | Option<**String**> |  | [optional][readonly]
+**cloudiot_device_num_id** | Option<**i32**> |  | [optional][readonly]
 **os_version** | **String** |  | 
 **os** | **String** |  | 
 **kernel_version** | **String** |  | 

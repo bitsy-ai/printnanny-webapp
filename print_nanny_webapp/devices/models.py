@@ -73,7 +73,7 @@ class Device(SafeDeleteModel):
     serial = models.CharField(max_length=255)
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
-    ram = models.IntegerField()
+    ram = models.BigIntegerField()
     cpu_flags = models.CharField(max_length=255)
 
     # TODO enable front-end views in release v0.8 go-live

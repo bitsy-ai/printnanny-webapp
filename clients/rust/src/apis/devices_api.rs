@@ -34,25 +34,25 @@ pub enum ApiDevicesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method `devices_partial_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `devices_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DevicesUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method `devices_update_or_create`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DevicesUpdateOrCreateError {
     Status400(crate::models::DeviceIdentity),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `octoprint_devices_partial_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesPartialUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `octoprint_devices_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -148,6 +148,66 @@ pub async fn api_devices_retrieve(configuration: &configuration::Configuration, 
     }
 }
 
+pub async fn devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_device_request: Option<crate::models::PatchedDeviceRequest>) -> Result<crate::models::Device, Error<DevicesPartialUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn devices_update(configuration: &configuration::Configuration, id: i32, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<DevicesUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/devices/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 pub async fn devices_update_or_create(configuration: &configuration::Configuration, device_request: crate::models::DeviceRequest) -> Result<crate::models::DeviceIdentity, Error<DevicesUpdateOrCreateError>> {
 
     let local_var_client = &configuration.client;
@@ -173,66 +233,6 @@ pub async fn devices_update_or_create(configuration: &configuration::Configurati
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DevicesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_device_request: Option<crate::models::PatchedDeviceRequest>) -> Result<crate::models::Device, Error<OctoprintDevicesPartialUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&patched_device_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<OctoprintDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn octoprint_devices_update(configuration: &configuration::Configuration, id: i32, device_request: crate::models::DeviceRequest) -> Result<crate::models::Device, Error<OctoprintDevicesUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&device_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<OctoprintDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

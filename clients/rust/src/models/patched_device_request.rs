@@ -11,22 +11,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PatchedDeviceRequest {
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
-    pub public_key: Option<String>,
-    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
-    pub fingerprint: Option<String>,
-    #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "cloudiot_device_name", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_name: Option<String>,
-    #[serde(rename = "cloudiot_device_path", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_path: Option<String>,
-    #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_num_id: Option<i64>,
     #[serde(rename = "os_version", skip_serializing_if = "Option::is_none")]
     pub os_version: Option<String>,
     #[serde(rename = "os", skip_serializing_if = "Option::is_none")]
@@ -52,14 +38,7 @@ pub struct PatchedDeviceRequest {
 impl PatchedDeviceRequest {
     pub fn new() -> PatchedDeviceRequest {
         PatchedDeviceRequest {
-            user: None,
             name: None,
-            public_key: None,
-            fingerprint: None,
-            cloudiot_device: None,
-            cloudiot_device_name: None,
-            cloudiot_device_path: None,
-            cloudiot_device_num_id: None,
             os_version: None,
             os: None,
             kernel_version: None,

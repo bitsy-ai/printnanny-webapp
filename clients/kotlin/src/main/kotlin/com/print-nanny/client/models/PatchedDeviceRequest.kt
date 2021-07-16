@@ -11,21 +11,13 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * 
- * @param user 
  * @param name 
- * @param publicKey 
- * @param fingerprint 
- * @param cloudiotDevice 
- * @param cloudiotDeviceName 
- * @param cloudiotDevicePath 
- * @param cloudiotDeviceNumId 
  * @param osVersion 
  * @param os 
  * @param kernelVersion 
@@ -39,22 +31,8 @@ import java.io.Serializable
  */
 
 data class PatchedDeviceRequest (
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
     @Json(name = "name")
     val name: kotlin.String? = null,
-    @Json(name = "public_key")
-    val publicKey: kotlin.String? = null,
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String? = null,
-    @Json(name = "cloudiot_device")
-    val cloudiotDevice: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "cloudiot_device_name")
-    val cloudiotDeviceName: kotlin.String? = null,
-    @Json(name = "cloudiot_device_path")
-    val cloudiotDevicePath: kotlin.String? = null,
-    @Json(name = "cloudiot_device_num_id")
-    val cloudiotDeviceNumId: kotlin.Long? = null,
     @Json(name = "os_version")
     val osVersion: kotlin.String? = null,
     @Json(name = "os")

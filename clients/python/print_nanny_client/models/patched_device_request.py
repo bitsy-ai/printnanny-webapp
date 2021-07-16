@@ -36,14 +36,7 @@ class PatchedDeviceRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'user': 'int',
         'name': 'str',
-        'public_key': 'str',
-        'fingerprint': 'str',
-        'cloudiot_device': 'dict(str, object)',
-        'cloudiot_device_name': 'str',
-        'cloudiot_device_path': 'str',
-        'cloudiot_device_num_id': 'int',
         'os_version': 'str',
         'os': 'str',
         'kernel_version': 'str',
@@ -57,14 +50,7 @@ class PatchedDeviceRequest(object):
     }
 
     attribute_map = {
-        'user': 'user',
         'name': 'name',
-        'public_key': 'public_key',
-        'fingerprint': 'fingerprint',
-        'cloudiot_device': 'cloudiot_device',
-        'cloudiot_device_name': 'cloudiot_device_name',
-        'cloudiot_device_path': 'cloudiot_device_path',
-        'cloudiot_device_num_id': 'cloudiot_device_num_id',
         'os_version': 'os_version',
         'os': 'os',
         'kernel_version': 'kernel_version',
@@ -77,20 +63,13 @@ class PatchedDeviceRequest(object):
         'cpu_flags': 'cpu_flags'
     }
 
-    def __init__(self, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, local_vars_configuration=None):  # noqa: E501
         """PatchedDeviceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._user = None
         self._name = None
-        self._public_key = None
-        self._fingerprint = None
-        self._cloudiot_device = None
-        self._cloudiot_device_name = None
-        self._cloudiot_device_path = None
-        self._cloudiot_device_num_id = None
         self._os_version = None
         self._os = None
         self._kernel_version = None
@@ -103,22 +82,8 @@ class PatchedDeviceRequest(object):
         self._cpu_flags = None
         self.discriminator = None
 
-        if user is not None:
-            self.user = user
         if name is not None:
             self.name = name
-        if public_key is not None:
-            self.public_key = public_key
-        if fingerprint is not None:
-            self.fingerprint = fingerprint
-        if cloudiot_device is not None:
-            self.cloudiot_device = cloudiot_device
-        if cloudiot_device_name is not None:
-            self.cloudiot_device_name = cloudiot_device_name
-        if cloudiot_device_path is not None:
-            self.cloudiot_device_path = cloudiot_device_path
-        if cloudiot_device_num_id is not None:
-            self.cloudiot_device_num_id = cloudiot_device_num_id
         if os_version is not None:
             self.os_version = os_version
         if os is not None:
@@ -139,27 +104,6 @@ class PatchedDeviceRequest(object):
             self.ram = ram
         if cpu_flags is not None:
             self.cpu_flags = cpu_flags
-
-    @property
-    def user(self):
-        """Gets the user of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The user of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this PatchedDeviceRequest.
-
-
-        :param user: The user of this PatchedDeviceRequest.  # noqa: E501
-        :type user: int
-        """
-
-        self._user = user
 
     @property
     def name(self):
@@ -184,147 +128,6 @@ class PatchedDeviceRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def public_key(self):
-        """Gets the public_key of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The public_key of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._public_key
-
-    @public_key.setter
-    def public_key(self, public_key):
-        """Sets the public_key of this PatchedDeviceRequest.
-
-
-        :param public_key: The public_key of this PatchedDeviceRequest.  # noqa: E501
-        :type public_key: str
-        """
-
-        self._public_key = public_key
-
-    @property
-    def fingerprint(self):
-        """Gets the fingerprint of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The fingerprint of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._fingerprint
-
-    @fingerprint.setter
-    def fingerprint(self, fingerprint):
-        """Sets the fingerprint of this PatchedDeviceRequest.
-
-
-        :param fingerprint: The fingerprint of this PatchedDeviceRequest.  # noqa: E501
-        :type fingerprint: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._fingerprint = fingerprint
-
-    @property
-    def cloudiot_device(self):
-        """Gets the cloudiot_device of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The cloudiot_device of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._cloudiot_device
-
-    @cloudiot_device.setter
-    def cloudiot_device(self, cloudiot_device):
-        """Sets the cloudiot_device of this PatchedDeviceRequest.
-
-
-        :param cloudiot_device: The cloudiot_device of this PatchedDeviceRequest.  # noqa: E501
-        :type cloudiot_device: dict(str, object)
-        """
-
-        self._cloudiot_device = cloudiot_device
-
-    @property
-    def cloudiot_device_name(self):
-        """Gets the cloudiot_device_name of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The cloudiot_device_name of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloudiot_device_name
-
-    @cloudiot_device_name.setter
-    def cloudiot_device_name(self, cloudiot_device_name):
-        """Sets the cloudiot_device_name of this PatchedDeviceRequest.
-
-
-        :param cloudiot_device_name: The cloudiot_device_name of this PatchedDeviceRequest.  # noqa: E501
-        :type cloudiot_device_name: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_name is not None and len(cloudiot_device_name) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_name`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._cloudiot_device_name = cloudiot_device_name
-
-    @property
-    def cloudiot_device_path(self):
-        """Gets the cloudiot_device_path of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The cloudiot_device_path of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloudiot_device_path
-
-    @cloudiot_device_path.setter
-    def cloudiot_device_path(self, cloudiot_device_path):
-        """Sets the cloudiot_device_path of this PatchedDeviceRequest.
-
-
-        :param cloudiot_device_path: The cloudiot_device_path of this PatchedDeviceRequest.  # noqa: E501
-        :type cloudiot_device_path: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._cloudiot_device_path = cloudiot_device_path
-
-    @property
-    def cloudiot_device_num_id(self):
-        """Gets the cloudiot_device_num_id of this PatchedDeviceRequest.  # noqa: E501
-
-
-        :return: The cloudiot_device_num_id of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._cloudiot_device_num_id
-
-    @cloudiot_device_num_id.setter
-    def cloudiot_device_num_id(self, cloudiot_device_num_id):
-        """Sets the cloudiot_device_num_id of this PatchedDeviceRequest.
-
-
-        :param cloudiot_device_num_id: The cloudiot_device_num_id of this PatchedDeviceRequest.  # noqa: E501
-        :type cloudiot_device_num_id: int
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_num_id is not None and cloudiot_device_num_id > 9223372036854775807):  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_num_id is not None and cloudiot_device_num_id < -9223372036854775808):  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
-
-        self._cloudiot_device_num_id = cloudiot_device_num_id
 
     @property
     def os_version(self):

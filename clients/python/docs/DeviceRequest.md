@@ -4,14 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | **int** |  | 
 **name** | **str** |  | 
-**public_key** | **str** |  | 
-**fingerprint** | **str** |  | 
-**cloudiot_device** | **dict(str, object)** |  | 
-**cloudiot_device_name** | **str** |  | 
-**cloudiot_device_path** | **str** |  | 
-**cloudiot_device_num_id** | **int** |  | 
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 

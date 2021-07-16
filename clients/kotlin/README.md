@@ -53,9 +53,9 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**apiDevicesCreate**](docs/DevicesApi.md#apidevicescreate) | **POST** /api/devices/ | 
 *DevicesApi* | [**apiDevicesList**](docs/DevicesApi.md#apideviceslist) | **GET** /api/devices/ | 
 *DevicesApi* | [**apiDevicesRetrieve**](docs/DevicesApi.md#apidevicesretrieve) | **GET** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesUpdateOrCreate**](docs/DevicesApi.md#devicesupdateorcreate) | **POST** /api/devices/update-or-create/ | 
-*DevicesApi* | [**octoprintDevicesPartialUpdate**](docs/DevicesApi.md#octoprintdevicespartialupdate) | **PATCH** /api/devices/{id}/ | 
-*DevicesApi* | [**octoprintDevicesUpdate**](docs/DevicesApi.md#octoprintdevicesupdate) | **PUT** /api/devices/{id}/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsList**](docs/MlOpsApi.md#apidevicecalibrationslist) | **GET** /api/device-calibrations/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#apidevicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsRetrieve**](docs/MlOpsApi.md#apidevicecalibrationsretrieve) | **GET** /api/device-calibrations/{id}/ | 
@@ -89,8 +89,8 @@ Class | Method | HTTP request | Description
 *RemoteControlApi* | [**apiPrinterProfilesUpdate**](docs/RemoteControlApi.md#apiprinterprofilesupdate) | **PUT** /api/printer-profiles/{id}/ | 
 *RemoteControlApi* | [**gcodeFilesCreate**](docs/RemoteControlApi.md#gcodefilescreate) | **POST** /api/gcode-files/ | 
 *RemoteControlApi* | [**gcodeFilesUpdateOrCreate**](docs/RemoteControlApi.md#gcodefilesupdateorcreate) | **POST** /api/gcode-files/update-or-create/ | 
-*RemoteControlApi* | [**octoprintDevicesPartialUpdate2**](docs/RemoteControlApi.md#octoprintdevicespartialupdate2) | **PATCH** /api/octoprint-devices/{id}/ | 
-*RemoteControlApi* | [**octoprintDevicesUpdate2**](docs/RemoteControlApi.md#octoprintdevicesupdate2) | **PUT** /api/octoprint-devices/{id}/ | 
+*RemoteControlApi* | [**octoprintDevicesPartialUpdate**](docs/RemoteControlApi.md#octoprintdevicespartialupdate) | **PATCH** /api/octoprint-devices/{id}/ | 
+*RemoteControlApi* | [**octoprintDevicesUpdate**](docs/RemoteControlApi.md#octoprintdevicesupdate) | **PUT** /api/octoprint-devices/{id}/ | 
 *RemoteControlApi* | [**octoprintDevicesUpdateOrCreate**](docs/RemoteControlApi.md#octoprintdevicesupdateorcreate) | **POST** /api/octoprint-devices/update-or-create/ | 
 *RemoteControlApi* | [**printSessionPartialUpdate**](docs/RemoteControlApi.md#printsessionpartialupdate) | **PATCH** /api/print-sessions/{session}/ | 
 *RemoteControlApi* | [**printSessionUpdate**](docs/RemoteControlApi.md#printsessionupdate) | **PUT** /api/print-sessions/{session}/ | 

@@ -126,14 +126,21 @@ class Device(object):
             self.created_dt = created_dt
         if updated_dt is not None:
             self.updated_dt = updated_dt
-        self.user = user
+        if user is not None:
+            self.user = user
         self.name = name
-        self.public_key = public_key
-        self.fingerprint = fingerprint
-        self.cloudiot_device = cloudiot_device
-        self.cloudiot_device_name = cloudiot_device_name
-        self.cloudiot_device_path = cloudiot_device_path
-        self.cloudiot_device_num_id = cloudiot_device_num_id
+        if public_key is not None:
+            self.public_key = public_key
+        if fingerprint is not None:
+            self.fingerprint = fingerprint
+        if cloudiot_device is not None:
+            self.cloudiot_device = cloudiot_device
+        if cloudiot_device_name is not None:
+            self.cloudiot_device_name = cloudiot_device_name
+        if cloudiot_device_path is not None:
+            self.cloudiot_device_path = cloudiot_device_path
+        if cloudiot_device_num_id is not None:
+            self.cloudiot_device_num_id = cloudiot_device_num_id
         self.os_version = os_version
         self.os = os
         self.kernel_version = kernel_version
@@ -249,8 +256,6 @@ class Device(object):
         :param user: The user of this Device.  # noqa: E501
         :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -298,8 +303,6 @@ class Device(object):
         :param public_key: The public_key of this Device.  # noqa: E501
         :type public_key: str
         """
-        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
         self._public_key = public_key
 
@@ -321,11 +324,6 @@ class Device(object):
         :param fingerprint: The fingerprint of this Device.  # noqa: E501
         :type fingerprint: str
         """
-        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
-            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
 
@@ -347,8 +345,6 @@ class Device(object):
         :param cloudiot_device: The cloudiot_device of this Device.  # noqa: E501
         :type cloudiot_device: dict(str, object)
         """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device = cloudiot_device
 
@@ -370,11 +366,6 @@ class Device(object):
         :param cloudiot_device_name: The cloudiot_device_name of this Device.  # noqa: E501
         :type cloudiot_device_name: str
         """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_name is not None and len(cloudiot_device_name) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cloudiot_device_name = cloudiot_device_name
 
@@ -396,11 +387,6 @@ class Device(object):
         :param cloudiot_device_path: The cloudiot_device_path of this Device.  # noqa: E501
         :type cloudiot_device_path: str
         """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
-            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cloudiot_device_path = cloudiot_device_path
 
@@ -422,14 +408,6 @@ class Device(object):
         :param cloudiot_device_num_id: The cloudiot_device_num_id of this Device.  # noqa: E501
         :type cloudiot_device_num_id: int
         """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_num_id is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_num_id`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_num_id is not None and cloudiot_device_num_id > 9223372036854775807):  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cloudiot_device_num_id is not None and cloudiot_device_num_id < -9223372036854775808):  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
 
         self._cloudiot_device_num_id = cloudiot_device_num_id
 

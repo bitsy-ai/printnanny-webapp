@@ -397,7 +397,7 @@ export interface Device {
      * @type {number}
      * @memberof Device
      */
-    user: number;
+    user?: number;
     /**
      * 
      * @type {string}
@@ -409,37 +409,37 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    public_key: string;
+    public_key?: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof Device
      */
-    cloudiot_device: { [key: string]: any; };
+    cloudiot_device?: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    cloudiot_device_name: string;
+    cloudiot_device_name?: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    cloudiot_device_path: string;
+    cloudiot_device_path?: string;
     /**
      * 
      * @type {number}
      * @memberof Device
      */
-    cloudiot_device_num_id: number;
+    cloudiot_device_num_id?: number;
     /**
      * 
      * @type {string}
@@ -825,52 +825,10 @@ export interface DeviceIdentityCaCerts {
 export interface DeviceRequest {
     /**
      * 
-     * @type {number}
-     * @memberof DeviceRequest
-     */
-    user: number;
-    /**
-     * 
      * @type {string}
      * @memberof DeviceRequest
      */
     name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    public_key: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    fingerprint: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceRequest
-     */
-    cloudiot_device: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    cloudiot_device_name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceRequest
-     */
-    cloudiot_device_path: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceRequest
-     */
-    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -3082,52 +3040,10 @@ export interface PatchedDeviceCalibrationRequest {
 export interface PatchedDeviceRequest {
     /**
      * 
-     * @type {number}
-     * @memberof PatchedDeviceRequest
-     */
-    user?: number;
-    /**
-     * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
     name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    public_key?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    fingerprint?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PatchedDeviceRequest
-     */
-    cloudiot_device?: { [key: string]: any; };
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    cloudiot_device_name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedDeviceRequest
-     */
-    cloudiot_device_path?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedDeviceRequest
-     */
-    cloudiot_device_num_id?: number;
     /**
      * 
      * @type {string}
@@ -6373,55 +6289,14 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {DeviceRequest} deviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesUpdateOrCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('devicesUpdateOrCreate', 'deviceRequest', deviceRequest)
-            const localVarPath = `/api/devices/update-or-create/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this device.
          * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesPartialUpdate: async (id: number, patchedDeviceRequest?: PatchedDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+        devicesPartialUpdate: async (id: number, patchedDeviceRequest?: PatchedDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('octoprintDevicesPartialUpdate', 'id', id)
+            assertParamExists('devicesPartialUpdate', 'id', id)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6462,11 +6337,11 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('octoprintDevicesUpdate', 'id', id)
+            assertParamExists('devicesUpdate', 'id', id)
             // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('octoprintDevicesUpdate', 'deviceRequest', deviceRequest)
+            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6477,6 +6352,47 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdateOrCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceRequest' is not null or undefined
+            assertParamExists('devicesUpdateOrCreate', 'deviceRequest', deviceRequest)
+            const localVarPath = `/api/devices/update-or-create/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -6542,34 +6458,34 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceIdentity>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdateOrCreate(deviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async octoprintDevicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesPartialUpdate(id, patchedDeviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async octoprintDevicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesUpdate(id, deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -6611,32 +6527,32 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity> {
             return localVarFp.devicesUpdateOrCreate(deviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintDevicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.octoprintDevicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {DeviceRequest} deviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        octoprintDevicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.octoprintDevicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6676,22 +6592,13 @@ export interface DevicesApiInterface {
 
     /**
      * 
-     * @param {DeviceRequest} deviceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity>;
-
-    /**
-     * 
      * @param {number} id A unique integer value identifying this device.
      * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    octoprintDevicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
+    devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
 
     /**
      * 
@@ -6701,7 +6608,16 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    octoprintDevicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity>;
 
 }
 
@@ -6747,6 +6663,30 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
 
     /**
      * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6754,30 +6694,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any) {
         return DevicesApiFp(this.configuration).devicesUpdateOrCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this device.
-     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public octoprintDevicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
-        return DevicesApiFp(this.configuration).octoprintDevicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this device.
-     * @param {DeviceRequest} deviceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public octoprintDevicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any) {
-        return DevicesApiFp(this.configuration).octoprintDevicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -8898,9 +8814,9 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesPartialUpdate2: async (id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintDevicesPartialUpdate: async (id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('octoprintDevicesPartialUpdate2', 'id', id)
+            assertParamExists('octoprintDevicesPartialUpdate', 'id', id)
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8941,11 +8857,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdate2: async (id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintDevicesUpdate: async (id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('octoprintDevicesUpdate2', 'id', id)
+            assertParamExists('octoprintDevicesUpdate', 'id', id)
             // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
-            assertParamExists('octoprintDevicesUpdate2', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
+            assertParamExists('octoprintDevicesUpdate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
             const localVarPath = `/api/octoprint-devices/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -9427,8 +9343,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesPartialUpdate2(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesPartialUpdate2(id, patchedOctoPrintDeviceRequest, options);
+        async octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9438,8 +9354,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async octoprintDevicesUpdate2(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesUpdate2(id, octoPrintDeviceRequest, options);
+        async octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesUpdate(id, octoPrintDeviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9711,8 +9627,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesPartialUpdate2(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return localVarFp.octoprintDevicesPartialUpdate2(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return localVarFp.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9721,8 +9637,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        octoprintDevicesUpdate2(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return localVarFp.octoprintDevicesUpdate2(id, octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+        octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return localVarFp.octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9988,7 +9904,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesPartialUpdate2(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+    octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -9998,7 +9914,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    octoprintDevicesUpdate2(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+    octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -10304,8 +10220,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesPartialUpdate2(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesPartialUpdate2(id, patchedOctoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10316,8 +10232,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public octoprintDevicesUpdate2(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdate2(id, octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintDevicesUpdate(id: number, octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesUpdate(id, octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

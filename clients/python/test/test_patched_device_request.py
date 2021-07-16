@@ -36,16 +36,7 @@ class TestPatchedDeviceRequest(unittest.TestCase):
         # model = print_nanny_client.models.patched_device_request.PatchedDeviceRequest()  # noqa: E501
         if include_optional :
             return PatchedDeviceRequest(
-                user = 56, 
                 name = '', 
-                public_key = '', 
-                fingerprint = '', 
-                cloudiot_device = {
-                    'key' : null
-                    }, 
-                cloudiot_device_name = '', 
-                cloudiot_device_path = '', 
-                cloudiot_device_num_id = -9223372036854775808, 
                 os_version = '', 
                 os = '', 
                 kernel_version = '', 
