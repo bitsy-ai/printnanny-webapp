@@ -55,4 +55,4 @@ stringcase
 twisted[http2,tls]<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-print-nanny-client>=0.8.4-dev1
+print-nanny-client>=0.8.4-dev2
