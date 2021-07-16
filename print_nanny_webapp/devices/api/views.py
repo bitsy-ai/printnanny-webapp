@@ -29,6 +29,7 @@ class DeviceViewSet(
 
     @extend_schema(
         operation_id="devices_update_or_create",
+        request=DeviceSerializer,
         responses={
             400: DeviceIdentitySerializer,
             200: DeviceIdentitySerializer,
@@ -61,7 +62,7 @@ class DeviceViewSet(
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(
-        operation_id="octoprint_devices_update",
+        operation_id="devices_update",
         parameters=[],
         responses={
             200: DeviceSerializer,
@@ -72,7 +73,7 @@ class DeviceViewSet(
         return super().update(*args, **kwargs)
 
     @extend_schema(
-        operation_id="octoprint_devices_partial_update",
+        operation_id="devices_partial_update",
         responses={
             200: DeviceSerializer,
             202: DeviceSerializer,

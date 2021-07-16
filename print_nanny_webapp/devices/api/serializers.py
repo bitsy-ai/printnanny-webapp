@@ -93,6 +93,16 @@ class DeviceSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "url": {"view_name": "api:device-detail", "lookup_field": "id"},
         }
+        read_only_fields = (
+            "user",
+            "public_key",
+            "fingerprint",
+            "cloudiot_device_num_id",
+            "cloudiot_device",
+            "cloudiot_device_name",
+            "cloudiot_device_path",
+            "cloudiot_device_configs",
+        )
 
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
