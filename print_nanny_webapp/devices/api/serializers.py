@@ -54,7 +54,25 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
-        fields = [field.name for field in Device._meta.fields] + [
+        fields = [
+            "created_dt",
+            "updated_dt",
+            "user",
+            "name",
+            "fingerprint",
+            "cloudiot_device_name",
+            "cloudiot_device_num_id",
+            "cloudiot_device_path",
+            "os_version",
+            "os",
+            "kernel_version",
+            "hardware",
+            "revision",
+            "model",
+            "serial",
+            "cores",
+            "ram",
+            "cpu_flags",
             "url",
             "private_key",
             "private_key_checksum",
@@ -63,6 +81,7 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "ca_certs",
             # "manage_url",
         ]
+
         extra_kwargs = {
             "url": {"view_name": "api:device-detail", "lookup_field": "id"},
         }
@@ -97,6 +116,7 @@ class DeviceSerializer(serializers.ModelSerializer):
         fields = [field.name for field in Device._meta.fields] + [
             "url",
         ]
+
         extra_kwargs = {
             "url": {"view_name": "api:device-detail", "lookup_field": "id"},
         }

@@ -1,3 +1,4 @@
+import logging
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.decorators import action
@@ -12,6 +13,8 @@ from rest_framework.viewsets import GenericViewSet
 
 from .serializers import DeviceSerializer, DeviceIdentitySerializer
 from ..models import Device
+
+logger = logging.getLogger(__name__)
 
 
 @extend_schema(tags=["devices"])
@@ -52,6 +55,8 @@ class DeviceViewSet(
             response_serializer = DeviceIdentitySerializer(
                 instance=instance, context=context
             )
+
+            logger.info(response_serializer.data)
             if not created:
                 return Response(
                     response_serializer.data, status=status.HTTP_202_ACCEPTED
