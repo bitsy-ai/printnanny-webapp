@@ -70,7 +70,6 @@ class DeviceManager(SafeDeleteManager):
         for key, value in always_update.items():
             setattr(device, key, value)
         logging.info(f"Device created: {created} with id={device.id}")
-        device.cloudiot_device = cloudiot_device_dict
         device.private_key = keypair["private_key_content"]
         device.private_key_checksum = keypair["private_key_checksum"]
         device.public_key_checksum = keypair["public_key_checksum"]
@@ -120,7 +119,6 @@ class Device(SafeDeleteModel):
     fingerprint = models.CharField(max_length=255)
 
     # GCP cloudiot API params
-    cloudiot_device = models.JSONField(default=dict)
     cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()

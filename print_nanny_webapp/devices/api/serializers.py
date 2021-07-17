@@ -1,6 +1,9 @@
 from collections.abc import Mapping
 from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
+from drf_spectacular.utils import extend_schema_field
+from drf_spectacular.types import OpenApiTypes
+
 from print_nanny_webapp.devices.models import (
     Device,
     PrinterController,
@@ -17,6 +20,12 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
 
     def get_ca_certs(self, obj) -> CACerts:
         return getattr(obj, "ca_certs")
+
+    cloudiot_device_num_id = serializers.SerializerMethodField()
+
+    @extend_schema_field(OpenApiTypes.INT64)
+    def get_cloudiot_device_num_id(self, obj):
+        return obj.cloudiot_device_num_id
 
     cloudiot_device_configs = serializers.SerializerMethodField()
 
@@ -86,6 +95,11 @@ class DeviceSerializer(serializers.ModelSerializer):
     # manage_url = serializers.HyperlinkedIdentityField(
     #     view_name="devices:detail", lookup_field="pk"
     # )
+
+    @extend_schema_field(OpenApiTypes.INT64)
+    def get_cloudiot_device_num_id(self, obj):
+        return obj.cloudiot_device_num_id
+
     class Meta:
         model = Device
         fields = [field.name for field in Device._meta.fields] + [
