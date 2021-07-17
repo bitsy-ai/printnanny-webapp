@@ -74,7 +74,7 @@ class Device(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    cpu_flags = models.CharField(max_length=255)
+    cpu_flags = models.JSONField(default=list)
 
     # TODO enable front-end views in release v0.8 go-live
     # @property
