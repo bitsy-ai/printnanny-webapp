@@ -104,9 +104,9 @@ class DeviceSerializer(serializers.ModelSerializer):
             "cloudiot_device_configs",
         )
 
-    def update_or_create(self, user, serial, validated_data):
+    def update_or_create(self, user, name, validated_data):
         return Device.objects.update_or_create(
-            user=user, serial=serial, defaults=validated_data
+            user=user, name=name, defaults=validated_data
         )
 
 

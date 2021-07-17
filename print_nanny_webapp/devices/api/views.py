@@ -42,11 +42,10 @@ class DeviceViewSet(
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             validated_data = serializer.validated_data.copy()
-            del validated_data["serial"]
+            del validated_data["name"]
             instance, created = serializer.update_or_create(
-                request.user, serializer.validated_data.get("serial"), validated_data
+                request.user, serializer.validated_data.get("name"), validated_data
             )
-
             context = {"request": self.request}
             context.update(self.get_serializer_context())
 
