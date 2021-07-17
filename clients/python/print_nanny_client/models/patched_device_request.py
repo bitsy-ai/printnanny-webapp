@@ -46,7 +46,7 @@ class PatchedDeviceRequest(object):
         'serial': 'str',
         'cores': 'int',
         'ram': 'int',
-        'cpu_flags': 'str'
+        'cpu_flags': 'dict(str, object)'
     }
 
     attribute_map = {
@@ -357,7 +357,7 @@ class PatchedDeviceRequest(object):
 
 
         :return: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: str
+        :rtype: dict(str, object)
         """
         return self._cpu_flags
 
@@ -367,11 +367,8 @@ class PatchedDeviceRequest(object):
 
 
         :param cpu_flags: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
-        :type cpu_flags: str
+        :type cpu_flags: dict(str, object)
         """
-        if (self.local_vars_configuration.client_side_validation and
-                cpu_flags is not None and len(cpu_flags) > 255):
-            raise ValueError("Invalid value for `cpu_flags`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cpu_flags = cpu_flags
 

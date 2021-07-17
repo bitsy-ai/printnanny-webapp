@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Long** |  | 
-**cpuFlags** | **kotlin.String** |  | 
+**cpuFlags** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 
 
 

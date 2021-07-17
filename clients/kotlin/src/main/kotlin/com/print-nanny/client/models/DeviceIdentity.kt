@@ -29,7 +29,6 @@ import java.io.Serializable
  * @param serial 
  * @param cores 
  * @param ram 
- * @param cpuFlags 
  * @param id 
  * @param deleted 
  * @param createdDt 
@@ -41,6 +40,7 @@ import java.io.Serializable
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
+ * @param cpuFlags 
  * @param url 
  * @param privateKey 
  * @param privateKeyChecksum 
@@ -71,8 +71,6 @@ data class DeviceIdentity (
     val cores: kotlin.Int,
     @Json(name = "ram")
     val ram: kotlin.Long,
-    @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.String,
     @Json(name = "id")
     val id: kotlin.Int? = null,
     @Json(name = "deleted")
@@ -95,6 +93,8 @@ data class DeviceIdentity (
     val cloudiotDevicePath: kotlin.String? = null,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Int? = null,
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "url")
     val url: java.net.URI? = null,
     @Json(name = "private_key")

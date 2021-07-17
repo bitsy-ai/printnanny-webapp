@@ -32,7 +32,7 @@ pub struct PatchedDeviceRequest {
     #[serde(rename = "ram", skip_serializing_if = "Option::is_none")]
     pub ram: Option<i64>,
     #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
-    pub cpu_flags: Option<String>,
+    pub cpu_flags: Option<::std::collections::HashMap<String, serde_json::Value>>,
 }
 
 impl PatchedDeviceRequest {
