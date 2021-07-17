@@ -1,8 +1,7 @@
-import re
+import logging
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 from google.cloud import iot_v1 as cloudiot_v1
 from google.protobuf.json_format import MessageToDict
 from django.conf import settings
@@ -12,9 +11,14 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
-from print_nanny_webapp.devices.services import delete_cloudiot_device
+from print_nanny_webapp.devices.services import (
+    delete_cloudiot_device,
+    generate_keypair,
+    update_or_create_cloudiot_device,
+)
 
 UserModel = get_user_model()
+logger = logging.getLogger(__name__)
 
 
 def pre_softdelete_cloudiot_device(instance=None, **kwargs):
@@ -26,12 +30,74 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 
+class DeviceManager(SafeDeleteManager):
+    def update_or_create(self, defaults=None, **kwargs):
+        serial = kwargs.get("serial")
+        logger.info(f"Creating keypair for device serial={serial}")
+
+        keypair = generate_keypair()
+
+        serial = kwargs["serial"]
+        cloudiot_device_name = f"serial-{serial}"
+        cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
+            name=cloudiot_device_name,
+            serial=serial,
+            user_id=kwargs["user"].id,
+            metadata=kwargs,
+            fingerprint=keypair["fingerprint"],
+            public_key_content=keypair["public_key_content"].strip(),
+        )
+
+        logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
+
+        cloudiot_device_num_id = cloudiot_device_dict.get("numId")
+
+        always_update = dict(
+            public_key=keypair["public_key_content"],
+            fingerprint=keypair["fingerprint"],
+            cloudiot_device_num_id=cloudiot_device_num_id,
+            cloudiot_device_name=cloudiot_device_name,
+            cloudiot_device=cloudiot_device_dict,
+            cloudiot_device_path=device_path,
+        )
+
+        defaults.update(always_update)
+
+        device, created = super().update_or_create(defaults=defaults, **kwargs)
+
+        for key, value in always_update.items():
+            setattr(device, key, value)
+        logging.info(f"Device created: {created} with id={device.id}")
+        device.cloudiot_device = cloudiot_device_dict
+        device.private_key = keypair["private_key_content"]
+        device.private_key_checksum = keypair["private_key_checksum"]
+        device.public_key_checksum = keypair["public_key_checksum"]
+        device.ca_certs = keypair["ca_certs"]
+        device.save()
+
+        from print_nanny_webapp.ml_ops.models import (
+            Experiment,
+            ExperimentDeviceConfig,
+        )
+
+        active_experiment = Experiment.objects.filter(active=True).first()
+        if active_experiment is not None:
+            experiment_device_config = ExperimentDeviceConfig.objects.create(
+                octoprint_device=device,
+                experiment=active_experiment,
+            )
+
+        return device, created
+
+
 class Device(SafeDeleteModel):
     """
     1-1 relationship with Cloud Iot Device (GCP)
     1-many relationship with PrinterController models
     System-level information
     """
+
+    objects = DeviceManager()
 
     class Meta:
         unique_together = ("user", "name")
