@@ -11,7 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.DeviceIdentityCaCerts
 
 import com.squareup.moshi.Json
@@ -27,7 +26,6 @@ import java.io.Serializable
  * @param name 
  * @param publicKey 
  * @param fingerprint 
- * @param cloudiotDevice 
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
@@ -66,14 +64,12 @@ data class DeviceIdentity (
     val publicKey: kotlin.String,
     @Json(name = "fingerprint")
     val fingerprint: kotlin.String,
-    @Json(name = "cloudiot_device")
-    val cloudiotDevice: kotlin.collections.Map<kotlin.String, AnyType>,
     @Json(name = "cloudiot_device_name")
     val cloudiotDeviceName: kotlin.String,
     @Json(name = "cloudiot_device_path")
     val cloudiotDevicePath: kotlin.String,
     @Json(name = "cloudiot_device_num_id")
-    val cloudiotDeviceNumId: kotlin.Int,
+    val cloudiotDeviceNumId: kotlin.Long,
     @Json(name = "os_version")
     val osVersion: kotlin.String,
     @Json(name = "os")

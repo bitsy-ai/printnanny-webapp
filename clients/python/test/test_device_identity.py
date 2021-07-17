@@ -44,9 +44,6 @@ class TestDeviceIdentity(unittest.TestCase):
                 name = '', 
                 public_key = '', 
                 fingerprint = '', 
-                cloudiot_device = {
-                    'key' : null
-                    }, 
                 cloudiot_device_name = '', 
                 cloudiot_device_path = '', 
                 cloudiot_device_num_id = 56, 
@@ -83,9 +80,6 @@ class TestDeviceIdentity(unittest.TestCase):
                 name = '',
                 public_key = '',
                 fingerprint = '',
-                cloudiot_device = {
-                    'key' : null
-                    },
                 cloudiot_device_name = '',
                 cloudiot_device_path = '',
                 cloudiot_device_num_id = 56,

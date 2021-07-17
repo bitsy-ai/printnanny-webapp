@@ -418,12 +418,6 @@ export interface Device {
     fingerprint: string;
     /**
      * 
-     * @type {{ [key: string]: any; }}
-     * @memberof Device
-     */
-    cloudiot_device: { [key: string]: any; };
-    /**
-     * 
      * @type {string}
      * @memberof Device
      */
@@ -659,12 +653,6 @@ export interface DeviceIdentity {
      * @memberof DeviceIdentity
      */
     fingerprint: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof DeviceIdentity
-     */
-    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}

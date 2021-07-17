@@ -27,8 +27,6 @@ pub struct Device {
     pub public_key: String,
     #[serde(rename = "fingerprint")]
     pub fingerprint: String,
-    #[serde(rename = "cloudiot_device")]
-    pub cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>,
     #[serde(rename = "cloudiot_device_name")]
     pub cloudiot_device_name: String,
     #[serde(rename = "cloudiot_device_path")]
@@ -60,7 +58,7 @@ pub struct Device {
 }
 
 impl Device {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String) -> Device {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String) -> Device {
         Device {
             id,
             deleted,
@@ -70,7 +68,6 @@ impl Device {
             name,
             public_key,
             fingerprint,
-            cloudiot_device,
             cloudiot_device_name,
             cloudiot_device_path,
             cloudiot_device_num_id,

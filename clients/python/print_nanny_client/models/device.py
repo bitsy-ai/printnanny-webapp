@@ -44,7 +44,6 @@ class Device(object):
         'name': 'str',
         'public_key': 'str',
         'fingerprint': 'str',
-        'cloudiot_device': 'dict(str, object)',
         'cloudiot_device_name': 'str',
         'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
@@ -70,7 +69,6 @@ class Device(object):
         'name': 'name',
         'public_key': 'public_key',
         'fingerprint': 'fingerprint',
-        'cloudiot_device': 'cloudiot_device',
         'cloudiot_device_name': 'cloudiot_device_name',
         'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
@@ -87,7 +85,7 @@ class Device(object):
         'url': 'url'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, local_vars_configuration=None):  # noqa: E501
         """Device - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -101,7 +99,6 @@ class Device(object):
         self._name = None
         self._public_key = None
         self._fingerprint = None
-        self._cloudiot_device = None
         self._cloudiot_device_name = None
         self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
@@ -126,7 +123,6 @@ class Device(object):
         self.name = name
         self.public_key = public_key
         self.fingerprint = fingerprint
-        self.cloudiot_device = cloudiot_device
         self.cloudiot_device_name = cloudiot_device_name
         self.cloudiot_device_path = cloudiot_device_path
         self.cloudiot_device_num_id = cloudiot_device_num_id
@@ -328,29 +324,6 @@ class Device(object):
             raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
 
         self._fingerprint = fingerprint
-
-    @property
-    def cloudiot_device(self):
-        """Gets the cloudiot_device of this Device.  # noqa: E501
-
-
-        :return: The cloudiot_device of this Device.  # noqa: E501
-        :rtype: dict(str, object)
-        """
-        return self._cloudiot_device
-
-    @cloudiot_device.setter
-    def cloudiot_device(self, cloudiot_device):
-        """Sets the cloudiot_device of this Device.
-
-
-        :param cloudiot_device: The cloudiot_device of this Device.  # noqa: E501
-        :type cloudiot_device: dict(str, object)
-        """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device`, must not be `None`")  # noqa: E501
-
-        self._cloudiot_device = cloudiot_device
 
     @property
     def cloudiot_device_name(self):

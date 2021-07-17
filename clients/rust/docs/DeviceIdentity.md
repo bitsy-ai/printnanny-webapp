@@ -12,10 +12,9 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **public_key** | **String** |  | [readonly]
 **fingerprint** | **String** |  | [readonly]
-**cloudiot_device** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | [readonly]
 **cloudiot_device_name** | **String** |  | [readonly]
 **cloudiot_device_path** | **String** |  | [readonly]
-**cloudiot_device_num_id** | **i32** |  | [readonly]
+**cloudiot_device_num_id** | **i64** |  | [readonly]
 **os_version** | **String** |  | 
 **os** | **String** |  | 
 **kernel_version** | **String** |  | 

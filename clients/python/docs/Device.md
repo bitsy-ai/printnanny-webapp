@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **public_key** | **str** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
-**cloudiot_device** | **dict(str, object)** |  | [readonly] 
 **cloudiot_device_name** | **str** |  | [readonly] 
 **cloudiot_device_path** | **str** |  | [readonly] 
 **cloudiot_device_num_id** | **int** |  | [readonly] 

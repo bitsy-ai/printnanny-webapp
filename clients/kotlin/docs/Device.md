@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **name** | **kotlin.String** |  | 
 **publicKey** | **kotlin.String** |  |  [readonly]
 **fingerprint** | **kotlin.String** |  |  [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
 **cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]

@@ -11,7 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -26,7 +25,6 @@ import java.io.Serializable
  * @param name 
  * @param publicKey 
  * @param fingerprint 
- * @param cloudiotDevice 
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
@@ -60,8 +58,6 @@ data class Device (
     val publicKey: kotlin.String,
     @Json(name = "fingerprint")
     val fingerprint: kotlin.String,
-    @Json(name = "cloudiot_device")
-    val cloudiotDevice: kotlin.collections.Map<kotlin.String, AnyType>,
     @Json(name = "cloudiot_device_name")
     val cloudiotDeviceName: kotlin.String,
     @Json(name = "cloudiot_device_path")
