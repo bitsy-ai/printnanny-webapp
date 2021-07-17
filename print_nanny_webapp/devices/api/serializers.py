@@ -21,11 +21,11 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
     def get_ca_certs(self, obj) -> CACerts:
         return getattr(obj, "ca_certs")
 
-    cloudiot_device_num_id = serializers.SerializerMethodField()
+    # cloudiot_device_num_id = serializers.SerializerMethodField()
 
-    @extend_schema_field(OpenApiTypes.INT64)
-    def get_cloudiot_device_num_id(self, obj):
-        return obj.cloudiot_device_num_id
+    # @extend_schema_field(OpenApiTypes.INT64)
+    # def get_cloudiot_device_num_id(self, obj) -> int:
+    #     return obj.cloudiot_device_num_id
 
     private_key = serializers.SerializerMethodField()
 
@@ -86,18 +86,21 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "url": {"view_name": "api:device-detail", "lookup_field": "id"},
         }
 
-        read_only_fields = (
-            "ca_certs",
-            "user",
-            "public_key",
-            "public_key_checksum",
-            "private_key",
-            "private_key_checksum",
-            "fingerprint",
-            "cloudiot_device_num_id",
-            "cloudiot_device_name",
-            "cloudiot_device_path",
-        )
+        # TODO
+        # int64 fields in read_only_fields are munged to int32 in JSON schema
+        # Reproduce and report to drf-spectacular
+        # read_only_fields = (
+        #     "ca_certs",
+        #     "user",
+        #     "public_key",
+        #     "public_key_checksum",
+        #     "private_key",
+        #     "private_key_checksum",
+        #     "fingerprint",
+        #     "cloudiot_device_num_id",
+        #     "cloudiot_device_name",
+        #     "cloudiot_device_path",
+        # )
 
 
 class DeviceSerializer(serializers.ModelSerializer):
@@ -108,7 +111,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     # )
 
     @extend_schema_field(OpenApiTypes.INT64)
-    def get_cloudiot_device_num_id(self, obj):
+    def get_cloudiot_device_num_id(self, obj) -> int:
         return obj.cloudiot_device_num_id
 
     class Meta:
