@@ -1,5 +1,5 @@
 import re
-from django.contrib.postgres.fields.jsonb import JSONField
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
@@ -52,7 +52,7 @@ class Device(SafeDeleteModel):
     fingerprint = models.CharField(max_length=255)
 
     # GCP cloudiot API params
-    cloudiot_device = JSONField()
+    cloudiot_device = models.JSONField(default=dict)
     cloudiot_device_name = models.CharField(max_length=255)
     cloudiot_device_path = models.CharField(max_length=255)
     cloudiot_device_num_id = models.BigIntegerField()
@@ -74,7 +74,7 @@ class Device(SafeDeleteModel):
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
-    cpu_flags = models.JSONField(default=list)
+    cpu_flags = ArrayField(models.CharField(max_length=255))
 
     # TODO enable front-end views in release v0.8 go-live
     # @property
@@ -180,7 +180,7 @@ class OctoprintPrinterProfile(PrinterProfile):
 
     model = models.CharField(max_length=255, null=True, blank=True)
 
-    volume_custom_box = JSONField(default={})
+    volume_custom_box = models.JSONField(default=dict)
     volume_depth = models.FloatField(null=True)
     volume_formfactor = models.CharField(null=True, max_length=255)
     volume_height = models.FloatField(null=True)
