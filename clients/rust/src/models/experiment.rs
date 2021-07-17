@@ -11,34 +11,34 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Experiment {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "hypothesis")]
     pub hypothesis: String,
-    #[serde(rename = "control", skip_serializing_if = "Option::is_none")]
-    pub control: Option<Box<crate::models::Nested>>,
-    #[serde(rename = "treatments", skip_serializing_if = "Option::is_none")]
-    pub treatments: Option<Vec<crate::models::Nested>>,
+    #[serde(rename = "control")]
+    pub control: Box<crate::models::Nested>,
+    #[serde(rename = "treatments")]
+    pub treatments: Vec<crate::models::Nested>,
     #[serde(rename = "notion_url", skip_serializing_if = "Option::is_none")]
     pub notion_url: Option<String>,
 }
 
 impl Experiment {
-    pub fn new(name: String, hypothesis: String) -> Experiment {
+    pub fn new(id: i32, created_dt: String, name: String, hypothesis: String, control: crate::models::Nested, treatments: Vec<crate::models::Nested>) -> Experiment {
         Experiment {
-            id: None,
-            created_dt: None,
+            id,
+            created_dt,
             active: None,
             name,
             hypothesis,
-            control: None,
-            treatments: None,
+            control: Box::new(control),
+            treatments,
             notion_url: None,
         }
     }

@@ -27,21 +27,21 @@ import java.io.Serializable
 
 /**
  * 
+ * @param id 
  * @param eventType 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
+ * @param ts 
+ * @param eventSource 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
+ * @param polymorphicCtype 
  * @param octoprintDevice 
+ * @param user 
  * @param printerState 
- * @param id 
- * @param ts 
- * @param eventSource 
  * @param eventData 
  * @param temperature 
- * @param polymorphicCtype 
- * @param user 
  * @param printSession 
  */
 
@@ -50,36 +50,36 @@ interface TelemetryEventPolymorphic : Serializable {
         private const val serialVersionUID: Long = 123
     }
 
+    @Json(name = "id")
+    val id: kotlin.Int
     @Json(name = "event_type")
     val eventType: PrintNannyPluginEventEventTypeEnum
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: kotlin.collections.Map<kotlin.String, AnyType>
     @Json(name = "octoprint_printer_data")
     val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>
+    @Json(name = "ts")
+    val ts: java.time.OffsetDateTime
+    @Json(name = "event_source")
+    val eventSource: EventSourceEnum
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String
     @Json(name = "print_nanny_client_version")
     val printNannyClientVersion: kotlin.String
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String
+    @Json(name = "polymorphic_ctype")
+    val polymorphicCtype: kotlin.Int
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int
+    @Json(name = "user")
+    val user: kotlin.Int
     @Json(name = "printer_state")
     val printerState: PrinterStateEnum
-    @Json(name = "id")
-    val id: kotlin.Int?
-    @Json(name = "ts")
-    val ts: java.time.OffsetDateTime?
-    @Json(name = "event_source")
-    val eventSource: EventSourceEnum?
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>?
-    @Json(name = "polymorphic_ctype")
-    val polymorphicCtype: kotlin.Int?
-    @Json(name = "user")
-    val user: kotlin.Int?
     @Json(name = "print_session")
     val printSession: kotlin.Int?
 }

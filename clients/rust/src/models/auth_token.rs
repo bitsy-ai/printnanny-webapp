@@ -11,14 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AuthToken {
-    #[serde(rename = "token", skip_serializing_if = "Option::is_none")]
-    pub token: Option<String>,
+    #[serde(rename = "token")]
+    pub token: String,
 }
 
 impl AuthToken {
-    pub fn new() -> AuthToken {
+    pub fn new(token: String) -> AuthToken {
         AuthToken {
-            token: None,
+            token,
         }
     }
 }

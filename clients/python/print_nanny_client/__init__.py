@@ -14,13 +14,14 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.3"
+__version__ = "0.8.5-dev3"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
 from print_nanny_client.api.api_api import ApiApi
 from print_nanny_client.api.auth_api import AuthApi
 from print_nanny_client.api.auth__api import AuthApi
+from print_nanny_client.api.devices_api import DevicesApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.partners_geeks3_api import PartnersGeeks3Api
 from print_nanny_client.api.partners_geeks3d_api import PartnersGeeks3dApi
@@ -51,8 +52,12 @@ from print_nanny_client.models.callback_token_verification import CallbackTokenV
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.detail_response import DetailResponse
+from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
+from print_nanny_client.models.device_identity import DeviceIdentity
+from print_nanny_client.models.device_identity_ca_certs import DeviceIdentityCaCerts
+from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
@@ -82,6 +87,7 @@ from print_nanny_client.models.octoprint_progress import OctoprintProgress
 from print_nanny_client.models.octoprint_python import OctoprintPython
 from print_nanny_client.models.paginated_alert_list import PaginatedAlertList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
+from print_nanny_client.models.paginated_device_list import PaginatedDeviceList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
@@ -101,6 +107,7 @@ from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMe
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest
 from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
+from print_nanny_client.models.patched_device_request import PatchedDeviceRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from print_nanny_client.models.patched_print_session_request import PatchedPrintSessionRequest
 from print_nanny_client.models.patched_printer_profile_request import PatchedPrinterProfileRequest

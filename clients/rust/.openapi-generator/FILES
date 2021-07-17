@@ -19,8 +19,13 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CommandEnum.md
 docs/DetailResponse.md
+docs/Device.md
 docs/DeviceCalibration.md
 docs/DeviceCalibrationRequest.md
+docs/DeviceIdentity.md
+docs/DeviceIdentityCaCerts.md
+docs/DeviceRequest.md
+docs/DevicesApi.md
 docs/EmailAuthRequest.md
 docs/EventSourceEnum.md
 docs/EventType0c4Enum.md
@@ -51,6 +56,7 @@ docs/OctoprintProgress.md
 docs/OctoprintPython.md
 docs/PaginatedAlertList.md
 docs/PaginatedDeviceCalibrationList.md
+docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
 docs/PaginatedGcodeFileList.md
@@ -72,6 +78,7 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
+docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
 docs/PatchedPrinterProfileRequest.md
@@ -105,6 +112,7 @@ src/apis/alerts_api.rs
 src/apis/api_api.rs
 src/apis/auth_api.rs
 src/apis/configuration.rs
+src/apis/devices_api.rs
 src/apis/ml_ops_api.rs
 src/apis/mod.rs
 src/apis/partners_geeks3_api.rs
@@ -126,8 +134,12 @@ src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
 src/models/command_enum.rs
 src/models/detail_response.rs
+src/models/device.rs
 src/models/device_calibration.rs
 src/models/device_calibration_request.rs
+src/models/device_identity.rs
+src/models/device_identity_ca_certs.rs
+src/models/device_request.rs
 src/models/email_auth_request.rs
 src/models/event_source_enum.rs
 src/models/event_type0c4_enum.rs
@@ -158,6 +170,7 @@ src/models/octoprint_progress.rs
 src/models/octoprint_python.rs
 src/models/paginated_alert_list.rs
 src/models/paginated_device_calibration_list.rs
+src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
 src/models/paginated_experiment_list.rs
 src/models/paginated_gcode_file_list.rs
@@ -177,6 +190,7 @@ src/models/partner3_d_geeks_metadata.rs
 src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
 src/models/patched_device_calibration_request.rs
+src/models/patched_device_request.rs
 src/models/patched_octo_print_device_request.rs
 src/models/patched_print_session_request.rs
 src/models/patched_printer_profile_request.rs

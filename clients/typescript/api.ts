@@ -32,49 +32,49 @@ export interface Alert {
      * @type {number}
      * @memberof Alert
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time?: string;
+    time: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    gcode_file?: string;
+    gcode_file: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    print_progress?: string;
+    print_progress: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time_elapsed?: string;
+    time_elapsed: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time_remaining?: string;
+    time_remaining: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    manage_device_url?: string | null;
+    manage_device_url: string | null;
     /**
      * 
      * @type {number}
      * @memberof Alert
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -110,19 +110,19 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    message?: string;
+    message: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -237,7 +237,7 @@ export interface AuthToken {
      * @type {string}
      * @memberof AuthToken
      */
-    token?: string;
+    token: string;
 }
 /**
  * 
@@ -365,6 +365,145 @@ export interface DetailResponse {
 /**
  * 
  * @export
+ * @interface Device
+ */
+export interface Device {
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    deleted: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    user: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    public_key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    fingerprint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    cloudiot_device_name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    cloudiot_device_path: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    cloudiot_device_num_id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    os_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    os: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    kernel_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    revision?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    serial?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Device
+     */
+    ram: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Device
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Device
+     */
+    url: string;
+}
+/**
+ * 
+ * @export
  * @interface DeviceCalibration
  */
 export interface DeviceCalibration {
@@ -373,19 +512,19 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
@@ -421,7 +560,7 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -459,6 +598,261 @@ export interface DeviceCalibrationRequest {
      * @memberof DeviceCalibrationRequest
      */
     width?: number;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceIdentity
+ */
+export interface DeviceIdentity {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    user: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    fingerprint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    cloudiot_device_name: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    cloudiot_device_num_id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    cloudiot_device_path: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    os_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    os: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    kernel_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    revision?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    serial?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    ram: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeviceIdentity
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    url: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    private_key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    private_key_checksum: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    public_key: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    public_key_checksum: string;
+    /**
+     * 
+     * @type {DeviceIdentityCaCerts}
+     * @memberof DeviceIdentity
+     */
+    ca_certs: DeviceIdentityCaCerts;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceIdentityCaCerts
+ */
+export interface DeviceIdentityCaCerts {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    primary?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    primary_checksum?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    backup?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentityCaCerts
+     */
+    backup_checksum?: string;
+}
+/**
+ * 
+ * @export
+ * @interface DeviceRequest
+ */
+export interface DeviceRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    os_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    os: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    kernel_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    revision?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceRequest
+     */
+    serial?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceRequest
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceRequest
+     */
+    ram: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeviceRequest
+     */
+    cpu_flags: Array<string>;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -537,13 +931,13 @@ export interface Experiment {
      * @type {number}
      * @memberof Experiment
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Experiment
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {boolean}
@@ -567,13 +961,13 @@ export interface Experiment {
      * @type {Nested}
      * @memberof Experiment
      */
-    control?: Nested;
+    control: Nested;
     /**
      * 
      * @type {Array<Nested>}
      * @memberof Experiment
      */
-    treatments?: Array<Nested>;
+    treatments: Array<Nested>;
     /**
      * 
      * @type {string}
@@ -592,25 +986,25 @@ export interface ExperimentDeviceConfig {
      * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof ExperimentDeviceConfig
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {Nested}
      * @memberof ExperimentDeviceConfig
      */
-    experiment?: Nested;
+    experiment: Nested;
     /**
      * 
      * @type {Nested}
      * @memberof ExperimentDeviceConfig
      */
-    artifact?: Nested;
+    artifact: Nested;
 }
 /**
  * 
@@ -623,13 +1017,13 @@ export interface GcodeFile {
      * @type {number}
      * @memberof GcodeFile
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof GcodeFile
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
@@ -659,7 +1053,7 @@ export interface GcodeFile {
      * @type {string}
      * @memberof GcodeFile
      */
-    url?: string;
+    url: string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -685,49 +1079,49 @@ export interface ModelArtifact {
      * @type {number}
      * @memberof ModelArtifact
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    version?: string;
+    version: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    labels?: string;
+    labels: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    artifacts?: string;
+    artifacts: string;
     /**
      * 
      * @type {Array<ArtifactTypesEnum>}
      * @memberof ModelArtifact
      */
-    artifact_types?: Array<ArtifactTypesEnum>;
+    artifact_types: Array<ArtifactTypesEnum>;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof ModelArtifact
      */
-    metadata?: { [key: string]: any; };
+    metadata: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -740,13 +1134,13 @@ export interface Nested {
      * @type {number}
      * @memberof Nested
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Nested
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {boolean}
@@ -795,19 +1189,19 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
@@ -819,43 +1213,43 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -945,19 +1339,19 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_configs?: string;
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    manage_url?: string;
+    manage_url: string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDevice
      */
-    monitoring_active?: boolean;
+    monitoring_active: boolean;
     /**
      * 
      * @type {PrintSession}
@@ -976,19 +1370,19 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
@@ -1000,43 +1394,43 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -1126,19 +1520,19 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    private_key?: string;
+    private_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    private_key_checksum?: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -1150,7 +1544,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_configs?: string;
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -1162,13 +1556,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    manage_url?: string;
+    manage_url: string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDeviceKey
      */
-    monitoring_active?: boolean;
+    monitoring_active: boolean;
     /**
      * 
      * @type {PrintSession}
@@ -1290,7 +1684,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {OctoPrintEventEventTypeEnum}
@@ -1302,13 +1696,13 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof OctoPrintEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1356,7 +1750,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -1368,7 +1762,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -1943,6 +2337,37 @@ export interface PaginatedDeviceCalibrationList {
 /**
  * 
  * @export
+ * @interface PaginatedDeviceList
+ */
+export interface PaginatedDeviceList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedDeviceList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedDeviceList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<Device>}
+     * @memberof PaginatedDeviceList
+     */
+    results?: Array<Device>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedExperimentDeviceConfigList
  */
 export interface PaginatedExperimentDeviceConfigList {
@@ -2385,55 +2810,55 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    event?: string;
+    event: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    token?: string;
+    token: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    printer?: string;
+    printer: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    print?: string;
+    print: string;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    currentTime?: number;
+    currentTime: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    timeLeft?: number;
+    timeLeft: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    percent?: number;
+    percent: number;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    image?: string | null;
+    image: string | null;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    action?: string;
+    action: string;
 }
 /**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
@@ -2470,7 +2895,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    print_nanny_plugin_version?: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
@@ -2482,7 +2907,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    verified?: string;
+    verified: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -2570,6 +2995,79 @@ export interface PatchedDeviceCalibrationRequest {
      * @memberof PatchedDeviceCalibrationRequest
      */
     width?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedDeviceRequest
+ */
+export interface PatchedDeviceRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    os_version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    os?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    kernel_version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    revision?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedDeviceRequest
+     */
+    serial?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceRequest
+     */
+    cores?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedDeviceRequest
+     */
+    ram?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PatchedDeviceRequest
+     */
+    cpu_flags?: Array<string>;
 }
 /**
  * 
@@ -2977,7 +3475,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {EventTypeD9eEnum}
@@ -2989,13 +3487,13 @@ export interface PrintJobEvent {
      * @type {string}
      * @memberof PrintJobEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrintJobEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3043,7 +3541,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3055,7 +3553,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3089,7 +3587,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {PrintNannyPluginEventEventTypeEnum}
@@ -3101,13 +3599,13 @@ export interface PrintNannyPluginEvent {
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrintNannyPluginEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3155,7 +3653,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3167,7 +3665,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3213,7 +3711,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -3225,7 +3723,7 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
@@ -3273,7 +3771,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3309,13 +3807,13 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof PrintSession
      */
-    datesegment?: string;
+    datesegment: string;
 }
 /**
  * 
@@ -3413,7 +3911,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {EventType0c4Enum}
@@ -3425,13 +3923,13 @@ export interface PrinterEvent {
      * @type {string}
      * @memberof PrinterEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrinterEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3485,7 +3983,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3497,7 +3995,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3516,13 +4014,13 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3666,7 +4164,7 @@ export interface PrinterProfile {
      * @type {string}
      * @memberof PrinterProfile
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -3851,7 +4349,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {RemoteCommandEventEventTypeEnum}
@@ -3863,13 +4361,13 @@ export interface RemoteCommandEvent {
      * @type {string}
      * @memberof RemoteCommandEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof RemoteCommandEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3917,7 +4415,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3929,7 +4427,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3959,13 +4457,13 @@ export interface RemoteControlCommand {
      * @type {number}
      * @memberof RemoteControlCommand
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {CommandEnum}
@@ -4013,13 +4511,13 @@ export interface RemoteControlCommand {
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    octoprint_event_type?: string;
+    octoprint_event_type: string;
 }
 /**
  * 
@@ -4081,7 +4579,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {TelemetryEventEventTypeEnum}
@@ -4105,13 +4603,13 @@ export interface TelemetryEvent {
      * @type {string}
      * @memberof TelemetryEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof TelemetryEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4147,7 +4645,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -4159,7 +4657,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -4283,13 +4781,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    id?: number;
+    id: number;
 }
 /**
  * 
@@ -5623,6 +6121,543 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      */
     public authVerifyMobileCreate(options?: any) {
         return AuthApiFp(this.configuration).authVerifyMobileCreate(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * DevicesApi - axios parameter creator
+ * @export
+ */
+export const DevicesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceRequest' is not null or undefined
+            assertParamExists('apiDevicesCreate', 'deviceRequest', deviceRequest)
+            const localVarPath = `/api/devices/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/devices/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('apiDevicesRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPartialUpdate: async (id: number, patchedDeviceRequest?: PatchedDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdate: async (id: number, deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesUpdate', 'id', id)
+            // verify required parameter 'deviceRequest' is not null or undefined
+            assertParamExists('devicesUpdate', 'deviceRequest', deviceRequest)
+            const localVarPath = `/api/devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdateOrCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceRequest' is not null or undefined
+            assertParamExists('devicesUpdateOrCreate', 'deviceRequest', deviceRequest)
+            const localVarPath = `/api/devices/update-or-create/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DevicesApi - functional programming interface
+ * @export
+ */
+export const DevicesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DevicesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesCreate(deviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdate(id, deviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceIdentity>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesUpdateOrCreate(deviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * DevicesApi - factory interface
+ * @export
+ */
+export const DevicesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DevicesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.apiDevicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList> {
+            return localVarFp.apiDevicesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiDevicesRetrieve(id: number, options?: any): AxiosPromise<Device> {
+            return localVarFp.apiDevicesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesUpdate(id, deviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {DeviceRequest} deviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity> {
+            return localVarFp.devicesUpdateOrCreate(deviceRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DevicesApi - interface
+ * @export
+ * @interface DevicesApi
+ */
+export interface DevicesApiInterface {
+    /**
+     * 
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    apiDevicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    apiDevicesRetrieve(id: number, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<DeviceIdentity>;
+
+}
+
+/**
+ * DevicesApi - object-oriented interface
+ * @export
+ * @class DevicesApi
+ * @extends {BaseAPI}
+ */
+export class DevicesApi extends BaseAPI implements DevicesApiInterface {
+    /**
+     * 
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public apiDevicesCreate(deviceRequest: DeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).apiDevicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public apiDevicesList(page?: number, options?: any) {
+        return DevicesApiFp(this.configuration).apiDevicesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public apiDevicesRetrieve(id: number, options?: any) {
+        return DevicesApiFp(this.configuration).apiDevicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {PatchedDeviceRequest} [patchedDeviceRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesUpdate(id: number, deviceRequest: DeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesUpdate(id, deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {DeviceRequest} deviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesUpdateOrCreate(deviceRequest: DeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesUpdateOrCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

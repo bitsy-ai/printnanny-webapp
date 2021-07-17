@@ -62,11 +62,16 @@ class TestPrintNannyPluginEvent(unittest.TestCase):
             )
         else :
             return PrintNannyPluginEvent(
+                id = 56,
                 event_type = 'plugin_octoprint_nanny_monitoring_start',
+                ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                event_source = None,
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',
+                polymorphic_ctype = 56,
                 octoprint_device = 56,
+                user = 56,
         )
 
     def testPrintNannyPluginEvent(self):

@@ -169,7 +169,7 @@ class AnnotatedMonitoringImagesWindow(google.protobuf.message.Message):
     SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
     SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
 
-    class _WindowType(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[WindowType.V], builtins.type):
+    class _WindowType(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[WindowType.V], builtins.type):  # type: ignore
         DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
         GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
         FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)

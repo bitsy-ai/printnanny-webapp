@@ -30,23 +30,23 @@ import java.io.Serializable
 
 data class Partner3DGeeksAlert (
     @Json(name = "event")
-    val event: kotlin.String? = null,
+    val event: kotlin.String,
     @Json(name = "token")
-    val token: kotlin.String? = null,
+    val token: kotlin.String,
     @Json(name = "printer")
-    val printer: kotlin.String? = null,
+    val printer: kotlin.String,
     @Json(name = "print")
-    val print: kotlin.String? = null,
+    val print: kotlin.String,
     @Json(name = "currentTime")
-    val currentTime: kotlin.Int? = null,
+    val currentTime: kotlin.Int,
     @Json(name = "timeLeft")
-    val timeLeft: kotlin.Int? = null,
+    val timeLeft: kotlin.Int,
     @Json(name = "percent")
-    val percent: kotlin.Int? = null,
+    val percent: kotlin.Int,
     @Json(name = "image")
-    val image: kotlin.String? = null,
+    val image: kotlin.String?,
     @Json(name = "action")
-    val action: kotlin.String? = null
+    val action: kotlin.String
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

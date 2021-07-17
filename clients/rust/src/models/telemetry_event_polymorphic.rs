@@ -13,14 +13,14 @@
 pub enum TelemetryEventPolymorphic {
     #[serde(rename="OctoPrintEvent")]
     OctoPrintEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::OctoPrintEventEventTypeEnum,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -35,25 +35,25 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_client_version: String,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },
     #[serde(rename="PrintJobEvent")]
     PrintJobEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::EventTypeD9eEnum,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -68,25 +68,25 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_client_version: String,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },
     #[serde(rename="PrintNannyPluginEvent")]
     PrintNannyPluginEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::PrintNannyPluginEventEventTypeEnum,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -101,25 +101,25 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_client_version: String,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },
     #[serde(rename="PrinterEvent")]
     PrinterEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::EventType0c4Enum,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -136,25 +136,25 @@ pub enum TelemetryEventPolymorphic {
         octoprint_version: String,
         #[serde(rename = "printer_state")]
         printer_state: crate::models::PrinterStateEnum,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },
     #[serde(rename="RemoteCommandEvent")]
     RemoteCommandEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::RemoteCommandEventEventTypeEnum,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -169,29 +169,29 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_client_version: String,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },
     #[serde(rename="TelemetryEvent")]
     TelemetryEvent {
-        #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-        id: Option<i32>,
+        #[serde(rename = "id")]
+        id: i32,
         #[serde(rename = "event_type")]
         event_type: crate::models::TelemetryEventEventTypeEnum,
         #[serde(rename = "octoprint_environment")]
         octoprint_environment: Box<crate::models::OctoprintEnvironment>,
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
-        #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<String>,
-        #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-        event_source: Option<Box<crate::models::EventSourceEnum>>,
+        #[serde(rename = "ts")]
+        ts: String,
+        #[serde(rename = "event_source")]
+        event_source: Box<crate::models::EventSourceEnum>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -202,12 +202,12 @@ pub enum TelemetryEventPolymorphic {
         print_nanny_client_version: String,
         #[serde(rename = "octoprint_version")]
         octoprint_version: String,
-        #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-        polymorphic_ctype: Option<i32>,
+        #[serde(rename = "polymorphic_ctype")]
+        polymorphic_ctype: i32,
         #[serde(rename = "octoprint_device")]
         octoprint_device: i32,
-        #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-        user: Option<i32>,
+        #[serde(rename = "user")]
+        user: i32,
         #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
         print_session: Option<i32>,
     },

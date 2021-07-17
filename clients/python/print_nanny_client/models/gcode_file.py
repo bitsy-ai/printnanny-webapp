@@ -70,16 +70,13 @@ class GcodeFile(object):
         self._url = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if user is not None:
-            self.user = user
+        self.id = id
+        self.user = user
         self.name = name
         self.file = file
         self.file_hash = file_hash
         self.octoprint_device = octoprint_device
-        if url is not None:
-            self.url = url
+        self.url = url
 
     @property
     def id(self):
@@ -99,6 +96,8 @@ class GcodeFile(object):
         :param id: The id of this GcodeFile.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -120,6 +119,8 @@ class GcodeFile(object):
         :param user: The user of this GcodeFile.  # noqa: E501
         :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 
@@ -239,6 +240,8 @@ class GcodeFile(object):
         :param url: The url of this GcodeFile.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

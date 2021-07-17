@@ -4,13 +4,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **name** | **kotlin.String** |  | 
 **hypothesis** | **kotlin.String** |  | 
-**id** | **kotlin.Int** |  |  [optional] [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
+**control** | [**Nested**](Nested.md) |  |  [readonly]
+**treatments** | [**kotlin.collections.List&lt;Nested&gt;**](Nested.md) |  |  [readonly]
 **active** | **kotlin.Boolean** |  |  [optional]
-**control** | [**Nested**](Nested.md) |  |  [optional] [readonly]
-**treatments** | [**kotlin.collections.List&lt;Nested&gt;**](Nested.md) |  |  [optional] [readonly]
 **notionUrl** | **kotlin.String** |  |  [optional]
 
 

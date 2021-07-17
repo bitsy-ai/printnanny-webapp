@@ -4,7 +4,7 @@ import tempfile
 from django.conf import settings
 import google.api_core.exceptions
 
-from print_nanny_webapp.remote_control.utils import (
+from print_nanny_webapp.devices.services import (
     update_or_create_cloudiot_device,
     generate_keypair,
 )
@@ -44,9 +44,12 @@ def test_update_cloudiot_device(mocker):
     public_key_content = "publickeyb64"
 
     mock_cloudiot = mocker.patch(
-        "print_nanny_webapp.remote_control.utils.cloudiot_v1.DeviceManagerClient"
+        "print_nanny_webapp.devices.services.cloudiot_v1.DeviceManagerClient"
     )
-    mocker.patch("print_nanny_webapp.remote_control.utils.MessageToDict")
+    _ = mocker.patch(
+        "print_nanny_webapp.devices.services.cloudiot_v1.types.UpdateDeviceRequest"
+    )
+    mocker.patch("print_nanny_webapp.devices.services.MessageToDict")
     cloudiot_device, device_path = update_or_create_cloudiot_device(
         name=expected_name,
         serial=serial,
@@ -71,9 +74,9 @@ def test_create_cloudiot_device(mocker):
     public_key_content = "publickeyb64"
 
     mock_cloudiot = mocker.patch(
-        "print_nanny_webapp.remote_control.utils.cloudiot_v1.DeviceManagerClient"
+        "print_nanny_webapp.devices.services.cloudiot_v1.DeviceManagerClient"
     )
-    mocker.patch("print_nanny_webapp.remote_control.utils.MessageToDict")
+    mocker.patch("print_nanny_webapp.devices.services.MessageToDict")
 
     mock_cloudiot.return_value.get_device.side_effect = (
         google.api_core.exceptions.NotFound("foo")

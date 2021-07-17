@@ -11,23 +11,23 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ExperimentDeviceConfig {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
-    #[serde(rename = "experiment", skip_serializing_if = "Option::is_none")]
-    pub experiment: Option<Box<crate::models::Nested>>,
-    #[serde(rename = "artifact", skip_serializing_if = "Option::is_none")]
-    pub artifact: Option<Box<crate::models::Nested>>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "experiment")]
+    pub experiment: Box<crate::models::Nested>,
+    #[serde(rename = "artifact")]
+    pub artifact: Box<crate::models::Nested>,
 }
 
 impl ExperimentDeviceConfig {
-    pub fn new() -> ExperimentDeviceConfig {
+    pub fn new(id: i32, created_dt: String, experiment: crate::models::Nested, artifact: crate::models::Nested) -> ExperimentDeviceConfig {
         ExperimentDeviceConfig {
-            id: None,
-            created_dt: None,
-            experiment: None,
-            artifact: None,
+            id,
+            created_dt,
+            experiment: Box::new(experiment),
+            artifact: Box::new(artifact),
         }
     }
 }

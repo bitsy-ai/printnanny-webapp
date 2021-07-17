@@ -67,9 +67,12 @@ class TestPrinterProfile(unittest.TestCase):
             )
         else :
             return PrinterProfile(
+                id = 56,
+                user = 56,
                 octoprint_device = 56,
                 name = '',
                 octoprint_key = '',
+                url = '',
         )
 
     def testPrinterProfile(self):

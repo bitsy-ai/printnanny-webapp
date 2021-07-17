@@ -73,22 +73,14 @@ class ModelArtifact(object):
         self._url = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if version is not None:
-            self.version = version
-        if labels is not None:
-            self.labels = labels
-        if artifacts is not None:
-            self.artifacts = artifacts
-        if artifact_types is not None:
-            self.artifact_types = artifact_types
-        if metadata is not None:
-            self.metadata = metadata
-        if url is not None:
-            self.url = url
+        self.id = id
+        self.created_dt = created_dt
+        self.version = version
+        self.labels = labels
+        self.artifacts = artifacts
+        self.artifact_types = artifact_types
+        self.metadata = metadata
+        self.url = url
 
     @property
     def id(self):
@@ -108,6 +100,8 @@ class ModelArtifact(object):
         :param id: The id of this ModelArtifact.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -129,6 +123,8 @@ class ModelArtifact(object):
         :param created_dt: The created_dt of this ModelArtifact.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -150,6 +146,8 @@ class ModelArtifact(object):
         :param version: The version of this ModelArtifact.  # noqa: E501
         :type version: str
         """
+        if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
+            raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
 
         self._version = version
 
@@ -171,6 +169,8 @@ class ModelArtifact(object):
         :param labels: The labels of this ModelArtifact.  # noqa: E501
         :type labels: str
         """
+        if self.local_vars_configuration.client_side_validation and labels is None:  # noqa: E501
+            raise ValueError("Invalid value for `labels`, must not be `None`")  # noqa: E501
 
         self._labels = labels
 
@@ -192,6 +192,8 @@ class ModelArtifact(object):
         :param artifacts: The artifacts of this ModelArtifact.  # noqa: E501
         :type artifacts: str
         """
+        if self.local_vars_configuration.client_side_validation and artifacts is None:  # noqa: E501
+            raise ValueError("Invalid value for `artifacts`, must not be `None`")  # noqa: E501
 
         self._artifacts = artifacts
 
@@ -213,6 +215,8 @@ class ModelArtifact(object):
         :param artifact_types: The artifact_types of this ModelArtifact.  # noqa: E501
         :type artifact_types: list[ArtifactTypesEnum]
         """
+        if self.local_vars_configuration.client_side_validation and artifact_types is None:  # noqa: E501
+            raise ValueError("Invalid value for `artifact_types`, must not be `None`")  # noqa: E501
 
         self._artifact_types = artifact_types
 
@@ -234,6 +238,8 @@ class ModelArtifact(object):
         :param metadata: The metadata of this ModelArtifact.  # noqa: E501
         :type metadata: dict(str, object)
         """
+        if self.local_vars_configuration.client_side_validation and metadata is None:  # noqa: E501
+            raise ValueError("Invalid value for `metadata`, must not be `None`")  # noqa: E501
 
         self._metadata = metadata
 
@@ -255,6 +261,8 @@ class ModelArtifact(object):
         :param url: The url of this ModelArtifact.  # noqa: E501
         :type url: str
         """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
 
         self._url = url
 

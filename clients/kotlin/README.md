@@ -50,6 +50,12 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
+*DevicesApi* | [**apiDevicesCreate**](docs/DevicesApi.md#apidevicescreate) | **POST** /api/devices/ | 
+*DevicesApi* | [**apiDevicesList**](docs/DevicesApi.md#apideviceslist) | **GET** /api/devices/ | 
+*DevicesApi* | [**apiDevicesRetrieve**](docs/DevicesApi.md#apidevicesretrieve) | **GET** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesUpdateOrCreate**](docs/DevicesApi.md#devicesupdateorcreate) | **POST** /api/devices/update-or-create/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsList**](docs/MlOpsApi.md#apidevicecalibrationslist) | **GET** /api/device-calibrations/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#apidevicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
 *MlOpsApi* | [**apiDeviceCalibrationsRetrieve**](docs/MlOpsApi.md#apidevicecalibrationsretrieve) | **GET** /api/device-calibrations/{id}/ | 
@@ -124,8 +130,12 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
+ - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.DeviceIdentity](docs/DeviceIdentity.md)
+ - [com.print-nanny.client.models.DeviceIdentityCaCerts](docs/DeviceIdentityCaCerts.md)
+ - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
  - [com.print-nanny.client.models.EventType0c4Enum](docs/EventType0c4Enum.md)
@@ -155,6 +165,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPython](docs/OctoprintPython.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
+ - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
@@ -174,6 +185,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
+ - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)

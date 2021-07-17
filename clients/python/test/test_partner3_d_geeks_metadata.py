@@ -50,7 +50,9 @@ class TestPartner3DGeeksMetadata(unittest.TestCase):
                 model = '',
                 platform = '',
                 octoprint_version = '',
+                print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
+                verified = '',
         )
 
     def testPartner3DGeeksMetadata(self):

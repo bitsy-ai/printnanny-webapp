@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **event_type** | [**EventType0c4Enum**](EventType0c4Enum.md) |  | 
-**ts** | **datetime** |  | [optional] [readonly] 
-**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [optional] [readonly] 
+**ts** | **datetime** |  | [readonly] 
+**event_source** | [**EventSourceEnum**](EventSourceEnum.md) |  | [readonly] 
 **event_data** | **dict(str, object)** |  | [optional] 
 **octoprint_environment** | **dict(str, object)** |  | [optional] 
 **octoprint_printer_data** | **dict(str, object)** |  | [optional] 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **print_nanny_client_version** | **str** |  | 
 **octoprint_version** | **str** |  | 
 **printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
-**polymorphic_ctype** | **int** |  | [optional] [readonly] 
+**polymorphic_ctype** | **int** |  | [readonly] 
 **octoprint_device** | **int** |  | 
-**user** | **int** |  | [optional] [readonly] 
+**user** | **int** |  | [readonly] 
 **print_session** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

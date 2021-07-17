@@ -17,27 +17,27 @@ import java.io.Serializable
 
 /**
  * 
+ * @param id 
+ * @param createdDt 
  * @param name 
  * @param hypothesis 
  * @param control 
- * @param id 
- * @param createdDt 
  * @param active 
  * @param notionUrl 
  * @param treatments 
  */
 
 data class Nested (
+    @Json(name = "id")
+    val id: kotlin.Int,
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "hypothesis")
     val hypothesis: kotlin.String,
     @Json(name = "control")
     val control: kotlin.Int,
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
     @Json(name = "active")
     val active: kotlin.Boolean? = null,
     @Json(name = "notion_url")

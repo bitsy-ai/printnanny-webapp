@@ -49,6 +49,8 @@ class TestNested(unittest.TestCase):
             )
         else :
             return Nested(
+                id = 56,
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
                 hypothesis = '',
                 control = 56,

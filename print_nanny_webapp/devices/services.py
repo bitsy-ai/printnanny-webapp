@@ -199,7 +199,6 @@ def create_cloudiot_device(
 
 def update_cloudiot_device(
     device: cloudiot_v1.types.Device,
-    name: str,
     serial: str,
     user_id: int,
     metadata: dict,
@@ -252,7 +251,6 @@ def update_or_create_cloudiot_device(
         cloudiot_device = client.get_device(name=device_path)
         cloudiot_device = update_cloudiot_device(
             cloudiot_device,
-            name,
             serial,
             user_id,
             metadata,

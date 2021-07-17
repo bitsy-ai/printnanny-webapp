@@ -84,13 +84,14 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "print_nanny_webapp.partners.apps.PartnersConfig",
-    "print_nanny_webapp.users.apps.UsersConfig",
-    "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
-    "print_nanny_webapp.telemetry.apps.TelemetryConfig",
     "print_nanny_webapp.alerts.apps.AlertsConfig",
-    "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
     "print_nanny_webapp.dashboard.apps.DashboardConfig",
+    "print_nanny_webapp.devices.apps.DevicesConfig",
+    "print_nanny_webapp.ml_ops.apps.MlOpsConfig",
+    "print_nanny_webapp.partners.apps.PartnersConfig",
+    "print_nanny_webapp.remote_control.apps.RemoteControlConfig",
+    "print_nanny_webapp.telemetry.apps.TelemetryConfig",
+    "print_nanny_webapp.users.apps.UsersConfig",
     # "print_nanny_webapp.subscriptions.apps.SubscriptionsConfig", # Gated at the bottom
     # Your stuff: custom apps go here
 ]
@@ -430,7 +431,7 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    'COMPONENT_NO_READ_ONLY_REQUIRED': True,
+    # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,
     'ENUM_NAME_OVERRIDES': {

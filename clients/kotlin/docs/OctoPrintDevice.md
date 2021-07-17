@@ -4,7 +4,17 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [readonly]
+**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **name** | **kotlin.String** |  | 
+**user** | **kotlin.Int** |  |  [readonly]
+**publicKey** | **kotlin.String** |  |  [readonly]
+**fingerprint** | **kotlin.String** |  |  [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
+**cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
+**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
+**cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]
 **model** | **kotlin.String** |  | 
 **platform** | **kotlin.String** |  | 
 **serial** | **kotlin.String** |  | 
@@ -15,23 +25,13 @@ Name | Type | Description | Notes
 **octoprintVersion** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
-**id** | **kotlin.Int** |  |  [optional] [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
-**user** | **kotlin.Int** |  |  [optional] [readonly]
-**publicKey** | **kotlin.String** |  |  [optional] [readonly]
-**fingerprint** | **kotlin.String** |  |  [optional] [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional] [readonly]
-**cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
-**cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
-**cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
+**cloudiotDeviceConfigs** | **kotlin.String** |  |  [readonly]
+**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
+**monitoringActive** | **kotlin.Boolean** |  |  [readonly]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
 **virtualenv** | **kotlin.String** |  |  [optional]
-**cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
-**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
-**monitoringActive** | **kotlin.Boolean** |  |  [optional] [readonly]
 **activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
 
 
