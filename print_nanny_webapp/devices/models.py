@@ -130,13 +130,13 @@ class Device(SafeDeleteModel):
 
     # hardware info
     # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255)
+    hardware = models.CharField(max_length=255, null=True)
     # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255)
+    revision = models.CharField(max_length=255, null=True)
     # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255)
+    model = models.CharField(max_length=255, null=True)
     # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255)
+    serial = models.CharField(max_length=255, null=True)
     # /proc/cpuinfo MAX PROCESSOR
     cores = models.IntegerField()
     ram = models.BigIntegerField()
