@@ -43,9 +43,10 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
     def get_public_key_checksum(self, obj) -> str:
         return getattr(obj, "public_key_checksum")
 
-    manage_url = serializers.HyperlinkedIdentityField(
-        view_name="dashboard:devices:detail", lookup_field="pk"
-    )
+    # TODO add manage_url when implementing dashboard views
+    # manage_url = serializers.HyperlinkedIdentityField(
+    #     view_name="devices:detail", lookup_field="pk"
+    # )
 
     class Meta:
         model = Device
@@ -57,7 +58,7 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "public_key_checksum",
             "cloudiot_device_configs",
             "ca_certs",
-            "manage_url",
+            # "manage_url",
         ]
         extra_kwargs = {
             "url": {"view_name": "api:device-detail", "lookup_field": "id"},

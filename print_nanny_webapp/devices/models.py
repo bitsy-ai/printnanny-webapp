@@ -32,17 +32,19 @@ pre_softdelete.connect(pre_softdelete_cloudiot_device)
 
 class DeviceManager(SafeDeleteManager):
     def update_or_create(self, defaults=None, **kwargs):
-        serial = kwargs.get("serial")
-        logger.info(f"Creating keypair for device serial={serial}")
+        name = kwargs.get("name")
+        logger.info(f"Creating keypair for device serial={name}")
 
         keypair = generate_keypair()
 
-        serial = kwargs["serial"]
-        cloudiot_device_name = f"serial-{serial}"
+        name = kwargs["name"]
+        user_id = kwargs["user"].id
+        serial = kwargs.get("serial", "Raspberry Pi Hardware not detected")
+        cloudiot_device_name = f"{name}-{user_id}"
         cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
             name=cloudiot_device_name,
             serial=serial,
-            user_id=kwargs["user"].id,
+            user_id=user_id,
             metadata=kwargs,
             fingerprint=keypair["fingerprint"],
             public_key_content=keypair["public_key_content"].strip(),
