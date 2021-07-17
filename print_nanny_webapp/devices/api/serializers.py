@@ -104,6 +104,11 @@ class DeviceSerializer(serializers.ModelSerializer):
             "cloudiot_device_configs",
         )
 
+    def update_or_create(self, user, serial, validated_data):
+        return Device.objects.update_or_create(
+            user=user, serial=serial, defaults=validated_data
+        )
+
 
 class PrinterControllerSerializer(serializers.ModelSerializer):
     class Meta:
