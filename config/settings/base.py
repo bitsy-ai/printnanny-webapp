@@ -431,7 +431,7 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    'COMPONENT_NO_READ_ONLY_REQUIRED': True,
+    # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,
     'ENUM_NAME_OVERRIDES': {
