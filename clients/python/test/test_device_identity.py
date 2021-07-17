@@ -36,17 +36,14 @@ class TestDeviceIdentity(unittest.TestCase):
         # model = print_nanny_client.models.device_identity.DeviceIdentity()  # noqa: E501
         if include_optional :
             return DeviceIdentity(
-                id = 56, 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 user = 56, 
                 name = '', 
-                public_key = '', 
                 fingerprint = '', 
                 cloudiot_device_name = '', 
-                cloudiot_device_path = '', 
                 cloudiot_device_num_id = 56, 
+                cloudiot_device_path = '', 
                 os_version = '', 
                 os = '', 
                 kernel_version = '', 
@@ -62,6 +59,7 @@ class TestDeviceIdentity(unittest.TestCase):
                 url = '', 
                 private_key = '', 
                 private_key_checksum = '', 
+                public_key = '', 
                 public_key_checksum = '', 
                 ca_certs = print_nanny_client.models.device_identity_ca_certs.DeviceIdentity_ca_certs(
                     primary = '', 
@@ -71,17 +69,14 @@ class TestDeviceIdentity(unittest.TestCase):
             )
         else :
             return DeviceIdentity(
-                id = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = 56,
                 name = '',
-                public_key = '',
                 fingerprint = '',
                 cloudiot_device_name = '',
-                cloudiot_device_path = '',
                 cloudiot_device_num_id = 56,
+                cloudiot_device_path = '',
                 os_version = '',
                 os = '',
                 kernel_version = '',
@@ -93,6 +88,7 @@ class TestDeviceIdentity(unittest.TestCase):
                 url = '',
                 private_key = '',
                 private_key_checksum = '',
+                public_key = '',
                 public_key_checksum = '',
                 ca_certs = print_nanny_client.models.device_identity_ca_certs.DeviceIdentity_ca_certs(
                     primary = '', 

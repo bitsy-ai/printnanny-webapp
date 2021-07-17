@@ -607,18 +607,6 @@ export interface DeviceCalibrationRequest {
 export interface DeviceIdentity {
     /**
      * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    deleted: string;
-    /**
-     * 
      * @type {string}
      * @memberof DeviceIdentity
      */
@@ -646,12 +634,6 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
     fingerprint: string;
     /**
      * 
@@ -661,16 +643,16 @@ export interface DeviceIdentity {
     cloudiot_device_name: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    cloudiot_device_path: string;
-    /**
-     * 
      * @type {number}
      * @memberof DeviceIdentity
      */
     cloudiot_device_num_id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    cloudiot_device_path: string;
     /**
      * 
      * @type {string}
@@ -749,6 +731,12 @@ export interface DeviceIdentity {
      * @memberof DeviceIdentity
      */
     private_key_checksum: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    public_key: string;
     /**
      * 
      * @type {string}

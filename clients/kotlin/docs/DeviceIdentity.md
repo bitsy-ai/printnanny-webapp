@@ -4,17 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **user** | **kotlin.Int** |  |  [readonly]
 **name** | **kotlin.String** |  | 
-**publicKey** | **kotlin.String** |  |  [readonly]
 **fingerprint** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
-**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceNumId** | **kotlin.Long** |  |  [readonly]
+**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 
@@ -24,6 +21,7 @@ Name | Type | Description | Notes
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **privateKey** | **kotlin.String** |  |  [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [readonly]
+**publicKey** | **kotlin.String** |  |  [readonly]
 **publicKeyChecksum** | **kotlin.String** |  |  [readonly]
 **caCerts** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | 
 **hardware** | **kotlin.String** |  |  [optional]

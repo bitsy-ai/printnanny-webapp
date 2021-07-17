@@ -11,10 +11,6 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeviceIdentity {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -23,16 +19,14 @@ pub struct DeviceIdentity {
     pub user: i32,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "public_key")]
-    pub public_key: String,
     #[serde(rename = "fingerprint")]
     pub fingerprint: String,
     #[serde(rename = "cloudiot_device_name")]
     pub cloudiot_device_name: String,
-    #[serde(rename = "cloudiot_device_path")]
-    pub cloudiot_device_path: String,
     #[serde(rename = "cloudiot_device_num_id")]
     pub cloudiot_device_num_id: i64,
+    #[serde(rename = "cloudiot_device_path")]
+    pub cloudiot_device_path: String,
     #[serde(rename = "os_version")]
     pub os_version: String,
     #[serde(rename = "os")]
@@ -59,6 +53,8 @@ pub struct DeviceIdentity {
     pub private_key: String,
     #[serde(rename = "private_key_checksum")]
     pub private_key_checksum: String,
+    #[serde(rename = "public_key")]
+    pub public_key: String,
     #[serde(rename = "public_key_checksum")]
     pub public_key_checksum: String,
     #[serde(rename = "ca_certs")]
@@ -66,19 +62,16 @@ pub struct DeviceIdentity {
 }
 
 impl DeviceIdentity {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i64, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String, private_key: String, private_key_checksum: String, public_key_checksum: String, ca_certs: crate::models::DeviceIdentityCaCerts) -> DeviceIdentity {
+    pub fn new(created_dt: String, updated_dt: String, user: i32, name: String, fingerprint: String, cloudiot_device_name: String, cloudiot_device_num_id: i64, cloudiot_device_path: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String, private_key: String, private_key_checksum: String, public_key: String, public_key_checksum: String, ca_certs: crate::models::DeviceIdentityCaCerts) -> DeviceIdentity {
         DeviceIdentity {
-            id,
-            deleted,
             created_dt,
             updated_dt,
             user,
             name,
-            public_key,
             fingerprint,
             cloudiot_device_name,
-            cloudiot_device_path,
             cloudiot_device_num_id,
+            cloudiot_device_path,
             os_version,
             os,
             kernel_version,
@@ -92,6 +85,7 @@ impl DeviceIdentity {
             url,
             private_key,
             private_key_checksum,
+            public_key,
             public_key_checksum,
             ca_certs: Box::new(ca_certs),
         }

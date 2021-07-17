@@ -4,17 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **name** | **str** |  | 
-**public_key** | **str** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
 **cloudiot_device_name** | **str** |  | [readonly] 
-**cloudiot_device_path** | **str** |  | [readonly] 
 **cloudiot_device_num_id** | **int** |  | [readonly] 
+**cloudiot_device_path** | **str** |  | [readonly] 
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 
@@ -28,6 +25,7 @@ Name | Type | Description | Notes
 **url** | **str** |  | [readonly] 
 **private_key** | **str** |  | [readonly] 
 **private_key_checksum** | **str** |  | [readonly] 
+**public_key** | **str** |  | [readonly] 
 **public_key_checksum** | **str** |  | [readonly] 
 **ca_certs** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | 
 

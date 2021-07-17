@@ -18,17 +18,14 @@ import java.io.Serializable
 
 /**
  * 
- * @param id 
- * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param user 
  * @param name 
- * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDeviceName 
- * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
+ * @param cloudiotDevicePath 
  * @param osVersion 
  * @param os 
  * @param kernelVersion 
@@ -38,6 +35,7 @@ import java.io.Serializable
  * @param url 
  * @param privateKey 
  * @param privateKeyChecksum 
+ * @param publicKey 
  * @param publicKeyChecksum 
  * @param caCerts 
  * @param hardware 
@@ -47,10 +45,6 @@ import java.io.Serializable
  */
 
 data class DeviceIdentity (
-    @Json(name = "id")
-    val id: kotlin.Int,
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,
     @Json(name = "updated_dt")
@@ -59,16 +53,14 @@ data class DeviceIdentity (
     val user: kotlin.Int,
     @Json(name = "name")
     val name: kotlin.String,
-    @Json(name = "public_key")
-    val publicKey: kotlin.String,
     @Json(name = "fingerprint")
     val fingerprint: kotlin.String,
     @Json(name = "cloudiot_device_name")
     val cloudiotDeviceName: kotlin.String,
-    @Json(name = "cloudiot_device_path")
-    val cloudiotDevicePath: kotlin.String,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Long,
+    @Json(name = "cloudiot_device_path")
+    val cloudiotDevicePath: kotlin.String,
     @Json(name = "os_version")
     val osVersion: kotlin.String,
     @Json(name = "os")
@@ -87,6 +79,8 @@ data class DeviceIdentity (
     val privateKey: kotlin.String,
     @Json(name = "private_key_checksum")
     val privateKeyChecksum: kotlin.String,
+    @Json(name = "public_key")
+    val publicKey: kotlin.String,
     @Json(name = "public_key_checksum")
     val publicKeyChecksum: kotlin.String,
     @Json(name = "ca_certs")

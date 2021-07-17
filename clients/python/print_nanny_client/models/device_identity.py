@@ -36,17 +36,14 @@ class DeviceIdentity(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'id': 'int',
-        'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'user': 'int',
         'name': 'str',
-        'public_key': 'str',
         'fingerprint': 'str',
         'cloudiot_device_name': 'str',
-        'cloudiot_device_path': 'str',
         'cloudiot_device_num_id': 'int',
+        'cloudiot_device_path': 'str',
         'os_version': 'str',
         'os': 'str',
         'kernel_version': 'str',
@@ -60,22 +57,20 @@ class DeviceIdentity(object):
         'url': 'str',
         'private_key': 'str',
         'private_key_checksum': 'str',
+        'public_key': 'str',
         'public_key_checksum': 'str',
         'ca_certs': 'DeviceIdentityCaCerts'
     }
 
     attribute_map = {
-        'id': 'id',
-        'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'user': 'user',
         'name': 'name',
-        'public_key': 'public_key',
         'fingerprint': 'fingerprint',
         'cloudiot_device_name': 'cloudiot_device_name',
-        'cloudiot_device_path': 'cloudiot_device_path',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
+        'cloudiot_device_path': 'cloudiot_device_path',
         'os_version': 'os_version',
         'os': 'os',
         'kernel_version': 'kernel_version',
@@ -89,27 +84,25 @@ class DeviceIdentity(object):
         'url': 'url',
         'private_key': 'private_key',
         'private_key_checksum': 'private_key_checksum',
+        'public_key': 'public_key',
         'public_key_checksum': 'public_key_checksum',
         'ca_certs': 'ca_certs'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, created_dt=None, updated_dt=None, user=None, name=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key=None, public_key_checksum=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
         """DeviceIdentity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._id = None
-        self._deleted = None
         self._created_dt = None
         self._updated_dt = None
         self._user = None
         self._name = None
-        self._public_key = None
         self._fingerprint = None
         self._cloudiot_device_name = None
-        self._cloudiot_device_path = None
         self._cloudiot_device_num_id = None
+        self._cloudiot_device_path = None
         self._os_version = None
         self._os = None
         self._kernel_version = None
@@ -123,21 +116,19 @@ class DeviceIdentity(object):
         self._url = None
         self._private_key = None
         self._private_key_checksum = None
+        self._public_key = None
         self._public_key_checksum = None
         self._ca_certs = None
         self.discriminator = None
 
-        self.id = id
-        self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.user = user
         self.name = name
-        self.public_key = public_key
         self.fingerprint = fingerprint
         self.cloudiot_device_name = cloudiot_device_name
-        self.cloudiot_device_path = cloudiot_device_path
         self.cloudiot_device_num_id = cloudiot_device_num_id
+        self.cloudiot_device_path = cloudiot_device_path
         self.os_version = os_version
         self.os = os
         self.kernel_version = kernel_version
@@ -151,54 +142,9 @@ class DeviceIdentity(object):
         self.url = url
         self.private_key = private_key
         self.private_key_checksum = private_key_checksum
+        self.public_key = public_key
         self.public_key_checksum = public_key_checksum
         self.ca_certs = ca_certs
-
-    @property
-    def id(self):
-        """Gets the id of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The id of this DeviceIdentity.  # noqa: E501
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this DeviceIdentity.
-
-
-        :param id: The id of this DeviceIdentity.  # noqa: E501
-        :type id: int
-        """
-        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def deleted(self):
-        """Gets the deleted of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The deleted of this DeviceIdentity.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._deleted
-
-    @deleted.setter
-    def deleted(self, deleted):
-        """Sets the deleted of this DeviceIdentity.
-
-
-        :param deleted: The deleted of this DeviceIdentity.  # noqa: E501
-        :type deleted: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and deleted is None:  # noqa: E501
-            raise ValueError("Invalid value for `deleted`, must not be `None`")  # noqa: E501
-
-        self._deleted = deleted
 
     @property
     def created_dt(self):
@@ -296,29 +242,6 @@ class DeviceIdentity(object):
         self._name = name
 
     @property
-    def public_key(self):
-        """Gets the public_key of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The public_key of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._public_key
-
-    @public_key.setter
-    def public_key(self, public_key):
-        """Sets the public_key of this DeviceIdentity.
-
-
-        :param public_key: The public_key of this DeviceIdentity.  # noqa: E501
-        :type public_key: str
-        """
-        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
-
-        self._public_key = public_key
-
-    @property
     def fingerprint(self):
         """Gets the fingerprint of this DeviceIdentity.  # noqa: E501
 
@@ -365,29 +288,6 @@ class DeviceIdentity(object):
         self._cloudiot_device_name = cloudiot_device_name
 
     @property
-    def cloudiot_device_path(self):
-        """Gets the cloudiot_device_path of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The cloudiot_device_path of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloudiot_device_path
-
-    @cloudiot_device_path.setter
-    def cloudiot_device_path(self, cloudiot_device_path):
-        """Sets the cloudiot_device_path of this DeviceIdentity.
-
-
-        :param cloudiot_device_path: The cloudiot_device_path of this DeviceIdentity.  # noqa: E501
-        :type cloudiot_device_path: str
-        """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
-
-        self._cloudiot_device_path = cloudiot_device_path
-
-    @property
     def cloudiot_device_num_id(self):
         """Gets the cloudiot_device_num_id of this DeviceIdentity.  # noqa: E501
 
@@ -409,6 +309,29 @@ class DeviceIdentity(object):
             raise ValueError("Invalid value for `cloudiot_device_num_id`, must not be `None`")  # noqa: E501
 
         self._cloudiot_device_num_id = cloudiot_device_num_id
+
+    @property
+    def cloudiot_device_path(self):
+        """Gets the cloudiot_device_path of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The cloudiot_device_path of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._cloudiot_device_path
+
+    @cloudiot_device_path.setter
+    def cloudiot_device_path(self, cloudiot_device_path):
+        """Sets the cloudiot_device_path of this DeviceIdentity.
+
+
+        :param cloudiot_device_path: The cloudiot_device_path of this DeviceIdentity.  # noqa: E501
+        :type cloudiot_device_path: str
+        """
+        if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
+
+        self._cloudiot_device_path = cloudiot_device_path
 
     @property
     def os_version(self):
@@ -733,6 +656,29 @@ class DeviceIdentity(object):
             raise ValueError("Invalid value for `private_key_checksum`, must not be `None`")  # noqa: E501
 
         self._private_key_checksum = private_key_checksum
+
+    @property
+    def public_key(self):
+        """Gets the public_key of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The public_key of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._public_key
+
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this DeviceIdentity.
+
+
+        :param public_key: The public_key of this DeviceIdentity.  # noqa: E501
+        :type public_key: str
+        """
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
+
+        self._public_key = public_key
 
     @property
     def public_key_checksum(self):
