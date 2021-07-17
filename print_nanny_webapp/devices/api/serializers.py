@@ -60,7 +60,6 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "private_key_checksum",
             "public_key",
             "public_key_checksum",
-            "cloudiot_device_configs",
             "ca_certs",
             # "manage_url",
         ]
