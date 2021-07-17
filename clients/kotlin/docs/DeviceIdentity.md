@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Long** |  | 
+**cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  | 
 **id** | **kotlin.Int** |  |  [optional] [readonly]
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [optional] [readonly]
@@ -25,7 +26,6 @@ Name | Type | Description | Notes
 **cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
-**cpuFlags** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **privateKey** | **kotlin.String** |  |  [optional] [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]

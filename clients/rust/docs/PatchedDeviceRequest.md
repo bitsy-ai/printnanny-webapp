@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **serial** | Option<**String**> |  | [optional]
 **cores** | Option<**i32**> |  | [optional]
 **ram** | Option<**i64**> |  | [optional]
-**cpu_flags** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**cpu_flags** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -53,8 +53,8 @@ pub struct DeviceIdentity {
     pub cores: i32,
     #[serde(rename = "ram")]
     pub ram: i64,
-    #[serde(rename = "cpu_flags", skip_serializing_if = "Option::is_none")]
-    pub cpu_flags: Option<::std::collections::HashMap<String, serde_json::Value>>,
+    #[serde(rename = "cpu_flags")]
+    pub cpu_flags: Vec<String>,
     #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
     #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
@@ -72,7 +72,7 @@ pub struct DeviceIdentity {
 }
 
 impl DeviceIdentity {
-    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64) -> DeviceIdentity {
+    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, cpu_flags: Vec<String>) -> DeviceIdentity {
         DeviceIdentity {
             id: None,
             deleted: None,
@@ -95,7 +95,7 @@ impl DeviceIdentity {
             serial,
             cores,
             ram,
-            cpu_flags: None,
+            cpu_flags,
             url: None,
             private_key: None,
             private_key_checksum: None,

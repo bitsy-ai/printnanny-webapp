@@ -59,9 +59,9 @@ class TestDeviceIdentity(unittest.TestCase):
                 serial = '', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                cpu_flags = {
-                    'key' : null
-                    }, 
+                cpu_flags = [
+                    ''
+                    ], 
                 url = '', 
                 private_key = '', 
                 private_key_checksum = '', 
@@ -86,6 +86,9 @@ class TestDeviceIdentity(unittest.TestCase):
                 serial = '',
                 cores = -2147483648,
                 ram = -9223372036854775808,
+                cpu_flags = [
+                    ''
+                    ],
         )
 
     def testDeviceIdentity(self):

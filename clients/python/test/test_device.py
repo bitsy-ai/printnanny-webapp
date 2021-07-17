@@ -59,9 +59,9 @@ class TestDevice(unittest.TestCase):
                 serial = '', 
                 cores = -2147483648, 
                 ram = -9223372036854775808, 
-                cpu_flags = {
-                    'key' : null
-                    }, 
+                cpu_flags = [
+                    ''
+                    ], 
                 url = ''
             )
         else :
@@ -76,6 +76,9 @@ class TestDevice(unittest.TestCase):
                 serial = '',
                 cores = -2147483648,
                 ram = -9223372036854775808,
+                cpu_flags = [
+                    ''
+                    ],
         )
 
     def testDevice(self):

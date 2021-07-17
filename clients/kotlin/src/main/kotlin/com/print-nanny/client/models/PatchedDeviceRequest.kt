@@ -11,7 +11,6 @@
 */
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.AnyType
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -53,7 +52,7 @@ data class PatchedDeviceRequest (
     @Json(name = "ram")
     val ram: kotlin.Long? = null,
     @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.collections.Map<kotlin.String, AnyType>? = null
+    val cpuFlags: kotlin.collections.List<kotlin.String>? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

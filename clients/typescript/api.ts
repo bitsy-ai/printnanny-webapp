@@ -496,10 +496,10 @@ export interface Device {
     ram: number;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<string>}
      * @memberof Device
      */
-    cpu_flags?: { [key: string]: any; };
+    cpu_flags: Array<string>;
     /**
      * 
      * @type {string}
@@ -739,10 +739,10 @@ export interface DeviceIdentity {
     ram: number;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<string>}
      * @memberof DeviceIdentity
      */
-    cpu_flags?: { [key: string]: any; };
+    cpu_flags: Array<string>;
     /**
      * 
      * @type {string}
@@ -885,10 +885,10 @@ export interface DeviceRequest {
     ram: number;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<string>}
      * @memberof DeviceRequest
      */
-    cpu_flags?: { [key: string]: any; };
+    cpu_flags: Array<string>;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -3100,10 +3100,10 @@ export interface PatchedDeviceRequest {
     ram?: number;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {Array<string>}
      * @memberof PatchedDeviceRequest
      */
-    cpu_flags?: { [key: string]: any; };
+    cpu_flags?: Array<string>;
 }
 /**
  * 

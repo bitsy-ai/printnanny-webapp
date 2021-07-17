@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **serial** | **str** |  | 
 **cores** | **int** |  | 
 **ram** | **int** |  | 
-**cpu_flags** | **dict(str, object)** |  | [optional] 
+**cpu_flags** | **list[str]** |  | 
 **url** | **str** |  | [optional] [readonly] 
 **private_key** | **str** |  | [optional] [readonly] 
 **private_key_checksum** | **str** |  | [optional] [readonly] 

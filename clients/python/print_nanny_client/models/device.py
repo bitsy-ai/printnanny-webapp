@@ -57,7 +57,7 @@ class Device(object):
         'serial': 'str',
         'cores': 'int',
         'ram': 'int',
-        'cpu_flags': 'dict(str, object)',
+        'cpu_flags': 'list[str]',
         'url': 'str'
     }
 
@@ -150,8 +150,7 @@ class Device(object):
         self.serial = serial
         self.cores = cores
         self.ram = ram
-        if cpu_flags is not None:
-            self.cpu_flags = cpu_flags
+        self.cpu_flags = cpu_flags
         if url is not None:
             self.url = url
 
@@ -658,7 +657,7 @@ class Device(object):
 
 
         :return: The cpu_flags of this Device.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: list[str]
         """
         return self._cpu_flags
 
@@ -668,8 +667,10 @@ class Device(object):
 
 
         :param cpu_flags: The cpu_flags of this Device.  # noqa: E501
-        :type cpu_flags: dict(str, object)
+        :type cpu_flags: list[str]
         """
+        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
+            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
 
         self._cpu_flags = cpu_flags
 

@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.4-dev5"
+__version__ = "0.8.4-dev6"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi

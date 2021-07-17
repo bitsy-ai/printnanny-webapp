@@ -46,7 +46,7 @@ class PatchedDeviceRequest(object):
         'serial': 'str',
         'cores': 'int',
         'ram': 'int',
-        'cpu_flags': 'dict(str, object)'
+        'cpu_flags': 'list[str]'
     }
 
     attribute_map = {
@@ -357,7 +357,7 @@ class PatchedDeviceRequest(object):
 
 
         :return: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
-        :rtype: dict(str, object)
+        :rtype: list[str]
         """
         return self._cpu_flags
 
@@ -367,7 +367,7 @@ class PatchedDeviceRequest(object):
 
 
         :param cpu_flags: The cpu_flags of this PatchedDeviceRequest.  # noqa: E501
-        :type cpu_flags: dict(str, object)
+        :type cpu_flags: list[str]
         """
 
         self._cpu_flags = cpu_flags

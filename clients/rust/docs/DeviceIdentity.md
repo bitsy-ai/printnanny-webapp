@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **serial** | **String** |  | 
 **cores** | **i32** |  | 
 **ram** | **i64** |  | 
-**cpu_flags** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**cpu_flags** | **Vec<String>** |  | 
 **url** | Option<**String**> |  | [optional][readonly]
 **private_key** | Option<**String**> |  | [optional][readonly]
 **private_key_checksum** | Option<**String**> |  | [optional][readonly]
