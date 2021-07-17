@@ -1,4 +1,4 @@
-__version__ = "0.8.4-dev6"
+__version__ = "0.8.4-dev7"
 __version_info__ = tuple(
     [
         int(num) if num.isdigit() else num
