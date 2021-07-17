@@ -261,6 +261,9 @@ class DeviceIdentity(object):
         """
         if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
             raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fingerprint is not None and len(fingerprint) > 255):
+            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
 
         self._fingerprint = fingerprint
 
@@ -284,6 +287,9 @@ class DeviceIdentity(object):
         """
         if self.local_vars_configuration.client_side_validation and cloudiot_device_name is None:  # noqa: E501
             raise ValueError("Invalid value for `cloudiot_device_name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_name is not None and len(cloudiot_device_name) > 255):
+            raise ValueError("Invalid value for `cloudiot_device_name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cloudiot_device_name = cloudiot_device_name
 
@@ -307,6 +313,12 @@ class DeviceIdentity(object):
         """
         if self.local_vars_configuration.client_side_validation and cloudiot_device_num_id is None:  # noqa: E501
             raise ValueError("Invalid value for `cloudiot_device_num_id`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_num_id is not None and cloudiot_device_num_id > 9223372036854775807):  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value less than or equal to `9223372036854775807`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_num_id is not None and cloudiot_device_num_id < -9223372036854775808):  # noqa: E501
+            raise ValueError("Invalid value for `cloudiot_device_num_id`, must be a value greater than or equal to `-9223372036854775808`")  # noqa: E501
 
         self._cloudiot_device_num_id = cloudiot_device_num_id
 
@@ -330,6 +342,9 @@ class DeviceIdentity(object):
         """
         if self.local_vars_configuration.client_side_validation and cloudiot_device_path is None:  # noqa: E501
             raise ValueError("Invalid value for `cloudiot_device_path`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cloudiot_device_path is not None and len(cloudiot_device_path) > 255):
+            raise ValueError("Invalid value for `cloudiot_device_path`, length must be less than or equal to `255`")  # noqa: E501
 
         self._cloudiot_device_path = cloudiot_device_path
 

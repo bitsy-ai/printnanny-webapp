@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
-**user** | **i32** |  | [readonly]
+**user** | **i32** |  | 
 **name** | **String** |  | 
-**fingerprint** | **String** |  | [readonly]
-**cloudiot_device_name** | **String** |  | [readonly]
-**cloudiot_device_num_id** | **i64** |  | [readonly]
-**cloudiot_device_path** | **String** |  | [readonly]
+**fingerprint** | **String** |  | 
+**cloudiot_device_name** | **String** |  | 
+**cloudiot_device_num_id** | **i64** |  | 
+**cloudiot_device_path** | **String** |  | 
 **os_version** | **String** |  | 
 **os** | **String** |  | 
 **kernel_version** | **String** |  | 

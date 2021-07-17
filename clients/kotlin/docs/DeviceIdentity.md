@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**user** | **kotlin.Int** |  |  [readonly]
+**user** | **kotlin.Int** |  | 
 **name** | **kotlin.String** |  | 
-**fingerprint** | **kotlin.String** |  |  [readonly]
-**cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
-**cloudiotDeviceNumId** | **kotlin.Long** |  |  [readonly]
-**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
+**fingerprint** | **kotlin.String** |  | 
+**cloudiotDeviceName** | **kotlin.String** |  | 
+**cloudiotDeviceNumId** | **kotlin.Long** |  | 
+**cloudiotDevicePath** | **kotlin.String** |  | 
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 
