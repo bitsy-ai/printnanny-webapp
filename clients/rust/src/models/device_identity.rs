@@ -11,30 +11,30 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeviceIdentity {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
-    #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
-    pub deleted: Option<String>,
-    #[serde(rename = "created_dt", skip_serializing_if = "Option::is_none")]
-    pub created_dt: Option<String>,
-    #[serde(rename = "updated_dt", skip_serializing_if = "Option::is_none")]
-    pub updated_dt: Option<String>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "deleted")]
+    pub deleted: String,
+    #[serde(rename = "created_dt")]
+    pub created_dt: String,
+    #[serde(rename = "updated_dt")]
+    pub updated_dt: String,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "public_key", skip_serializing_if = "Option::is_none")]
-    pub public_key: Option<String>,
-    #[serde(rename = "fingerprint", skip_serializing_if = "Option::is_none")]
-    pub fingerprint: Option<String>,
-    #[serde(rename = "cloudiot_device", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "cloudiot_device_name", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_name: Option<String>,
-    #[serde(rename = "cloudiot_device_path", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_path: Option<String>,
-    #[serde(rename = "cloudiot_device_num_id", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_num_id: Option<i32>,
+    #[serde(rename = "public_key")]
+    pub public_key: String,
+    #[serde(rename = "fingerprint")]
+    pub fingerprint: String,
+    #[serde(rename = "cloudiot_device")]
+    pub cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "cloudiot_device_name")]
+    pub cloudiot_device_name: String,
+    #[serde(rename = "cloudiot_device_path")]
+    pub cloudiot_device_path: String,
+    #[serde(rename = "cloudiot_device_num_id")]
+    pub cloudiot_device_num_id: i32,
     #[serde(rename = "os_version")]
     pub os_version: String,
     #[serde(rename = "os")]
@@ -55,35 +55,35 @@ pub struct DeviceIdentity {
     pub ram: i64,
     #[serde(rename = "cpu_flags")]
     pub cpu_flags: Vec<String>,
-    #[serde(rename = "url", skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
-    #[serde(rename = "private_key", skip_serializing_if = "Option::is_none")]
-    pub private_key: Option<String>,
-    #[serde(rename = "private_key_checksum", skip_serializing_if = "Option::is_none")]
-    pub private_key_checksum: Option<String>,
-    #[serde(rename = "public_key_checksum", skip_serializing_if = "Option::is_none")]
-    pub public_key_checksum: Option<String>,
-    #[serde(rename = "cloudiot_device_configs", skip_serializing_if = "Option::is_none")]
-    pub cloudiot_device_configs: Option<String>,
-    #[serde(rename = "ca_certs", skip_serializing_if = "Option::is_none")]
-    pub ca_certs: Option<Box<crate::models::DeviceIdentityCaCerts>>,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "private_key")]
+    pub private_key: String,
+    #[serde(rename = "private_key_checksum")]
+    pub private_key_checksum: String,
+    #[serde(rename = "public_key_checksum")]
+    pub public_key_checksum: String,
+    #[serde(rename = "cloudiot_device_configs")]
+    pub cloudiot_device_configs: String,
+    #[serde(rename = "ca_certs")]
+    pub ca_certs: Box<crate::models::DeviceIdentityCaCerts>,
 }
 
 impl DeviceIdentity {
-    pub fn new(name: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>) -> DeviceIdentity {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String, private_key: String, private_key_checksum: String, public_key_checksum: String, cloudiot_device_configs: String, ca_certs: crate::models::DeviceIdentityCaCerts) -> DeviceIdentity {
         DeviceIdentity {
-            id: None,
-            deleted: None,
-            created_dt: None,
-            updated_dt: None,
-            user: None,
+            id,
+            deleted,
+            created_dt,
+            updated_dt,
+            user,
             name,
-            public_key: None,
-            fingerprint: None,
-            cloudiot_device: None,
-            cloudiot_device_name: None,
-            cloudiot_device_path: None,
-            cloudiot_device_num_id: None,
+            public_key,
+            fingerprint,
+            cloudiot_device,
+            cloudiot_device_name,
+            cloudiot_device_path,
+            cloudiot_device_num_id,
             os_version,
             os,
             kernel_version,
@@ -94,12 +94,12 @@ impl DeviceIdentity {
             cores,
             ram,
             cpu_flags,
-            url: None,
-            private_key: None,
-            private_key_checksum: None,
-            public_key_checksum: None,
-            cloudiot_device_configs: None,
-            ca_certs: None,
+            url,
+            private_key,
+            private_key_checksum,
+            public_key_checksum,
+            cloudiot_device_configs,
+            ca_certs: Box::new(ca_certs),
         }
     }
 }

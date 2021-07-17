@@ -76,23 +76,15 @@ class Partner3DGeeksAlert(object):
         self._action = None
         self.discriminator = None
 
-        if event is not None:
-            self.event = event
-        if token is not None:
-            self.token = token
-        if printer is not None:
-            self.printer = printer
-        if _print is not None:
-            self._print = _print
-        if current_time is not None:
-            self.current_time = current_time
-        if time_left is not None:
-            self.time_left = time_left
-        if percent is not None:
-            self.percent = percent
+        self.event = event
+        self.token = token
+        self.printer = printer
+        self._print = _print
+        self.current_time = current_time
+        self.time_left = time_left
+        self.percent = percent
         self.image = image
-        if action is not None:
-            self.action = action
+        self.action = action
 
     @property
     def event(self):
@@ -112,6 +104,8 @@ class Partner3DGeeksAlert(object):
         :param event: The event of this Partner3DGeeksAlert.  # noqa: E501
         :type event: str
         """
+        if self.local_vars_configuration.client_side_validation and event is None:  # noqa: E501
+            raise ValueError("Invalid value for `event`, must not be `None`")  # noqa: E501
 
         self._event = event
 
@@ -133,6 +127,8 @@ class Partner3DGeeksAlert(object):
         :param token: The token of this Partner3DGeeksAlert.  # noqa: E501
         :type token: str
         """
+        if self.local_vars_configuration.client_side_validation and token is None:  # noqa: E501
+            raise ValueError("Invalid value for `token`, must not be `None`")  # noqa: E501
 
         self._token = token
 
@@ -154,6 +150,8 @@ class Partner3DGeeksAlert(object):
         :param printer: The printer of this Partner3DGeeksAlert.  # noqa: E501
         :type printer: str
         """
+        if self.local_vars_configuration.client_side_validation and printer is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer`, must not be `None`")  # noqa: E501
 
         self._printer = printer
 
@@ -175,6 +173,8 @@ class Partner3DGeeksAlert(object):
         :param _print: The _print of this Partner3DGeeksAlert.  # noqa: E501
         :type _print: str
         """
+        if self.local_vars_configuration.client_side_validation and _print is None:  # noqa: E501
+            raise ValueError("Invalid value for `_print`, must not be `None`")  # noqa: E501
 
         self.__print = _print
 
@@ -196,6 +196,8 @@ class Partner3DGeeksAlert(object):
         :param current_time: The current_time of this Partner3DGeeksAlert.  # noqa: E501
         :type current_time: int
         """
+        if self.local_vars_configuration.client_side_validation and current_time is None:  # noqa: E501
+            raise ValueError("Invalid value for `current_time`, must not be `None`")  # noqa: E501
 
         self._current_time = current_time
 
@@ -217,6 +219,8 @@ class Partner3DGeeksAlert(object):
         :param time_left: The time_left of this Partner3DGeeksAlert.  # noqa: E501
         :type time_left: int
         """
+        if self.local_vars_configuration.client_side_validation and time_left is None:  # noqa: E501
+            raise ValueError("Invalid value for `time_left`, must not be `None`")  # noqa: E501
 
         self._time_left = time_left
 
@@ -238,6 +242,8 @@ class Partner3DGeeksAlert(object):
         :param percent: The percent of this Partner3DGeeksAlert.  # noqa: E501
         :type percent: int
         """
+        if self.local_vars_configuration.client_side_validation and percent is None:  # noqa: E501
+            raise ValueError("Invalid value for `percent`, must not be `None`")  # noqa: E501
 
         self._percent = percent
 
@@ -280,6 +286,8 @@ class Partner3DGeeksAlert(object):
         :param action: The action of this Partner3DGeeksAlert.  # noqa: E501
         :type action: str
         """
+        if self.local_vars_configuration.client_side_validation and action is None:  # noqa: E501
+            raise ValueError("Invalid value for `action`, must not be `None`")  # noqa: E501
 
         self._action = action
 

@@ -61,14 +61,10 @@ class ExperimentDeviceConfig(object):
         self._artifact = None
         self.discriminator = None
 
-        if id is not None:
-            self.id = id
-        if created_dt is not None:
-            self.created_dt = created_dt
-        if experiment is not None:
-            self.experiment = experiment
-        if artifact is not None:
-            self.artifact = artifact
+        self.id = id
+        self.created_dt = created_dt
+        self.experiment = experiment
+        self.artifact = artifact
 
     @property
     def id(self):
@@ -88,6 +84,8 @@ class ExperimentDeviceConfig(object):
         :param id: The id of this ExperimentDeviceConfig.  # noqa: E501
         :type id: int
         """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -109,6 +107,8 @@ class ExperimentDeviceConfig(object):
         :param created_dt: The created_dt of this ExperimentDeviceConfig.  # noqa: E501
         :type created_dt: datetime
         """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
 
@@ -130,6 +130,8 @@ class ExperimentDeviceConfig(object):
         :param experiment: The experiment of this ExperimentDeviceConfig.  # noqa: E501
         :type experiment: Nested
         """
+        if self.local_vars_configuration.client_side_validation and experiment is None:  # noqa: E501
+            raise ValueError("Invalid value for `experiment`, must not be `None`")  # noqa: E501
 
         self._experiment = experiment
 
@@ -151,6 +153,8 @@ class ExperimentDeviceConfig(object):
         :param artifact: The artifact of this ExperimentDeviceConfig.  # noqa: E501
         :type artifact: Nested
         """
+        if self.local_vars_configuration.client_side_validation and artifact is None:  # noqa: E501
+            raise ValueError("Invalid value for `artifact`, must not be `None`")  # noqa: E501
 
         self._artifact = artifact
 

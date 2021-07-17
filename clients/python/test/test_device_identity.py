@@ -75,7 +75,20 @@ class TestDeviceIdentity(unittest.TestCase):
             )
         else :
             return DeviceIdentity(
+                id = 56,
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                user = 56,
                 name = '',
+                public_key = '',
+                fingerprint = '',
+                cloudiot_device = {
+                    'key' : null
+                    },
+                cloudiot_device_name = '',
+                cloudiot_device_path = '',
+                cloudiot_device_num_id = 56,
                 os_version = '',
                 os = '',
                 kernel_version = '',
@@ -84,6 +97,16 @@ class TestDeviceIdentity(unittest.TestCase):
                 cpu_flags = [
                     ''
                     ],
+                url = '',
+                private_key = '',
+                private_key_checksum = '',
+                public_key_checksum = '',
+                cloudiot_device_configs = '',
+                ca_certs = print_nanny_client.models.device_identity_ca_certs.DeviceIdentity_ca_certs(
+                    primary = '', 
+                    primary_checksum = '', 
+                    backup = '', 
+                    backup_checksum = '', ),
         )
 
     def testDeviceIdentity(self):

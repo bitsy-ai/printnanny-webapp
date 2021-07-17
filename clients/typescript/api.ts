@@ -32,49 +32,49 @@ export interface Alert {
      * @type {number}
      * @memberof Alert
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time?: string;
+    time: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    gcode_file?: string;
+    gcode_file: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    print_progress?: string;
+    print_progress: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time_elapsed?: string;
+    time_elapsed: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    time_remaining?: string;
+    time_remaining: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    manage_device_url?: string | null;
+    manage_device_url: string | null;
     /**
      * 
      * @type {number}
      * @memberof Alert
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -110,19 +110,19 @@ export interface Alert {
      * @type {string}
      * @memberof Alert
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {string}
      * @memberof Alert
      */
-    message?: string;
+    message: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -237,7 +237,7 @@ export interface AuthToken {
      * @type {string}
      * @memberof AuthToken
      */
-    token?: string;
+    token: string;
 }
 /**
  * 
@@ -373,31 +373,31 @@ export interface Device {
      * @type {number}
      * @memberof Device
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
      * @memberof Device
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
@@ -409,37 +409,37 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof Device
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof Device
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -505,7 +505,7 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -518,19 +518,19 @@ export interface DeviceCalibration {
      * @type {number}
      * @memberof DeviceCalibration
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceCalibration
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
@@ -566,7 +566,7 @@ export interface DeviceCalibration {
      * @type {string}
      * @memberof DeviceCalibration
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -616,31 +616,31 @@ export interface DeviceIdentity {
      * @type {number}
      * @memberof DeviceIdentity
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
      * @memberof DeviceIdentity
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
@@ -652,37 +652,37 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof DeviceIdentity
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof DeviceIdentity
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -748,37 +748,37 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    private_key?: string;
+    private_key: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    private_key_checksum?: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key_checksum?: string;
+    public_key_checksum: string;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    cloudiot_device_configs?: string;
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {DeviceIdentityCaCerts}
      * @memberof DeviceIdentity
      */
-    ca_certs?: DeviceIdentityCaCerts;
+    ca_certs: DeviceIdentityCaCerts;
 }
 /**
  * 
@@ -961,13 +961,13 @@ export interface Experiment {
      * @type {number}
      * @memberof Experiment
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Experiment
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {boolean}
@@ -991,13 +991,13 @@ export interface Experiment {
      * @type {Nested}
      * @memberof Experiment
      */
-    control?: Nested;
+    control: Nested;
     /**
      * 
      * @type {Array<Nested>}
      * @memberof Experiment
      */
-    treatments?: Array<Nested>;
+    treatments: Array<Nested>;
     /**
      * 
      * @type {string}
@@ -1016,25 +1016,25 @@ export interface ExperimentDeviceConfig {
      * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof ExperimentDeviceConfig
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {Nested}
      * @memberof ExperimentDeviceConfig
      */
-    experiment?: Nested;
+    experiment: Nested;
     /**
      * 
      * @type {Nested}
      * @memberof ExperimentDeviceConfig
      */
-    artifact?: Nested;
+    artifact: Nested;
 }
 /**
  * 
@@ -1047,13 +1047,13 @@ export interface GcodeFile {
      * @type {number}
      * @memberof GcodeFile
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof GcodeFile
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
@@ -1083,7 +1083,7 @@ export interface GcodeFile {
      * @type {string}
      * @memberof GcodeFile
      */
-    url?: string;
+    url: string;
 }
 /**
  * Abstract class that returns a callback token based on the field given Returns a token if valid, None or a message if not.
@@ -1109,49 +1109,49 @@ export interface ModelArtifact {
      * @type {number}
      * @memberof ModelArtifact
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    version?: string;
+    version: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    labels?: string;
+    labels: string;
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    artifacts?: string;
+    artifacts: string;
     /**
      * 
      * @type {Array<ArtifactTypesEnum>}
      * @memberof ModelArtifact
      */
-    artifact_types?: Array<ArtifactTypesEnum>;
+    artifact_types: Array<ArtifactTypesEnum>;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof ModelArtifact
      */
-    metadata?: { [key: string]: any; };
+    metadata: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof ModelArtifact
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -1164,13 +1164,13 @@ export interface Nested {
      * @type {number}
      * @memberof Nested
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Nested
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {boolean}
@@ -1219,19 +1219,19 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
@@ -1243,43 +1243,43 @@ export interface OctoPrintDevice {
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -1369,19 +1369,19 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    cloudiot_device_configs?: string;
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    manage_url?: string;
+    manage_url: string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDevice
      */
-    monitoring_active?: boolean;
+    monitoring_active: boolean;
     /**
      * 
      * @type {PrintSession}
@@ -1400,19 +1400,19 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    deleted?: string;
+    deleted: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {string}
@@ -1424,43 +1424,43 @@ export interface OctoPrintDeviceKey {
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    public_key?: string;
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    fingerprint?: string;
+    fingerprint: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device?: { [key: string]: any; };
+    cloudiot_device: { [key: string]: any; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_name?: string;
+    cloudiot_device_name: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_path?: string;
+    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_num_id?: number;
+    cloudiot_device_num_id: number;
     /**
      * 
      * @type {string}
@@ -1550,19 +1550,19 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    private_key?: string;
+    private_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    private_key_checksum?: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -1574,7 +1574,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_configs?: string;
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -1586,13 +1586,13 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    manage_url?: string;
+    manage_url: string;
     /**
      * 
      * @type {boolean}
      * @memberof OctoPrintDeviceKey
      */
-    monitoring_active?: boolean;
+    monitoring_active: boolean;
     /**
      * 
      * @type {PrintSession}
@@ -1714,7 +1714,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {OctoPrintEventEventTypeEnum}
@@ -1726,13 +1726,13 @@ export interface OctoPrintEvent {
      * @type {string}
      * @memberof OctoPrintEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof OctoPrintEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1780,7 +1780,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -1792,7 +1792,7 @@ export interface OctoPrintEvent {
      * @type {number}
      * @memberof OctoPrintEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -2840,55 +2840,55 @@ export interface Partner3DGeeksAlert {
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    event?: string;
+    event: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    token?: string;
+    token: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    printer?: string;
+    printer: string;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    print?: string;
+    print: string;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    currentTime?: number;
+    currentTime: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    timeLeft?: number;
+    timeLeft: number;
     /**
      * 
      * @type {number}
      * @memberof Partner3DGeeksAlert
      */
-    percent?: number;
+    percent: number;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    image?: string | null;
+    image: string | null;
     /**
      * 
      * @type {string}
      * @memberof Partner3DGeeksAlert
      */
-    action?: string;
+    action: string;
 }
 /**
  * Please do not include any personally-identifying info or sensitive info in partner serializers
@@ -2925,7 +2925,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    print_nanny_plugin_version?: string;
+    print_nanny_plugin_version: string;
     /**
      * 
      * @type {string}
@@ -2937,7 +2937,7 @@ export interface Partner3DGeeksMetadata {
      * @type {string}
      * @memberof Partner3DGeeksMetadata
      */
-    verified?: string;
+    verified: string;
 }
 /**
  * Serializer used in POST /api/alerts/seen and POST /api/alerts/dismiss requests
@@ -3505,7 +3505,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {EventTypeD9eEnum}
@@ -3517,13 +3517,13 @@ export interface PrintJobEvent {
      * @type {string}
      * @memberof PrintJobEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrintJobEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3571,7 +3571,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3583,7 +3583,7 @@ export interface PrintJobEvent {
      * @type {number}
      * @memberof PrintJobEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3617,7 +3617,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {PrintNannyPluginEventEventTypeEnum}
@@ -3629,13 +3629,13 @@ export interface PrintNannyPluginEvent {
      * @type {string}
      * @memberof PrintNannyPluginEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrintNannyPluginEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3683,7 +3683,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -3695,7 +3695,7 @@ export interface PrintNannyPluginEvent {
      * @type {number}
      * @memberof PrintNannyPluginEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3741,7 +3741,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -3753,7 +3753,7 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    updated_dt?: string;
+    updated_dt: string;
     /**
      * 
      * @type {number}
@@ -3801,7 +3801,7 @@ export interface PrintSession {
      * @type {number}
      * @memberof PrintSession
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -3837,13 +3837,13 @@ export interface PrintSession {
      * @type {string}
      * @memberof PrintSession
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof PrintSession
      */
-    datesegment?: string;
+    datesegment: string;
 }
 /**
  * 
@@ -3941,7 +3941,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {EventType0c4Enum}
@@ -3953,13 +3953,13 @@ export interface PrinterEvent {
      * @type {string}
      * @memberof PrinterEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof PrinterEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4013,7 +4013,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -4025,7 +4025,7 @@ export interface PrinterEvent {
      * @type {number}
      * @memberof PrinterEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -4044,13 +4044,13 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -4194,7 +4194,7 @@ export interface PrinterProfile {
      * @type {string}
      * @memberof PrinterProfile
      */
-    url?: string;
+    url: string;
 }
 /**
  * 
@@ -4379,7 +4379,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {RemoteCommandEventEventTypeEnum}
@@ -4391,13 +4391,13 @@ export interface RemoteCommandEvent {
      * @type {string}
      * @memberof RemoteCommandEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof RemoteCommandEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4445,7 +4445,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -4457,7 +4457,7 @@ export interface RemoteCommandEvent {
      * @type {number}
      * @memberof RemoteCommandEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -4487,13 +4487,13 @@ export interface RemoteControlCommand {
      * @type {number}
      * @memberof RemoteControlCommand
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    created_dt?: string;
+    created_dt: string;
     /**
      * 
      * @type {CommandEnum}
@@ -4541,13 +4541,13 @@ export interface RemoteControlCommand {
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {string}
      * @memberof RemoteControlCommand
      */
-    octoprint_event_type?: string;
+    octoprint_event_type: string;
 }
 /**
  * 
@@ -4609,7 +4609,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {TelemetryEventEventTypeEnum}
@@ -4633,13 +4633,13 @@ export interface TelemetryEvent {
      * @type {string}
      * @memberof TelemetryEvent
      */
-    ts?: string;
+    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
      * @memberof TelemetryEvent
      */
-    event_source?: EventSourceEnum;
+    event_source: EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4675,7 +4675,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    polymorphic_ctype?: number;
+    polymorphic_ctype: number;
     /**
      * 
      * @type {number}
@@ -4687,7 +4687,7 @@ export interface TelemetryEvent {
      * @type {number}
      * @memberof TelemetryEvent
      */
-    user?: number;
+    user: number;
     /**
      * 
      * @type {number}
@@ -4811,13 +4811,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    url?: string;
+    url: string;
     /**
      * 
      * @type {number}
      * @memberof User
      */
-    id?: number;
+    id: number;
 }
 /**
  * 

@@ -22,7 +22,7 @@ import java.io.Serializable
 
 data class AuthToken (
     @Json(name = "token")
-    val token: kotlin.String? = null
+    val token: kotlin.String
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -26,9 +26,9 @@ data class User (
     @Json(name = "email")
     val email: kotlin.String,
     @Json(name = "url")
-    val url: java.net.URI? = null,
+    val url: java.net.URI,
     @Json(name = "id")
-    val id: kotlin.Int? = null
+    val id: kotlin.Int
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

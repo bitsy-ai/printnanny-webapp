@@ -66,7 +66,20 @@ class TestDevice(unittest.TestCase):
             )
         else :
             return Device(
+                id = 56,
+                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                user = 56,
                 name = '',
+                public_key = '',
+                fingerprint = '',
+                cloudiot_device = {
+                    'key' : null
+                    },
+                cloudiot_device_name = '',
+                cloudiot_device_path = '',
+                cloudiot_device_num_id = 56,
                 os_version = '',
                 os = '',
                 kernel_version = '',
@@ -75,6 +88,7 @@ class TestDevice(unittest.TestCase):
                 cpu_flags = [
                     ''
                     ],
+                url = '',
         )
 
     def testDevice(self):

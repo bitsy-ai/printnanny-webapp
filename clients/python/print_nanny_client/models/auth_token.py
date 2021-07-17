@@ -52,8 +52,7 @@ class AuthToken(object):
         self._token = None
         self.discriminator = None
 
-        if token is not None:
-            self.token = token
+        self.token = token
 
     @property
     def token(self):
@@ -73,6 +72,8 @@ class AuthToken(object):
         :param token: The token of this AuthToken.  # noqa: E501
         :type token: str
         """
+        if self.local_vars_configuration.client_side_validation and token is None:  # noqa: E501
+            raise ValueError("Invalid value for `token`, must not be `None`")  # noqa: E501
 
         self._token = token
 

@@ -11,14 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PrintNannyPluginEvent {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<i32>,
+    #[serde(rename = "id")]
+    pub id: i32,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::PrintNannyPluginEventEventTypeEnum,
-    #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-    pub ts: Option<String>,
-    #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
-    pub event_source: Option<Box<crate::models::EventSourceEnum>>,
+    #[serde(rename = "ts")]
+    pub ts: String,
+    #[serde(rename = "event_source")]
+    pub event_source: Box<crate::models::EventSourceEnum>,
     #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
     pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
@@ -33,23 +33,23 @@ pub struct PrintNannyPluginEvent {
     pub print_nanny_client_version: String,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
-    #[serde(rename = "polymorphic_ctype", skip_serializing_if = "Option::is_none")]
-    pub polymorphic_ctype: Option<i32>,
+    #[serde(rename = "polymorphic_ctype")]
+    pub polymorphic_ctype: i32,
     #[serde(rename = "octoprint_device")]
     pub octoprint_device: i32,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<i32>,
+    #[serde(rename = "user")]
+    pub user: i32,
     #[serde(rename = "print_session", skip_serializing_if = "Option::is_none")]
     pub print_session: Option<i32>,
 }
 
 impl PrintNannyPluginEvent {
-    pub fn new(event_type: crate::models::PrintNannyPluginEventEventTypeEnum, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, octoprint_device: i32) -> PrintNannyPluginEvent {
+    pub fn new(id: i32, event_type: crate::models::PrintNannyPluginEventEventTypeEnum, ts: String, event_source: crate::models::EventSourceEnum, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrintNannyPluginEvent {
         PrintNannyPluginEvent {
-            id: None,
+            id,
             event_type,
-            ts: None,
-            event_source: None,
+            ts,
+            event_source: Box::new(event_source),
             event_data: None,
             octoprint_environment: None,
             octoprint_printer_data: None,
@@ -57,9 +57,9 @@ impl PrintNannyPluginEvent {
             print_nanny_plugin_version,
             print_nanny_client_version,
             octoprint_version,
-            polymorphic_ctype: None,
+            polymorphic_ctype,
             octoprint_device,
-            user: None,
+            user,
             print_session: None,
         }
     }

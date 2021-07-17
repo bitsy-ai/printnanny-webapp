@@ -51,6 +51,18 @@ class TestModelArtifact(unittest.TestCase):
             )
         else :
             return ModelArtifact(
+                id = 56,
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                version = '',
+                labels = '',
+                artifacts = '',
+                artifact_types = [
+                    'TFLITE'
+                    ],
+                metadata = {
+                    'key' : null
+                    },
+                url = '',
         )
 
     def testModelArtifact(self):

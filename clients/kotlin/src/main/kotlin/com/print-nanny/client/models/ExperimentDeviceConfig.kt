@@ -26,13 +26,13 @@ import java.io.Serializable
 
 data class ExperimentDeviceConfig (
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
     @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    val createdDt: java.time.OffsetDateTime,
     @Json(name = "experiment")
-    val experiment: Nested? = null,
+    val experiment: Nested,
     @Json(name = "artifact")
-    val artifact: Nested? = null
+    val artifact: Nested
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -4,18 +4,18 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**deleted** | **datetime** |  | [optional] [readonly] 
-**created_dt** | **datetime** |  | [optional] [readonly] 
-**updated_dt** | **datetime** |  | [optional] [readonly] 
-**user** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**deleted** | **datetime** |  | [readonly] 
+**created_dt** | **datetime** |  | [readonly] 
+**updated_dt** | **datetime** |  | [readonly] 
+**user** | **int** |  | [readonly] 
 **name** | **str** |  | 
-**public_key** | **str** |  | [optional] [readonly] 
-**fingerprint** | **str** |  | [optional] [readonly] 
-**cloudiot_device** | **dict(str, object)** |  | [optional] [readonly] 
-**cloudiot_device_name** | **str** |  | [optional] [readonly] 
-**cloudiot_device_path** | **str** |  | [optional] [readonly] 
-**cloudiot_device_num_id** | **int** |  | [optional] [readonly] 
+**public_key** | **str** |  | [readonly] 
+**fingerprint** | **str** |  | [readonly] 
+**cloudiot_device** | **dict(str, object)** |  | [readonly] 
+**cloudiot_device_name** | **str** |  | [readonly] 
+**cloudiot_device_path** | **str** |  | [readonly] 
+**cloudiot_device_num_id** | **int** |  | [readonly] 
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 
@@ -26,12 +26,12 @@ Name | Type | Description | Notes
 **cores** | **int** |  | 
 **ram** | **int** |  | 
 **cpu_flags** | **list[str]** |  | 
-**url** | **str** |  | [optional] [readonly] 
-**private_key** | **str** |  | [optional] [readonly] 
-**private_key_checksum** | **str** |  | [optional] [readonly] 
-**public_key_checksum** | **str** |  | [optional] [readonly] 
-**cloudiot_device_configs** | **str** |  | [optional] [readonly] 
-**ca_certs** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | [optional] 
+**url** | **str** |  | [readonly] 
+**private_key** | **str** |  | [readonly] 
+**private_key_checksum** | **str** |  | [readonly] 
+**public_key_checksum** | **str** |  | [readonly] 
+**cloudiot_device_configs** | **str** |  | [readonly] 
+**ca_certs** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

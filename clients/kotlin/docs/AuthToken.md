@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**token** | **kotlin.String** |  |  [optional] [readonly]
+**token** | **kotlin.String** |  |  [readonly]
 
 
 

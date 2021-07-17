@@ -4,11 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [readonly]
+**user** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
 **name** | **kotlin.String** |  | 
 **octoprintKey** | **kotlin.String** |  | 
-**id** | **kotlin.Int** |  |  [optional] [readonly]
-**user** | **kotlin.Int** |  |  [optional] [readonly]
+**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **axesEInverted** | **kotlin.Boolean** |  |  [optional]
 **axesESpeed** | **kotlin.Int** |  |  [optional]
 **axesXSpeed** | **kotlin.Int** |  |  [optional]
@@ -29,7 +30,6 @@ Name | Type | Description | Notes
 **volumeHeight** | **kotlin.Float** |  |  [optional]
 **volumeOrigin** | **kotlin.String** |  |  [optional]
 **volumeWidth** | **kotlin.Float** |  |  [optional]
-**url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 
 

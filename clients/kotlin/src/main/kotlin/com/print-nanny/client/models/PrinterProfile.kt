@@ -18,11 +18,12 @@ import java.io.Serializable
 
 /**
  * 
+ * @param id 
+ * @param user 
  * @param octoprintDevice 
  * @param name 
  * @param octoprintKey 
- * @param id 
- * @param user 
+ * @param url 
  * @param axesEInverted 
  * @param axesESpeed 
  * @param axesXSpeed 
@@ -43,20 +44,21 @@ import java.io.Serializable
  * @param volumeHeight 
  * @param volumeOrigin 
  * @param volumeWidth 
- * @param url 
  */
 
 data class PrinterProfile (
+    @Json(name = "id")
+    val id: kotlin.Int,
+    @Json(name = "user")
+    val user: kotlin.Int,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "octoprint_key")
     val octoprintKey: kotlin.String,
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
+    @Json(name = "url")
+    val url: java.net.URI,
     @Json(name = "axes_e_inverted")
     val axesEInverted: kotlin.Boolean? = null,
     @Json(name = "axes_e_speed")
@@ -96,9 +98,7 @@ data class PrinterProfile (
     @Json(name = "volume_origin")
     val volumeOrigin: kotlin.String? = null,
     @Json(name = "volume_width")
-    val volumeWidth: kotlin.Float? = null,
-    @Json(name = "url")
-    val url: java.net.URI? = null
+    val volumeWidth: kotlin.Float? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

@@ -18,31 +18,31 @@ import java.io.Serializable
 
 /**
  * 
- * @param name 
- * @param hypothesis 
  * @param id 
  * @param createdDt 
- * @param active 
+ * @param name 
+ * @param hypothesis 
  * @param control 
  * @param treatments 
+ * @param active 
  * @param notionUrl 
  */
 
 data class Experiment (
+    @Json(name = "id")
+    val id: kotlin.Int,
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "hypothesis")
     val hypothesis: kotlin.String,
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
+    @Json(name = "control")
+    val control: Nested,
+    @Json(name = "treatments")
+    val treatments: kotlin.collections.List<Nested>,
     @Json(name = "active")
     val active: kotlin.Boolean? = null,
-    @Json(name = "control")
-    val control: Nested? = null,
-    @Json(name = "treatments")
-    val treatments: kotlin.collections.List<Nested>? = null,
     @Json(name = "notion_url")
     val notionUrl: kotlin.String? = null
 ) : Serializable {

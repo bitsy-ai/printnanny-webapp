@@ -4,13 +4,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [readonly]
+**user** | **kotlin.Int** |  |  [readonly]
 **name** | **kotlin.String** |  | 
 **file** | [**java.net.URI**](java.net.URI.md) |  | 
 **fileHash** | **kotlin.String** |  | 
 **octoprintDevice** | **kotlin.String** |  | 
-**id** | **kotlin.Int** |  |  [optional] [readonly]
-**user** | **kotlin.Int** |  |  [optional] [readonly]
-**url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
+**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 
 
 

@@ -18,34 +18,56 @@ import java.io.Serializable
 
 /**
  * 
- * @param name 
- * @param osVersion 
- * @param os 
- * @param kernelVersion 
- * @param cores 
- * @param ram 
- * @param cpuFlags 
  * @param id 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param user 
+ * @param name 
  * @param publicKey 
  * @param fingerprint 
  * @param cloudiotDevice 
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
+ * @param osVersion 
+ * @param os 
+ * @param kernelVersion 
+ * @param cores 
+ * @param ram 
+ * @param cpuFlags 
+ * @param url 
  * @param hardware 
  * @param revision 
  * @param model 
  * @param serial 
- * @param url 
  */
 
 data class Device (
+    @Json(name = "id")
+    val id: kotlin.Int,
+    @Json(name = "deleted")
+    val deleted: java.time.OffsetDateTime,
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime,
+    @Json(name = "user")
+    val user: kotlin.Int,
     @Json(name = "name")
     val name: kotlin.String,
+    @Json(name = "public_key")
+    val publicKey: kotlin.String,
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String,
+    @Json(name = "cloudiot_device")
+    val cloudiotDevice: kotlin.collections.Map<kotlin.String, AnyType>,
+    @Json(name = "cloudiot_device_name")
+    val cloudiotDeviceName: kotlin.String,
+    @Json(name = "cloudiot_device_path")
+    val cloudiotDevicePath: kotlin.String,
+    @Json(name = "cloudiot_device_num_id")
+    val cloudiotDeviceNumId: kotlin.Int,
     @Json(name = "os_version")
     val osVersion: kotlin.String,
     @Json(name = "os")
@@ -58,28 +80,8 @@ data class Device (
     val ram: kotlin.Long,
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.collections.List<kotlin.String>,
-    @Json(name = "id")
-    val id: kotlin.Int? = null,
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime? = null,
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime? = null,
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime? = null,
-    @Json(name = "user")
-    val user: kotlin.Int? = null,
-    @Json(name = "public_key")
-    val publicKey: kotlin.String? = null,
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String? = null,
-    @Json(name = "cloudiot_device")
-    val cloudiotDevice: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "cloudiot_device_name")
-    val cloudiotDeviceName: kotlin.String? = null,
-    @Json(name = "cloudiot_device_path")
-    val cloudiotDevicePath: kotlin.String? = null,
-    @Json(name = "cloudiot_device_num_id")
-    val cloudiotDeviceNumId: kotlin.Int? = null,
+    @Json(name = "url")
+    val url: java.net.URI,
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,
     @Json(name = "revision")
@@ -87,9 +89,7 @@ data class Device (
     @Json(name = "model")
     val model: kotlin.String? = null,
     @Json(name = "serial")
-    val serial: kotlin.String? = null,
-    @Json(name = "url")
-    val url: java.net.URI? = null
+    val serial: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

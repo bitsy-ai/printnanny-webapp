@@ -55,7 +55,18 @@ class TestAlert(unittest.TestCase):
             )
         else :
             return Alert(
+                id = 56,
+                time = '',
+                gcode_file = '',
+                print_progress = '',
+                time_elapsed = '',
+                time_remaining = '',
+                manage_device_url = '',
+                user = 56,
                 alert_method = 'UI',
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                message = '',
         )
 
     def testAlert(self):
