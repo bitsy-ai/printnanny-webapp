@@ -32,7 +32,6 @@ Name | Type | Description | Notes
 **publicKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceConfigs** | **kotlin.String** |  |  [optional] [readonly]
 **caCerts** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  |  [optional]
-**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 
 
 

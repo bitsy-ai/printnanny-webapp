@@ -71,8 +71,7 @@ class TestDeviceIdentity(unittest.TestCase):
                     primary = '', 
                     primary_checksum = '', 
                     backup = '', 
-                    backup_checksum = '', ), 
-                manage_url = ''
+                    backup_checksum = '', )
             )
         else :
             return DeviceIdentity(

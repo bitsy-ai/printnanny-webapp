@@ -32,7 +32,6 @@ Name | Type | Description | Notes
 **public_key_checksum** | Option<**String**> |  | [optional][readonly]
 **cloudiot_device_configs** | Option<**String**> |  | [optional][readonly]
 **ca_certs** | Option<[**crate::models::DeviceIdentityCaCerts**](DeviceIdentity_ca_certs.md)> |  | [optional]
-**manage_url** | Option<**String**> |  | [optional][readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

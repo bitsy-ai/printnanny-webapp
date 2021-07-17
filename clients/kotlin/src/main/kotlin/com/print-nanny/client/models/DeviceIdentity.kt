@@ -47,7 +47,6 @@ import java.io.Serializable
  * @param publicKeyChecksum 
  * @param cloudiotDeviceConfigs 
  * @param caCerts 
- * @param manageUrl 
  */
 
 data class DeviceIdentity (
@@ -106,9 +105,7 @@ data class DeviceIdentity (
     @Json(name = "cloudiot_device_configs")
     val cloudiotDeviceConfigs: kotlin.String? = null,
     @Json(name = "ca_certs")
-    val caCerts: DeviceIdentityCaCerts? = null,
-    @Json(name = "manage_url")
-    val manageUrl: java.net.URI? = null
+    val caCerts: DeviceIdentityCaCerts? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

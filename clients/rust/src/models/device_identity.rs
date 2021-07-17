@@ -67,8 +67,6 @@ pub struct DeviceIdentity {
     pub cloudiot_device_configs: Option<String>,
     #[serde(rename = "ca_certs", skip_serializing_if = "Option::is_none")]
     pub ca_certs: Option<Box<crate::models::DeviceIdentityCaCerts>>,
-    #[serde(rename = "manage_url", skip_serializing_if = "Option::is_none")]
-    pub manage_url: Option<String>,
 }
 
 impl DeviceIdentity {
@@ -102,7 +100,6 @@ impl DeviceIdentity {
             public_key_checksum: None,
             cloudiot_device_configs: None,
             ca_certs: None,
-            manage_url: None,
         }
     }
 }

@@ -779,12 +779,6 @@ export interface DeviceIdentity {
      * @memberof DeviceIdentity
      */
     ca_certs?: DeviceIdentityCaCerts;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    manage_url?: string;
 }
 /**
  * 
