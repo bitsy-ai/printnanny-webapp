@@ -19,10 +19,10 @@ Name | Type | Description | Notes
 **os_version** | **str** |  | 
 **os** | **str** |  | 
 **kernel_version** | **str** |  | 
-**hardware** | **str** |  | 
-**revision** | **str** |  | 
-**model** | **str** |  | 
-**serial** | **str** |  | 
+**hardware** | **str** |  | [optional] 
+**revision** | **str** |  | [optional] 
+**model** | **str** |  | [optional] 
+**serial** | **str** |  | [optional] 
 **cores** | **int** |  | 
 **ram** | **int** |  | 
 **cpu_flags** | **list[str]** |  | 

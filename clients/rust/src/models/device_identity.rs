@@ -41,14 +41,14 @@ pub struct DeviceIdentity {
     pub os: String,
     #[serde(rename = "kernel_version")]
     pub kernel_version: String,
-    #[serde(rename = "hardware")]
-    pub hardware: String,
-    #[serde(rename = "revision")]
-    pub revision: String,
-    #[serde(rename = "model")]
-    pub model: String,
-    #[serde(rename = "serial")]
-    pub serial: String,
+    #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
+    pub hardware: Option<String>,
+    #[serde(rename = "revision", skip_serializing_if = "Option::is_none")]
+    pub revision: Option<String>,
+    #[serde(rename = "model", skip_serializing_if = "Option::is_none")]
+    pub model: Option<String>,
+    #[serde(rename = "serial", skip_serializing_if = "Option::is_none")]
+    pub serial: Option<String>,
     #[serde(rename = "cores")]
     pub cores: i32,
     #[serde(rename = "ram")]
@@ -72,7 +72,7 @@ pub struct DeviceIdentity {
 }
 
 impl DeviceIdentity {
-    pub fn new(name: String, os_version: String, os: String, kernel_version: String, hardware: String, revision: String, model: String, serial: String, cores: i32, ram: i64, cpu_flags: Vec<String>) -> DeviceIdentity {
+    pub fn new(name: String, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>) -> DeviceIdentity {
         DeviceIdentity {
             id: None,
             deleted: None,
@@ -89,10 +89,10 @@ impl DeviceIdentity {
             os_version,
             os,
             kernel_version,
-            hardware,
-            revision,
-            model,
-            serial,
+            hardware: None,
+            revision: None,
+            model: None,
+            serial: None,
             cores,
             ram,
             cpu_flags,

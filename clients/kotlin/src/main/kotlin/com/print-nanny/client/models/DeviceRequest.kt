@@ -21,13 +21,13 @@ import java.io.Serializable
  * @param osVersion 
  * @param os 
  * @param kernelVersion 
+ * @param cores 
+ * @param ram 
+ * @param cpuFlags 
  * @param hardware 
  * @param revision 
  * @param model 
  * @param serial 
- * @param cores 
- * @param ram 
- * @param cpuFlags 
  */
 
 data class DeviceRequest (
@@ -39,20 +39,20 @@ data class DeviceRequest (
     val os: kotlin.String,
     @Json(name = "kernel_version")
     val kernelVersion: kotlin.String,
-    @Json(name = "hardware")
-    val hardware: kotlin.String,
-    @Json(name = "revision")
-    val revision: kotlin.String,
-    @Json(name = "model")
-    val model: kotlin.String,
-    @Json(name = "serial")
-    val serial: kotlin.String,
     @Json(name = "cores")
     val cores: kotlin.Int,
     @Json(name = "ram")
     val ram: kotlin.Long,
     @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.collections.List<kotlin.String>
+    val cpuFlags: kotlin.collections.List<kotlin.String>,
+    @Json(name = "hardware")
+    val hardware: kotlin.String? = null,
+    @Json(name = "revision")
+    val revision: kotlin.String? = null,
+    @Json(name = "model")
+    val model: kotlin.String? = null,
+    @Json(name = "serial")
+    val serial: kotlin.String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID: Long = 123

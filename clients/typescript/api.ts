@@ -463,25 +463,25 @@ export interface Device {
      * @type {string}
      * @memberof Device
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    model: string;
+    model?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Device
      */
-    serial: string;
+    serial?: string | null;
     /**
      * 
      * @type {number}
@@ -706,25 +706,25 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    model: string;
+    model?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    serial: string;
+    serial?: string | null;
     /**
      * 
      * @type {number}
@@ -852,25 +852,25 @@ export interface DeviceRequest {
      * @type {string}
      * @memberof DeviceRequest
      */
-    hardware: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    revision: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    model: string;
+    model?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DeviceRequest
      */
-    serial: string;
+    serial?: string | null;
     /**
      * 
      * @type {number}
@@ -3067,25 +3067,25 @@ export interface PatchedDeviceRequest {
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    hardware?: string;
+    hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    revision?: string;
+    revision?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    model?: string;
+    model?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedDeviceRequest
      */
-    serial?: string;
+    serial?: string | null;
     /**
      * 
      * @type {number}

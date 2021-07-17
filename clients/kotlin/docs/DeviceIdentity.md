@@ -8,10 +8,6 @@ Name | Type | Description | Notes
 **osVersion** | **kotlin.String** |  | 
 **os** | **kotlin.String** |  | 
 **kernelVersion** | **kotlin.String** |  | 
-**hardware** | **kotlin.String** |  | 
-**revision** | **kotlin.String** |  | 
-**model** | **kotlin.String** |  | 
-**serial** | **kotlin.String** |  | 
 **cores** | **kotlin.Int** |  | 
 **ram** | **kotlin.Long** |  | 
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  | 
@@ -26,6 +22,10 @@ Name | Type | Description | Notes
 **cloudiotDeviceName** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [optional] [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [optional] [readonly]
+**hardware** | **kotlin.String** |  |  [optional]
+**revision** | **kotlin.String** |  |  [optional]
+**model** | **kotlin.String** |  |  [optional]
+**serial** | **kotlin.String** |  |  [optional]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [optional] [readonly]
 **privateKey** | **kotlin.String** |  |  [optional] [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [optional] [readonly]

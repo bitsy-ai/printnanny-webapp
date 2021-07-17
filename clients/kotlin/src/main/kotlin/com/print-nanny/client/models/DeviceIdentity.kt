@@ -23,10 +23,6 @@ import java.io.Serializable
  * @param osVersion 
  * @param os 
  * @param kernelVersion 
- * @param hardware 
- * @param revision 
- * @param model 
- * @param serial 
  * @param cores 
  * @param ram 
  * @param cpuFlags 
@@ -41,6 +37,10 @@ import java.io.Serializable
  * @param cloudiotDeviceName 
  * @param cloudiotDevicePath 
  * @param cloudiotDeviceNumId 
+ * @param hardware 
+ * @param revision 
+ * @param model 
+ * @param serial 
  * @param url 
  * @param privateKey 
  * @param privateKeyChecksum 
@@ -59,14 +59,6 @@ data class DeviceIdentity (
     val os: kotlin.String,
     @Json(name = "kernel_version")
     val kernelVersion: kotlin.String,
-    @Json(name = "hardware")
-    val hardware: kotlin.String,
-    @Json(name = "revision")
-    val revision: kotlin.String,
-    @Json(name = "model")
-    val model: kotlin.String,
-    @Json(name = "serial")
-    val serial: kotlin.String,
     @Json(name = "cores")
     val cores: kotlin.Int,
     @Json(name = "ram")
@@ -95,6 +87,14 @@ data class DeviceIdentity (
     val cloudiotDevicePath: kotlin.String? = null,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Int? = null,
+    @Json(name = "hardware")
+    val hardware: kotlin.String? = null,
+    @Json(name = "revision")
+    val revision: kotlin.String? = null,
+    @Json(name = "model")
+    val model: kotlin.String? = null,
+    @Json(name = "serial")
+    val serial: kotlin.String? = null,
     @Json(name = "url")
     val url: java.net.URI? = null,
     @Json(name = "private_key")

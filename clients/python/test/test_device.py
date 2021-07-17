@@ -70,10 +70,6 @@ class TestDevice(unittest.TestCase):
                 os_version = '',
                 os = '',
                 kernel_version = '',
-                hardware = '',
-                revision = '',
-                model = '',
-                serial = '',
                 cores = -2147483648,
                 ram = -9223372036854775808,
                 cpu_flags = [

@@ -90,14 +90,10 @@ class PatchedDeviceRequest(object):
             self.os = os
         if kernel_version is not None:
             self.kernel_version = kernel_version
-        if hardware is not None:
-            self.hardware = hardware
-        if revision is not None:
-            self.revision = revision
-        if model is not None:
-            self.model = model
-        if serial is not None:
-            self.serial = serial
+        self.hardware = hardware
+        self.revision = revision
+        self.model = model
+        self.serial = serial
         if cores is not None:
             self.cores = cores
         if ram is not None:

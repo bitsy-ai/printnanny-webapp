@@ -507,8 +507,6 @@ class Device(object):
         :param hardware: The hardware of this Device.  # noqa: E501
         :type hardware: str
         """
-        if self.local_vars_configuration.client_side_validation and hardware is None:  # noqa: E501
-            raise ValueError("Invalid value for `hardware`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 hardware is not None and len(hardware) > 255):
             raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
@@ -533,8 +531,6 @@ class Device(object):
         :param revision: The revision of this Device.  # noqa: E501
         :type revision: str
         """
-        if self.local_vars_configuration.client_side_validation and revision is None:  # noqa: E501
-            raise ValueError("Invalid value for `revision`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 revision is not None and len(revision) > 255):
             raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
@@ -559,8 +555,6 @@ class Device(object):
         :param model: The model of this Device.  # noqa: E501
         :type model: str
         """
-        if self.local_vars_configuration.client_side_validation and model is None:  # noqa: E501
-            raise ValueError("Invalid value for `model`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 model is not None and len(model) > 255):
             raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
@@ -585,8 +579,6 @@ class Device(object):
         :param serial: The serial of this Device.  # noqa: E501
         :type serial: str
         """
-        if self.local_vars_configuration.client_side_validation and serial is None:  # noqa: E501
-            raise ValueError("Invalid value for `serial`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 serial is not None and len(serial) > 255):
             raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501

@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **os_version** | **String** |  | 
 **os** | **String** |  | 
 **kernel_version** | **String** |  | 
-**hardware** | **String** |  | 
-**revision** | **String** |  | 
-**model** | **String** |  | 
-**serial** | **String** |  | 
+**hardware** | Option<**String**> |  | [optional]
+**revision** | Option<**String**> |  | [optional]
+**model** | Option<**String**> |  | [optional]
+**serial** | Option<**String**> |  | [optional]
 **cores** | **i32** |  | 
 **ram** | **i64** |  | 
 **cpu_flags** | **Vec<String>** |  | 
