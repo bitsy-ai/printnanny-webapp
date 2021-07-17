@@ -27,11 +27,6 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
     def get_cloudiot_device_num_id(self, obj):
         return obj.cloudiot_device_num_id
 
-    cloudiot_device_configs = serializers.SerializerMethodField()
-
-    def get_cloudiot_device_configs(self, obj) -> str:
-        return obj.cloudiot_device_configs
-
     private_key = serializers.SerializerMethodField()
 
     def get_private_key(self, obj) -> str:
@@ -82,10 +77,8 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "private_key_checksum",
             "fingerprint",
             "cloudiot_device_num_id",
-            "cloudiot_device",
             "cloudiot_device_name",
             "cloudiot_device_path",
-            "cloudiot_device_configs",
         )
 
 
@@ -113,10 +106,8 @@ class DeviceSerializer(serializers.ModelSerializer):
             "public_key",
             "fingerprint",
             "cloudiot_device_num_id",
-            "cloudiot_device",
             "cloudiot_device_name",
             "cloudiot_device_path",
-            "cloudiot_device_configs",
         )
 
     def update_or_create(self, user, name, validated_data):
