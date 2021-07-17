@@ -39,7 +39,6 @@ import java.io.Serializable
  * @param privateKey 
  * @param privateKeyChecksum 
  * @param publicKeyChecksum 
- * @param cloudiotDeviceConfigs 
  * @param caCerts 
  * @param hardware 
  * @param revision 
@@ -90,8 +89,6 @@ data class DeviceIdentity (
     val privateKeyChecksum: kotlin.String,
     @Json(name = "public_key_checksum")
     val publicKeyChecksum: kotlin.String,
-    @Json(name = "cloudiot_device_configs")
-    val cloudiotDeviceConfigs: kotlin.String,
     @Json(name = "ca_certs")
     val caCerts: DeviceIdentityCaCerts,
     @Json(name = "hardware")

@@ -29,7 +29,6 @@ Name | Type | Description | Notes
 **private_key** | **String** |  | [readonly]
 **private_key_checksum** | **String** |  | [readonly]
 **public_key_checksum** | **String** |  | [readonly]
-**cloudiot_device_configs** | **String** |  | [readonly]
 **ca_certs** | [**crate::models::DeviceIdentityCaCerts**](DeviceIdentity_ca_certs.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

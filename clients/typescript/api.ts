@@ -757,12 +757,6 @@ export interface DeviceIdentity {
     public_key_checksum: string;
     /**
      * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    cloudiot_device_configs: string;
-    /**
-     * 
      * @type {DeviceIdentityCaCerts}
      * @memberof DeviceIdentity
      */

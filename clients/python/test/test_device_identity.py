@@ -63,7 +63,6 @@ class TestDeviceIdentity(unittest.TestCase):
                 private_key = '', 
                 private_key_checksum = '', 
                 public_key_checksum = '', 
-                cloudiot_device_configs = '', 
                 ca_certs = print_nanny_client.models.device_identity_ca_certs.DeviceIdentity_ca_certs(
                     primary = '', 
                     primary_checksum = '', 
@@ -95,7 +94,6 @@ class TestDeviceIdentity(unittest.TestCase):
                 private_key = '',
                 private_key_checksum = '',
                 public_key_checksum = '',
-                cloudiot_device_configs = '',
                 ca_certs = print_nanny_client.models.device_identity_ca_certs.DeviceIdentity_ca_certs(
                     primary = '', 
                     primary_checksum = '', 

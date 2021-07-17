@@ -61,14 +61,12 @@ pub struct DeviceIdentity {
     pub private_key_checksum: String,
     #[serde(rename = "public_key_checksum")]
     pub public_key_checksum: String,
-    #[serde(rename = "cloudiot_device_configs")]
-    pub cloudiot_device_configs: String,
     #[serde(rename = "ca_certs")]
     pub ca_certs: Box<crate::models::DeviceIdentityCaCerts>,
 }
 
 impl DeviceIdentity {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i64, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String, private_key: String, private_key_checksum: String, public_key_checksum: String, cloudiot_device_configs: String, ca_certs: crate::models::DeviceIdentityCaCerts) -> DeviceIdentity {
+    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, user: i32, name: String, public_key: String, fingerprint: String, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i64, os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, url: String, private_key: String, private_key_checksum: String, public_key_checksum: String, ca_certs: crate::models::DeviceIdentityCaCerts) -> DeviceIdentity {
         DeviceIdentity {
             id,
             deleted,
@@ -95,7 +93,6 @@ impl DeviceIdentity {
             private_key,
             private_key_checksum,
             public_key_checksum,
-            cloudiot_device_configs,
             ca_certs: Box::new(ca_certs),
         }
     }

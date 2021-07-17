@@ -61,7 +61,6 @@ class DeviceIdentity(object):
         'private_key': 'str',
         'private_key_checksum': 'str',
         'public_key_checksum': 'str',
-        'cloudiot_device_configs': 'str',
         'ca_certs': 'DeviceIdentityCaCerts'
     }
 
@@ -91,11 +90,10 @@ class DeviceIdentity(object):
         'private_key': 'private_key',
         'private_key_checksum': 'private_key_checksum',
         'public_key_checksum': 'public_key_checksum',
-        'cloudiot_device_configs': 'cloudiot_device_configs',
         'ca_certs': 'ca_certs'
     }
 
-    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, cloudiot_device_configs=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, deleted=None, created_dt=None, updated_dt=None, user=None, name=None, public_key=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_path=None, cloudiot_device_num_id=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key_checksum=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
         """DeviceIdentity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -126,7 +124,6 @@ class DeviceIdentity(object):
         self._private_key = None
         self._private_key_checksum = None
         self._public_key_checksum = None
-        self._cloudiot_device_configs = None
         self._ca_certs = None
         self.discriminator = None
 
@@ -155,7 +152,6 @@ class DeviceIdentity(object):
         self.private_key = private_key
         self.private_key_checksum = private_key_checksum
         self.public_key_checksum = public_key_checksum
-        self.cloudiot_device_configs = cloudiot_device_configs
         self.ca_certs = ca_certs
 
     @property
@@ -760,29 +756,6 @@ class DeviceIdentity(object):
             raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
 
         self._public_key_checksum = public_key_checksum
-
-    @property
-    def cloudiot_device_configs(self):
-        """Gets the cloudiot_device_configs of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The cloudiot_device_configs of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._cloudiot_device_configs
-
-    @cloudiot_device_configs.setter
-    def cloudiot_device_configs(self, cloudiot_device_configs):
-        """Sets the cloudiot_device_configs of this DeviceIdentity.
-
-
-        :param cloudiot_device_configs: The cloudiot_device_configs of this DeviceIdentity.  # noqa: E501
-        :type cloudiot_device_configs: str
-        """
-        if self.local_vars_configuration.client_side_validation and cloudiot_device_configs is None:  # noqa: E501
-            raise ValueError("Invalid value for `cloudiot_device_configs`, must not be `None`")  # noqa: E501
-
-        self._cloudiot_device_configs = cloudiot_device_configs
 
     @property
     def ca_certs(self):

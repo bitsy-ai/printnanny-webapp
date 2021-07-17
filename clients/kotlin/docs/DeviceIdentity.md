@@ -25,7 +25,6 @@ Name | Type | Description | Notes
 **privateKey** | **kotlin.String** |  |  [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [readonly]
 **publicKeyChecksum** | **kotlin.String** |  |  [readonly]
-**cloudiotDeviceConfigs** | **kotlin.String** |  |  [readonly]
 **caCerts** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | 
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]

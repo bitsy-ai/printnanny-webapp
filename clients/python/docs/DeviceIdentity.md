@@ -29,7 +29,6 @@ Name | Type | Description | Notes
 **private_key** | **str** |  | [readonly] 
 **private_key_checksum** | **str** |  | [readonly] 
 **public_key_checksum** | **str** |  | [readonly] 
-**cloudiot_device_configs** | **str** |  | [readonly] 
 **ca_certs** | [**DeviceIdentityCaCerts**](DeviceIdentityCaCerts.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
