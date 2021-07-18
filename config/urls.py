@@ -61,10 +61,10 @@ if settings.DEBUG:
 # https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
 # do not remove the following line!
 import print_nanny_webapp.drfpasswordless.schema
-
 urlpatterns += [
-    # API base url
+    # API base urls
     path("api/", include("config.api_router")),
+
     # DRF auth token
     path("api/auth-token/", obtain_auth_token),
 

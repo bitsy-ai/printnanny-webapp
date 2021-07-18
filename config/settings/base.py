@@ -425,13 +425,15 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'print_nanny_webapp.utils.pagination.PageNumberPagination',
     'PAGE_SIZE': PAGE_SIZE,
+    # 'ALLOWED_VERSIONS': ('v0','v1', ''),
+    # 'DEFAULT_VERSION': 'v0'
 }
 
 # Your stuff...
 # ------------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    'SCHEMA_PATH_PREFIX': '/api/',
+    # 'SCHEMA_PATH_PREFIX': '/api/v[0-9]/',
     # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,

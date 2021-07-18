@@ -11,7 +11,7 @@ from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.remote_control.api.views import (
     GcodeFileViewSet,
-    PrinterProfileViewSet,
+    PrinterProfileViewSet as AlphaPrinterProfileViewSet,
     PrintSessionViewSet,
     OctoPrintDeviceViewSet,
     CommandViewSet
@@ -47,7 +47,7 @@ router.register("users", UserViewSet)
 router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 
-router.register(r"printer-profiles", PrinterProfileViewSet, basename='printer-profile')
+router.register(r"printer-profiles", AlphaPrinterProfileViewSet, basename='printer-profile')
 router.register(r"print-sessions", PrintSessionViewSet, basename='print-session')
 router.register(r"gcode-files", GcodeFileViewSet, basename='gcode-file')
 router.register(r"commands", CommandViewSet, basename='command')
