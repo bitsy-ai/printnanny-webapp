@@ -197,13 +197,6 @@ class OctoprintController(PrinterController):
 
 
 class PrinterProfile(PolymorphicModel, SafeDeleteModel):
-    class CamStreamType(models.TextChoices):
-        MJPG_STREAMER = (
-            "Raspberry Pi MJPG-Streamer",
-            "Stream JPG-encoded frames from Raspberry Pi camera over HTTP https://github.com/jacksonliam/mjpg-streamer",
-        )
-        WEBCAM_
-
     class Meta:
         unique_together = (
             "user",
