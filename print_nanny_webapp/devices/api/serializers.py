@@ -207,5 +207,5 @@ class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
 class CameraControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CameraController
-        read_only_fields = "user"
+        read_only_fields = ("user",)
         exclude = ("deleted",)

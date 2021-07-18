@@ -12,11 +12,12 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import (
+    CameraControllerSerializer,
     DeviceSerializer,
     DeviceIdentitySerializer,
     PrinterProfilePolymorphicSerializer,
 )
-from ..models import Device
+from ..models import CameraController, Device, PrinterProfile
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +105,24 @@ class PrinterProfileViewSet(
 ):
 
     serializer_class = PrinterProfilePolymorphicSerializer
-    queryset = Device.objects.all()
+    queryset = PrinterProfile.objects.all()
+    lookup_field = "id"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+@extend_schema(tags=["devices"])
+class CameraControllerViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+
+    serializer_class = CameraControllerSerializer
+    queryset = CameraController.objects.all()
     lookup_field = "id"
 
     def perform_create(self, serializer):

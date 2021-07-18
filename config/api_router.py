@@ -1,8 +1,10 @@
+from print_nanny_webapp.devices.models import CameraController
 from django.conf import settings
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
 from print_nanny_webapp.devices.api.views import (
+    CameraControllerViewSet,
     DeviceViewSet,
     PrinterProfileViewSet
 )
@@ -40,6 +42,7 @@ router.register("alerts", AlertViewSet)
 router.register("devices", DeviceViewSet)
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
 devices_router.register(r'printer-profiles', PrinterProfileViewSet, basename='printer-profiles')
+devices_router.register(r'cameras', CameraControllerViewSet, basename='cameras')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
