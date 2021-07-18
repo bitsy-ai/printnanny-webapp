@@ -11,7 +11,7 @@ from rest_framework.mixins import (
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from .serializers import DeviceSerializer, DeviceIdentitySerializer
+from .serializers import DeviceSerializer, DeviceIdentitySerializer, PrinterProfilePolymorphicSerializer
 from ..models import Device
 
 logger = logging.getLogger(__name__)
@@ -88,3 +88,42 @@ class DeviceViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+@extend_schema(tags=["devices"])
+class PrinterProfileViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+
+    serializer_class = PrinterProfilePolymorphicSerializer
+    queryset = Device.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        operation_id="printer_profiles_update",
+        parameters=[],
+        responses={
+            200: PrinterProfilePolymorphicSerializer,
+            202: PrinterProfilePolymorphicSerializer,
+        },
+    )
+    def update(self, *args, **kwargs):
+        return super().update(*args, **kwargs)
+
+    @extend_schema(
+        operation_id="devices_partial_update",
+        responses={
+            200: PrinterProfilePolymorphicSerializer,
+            202: PrinterProfilePolymorphicSerializer,
+        },
+    )
+    def partial_update(self, *args, **kwargs):
+        return super().partial_update(*args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
