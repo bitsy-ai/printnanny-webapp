@@ -143,6 +143,7 @@ class PrinterControllerSerializer(serializers.ModelSerializer):
         model = PrinterController
         fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class OctoprintControllerSerializer(serializers.ModelSerializer):
@@ -150,6 +151,7 @@ class OctoprintControllerSerializer(serializers.ModelSerializer):
         model = OctoprintController
         fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class PrinterControllerPolymorphicSerializer(PolymorphicSerializer):
@@ -175,6 +177,7 @@ class PrinterProfileSerializer(serializers.ModelSerializer):
         model = PrinterProfile
         fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class OctoprintPrinterProfileSerializer(serializers.ModelSerializer):
@@ -182,6 +185,7 @@ class OctoprintPrinterProfileSerializer(serializers.ModelSerializer):
         model = OctoprintPrinterProfile
         fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
