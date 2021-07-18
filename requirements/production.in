@@ -34,6 +34,7 @@ django-webpack-loader
 djangorestframework
 drfpasswordless
 drf-spectacular
+drf-nested-routers
 flatbuffers
 flower
 google-cloud-core
