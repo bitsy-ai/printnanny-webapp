@@ -163,6 +163,30 @@ class Device(SafeDeleteModel):
         return configs_dict
 
 
+class CameriaController(SafeDeleteModel):
+    class CameraType(models.TextChoices):
+        RPI_CAMERA = "Raspberry Pi Camera Module", "Raspberry Pi Camera Module"
+        USB_CAMERA = (
+            "Raspberry Pi USB Camera",
+            "Raspberry Pi USB Camera",
+        )
+        IP_CAMERA = "Generic RTSP/RTMP IP Camera", "Generic RTSP/RTMP IP Camera"
+
+    class CameraStreamType(models.TextChoices):
+        MJPG_STREAMER = "MJPG Streamer", "Software-encoded JPG frames over HTTP"
+        GSTREAMER = "Gstreamer", "Hardware-encoded h264"
+
+    _safedelete_policy = SOFT_DELETE
+
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    camera_type = models.CharField(max_length=255, choices=CameraType.choices)
+    source = models.CharField(max_length=255)
+    source_type = models.CharField(max_length=255, choices=CameraStreamType.choices)
+
+
 class PrinterController(PolymorphicModel, SafeDeleteModel):
 
     _safedelete_policy = SOFT_DELETE
