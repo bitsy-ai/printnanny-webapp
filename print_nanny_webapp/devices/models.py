@@ -164,6 +164,9 @@ class Device(SafeDeleteModel):
 
 
 class CameriaController(SafeDeleteModel):
+    class Meta:
+        unique_together = ("user", "name")
+
     class CameraType(models.TextChoices):
         RPI_CAMERA = "Raspberry Pi Camera Module", "Raspberry Pi Camera Module"
         USB_CAMERA = (
@@ -182,6 +185,7 @@ class CameriaController(SafeDeleteModel):
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
     camera_type = models.CharField(max_length=255, choices=CameraType.choices)
     source = models.CharField(max_length=255)
     source_type = models.CharField(max_length=255, choices=CameraStreamType.choices)
