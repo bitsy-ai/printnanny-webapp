@@ -16,6 +16,7 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CameraController.md
 docs/CameraControllerRequest.md
+docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
 docs/DetailResponse.md
@@ -109,7 +110,6 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
-docs/SourceTypeEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -143,6 +143,7 @@ src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
 src/models/camera_controller.rs
 src/models/camera_controller_request.rs
+src/models/camera_source_type_enum.rs
 src/models/camera_type_enum.rs
 src/models/command_enum.rs
 src/models/detail_response.rs
@@ -231,7 +232,6 @@ src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_control_command.rs
 src/models/remote_control_command_request.rs
-src/models/source_type_enum.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs

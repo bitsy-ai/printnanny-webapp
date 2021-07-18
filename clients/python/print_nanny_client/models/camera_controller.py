@@ -41,8 +41,8 @@ class CameraController(object):
         'updated_dt': 'datetime',
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
-        'source': 'str',
-        'source_type': 'SourceTypeEnum',
+        'camera_source': 'str',
+        'camera_source_type': 'CameraSourceTypeEnum',
         'user': 'int',
         'device': 'int'
     }
@@ -53,13 +53,13 @@ class CameraController(object):
         'updated_dt': 'updated_dt',
         'name': 'name',
         'camera_type': 'camera_type',
-        'source': 'source',
-        'source_type': 'source_type',
+        'camera_source': 'camera_source',
+        'camera_source_type': 'camera_source_type',
         'user': 'user',
         'device': 'device'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, camera_type=None, source=None, source_type=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, camera_type=None, camera_source=None, camera_source_type=None, user=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CameraController - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -70,8 +70,8 @@ class CameraController(object):
         self._updated_dt = None
         self._name = None
         self._camera_type = None
-        self._source = None
-        self._source_type = None
+        self._camera_source = None
+        self._camera_source_type = None
         self._user = None
         self._device = None
         self.discriminator = None
@@ -81,8 +81,8 @@ class CameraController(object):
         self.updated_dt = updated_dt
         self.name = name
         self.camera_type = camera_type
-        self.source = source
-        self.source_type = source_type
+        self.camera_source = camera_source
+        self.camera_source_type = camera_source_type
         self.user = user
         self.device = device
 
@@ -205,53 +205,53 @@ class CameraController(object):
         self._camera_type = camera_type
 
     @property
-    def source(self):
-        """Gets the source of this CameraController.  # noqa: E501
+    def camera_source(self):
+        """Gets the camera_source of this CameraController.  # noqa: E501
 
 
-        :return: The source of this CameraController.  # noqa: E501
+        :return: The camera_source of this CameraController.  # noqa: E501
         :rtype: str
         """
-        return self._source
+        return self._camera_source
 
-    @source.setter
-    def source(self, source):
-        """Sets the source of this CameraController.
+    @camera_source.setter
+    def camera_source(self, camera_source):
+        """Sets the camera_source of this CameraController.
 
 
-        :param source: The source of this CameraController.  # noqa: E501
-        :type source: str
+        :param camera_source: The camera_source of this CameraController.  # noqa: E501
+        :type camera_source: str
         """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and camera_source is None:  # noqa: E501
+            raise ValueError("Invalid value for `camera_source`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                source is not None and len(source) > 255):
-            raise ValueError("Invalid value for `source`, length must be less than or equal to `255`")  # noqa: E501
+                camera_source is not None and len(camera_source) > 255):
+            raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._source = source
+        self._camera_source = camera_source
 
     @property
-    def source_type(self):
-        """Gets the source_type of this CameraController.  # noqa: E501
+    def camera_source_type(self):
+        """Gets the camera_source_type of this CameraController.  # noqa: E501
 
 
-        :return: The source_type of this CameraController.  # noqa: E501
-        :rtype: SourceTypeEnum
+        :return: The camera_source_type of this CameraController.  # noqa: E501
+        :rtype: CameraSourceTypeEnum
         """
-        return self._source_type
+        return self._camera_source_type
 
-    @source_type.setter
-    def source_type(self, source_type):
-        """Sets the source_type of this CameraController.
+    @camera_source_type.setter
+    def camera_source_type(self, camera_source_type):
+        """Sets the camera_source_type of this CameraController.
 
 
-        :param source_type: The source_type of this CameraController.  # noqa: E501
-        :type source_type: SourceTypeEnum
+        :param camera_source_type: The camera_source_type of this CameraController.  # noqa: E501
+        :type camera_source_type: CameraSourceTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and source_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `source_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and camera_source_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `camera_source_type`, must not be `None`")  # noqa: E501
 
-        self._source_type = source_type
+        self._camera_source_type = camera_source_type
 
     @property
     def user(self):

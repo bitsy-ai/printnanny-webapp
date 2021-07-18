@@ -15,21 +15,21 @@ pub struct CameraControllerRequest {
     pub name: String,
     #[serde(rename = "camera_type")]
     pub camera_type: crate::models::CameraTypeEnum,
-    #[serde(rename = "source")]
-    pub source: String,
-    #[serde(rename = "source_type")]
-    pub source_type: crate::models::SourceTypeEnum,
+    #[serde(rename = "camera_source")]
+    pub camera_source: String,
+    #[serde(rename = "camera_source_type")]
+    pub camera_source_type: crate::models::CameraSourceTypeEnum,
     #[serde(rename = "device")]
     pub device: i32,
 }
 
 impl CameraControllerRequest {
-    pub fn new(name: String, camera_type: crate::models::CameraTypeEnum, source: String, source_type: crate::models::SourceTypeEnum, device: i32) -> CameraControllerRequest {
+    pub fn new(name: String, camera_type: crate::models::CameraTypeEnum, camera_source: String, camera_source_type: crate::models::CameraSourceTypeEnum, device: i32) -> CameraControllerRequest {
         CameraControllerRequest {
             name,
             camera_type,
-            source,
-            source_type,
+            camera_source,
+            camera_source_type,
             device,
         }
     }

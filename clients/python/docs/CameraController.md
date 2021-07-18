@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **updated_dt** | **datetime** |  | [readonly] 
 **name** | **str** |  | 
 **camera_type** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | 
-**source** | **str** |  | 
-**source_type** | [**SourceTypeEnum**](SourceTypeEnum.md) |  | 
+**camera_source** | **str** |  | 
+**camera_source_type** | [**CameraSourceTypeEnum**](CameraSourceTypeEnum.md) |  | 
 **user** | **int** |  | [readonly] 
 **device** | **int** |  | 
 

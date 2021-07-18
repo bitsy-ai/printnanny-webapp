@@ -38,20 +38,20 @@ class CameraControllerRequest(object):
     openapi_types = {
         'name': 'str',
         'camera_type': 'CameraTypeEnum',
-        'source': 'str',
-        'source_type': 'SourceTypeEnum',
+        'camera_source': 'str',
+        'camera_source_type': 'CameraSourceTypeEnum',
         'device': 'int'
     }
 
     attribute_map = {
         'name': 'name',
         'camera_type': 'camera_type',
-        'source': 'source',
-        'source_type': 'source_type',
+        'camera_source': 'camera_source',
+        'camera_source_type': 'camera_source_type',
         'device': 'device'
     }
 
-    def __init__(self, name=None, camera_type=None, source=None, source_type=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, camera_type=None, camera_source=None, camera_source_type=None, device=None, local_vars_configuration=None):  # noqa: E501
         """CameraControllerRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -59,15 +59,15 @@ class CameraControllerRequest(object):
 
         self._name = None
         self._camera_type = None
-        self._source = None
-        self._source_type = None
+        self._camera_source = None
+        self._camera_source_type = None
         self._device = None
         self.discriminator = None
 
         self.name = name
         self.camera_type = camera_type
-        self.source = source
-        self.source_type = source_type
+        self.camera_source = camera_source
+        self.camera_source_type = camera_source_type
         self.device = device
 
     @property
@@ -120,53 +120,53 @@ class CameraControllerRequest(object):
         self._camera_type = camera_type
 
     @property
-    def source(self):
-        """Gets the source of this CameraControllerRequest.  # noqa: E501
+    def camera_source(self):
+        """Gets the camera_source of this CameraControllerRequest.  # noqa: E501
 
 
-        :return: The source of this CameraControllerRequest.  # noqa: E501
+        :return: The camera_source of this CameraControllerRequest.  # noqa: E501
         :rtype: str
         """
-        return self._source
+        return self._camera_source
 
-    @source.setter
-    def source(self, source):
-        """Sets the source of this CameraControllerRequest.
+    @camera_source.setter
+    def camera_source(self, camera_source):
+        """Sets the camera_source of this CameraControllerRequest.
 
 
-        :param source: The source of this CameraControllerRequest.  # noqa: E501
-        :type source: str
+        :param camera_source: The camera_source of this CameraControllerRequest.  # noqa: E501
+        :type camera_source: str
         """
-        if self.local_vars_configuration.client_side_validation and source is None:  # noqa: E501
-            raise ValueError("Invalid value for `source`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and camera_source is None:  # noqa: E501
+            raise ValueError("Invalid value for `camera_source`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                source is not None and len(source) > 255):
-            raise ValueError("Invalid value for `source`, length must be less than or equal to `255`")  # noqa: E501
+                camera_source is not None and len(camera_source) > 255):
+            raise ValueError("Invalid value for `camera_source`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._source = source
+        self._camera_source = camera_source
 
     @property
-    def source_type(self):
-        """Gets the source_type of this CameraControllerRequest.  # noqa: E501
+    def camera_source_type(self):
+        """Gets the camera_source_type of this CameraControllerRequest.  # noqa: E501
 
 
-        :return: The source_type of this CameraControllerRequest.  # noqa: E501
-        :rtype: SourceTypeEnum
+        :return: The camera_source_type of this CameraControllerRequest.  # noqa: E501
+        :rtype: CameraSourceTypeEnum
         """
-        return self._source_type
+        return self._camera_source_type
 
-    @source_type.setter
-    def source_type(self, source_type):
-        """Sets the source_type of this CameraControllerRequest.
+    @camera_source_type.setter
+    def camera_source_type(self, camera_source_type):
+        """Sets the camera_source_type of this CameraControllerRequest.
 
 
-        :param source_type: The source_type of this CameraControllerRequest.  # noqa: E501
-        :type source_type: SourceTypeEnum
+        :param camera_source_type: The camera_source_type of this CameraControllerRequest.  # noqa: E501
+        :type camera_source_type: CameraSourceTypeEnum
         """
-        if self.local_vars_configuration.client_side_validation and source_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `source_type`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and camera_source_type is None:  # noqa: E501
+            raise ValueError("Invalid value for `camera_source_type`, must not be `None`")  # noqa: E501
 
-        self._source_type = source_type
+        self._camera_source_type = camera_source_type
 
     @property
     def device(self):

@@ -18,6 +18,7 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CameraController.md
 docs/CameraControllerRequest.md
+docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
 docs/DetailResponse.md
@@ -111,7 +112,6 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
-docs/SourceTypeEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -149,6 +149,7 @@ print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
 print_nanny_client/models/camera_controller.py
 print_nanny_client/models/camera_controller_request.py
+print_nanny_client/models/camera_source_type_enum.py
 print_nanny_client/models/camera_type_enum.py
 print_nanny_client/models/command_enum.py
 print_nanny_client/models/detail_response.py
@@ -236,7 +237,6 @@ print_nanny_client/models/remote_command_event.py
 print_nanny_client/models/remote_command_event_event_type_enum.py
 print_nanny_client/models/remote_control_command.py
 print_nanny_client/models/remote_control_command_request.py
-print_nanny_client/models/source_type_enum.py
 print_nanny_client/models/telemetry_event.py
 print_nanny_client/models/telemetry_event_event_type_enum.py
 print_nanny_client/models/telemetry_event_polymorphic.py
@@ -264,6 +264,7 @@ test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py
 test/test_camera_controller.py
 test/test_camera_controller_request.py
+test/test_camera_source_type_enum.py
 test/test_camera_type_enum.py
 test/test_command_enum.py
 test/test_detail_response.py
@@ -357,7 +358,6 @@ test/test_remote_control_api.py
 test/test_remote_control_command.py
 test/test_remote_control_command_request.py
 test/test_schema_api.py
-test/test_source_type_enum.py
 test/test_telemetry_api.py
 test/test_telemetry_event.py
 test/test_telemetry_event_event_type_enum.py

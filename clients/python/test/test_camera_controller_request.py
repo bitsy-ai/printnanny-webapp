@@ -38,16 +38,16 @@ class TestCameraControllerRequest(unittest.TestCase):
             return CameraControllerRequest(
                 name = '', 
                 camera_type = 'Raspberry Pi Camera Module', 
-                source = '', 
-                source_type = 'MJPG Streamer', 
+                camera_source = '', 
+                camera_source_type = 'MJPG Streamer', 
                 device = 56
             )
         else :
             return CameraControllerRequest(
                 name = '',
                 camera_type = 'Raspberry Pi Camera Module',
-                source = '',
-                source_type = 'MJPG Streamer',
+                camera_source = '',
+                camera_source_type = 'MJPG Streamer',
                 device = 56,
         )
 

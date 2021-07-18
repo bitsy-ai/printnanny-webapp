@@ -9,7 +9,7 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum SourceTypeEnum {
+pub enum CameraSourceTypeEnum {
     #[serde(rename = "MJPG Streamer")]
     MJPGStreamer,
     #[serde(rename = "Gstreamer")]
@@ -17,7 +17,7 @@ pub enum SourceTypeEnum {
 
 }
 
-impl ToString for SourceTypeEnum {
+impl ToString for CameraSourceTypeEnum {
     fn to_string(&self) -> String {
         match self {
             Self::MJPGStreamer => String::from("MJPG Streamer"),

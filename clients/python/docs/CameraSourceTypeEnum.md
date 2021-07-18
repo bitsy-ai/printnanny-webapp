@@ -1,4 +1,4 @@
-# SourceTypeEnum
+# CameraSourceTypeEnum
 
 
 ## Properties

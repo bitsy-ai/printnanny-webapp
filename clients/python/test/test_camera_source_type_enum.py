@@ -16,11 +16,11 @@ import unittest
 import datetime
 
 import print_nanny_client
-from print_nanny_client.models.source_type_enum import SourceTypeEnum  # noqa: E501
+from print_nanny_client.models.camera_source_type_enum import CameraSourceTypeEnum  # noqa: E501
 from print_nanny_client.rest import ApiException
 
-class TestSourceTypeEnum(unittest.TestCase):
-    """SourceTypeEnum unit test stubs"""
+class TestCameraSourceTypeEnum(unittest.TestCase):
+    """CameraSourceTypeEnum unit test stubs"""
 
     def setUp(self):
         pass
@@ -29,20 +29,20 @@ class TestSourceTypeEnum(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SourceTypeEnum
+        """Test CameraSourceTypeEnum
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # model = print_nanny_client.models.source_type_enum.SourceTypeEnum()  # noqa: E501
+        # model = print_nanny_client.models.camera_source_type_enum.CameraSourceTypeEnum()  # noqa: E501
         if include_optional :
-            return SourceTypeEnum(
+            return CameraSourceTypeEnum(
             )
         else :
-            return SourceTypeEnum(
+            return CameraSourceTypeEnum(
         )
 
-    def testSourceTypeEnum(self):
-        """Test SourceTypeEnum"""
+    def testCameraSourceTypeEnum(self):
+        """Test CameraSourceTypeEnum"""
         inst_req_only = self.make_instance(include_optional=False)
         inst_req_and_optional = self.make_instance(include_optional=True)
 

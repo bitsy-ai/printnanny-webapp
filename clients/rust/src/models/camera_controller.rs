@@ -21,10 +21,10 @@ pub struct CameraController {
     pub name: String,
     #[serde(rename = "camera_type")]
     pub camera_type: crate::models::CameraTypeEnum,
-    #[serde(rename = "source")]
-    pub source: String,
-    #[serde(rename = "source_type")]
-    pub source_type: crate::models::SourceTypeEnum,
+    #[serde(rename = "camera_source")]
+    pub camera_source: String,
+    #[serde(rename = "camera_source_type")]
+    pub camera_source_type: crate::models::CameraSourceTypeEnum,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]
@@ -32,15 +32,15 @@ pub struct CameraController {
 }
 
 impl CameraController {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, name: String, camera_type: crate::models::CameraTypeEnum, source: String, source_type: crate::models::SourceTypeEnum, user: i32, device: i32) -> CameraController {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, name: String, camera_type: crate::models::CameraTypeEnum, camera_source: String, camera_source_type: crate::models::CameraSourceTypeEnum, user: i32, device: i32) -> CameraController {
         CameraController {
             id,
             created_dt,
             updated_dt,
             name,
             camera_type,
-            source,
-            source_type,
+            camera_source,
+            camera_source_type,
             user,
             device,
         }

@@ -19,7 +19,7 @@ import com.squareup.moshi.Json
 * Values: mJPGStreamer,gstreamer
 */
 
-enum class SourceTypeEnum(val value: kotlin.String) {
+enum class CameraSourceTypeEnum(val value: kotlin.String) {
 
 
     @Json(name = "MJPG Streamer")

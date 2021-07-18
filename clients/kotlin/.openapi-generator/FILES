@@ -14,6 +14,7 @@ docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
 docs/CameraController.md
 docs/CameraControllerRequest.md
+docs/CameraSourceTypeEnum.md
 docs/CameraTypeEnum.md
 docs/CommandEnum.md
 docs/DetailResponse.md
@@ -107,7 +108,6 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
-docs/SourceTypeEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -158,6 +158,7 @@ src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CameraController.kt
 src/main/kotlin/com/print-nanny/client/models/CameraControllerRequest.kt
+src/main/kotlin/com/print-nanny/client/models/CameraSourceTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/DetailResponse.kt
@@ -245,7 +246,6 @@ src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommandRequest.kt
-src/main/kotlin/com/print-nanny/client/models/SourceTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEvent.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventPolymorphic.kt

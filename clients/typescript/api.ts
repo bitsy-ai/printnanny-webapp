@@ -342,13 +342,13 @@ export interface CameraController {
      * @type {string}
      * @memberof CameraController
      */
-    source: string;
+    camera_source: string;
     /**
      * 
-     * @type {SourceTypeEnum}
+     * @type {CameraSourceTypeEnum}
      * @memberof CameraController
      */
-    source_type: SourceTypeEnum;
+    camera_source_type: CameraSourceTypeEnum;
     /**
      * 
      * @type {number}
@@ -385,13 +385,13 @@ export interface CameraControllerRequest {
      * @type {string}
      * @memberof CameraControllerRequest
      */
-    source: string;
+    camera_source: string;
     /**
      * 
-     * @type {SourceTypeEnum}
+     * @type {CameraSourceTypeEnum}
      * @memberof CameraControllerRequest
      */
-    source_type: SourceTypeEnum;
+    camera_source_type: CameraSourceTypeEnum;
     /**
      * 
      * @type {number}
@@ -399,6 +399,16 @@ export interface CameraControllerRequest {
      */
     device: number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum CameraSourceTypeEnum {
+    MjpgStreamer = 'MJPG Streamer',
+    Gstreamer = 'Gstreamer'
+}
+
 /**
  * 
  * @export
@@ -3459,13 +3469,13 @@ export interface PatchedCameraControllerRequest {
      * @type {string}
      * @memberof PatchedCameraControllerRequest
      */
-    source?: string;
+    camera_source?: string;
     /**
      * 
-     * @type {SourceTypeEnum}
+     * @type {CameraSourceTypeEnum}
      * @memberof PatchedCameraControllerRequest
      */
-    source_type?: SourceTypeEnum;
+    camera_source_type?: CameraSourceTypeEnum;
     /**
      * 
      * @type {number}
@@ -4903,16 +4913,6 @@ export interface RemoteControlCommandRequest {
      */
     metadata?: { [key: string]: any; };
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-export enum SourceTypeEnum {
-    MjpgStreamer = 'MJPG Streamer',
-    Gstreamer = 'Gstreamer'
-}
-
 /**
  * 
  * @export

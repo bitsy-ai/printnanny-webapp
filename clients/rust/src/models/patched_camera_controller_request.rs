@@ -15,10 +15,10 @@ pub struct PatchedCameraControllerRequest {
     pub name: Option<String>,
     #[serde(rename = "camera_type", skip_serializing_if = "Option::is_none")]
     pub camera_type: Option<crate::models::CameraTypeEnum>,
-    #[serde(rename = "source", skip_serializing_if = "Option::is_none")]
-    pub source: Option<String>,
-    #[serde(rename = "source_type", skip_serializing_if = "Option::is_none")]
-    pub source_type: Option<crate::models::SourceTypeEnum>,
+    #[serde(rename = "camera_source", skip_serializing_if = "Option::is_none")]
+    pub camera_source: Option<String>,
+    #[serde(rename = "camera_source_type", skip_serializing_if = "Option::is_none")]
+    pub camera_source_type: Option<crate::models::CameraSourceTypeEnum>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
     pub device: Option<i32>,
 }
@@ -28,8 +28,8 @@ impl PatchedCameraControllerRequest {
         PatchedCameraControllerRequest {
             name: None,
             camera_type: None,
-            source: None,
-            source_type: None,
+            camera_source: None,
+            camera_source_type: None,
             device: None,
         }
     }

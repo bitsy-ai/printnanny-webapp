@@ -11,8 +11,8 @@
 */
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.CameraSourceTypeEnum
 import com.print-nanny.client.models.CameraTypeEnum
-import com.print-nanny.client.models.SourceTypeEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -21,8 +21,8 @@ import java.io.Serializable
  * 
  * @param name 
  * @param cameraType 
- * @param source 
- * @param sourceType 
+ * @param cameraSource 
+ * @param cameraSourceType 
  * @param device 
  */
 
@@ -31,10 +31,10 @@ data class PatchedCameraControllerRequest (
     val name: kotlin.String? = null,
     @Json(name = "camera_type")
     val cameraType: CameraTypeEnum? = null,
-    @Json(name = "source")
-    val source: kotlin.String? = null,
-    @Json(name = "source_type")
-    val sourceType: SourceTypeEnum? = null,
+    @Json(name = "camera_source")
+    val cameraSource: kotlin.String? = null,
+    @Json(name = "camera_source_type")
+    val cameraSourceType: CameraSourceTypeEnum? = null,
     @Json(name = "device")
     val device: kotlin.Int? = null
 ) : Serializable {

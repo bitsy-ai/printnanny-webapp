@@ -41,8 +41,8 @@ class TestCameraController(unittest.TestCase):
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '', 
                 camera_type = 'Raspberry Pi Camera Module', 
-                source = '', 
-                source_type = 'MJPG Streamer', 
+                camera_source = '', 
+                camera_source_type = 'MJPG Streamer', 
                 user = 56, 
                 device = 56
             )
@@ -53,8 +53,8 @@ class TestCameraController(unittest.TestCase):
                 updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '',
                 camera_type = 'Raspberry Pi Camera Module',
-                source = '',
-                source_type = 'MJPG Streamer',
+                camera_source = '',
+                camera_source_type = 'MJPG Streamer',
                 user = 56,
                 device = 56,
         )

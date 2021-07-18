@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **updated_dt** | **String** |  | [readonly]
 **name** | **String** |  | 
 **camera_type** | [**crate::models::CameraTypeEnum**](CameraTypeEnum.md) |  | 
-**source** | **String** |  | 
-**source_type** | [**crate::models::SourceTypeEnum**](SourceTypeEnum.md) |  | 
+**camera_source** | **String** |  | 
+**camera_source_type** | [**crate::models::CameraSourceTypeEnum**](CameraSourceTypeEnum.md) |  | 
 **user** | **i32** |  | [readonly]
 **device** | **i32** |  | 
 

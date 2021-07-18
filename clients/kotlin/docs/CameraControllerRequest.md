@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **kotlin.String** |  | 
 **cameraType** | [**CameraTypeEnum**](CameraTypeEnum.md) |  | 
-**source** | **kotlin.String** |  | 
-**sourceType** | [**SourceTypeEnum**](SourceTypeEnum.md) |  | 
+**cameraSource** | **kotlin.String** |  | 
+**cameraSourceType** | [**CameraSourceTypeEnum**](CameraSourceTypeEnum.md) |  | 
 **device** | **kotlin.Int** |  | 
 
 
