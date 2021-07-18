@@ -433,7 +433,7 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    # 'SCHEMA_PATH_PREFIX': '/api/v[0-9]/',
+    'SCHEMA_PATH_PREFIX': '/api/',
     # 'COMPONENT_NO_READ_ONLY_REQUIRED': True,
     'COMPONENT_SPLIT_REQUEST': True,
     'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,
