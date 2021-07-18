@@ -36,37 +36,17 @@ class TestPrinterProfileRequest(unittest.TestCase):
         # model = print_nanny_client.models.printer_profile_request.PrinterProfileRequest()  # noqa: E501
         if include_optional :
             return PrinterProfileRequest(
-                octoprint_device = 56, 
-                axes_e_inverted = True, 
-                axes_e_speed = -2147483648, 
-                axes_x_speed = -2147483648, 
-                axes_x_inverted = True, 
-                axes_y_inverted = True, 
-                axes_y_speed = -2147483648, 
-                axes_z_inverted = True, 
-                axes_z_speed = -2147483648, 
-                extruder_count = -2147483648, 
-                extruder_nozzle_diameter = 1.337, 
-                extruder_shared_nozzle = True, 
-                heated_bed = True, 
-                heated_chamber = True, 
-                model = '', 
                 name = '', 
-                octoprint_key = '', 
-                volume_custom_box = {
-                    'key' : null
-                    }, 
-                volume_depth = 1.337, 
-                volume_formfactor = '', 
-                volume_height = 1.337, 
-                volume_origin = '', 
-                volume_width = 1.337
+                local_webcam = '', 
+                controller = 56, 
+                device = 56
             )
         else :
             return PrinterProfileRequest(
-                octoprint_device = 56,
                 name = '',
-                octoprint_key = '',
+                local_webcam = '',
+                controller = 56,
+                device = 56,
         )
 
     def testPrinterProfileRequest(self):

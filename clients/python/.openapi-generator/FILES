@@ -53,6 +53,8 @@ docs/OctoprintPiSupport.md
 docs/OctoprintPlatform.md
 docs/OctoprintPrinterData.md
 docs/OctoprintPrinterFlags.md
+docs/OctoprintPrinterProfile.md
+docs/OctoprintPrinterProfileRequest.md
 docs/OctoprintPrinterState.md
 docs/OctoprintProgress.md
 docs/OctoprintPython.md
@@ -69,6 +71,7 @@ docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrinterProfileList.md
+docs/PaginatedPrinterProfilePolymorphicList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
@@ -82,7 +85,9 @@ docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
+docs/PatchedOctoprintPrinterProfileRequest.md
 docs/PatchedPrintSessionRequest.md
+docs/PatchedPrinterProfilePolymorphicRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
@@ -94,6 +99,8 @@ docs/PrintSession.md
 docs/PrintSessionRequest.md
 docs/PrinterEvent.md
 docs/PrinterProfile.md
+docs/PrinterProfilePolymorphic.md
+docs/PrinterProfilePolymorphicRequest.md
 docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
 docs/RemoteCommandEvent.md
@@ -172,6 +179,8 @@ print_nanny_client/models/octoprint_pi_support.py
 print_nanny_client/models/octoprint_platform.py
 print_nanny_client/models/octoprint_printer_data.py
 print_nanny_client/models/octoprint_printer_flags.py
+print_nanny_client/models/octoprint_printer_profile.py
+print_nanny_client/models/octoprint_printer_profile_request.py
 print_nanny_client/models/octoprint_printer_state.py
 print_nanny_client/models/octoprint_progress.py
 print_nanny_client/models/octoprint_python.py
@@ -188,6 +197,7 @@ print_nanny_client/models/paginated_print_job_event_list.py
 print_nanny_client/models/paginated_print_nanny_plugin_event_list.py
 print_nanny_client/models/paginated_print_session_list.py
 print_nanny_client/models/paginated_printer_profile_list.py
+print_nanny_client/models/paginated_printer_profile_polymorphic_list.py
 print_nanny_client/models/paginated_remote_command_event_list.py
 print_nanny_client/models/paginated_remote_control_command_list.py
 print_nanny_client/models/paginated_telemetry_event_polymorphic_list.py
@@ -199,7 +209,9 @@ print_nanny_client/models/patched_alert_request.py
 print_nanny_client/models/patched_device_calibration_request.py
 print_nanny_client/models/patched_device_request.py
 print_nanny_client/models/patched_octo_print_device_request.py
+print_nanny_client/models/patched_octoprint_printer_profile_request.py
 print_nanny_client/models/patched_print_session_request.py
+print_nanny_client/models/patched_printer_profile_polymorphic_request.py
 print_nanny_client/models/patched_printer_profile_request.py
 print_nanny_client/models/patched_remote_control_command_request.py
 print_nanny_client/models/patched_user_request.py
@@ -211,6 +223,8 @@ print_nanny_client/models/print_session.py
 print_nanny_client/models/print_session_request.py
 print_nanny_client/models/printer_event.py
 print_nanny_client/models/printer_profile.py
+print_nanny_client/models/printer_profile_polymorphic.py
+print_nanny_client/models/printer_profile_polymorphic_request.py
 print_nanny_client/models/printer_profile_request.py
 print_nanny_client/models/printer_state_enum.py
 print_nanny_client/models/remote_command_event.py
@@ -279,6 +293,8 @@ test/test_octoprint_pi_support.py
 test/test_octoprint_platform.py
 test/test_octoprint_printer_data.py
 test/test_octoprint_printer_flags.py
+test/test_octoprint_printer_profile.py
+test/test_octoprint_printer_profile_request.py
 test/test_octoprint_printer_state.py
 test/test_octoprint_progress.py
 test/test_octoprint_python.py
@@ -295,6 +311,7 @@ test/test_paginated_print_job_event_list.py
 test/test_paginated_print_nanny_plugin_event_list.py
 test/test_paginated_print_session_list.py
 test/test_paginated_printer_profile_list.py
+test/test_paginated_printer_profile_polymorphic_list.py
 test/test_paginated_remote_command_event_list.py
 test/test_paginated_remote_control_command_list.py
 test/test_paginated_telemetry_event_polymorphic_list.py
@@ -308,7 +325,9 @@ test/test_patched_alert_request.py
 test/test_patched_device_calibration_request.py
 test/test_patched_device_request.py
 test/test_patched_octo_print_device_request.py
+test/test_patched_octoprint_printer_profile_request.py
 test/test_patched_print_session_request.py
+test/test_patched_printer_profile_polymorphic_request.py
 test/test_patched_printer_profile_request.py
 test/test_patched_remote_control_command_request.py
 test/test_patched_user_request.py
@@ -320,6 +339,8 @@ test/test_print_session.py
 test/test_print_session_request.py
 test/test_printer_event.py
 test/test_printer_profile.py
+test/test_printer_profile_polymorphic.py
+test/test_printer_profile_polymorphic_request.py
 test/test_printer_profile_request.py
 test/test_printer_state_enum.py
 test/test_remote_command_event.py

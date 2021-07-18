@@ -15,7 +15,11 @@ import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceIdentity
 import com.print-nanny.client.models.DeviceRequest
 import com.print-nanny.client.models.PaginatedDeviceList
+import com.print-nanny.client.models.PaginatedPrinterProfilePolymorphicList
 import com.print-nanny.client.models.PatchedDeviceRequest
+import com.print-nanny.client.models.PatchedPrinterProfilePolymorphicRequest
+import com.print-nanny.client.models.PrinterProfilePolymorphic
+import com.print-nanny.client.models.PrinterProfilePolymorphicRequest
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -201,6 +205,300 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/api/devices/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param printerProfilePolymorphicRequest  (optional)
+    * @return PrinterProfilePolymorphic
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesPrinterProfilesCreate(deviceId: kotlin.String, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+        val localVariableConfig = devicesPrinterProfilesCreateRequestConfig(deviceId = deviceId, printerProfilePolymorphicRequest = printerProfilePolymorphicRequest)
+
+        val localVarResponse = request<PrinterProfilePolymorphic>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfilePolymorphic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesPrinterProfilesCreate
+    *
+    * @param deviceId  
+    * @param printerProfilePolymorphicRequest  (optional)
+    * @return RequestConfig
+    */
+    fun devicesPrinterProfilesCreateRequestConfig(deviceId: kotlin.String, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = printerProfilePolymorphicRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/devices/{device_id}/printer-profiles/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedPrinterProfilePolymorphicList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesPrinterProfilesList(deviceId: kotlin.String, page: kotlin.Int?) : PaginatedPrinterProfilePolymorphicList {
+        val localVariableConfig = devicesPrinterProfilesListRequestConfig(deviceId = deviceId, page = page)
+
+        val localVarResponse = request<PaginatedPrinterProfilePolymorphicList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrinterProfilePolymorphicList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesPrinterProfilesList
+    *
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun devicesPrinterProfilesListRequestConfig(deviceId: kotlin.String, page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/printer-profiles/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @param patchedPrinterProfilePolymorphicRequest  (optional)
+    * @return PrinterProfilePolymorphic
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesPrinterProfilesPartialUpdate(deviceId: kotlin.String, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+        val localVariableConfig = devicesPrinterProfilesPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedPrinterProfilePolymorphicRequest = patchedPrinterProfilePolymorphicRequest)
+
+        val localVarResponse = request<PrinterProfilePolymorphic>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfilePolymorphic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesPrinterProfilesPartialUpdate
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @param patchedPrinterProfilePolymorphicRequest  (optional)
+    * @return RequestConfig
+    */
+    fun devicesPrinterProfilesPartialUpdateRequestConfig(deviceId: kotlin.String, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedPrinterProfilePolymorphicRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/devices/{device_id}/printer-profiles/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @return PrinterProfilePolymorphic
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesPrinterProfilesRetrieve(deviceId: kotlin.String, id: kotlin.Int) : PrinterProfilePolymorphic {
+        val localVariableConfig = devicesPrinterProfilesRetrieveRequestConfig(deviceId = deviceId, id = id)
+
+        val localVarResponse = request<PrinterProfilePolymorphic>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfilePolymorphic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesPrinterProfilesRetrieve
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @return RequestConfig
+    */
+    fun devicesPrinterProfilesRetrieveRequestConfig(deviceId: kotlin.String, id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/printer-profiles/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @param printerProfilePolymorphicRequest  (optional)
+    * @return PrinterProfilePolymorphic
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesPrinterProfilesUpdate(deviceId: kotlin.String, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+        val localVariableConfig = devicesPrinterProfilesUpdateRequestConfig(deviceId = deviceId, id = id, printerProfilePolymorphicRequest = printerProfilePolymorphicRequest)
+
+        val localVarResponse = request<PrinterProfilePolymorphic>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterProfilePolymorphic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesPrinterProfilesUpdate
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this device. 
+    * @param printerProfilePolymorphicRequest  (optional)
+    * @return RequestConfig
+    */
+    fun devicesPrinterProfilesUpdateRequestConfig(deviceId: kotlin.String, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = printerProfilePolymorphicRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/devices/{device_id}/printer-profiles/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

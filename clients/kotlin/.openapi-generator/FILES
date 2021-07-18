@@ -49,6 +49,8 @@ docs/OctoprintPiSupport.md
 docs/OctoprintPlatform.md
 docs/OctoprintPrinterData.md
 docs/OctoprintPrinterFlags.md
+docs/OctoprintPrinterProfile.md
+docs/OctoprintPrinterProfileRequest.md
 docs/OctoprintPrinterState.md
 docs/OctoprintProgress.md
 docs/OctoprintPython.md
@@ -65,6 +67,7 @@ docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
 docs/PaginatedPrinterProfileList.md
+docs/PaginatedPrinterProfilePolymorphicList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
 docs/PaginatedTelemetryEventPolymorphicList.md
@@ -78,7 +81,9 @@ docs/PatchedAlertRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
+docs/PatchedOctoprintPrinterProfileRequest.md
 docs/PatchedPrintSessionRequest.md
+docs/PatchedPrinterProfilePolymorphicRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
@@ -90,6 +95,8 @@ docs/PrintSession.md
 docs/PrintSessionRequest.md
 docs/PrinterEvent.md
 docs/PrinterProfile.md
+docs/PrinterProfilePolymorphic.md
+docs/PrinterProfilePolymorphicRequest.md
 docs/PrinterProfileRequest.md
 docs/PrinterStateEnum.md
 docs/RemoteCommandEvent.md
@@ -181,6 +188,8 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintPiSupport.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPlatform.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterData.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterFlags.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterProfile.kt
+src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPrinterState.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintProgress.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPython.kt
@@ -197,6 +206,7 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedPrintJobEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintNannyPluginEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintSessionList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfileList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfilePolymorphicList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteCommandEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteControlCommandList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedTelemetryEventPolymorphicList.kt
@@ -208,7 +218,9 @@ src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedOctoprintPrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfilePolymorphicRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedRemoteControlCommandRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedUserRequest.kt
@@ -220,6 +232,8 @@ src/main/kotlin/com/print-nanny/client/models/PrintSession.kt
 src/main/kotlin/com/print-nanny/client/models/PrintSessionRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterEvent.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfile.kt
+src/main/kotlin/com/print-nanny/client/models/PrinterProfilePolymorphic.kt
+src/main/kotlin/com/print-nanny/client/models/PrinterProfilePolymorphicRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterStateEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEvent.kt
