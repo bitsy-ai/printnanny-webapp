@@ -4,6 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**devicesCamerasCreate**](DevicesApi.md#devicesCamerasCreate) | **POST** /api/devices/{device_id}/cameras/ | 
+[**devicesCamerasList**](DevicesApi.md#devicesCamerasList) | **GET** /api/devices/{device_id}/cameras/ | 
+[**devicesCamerasPartialUpdate**](DevicesApi.md#devicesCamerasPartialUpdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
+[**devicesCamerasRetrieve**](DevicesApi.md#devicesCamerasRetrieve) | **GET** /api/devices/{device_id}/cameras/{id}/ | 
+[**devicesCamerasUpdate**](DevicesApi.md#devicesCamerasUpdate) | **PUT** /api/devices/{device_id}/cameras/{id}/ | 
 [**devicesCreate**](DevicesApi.md#devicesCreate) | **POST** /api/devices/ | 
 [**devicesList**](DevicesApi.md#devicesList) | **GET** /api/devices/ | 
 [**devicesPartialUpdate**](DevicesApi.md#devicesPartialUpdate) | **PATCH** /api/devices/{id}/ | 
@@ -16,6 +21,270 @@ Method | HTTP request | Description
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 [**devicesUpdateOrCreate**](DevicesApi.md#devicesUpdateOrCreate) | **POST** /api/devices/update-or-create/ | 
 
+
+<a name="devicesCamerasCreate"></a>
+# **devicesCamerasCreate**
+> CameraController devicesCamerasCreate(deviceId, cameraControllerRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val cameraControllerRequest : CameraControllerRequest =  // CameraControllerRequest | 
+try {
+    val result : CameraController = apiInstance.devicesCamerasCreate(deviceId, cameraControllerRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCamerasCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCamerasCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **cameraControllerRequest** | [**CameraControllerRequest**](CameraControllerRequest.md)|  |
+
+### Return type
+
+[**CameraController**](CameraController.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesCamerasList"></a>
+# **devicesCamerasList**
+> PaginatedCameraControllerList devicesCamerasList(deviceId, page)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
+try {
+    val result : PaginatedCameraControllerList = apiInstance.devicesCamerasList(deviceId, page)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCamerasList")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCamerasList")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
+
+### Return type
+
+[**PaginatedCameraControllerList**](PaginatedCameraControllerList.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesCamerasPartialUpdate"></a>
+# **devicesCamerasPartialUpdate**
+> CameraController devicesCamerasPartialUpdate(deviceId, id, patchedCameraControllerRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this camera controller.
+val patchedCameraControllerRequest : PatchedCameraControllerRequest =  // PatchedCameraControllerRequest | 
+try {
+    val result : CameraController = apiInstance.devicesCamerasPartialUpdate(deviceId, id, patchedCameraControllerRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCamerasPartialUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCamerasPartialUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this camera controller. |
+ **patchedCameraControllerRequest** | [**PatchedCameraControllerRequest**](PatchedCameraControllerRequest.md)|  | [optional]
+
+### Return type
+
+[**CameraController**](CameraController.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesCamerasRetrieve"></a>
+# **devicesCamerasRetrieve**
+> CameraController devicesCamerasRetrieve(deviceId, id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this camera controller.
+try {
+    val result : CameraController = apiInstance.devicesCamerasRetrieve(deviceId, id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCamerasRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCamerasRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this camera controller. |
+
+### Return type
+
+[**CameraController**](CameraController.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="devicesCamerasUpdate"></a>
+# **devicesCamerasUpdate**
+> CameraController devicesCamerasUpdate(deviceId, id, cameraControllerRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this camera controller.
+val cameraControllerRequest : CameraControllerRequest =  // CameraControllerRequest | 
+try {
+    val result : CameraController = apiInstance.devicesCamerasUpdate(deviceId, id, cameraControllerRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesCamerasUpdate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesCamerasUpdate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this camera controller. |
+ **cameraControllerRequest** | [**CameraControllerRequest**](CameraControllerRequest.md)|  |
+
+### Return type
+
+[**CameraController**](CameraController.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
 
 <a name="devicesCreate"></a>
 # **devicesCreate**
@@ -182,7 +451,7 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = DevicesApi()
-val deviceId : kotlin.String = deviceId_example // kotlin.String | 
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val printerProfilePolymorphicRequest : PrinterProfilePolymorphicRequest =  // PrinterProfilePolymorphicRequest | 
 try {
     val result : PrinterProfilePolymorphic = apiInstance.devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest)
@@ -200,7 +469,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.String**|  |
+ **deviceId** | **kotlin.Int**|  |
  **printerProfilePolymorphicRequest** | [**PrinterProfilePolymorphicRequest**](PrinterProfilePolymorphicRequest.md)|  | [optional]
 
 ### Return type
@@ -234,7 +503,7 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = DevicesApi()
-val deviceId : kotlin.String = deviceId_example // kotlin.String | 
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
     val result : PaginatedPrinterProfilePolymorphicList = apiInstance.devicesPrinterProfilesList(deviceId, page)
@@ -252,7 +521,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.String**|  |
+ **deviceId** | **kotlin.Int**|  |
  **page** | **kotlin.Int**| A page number within the paginated result set. | [optional]
 
 ### Return type
@@ -286,8 +555,8 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = DevicesApi()
-val deviceId : kotlin.String = deviceId_example // kotlin.String | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
 val patchedPrinterProfilePolymorphicRequest : PatchedPrinterProfilePolymorphicRequest =  // PatchedPrinterProfilePolymorphicRequest | 
 try {
     val result : PrinterProfilePolymorphic = apiInstance.devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest)
@@ -305,8 +574,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.String**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this device. |
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this printer profile. |
  **patchedPrinterProfilePolymorphicRequest** | [**PatchedPrinterProfilePolymorphicRequest**](PatchedPrinterProfilePolymorphicRequest.md)|  | [optional]
 
 ### Return type
@@ -340,8 +609,8 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = DevicesApi()
-val deviceId : kotlin.String = deviceId_example // kotlin.String | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
 try {
     val result : PrinterProfilePolymorphic = apiInstance.devicesPrinterProfilesRetrieve(deviceId, id)
     println(result)
@@ -358,8 +627,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.String**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this device. |
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this printer profile. |
 
 ### Return type
 
@@ -392,8 +661,8 @@ Configure tokenAuth:
 //import com.print-nanny.client.models.*
 
 val apiInstance = DevicesApi()
-val deviceId : kotlin.String = deviceId_example // kotlin.String | 
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
+val deviceId : kotlin.Int = 56 // kotlin.Int | 
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this printer profile.
 val printerProfilePolymorphicRequest : PrinterProfilePolymorphicRequest =  // PrinterProfilePolymorphicRequest | 
 try {
     val result : PrinterProfilePolymorphic = apiInstance.devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest)
@@ -411,8 +680,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | **kotlin.String**|  |
- **id** | **kotlin.Int**| A unique integer value identifying this device. |
+ **deviceId** | **kotlin.Int**|  |
+ **id** | **kotlin.Int**| A unique integer value identifying this printer profile. |
  **printerProfilePolymorphicRequest** | [**PrinterProfilePolymorphicRequest**](PrinterProfilePolymorphicRequest.md)|  | [optional]
 
 ### Return type

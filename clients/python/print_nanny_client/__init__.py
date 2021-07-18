@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.6-dev1"
+__version__ = "0.8.6-dev2"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -48,6 +48,9 @@ from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
+from print_nanny_client.models.camera_controller import CameraController
+from print_nanny_client.models.camera_controller_request import CameraControllerRequest
+from print_nanny_client.models.camera_type_enum import CameraTypeEnum
 from print_nanny_client.models.command_enum import CommandEnum
 from print_nanny_client.models.detail_response import DetailResponse
 from print_nanny_client.models.device import Device
@@ -86,6 +89,7 @@ from print_nanny_client.models.octoprint_printer_state import OctoprintPrinterSt
 from print_nanny_client.models.octoprint_progress import OctoprintProgress
 from print_nanny_client.models.octoprint_python import OctoprintPython
 from print_nanny_client.models.paginated_alert_list import PaginatedAlertList
+from print_nanny_client.models.paginated_camera_controller_list import PaginatedCameraControllerList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
 from print_nanny_client.models.paginated_device_list import PaginatedDeviceList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
@@ -107,6 +111,7 @@ from print_nanny_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
 from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest
+from print_nanny_client.models.patched_camera_controller_request import PatchedCameraControllerRequest
 from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
 from print_nanny_client.models.patched_device_request import PatchedDeviceRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
@@ -132,6 +137,7 @@ from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_control_command import RemoteControlCommand
 from print_nanny_client.models.remote_control_command_request import RemoteControlCommandRequest
+from print_nanny_client.models.source_type_enum import SourceTypeEnum
 from print_nanny_client.models.telemetry_event import TelemetryEvent
 from print_nanny_client.models.telemetry_event_event_type_enum import TelemetryEventEventTypeEnum
 from print_nanny_client.models.telemetry_event_polymorphic import TelemetryEventPolymorphic

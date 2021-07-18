@@ -11,11 +11,15 @@
 */
 package com.print-nanny.client.apis
 
+import com.print-nanny.client.models.CameraController
+import com.print-nanny.client.models.CameraControllerRequest
 import com.print-nanny.client.models.Device
 import com.print-nanny.client.models.DeviceIdentity
 import com.print-nanny.client.models.DeviceRequest
+import com.print-nanny.client.models.PaginatedCameraControllerList
 import com.print-nanny.client.models.PaginatedDeviceList
 import com.print-nanny.client.models.PaginatedPrinterProfilePolymorphicList
+import com.print-nanny.client.models.PatchedCameraControllerRequest
 import com.print-nanny.client.models.PatchedDeviceRequest
 import com.print-nanny.client.models.PatchedPrinterProfilePolymorphicRequest
 import com.print-nanny.client.models.PrinterProfilePolymorphic
@@ -39,6 +43,300 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty("com.print-nanny.client.baseUrl", "http://localhost")
         }
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param cameraControllerRequest  
+    * @return CameraController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCamerasCreate(deviceId: kotlin.Int, cameraControllerRequest: CameraControllerRequest) : CameraController {
+        val localVariableConfig = devicesCamerasCreateRequestConfig(deviceId = deviceId, cameraControllerRequest = cameraControllerRequest)
+
+        val localVarResponse = request<CameraController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CameraController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCamerasCreate
+    *
+    * @param deviceId  
+    * @param cameraControllerRequest  
+    * @return RequestConfig
+    */
+    fun devicesCamerasCreateRequestConfig(deviceId: kotlin.Int, cameraControllerRequest: CameraControllerRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = cameraControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/devices/{device_id}/cameras/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedCameraControllerList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCamerasList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedCameraControllerList {
+        val localVariableConfig = devicesCamerasListRequestConfig(deviceId = deviceId, page = page)
+
+        val localVarResponse = request<PaginatedCameraControllerList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedCameraControllerList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCamerasList
+    *
+    * @param deviceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun devicesCamerasListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/cameras/".replace("{"+"device_id"+"}", "$deviceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @param patchedCameraControllerRequest  (optional)
+    * @return CameraController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCamerasPartialUpdate(deviceId: kotlin.Int, id: kotlin.Int, patchedCameraControllerRequest: PatchedCameraControllerRequest?) : CameraController {
+        val localVariableConfig = devicesCamerasPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedCameraControllerRequest = patchedCameraControllerRequest)
+
+        val localVarResponse = request<CameraController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CameraController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCamerasPartialUpdate
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @param patchedCameraControllerRequest  (optional)
+    * @return RequestConfig
+    */
+    fun devicesCamerasPartialUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, patchedCameraControllerRequest: PatchedCameraControllerRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedCameraControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/devices/{device_id}/cameras/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @return CameraController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCamerasRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : CameraController {
+        val localVariableConfig = devicesCamerasRetrieveRequestConfig(deviceId = deviceId, id = id)
+
+        val localVarResponse = request<CameraController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CameraController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCamerasRetrieve
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @return RequestConfig
+    */
+    fun devicesCamerasRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/devices/{device_id}/cameras/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @param cameraControllerRequest  
+    * @return CameraController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun devicesCamerasUpdate(deviceId: kotlin.Int, id: kotlin.Int, cameraControllerRequest: CameraControllerRequest) : CameraController {
+        val localVariableConfig = devicesCamerasUpdateRequestConfig(deviceId = deviceId, id = id, cameraControllerRequest = cameraControllerRequest)
+
+        val localVarResponse = request<CameraController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CameraController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation devicesCamerasUpdate
+    *
+    * @param deviceId  
+    * @param id A unique integer value identifying this camera controller. 
+    * @param cameraControllerRequest  
+    * @return RequestConfig
+    */
+    fun devicesCamerasUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, cameraControllerRequest: CameraControllerRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = cameraControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/devices/{device_id}/cameras/{id}/".replace("{"+"device_id"+"}", "$deviceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
     }
 
     /**
@@ -225,7 +523,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterProfilesCreate(deviceId: kotlin.String, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+    fun devicesPrinterProfilesCreate(deviceId: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
         val localVariableConfig = devicesPrinterProfilesCreateRequestConfig(deviceId = deviceId, printerProfilePolymorphicRequest = printerProfilePolymorphicRequest)
 
         val localVarResponse = request<PrinterProfilePolymorphic>(
@@ -254,7 +552,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * @param printerProfilePolymorphicRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterProfilesCreateRequestConfig(deviceId: kotlin.String, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
+    fun devicesPrinterProfilesCreateRequestConfig(deviceId: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = printerProfilePolymorphicRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -282,7 +580,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterProfilesList(deviceId: kotlin.String, page: kotlin.Int?) : PaginatedPrinterProfilePolymorphicList {
+    fun devicesPrinterProfilesList(deviceId: kotlin.Int, page: kotlin.Int?) : PaginatedPrinterProfilePolymorphicList {
         val localVariableConfig = devicesPrinterProfilesListRequestConfig(deviceId = deviceId, page = page)
 
         val localVarResponse = request<PaginatedPrinterProfilePolymorphicList>(
@@ -311,7 +609,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterProfilesListRequestConfig(deviceId: kotlin.String, page: kotlin.Int?) : RequestConfig {
+    fun devicesPrinterProfilesListRequestConfig(deviceId: kotlin.Int, page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -336,7 +634,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @param patchedPrinterProfilePolymorphicRequest  (optional)
     * @return PrinterProfilePolymorphic
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -345,7 +643,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterProfilesPartialUpdate(deviceId: kotlin.String, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+    fun devicesPrinterProfilesPartialUpdate(deviceId: kotlin.Int, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
         val localVariableConfig = devicesPrinterProfilesPartialUpdateRequestConfig(deviceId = deviceId, id = id, patchedPrinterProfilePolymorphicRequest = patchedPrinterProfilePolymorphicRequest)
 
         val localVarResponse = request<PrinterProfilePolymorphic>(
@@ -371,11 +669,11 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesPrinterProfilesPartialUpdate
     *
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @param patchedPrinterProfilePolymorphicRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterProfilesPartialUpdateRequestConfig(deviceId: kotlin.String, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : RequestConfig {
+    fun devicesPrinterProfilesPartialUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, patchedPrinterProfilePolymorphicRequest: PatchedPrinterProfilePolymorphicRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = patchedPrinterProfilePolymorphicRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -395,7 +693,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @return PrinterProfilePolymorphic
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -403,7 +701,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterProfilesRetrieve(deviceId: kotlin.String, id: kotlin.Int) : PrinterProfilePolymorphic {
+    fun devicesPrinterProfilesRetrieve(deviceId: kotlin.Int, id: kotlin.Int) : PrinterProfilePolymorphic {
         val localVariableConfig = devicesPrinterProfilesRetrieveRequestConfig(deviceId = deviceId, id = id)
 
         val localVarResponse = request<PrinterProfilePolymorphic>(
@@ -429,10 +727,10 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesPrinterProfilesRetrieve
     *
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @return RequestConfig
     */
-    fun devicesPrinterProfilesRetrieveRequestConfig(deviceId: kotlin.String, id: kotlin.Int) : RequestConfig {
+    fun devicesPrinterProfilesRetrieveRequestConfig(deviceId: kotlin.Int, id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -452,7 +750,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * 
     * 
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @param printerProfilePolymorphicRequest  (optional)
     * @return PrinterProfilePolymorphic
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -461,7 +759,7 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun devicesPrinterProfilesUpdate(deviceId: kotlin.String, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
+    fun devicesPrinterProfilesUpdate(deviceId: kotlin.Int, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : PrinterProfilePolymorphic {
         val localVariableConfig = devicesPrinterProfilesUpdateRequestConfig(deviceId = deviceId, id = id, printerProfilePolymorphicRequest = printerProfilePolymorphicRequest)
 
         val localVarResponse = request<PrinterProfilePolymorphic>(
@@ -487,11 +785,11 @@ class DevicesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * To obtain the request config of the operation devicesPrinterProfilesUpdate
     *
     * @param deviceId  
-    * @param id A unique integer value identifying this device. 
+    * @param id A unique integer value identifying this printer profile. 
     * @param printerProfilePolymorphicRequest  (optional)
     * @return RequestConfig
     */
-    fun devicesPrinterProfilesUpdateRequestConfig(deviceId: kotlin.String, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
+    fun devicesPrinterProfilesUpdateRequestConfig(deviceId: kotlin.Int, id: kotlin.Int, printerProfilePolymorphicRequest: PrinterProfilePolymorphicRequest?) : RequestConfig {
         val localVariableBody: kotlin.Any? = printerProfilePolymorphicRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

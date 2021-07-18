@@ -14,6 +14,9 @@ docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
+docs/CameraController.md
+docs/CameraControllerRequest.md
+docs/CameraTypeEnum.md
 docs/CommandEnum.md
 docs/DetailResponse.md
 docs/Device.md
@@ -54,6 +57,7 @@ docs/OctoprintPrinterState.md
 docs/OctoprintProgress.md
 docs/OctoprintPython.md
 docs/PaginatedAlertList.md
+docs/PaginatedCameraControllerList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedDeviceList.md
 docs/PaginatedExperimentDeviceConfigList.md
@@ -77,6 +81,7 @@ docs/PartnersGeeks3Api.md
 docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
+docs/PatchedCameraControllerRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedDeviceRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
@@ -104,6 +109,7 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
+docs/SourceTypeEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -135,6 +141,9 @@ src/models/artifact_types_enum.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs
+src/models/camera_controller.rs
+src/models/camera_controller_request.rs
+src/models/camera_type_enum.rs
 src/models/command_enum.rs
 src/models/detail_response.rs
 src/models/device.rs
@@ -174,6 +183,7 @@ src/models/octoprint_printer_state.rs
 src/models/octoprint_progress.rs
 src/models/octoprint_python.rs
 src/models/paginated_alert_list.rs
+src/models/paginated_camera_controller_list.rs
 src/models/paginated_device_calibration_list.rs
 src/models/paginated_device_list.rs
 src/models/paginated_experiment_device_config_list.rs
@@ -195,6 +205,7 @@ src/models/partner3_d_geeks_alert.rs
 src/models/partner3_d_geeks_metadata.rs
 src/models/patched_alert_bulk_request_request.rs
 src/models/patched_alert_request.rs
+src/models/patched_camera_controller_request.rs
 src/models/patched_device_calibration_request.rs
 src/models/patched_device_request.rs
 src/models/patched_octo_print_device_request.rs
@@ -220,6 +231,7 @@ src/models/remote_command_event.rs
 src/models/remote_command_event_event_type_enum.rs
 src/models/remote_control_command.rs
 src/models/remote_control_command_request.rs
+src/models/source_type_enum.rs
 src/models/telemetry_event.rs
 src/models/telemetry_event_event_type_enum.rs
 src/models/telemetry_event_polymorphic.rs
