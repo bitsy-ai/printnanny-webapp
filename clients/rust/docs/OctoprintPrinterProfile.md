@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**deleted** | **String** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **name** | **String** |  | 

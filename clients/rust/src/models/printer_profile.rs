@@ -13,8 +13,6 @@
 pub struct PrinterProfile {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "updated_dt")]
@@ -34,10 +32,9 @@ pub struct PrinterProfile {
 }
 
 impl PrinterProfile {
-    pub fn new(id: i32, deleted: String, created_dt: String, updated_dt: String, name: String, local_webcam: String, polymorphic_ctype: i32, user: i32, controller: i32, device: i32) -> PrinterProfile {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, name: String, local_webcam: String, polymorphic_ctype: i32, user: i32, controller: i32, device: i32) -> PrinterProfile {
         PrinterProfile {
             id,
-            deleted,
             created_dt,
             updated_dt,
             name,

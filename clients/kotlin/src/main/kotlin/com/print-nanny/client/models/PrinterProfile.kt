@@ -18,7 +18,6 @@ import java.io.Serializable
 /**
  * 
  * @param id 
- * @param deleted 
  * @param createdDt 
  * @param updatedDt 
  * @param name 
@@ -32,8 +31,6 @@ import java.io.Serializable
 data class PrinterProfile (
     @Json(name = "id")
     val id: kotlin.Int,
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,
     @Json(name = "updated_dt")

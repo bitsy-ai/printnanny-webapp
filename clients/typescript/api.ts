@@ -2208,12 +2208,6 @@ export interface OctoprintPrinterProfile {
      * @type {string}
      * @memberof OctoprintPrinterProfile
      */
-    deleted: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
     created_dt: string;
     /**
      * 
@@ -4445,12 +4439,6 @@ export interface PrinterProfile {
      * @memberof PrinterProfile
      */
     id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    deleted: string;
     /**
      * 
      * @type {string}

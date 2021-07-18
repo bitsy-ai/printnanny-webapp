@@ -15,8 +15,6 @@ pub enum PrinterProfilePolymorphic {
     OctoprintPrinterProfile {
         #[serde(rename = "id")]
         id: i32,
-        #[serde(rename = "deleted")]
-        deleted: String,
         #[serde(rename = "created_dt")]
         created_dt: String,
         #[serde(rename = "updated_dt")]
@@ -80,8 +78,6 @@ pub enum PrinterProfilePolymorphic {
     PrinterProfile {
         #[serde(rename = "id")]
         id: i32,
-        #[serde(rename = "deleted")]
-        deleted: String,
         #[serde(rename = "created_dt")]
         created_dt: String,
         #[serde(rename = "updated_dt")]
