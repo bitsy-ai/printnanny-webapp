@@ -575,34 +575,10 @@ export interface DeviceCalibrationRequest {
 export interface DeviceIdentity {
     /**
      * 
-     * @type {string}
+     * @type {DeviceIdentityCaCerts}
      * @memberof DeviceIdentity
      */
-    created_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    updated_dt: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    user: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    fingerprint: string;
+    ca_certs: DeviceIdentityCaCerts;
     /**
      * 
      * @type {string}
@@ -623,6 +599,60 @@ export interface DeviceIdentity {
     cloudiot_device_path: string;
     /**
      * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    cores: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeviceIdentity
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    fingerprint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    kernel_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    name: string;
+    /**
+     * 
      * @type {string}
      * @memberof DeviceIdentity
      */
@@ -638,55 +668,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    kernel_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    hardware?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    revision?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    serial?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    cores: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    ram: number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof DeviceIdentity
-     */
-    cpu_flags: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    url: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -698,7 +680,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    private_key_checksum: string;
+    public_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -707,16 +689,40 @@ export interface DeviceIdentity {
     public_key: string;
     /**
      * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    ram: number;
+    /**
+     * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key_checksum: string;
+    revision?: string | null;
     /**
      * 
-     * @type {DeviceIdentityCaCerts}
+     * @type {string}
      * @memberof DeviceIdentity
      */
-    ca_certs: DeviceIdentityCaCerts;
+    serial?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    url: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    user: number;
 }
 /**
  * 
@@ -2191,12 +2197,6 @@ export interface OctoprintPrinterProfile {
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    local_webcam: string;
-    /**
-     * 
      * @type {boolean}
      * @memberof OctoprintPrinterProfile
      */
@@ -2358,12 +2358,6 @@ export interface OctoprintPrinterProfileRequest {
      * @memberof OctoprintPrinterProfileRequest
      */
     name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    local_webcam: string;
     /**
      * 
      * @type {boolean}
@@ -3529,12 +3523,6 @@ export interface PatchedOctoprintPrinterProfileRequest {
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    local_webcam?: string;
-    /**
-     * 
      * @type {boolean}
      * @memberof PatchedOctoprintPrinterProfileRequest
      */
@@ -3775,12 +3763,6 @@ export interface PatchedPrinterProfileRequest {
      * @memberof PatchedPrinterProfileRequest
      */
     name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    local_webcam?: string;
     /**
      * 
      * @type {number}
@@ -4427,12 +4409,6 @@ export interface PrinterProfile {
     name: string;
     /**
      * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    local_webcam: string;
-    /**
-     * 
      * @type {number}
      * @memberof PrinterProfile
      */
@@ -4480,12 +4456,6 @@ export interface PrinterProfileRequest {
      * @memberof PrinterProfileRequest
      */
     name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfileRequest
-     */
-    local_webcam: string;
     /**
      * 
      * @type {number}

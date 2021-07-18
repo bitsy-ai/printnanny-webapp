@@ -36,236 +36,142 @@ class DeviceIdentity(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'created_dt': 'datetime',
-        'updated_dt': 'datetime',
-        'user': 'int',
-        'name': 'str',
-        'fingerprint': 'str',
+        'ca_certs': 'DeviceIdentityCaCerts',
         'cloudiot_device_name': 'str',
         'cloudiot_device_num_id': 'int',
         'cloudiot_device_path': 'str',
+        'cores': 'int',
+        'cpu_flags': 'list[str]',
+        'created_dt': 'datetime',
+        'fingerprint': 'str',
+        'hardware': 'str',
+        'id': 'int',
+        'kernel_version': 'str',
+        'model': 'str',
+        'name': 'str',
         'os_version': 'str',
         'os': 'str',
-        'kernel_version': 'str',
-        'hardware': 'str',
-        'revision': 'str',
-        'model': 'str',
-        'serial': 'str',
-        'cores': 'int',
-        'ram': 'int',
-        'cpu_flags': 'list[str]',
-        'url': 'str',
-        'private_key': 'str',
         'private_key_checksum': 'str',
-        'public_key': 'str',
+        'private_key': 'str',
         'public_key_checksum': 'str',
-        'ca_certs': 'DeviceIdentityCaCerts'
+        'public_key': 'str',
+        'ram': 'int',
+        'revision': 'str',
+        'serial': 'str',
+        'updated_dt': 'datetime',
+        'url': 'str',
+        'user': 'int'
     }
 
     attribute_map = {
-        'created_dt': 'created_dt',
-        'updated_dt': 'updated_dt',
-        'user': 'user',
-        'name': 'name',
-        'fingerprint': 'fingerprint',
+        'ca_certs': 'ca_certs',
         'cloudiot_device_name': 'cloudiot_device_name',
         'cloudiot_device_num_id': 'cloudiot_device_num_id',
         'cloudiot_device_path': 'cloudiot_device_path',
+        'cores': 'cores',
+        'cpu_flags': 'cpu_flags',
+        'created_dt': 'created_dt',
+        'fingerprint': 'fingerprint',
+        'hardware': 'hardware',
+        'id': 'id',
+        'kernel_version': 'kernel_version',
+        'model': 'model',
+        'name': 'name',
         'os_version': 'os_version',
         'os': 'os',
-        'kernel_version': 'kernel_version',
-        'hardware': 'hardware',
-        'revision': 'revision',
-        'model': 'model',
-        'serial': 'serial',
-        'cores': 'cores',
-        'ram': 'ram',
-        'cpu_flags': 'cpu_flags',
-        'url': 'url',
-        'private_key': 'private_key',
         'private_key_checksum': 'private_key_checksum',
-        'public_key': 'public_key',
+        'private_key': 'private_key',
         'public_key_checksum': 'public_key_checksum',
-        'ca_certs': 'ca_certs'
+        'public_key': 'public_key',
+        'ram': 'ram',
+        'revision': 'revision',
+        'serial': 'serial',
+        'updated_dt': 'updated_dt',
+        'url': 'url',
+        'user': 'user'
     }
 
-    def __init__(self, created_dt=None, updated_dt=None, user=None, name=None, fingerprint=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, os_version=None, os=None, kernel_version=None, hardware=None, revision=None, model=None, serial=None, cores=None, ram=None, cpu_flags=None, url=None, private_key=None, private_key_checksum=None, public_key=None, public_key_checksum=None, ca_certs=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, ca_certs=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, cores=None, cpu_flags=None, created_dt=None, fingerprint=None, hardware=None, id=None, kernel_version=None, model=None, name=None, os_version=None, os=None, private_key_checksum=None, private_key=None, public_key_checksum=None, public_key=None, ram=None, revision=None, serial=None, updated_dt=None, url=None, user=None, local_vars_configuration=None):  # noqa: E501
         """DeviceIdentity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._created_dt = None
-        self._updated_dt = None
-        self._user = None
-        self._name = None
-        self._fingerprint = None
+        self._ca_certs = None
         self._cloudiot_device_name = None
         self._cloudiot_device_num_id = None
         self._cloudiot_device_path = None
+        self._cores = None
+        self._cpu_flags = None
+        self._created_dt = None
+        self._fingerprint = None
+        self._hardware = None
+        self._id = None
+        self._kernel_version = None
+        self._model = None
+        self._name = None
         self._os_version = None
         self._os = None
-        self._kernel_version = None
-        self._hardware = None
-        self._revision = None
-        self._model = None
-        self._serial = None
-        self._cores = None
-        self._ram = None
-        self._cpu_flags = None
-        self._url = None
-        self._private_key = None
         self._private_key_checksum = None
-        self._public_key = None
+        self._private_key = None
         self._public_key_checksum = None
-        self._ca_certs = None
+        self._public_key = None
+        self._ram = None
+        self._revision = None
+        self._serial = None
+        self._updated_dt = None
+        self._url = None
+        self._user = None
         self.discriminator = None
 
-        self.created_dt = created_dt
-        self.updated_dt = updated_dt
-        self.user = user
-        self.name = name
-        self.fingerprint = fingerprint
+        self.ca_certs = ca_certs
         self.cloudiot_device_name = cloudiot_device_name
         self.cloudiot_device_num_id = cloudiot_device_num_id
         self.cloudiot_device_path = cloudiot_device_path
+        self.cores = cores
+        self.cpu_flags = cpu_flags
+        self.created_dt = created_dt
+        self.fingerprint = fingerprint
+        self.hardware = hardware
+        self.id = id
+        self.kernel_version = kernel_version
+        self.model = model
+        self.name = name
         self.os_version = os_version
         self.os = os
-        self.kernel_version = kernel_version
-        self.hardware = hardware
-        self.revision = revision
-        self.model = model
-        self.serial = serial
-        self.cores = cores
-        self.ram = ram
-        self.cpu_flags = cpu_flags
-        self.url = url
-        self.private_key = private_key
         self.private_key_checksum = private_key_checksum
-        self.public_key = public_key
+        self.private_key = private_key
         self.public_key_checksum = public_key_checksum
-        self.ca_certs = ca_certs
+        self.public_key = public_key
+        self.ram = ram
+        self.revision = revision
+        self.serial = serial
+        self.updated_dt = updated_dt
+        self.url = url
+        self.user = user
 
     @property
-    def created_dt(self):
-        """Gets the created_dt of this DeviceIdentity.  # noqa: E501
+    def ca_certs(self):
+        """Gets the ca_certs of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The created_dt of this DeviceIdentity.  # noqa: E501
-        :rtype: datetime
+        :return: The ca_certs of this DeviceIdentity.  # noqa: E501
+        :rtype: DeviceIdentityCaCerts
         """
-        return self._created_dt
+        return self._ca_certs
 
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this DeviceIdentity.
+    @ca_certs.setter
+    def ca_certs(self, ca_certs):
+        """Sets the ca_certs of this DeviceIdentity.
 
 
-        :param created_dt: The created_dt of this DeviceIdentity.  # noqa: E501
-        :type created_dt: datetime
+        :param ca_certs: The ca_certs of this DeviceIdentity.  # noqa: E501
+        :type ca_certs: DeviceIdentityCaCerts
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and ca_certs is None:  # noqa: E501
+            raise ValueError("Invalid value for `ca_certs`, must not be `None`")  # noqa: E501
 
-        self._created_dt = created_dt
-
-    @property
-    def updated_dt(self):
-        """Gets the updated_dt of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The updated_dt of this DeviceIdentity.  # noqa: E501
-        :rtype: datetime
-        """
-        return self._updated_dt
-
-    @updated_dt.setter
-    def updated_dt(self, updated_dt):
-        """Sets the updated_dt of this DeviceIdentity.
-
-
-        :param updated_dt: The updated_dt of this DeviceIdentity.  # noqa: E501
-        :type updated_dt: datetime
-        """
-        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
-
-        self._updated_dt = updated_dt
-
-    @property
-    def user(self):
-        """Gets the user of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The user of this DeviceIdentity.  # noqa: E501
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user):
-        """Sets the user of this DeviceIdentity.
-
-
-        :param user: The user of this DeviceIdentity.  # noqa: E501
-        :type user: int
-        """
-        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
-            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
-
-        self._user = user
-
-    @property
-    def name(self):
-        """Gets the name of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The name of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """Sets the name of this DeviceIdentity.
-
-
-        :param name: The name of this DeviceIdentity.  # noqa: E501
-        :type name: str
-        """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 255):
-            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._name = name
-
-    @property
-    def fingerprint(self):
-        """Gets the fingerprint of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The fingerprint of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._fingerprint
-
-    @fingerprint.setter
-    def fingerprint(self, fingerprint):
-        """Sets the fingerprint of this DeviceIdentity.
-
-
-        :param fingerprint: The fingerprint of this DeviceIdentity.  # noqa: E501
-        :type fingerprint: str
-        """
-        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
-            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                fingerprint is not None and len(fingerprint) > 255):
-            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._fingerprint = fingerprint
+        self._ca_certs = ca_certs
 
     @property
     def cloudiot_device_name(self):
@@ -349,6 +255,230 @@ class DeviceIdentity(object):
         self._cloudiot_device_path = cloudiot_device_path
 
     @property
+    def cores(self):
+        """Gets the cores of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The cores of this DeviceIdentity.  # noqa: E501
+        :rtype: int
+        """
+        return self._cores
+
+    @cores.setter
+    def cores(self, cores):
+        """Sets the cores of this DeviceIdentity.
+
+
+        :param cores: The cores of this DeviceIdentity.  # noqa: E501
+        :type cores: int
+        """
+        if self.local_vars_configuration.client_side_validation and cores is None:  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores > 2147483647):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value less than or equal to `2147483647`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                cores is not None and cores < -2147483648):  # noqa: E501
+            raise ValueError("Invalid value for `cores`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
+
+        self._cores = cores
+
+    @property
+    def cpu_flags(self):
+        """Gets the cpu_flags of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The cpu_flags of this DeviceIdentity.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._cpu_flags
+
+    @cpu_flags.setter
+    def cpu_flags(self, cpu_flags):
+        """Sets the cpu_flags of this DeviceIdentity.
+
+
+        :param cpu_flags: The cpu_flags of this DeviceIdentity.  # noqa: E501
+        :type cpu_flags: list[str]
+        """
+        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
+            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
+
+        self._cpu_flags = cpu_flags
+
+    @property
+    def created_dt(self):
+        """Gets the created_dt of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The created_dt of this DeviceIdentity.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._created_dt
+
+    @created_dt.setter
+    def created_dt(self, created_dt):
+        """Sets the created_dt of this DeviceIdentity.
+
+
+        :param created_dt: The created_dt of this DeviceIdentity.  # noqa: E501
+        :type created_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+
+        self._created_dt = created_dt
+
+    @property
+    def fingerprint(self):
+        """Gets the fingerprint of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The fingerprint of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._fingerprint
+
+    @fingerprint.setter
+    def fingerprint(self, fingerprint):
+        """Sets the fingerprint of this DeviceIdentity.
+
+
+        :param fingerprint: The fingerprint of this DeviceIdentity.  # noqa: E501
+        :type fingerprint: str
+        """
+        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
+            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                fingerprint is not None and len(fingerprint) > 255):
+            raise ValueError("Invalid value for `fingerprint`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._fingerprint = fingerprint
+
+    @property
+    def hardware(self):
+        """Gets the hardware of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The hardware of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._hardware
+
+    @hardware.setter
+    def hardware(self, hardware):
+        """Sets the hardware of this DeviceIdentity.
+
+
+        :param hardware: The hardware of this DeviceIdentity.  # noqa: E501
+        :type hardware: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                hardware is not None and len(hardware) > 255):
+            raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._hardware = hardware
+
+    @property
+    def id(self):
+        """Gets the id of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The id of this DeviceIdentity.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this DeviceIdentity.
+
+
+        :param id: The id of this DeviceIdentity.  # noqa: E501
+        :type id: int
+        """
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+
+        self._id = id
+
+    @property
+    def kernel_version(self):
+        """Gets the kernel_version of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The kernel_version of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._kernel_version
+
+    @kernel_version.setter
+    def kernel_version(self, kernel_version):
+        """Sets the kernel_version of this DeviceIdentity.
+
+
+        :param kernel_version: The kernel_version of this DeviceIdentity.  # noqa: E501
+        :type kernel_version: str
+        """
+        if self.local_vars_configuration.client_side_validation and kernel_version is None:  # noqa: E501
+            raise ValueError("Invalid value for `kernel_version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                kernel_version is not None and len(kernel_version) > 255):
+            raise ValueError("Invalid value for `kernel_version`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._kernel_version = kernel_version
+
+    @property
+    def model(self):
+        """Gets the model of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The model of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._model
+
+    @model.setter
+    def model(self, model):
+        """Sets the model of this DeviceIdentity.
+
+
+        :param model: The model of this DeviceIdentity.  # noqa: E501
+        :type model: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                model is not None and len(model) > 255):
+            raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._model = model
+
+    @property
+    def name(self):
+        """Gets the name of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The name of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this DeviceIdentity.
+
+
+        :param name: The name of this DeviceIdentity.  # noqa: E501
+        :type name: str
+        """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._name = name
+
+    @property
     def os_version(self):
         """Gets the os_version of this DeviceIdentity.  # noqa: E501
 
@@ -401,155 +531,96 @@ class DeviceIdentity(object):
         self._os = os
 
     @property
-    def kernel_version(self):
-        """Gets the kernel_version of this DeviceIdentity.  # noqa: E501
+    def private_key_checksum(self):
+        """Gets the private_key_checksum of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The kernel_version of this DeviceIdentity.  # noqa: E501
+        :return: The private_key_checksum of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._kernel_version
+        return self._private_key_checksum
 
-    @kernel_version.setter
-    def kernel_version(self, kernel_version):
-        """Sets the kernel_version of this DeviceIdentity.
+    @private_key_checksum.setter
+    def private_key_checksum(self, private_key_checksum):
+        """Sets the private_key_checksum of this DeviceIdentity.
 
 
-        :param kernel_version: The kernel_version of this DeviceIdentity.  # noqa: E501
-        :type kernel_version: str
+        :param private_key_checksum: The private_key_checksum of this DeviceIdentity.  # noqa: E501
+        :type private_key_checksum: str
         """
-        if self.local_vars_configuration.client_side_validation and kernel_version is None:  # noqa: E501
-            raise ValueError("Invalid value for `kernel_version`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                kernel_version is not None and len(kernel_version) > 255):
-            raise ValueError("Invalid value for `kernel_version`, length must be less than or equal to `255`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and private_key_checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `private_key_checksum`, must not be `None`")  # noqa: E501
 
-        self._kernel_version = kernel_version
+        self._private_key_checksum = private_key_checksum
 
     @property
-    def hardware(self):
-        """Gets the hardware of this DeviceIdentity.  # noqa: E501
+    def private_key(self):
+        """Gets the private_key of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The hardware of this DeviceIdentity.  # noqa: E501
+        :return: The private_key of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._hardware
+        return self._private_key
 
-    @hardware.setter
-    def hardware(self, hardware):
-        """Sets the hardware of this DeviceIdentity.
+    @private_key.setter
+    def private_key(self, private_key):
+        """Sets the private_key of this DeviceIdentity.
 
 
-        :param hardware: The hardware of this DeviceIdentity.  # noqa: E501
-        :type hardware: str
+        :param private_key: The private_key of this DeviceIdentity.  # noqa: E501
+        :type private_key: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                hardware is not None and len(hardware) > 255):
-            raise ValueError("Invalid value for `hardware`, length must be less than or equal to `255`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and private_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `private_key`, must not be `None`")  # noqa: E501
 
-        self._hardware = hardware
+        self._private_key = private_key
 
     @property
-    def revision(self):
-        """Gets the revision of this DeviceIdentity.  # noqa: E501
+    def public_key_checksum(self):
+        """Gets the public_key_checksum of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The revision of this DeviceIdentity.  # noqa: E501
+        :return: The public_key_checksum of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._revision
+        return self._public_key_checksum
 
-    @revision.setter
-    def revision(self, revision):
-        """Sets the revision of this DeviceIdentity.
+    @public_key_checksum.setter
+    def public_key_checksum(self, public_key_checksum):
+        """Sets the public_key_checksum of this DeviceIdentity.
 
 
-        :param revision: The revision of this DeviceIdentity.  # noqa: E501
-        :type revision: str
+        :param public_key_checksum: The public_key_checksum of this DeviceIdentity.  # noqa: E501
+        :type public_key_checksum: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                revision is not None and len(revision) > 255):
-            raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
 
-        self._revision = revision
+        self._public_key_checksum = public_key_checksum
 
     @property
-    def model(self):
-        """Gets the model of this DeviceIdentity.  # noqa: E501
+    def public_key(self):
+        """Gets the public_key of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The model of this DeviceIdentity.  # noqa: E501
+        :return: The public_key of this DeviceIdentity.  # noqa: E501
         :rtype: str
         """
-        return self._model
+        return self._public_key
 
-    @model.setter
-    def model(self, model):
-        """Sets the model of this DeviceIdentity.
+    @public_key.setter
+    def public_key(self, public_key):
+        """Sets the public_key of this DeviceIdentity.
 
 
-        :param model: The model of this DeviceIdentity.  # noqa: E501
-        :type model: str
+        :param public_key: The public_key of this DeviceIdentity.  # noqa: E501
+        :type public_key: str
         """
-        if (self.local_vars_configuration.client_side_validation and
-                model is not None and len(model) > 255):
-            raise ValueError("Invalid value for `model`, length must be less than or equal to `255`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
 
-        self._model = model
-
-    @property
-    def serial(self):
-        """Gets the serial of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The serial of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._serial
-
-    @serial.setter
-    def serial(self, serial):
-        """Sets the serial of this DeviceIdentity.
-
-
-        :param serial: The serial of this DeviceIdentity.  # noqa: E501
-        :type serial: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                serial is not None and len(serial) > 255):
-            raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._serial = serial
-
-    @property
-    def cores(self):
-        """Gets the cores of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The cores of this DeviceIdentity.  # noqa: E501
-        :rtype: int
-        """
-        return self._cores
-
-    @cores.setter
-    def cores(self, cores):
-        """Sets the cores of this DeviceIdentity.
-
-
-        :param cores: The cores of this DeviceIdentity.  # noqa: E501
-        :type cores: int
-        """
-        if self.local_vars_configuration.client_side_validation and cores is None:  # noqa: E501
-            raise ValueError("Invalid value for `cores`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cores is not None and cores > 2147483647):  # noqa: E501
-            raise ValueError("Invalid value for `cores`, must be a value less than or equal to `2147483647`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                cores is not None and cores < -2147483648):  # noqa: E501
-            raise ValueError("Invalid value for `cores`, must be a value greater than or equal to `-2147483648`")  # noqa: E501
-
-        self._cores = cores
+        self._public_key = public_key
 
     @property
     def ram(self):
@@ -581,27 +652,75 @@ class DeviceIdentity(object):
         self._ram = ram
 
     @property
-    def cpu_flags(self):
-        """Gets the cpu_flags of this DeviceIdentity.  # noqa: E501
+    def revision(self):
+        """Gets the revision of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The cpu_flags of this DeviceIdentity.  # noqa: E501
-        :rtype: list[str]
+        :return: The revision of this DeviceIdentity.  # noqa: E501
+        :rtype: str
         """
-        return self._cpu_flags
+        return self._revision
 
-    @cpu_flags.setter
-    def cpu_flags(self, cpu_flags):
-        """Sets the cpu_flags of this DeviceIdentity.
+    @revision.setter
+    def revision(self, revision):
+        """Sets the revision of this DeviceIdentity.
 
 
-        :param cpu_flags: The cpu_flags of this DeviceIdentity.  # noqa: E501
-        :type cpu_flags: list[str]
+        :param revision: The revision of this DeviceIdentity.  # noqa: E501
+        :type revision: str
         """
-        if self.local_vars_configuration.client_side_validation and cpu_flags is None:  # noqa: E501
-            raise ValueError("Invalid value for `cpu_flags`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                revision is not None and len(revision) > 255):
+            raise ValueError("Invalid value for `revision`, length must be less than or equal to `255`")  # noqa: E501
 
-        self._cpu_flags = cpu_flags
+        self._revision = revision
+
+    @property
+    def serial(self):
+        """Gets the serial of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The serial of this DeviceIdentity.  # noqa: E501
+        :rtype: str
+        """
+        return self._serial
+
+    @serial.setter
+    def serial(self, serial):
+        """Sets the serial of this DeviceIdentity.
+
+
+        :param serial: The serial of this DeviceIdentity.  # noqa: E501
+        :type serial: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                serial is not None and len(serial) > 255):
+            raise ValueError("Invalid value for `serial`, length must be less than or equal to `255`")  # noqa: E501
+
+        self._serial = serial
+
+    @property
+    def updated_dt(self):
+        """Gets the updated_dt of this DeviceIdentity.  # noqa: E501
+
+
+        :return: The updated_dt of this DeviceIdentity.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._updated_dt
+
+    @updated_dt.setter
+    def updated_dt(self, updated_dt):
+        """Sets the updated_dt of this DeviceIdentity.
+
+
+        :param updated_dt: The updated_dt of this DeviceIdentity.  # noqa: E501
+        :type updated_dt: datetime
+        """
+        if self.local_vars_configuration.client_side_validation and updated_dt is None:  # noqa: E501
+            raise ValueError("Invalid value for `updated_dt`, must not be `None`")  # noqa: E501
+
+        self._updated_dt = updated_dt
 
     @property
     def url(self):
@@ -627,119 +746,27 @@ class DeviceIdentity(object):
         self._url = url
 
     @property
-    def private_key(self):
-        """Gets the private_key of this DeviceIdentity.  # noqa: E501
+    def user(self):
+        """Gets the user of this DeviceIdentity.  # noqa: E501
 
 
-        :return: The private_key of this DeviceIdentity.  # noqa: E501
-        :rtype: str
+        :return: The user of this DeviceIdentity.  # noqa: E501
+        :rtype: int
         """
-        return self._private_key
+        return self._user
 
-    @private_key.setter
-    def private_key(self, private_key):
-        """Sets the private_key of this DeviceIdentity.
+    @user.setter
+    def user(self, user):
+        """Sets the user of this DeviceIdentity.
 
 
-        :param private_key: The private_key of this DeviceIdentity.  # noqa: E501
-        :type private_key: str
+        :param user: The user of this DeviceIdentity.  # noqa: E501
+        :type user: int
         """
-        if self.local_vars_configuration.client_side_validation and private_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `private_key`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
-        self._private_key = private_key
-
-    @property
-    def private_key_checksum(self):
-        """Gets the private_key_checksum of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The private_key_checksum of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._private_key_checksum
-
-    @private_key_checksum.setter
-    def private_key_checksum(self, private_key_checksum):
-        """Sets the private_key_checksum of this DeviceIdentity.
-
-
-        :param private_key_checksum: The private_key_checksum of this DeviceIdentity.  # noqa: E501
-        :type private_key_checksum: str
-        """
-        if self.local_vars_configuration.client_side_validation and private_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `private_key_checksum`, must not be `None`")  # noqa: E501
-
-        self._private_key_checksum = private_key_checksum
-
-    @property
-    def public_key(self):
-        """Gets the public_key of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The public_key of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._public_key
-
-    @public_key.setter
-    def public_key(self, public_key):
-        """Sets the public_key of this DeviceIdentity.
-
-
-        :param public_key: The public_key of this DeviceIdentity.  # noqa: E501
-        :type public_key: str
-        """
-        if self.local_vars_configuration.client_side_validation and public_key is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key`, must not be `None`")  # noqa: E501
-
-        self._public_key = public_key
-
-    @property
-    def public_key_checksum(self):
-        """Gets the public_key_checksum of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The public_key_checksum of this DeviceIdentity.  # noqa: E501
-        :rtype: str
-        """
-        return self._public_key_checksum
-
-    @public_key_checksum.setter
-    def public_key_checksum(self, public_key_checksum):
-        """Sets the public_key_checksum of this DeviceIdentity.
-
-
-        :param public_key_checksum: The public_key_checksum of this DeviceIdentity.  # noqa: E501
-        :type public_key_checksum: str
-        """
-        if self.local_vars_configuration.client_side_validation and public_key_checksum is None:  # noqa: E501
-            raise ValueError("Invalid value for `public_key_checksum`, must not be `None`")  # noqa: E501
-
-        self._public_key_checksum = public_key_checksum
-
-    @property
-    def ca_certs(self):
-        """Gets the ca_certs of this DeviceIdentity.  # noqa: E501
-
-
-        :return: The ca_certs of this DeviceIdentity.  # noqa: E501
-        :rtype: DeviceIdentityCaCerts
-        """
-        return self._ca_certs
-
-    @ca_certs.setter
-    def ca_certs(self, ca_certs):
-        """Sets the ca_certs of this DeviceIdentity.
-
-
-        :param ca_certs: The ca_certs of this DeviceIdentity.  # noqa: E501
-        :type ca_certs: DeviceIdentityCaCerts
-        """
-        if self.local_vars_configuration.client_side_validation and ca_certs is None:  # noqa: E501
-            raise ValueError("Invalid value for `ca_certs`, must not be `None`")  # noqa: E501
-
-        self._ca_certs = ca_certs
+        self._user = user
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -19,7 +19,6 @@ import java.io.Serializable
 /**
  * 
  * @param name 
- * @param localWebcam 
  * @param axesEInverted 
  * @param axesESpeed 
  * @param axesXSpeed 
@@ -48,8 +47,6 @@ import java.io.Serializable
 data class PatchedOctoprintPrinterProfileRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
-    @Json(name = "local_webcam")
-    val localWebcam: kotlin.String? = null,
     @Json(name = "axes_e_inverted")
     val axesEInverted: kotlin.Boolean? = null,
     @Json(name = "axes_e_speed")

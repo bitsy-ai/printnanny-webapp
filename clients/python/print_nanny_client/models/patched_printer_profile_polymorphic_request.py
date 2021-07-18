@@ -37,7 +37,6 @@ class PatchedPrinterProfilePolymorphicRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'local_webcam': 'str',
         'controller': 'int',
         'device': 'int',
         'axes_e_inverted': 'bool',
@@ -65,7 +64,6 @@ class PatchedPrinterProfilePolymorphicRequest(object):
 
     attribute_map = {
         'name': 'name',
-        'local_webcam': 'local_webcam',
         'controller': 'controller',
         'device': 'device',
         'axes_e_inverted': 'axes_e_inverted',
@@ -94,14 +92,13 @@ class PatchedPrinterProfilePolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, name=None, local_webcam=None, controller=None, device=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, octoprint_controller=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, controller=None, device=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, octoprint_controller=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrinterProfilePolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
-        self._local_webcam = None
         self._controller = None
         self._device = None
         self._axes_e_inverted = None
@@ -129,8 +126,6 @@ class PatchedPrinterProfilePolymorphicRequest(object):
 
         if name is not None:
             self.name = name
-        if local_webcam is not None:
-            self.local_webcam = local_webcam
         if controller is not None:
             self.controller = controller
         if device is not None:
@@ -182,30 +177,6 @@ class PatchedPrinterProfilePolymorphicRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def local_webcam(self):
-        """Gets the local_webcam of this PatchedPrinterProfilePolymorphicRequest.  # noqa: E501
-
-
-        :return: The local_webcam of this PatchedPrinterProfilePolymorphicRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._local_webcam
-
-    @local_webcam.setter
-    def local_webcam(self, local_webcam):
-        """Sets the local_webcam of this PatchedPrinterProfilePolymorphicRequest.
-
-
-        :param local_webcam: The local_webcam of this PatchedPrinterProfilePolymorphicRequest.  # noqa: E501
-        :type local_webcam: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                local_webcam is not None and len(local_webcam) > 255):
-            raise ValueError("Invalid value for `local_webcam`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._local_webcam = local_webcam
 
     @property
     def controller(self):

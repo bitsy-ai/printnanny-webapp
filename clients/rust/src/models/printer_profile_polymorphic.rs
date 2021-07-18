@@ -21,8 +21,6 @@ pub enum PrinterProfilePolymorphic {
         updated_dt: String,
         #[serde(rename = "name")]
         name: String,
-        #[serde(rename = "local_webcam")]
-        local_webcam: String,
         #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
         axes_e_inverted: Option<bool>,
         #[serde(rename = "axes_e_speed", skip_serializing_if = "Option::is_none")]
@@ -84,8 +82,6 @@ pub enum PrinterProfilePolymorphic {
         updated_dt: String,
         #[serde(rename = "name")]
         name: String,
-        #[serde(rename = "local_webcam")]
-        local_webcam: String,
         #[serde(rename = "polymorphic_ctype")]
         polymorphic_ctype: i32,
         #[serde(rename = "user")]

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**local_webcam** | **String** |  | 
 **axes_e_inverted** | Option<**bool**> |  | [optional]
 **axes_e_speed** | Option<**i32**> |  | [optional]
 **axes_x_speed** | Option<**i32**> |  | [optional]

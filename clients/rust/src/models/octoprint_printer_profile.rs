@@ -19,8 +19,6 @@ pub struct OctoprintPrinterProfile {
     pub updated_dt: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "local_webcam")]
-    pub local_webcam: String,
     #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
     pub axes_e_inverted: Option<bool>,
     #[serde(rename = "axes_e_speed", skip_serializing_if = "Option::is_none")]
@@ -74,13 +72,12 @@ pub struct OctoprintPrinterProfile {
 }
 
 impl OctoprintPrinterProfile {
-    pub fn new(id: i32, created_dt: String, updated_dt: String, name: String, local_webcam: String, polymorphic_ctype: i32, user: i32, controller: i32, device: i32, octoprint_controller: i32) -> OctoprintPrinterProfile {
+    pub fn new(id: i32, created_dt: String, updated_dt: String, name: String, polymorphic_ctype: i32, user: i32, controller: i32, device: i32, octoprint_controller: i32) -> OctoprintPrinterProfile {
         OctoprintPrinterProfile {
             id,
             created_dt,
             updated_dt,
             name,
-            local_webcam,
             axes_e_inverted: None,
             axes_e_speed: None,
             axes_x_speed: None,

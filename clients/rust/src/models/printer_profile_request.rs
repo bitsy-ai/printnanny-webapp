@@ -13,8 +13,6 @@
 pub struct PrinterProfileRequest {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "local_webcam")]
-    pub local_webcam: String,
     #[serde(rename = "controller")]
     pub controller: i32,
     #[serde(rename = "device")]
@@ -22,10 +20,9 @@ pub struct PrinterProfileRequest {
 }
 
 impl PrinterProfileRequest {
-    pub fn new(name: String, local_webcam: String, controller: i32, device: i32) -> PrinterProfileRequest {
+    pub fn new(name: String, controller: i32, device: i32) -> PrinterProfileRequest {
         PrinterProfileRequest {
             name,
-            local_webcam,
             controller,
             device,
         }

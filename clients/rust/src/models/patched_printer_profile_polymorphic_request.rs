@@ -15,8 +15,6 @@ pub enum PatchedPrinterProfilePolymorphicRequest {
     PatchedOctoprintPrinterProfileRequest {
         #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
         name: Option<String>,
-        #[serde(rename = "local_webcam", skip_serializing_if = "Option::is_none")]
-        local_webcam: Option<String>,
         #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
         axes_e_inverted: Option<bool>,
         #[serde(rename = "axes_e_speed", skip_serializing_if = "Option::is_none")]
@@ -68,8 +66,6 @@ pub enum PatchedPrinterProfilePolymorphicRequest {
     PatchedPrinterProfileRequest {
         #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
         name: Option<String>,
-        #[serde(rename = "local_webcam", skip_serializing_if = "Option::is_none")]
-        local_webcam: Option<String>,
         #[serde(rename = "controller", skip_serializing_if = "Option::is_none")]
         controller: Option<i32>,
         #[serde(rename = "device", skip_serializing_if = "Option::is_none")]

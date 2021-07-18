@@ -13,8 +13,6 @@
 pub struct PatchedPrinterProfileRequest {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    #[serde(rename = "local_webcam", skip_serializing_if = "Option::is_none")]
-    pub local_webcam: Option<String>,
     #[serde(rename = "controller", skip_serializing_if = "Option::is_none")]
     pub controller: Option<i32>,
     #[serde(rename = "device", skip_serializing_if = "Option::is_none")]
@@ -25,7 +23,6 @@ impl PatchedPrinterProfileRequest {
     pub fn new() -> PatchedPrinterProfileRequest {
         PatchedPrinterProfileRequest {
             name: None,
-            local_webcam: None,
             controller: None,
             device: None,
         }

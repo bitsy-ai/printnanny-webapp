@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 
 **name** | **str** |  | 
-**local_webcam** | **str** |  | 
 **polymorphic_ctype** | **int** |  | [readonly] 
 **user** | **int** |  | [readonly] 
 **controller** | **int** |  | 

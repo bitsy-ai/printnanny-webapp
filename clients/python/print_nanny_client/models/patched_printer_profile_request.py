@@ -37,34 +37,29 @@ class PatchedPrinterProfileRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'local_webcam': 'str',
         'controller': 'int',
         'device': 'int'
     }
 
     attribute_map = {
         'name': 'name',
-        'local_webcam': 'local_webcam',
         'controller': 'controller',
         'device': 'device'
     }
 
-    def __init__(self, name=None, local_webcam=None, controller=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, controller=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PatchedPrinterProfileRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
-        self._local_webcam = None
         self._controller = None
         self._device = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
-        if local_webcam is not None:
-            self.local_webcam = local_webcam
         if controller is not None:
             self.controller = controller
         if device is not None:
@@ -93,30 +88,6 @@ class PatchedPrinterProfileRequest(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def local_webcam(self):
-        """Gets the local_webcam of this PatchedPrinterProfileRequest.  # noqa: E501
-
-
-        :return: The local_webcam of this PatchedPrinterProfileRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._local_webcam
-
-    @local_webcam.setter
-    def local_webcam(self, local_webcam):
-        """Sets the local_webcam of this PatchedPrinterProfileRequest.
-
-
-        :param local_webcam: The local_webcam of this PatchedPrinterProfileRequest.  # noqa: E501
-        :type local_webcam: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                local_webcam is not None and len(local_webcam) > 255):
-            raise ValueError("Invalid value for `local_webcam`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._local_webcam = local_webcam
 
     @property
     def controller(self):

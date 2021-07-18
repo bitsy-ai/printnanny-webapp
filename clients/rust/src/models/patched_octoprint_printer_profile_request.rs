@@ -13,8 +13,6 @@
 pub struct PatchedOctoprintPrinterProfileRequest {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    #[serde(rename = "local_webcam", skip_serializing_if = "Option::is_none")]
-    pub local_webcam: Option<String>,
     #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
     pub axes_e_inverted: Option<bool>,
     #[serde(rename = "axes_e_speed", skip_serializing_if = "Option::is_none")]
@@ -67,7 +65,6 @@ impl PatchedOctoprintPrinterProfileRequest {
     pub fn new() -> PatchedOctoprintPrinterProfileRequest {
         PatchedOctoprintPrinterProfileRequest {
             name: None,
-            local_webcam: None,
             axes_e_inverted: None,
             axes_e_speed: None,
             axes_x_speed: None,

@@ -15,8 +15,6 @@ pub enum PrinterProfilePolymorphicRequest {
     OctoprintPrinterProfileRequest {
         #[serde(rename = "name")]
         name: String,
-        #[serde(rename = "local_webcam")]
-        local_webcam: String,
         #[serde(rename = "axes_e_inverted", skip_serializing_if = "Option::is_none")]
         axes_e_inverted: Option<bool>,
         #[serde(rename = "axes_e_speed", skip_serializing_if = "Option::is_none")]
@@ -68,8 +66,6 @@ pub enum PrinterProfilePolymorphicRequest {
     PrinterProfileRequest {
         #[serde(rename = "name")]
         name: String,
-        #[serde(rename = "local_webcam")]
-        local_webcam: String,
         #[serde(rename = "controller")]
         controller: i32,
         #[serde(rename = "device")]

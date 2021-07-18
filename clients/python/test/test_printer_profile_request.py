@@ -37,14 +37,12 @@ class TestPrinterProfileRequest(unittest.TestCase):
         if include_optional :
             return PrinterProfileRequest(
                 name = '', 
-                local_webcam = '', 
                 controller = 56, 
                 device = 56
             )
         else :
             return PrinterProfileRequest(
                 name = '',
-                local_webcam = '',
                 controller = 56,
                 device = 56,
         )

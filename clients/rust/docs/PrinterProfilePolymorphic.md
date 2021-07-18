@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **name** | **String** |  | 
-**local_webcam** | **String** |  | 
 **polymorphic_ctype** | **i32** |  | [readonly]
 **user** | **i32** |  | [readonly]
 **controller** | **i32** |  | 

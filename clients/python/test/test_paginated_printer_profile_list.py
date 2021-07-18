@@ -45,7 +45,6 @@ class TestPaginatedPrinterProfileList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '', 
-                        local_webcam = '', 
                         polymorphic_ctype = 56, 
                         user = 56, 
                         controller = 56, 

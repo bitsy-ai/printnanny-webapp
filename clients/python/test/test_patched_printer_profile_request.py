@@ -37,7 +37,6 @@ class TestPatchedPrinterProfileRequest(unittest.TestCase):
         if include_optional :
             return PatchedPrinterProfileRequest(
                 name = '', 
-                local_webcam = '', 
                 controller = 56, 
                 device = 56
             )

@@ -18,79 +18,82 @@ import java.io.Serializable
 
 /**
  * 
- * @param createdDt 
- * @param updatedDt 
- * @param user 
- * @param name 
- * @param fingerprint 
+ * @param caCerts 
  * @param cloudiotDeviceName 
  * @param cloudiotDeviceNumId 
  * @param cloudiotDevicePath 
+ * @param cores 
+ * @param cpuFlags 
+ * @param createdDt 
+ * @param fingerprint 
+ * @param id 
+ * @param kernelVersion 
+ * @param name 
  * @param osVersion 
  * @param os 
- * @param kernelVersion 
- * @param cores 
- * @param ram 
- * @param cpuFlags 
- * @param url 
- * @param privateKey 
  * @param privateKeyChecksum 
- * @param publicKey 
+ * @param privateKey 
  * @param publicKeyChecksum 
- * @param caCerts 
+ * @param publicKey 
+ * @param ram 
+ * @param updatedDt 
+ * @param url 
+ * @param user 
  * @param hardware 
- * @param revision 
  * @param model 
+ * @param revision 
  * @param serial 
  */
 
 data class DeviceIdentity (
-    @Json(name = "created_dt")
-    val createdDt: java.time.OffsetDateTime,
-    @Json(name = "updated_dt")
-    val updatedDt: java.time.OffsetDateTime,
-    @Json(name = "user")
-    val user: kotlin.Int,
-    @Json(name = "name")
-    val name: kotlin.String,
-    @Json(name = "fingerprint")
-    val fingerprint: kotlin.String,
+    @Json(name = "ca_certs")
+    val caCerts: DeviceIdentityCaCerts,
     @Json(name = "cloudiot_device_name")
     val cloudiotDeviceName: kotlin.String,
     @Json(name = "cloudiot_device_num_id")
     val cloudiotDeviceNumId: kotlin.Long,
     @Json(name = "cloudiot_device_path")
     val cloudiotDevicePath: kotlin.String,
+    @Json(name = "cores")
+    val cores: kotlin.Int,
+    @Json(name = "cpu_flags")
+    val cpuFlags: kotlin.collections.List<kotlin.String>,
+    @Json(name = "created_dt")
+    val createdDt: java.time.OffsetDateTime,
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String,
+    @Json(name = "id")
+    val id: kotlin.Int,
+    @Json(name = "kernel_version")
+    val kernelVersion: kotlin.String,
+    @Json(name = "name")
+    val name: kotlin.String,
     @Json(name = "os_version")
     val osVersion: kotlin.String,
     @Json(name = "os")
     val os: kotlin.String,
-    @Json(name = "kernel_version")
-    val kernelVersion: kotlin.String,
-    @Json(name = "cores")
-    val cores: kotlin.Int,
-    @Json(name = "ram")
-    val ram: kotlin.Long,
-    @Json(name = "cpu_flags")
-    val cpuFlags: kotlin.collections.List<kotlin.String>,
-    @Json(name = "url")
-    val url: java.net.URI,
-    @Json(name = "private_key")
-    val privateKey: kotlin.String,
     @Json(name = "private_key_checksum")
     val privateKeyChecksum: kotlin.String,
-    @Json(name = "public_key")
-    val publicKey: kotlin.String,
+    @Json(name = "private_key")
+    val privateKey: kotlin.String,
     @Json(name = "public_key_checksum")
     val publicKeyChecksum: kotlin.String,
-    @Json(name = "ca_certs")
-    val caCerts: DeviceIdentityCaCerts,
+    @Json(name = "public_key")
+    val publicKey: kotlin.String,
+    @Json(name = "ram")
+    val ram: kotlin.Long,
+    @Json(name = "updated_dt")
+    val updatedDt: java.time.OffsetDateTime,
+    @Json(name = "url")
+    val url: java.net.URI,
+    @Json(name = "user")
+    val user: kotlin.Int,
     @Json(name = "hardware")
     val hardware: kotlin.String? = null,
-    @Json(name = "revision")
-    val revision: kotlin.String? = null,
     @Json(name = "model")
     val model: kotlin.String? = null,
+    @Json(name = "revision")
+    val revision: kotlin.String? = null,
     @Json(name = "serial")
     val serial: kotlin.String? = null
 ) : Serializable {

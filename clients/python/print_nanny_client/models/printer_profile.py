@@ -40,7 +40,6 @@ class PrinterProfile(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'name': 'str',
-        'local_webcam': 'str',
         'polymorphic_ctype': 'int',
         'user': 'int',
         'controller': 'int',
@@ -52,14 +51,13 @@ class PrinterProfile(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'name': 'name',
-        'local_webcam': 'local_webcam',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
         'controller': 'controller',
         'device': 'device'
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, local_webcam=None, polymorphic_ctype=None, user=None, controller=None, device=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, polymorphic_ctype=None, user=None, controller=None, device=None, local_vars_configuration=None):  # noqa: E501
         """PrinterProfile - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -69,7 +67,6 @@ class PrinterProfile(object):
         self._created_dt = None
         self._updated_dt = None
         self._name = None
-        self._local_webcam = None
         self._polymorphic_ctype = None
         self._user = None
         self._controller = None
@@ -80,7 +77,6 @@ class PrinterProfile(object):
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.name = name
-        self.local_webcam = local_webcam
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.controller = controller
@@ -180,32 +176,6 @@ class PrinterProfile(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def local_webcam(self):
-        """Gets the local_webcam of this PrinterProfile.  # noqa: E501
-
-
-        :return: The local_webcam of this PrinterProfile.  # noqa: E501
-        :rtype: str
-        """
-        return self._local_webcam
-
-    @local_webcam.setter
-    def local_webcam(self, local_webcam):
-        """Sets the local_webcam of this PrinterProfile.
-
-
-        :param local_webcam: The local_webcam of this PrinterProfile.  # noqa: E501
-        :type local_webcam: str
-        """
-        if self.local_vars_configuration.client_side_validation and local_webcam is None:  # noqa: E501
-            raise ValueError("Invalid value for `local_webcam`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                local_webcam is not None and len(local_webcam) > 255):
-            raise ValueError("Invalid value for `local_webcam`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._local_webcam = local_webcam
 
     @property
     def polymorphic_ctype(self):

@@ -37,7 +37,6 @@ class TestOctoprintPrinterProfileRequest(unittest.TestCase):
         if include_optional :
             return OctoprintPrinterProfileRequest(
                 name = '', 
-                local_webcam = '', 
                 axes_e_inverted = True, 
                 axes_e_speed = -2147483648, 
                 axes_x_speed = -2147483648, 
@@ -67,7 +66,6 @@ class TestOctoprintPrinterProfileRequest(unittest.TestCase):
         else :
             return OctoprintPrinterProfileRequest(
                 name = '',
-                local_webcam = '',
                 controller = 56,
                 device = 56,
                 octoprint_controller = 56,

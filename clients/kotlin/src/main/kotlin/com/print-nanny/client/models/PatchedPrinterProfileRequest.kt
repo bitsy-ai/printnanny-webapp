@@ -18,7 +18,6 @@ import java.io.Serializable
 /**
  * 
  * @param name 
- * @param localWebcam 
  * @param controller 
  * @param device 
  */
@@ -26,8 +25,6 @@ import java.io.Serializable
 data class PatchedPrinterProfileRequest (
     @Json(name = "name")
     val name: kotlin.String? = null,
-    @Json(name = "local_webcam")
-    val localWebcam: kotlin.String? = null,
     @Json(name = "controller")
     val controller: kotlin.Int? = null,
     @Json(name = "device")

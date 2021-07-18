@@ -21,7 +21,6 @@ import java.io.Serializable
  * @param createdDt 
  * @param updatedDt 
  * @param name 
- * @param localWebcam 
  * @param polymorphicCtype 
  * @param user 
  * @param controller 
@@ -37,8 +36,6 @@ data class PrinterProfile (
     val updatedDt: java.time.OffsetDateTime,
     @Json(name = "name")
     val name: kotlin.String,
-    @Json(name = "local_webcam")
-    val localWebcam: kotlin.String,
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int,
     @Json(name = "user")

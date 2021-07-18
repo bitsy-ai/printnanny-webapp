@@ -37,7 +37,6 @@ class TestPatchedOctoprintPrinterProfileRequest(unittest.TestCase):
         if include_optional :
             return PatchedOctoprintPrinterProfileRequest(
                 name = '', 
-                local_webcam = '', 
                 axes_e_inverted = True, 
                 axes_e_speed = -2147483648, 
                 axes_x_speed = -2147483648, 

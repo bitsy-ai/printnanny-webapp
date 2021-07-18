@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | Option<**String**> |  | [optional]
-**local_webcam** | Option<**String**> |  | [optional]
 **controller** | Option<**i32**> |  | [optional]
 **device** | Option<**i32**> |  | [optional]
 

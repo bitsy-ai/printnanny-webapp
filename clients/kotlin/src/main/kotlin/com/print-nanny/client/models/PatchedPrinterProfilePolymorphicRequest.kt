@@ -21,7 +21,6 @@ import java.io.Serializable
 /**
  * 
  * @param name 
- * @param localWebcam 
  * @param controller 
  * @param device 
  * @param axesEInverted 
@@ -54,8 +53,6 @@ interface PatchedPrinterProfilePolymorphicRequest : Serializable {
 
     @Json(name = "name")
     val name: kotlin.String?
-    @Json(name = "local_webcam")
-    val localWebcam: kotlin.String?
     @Json(name = "controller")
     val controller: kotlin.Int?
     @Json(name = "device")

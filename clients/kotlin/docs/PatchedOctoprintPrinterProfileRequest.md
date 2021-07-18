@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **kotlin.String** |  |  [optional]
-**localWebcam** | **kotlin.String** |  |  [optional]
 **axesEInverted** | **kotlin.Boolean** |  |  [optional]
 **axesESpeed** | **kotlin.Int** |  |  [optional]
 **axesXSpeed** | **kotlin.Int** |  |  [optional]

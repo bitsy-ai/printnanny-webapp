@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**local_webcam** | **str** |  | 
 **controller** | **int** |  | 
 **device** | **int** |  | 
 **axes_e_inverted** | **bool** |  | [optional] 

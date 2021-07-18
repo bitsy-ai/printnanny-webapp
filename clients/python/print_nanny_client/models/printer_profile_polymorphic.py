@@ -40,7 +40,6 @@ class PrinterProfilePolymorphic(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'name': 'str',
-        'local_webcam': 'str',
         'polymorphic_ctype': 'int',
         'user': 'int',
         'controller': 'int',
@@ -73,7 +72,6 @@ class PrinterProfilePolymorphic(object):
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
         'name': 'name',
-        'local_webcam': 'local_webcam',
         'polymorphic_ctype': 'polymorphic_ctype',
         'user': 'user',
         'controller': 'controller',
@@ -104,7 +102,7 @@ class PrinterProfilePolymorphic(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, local_webcam=None, polymorphic_ctype=None, user=None, controller=None, device=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, octoprint_controller=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, created_dt=None, updated_dt=None, name=None, polymorphic_ctype=None, user=None, controller=None, device=None, axes_e_inverted=None, axes_e_speed=None, axes_x_speed=None, axes_x_inverted=None, axes_y_inverted=None, axes_y_speed=None, axes_z_inverted=None, axes_z_speed=None, extruder_count=None, extruder_nozzle_diameter=None, extruder_shared_nozzle=None, heated_bed=None, heated_chamber=None, model=None, volume_custom_box=None, volume_depth=None, volume_formfactor=None, volume_height=None, volume_origin=None, volume_width=None, octoprint_controller=None, local_vars_configuration=None):  # noqa: E501
         """PrinterProfilePolymorphic - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -114,7 +112,6 @@ class PrinterProfilePolymorphic(object):
         self._created_dt = None
         self._updated_dt = None
         self._name = None
-        self._local_webcam = None
         self._polymorphic_ctype = None
         self._user = None
         self._controller = None
@@ -146,7 +143,6 @@ class PrinterProfilePolymorphic(object):
         self.created_dt = created_dt
         self.updated_dt = updated_dt
         self.name = name
-        self.local_webcam = local_webcam
         self.polymorphic_ctype = polymorphic_ctype
         self.user = user
         self.controller = controller
@@ -268,32 +264,6 @@ class PrinterProfilePolymorphic(object):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def local_webcam(self):
-        """Gets the local_webcam of this PrinterProfilePolymorphic.  # noqa: E501
-
-
-        :return: The local_webcam of this PrinterProfilePolymorphic.  # noqa: E501
-        :rtype: str
-        """
-        return self._local_webcam
-
-    @local_webcam.setter
-    def local_webcam(self, local_webcam):
-        """Sets the local_webcam of this PrinterProfilePolymorphic.
-
-
-        :param local_webcam: The local_webcam of this PrinterProfilePolymorphic.  # noqa: E501
-        :type local_webcam: str
-        """
-        if self.local_vars_configuration.client_side_validation and local_webcam is None:  # noqa: E501
-            raise ValueError("Invalid value for `local_webcam`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                local_webcam is not None and len(local_webcam) > 255):
-            raise ValueError("Invalid value for `local_webcam`, length must be less than or equal to `255`")  # noqa: E501
-
-        self._local_webcam = local_webcam
 
     @property
     def polymorphic_ctype(self):

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**local_webcam** | **String** |  | 
 **controller** | **i32** |  | 
 **device** | **i32** |  | 
 
