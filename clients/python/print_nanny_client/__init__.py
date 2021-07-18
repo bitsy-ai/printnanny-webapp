@@ -14,13 +14,12 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.5-dev6"
+__version__ = "0.8.5-dev7"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
 from print_nanny_client.api.auth_api import AuthApi
 from print_nanny_client.api.auth__api import AuthApi
-from print_nanny_client.api.auth_token_api import AuthTokenApi
 from print_nanny_client.api.devices_api import DevicesApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.partners_geeks3_api import PartnersGeeks3Api
@@ -46,8 +45,6 @@ from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
-from print_nanny_client.models.auth_token import AuthToken
-from print_nanny_client.models.auth_token_request import AuthTokenRequest
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest

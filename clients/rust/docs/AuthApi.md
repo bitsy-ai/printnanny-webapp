@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**auth_email_create**](AuthApi.md#auth_email_create) | **post** /auth/email/ | 
 [**auth_mobile_create**](AuthApi.md#auth_mobile_create) | **post** /auth/mobile/ | 
-[**auth_token_create2**](AuthApi.md#auth_token_create2) | **post** /auth/token/ | 
+[**auth_token_create**](AuthApi.md#auth_token_create) | **post** /auth/token/ | 
 [**auth_verify_create**](AuthApi.md#auth_verify_create) | **post** /auth/verify/ | 
 [**auth_verify_email_create**](AuthApi.md#auth_verify_email_create) | **post** /auth/verify/email/ | 
 [**auth_verify_mobile_create**](AuthApi.md#auth_verify_mobile_create) | **post** /auth/verify/mobile/ | 
@@ -73,9 +73,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## auth_token_create2
+## auth_token_create
 
-> crate::models::TokenResponse auth_token_create2(callback_token_auth_request)
+> crate::models::TokenResponse auth_token_create(callback_token_auth_request)
 
 
 This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.

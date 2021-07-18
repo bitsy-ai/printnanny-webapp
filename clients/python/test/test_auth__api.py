@@ -40,8 +40,8 @@ class TestAuthApi(unittest.TestCase):
         """
         pass
 
-    def test_auth_token_create2(self):
-        """Test case for auth_token_create2
+    def test_auth_token_create(self):
+        """Test case for auth_token_create
 
         """
         pass

@@ -13,9 +13,6 @@ docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthApi.md
-docs/AuthToken.md
-docs/AuthTokenApi.md
-docs/AuthTokenRequest.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -123,7 +120,6 @@ print_nanny_client/api/__init__.py
 print_nanny_client/api/alerts_api.py
 print_nanny_client/api/auth__api.py
 print_nanny_client/api/auth_api.py
-print_nanny_client/api/auth_token_api.py
 print_nanny_client/api/devices_api.py
 print_nanny_client/api/ml_ops_api.py
 print_nanny_client/api/partners_geeks3_api.py
@@ -142,8 +138,6 @@ print_nanny_client/models/alert_event_type_enum.py
 print_nanny_client/models/alert_method_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/artifact_types_enum.py
-print_nanny_client/models/auth_token.py
-print_nanny_client/models/auth_token_request.py
 print_nanny_client/models/callback_token_auth_request.py
 print_nanny_client/models/callback_token_verification.py
 print_nanny_client/models/callback_token_verification_request.py
@@ -253,9 +247,6 @@ test/test_alerts_api.py
 test/test_artifact_types_enum.py
 test/test_auth__api.py
 test/test_auth_api.py
-test/test_auth_token.py
-test/test_auth_token_api.py
-test/test_auth_token_request.py
 test/test_callback_token_auth_request.py
 test/test_callback_token_verification.py
 test/test_callback_token_verification_request.py

@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**auth_email_create**](AuthApi.md#auth_email_create) | **POST** /auth/email/ | 
 [**auth_mobile_create**](AuthApi.md#auth_mobile_create) | **POST** /auth/mobile/ | 
-[**auth_token_create2**](AuthApi.md#auth_token_create2) | **POST** /auth/token/ | 
+[**auth_token_create**](AuthApi.md#auth_token_create) | **POST** /auth/token/ | 
 [**auth_verify_email_create**](AuthApi.md#auth_verify_email_create) | **POST** /auth/verify/email/ | 
 [**auth_verify_mobile_create**](AuthApi.md#auth_verify_mobile_create) | **POST** /auth/verify/mobile/ | 
 
@@ -249,8 +249,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **auth_token_create2**
-> TokenResponse auth_token_create2(callback_token_auth_request)
+# **auth_token_create**
+> TokenResponse auth_token_create(callback_token_auth_request)
 
 
 
@@ -294,10 +294,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     callback_token_auth_request = print_nanny_client.CallbackTokenAuthRequest() # CallbackTokenAuthRequest | 
 
     try:
-        api_response = api_instance.auth_token_create2(callback_token_auth_request)
+        api_response = api_instance.auth_token_create(callback_token_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AuthApi->auth_token_create2: %s\n" % e)
+        print("Exception when calling AuthApi->auth_token_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -336,10 +336,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     callback_token_auth_request = print_nanny_client.CallbackTokenAuthRequest() # CallbackTokenAuthRequest | 
 
     try:
-        api_response = api_instance.auth_token_create2(callback_token_auth_request)
+        api_response = api_instance.auth_token_create(callback_token_auth_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AuthApi->auth_token_create2: %s\n" % e)
+        print("Exception when calling AuthApi->auth_token_create: %s\n" % e)
 ```
 
 ### Parameters

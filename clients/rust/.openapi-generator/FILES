@@ -11,9 +11,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
-docs/AuthToken.md
-docs/AuthTokenApi.md
-docs/AuthTokenRequest.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -118,7 +115,6 @@ docs/UsersApi.md
 git_push.sh
 src/apis/alerts_api.rs
 src/apis/auth_api.rs
-src/apis/auth_token_api.rs
 src/apis/configuration.rs
 src/apis/devices_api.rs
 src/apis/ml_ops_api.rs
@@ -136,8 +132,6 @@ src/models/alert_event_type_enum.rs
 src/models/alert_method_enum.rs
 src/models/alert_request.rs
 src/models/artifact_types_enum.rs
-src/models/auth_token.rs
-src/models/auth_token_request.rs
 src/models/callback_token_auth_request.rs
 src/models/callback_token_verification.rs
 src/models/callback_token_verification_request.rs

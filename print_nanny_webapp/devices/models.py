@@ -197,6 +197,10 @@ class OctoprintController(PrinterController):
 
 
 class PrinterProfile(PolymorphicModel, SafeDeleteModel):
+
+    class CamStreamType(models.TextChoices):
+        MJPG_STREAMER = "Raspberry Pi MJPG-Streamer", "Stream JPG-encoded frames from Raspberry Pi camera over HTTP https://github.com/jacksonliam/mjpg-streamer"
+        WEBCAM_
     class Meta:
         unique_together = (
             "user",
@@ -214,8 +218,6 @@ class PrinterProfile(PolymorphicModel, SafeDeleteModel):
         PrinterController, on_delete=models.CASCADE, related_name="printer_profiles"
     )
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    local_webcam = models.CharField(max_length=255)
-
 
 class OctoprintPrinterProfile(PrinterProfile):
     _safedelete_policy = SOFT_DELETE

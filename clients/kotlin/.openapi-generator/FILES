@@ -9,9 +9,6 @@ docs/AlertRequest.md
 docs/AlertsApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
-docs/AuthToken.md
-docs/AuthTokenApi.md
-docs/AuthTokenRequest.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
@@ -120,7 +117,6 @@ gradlew.bat
 settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthApi.kt
-src/main/kotlin/com/print-nanny/client/apis/AuthTokenApi.kt
 src/main/kotlin/com/print-nanny/client/apis/DevicesApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3Api.kt
@@ -151,8 +147,6 @@ src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertMethodEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
-src/main/kotlin/com/print-nanny/client/models/AuthToken.kt
-src/main/kotlin/com/print-nanny/client/models/AuthTokenRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt

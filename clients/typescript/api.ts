@@ -227,38 +227,6 @@ export enum ArtifactTypesEnum {
 }
 
 /**
- * 
- * @export
- * @interface AuthToken
- */
-export interface AuthToken {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthToken
-     */
-    token: string;
-}
-/**
- * 
- * @export
- * @interface AuthTokenRequest
- */
-export interface AuthTokenRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthTokenRequest
-     */
-    username: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthTokenRequest
-     */
-    password: string;
-}
-/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -5712,9 +5680,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate2: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
+        authTokenCreate: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'callbackTokenAuthRequest' is not null or undefined
-            assertParamExists('authTokenCreate2', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
+            assertParamExists('authTokenCreate', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
             const localVarPath = `/auth/token/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5894,8 +5862,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate2(callbackTokenAuthRequest, options);
+        async authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(callbackTokenAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5960,8 +5928,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
-            return localVarFp.authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
+        authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
+            return localVarFp.authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -6022,7 +5990,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
+    authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
 
     /**
      * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -6087,8 +6055,8 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
-        return AuthApiFp(this.configuration).authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
+    public authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
+        return AuthApiFp(this.configuration).authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6120,148 +6088,6 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      */
     public authVerifyMobileCreate(options?: any) {
         return AuthApiFp(this.configuration).authVerifyMobileCreate(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * AuthTokenApi - axios parameter creator
- * @export
- */
-export const AuthTokenApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authTokenCreate: async (username: string, password: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'username' is not null or undefined
-            assertParamExists('authTokenCreate', 'username', username)
-            // verify required parameter 'password' is not null or undefined
-            assertParamExists('authTokenCreate', 'password', password)
-            const localVarPath = `/api/auth-token/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (username !== undefined) { 
-                localVarFormParams.append('username', username as any);
-            }
-    
-            if (password !== undefined) { 
-                localVarFormParams.append('password', password as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * AuthTokenApi - functional programming interface
- * @export
- */
-export const AuthTokenApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = AuthTokenApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async authTokenCreate(username: string, password: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthToken>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(username, password, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * AuthTokenApi - factory interface
- * @export
- */
-export const AuthTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = AuthTokenApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken> {
-            return localVarFp.authTokenCreate(username, password, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * AuthTokenApi - interface
- * @export
- * @interface AuthTokenApi
- */
-export interface AuthTokenApiInterface {
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthTokenApiInterface
-     */
-    authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken>;
-
-}
-
-/**
- * AuthTokenApi - object-oriented interface
- * @export
- * @class AuthTokenApi
- * @extends {BaseAPI}
- */
-export class AuthTokenApi extends BaseAPI implements AuthTokenApiInterface {
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthTokenApi
-     */
-    public authTokenCreate(username: string, password: string, options?: any) {
-        return AuthTokenApiFp(this.configuration).authTokenCreate(username, password, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

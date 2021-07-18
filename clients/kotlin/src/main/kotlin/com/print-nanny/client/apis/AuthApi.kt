@@ -160,8 +160,8 @@ class AuthApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest) : TokenResponse {
-        val localVariableConfig = authTokenCreate2RequestConfig(callbackTokenAuthRequest = callbackTokenAuthRequest)
+    fun authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest) : TokenResponse {
+        val localVariableConfig = authTokenCreateRequestConfig(callbackTokenAuthRequest = callbackTokenAuthRequest)
 
         val localVarResponse = request<TokenResponse>(
             localVariableConfig
@@ -183,12 +183,12 @@ class AuthApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
     }
 
     /**
-    * To obtain the request config of the operation authTokenCreate2
+    * To obtain the request config of the operation authTokenCreate
     *
     * @param callbackTokenAuthRequest  
     * @return RequestConfig
     */
-    fun authTokenCreate2RequestConfig(callbackTokenAuthRequest: CallbackTokenAuthRequest) : RequestConfig {
+    fun authTokenCreateRequestConfig(callbackTokenAuthRequest: CallbackTokenAuthRequest) : RequestConfig {
         val localVariableBody: kotlin.Any? = callbackTokenAuthRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
