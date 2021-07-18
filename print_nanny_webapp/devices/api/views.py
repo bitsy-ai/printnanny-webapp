@@ -11,7 +11,11 @@ from rest_framework.mixins import (
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from .serializers import DeviceSerializer, DeviceIdentitySerializer, PrinterProfilePolymorphicSerializer
+from .serializers import (
+    DeviceSerializer,
+    DeviceIdentitySerializer,
+    PrinterProfilePolymorphicSerializer,
+)
 from ..models import Device
 
 logger = logging.getLogger(__name__)
@@ -126,4 +130,3 @@ class PrinterProfileViewSet(
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
