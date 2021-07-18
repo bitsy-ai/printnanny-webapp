@@ -163,7 +163,7 @@ class Device(SafeDeleteModel):
         return configs_dict
 
 
-class CameriaController(SafeDeleteModel):
+class CameraController(SafeDeleteModel):
     class Meta:
         unique_together = ("user", "name")
 

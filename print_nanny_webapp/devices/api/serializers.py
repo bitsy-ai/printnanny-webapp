@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 
 from print_nanny_webapp.devices.models import (
+    CameraController,
     Device,
     PrinterController,
     OctoprintController,
@@ -201,3 +202,10 @@ class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
 
         ret = serializer.to_representation(instance)
         return ret
+
+
+class CameraControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CameraController
+        read_only_fields = "user"
+        exclude = ("deleted",)
