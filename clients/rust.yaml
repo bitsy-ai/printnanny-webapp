@@ -1,4 +1,4 @@
 ---
 packageName: "print-nanny-client"
-packageVersion: "0.8.5-dev5"
+packageVersion: "0.8.5-dev6"
 appDescription: "Official Rust Print Nanny API Client"
