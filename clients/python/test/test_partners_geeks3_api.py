@@ -28,8 +28,8 @@ class TestPartnersGeeks3Api(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_alerts_list(self):
-        """Test case for alerts_list
+    def test_alerts_list2(self):
+        """Test case for alerts_list2
 
         """
         pass

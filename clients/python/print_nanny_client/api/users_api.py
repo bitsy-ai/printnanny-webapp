@@ -36,13 +36,13 @@ class UsersApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def api_users_list(self, **kwargs):  # noqa: E501
-        """api_users_list  # noqa: E501
+    def users_list(self, **kwargs):  # noqa: E501
+        """users_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_list(async_req=True)
+        >>> thread = api.users_list(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -63,15 +63,15 @@ class UsersApi(object):
         :rtype: PaginatedUserList
         """
         kwargs['_return_http_data_only'] = True
-        return self.api_users_list_with_http_info(**kwargs)  # noqa: E501
+        return self.users_list_with_http_info(**kwargs)  # noqa: E501
 
-    def api_users_list_with_http_info(self, **kwargs):  # noqa: E501
-        """api_users_list  # noqa: E501
+    def users_list_with_http_info(self, **kwargs):  # noqa: E501
+        """users_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_list_with_http_info(async_req=True)
+        >>> thread = api.users_list_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param page: A page number within the paginated result set.
@@ -118,7 +118,7 @@ class UsersApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_users_list" % key
+                    " to method users_list" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -167,13 +167,13 @@ class UsersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def api_users_me_retrieve(self, **kwargs):  # noqa: E501
-        """api_users_me_retrieve  # noqa: E501
+    def users_me_retrieve(self, **kwargs):  # noqa: E501
+        """users_me_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_me_retrieve(async_req=True)
+        >>> thread = api.users_me_retrieve(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -192,15 +192,15 @@ class UsersApi(object):
         :rtype: User
         """
         kwargs['_return_http_data_only'] = True
-        return self.api_users_me_retrieve_with_http_info(**kwargs)  # noqa: E501
+        return self.users_me_retrieve_with_http_info(**kwargs)  # noqa: E501
 
-    def api_users_me_retrieve_with_http_info(self, **kwargs):  # noqa: E501
-        """api_users_me_retrieve  # noqa: E501
+    def users_me_retrieve_with_http_info(self, **kwargs):  # noqa: E501
+        """users_me_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_me_retrieve_with_http_info(async_req=True)
+        >>> thread = api.users_me_retrieve_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -244,7 +244,7 @@ class UsersApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_users_me_retrieve" % key
+                    " to method users_me_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
@@ -291,13 +291,13 @@ class UsersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def api_users_partial_update(self, id, **kwargs):  # noqa: E501
-        """api_users_partial_update  # noqa: E501
+    def users_partial_update(self, id, **kwargs):  # noqa: E501
+        """users_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_partial_update(id, async_req=True)
+        >>> thread = api.users_partial_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -320,15 +320,15 @@ class UsersApi(object):
         :rtype: User
         """
         kwargs['_return_http_data_only'] = True
-        return self.api_users_partial_update_with_http_info(id, **kwargs)  # noqa: E501
+        return self.users_partial_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def api_users_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
-        """api_users_partial_update  # noqa: E501
+    def users_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
+        """users_partial_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_partial_update_with_http_info(id, async_req=True)
+        >>> thread = api.users_partial_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -378,14 +378,14 @@ class UsersApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_users_partial_update" % key
+                    " to method users_partial_update" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `api_users_partial_update`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `users_partial_update`")  # noqa: E501
 
         collection_formats = {}
 
@@ -437,13 +437,13 @@ class UsersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def api_users_retrieve(self, id, **kwargs):  # noqa: E501
-        """api_users_retrieve  # noqa: E501
+    def users_retrieve(self, id, **kwargs):  # noqa: E501
+        """users_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_retrieve(id, async_req=True)
+        >>> thread = api.users_retrieve(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -464,15 +464,15 @@ class UsersApi(object):
         :rtype: User
         """
         kwargs['_return_http_data_only'] = True
-        return self.api_users_retrieve_with_http_info(id, **kwargs)  # noqa: E501
+        return self.users_retrieve_with_http_info(id, **kwargs)  # noqa: E501
 
-    def api_users_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
-        """api_users_retrieve  # noqa: E501
+    def users_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
+        """users_retrieve  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_retrieve_with_http_info(id, async_req=True)
+        >>> thread = api.users_retrieve_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -519,14 +519,14 @@ class UsersApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_users_retrieve" % key
+                    " to method users_retrieve" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `api_users_retrieve`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `users_retrieve`")  # noqa: E501
 
         collection_formats = {}
 
@@ -572,13 +572,13 @@ class UsersApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def api_users_update(self, id, user_request, **kwargs):  # noqa: E501
-        """api_users_update  # noqa: E501
+    def users_update(self, id, user_request, **kwargs):  # noqa: E501
+        """users_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_update(id, user_request, async_req=True)
+        >>> thread = api.users_update(id, user_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -601,15 +601,15 @@ class UsersApi(object):
         :rtype: User
         """
         kwargs['_return_http_data_only'] = True
-        return self.api_users_update_with_http_info(id, user_request, **kwargs)  # noqa: E501
+        return self.users_update_with_http_info(id, user_request, **kwargs)  # noqa: E501
 
-    def api_users_update_with_http_info(self, id, user_request, **kwargs):  # noqa: E501
-        """api_users_update  # noqa: E501
+    def users_update_with_http_info(self, id, user_request, **kwargs):  # noqa: E501
+        """users_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.api_users_update_with_http_info(id, user_request, async_req=True)
+        >>> thread = api.users_update_with_http_info(id, user_request, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this user. (required)
@@ -659,18 +659,18 @@ class UsersApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method api_users_update" % key
+                    " to method users_update" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'id' is set
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `id` when calling `api_users_update`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `users_update`")  # noqa: E501
         # verify the required parameter 'user_request' is set
         if self.api_client.client_side_validation and ('user_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['user_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `user_request` when calling `api_users_update`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `user_request` when calling `users_update`")  # noqa: E501
 
         collection_formats = {}
 

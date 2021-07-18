@@ -54,8 +54,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest) : OctoPrintEvent {
-        val localVariableConfig = apiOctoprintEventsCreateRequestConfig(octoPrintEventRequest = octoPrintEventRequest)
+    fun octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest) : OctoPrintEvent {
+        val localVariableConfig = octoprintEventsCreateRequestConfig(octoPrintEventRequest = octoPrintEventRequest)
 
         val localVarResponse = request<OctoPrintEvent>(
             localVariableConfig
@@ -77,12 +77,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiOctoprintEventsCreate
+    * To obtain the request config of the operation octoprintEventsCreate
     *
     * @param octoPrintEventRequest  
     * @return RequestConfig
     */
-    fun apiOctoprintEventsCreateRequestConfig(octoPrintEventRequest: OctoPrintEventRequest) : RequestConfig {
+    fun octoprintEventsCreateRequestConfig(octoPrintEventRequest: OctoPrintEventRequest) : RequestConfig {
         val localVariableBody: kotlin.Any? = octoPrintEventRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -109,8 +109,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiOctoprintEventsList(page: kotlin.Int?) : PaginatedOctoPrintEventList {
-        val localVariableConfig = apiOctoprintEventsListRequestConfig(page = page)
+    fun octoprintEventsList(page: kotlin.Int?) : PaginatedOctoPrintEventList {
+        val localVariableConfig = octoprintEventsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedOctoPrintEventList>(
             localVariableConfig
@@ -132,12 +132,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiOctoprintEventsList
+    * To obtain the request config of the operation octoprintEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiOctoprintEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun octoprintEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -169,8 +169,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiOctoprintEventsRetrieve(id: kotlin.Int) : OctoPrintEvent {
-        val localVariableConfig = apiOctoprintEventsRetrieveRequestConfig(id = id)
+    fun octoprintEventsRetrieve(id: kotlin.Int) : OctoPrintEvent {
+        val localVariableConfig = octoprintEventsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<OctoPrintEvent>(
             localVariableConfig
@@ -192,12 +192,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiOctoprintEventsRetrieve
+    * To obtain the request config of the operation octoprintEventsRetrieve
     *
     * @param id A unique integer value identifying this octo print event. 
     * @return RequestConfig
     */
-    fun apiOctoprintEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun octoprintEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -224,8 +224,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiPrintJobEventsList(page: kotlin.Int?) : PaginatedPrintJobEventList {
-        val localVariableConfig = apiPrintJobEventsListRequestConfig(page = page)
+    fun printJobEventsList(page: kotlin.Int?) : PaginatedPrintJobEventList {
+        val localVariableConfig = printJobEventsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedPrintJobEventList>(
             localVariableConfig
@@ -247,12 +247,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiPrintJobEventsList
+    * To obtain the request config of the operation printJobEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiPrintJobEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun printJobEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -284,8 +284,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiPrintJobEventsRetrieve(id: kotlin.Int) : PrintJobEvent {
-        val localVariableConfig = apiPrintJobEventsRetrieveRequestConfig(id = id)
+    fun printJobEventsRetrieve(id: kotlin.Int) : PrintJobEvent {
+        val localVariableConfig = printJobEventsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<PrintJobEvent>(
             localVariableConfig
@@ -307,12 +307,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiPrintJobEventsRetrieve
+    * To obtain the request config of the operation printJobEventsRetrieve
     *
     * @param id A unique integer value identifying this print job event. 
     * @return RequestConfig
     */
-    fun apiPrintJobEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun printJobEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -339,8 +339,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiPrintNannyPluginEventsList(page: kotlin.Int?) : PaginatedPrintNannyPluginEventList {
-        val localVariableConfig = apiPrintNannyPluginEventsListRequestConfig(page = page)
+    fun printNannyPluginEventsList(page: kotlin.Int?) : PaginatedPrintNannyPluginEventList {
+        val localVariableConfig = printNannyPluginEventsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedPrintNannyPluginEventList>(
             localVariableConfig
@@ -362,12 +362,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiPrintNannyPluginEventsList
+    * To obtain the request config of the operation printNannyPluginEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiPrintNannyPluginEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun printNannyPluginEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -399,8 +399,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiPrintNannyPluginEventsRetrieve(id: kotlin.Int) : PrintNannyPluginEvent {
-        val localVariableConfig = apiPrintNannyPluginEventsRetrieveRequestConfig(id = id)
+    fun printNannyPluginEventsRetrieve(id: kotlin.Int) : PrintNannyPluginEvent {
+        val localVariableConfig = printNannyPluginEventsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<PrintNannyPluginEvent>(
             localVariableConfig
@@ -422,12 +422,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiPrintNannyPluginEventsRetrieve
+    * To obtain the request config of the operation printNannyPluginEventsRetrieve
     *
     * @param id A unique integer value identifying this print nanny plugin event. 
     * @return RequestConfig
     */
-    fun apiPrintNannyPluginEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun printNannyPluginEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -454,8 +454,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiRemoteCommandEventsList(page: kotlin.Int?) : PaginatedRemoteCommandEventList {
-        val localVariableConfig = apiRemoteCommandEventsListRequestConfig(page = page)
+    fun remoteCommandEventsList(page: kotlin.Int?) : PaginatedRemoteCommandEventList {
+        val localVariableConfig = remoteCommandEventsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedRemoteCommandEventList>(
             localVariableConfig
@@ -477,12 +477,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiRemoteCommandEventsList
+    * To obtain the request config of the operation remoteCommandEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiRemoteCommandEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun remoteCommandEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -514,8 +514,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiRemoteCommandEventsRetrieve(id: kotlin.Int) : RemoteCommandEvent {
-        val localVariableConfig = apiRemoteCommandEventsRetrieveRequestConfig(id = id)
+    fun remoteCommandEventsRetrieve(id: kotlin.Int) : RemoteCommandEvent {
+        val localVariableConfig = remoteCommandEventsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<RemoteCommandEvent>(
             localVariableConfig
@@ -537,12 +537,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiRemoteCommandEventsRetrieve
+    * To obtain the request config of the operation remoteCommandEventsRetrieve
     *
     * @param id A unique integer value identifying this remote command event. 
     * @return RequestConfig
     */
-    fun apiRemoteCommandEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun remoteCommandEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
@@ -569,8 +569,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiTelemetryEventsList(page: kotlin.Int?) : PaginatedTelemetryEventPolymorphicList {
-        val localVariableConfig = apiTelemetryEventsListRequestConfig(page = page)
+    fun telemetryEventsList(page: kotlin.Int?) : PaginatedTelemetryEventPolymorphicList {
+        val localVariableConfig = telemetryEventsListRequestConfig(page = page)
 
         val localVarResponse = request<PaginatedTelemetryEventPolymorphicList>(
             localVariableConfig
@@ -592,12 +592,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiTelemetryEventsList
+    * To obtain the request config of the operation telemetryEventsList
     *
     * @param page A page number within the paginated result set. (optional)
     * @return RequestConfig
     */
-    fun apiTelemetryEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+    fun telemetryEventsListRequestConfig(page: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -629,8 +629,8 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiTelemetryEventsRetrieve(id: kotlin.Int) : TelemetryEventPolymorphic {
-        val localVariableConfig = apiTelemetryEventsRetrieveRequestConfig(id = id)
+    fun telemetryEventsRetrieve(id: kotlin.Int) : TelemetryEventPolymorphic {
+        val localVariableConfig = telemetryEventsRetrieveRequestConfig(id = id)
 
         val localVarResponse = request<TelemetryEventPolymorphic>(
             localVariableConfig
@@ -652,12 +652,12 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation apiTelemetryEventsRetrieve
+    * To obtain the request config of the operation telemetryEventsRetrieve
     *
     * @param id A unique integer value identifying this telemetry event. 
     * @return RequestConfig
     */
-    fun apiTelemetryEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+    fun telemetryEventsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

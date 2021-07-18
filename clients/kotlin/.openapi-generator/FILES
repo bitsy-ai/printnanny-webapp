@@ -7,10 +7,10 @@ docs/AlertEventTypeEnum.md
 docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
-docs/ApiApi.md
 docs/ArtifactTypesEnum.md
 docs/AuthApi.md
 docs/AuthToken.md
+docs/AuthTokenApi.md
 docs/AuthTokenRequest.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
@@ -97,6 +97,7 @@ docs/RemoteCommandEventEventTypeEnum.md
 docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
+docs/SchemaApi.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -111,13 +112,14 @@ gradlew
 gradlew.bat
 settings.gradle
 src/main/kotlin/com/print-nanny/client/apis/AlertsApi.kt
-src/main/kotlin/com/print-nanny/client/apis/ApiApi.kt
 src/main/kotlin/com/print-nanny/client/apis/AuthApi.kt
+src/main/kotlin/com/print-nanny/client/apis/AuthTokenApi.kt
 src/main/kotlin/com/print-nanny/client/apis/DevicesApi.kt
 src/main/kotlin/com/print-nanny/client/apis/MlOpsApi.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3Api.kt
 src/main/kotlin/com/print-nanny/client/apis/PartnersGeeks3dApi.kt
 src/main/kotlin/com/print-nanny/client/apis/RemoteControlApi.kt
+src/main/kotlin/com/print-nanny/client/apis/SchemaApi.kt
 src/main/kotlin/com/print-nanny/client/apis/TelemetryApi.kt
 src/main/kotlin/com/print-nanny/client/apis/UsersApi.kt
 src/main/kotlin/com/print-nanny/client/infrastructure/ApiAbstractions.kt

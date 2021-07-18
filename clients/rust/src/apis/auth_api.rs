@@ -27,10 +27,10 @@ pub enum AuthMobileCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `auth_token_create`
+/// struct for typed errors of method `auth_token_create2`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum AuthTokenCreateError {
+pub enum AuthTokenCreate2Error {
     UnknownValue(serde_json::Value),
 }
 
@@ -119,7 +119,7 @@ pub async fn auth_mobile_create(configuration: &configuration::Configuration, mo
 }
 
 /// This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.
-pub async fn auth_token_create(configuration: &configuration::Configuration, callback_token_auth_request: crate::models::CallbackTokenAuthRequest) -> Result<crate::models::TokenResponse, Error<AuthTokenCreateError>> {
+pub async fn auth_token_create2(configuration: &configuration::Configuration, callback_token_auth_request: crate::models::CallbackTokenAuthRequest) -> Result<crate::models::TokenResponse, Error<AuthTokenCreate2Error>> {
 
     let local_var_client = &configuration.client;
 
@@ -143,7 +143,7 @@ pub async fn auth_token_create(configuration: &configuration::Configuration, cal
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<AuthTokenCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<AuthTokenCreate2Error> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

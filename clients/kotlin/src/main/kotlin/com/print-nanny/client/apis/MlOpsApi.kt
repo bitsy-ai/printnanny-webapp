@@ -45,580 +45,6 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
     /**
     * 
     * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedDeviceCalibrationList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiDeviceCalibrationsList(page: kotlin.Int?) : PaginatedDeviceCalibrationList {
-        val localVariableConfig = apiDeviceCalibrationsListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedDeviceCalibrationList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedDeviceCalibrationList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiDeviceCalibrationsList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun apiDeviceCalibrationsListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/device-calibrations/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this device calibration. 
-    * @param patchedDeviceCalibrationRequest  (optional)
-    * @return DeviceCalibration
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiDeviceCalibrationsPartialUpdate(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : DeviceCalibration {
-        val localVariableConfig = apiDeviceCalibrationsPartialUpdateRequestConfig(id = id, patchedDeviceCalibrationRequest = patchedDeviceCalibrationRequest)
-
-        val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiDeviceCalibrationsPartialUpdate
-    *
-    * @param id A unique integer value identifying this device calibration. 
-    * @param patchedDeviceCalibrationRequest  (optional)
-    * @return RequestConfig
-    */
-    fun apiDeviceCalibrationsPartialUpdateRequestConfig(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = patchedDeviceCalibrationRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PATCH,
-            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this device calibration. 
-    * @return DeviceCalibration
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiDeviceCalibrationsRetrieve(id: kotlin.Int) : DeviceCalibration {
-        val localVariableConfig = apiDeviceCalibrationsRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiDeviceCalibrationsRetrieve
-    *
-    * @param id A unique integer value identifying this device calibration. 
-    * @return RequestConfig
-    */
-    fun apiDeviceCalibrationsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this device calibration. 
-    * @param deviceCalibrationRequest  
-    * @return DeviceCalibration
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiDeviceCalibrationsUpdate(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : DeviceCalibration {
-        val localVariableConfig = apiDeviceCalibrationsUpdateRequestConfig(id = id, deviceCalibrationRequest = deviceCalibrationRequest)
-
-        val localVarResponse = request<DeviceCalibration>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiDeviceCalibrationsUpdate
-    *
-    * @param id A unique integer value identifying this device calibration. 
-    * @param deviceCalibrationRequest  
-    * @return RequestConfig
-    */
-    fun apiDeviceCalibrationsUpdateRequestConfig(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.PUT,
-            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedExperimentDeviceConfigList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiExperimentDeviceConfigsList(page: kotlin.Int?) : PaginatedExperimentDeviceConfigList {
-        val localVariableConfig = apiExperimentDeviceConfigsListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedExperimentDeviceConfigList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedExperimentDeviceConfigList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiExperimentDeviceConfigsList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun apiExperimentDeviceConfigsListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/experiment-device-configs/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this experiment device config. 
-    * @return ExperimentDeviceConfig
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiExperimentDeviceConfigsRetrieve(id: kotlin.Int) : ExperimentDeviceConfig {
-        val localVariableConfig = apiExperimentDeviceConfigsRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<ExperimentDeviceConfig>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ExperimentDeviceConfig
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiExperimentDeviceConfigsRetrieve
-    *
-    * @param id A unique integer value identifying this experiment device config. 
-    * @return RequestConfig
-    */
-    fun apiExperimentDeviceConfigsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/experiment-device-configs/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedExperimentList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiExperimentsList(page: kotlin.Int?) : PaginatedExperimentList {
-        val localVariableConfig = apiExperimentsListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedExperimentList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedExperimentList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiExperimentsList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun apiExperimentsListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/experiments/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this experiment. 
-    * @return Experiment
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiExperimentsRetrieve(id: kotlin.Int) : Experiment {
-        val localVariableConfig = apiExperimentsRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<Experiment>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as Experiment
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiExperimentsRetrieve
-    *
-    * @param id A unique integer value identifying this experiment. 
-    * @return RequestConfig
-    */
-    fun apiExperimentsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/experiments/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param page A page number within the paginated result set. (optional)
-    * @return PaginatedModelArtifactList
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiModelArtifactsList(page: kotlin.Int?) : PaginatedModelArtifactList {
-        val localVariableConfig = apiModelArtifactsListRequestConfig(page = page)
-
-        val localVarResponse = request<PaginatedModelArtifactList>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedModelArtifactList
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiModelArtifactsList
-    *
-    * @param page A page number within the paginated result set. (optional)
-    * @return RequestConfig
-    */
-    fun apiModelArtifactsListRequestConfig(page: kotlin.Int?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (page != null) {
-                    put("page", listOf(page.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/model-artifacts/",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param id A unique integer value identifying this model artifact. 
-    * @return ModelArtifact
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun apiModelArtifactsRetrieve(id: kotlin.Int) : ModelArtifact {
-        val localVariableConfig = apiModelArtifactsRetrieveRequestConfig(id = id)
-
-        val localVarResponse = request<ModelArtifact>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ModelArtifact
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation apiModelArtifactsRetrieve
-    *
-    * @param id A unique integer value identifying this model artifact. 
-    * @return RequestConfig
-    */
-    fun apiModelArtifactsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/api/model-artifacts/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
     * @param deviceCalibrationRequest  
     * @return DeviceCalibration
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -663,6 +89,580 @@ class MlOpsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/api/device-calibrations/update-or-create/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedDeviceCalibrationList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deviceCalibrationsList(page: kotlin.Int?) : PaginatedDeviceCalibrationList {
+        val localVariableConfig = deviceCalibrationsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedDeviceCalibrationList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedDeviceCalibrationList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceCalibrationsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/device-calibrations/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this device calibration. 
+    * @param patchedDeviceCalibrationRequest  (optional)
+    * @return DeviceCalibration
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deviceCalibrationsPartialUpdate(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : DeviceCalibration {
+        val localVariableConfig = deviceCalibrationsPartialUpdateRequestConfig(id = id, patchedDeviceCalibrationRequest = patchedDeviceCalibrationRequest)
+
+        val localVarResponse = request<DeviceCalibration>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceCalibrationsPartialUpdate
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @param patchedDeviceCalibrationRequest  (optional)
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsPartialUpdateRequestConfig(id: kotlin.Int, patchedDeviceCalibrationRequest: PatchedDeviceCalibrationRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = patchedDeviceCalibrationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this device calibration. 
+    * @return DeviceCalibration
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deviceCalibrationsRetrieve(id: kotlin.Int) : DeviceCalibration {
+        val localVariableConfig = deviceCalibrationsRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<DeviceCalibration>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceCalibrationsRetrieve
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this device calibration. 
+    * @param deviceCalibrationRequest  
+    * @return DeviceCalibration
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deviceCalibrationsUpdate(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : DeviceCalibration {
+        val localVariableConfig = deviceCalibrationsUpdateRequestConfig(id = id, deviceCalibrationRequest = deviceCalibrationRequest)
+
+        val localVarResponse = request<DeviceCalibration>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DeviceCalibration
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation deviceCalibrationsUpdate
+    *
+    * @param id A unique integer value identifying this device calibration. 
+    * @param deviceCalibrationRequest  
+    * @return RequestConfig
+    */
+    fun deviceCalibrationsUpdateRequestConfig(id: kotlin.Int, deviceCalibrationRequest: DeviceCalibrationRequest) : RequestConfig {
+        val localVariableBody: kotlin.Any? = deviceCalibrationRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/device-calibrations/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedExperimentDeviceConfigList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun experimentDeviceConfigsList(page: kotlin.Int?) : PaginatedExperimentDeviceConfigList {
+        val localVariableConfig = experimentDeviceConfigsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedExperimentDeviceConfigList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedExperimentDeviceConfigList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation experimentDeviceConfigsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun experimentDeviceConfigsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiment-device-configs/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this experiment device config. 
+    * @return ExperimentDeviceConfig
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun experimentDeviceConfigsRetrieve(id: kotlin.Int) : ExperimentDeviceConfig {
+        val localVariableConfig = experimentDeviceConfigsRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<ExperimentDeviceConfig>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ExperimentDeviceConfig
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation experimentDeviceConfigsRetrieve
+    *
+    * @param id A unique integer value identifying this experiment device config. 
+    * @return RequestConfig
+    */
+    fun experimentDeviceConfigsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiment-device-configs/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedExperimentList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun experimentsList(page: kotlin.Int?) : PaginatedExperimentList {
+        val localVariableConfig = experimentsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedExperimentList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedExperimentList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation experimentsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun experimentsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiments/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this experiment. 
+    * @return Experiment
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun experimentsRetrieve(id: kotlin.Int) : Experiment {
+        val localVariableConfig = experimentsRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<Experiment>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Experiment
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation experimentsRetrieve
+    *
+    * @param id A unique integer value identifying this experiment. 
+    * @return RequestConfig
+    */
+    fun experimentsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/experiments/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedModelArtifactList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun modelArtifactsList(page: kotlin.Int?) : PaginatedModelArtifactList {
+        val localVariableConfig = modelArtifactsListRequestConfig(page = page)
+
+        val localVarResponse = request<PaginatedModelArtifactList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedModelArtifactList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation modelArtifactsList
+    *
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun modelArtifactsListRequestConfig(page: kotlin.Int?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/model-artifacts/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param id A unique integer value identifying this model artifact. 
+    * @return ModelArtifact
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun modelArtifactsRetrieve(id: kotlin.Int) : ModelArtifact {
+        val localVariableConfig = modelArtifactsRetrieveRequestConfig(id = id)
+
+        val localVarResponse = request<ModelArtifact>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ModelArtifact
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation modelArtifactsRetrieve
+    *
+    * @param id A unique integer value identifying this model artifact. 
+    * @return RequestConfig
+    */
+    fun modelArtifactsRetrieveRequestConfig(id: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/model-artifacts/{id}/".replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

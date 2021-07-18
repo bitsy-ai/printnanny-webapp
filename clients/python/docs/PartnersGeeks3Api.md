@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alerts_list**](PartnersGeeks3Api.md#alerts_list) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
+[**alerts_list2**](PartnersGeeks3Api.md#alerts_list2) | **GET** /api/partners/3d-geeks/{id}/alerts/ | 
 
 
-# **alerts_list**
-> Partner3DGeeksAlert alerts_list(id)
+# **alerts_list2**
+> Partner3DGeeksAlert alerts_list2(id)
 
 
 
@@ -44,10 +44,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     id = 'id_example' # str | 
 
     try:
-        api_response = api_instance.alerts_list(id)
+        api_response = api_instance.alerts_list2(id)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling PartnersGeeks3Api->alerts_list: %s\n" % e)
+        print("Exception when calling PartnersGeeks3Api->alerts_list2: %s\n" % e)
 ```
 
 ### Parameters

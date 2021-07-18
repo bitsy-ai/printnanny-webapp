@@ -21,7 +21,6 @@ from print_nanny_webapp.telemetry.api.views import (
     OctoPrintEventViewSet,
     PrintNannyPluginEventViewSet,
     PrintJobEventViewSet,
-    PrinterEventViewSet,
     RemoteCommandEventViewSet,
     TelemetryEventViewSet
 )

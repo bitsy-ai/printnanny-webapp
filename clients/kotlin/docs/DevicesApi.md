@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiDevicesCreate**](DevicesApi.md#apiDevicesCreate) | **POST** /api/devices/ | 
-[**apiDevicesList**](DevicesApi.md#apiDevicesList) | **GET** /api/devices/ | 
-[**apiDevicesRetrieve**](DevicesApi.md#apiDevicesRetrieve) | **GET** /api/devices/{id}/ | 
+[**devicesCreate**](DevicesApi.md#devicesCreate) | **POST** /api/devices/ | 
+[**devicesList**](DevicesApi.md#devicesList) | **GET** /api/devices/ | 
 [**devicesPartialUpdate**](DevicesApi.md#devicesPartialUpdate) | **PATCH** /api/devices/{id}/ | 
+[**devicesRetrieve**](DevicesApi.md#devicesRetrieve) | **GET** /api/devices/{id}/ | 
 [**devicesUpdate**](DevicesApi.md#devicesUpdate) | **PUT** /api/devices/{id}/ | 
 [**devicesUpdateOrCreate**](DevicesApi.md#devicesUpdateOrCreate) | **POST** /api/devices/update-or-create/ | 
 
 
-<a name="apiDevicesCreate"></a>
-# **apiDevicesCreate**
-> Device apiDevicesCreate(deviceRequest)
+<a name="devicesCreate"></a>
+# **devicesCreate**
+> Device devicesCreate(deviceRequest)
 
 
 
@@ -27,13 +27,13 @@ Method | HTTP request | Description
 val apiInstance = DevicesApi()
 val deviceRequest : DeviceRequest =  // DeviceRequest | 
 try {
-    val result : Device = apiInstance.apiDevicesCreate(deviceRequest)
+    val result : Device = apiInstance.devicesCreate(deviceRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DevicesApi#apiDevicesCreate")
+    println("4xx response calling DevicesApi#devicesCreate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DevicesApi#apiDevicesCreate")
+    println("5xx response calling DevicesApi#devicesCreate")
     e.printStackTrace()
 }
 ```
@@ -62,9 +62,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="apiDevicesList"></a>
-# **apiDevicesList**
-> PaginatedDeviceList apiDevicesList(page)
+<a name="devicesList"></a>
+# **devicesList**
+> PaginatedDeviceList devicesList(page)
 
 
 
@@ -77,13 +77,13 @@ Configure tokenAuth:
 val apiInstance = DevicesApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedDeviceList = apiInstance.apiDevicesList(page)
+    val result : PaginatedDeviceList = apiInstance.devicesList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DevicesApi#apiDevicesList")
+    println("4xx response calling DevicesApi#devicesList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DevicesApi#apiDevicesList")
+    println("5xx response calling DevicesApi#devicesList")
     e.printStackTrace()
 }
 ```
@@ -97,56 +97,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedDeviceList**](PaginatedDeviceList.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="apiDevicesRetrieve"></a>
-# **apiDevicesRetrieve**
-> Device apiDevicesRetrieve(id)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = DevicesApi()
-val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
-try {
-    val result : Device = apiInstance.apiDevicesRetrieve(id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DevicesApi#apiDevicesRetrieve")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DevicesApi#apiDevicesRetrieve")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Int**| A unique integer value identifying this device. |
-
-### Return type
-
-[**Device**](Device.md)
 
 ### Authorization
 
@@ -212,6 +162,56 @@ Configure tokenAuth:
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+<a name="devicesRetrieve"></a>
+# **devicesRetrieve**
+> Device devicesRetrieve(id)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = DevicesApi()
+val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this device.
+try {
+    val result : Device = apiInstance.devicesRetrieve(id)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DevicesApi#devicesRetrieve")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DevicesApi#devicesRetrieve")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Int**| A unique integer value identifying this device. |
+
+### Return type
+
+[**Device**](Device.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="devicesUpdate"></a>
