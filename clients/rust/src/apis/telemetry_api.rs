@@ -13,86 +13,86 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `api_octoprint_events_create`
+/// struct for typed errors of method `octoprint_events_create`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiOctoprintEventsCreateError {
+pub enum OctoprintEventsCreateError {
     Status400(crate::models::OctoPrintEvent),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_octoprint_events_list`
+/// struct for typed errors of method `octoprint_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiOctoprintEventsListError {
+pub enum OctoprintEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_octoprint_events_retrieve`
+/// struct for typed errors of method `octoprint_events_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiOctoprintEventsRetrieveError {
+pub enum OctoprintEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_print_job_events_list`
+/// struct for typed errors of method `print_job_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiPrintJobEventsListError {
+pub enum PrintJobEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_print_job_events_retrieve`
+/// struct for typed errors of method `print_job_events_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiPrintJobEventsRetrieveError {
+pub enum PrintJobEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_print_nanny_plugin_events_list`
+/// struct for typed errors of method `print_nanny_plugin_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiPrintNannyPluginEventsListError {
+pub enum PrintNannyPluginEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_print_nanny_plugin_events_retrieve`
+/// struct for typed errors of method `print_nanny_plugin_events_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiPrintNannyPluginEventsRetrieveError {
+pub enum PrintNannyPluginEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_remote_command_events_list`
+/// struct for typed errors of method `remote_command_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiRemoteCommandEventsListError {
+pub enum RemoteCommandEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_remote_command_events_retrieve`
+/// struct for typed errors of method `remote_command_events_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiRemoteCommandEventsRetrieveError {
+pub enum RemoteCommandEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_telemetry_events_list`
+/// struct for typed errors of method `telemetry_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiTelemetryEventsListError {
+pub enum TelemetryEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_telemetry_events_retrieve`
+/// struct for typed errors of method `telemetry_events_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiTelemetryEventsRetrieveError {
+pub enum TelemetryEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
 
-pub async fn api_octoprint_events_create(configuration: &configuration::Configuration, octo_print_event_request: crate::models::OctoPrintEventRequest) -> Result<crate::models::OctoPrintEvent, Error<ApiOctoprintEventsCreateError>> {
+pub async fn octoprint_events_create(configuration: &configuration::Configuration, octo_print_event_request: crate::models::OctoPrintEventRequest) -> Result<crate::models::OctoPrintEvent, Error<OctoprintEventsCreateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -116,13 +116,13 @@ pub async fn api_octoprint_events_create(configuration: &configuration::Configur
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiOctoprintEventsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<OctoprintEventsCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_octoprint_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintEventList, Error<ApiOctoprintEventsListError>> {
+pub async fn octoprint_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintEventList, Error<OctoprintEventsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -148,13 +148,13 @@ pub async fn api_octoprint_events_list(configuration: &configuration::Configurat
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiOctoprintEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<OctoprintEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_octoprint_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintEvent, Error<ApiOctoprintEventsRetrieveError>> {
+pub async fn octoprint_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintEvent, Error<OctoprintEventsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -177,13 +177,13 @@ pub async fn api_octoprint_events_retrieve(configuration: &configuration::Config
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiOctoprintEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<OctoprintEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_print_job_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintJobEventList, Error<ApiPrintJobEventsListError>> {
+pub async fn print_job_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintJobEventList, Error<PrintJobEventsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -209,13 +209,13 @@ pub async fn api_print_job_events_list(configuration: &configuration::Configurat
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiPrintJobEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PrintJobEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_print_job_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintJobEvent, Error<ApiPrintJobEventsRetrieveError>> {
+pub async fn print_job_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintJobEvent, Error<PrintJobEventsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -238,13 +238,13 @@ pub async fn api_print_job_events_retrieve(configuration: &configuration::Config
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiPrintJobEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PrintJobEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_print_nanny_plugin_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintNannyPluginEventList, Error<ApiPrintNannyPluginEventsListError>> {
+pub async fn print_nanny_plugin_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintNannyPluginEventList, Error<PrintNannyPluginEventsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -270,13 +270,13 @@ pub async fn api_print_nanny_plugin_events_list(configuration: &configuration::C
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiPrintNannyPluginEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PrintNannyPluginEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_print_nanny_plugin_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintNannyPluginEvent, Error<ApiPrintNannyPluginEventsRetrieveError>> {
+pub async fn print_nanny_plugin_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintNannyPluginEvent, Error<PrintNannyPluginEventsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -299,13 +299,13 @@ pub async fn api_print_nanny_plugin_events_retrieve(configuration: &configuratio
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiPrintNannyPluginEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PrintNannyPluginEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_remote_command_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteCommandEventList, Error<ApiRemoteCommandEventsListError>> {
+pub async fn remote_command_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteCommandEventList, Error<RemoteCommandEventsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -331,13 +331,13 @@ pub async fn api_remote_command_events_list(configuration: &configuration::Confi
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiRemoteCommandEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<RemoteCommandEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_remote_command_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteCommandEvent, Error<ApiRemoteCommandEventsRetrieveError>> {
+pub async fn remote_command_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteCommandEvent, Error<RemoteCommandEventsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -360,13 +360,13 @@ pub async fn api_remote_command_events_retrieve(configuration: &configuration::C
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiRemoteCommandEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<RemoteCommandEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_telemetry_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedTelemetryEventPolymorphicList, Error<ApiTelemetryEventsListError>> {
+pub async fn telemetry_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedTelemetryEventPolymorphicList, Error<TelemetryEventsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -392,13 +392,13 @@ pub async fn api_telemetry_events_list(configuration: &configuration::Configurat
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiTelemetryEventsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<TelemetryEventsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_telemetry_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::TelemetryEventPolymorphic, Error<ApiTelemetryEventsRetrieveError>> {
+pub async fn telemetry_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::TelemetryEventPolymorphic, Error<TelemetryEventsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -421,7 +421,7 @@ pub async fn api_telemetry_events_retrieve(configuration: &configuration::Config
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiTelemetryEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<TelemetryEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

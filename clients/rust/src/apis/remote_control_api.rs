@@ -13,130 +13,31 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `api_commands_list`
+/// struct for typed errors of method `commands_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiCommandsListError {
+pub enum CommandsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_commands_partial_update`
+/// struct for typed errors of method `commands_partial_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiCommandsPartialUpdateError {
+pub enum CommandsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_commands_retrieve`
+/// struct for typed errors of method `commands_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiCommandsRetrieveError {
+pub enum CommandsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_commands_update`
+/// struct for typed errors of method `commands_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiCommandsUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_gcode_files_list`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiGcodeFilesListError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_gcode_files_partial_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiGcodeFilesPartialUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_gcode_files_retrieve`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiGcodeFilesRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_gcode_files_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiGcodeFilesUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_octoprint_devices_create`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiOctoprintDevicesCreateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_octoprint_devices_list`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiOctoprintDevicesListError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_octoprint_devices_retrieve`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiOctoprintDevicesRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_print_sessions_create`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrintSessionsCreateError {
-    Status400(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_print_sessions_list`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrintSessionsListError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_print_sessions_retrieve`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrintSessionsRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_printer_profiles_list`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrinterProfilesListError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_printer_profiles_partial_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrinterProfilesPartialUpdateError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_printer_profiles_retrieve`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrinterProfilesRetrieveError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method `api_printer_profiles_update`
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ApiPrinterProfilesUpdateError {
+pub enum CommandsUpdateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -148,6 +49,34 @@ pub enum GcodeFilesCreateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method `gcode_files_list`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GcodeFilesListError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `gcode_files_partial_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GcodeFilesPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `gcode_files_retrieve`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GcodeFilesRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `gcode_files_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GcodeFilesUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method `gcode_files_update_or_create`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -156,10 +85,31 @@ pub enum GcodeFilesUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method `octoprint_devices_create`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum OctoprintDevicesCreateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `octoprint_devices_list`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum OctoprintDevicesListError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method `octoprint_devices_partial_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `octoprint_devices_retrieve`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum OctoprintDevicesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
@@ -194,11 +144,61 @@ pub enum PrintSessionUpdateError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method `print_sessions_create`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrintSessionsCreateError {
+    Status400(crate::models::PrintSession),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `print_sessions_list`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrintSessionsListError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `print_sessions_retrieve`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrintSessionsRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method `printer_profiles_create`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesCreateError {
     Status400(crate::models::PrintSession),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `printer_profiles_list`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrinterProfilesListError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `printer_profiles_partial_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrinterProfilesPartialUpdateError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `printer_profiles_retrieve`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrinterProfilesRetrieveError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method `printer_profiles_update`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrinterProfilesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
@@ -210,7 +210,7 @@ pub enum PrinterProfilesUpdateOrCreateError {
 }
 
 
-pub async fn api_commands_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteControlCommandList, Error<ApiCommandsListError>> {
+pub async fn commands_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteControlCommandList, Error<CommandsListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -236,13 +236,13 @@ pub async fn api_commands_list(configuration: &configuration::Configuration, pag
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiCommandsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<CommandsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_commands_partial_update(configuration: &configuration::Configuration, id: i32, patched_remote_control_command_request: Option<crate::models::PatchedRemoteControlCommandRequest>) -> Result<crate::models::RemoteControlCommand, Error<ApiCommandsPartialUpdateError>> {
+pub async fn commands_partial_update(configuration: &configuration::Configuration, id: i32, patched_remote_control_command_request: Option<crate::models::PatchedRemoteControlCommandRequest>) -> Result<crate::models::RemoteControlCommand, Error<CommandsPartialUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -266,13 +266,13 @@ pub async fn api_commands_partial_update(configuration: &configuration::Configur
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiCommandsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<CommandsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_commands_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteControlCommand, Error<ApiCommandsRetrieveError>> {
+pub async fn commands_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteControlCommand, Error<CommandsRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -295,13 +295,13 @@ pub async fn api_commands_retrieve(configuration: &configuration::Configuration,
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiCommandsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<CommandsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_commands_update(configuration: &configuration::Configuration, id: i32, remote_control_command_request: crate::models::RemoteControlCommandRequest) -> Result<crate::models::RemoteControlCommand, Error<ApiCommandsUpdateError>> {
+pub async fn commands_update(configuration: &configuration::Configuration, id: i32, remote_control_command_request: crate::models::RemoteControlCommandRequest) -> Result<crate::models::RemoteControlCommand, Error<CommandsUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -325,453 +325,7 @@ pub async fn api_commands_update(configuration: &configuration::Configuration, i
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiCommandsUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_gcode_files_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedGcodeFileList, Error<ApiGcodeFilesListError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiGcodeFilesListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_gcode_files_partial_update(configuration: &configuration::Configuration, id: &str, name: Option<&str>, file: Option<std::path::PathBuf>, file_hash: Option<&str>, octoprint_device: Option<&str>) -> Result<crate::models::GcodeFile, Error<ApiGcodeFilesPartialUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    let mut local_var_form = reqwest::multipart::Form::new();
-    if let Some(local_var_param_value) = name {
-        local_var_form = local_var_form.text("name", local_var_param_value.to_string());
-    }
-    // TODO: support file upload for 'file' parameter
-    if let Some(local_var_param_value) = file_hash {
-        local_var_form = local_var_form.text("file_hash", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = octoprint_device {
-        local_var_form = local_var_form.text("octoprint_device", local_var_param_value.to_string());
-    }
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiGcodeFilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_gcode_files_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::GcodeFile, Error<ApiGcodeFilesRetrieveError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiGcodeFilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_gcode_files_update(configuration: &configuration::Configuration, id: &str, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<ApiGcodeFilesUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    let mut local_var_form = reqwest::multipart::Form::new();
-    local_var_form = local_var_form.text("name", name.to_string());
-    // TODO: support file upload for 'file' parameter
-    local_var_form = local_var_form.text("file_hash", file_hash.to_string());
-    local_var_form = local_var_form.text("octoprint_device", octoprint_device.to_string());
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiGcodeFilesUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_octoprint_devices_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<ApiOctoprintDevicesCreateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&octo_print_device_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiOctoprintDevicesCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_octoprint_devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintDeviceList, Error<ApiOctoprintDevicesListError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiOctoprintDevicesListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_octoprint_devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintDevice, Error<ApiOctoprintDevicesRetrieveError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiOctoprintDevicesRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_print_sessions_create(configuration: &configuration::Configuration, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<ApiPrintSessionsCreateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&print_session_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrintSessionsCreateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_print_sessions_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintSessionList, Error<ApiPrintSessionsListError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrintSessionsListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_print_sessions_retrieve(configuration: &configuration::Configuration, session: &str) -> Result<crate::models::PrintSession, Error<ApiPrintSessionsRetrieveError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrintSessionsRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_printer_profiles_list(configuration: &configuration::Configuration, name: Option<&str>, page: Option<i32>, user: Option<i32>) -> Result<crate::models::PaginatedPrinterProfileList, Error<ApiPrinterProfilesListError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = name {
-        local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = page {
-        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = user {
-        local_var_req_builder = local_var_req_builder.query(&[("user", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrinterProfilesListError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_printer_profiles_partial_update(configuration: &configuration::Configuration, id: i32, patched_printer_profile_request: Option<crate::models::PatchedPrinterProfileRequest>) -> Result<crate::models::PrinterProfile, Error<ApiPrinterProfilesPartialUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&patched_printer_profile_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrinterProfilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_printer_profiles_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrinterProfile, Error<ApiPrinterProfilesRetrieveError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrinterProfilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-pub async fn api_printer_profiles_update(configuration: &configuration::Configuration, id: i32, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<ApiPrinterProfilesUpdateError>> {
-
-    let local_var_client = &configuration.client;
-
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
-        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&printer_profile_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<ApiPrinterProfilesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<CommandsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -812,6 +366,143 @@ pub async fn gcode_files_create(configuration: &configuration::Configuration, na
     }
 }
 
+pub async fn gcode_files_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedGcodeFileList, Error<GcodeFilesListError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GcodeFilesListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn gcode_files_partial_update(configuration: &configuration::Configuration, id: &str, name: Option<&str>, file: Option<std::path::PathBuf>, file_hash: Option<&str>, octoprint_device: Option<&str>) -> Result<crate::models::GcodeFile, Error<GcodeFilesPartialUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    let mut local_var_form = reqwest::multipart::Form::new();
+    if let Some(local_var_param_value) = name {
+        local_var_form = local_var_form.text("name", local_var_param_value.to_string());
+    }
+    // TODO: support file upload for 'file' parameter
+    if let Some(local_var_param_value) = file_hash {
+        local_var_form = local_var_form.text("file_hash", local_var_param_value.to_string());
+    }
+    if let Some(local_var_param_value) = octoprint_device {
+        local_var_form = local_var_form.text("octoprint_device", local_var_param_value.to_string());
+    }
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GcodeFilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesRetrieveError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GcodeFilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn gcode_files_update(configuration: &configuration::Configuration, id: &str, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    let mut local_var_form = reqwest::multipart::Form::new();
+    local_var_form = local_var_form.text("name", name.to_string());
+    // TODO: support file upload for 'file' parameter
+    local_var_form = local_var_form.text("file_hash", file_hash.to_string());
+    local_var_form = local_var_form.text("octoprint_device", octoprint_device.to_string());
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GcodeFilesUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 pub async fn gcode_files_update_or_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateOrCreateError>> {
 
     let local_var_client = &configuration.client;
@@ -847,6 +538,68 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
     }
 }
 
+pub async fn octoprint_devices_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesCreateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&octo_print_device_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<OctoprintDevicesCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn octoprint_devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintDeviceList, Error<OctoprintDevicesListError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<OctoprintDevicesListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesPartialUpdateError>> {
 
     let local_var_client = &configuration.client;
@@ -872,6 +625,35 @@ pub async fn octoprint_devices_partial_update(configuration: &configuration::Con
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn octoprint_devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesRetrieveError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<OctoprintDevicesRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -997,6 +779,97 @@ pub async fn print_session_update(configuration: &configuration::Configuration, 
     }
 }
 
+pub async fn print_sessions_create(configuration: &configuration::Configuration, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<PrintSessionsCreateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&print_session_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrintSessionsCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn print_sessions_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintSessionList, Error<PrintSessionsListError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrintSessionsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn print_sessions_retrieve(configuration: &configuration::Configuration, session: &str) -> Result<crate::models::PrintSession, Error<PrintSessionsRetrieveError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrintSessionsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 pub async fn printer_profiles_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrintSession, Error<PrinterProfilesCreateError>> {
 
     let local_var_client = &configuration.client;
@@ -1022,6 +895,133 @@ pub async fn printer_profiles_create(configuration: &configuration::Configuratio
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesCreateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn printer_profiles_list(configuration: &configuration::Configuration, name: Option<&str>, page: Option<i32>, user: Option<i32>) -> Result<crate::models::PaginatedPrinterProfileList, Error<PrinterProfilesListError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = name {
+        local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = page {
+        local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = user {
+        local_var_req_builder = local_var_req_builder.query(&[("user", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrinterProfilesListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn printer_profiles_partial_update(configuration: &configuration::Configuration, id: i32, patched_printer_profile_request: Option<crate::models::PatchedPrinterProfileRequest>) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesPartialUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&patched_printer_profile_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrinterProfilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn printer_profiles_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesRetrieveError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrinterProfilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn printer_profiles_update(configuration: &configuration::Configuration, id: i32, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesUpdateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&printer_profile_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrinterProfilesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

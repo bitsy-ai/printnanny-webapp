@@ -44,8 +44,8 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsList(id: kotlin.String) : Partner3DGeeksAlert {
-        val localVariableConfig = alertsListRequestConfig(id = id)
+    fun alertsList2(id: kotlin.String) : Partner3DGeeksAlert {
+        val localVariableConfig = alertsList2RequestConfig(id = id)
 
         val localVarResponse = request<Partner3DGeeksAlert>(
             localVariableConfig
@@ -67,12 +67,12 @@ class PartnersGeeks3Api(basePath: kotlin.String = defaultBasePath) : ApiClient(b
     }
 
     /**
-    * To obtain the request config of the operation alertsList
+    * To obtain the request config of the operation alertsList2
     *
     * @param id  
     * @return RequestConfig
     */
-    fun alertsListRequestConfig(id: kotlin.String) : RequestConfig {
+    fun alertsList2RequestConfig(id: kotlin.String) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

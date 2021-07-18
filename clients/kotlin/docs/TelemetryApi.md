@@ -4,22 +4,22 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiOctoprintEventsCreate**](TelemetryApi.md#apiOctoprintEventsCreate) | **POST** /api/octoprint-events/ | 
-[**apiOctoprintEventsList**](TelemetryApi.md#apiOctoprintEventsList) | **GET** /api/octoprint-events/ | 
-[**apiOctoprintEventsRetrieve**](TelemetryApi.md#apiOctoprintEventsRetrieve) | **GET** /api/octoprint-events/{id}/ | 
-[**apiPrintJobEventsList**](TelemetryApi.md#apiPrintJobEventsList) | **GET** /api/print-job-events/ | 
-[**apiPrintJobEventsRetrieve**](TelemetryApi.md#apiPrintJobEventsRetrieve) | **GET** /api/print-job-events/{id}/ | 
-[**apiPrintNannyPluginEventsList**](TelemetryApi.md#apiPrintNannyPluginEventsList) | **GET** /api/print-nanny-plugin-events/ | 
-[**apiPrintNannyPluginEventsRetrieve**](TelemetryApi.md#apiPrintNannyPluginEventsRetrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
-[**apiRemoteCommandEventsList**](TelemetryApi.md#apiRemoteCommandEventsList) | **GET** /api/remote-command-events/ | 
-[**apiRemoteCommandEventsRetrieve**](TelemetryApi.md#apiRemoteCommandEventsRetrieve) | **GET** /api/remote-command-events/{id}/ | 
-[**apiTelemetryEventsList**](TelemetryApi.md#apiTelemetryEventsList) | **GET** /api/telemetry-events/ | 
-[**apiTelemetryEventsRetrieve**](TelemetryApi.md#apiTelemetryEventsRetrieve) | **GET** /api/telemetry-events/{id}/ | 
+[**octoprintEventsCreate**](TelemetryApi.md#octoprintEventsCreate) | **POST** /api/octoprint-events/ | 
+[**octoprintEventsList**](TelemetryApi.md#octoprintEventsList) | **GET** /api/octoprint-events/ | 
+[**octoprintEventsRetrieve**](TelemetryApi.md#octoprintEventsRetrieve) | **GET** /api/octoprint-events/{id}/ | 
+[**printJobEventsList**](TelemetryApi.md#printJobEventsList) | **GET** /api/print-job-events/ | 
+[**printJobEventsRetrieve**](TelemetryApi.md#printJobEventsRetrieve) | **GET** /api/print-job-events/{id}/ | 
+[**printNannyPluginEventsList**](TelemetryApi.md#printNannyPluginEventsList) | **GET** /api/print-nanny-plugin-events/ | 
+[**printNannyPluginEventsRetrieve**](TelemetryApi.md#printNannyPluginEventsRetrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+[**remoteCommandEventsList**](TelemetryApi.md#remoteCommandEventsList) | **GET** /api/remote-command-events/ | 
+[**remoteCommandEventsRetrieve**](TelemetryApi.md#remoteCommandEventsRetrieve) | **GET** /api/remote-command-events/{id}/ | 
+[**telemetryEventsList**](TelemetryApi.md#telemetryEventsList) | **GET** /api/telemetry-events/ | 
+[**telemetryEventsRetrieve**](TelemetryApi.md#telemetryEventsRetrieve) | **GET** /api/telemetry-events/{id}/ | 
 
 
-<a name="apiOctoprintEventsCreate"></a>
-# **apiOctoprintEventsCreate**
-> OctoPrintEvent apiOctoprintEventsCreate(octoPrintEventRequest)
+<a name="octoprintEventsCreate"></a>
+# **octoprintEventsCreate**
+> OctoPrintEvent octoprintEventsCreate(octoPrintEventRequest)
 
 
 
@@ -32,13 +32,13 @@ Method | HTTP request | Description
 val apiInstance = TelemetryApi()
 val octoPrintEventRequest : OctoPrintEventRequest =  // OctoPrintEventRequest | 
 try {
-    val result : OctoPrintEvent = apiInstance.apiOctoprintEventsCreate(octoPrintEventRequest)
+    val result : OctoPrintEvent = apiInstance.octoprintEventsCreate(octoPrintEventRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiOctoprintEventsCreate")
+    println("4xx response calling TelemetryApi#octoprintEventsCreate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiOctoprintEventsCreate")
+    println("5xx response calling TelemetryApi#octoprintEventsCreate")
     e.printStackTrace()
 }
 ```
@@ -67,9 +67,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="apiOctoprintEventsList"></a>
-# **apiOctoprintEventsList**
-> PaginatedOctoPrintEventList apiOctoprintEventsList(page)
+<a name="octoprintEventsList"></a>
+# **octoprintEventsList**
+> PaginatedOctoPrintEventList octoprintEventsList(page)
 
 
 
@@ -82,13 +82,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedOctoPrintEventList = apiInstance.apiOctoprintEventsList(page)
+    val result : PaginatedOctoPrintEventList = apiInstance.octoprintEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiOctoprintEventsList")
+    println("4xx response calling TelemetryApi#octoprintEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiOctoprintEventsList")
+    println("5xx response calling TelemetryApi#octoprintEventsList")
     e.printStackTrace()
 }
 ```
@@ -117,9 +117,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiOctoprintEventsRetrieve"></a>
-# **apiOctoprintEventsRetrieve**
-> OctoPrintEvent apiOctoprintEventsRetrieve(id)
+<a name="octoprintEventsRetrieve"></a>
+# **octoprintEventsRetrieve**
+> OctoPrintEvent octoprintEventsRetrieve(id)
 
 
 
@@ -132,13 +132,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this octo print event.
 try {
-    val result : OctoPrintEvent = apiInstance.apiOctoprintEventsRetrieve(id)
+    val result : OctoPrintEvent = apiInstance.octoprintEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiOctoprintEventsRetrieve")
+    println("4xx response calling TelemetryApi#octoprintEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiOctoprintEventsRetrieve")
+    println("5xx response calling TelemetryApi#octoprintEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -167,9 +167,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiPrintJobEventsList"></a>
-# **apiPrintJobEventsList**
-> PaginatedPrintJobEventList apiPrintJobEventsList(page)
+<a name="printJobEventsList"></a>
+# **printJobEventsList**
+> PaginatedPrintJobEventList printJobEventsList(page)
 
 
 
@@ -182,13 +182,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedPrintJobEventList = apiInstance.apiPrintJobEventsList(page)
+    val result : PaginatedPrintJobEventList = apiInstance.printJobEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiPrintJobEventsList")
+    println("4xx response calling TelemetryApi#printJobEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiPrintJobEventsList")
+    println("5xx response calling TelemetryApi#printJobEventsList")
     e.printStackTrace()
 }
 ```
@@ -217,9 +217,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiPrintJobEventsRetrieve"></a>
-# **apiPrintJobEventsRetrieve**
-> PrintJobEvent apiPrintJobEventsRetrieve(id)
+<a name="printJobEventsRetrieve"></a>
+# **printJobEventsRetrieve**
+> PrintJobEvent printJobEventsRetrieve(id)
 
 
 
@@ -232,13 +232,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print job event.
 try {
-    val result : PrintJobEvent = apiInstance.apiPrintJobEventsRetrieve(id)
+    val result : PrintJobEvent = apiInstance.printJobEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiPrintJobEventsRetrieve")
+    println("4xx response calling TelemetryApi#printJobEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiPrintJobEventsRetrieve")
+    println("5xx response calling TelemetryApi#printJobEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -267,9 +267,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiPrintNannyPluginEventsList"></a>
-# **apiPrintNannyPluginEventsList**
-> PaginatedPrintNannyPluginEventList apiPrintNannyPluginEventsList(page)
+<a name="printNannyPluginEventsList"></a>
+# **printNannyPluginEventsList**
+> PaginatedPrintNannyPluginEventList printNannyPluginEventsList(page)
 
 
 
@@ -282,13 +282,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedPrintNannyPluginEventList = apiInstance.apiPrintNannyPluginEventsList(page)
+    val result : PaginatedPrintNannyPluginEventList = apiInstance.printNannyPluginEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiPrintNannyPluginEventsList")
+    println("4xx response calling TelemetryApi#printNannyPluginEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiPrintNannyPluginEventsList")
+    println("5xx response calling TelemetryApi#printNannyPluginEventsList")
     e.printStackTrace()
 }
 ```
@@ -317,9 +317,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiPrintNannyPluginEventsRetrieve"></a>
-# **apiPrintNannyPluginEventsRetrieve**
-> PrintNannyPluginEvent apiPrintNannyPluginEventsRetrieve(id)
+<a name="printNannyPluginEventsRetrieve"></a>
+# **printNannyPluginEventsRetrieve**
+> PrintNannyPluginEvent printNannyPluginEventsRetrieve(id)
 
 
 
@@ -332,13 +332,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this print nanny plugin event.
 try {
-    val result : PrintNannyPluginEvent = apiInstance.apiPrintNannyPluginEventsRetrieve(id)
+    val result : PrintNannyPluginEvent = apiInstance.printNannyPluginEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiPrintNannyPluginEventsRetrieve")
+    println("4xx response calling TelemetryApi#printNannyPluginEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiPrintNannyPluginEventsRetrieve")
+    println("5xx response calling TelemetryApi#printNannyPluginEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -367,9 +367,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiRemoteCommandEventsList"></a>
-# **apiRemoteCommandEventsList**
-> PaginatedRemoteCommandEventList apiRemoteCommandEventsList(page)
+<a name="remoteCommandEventsList"></a>
+# **remoteCommandEventsList**
+> PaginatedRemoteCommandEventList remoteCommandEventsList(page)
 
 
 
@@ -382,13 +382,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedRemoteCommandEventList = apiInstance.apiRemoteCommandEventsList(page)
+    val result : PaginatedRemoteCommandEventList = apiInstance.remoteCommandEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiRemoteCommandEventsList")
+    println("4xx response calling TelemetryApi#remoteCommandEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiRemoteCommandEventsList")
+    println("5xx response calling TelemetryApi#remoteCommandEventsList")
     e.printStackTrace()
 }
 ```
@@ -417,9 +417,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiRemoteCommandEventsRetrieve"></a>
-# **apiRemoteCommandEventsRetrieve**
-> RemoteCommandEvent apiRemoteCommandEventsRetrieve(id)
+<a name="remoteCommandEventsRetrieve"></a>
+# **remoteCommandEventsRetrieve**
+> RemoteCommandEvent remoteCommandEventsRetrieve(id)
 
 
 
@@ -432,13 +432,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this remote command event.
 try {
-    val result : RemoteCommandEvent = apiInstance.apiRemoteCommandEventsRetrieve(id)
+    val result : RemoteCommandEvent = apiInstance.remoteCommandEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiRemoteCommandEventsRetrieve")
+    println("4xx response calling TelemetryApi#remoteCommandEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiRemoteCommandEventsRetrieve")
+    println("5xx response calling TelemetryApi#remoteCommandEventsRetrieve")
     e.printStackTrace()
 }
 ```
@@ -467,9 +467,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiTelemetryEventsList"></a>
-# **apiTelemetryEventsList**
-> PaginatedTelemetryEventPolymorphicList apiTelemetryEventsList(page)
+<a name="telemetryEventsList"></a>
+# **telemetryEventsList**
+> PaginatedTelemetryEventPolymorphicList telemetryEventsList(page)
 
 
 
@@ -482,13 +482,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedTelemetryEventPolymorphicList = apiInstance.apiTelemetryEventsList(page)
+    val result : PaginatedTelemetryEventPolymorphicList = apiInstance.telemetryEventsList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiTelemetryEventsList")
+    println("4xx response calling TelemetryApi#telemetryEventsList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiTelemetryEventsList")
+    println("5xx response calling TelemetryApi#telemetryEventsList")
     e.printStackTrace()
 }
 ```
@@ -517,9 +517,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiTelemetryEventsRetrieve"></a>
-# **apiTelemetryEventsRetrieve**
-> TelemetryEventPolymorphic apiTelemetryEventsRetrieve(id)
+<a name="telemetryEventsRetrieve"></a>
+# **telemetryEventsRetrieve**
+> TelemetryEventPolymorphic telemetryEventsRetrieve(id)
 
 
 
@@ -532,13 +532,13 @@ Configure tokenAuth:
 val apiInstance = TelemetryApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this telemetry event.
 try {
-    val result : TelemetryEventPolymorphic = apiInstance.apiTelemetryEventsRetrieve(id)
+    val result : TelemetryEventPolymorphic = apiInstance.telemetryEventsRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling TelemetryApi#apiTelemetryEventsRetrieve")
+    println("4xx response calling TelemetryApi#telemetryEventsRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling TelemetryApi#apiTelemetryEventsRetrieve")
+    println("5xx response calling TelemetryApi#telemetryEventsRetrieve")
     e.printStackTrace()
 }
 ```

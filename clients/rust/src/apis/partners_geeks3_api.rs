@@ -13,15 +13,15 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `alerts_list`
+/// struct for typed errors of method `alerts_list2`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum AlertsListError {
+pub enum AlertsList2Error {
     UnknownValue(serde_json::Value),
 }
 
 
-pub async fn alerts_list(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Partner3DGeeksAlert, Error<AlertsListError>> {
+pub async fn alerts_list2(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Partner3DGeeksAlert, Error<AlertsList2Error>> {
 
     let local_var_client = &configuration.client;
 
@@ -44,7 +44,7 @@ pub async fn alerts_list(configuration: &configuration::Configuration, id: &str)
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<AlertsListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<AlertsList2Error> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

@@ -314,14 +314,14 @@ class AuthApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def auth_token_create(self, callback_token_auth_request, **kwargs):  # noqa: E501
-        """auth_token_create  # noqa: E501
+    def auth_token_create2(self, callback_token_auth_request, **kwargs):  # noqa: E501
+        """auth_token_create2  # noqa: E501
 
         This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.auth_token_create(callback_token_auth_request, async_req=True)
+        >>> thread = api.auth_token_create2(callback_token_auth_request, async_req=True)
         >>> result = thread.get()
 
         :param callback_token_auth_request: (required)
@@ -342,16 +342,16 @@ class AuthApi(object):
         :rtype: TokenResponse
         """
         kwargs['_return_http_data_only'] = True
-        return self.auth_token_create_with_http_info(callback_token_auth_request, **kwargs)  # noqa: E501
+        return self.auth_token_create2_with_http_info(callback_token_auth_request, **kwargs)  # noqa: E501
 
-    def auth_token_create_with_http_info(self, callback_token_auth_request, **kwargs):  # noqa: E501
-        """auth_token_create  # noqa: E501
+    def auth_token_create2_with_http_info(self, callback_token_auth_request, **kwargs):  # noqa: E501
+        """auth_token_create2  # noqa: E501
 
         This is a duplicate of rest_framework's own ObtainAuthToken method. Instead, this returns an Auth Token based on our callback token and source.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.auth_token_create_with_http_info(callback_token_auth_request, async_req=True)
+        >>> thread = api.auth_token_create2_with_http_info(callback_token_auth_request, async_req=True)
         >>> result = thread.get()
 
         :param callback_token_auth_request: (required)
@@ -398,14 +398,14 @@ class AuthApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method auth_token_create" % key
+                    " to method auth_token_create2" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'callback_token_auth_request' is set
         if self.api_client.client_side_validation and ('callback_token_auth_request' not in local_var_params or  # noqa: E501
                                                         local_var_params['callback_token_auth_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `callback_token_auth_request` when calling `auth_token_create`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `callback_token_auth_request` when calling `auth_token_create2`")  # noqa: E501
 
         collection_formats = {}
 

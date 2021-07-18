@@ -28,8 +28,26 @@ class TestAlertsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_alerts_list(self):
+        """Test case for alerts_list
+
+        """
+        pass
+
+    def test_alerts_partial_update(self):
+        """Test case for alerts_partial_update
+
+        """
+        pass
+
     def test_alerts_recent(self):
         """Test case for alerts_recent
+
+        """
+        pass
+
+    def test_alerts_retrieve(self):
+        """Test case for alerts_retrieve
 
         """
         pass
@@ -42,6 +60,12 @@ class TestAlertsApi(unittest.TestCase):
 
     def test_alerts_unread(self):
         """Test case for alerts_unread
+
+        """
+        pass
+
+    def test_alerts_update(self):
+        """Test case for alerts_update
 
         """
         pass

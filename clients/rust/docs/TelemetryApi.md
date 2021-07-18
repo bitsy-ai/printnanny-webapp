@@ -4,23 +4,23 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_octoprint_events_create**](TelemetryApi.md#api_octoprint_events_create) | **post** /api/octoprint-events/ | 
-[**api_octoprint_events_list**](TelemetryApi.md#api_octoprint_events_list) | **get** /api/octoprint-events/ | 
-[**api_octoprint_events_retrieve**](TelemetryApi.md#api_octoprint_events_retrieve) | **get** /api/octoprint-events/{id}/ | 
-[**api_print_job_events_list**](TelemetryApi.md#api_print_job_events_list) | **get** /api/print-job-events/ | 
-[**api_print_job_events_retrieve**](TelemetryApi.md#api_print_job_events_retrieve) | **get** /api/print-job-events/{id}/ | 
-[**api_print_nanny_plugin_events_list**](TelemetryApi.md#api_print_nanny_plugin_events_list) | **get** /api/print-nanny-plugin-events/ | 
-[**api_print_nanny_plugin_events_retrieve**](TelemetryApi.md#api_print_nanny_plugin_events_retrieve) | **get** /api/print-nanny-plugin-events/{id}/ | 
-[**api_remote_command_events_list**](TelemetryApi.md#api_remote_command_events_list) | **get** /api/remote-command-events/ | 
-[**api_remote_command_events_retrieve**](TelemetryApi.md#api_remote_command_events_retrieve) | **get** /api/remote-command-events/{id}/ | 
-[**api_telemetry_events_list**](TelemetryApi.md#api_telemetry_events_list) | **get** /api/telemetry-events/ | 
-[**api_telemetry_events_retrieve**](TelemetryApi.md#api_telemetry_events_retrieve) | **get** /api/telemetry-events/{id}/ | 
+[**octoprint_events_create**](TelemetryApi.md#octoprint_events_create) | **post** /api/octoprint-events/ | 
+[**octoprint_events_list**](TelemetryApi.md#octoprint_events_list) | **get** /api/octoprint-events/ | 
+[**octoprint_events_retrieve**](TelemetryApi.md#octoprint_events_retrieve) | **get** /api/octoprint-events/{id}/ | 
+[**print_job_events_list**](TelemetryApi.md#print_job_events_list) | **get** /api/print-job-events/ | 
+[**print_job_events_retrieve**](TelemetryApi.md#print_job_events_retrieve) | **get** /api/print-job-events/{id}/ | 
+[**print_nanny_plugin_events_list**](TelemetryApi.md#print_nanny_plugin_events_list) | **get** /api/print-nanny-plugin-events/ | 
+[**print_nanny_plugin_events_retrieve**](TelemetryApi.md#print_nanny_plugin_events_retrieve) | **get** /api/print-nanny-plugin-events/{id}/ | 
+[**remote_command_events_list**](TelemetryApi.md#remote_command_events_list) | **get** /api/remote-command-events/ | 
+[**remote_command_events_retrieve**](TelemetryApi.md#remote_command_events_retrieve) | **get** /api/remote-command-events/{id}/ | 
+[**telemetry_events_list**](TelemetryApi.md#telemetry_events_list) | **get** /api/telemetry-events/ | 
+[**telemetry_events_retrieve**](TelemetryApi.md#telemetry_events_retrieve) | **get** /api/telemetry-events/{id}/ | 
 
 
 
-## api_octoprint_events_create
+## octoprint_events_create
 
-> crate::models::OctoPrintEvent api_octoprint_events_create(octo_print_event_request)
+> crate::models::OctoPrintEvent octoprint_events_create(octo_print_event_request)
 
 
 ### Parameters
@@ -46,9 +46,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_octoprint_events_list
+## octoprint_events_list
 
-> crate::models::PaginatedOctoPrintEventList api_octoprint_events_list(page)
+> crate::models::PaginatedOctoPrintEventList octoprint_events_list(page)
 
 
 ### Parameters
@@ -74,9 +74,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_octoprint_events_retrieve
+## octoprint_events_retrieve
 
-> crate::models::OctoPrintEvent api_octoprint_events_retrieve(id)
+> crate::models::OctoPrintEvent octoprint_events_retrieve(id)
 
 
 ### Parameters
@@ -102,9 +102,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_print_job_events_list
+## print_job_events_list
 
-> crate::models::PaginatedPrintJobEventList api_print_job_events_list(page)
+> crate::models::PaginatedPrintJobEventList print_job_events_list(page)
 
 
 ### Parameters
@@ -130,9 +130,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_print_job_events_retrieve
+## print_job_events_retrieve
 
-> crate::models::PrintJobEvent api_print_job_events_retrieve(id)
+> crate::models::PrintJobEvent print_job_events_retrieve(id)
 
 
 ### Parameters
@@ -158,9 +158,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_print_nanny_plugin_events_list
+## print_nanny_plugin_events_list
 
-> crate::models::PaginatedPrintNannyPluginEventList api_print_nanny_plugin_events_list(page)
+> crate::models::PaginatedPrintNannyPluginEventList print_nanny_plugin_events_list(page)
 
 
 ### Parameters
@@ -186,9 +186,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_print_nanny_plugin_events_retrieve
+## print_nanny_plugin_events_retrieve
 
-> crate::models::PrintNannyPluginEvent api_print_nanny_plugin_events_retrieve(id)
+> crate::models::PrintNannyPluginEvent print_nanny_plugin_events_retrieve(id)
 
 
 ### Parameters
@@ -214,9 +214,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_remote_command_events_list
+## remote_command_events_list
 
-> crate::models::PaginatedRemoteCommandEventList api_remote_command_events_list(page)
+> crate::models::PaginatedRemoteCommandEventList remote_command_events_list(page)
 
 
 ### Parameters
@@ -242,9 +242,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_remote_command_events_retrieve
+## remote_command_events_retrieve
 
-> crate::models::RemoteCommandEvent api_remote_command_events_retrieve(id)
+> crate::models::RemoteCommandEvent remote_command_events_retrieve(id)
 
 
 ### Parameters
@@ -270,9 +270,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_telemetry_events_list
+## telemetry_events_list
 
-> crate::models::PaginatedTelemetryEventPolymorphicList api_telemetry_events_list(page)
+> crate::models::PaginatedTelemetryEventPolymorphicList telemetry_events_list(page)
 
 
 ### Parameters
@@ -298,9 +298,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## api_telemetry_events_retrieve
+## telemetry_events_retrieve
 
-> crate::models::TelemetryEventPolymorphic api_telemetry_events_retrieve(id)
+> crate::models::TelemetryEventPolymorphic telemetry_events_retrieve(id)
 
 
 ### Parameters

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alerts_list**](PartnersGeeks3Api.md#alerts_list) | **get** /api/partners/3d-geeks/{id}/alerts/ | 
+[**alerts_list2**](PartnersGeeks3Api.md#alerts_list2) | **get** /api/partners/3d-geeks/{id}/alerts/ | 
 
 
 
-## alerts_list
+## alerts_list2
 
-> crate::models::Partner3DGeeksAlert alerts_list(id)
+> crate::models::Partner3DGeeksAlert alerts_list2(id)
 
 
 ### Parameters

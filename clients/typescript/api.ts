@@ -4811,11 +4811,133 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/alerts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert message.
+         * @param {PatchedAlertRequest} [patchedAlertRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsPartialUpdate: async (id: number, patchedAlertRequest?: PatchedAlertRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertsPartialUpdate', 'id', id)
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         alertsRecent: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/alerts/recent/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this alert message.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('alertsRetrieve', 'id', id)
+            const localVarPath = `/api/alerts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4918,283 +5040,6 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
-    }
-};
-
-/**
- * AlertsApi - functional programming interface
- * @export
- */
-export const AlertsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = AlertsApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertsRecent(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsRecent(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSeen(patchedAlertBulkRequestRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async alertsUnread(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUnread(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
-
-/**
- * AlertsApi - factory interface
- * @export
- */
-export const AlertsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = AlertsApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsRecent(options?: any): AxiosPromise<AlertBulkResponse> {
-            return localVarFp.alertsRecent(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse> {
-            return localVarFp.alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        alertsUnread(options?: any): AxiosPromise<AlertBulkResponse> {
-            return localVarFp.alertsUnread(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * AlertsApi - interface
- * @export
- * @interface AlertsApi
- */
-export interface AlertsApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsRecent(options?: any): AxiosPromise<AlertBulkResponse>;
-
-    /**
-     * 
-     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse>;
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApiInterface
-     */
-    alertsUnread(options?: any): AxiosPromise<AlertBulkResponse>;
-
-}
-
-/**
- * AlertsApi - object-oriented interface
- * @export
- * @class AlertsApi
- * @extends {BaseAPI}
- */
-export class AlertsApi extends BaseAPI implements AlertsApiInterface {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsRecent(options?: any) {
-        return AlertsApiFp(this.configuration).alertsRecent(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any) {
-        return AlertsApiFp(this.configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AlertsApi
-     */
-    public alertsUnread(options?: any) {
-        return AlertsApiFp(this.configuration).alertsUnread(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-/**
- * ApiApi - axios parameter creator
- * @export
- */
-export const ApiApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAlertsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/alerts/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert message.
-         * @param {PatchedAlertRequest} [patchedAlertRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAlertsPartialUpdate: async (id: number, patchedAlertRequest?: PatchedAlertRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiAlertsPartialUpdate', 'id', id)
-            const localVarPath = `/api/alerts/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedAlertRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this alert message.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAlertsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiAlertsRetrieve', 'id', id)
-            const localVarPath = `/api/alerts/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * 
          * @param {number} id A unique integer value identifying this alert message.
@@ -5202,11 +5047,11 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAlertsUpdate: async (id: number, alertRequest: AlertRequest, options: any = {}): Promise<RequestArgs> => {
+        alertsUpdate: async (id: number, alertRequest: AlertRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiAlertsUpdate', 'id', id)
+            assertParamExists('alertsUpdate', 'id', id)
             // verify required parameter 'alertRequest' is not null or undefined
-            assertParamExists('apiAlertsUpdate', 'alertRequest', alertRequest)
+            assertParamExists('alertsUpdate', 'alertRequest', alertRequest)
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -5240,108 +5085,15 @@ export const ApiApiAxiosParamCreator = function (configuration?: Configuration) 
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAuthTokenCreate: async (username: string, password: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'username' is not null or undefined
-            assertParamExists('apiAuthTokenCreate', 'username', username)
-            // verify required parameter 'password' is not null or undefined
-            assertParamExists('apiAuthTokenCreate', 'password', password)
-            const localVarPath = `/api/auth-token/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (username !== undefined) { 
-                localVarFormParams.append('username', username as any);
-            }
-    
-            if (password !== undefined) { 
-                localVarFormParams.append('password', password as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSchemaRetrieve: async (lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/schema/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (lang !== undefined) {
-                localVarQueryParameter['lang'] = lang;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
 /**
- * ApiApi - functional programming interface
+ * AlertsApi - functional programming interface
  * @export
  */
-export const ApiApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ApiApiAxiosParamCreator(configuration)
+export const AlertsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AlertsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -5349,8 +5101,8 @@ export const ApiApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAlertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAlertsList(page, options);
+        async alertsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAlertList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5360,8 +5112,17 @@ export const ApiApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAlertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAlertsPartialUpdate(id, patchedAlertRequest, options);
+        async alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsPartialUpdate(id, patchedAlertRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsRecent(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsRecent(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5370,8 +5131,27 @@ export const ApiApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAlertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAlertsRetrieve(id, options);
+        async alertsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsSeen(patchedAlertBulkRequestRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async alertsUnread(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlertBulkResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUnread(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5381,40 +5161,19 @@ export const ApiApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAlertsUpdate(id: number, alertRequest: AlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAlertsUpdate(id, alertRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiAuthTokenCreate(username: string, password: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthToken>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAuthTokenCreate(username, password, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSchemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSchemaRetrieve(lang, options);
+        async alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUpdate(id, alertRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ApiApi - factory interface
+ * AlertsApi - factory interface
  * @export
  */
-export const ApiApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ApiApiFp(configuration)
+export const AlertsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AlertsApiFp(configuration)
     return {
         /**
          * 
@@ -5422,8 +5181,8 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAlertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList> {
-            return localVarFp.apiAlertsList(page, options).then((request) => request(axios, basePath));
+        alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList> {
+            return localVarFp.alertsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5432,8 +5191,16 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAlertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert> {
-            return localVarFp.apiAlertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(axios, basePath));
+        alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert> {
+            return localVarFp.alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsRecent(options?: any): AxiosPromise<AlertBulkResponse> {
+            return localVarFp.alertsRecent(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5441,8 +5208,25 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAlertsRetrieve(id: number, options?: any): AxiosPromise<Alert> {
-            return localVarFp.apiAlertsRetrieve(id, options).then((request) => request(axios, basePath));
+        alertsRetrieve(id: number, options?: any): AxiosPromise<Alert> {
+            return localVarFp.alertsRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse> {
+            return localVarFp.alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        alertsUnread(options?: any): AxiosPromise<AlertBulkResponse> {
+            return localVarFp.alertsUnread(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5451,45 +5235,26 @@ export const ApiApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAlertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert> {
-            return localVarFp.apiAlertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} username 
-         * @param {string} password 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiAuthTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken> {
-            return localVarFp.apiAuthTokenCreate(username, password, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSchemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): AxiosPromise<{ [key: string]: any; }> {
-            return localVarFp.apiSchemaRetrieve(lang, options).then((request) => request(axios, basePath));
+        alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert> {
+            return localVarFp.alertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ApiApi - interface
+ * AlertsApi - interface
  * @export
- * @interface ApiApi
+ * @interface AlertsApi
  */
-export interface ApiApiInterface {
+export interface AlertsApiInterface {
     /**
      * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApiInterface
+     * @memberof AlertsApiInterface
      */
-    apiAlertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList>;
+    alertsList(page?: number, options?: any): AxiosPromise<PaginatedAlertList>;
 
     /**
      * 
@@ -5497,18 +5262,43 @@ export interface ApiApiInterface {
      * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApiInterface
+     * @memberof AlertsApiInterface
      */
-    apiAlertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert>;
+    alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any): AxiosPromise<Alert>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsRecent(options?: any): AxiosPromise<AlertBulkResponse>;
 
     /**
      * 
      * @param {number} id A unique integer value identifying this alert message.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApiInterface
+     * @memberof AlertsApiInterface
      */
-    apiAlertsRetrieve(id: number, options?: any): AxiosPromise<Alert>;
+    alertsRetrieve(id: number, options?: any): AxiosPromise<Alert>;
+
+    /**
+     * 
+     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any): AxiosPromise<AlertBulkResponse>;
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApiInterface
+     */
+    alertsUnread(options?: any): AxiosPromise<AlertBulkResponse>;
 
     /**
      * 
@@ -5516,47 +5306,28 @@ export interface ApiApiInterface {
      * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApiInterface
+     * @memberof AlertsApiInterface
      */
-    apiAlertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert>;
-
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ApiApiInterface
-     */
-    apiAuthTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken>;
-
-    /**
-     * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-     * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ApiApiInterface
-     */
-    apiSchemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): AxiosPromise<{ [key: string]: any; }>;
+    alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert>;
 
 }
 
 /**
- * ApiApi - object-oriented interface
+ * AlertsApi - object-oriented interface
  * @export
- * @class ApiApi
+ * @class AlertsApi
  * @extends {BaseAPI}
  */
-export class ApiApi extends BaseAPI implements ApiApiInterface {
+export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApi
+     * @memberof AlertsApi
      */
-    public apiAlertsList(page?: number, options?: any) {
-        return ApiApiFp(this.configuration).apiAlertsList(page, options).then((request) => request(this.axios, this.basePath));
+    public alertsList(page?: number, options?: any) {
+        return AlertsApiFp(this.configuration).alertsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5565,10 +5336,20 @@ export class ApiApi extends BaseAPI implements ApiApiInterface {
      * @param {PatchedAlertRequest} [patchedAlertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApi
+     * @memberof AlertsApi
      */
-    public apiAlertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any) {
-        return ApiApiFp(this.configuration).apiAlertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    public alertsPartialUpdate(id: number, patchedAlertRequest?: PatchedAlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsPartialUpdate(id, patchedAlertRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsRecent(options?: any) {
+        return AlertsApiFp(this.configuration).alertsRecent(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5576,10 +5357,31 @@ export class ApiApi extends BaseAPI implements ApiApiInterface {
      * @param {number} id A unique integer value identifying this alert message.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApi
+     * @memberof AlertsApi
      */
-    public apiAlertsRetrieve(id: number, options?: any) {
-        return ApiApiFp(this.configuration).apiAlertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public alertsRetrieve(id: number, options?: any) {
+        return AlertsApiFp(this.configuration).alertsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {PatchedAlertBulkRequestRequest} [patchedAlertBulkRequestRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsSeen(patchedAlertBulkRequestRequest?: PatchedAlertBulkRequestRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsSeen(patchedAlertBulkRequestRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public alertsUnread(options?: any) {
+        return AlertsApiFp(this.configuration).alertsUnread(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5588,33 +5390,10 @@ export class ApiApi extends BaseAPI implements ApiApiInterface {
      * @param {AlertRequest} alertRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ApiApi
+     * @memberof AlertsApi
      */
-    public apiAlertsUpdate(id: number, alertRequest: AlertRequest, options?: any) {
-        return ApiApiFp(this.configuration).apiAlertsUpdate(id, alertRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ApiApi
-     */
-    public apiAuthTokenCreate(username: string, password: string, options?: any) {
-        return ApiApiFp(this.configuration).apiAuthTokenCreate(username, password, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-     * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ApiApi
-     */
-    public apiSchemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any) {
-        return ApiApiFp(this.configuration).apiSchemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
+    public alertsUpdate(id: number, alertRequest: AlertRequest, options?: any) {
+        return AlertsApiFp(this.configuration).alertsUpdate(id, alertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5713,9 +5492,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
+        authTokenCreate2: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'callbackTokenAuthRequest' is not null or undefined
-            assertParamExists('authTokenCreate', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
+            assertParamExists('authTokenCreate2', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
             const localVarPath = `/auth/token/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5895,8 +5674,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(callbackTokenAuthRequest, options);
+        async authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate2(callbackTokenAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5961,8 +5740,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
-            return localVarFp.authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
+        authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
+            return localVarFp.authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -6023,7 +5802,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
+    authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
 
     /**
      * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -6088,8 +5867,8 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
-        return AuthApiFp(this.configuration).authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
+    public authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
+        return AuthApiFp(this.configuration).authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6126,6 +5905,148 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
 
 
 /**
+ * AuthTokenApi - axios parameter creator
+ * @export
+ */
+export const AuthTokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} username 
+         * @param {string} password 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authTokenCreate: async (username: string, password: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'username' is not null or undefined
+            assertParamExists('authTokenCreate', 'username', username)
+            // verify required parameter 'password' is not null or undefined
+            assertParamExists('authTokenCreate', 'password', password)
+            const localVarPath = `/api/auth-token/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (username !== undefined) { 
+                localVarFormParams.append('username', username as any);
+            }
+    
+            if (password !== undefined) { 
+                localVarFormParams.append('password', password as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AuthTokenApi - functional programming interface
+ * @export
+ */
+export const AuthTokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AuthTokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} username 
+         * @param {string} password 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authTokenCreate(username: string, password: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthToken>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(username, password, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AuthTokenApi - factory interface
+ * @export
+ */
+export const AuthTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AuthTokenApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} username 
+         * @param {string} password 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken> {
+            return localVarFp.authTokenCreate(username, password, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AuthTokenApi - interface
+ * @export
+ * @interface AuthTokenApi
+ */
+export interface AuthTokenApiInterface {
+    /**
+     * 
+     * @param {string} username 
+     * @param {string} password 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthTokenApiInterface
+     */
+    authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken>;
+
+}
+
+/**
+ * AuthTokenApi - object-oriented interface
+ * @export
+ * @class AuthTokenApi
+ * @extends {BaseAPI}
+ */
+export class AuthTokenApi extends BaseAPI implements AuthTokenApiInterface {
+    /**
+     * 
+     * @param {string} username 
+     * @param {string} password 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthTokenApi
+     */
+    public authTokenCreate(username: string, password: string, options?: any) {
+        return AuthTokenApiFp(this.configuration).authTokenCreate(username, password, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * DevicesApi - axios parameter creator
  * @export
  */
@@ -6137,9 +6058,9 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevicesCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
+        devicesCreate: async (deviceRequest: DeviceRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceRequest' is not null or undefined
-            assertParamExists('apiDevicesCreate', 'deviceRequest', deviceRequest)
+            assertParamExists('devicesCreate', 'deviceRequest', deviceRequest)
             const localVarPath = `/api/devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6178,7 +6099,7 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        devicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/devices/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6200,45 +6121,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDevicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiDevicesRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -6288,6 +6170,45 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6396,8 +6317,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesCreate(deviceRequest, options);
+        async devicesCreate(deviceRequest: DeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCreate(deviceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6406,18 +6327,8 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDevicesRetrieve(id, options);
+        async devicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6429,6 +6340,16 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6468,8 +6389,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
-            return localVarFp.apiDevicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
+        devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesCreate(deviceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6477,17 +6398,8 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDevicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList> {
-            return localVarFp.apiDevicesList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDevicesRetrieve(id: number, options?: any): AxiosPromise<Device> {
-            return localVarFp.apiDevicesRetrieve(id, options).then((request) => request(axios, basePath));
+        devicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList> {
+            return localVarFp.devicesList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6498,6 +6410,15 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesRetrieve(id: number, options?: any): AxiosPromise<Device> {
+            return localVarFp.devicesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6534,7 +6455,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    apiDevicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
+    devicesCreate(deviceRequest: DeviceRequest, options?: any): AxiosPromise<Device>;
 
     /**
      * 
@@ -6543,16 +6464,7 @@ export interface DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApiInterface
      */
-    apiDevicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    apiDevicesRetrieve(id: number, options?: any): AxiosPromise<Device>;
+    devicesList(page?: number, options?: any): AxiosPromise<PaginatedDeviceList>;
 
     /**
      * 
@@ -6563,6 +6475,15 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesRetrieve(id: number, options?: any): AxiosPromise<Device>;
 
     /**
      * 
@@ -6599,8 +6520,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public apiDevicesCreate(deviceRequest: DeviceRequest, options?: any) {
-        return DevicesApiFp(this.configuration).apiDevicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
+    public devicesCreate(deviceRequest: DeviceRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCreate(deviceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6610,19 +6531,8 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      * @throws {RequiredError}
      * @memberof DevicesApi
      */
-    public apiDevicesList(page?: number, options?: any) {
-        return DevicesApiFp(this.configuration).apiDevicesList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public apiDevicesRetrieve(id: number, options?: any) {
-        return DevicesApiFp(this.configuration).apiDevicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public devicesList(page?: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6635,6 +6545,17 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
         return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesRetrieve(id: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6668,410 +6589,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
  */
 export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDeviceCalibrationsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/device-calibrations/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device calibration.
-         * @param {PatchedDeviceCalibrationRequest} [patchedDeviceCalibrationRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDeviceCalibrationsPartialUpdate: async (id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiDeviceCalibrationsPartialUpdate', 'id', id)
-            const localVarPath = `/api/device-calibrations/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceCalibrationRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device calibration.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDeviceCalibrationsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiDeviceCalibrationsRetrieve', 'id', id)
-            const localVarPath = `/api/device-calibrations/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this device calibration.
-         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiDeviceCalibrationsUpdate: async (id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiDeviceCalibrationsUpdate', 'id', id)
-            // verify required parameter 'deviceCalibrationRequest' is not null or undefined
-            assertParamExists('apiDeviceCalibrationsUpdate', 'deviceCalibrationRequest', deviceCalibrationRequest)
-            const localVarPath = `/api/device-calibrations/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(deviceCalibrationRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiExperimentDeviceConfigsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/experiment-device-configs/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this experiment device config.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiExperimentDeviceConfigsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiExperimentDeviceConfigsRetrieve', 'id', id)
-            const localVarPath = `/api/experiment-device-configs/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiExperimentsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/experiments/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this experiment.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiExperimentsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiExperimentsRetrieve', 'id', id)
-            const localVarPath = `/api/experiments/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiModelArtifactsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/model-artifacts/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this model artifact.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiModelArtifactsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiModelArtifactsRetrieve', 'id', id)
-            const localVarPath = `/api/model-artifacts/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * 
          * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
@@ -7113,6 +6630,410 @@ export const MlOpsApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/device-calibrations/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device calibration.
+         * @param {PatchedDeviceCalibrationRequest} [patchedDeviceCalibrationRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationsPartialUpdate: async (id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deviceCalibrationsPartialUpdate', 'id', id)
+            const localVarPath = `/api/device-calibrations/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceCalibrationRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device calibration.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deviceCalibrationsRetrieve', 'id', id)
+            const localVarPath = `/api/device-calibrations/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this device calibration.
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationsUpdate: async (id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deviceCalibrationsUpdate', 'id', id)
+            // verify required parameter 'deviceCalibrationRequest' is not null or undefined
+            assertParamExists('deviceCalibrationsUpdate', 'deviceCalibrationRequest', deviceCalibrationRequest)
+            const localVarPath = `/api/device-calibrations/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deviceCalibrationRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentDeviceConfigsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/experiment-device-configs/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment device config.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentDeviceConfigsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('experimentDeviceConfigsRetrieve', 'id', id)
+            const localVarPath = `/api/experiment-device-configs/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/experiments/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this experiment.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        experimentsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('experimentsRetrieve', 'id', id)
+            const localVarPath = `/api/experiments/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modelArtifactsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/model-artifacts/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this model artifact.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        modelArtifactsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('modelArtifactsRetrieve', 'id', id)
+            const localVarPath = `/api/model-artifacts/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -7125,12 +7046,22 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDeviceCalibrationsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceCalibrationList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDeviceCalibrationsList(page, options);
+        async deviceCalibrationsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDeviceCalibrationList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7140,8 +7071,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDeviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDeviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options);
+        async deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7150,8 +7081,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDeviceCalibrationsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDeviceCalibrationsRetrieve(id, options);
+        async deviceCalibrationsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7161,8 +7092,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDeviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiDeviceCalibrationsUpdate(id, deviceCalibrationRequest, options);
+        async deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationsUpdate(id, deviceCalibrationRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7171,8 +7102,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiExperimentDeviceConfigsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentDeviceConfigList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiExperimentDeviceConfigsList(page, options);
+        async experimentDeviceConfigsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentDeviceConfigList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentDeviceConfigsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7181,8 +7112,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiExperimentDeviceConfigsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExperimentDeviceConfig>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiExperimentDeviceConfigsRetrieve(id, options);
+        async experimentDeviceConfigsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExperimentDeviceConfig>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentDeviceConfigsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7191,8 +7122,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiExperimentsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiExperimentsList(page, options);
+        async experimentsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedExperimentList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7201,8 +7132,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiExperimentsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Experiment>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiExperimentsRetrieve(id, options);
+        async experimentsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Experiment>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.experimentsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7211,8 +7142,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiModelArtifactsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedModelArtifactList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiModelArtifactsList(page, options);
+        async modelArtifactsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedModelArtifactList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modelArtifactsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -7221,18 +7152,8 @@ export const MlOpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiModelArtifactsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelArtifact>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiModelArtifactsRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeviceCalibration>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options);
+        async modelArtifactsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelArtifact>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.modelArtifactsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -7247,12 +7168,21 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
+         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
+            return localVarFp.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDeviceCalibrationsList(page?: number, options?: any): AxiosPromise<PaginatedDeviceCalibrationList> {
-            return localVarFp.apiDeviceCalibrationsList(page, options).then((request) => request(axios, basePath));
+        deviceCalibrationsList(page?: number, options?: any): AxiosPromise<PaginatedDeviceCalibrationList> {
+            return localVarFp.deviceCalibrationsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7261,8 +7191,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDeviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return localVarFp.apiDeviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(axios, basePath));
+        deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
+            return localVarFp.deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7270,8 +7200,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDeviceCalibrationsRetrieve(id: number, options?: any): AxiosPromise<DeviceCalibration> {
-            return localVarFp.apiDeviceCalibrationsRetrieve(id, options).then((request) => request(axios, basePath));
+        deviceCalibrationsRetrieve(id: number, options?: any): AxiosPromise<DeviceCalibration> {
+            return localVarFp.deviceCalibrationsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7280,8 +7210,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDeviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return localVarFp.apiDeviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+        deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
+            return localVarFp.deviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7289,8 +7219,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiExperimentDeviceConfigsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentDeviceConfigList> {
-            return localVarFp.apiExperimentDeviceConfigsList(page, options).then((request) => request(axios, basePath));
+        experimentDeviceConfigsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentDeviceConfigList> {
+            return localVarFp.experimentDeviceConfigsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7298,8 +7228,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiExperimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig> {
-            return localVarFp.apiExperimentDeviceConfigsRetrieve(id, options).then((request) => request(axios, basePath));
+        experimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig> {
+            return localVarFp.experimentDeviceConfigsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7307,8 +7237,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiExperimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList> {
-            return localVarFp.apiExperimentsList(page, options).then((request) => request(axios, basePath));
+        experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList> {
+            return localVarFp.experimentsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7316,8 +7246,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiExperimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment> {
-            return localVarFp.apiExperimentsRetrieve(id, options).then((request) => request(axios, basePath));
+        experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment> {
+            return localVarFp.experimentsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7325,8 +7255,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiModelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList> {
-            return localVarFp.apiModelArtifactsList(page, options).then((request) => request(axios, basePath));
+        modelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList> {
+            return localVarFp.modelArtifactsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -7334,17 +7264,8 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiModelArtifactsRetrieve(id: number, options?: any): AxiosPromise<ModelArtifact> {
-            return localVarFp.apiModelArtifactsRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration> {
-            return localVarFp.deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(axios, basePath));
+        modelArtifactsRetrieve(id: number, options?: any): AxiosPromise<ModelArtifact> {
+            return localVarFp.modelArtifactsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -7357,12 +7278,21 @@ export const MlOpsApiFactory = function (configuration?: Configuration, basePath
 export interface MlOpsApiInterface {
     /**
      * 
+     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApiInterface
+     */
+    deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
+
+    /**
+     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiDeviceCalibrationsList(page?: number, options?: any): AxiosPromise<PaginatedDeviceCalibrationList>;
+    deviceCalibrationsList(page?: number, options?: any): AxiosPromise<PaginatedDeviceCalibrationList>;
 
     /**
      * 
@@ -7372,7 +7302,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiDeviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
+    deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
 
     /**
      * 
@@ -7381,7 +7311,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiDeviceCalibrationsRetrieve(id: number, options?: any): AxiosPromise<DeviceCalibration>;
+    deviceCalibrationsRetrieve(id: number, options?: any): AxiosPromise<DeviceCalibration>;
 
     /**
      * 
@@ -7391,7 +7321,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiDeviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
+    deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
 
     /**
      * 
@@ -7400,7 +7330,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiExperimentDeviceConfigsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentDeviceConfigList>;
+    experimentDeviceConfigsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentDeviceConfigList>;
 
     /**
      * 
@@ -7409,7 +7339,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiExperimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig>;
+    experimentDeviceConfigsRetrieve(id: number, options?: any): AxiosPromise<ExperimentDeviceConfig>;
 
     /**
      * 
@@ -7418,7 +7348,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiExperimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList>;
+    experimentsList(page?: number, options?: any): AxiosPromise<PaginatedExperimentList>;
 
     /**
      * 
@@ -7427,7 +7357,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiExperimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment>;
+    experimentsRetrieve(id: number, options?: any): AxiosPromise<Experiment>;
 
     /**
      * 
@@ -7436,7 +7366,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiModelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList>;
+    modelArtifactsList(page?: number, options?: any): AxiosPromise<PaginatedModelArtifactList>;
 
     /**
      * 
@@ -7445,16 +7375,7 @@ export interface MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApiInterface
      */
-    apiModelArtifactsRetrieve(id: number, options?: any): AxiosPromise<ModelArtifact>;
-
-    /**
-     * 
-     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MlOpsApiInterface
-     */
-    deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any): AxiosPromise<DeviceCalibration>;
+    modelArtifactsRetrieve(id: number, options?: any): AxiosPromise<ModelArtifact>;
 
 }
 
@@ -7467,13 +7388,24 @@ export interface MlOpsApiInterface {
 export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
     /**
      * 
+     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MlOpsApi
+     */
+    public deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiDeviceCalibrationsList(page?: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiDeviceCalibrationsList(page, options).then((request) => request(this.axios, this.basePath));
+    public deviceCalibrationsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7484,8 +7416,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiDeviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any) {
-        return MlOpsApiFp(this.configuration).apiDeviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
+    public deviceCalibrationsPartialUpdate(id: number, patchedDeviceCalibrationRequest?: PatchedDeviceCalibrationRequest, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationsPartialUpdate(id, patchedDeviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7495,8 +7427,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiDeviceCalibrationsRetrieve(id: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiDeviceCalibrationsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public deviceCalibrationsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7507,8 +7439,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiDeviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any) {
-        return MlOpsApiFp(this.configuration).apiDeviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
+    public deviceCalibrationsUpdate(id: number, deviceCalibrationRequest: DeviceCalibrationRequest, options?: any) {
+        return MlOpsApiFp(this.configuration).deviceCalibrationsUpdate(id, deviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7518,8 +7450,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiExperimentDeviceConfigsList(page?: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiExperimentDeviceConfigsList(page, options).then((request) => request(this.axios, this.basePath));
+    public experimentDeviceConfigsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentDeviceConfigsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7529,8 +7461,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiExperimentDeviceConfigsRetrieve(id: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiExperimentDeviceConfigsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public experimentDeviceConfigsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentDeviceConfigsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7540,8 +7472,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiExperimentsList(page?: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiExperimentsList(page, options).then((request) => request(this.axios, this.basePath));
+    public experimentsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7551,8 +7483,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiExperimentsRetrieve(id: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiExperimentsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public experimentsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).experimentsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7562,8 +7494,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiModelArtifactsList(page?: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiModelArtifactsList(page, options).then((request) => request(this.axios, this.basePath));
+    public modelArtifactsList(page?: number, options?: any) {
+        return MlOpsApiFp(this.configuration).modelArtifactsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -7573,19 +7505,8 @@ export class MlOpsApi extends BaseAPI implements MlOpsApiInterface {
      * @throws {RequiredError}
      * @memberof MlOpsApi
      */
-    public apiModelArtifactsRetrieve(id: number, options?: any) {
-        return MlOpsApiFp(this.configuration).apiModelArtifactsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {DeviceCalibrationRequest} deviceCalibrationRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MlOpsApi
-     */
-    public deviceCalibrationUpdateOrCreate(deviceCalibrationRequest: DeviceCalibrationRequest, options?: any) {
-        return MlOpsApiFp(this.configuration).deviceCalibrationUpdateOrCreate(deviceCalibrationRequest, options).then((request) => request(this.axios, this.basePath));
+    public modelArtifactsRetrieve(id: number, options?: any) {
+        return MlOpsApiFp(this.configuration).modelArtifactsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7602,9 +7523,9 @@ export const PartnersGeeks3ApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList: async (id: string, options: any = {}): Promise<RequestArgs> => {
+        alertsList2: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('alertsList', 'id', id)
+            assertParamExists('alertsList2', 'id', id)
             const localVarPath = `/api/partners/3d-geeks/{id}/alerts/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7649,8 +7570,8 @@ export const PartnersGeeks3ApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsList(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksAlert>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsList(id, options);
+        async alertsList2(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Partner3DGeeksAlert>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.alertsList2(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -7669,8 +7590,8 @@ export const PartnersGeeks3ApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsList(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert> {
-            return localVarFp.alertsList(id, options).then((request) => request(axios, basePath));
+        alertsList2(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert> {
+            return localVarFp.alertsList2(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -7688,7 +7609,7 @@ export interface PartnersGeeks3ApiInterface {
      * @throws {RequiredError}
      * @memberof PartnersGeeks3ApiInterface
      */
-    alertsList(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert>;
+    alertsList2(id: string, options?: any): AxiosPromise<Partner3DGeeksAlert>;
 
 }
 
@@ -7706,8 +7627,8 @@ export class PartnersGeeks3Api extends BaseAPI implements PartnersGeeks3ApiInter
      * @throws {RequiredError}
      * @memberof PartnersGeeks3Api
      */
-    public alertsList(id: string, options?: any) {
-        return PartnersGeeks3ApiFp(this.configuration).alertsList(id, options).then((request) => request(this.axios, this.basePath));
+    public alertsList2(id: string, options?: any) {
+        return PartnersGeeks3ApiFp(this.configuration).alertsList2(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -7846,7 +7767,7 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        commandsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/commands/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7887,9 +7808,9 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsPartialUpdate: async (id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
+        commandsPartialUpdate: async (id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiCommandsPartialUpdate', 'id', id)
+            assertParamExists('commandsPartialUpdate', 'id', id)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7929,9 +7850,9 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        commandsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiCommandsRetrieve', 'id', id)
+            assertParamExists('commandsRetrieve', 'id', id)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -7969,11 +7890,11 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsUpdate: async (id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
+        commandsUpdate: async (id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiCommandsUpdate', 'id', id)
+            assertParamExists('commandsUpdate', 'id', id)
             // verify required parameter 'remoteControlCommandRequest' is not null or undefined
-            assertParamExists('apiCommandsUpdate', 'remoteControlCommandRequest', remoteControlCommandRequest)
+            assertParamExists('commandsUpdate', 'remoteControlCommandRequest', remoteControlCommandRequest)
             const localVarPath = `/api/commands/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8009,11 +7930,78 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} fileHash 
+         * @param {string} octoprintDevice 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gcodeFilesCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('gcodeFilesCreate', 'name', name)
+            // verify required parameter 'file' is not null or undefined
+            assertParamExists('gcodeFilesCreate', 'file', file)
+            // verify required parameter 'fileHash' is not null or undefined
+            assertParamExists('gcodeFilesCreate', 'fileHash', fileHash)
+            // verify required parameter 'octoprintDevice' is not null or undefined
+            assertParamExists('gcodeFilesCreate', 'octoprintDevice', octoprintDevice)
+            const localVarPath = `/api/gcode-files/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+            if (name !== undefined) { 
+                localVarFormParams.append('name', name as any);
+            }
+    
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+            if (fileHash !== undefined) { 
+                localVarFormParams.append('file_hash', fileHash as any);
+            }
+    
+            if (octoprintDevice !== undefined) { 
+                localVarFormParams.append('octoprint_device', octoprintDevice as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGcodeFilesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/gcode-files/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -8057,9 +8045,9 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGcodeFilesPartialUpdate: async (id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesPartialUpdate: async (id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiGcodeFilesPartialUpdate', 'id', id)
+            assertParamExists('gcodeFilesPartialUpdate', 'id', id)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8116,9 +8104,9 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGcodeFilesRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesRetrieve: async (id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiGcodeFilesRetrieve', 'id', id)
+            assertParamExists('gcodeFilesRetrieve', 'id', id)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8159,17 +8147,17 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiGcodeFilesUpdate: async (id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
+        gcodeFilesUpdate: async (id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiGcodeFilesUpdate', 'id', id)
+            assertParamExists('gcodeFilesUpdate', 'id', id)
             // verify required parameter 'name' is not null or undefined
-            assertParamExists('apiGcodeFilesUpdate', 'name', name)
+            assertParamExists('gcodeFilesUpdate', 'name', name)
             // verify required parameter 'file' is not null or undefined
-            assertParamExists('apiGcodeFilesUpdate', 'file', file)
+            assertParamExists('gcodeFilesUpdate', 'file', file)
             // verify required parameter 'fileHash' is not null or undefined
-            assertParamExists('apiGcodeFilesUpdate', 'fileHash', fileHash)
+            assertParamExists('gcodeFilesUpdate', 'fileHash', fileHash)
             // verify required parameter 'octoprintDevice' is not null or undefined
-            assertParamExists('apiGcodeFilesUpdate', 'octoprintDevice', octoprintDevice)
+            assertParamExists('gcodeFilesUpdate', 'octoprintDevice', octoprintDevice)
             const localVarPath = `/api/gcode-files/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -8180,490 +8168,6 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             }
 
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (name !== undefined) { 
-                localVarFormParams.append('name', name as any);
-            }
-    
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-            if (fileHash !== undefined) { 
-                localVarFormParams.append('file_hash', fileHash as any);
-            }
-    
-            if (octoprintDevice !== undefined) { 
-                localVarFormParams.append('octoprint_device', octoprintDevice as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
-            assertParamExists('apiOctoprintDevicesCreate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
-            const localVarPath = `/api/octoprint-devices/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintDeviceRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/octoprint-devices/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiOctoprintDevicesRetrieve', 'id', id)
-            const localVarPath = `/api/octoprint-devices/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'printSessionRequest' is not null or undefined
-            assertParamExists('apiPrintSessionsCreate', 'printSessionRequest', printSessionRequest)
-            const localVarPath = `/api/print-sessions/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printSessionRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/print-sessions/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} session 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsRetrieve: async (session: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'session' is not null or undefined
-            assertParamExists('apiPrintSessionsRetrieve', 'session', session)
-            const localVarPath = `/api/print-sessions/{session}/`
-                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} [name] 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {number} [user] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesList: async (name?: string, page?: number, user?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/printer-profiles/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (name !== undefined) {
-                localVarQueryParameter['name'] = name;
-            }
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (user !== undefined) {
-                localVarQueryParameter['user'] = user;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesPartialUpdate: async (id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiPrinterProfilesPartialUpdate', 'id', id)
-            const localVarPath = `/api/printer-profiles/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterProfileRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiPrinterProfilesRetrieve', 'id', id)
-            const localVarPath = `/api/printer-profiles/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfileRequest} printerProfileRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesUpdate: async (id: number, printerProfileRequest: PrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiPrinterProfilesUpdate', 'id', id)
-            // verify required parameter 'printerProfileRequest' is not null or undefined
-            assertParamExists('apiPrinterProfilesUpdate', 'printerProfileRequest', printerProfileRequest)
-            const localVarPath = `/api/printer-profiles/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printerProfileRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} name 
-         * @param {any} file 
-         * @param {string} fileHash 
-         * @param {string} octoprintDevice 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        gcodeFilesCreate: async (name: string, file: any, fileHash: string, octoprintDevice: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'name' is not null or undefined
-            assertParamExists('gcodeFilesCreate', 'name', name)
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('gcodeFilesCreate', 'file', file)
-            // verify required parameter 'fileHash' is not null or undefined
-            assertParamExists('gcodeFilesCreate', 'fileHash', fileHash)
-            // verify required parameter 'octoprintDevice' is not null or undefined
-            assertParamExists('gcodeFilesCreate', 'octoprintDevice', octoprintDevice)
-            const localVarPath = `/api/gcode-files/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
@@ -8773,6 +8277,87 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesCreate: async (octoPrintDeviceRequest: OctoPrintDeviceRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'octoPrintDeviceRequest' is not null or undefined
+            assertParamExists('octoprintDevicesCreate', 'octoPrintDeviceRequest', octoPrintDeviceRequest)
+            const localVarPath = `/api/octoprint-devices/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(octoPrintDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/octoprint-devices/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this octo print device.
          * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
@@ -8808,6 +8393,45 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(patchedOctoPrintDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('octoprintDevicesRetrieve', 'id', id)
+            const localVarPath = `/api/octoprint-devices/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -8990,6 +8614,126 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
         },
         /**
          * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate: async (printSessionRequest: PrintSessionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printSessionRequest' is not null or undefined
+            assertParamExists('printSessionsCreate', 'printSessionRequest', printSessionRequest)
+            const localVarPath = `/api/print-sessions/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printSessionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/print-sessions/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsRetrieve: async (session: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'session' is not null or undefined
+            assertParamExists('printSessionsRetrieve', 'session', session)
+            const localVarPath = `/api/print-sessions/{session}/`
+                .replace(`{${"session"}}`, encodeURIComponent(String(session)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {PrinterProfileRequest} printerProfileRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -9006,6 +8750,183 @@ export const RemoteControlApiAxiosParamCreator = function (configuration?: Confi
             }
 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfileRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [user] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesList: async (name?: string, page?: number, user?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/printer-profiles/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (name !== undefined) {
+                localVarQueryParameter['name'] = name;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (user !== undefined) {
+                localVarQueryParameter['user'] = user;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesPartialUpdate: async (id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('printerProfilesPartialUpdate', 'id', id)
+            const localVarPath = `/api/printer-profiles/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterProfileRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('printerProfilesRetrieve', 'id', id)
+            const localVarPath = `/api/printer-profiles/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfileRequest} printerProfileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesUpdate: async (id: number, printerProfileRequest: PrinterProfileRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('printerProfilesUpdate', 'id', id)
+            // verify required parameter 'printerProfileRequest' is not null or undefined
+            assertParamExists('printerProfilesUpdate', 'printerProfileRequest', printerProfileRequest)
+            const localVarPath = `/api/printer-profiles/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -9086,8 +9007,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCommandsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlCommandList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCommandsList(page, options);
+        async commandsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteControlCommandList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9097,8 +9018,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCommandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCommandsPartialUpdate(id, patchedRemoteControlCommandRequest, options);
+        async commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9107,8 +9028,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCommandsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCommandsRetrieve(id, options);
+        async commandsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9118,160 +9039,8 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiCommandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiCommandsUpdate(id, remoteControlCommandRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiGcodeFilesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGcodeFileList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiGcodeFilesList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} [name] 
-         * @param {any} [file] 
-         * @param {string} [fileHash] 
-         * @param {string} [octoprintDevice] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiGcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiGcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiGcodeFilesRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiGcodeFilesRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} name 
-         * @param {any} file 
-         * @param {string} fileHash 
-         * @param {string} octoprintDevice 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiGcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiGcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiOctoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintDevicesCreate(octoPrintDeviceRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiOctoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintDevicesList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiOctoprintDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintDevicesRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrintSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsCreate(printSessionRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrintSessionsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsList(page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} session 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrintSessionsRetrieve(session: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintSessionsRetrieve(session, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {string} [name] 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {number} [user] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrinterProfilesList(name?: string, page?: number, user?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrinterProfilesList(name, page, user, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrinterProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrinterProfilesPartialUpdate(id, patchedPrinterProfileRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrinterProfilesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrinterProfilesRetrieve(id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfileRequest} printerProfileRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiPrinterProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrinterProfilesUpdate(id, printerProfileRequest, options);
+        async commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteControlCommand>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.commandsUpdate(id, remoteControlCommandRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9289,6 +9058,54 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async gcodeFilesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedGcodeFileList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} [name] 
+         * @param {any} [file] 
+         * @param {string} [fileHash] 
+         * @param {string} [octoprintDevice] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async gcodeFilesRetrieve(id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} fileHash 
+         * @param {string} octoprintDevice 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GcodeFile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -9302,6 +9119,26 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesCreate(octoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async octoprintDevicesList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintDeviceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this octo print device.
          * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
@@ -9309,6 +9146,16 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
          */
         async octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async octoprintDevicesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintDevice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintDevicesRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9356,12 +9203,86 @@ export const RemoteControlApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsCreate(printSessionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintSessionList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsList(page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printSessionsRetrieve(session: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printSessionsRetrieve(session, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {PrinterProfileRequest} printerProfileRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         async printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintSession>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesCreate(printerProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [user] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printerProfilesList(name?: string, page?: number, user?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfileList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesList(name, page, user, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printerProfilesRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesRetrieve(id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfileRequest} printerProfileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfile>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printerProfilesUpdate(id, printerProfileRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -9390,8 +9311,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList> {
-            return localVarFp.apiCommandsList(page, options).then((request) => request(axios, basePath));
+        commandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList> {
+            return localVarFp.commandsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9400,8 +9321,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
-            return localVarFp.apiCommandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(axios, basePath));
+        commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
+            return localVarFp.commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9409,8 +9330,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlCommand> {
-            return localVarFp.apiCommandsRetrieve(id, options).then((request) => request(axios, basePath));
+        commandsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlCommand> {
+            return localVarFp.commandsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9419,146 +9340,8 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiCommandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
-            return localVarFp.apiCommandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList> {
-            return localVarFp.apiGcodeFilesList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} [name] 
-         * @param {any} [file] 
-         * @param {string} [fileHash] 
-         * @param {string} [octoprintDevice] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
-            return localVarFp.apiGcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile> {
-            return localVarFp.apiGcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} name 
-         * @param {any} file 
-         * @param {string} fileHash 
-         * @param {string} octoprintDevice 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiGcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
-            return localVarFp.apiGcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
-            return localVarFp.apiOctoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList> {
-            return localVarFp.apiOctoprintDevicesList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this octo print device.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiOctoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice> {
-            return localVarFp.apiOctoprintDevicesRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {PrintSessionRequest} printSessionRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
-            return localVarFp.apiPrintSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList> {
-            return localVarFp.apiPrintSessionsList(page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} session 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrintSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession> {
-            return localVarFp.apiPrintSessionsRetrieve(session, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} [name] 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {number} [user] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
-            return localVarFp.apiPrinterProfilesList(name, page, user, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
-            return localVarFp.apiPrinterProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesRetrieve(id: number, options?: any): AxiosPromise<PrinterProfile> {
-            return localVarFp.apiPrinterProfilesRetrieve(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfileRequest} printerProfileRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiPrinterProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
-            return localVarFp.apiPrinterProfilesUpdate(id, printerProfileRequest, options).then((request) => request(axios, basePath));
+        commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand> {
+            return localVarFp.commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9574,6 +9357,50 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList> {
+            return localVarFp.gcodeFilesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} [name] 
+         * @param {any} [file] 
+         * @param {string} [fileHash] 
+         * @param {string} [octoprintDevice] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile> {
+            return localVarFp.gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile> {
+            return localVarFp.gcodeFilesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} name 
+         * @param {any} file 
+         * @param {string} fileHash 
+         * @param {string} octoprintDevice 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile> {
+            return localVarFp.gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} name 
          * @param {any} file 
          * @param {string} fileHash 
@@ -9586,6 +9413,24 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
+            return localVarFp.octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList> {
+            return localVarFp.octoprintDevicesList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} id A unique integer value identifying this octo print device.
          * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
          * @param {*} [options] Override http request option.
@@ -9593,6 +9438,15 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
          */
         octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice> {
             return localVarFp.octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this octo print device.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice> {
+            return localVarFp.octoprintDevicesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9635,12 +9489,79 @@ export const RemoteControlApiFactory = function (configuration?: Configuration, 
         },
         /**
          * 
+         * @param {PrintSessionRequest} printSessionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession> {
+            return localVarFp.printSessionsCreate(printSessionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList> {
+            return localVarFp.printSessionsList(page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} session 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession> {
+            return localVarFp.printSessionsRetrieve(session, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {PrinterProfileRequest} printerProfileRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintSession> {
             return localVarFp.printerProfilesCreate(printerProfileRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} [name] 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {number} [user] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList> {
+            return localVarFp.printerProfilesList(name, page, user, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
+            return localVarFp.printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesRetrieve(id: number, options?: any): AxiosPromise<PrinterProfile> {
+            return localVarFp.printerProfilesRetrieve(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfileRequest} printerProfileRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile> {
+            return localVarFp.printerProfilesUpdate(id, printerProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -9667,7 +9588,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    apiCommandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList>;
+    commandsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteControlCommandList>;
 
     /**
      * 
@@ -9677,7 +9598,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    apiCommandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
+    commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
 
     /**
      * 
@@ -9686,7 +9607,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    apiCommandsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlCommand>;
+    commandsRetrieve(id: number, options?: any): AxiosPromise<RemoteControlCommand>;
 
     /**
      * 
@@ -9696,145 +9617,7 @@ export interface RemoteControlApiInterface {
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
-    apiCommandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiGcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList>;
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} [name] 
-     * @param {any} [file] 
-     * @param {string} [fileHash] 
-     * @param {string} [octoprintDevice] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiGcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiGcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile>;
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} name 
-     * @param {any} file 
-     * @param {string} fileHash 
-     * @param {string} octoprintDevice 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiGcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
-
-    /**
-     * 
-     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiOctoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiOctoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiOctoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice>;
-
-    /**
-     * 
-     * @param {PrintSessionRequest} printSessionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrintSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrintSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList>;
-
-    /**
-     * 
-     * @param {string} session 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrintSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession>;
-
-    /**
-     * 
-     * @param {string} [name] 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {number} [user] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrinterProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrinterProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrinterProfilesRetrieve(id: number, options?: any): AxiosPromise<PrinterProfile>;
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PrinterProfileRequest} printerProfileRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApiInterface
-     */
-    apiPrinterProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile>;
+    commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any): AxiosPromise<RemoteControlCommand>;
 
     /**
      * 
@@ -9850,6 +9633,50 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    gcodeFilesList(page?: number, options?: any): AxiosPromise<PaginatedGcodeFileList>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [name] 
+     * @param {any} [file] 
+     * @param {string} [fileHash] 
+     * @param {string} [octoprintDevice] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any): AxiosPromise<GcodeFile>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    gcodeFilesRetrieve(id: string, options?: any): AxiosPromise<GcodeFile>;
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} name 
+     * @param {any} file 
+     * @param {string} fileHash 
+     * @param {string} octoprintDevice 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any): AxiosPromise<GcodeFile>;
+
+    /**
+     * 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -9862,6 +9689,24 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    octoprintDevicesList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintDeviceList>;
+
+    /**
+     * 
      * @param {number} id A unique integer value identifying this octo print device.
      * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
      * @param {*} [options] Override http request option.
@@ -9869,6 +9714,15 @@ export interface RemoteControlApiInterface {
      * @memberof RemoteControlApiInterface
      */
     octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any): AxiosPromise<OctoPrintDevice>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    octoprintDevicesRetrieve(id: number, options?: any): AxiosPromise<OctoPrintDevice>;
 
     /**
      * 
@@ -9911,12 +9765,79 @@ export interface RemoteControlApiInterface {
 
     /**
      * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionsList(page?: number, options?: any): AxiosPromise<PaginatedPrintSessionList>;
+
+    /**
+     * 
+     * @param {string} session 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printSessionsRetrieve(session: string, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
      * @param {PrinterProfileRequest} printerProfileRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RemoteControlApiInterface
      */
     printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrintSession>;
+
+    /**
+     * 
+     * @param {string} [name] 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [user] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printerProfilesList(name?: string, page?: number, user?: number, options?: any): AxiosPromise<PaginatedPrinterProfileList>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printerProfilesRetrieve(id: number, options?: any): AxiosPromise<PrinterProfile>;
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PrinterProfileRequest} printerProfileRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApiInterface
+     */
+    printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any): AxiosPromise<PrinterProfile>;
 
     /**
      * 
@@ -9943,8 +9864,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public apiCommandsList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiCommandsList(page, options).then((request) => request(this.axios, this.basePath));
+    public commandsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).commandsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9955,8 +9876,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public apiCommandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiCommandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
+    public commandsPartialUpdate(id: number, patchedRemoteControlCommandRequest?: PatchedRemoteControlCommandRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).commandsPartialUpdate(id, patchedRemoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9966,8 +9887,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public apiCommandsRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiCommandsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public commandsRetrieve(id: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).commandsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -9978,174 +9899,8 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      * @throws {RequiredError}
      * @memberof RemoteControlApi
      */
-    public apiCommandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiCommandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiGcodeFilesList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiGcodeFilesList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} [name] 
-     * @param {any} [file] 
-     * @param {string} [fileHash] 
-     * @param {string} [octoprintDevice] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiGcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiGcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiGcodeFilesRetrieve(id: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiGcodeFilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} name 
-     * @param {any} file 
-     * @param {string} fileHash 
-     * @param {string} octoprintDevice 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiGcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiGcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiOctoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiOctoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiOctoprintDevicesList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiOctoprintDevicesList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this octo print device.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiOctoprintDevicesRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiOctoprintDevicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {PrintSessionRequest} printSessionRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrintSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrintSessionsCreate(printSessionRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrintSessionsList(page?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrintSessionsList(page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} session 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrintSessionsRetrieve(session: string, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrintSessionsRetrieve(session, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} [name] 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {number} [user] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrinterProfilesList(name?: string, page?: number, user?: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrinterProfilesList(name, page, user, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrinterProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrinterProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrinterProfilesRetrieve(id: number, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrinterProfilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PrinterProfileRequest} printerProfileRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof RemoteControlApi
-     */
-    public apiPrinterProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any) {
-        return RemoteControlApiFp(this.configuration).apiPrinterProfilesUpdate(id, printerProfileRequest, options).then((request) => request(this.axios, this.basePath));
+    public commandsUpdate(id: number, remoteControlCommandRequest: RemoteControlCommandRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).commandsUpdate(id, remoteControlCommandRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10164,6 +9919,58 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public gcodeFilesList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} [name] 
+     * @param {any} [file] 
+     * @param {string} [fileHash] 
+     * @param {string} [octoprintDevice] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public gcodeFilesPartialUpdate(id: string, name?: string, file?: any, fileHash?: string, octoprintDevice?: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesPartialUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public gcodeFilesRetrieve(id: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} name 
+     * @param {any} file 
+     * @param {string} fileHash 
+     * @param {string} octoprintDevice 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public gcodeFilesUpdate(id: string, name: string, file: any, fileHash: string, octoprintDevice: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).gcodeFilesUpdate(id, name, file, fileHash, octoprintDevice, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {string} name 
      * @param {any} file 
      * @param {string} fileHash 
@@ -10178,6 +9985,28 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
+     * @param {OctoPrintDeviceRequest} octoPrintDeviceRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public octoprintDevicesCreate(octoPrintDeviceRequest: OctoPrintDeviceRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesCreate(octoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public octoprintDevicesList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} id A unique integer value identifying this octo print device.
      * @param {PatchedOctoPrintDeviceRequest} [patchedOctoPrintDeviceRequest] 
      * @param {*} [options] Override http request option.
@@ -10186,6 +10015,17 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public octoprintDevicesPartialUpdate(id: number, patchedOctoPrintDeviceRequest?: PatchedOctoPrintDeviceRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).octoprintDevicesPartialUpdate(id, patchedOctoPrintDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this octo print device.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public octoprintDevicesRetrieve(id: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).octoprintDevicesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10237,6 +10077,39 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
     /**
      * 
+     * @param {PrintSessionRequest} printSessionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionsCreate(printSessionRequest: PrintSessionRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsCreate(printSessionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionsList(page?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsList(page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} session 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printSessionsRetrieve(session: string, options?: any) {
+        return RemoteControlApiFp(this.configuration).printSessionsRetrieve(session, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {PrinterProfileRequest} printerProfileRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -10244,6 +10117,54 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
      */
     public printerProfilesCreate(printerProfileRequest: PrinterProfileRequest, options?: any) {
         return RemoteControlApiFp(this.configuration).printerProfilesCreate(printerProfileRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} [name] 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {number} [user] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printerProfilesList(name?: string, page?: number, user?: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).printerProfilesList(name, page, user, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PatchedPrinterProfileRequest} [patchedPrinterProfileRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printerProfilesPartialUpdate(id: number, patchedPrinterProfileRequest?: PatchedPrinterProfileRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printerProfilesPartialUpdate(id, patchedPrinterProfileRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printerProfilesRetrieve(id: number, options?: any) {
+        return RemoteControlApiFp(this.configuration).printerProfilesRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PrinterProfileRequest} printerProfileRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RemoteControlApi
+     */
+    public printerProfilesUpdate(id: number, printerProfileRequest: PrinterProfileRequest, options?: any) {
+        return RemoteControlApiFp(this.configuration).printerProfilesUpdate(id, printerProfileRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10260,6 +10181,131 @@ export class RemoteControlApi extends BaseAPI implements RemoteControlApiInterfa
 
 
 /**
+ * SchemaApi - axios parameter creator
+ * @export
+ */
+export const SchemaApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        schemaRetrieve: async (lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/schema/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (lang !== undefined) {
+                localVarQueryParameter['lang'] = lang;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SchemaApi - functional programming interface
+ * @export
+ */
+export const SchemaApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SchemaApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.schemaRetrieve(lang, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SchemaApi - factory interface
+ * @export
+ */
+export const SchemaApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SchemaApiFp(configuration)
+    return {
+        /**
+         * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+         * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.schemaRetrieve(lang, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SchemaApi - interface
+ * @export
+ * @interface SchemaApi
+ */
+export interface SchemaApiInterface {
+    /**
+     * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+     * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SchemaApiInterface
+     */
+    schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any): AxiosPromise<{ [key: string]: any; }>;
+
+}
+
+/**
+ * SchemaApi - object-oriented interface
+ * @export
+ * @class SchemaApi
+ * @extends {BaseAPI}
+ */
+export class SchemaApi extends BaseAPI implements SchemaApiInterface {
+    /**
+     * OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
+     * @param {'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant'} [lang] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SchemaApi
+     */
+    public schemaRetrieve(lang?: 'af' | 'ar' | 'ar-dz' | 'ast' | 'az' | 'be' | 'bg' | 'bn' | 'br' | 'bs' | 'ca' | 'cs' | 'cy' | 'da' | 'de' | 'dsb' | 'el' | 'en' | 'en-au' | 'en-gb' | 'eo' | 'es' | 'es-ar' | 'es-co' | 'es-mx' | 'es-ni' | 'es-ve' | 'et' | 'eu' | 'fa' | 'fi' | 'fr' | 'fy' | 'ga' | 'gd' | 'gl' | 'he' | 'hi' | 'hr' | 'hsb' | 'hu' | 'hy' | 'ia' | 'id' | 'ig' | 'io' | 'is' | 'it' | 'ja' | 'ka' | 'kab' | 'kk' | 'km' | 'kn' | 'ko' | 'ky' | 'lb' | 'lt' | 'lv' | 'mk' | 'ml' | 'mn' | 'mr' | 'my' | 'nb' | 'ne' | 'nl' | 'nn' | 'os' | 'pa' | 'pl' | 'pt' | 'pt-br' | 'ro' | 'ru' | 'sk' | 'sl' | 'sq' | 'sr' | 'sr-latn' | 'sv' | 'sw' | 'ta' | 'te' | 'tg' | 'th' | 'tk' | 'tr' | 'tt' | 'udm' | 'uk' | 'ur' | 'uz' | 'vi' | 'zh-hans' | 'zh-hant', options?: any) {
+        return SchemaApiFp(this.configuration).schemaRetrieve(lang, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * TelemetryApi - axios parameter creator
  * @export
  */
@@ -10271,9 +10317,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsCreate: async (octoPrintEventRequest: OctoPrintEventRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'octoPrintEventRequest' is not null or undefined
-            assertParamExists('apiOctoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
+            assertParamExists('octoprintEventsCreate', 'octoPrintEventRequest', octoPrintEventRequest)
             const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10312,7 +10358,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/octoprint-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10352,9 +10398,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        octoprintEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiOctoprintEventsRetrieve', 'id', id)
+            assertParamExists('octoprintEventsRetrieve', 'id', id)
             const localVarPath = `/api/octoprint-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10391,7 +10437,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintJobEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        printJobEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/print-job-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10431,9 +10477,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintJobEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printJobEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiPrintJobEventsRetrieve', 'id', id)
+            assertParamExists('printJobEventsRetrieve', 'id', id)
             const localVarPath = `/api/print-job-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10470,7 +10516,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintNannyPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        printNannyPluginEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/print-nanny-plugin-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10510,9 +10556,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintNannyPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        printNannyPluginEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiPrintNannyPluginEventsRetrieve', 'id', id)
+            assertParamExists('printNannyPluginEventsRetrieve', 'id', id)
             const localVarPath = `/api/print-nanny-plugin-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10549,7 +10595,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRemoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        remoteCommandEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/remote-command-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10589,9 +10635,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRemoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        remoteCommandEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiRemoteCommandEventsRetrieve', 'id', id)
+            assertParamExists('remoteCommandEventsRetrieve', 'id', id)
             const localVarPath = `/api/remote-command-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10628,7 +10674,7 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiTelemetryEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        telemetryEventsList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/telemetry-events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10668,9 +10714,9 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiTelemetryEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        telemetryEventsRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiTelemetryEventsRetrieve', 'id', id)
+            assertParamExists('telemetryEventsRetrieve', 'id', id)
             const localVarPath = `/api/telemetry-events/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -10717,8 +10763,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintEventsCreate(octoPrintEventRequest, options);
+        async octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsCreate(octoPrintEventRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10727,8 +10773,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiOctoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintEventsList(page, options);
+        async octoprintEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedOctoPrintEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10737,8 +10783,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiOctoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiOctoprintEventsRetrieve(id, options);
+        async octoprintEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OctoPrintEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.octoprintEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10747,8 +10793,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintJobEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintJobEventsList(page, options);
+        async printJobEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintJobEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printJobEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10757,8 +10803,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintJobEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJobEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintJobEventsRetrieve(id, options);
+        async printJobEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintJobEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printJobEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10767,8 +10813,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintNannyPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintNannyPluginEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintNannyPluginEventsList(page, options);
+        async printNannyPluginEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrintNannyPluginEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10777,8 +10823,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiPrintNannyPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyPluginEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiPrintNannyPluginEventsRetrieve(id, options);
+        async printNannyPluginEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrintNannyPluginEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.printNannyPluginEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10787,8 +10833,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRemoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiRemoteCommandEventsList(page, options);
+        async remoteCommandEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedRemoteCommandEventList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10797,8 +10843,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiRemoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiRemoteCommandEventsRetrieve(id, options);
+        async remoteCommandEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoteCommandEvent>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.remoteCommandEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10807,8 +10853,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiTelemetryEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTelemetryEventsList(page, options);
+        async telemetryEventsList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedTelemetryEventPolymorphicList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -10817,8 +10863,8 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiTelemetryEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiTelemetryEventsRetrieve(id, options);
+        async telemetryEventsRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -10837,8 +10883,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.apiOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
+        octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10846,8 +10892,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
-            return localVarFp.apiOctoprintEventsList(page, options).then((request) => request(axios, basePath));
+        octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList> {
+            return localVarFp.octoprintEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10855,8 +10901,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
-            return localVarFp.apiOctoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent> {
+            return localVarFp.octoprintEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10864,8 +10910,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintJobEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobEventList> {
-            return localVarFp.apiPrintJobEventsList(page, options).then((request) => request(axios, basePath));
+        printJobEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobEventList> {
+            return localVarFp.printJobEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10873,8 +10919,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintJobEventsRetrieve(id: number, options?: any): AxiosPromise<PrintJobEvent> {
-            return localVarFp.apiPrintJobEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printJobEventsRetrieve(id: number, options?: any): AxiosPromise<PrintJobEvent> {
+            return localVarFp.printJobEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10882,8 +10928,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList> {
-            return localVarFp.apiPrintNannyPluginEventsList(page, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList> {
+            return localVarFp.printNannyPluginEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10891,8 +10937,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiPrintNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent> {
-            return localVarFp.apiPrintNannyPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent> {
+            return localVarFp.printNannyPluginEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10900,8 +10946,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
-            return localVarFp.apiRemoteCommandEventsList(page, options).then((request) => request(axios, basePath));
+        remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList> {
+            return localVarFp.remoteCommandEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10909,8 +10955,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
-            return localVarFp.apiRemoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent> {
+            return localVarFp.remoteCommandEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10918,8 +10964,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiTelemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
-            return localVarFp.apiTelemetryEventsList(page, options).then((request) => request(axios, basePath));
+        telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList> {
+            return localVarFp.telemetryEventsList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -10927,8 +10973,8 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiTelemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
-            return localVarFp.apiTelemetryEventsRetrieve(id, options).then((request) => request(axios, basePath));
+        telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
+            return localVarFp.telemetryEventsRetrieve(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10946,7 +10992,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -10955,7 +11001,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiOctoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
+    octoprintEventsList(page?: number, options?: any): AxiosPromise<PaginatedOctoPrintEventList>;
 
     /**
      * 
@@ -10964,7 +11010,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiOctoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
+    octoprintEventsRetrieve(id: number, options?: any): AxiosPromise<OctoPrintEvent>;
 
     /**
      * 
@@ -10973,7 +11019,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiPrintJobEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobEventList>;
+    printJobEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintJobEventList>;
 
     /**
      * 
@@ -10982,7 +11028,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiPrintJobEventsRetrieve(id: number, options?: any): AxiosPromise<PrintJobEvent>;
+    printJobEventsRetrieve(id: number, options?: any): AxiosPromise<PrintJobEvent>;
 
     /**
      * 
@@ -10991,7 +11037,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiPrintNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList>;
+    printNannyPluginEventsList(page?: number, options?: any): AxiosPromise<PaginatedPrintNannyPluginEventList>;
 
     /**
      * 
@@ -11000,7 +11046,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiPrintNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent>;
+    printNannyPluginEventsRetrieve(id: number, options?: any): AxiosPromise<PrintNannyPluginEvent>;
 
     /**
      * 
@@ -11009,7 +11055,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiRemoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
+    remoteCommandEventsList(page?: number, options?: any): AxiosPromise<PaginatedRemoteCommandEventList>;
 
     /**
      * 
@@ -11018,7 +11064,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiRemoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
+    remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
 
     /**
      * 
@@ -11027,7 +11073,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiTelemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
+    telemetryEventsList(page?: number, options?: any): AxiosPromise<PaginatedTelemetryEventPolymorphicList>;
 
     /**
      * 
@@ -11036,7 +11082,7 @@ export interface TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApiInterface
      */
-    apiTelemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
+    telemetryEventsRetrieve(id: number, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
 
 }
 
@@ -11054,8 +11100,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiOctoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
-        return TelemetryApiFp(this.configuration).apiOctoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsCreate(octoPrintEventRequest: OctoPrintEventRequest, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsCreate(octoPrintEventRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11065,8 +11111,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiOctoprintEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiOctoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11076,8 +11122,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiOctoprintEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiOctoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public octoprintEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).octoprintEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11087,8 +11133,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiPrintJobEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiPrintJobEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printJobEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printJobEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11098,8 +11144,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiPrintJobEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiPrintJobEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printJobEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printJobEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11109,8 +11155,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiPrintNannyPluginEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiPrintNannyPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11120,8 +11166,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiPrintNannyPluginEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiPrintNannyPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public printNannyPluginEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).printNannyPluginEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11131,8 +11177,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiRemoteCommandEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiRemoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public remoteCommandEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11142,8 +11188,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiRemoteCommandEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiRemoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public remoteCommandEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).remoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11153,8 +11199,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiTelemetryEventsList(page?: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiTelemetryEventsList(page, options).then((request) => request(this.axios, this.basePath));
+    public telemetryEventsList(page?: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11164,8 +11210,8 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      * @throws {RequiredError}
      * @memberof TelemetryApi
      */
-    public apiTelemetryEventsRetrieve(id: number, options?: any) {
-        return TelemetryApiFp(this.configuration).apiTelemetryEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public telemetryEventsRetrieve(id: number, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -11182,7 +11228,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
+        usersList: async (page?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/users/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11221,7 +11267,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersMeRetrieve: async (options: any = {}): Promise<RequestArgs> => {
+        usersMeRetrieve: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/users/me/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11258,9 +11304,9 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersPartialUpdate: async (id: number, patchedUserRequest?: PatchedUserRequest, options: any = {}): Promise<RequestArgs> => {
+        usersPartialUpdate: async (id: number, patchedUserRequest?: PatchedUserRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiUsersPartialUpdate', 'id', id)
+            assertParamExists('usersPartialUpdate', 'id', id)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11300,9 +11346,9 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        usersRetrieve: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiUsersRetrieve', 'id', id)
+            assertParamExists('usersRetrieve', 'id', id)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11340,11 +11386,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersUpdate: async (id: number, userRequest: UserRequest, options: any = {}): Promise<RequestArgs> => {
+        usersUpdate: async (id: number, userRequest: UserRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiUsersUpdate', 'id', id)
+            assertParamExists('usersUpdate', 'id', id)
             // verify required parameter 'userRequest' is not null or undefined
-            assertParamExists('apiUsersUpdate', 'userRequest', userRequest)
+            assertParamExists('usersUpdate', 'userRequest', userRequest)
             const localVarPath = `/api/users/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -11394,8 +11440,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUsersList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedUserList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiUsersList(page, options);
+        async usersList(page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedUserList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersList(page, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11403,8 +11449,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUsersMeRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiUsersMeRetrieve(options);
+        async usersMeRetrieve(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersMeRetrieve(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11414,8 +11460,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUsersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiUsersPartialUpdate(id, patchedUserRequest, options);
+        async usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersPartialUpdate(id, patchedUserRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11424,8 +11470,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUsersRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiUsersRetrieve(id, options);
+        async usersRetrieve(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersRetrieve(id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -11435,8 +11481,8 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiUsersUpdate(id: number, userRequest: UserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiUsersUpdate(id, userRequest, options);
+        async usersUpdate(id: number, userRequest: UserRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersUpdate(id, userRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -11455,16 +11501,16 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersList(page?: number, options?: any): AxiosPromise<PaginatedUserList> {
-            return localVarFp.apiUsersList(page, options).then((request) => request(axios, basePath));
+        usersList(page?: number, options?: any): AxiosPromise<PaginatedUserList> {
+            return localVarFp.usersList(page, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersMeRetrieve(options?: any): AxiosPromise<User> {
-            return localVarFp.apiUsersMeRetrieve(options).then((request) => request(axios, basePath));
+        usersMeRetrieve(options?: any): AxiosPromise<User> {
+            return localVarFp.usersMeRetrieve(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11473,8 +11519,8 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.apiUsersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
+        usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11482,8 +11528,8 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersRetrieve(id: number, options?: any): AxiosPromise<User> {
-            return localVarFp.apiUsersRetrieve(id, options).then((request) => request(axios, basePath));
+        usersRetrieve(id: number, options?: any): AxiosPromise<User> {
+            return localVarFp.usersRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -11492,8 +11538,8 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiUsersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User> {
-            return localVarFp.apiUsersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
+        usersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User> {
+            return localVarFp.usersUpdate(id, userRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -11511,7 +11557,7 @@ export interface UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    apiUsersList(page?: number, options?: any): AxiosPromise<PaginatedUserList>;
+    usersList(page?: number, options?: any): AxiosPromise<PaginatedUserList>;
 
     /**
      * 
@@ -11519,7 +11565,7 @@ export interface UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    apiUsersMeRetrieve(options?: any): AxiosPromise<User>;
+    usersMeRetrieve(options?: any): AxiosPromise<User>;
 
     /**
      * 
@@ -11529,7 +11575,7 @@ export interface UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    apiUsersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User>;
+    usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any): AxiosPromise<User>;
 
     /**
      * 
@@ -11538,7 +11584,7 @@ export interface UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    apiUsersRetrieve(id: number, options?: any): AxiosPromise<User>;
+    usersRetrieve(id: number, options?: any): AxiosPromise<User>;
 
     /**
      * 
@@ -11548,7 +11594,7 @@ export interface UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    apiUsersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User>;
+    usersUpdate(id: number, userRequest: UserRequest, options?: any): AxiosPromise<User>;
 
 }
 
@@ -11566,8 +11612,8 @@ export class UsersApi extends BaseAPI implements UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public apiUsersList(page?: number, options?: any) {
-        return UsersApiFp(this.configuration).apiUsersList(page, options).then((request) => request(this.axios, this.basePath));
+    public usersList(page?: number, options?: any) {
+        return UsersApiFp(this.configuration).usersList(page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11576,8 +11622,8 @@ export class UsersApi extends BaseAPI implements UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public apiUsersMeRetrieve(options?: any) {
-        return UsersApiFp(this.configuration).apiUsersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
+    public usersMeRetrieve(options?: any) {
+        return UsersApiFp(this.configuration).usersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11588,8 +11634,8 @@ export class UsersApi extends BaseAPI implements UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public apiUsersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any) {
-        return UsersApiFp(this.configuration).apiUsersPartialUpdate(id, patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
+    public usersPartialUpdate(id: number, patchedUserRequest?: PatchedUserRequest, options?: any) {
+        return UsersApiFp(this.configuration).usersPartialUpdate(id, patchedUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11599,8 +11645,8 @@ export class UsersApi extends BaseAPI implements UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public apiUsersRetrieve(id: number, options?: any) {
-        return UsersApiFp(this.configuration).apiUsersRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    public usersRetrieve(id: number, options?: any) {
+        return UsersApiFp(this.configuration).usersRetrieve(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11611,8 +11657,8 @@ export class UsersApi extends BaseAPI implements UsersApiInterface {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public apiUsersUpdate(id: number, userRequest: UserRequest, options?: any) {
-        return UsersApiFp(this.configuration).apiUsersUpdate(id, userRequest, options).then((request) => request(this.axios, this.basePath));
+    public usersUpdate(id: number, userRequest: UserRequest, options?: any) {
+        return UsersApiFp(this.configuration).usersUpdate(id, userRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

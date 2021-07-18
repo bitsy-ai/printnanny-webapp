@@ -28,68 +28,68 @@ class TestTelemetryApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_api_octoprint_events_create(self):
-        """Test case for api_octoprint_events_create
+    def test_octoprint_events_create(self):
+        """Test case for octoprint_events_create
 
         """
         pass
 
-    def test_api_octoprint_events_list(self):
-        """Test case for api_octoprint_events_list
+    def test_octoprint_events_list(self):
+        """Test case for octoprint_events_list
 
         """
         pass
 
-    def test_api_octoprint_events_retrieve(self):
-        """Test case for api_octoprint_events_retrieve
+    def test_octoprint_events_retrieve(self):
+        """Test case for octoprint_events_retrieve
 
         """
         pass
 
-    def test_api_print_job_events_list(self):
-        """Test case for api_print_job_events_list
+    def test_print_job_events_list(self):
+        """Test case for print_job_events_list
 
         """
         pass
 
-    def test_api_print_job_events_retrieve(self):
-        """Test case for api_print_job_events_retrieve
+    def test_print_job_events_retrieve(self):
+        """Test case for print_job_events_retrieve
 
         """
         pass
 
-    def test_api_print_nanny_plugin_events_list(self):
-        """Test case for api_print_nanny_plugin_events_list
+    def test_print_nanny_plugin_events_list(self):
+        """Test case for print_nanny_plugin_events_list
 
         """
         pass
 
-    def test_api_print_nanny_plugin_events_retrieve(self):
-        """Test case for api_print_nanny_plugin_events_retrieve
+    def test_print_nanny_plugin_events_retrieve(self):
+        """Test case for print_nanny_plugin_events_retrieve
 
         """
         pass
 
-    def test_api_remote_command_events_list(self):
-        """Test case for api_remote_command_events_list
+    def test_remote_command_events_list(self):
+        """Test case for remote_command_events_list
 
         """
         pass
 
-    def test_api_remote_command_events_retrieve(self):
-        """Test case for api_remote_command_events_retrieve
+    def test_remote_command_events_retrieve(self):
+        """Test case for remote_command_events_retrieve
 
         """
         pass
 
-    def test_api_telemetry_events_list(self):
-        """Test case for api_telemetry_events_list
+    def test_telemetry_events_list(self):
+        """Test case for telemetry_events_list
 
         """
         pass
 
-    def test_api_telemetry_events_retrieve(self):
-        """Test case for api_telemetry_events_retrieve
+    def test_telemetry_events_retrieve(self):
+        """Test case for telemetry_events_retrieve
 
         """
         pass

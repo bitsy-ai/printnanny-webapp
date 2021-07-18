@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiUsersList**](UsersApi.md#apiUsersList) | **GET** /api/users/ | 
-[**apiUsersMeRetrieve**](UsersApi.md#apiUsersMeRetrieve) | **GET** /api/users/me/ | 
-[**apiUsersPartialUpdate**](UsersApi.md#apiUsersPartialUpdate) | **PATCH** /api/users/{id}/ | 
-[**apiUsersRetrieve**](UsersApi.md#apiUsersRetrieve) | **GET** /api/users/{id}/ | 
-[**apiUsersUpdate**](UsersApi.md#apiUsersUpdate) | **PUT** /api/users/{id}/ | 
+[**usersList**](UsersApi.md#usersList) | **GET** /api/users/ | 
+[**usersMeRetrieve**](UsersApi.md#usersMeRetrieve) | **GET** /api/users/me/ | 
+[**usersPartialUpdate**](UsersApi.md#usersPartialUpdate) | **PATCH** /api/users/{id}/ | 
+[**usersRetrieve**](UsersApi.md#usersRetrieve) | **GET** /api/users/{id}/ | 
+[**usersUpdate**](UsersApi.md#usersUpdate) | **PUT** /api/users/{id}/ | 
 
 
-<a name="apiUsersList"></a>
-# **apiUsersList**
-> PaginatedUserList apiUsersList(page)
+<a name="usersList"></a>
+# **usersList**
+> PaginatedUserList usersList(page)
 
 
 
@@ -26,13 +26,13 @@ Method | HTTP request | Description
 val apiInstance = UsersApi()
 val page : kotlin.Int = 56 // kotlin.Int | A page number within the paginated result set.
 try {
-    val result : PaginatedUserList = apiInstance.apiUsersList(page)
+    val result : PaginatedUserList = apiInstance.usersList(page)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#apiUsersList")
+    println("4xx response calling UsersApi#usersList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#apiUsersList")
+    println("5xx response calling UsersApi#usersList")
     e.printStackTrace()
 }
 ```
@@ -61,9 +61,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiUsersMeRetrieve"></a>
-# **apiUsersMeRetrieve**
-> User apiUsersMeRetrieve()
+<a name="usersMeRetrieve"></a>
+# **usersMeRetrieve**
+> User usersMeRetrieve()
 
 
 
@@ -75,13 +75,13 @@ Configure tokenAuth:
 
 val apiInstance = UsersApi()
 try {
-    val result : User = apiInstance.apiUsersMeRetrieve()
+    val result : User = apiInstance.usersMeRetrieve()
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#apiUsersMeRetrieve")
+    println("4xx response calling UsersApi#usersMeRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#apiUsersMeRetrieve")
+    println("5xx response calling UsersApi#usersMeRetrieve")
     e.printStackTrace()
 }
 ```
@@ -107,9 +107,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiUsersPartialUpdate"></a>
-# **apiUsersPartialUpdate**
-> User apiUsersPartialUpdate(id, patchedUserRequest)
+<a name="usersPartialUpdate"></a>
+# **usersPartialUpdate**
+> User usersPartialUpdate(id, patchedUserRequest)
 
 
 
@@ -123,13 +123,13 @@ val apiInstance = UsersApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this user.
 val patchedUserRequest : PatchedUserRequest =  // PatchedUserRequest | 
 try {
-    val result : User = apiInstance.apiUsersPartialUpdate(id, patchedUserRequest)
+    val result : User = apiInstance.usersPartialUpdate(id, patchedUserRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#apiUsersPartialUpdate")
+    println("4xx response calling UsersApi#usersPartialUpdate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#apiUsersPartialUpdate")
+    println("5xx response calling UsersApi#usersPartialUpdate")
     e.printStackTrace()
 }
 ```
@@ -159,9 +159,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="apiUsersRetrieve"></a>
-# **apiUsersRetrieve**
-> User apiUsersRetrieve(id)
+<a name="usersRetrieve"></a>
+# **usersRetrieve**
+> User usersRetrieve(id)
 
 
 
@@ -174,13 +174,13 @@ Configure tokenAuth:
 val apiInstance = UsersApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this user.
 try {
-    val result : User = apiInstance.apiUsersRetrieve(id)
+    val result : User = apiInstance.usersRetrieve(id)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#apiUsersRetrieve")
+    println("4xx response calling UsersApi#usersRetrieve")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#apiUsersRetrieve")
+    println("5xx response calling UsersApi#usersRetrieve")
     e.printStackTrace()
 }
 ```
@@ -209,9 +209,9 @@ Configure tokenAuth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="apiUsersUpdate"></a>
-# **apiUsersUpdate**
-> User apiUsersUpdate(id, userRequest)
+<a name="usersUpdate"></a>
+# **usersUpdate**
+> User usersUpdate(id, userRequest)
 
 
 
@@ -225,13 +225,13 @@ val apiInstance = UsersApi()
 val id : kotlin.Int = 56 // kotlin.Int | A unique integer value identifying this user.
 val userRequest : UserRequest =  // UserRequest | 
 try {
-    val result : User = apiInstance.apiUsersUpdate(id, userRequest)
+    val result : User = apiInstance.usersUpdate(id, userRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UsersApi#apiUsersUpdate")
+    println("4xx response calling UsersApi#usersUpdate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UsersApi#apiUsersUpdate")
+    println("5xx response calling UsersApi#usersUpdate")
     e.printStackTrace()
 }
 ```

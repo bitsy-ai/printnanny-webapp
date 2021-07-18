@@ -28,26 +28,26 @@ class TestDevicesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_api_devices_create(self):
-        """Test case for api_devices_create
+    def test_devices_create(self):
+        """Test case for devices_create
 
         """
         pass
 
-    def test_api_devices_list(self):
-        """Test case for api_devices_list
-
-        """
-        pass
-
-    def test_api_devices_retrieve(self):
-        """Test case for api_devices_retrieve
+    def test_devices_list(self):
+        """Test case for devices_list
 
         """
         pass
 
     def test_devices_partial_update(self):
         """Test case for devices_partial_update
+
+        """
+        pass
+
+    def test_devices_retrieve(self):
+        """Test case for devices_retrieve
 
         """
         pass

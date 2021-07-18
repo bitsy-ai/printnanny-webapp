@@ -13,43 +13,43 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `api_users_list`
+/// struct for typed errors of method `users_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiUsersListError {
+pub enum UsersListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_users_me_retrieve`
+/// struct for typed errors of method `users_me_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiUsersMeRetrieveError {
+pub enum UsersMeRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_users_partial_update`
+/// struct for typed errors of method `users_partial_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiUsersPartialUpdateError {
+pub enum UsersPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_users_retrieve`
+/// struct for typed errors of method `users_retrieve`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiUsersRetrieveError {
+pub enum UsersRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `api_users_update`
+/// struct for typed errors of method `users_update`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ApiUsersUpdateError {
+pub enum UsersUpdateError {
     UnknownValue(serde_json::Value),
 }
 
 
-pub async fn api_users_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedUserList, Error<ApiUsersListError>> {
+pub async fn users_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedUserList, Error<UsersListError>> {
 
     let local_var_client = &configuration.client;
 
@@ -75,13 +75,13 @@ pub async fn api_users_list(configuration: &configuration::Configuration, page: 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiUsersListError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<UsersListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_users_me_retrieve(configuration: &configuration::Configuration, ) -> Result<crate::models::User, Error<ApiUsersMeRetrieveError>> {
+pub async fn users_me_retrieve(configuration: &configuration::Configuration, ) -> Result<crate::models::User, Error<UsersMeRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -104,13 +104,13 @@ pub async fn api_users_me_retrieve(configuration: &configuration::Configuration,
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiUsersMeRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<UsersMeRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_users_partial_update(configuration: &configuration::Configuration, id: i32, patched_user_request: Option<crate::models::PatchedUserRequest>) -> Result<crate::models::User, Error<ApiUsersPartialUpdateError>> {
+pub async fn users_partial_update(configuration: &configuration::Configuration, id: i32, patched_user_request: Option<crate::models::PatchedUserRequest>) -> Result<crate::models::User, Error<UsersPartialUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -134,13 +134,13 @@ pub async fn api_users_partial_update(configuration: &configuration::Configurati
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiUsersPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<UsersPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_users_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::User, Error<ApiUsersRetrieveError>> {
+pub async fn users_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::User, Error<UsersRetrieveError>> {
 
     let local_var_client = &configuration.client;
 
@@ -163,13 +163,13 @@ pub async fn api_users_retrieve(configuration: &configuration::Configuration, id
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiUsersRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<UsersRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn api_users_update(configuration: &configuration::Configuration, id: i32, user_request: crate::models::UserRequest) -> Result<crate::models::User, Error<ApiUsersUpdateError>> {
+pub async fn users_update(configuration: &configuration::Configuration, id: i32, user_request: crate::models::UserRequest) -> Result<crate::models::User, Error<UsersUpdateError>> {
 
     let local_var_client = &configuration.client;
 
@@ -193,7 +193,7 @@ pub async fn api_users_update(configuration: &configuration::Configuration, id: 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ApiUsersUpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<UsersUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
