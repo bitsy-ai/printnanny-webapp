@@ -64,8 +64,7 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
             "created_dt",
             "fingerprint",
             "hardware",
-            "id"
-            "kernel_version",
+            "id" "kernel_version",
             "model",
             "name",
             "os_version",
