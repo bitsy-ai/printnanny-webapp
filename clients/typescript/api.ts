@@ -1632,6 +1632,12 @@ export interface OctoPrintDeviceKey {
      * @memberof OctoPrintDeviceKey
      */
     user: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    url: string;
 }
 /**
  * 

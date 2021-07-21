@@ -64,7 +64,8 @@ class OctoPrintDeviceKey(object):
         'ram': 'int',
         'revision': 'str',
         'serial': 'str',
-        'user': 'int'
+        'user': 'int',
+        'url': 'str'
     }
 
     attribute_map = {
@@ -96,10 +97,11 @@ class OctoPrintDeviceKey(object):
         'ram': 'ram',
         'revision': 'revision',
         'serial': 'serial',
-        'user': 'user'
+        'user': 'user',
+        'url': 'url'
     }
 
-    def __init__(self, active_session=None, ca_certs=None, cloudiot_device_configs=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, cloudiot_device=None, cores=None, cpu_flags=None, created_dt=None, hardware=None, manage_url=None, model=None, monitoring_active=None, name=None, octoprint_version=None, pip_version=None, platform=None, plugin_version=None, print_nanny_client_version=None, private_key_checksum=None, private_key=None, public_key_checksum=None, public_key=None, python_version=None, ram=None, revision=None, serial=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active_session=None, ca_certs=None, cloudiot_device_configs=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, cloudiot_device=None, cores=None, cpu_flags=None, created_dt=None, hardware=None, manage_url=None, model=None, monitoring_active=None, name=None, octoprint_version=None, pip_version=None, platform=None, plugin_version=None, print_nanny_client_version=None, private_key_checksum=None, private_key=None, public_key_checksum=None, public_key=None, python_version=None, ram=None, revision=None, serial=None, user=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -134,6 +136,7 @@ class OctoPrintDeviceKey(object):
         self._revision = None
         self._serial = None
         self._user = None
+        self._url = None
         self.discriminator = None
 
         if active_session is not None:
@@ -166,6 +169,7 @@ class OctoPrintDeviceKey(object):
         self.revision = revision
         self.serial = serial
         self.user = user
+        self.url = url
 
     @property
     def active_session(self):
@@ -870,6 +874,29 @@ class OctoPrintDeviceKey(object):
             raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
+
+    @property
+    def url(self):
+        """Gets the url of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The url of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._url
+
+    @url.setter
+    def url(self, url):
+        """Sets the url of this OctoPrintDeviceKey.
+
+
+        :param url: The url of this OctoPrintDeviceKey.  # noqa: E501
+        :type url: str
+        """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
+
+        self._url = url
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

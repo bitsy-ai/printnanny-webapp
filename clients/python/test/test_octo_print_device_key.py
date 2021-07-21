@@ -90,7 +90,8 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 ram = -2147483648, 
                 revision = '', 
                 serial = '', 
-                user = 56
+                user = 56, 
+                url = ''
             )
         else :
             return OctoPrintDeviceKey(
@@ -123,6 +124,7 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                 ram = -2147483648,
                 serial = '',
                 user = 56,
+                url = '',
         )
 
     def testOctoPrintDeviceKey(self):
