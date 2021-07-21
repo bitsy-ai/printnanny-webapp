@@ -2287,338 +2287,6 @@ export interface OctoprintPrinterFlags {
 /**
  * 
  * @export
- * @interface OctoprintPrinterProfile
- */
-export interface OctoprintPrinterProfile {
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    created_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    updated_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    name: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_e_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfile
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_custom_box?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    volume_width?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    polymorphic_ctype: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    user: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    controller: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfile
-     */
-    octoprint_controller: number;
-}
-/**
- * 
- * @export
- * @interface OctoprintPrinterProfileRequest
- */
-export interface OctoprintPrinterProfileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    name: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_e_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_custom_box?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    volume_width?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    controller: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    device: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoprintPrinterProfileRequest
-     */
-    octoprint_controller: number;
-}
-/**
- * 
- * @export
  * @interface OctoprintPrinterState
  */
 export interface OctoprintPrinterState {
@@ -3130,37 +2798,6 @@ export interface PaginatedPrinterProfileList {
      * @memberof PaginatedPrinterProfileList
      */
     results?: Array<PrinterProfile>;
-}
-/**
- * 
- * @export
- * @interface PaginatedPrinterProfilePolymorphicList
- */
-export interface PaginatedPrinterProfilePolymorphicList {
-    /**
-     * 
-     * @type {number}
-     * @memberof PaginatedPrinterProfilePolymorphicList
-     */
-    count?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPrinterProfilePolymorphicList
-     */
-    next?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaginatedPrinterProfilePolymorphicList
-     */
-    previous?: string | null;
-    /**
-     * 
-     * @type {Array<PrinterProfilePolymorphic>}
-     * @memberof PaginatedPrinterProfilePolymorphicList
-     */
-    results?: Array<PrinterProfilePolymorphic>;
 }
 /**
  * 
@@ -3699,157 +3336,6 @@ export interface PatchedOctoPrintDeviceRequest {
 /**
  * 
  * @export
- * @interface PatchedOctoprintPrinterProfileRequest
- */
-export interface PatchedOctoprintPrinterProfileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_e_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_custom_box?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    volume_width?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    controller?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    device?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedOctoprintPrinterProfileRequest
-     */
-    octoprint_controller?: number;
-}
-/**
- * 
- * @export
  * @interface PatchedPrintSessionRequest
  */
 export interface PatchedPrintSessionRequest {
@@ -3933,17 +3419,101 @@ export interface PatchedPrintSessionRequest {
     print_job_status?: PrintJobStatusEnum | null;
 }
 /**
- * @type PatchedPrinterProfilePolymorphicRequest
- * @export
- */
-export type PatchedPrinterProfilePolymorphicRequest = PatchedOctoprintPrinterProfileRequest | PatchedPrinterProfileRequest;
-
-/**
  * 
  * @export
  * @interface PatchedPrinterProfileRequest
  */
 export interface PatchedPrinterProfileRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    octoprint_device?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_e_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    model?: string | null;
     /**
      * 
      * @type {string}
@@ -3952,16 +3522,46 @@ export interface PatchedPrinterProfileRequest {
     name?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PatchedPrinterProfileRequest
      */
-    controller?: number;
+    octoprint_key?: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
      * @memberof PatchedPrinterProfileRequest
      */
-    device?: number;
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterProfileRequest
+     */
+    volume_width?: number | null;
 }
 /**
  * 
@@ -4578,30 +4178,6 @@ export interface PrinterProfile {
     id: number;
     /**
      * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    created_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    updated_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    name: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    polymorphic_ctype: number;
-    /**
-     * 
      * @type {number}
      * @memberof PrinterProfile
      */
@@ -4611,26 +4187,146 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    controller: number;
+    octoprint_device: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    axes_e_inverted?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    device: number;
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfile
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    octoprint_key: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterProfile
+     */
+    volume_custom_box?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    volume_width?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    url: string;
 }
-/**
- * @type PrinterProfilePolymorphic
- * @export
- */
-export type PrinterProfilePolymorphic = OctoprintPrinterProfile | PrinterProfile;
-
-/**
- * @type PrinterProfilePolymorphicRequest
- * @export
- */
-export type PrinterProfilePolymorphicRequest = OctoprintPrinterProfileRequest | PrinterProfileRequest;
-
 /**
  * 
  * @export
@@ -4639,22 +4335,142 @@ export type PrinterProfilePolymorphicRequest = OctoprintPrinterProfileRequest | 
 export interface PrinterProfileRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    axes_e_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PrinterProfileRequest
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfileRequest
+     */
+    model?: string | null;
+    /**
+     * 
      * @type {string}
      * @memberof PrinterProfileRequest
      */
     name: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof PrinterProfileRequest
      */
-    controller: number;
+    octoprint_key: string;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterProfileRequest
+     */
+    volume_custom_box?: { [key: string]: any; };
     /**
      * 
      * @type {number}
      * @memberof PrinterProfileRequest
      */
-    device: number;
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfileRequest
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfileRequest
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfileRequest
+     */
+    volume_width?: number | null;
 }
 /**
  * 
@@ -6609,230 +6425,6 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesCreate: async (deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterProfilesCreate', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printer-profiles/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printerProfilePolymorphicRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesList: async (deviceId: number, page?: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterProfilesList', 'deviceId', deviceId)
-            const localVarPath = `/api/devices/{device_id}/printer-profiles/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesPartialUpdate: async (deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterProfilesPartialUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterProfilesPartialUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterProfilePolymorphicRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesRetrieve: async (deviceId: number, id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterProfilesRetrieve', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterProfilesRetrieve', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesUpdate: async (deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'deviceId' is not null or undefined
-            assertParamExists('devicesPrinterProfilesUpdate', 'deviceId', deviceId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('devicesPrinterProfilesUpdate', 'id', id)
-            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
-                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication cookieAuth required
-
-            // authentication tokenAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(printerProfilePolymorphicRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7056,63 +6648,6 @@ export const DevicesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfilePolymorphicList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesList(deviceId, page, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesRetrieve(deviceId, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7234,58 +6769,6 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {number} deviceId 
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
-            return localVarFp.devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} [page] A page number within the paginated result set.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterProfilePolymorphicList> {
-            return localVarFp.devicesPrinterProfilesList(deviceId, page, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
-            return localVarFp.devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
-            return localVarFp.devicesPrinterProfilesRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} deviceId 
-         * @param {number} id A unique integer value identifying this printer profile.
-         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
-            return localVarFp.devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @param {number} id A unique integer value identifying this device.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7400,58 +6883,6 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterProfilePolymorphicList>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApiInterface
-     */
-    devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
 
     /**
      * 
@@ -7584,68 +7015,6 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
         return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any) {
-        return DevicesApiFp(this.configuration).devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} [page] A page number within the paginated result set.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterProfilesList(deviceId: number, page?: number, options?: any) {
-        return DevicesApiFp(this.configuration).devicesPrinterProfilesList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any) {
-        return DevicesApiFp(this.configuration).devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any) {
-        return DevicesApiFp(this.configuration).devicesPrinterProfilesRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} deviceId 
-     * @param {number} id A unique integer value identifying this printer profile.
-     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DevicesApi
-     */
-    public devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any) {
-        return DevicesApiFp(this.configuration).devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

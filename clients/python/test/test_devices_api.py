@@ -76,36 +76,6 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_devices_printer_profiles_create(self):
-        """Test case for devices_printer_profiles_create
-
-        """
-        pass
-
-    def test_devices_printer_profiles_list(self):
-        """Test case for devices_printer_profiles_list
-
-        """
-        pass
-
-    def test_devices_printer_profiles_partial_update(self):
-        """Test case for devices_printer_profiles_partial_update
-
-        """
-        pass
-
-    def test_devices_printer_profiles_retrieve(self):
-        """Test case for devices_printer_profiles_retrieve
-
-        """
-        pass
-
-    def test_devices_printer_profiles_update(self):
-        """Test case for devices_printer_profiles_update
-
-        """
-        pass
-
     def test_devices_retrieve(self):
         """Test case for devices_retrieve
 

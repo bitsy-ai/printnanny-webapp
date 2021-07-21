@@ -56,11 +56,6 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
 *DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
 *DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
-*DevicesApi* | [**devicesPrinterProfilesCreate**](docs/DevicesApi.md#devicesprinterprofilescreate) | **POST** /api/devices/{device_id}/printer-profiles/ | 
-*DevicesApi* | [**devicesPrinterProfilesList**](docs/DevicesApi.md#devicesprinterprofileslist) | **GET** /api/devices/{device_id}/printer-profiles/ | 
-*DevicesApi* | [**devicesPrinterProfilesPartialUpdate**](docs/DevicesApi.md#devicesprinterprofilespartialupdate) | **PATCH** /api/devices/{device_id}/printer-profiles/{id}/ | 
-*DevicesApi* | [**devicesPrinterProfilesRetrieve**](docs/DevicesApi.md#devicesprinterprofilesretrieve) | **GET** /api/devices/{device_id}/printer-profiles/{id}/ | 
-*DevicesApi* | [**devicesPrinterProfilesUpdate**](docs/DevicesApi.md#devicesprinterprofilesupdate) | **PUT** /api/devices/{device_id}/printer-profiles/{id}/ | 
 *DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesUpdateOrCreate**](docs/DevicesApi.md#devicesupdateorcreate) | **POST** /api/devices/update-or-create/ | 
@@ -171,8 +166,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPlatform](docs/OctoprintPlatform.md)
  - [com.print-nanny.client.models.OctoprintPrinterData](docs/OctoprintPrinterData.md)
  - [com.print-nanny.client.models.OctoprintPrinterFlags](docs/OctoprintPrinterFlags.md)
- - [com.print-nanny.client.models.OctoprintPrinterProfile](docs/OctoprintPrinterProfile.md)
- - [com.print-nanny.client.models.OctoprintPrinterProfileRequest](docs/OctoprintPrinterProfileRequest.md)
  - [com.print-nanny.client.models.OctoprintPrinterState](docs/OctoprintPrinterState.md)
  - [com.print-nanny.client.models.OctoprintProgress](docs/OctoprintProgress.md)
  - [com.print-nanny.client.models.OctoprintPython](docs/OctoprintPython.md)
@@ -190,7 +183,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrintNannyPluginEventList](docs/PaginatedPrintNannyPluginEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
- - [com.print-nanny.client.models.PaginatedPrinterProfilePolymorphicList](docs/PaginatedPrinterProfilePolymorphicList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedTelemetryEventPolymorphicList](docs/PaginatedTelemetryEventPolymorphicList.md)
@@ -203,9 +195,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
- - [com.print-nanny.client.models.PatchedOctoprintPrinterProfileRequest](docs/PatchedOctoprintPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
- - [com.print-nanny.client.models.PatchedPrinterProfilePolymorphicRequest](docs/PatchedPrinterProfilePolymorphicRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [com.print-nanny.client.models.PatchedUserRequest](docs/PatchedUserRequest.md)
@@ -217,8 +207,6 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrintSessionRequest](docs/PrintSessionRequest.md)
  - [com.print-nanny.client.models.PrinterEvent](docs/PrinterEvent.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
- - [com.print-nanny.client.models.PrinterProfilePolymorphic](docs/PrinterProfilePolymorphic.md)
- - [com.print-nanny.client.models.PrinterProfilePolymorphicRequest](docs/PrinterProfilePolymorphicRequest.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)
