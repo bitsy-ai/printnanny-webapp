@@ -15,7 +15,7 @@ from .serializers import (
     CameraControllerSerializer,
     DeviceSerializer,
     DeviceIdentitySerializer,
-    PrinterProfilePolymorphicSerializer,
+    # PrinterProfilePolymorphicSerializer,
 )
 from ..models import CameraController, Device, PrinterProfile
 
@@ -95,21 +95,21 @@ class DeviceViewSet(
         serializer.save(user=self.request.user)
 
 
-@extend_schema(tags=["devices"])
-class PrinterProfileViewSet(
-    GenericViewSet,
-    CreateModelMixin,
-    ListModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-):
+# @extend_schema(tags=["devices"])
+# class PrinterProfileViewSet(
+#     GenericViewSet,
+#     CreateModelMixin,
+#     ListModelMixin,
+#     RetrieveModelMixin,
+#     UpdateModelMixin,
+# ):
 
-    serializer_class = PrinterProfilePolymorphicSerializer
-    queryset = PrinterProfile.objects.all()
-    lookup_field = "id"
+#     serializer_class = PrinterProfilePolymorphicSerializer
+#     queryset = PrinterProfile.objects.all()
+#     lookup_field = "id"
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
 
 
 @extend_schema(tags=["devices"])

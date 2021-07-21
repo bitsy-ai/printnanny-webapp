@@ -6,7 +6,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from print_nanny_webapp.devices.api.views import (
     CameraControllerViewSet,
     DeviceViewSet,
-    PrinterProfileViewSet
+# PrinterProfileViewSet
 )
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
