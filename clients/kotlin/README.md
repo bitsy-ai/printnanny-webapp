@@ -44,14 +44,23 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
-*AuthApi* | [**authTokenCreate2**](docs/AuthApi.md#authtokencreate2) | **POST** /auth/token/ | 
+*AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
-*AuthTokenApi* | [**authTokenCreate**](docs/AuthTokenApi.md#authtokencreate) | **POST** /api/auth-token/ | 
+*DevicesApi* | [**devicesCamerasCreate**](docs/DevicesApi.md#devicescamerascreate) | **POST** /api/devices/{device_id}/cameras/ | 
+*DevicesApi* | [**devicesCamerasList**](docs/DevicesApi.md#devicescameraslist) | **GET** /api/devices/{device_id}/cameras/ | 
+*DevicesApi* | [**devicesCamerasPartialUpdate**](docs/DevicesApi.md#devicescameraspartialupdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
+*DevicesApi* | [**devicesCamerasRetrieve**](docs/DevicesApi.md#devicescamerasretrieve) | **GET** /api/devices/{device_id}/cameras/{id}/ | 
+*DevicesApi* | [**devicesCamerasUpdate**](docs/DevicesApi.md#devicescamerasupdate) | **PUT** /api/devices/{device_id}/cameras/{id}/ | 
 *DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
 *DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
 *DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
+*DevicesApi* | [**devicesPrinterProfilesCreate**](docs/DevicesApi.md#devicesprinterprofilescreate) | **POST** /api/devices/{device_id}/printer-profiles/ | 
+*DevicesApi* | [**devicesPrinterProfilesList**](docs/DevicesApi.md#devicesprinterprofileslist) | **GET** /api/devices/{device_id}/printer-profiles/ | 
+*DevicesApi* | [**devicesPrinterProfilesPartialUpdate**](docs/DevicesApi.md#devicesprinterprofilespartialupdate) | **PATCH** /api/devices/{device_id}/printer-profiles/{id}/ | 
+*DevicesApi* | [**devicesPrinterProfilesRetrieve**](docs/DevicesApi.md#devicesprinterprofilesretrieve) | **GET** /api/devices/{device_id}/printer-profiles/{id}/ | 
+*DevicesApi* | [**devicesPrinterProfilesUpdate**](docs/DevicesApi.md#devicesprinterprofilesupdate) | **PUT** /api/devices/{device_id}/printer-profiles/{id}/ | 
 *DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
 *DevicesApi* | [**devicesUpdateOrCreate**](docs/DevicesApi.md#devicesupdateorcreate) | **POST** /api/devices/update-or-create/ | 
@@ -123,11 +132,13 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertMethodEnum](docs/AlertMethodEnum.md)
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
- - [com.print-nanny.client.models.AuthToken](docs/AuthToken.md)
- - [com.print-nanny.client.models.AuthTokenRequest](docs/AuthTokenRequest.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
+ - [com.print-nanny.client.models.CameraController](docs/CameraController.md)
+ - [com.print-nanny.client.models.CameraControllerRequest](docs/CameraControllerRequest.md)
+ - [com.print-nanny.client.models.CameraSourceTypeEnum](docs/CameraSourceTypeEnum.md)
+ - [com.print-nanny.client.models.CameraTypeEnum](docs/CameraTypeEnum.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
  - [com.print-nanny.client.models.Device](docs/Device.md)
@@ -160,10 +171,13 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPlatform](docs/OctoprintPlatform.md)
  - [com.print-nanny.client.models.OctoprintPrinterData](docs/OctoprintPrinterData.md)
  - [com.print-nanny.client.models.OctoprintPrinterFlags](docs/OctoprintPrinterFlags.md)
+ - [com.print-nanny.client.models.OctoprintPrinterProfile](docs/OctoprintPrinterProfile.md)
+ - [com.print-nanny.client.models.OctoprintPrinterProfileRequest](docs/OctoprintPrinterProfileRequest.md)
  - [com.print-nanny.client.models.OctoprintPrinterState](docs/OctoprintPrinterState.md)
  - [com.print-nanny.client.models.OctoprintProgress](docs/OctoprintProgress.md)
  - [com.print-nanny.client.models.OctoprintPython](docs/OctoprintPython.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
+ - [com.print-nanny.client.models.PaginatedCameraControllerList](docs/PaginatedCameraControllerList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
@@ -176,6 +190,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrintNannyPluginEventList](docs/PaginatedPrintNannyPluginEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
+ - [com.print-nanny.client.models.PaginatedPrinterProfilePolymorphicList](docs/PaginatedPrinterProfilePolymorphicList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
  - [com.print-nanny.client.models.PaginatedTelemetryEventPolymorphicList](docs/PaginatedTelemetryEventPolymorphicList.md)
@@ -184,10 +199,13 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
+ - [com.print-nanny.client.models.PatchedCameraControllerRequest](docs/PatchedCameraControllerRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
+ - [com.print-nanny.client.models.PatchedOctoprintPrinterProfileRequest](docs/PatchedOctoprintPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
+ - [com.print-nanny.client.models.PatchedPrinterProfilePolymorphicRequest](docs/PatchedPrinterProfilePolymorphicRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [com.print-nanny.client.models.PatchedUserRequest](docs/PatchedUserRequest.md)
@@ -199,6 +217,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrintSessionRequest](docs/PrintSessionRequest.md)
  - [com.print-nanny.client.models.PrinterEvent](docs/PrinterEvent.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
+ - [com.print-nanny.client.models.PrinterProfilePolymorphic](docs/PrinterProfilePolymorphic.md)
+ - [com.print-nanny.client.models.PrinterProfilePolymorphicRequest](docs/PrinterProfilePolymorphicRequest.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)

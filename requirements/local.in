@@ -32,6 +32,7 @@ django-webpack-loader
 djangorestframework
 drf-spectacular
 drfpasswordless
+drf-nested-routers
 flatbuffers
 flower
 google-cloud-core
@@ -53,7 +54,7 @@ stringcase
 twisted<=21 # https://github.com/django/channels/issues/1639
 uvicorn[standard]
 whitenoise
-print-nanny-client>=0.8.5-dev4
+print-nanny-client>=0.8.6-dev3
 
 
 # dev / testing

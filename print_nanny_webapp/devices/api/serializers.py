@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 
 from print_nanny_webapp.devices.models import (
+    CameraController,
     Device,
     PrinterController,
     OctoprintController,
@@ -55,30 +56,31 @@ class DeviceIdentitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = [
-            "created_dt",
-            "updated_dt",
-            "user",
-            "name",
-            "fingerprint",
+            "ca_certs",
             "cloudiot_device_name",
             "cloudiot_device_num_id",
             "cloudiot_device_path",
+            "cores",
+            "cpu_flags",
+            "created_dt",
+            "fingerprint",
+            "hardware",
+            "id",
+            "kernel_version",
+            "model",
+            "name",
             "os_version",
             "os",
-            "kernel_version",
-            "hardware",
-            "revision",
-            "model",
-            "serial",
-            "cores",
-            "ram",
-            "cpu_flags",
-            "url",
-            "private_key",
             "private_key_checksum",
-            "public_key",
+            "private_key",
             "public_key_checksum",
-            "ca_certs",
+            "public_key",
+            "ram",
+            "revision",
+            "serial",
+            "updated_dt",
+            "url",
+            "user",
             # "manage_url",
         ]
 
@@ -141,15 +143,15 @@ class DeviceSerializer(serializers.ModelSerializer):
 class PrinterControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrinterController
-        fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class OctoprintControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoprintController
-        fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class PrinterControllerPolymorphicSerializer(PolymorphicSerializer):
@@ -173,15 +175,15 @@ class PrinterControllerPolymorphicSerializer(PolymorphicSerializer):
 class PrinterProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrinterProfile
-        fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class OctoprintPrinterProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoprintPrinterProfile
-        fields = "__all__"
         read_only_fields = ("user", "polymorphic_ctype")
+        exclude = ("deleted",)
 
 
 class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
@@ -200,3 +202,10 @@ class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
 
         ret = serializer.to_representation(instance)
         return ret
+
+
+class CameraControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CameraController
+        read_only_fields = ("user",)
+        exclude = ("deleted",)

@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authEmailCreate**](AuthApi.md#authEmailCreate) | **POST** /auth/email/ | 
 [**authMobileCreate**](AuthApi.md#authMobileCreate) | **POST** /auth/mobile/ | 
-[**authTokenCreate2**](AuthApi.md#authTokenCreate2) | **POST** /auth/token/ | 
+[**authTokenCreate**](AuthApi.md#authTokenCreate) | **POST** /auth/token/ | 
 [**authVerifyCreate**](AuthApi.md#authVerifyCreate) | **POST** /auth/verify/ | 
 [**authVerifyEmailCreate**](AuthApi.md#authVerifyEmailCreate) | **POST** /auth/verify/email/ | 
 [**authVerifyMobileCreate**](AuthApi.md#authVerifyMobileCreate) | **POST** /auth/verify/mobile/ | 
@@ -116,9 +116,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="authTokenCreate2"></a>
-# **authTokenCreate2**
-> TokenResponse authTokenCreate2(callbackTokenAuthRequest)
+<a name="authTokenCreate"></a>
+# **authTokenCreate**
+> TokenResponse authTokenCreate(callbackTokenAuthRequest)
 
 
 
@@ -133,13 +133,13 @@ This is a duplicate of rest_framework&#39;s own ObtainAuthToken method. Instead,
 val apiInstance = AuthApi()
 val callbackTokenAuthRequest : CallbackTokenAuthRequest =  // CallbackTokenAuthRequest | 
 try {
-    val result : TokenResponse = apiInstance.authTokenCreate2(callbackTokenAuthRequest)
+    val result : TokenResponse = apiInstance.authTokenCreate(callbackTokenAuthRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AuthApi#authTokenCreate2")
+    println("4xx response calling AuthApi#authTokenCreate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AuthApi#authTokenCreate2")
+    println("5xx response calling AuthApi#authTokenCreate")
     e.printStackTrace()
 }
 ```

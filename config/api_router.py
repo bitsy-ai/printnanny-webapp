@@ -1,8 +1,12 @@
+from print_nanny_webapp.devices.models import CameraController
 from django.conf import settings
 from rest_framework.routers import DefaultRouter
+from rest_framework_nested.routers import NestedSimpleRouter
 
 from print_nanny_webapp.devices.api.views import (
-    DeviceViewSet
+    CameraControllerViewSet,
+    DeviceViewSet,
+    PrinterProfileViewSet
 )
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
@@ -11,7 +15,7 @@ from print_nanny_webapp.users.api.views import UserViewSet
 
 from print_nanny_webapp.remote_control.api.views import (
     GcodeFileViewSet,
-    PrinterProfileViewSet,
+    PrinterProfileViewSet as AlphaPrinterProfileViewSet,
     PrintSessionViewSet,
     OctoPrintDeviceViewSet,
     CommandViewSet
@@ -34,7 +38,11 @@ from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
+
 router.register("devices", DeviceViewSet)
+devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
+devices_router.register(r'printer-profiles', PrinterProfileViewSet, basename='printer-profiles')
+devices_router.register(r'cameras', CameraControllerViewSet, basename='cameras')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -47,7 +55,7 @@ router.register("users", UserViewSet)
 router.register(f"device-calibrations", DeviceCalibrationViewSet, basename="device-calibration")
 router.register(f"octoprint-devices", OctoPrintDeviceViewSet, basename='octoprint-device')
 
-router.register(r"printer-profiles", PrinterProfileViewSet, basename='printer-profile')
+router.register(r"printer-profiles", AlphaPrinterProfileViewSet, basename='printer-profile')
 router.register(r"print-sessions", PrintSessionViewSet, basename='print-session')
 router.register(r"gcode-files", GcodeFileViewSet, basename='gcode-file')
 router.register(r"commands", CommandViewSet, basename='command')
@@ -58,4 +66,4 @@ router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 
 app_name = "api"
 
-urlpatterns = router.urls
+urlpatterns = router.urls + devices_router.urls

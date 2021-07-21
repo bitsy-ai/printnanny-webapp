@@ -8,7 +8,6 @@ from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from django.urls import reverse
 
-from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.permissions import AllowAny
 import django_prometheus
 #from drf_yasg.views import get_schema_view
@@ -61,13 +60,9 @@ if settings.DEBUG:
 # https://drf-spectacular.readthedocs.io/en/latest/blueprints.html
 # do not remove the following line!
 import print_nanny_webapp.drfpasswordless.schema
-
 urlpatterns += [
-    # API base url
+    # API base urls
     path("api/", include("config.api_router")),
-    # DRF auth token
-    path("api/auth-token/", obtain_auth_token),
-
     # OpenAPI Schema
     path('api/schema/', SpectacularJSONAPIView.as_view(), name='schema'),
     # OpenAPI UIs
@@ -75,7 +70,6 @@ urlpatterns += [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('', include('django_prometheus.urls')),
     path('anymail/', include('anymail.urls')),
-
     # https://github.com/aaronn/django-rest-framework-passwordless
     path('', include('drfpasswordless.urls')),
 

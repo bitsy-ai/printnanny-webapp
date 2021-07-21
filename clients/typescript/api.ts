@@ -227,38 +227,6 @@ export enum ArtifactTypesEnum {
 }
 
 /**
- * 
- * @export
- * @interface AuthToken
- */
-export interface AuthToken {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthToken
-     */
-    token: string;
-}
-/**
- * 
- * @export
- * @interface AuthTokenRequest
- */
-export interface AuthTokenRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthTokenRequest
-     */
-    username: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuthTokenRequest
-     */
-    password: string;
-}
-/**
  * Abstract class inspired by DRF\'s own token serializer. Returns a user if valid, None or a message if not.
  * @export
  * @interface CallbackTokenAuthRequest
@@ -333,6 +301,125 @@ export interface CallbackTokenVerificationRequest {
      */
     token: string;
 }
+/**
+ * 
+ * @export
+ * @interface CameraController
+ */
+export interface CameraController {
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraController
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraController
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraController
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraController
+     */
+    name: string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof CameraController
+     */
+    camera_type: CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraController
+     */
+    camera_source: string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof CameraController
+     */
+    camera_source_type: CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraController
+     */
+    user: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraController
+     */
+    device: number;
+}
+/**
+ * 
+ * @export
+ * @interface CameraControllerRequest
+ */
+export interface CameraControllerRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraControllerRequest
+     */
+    name: string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof CameraControllerRequest
+     */
+    camera_type: CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraControllerRequest
+     */
+    camera_source: string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof CameraControllerRequest
+     */
+    camera_source_type: CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraControllerRequest
+     */
+    device: number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum CameraSourceTypeEnum {
+    MjpgStreamer = 'MJPG Streamer',
+    Gstreamer = 'Gstreamer'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+export enum CameraTypeEnum {
+    RaspberryPiCameraModule = 'Raspberry Pi Camera Module',
+    RaspberryPiUsbCamera = 'Raspberry Pi USB Camera',
+    GenericRtspRtmpIpCamera = 'Generic RTSP/RTMP IP Camera'
+}
+
 /**
  * 
  * @export
@@ -607,34 +694,10 @@ export interface DeviceCalibrationRequest {
 export interface DeviceIdentity {
     /**
      * 
-     * @type {string}
+     * @type {DeviceIdentityCaCerts}
      * @memberof DeviceIdentity
      */
-    created_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    updated_dt: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    user: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    fingerprint: string;
+    ca_certs: DeviceIdentityCaCerts;
     /**
      * 
      * @type {string}
@@ -655,6 +718,60 @@ export interface DeviceIdentity {
     cloudiot_device_path: string;
     /**
      * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    cores: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DeviceIdentity
+     */
+    cpu_flags: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    fingerprint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    hardware?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    kernel_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    name: string;
+    /**
+     * 
      * @type {string}
      * @memberof DeviceIdentity
      */
@@ -670,55 +787,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    kernel_version: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    hardware?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    revision?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    serial?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    cores: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DeviceIdentity
-     */
-    ram: number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof DeviceIdentity
-     */
-    cpu_flags: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof DeviceIdentity
-     */
-    url: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -730,7 +799,7 @@ export interface DeviceIdentity {
      * @type {string}
      * @memberof DeviceIdentity
      */
-    private_key_checksum: string;
+    public_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -739,16 +808,40 @@ export interface DeviceIdentity {
     public_key: string;
     /**
      * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    ram: number;
+    /**
+     * 
      * @type {string}
      * @memberof DeviceIdentity
      */
-    public_key_checksum: string;
+    revision?: string | null;
     /**
      * 
-     * @type {DeviceIdentityCaCerts}
+     * @type {string}
      * @memberof DeviceIdentity
      */
-    ca_certs: DeviceIdentityCaCerts;
+    serial?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DeviceIdentity
+     */
+    url: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof DeviceIdentity
+     */
+    user: number;
 }
 /**
  * 
@@ -2194,6 +2287,338 @@ export interface OctoprintPrinterFlags {
 /**
  * 
  * @export
+ * @interface OctoprintPrinterProfile
+ */
+export interface OctoprintPrinterProfile {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    name: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_e_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfile
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_custom_box?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    volume_width?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    polymorphic_ctype: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    user: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    controller: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfile
+     */
+    octoprint_controller: number;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterProfileRequest
+ */
+export interface OctoprintPrinterProfileRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    name: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_e_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_custom_box?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    volume_width?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    controller: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterProfileRequest
+     */
+    octoprint_controller: number;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPrinterState
  */
 export interface OctoprintPrinterState {
@@ -2302,6 +2727,37 @@ export interface PaginatedAlertList {
      * @memberof PaginatedAlertList
      */
     results?: Array<Alert>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedCameraControllerList
+ */
+export interface PaginatedCameraControllerList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedCameraControllerList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCameraControllerList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCameraControllerList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<CameraController>}
+     * @memberof PaginatedCameraControllerList
+     */
+    results?: Array<CameraController>;
 }
 /**
  * 
@@ -2678,6 +3134,37 @@ export interface PaginatedPrinterProfileList {
 /**
  * 
  * @export
+ * @interface PaginatedPrinterProfilePolymorphicList
+ */
+export interface PaginatedPrinterProfilePolymorphicList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPrinterProfilePolymorphicList
+     */
+    count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrinterProfilePolymorphicList
+     */
+    next?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrinterProfilePolymorphicList
+     */
+    previous?: string | null;
+    /**
+     * 
+     * @type {Array<PrinterProfilePolymorphic>}
+     * @memberof PaginatedPrinterProfilePolymorphicList
+     */
+    results?: Array<PrinterProfilePolymorphic>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedRemoteCommandEventList
  */
 export interface PaginatedRemoteCommandEventList {
@@ -2962,6 +3449,43 @@ export interface PatchedAlertRequest {
 /**
  * 
  * @export
+ * @interface PatchedCameraControllerRequest
+ */
+export interface PatchedCameraControllerRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCameraControllerRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof PatchedCameraControllerRequest
+     */
+    camera_type?: CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCameraControllerRequest
+     */
+    camera_source?: string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof PatchedCameraControllerRequest
+     */
+    camera_source_type?: CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCameraControllerRequest
+     */
+    device?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedDeviceCalibrationRequest
  */
 export interface PatchedDeviceCalibrationRequest {
@@ -3175,6 +3699,157 @@ export interface PatchedOctoPrintDeviceRequest {
 /**
  * 
  * @export
+ * @interface PatchedOctoprintPrinterProfileRequest
+ */
+export interface PatchedOctoprintPrinterProfileRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_e_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_e_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_x_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_x_inverted?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_y_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_y_speed?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_z_inverted?: boolean | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    axes_z_speed?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    extruder_count?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    extruder_nozzle_diameter?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    extruder_shared_nozzle?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    heated_bed?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    heated_chamber?: boolean | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    model?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_custom_box?: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_depth?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_formfactor?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_height?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_origin?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    volume_width?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    controller?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    device?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedOctoprintPrinterProfileRequest
+     */
+    octoprint_controller?: number;
+}
+/**
+ * 
+ * @export
  * @interface PatchedPrintSessionRequest
  */
 export interface PatchedPrintSessionRequest {
@@ -3258,101 +3933,17 @@ export interface PatchedPrintSessionRequest {
     print_job_status?: PrintJobStatusEnum | null;
 }
 /**
+ * @type PatchedPrinterProfilePolymorphicRequest
+ * @export
+ */
+export type PatchedPrinterProfilePolymorphicRequest = PatchedOctoprintPrinterProfileRequest | PatchedPrinterProfileRequest;
+
+/**
  * 
  * @export
  * @interface PatchedPrinterProfileRequest
  */
 export interface PatchedPrinterProfileRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    octoprint_device?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_e_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    model?: string | null;
     /**
      * 
      * @type {string}
@@ -3361,46 +3952,16 @@ export interface PatchedPrinterProfileRequest {
     name?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof PatchedPrinterProfileRequest
      */
-    octoprint_key?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    volume_custom_box?: { [key: string]: any; };
+    controller?: number;
     /**
      * 
      * @type {number}
      * @memberof PatchedPrinterProfileRequest
      */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PatchedPrinterProfileRequest
-     */
-    volume_width?: number | null;
+    device?: number;
 }
 /**
  * 
@@ -4017,6 +4578,30 @@ export interface PrinterProfile {
     id: number;
     /**
      * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    updated_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterProfile
+     */
+    name: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterProfile
+     */
+    polymorphic_ctype: number;
+    /**
+     * 
      * @type {number}
      * @memberof PrinterProfile
      */
@@ -4026,146 +4611,26 @@ export interface PrinterProfile {
      * @type {number}
      * @memberof PrinterProfile
      */
-    octoprint_device: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    axes_e_inverted?: boolean | null;
+    controller: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfile
      */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfile
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    model?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    octoprint_key: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterProfile
-     */
-    volume_custom_box?: { [key: string]: any; };
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfile
-     */
-    volume_width?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfile
-     */
-    url: string;
+    device: number;
 }
+/**
+ * @type PrinterProfilePolymorphic
+ * @export
+ */
+export type PrinterProfilePolymorphic = OctoprintPrinterProfile | PrinterProfile;
+
+/**
+ * @type PrinterProfilePolymorphicRequest
+ * @export
+ */
+export type PrinterProfilePolymorphicRequest = OctoprintPrinterProfileRequest | PrinterProfileRequest;
+
 /**
  * 
  * @export
@@ -4174,142 +4639,22 @@ export interface PrinterProfile {
 export interface PrinterProfileRequest {
     /**
      * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    octoprint_device: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    axes_e_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    axes_e_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    axes_x_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    axes_x_inverted?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    axes_y_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    axes_y_speed?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    axes_z_inverted?: boolean | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    axes_z_speed?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    extruder_count?: number | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    extruder_nozzle_diameter?: number | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    extruder_shared_nozzle?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    heated_bed?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PrinterProfileRequest
-     */
-    heated_chamber?: boolean | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfileRequest
-     */
-    model?: string | null;
-    /**
-     * 
      * @type {string}
      * @memberof PrinterProfileRequest
      */
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof PrinterProfileRequest
      */
-    octoprint_key: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterProfileRequest
-     */
-    volume_custom_box?: { [key: string]: any; };
+    controller: number;
     /**
      * 
      * @type {number}
      * @memberof PrinterProfileRequest
      */
-    volume_depth?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfileRequest
-     */
-    volume_formfactor?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    volume_height?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrinterProfileRequest
-     */
-    volume_origin?: string | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof PrinterProfileRequest
-     */
-    volume_width?: number | null;
+    device: number;
 }
 /**
  * 
@@ -5492,9 +5837,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate2: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
+        authTokenCreate: async (callbackTokenAuthRequest: CallbackTokenAuthRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'callbackTokenAuthRequest' is not null or undefined
-            assertParamExists('authTokenCreate2', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
+            assertParamExists('authTokenCreate', 'callbackTokenAuthRequest', callbackTokenAuthRequest)
             const localVarPath = `/auth/token/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5674,8 +6019,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate2(callbackTokenAuthRequest, options);
+        async authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(callbackTokenAuthRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5740,8 +6085,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
-            return localVarFp.authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
+        authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse> {
+            return localVarFp.authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -5802,7 +6147,7 @@ export interface AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
+    authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any): AxiosPromise<TokenResponse>;
 
     /**
      * This verifies an alias on correct callback token entry using the same logic as auth. Should be refactored at some point.
@@ -5867,8 +6212,8 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public authTokenCreate2(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
-        return AuthApiFp(this.configuration).authTokenCreate2(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
+    public authTokenCreate(callbackTokenAuthRequest: CallbackTokenAuthRequest, options?: any) {
+        return AuthApiFp(this.configuration).authTokenCreate(callbackTokenAuthRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5905,24 +6250,25 @@ export class AuthApi extends BaseAPI implements AuthApiInterface {
 
 
 /**
- * AuthTokenApi - axios parameter creator
+ * DevicesApi - axios parameter creator
  * @export
  */
-export const AuthTokenApiAxiosParamCreator = function (configuration?: Configuration) {
+export const DevicesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {string} username 
-         * @param {string} password 
+         * @param {number} deviceId 
+         * @param {CameraControllerRequest} cameraControllerRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate: async (username: string, password: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'username' is not null or undefined
-            assertParamExists('authTokenCreate', 'username', username)
-            // verify required parameter 'password' is not null or undefined
-            assertParamExists('authTokenCreate', 'password', password)
-            const localVarPath = `/api/auth-token/`;
+        devicesCamerasCreate: async (deviceId: number, cameraControllerRequest: CameraControllerRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCamerasCreate', 'deviceId', deviceId)
+            // verify required parameter 'cameraControllerRequest' is not null or undefined
+            assertParamExists('devicesCamerasCreate', 'cameraControllerRequest', cameraControllerRequest)
+            const localVarPath = `/api/devices/{device_id}/cameras/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -5933,7 +6279,6 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
             // authentication cookieAuth required
 
@@ -5942,116 +6287,202 @@ export const AuthTokenApiAxiosParamCreator = function (configuration?: Configura
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
-            if (username !== undefined) { 
-                localVarFormParams.append('username', username as any);
-            }
     
-            if (password !== undefined) { 
-                localVarFormParams.append('password', password as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraControllerRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
-    }
-};
-
-/**
- * AuthTokenApi - functional programming interface
- * @export
- */
-export const AuthTokenApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = AuthTokenApiAxiosParamCreator(configuration)
-    return {
         /**
          * 
-         * @param {string} username 
-         * @param {string} password 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authTokenCreate(username: string, password: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthToken>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.authTokenCreate(username, password, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-    }
-};
+        devicesCamerasList: async (deviceId: number, page?: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCamerasList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/cameras/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
 
-/**
- * AuthTokenApi - factory interface
- * @export
- */
-export const AuthTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = AuthTokenApiFp(configuration)
-    return {
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
-         * @param {string} username 
-         * @param {string} password 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {PatchedCameraControllerRequest} [patchedCameraControllerRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken> {
-            return localVarFp.authTokenCreate(username, password, options).then((request) => request(axios, basePath));
+        devicesCamerasPartialUpdate: async (deviceId: number, id: number, patchedCameraControllerRequest?: PatchedCameraControllerRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCamerasPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesCamerasPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedCameraControllerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
         },
-    };
-};
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasRetrieve: async (deviceId: number, id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCamerasRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesCamerasRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
 
-/**
- * AuthTokenApi - interface
- * @export
- * @interface AuthTokenApi
- */
-export interface AuthTokenApiInterface {
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthTokenApiInterface
-     */
-    authTokenCreate(username: string, password: string, options?: any): AxiosPromise<AuthToken>;
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
-}
+            // authentication cookieAuth required
 
-/**
- * AuthTokenApi - object-oriented interface
- * @export
- * @class AuthTokenApi
- * @extends {BaseAPI}
- */
-export class AuthTokenApi extends BaseAPI implements AuthTokenApiInterface {
-    /**
-     * 
-     * @param {string} username 
-     * @param {string} password 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthTokenApi
-     */
-    public authTokenCreate(username: string, password: string, options?: any) {
-        return AuthTokenApiFp(this.configuration).authTokenCreate(username, password, options).then((request) => request(this.axios, this.basePath));
-    }
-}
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
-/**
- * DevicesApi - axios parameter creator
- * @export
- */
-export const DevicesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {CameraControllerRequest} cameraControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasUpdate: async (deviceId: number, id: number, cameraControllerRequest: CameraControllerRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesCamerasUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesCamerasUpdate', 'id', id)
+            // verify required parameter 'cameraControllerRequest' is not null or undefined
+            assertParamExists('devicesCamerasUpdate', 'cameraControllerRequest', cameraControllerRequest)
+            const localVarPath = `/api/devices/{device_id}/cameras/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraControllerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {DeviceRequest} deviceRequest 
@@ -6170,6 +6601,230 @@ export const DevicesApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(patchedDeviceRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesCreate: async (deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesPrinterProfilesCreate', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/printer-profiles/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfilePolymorphicRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesList: async (deviceId: number, page?: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesPrinterProfilesList', 'deviceId', deviceId)
+            const localVarPath = `/api/devices/{device_id}/printer-profiles/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesPartialUpdate: async (deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesPrinterProfilesPartialUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesPrinterProfilesPartialUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterProfilePolymorphicRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesRetrieve: async (deviceId: number, id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesPrinterProfilesRetrieve', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesPrinterProfilesRetrieve', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesUpdate: async (deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deviceId' is not null or undefined
+            assertParamExists('devicesPrinterProfilesUpdate', 'deviceId', deviceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('devicesPrinterProfilesUpdate', 'id', id)
+            const localVarPath = `/api/devices/{device_id}/printer-profiles/{id}/`
+                .replace(`{${"device_id"}}`, encodeURIComponent(String(deviceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printerProfilePolymorphicRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6313,6 +6968,63 @@ export const DevicesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} deviceId 
+         * @param {CameraControllerRequest} cameraControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCamerasCreate(deviceId: number, cameraControllerRequest: CameraControllerRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasCreate(deviceId, cameraControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCamerasList(deviceId: number, page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCameraControllerList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {PatchedCameraControllerRequest} [patchedCameraControllerRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraControllerRequest?: PatchedCameraControllerRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasPartialUpdate(deviceId, id, patchedCameraControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCamerasRetrieve(deviceId: number, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {CameraControllerRequest} cameraControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesCamerasUpdate(deviceId: number, id: number, cameraControllerRequest: CameraControllerRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CameraController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesCamerasUpdate(deviceId, id, cameraControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6340,6 +7052,63 @@ export const DevicesApiFp = function(configuration?: Configuration) {
          */
         async devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Device>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPartialUpdate(id, patchedDeviceRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterProfilePolymorphicList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesList(deviceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesRetrieve(deviceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterProfilePolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -6385,6 +7154,58 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @param {number} deviceId 
+         * @param {CameraControllerRequest} cameraControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasCreate(deviceId: number, cameraControllerRequest: CameraControllerRequest, options?: any): AxiosPromise<CameraController> {
+            return localVarFp.devicesCamerasCreate(deviceId, cameraControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCameraControllerList> {
+            return localVarFp.devicesCamerasList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {PatchedCameraControllerRequest} [patchedCameraControllerRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraControllerRequest?: PatchedCameraControllerRequest, options?: any): AxiosPromise<CameraController> {
+            return localVarFp.devicesCamerasPartialUpdate(deviceId, id, patchedCameraControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CameraController> {
+            return localVarFp.devicesCamerasRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this camera controller.
+         * @param {CameraControllerRequest} cameraControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesCamerasUpdate(deviceId: number, id: number, cameraControllerRequest: CameraControllerRequest, options?: any): AxiosPromise<CameraController> {
+            return localVarFp.devicesCamerasUpdate(deviceId, id, cameraControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {DeviceRequest} deviceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6410,6 +7231,58 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
          */
         devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device> {
             return localVarFp.devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
+            return localVarFp.devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterProfilePolymorphicList> {
+            return localVarFp.devicesPrinterProfilesList(deviceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
+            return localVarFp.devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
+            return localVarFp.devicesPrinterProfilesRetrieve(deviceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} deviceId 
+         * @param {number} id A unique integer value identifying this printer profile.
+         * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic> {
+            return localVarFp.devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6450,6 +7323,58 @@ export const DevicesApiFactory = function (configuration?: Configuration, basePa
 export interface DevicesApiInterface {
     /**
      * 
+     * @param {number} deviceId 
+     * @param {CameraControllerRequest} cameraControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCamerasCreate(deviceId: number, cameraControllerRequest: CameraControllerRequest, options?: any): AxiosPromise<CameraController>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCamerasList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedCameraControllerList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {PatchedCameraControllerRequest} [patchedCameraControllerRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraControllerRequest?: PatchedCameraControllerRequest, options?: any): AxiosPromise<CameraController>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCamerasRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<CameraController>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {CameraControllerRequest} cameraControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesCamerasUpdate(deviceId: number, id: number, cameraControllerRequest: CameraControllerRequest, options?: any): AxiosPromise<CameraController>;
+
+    /**
+     * 
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6475,6 +7400,58 @@ export interface DevicesApiInterface {
      * @memberof DevicesApiInterface
      */
     devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any): AxiosPromise<Device>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPrinterProfilesList(deviceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterProfilePolymorphicList>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApiInterface
+     */
+    devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any): AxiosPromise<PrinterProfilePolymorphic>;
 
     /**
      * 
@@ -6515,6 +7492,68 @@ export interface DevicesApiInterface {
 export class DevicesApi extends BaseAPI implements DevicesApiInterface {
     /**
      * 
+     * @param {number} deviceId 
+     * @param {CameraControllerRequest} cameraControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCamerasCreate(deviceId: number, cameraControllerRequest: CameraControllerRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCamerasCreate(deviceId, cameraControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCamerasList(deviceId: number, page?: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCamerasList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {PatchedCameraControllerRequest} [patchedCameraControllerRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCamerasPartialUpdate(deviceId: number, id: number, patchedCameraControllerRequest?: PatchedCameraControllerRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCamerasPartialUpdate(deviceId, id, patchedCameraControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCamerasRetrieve(deviceId: number, id: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCamerasRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this camera controller.
+     * @param {CameraControllerRequest} cameraControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesCamerasUpdate(deviceId: number, id: number, cameraControllerRequest: CameraControllerRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesCamerasUpdate(deviceId, id, cameraControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {DeviceRequest} deviceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6545,6 +7584,68 @@ export class DevicesApi extends BaseAPI implements DevicesApiInterface {
      */
     public devicesPartialUpdate(id: number, patchedDeviceRequest?: PatchedDeviceRequest, options?: any) {
         return DevicesApiFp(this.configuration).devicesPartialUpdate(id, patchedDeviceRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPrinterProfilesCreate(deviceId: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPrinterProfilesCreate(deviceId, printerProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPrinterProfilesList(deviceId: number, page?: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPrinterProfilesList(deviceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PatchedPrinterProfilePolymorphicRequest} [patchedPrinterProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPrinterProfilesPartialUpdate(deviceId: number, id: number, patchedPrinterProfilePolymorphicRequest?: PatchedPrinterProfilePolymorphicRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPrinterProfilesPartialUpdate(deviceId, id, patchedPrinterProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPrinterProfilesRetrieve(deviceId: number, id: number, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPrinterProfilesRetrieve(deviceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} deviceId 
+     * @param {number} id A unique integer value identifying this printer profile.
+     * @param {PrinterProfilePolymorphicRequest} [printerProfilePolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DevicesApi
+     */
+    public devicesPrinterProfilesUpdate(deviceId: number, id: number, printerProfilePolymorphicRequest?: PrinterProfilePolymorphicRequest, options?: any) {
+        return DevicesApiFp(this.configuration).devicesPrinterProfilesUpdate(deviceId, id, printerProfilePolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
