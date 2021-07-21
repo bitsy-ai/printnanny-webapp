@@ -186,22 +186,22 @@ class OctoprintPrinterProfileSerializer(serializers.ModelSerializer):
         exclude = ("deleted",)
 
 
-class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
-    model_serializer_mapping = {
-        PrinterProfile: PrinterProfileSerializer,
-        OctoprintPrinterProfile: OctoprintPrinterProfileSerializer,
-    }
+# class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
+#     model_serializer_mapping = {
+#         PrinterProfile: PrinterProfileSerializer,
+#         OctoprintPrinterProfile: OctoprintPrinterProfileSerializer,
+#     }
 
-    def to_representation(self, instance):
-        if isinstance(instance, Mapping):
-            resource_type = self._get_resource_type_from_mapping(instance)
-            serializer = self._get_serializer_from_resource_type(resource_type)
-        else:
-            resource_type = self.to_resource_type(instance)
-            serializer = self._get_serializer_from_model_or_instance(instance)
+#     def to_representation(self, instance):
+#         if isinstance(instance, Mapping):
+#             resource_type = self._get_resource_type_from_mapping(instance)
+#             serializer = self._get_serializer_from_resource_type(resource_type)
+#         else:
+#             resource_type = self.to_resource_type(instance)
+#             serializer = self._get_serializer_from_model_or_instance(instance)
 
-        ret = serializer.to_representation(instance)
-        return ret
+#         ret = serializer.to_representation(instance)
+#         return ret
 
 
 class CameraControllerSerializer(serializers.ModelSerializer):

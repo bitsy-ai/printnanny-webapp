@@ -41,7 +41,7 @@ router.register("alerts", AlertViewSet)
 
 router.register("devices", DeviceViewSet)
 devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
-devices_router.register(r'printer-profiles', PrinterProfileViewSet, basename='printer-profiles')
+# devices_router.register(r'printer-profiles', PrinterProfileViewSet, basename='printer-profiles')
 devices_router.register(r'cameras', CameraControllerViewSet, basename='cameras')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
