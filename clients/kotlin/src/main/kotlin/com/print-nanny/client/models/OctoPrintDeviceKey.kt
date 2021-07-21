@@ -27,6 +27,7 @@ import java.io.Serializable
  * @param cloudiotDevice 
  * @param cores 
  * @param createdDt 
+ * @param fingerprint 
  * @param manageUrl 
  * @param model 
  * @param monitoringActive 
@@ -68,6 +69,8 @@ data class OctoPrintDeviceKey (
     val cores: kotlin.Int,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,
+    @Json(name = "fingerprint")
+    val fingerprint: kotlin.String,
     @Json(name = "manage_url")
     val manageUrl: java.net.URI,
     @Json(name = "model")

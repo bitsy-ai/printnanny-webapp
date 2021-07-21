@@ -1523,6 +1523,12 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
+    fingerprint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
     hardware?: string | null;
     /**
      * 

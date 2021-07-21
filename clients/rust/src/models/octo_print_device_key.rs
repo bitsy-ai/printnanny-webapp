@@ -31,6 +31,8 @@ pub struct OctoPrintDeviceKey {
     pub cpu_flags: Option<Vec<String>>,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
+    #[serde(rename = "fingerprint")]
+    pub fingerprint: String,
     #[serde(rename = "hardware", skip_serializing_if = "Option::is_none")]
     pub hardware: Option<String>,
     #[serde(rename = "manage_url")]
@@ -74,7 +76,7 @@ pub struct OctoPrintDeviceKey {
 }
 
 impl OctoPrintDeviceKey {
-    pub fn new(ca_certs: ::std::collections::HashMap<String, String>, cloudiot_device_configs: String, cloudiot_device_name: String, cloudiot_device_num_id: i32, cloudiot_device_path: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cores: i32, created_dt: String, manage_url: String, model: String, monitoring_active: bool, name: String, octoprint_version: String, pip_version: String, platform: String, plugin_version: String, print_nanny_client_version: String, private_key_checksum: String, private_key: String, public_key_checksum: String, public_key: String, python_version: String, ram: i32, serial: String, user: i32, url: String) -> OctoPrintDeviceKey {
+    pub fn new(ca_certs: ::std::collections::HashMap<String, String>, cloudiot_device_configs: String, cloudiot_device_name: String, cloudiot_device_num_id: i32, cloudiot_device_path: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cores: i32, created_dt: String, fingerprint: String, manage_url: String, model: String, monitoring_active: bool, name: String, octoprint_version: String, pip_version: String, platform: String, plugin_version: String, print_nanny_client_version: String, private_key_checksum: String, private_key: String, public_key_checksum: String, public_key: String, python_version: String, ram: i32, serial: String, user: i32, url: String) -> OctoPrintDeviceKey {
         OctoPrintDeviceKey {
             active_session: None,
             ca_certs,
@@ -86,6 +88,7 @@ impl OctoPrintDeviceKey {
             cores,
             cpu_flags: None,
             created_dt,
+            fingerprint,
             hardware: None,
             manage_url,
             model,

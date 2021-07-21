@@ -72,6 +72,7 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                     ''
                     ], 
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                fingerprint = '', 
                 hardware = '', 
                 manage_url = '', 
                 model = '', 
@@ -107,6 +108,7 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                     },
                 cores = -2147483648,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                fingerprint = '',
                 manage_url = '',
                 model = '',
                 monitoring_active = True,
