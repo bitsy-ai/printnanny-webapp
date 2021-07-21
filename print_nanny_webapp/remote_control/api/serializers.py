@@ -73,17 +73,36 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields] + [
-            "url",
-            "private_key",
-            "private_key_checksum",
-            "public_key_checksum",
-            "cloudiot_device_configs",
-            "ca_certs",
+        fields = (
+            "active_session" "ca_certs",
+            "cloudiot_device_name",
+            "cloudiot_device_num_id",
+            "cloudiot_device_path",
+            "cloudiot_device",
+            "cores",
+            "cpu_flags",
+            "created_dt",
+            "hardware",
             "manage_url",
+            "model",
             "monitoring_active",
-            "active_session",
-        ]
+            "name",
+            "octoprint_version",
+            "pip_version",
+            "platform",
+            "plugin_version",
+            "print_nanny_client_version",
+            "private_key_checksum",
+            "private_key",
+            "public_key_checksum",
+            "public_key",
+            "python_version",
+            "ram",
+            "revision",
+            "serial",
+            "user",
+        )
+
         extra_kwargs = {
             "url": {"view_name": "api:octoprint-device-detail", "lookup_field": "id"},
         }
