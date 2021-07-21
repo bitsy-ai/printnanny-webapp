@@ -37,24 +37,42 @@ class TestPrinterProfile(unittest.TestCase):
         if include_optional :
             return PrinterProfile(
                 id = 56, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                name = '', 
-                polymorphic_ctype = 56, 
                 user = 56, 
-                controller = 56, 
-                device = 56
+                octoprint_device = 56, 
+                axes_e_inverted = True, 
+                axes_e_speed = -2147483648, 
+                axes_x_speed = -2147483648, 
+                axes_x_inverted = True, 
+                axes_y_inverted = True, 
+                axes_y_speed = -2147483648, 
+                axes_z_inverted = True, 
+                axes_z_speed = -2147483648, 
+                extruder_count = -2147483648, 
+                extruder_nozzle_diameter = 1.337, 
+                extruder_shared_nozzle = True, 
+                heated_bed = True, 
+                heated_chamber = True, 
+                model = '', 
+                name = '', 
+                octoprint_key = '', 
+                volume_custom_box = {
+                    'key' : null
+                    }, 
+                volume_depth = 1.337, 
+                volume_formfactor = '', 
+                volume_height = 1.337, 
+                volume_origin = '', 
+                volume_width = 1.337, 
+                url = ''
             )
         else :
             return PrinterProfile(
                 id = 56,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                name = '',
-                polymorphic_ctype = 56,
                 user = 56,
-                controller = 56,
-                device = 56,
+                octoprint_device = 56,
+                name = '',
+                octoprint_key = '',
+                url = '',
         )
 
     def testPrinterProfile(self):
