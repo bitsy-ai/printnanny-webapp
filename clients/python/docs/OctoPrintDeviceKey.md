@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **created_dt** | **datetime** |  | [readonly] 
 **fingerprint** | **str** |  | [readonly] 
 **hardware** | **str** |  | [optional] 
+**id** | **int** |  | [readonly] 
 **manage_url** | **str** |  | [readonly] 
 **model** | **str** |  | 
 **monitoring_active** | **bool** |  | [readonly] 

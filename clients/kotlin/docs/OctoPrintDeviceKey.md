@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **cores** | **kotlin.Int** |  | 
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **fingerprint** | **kotlin.String** |  |  [readonly]
+**id** | **kotlin.Int** |  |  [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **model** | **kotlin.String** |  | 
 **monitoringActive** | **kotlin.Boolean** |  |  [readonly]
