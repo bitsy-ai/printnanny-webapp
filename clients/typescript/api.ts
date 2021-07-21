@@ -1460,64 +1460,28 @@ export interface OctoPrintDevice {
 export interface OctoPrintDeviceKey {
     /**
      * 
-     * @type {number}
+     * @type {PrintSession}
      * @memberof OctoPrintDeviceKey
      */
-    id: number;
+    active_session?: PrintSession;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof OctoPrintDeviceKey
+     */
+    ca_certs: { [key: string]: string; };
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    deleted: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    created_dt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    name: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintDeviceKey
-     */
-    user: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    public_key: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    fingerprint: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintDeviceKey
-     */
-    cloudiot_device: { [key: string]: any; };
+    cloudiot_device_configs: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
     cloudiot_device_name: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    cloudiot_device_path: string;
     /**
      * 
      * @type {number}
@@ -1529,13 +1493,19 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    model: string;
+    cloudiot_device_path: string;
     /**
      * 
-     * @type {string}
+     * @type {{ [key: string]: any; }}
      * @memberof OctoPrintDeviceKey
      */
-    platform: string;
+    cloudiot_device: { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintDeviceKey
+     */
+    cores: number;
     /**
      * 
      * @type {Array<string>}
@@ -1547,37 +1517,43 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
+    created_dt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
     hardware?: string | null;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    revision?: string | null;
+    manage_url: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    serial: string;
+    model: string;
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof OctoPrintDeviceKey
      */
-    cores: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof OctoPrintDeviceKey
-     */
-    ram: number;
+    monitoring_active: boolean;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    python_version: string;
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    octoprint_version: string;
     /**
      * 
      * @type {string}
@@ -1589,13 +1565,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    virtualenv?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
-    octoprint_version: string;
+    platform: string;
     /**
      * 
      * @type {string}
@@ -1613,7 +1583,7 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    url: string;
+    private_key_checksum: string;
     /**
      * 
      * @type {string}
@@ -1625,43 +1595,43 @@ export interface OctoPrintDeviceKey {
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    private_key_checksum: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDeviceKey
-     */
     public_key_checksum: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    cloudiot_device_configs: string;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof OctoPrintDeviceKey
-     */
-    ca_certs: { [key: string]: string; };
+    public_key: string;
     /**
      * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    manage_url: string;
+    python_version: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof OctoPrintDeviceKey
      */
-    monitoring_active: boolean;
+    ram: number;
     /**
      * 
-     * @type {PrintSession}
+     * @type {string}
      * @memberof OctoPrintDeviceKey
      */
-    active_session?: PrintSession;
+    revision?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoPrintDeviceKey
+     */
+    serial: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoPrintDeviceKey
+     */
+    user: number;
 }
 /**
  * 

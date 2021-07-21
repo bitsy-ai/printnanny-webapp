@@ -36,45 +36,6 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
         # model = print_nanny_client.models.octo_print_device_key.OctoPrintDeviceKey()  # noqa: E501
         if include_optional :
             return OctoPrintDeviceKey(
-                id = 56, 
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                name = '', 
-                user = 56, 
-                public_key = '', 
-                fingerprint = '', 
-                cloudiot_device = {
-                    'key' : null
-                    }, 
-                cloudiot_device_name = '', 
-                cloudiot_device_path = '', 
-                cloudiot_device_num_id = 56, 
-                model = '', 
-                platform = '', 
-                cpu_flags = [
-                    ''
-                    ], 
-                hardware = '', 
-                revision = '', 
-                serial = '', 
-                cores = -2147483648, 
-                ram = -2147483648, 
-                python_version = '', 
-                pip_version = '', 
-                virtualenv = '', 
-                octoprint_version = '', 
-                plugin_version = '', 
-                print_nanny_client_version = '', 
-                url = '', 
-                private_key = '', 
-                private_key_checksum = '', 
-                public_key_checksum = '', 
-                cloudiot_device_configs = '', 
-                ca_certs = {
-                    'key' : ''
-                    }, 
-                manage_url = '', 
-                monitoring_active = True, 
                 active_session = print_nanny_client.models.print_session.PrintSession(
                     id = 56, 
                     created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -95,43 +56,73 @@ class TestOctoPrintDeviceKey(unittest.TestCase):
                         }, 
                     print_job_status = null, 
                     url = '', 
-                    datesegment = '', )
+                    datesegment = '', ), 
+                ca_certs = {
+                    'key' : ''
+                    }, 
+                cloudiot_device_configs = '', 
+                cloudiot_device_name = '', 
+                cloudiot_device_num_id = 56, 
+                cloudiot_device_path = '', 
+                cloudiot_device = {
+                    'key' : null
+                    }, 
+                cores = -2147483648, 
+                cpu_flags = [
+                    ''
+                    ], 
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                hardware = '', 
+                manage_url = '', 
+                model = '', 
+                monitoring_active = True, 
+                name = '', 
+                octoprint_version = '', 
+                pip_version = '', 
+                platform = '', 
+                plugin_version = '', 
+                print_nanny_client_version = '', 
+                private_key_checksum = '', 
+                private_key = '', 
+                public_key_checksum = '', 
+                public_key = '', 
+                python_version = '', 
+                ram = -2147483648, 
+                revision = '', 
+                serial = '', 
+                user = 56
             )
         else :
             return OctoPrintDeviceKey(
-                id = 56,
-                deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                name = '',
-                user = 56,
-                public_key = '',
-                fingerprint = '',
-                cloudiot_device = {
-                    'key' : null
-                    },
-                cloudiot_device_name = '',
-                cloudiot_device_path = '',
-                cloudiot_device_num_id = 56,
-                model = '',
-                platform = '',
-                serial = '',
-                cores = -2147483648,
-                ram = -2147483648,
-                python_version = '',
-                pip_version = '',
-                octoprint_version = '',
-                plugin_version = '',
-                print_nanny_client_version = '',
-                url = '',
-                private_key = '',
-                private_key_checksum = '',
-                public_key_checksum = '',
-                cloudiot_device_configs = '',
                 ca_certs = {
                     'key' : ''
                     },
+                cloudiot_device_configs = '',
+                cloudiot_device_name = '',
+                cloudiot_device_num_id = 56,
+                cloudiot_device_path = '',
+                cloudiot_device = {
+                    'key' : null
+                    },
+                cores = -2147483648,
+                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 manage_url = '',
+                model = '',
                 monitoring_active = True,
+                name = '',
+                octoprint_version = '',
+                pip_version = '',
+                platform = '',
+                plugin_version = '',
+                print_nanny_client_version = '',
+                private_key_checksum = '',
+                private_key = '',
+                public_key_checksum = '',
+                public_key = '',
+                python_version = '',
+                ram = -2147483648,
+                serial = '',
+                user = 56,
         )
 
     def testOctoPrintDeviceKey(self):

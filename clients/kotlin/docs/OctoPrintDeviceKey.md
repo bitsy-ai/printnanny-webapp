@@ -4,40 +4,35 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.Int** |  |  [readonly]
-**deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
-**name** | **kotlin.String** |  | 
-**user** | **kotlin.Int** |  |  [readonly]
-**publicKey** | **kotlin.String** |  |  [readonly]
-**fingerprint** | **kotlin.String** |  |  [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
+**caCerts** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  | 
+**cloudiotDeviceConfigs** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
-**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]
-**model** | **kotlin.String** |  | 
-**platform** | **kotlin.String** |  | 
-**serial** | **kotlin.String** |  | 
+**cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
 **cores** | **kotlin.Int** |  | 
-**ram** | **kotlin.Int** |  | 
-**pythonVersion** | **kotlin.String** |  | 
-**pipVersion** | **kotlin.String** |  | 
+**createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
+**model** | **kotlin.String** |  | 
+**monitoringActive** | **kotlin.Boolean** |  |  [readonly]
+**name** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
+**pipVersion** | **kotlin.String** |  | 
+**platform** | **kotlin.String** |  | 
 **pluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
-**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
-**privateKey** | **kotlin.String** |  |  [readonly]
 **privateKeyChecksum** | **kotlin.String** |  |  [readonly]
+**privateKey** | **kotlin.String** |  |  [readonly]
 **publicKeyChecksum** | **kotlin.String** |  | 
-**cloudiotDeviceConfigs** | **kotlin.String** |  |  [readonly]
-**caCerts** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  | 
-**manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
-**monitoringActive** | **kotlin.Boolean** |  |  [readonly]
+**publicKey** | **kotlin.String** |  |  [readonly]
+**pythonVersion** | **kotlin.String** |  | 
+**ram** | **kotlin.Int** |  | 
+**serial** | **kotlin.String** |  | 
+**user** | **kotlin.Int** |  |  [readonly]
+**activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 **hardware** | **kotlin.String** |  |  [optional]
 **revision** | **kotlin.String** |  |  [optional]
-**virtualenv** | **kotlin.String** |  |  [optional]
-**activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
 
 
 

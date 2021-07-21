@@ -4,40 +4,35 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**deleted** | **datetime** |  | [readonly] 
-**created_dt** | **datetime** |  | [readonly] 
-**name** | **str** |  | 
-**user** | **int** |  | [readonly] 
-**public_key** | **str** |  | [readonly] 
-**fingerprint** | **str** |  | [readonly] 
-**cloudiot_device** | **dict(str, object)** |  | [readonly] 
+**active_session** | [**PrintSession**](PrintSession.md) |  | [optional] 
+**ca_certs** | **dict(str, str)** |  | 
+**cloudiot_device_configs** | **str** |  | [readonly] 
 **cloudiot_device_name** | **str** |  | [readonly] 
-**cloudiot_device_path** | **str** |  | [readonly] 
 **cloudiot_device_num_id** | **int** |  | [readonly] 
-**model** | **str** |  | 
-**platform** | **str** |  | 
-**cpu_flags** | **list[str]** |  | [optional] 
-**hardware** | **str** |  | [optional] 
-**revision** | **str** |  | [optional] 
-**serial** | **str** |  | 
+**cloudiot_device_path** | **str** |  | [readonly] 
+**cloudiot_device** | **dict(str, object)** |  | [readonly] 
 **cores** | **int** |  | 
-**ram** | **int** |  | 
-**python_version** | **str** |  | 
-**pip_version** | **str** |  | 
-**virtualenv** | **str** |  | [optional] 
+**cpu_flags** | **list[str]** |  | [optional] 
+**created_dt** | **datetime** |  | [readonly] 
+**hardware** | **str** |  | [optional] 
+**manage_url** | **str** |  | [readonly] 
+**model** | **str** |  | 
+**monitoring_active** | **bool** |  | [readonly] 
+**name** | **str** |  | 
 **octoprint_version** | **str** |  | 
+**pip_version** | **str** |  | 
+**platform** | **str** |  | 
 **plugin_version** | **str** |  | 
 **print_nanny_client_version** | **str** |  | 
-**url** | **str** |  | [readonly] 
-**private_key** | **str** |  | [readonly] 
 **private_key_checksum** | **str** |  | [readonly] 
+**private_key** | **str** |  | [readonly] 
 **public_key_checksum** | **str** |  | 
-**cloudiot_device_configs** | **str** |  | [readonly] 
-**ca_certs** | **dict(str, str)** |  | 
-**manage_url** | **str** |  | [readonly] 
-**monitoring_active** | **bool** |  | [readonly] 
-**active_session** | [**PrintSession**](PrintSession.md) |  | [optional] 
+**public_key** | **str** |  | [readonly] 
+**python_version** | **str** |  | 
+**ram** | **int** |  | 
+**revision** | **str** |  | [optional] 
+**serial** | **str** |  | 
+**user** | **int** |  | [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
