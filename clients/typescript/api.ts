@@ -1532,6 +1532,12 @@ export interface OctoPrintDeviceKey {
     hardware?: string | null;
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintDeviceKey
+     */
+    id: number;
+    /**
+     * 
      * @type {string}
      * @memberof OctoPrintDeviceKey
      */

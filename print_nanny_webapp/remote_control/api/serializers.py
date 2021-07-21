@@ -86,6 +86,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "created_dt",
             "fingerprint",
             "hardware",
+            "id",
             "manage_url",
             "model",
             "monitoring_active",

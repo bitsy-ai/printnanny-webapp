@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **created_dt** | **String** |  | [readonly]
 **fingerprint** | **String** |  | [readonly]
 **hardware** | Option<**String**> |  | [optional]
+**id** | **i32** |  | [readonly]
 **manage_url** | **String** |  | [readonly]
 **model** | **String** |  | 
 **monitoring_active** | **bool** |  | [readonly]
