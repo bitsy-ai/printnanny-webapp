@@ -103,6 +103,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "revision",
             "serial",
             "user",
+            "url",
         )
 
         extra_kwargs = {
