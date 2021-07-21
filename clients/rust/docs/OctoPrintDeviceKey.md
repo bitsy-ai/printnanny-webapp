@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **revision** | Option<**String**> |  | [optional]
 **serial** | **String** |  | 
 **user** | **i32** |  | [readonly]
+**url** | **String** |  | [readonly]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **ram** | **kotlin.Int** |  | 
 **serial** | **kotlin.String** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
+**url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **activeSession** | [**PrintSession**](PrintSession.md) |  |  [optional]
 **cpuFlags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 **hardware** | **kotlin.String** |  |  [optional]

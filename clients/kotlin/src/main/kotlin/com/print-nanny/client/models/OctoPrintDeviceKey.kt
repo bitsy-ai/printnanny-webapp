@@ -44,6 +44,7 @@ import java.io.Serializable
  * @param ram 
  * @param serial 
  * @param user 
+ * @param url 
  * @param activeSession 
  * @param cpuFlags 
  * @param hardware 
@@ -101,6 +102,8 @@ data class OctoPrintDeviceKey (
     val serial: kotlin.String,
     @Json(name = "user")
     val user: kotlin.Int,
+    @Json(name = "url")
+    val url: java.net.URI,
     @Json(name = "active_session")
     val activeSession: PrintSession? = null,
     @Json(name = "cpu_flags")
