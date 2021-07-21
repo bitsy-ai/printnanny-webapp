@@ -84,6 +84,7 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
             "cores",
             "cpu_flags",
             "created_dt",
+            "fingerprint",
             "hardware",
             "manage_url",
             "model",
