@@ -74,7 +74,9 @@ class OctoPrintDeviceKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = OctoPrintDevice
         fields = (
-            "active_session" "ca_certs",
+            "active_session",
+            "ca_certs",
+            "cloudiot_device_configs",
             "cloudiot_device_name",
             "cloudiot_device_num_id",
             "cloudiot_device_path",
