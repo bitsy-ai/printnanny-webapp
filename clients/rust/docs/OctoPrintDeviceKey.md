@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **cores** | **i32** |  | 
 **cpu_flags** | Option<**Vec<String>**> |  | [optional]
 **created_dt** | **String** |  | [readonly]
+**fingerprint** | **String** |  | [readonly]
 **hardware** | Option<**String**> |  | [optional]
 **manage_url** | **String** |  | [readonly]
 **model** | **String** |  | 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **cores** | **int** |  | 
 **cpu_flags** | **list[str]** |  | [optional] 
 **created_dt** | **datetime** |  | [readonly] 
+**fingerprint** | **str** |  | [readonly] 
 **hardware** | **str** |  | [optional] 
 **manage_url** | **str** |  | [readonly] 
 **model** | **str** |  | 

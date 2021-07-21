@@ -46,6 +46,7 @@ class OctoPrintDeviceKey(object):
         'cores': 'int',
         'cpu_flags': 'list[str]',
         'created_dt': 'datetime',
+        'fingerprint': 'str',
         'hardware': 'str',
         'manage_url': 'str',
         'model': 'str',
@@ -79,6 +80,7 @@ class OctoPrintDeviceKey(object):
         'cores': 'cores',
         'cpu_flags': 'cpu_flags',
         'created_dt': 'created_dt',
+        'fingerprint': 'fingerprint',
         'hardware': 'hardware',
         'manage_url': 'manage_url',
         'model': 'model',
@@ -101,7 +103,7 @@ class OctoPrintDeviceKey(object):
         'url': 'url'
     }
 
-    def __init__(self, active_session=None, ca_certs=None, cloudiot_device_configs=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, cloudiot_device=None, cores=None, cpu_flags=None, created_dt=None, hardware=None, manage_url=None, model=None, monitoring_active=None, name=None, octoprint_version=None, pip_version=None, platform=None, plugin_version=None, print_nanny_client_version=None, private_key_checksum=None, private_key=None, public_key_checksum=None, public_key=None, python_version=None, ram=None, revision=None, serial=None, user=None, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, active_session=None, ca_certs=None, cloudiot_device_configs=None, cloudiot_device_name=None, cloudiot_device_num_id=None, cloudiot_device_path=None, cloudiot_device=None, cores=None, cpu_flags=None, created_dt=None, fingerprint=None, hardware=None, manage_url=None, model=None, monitoring_active=None, name=None, octoprint_version=None, pip_version=None, platform=None, plugin_version=None, print_nanny_client_version=None, private_key_checksum=None, private_key=None, public_key_checksum=None, public_key=None, python_version=None, ram=None, revision=None, serial=None, user=None, url=None, local_vars_configuration=None):  # noqa: E501
         """OctoPrintDeviceKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -117,6 +119,7 @@ class OctoPrintDeviceKey(object):
         self._cores = None
         self._cpu_flags = None
         self._created_dt = None
+        self._fingerprint = None
         self._hardware = None
         self._manage_url = None
         self._model = None
@@ -150,6 +153,7 @@ class OctoPrintDeviceKey(object):
         self.cores = cores
         self.cpu_flags = cpu_flags
         self.created_dt = created_dt
+        self.fingerprint = fingerprint
         self.hardware = hardware
         self.manage_url = manage_url
         self.model = model
@@ -402,6 +406,29 @@ class OctoPrintDeviceKey(object):
             raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
 
         self._created_dt = created_dt
+
+    @property
+    def fingerprint(self):
+        """Gets the fingerprint of this OctoPrintDeviceKey.  # noqa: E501
+
+
+        :return: The fingerprint of this OctoPrintDeviceKey.  # noqa: E501
+        :rtype: str
+        """
+        return self._fingerprint
+
+    @fingerprint.setter
+    def fingerprint(self, fingerprint):
+        """Sets the fingerprint of this OctoPrintDeviceKey.
+
+
+        :param fingerprint: The fingerprint of this OctoPrintDeviceKey.  # noqa: E501
+        :type fingerprint: str
+        """
+        if self.local_vars_configuration.client_side_validation and fingerprint is None:  # noqa: E501
+            raise ValueError("Invalid value for `fingerprint`, must not be `None`")  # noqa: E501
+
+        self._fingerprint = fingerprint
 
     @property
     def hardware(self):

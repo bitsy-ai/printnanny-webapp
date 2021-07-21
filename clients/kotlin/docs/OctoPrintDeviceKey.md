@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
 **cores** | **kotlin.Int** |  | 
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**fingerprint** | **kotlin.String** |  |  [readonly]
 **manageUrl** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **model** | **kotlin.String** |  | 
 **monitoringActive** | **kotlin.Boolean** |  |  [readonly]
