@@ -42,7 +42,7 @@ class TestPaginatedRemoteCommandEventList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.remote_command_event.RemoteCommandEvent(
                         id = 56, 
-                        ts = 56, 
+                        ts = 1.337, 
                         event_type = 'remote_command_received', 
                         octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                             os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(

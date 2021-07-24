@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RemoteCommandEventRequest {
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-    pub ts: Option<i32>,
+    pub ts: Option<f32>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::RemoteCommandEventEventTypeEnum,
     #[serde(rename = "octoprint_environment")]

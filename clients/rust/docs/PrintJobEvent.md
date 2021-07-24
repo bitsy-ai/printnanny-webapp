@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
-**ts** | Option<**i32**> |  | [optional]
+**ts** | Option<**f32**> |  | [optional]
 **event_type** | [**crate::models::EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
 **octoprint_environment** | [**crate::models::OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterData**](OctoprintPrinterData.md) |  | 

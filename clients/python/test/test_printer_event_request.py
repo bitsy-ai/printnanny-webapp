@@ -36,7 +36,7 @@ class TestPrinterEventRequest(unittest.TestCase):
         # model = print_nanny_client.models.printer_event_request.PrinterEventRequest()  # noqa: E501
         if include_optional :
             return PrinterEventRequest(
-                ts = 56, 
+                ts = 1.337, 
                 event_type = 'Operational', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **octoprintDevice** | **kotlin.Int** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
-**ts** | **kotlin.Int** |  |  [optional]
+**ts** | **kotlin.Float** |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]

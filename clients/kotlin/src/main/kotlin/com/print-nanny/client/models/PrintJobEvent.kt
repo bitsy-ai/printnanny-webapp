@@ -63,7 +63,7 @@ data class PrintJobEvent (
     @Json(name = "user")
     val user: kotlin.Int,
     @Json(name = "ts")
-    val ts: kotlin.Int? = null,
+    val ts: kotlin.Float? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")

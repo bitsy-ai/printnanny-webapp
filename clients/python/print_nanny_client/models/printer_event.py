@@ -37,7 +37,7 @@ class PrinterEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'ts': 'int',
+        'ts': 'float',
         'event_type': 'EventType0c4Enum',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
@@ -145,7 +145,7 @@ class PrinterEvent(object):
 
 
         :return: The ts of this PrinterEvent.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._ts
 
@@ -155,7 +155,7 @@ class PrinterEvent(object):
 
 
         :param ts: The ts of this PrinterEvent.  # noqa: E501
-        :type ts: int
+        :type ts: float
         """
 
         self._ts = ts

@@ -36,7 +36,7 @@ class OctoPrintEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'ts': 'int',
+        'ts': 'float',
         'event_type': 'OctoPrintEventEventTypeEnum',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
@@ -102,7 +102,7 @@ class OctoPrintEventRequest(object):
 
 
         :return: The ts of this OctoPrintEventRequest.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._ts
 
@@ -112,7 +112,7 @@ class OctoPrintEventRequest(object):
 
 
         :param ts: The ts of this OctoPrintEventRequest.  # noqa: E501
-        :type ts: int
+        :type ts: float
         """
 
         self._ts = ts

@@ -16,7 +16,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::OctoPrintEventEventTypeEnum,
         #[serde(rename = "octoprint_environment")]
@@ -49,7 +49,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::EventTypeD9eEnum,
         #[serde(rename = "octoprint_environment")]
@@ -82,7 +82,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::PrintNannyPluginEventEventTypeEnum,
         #[serde(rename = "octoprint_environment")]
@@ -115,7 +115,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::EventType0c4Enum,
         #[serde(rename = "octoprint_environment")]
@@ -150,7 +150,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::RemoteCommandEventEventTypeEnum,
         #[serde(rename = "octoprint_environment")]
@@ -183,7 +183,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "id")]
         id: i32,
         #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-        ts: Option<i32>,
+        ts: Option<f32>,
         #[serde(rename = "event_type")]
         event_type: crate::models::TelemetryEventEventTypeEnum,
         #[serde(rename = "octoprint_environment")]

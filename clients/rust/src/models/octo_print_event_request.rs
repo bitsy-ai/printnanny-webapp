@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OctoPrintEventRequest {
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
-    pub ts: Option<i32>,
+    pub ts: Option<f32>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::OctoPrintEventEventTypeEnum,
     #[serde(rename = "octoprint_environment")]

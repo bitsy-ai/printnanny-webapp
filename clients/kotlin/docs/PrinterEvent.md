@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
-**ts** | **kotlin.Int** |  |  [optional]
+**ts** | **kotlin.Float** |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]

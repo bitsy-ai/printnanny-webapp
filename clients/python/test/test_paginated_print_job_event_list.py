@@ -42,7 +42,7 @@ class TestPaginatedPrintJobEventList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.print_job_event.PrintJobEvent(
                         id = 56, 
-                        ts = 56, 
+                        ts = 1.337, 
                         event_type = 'PrintCancelled', 
                         octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                             os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
