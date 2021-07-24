@@ -22,6 +22,7 @@ import com.print-nanny.client.models.PrintJobEvent
 import com.print-nanny.client.models.PrintNannyPluginEvent
 import com.print-nanny.client.models.RemoteCommandEvent
 import com.print-nanny.client.models.TelemetryEventPolymorphic
+import com.print-nanny.client.models.TelemetryEventPolymorphicRequest
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -550,6 +551,61 @@ class TelemetryApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/api/remote-command-events/{id}/".replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param telemetryEventPolymorphicRequest  (optional)
+    * @return TelemetryEventPolymorphic
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun telemetryEventsCreate(telemetryEventPolymorphicRequest: TelemetryEventPolymorphicRequest?) : TelemetryEventPolymorphic {
+        val localVariableConfig = telemetryEventsCreateRequestConfig(telemetryEventPolymorphicRequest = telemetryEventPolymorphicRequest)
+
+        val localVarResponse = request<TelemetryEventPolymorphic>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as TelemetryEventPolymorphic
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation telemetryEventsCreate
+    *
+    * @param telemetryEventPolymorphicRequest  (optional)
+    * @return RequestConfig
+    */
+    fun telemetryEventsCreateRequestConfig(telemetryEventPolymorphicRequest: TelemetryEventPolymorphicRequest?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = telemetryEventPolymorphicRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/telemetry-events/",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

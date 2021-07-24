@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**printNannyPluginEventsRetrieve**](TelemetryApi.md#printNannyPluginEventsRetrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
 [**remoteCommandEventsList**](TelemetryApi.md#remoteCommandEventsList) | **GET** /api/remote-command-events/ | 
 [**remoteCommandEventsRetrieve**](TelemetryApi.md#remoteCommandEventsRetrieve) | **GET** /api/remote-command-events/{id}/ | 
+[**telemetryEventsCreate**](TelemetryApi.md#telemetryEventsCreate) | **POST** /api/telemetry-events/ | 
 [**telemetryEventsList**](TelemetryApi.md#telemetryEventsList) | **GET** /api/telemetry-events/ | 
 [**telemetryEventsRetrieve**](TelemetryApi.md#telemetryEventsRetrieve) | **GET** /api/telemetry-events/{id}/ | 
 
@@ -465,6 +466,56 @@ Configure tokenAuth:
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="telemetryEventsCreate"></a>
+# **telemetryEventsCreate**
+> TelemetryEventPolymorphic telemetryEventsCreate(telemetryEventPolymorphicRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = TelemetryApi()
+val telemetryEventPolymorphicRequest : TelemetryEventPolymorphicRequest =  // TelemetryEventPolymorphicRequest | 
+try {
+    val result : TelemetryEventPolymorphic = apiInstance.telemetryEventsCreate(telemetryEventPolymorphicRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TelemetryApi#telemetryEventsCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TelemetryApi#telemetryEventsCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **telemetryEventPolymorphicRequest** | [**TelemetryEventPolymorphicRequest**](TelemetryEventPolymorphicRequest.md)|  | [optional]
+
+### Return type
+
+[**TelemetryEventPolymorphic**](TelemetryEventPolymorphic.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["Session"] = ""
+    ApiClient.apiKeyPrefix["Session"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 <a name="telemetryEventsList"></a>

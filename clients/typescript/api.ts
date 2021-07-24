@@ -1998,6 +1998,37 @@ export interface OctoprintEnvironment {
 /**
  * 
  * @export
+ * @interface OctoprintEnvironmentRequest
+ */
+export interface OctoprintEnvironmentRequest {
+    /**
+     * 
+     * @type {OctoprintPlatformRequest}
+     * @memberof OctoprintEnvironmentRequest
+     */
+    os: OctoprintPlatformRequest;
+    /**
+     * 
+     * @type {OctoprintPythonRequest}
+     * @memberof OctoprintEnvironmentRequest
+     */
+    python: OctoprintPythonRequest;
+    /**
+     * 
+     * @type {OctoprintHardwareRequest}
+     * @memberof OctoprintEnvironmentRequest
+     */
+    hardware: OctoprintHardwareRequest;
+    /**
+     * 
+     * @type {OctoprintPiSupportRequest}
+     * @memberof OctoprintEnvironmentRequest
+     */
+    pi_support: OctoprintPiSupportRequest;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintFile
  */
 export interface OctoprintFile {
@@ -2041,6 +2072,49 @@ export interface OctoprintFile {
 /**
  * 
  * @export
+ * @interface OctoprintFileRequest
+ */
+export interface OctoprintFileRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFileRequest
+     */
+    name: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFileRequest
+     */
+    path: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFileRequest
+     */
+    display?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintFileRequest
+     */
+    origin: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintFileRequest
+     */
+    size: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintFileRequest
+     */
+    date: number | null;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintHardware
  */
 export interface OctoprintHardware {
@@ -2060,6 +2134,31 @@ export interface OctoprintHardware {
      * 
      * @type {number}
      * @memberof OctoprintHardware
+     */
+    ram: number;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintHardwareRequest
+ */
+export interface OctoprintHardwareRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardwareRequest
+     */
+    cores: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardwareRequest
+     */
+    freq: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintHardwareRequest
      */
     ram: number;
 }
@@ -2103,6 +2202,43 @@ export interface OctoprintJob {
 /**
  * 
  * @export
+ * @interface OctoprintJobRequest
+ */
+export interface OctoprintJobRequest {
+    /**
+     * 
+     * @type {OctoprintFileRequest}
+     * @memberof OctoprintJobRequest
+     */
+    file: OctoprintFileRequest | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJobRequest
+     */
+    estimatedPrintTime?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJobRequest
+     */
+    averagePrintTime?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintJobRequest
+     */
+    lastPrintTime?: number | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintJobRequest
+     */
+    filament: { [key: string]: any; } | null;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPiSupport
  */
 export interface OctoprintPiSupport {
@@ -2128,6 +2264,31 @@ export interface OctoprintPiSupport {
 /**
  * 
  * @export
+ * @interface OctoprintPiSupportRequest
+ */
+export interface OctoprintPiSupportRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupportRequest
+     */
+    model: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupportRequest
+     */
+    throttle_state: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPiSupportRequest
+     */
+    octopi_version?: string;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPlatform
  */
 export interface OctoprintPlatform {
@@ -2147,6 +2308,31 @@ export interface OctoprintPlatform {
      * 
      * @type {string}
      * @memberof OctoprintPlatform
+     */
+    bits: string;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPlatformRequest
+ */
+export interface OctoprintPlatformRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatformRequest
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatformRequest
+     */
+    platform: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPlatformRequest
      */
     bits: string;
 }
@@ -2196,6 +2382,55 @@ export interface OctoprintPrinterData {
      * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoprintPrinterData
+     */
+    offsets: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterDataRequest
+ */
+export interface OctoprintPrinterDataRequest {
+    /**
+     * 
+     * @type {OctoprintJobRequest}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    job: OctoprintJobRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterStateRequest}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    state: OctoprintPrinterStateRequest;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    user?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    currentZ?: number;
+    /**
+     * 
+     * @type {OctoprintProgressRequest}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    progress: OctoprintProgressRequest;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterDataRequest
+     */
+    resends: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof OctoprintPrinterDataRequest
      */
     offsets: { [key: string]: any; };
 }
@@ -2275,6 +2510,79 @@ export interface OctoprintPrinterFlags {
 /**
  * 
  * @export
+ * @interface OctoprintPrinterFlagsRequest
+ */
+export interface OctoprintPrinterFlagsRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    operational: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    printing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    cancelling: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    pausing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    resuming: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    finishing: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    closedOrError: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    error: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    paused: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    ready: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OctoprintPrinterFlagsRequest
+     */
+    sdReady: boolean;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPrinterState
  */
 export interface OctoprintPrinterState {
@@ -2290,6 +2598,25 @@ export interface OctoprintPrinterState {
      * @memberof OctoprintPrinterState
      */
     flags: OctoprintPrinterFlags;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPrinterStateRequest
+ */
+export interface OctoprintPrinterStateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPrinterStateRequest
+     */
+    text: string;
+    /**
+     * 
+     * @type {OctoprintPrinterFlagsRequest}
+     * @memberof OctoprintPrinterStateRequest
+     */
+    flags: OctoprintPrinterFlagsRequest;
 }
 /**
  * 
@@ -2331,6 +2658,43 @@ export interface OctoprintProgress {
 /**
  * 
  * @export
+ * @interface OctoprintProgressRequest
+ */
+export interface OctoprintProgressRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgressRequest
+     */
+    completion: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgressRequest
+     */
+    filepos: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgressRequest
+     */
+    printTime: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof OctoprintProgressRequest
+     */
+    printTimeLeft: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintProgressRequest
+     */
+    printTimeOrigin?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface OctoprintPython
  */
 export interface OctoprintPython {
@@ -2350,6 +2714,31 @@ export interface OctoprintPython {
      * 
      * @type {string}
      * @memberof OctoprintPython
+     */
+    virtualenv: string;
+}
+/**
+ * 
+ * @export
+ * @interface OctoprintPythonRequest
+ */
+export interface OctoprintPythonRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPythonRequest
+     */
+    version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPythonRequest
+     */
+    pip: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OctoprintPythonRequest
      */
     virtualenv: string;
 }
@@ -3713,6 +4102,73 @@ export interface PrintJobEvent {
 /**
  * 
  * @export
+ * @interface PrintJobEventRequest
+ */
+export interface PrintJobEventRequest {
+    /**
+     * 
+     * @type {EventTypeD9eEnum}
+     * @memberof PrintJobEventRequest
+     */
+    event_type: EventTypeD9eEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintJobEventRequest
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintJobEventRequest
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintJobEventRequest
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintJobEventRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintJobEventRequest
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 export enum PrintJobStatusEnum {
@@ -3849,6 +4305,73 @@ export enum PrintNannyPluginEventEventTypeEnum {
     ConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success'
 }
 
+/**
+ * 
+ * @export
+ * @interface PrintNannyPluginEventRequest
+ */
+export interface PrintNannyPluginEventRequest {
+    /**
+     * 
+     * @type {PrintNannyPluginEventEventTypeEnum}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    event_type: PrintNannyPluginEventEventTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    print_session?: number | null;
+}
 /**
  * 
  * @export
@@ -4149,6 +4672,79 @@ export interface PrinterEvent {
      * 
      * @type {number}
      * @memberof PrinterEvent
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface PrinterEventRequest
+ */
+export interface PrinterEventRequest {
+    /**
+     * 
+     * @type {EventType0c4Enum}
+     * @memberof PrinterEventRequest
+     */
+    event_type: EventType0c4Enum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterEventRequest
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof PrinterEventRequest
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterEventRequest
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterEventRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {PrinterStateEnum}
+     * @memberof PrinterEventRequest
+     */
+    printer_state: PrinterStateEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterEventRequest
      */
     print_session?: number | null;
 }
@@ -4598,6 +5194,73 @@ export enum RemoteCommandEventEventTypeEnum {
 /**
  * 
  * @export
+ * @interface RemoteCommandEventRequest
+ */
+export interface RemoteCommandEventRequest {
+    /**
+     * 
+     * @type {RemoteCommandEventEventTypeEnum}
+     * @memberof RemoteCommandEventRequest
+     */
+    event_type: RemoteCommandEventEventTypeEnum;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEventRequest
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_environment?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_printer_data?: { [key: string]: any; };
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof RemoteCommandEventRequest
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEventRequest
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEventRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoteCommandEventRequest
+     */
+    print_session?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface RemoteControlCommand
  */
 export interface RemoteControlCommand {
@@ -4900,6 +5563,79 @@ export enum TelemetryEventEventTypeEnum {
  */
 export type TelemetryEventPolymorphic = OctoPrintEvent | PrintJobEvent | PrintNannyPluginEvent | PrinterEvent | RemoteCommandEvent | TelemetryEvent;
 
+/**
+ * @type TelemetryEventPolymorphicRequest
+ * @export
+ */
+export type TelemetryEventPolymorphicRequest = OctoPrintEventRequest | PrintJobEventRequest | PrintNannyPluginEventRequest | PrinterEventRequest | RemoteCommandEventRequest | TelemetryEventRequest;
+
+/**
+ * 
+ * @export
+ * @interface TelemetryEventRequest
+ */
+export interface TelemetryEventRequest {
+    /**
+     * 
+     * @type {TelemetryEventEventTypeEnum}
+     * @memberof TelemetryEventRequest
+     */
+    event_type: TelemetryEventEventTypeEnum;
+    /**
+     * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof TelemetryEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof TelemetryEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEventRequest
+     */
+    event_data?: { [key: string]: any; } | null;
+    /**
+     * 
+     * @type {{ [key: string]: any; }}
+     * @memberof TelemetryEventRequest
+     */
+    temperature?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEventRequest
+     */
+    print_nanny_plugin_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEventRequest
+     */
+    print_nanny_client_version: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TelemetryEventRequest
+     */
+    octoprint_version: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEventRequest
+     */
+    octoprint_device: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEventRequest
+     */
+    print_session?: number | null;
+}
 /**
  * Our default response serializer.
  * @export
@@ -11128,6 +11864,45 @@ export const TelemetryApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
+         * @param {TelemetryEventPolymorphicRequest} [telemetryEventPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsCreate: async (telemetryEventPolymorphicRequest?: TelemetryEventPolymorphicRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/telemetry-events/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(telemetryEventPolymorphicRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11307,6 +12082,16 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {TelemetryEventPolymorphicRequest} [telemetryEventPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async telemetryEventsCreate(telemetryEventPolymorphicRequest?: TelemetryEventPolymorphicRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TelemetryEventPolymorphic>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telemetryEventsCreate(telemetryEventPolymorphicRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11418,6 +12203,15 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
+         * @param {TelemetryEventPolymorphicRequest} [telemetryEventPolymorphicRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        telemetryEventsCreate(telemetryEventPolymorphicRequest?: TelemetryEventPolymorphicRequest, options?: any): AxiosPromise<TelemetryEventPolymorphic> {
+            return localVarFp.telemetryEventsCreate(telemetryEventPolymorphicRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11523,6 +12317,15 @@ export interface TelemetryApiInterface {
      * @memberof TelemetryApiInterface
      */
     remoteCommandEventsRetrieve(id: number, options?: any): AxiosPromise<RemoteCommandEvent>;
+
+    /**
+     * 
+     * @param {TelemetryEventPolymorphicRequest} [telemetryEventPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApiInterface
+     */
+    telemetryEventsCreate(telemetryEventPolymorphicRequest?: TelemetryEventPolymorphicRequest, options?: any): AxiosPromise<TelemetryEventPolymorphic>;
 
     /**
      * 
@@ -11648,6 +12451,17 @@ export class TelemetryApi extends BaseAPI implements TelemetryApiInterface {
      */
     public remoteCommandEventsRetrieve(id: number, options?: any) {
         return TelemetryApiFp(this.configuration).remoteCommandEventsRetrieve(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {TelemetryEventPolymorphicRequest} [telemetryEventPolymorphicRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TelemetryApi
+     */
+    public telemetryEventsCreate(telemetryEventPolymorphicRequest?: TelemetryEventPolymorphicRequest, options?: any) {
+        return TelemetryApiFp(this.configuration).telemetryEventsCreate(telemetryEventPolymorphicRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

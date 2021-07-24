@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**print_nanny_plugin_events_retrieve**](TelemetryApi.md#print_nanny_plugin_events_retrieve) | **get** /api/print-nanny-plugin-events/{id}/ | 
 [**remote_command_events_list**](TelemetryApi.md#remote_command_events_list) | **get** /api/remote-command-events/ | 
 [**remote_command_events_retrieve**](TelemetryApi.md#remote_command_events_retrieve) | **get** /api/remote-command-events/{id}/ | 
+[**telemetry_events_create**](TelemetryApi.md#telemetry_events_create) | **post** /api/telemetry-events/ | 
 [**telemetry_events_list**](TelemetryApi.md#telemetry_events_list) | **get** /api/telemetry-events/ | 
 [**telemetry_events_retrieve**](TelemetryApi.md#telemetry_events_retrieve) | **get** /api/telemetry-events/{id}/ | 
 
@@ -265,6 +266,34 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## telemetry_events_create
+
+> crate::models::TelemetryEventPolymorphic telemetry_events_create(telemetry_event_polymorphic_request)
+
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**telemetry_event_polymorphic_request** | Option<[**TelemetryEventPolymorphicRequest**](TelemetryEventPolymorphicRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::TelemetryEventPolymorphic**](TelemetryEventPolymorphic.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

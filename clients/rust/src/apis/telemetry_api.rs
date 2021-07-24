@@ -77,6 +77,14 @@ pub enum RemoteCommandEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method `telemetry_events_create`
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum TelemetryEventsCreateError {
+    Status400(crate::models::TelemetryEventPolymorphic),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method `telemetry_events_list`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -361,6 +369,36 @@ pub async fn remote_command_events_retrieve(configuration: &configuration::Confi
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RemoteCommandEventsRetrieveError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+pub async fn telemetry_events_create(configuration: &configuration::Configuration, telemetry_event_polymorphic_request: Option<crate::models::TelemetryEventPolymorphicRequest>) -> Result<crate::models::TelemetryEventPolymorphic, Error<TelemetryEventsCreateError>> {
+
+    let local_var_client = &configuration.client;
+
+    let local_var_uri_str = format!("{}/api/telemetry-events/", configuration.base_path);
+    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&telemetry_event_polymorphic_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<TelemetryEventsCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
