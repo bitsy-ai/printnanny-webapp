@@ -119,7 +119,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
 
 
-class PrinterEventSerializer(serializers.ModelSerializer):
+class PrinterEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(choices=PrinterEventType.choices)
 
     class Meta:
@@ -128,7 +128,7 @@ class PrinterEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
 
 
-class PrintJobEventSerializer(serializers.ModelSerializer):
+class PrintJobEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(choices=PrintJobEventType.choices)
 
     class Meta:
@@ -137,7 +137,7 @@ class PrintJobEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
 
 
-class OctoPrintEventSerializer(serializers.ModelSerializer):
+class OctoPrintEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(choices=OctoprintEventType.choices)
 
     class Meta:
@@ -146,7 +146,7 @@ class OctoPrintEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
 
 
-class PrintNannyPluginEventSerializer(serializers.ModelSerializer):
+class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(choices=PrintNannyPluginEventType.choices)
 
     class Meta:
@@ -155,7 +155,7 @@ class PrintNannyPluginEventSerializer(serializers.ModelSerializer):
         read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
 
 
-class RemoteCommandEventSerializer(serializers.ModelSerializer):
+class RemoteCommandEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(choices=RemoteCommandEventType.choices)
 
     class Meta:
