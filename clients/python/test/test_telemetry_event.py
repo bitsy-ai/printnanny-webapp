@@ -37,6 +37,7 @@ class TestTelemetryEvent(unittest.TestCase):
         if include_optional :
             return TelemetryEvent(
                 id = 56, 
+                ts = 56, 
                 event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
@@ -92,7 +93,6 @@ class TestTelemetryEvent(unittest.TestCase):
                     offsets = {
                         'key' : null
                         }, ), 
-                ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 event_source = None, 
                 event_data = {
                     'key' : null
@@ -166,7 +166,6 @@ class TestTelemetryEvent(unittest.TestCase):
                     offsets = {
                         'key' : null
                         }, ),
-                ts = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 event_source = None,
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',

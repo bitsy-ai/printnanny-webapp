@@ -2,6 +2,12 @@ from django.contrib.postgres.fields import ArrayField
 from django.core import exceptions
 from django import forms
 from django.core import validators
+from rest_framework import serializers
+
+
+class TimestampField(serializers.Field):
+    def to_representation(self, value):
+        return value.timestamp()
 
 
 class ChoiceArrayField(ArrayField):

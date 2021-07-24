@@ -40,7 +40,9 @@ logger = logging.getLogger(__name__)
         }
     )
 )
-class TelemetryEventViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
+class TelemetryEventViewSet(
+    GenericViewSet, ListModelMixin, RetrieveModelMixin, CreateModelMixin
+):
     serializer_class = TelemetryEventPolymorphicSerializer
     queryset = TelemetryEvent.objects.all()
     lookup_field = "id"

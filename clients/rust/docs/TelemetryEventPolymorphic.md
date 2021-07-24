@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
+**ts** | Option<**i32**> |  | [optional]
 **event_type** | [**crate::models::PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
-**octoprint_environment** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
-**octoprint_printer_data** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
-**ts** | **String** |  | [readonly]
+**octoprint_environment** | [**crate::models::OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
+**octoprint_printer_data** | [**crate::models::OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **event_source** | [**crate::models::EventSourceEnum**](EventSourceEnum.md) |  | [readonly]
 **event_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **temperature** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]

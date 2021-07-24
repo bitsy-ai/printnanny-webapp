@@ -82,6 +82,12 @@ class TestTelemetryApi(unittest.TestCase):
         """
         pass
 
+    def test_telemetry_events_create(self):
+        """Test case for telemetry_events_create
+
+        """
+        pass
+
     def test_telemetry_events_list(self):
         """Test case for telemetry_events_list
 
