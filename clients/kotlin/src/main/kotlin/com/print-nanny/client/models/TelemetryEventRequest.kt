@@ -28,6 +28,7 @@ import java.io.Serializable
  * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param octoprintDevice 
+ * @param ts 
  * @param eventData 
  * @param temperature 
  * @param printSession 
@@ -48,6 +49,8 @@ data class TelemetryEventRequest (
     val octoprintVersion: kotlin.String,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
+    @Json(name = "ts")
+    val ts: kotlin.Int? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")

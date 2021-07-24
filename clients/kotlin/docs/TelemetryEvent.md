@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **eventType** | [**TelemetryEventEventTypeEnum**](TelemetryEventEventTypeEnum.md) |  | 
 **octoprintEnvironment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprintPrinterData** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
-**ts** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [readonly]
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
@@ -16,6 +15,7 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
+**ts** | **kotlin.Int** |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]

@@ -13,18 +13,18 @@
 pub struct RemoteCommandEvent {
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
+    pub ts: Option<i32>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::RemoteCommandEventEventTypeEnum,
-    #[serde(rename = "ts")]
-    pub ts: String,
+    #[serde(rename = "octoprint_environment")]
+    pub octoprint_environment: Box<crate::models::OctoprintEnvironment>,
+    #[serde(rename = "octoprint_printer_data")]
+    pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
     #[serde(rename = "event_source")]
     pub event_source: Box<crate::models::EventSourceEnum>,
     #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
     pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "octoprint_environment", skip_serializing_if = "Option::is_none")]
-    pub octoprint_environment: Option<::std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "octoprint_printer_data", skip_serializing_if = "Option::is_none")]
-    pub octoprint_printer_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
     pub temperature: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "print_nanny_plugin_version")]
@@ -44,15 +44,15 @@ pub struct RemoteCommandEvent {
 }
 
 impl RemoteCommandEvent {
-    pub fn new(id: i32, event_type: crate::models::RemoteCommandEventEventTypeEnum, ts: String, event_source: crate::models::EventSourceEnum, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> RemoteCommandEvent {
+    pub fn new(id: i32, event_type: crate::models::RemoteCommandEventEventTypeEnum, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, event_source: crate::models::EventSourceEnum, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> RemoteCommandEvent {
         RemoteCommandEvent {
             id,
+            ts: None,
             event_type,
-            ts,
+            octoprint_environment: Box::new(octoprint_environment),
+            octoprint_printer_data: Box::new(octoprint_printer_data),
             event_source: Box::new(event_source),
             event_data: None,
-            octoprint_environment: None,
-            octoprint_printer_data: None,
             temperature: None,
             print_nanny_plugin_version,
             print_nanny_client_version,

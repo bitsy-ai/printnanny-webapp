@@ -14,6 +14,8 @@ package com.print-nanny.client.models
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.EventType0c4Enum
+import com.print-nanny.client.models.OctoprintEnvironment
+import com.print-nanny.client.models.OctoprintPrinterData
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -23,7 +25,8 @@ import java.io.Serializable
  * 
  * @param id 
  * @param eventType 
- * @param ts 
+ * @param octoprintEnvironment 
+ * @param octoprintPrinterData 
  * @param eventSource 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
@@ -32,9 +35,8 @@ import java.io.Serializable
  * @param polymorphicCtype 
  * @param octoprintDevice 
  * @param user 
+ * @param ts 
  * @param eventData 
- * @param octoprintEnvironment 
- * @param octoprintPrinterData 
  * @param temperature 
  * @param printSession 
  */
@@ -44,8 +46,10 @@ data class PrinterEvent (
     val id: kotlin.Int,
     @Json(name = "event_type")
     val eventType: EventType0c4Enum,
-    @Json(name = "ts")
-    val ts: java.time.OffsetDateTime,
+    @Json(name = "octoprint_environment")
+    val octoprintEnvironment: OctoprintEnvironment,
+    @Json(name = "octoprint_printer_data")
+    val octoprintPrinterData: OctoprintPrinterData,
     @Json(name = "event_source")
     val eventSource: EventSourceEnum,
     @Json(name = "print_nanny_plugin_version")
@@ -62,12 +66,10 @@ data class PrinterEvent (
     val octoprintDevice: kotlin.Int,
     @Json(name = "user")
     val user: kotlin.Int,
+    @Json(name = "ts")
+    val ts: kotlin.Int? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_environment")
-    val octoprintEnvironment: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_printer_data")
-    val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "print_session")

@@ -11,6 +11,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TelemetryEventRequest {
+    #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
+    pub ts: Option<i32>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::TelemetryEventEventTypeEnum,
     #[serde(rename = "octoprint_environment")]
@@ -36,6 +38,7 @@ pub struct TelemetryEventRequest {
 impl TelemetryEventRequest {
     pub fn new(event_type: crate::models::TelemetryEventEventTypeEnum, octoprint_environment: crate::models::OctoprintEnvironmentRequest, octoprint_printer_data: crate::models::OctoprintPrinterDataRequest, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, octoprint_device: i32) -> TelemetryEventRequest {
         TelemetryEventRequest {
+            ts: None,
             event_type,
             octoprint_environment: Box::new(octoprint_environment),
             octoprint_printer_data: Box::new(octoprint_printer_data),

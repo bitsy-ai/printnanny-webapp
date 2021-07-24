@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **kotlin.Int** |  |  [readonly]
 **eventType** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
-**ts** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
+**octoprintEnvironment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
+**octoprintPrinterData** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [readonly]
 **printNannyPluginVersion** | **kotlin.String** |  | 
 **printNannyClientVersion** | **kotlin.String** |  | 
@@ -14,9 +15,8 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
+**ts** | **kotlin.Int** |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**octoprintEnvironment** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**octoprintPrinterData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]
 

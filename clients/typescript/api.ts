@@ -1768,16 +1768,28 @@ export interface OctoPrintEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
     event_type: OctoPrintEventEventTypeEnum;
     /**
      * 
-     * @type {string}
+     * @type {OctoprintEnvironment}
      * @memberof OctoPrintEvent
      */
-    ts: string;
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof OctoPrintEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {EventSourceEnum}
@@ -1790,18 +1802,6 @@ export interface OctoPrintEvent {
      * @memberof OctoPrintEvent
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEvent
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1905,28 +1905,34 @@ export enum OctoPrintEventEventTypeEnum {
 export interface OctoPrintEventRequest {
     /**
      * 
+     * @type {number}
+     * @memberof OctoPrintEventRequest
+     */
+    ts?: number;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
     event_type: OctoPrintEventEventTypeEnum;
     /**
      * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof OctoPrintEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof OctoPrintEventRequest
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEventRequest
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof OctoPrintEventRequest
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4016,16 +4022,28 @@ export interface PrintJobEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof PrintJobEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {EventTypeD9eEnum}
      * @memberof PrintJobEvent
      */
     event_type: EventTypeD9eEnum;
     /**
      * 
-     * @type {string}
+     * @type {OctoprintEnvironment}
      * @memberof PrintJobEvent
      */
-    ts: string;
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof PrintJobEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {EventSourceEnum}
@@ -4038,18 +4056,6 @@ export interface PrintJobEvent {
      * @memberof PrintJobEvent
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobEvent
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobEvent
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4107,28 +4113,34 @@ export interface PrintJobEvent {
 export interface PrintJobEventRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PrintJobEventRequest
+     */
+    ts?: number;
+    /**
+     * 
      * @type {EventTypeD9eEnum}
      * @memberof PrintJobEventRequest
      */
     event_type: EventTypeD9eEnum;
     /**
      * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof PrintJobEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof PrintJobEventRequest
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobEventRequest
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintJobEventRequest
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4195,16 +4207,28 @@ export interface PrintNannyPluginEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof PrintNannyPluginEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEvent
      */
     event_type: PrintNannyPluginEventEventTypeEnum;
     /**
      * 
-     * @type {string}
+     * @type {OctoprintEnvironment}
      * @memberof PrintNannyPluginEvent
      */
-    ts: string;
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof PrintNannyPluginEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {EventSourceEnum}
@@ -4217,18 +4241,6 @@ export interface PrintNannyPluginEvent {
      * @memberof PrintNannyPluginEvent
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEvent
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEvent
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4313,28 +4325,34 @@ export enum PrintNannyPluginEventEventTypeEnum {
 export interface PrintNannyPluginEventRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    ts?: number;
+    /**
+     * 
      * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEventRequest
      */
     event_type: PrintNannyPluginEventEventTypeEnum;
     /**
      * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof PrintNannyPluginEventRequest
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEventRequest
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrintNannyPluginEventRequest
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4586,16 +4604,28 @@ export interface PrinterEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof PrinterEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {EventType0c4Enum}
      * @memberof PrinterEvent
      */
     event_type: EventType0c4Enum;
     /**
      * 
-     * @type {string}
+     * @type {OctoprintEnvironment}
      * @memberof PrinterEvent
      */
-    ts: string;
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof PrinterEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {EventSourceEnum}
@@ -4608,18 +4638,6 @@ export interface PrinterEvent {
      * @memberof PrinterEvent
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterEvent
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterEvent
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4683,28 +4701,34 @@ export interface PrinterEvent {
 export interface PrinterEventRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PrinterEventRequest
+     */
+    ts?: number;
+    /**
+     * 
      * @type {EventType0c4Enum}
      * @memberof PrinterEventRequest
      */
     event_type: EventType0c4Enum;
     /**
      * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof PrinterEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof PrinterEventRequest
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterEventRequest
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof PrinterEventRequest
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -5097,16 +5121,28 @@ export interface RemoteCommandEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof RemoteCommandEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEvent
      */
     event_type: RemoteCommandEventEventTypeEnum;
     /**
      * 
-     * @type {string}
+     * @type {OctoprintEnvironment}
      * @memberof RemoteCommandEvent
      */
-    ts: string;
+    octoprint_environment: OctoprintEnvironment;
+    /**
+     * 
+     * @type {OctoprintPrinterData}
+     * @memberof RemoteCommandEvent
+     */
+    octoprint_printer_data: OctoprintPrinterData;
     /**
      * 
      * @type {EventSourceEnum}
@@ -5119,18 +5155,6 @@ export interface RemoteCommandEvent {
      * @memberof RemoteCommandEvent
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEvent
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEvent
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -5199,28 +5223,34 @@ export enum RemoteCommandEventEventTypeEnum {
 export interface RemoteCommandEventRequest {
     /**
      * 
+     * @type {number}
+     * @memberof RemoteCommandEventRequest
+     */
+    ts?: number;
+    /**
+     * 
      * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEventRequest
      */
     event_type: RemoteCommandEventEventTypeEnum;
     /**
      * 
+     * @type {OctoprintEnvironmentRequest}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_environment: OctoprintEnvironmentRequest;
+    /**
+     * 
+     * @type {OctoprintPrinterDataRequest}
+     * @memberof RemoteCommandEventRequest
+     */
+    octoprint_printer_data: OctoprintPrinterDataRequest;
+    /**
+     * 
      * @type {{ [key: string]: any; }}
      * @memberof RemoteCommandEventRequest
      */
     event_data?: { [key: string]: any; } | null;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEventRequest
-     */
-    octoprint_environment?: { [key: string]: any; };
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof RemoteCommandEventRequest
-     */
-    octoprint_printer_data?: { [key: string]: any; };
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -5394,6 +5424,12 @@ export interface TelemetryEvent {
     id: number;
     /**
      * 
+     * @type {number}
+     * @memberof TelemetryEvent
+     */
+    ts?: number;
+    /**
+     * 
      * @type {TelemetryEventEventTypeEnum}
      * @memberof TelemetryEvent
      */
@@ -5410,12 +5446,6 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     octoprint_printer_data: OctoprintPrinterData;
-    /**
-     * 
-     * @type {string}
-     * @memberof TelemetryEvent
-     */
-    ts: string;
     /**
      * 
      * @type {EventSourceEnum}
@@ -5575,6 +5605,12 @@ export type TelemetryEventPolymorphicRequest = OctoPrintEventRequest | PrintJobE
  * @interface TelemetryEventRequest
  */
 export interface TelemetryEventRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof TelemetryEventRequest
+     */
+    ts?: number;
     /**
      * 
      * @type {TelemetryEventEventTypeEnum}

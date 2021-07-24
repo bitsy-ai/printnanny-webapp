@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ts** | Option<**i32**> |  | [optional]
 **event_type** | [**crate::models::EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
+**octoprint_environment** | [**crate::models::OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
+**octoprint_printer_data** | [**crate::models::OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
 **event_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**octoprint_environment** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**octoprint_printer_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **temperature** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
 **print_nanny_plugin_version** | **String** |  | 
 **print_nanny_client_version** | **String** |  | 

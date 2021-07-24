@@ -13,6 +13,8 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnyType
 import com.print-nanny.client.models.EventType0c4Enum
+import com.print-nanny.client.models.OctoprintEnvironmentRequest
+import com.print-nanny.client.models.OctoprintPrinterDataRequest
 import com.print-nanny.client.models.PrinterStateEnum
 
 import com.squareup.moshi.Json
@@ -21,14 +23,15 @@ import java.io.Serializable
 /**
  * 
  * @param eventType 
+ * @param octoprintEnvironment 
+ * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
  * @param printerState 
  * @param octoprintDevice 
+ * @param ts 
  * @param eventData 
- * @param octoprintEnvironment 
- * @param octoprintPrinterData 
  * @param temperature 
  * @param printSession 
  */
@@ -36,6 +39,10 @@ import java.io.Serializable
 data class PrinterEventRequest (
     @Json(name = "event_type")
     val eventType: EventType0c4Enum,
+    @Json(name = "octoprint_environment")
+    val octoprintEnvironment: OctoprintEnvironmentRequest,
+    @Json(name = "octoprint_printer_data")
+    val octoprintPrinterData: OctoprintPrinterDataRequest,
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String,
     @Json(name = "print_nanny_client_version")
@@ -46,12 +53,10 @@ data class PrinterEventRequest (
     val printerState: PrinterStateEnum,
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int,
+    @Json(name = "ts")
+    val ts: kotlin.Int? = null,
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_environment")
-    val octoprintEnvironment: kotlin.collections.Map<kotlin.String, AnyType>? = null,
-    @Json(name = "octoprint_printer_data")
-    val octoprintPrinterData: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, AnyType>? = null,
     @Json(name = "print_session")

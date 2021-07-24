@@ -36,6 +36,7 @@ class TelemetryEventRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'ts': 'int',
         'event_type': 'TelemetryEventEventTypeEnum',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
@@ -49,6 +50,7 @@ class TelemetryEventRequest(object):
     }
 
     attribute_map = {
+        'ts': 'ts',
         'event_type': 'event_type',
         'octoprint_environment': 'octoprint_environment',
         'octoprint_printer_data': 'octoprint_printer_data',
@@ -61,12 +63,13 @@ class TelemetryEventRequest(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, ts=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEventRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._ts = None
         self._event_type = None
         self._octoprint_environment = None
         self._octoprint_printer_data = None
@@ -79,6 +82,8 @@ class TelemetryEventRequest(object):
         self._print_session = None
         self.discriminator = None
 
+        if ts is not None:
+            self.ts = ts
         self.event_type = event_type
         self.octoprint_environment = octoprint_environment
         self.octoprint_printer_data = octoprint_printer_data
@@ -90,6 +95,27 @@ class TelemetryEventRequest(object):
         self.octoprint_version = octoprint_version
         self.octoprint_device = octoprint_device
         self.print_session = print_session
+
+    @property
+    def ts(self):
+        """Gets the ts of this TelemetryEventRequest.  # noqa: E501
+
+
+        :return: The ts of this TelemetryEventRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._ts
+
+    @ts.setter
+    def ts(self, ts):
+        """Sets the ts of this TelemetryEventRequest.
+
+
+        :param ts: The ts of this TelemetryEventRequest.  # noqa: E501
+        :type ts: int
+        """
+
+        self._ts = ts
 
     @property
     def event_type(self):
