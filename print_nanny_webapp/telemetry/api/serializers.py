@@ -107,6 +107,8 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
 
 
 class TelemetryEventSerializer(serializers.ModelSerializer):
+
+    ts = serializers.IntegerField(required=False)
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
