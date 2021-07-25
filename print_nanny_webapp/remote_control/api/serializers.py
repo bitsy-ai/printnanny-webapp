@@ -151,7 +151,11 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OctoPrintDevice
-        fields = [field.name for field in OctoPrintDevice._meta.fields if field != "deleted"] + [
+        fields = [
+            field.name
+            for field in OctoPrintDevice._meta.fields
+            if field.name != "deleted"
+        ] + [
             "cloudiot_device_configs",
             "manage_url",
             "monitoring_active",
