@@ -20,7 +20,6 @@ import java.io.Serializable
 /**
  * 
  * @param id 
- * @param deleted 
  * @param createdDt 
  * @param name 
  * @param user 
@@ -53,8 +52,6 @@ import java.io.Serializable
 data class OctoPrintDevice (
     @Json(name = "id")
     val id: kotlin.Int,
-    @Json(name = "deleted")
-    val deleted: java.time.OffsetDateTime,
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,
     @Json(name = "name")

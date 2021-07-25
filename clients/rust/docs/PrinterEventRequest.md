@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ts** | Option<**i32**> |  | [optional]
+**ts** | Option<**f32**> |  | [optional]
 **event_type** | [**crate::models::EventType0c4Enum**](EventType0c4Enum.md) |  | 
 **octoprint_environment** | [**crate::models::OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 

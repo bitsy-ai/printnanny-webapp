@@ -37,7 +37,7 @@ class OctoPrintEvent(object):
     """
     openapi_types = {
         'id': 'int',
-        'ts': 'int',
+        'ts': 'float',
         'event_type': 'OctoPrintEventEventTypeEnum',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
@@ -141,7 +141,7 @@ class OctoPrintEvent(object):
 
 
         :return: The ts of this OctoPrintEvent.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._ts
 
@@ -151,7 +151,7 @@ class OctoPrintEvent(object):
 
 
         :param ts: The ts of this OctoPrintEvent.  # noqa: E501
-        :type ts: int
+        :type ts: float
         """
 
         self._ts = ts

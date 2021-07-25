@@ -64,7 +64,7 @@ interface TelemetryEventPolymorphicRequest : Serializable {
     @Json(name = "printer_state")
     val printerState: PrinterStateEnum
     @Json(name = "ts")
-    val ts: kotlin.Int?
+    val ts: kotlin.Float?
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, AnyType>?
     @Json(name = "temperature")

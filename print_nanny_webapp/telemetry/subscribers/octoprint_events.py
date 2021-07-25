@@ -228,7 +228,6 @@ def on_octoprint_event(message):
 
     data = dict(
         resourcetype=resourcetype,
-        printer_state=data["octoprint_printer_data"]["state"]["text"],
         **data,
     )
     poly_serializer = TelemetryEventPolymorphicSerializer(data=data)

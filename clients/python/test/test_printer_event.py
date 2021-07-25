@@ -37,7 +37,7 @@ class TestPrinterEvent(unittest.TestCase):
         if include_optional :
             return PrinterEvent(
                 id = 56, 
-                ts = 56, 
+                ts = 1.337, 
                 event_type = 'Operational', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(

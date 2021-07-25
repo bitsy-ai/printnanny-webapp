@@ -1288,12 +1288,6 @@ export interface OctoPrintDevice {
      * @type {string}
      * @memberof OctoPrintDevice
      */
-    deleted: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OctoPrintDevice
-     */
     created_dt: string;
     /**
      * 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
-**ts** | **int** |  | [optional] 
+**ts** | **float** |  | [optional] 
 **event_type** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
 **octoprint_environment** | [**OctoprintEnvironment**](OctoprintEnvironment.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterData**](OctoprintPrinterData.md) |  | 

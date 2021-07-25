@@ -37,7 +37,7 @@ class TestPrintJobEvent(unittest.TestCase):
         if include_optional :
             return PrintJobEvent(
                 id = 56, 
-                ts = 56, 
+                ts = 1.337, 
                 event_type = 'PrintCancelled', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(

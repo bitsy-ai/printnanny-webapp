@@ -42,7 +42,7 @@ class TestPaginatedPrintNannyPluginEventList(unittest.TestCase):
                 results = [
                     print_nanny_client.models.print_nanny_plugin_event.PrintNannyPluginEvent(
                         id = 56, 
-                        ts = 56, 
+                        ts = 1.337, 
                         event_type = 'plugin_octoprint_nanny_monitoring_start', 
                         octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                             os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(

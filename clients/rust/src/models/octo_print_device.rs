@@ -13,8 +13,6 @@
 pub struct OctoPrintDevice {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "deleted")]
-    pub deleted: String,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "name")]
@@ -72,10 +70,9 @@ pub struct OctoPrintDevice {
 }
 
 impl OctoPrintDevice {
-    pub fn new(id: i32, deleted: String, created_dt: String, name: String, user: i32, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, model: String, platform: String, serial: String, cores: i32, ram: i32, python_version: String, pip_version: String, octoprint_version: String, plugin_version: String, print_nanny_client_version: String, cloudiot_device_configs: String, manage_url: String, monitoring_active: bool) -> OctoPrintDevice {
+    pub fn new(id: i32, created_dt: String, name: String, user: i32, public_key: String, fingerprint: String, cloudiot_device: ::std::collections::HashMap<String, serde_json::Value>, cloudiot_device_name: String, cloudiot_device_path: String, cloudiot_device_num_id: i32, model: String, platform: String, serial: String, cores: i32, ram: i32, python_version: String, pip_version: String, octoprint_version: String, plugin_version: String, print_nanny_client_version: String, cloudiot_device_configs: String, manage_url: String, monitoring_active: bool) -> OctoPrintDevice {
         OctoPrintDevice {
             id,
-            deleted,
             created_dt,
             name,
             user,

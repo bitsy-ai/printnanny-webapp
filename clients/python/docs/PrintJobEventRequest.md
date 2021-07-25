@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ts** | **int** |  | [optional] 
+**ts** | **float** |  | [optional] 
 **event_type** | [**EventTypeD9eEnum**](EventTypeD9eEnum.md) |  | 
 **octoprint_environment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
