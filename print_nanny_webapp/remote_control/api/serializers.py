@@ -164,6 +164,7 @@ class OctoPrintDeviceSerializer(serializers.ModelSerializer):
 
         read_only_fields = (
             "user",
+            "deleted",
             "public_key",
             "fingerprint",
             "cloudiot_device_num_id",
