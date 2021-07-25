@@ -245,6 +245,7 @@ class VideoStatusAlert(Alert):
     octoprint_device = models.ForeignKey(
         "remote_control.OctoPrintDevice", on_delete=models.CASCADE
     )
+    needs_review = models.BooleanField(default=False)
 
     @property
     def message(self) -> str:
