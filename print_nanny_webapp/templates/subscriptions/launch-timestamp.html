@@ -10,7 +10,8 @@
 <h1 id="launch-countdown"></h1>
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date({{ PAID_BETA_LAUNCH_TIMESTAMP }}).getTime();
+var ts = {{ PAID_BETA_LAUNCH_TIMESTAMP }} * 1000
+var countDownDate = new Date(ts).getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
