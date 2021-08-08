@@ -18,13 +18,14 @@ class UserAdmin(auth_admin.UserAdmin):
     model = User
     list_display = (
         "email",
-        "is_staff",
+        "first_name",
+        "last_name",
+        "last_login",
         "is_free_beta_tester",
         "is_paid_beta_tester",
-        "is_superuser",
     )
     list_filter = ("email", "is_staff", "is_superuser")
-    read_only_fields = ("is_free_beta_tester", "is_paid_beta_tester")
+    readonly_fields = ("is_free_beta_tester", "is_paid_beta_tester")
 
     fieldsets = (
         (
