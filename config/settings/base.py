@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
+import copy
 import os
 import environ
 
@@ -45,12 +46,14 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
 db_config = env.db("DATABASE_URL")
 db_config["ENGINE"] = 'django_prometheus.db.backends.postgresql'
+coturn_db_config = copy.deepcopy(db_config)
+coturn_db_config["NAME"] = "coturn"
 DATABASES = {
     "default": db_config,
-
+    "coturn": coturn_db_config,
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
-DATABASES["default"]["ENGINE"]
+
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
