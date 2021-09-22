@@ -11,6 +11,7 @@ django-allauth
 django-anymail[mailgun]
 django-celery-beat
 django-compressor
+django-coturn
 django-coverage-plugin
 django-crispy-forms
 django-debug-toolbar
