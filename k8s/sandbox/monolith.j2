@@ -2,20 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
-  labels:
-    app: postgres
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
+  name: "octoprint-pv-claim"
   labels:
     app: octoprint
 spec:
@@ -28,7 +15,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
+  name: "postgres-pv-claim"
   labels:
     app: postgres
 spec:
@@ -41,12 +28,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres"
+  name: "postgres"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-postgres"
+      app: "postgres"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -54,7 +41,7 @@ spec:
       labels: 
         branch: "{{ GIT_BRANCH }}"
         owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-postgres"
+        app: "postgres"
     spec:
       containers:
       - name: postgres
@@ -64,7 +51,7 @@ spec:
           - containerPort: 5432
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata
@@ -74,17 +61,17 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
+            claimName: "postgres-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-sandbox"
+  name: "sandbox"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-sandbox"
+      app: "sandbox"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -92,7 +79,7 @@ spec:
       labels:
         branch: "{{ GIT_BRANCH }}"
         owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-sandbox"
+        app: "sandbox"
     spec:
       serviceAccountName: webapp
       containers:
@@ -105,7 +92,7 @@ spec:
           - /start-celeryworker
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: celery-worker
@@ -117,7 +104,7 @@ spec:
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint-events
@@ -131,7 +118,7 @@ spec:
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: discord-worker
@@ -160,7 +147,7 @@ spec:
           - /start
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -187,7 +174,7 @@ spec:
           failureThreshold: 4
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -197,17 +184,17 @@ spec:
       volumes:
         - name: octoprint-data
           persistentVolumeClaim:
-            claimName: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
+            claimName: "octoprint-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint"
+  name: "octoprint"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-octoprint"
+      app: "octoprint"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -215,7 +202,7 @@ spec:
       labels:
         branch: "{{ GIT_BRANCH }}"
         owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-octoprint"
+        app: "octoprint"
     spec:
       serviceAccountName: webapp
       containers:
@@ -242,7 +229,7 @@ spec:
           failureThreshold: 4
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint
@@ -264,10 +251,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-django"
+  name: "django"
 spec:
   selector:
-    app: "{{ PRINT_NANNY_USER }}-sandbox"
+    app: "sandbox"
   ports:
     - protocol: TCP
       port: 80
@@ -277,7 +264,7 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint-backend"
+  name: "octoprint-backend"
 spec:
   healthCheck:
     checkIntervalSec: 30
@@ -288,13 +275,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint"
+  name: "octoprint"
   annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"{{ PRINT_NANNY_USER }}-octoprint-backend"}}'
+    cloud.google.com/backend-config: '{"ports": {"80":"octoprint-backend"}}'
     cloud.google.com/neg: '{"ingress": true}'
 spec:
   selector:
-    app: "{{ PRINT_NANNY_USER }}-octoprint"
+    app: "octoprint"
   ports:
     - protocol: TCP
       port: 80
@@ -304,10 +291,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres"
+  name: "postgres"
 spec:
   selector:
-    app: "{{ PRINT_NANNY_USER }}-postgres"
+    app: "postgres"
   ports:
     - protocol: TCP
       port: 5432
@@ -326,14 +313,14 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-django"
+  name: "django"
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "{{ PRINT_NANNY_USER }}-static-ip"
-    networking.gke.io/managed-certificates: "{{ PRINT_NANNY_USER }}-sandbox-tls"
+    kubernetes.io/ingress.global-static-ip-name: "static-ip"
+    networking.gke.io/managed-certificates: "sandbox-tls"
 spec:
   backend:
-    serviceName: "{{ PRINT_NANNY_USER }}-django"
+    serviceName: "django"
     servicePort: 80
   rules:
   - host: "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
@@ -341,14 +328,14 @@ spec:
       paths:
       - path: /*
         backend:
-          serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
+          serviceName: "octoprint"
           servicePort: 80
   - host: "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
     http:
       paths:
       - path: /*
         backend:
-          serviceName: "{{ PRINT_NANNY_USER }}-django"
+          serviceName: "django"
           servicePort: 80
 ---
 apiVersion: v1
