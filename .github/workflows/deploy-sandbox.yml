@@ -24,10 +24,10 @@ on:
         default: leigh
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
-  PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/
-  PRINT_NANNY_WS_URL: wss://${{ github.event.inputs.user }}.sandbox.print-nanny.com/ws
-  PRINT_NANNY_STATIC_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/static/
-  OCTOPRINT_URL: https://octoprint.${{ github.event.inputs.user }}.sandbox.print-nanny.com
+  PRINT_NANNY_URL: https://webapp.sandbox.print-nanny.com/
+  PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
+  PRINT_NANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
+  OCTOPRINT_URL: https://octoprint.sandbox.print-nanny.com
   PRINT_NANNY_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}

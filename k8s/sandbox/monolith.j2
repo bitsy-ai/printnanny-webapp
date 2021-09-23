@@ -323,14 +323,14 @@ spec:
     serviceName: "django"
     servicePort: 80
   rules:
-  - host: "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+  - host: "octoprint.sandbox.print-nanny.com"
     http:
       paths:
       - path: /*
         backend:
           serviceName: "octoprint"
           servicePort: 80
-  - host: "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
+  - host: "webapp.sandbox.print-nanny.com"
     http:
       paths:
       - path: /*
