@@ -151,40 +151,6 @@ spec:
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
-      - name: octoprint
-        imagePullPolicy: Always
-        image: octoprint/octoprint
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        envFrom:
-          - configMapRef:
-              name: "sandbox-config"
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: django
-        volumeMounts:
-          - mountPath: /octoprint
-            name: octoprint-data
-      volumes:
-        - name: octoprint-data
-          persistentVolumeClaim:
-            claimName: "octoprint-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
