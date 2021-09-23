@@ -5,3 +5,5 @@ POSTGRES_PORT=5432
 POSTGRES_DB=print_nanny
 POSTGRES_USER=debug
 POSTGRES_PASSWORD=debug
+DATABASE_URL=postgres://debug:debug@postgres:5432/print_nanny
+COTURN_DATABASE_URL=postgres://debug:debug@postgres:5432/coturn

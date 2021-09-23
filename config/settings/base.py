@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
+    "django_coturn",
 ]
 
 LOCAL_APPS = [
@@ -634,3 +635,12 @@ PASSWORDLESS_AUTH = {
    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': 'noreply@print-nanny.com',
    'PASSWORDLESS_EMAIL_PLAINTEXT_MESSAGE': "Enter this token to sign in: %s",
 }
+
+# django-coturn
+# https://github.com/bitsy-ai/django-coturn
+# ------------------------------------------------------------------------------
+coturn_db = env.db("COTURN_DATABASE_URL")
+coturn_db["ENGINE"] = 'django_prometheus.db.backends.postgresql'
+DATABASES["coturn"] = coturn_db
+COTURN_SECRET_KEY = env("COTURN_SECRET_KEY")
+COTURN_REALM = env("COTURN_REALM")
