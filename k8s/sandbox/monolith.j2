@@ -51,7 +51,7 @@ spec:
           - containerPort: 5432
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata
@@ -66,7 +66,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "sandbox"
+  name: "sandbox-config"
 spec:
   replicas: 1
   selector:
@@ -92,7 +92,7 @@ spec:
           - /start-celeryworker
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: celery-worker
@@ -104,7 +104,7 @@ spec:
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint-events
@@ -118,7 +118,7 @@ spec:
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: discord-worker
@@ -147,7 +147,7 @@ spec:
           - /start
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -174,7 +174,7 @@ spec:
           failureThreshold: 4
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
@@ -229,7 +229,7 @@ spec:
           failureThreshold: 4
         envFrom:
           - configMapRef:
-              name: "sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint
