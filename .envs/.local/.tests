@@ -1,4 +1,7 @@
 DATABASE_URL="postgres://debug:debug@localhost:5432/print_nanny"
+COTURN_DATABASE_URL="postgres://debug:debug@localhost:5432/coturn"
+COTURN_SECRET_KEY="testsecret1234"
+COTURN_REALM="turn.test.com"
 REDIS_URL=redis://localhost:6379/0
 CELERY_BROKER_URL=redis://localhost:6379/0
 MAILGUN_API_KEY=""
