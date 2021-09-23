@@ -142,7 +142,7 @@ django-celery-beat==2.2.1
     # via -r requirements/local.in
 django-compressor==2.4.1
     # via -r requirements/local.in
-django-coturn==0.1.1
+django-coturn==0.2.0
     # via -r requirements/local.in
 django-coverage-plugin==2.0.0
     # via -r requirements/local.in
