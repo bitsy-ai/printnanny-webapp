@@ -316,8 +316,8 @@ metadata:
   name: "django"
   annotations:
     networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "static-ip"
-    networking.gke.io/managed-certificates: "sandbox-tls"
+    kubernetes.io/ingress.global-static-ip-name: "print-nanny-static-ip"
+    networking.gke.io/managed-certificates: "sandbox-print-nanny-com-tls"
 spec:
   backend:
     serviceName: "django"
