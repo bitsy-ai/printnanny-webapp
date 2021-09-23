@@ -42,7 +42,7 @@ env:
   DATABASE_URL: ${{ secrets.SANDBOX_DATABASE_URL }}
   COTURN_DATABASE_URL: ${{ secrets.SANDBOX_COTURN_DATABASE_URL }}
   COTURN_SECRET_KEY: ${{ secrets.SANDBOX_COTURN_SECRET_KEY }}
-  DJSTIPE_WEBHOOK_SECRET: ${{ secrets.SANDBOX_DJSTRIPE_WEBHOOK_SECRET }}
+  DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.SANDBOX_DJSTRIPE_WEBHOOK_SECRET }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -88,14 +88,14 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
-    - name: Run Cypress tests 
-      run: |
-        make cypress-ci \
-        PROJECT="print-nanny-sandbox" \
-        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
-        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
-        OCTOPRINT_URL="$OCTOPRINT_URL" \
-        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
-    - name: Show kube deployment logs
-      run: |
-        make sandbox-logs
+    # - name: Run Cypress tests 
+    #   run: |
+    #     make cypress-ci \
+    #     PROJECT="print-nanny-sandbox" \
+    #     PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+    #     PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+    #     OCTOPRINT_URL="$OCTOPRINT_URL" \
+    #     PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    # - name: Show kube deployment logs
+    #   run: |
+    #     make sandbox-logs
