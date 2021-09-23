@@ -54,9 +54,6 @@ jobs:
         echo "Load fixture data: ${{ github.event.inputs.fixtures }}"
     - name: Checkout branch
       uses: actions/checkout@v2
-    - uses: satackey/action-docker-layer-caching@v0.0.11
-      # Ignore the failure of a step and avoid terminating the job.
-      continue-on-error: true
     - name: Install system dependencies
       run: |
         sudo apt-get install makepasswd
@@ -69,6 +66,9 @@ jobs:
       run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      # Ignore the failure of a step and avoid terminating the job.
+      continue-on-error: true
     - name: Deploy sandbox instance
       run: |
         make sandbox-deploy \
