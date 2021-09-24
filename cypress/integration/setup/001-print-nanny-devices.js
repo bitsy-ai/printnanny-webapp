@@ -1,12 +1,12 @@
 
 describe('Print Nanny setup wizard', () => {
     const PRINT_NANNY_URL = Cypress.env('PRINT_NANNY_URL')
-    const PRINT_NANNY_EMAIL = Cypress.env('PRINT_NANNY_EMAIL')
-    const PRINT_NANNY_PASSWORD = Cypress.env('PRINT_NANNY_PASSWORD')
+    const DJANGO_SUPERUSER_EMAIL = Cypress.env('DJANGO_SUPERUSER_EMAIL')
+    const DJANGO_SUPERUSER_PASSWORD = Cypress.env('DJANGO_SUPERUSER_PASSWORD')
     const PRINT_NANNY_TOKEN = Cypress.env('PRINT_NANNY_TOKEN')
 
     it('Retrieves Print Nanny auth token', () => {
-        cy.getPrintNannyToken(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD).then($token => assert.exists($token))
+        cy.getPrintNannyToken(DJANGO_SUPERUSER_EMAIL, DJANGO_SUPERUSER_PASSWORD).then($token => assert.exists($token))
     })
 
     it('Retrieves device info from dashboard or display empty message', () =>{
@@ -24,7 +24,7 @@ describe('Print Nanny setup wizard', () => {
     })
 
     it('Removes device from management dashboard (if device present) ', () => {
-        cy.printNannyLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+        cy.printNannyLogin(DJANGO_SUPERUSER_EMAIL, DJANGO_SUPERUSER_PASSWORD)
         if (Cypress.$('#dashboard-octoprint-devices tr').length > 0){
             cy.get('#dashboard-octoprint-devices tr').last().contains('Manage Device').click()
             cy.get('button').contains('Remove Device').click()
@@ -34,7 +34,7 @@ describe('Print Nanny setup wizard', () => {
     })
 
     it('Device re-registration succeeds in OctoPrint', () => {
-        cy.octoprintLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+        cy.octoprintLogin(DJANGO_SUPERUSER_EMAIL, DJANGO_SUPERUSER_PASSWORD)
         cy.get('#navbar_show_settings').click()
             .get('#settings_plugin_octoprint_nanny_link a').click()
             .get('#octoprint_nanny_settings_reset_device').click()
