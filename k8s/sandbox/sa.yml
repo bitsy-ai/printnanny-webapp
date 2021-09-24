@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webapp
+  annotations:
+    iam.gke.io/gcp-service-account: webapp@print-nanny-sandbox.iam.gserviceaccount.com
