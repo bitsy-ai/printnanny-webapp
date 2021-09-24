@@ -17,13 +17,13 @@ url: $PRINT_NANNY_URL
 admin: $PRINT_NANNY_URL/admin
 api: $PRINT_NANNY_URL/api
 user: $PRINT_NANNY_EMAIL
-password: $PRINT_NANNY_PASSWORD
+password: $DJANGO_SUPERUSER_PASSWORD
 
 OctoPrint
 -----------------------
 url: $OCTOPRINT_URL
 user: $PRINT_NANNY_EMAIL
-password: $PRINT_NANNY_PASSWORD
+password: $DJANGO_SUPERUSER_PASSWORD
 
 Google Cloud Platform
 -----------------------

@@ -5,13 +5,13 @@ require('../../../clients/typescript')
 
 describe('3D Geeks Integration Tests', () => {
     const PRINT_NANNY_EMAIL = Cypress.env('PRINT_NANNY_EMAIL')
-    const PRINT_NANNY_PASSWORD = Cypress.env('PRINT_NANNY_PASSWORD')
+    const DJANGO_SUPERUSER_PASSWORD = Cypress.env('DJANGO_SUPERUSER_PASSWORD')
     // axios api client expects base url without trailing slash
     const PRINT_NANNY_URL = Cypress.env('PRINT_NANNY_URL').substr(0, Cypress.env('PRINT_NANNY_URL').length-1)
 
 
     beforeEach(() => {
-        cy.printNannyLogin(PRINT_NANNY_EMAIL, PRINT_NANNY_PASSWORD)
+        cy.printNannyLogin(PRINT_NANNY_EMAIL, DJANGO_SUPERUSER_PASSWORD)
         cy.manageDevice()
       })
 
