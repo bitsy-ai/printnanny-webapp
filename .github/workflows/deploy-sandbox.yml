@@ -84,7 +84,7 @@ jobs:
       run: |
         make sandbox-email \
         PROJECT="print-nanny-sandbox" \
-      PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
