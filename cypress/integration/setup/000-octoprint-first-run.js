@@ -1,7 +1,7 @@
 import { onlyOn, skipOn } from '@cypress/skip-test'
 
 describe('OctoPrint initial setup', () => {
-  const PRINT_NANNY_EMAIL = Cypress.env('PRINT_NANNY_EMAIL')
+  const DJANGO_SUPERUSER_EMAIL = Cypress.env('DJANGO_SUPERUSER_EMAIL')
   const DJANGO_SUPERUSER_PASSWORD = Cypress.env('DJANGO_SUPERUSER_PASSWORD')
   const PRINT_NANNY_TOKEN = Cypress.env('PRINT_NANNY_TOKEN')
   before(() => {
@@ -18,7 +18,7 @@ describe('OctoPrint initial setup', () => {
       cy.get('#wizard_plugin_corewizard_acl input')
         .each((el, index, list) =>{
           if (index == 0){
-            cy.wrap(el).type(Cypress.env('PRINT_NANNY_EMAIL'))
+            cy.wrap(el).type(Cypress.env('DJANGO_SUPERUSER_EMAIL'))
           } else {
             cy.wrap(el).type(Cypress.env('DJANGO_SUPERUSER_PASSWORD'))
           }
@@ -45,7 +45,7 @@ describe('OctoPrint initial setup', () => {
   })
 
   it('Installs OctoPrint Nanny plugin', () => {
-    cy.octoprintLogin(PRINT_NANNY_EMAIL, DJANGO_SUPERUSER_PASSWORD)
+    cy.octoprintLogin(DJANGO_SUPERUSER_EMAIL, DJANGO_SUPERUSER_PASSWORD)
     cy.viewport('macbook-16') // elements in the octoprint ui overlap / block at small viewports
     cy.get("#navbar_show_settings").click()    
     cy.get('#settings_plugin_pluginmanager_link a').click()
@@ -71,7 +71,7 @@ describe('OctoPrint initial setup', () => {
   })
   
   it('Runs Print Nanny setup wizard (OctoPrint)', () => {
-      cy.octoprintLogin(PRINT_NANNY_EMAIL, DJANGO_SUPERUSER_PASSWORD).then( ()=>{
+      cy.octoprintLogin(DJANGO_SUPERUSER_EMAIL, DJANGO_SUPERUSER_PASSWORD).then( ()=>{
         cy.viewport('macbook-16') // elements in the octoprint ui overlap / block at small viewports
         if (Cypress.$('#octoprint_nanny_wizard_basic').length > 0){
           cy.get('#octoprint_nanny_wizard_basic #octoprint_nanny_settings_auth_token_basic').clear().type(PRINT_NANNY_TOKEN)
