@@ -2,8 +2,7 @@
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: "leigh-sandbox-tls"
+  name: "sandbox-print-nanny-com-tls"
 spec:
   domains:
-    - "leigh.sandbox.print-nanny.com"
-    - "octoprint.leigh.sandbox.print-nanny.com"
+    - "webapp.sandbox.print-nanny.com"

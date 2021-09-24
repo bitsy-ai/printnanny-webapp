@@ -2,20 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
-  labels:
-    app: postgres
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
+  name: "octoprint-pv-claim"
   labels:
     app: octoprint
 spec:
@@ -28,7 +15,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
+  name: "postgres-pv-claim"
   labels:
     app: postgres
 spec:
@@ -41,12 +28,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres"
+  name: "postgres"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-postgres"
+      app: "postgres"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -54,7 +41,7 @@ spec:
       labels: 
         branch: "{{ GIT_BRANCH }}"
         owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-postgres"
+        app: "postgres"
     spec:
       containers:
       - name: postgres
@@ -64,7 +51,7 @@ spec:
           - containerPort: 5432
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox-config"
         env:
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata
@@ -74,17 +61,17 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: "{{ PRINT_NANNY_USER }}-postgres-pv-claim"
+            claimName: "postgres-pv-claim"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ PRINT_NANNY_USER }}-sandbox"
+  name: "print-nanny-sandbox"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-sandbox"
+      app: "print-nanny-sandbox"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -92,7 +79,7 @@ spec:
       labels:
         branch: "{{ GIT_BRANCH }}"
         owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-sandbox"
+        app: "print-nanny-sandbox"
     spec:
       serviceAccountName: webapp
       containers:
@@ -105,7 +92,7 @@ spec:
           - /start-celeryworker
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: celery-worker
@@ -117,24 +104,10 @@ spec:
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: octoprint-events
-      - name: discord-worker
-        imagePullPolicy: Always
-        command:
-          - python
-          - manage.py
-          - runworker
-          - discord
-        image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
-        envFrom:
-          - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: discord-worker
       - name: django
         imagePullPolicy: Always
         image: us.gcr.io/print-nanny-sandbox/print_nanny_webapp:{{ GIT_SHA }}
@@ -160,200 +133,7 @@ spec:
           - /start
         envFrom:
           - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
+              name: "sandbox-config"
         env:
           - name: HONEYCOMB_SERVICE_NAME
             value: django
-      - name: octoprint
-        imagePullPolicy: Always
-        image: octoprint/octoprint
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 5000
-          initialDelaySeconds: 60
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        envFrom:
-          - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: django
-        volumeMounts:
-          - mountPath: /octoprint
-            name: octoprint-data
-      volumes:
-        - name: octoprint-data
-          persistentVolumeClaim:
-            claimName: "{{ PRINT_NANNY_USER }}-octoprint-pv-claim"
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint"
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: "{{ PRINT_NANNY_USER }}-octoprint"
-      branch: "{{ GIT_BRANCH }}"
-      owner: "{{ PRINT_NANNY_USER }}"
-  template:
-    metadata:
-      labels:
-        branch: "{{ GIT_BRANCH }}"
-        owner: "{{ PRINT_NANNY_USER }}"
-        app: "{{ PRINT_NANNY_USER }}-octoprint"
-    spec:
-      serviceAccountName: webapp
-      containers:
-      - name: octoprint
-        imagePullPolicy: Always
-        image: octoprint/octoprint
-        livenessProbe:
-          httpGet:
-            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
-            port: 5000
-          initialDelaySeconds: 30
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        readinessProbe:
-          httpGet:
-            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
-            port: 5000
-          initialDelaySeconds: 30
-          periodSeconds: 15
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 4
-        envFrom:
-          - configMapRef:
-              name: "{{ PRINT_NANNY_USER }}-sandbox"
-        env:
-          - name: HONEYCOMB_SERVICE_NAME
-            value: octoprint
-          - name: OCTOPRINT_NANNY_GCP_PROJECT_ID
-            value: "{{ PROJECT }}"
-          - name: OCTOPRINT_NANNY_API_URL
-            value: "{{ PRINT_NANNY_API_URL }}"
-          - name: OCTOPRINT_NANNY_WS_URL
-            value: "{{ PRINT_NANNY_WS_URL }}"
-          - name: OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY
-            value: "{{ PRINT_NANNY_IOT_DEVICE_REGISTRY }}"
-          - name: OCTOPRINT_NANNY_HONEYCOMB_DATASET
-            value: "{{ PRINT_NANNY_HONEYCOMB_DATASET }}"
-          - name: OCTOPRINT_NANNY_HONEYCOMB_API_KEY
-            value: "{{ PRINT_NANNY_HONEYCOMB_API_KEY }}"
-          - name: "OCTOPRINT_NANNY_HONEYCOMB_DEBUG"
-            value: "{{ PRINT_NANNY_HONEYCOMB_DEBUG }}"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-django"
-spec:
-  selector:
-    app: "{{ PRINT_NANNY_USER }}-sandbox"
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8000
-  type: NodePort
----
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint-backend"
-spec:
-  healthCheck:
-    checkIntervalSec: 30
-    port: 80
-    type: HTTP
-    requestPath: /api/currentuser # root path serves 302 (login) which is not followed by health check
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-octoprint"
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"80":"{{ PRINT_NANNY_USER }}-octoprint-backend"}}'
-    cloud.google.com/neg: '{"ingress": true}'
-spec:
-  selector:
-    app: "{{ PRINT_NANNY_USER }}-octoprint"
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-postgres"
-spec:
-  selector:
-    app: "{{ PRINT_NANNY_USER }}-postgres"
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
-  type: NodePort
----
-apiVersion: networking.gke.io/v1beta1
-kind: FrontendConfig
-metadata:
-  name: http-to-https
-spec:
-  redirectToHttps:
-    enabled: true
-    responseCodeName: MOVED_PERMANENTLY_DEFAULT
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: "{{ PRINT_NANNY_USER }}-django"
-  annotations:
-    networking.gke.io/v1beta1.FrontendConfig: "http-to-https"
-    kubernetes.io/ingress.global-static-ip-name: "{{ PRINT_NANNY_USER }}-static-ip"
-    networking.gke.io/managed-certificates: "{{ PRINT_NANNY_USER }}-sandbox-tls"
-spec:
-  backend:
-    serviceName: "{{ PRINT_NANNY_USER }}-django"
-    servicePort: 80
-  rules:
-  - host: "octoprint.{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
-    http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: "{{ PRINT_NANNY_USER }}-octoprint"
-          servicePort: 80
-  - host: "{{ PRINT_NANNY_USER }}.sandbox.print-nanny.com"
-    http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: "{{ PRINT_NANNY_USER }}-django"
-          servicePort: 80
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: webapp
-  annotations:
-    iam.gke.io/gcp-service-account: webapp@print-nanny-sandbox.iam.gserviceaccount.com

@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "octoprint"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "octoprint"
+      branch: "{{ GIT_BRANCH }}"
+      owner: "{{ PRINT_NANNY_USER }}"
+  template:
+    metadata:
+      labels:
+        branch: "{{ GIT_BRANCH }}"
+        owner: "{{ PRINT_NANNY_USER }}"
+        app: "octoprint"
+    spec:
+      serviceAccountName: webapp
+      containers:
+      - name: octoprint
+        imagePullPolicy: Always
+        image: octoprint/octoprint
+        livenessProbe:
+          httpGet:
+            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /api/currentuser # root path serves 302 (login) which is not followed by health check
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        envFrom:
+          - configMapRef:
+              name: "sandbox-config"
+        env:
+          - name: HONEYCOMB_SERVICE_NAME
+            value: octoprint
+          - name: OCTOPRINT_NANNY_GCP_PROJECT_ID
+            value: "{{ PROJECT }}"
+          - name: OCTOPRINT_NANNY_API_URL
+            value: "{{ PRINT_NANNY_API_URL }}"
+          - name: OCTOPRINT_NANNY_WS_URL
+            value: "{{ PRINT_NANNY_WS_URL }}"
+          - name: OCTOPRINT_NANNY_IOT_DEVICE_REGISTRY
+            value: "{{ PRINT_NANNY_IOT_DEVICE_REGISTRY }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_DATASET
+            value: "{{ PRINT_NANNY_HONEYCOMB_DATASET }}"
+          - name: OCTOPRINT_NANNY_HONEYCOMB_API_KEY
+            value: "{{ PRINT_NANNY_HONEYCOMB_API_KEY }}"
+          - name: "OCTOPRINT_NANNY_HONEYCOMB_DEBUG"
+            value: "{{ PRINT_NANNY_HONEYCOMB_DEBUG }}
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: "octoprint-backend"
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    port: 80
+    type: HTTP
+    requestPath: /api/currentuser # root path serves 302 (login) which is not followed by health check
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "octoprint"
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"80":"octoprint-backend"}}'
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  selector:
+    app: "octoprint"
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort

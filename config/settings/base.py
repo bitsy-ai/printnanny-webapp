@@ -42,7 +42,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 db_config = env.db("DATABASE_URL")
 db_config["ENGINE"] = 'django_prometheus.db.backends.postgresql'
 DATABASES = {

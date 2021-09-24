@@ -1,4 +1,6 @@
 on: 
+  push:
+    branches: [ main, devel ]
   workflow_dispatch:
     inputs:
       logLevel:
@@ -11,7 +13,7 @@ on:
         required: true
       octoprint_version:
         description: 'OctoPrint version to install in sandbox'
-        default: '1.6.0rc3'
+        default: 'latest'
       fixtures:
         description: 'Load default fixture data?'
         default: true
@@ -19,12 +21,13 @@ on:
       user:
         description: 'Username'
         required: true
+        default: leigh
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
-  PRINT_NANNY_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/
-  PRINT_NANNY_WS_URL: wss://${{ github.event.inputs.user }}.sandbox.print-nanny.com/ws
-  PRINT_NANNY_STATIC_URL: https://${{ github.event.inputs.user }}.sandbox.print-nanny.com/static/
-  OCTOPRINT_URL: https://octoprint.${{ github.event.inputs.user }}.sandbox.print-nanny.com
+  PRINT_NANNY_URL: https://webapp.sandbox.print-nanny.com/
+  PRINT_NANNY_WS_URL: wss://webapp.sandbox.print-nanny.com/ws
+  PRINT_NANNY_STATIC_URL: https://webapp.sandbox.print-nanny.com/static/
+  OCTOPRINT_URL: https://octoprint.sandbox.print-nanny.com
   PRINT_NANNY_EMAIL: ${{ github.event.inputs.user }}@print-nanny.com
   DJANGO_SECRET_KEY: ${{ secrets.SANDBOX_DJANGO_SECRET_KEY }}
   STRIPE_PUBLIC_KEY: ${{ secrets.SANDBOX_STRIPE_PUBLIC_KEY }}
@@ -36,7 +39,10 @@ env:
   GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT_KEY }}
   GCP_SERVICE_ACCOUNT: ${{ secrets.SANDBOX_GCP_SERVICE_ACCOUNT }}
   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
+  DATABASE_URL: ${{ secrets.SANDBOX_DATABASE_URL }}
+  COTURN_DATABASE_URL: ${{ secrets.SANDBOX_COTURN_DATABASE_URL }}
+  COTURN_SECRET_KEY: ${{ secrets.SANDBOX_COTURN_SECRET_KEY }}
+  DJSTRIPE_WEBHOOK_SECRET: ${{ secrets.SANDBOX_DJSTRIPE_WEBHOOK_SECRET }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -63,6 +69,9 @@ jobs:
       run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      # Ignore the failure of a step and avoid terminating the job.
+      continue-on-error: true
     - name: Deploy sandbox instance
       run: |
         make sandbox-deploy \
@@ -79,14 +88,14 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
-    - name: Run Cypress tests 
-      run: |
-        make cypress-ci \
-        PROJECT="print-nanny-sandbox" \
-        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
-        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
-        OCTOPRINT_URL="$OCTOPRINT_URL" \
-        PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
-    - name: Show kube deployment logs
-      run: |
-        make sandbox-logs
+    # - name: Run Cypress tests 
+    #   run: |
+    #     make cypress-ci \
+    #     PROJECT="print-nanny-sandbox" \
+    #     PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
+    #     PRINT_NANNY_URL="$PRINT_NANNY_URL" \
+    #     OCTOPRINT_URL="$OCTOPRINT_URL" \
+    #     PRINT_NANNY_EMAIL="$PRINT_NANNY_EMAIL"
+    # - name: Show kube deployment logs
+    #   run: |
+    #     make sandbox-logs
