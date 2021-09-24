@@ -71,7 +71,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "sandbox"
+      app: "print-nanny-sandbox"
       branch: "{{ GIT_BRANCH }}"
       owner: "{{ PRINT_NANNY_USER }}"
   template:
@@ -144,7 +144,7 @@ metadata:
   name: "django"
 spec:
   selector:
-    app: "sandbox"
+    app: "print-nanny-sandbox"
   ports:
     - protocol: TCP
       port: 80
