@@ -6,4 +6,3 @@ metadata:
 spec:
   domains:
     - "webapp.sandbox.print-nanny.com"
-    - "octoprint.sandbox.print-nanny.com"
