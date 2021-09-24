@@ -5,5 +5,5 @@ metadata:
   name: "sandbox-print-nanny-com-tls"
 spec:
   domains:
-    - "sandbox.print-nanny.com"
+    - "webapp.sandbox.print-nanny.com"
     - "octoprint.sandbox.print-nanny.com"
