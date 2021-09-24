@@ -1,6 +1,6 @@
 on: 
   push:
-    branches: [ main, devel, sandbox-configs ]
+    branches: [ main, devel ]
   workflow_dispatch:
     inputs:
       logLevel:
