@@ -81,14 +81,12 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
-    - name: Send notification email 
-      run: |
-        make sandbox-email \
-        PROJECT="print-nanny-sandbox" \
-        PRINT_NANNY_USER="${{ github.event.inputs.user }}" \
-        PRINT_NANNY_URL="$PRINT_NANNY_URL" \
-        OCTOPRINT_URL="$OCTOPRINT_URL" \
-        DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+    - name: Send Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} to SANDBOX environment'
     # - name: Run Cypress tests 
     #   run: |
     #     make cypress-ci \
