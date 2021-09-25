@@ -150,10 +150,7 @@ sandbox-config:
 sandbox-pv-clean: sandbox-config
 	k8s/sandbox/delete-resource.sh k8s/sandbox/pv.yml
 
-clean-sandbox-configmap: sandbox-config
-	k8s/sandbox/delete-resource.sh k8s/sandbox/configmap.yml
-
-sandbox-deploy: cluster-config build clean-sandbox-configmap
+sandbox-deploy: cluster-config build
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/push.sh && \
