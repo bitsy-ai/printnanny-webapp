@@ -142,7 +142,7 @@ django-compressor==2.4.1
     # via -r requirements/production.in
 django-cors-headers==3.8.0
     # via -r requirements/production.in
-django-coturn==0.3.0
+django-coturn==0.3.1
     # via -r requirements/production.in
 django-coverage-plugin==2.0.0
     # via -r requirements/production.in
