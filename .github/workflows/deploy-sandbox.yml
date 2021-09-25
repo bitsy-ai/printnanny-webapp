@@ -22,6 +22,10 @@ on:
         description: 'Username'
         required: true
         default: sandbox
+      purge_data:
+        description: 'Purge database and persistent volumes'
+        default: false
+        required: true
 env:
   PRINT_NANNY_USER: ${{ github.event.inputs.user }}
   DJANGO_SUPERUSER_PASSWORD: ${{ secrets.SANDBOX_DJANGO_SUPERUSER_PASSWORD }}
@@ -70,6 +74,9 @@ jobs:
       run: gcloud auth activate-service-account $GCP_SERVICE_ACCOUNT --key-file=key.json
     - name: Configure docker registry credentials
       run: gcloud auth configure-docker
+    - name: Purge data & persistent volumes
+      if: ${{ github.event.inputs.purge_data == true }}
+      run: make sandbox-pv-clean
     - uses: satackey/action-docker-layer-caching@v0.0.11
       # Ignore the failure of a step and avoid terminating the job.
       continue-on-error: true

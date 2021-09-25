@@ -130,7 +130,6 @@ local-up: local-image-build local-creds
 
 local-up-clean: local-clean local-image-build local-up
 
-
 cluster-config:
 	gcloud container clusters get-credentials $(CLUSTER) --zone $(ZONE) --project $(GCP_PROJECT)
 
@@ -148,11 +147,13 @@ sandbox-config:
 	PRINT_NANNY_HONEYCOMB_DEBUG=$(PRINT_NANNY_HONEYCOMB_DEBUG) \
 		k8s/sandbox/render.sh
 
-sandbox-clean: sandbox-config
-	k8s/sandbox/delete.sh
+sandbox-pv-clean: sandbox-config
+	k8s/sandbox/delete-resource.sh k8s/sandbox/pv.yml
 
+clean-sandbox-configmap: sandbox-config
+	k8s/sandbox/delete-resource.sh k8s/sandbox/configmap.yml
 
-sandbox-deploy: cluster-config build sandbox-clean
+sandbox-deploy: cluster-config build clean-sandbox-configmap
 	GIT_SHA=$(GIT_SHA) \
 	GIT_BRANCH=$(GIT_BRANCH) \
 		k8s/sandbox/push.sh && \
