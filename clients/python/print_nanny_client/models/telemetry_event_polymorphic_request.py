@@ -37,6 +37,7 @@ class TelemetryEventPolymorphicRequest(object):
     """
     openapi_types = {
         'ts': 'float',
+        'event_source': 'EventSourceEnum',
         'event_type': 'PrintNannyPluginEventEventTypeEnum',
         'octoprint_environment': 'OctoprintEnvironmentRequest',
         'octoprint_printer_data': 'OctoprintPrinterDataRequest',
@@ -52,6 +53,7 @@ class TelemetryEventPolymorphicRequest(object):
 
     attribute_map = {
         'ts': 'ts',
+        'event_source': 'event_source',
         'event_type': 'event_type',
         'octoprint_environment': 'octoprint_environment',
         'octoprint_printer_data': 'octoprint_printer_data',
@@ -68,13 +70,14 @@ class TelemetryEventPolymorphicRequest(object):
     discriminator_value_class_map = {
     }
 
-    def __init__(self, ts=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, octoprint_device=None, print_session=None, printer_state=None, local_vars_configuration=None):  # noqa: E501
         """TelemetryEventPolymorphicRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._ts = None
+        self._event_source = None
         self._event_type = None
         self._octoprint_environment = None
         self._octoprint_printer_data = None
@@ -90,6 +93,7 @@ class TelemetryEventPolymorphicRequest(object):
 
         if ts is not None:
             self.ts = ts
+        self.event_source = event_source
         self.event_type = event_type
         self.octoprint_environment = octoprint_environment
         self.octoprint_printer_data = octoprint_printer_data
@@ -123,6 +127,27 @@ class TelemetryEventPolymorphicRequest(object):
         """
 
         self._ts = ts
+
+    @property
+    def event_source(self):
+        """Gets the event_source of this TelemetryEventPolymorphicRequest.  # noqa: E501
+
+
+        :return: The event_source of this TelemetryEventPolymorphicRequest.  # noqa: E501
+        :rtype: EventSourceEnum
+        """
+        return self._event_source
+
+    @event_source.setter
+    def event_source(self, event_source):
+        """Sets the event_source of this TelemetryEventPolymorphicRequest.
+
+
+        :param event_source: The event_source of this TelemetryEventPolymorphicRequest.  # noqa: E501
+        :type event_source: EventSourceEnum
+        """
+
+        self._event_source = event_source
 
     @property
     def event_type(self):

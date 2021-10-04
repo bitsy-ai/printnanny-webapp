@@ -22,7 +22,6 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.AppliancePKI
-import com.print-nanny.client.models.Nested
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -64,7 +63,7 @@ data class Appliance (
     val hostname: kotlin.String,
 
     @Json(name = "user")
-    val user: Nested?
+    val user: kotlin.Int
 
 ) : Serializable {
     companion object {

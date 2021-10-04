@@ -21,7 +21,6 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AlertEventTypeEnum
-import com.print-nanny.client.models.AlertMethodEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -30,7 +29,6 @@ import java.io.Serializable
  * 
  *
  * @param octoprintDevice 
- * @param alertMethod 
  * @param eventType 
  * @param seen 
  * @param sent 
@@ -40,9 +38,6 @@ data class PatchedAlertRequest (
 
     @Json(name = "octoprint_device")
     val octoprintDevice: kotlin.Int? = null,
-
-    @Json(name = "alert_method")
-    val alertMethod: AlertMethodEnum? = null,
 
     @Json(name = "event_type")
     val eventType: AlertEventTypeEnum? = null,

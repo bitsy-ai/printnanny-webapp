@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.Nested
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -43,10 +42,10 @@ data class ExperimentDeviceConfig (
     val createdDt: java.time.OffsetDateTime,
 
     @Json(name = "experiment")
-    val experiment: Nested?,
+    val experiment: kotlin.Int,
 
     @Json(name = "artifact")
-    val artifact: Nested?
+    val artifact: kotlin.Int
 
 ) : Serializable {
     companion object {

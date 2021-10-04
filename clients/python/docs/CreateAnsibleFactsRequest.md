@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **cores** | **int** |  | 
 **ram** | **int** |  | 
 **cpu_flags** | **list[str]** |  | 
-**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | 
+**release_channel** | [**ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | [optional] 
 **json** | **dict(str, object)** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

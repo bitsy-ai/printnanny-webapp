@@ -38,6 +38,7 @@ class TestOctoPrintEvent(unittest.TestCase):
             return OctoPrintEvent(
                 id = 56, 
                 ts = 1.337, 
+                event_source = None, 
                 event_type = 'ClientAuthed', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
@@ -93,7 +94,6 @@ class TestOctoPrintEvent(unittest.TestCase):
                     offsets = {
                         'key' : null
                         }, ), 
-                event_source = None, 
                 event_data = {
                     'key' : null
                     }, 
@@ -166,7 +166,6 @@ class TestOctoPrintEvent(unittest.TestCase):
                     offsets = {
                         'key' : null
                         }, ),
-                event_source = None,
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',

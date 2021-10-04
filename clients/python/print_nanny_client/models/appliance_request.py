@@ -38,16 +38,18 @@ class ApplianceRequest(object):
     openapi_types = {
         'pki': 'AppliancePKIRequest',
         'ansible_facts': 'AnsibleFactsRequest',
-        'hostname': 'str'
+        'hostname': 'str',
+        'user': 'int'
     }
 
     attribute_map = {
         'pki': 'pki',
         'ansible_facts': 'ansible_facts',
-        'hostname': 'hostname'
+        'hostname': 'hostname',
+        'user': 'user'
     }
 
-    def __init__(self, pki=None, ansible_facts=None, hostname=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, pki=None, ansible_facts=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
         """ApplianceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -56,11 +58,13 @@ class ApplianceRequest(object):
         self._pki = None
         self._ansible_facts = None
         self._hostname = None
+        self._user = None
         self.discriminator = None
 
         self.pki = pki
         self.ansible_facts = ansible_facts
         self.hostname = hostname
+        self.user = user
 
     @property
     def pki(self):
@@ -133,6 +137,29 @@ class ApplianceRequest(object):
             raise ValueError("Invalid value for `hostname`, length must be less than or equal to `255`")  # noqa: E501
 
         self._hostname = hostname
+
+    @property
+    def user(self):
+        """Gets the user of this ApplianceRequest.  # noqa: E501
+
+
+        :return: The user of this ApplianceRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user):
+        """Sets the user of this ApplianceRequest.
+
+
+        :param user: The user of this ApplianceRequest.  # noqa: E501
+        :type user: int
+        """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
+
+        self._user = user
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

@@ -13,14 +13,6 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed successes of method [`metadata_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum MetadataRetrieveSuccess {
-    Status200(crate::models::Partner3DGeeksMetadata),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`metadata_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -30,7 +22,7 @@ pub enum MetadataRetrieveError {
 
 
 /// 3D Geeks calls this endpoint to validate token & fetch printer metadata
-pub async fn metadata_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<ResponseContent<MetadataRetrieveSuccess>, Error<MetadataRetrieveError>> {
+pub async fn metadata_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Partner3DGeeksMetadata, Error<MetadataRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -52,9 +44,7 @@ pub async fn metadata_retrieve(configuration: &configuration::Configuration, id:
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<MetadataRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<MetadataRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

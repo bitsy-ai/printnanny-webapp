@@ -63,7 +63,6 @@ class TestCreateAnsibleFactsRequest(unittest.TestCase):
                 cpu_flags = [
                     ''
                     ],
-                release_channel = 'main',
                 json = {
                     'key' : null
                     },

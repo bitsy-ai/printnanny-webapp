@@ -38,8 +38,8 @@ class ExperimentDeviceConfig(object):
     openapi_types = {
         'id': 'int',
         'created_dt': 'datetime',
-        'experiment': 'Nested',
-        'artifact': 'Nested'
+        'experiment': 'int',
+        'artifact': 'int'
     }
 
     attribute_map = {
@@ -118,7 +118,7 @@ class ExperimentDeviceConfig(object):
 
 
         :return: The experiment of this ExperimentDeviceConfig.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._experiment
 
@@ -128,8 +128,10 @@ class ExperimentDeviceConfig(object):
 
 
         :param experiment: The experiment of this ExperimentDeviceConfig.  # noqa: E501
-        :type experiment: Nested
+        :type experiment: int
         """
+        if self.local_vars_configuration.client_side_validation and experiment is None:  # noqa: E501
+            raise ValueError("Invalid value for `experiment`, must not be `None`")  # noqa: E501
 
         self._experiment = experiment
 
@@ -139,7 +141,7 @@ class ExperimentDeviceConfig(object):
 
 
         :return: The artifact of this ExperimentDeviceConfig.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._artifact
 
@@ -149,8 +151,10 @@ class ExperimentDeviceConfig(object):
 
 
         :param artifact: The artifact of this ExperimentDeviceConfig.  # noqa: E501
-        :type artifact: Nested
+        :type artifact: int
         """
+        if self.local_vars_configuration.client_side_validation and artifact is None:  # noqa: E501
+            raise ValueError("Invalid value for `artifact`, must not be `None`")  # noqa: E501
 
         self._artifact = artifact
 

@@ -21,7 +21,6 @@
 package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AlertEventTypeEnum
-import com.print-nanny.client.models.AlertMethodEnum
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -37,7 +36,6 @@ import java.io.Serializable
  * @param timeRemaining 
  * @param manageDeviceUrl 
  * @param user 
- * @param alertMethod 
  * @param createdDt 
  * @param updatedDt 
  * @param message 
@@ -72,9 +70,6 @@ data class Alert (
 
     @Json(name = "user")
     val user: kotlin.Int,
-
-    @Json(name = "alert_method")
-    val alertMethod: AlertMethodEnum,
 
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,

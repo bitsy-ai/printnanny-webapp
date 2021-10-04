@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file** | [**OctoprintFile**](OctoprintFile.md) |  | 
+**file** | [**OctoprintFile**](OctoprintFile.md) |  | [optional] 
 **estimated_print_time** | **float** |  | [optional] 
 **average_print_time** | **float** |  | [optional] 
 **last_print_time** | **float** |  | [optional] 

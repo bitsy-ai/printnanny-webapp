@@ -38,10 +38,10 @@ class PrinterEvent(object):
     openapi_types = {
         'id': 'int',
         'ts': 'float',
+        'event_source': 'EventSourceEnum',
         'event_type': 'EventType0c4Enum',
         'octoprint_environment': 'OctoprintEnvironment',
         'octoprint_printer_data': 'OctoprintPrinterData',
-        'event_source': 'EventSourceEnum',
         'event_data': 'dict(str, object)',
         'temperature': 'dict(str, object)',
         'print_nanny_plugin_version': 'str',
@@ -57,10 +57,10 @@ class PrinterEvent(object):
     attribute_map = {
         'id': 'id',
         'ts': 'ts',
+        'event_source': 'event_source',
         'event_type': 'event_type',
         'octoprint_environment': 'octoprint_environment',
         'octoprint_printer_data': 'octoprint_printer_data',
-        'event_source': 'event_source',
         'event_data': 'event_data',
         'temperature': 'temperature',
         'print_nanny_plugin_version': 'print_nanny_plugin_version',
@@ -73,7 +73,7 @@ class PrinterEvent(object):
         'print_session': 'print_session'
     }
 
-    def __init__(self, id=None, ts=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_source=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, printer_state=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, ts=None, event_source=None, event_type=None, octoprint_environment=None, octoprint_printer_data=None, event_data=None, temperature=None, print_nanny_plugin_version=None, print_nanny_client_version=None, octoprint_version=None, printer_state=None, polymorphic_ctype=None, octoprint_device=None, user=None, print_session=None, local_vars_configuration=None):  # noqa: E501
         """PrinterEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -81,10 +81,10 @@ class PrinterEvent(object):
 
         self._id = None
         self._ts = None
+        self._event_source = None
         self._event_type = None
         self._octoprint_environment = None
         self._octoprint_printer_data = None
-        self._event_source = None
         self._event_data = None
         self._temperature = None
         self._print_nanny_plugin_version = None
@@ -100,10 +100,10 @@ class PrinterEvent(object):
         self.id = id
         if ts is not None:
             self.ts = ts
+        self.event_source = event_source
         self.event_type = event_type
         self.octoprint_environment = octoprint_environment
         self.octoprint_printer_data = octoprint_printer_data
-        self.event_source = event_source
         self.event_data = event_data
         if temperature is not None:
             self.temperature = temperature
@@ -159,6 +159,27 @@ class PrinterEvent(object):
         """
 
         self._ts = ts
+
+    @property
+    def event_source(self):
+        """Gets the event_source of this PrinterEvent.  # noqa: E501
+
+
+        :return: The event_source of this PrinterEvent.  # noqa: E501
+        :rtype: EventSourceEnum
+        """
+        return self._event_source
+
+    @event_source.setter
+    def event_source(self, event_source):
+        """Sets the event_source of this PrinterEvent.
+
+
+        :param event_source: The event_source of this PrinterEvent.  # noqa: E501
+        :type event_source: EventSourceEnum
+        """
+
+        self._event_source = event_source
 
     @property
     def event_type(self):
@@ -228,27 +249,6 @@ class PrinterEvent(object):
             raise ValueError("Invalid value for `octoprint_printer_data`, must not be `None`")  # noqa: E501
 
         self._octoprint_printer_data = octoprint_printer_data
-
-    @property
-    def event_source(self):
-        """Gets the event_source of this PrinterEvent.  # noqa: E501
-
-
-        :return: The event_source of this PrinterEvent.  # noqa: E501
-        :rtype: EventSourceEnum
-        """
-        return self._event_source
-
-    @event_source.setter
-    def event_source(self, event_source):
-        """Sets the event_source of this PrinterEvent.
-
-
-        :param event_source: The event_source of this PrinterEvent.  # noqa: E501
-        :type event_source: EventSourceEnum
-        """
-
-        self._event_source = event_source
 
     @property
     def event_data(self):

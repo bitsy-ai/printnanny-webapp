@@ -43,7 +43,7 @@ class Appliance(object):
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
         'hostname': 'str',
-        'user': 'Nested'
+        'user': 'int'
     }
 
     attribute_map = {
@@ -252,7 +252,7 @@ class Appliance(object):
 
 
         :return: The user of this Appliance.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._user
 
@@ -262,8 +262,10 @@ class Appliance(object):
 
 
         :param user: The user of this Appliance.  # noqa: E501
-        :type user: Nested
+        :type user: int
         """
+        if self.local_vars_configuration.client_side_validation and user is None:  # noqa: E501
+            raise ValueError("Invalid value for `user`, must not be `None`")  # noqa: E501
 
         self._user = user
 

@@ -46,7 +46,6 @@ class TestOctoprintJob(unittest.TestCase):
             )
         else :
             return OctoprintJob(
-                file = None,
                 filament = {
                     'key' : null
                     },

@@ -37,7 +37,6 @@ class TestPatchedAlertRequest(unittest.TestCase):
         if include_optional :
             return PatchedAlertRequest(
                 octoprint_device = 56, 
-                alert_method = 'UI', 
                 event_type = None, 
                 seen = True, 
                 sent = True

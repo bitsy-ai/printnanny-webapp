@@ -48,7 +48,8 @@ class TestApplianceRequest(unittest.TestCase):
                     private_key_checksum = '', 
                     fingerprint = '', 
                     appliance = 56, ), 
-                hostname = ''
+                hostname = '', 
+                user = 56
             )
         else :
             return ApplianceRequest(
@@ -65,6 +66,7 @@ class TestApplianceRequest(unittest.TestCase):
                     fingerprint = '', 
                     appliance = 56, ),
                 hostname = '',
+                user = 56,
         )
 
     def testApplianceRequest(self):

@@ -372,7 +372,7 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * 
     * 
     * @param id A unique integer value identifying this alert message. 
-    * @param alertRequest  
+    * @param alertRequest  (optional)
     * @return Alert
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -380,7 +380,7 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun alertsUpdate(id: kotlin.Int, alertRequest: AlertRequest) : Alert {
+    fun alertsUpdate(id: kotlin.Int, alertRequest: AlertRequest?) : Alert {
         val localVariableConfig = alertsUpdateRequestConfig(id = id, alertRequest = alertRequest)
 
         val localVarResponse = request<AlertRequest, Alert>(
@@ -406,10 +406,10 @@ class AlertsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
     * To obtain the request config of the operation alertsUpdate
     *
     * @param id A unique integer value identifying this alert message. 
-    * @param alertRequest  
+    * @param alertRequest  (optional)
     * @return RequestConfig
     */
-    fun alertsUpdateRequestConfig(id: kotlin.Int, alertRequest: AlertRequest) : RequestConfig<AlertRequest> {
+    fun alertsUpdateRequestConfig(id: kotlin.Int, alertRequest: AlertRequest?) : RequestConfig<AlertRequest> {
         val localVariableBody = alertRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

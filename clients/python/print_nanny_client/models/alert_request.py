@@ -37,7 +37,6 @@ class AlertRequest(object):
     """
     openapi_types = {
         'octoprint_device': 'int',
-        'alert_method': 'AlertMethodEnum',
         'event_type': 'AlertEventTypeEnum',
         'seen': 'bool',
         'sent': 'bool'
@@ -45,27 +44,24 @@ class AlertRequest(object):
 
     attribute_map = {
         'octoprint_device': 'octoprint_device',
-        'alert_method': 'alert_method',
         'event_type': 'event_type',
         'seen': 'seen',
         'sent': 'sent'
     }
 
-    def __init__(self, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, octoprint_device=None, event_type=None, seen=None, sent=None, local_vars_configuration=None):  # noqa: E501
         """AlertRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._octoprint_device = None
-        self._alert_method = None
         self._event_type = None
         self._seen = None
         self._sent = None
         self.discriminator = None
 
         self.octoprint_device = octoprint_device
-        self.alert_method = alert_method
         self.event_type = event_type
         if seen is not None:
             self.seen = seen
@@ -92,29 +88,6 @@ class AlertRequest(object):
         """
 
         self._octoprint_device = octoprint_device
-
-    @property
-    def alert_method(self):
-        """Gets the alert_method of this AlertRequest.  # noqa: E501
-
-
-        :return: The alert_method of this AlertRequest.  # noqa: E501
-        :rtype: AlertMethodEnum
-        """
-        return self._alert_method
-
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this AlertRequest.
-
-
-        :param alert_method: The alert_method of this AlertRequest.  # noqa: E501
-        :type alert_method: AlertMethodEnum
-        """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
-
-        self._alert_method = alert_method
 
     @property
     def event_type(self):

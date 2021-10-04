@@ -7,7 +7,6 @@ README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
-docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleFacts.md
@@ -40,8 +39,6 @@ docs/GcodeFile.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/Nested.md
-docs/NestedRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -152,7 +149,6 @@ print_nanny_client/models/__init__.py
 print_nanny_client/models/alert.py
 print_nanny_client/models/alert_bulk_response.py
 print_nanny_client/models/alert_event_type_enum.py
-print_nanny_client/models/alert_method_enum.py
 print_nanny_client/models/alert_request.py
 print_nanny_client/models/ansible_facts.py
 print_nanny_client/models/ansible_facts_request.py
@@ -180,8 +176,6 @@ print_nanny_client/models/experiment_device_config.py
 print_nanny_client/models/gcode_file.py
 print_nanny_client/models/mobile_auth_request.py
 print_nanny_client/models/model_artifact.py
-print_nanny_client/models/nested.py
-print_nanny_client/models/nested_request.py
 print_nanny_client/models/octo_print_device.py
 print_nanny_client/models/octo_print_device_key.py
 print_nanny_client/models/octo_print_device_request.py
@@ -275,7 +269,6 @@ test/__init__.py
 test/test_alert.py
 test/test_alert_bulk_response.py
 test/test_alert_event_type_enum.py
-test/test_alert_method_enum.py
 test/test_alert_request.py
 test/test_alerts_api.py
 test/test_ansible_facts.py
@@ -308,8 +301,6 @@ test/test_gcode_file.py
 test/test_ml_ops_api.py
 test/test_mobile_auth_request.py
 test/test_model_artifact.py
-test/test_nested.py
-test/test_nested_request.py
 test/test_octo_print_device.py
 test/test_octo_print_device_key.py
 test/test_octo_print_device_request.py

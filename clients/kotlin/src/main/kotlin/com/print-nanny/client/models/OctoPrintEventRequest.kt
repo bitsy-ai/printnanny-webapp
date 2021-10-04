@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.OctoPrintEventEventTypeEnum
 import com.print-nanny.client.models.OctoprintEnvironmentRequest
 import com.print-nanny.client.models.OctoprintPrinterDataRequest
@@ -38,6 +39,7 @@ import java.io.Serializable
  * @param octoprintVersion 
  * @param octoprintDevice 
  * @param ts 
+ * @param eventSource 
  * @param eventData 
  * @param temperature 
  * @param printSession 
@@ -68,6 +70,9 @@ data class OctoPrintEventRequest (
 
     @Json(name = "ts")
     val ts: kotlin.Float? = null,
+
+    @Json(name = "event_source")
+    val eventSource: EventSourceEnum? = null,
 
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,

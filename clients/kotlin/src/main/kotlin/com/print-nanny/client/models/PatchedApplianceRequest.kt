@@ -32,6 +32,7 @@ import java.io.Serializable
  * @param pki 
  * @param ansibleFacts 
  * @param hostname 
+ * @param user 
  */
 
 data class PatchedApplianceRequest (
@@ -43,7 +44,10 @@ data class PatchedApplianceRequest (
     val ansibleFacts: AnsibleFactsRequest? = null,
 
     @Json(name = "hostname")
-    val hostname: kotlin.String? = null
+    val hostname: kotlin.String? = null,
+
+    @Json(name = "user")
+    val user: kotlin.Int? = null
 
 ) : Serializable {
     companion object {

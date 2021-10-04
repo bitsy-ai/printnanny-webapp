@@ -50,7 +50,6 @@ class TestPaginatedAlertList(unittest.TestCase):
                         manage_device_url = '', 
                         user = 56, 
                         octoprint_device = 56, 
-                        alert_method = 'UI', 
                         event_type = null, 
                         seen = True, 
                         sent = True, 
