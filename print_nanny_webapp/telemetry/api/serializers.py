@@ -32,7 +32,7 @@ class OctoprintFileSerializer(serializers.Serializer):
 
 
 class OctoprintJobSerializer(serializers.Serializer):
-    file = OctoprintFileSerializer(allow_null=True)
+    file = OctoprintFileSerializer(required=False, allow_null=True)
     estimatedPrintTime = serializers.FloatField(required=False, allow_null=True)
     averagePrintTime = serializers.FloatField(required=False, allow_null=True)
     lastPrintTime = serializers.FloatField(required=False, allow_null=True)

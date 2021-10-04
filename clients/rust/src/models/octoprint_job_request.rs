@@ -11,7 +11,7 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OctoprintJobRequest {
-    #[serde(rename = "file")]
+    #[serde(rename = "file", skip_serializing_if = "Option::is_none")]
     pub file: Option<Box<crate::models::OctoprintFileRequest>>,
     #[serde(rename = "estimatedPrintTime", skip_serializing_if = "Option::is_none")]
     pub estimated_print_time: Option<f32>,
@@ -24,9 +24,9 @@ pub struct OctoprintJobRequest {
 }
 
 impl OctoprintJobRequest {
-    pub fn new(file: Option<crate::models::OctoprintFileRequest>, filament: Option<::std::collections::HashMap<String, serde_json::Value>>) -> OctoprintJobRequest {
+    pub fn new(filament: Option<::std::collections::HashMap<String, serde_json::Value>>) -> OctoprintJobRequest {
         OctoprintJobRequest {
-            file: Box::new(file),
+            file: None,
             estimated_print_time: None,
             average_print_time: None,
             last_print_time: None,
