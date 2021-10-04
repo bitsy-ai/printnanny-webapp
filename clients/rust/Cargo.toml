@@ -1,6 +1,6 @@
 [package]
 name = "print-nanny-client"
-version = "0.8.20"
+version = "0.8.21"
 authors = ["OpenAPI Generator team and contributors"]
 description = "Official Print Nanny Rust API Client"
 homepage = "https://print-nanny.com"
