@@ -13,6 +13,14 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
+/// struct for typed successes of method [`alerts_list2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsList2Success {
+    Status200(crate::models::Partner3DGeeksAlert),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`alerts_list2`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -21,7 +29,7 @@ pub enum AlertsList2Error {
 }
 
 
-pub async fn alerts_list2(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Partner3DGeeksAlert, Error<AlertsList2Error>> {
+pub async fn alerts_list2(configuration: &configuration::Configuration, id: &str) -> Result<ResponseContent<AlertsList2Success>, Error<AlertsList2Error>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -43,7 +51,9 @@ pub async fn alerts_list2(configuration: &configuration::Configuration, id: &str
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsList2Success> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsList2Error> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
