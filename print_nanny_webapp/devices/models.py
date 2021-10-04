@@ -102,9 +102,9 @@ class AnsibleFacts(SafeDeleteModel):
     cpu_flags = ArrayField(models.CharField(max_length=255))
 
     release_channel = models.CharField(
-        max_length=8, 
+        max_length=8,
         choices=ApplianceReleaseChannel.choices,
-        default=ApplianceReleaseChannel.MAIN
+        default=ApplianceReleaseChannel.MAIN,
     )
     json = models.JSONField()
 
