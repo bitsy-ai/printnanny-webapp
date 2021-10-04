@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct OctoprintJobRequest {
     #[serde(rename = "file")]
     pub file: Option<Box<crate::models::OctoprintFileRequest>>,
