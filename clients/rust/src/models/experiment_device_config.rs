@@ -16,13 +16,13 @@ pub struct ExperimentDeviceConfig {
     #[serde(rename = "created_dt")]
     pub created_dt: String,
     #[serde(rename = "experiment")]
-    pub experiment: Box<crate::models::Nested>,
+    pub experiment: Option<Box<crate::models::Nested>>,
     #[serde(rename = "artifact")]
-    pub artifact: Box<crate::models::Nested>,
+    pub artifact: Option<Box<crate::models::Nested>>,
 }
 
 impl ExperimentDeviceConfig {
-    pub fn new(id: i32, created_dt: String, experiment: crate::models::Nested, artifact: crate::models::Nested) -> ExperimentDeviceConfig {
+    pub fn new(id: i32, created_dt: String, experiment: Option<crate::models::Nested>, artifact: Option<crate::models::Nested>) -> ExperimentDeviceConfig {
         ExperimentDeviceConfig {
             id,
             created_dt,

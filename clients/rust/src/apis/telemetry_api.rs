@@ -105,7 +105,7 @@ pub async fn octoprint_events_create(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -135,7 +135,7 @@ pub async fn octoprint_events_list(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -167,7 +167,7 @@ pub async fn octoprint_events_retrieve(configuration: &configuration::Configurat
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -196,7 +196,7 @@ pub async fn print_job_events_list(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-job-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -228,7 +228,7 @@ pub async fn print_job_events_retrieve(configuration: &configuration::Configurat
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-job-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -257,7 +257,7 @@ pub async fn print_nanny_plugin_events_list(configuration: &configuration::Confi
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -289,7 +289,7 @@ pub async fn print_nanny_plugin_events_retrieve(configuration: &configuration::C
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -318,7 +318,7 @@ pub async fn remote_command_events_list(configuration: &configuration::Configura
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/remote-command-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -350,7 +350,7 @@ pub async fn remote_command_events_retrieve(configuration: &configuration::Confi
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/remote-command-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -379,7 +379,7 @@ pub async fn telemetry_events_create(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/telemetry-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -409,7 +409,7 @@ pub async fn telemetry_events_list(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/telemetry-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -441,7 +441,7 @@ pub async fn telemetry_events_retrieve(configuration: &configuration::Configurat
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/telemetry-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

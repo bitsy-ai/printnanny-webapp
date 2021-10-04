@@ -13,33 +13,47 @@
 pub struct Nested {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "created_dt")]
-    pub created_dt: String,
-    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
-    pub active: Option<bool>,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "hypothesis")]
-    pub hypothesis: String,
-    #[serde(rename = "notion_url", skip_serializing_if = "Option::is_none")]
-    pub notion_url: Option<String>,
-    #[serde(rename = "control")]
-    pub control: i32,
-    #[serde(rename = "treatments", skip_serializing_if = "Option::is_none")]
-    pub treatments: Option<Vec<i32>>,
+    #[serde(rename = "password")]
+    pub password: String,
+    #[serde(rename = "is_superuser", skip_serializing_if = "Option::is_none")]
+    pub is_superuser: Option<bool>,
+    #[serde(rename = "is_staff", skip_serializing_if = "Option::is_none")]
+    pub is_staff: Option<bool>,
+    #[serde(rename = "is_active", skip_serializing_if = "Option::is_none")]
+    pub is_active: Option<bool>,
+    #[serde(rename = "date_joined", skip_serializing_if = "Option::is_none")]
+    pub date_joined: Option<String>,
+    #[serde(rename = "last_login", skip_serializing_if = "Option::is_none")]
+    pub last_login: Option<String>,
+    #[serde(rename = "first_name", skip_serializing_if = "Option::is_none")]
+    pub first_name: Option<String>,
+    #[serde(rename = "last_name", skip_serializing_if = "Option::is_none")]
+    pub last_name: Option<String>,
+    #[serde(rename = "email")]
+    pub email: String,
+    /// The groups this user belongs to. A user will get all permissions granted to each of their groups.
+    #[serde(rename = "groups", skip_serializing_if = "Option::is_none")]
+    pub groups: Option<Vec<i32>>,
+    /// Specific permissions for this user.
+    #[serde(rename = "user_permissions", skip_serializing_if = "Option::is_none")]
+    pub user_permissions: Option<Vec<i32>>,
 }
 
 impl Nested {
-    pub fn new(id: i32, created_dt: String, name: String, hypothesis: String, control: i32) -> Nested {
+    pub fn new(id: i32, password: String, email: String) -> Nested {
         Nested {
             id,
-            created_dt,
-            active: None,
-            name,
-            hypothesis,
-            notion_url: None,
-            control,
-            treatments: None,
+            password,
+            is_superuser: None,
+            is_staff: None,
+            is_active: None,
+            date_joined: None,
+            last_login: None,
+            first_name: None,
+            last_name: None,
+            email,
+            groups: None,
+            user_permissions: None,
         }
     }
 }

@@ -27,7 +27,7 @@ pub async fn schema_retrieve(configuration: &configuration::Configuration, lang:
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/schema/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = lang {
         local_var_req_builder = local_var_req_builder.query(&[("lang", &local_var_str.to_string())]);

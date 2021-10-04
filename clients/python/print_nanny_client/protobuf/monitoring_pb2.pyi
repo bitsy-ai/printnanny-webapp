@@ -26,13 +26,11 @@ class MonitoringImage(google.protobuf.message.Message):
     HEIGHT_FIELD_NUMBER: builtins.int
     WIDTH_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
+    @property
+    def metadata(self) -> common_pb2.Metadata: ...
     height: builtins.int = ...
     width: builtins.int = ...
     data: builtins.bytes = ...
-
-    @property
-    def metadata(self) -> common_pb2.Metadata: ...
-
     def __init__(self,
         *,
         metadata : typing.Optional[common_pb2.Metadata] = ...,
@@ -49,12 +47,10 @@ class Box(google.protobuf.message.Message):
     XY_FIELD_NUMBER: builtins.int
     HEIGHT_FIELD_NUMBER: builtins.int
     WIDTH_FIELD_NUMBER: builtins.int
-
     @property
     def xy(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     height: builtins.int = ...
     width: builtins.int = ...
-
     def __init__(self,
         *,
         xy : typing.Optional[typing.Iterable[builtins.float]] = ...,
@@ -70,13 +66,11 @@ class DeviceCalibration(google.protobuf.message.Message):
     FPS_FIELD_NUMBER: builtins.int
     HEIGHT_FIELD_NUMBER: builtins.int
     WIDTH_FIELD_NUMBER: builtins.int
+    @property
+    def box(self) -> global___Box: ...
     fps: builtins.float = ...
     height: builtins.int = ...
     width: builtins.int = ...
-
-    @property
-    def box(self) -> global___Box: ...
-
     def __init__(self,
         *,
         box : typing.Optional[global___Box] = ...,
@@ -96,19 +90,14 @@ class BoxAnnotations(google.protobuf.message.Message):
     DETECTION_BOXES_FIELD_NUMBER: builtins.int
     HEALTH_WEIGHTS_FIELD_NUMBER: builtins.int
     num_detections: builtins.int = ...
-
     @property
     def detection_scores(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
-
     @property
     def detection_classes(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]: ...
-
-    @property
-    def health_weights(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
-
     @property
     def detection_boxes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Box]: ...
-
+    @property
+    def health_weights(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     def __init__(self,
         *,
         num_detections : builtins.int = ...,
@@ -129,22 +118,17 @@ class AnnotatedMonitoringImage(google.protobuf.message.Message):
     MIN_CALIBRATION_AREA_OVERLAP_FIELD_NUMBER: builtins.int
     CALIBRATION_FIELD_NUMBER: builtins.int
     ANNOTATED_IMAGE_FIELD_NUMBER: builtins.int
-    score_threshold: builtins.float = ...
-    min_calibration_area_overlap: builtins.float = ...
-    annotated_image: builtins.bytes = ...
-
     @property
     def monitoring_image(self) -> global___MonitoringImage: ...
-
     @property
     def annotations_all(self) -> global___BoxAnnotations: ...
-
     @property
     def annotations_filtered(self) -> global___BoxAnnotations: ...
-
+    score_threshold: builtins.float = ...
+    min_calibration_area_overlap: builtins.float = ...
     @property
     def calibration(self) -> global___DeviceCalibration: ...
-
+    annotated_image: builtins.bytes = ...
     def __init__(self,
         *,
         monitoring_image : typing.Optional[global___MonitoringImage] = ...,
@@ -161,32 +145,31 @@ global___AnnotatedMonitoringImage = AnnotatedMonitoringImage
 
 class AnnotatedMonitoringImagesWindow(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    class WindowType(metaclass=_WindowType):
+    class WindowType(_WindowType, metaclass=_WindowTypeEnumTypeWrapper):
+        pass
+    class _WindowType:
         V = typing.NewType('V', builtins.int)
-
-    GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
-    FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
-    SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
-    SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
-
-    class _WindowType(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[WindowType.V], builtins.type):  # type: ignore
+    class _WindowTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_WindowType.V], builtins.type):
         DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
         GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
         FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
         SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
         SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
 
+    GLOBAL = AnnotatedMonitoringImagesWindow.WindowType.V(0)
+    FIXED = AnnotatedMonitoringImagesWindow.WindowType.V(1)
+    SLIDING = AnnotatedMonitoringImagesWindow.WindowType.V(2)
+    SESSION = AnnotatedMonitoringImagesWindow.WindowType.V(3)
+
     ANNOTATED_IMAGES_FIELD_NUMBER: builtins.int
     WINDOW_START_FIELD_NUMBER: builtins.int
     WINDOW_END_FIELD_NUMBER: builtins.int
     WINDOW_TYPE_FIELD_NUMBER: builtins.int
+    @property
+    def annotated_images(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AnnotatedMonitoringImage]: ...
     window_start: builtins.float = ...
     window_end: builtins.float = ...
     window_type: global___AnnotatedMonitoringImagesWindow.WindowType.V = ...
-
-    @property
-    def annotated_images(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AnnotatedMonitoringImage]: ...
-
     def __init__(self,
         *,
         annotated_images : typing.Optional[typing.Iterable[global___AnnotatedMonitoringImage]] = ...,

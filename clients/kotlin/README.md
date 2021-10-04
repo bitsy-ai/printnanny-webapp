@@ -42,23 +42,17 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
+*AppliancesApi* | [**appliancesList**](docs/AppliancesApi.md#applianceslist) | **GET** /api/appliances/ | 
+*AppliancesApi* | [**appliancesPartialUpdate**](docs/AppliancesApi.md#appliancespartialupdate) | **PATCH** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesUpdateOrCreate**](docs/AppliancesApi.md#appliancesupdateorcreate) | **POST** /api/appliances/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 
 *AuthApi* | [**authVerifyCreate**](docs/AuthApi.md#authverifycreate) | **POST** /auth/verify/ | 
 *AuthApi* | [**authVerifyEmailCreate**](docs/AuthApi.md#authverifyemailcreate) | **POST** /auth/verify/email/ | 
 *AuthApi* | [**authVerifyMobileCreate**](docs/AuthApi.md#authverifymobilecreate) | **POST** /auth/verify/mobile/ | 
-*DevicesApi* | [**devicesCamerasCreate**](docs/DevicesApi.md#devicescamerascreate) | **POST** /api/devices/{device_id}/cameras/ | 
-*DevicesApi* | [**devicesCamerasList**](docs/DevicesApi.md#devicescameraslist) | **GET** /api/devices/{device_id}/cameras/ | 
-*DevicesApi* | [**devicesCamerasPartialUpdate**](docs/DevicesApi.md#devicescameraspartialupdate) | **PATCH** /api/devices/{device_id}/cameras/{id}/ | 
-*DevicesApi* | [**devicesCamerasRetrieve**](docs/DevicesApi.md#devicescamerasretrieve) | **GET** /api/devices/{device_id}/cameras/{id}/ | 
-*DevicesApi* | [**devicesCamerasUpdate**](docs/DevicesApi.md#devicescamerasupdate) | **PUT** /api/devices/{device_id}/cameras/{id}/ | 
-*DevicesApi* | [**devicesCreate**](docs/DevicesApi.md#devicescreate) | **POST** /api/devices/ | 
-*DevicesApi* | [**devicesList**](docs/DevicesApi.md#deviceslist) | **GET** /api/devices/ | 
-*DevicesApi* | [**devicesPartialUpdate**](docs/DevicesApi.md#devicespartialupdate) | **PATCH** /api/devices/{id}/ | 
-*DevicesApi* | [**devicesRetrieve**](docs/DevicesApi.md#devicesretrieve) | **GET** /api/devices/{id}/ | 
-*DevicesApi* | [**devicesUpdate**](docs/DevicesApi.md#devicesupdate) | **PUT** /api/devices/{id}/ | 
-*DevicesApi* | [**devicesUpdateOrCreate**](docs/DevicesApi.md#devicesupdateorcreate) | **POST** /api/devices/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationUpdateOrCreate**](docs/MlOpsApi.md#devicecalibrationupdateorcreate) | **POST** /api/device-calibrations/update-or-create/ | 
 *MlOpsApi* | [**deviceCalibrationsList**](docs/MlOpsApi.md#devicecalibrationslist) | **GET** /api/device-calibrations/ | 
 *MlOpsApi* | [**deviceCalibrationsPartialUpdate**](docs/MlOpsApi.md#devicecalibrationspartialupdate) | **PATCH** /api/device-calibrations/{id}/ | 
@@ -127,22 +121,23 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
  - [com.print-nanny.client.models.AlertMethodEnum](docs/AlertMethodEnum.md)
  - [com.print-nanny.client.models.AlertRequest](docs/AlertRequest.md)
+ - [com.print-nanny.client.models.AnsibleFacts](docs/AnsibleFacts.md)
+ - [com.print-nanny.client.models.AnsibleFactsRequest](docs/AnsibleFactsRequest.md)
+ - [com.print-nanny.client.models.Appliance](docs/Appliance.md)
+ - [com.print-nanny.client.models.AppliancePKI](docs/AppliancePKI.md)
+ - [com.print-nanny.client.models.AppliancePKIRequest](docs/AppliancePKIRequest.md)
+ - [com.print-nanny.client.models.ApplianceRequest](docs/ApplianceRequest.md)
  - [com.print-nanny.client.models.ArtifactTypesEnum](docs/ArtifactTypesEnum.md)
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
- - [com.print-nanny.client.models.CameraController](docs/CameraController.md)
- - [com.print-nanny.client.models.CameraControllerRequest](docs/CameraControllerRequest.md)
- - [com.print-nanny.client.models.CameraSourceTypeEnum](docs/CameraSourceTypeEnum.md)
- - [com.print-nanny.client.models.CameraTypeEnum](docs/CameraTypeEnum.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
+ - [com.print-nanny.client.models.CreateAnsibleFactsRequest](docs/CreateAnsibleFactsRequest.md)
+ - [com.print-nanny.client.models.CreateAppliancePKIRequest](docs/CreateAppliancePKIRequest.md)
+ - [com.print-nanny.client.models.CreateApplianceRequest](docs/CreateApplianceRequest.md)
  - [com.print-nanny.client.models.DetailResponse](docs/DetailResponse.md)
- - [com.print-nanny.client.models.Device](docs/Device.md)
  - [com.print-nanny.client.models.DeviceCalibration](docs/DeviceCalibration.md)
  - [com.print-nanny.client.models.DeviceCalibrationRequest](docs/DeviceCalibrationRequest.md)
- - [com.print-nanny.client.models.DeviceIdentity](docs/DeviceIdentity.md)
- - [com.print-nanny.client.models.DeviceIdentityCaCerts](docs/DeviceIdentityCaCerts.md)
- - [com.print-nanny.client.models.DeviceRequest](docs/DeviceRequest.md)
  - [com.print-nanny.client.models.EmailAuthRequest](docs/EmailAuthRequest.md)
  - [com.print-nanny.client.models.EventSourceEnum](docs/EventSourceEnum.md)
  - [com.print-nanny.client.models.EventType0c4Enum](docs/EventType0c4Enum.md)
@@ -153,6 +148,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.MobileAuthRequest](docs/MobileAuthRequest.md)
  - [com.print-nanny.client.models.ModelArtifact](docs/ModelArtifact.md)
  - [com.print-nanny.client.models.Nested](docs/Nested.md)
+ - [com.print-nanny.client.models.NestedRequest](docs/NestedRequest.md)
  - [com.print-nanny.client.models.OctoPrintDevice](docs/OctoPrintDevice.md)
  - [com.print-nanny.client.models.OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [com.print-nanny.client.models.OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
@@ -182,9 +178,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPython](docs/OctoprintPython.md)
  - [com.print-nanny.client.models.OctoprintPythonRequest](docs/OctoprintPythonRequest.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
- - [com.print-nanny.client.models.PaginatedCameraControllerList](docs/PaginatedCameraControllerList.md)
+ - [com.print-nanny.client.models.PaginatedApplianceList](docs/PaginatedApplianceList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
- - [com.print-nanny.client.models.PaginatedDeviceList](docs/PaginatedDeviceList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
  - [com.print-nanny.client.models.PaginatedGcodeFileList](docs/PaginatedGcodeFileList.md)
@@ -203,9 +198,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.Partner3DGeeksMetadata](docs/Partner3DGeeksMetadata.md)
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
- - [com.print-nanny.client.models.PatchedCameraControllerRequest](docs/PatchedCameraControllerRequest.md)
+ - [com.print-nanny.client.models.PatchedApplianceRequest](docs/PatchedApplianceRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
- - [com.print-nanny.client.models.PatchedDeviceRequest](docs/PatchedDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
@@ -224,6 +218,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
  - [com.print-nanny.client.models.PrinterProfileRequest](docs/PrinterProfileRequest.md)
  - [com.print-nanny.client.models.PrinterStateEnum](docs/PrinterStateEnum.md)
+ - [com.print-nanny.client.models.ReleaseChannelEnum](docs/ReleaseChannelEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEvent](docs/RemoteCommandEvent.md)
  - [com.print-nanny.client.models.RemoteCommandEventEventTypeEnum](docs/RemoteCommandEventEventTypeEnum.md)
  - [com.print-nanny.client.models.RemoteCommandEventRequest](docs/RemoteCommandEventRequest.md)
@@ -246,7 +241,7 @@ Class | Method | HTTP request | Description
 ### cookieAuth
 
 - **Type**: API key
-- **API key parameter name**: Session
+- **API key parameter name**: sessionid
 - **Location**: 
 
 <a name="tokenAuth"></a>

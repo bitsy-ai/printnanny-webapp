@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**alerts_list**](AlertsApi.md#alerts_list) | **get** /api/alerts/ | 
-[**alerts_partial_update**](AlertsApi.md#alerts_partial_update) | **patch** /api/alerts/{id}/ | 
-[**alerts_recent**](AlertsApi.md#alerts_recent) | **get** /api/alerts/recent/ | 
-[**alerts_retrieve**](AlertsApi.md#alerts_retrieve) | **get** /api/alerts/{id}/ | 
-[**alerts_seen**](AlertsApi.md#alerts_seen) | **patch** /api/alerts/seen/ | 
-[**alerts_unread**](AlertsApi.md#alerts_unread) | **get** /api/alerts/unread/ | 
-[**alerts_update**](AlertsApi.md#alerts_update) | **put** /api/alerts/{id}/ | 
+[**alerts_list**](AlertsApi.md#alerts_list) | **GET** /api/alerts/ | 
+[**alerts_partial_update**](AlertsApi.md#alerts_partial_update) | **PATCH** /api/alerts/{id}/ | 
+[**alerts_recent**](AlertsApi.md#alerts_recent) | **GET** /api/alerts/recent/ | 
+[**alerts_retrieve**](AlertsApi.md#alerts_retrieve) | **GET** /api/alerts/{id}/ | 
+[**alerts_seen**](AlertsApi.md#alerts_seen) | **PATCH** /api/alerts/seen/ | 
+[**alerts_unread**](AlertsApi.md#alerts_unread) | **GET** /api/alerts/unread/ | 
+[**alerts_update**](AlertsApi.md#alerts_update) | **PUT** /api/alerts/{id}/ | 
 
 
 

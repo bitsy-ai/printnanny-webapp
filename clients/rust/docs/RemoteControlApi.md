@@ -4,33 +4,33 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**commands_list**](RemoteControlApi.md#commands_list) | **get** /api/commands/ | 
-[**commands_partial_update**](RemoteControlApi.md#commands_partial_update) | **patch** /api/commands/{id}/ | 
-[**commands_retrieve**](RemoteControlApi.md#commands_retrieve) | **get** /api/commands/{id}/ | 
-[**commands_update**](RemoteControlApi.md#commands_update) | **put** /api/commands/{id}/ | 
-[**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **post** /api/gcode-files/ | 
-[**gcode_files_list**](RemoteControlApi.md#gcode_files_list) | **get** /api/gcode-files/ | 
-[**gcode_files_partial_update**](RemoteControlApi.md#gcode_files_partial_update) | **patch** /api/gcode-files/{id}/ | 
-[**gcode_files_retrieve**](RemoteControlApi.md#gcode_files_retrieve) | **get** /api/gcode-files/{id}/ | 
-[**gcode_files_update**](RemoteControlApi.md#gcode_files_update) | **put** /api/gcode-files/{id}/ | 
-[**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **post** /api/gcode-files/update-or-create/ | 
-[**octoprint_devices_create**](RemoteControlApi.md#octoprint_devices_create) | **post** /api/octoprint-devices/ | 
-[**octoprint_devices_list**](RemoteControlApi.md#octoprint_devices_list) | **get** /api/octoprint-devices/ | 
-[**octoprint_devices_partial_update**](RemoteControlApi.md#octoprint_devices_partial_update) | **patch** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_retrieve**](RemoteControlApi.md#octoprint_devices_retrieve) | **get** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **put** /api/octoprint-devices/{id}/ | 
-[**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **post** /api/octoprint-devices/update-or-create/ | 
-[**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **patch** /api/print-sessions/{session}/ | 
-[**print_session_update**](RemoteControlApi.md#print_session_update) | **put** /api/print-sessions/{session}/ | 
-[**print_sessions_create**](RemoteControlApi.md#print_sessions_create) | **post** /api/print-sessions/ | 
-[**print_sessions_list**](RemoteControlApi.md#print_sessions_list) | **get** /api/print-sessions/ | 
-[**print_sessions_retrieve**](RemoteControlApi.md#print_sessions_retrieve) | **get** /api/print-sessions/{session}/ | 
-[**printer_profiles_create**](RemoteControlApi.md#printer_profiles_create) | **post** /api/printer-profiles/ | 
-[**printer_profiles_list**](RemoteControlApi.md#printer_profiles_list) | **get** /api/printer-profiles/ | 
-[**printer_profiles_partial_update**](RemoteControlApi.md#printer_profiles_partial_update) | **patch** /api/printer-profiles/{id}/ | 
-[**printer_profiles_retrieve**](RemoteControlApi.md#printer_profiles_retrieve) | **get** /api/printer-profiles/{id}/ | 
-[**printer_profiles_update**](RemoteControlApi.md#printer_profiles_update) | **put** /api/printer-profiles/{id}/ | 
-[**printer_profiles_update_or_create**](RemoteControlApi.md#printer_profiles_update_or_create) | **post** /api/printer-profiles/update-or-create/ | 
+[**commands_list**](RemoteControlApi.md#commands_list) | **GET** /api/commands/ | 
+[**commands_partial_update**](RemoteControlApi.md#commands_partial_update) | **PATCH** /api/commands/{id}/ | 
+[**commands_retrieve**](RemoteControlApi.md#commands_retrieve) | **GET** /api/commands/{id}/ | 
+[**commands_update**](RemoteControlApi.md#commands_update) | **PUT** /api/commands/{id}/ | 
+[**gcode_files_create**](RemoteControlApi.md#gcode_files_create) | **POST** /api/gcode-files/ | 
+[**gcode_files_list**](RemoteControlApi.md#gcode_files_list) | **GET** /api/gcode-files/ | 
+[**gcode_files_partial_update**](RemoteControlApi.md#gcode_files_partial_update) | **PATCH** /api/gcode-files/{id}/ | 
+[**gcode_files_retrieve**](RemoteControlApi.md#gcode_files_retrieve) | **GET** /api/gcode-files/{id}/ | 
+[**gcode_files_update**](RemoteControlApi.md#gcode_files_update) | **PUT** /api/gcode-files/{id}/ | 
+[**gcode_files_update_or_create**](RemoteControlApi.md#gcode_files_update_or_create) | **POST** /api/gcode-files/update-or-create/ | 
+[**octoprint_devices_create**](RemoteControlApi.md#octoprint_devices_create) | **POST** /api/octoprint-devices/ | 
+[**octoprint_devices_list**](RemoteControlApi.md#octoprint_devices_list) | **GET** /api/octoprint-devices/ | 
+[**octoprint_devices_partial_update**](RemoteControlApi.md#octoprint_devices_partial_update) | **PATCH** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_retrieve**](RemoteControlApi.md#octoprint_devices_retrieve) | **GET** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_update**](RemoteControlApi.md#octoprint_devices_update) | **PUT** /api/octoprint-devices/{id}/ | 
+[**octoprint_devices_update_or_create**](RemoteControlApi.md#octoprint_devices_update_or_create) | **POST** /api/octoprint-devices/update-or-create/ | 
+[**print_session_partial_update**](RemoteControlApi.md#print_session_partial_update) | **PATCH** /api/print-sessions/{session}/ | 
+[**print_session_update**](RemoteControlApi.md#print_session_update) | **PUT** /api/print-sessions/{session}/ | 
+[**print_sessions_create**](RemoteControlApi.md#print_sessions_create) | **POST** /api/print-sessions/ | 
+[**print_sessions_list**](RemoteControlApi.md#print_sessions_list) | **GET** /api/print-sessions/ | 
+[**print_sessions_retrieve**](RemoteControlApi.md#print_sessions_retrieve) | **GET** /api/print-sessions/{session}/ | 
+[**printer_profiles_create**](RemoteControlApi.md#printer_profiles_create) | **POST** /api/printer-profiles/ | 
+[**printer_profiles_list**](RemoteControlApi.md#printer_profiles_list) | **GET** /api/printer-profiles/ | 
+[**printer_profiles_partial_update**](RemoteControlApi.md#printer_profiles_partial_update) | **PATCH** /api/printer-profiles/{id}/ | 
+[**printer_profiles_retrieve**](RemoteControlApi.md#printer_profiles_retrieve) | **GET** /api/printer-profiles/{id}/ | 
+[**printer_profiles_update**](RemoteControlApi.md#printer_profiles_update) | **PUT** /api/printer-profiles/{id}/ | 
+[**printer_profiles_update_or_create**](RemoteControlApi.md#printer_profiles_update_or_create) | **POST** /api/printer-profiles/update-or-create/ | 
 
 
 

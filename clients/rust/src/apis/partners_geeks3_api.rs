@@ -26,7 +26,7 @@ pub async fn alerts_list2(configuration: &configuration::Configuration, id: &str
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/partners/3d-geeks/{id}/alerts/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

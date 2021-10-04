@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **user** | **kotlin.Int** |  |  [readonly]
 **publicKey** | **kotlin.String** |  |  [readonly]
 **fingerprint** | **kotlin.String** |  |  [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [readonly]
 **cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]

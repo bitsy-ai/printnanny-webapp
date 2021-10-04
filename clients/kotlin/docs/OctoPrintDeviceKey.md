@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **cloudiotDeviceName** | **kotlin.String** |  |  [readonly]
 **cloudiotDeviceNumId** | **kotlin.Int** |  |  [readonly]
 **cloudiotDevicePath** | **kotlin.String** |  |  [readonly]
-**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
+**cloudiotDevice** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [readonly]
 **cores** | **kotlin.Int** |  | 
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **fingerprint** | **kotlin.String** |  |  [readonly]

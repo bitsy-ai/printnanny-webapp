@@ -101,7 +101,7 @@ pub async fn device_calibration_update_or_create(configuration: &configuration::
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/device-calibrations/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -131,7 +131,7 @@ pub async fn device_calibrations_list(configuration: &configuration::Configurati
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/device-calibrations/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -163,7 +163,7 @@ pub async fn device_calibrations_partial_update(configuration: &configuration::C
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -193,7 +193,7 @@ pub async fn device_calibrations_retrieve(configuration: &configuration::Configu
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -222,7 +222,7 @@ pub async fn device_calibrations_update(configuration: &configuration::Configura
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -252,7 +252,7 @@ pub async fn experiment_device_configs_list(configuration: &configuration::Confi
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/experiment-device-configs/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -284,7 +284,7 @@ pub async fn experiment_device_configs_retrieve(configuration: &configuration::C
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/experiment-device-configs/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -313,7 +313,7 @@ pub async fn experiments_list(configuration: &configuration::Configuration, page
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/experiments/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -345,7 +345,7 @@ pub async fn experiments_retrieve(configuration: &configuration::Configuration, 
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/experiments/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -374,7 +374,7 @@ pub async fn model_artifacts_list(configuration: &configuration::Configuration, 
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/model-artifacts/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -406,7 +406,7 @@ pub async fn model_artifacts_retrieve(configuration: &configuration::Configurati
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/model-artifacts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

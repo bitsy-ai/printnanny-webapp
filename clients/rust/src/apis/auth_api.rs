@@ -62,7 +62,7 @@ pub async fn auth_email_create(configuration: &configuration::Configuration, ema
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/email/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -93,7 +93,7 @@ pub async fn auth_mobile_create(configuration: &configuration::Configuration, mo
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/mobile/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -124,7 +124,7 @@ pub async fn auth_token_create(configuration: &configuration::Configuration, cal
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/token/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -155,7 +155,7 @@ pub async fn auth_verify_create(configuration: &configuration::Configuration, ca
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/verify/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -186,7 +186,7 @@ pub async fn auth_verify_email_create(configuration: &configuration::Configurati
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/verify/email/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -216,7 +216,7 @@ pub async fn auth_verify_mobile_create(configuration: &configuration::Configurat
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/auth/verify/mobile/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

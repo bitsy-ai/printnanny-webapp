@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**octoprint_events_create**](TelemetryApi.md#octoprint_events_create) | **post** /api/octoprint-events/ | 
-[**octoprint_events_list**](TelemetryApi.md#octoprint_events_list) | **get** /api/octoprint-events/ | 
-[**octoprint_events_retrieve**](TelemetryApi.md#octoprint_events_retrieve) | **get** /api/octoprint-events/{id}/ | 
-[**print_job_events_list**](TelemetryApi.md#print_job_events_list) | **get** /api/print-job-events/ | 
-[**print_job_events_retrieve**](TelemetryApi.md#print_job_events_retrieve) | **get** /api/print-job-events/{id}/ | 
-[**print_nanny_plugin_events_list**](TelemetryApi.md#print_nanny_plugin_events_list) | **get** /api/print-nanny-plugin-events/ | 
-[**print_nanny_plugin_events_retrieve**](TelemetryApi.md#print_nanny_plugin_events_retrieve) | **get** /api/print-nanny-plugin-events/{id}/ | 
-[**remote_command_events_list**](TelemetryApi.md#remote_command_events_list) | **get** /api/remote-command-events/ | 
-[**remote_command_events_retrieve**](TelemetryApi.md#remote_command_events_retrieve) | **get** /api/remote-command-events/{id}/ | 
-[**telemetry_events_create**](TelemetryApi.md#telemetry_events_create) | **post** /api/telemetry-events/ | 
-[**telemetry_events_list**](TelemetryApi.md#telemetry_events_list) | **get** /api/telemetry-events/ | 
-[**telemetry_events_retrieve**](TelemetryApi.md#telemetry_events_retrieve) | **get** /api/telemetry-events/{id}/ | 
+[**octoprint_events_create**](TelemetryApi.md#octoprint_events_create) | **POST** /api/octoprint-events/ | 
+[**octoprint_events_list**](TelemetryApi.md#octoprint_events_list) | **GET** /api/octoprint-events/ | 
+[**octoprint_events_retrieve**](TelemetryApi.md#octoprint_events_retrieve) | **GET** /api/octoprint-events/{id}/ | 
+[**print_job_events_list**](TelemetryApi.md#print_job_events_list) | **GET** /api/print-job-events/ | 
+[**print_job_events_retrieve**](TelemetryApi.md#print_job_events_retrieve) | **GET** /api/print-job-events/{id}/ | 
+[**print_nanny_plugin_events_list**](TelemetryApi.md#print_nanny_plugin_events_list) | **GET** /api/print-nanny-plugin-events/ | 
+[**print_nanny_plugin_events_retrieve**](TelemetryApi.md#print_nanny_plugin_events_retrieve) | **GET** /api/print-nanny-plugin-events/{id}/ | 
+[**remote_command_events_list**](TelemetryApi.md#remote_command_events_list) | **GET** /api/remote-command-events/ | 
+[**remote_command_events_retrieve**](TelemetryApi.md#remote_command_events_retrieve) | **GET** /api/remote-command-events/{id}/ | 
+[**telemetry_events_create**](TelemetryApi.md#telemetry_events_create) | **POST** /api/telemetry-events/ | 
+[**telemetry_events_list**](TelemetryApi.md#telemetry_events_list) | **GET** /api/telemetry-events/ | 
+[**telemetry_events_retrieve**](TelemetryApi.md#telemetry_events_retrieve) | **GET** /api/telemetry-events/{id}/ | 
 
 
 

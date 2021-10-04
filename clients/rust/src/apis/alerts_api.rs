@@ -68,7 +68,7 @@ pub async fn alerts_list(configuration: &configuration::Configuration, page: Opt
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -100,7 +100,7 @@ pub async fn alerts_partial_update(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -130,7 +130,7 @@ pub async fn alerts_recent(configuration: &configuration::Configuration, ) -> Re
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/recent/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -159,7 +159,7 @@ pub async fn alerts_retrieve(configuration: &configuration::Configuration, id: i
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -188,7 +188,7 @@ pub async fn alerts_seen(configuration: &configuration::Configuration, patched_a
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/seen/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -218,7 +218,7 @@ pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Re
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/unread/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -247,7 +247,7 @@ pub async fn alerts_update(configuration: &configuration::Configuration, id: i32
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

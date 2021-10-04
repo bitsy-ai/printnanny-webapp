@@ -143,7 +143,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedRemoteControlCommandList",
         }
@@ -287,7 +287,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "RemoteControlCommand",
         }
@@ -420,7 +420,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "RemoteControlCommand",
         }
@@ -568,7 +568,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "RemoteControlCommand",
         }
@@ -744,7 +744,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "GcodeFile",
             201: "GcodeFile",
@@ -874,7 +874,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedGcodeFileList",
         }
@@ -1045,7 +1045,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "GcodeFile",
         }
@@ -1178,7 +1178,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "GcodeFile",
         }
@@ -1365,7 +1365,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "GcodeFile",
         }
@@ -1541,7 +1541,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "GcodeFile",
             200: "GcodeFile",
@@ -1680,7 +1680,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             201: "OctoPrintDevice",
         }
@@ -1809,7 +1809,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedOctoPrintDeviceList",
         }
@@ -1953,7 +1953,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "OctoPrintDevice",
             202: "OctoPrintDevice",
@@ -2087,7 +2087,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "OctoPrintDevice",
         }
@@ -2235,7 +2235,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "OctoPrintDevice",
             202: "OctoPrintDevice",
@@ -2373,7 +2373,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "OctoPrintDevice",
             200: "OctoPrintDevice",
@@ -2520,7 +2520,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "PrintSession",
             200: "PrintSession",
@@ -2669,7 +2669,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "PrintSession",
             200: "PrintSession",
@@ -2807,7 +2807,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             201: "PrintSession",
             400: "PrintSession",
@@ -2937,7 +2937,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedPrintSessionList",
         }
@@ -3070,7 +3070,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrintSession",
         }
@@ -3207,7 +3207,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             400: "PrintSession",
             201: "PrintSession",
@@ -3351,7 +3351,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedPrinterProfileList",
         }
@@ -3495,7 +3495,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrinterProfile",
         }
@@ -3628,7 +3628,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrinterProfile",
         }
@@ -3776,7 +3776,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrinterProfile",
         }
@@ -3913,7 +3913,7 @@ class RemoteControlApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrinterProfile",
             201: "PrinterProfile",

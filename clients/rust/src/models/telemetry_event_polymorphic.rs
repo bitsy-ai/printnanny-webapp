@@ -24,7 +24,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -57,7 +57,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -90,7 +90,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -123,7 +123,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -158,7 +158,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -191,7 +191,7 @@ pub enum TelemetryEventPolymorphic {
         #[serde(rename = "octoprint_printer_data")]
         octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
         #[serde(rename = "event_source")]
-        event_source: Box<crate::models::EventSourceEnum>,
+        event_source: Option<Box<crate::models::EventSourceEnum>>,
         #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
         event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
         #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]

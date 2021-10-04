@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **heatedBed** | **kotlin.Boolean** |  |  [optional]
 **heatedChamber** | **kotlin.Boolean** |  |  [optional]
 **model** | **kotlin.String** |  |  [optional]
-**volumeCustomBox** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**volumeCustomBox** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **volumeDepth** | **kotlin.Float** |  |  [optional]
 **volumeFormfactor** | **kotlin.String** |  |  [optional]
 **volumeHeight** | **kotlin.Float** |  |  [optional]

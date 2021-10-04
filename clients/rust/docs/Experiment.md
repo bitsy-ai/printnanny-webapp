@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **active** | Option<**bool**> |  | [optional]
 **name** | **String** |  | 
 **hypothesis** | **String** |  | 
-**control** | [**crate::models::Nested**](Nested.md) |  | [readonly]
+**control** | Option<[**crate::models::Nested**](Nested.md)> |  | [readonly]
 **treatments** | [**Vec<crate::models::Nested>**](Nested.md) |  | [readonly]
 **notion_url** | Option<**String**> |  | [optional]
 

@@ -22,7 +22,7 @@ pub struct PrintJobEvent {
     #[serde(rename = "octoprint_printer_data")]
     pub octoprint_printer_data: Box<crate::models::OctoprintPrinterData>,
     #[serde(rename = "event_source")]
-    pub event_source: Box<crate::models::EventSourceEnum>,
+    pub event_source: Option<Box<crate::models::EventSourceEnum>>,
     #[serde(rename = "event_data", skip_serializing_if = "Option::is_none")]
     pub event_data: Option<::std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "temperature", skip_serializing_if = "Option::is_none")]
@@ -44,7 +44,7 @@ pub struct PrintJobEvent {
 }
 
 impl PrintJobEvent {
-    pub fn new(id: i32, event_type: crate::models::EventTypeD9eEnum, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, event_source: crate::models::EventSourceEnum, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrintJobEvent {
+    pub fn new(id: i32, event_type: crate::models::EventTypeD9eEnum, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, event_source: Option<crate::models::EventSourceEnum>, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrintJobEvent {
         PrintJobEvent {
             id,
             ts: None,

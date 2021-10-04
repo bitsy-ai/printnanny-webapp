@@ -149,7 +149,7 @@ class PartnersGeeks3dApi(object):
 
         # Authentication setting
         auth_settings = ['tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "Partner3DGeeksMetadata",
         }

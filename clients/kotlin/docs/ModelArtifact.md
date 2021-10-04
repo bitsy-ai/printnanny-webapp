@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **labels** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **artifacts** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 **artifactTypes** | [**kotlin.collections.List&lt;ArtifactTypesEnum&gt;**](ArtifactTypesEnum.md) |  |  [readonly]
-**metadata** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [readonly]
+**metadata** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [readonly]
 **url** | [**java.net.URI**](java.net.URI.md) |  |  [readonly]
 
 

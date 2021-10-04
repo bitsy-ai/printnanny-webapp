@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="schemaRetrieve"></a>
 # **schemaRetrieve**
-> kotlin.collections.Map&lt;kotlin.String, AnyType&gt; schemaRetrieve(lang)
+> kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt; schemaRetrieve(lang)
 
 
 
@@ -24,7 +24,7 @@ OpenApi3 schema for this API. Format can be selected via content negotiation.  -
 val apiInstance = SchemaApi()
 val lang : kotlin.String = lang_example // kotlin.String | 
 try {
-    val result : kotlin.collections.Map<kotlin.String, AnyType> = apiInstance.schemaRetrieve(lang)
+    val result : kotlin.collections.Map<kotlin.String, kotlin.Any> = apiInstance.schemaRetrieve(lang)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SchemaApi#schemaRetrieve")
@@ -43,14 +43,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md)
+[**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md)
 
 ### Authorization
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 

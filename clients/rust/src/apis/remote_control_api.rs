@@ -215,7 +215,7 @@ pub async fn commands_list(configuration: &configuration::Configuration, page: O
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/commands/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -247,7 +247,7 @@ pub async fn commands_partial_update(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -277,7 +277,7 @@ pub async fn commands_retrieve(configuration: &configuration::Configuration, id:
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -306,7 +306,7 @@ pub async fn commands_update(configuration: &configuration::Configuration, id: i
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -336,7 +336,7 @@ pub async fn gcode_files_create(configuration: &configuration::Configuration, na
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -371,7 +371,7 @@ pub async fn gcode_files_list(configuration: &configuration::Configuration, page
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -403,7 +403,7 @@ pub async fn gcode_files_partial_update(configuration: &configuration::Configura
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -444,7 +444,7 @@ pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, 
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -473,7 +473,7 @@ pub async fn gcode_files_update(configuration: &configuration::Configuration, id
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -508,7 +508,7 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/gcode-files/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -543,7 +543,7 @@ pub async fn octoprint_devices_create(configuration: &configuration::Configurati
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -573,7 +573,7 @@ pub async fn octoprint_devices_list(configuration: &configuration::Configuration
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -605,7 +605,7 @@ pub async fn octoprint_devices_partial_update(configuration: &configuration::Con
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -635,7 +635,7 @@ pub async fn octoprint_devices_retrieve(configuration: &configuration::Configura
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -664,7 +664,7 @@ pub async fn octoprint_devices_update(configuration: &configuration::Configurati
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -694,7 +694,7 @@ pub async fn octoprint_devices_update_or_create(configuration: &configuration::C
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/octoprint-devices/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -724,7 +724,7 @@ pub async fn print_session_partial_update(configuration: &configuration::Configu
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -754,7 +754,7 @@ pub async fn print_session_update(configuration: &configuration::Configuration, 
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -784,7 +784,7 @@ pub async fn print_sessions_create(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -814,7 +814,7 @@ pub async fn print_sessions_list(configuration: &configuration::Configuration, p
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
@@ -846,7 +846,7 @@ pub async fn print_sessions_retrieve(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -875,7 +875,7 @@ pub async fn printer_profiles_create(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -905,7 +905,7 @@ pub async fn printer_profiles_list(configuration: &configuration::Configuration,
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
@@ -943,7 +943,7 @@ pub async fn printer_profiles_partial_update(configuration: &configuration::Conf
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -973,7 +973,7 @@ pub async fn printer_profiles_retrieve(configuration: &configuration::Configurat
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -1002,7 +1002,7 @@ pub async fn printer_profiles_update(configuration: &configuration::Configuratio
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -1032,7 +1032,7 @@ pub async fn printer_profiles_update_or_create(configuration: &configuration::Co
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/api/printer-profiles/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

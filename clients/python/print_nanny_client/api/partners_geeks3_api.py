@@ -147,7 +147,7 @@ class PartnersGeeks3Api(object):
 
         # Authentication setting
         auth_settings = ['tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "Partner3DGeeksAlert",
         }

@@ -143,7 +143,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedAlertList",
         }
@@ -287,7 +287,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "Alert",
         }
@@ -409,7 +409,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "AlertBulkResponse",
             202: "AlertBulkResponse",
@@ -543,7 +543,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "Alert",
         }
@@ -676,7 +676,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "AlertBulkResponse",
             202: "AlertBulkResponse",
@@ -799,7 +799,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "AlertBulkResponse",
             202: "AlertBulkResponse",
@@ -948,7 +948,7 @@ class AlertsApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "Alert",
         }

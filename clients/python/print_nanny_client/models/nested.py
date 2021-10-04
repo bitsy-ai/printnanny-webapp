@@ -37,52 +37,73 @@ class Nested(object):
     """
     openapi_types = {
         'id': 'int',
-        'created_dt': 'datetime',
-        'active': 'bool',
-        'name': 'str',
-        'hypothesis': 'str',
-        'notion_url': 'str',
-        'control': 'int',
-        'treatments': 'list[int]'
+        'password': 'str',
+        'is_superuser': 'bool',
+        'is_staff': 'bool',
+        'is_active': 'bool',
+        'date_joined': 'datetime',
+        'last_login': 'datetime',
+        'first_name': 'str',
+        'last_name': 'str',
+        'email': 'str',
+        'groups': 'list[int]',
+        'user_permissions': 'list[int]'
     }
 
     attribute_map = {
         'id': 'id',
-        'created_dt': 'created_dt',
-        'active': 'active',
-        'name': 'name',
-        'hypothesis': 'hypothesis',
-        'notion_url': 'notion_url',
-        'control': 'control',
-        'treatments': 'treatments'
+        'password': 'password',
+        'is_superuser': 'is_superuser',
+        'is_staff': 'is_staff',
+        'is_active': 'is_active',
+        'date_joined': 'date_joined',
+        'last_login': 'last_login',
+        'first_name': 'first_name',
+        'last_name': 'last_name',
+        'email': 'email',
+        'groups': 'groups',
+        'user_permissions': 'user_permissions'
     }
 
-    def __init__(self, id=None, created_dt=None, active=None, name=None, hypothesis=None, notion_url=None, control=None, treatments=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, password=None, is_superuser=None, is_staff=None, is_active=None, date_joined=None, last_login=None, first_name=None, last_name=None, email=None, groups=None, user_permissions=None, local_vars_configuration=None):  # noqa: E501
         """Nested - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._created_dt = None
-        self._active = None
-        self._name = None
-        self._hypothesis = None
-        self._notion_url = None
-        self._control = None
-        self._treatments = None
+        self._password = None
+        self._is_superuser = None
+        self._is_staff = None
+        self._is_active = None
+        self._date_joined = None
+        self._last_login = None
+        self._first_name = None
+        self._last_name = None
+        self._email = None
+        self._groups = None
+        self._user_permissions = None
         self.discriminator = None
 
         self.id = id
-        self.created_dt = created_dt
-        if active is not None:
-            self.active = active
-        self.name = name
-        self.hypothesis = hypothesis
-        self.notion_url = notion_url
-        self.control = control
-        if treatments is not None:
-            self.treatments = treatments
+        self.password = password
+        if is_superuser is not None:
+            self.is_superuser = is_superuser
+        if is_staff is not None:
+            self.is_staff = is_staff
+        if is_active is not None:
+            self.is_active = is_active
+        if date_joined is not None:
+            self.date_joined = date_joined
+        if last_login is not None:
+            self.last_login = last_login
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        if groups is not None:
+            self.groups = groups
+        if user_permissions is not None:
+            self.user_permissions = user_permissions
 
     @property
     def id(self):
@@ -108,168 +129,255 @@ class Nested(object):
         self._id = id
 
     @property
-    def created_dt(self):
-        """Gets the created_dt of this Nested.  # noqa: E501
+    def password(self):
+        """Gets the password of this Nested.  # noqa: E501
 
 
-        :return: The created_dt of this Nested.  # noqa: E501
-        :rtype: datetime
+        :return: The password of this Nested.  # noqa: E501
+        :rtype: str
         """
-        return self._created_dt
+        return self._password
 
-    @created_dt.setter
-    def created_dt(self, created_dt):
-        """Sets the created_dt of this Nested.
+    @password.setter
+    def password(self, password):
+        """Sets the password of this Nested.
 
 
-        :param created_dt: The created_dt of this Nested.  # noqa: E501
-        :type created_dt: datetime
+        :param password: The password of this Nested.  # noqa: E501
+        :type password: str
         """
-        if self.local_vars_configuration.client_side_validation and created_dt is None:  # noqa: E501
-            raise ValueError("Invalid value for `created_dt`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and password is None:  # noqa: E501
+            raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                password is not None and len(password) > 128):
+            raise ValueError("Invalid value for `password`, length must be less than or equal to `128`")  # noqa: E501
 
-        self._created_dt = created_dt
+        self._password = password
 
     @property
-    def active(self):
-        """Gets the active of this Nested.  # noqa: E501
+    def is_superuser(self):
+        """Gets the is_superuser of this Nested.  # noqa: E501
 
 
-        :return: The active of this Nested.  # noqa: E501
+        :return: The is_superuser of this Nested.  # noqa: E501
         :rtype: bool
         """
-        return self._active
+        return self._is_superuser
 
-    @active.setter
-    def active(self, active):
-        """Sets the active of this Nested.
+    @is_superuser.setter
+    def is_superuser(self, is_superuser):
+        """Sets the is_superuser of this Nested.
 
 
-        :param active: The active of this Nested.  # noqa: E501
-        :type active: bool
+        :param is_superuser: The is_superuser of this Nested.  # noqa: E501
+        :type is_superuser: bool
         """
 
-        self._active = active
+        self._is_superuser = is_superuser
 
     @property
-    def name(self):
-        """Gets the name of this Nested.  # noqa: E501
+    def is_staff(self):
+        """Gets the is_staff of this Nested.  # noqa: E501
 
 
-        :return: The name of this Nested.  # noqa: E501
+        :return: The is_staff of this Nested.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_staff
+
+    @is_staff.setter
+    def is_staff(self, is_staff):
+        """Sets the is_staff of this Nested.
+
+
+        :param is_staff: The is_staff of this Nested.  # noqa: E501
+        :type is_staff: bool
+        """
+
+        self._is_staff = is_staff
+
+    @property
+    def is_active(self):
+        """Gets the is_active of this Nested.  # noqa: E501
+
+
+        :return: The is_active of this Nested.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_active
+
+    @is_active.setter
+    def is_active(self, is_active):
+        """Sets the is_active of this Nested.
+
+
+        :param is_active: The is_active of this Nested.  # noqa: E501
+        :type is_active: bool
+        """
+
+        self._is_active = is_active
+
+    @property
+    def date_joined(self):
+        """Gets the date_joined of this Nested.  # noqa: E501
+
+
+        :return: The date_joined of this Nested.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._date_joined
+
+    @date_joined.setter
+    def date_joined(self, date_joined):
+        """Sets the date_joined of this Nested.
+
+
+        :param date_joined: The date_joined of this Nested.  # noqa: E501
+        :type date_joined: datetime
+        """
+
+        self._date_joined = date_joined
+
+    @property
+    def last_login(self):
+        """Gets the last_login of this Nested.  # noqa: E501
+
+
+        :return: The last_login of this Nested.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._last_login
+
+    @last_login.setter
+    def last_login(self, last_login):
+        """Sets the last_login of this Nested.
+
+
+        :param last_login: The last_login of this Nested.  # noqa: E501
+        :type last_login: datetime
+        """
+
+        self._last_login = last_login
+
+    @property
+    def first_name(self):
+        """Gets the first_name of this Nested.  # noqa: E501
+
+
+        :return: The first_name of this Nested.  # noqa: E501
         :rtype: str
         """
-        return self._name
+        return self._first_name
 
-    @name.setter
-    def name(self, name):
-        """Sets the name of this Nested.
+    @first_name.setter
+    def first_name(self, first_name):
+        """Sets the first_name of this Nested.
 
 
-        :param name: The name of this Nested.  # noqa: E501
-        :type name: str
+        :param first_name: The first_name of this Nested.  # noqa: E501
+        :type first_name: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                name is not None and len(name) > 255):
-            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+                first_name is not None and len(first_name) > 30):
+            raise ValueError("Invalid value for `first_name`, length must be less than or equal to `30`")  # noqa: E501
 
-        self._name = name
+        self._first_name = first_name
 
     @property
-    def hypothesis(self):
-        """Gets the hypothesis of this Nested.  # noqa: E501
+    def last_name(self):
+        """Gets the last_name of this Nested.  # noqa: E501
 
 
-        :return: The hypothesis of this Nested.  # noqa: E501
+        :return: The last_name of this Nested.  # noqa: E501
         :rtype: str
         """
-        return self._hypothesis
+        return self._last_name
 
-    @hypothesis.setter
-    def hypothesis(self, hypothesis):
-        """Sets the hypothesis of this Nested.
+    @last_name.setter
+    def last_name(self, last_name):
+        """Sets the last_name of this Nested.
 
 
-        :param hypothesis: The hypothesis of this Nested.  # noqa: E501
-        :type hypothesis: str
+        :param last_name: The last_name of this Nested.  # noqa: E501
+        :type last_name: str
         """
-        if self.local_vars_configuration.client_side_validation and hypothesis is None:  # noqa: E501
-            raise ValueError("Invalid value for `hypothesis`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                hypothesis is not None and len(hypothesis) > 255):
-            raise ValueError("Invalid value for `hypothesis`, length must be less than or equal to `255`")  # noqa: E501
+                last_name is not None and len(last_name) > 30):
+            raise ValueError("Invalid value for `last_name`, length must be less than or equal to `30`")  # noqa: E501
 
-        self._hypothesis = hypothesis
+        self._last_name = last_name
 
     @property
-    def notion_url(self):
-        """Gets the notion_url of this Nested.  # noqa: E501
+    def email(self):
+        """Gets the email of this Nested.  # noqa: E501
 
 
-        :return: The notion_url of this Nested.  # noqa: E501
+        :return: The email of this Nested.  # noqa: E501
         :rtype: str
         """
-        return self._notion_url
+        return self._email
 
-    @notion_url.setter
-    def notion_url(self, notion_url):
-        """Sets the notion_url of this Nested.
+    @email.setter
+    def email(self, email):
+        """Sets the email of this Nested.
 
 
-        :param notion_url: The notion_url of this Nested.  # noqa: E501
-        :type notion_url: str
+        :param email: The email of this Nested.  # noqa: E501
+        :type email: str
         """
+        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                notion_url is not None and len(notion_url) > 255):
-            raise ValueError("Invalid value for `notion_url`, length must be less than or equal to `255`")  # noqa: E501
+                email is not None and len(email) > 254):
+            raise ValueError("Invalid value for `email`, length must be less than or equal to `254`")  # noqa: E501
 
-        self._notion_url = notion_url
-
-    @property
-    def control(self):
-        """Gets the control of this Nested.  # noqa: E501
-
-
-        :return: The control of this Nested.  # noqa: E501
-        :rtype: int
-        """
-        return self._control
-
-    @control.setter
-    def control(self, control):
-        """Sets the control of this Nested.
-
-
-        :param control: The control of this Nested.  # noqa: E501
-        :type control: int
-        """
-        if self.local_vars_configuration.client_side_validation and control is None:  # noqa: E501
-            raise ValueError("Invalid value for `control`, must not be `None`")  # noqa: E501
-
-        self._control = control
+        self._email = email
 
     @property
-    def treatments(self):
-        """Gets the treatments of this Nested.  # noqa: E501
+    def groups(self):
+        """Gets the groups of this Nested.  # noqa: E501
 
+        The groups this user belongs to. A user will get all permissions granted to each of their groups.  # noqa: E501
 
-        :return: The treatments of this Nested.  # noqa: E501
+        :return: The groups of this Nested.  # noqa: E501
         :rtype: list[int]
         """
-        return self._treatments
+        return self._groups
 
-    @treatments.setter
-    def treatments(self, treatments):
-        """Sets the treatments of this Nested.
+    @groups.setter
+    def groups(self, groups):
+        """Sets the groups of this Nested.
 
+        The groups this user belongs to. A user will get all permissions granted to each of their groups.  # noqa: E501
 
-        :param treatments: The treatments of this Nested.  # noqa: E501
-        :type treatments: list[int]
+        :param groups: The groups of this Nested.  # noqa: E501
+        :type groups: list[int]
         """
 
-        self._treatments = treatments
+        self._groups = groups
+
+    @property
+    def user_permissions(self):
+        """Gets the user_permissions of this Nested.  # noqa: E501
+
+        Specific permissions for this user.  # noqa: E501
+
+        :return: The user_permissions of this Nested.  # noqa: E501
+        :rtype: list[int]
+        """
+        return self._user_permissions
+
+    @user_permissions.setter
+    def user_permissions(self, user_permissions):
+        """Sets the user_permissions of this Nested.
+
+        Specific permissions for this user.  # noqa: E501
+
+        :param user_permissions: The user_permissions of this Nested.  # noqa: E501
+        :type user_permissions: list[int]
+        """
+
+        self._user_permissions = user_permissions
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

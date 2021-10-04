@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
 **ts** | **kotlin.Float** |  |  [optional]
-**eventData** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**temperature** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**eventData** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
+**temperature** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]
 
 
