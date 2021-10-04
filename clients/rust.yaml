@@ -2,4 +2,3 @@
 packageName: "print-nanny-client"
 packageVersion: "0.8.21"
 appDescription: "Official Rust Print Nanny API Client"
-supportMultipleResponses: true
