@@ -4,9 +4,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
 from print_nanny_webapp.devices.api.views import (
-    CameraControllerViewSet,
-    DeviceViewSet,
-# PrinterProfileViewSet
+    ApplianceViewSet
 )
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
@@ -38,11 +36,10 @@ from print_nanny_webapp.partners.api.views import ( GeeksViewSet )
 router = DefaultRouter()
 
 router.register("alerts", AlertViewSet)
+router.register("appliances", ApplianceViewSet)
 
-router.register("devices", DeviceViewSet)
-devices_router = NestedSimpleRouter(router, r'devices', lookup='device')
-# devices_router.register(r'printer-profiles', PrinterProfileViewSet, basename='printer-profiles')
-devices_router.register(r'cameras', CameraControllerViewSet, basename='cameras')
+appliances_router = NestedSimpleRouter(router, r'appliances', lookup='appliance')
+# devices_router.register(r'appliances', ApplianceViewSet, basename='appliances')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")
@@ -66,4 +63,4 @@ router.register(r"partners/3d-geeks", GeeksViewSet, basename='partner-3d-geeks')
 
 app_name = "api"
 
-urlpatterns = router.urls + devices_router.urls
+urlpatterns = router.urls + appliances_router.urls

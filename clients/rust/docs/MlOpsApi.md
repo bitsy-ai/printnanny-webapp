@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**device_calibration_update_or_create**](MlOpsApi.md#device_calibration_update_or_create) | **post** /api/device-calibrations/update-or-create/ | 
-[**device_calibrations_list**](MlOpsApi.md#device_calibrations_list) | **get** /api/device-calibrations/ | 
-[**device_calibrations_partial_update**](MlOpsApi.md#device_calibrations_partial_update) | **patch** /api/device-calibrations/{id}/ | 
-[**device_calibrations_retrieve**](MlOpsApi.md#device_calibrations_retrieve) | **get** /api/device-calibrations/{id}/ | 
-[**device_calibrations_update**](MlOpsApi.md#device_calibrations_update) | **put** /api/device-calibrations/{id}/ | 
-[**experiment_device_configs_list**](MlOpsApi.md#experiment_device_configs_list) | **get** /api/experiment-device-configs/ | 
-[**experiment_device_configs_retrieve**](MlOpsApi.md#experiment_device_configs_retrieve) | **get** /api/experiment-device-configs/{id}/ | 
-[**experiments_list**](MlOpsApi.md#experiments_list) | **get** /api/experiments/ | 
-[**experiments_retrieve**](MlOpsApi.md#experiments_retrieve) | **get** /api/experiments/{id}/ | 
-[**model_artifacts_list**](MlOpsApi.md#model_artifacts_list) | **get** /api/model-artifacts/ | 
-[**model_artifacts_retrieve**](MlOpsApi.md#model_artifacts_retrieve) | **get** /api/model-artifacts/{id}/ | 
+[**device_calibration_update_or_create**](MlOpsApi.md#device_calibration_update_or_create) | **POST** /api/device-calibrations/update-or-create/ | 
+[**device_calibrations_list**](MlOpsApi.md#device_calibrations_list) | **GET** /api/device-calibrations/ | 
+[**device_calibrations_partial_update**](MlOpsApi.md#device_calibrations_partial_update) | **PATCH** /api/device-calibrations/{id}/ | 
+[**device_calibrations_retrieve**](MlOpsApi.md#device_calibrations_retrieve) | **GET** /api/device-calibrations/{id}/ | 
+[**device_calibrations_update**](MlOpsApi.md#device_calibrations_update) | **PUT** /api/device-calibrations/{id}/ | 
+[**experiment_device_configs_list**](MlOpsApi.md#experiment_device_configs_list) | **GET** /api/experiment-device-configs/ | 
+[**experiment_device_configs_retrieve**](MlOpsApi.md#experiment_device_configs_retrieve) | **GET** /api/experiment-device-configs/{id}/ | 
+[**experiments_list**](MlOpsApi.md#experiments_list) | **GET** /api/experiments/ | 
+[**experiments_retrieve**](MlOpsApi.md#experiments_retrieve) | **GET** /api/experiments/{id}/ | 
+[**model_artifacts_list**](MlOpsApi.md#model_artifacts_list) | **GET** /api/model-artifacts/ | 
+[**model_artifacts_retrieve**](MlOpsApi.md#model_artifacts_retrieve) | **GET** /api/model-artifacts/{id}/ | 
 
 
 

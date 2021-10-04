@@ -243,8 +243,6 @@ class RemoteCommandEvent(object):
         :param event_source: The event_source of this RemoteCommandEvent.  # noqa: E501
         :type event_source: EventSourceEnum
         """
-        if self.local_vars_configuration.client_side_validation and event_source is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_source`, must not be `None`")  # noqa: E501
 
         self._event_source = event_source
 

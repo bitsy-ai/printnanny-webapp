@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **octoprint_device** | Option<**i32**> |  | [optional]
-**alert_method** | [**crate::models::AlertMethodEnum**](AlertMethodEnum.md) |  | 
 **event_type** | Option<[**crate::models::AlertEventTypeEnum**](AlertEventTypeEnum.md)> |  | [optional]
 **seen** | Option<**bool**> |  | [optional]
 **sent** | Option<**bool**> |  | [optional]

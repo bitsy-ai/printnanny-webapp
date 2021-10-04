@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **octoprintEventType** | **kotlin.String** |  |  [readonly]
 **received** | **kotlin.Boolean** |  |  [optional]
 **success** | **kotlin.Boolean** |  |  [optional]
-**iotcoreResponse** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
-**metadata** | [**kotlin.collections.Map&lt;kotlin.String, AnyType&gt;**](AnyType.md) |  |  [optional]
+**iotcoreResponse** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
+**metadata** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 
 
 

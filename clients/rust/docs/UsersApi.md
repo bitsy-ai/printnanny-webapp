@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**users_list**](UsersApi.md#users_list) | **get** /api/users/ | 
-[**users_me_retrieve**](UsersApi.md#users_me_retrieve) | **get** /api/users/me/ | 
-[**users_partial_update**](UsersApi.md#users_partial_update) | **patch** /api/users/{id}/ | 
-[**users_retrieve**](UsersApi.md#users_retrieve) | **get** /api/users/{id}/ | 
-[**users_update**](UsersApi.md#users_update) | **put** /api/users/{id}/ | 
+[**users_list**](UsersApi.md#users_list) | **GET** /api/users/ | 
+[**users_me_retrieve**](UsersApi.md#users_me_retrieve) | **GET** /api/users/me/ | 
+[**users_partial_update**](UsersApi.md#users_partial_update) | **PATCH** /api/users/{id}/ | 
+[**users_retrieve**](UsersApi.md#users_retrieve) | **GET** /api/users/{id}/ | 
+[**users_update**](UsersApi.md#users_update) | **PUT** /api/users/{id}/ | 
 
 
 

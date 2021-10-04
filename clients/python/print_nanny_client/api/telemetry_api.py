@@ -151,7 +151,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             201: "OctoPrintEvent",
             400: "OctoPrintEvent",
@@ -281,7 +281,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedOctoPrintEventList",
         }
@@ -414,7 +414,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "OctoPrintEvent",
         }
@@ -543,7 +543,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedPrintJobEventList",
         }
@@ -676,7 +676,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrintJobEvent",
         }
@@ -805,7 +805,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedPrintNannyPluginEventList",
         }
@@ -938,7 +938,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PrintNannyPluginEvent",
         }
@@ -1067,7 +1067,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedRemoteCommandEventList",
         }
@@ -1200,7 +1200,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "RemoteCommandEvent",
         }
@@ -1333,7 +1333,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             201: "TelemetryEventPolymorphic",
             400: "TelemetryEventPolymorphic",
@@ -1463,7 +1463,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedTelemetryEventPolymorphicList",
         }
@@ -1596,7 +1596,7 @@ class TelemetryApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "TelemetryEventPolymorphic",
         }

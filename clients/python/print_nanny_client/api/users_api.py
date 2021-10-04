@@ -143,7 +143,7 @@ class UsersApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "PaginatedUserList",
             201: "PaginatedUserList",
@@ -267,7 +267,7 @@ class UsersApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "User",
             201: "User",
@@ -413,7 +413,7 @@ class UsersApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "User",
             201: "User",
@@ -548,7 +548,7 @@ class UsersApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "User",
             201: "User",
@@ -698,7 +698,7 @@ class UsersApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "User",
             201: "User",

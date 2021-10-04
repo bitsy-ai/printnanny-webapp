@@ -11,6 +11,7 @@ from print_nanny_webapp.telemetry.models import (
     TelemetryEvent,
 )
 from print_nanny_webapp.telemetry.types import (
+    EventSource,
     PrintJobEventType,
     TelemetryEventType,
     PrintNannyPluginEventType,
@@ -31,7 +32,7 @@ class OctoprintFileSerializer(serializers.Serializer):
 
 
 class OctoprintJobSerializer(serializers.Serializer):
-    file = OctoprintFileSerializer(allow_null=True)
+    file = OctoprintFileSerializer(required=False, allow_null=True)
     estimatedPrintTime = serializers.FloatField(required=False, allow_null=True)
     averagePrintTime = serializers.FloatField(required=False, allow_null=True)
     lastPrintTime = serializers.FloatField(required=False, allow_null=True)
@@ -109,6 +110,10 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
 class TelemetryEventSerializer(serializers.ModelSerializer):
 
     ts = serializers.FloatField(required=False)
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.PRINT_NANNY_PLUGIN,
+    )
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
@@ -138,6 +143,7 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
 
 
 class OctoPrintEventSerializer(TelemetryEventSerializer):
+
     event_type = serializers.ChoiceField(choices=OctoprintEventType.choices)
 
     class Meta:

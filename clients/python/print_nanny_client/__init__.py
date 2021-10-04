@@ -14,13 +14,13 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.19"
+__version__ = "0.8.20"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
+from print_nanny_client.api.appliances_api import AppliancesApi
 from print_nanny_client.api.auth_api import AuthApi
 from print_nanny_client.api.auth__api import AuthApi
-from print_nanny_client.api.devices_api import DevicesApi
 from print_nanny_client.api.ml_ops_api import MlOpsApi
 from print_nanny_client.api.partners_geeks3_api import PartnersGeeks3Api
 from print_nanny_client.api.partners_geeks3d_api import PartnersGeeks3dApi
@@ -44,22 +44,23 @@ from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
 from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_request import AlertRequest
+from print_nanny_client.models.ansible_facts import AnsibleFacts
+from print_nanny_client.models.ansible_facts_request import AnsibleFactsRequest
+from print_nanny_client.models.appliance import Appliance
+from print_nanny_client.models.appliance_pki import AppliancePKI
+from print_nanny_client.models.appliance_pki_request import AppliancePKIRequest
+from print_nanny_client.models.appliance_request import ApplianceRequest
 from print_nanny_client.models.artifact_types_enum import ArtifactTypesEnum
 from print_nanny_client.models.callback_token_auth_request import CallbackTokenAuthRequest
 from print_nanny_client.models.callback_token_verification import CallbackTokenVerification
 from print_nanny_client.models.callback_token_verification_request import CallbackTokenVerificationRequest
-from print_nanny_client.models.camera_controller import CameraController
-from print_nanny_client.models.camera_controller_request import CameraControllerRequest
-from print_nanny_client.models.camera_source_type_enum import CameraSourceTypeEnum
-from print_nanny_client.models.camera_type_enum import CameraTypeEnum
 from print_nanny_client.models.command_enum import CommandEnum
+from print_nanny_client.models.create_ansible_facts_request import CreateAnsibleFactsRequest
+from print_nanny_client.models.create_appliance_pki_request import CreateAppliancePKIRequest
+from print_nanny_client.models.create_appliance_request import CreateApplianceRequest
 from print_nanny_client.models.detail_response import DetailResponse
-from print_nanny_client.models.device import Device
 from print_nanny_client.models.device_calibration import DeviceCalibration
 from print_nanny_client.models.device_calibration_request import DeviceCalibrationRequest
-from print_nanny_client.models.device_identity import DeviceIdentity
-from print_nanny_client.models.device_identity_ca_certs import DeviceIdentityCaCerts
-from print_nanny_client.models.device_request import DeviceRequest
 from print_nanny_client.models.email_auth_request import EmailAuthRequest
 from print_nanny_client.models.event_source_enum import EventSourceEnum
 from print_nanny_client.models.event_type0c4_enum import EventType0c4Enum
@@ -70,6 +71,7 @@ from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
 from print_nanny_client.models.nested import Nested
+from print_nanny_client.models.nested_request import NestedRequest
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest
@@ -99,9 +101,8 @@ from print_nanny_client.models.octoprint_progress_request import OctoprintProgre
 from print_nanny_client.models.octoprint_python import OctoprintPython
 from print_nanny_client.models.octoprint_python_request import OctoprintPythonRequest
 from print_nanny_client.models.paginated_alert_list import PaginatedAlertList
-from print_nanny_client.models.paginated_camera_controller_list import PaginatedCameraControllerList
+from print_nanny_client.models.paginated_appliance_list import PaginatedApplianceList
 from print_nanny_client.models.paginated_device_calibration_list import PaginatedDeviceCalibrationList
-from print_nanny_client.models.paginated_device_list import PaginatedDeviceList
 from print_nanny_client.models.paginated_experiment_device_config_list import PaginatedExperimentDeviceConfigList
 from print_nanny_client.models.paginated_experiment_list import PaginatedExperimentList
 from print_nanny_client.models.paginated_gcode_file_list import PaginatedGcodeFileList
@@ -120,9 +121,8 @@ from print_nanny_client.models.partner3_d_geeks_alert import Partner3DGeeksAlert
 from print_nanny_client.models.partner3_d_geeks_metadata import Partner3DGeeksMetadata
 from print_nanny_client.models.patched_alert_bulk_request_request import PatchedAlertBulkRequestRequest
 from print_nanny_client.models.patched_alert_request import PatchedAlertRequest
-from print_nanny_client.models.patched_camera_controller_request import PatchedCameraControllerRequest
+from print_nanny_client.models.patched_appliance_request import PatchedApplianceRequest
 from print_nanny_client.models.patched_device_calibration_request import PatchedDeviceCalibrationRequest
-from print_nanny_client.models.patched_device_request import PatchedDeviceRequest
 from print_nanny_client.models.patched_octo_print_device_request import PatchedOctoPrintDeviceRequest
 from print_nanny_client.models.patched_print_session_request import PatchedPrintSessionRequest
 from print_nanny_client.models.patched_printer_profile_request import PatchedPrinterProfileRequest
@@ -141,6 +141,7 @@ from print_nanny_client.models.printer_event_request import PrinterEventRequest
 from print_nanny_client.models.printer_profile import PrinterProfile
 from print_nanny_client.models.printer_profile_request import PrinterProfileRequest
 from print_nanny_client.models.printer_state_enum import PrinterStateEnum
+from print_nanny_client.models.release_channel_enum import ReleaseChannelEnum
 from print_nanny_client.models.remote_command_event import RemoteCommandEvent
 from print_nanny_client.models.remote_command_event_event_type_enum import RemoteCommandEventEventTypeEnum
 from print_nanny_client.models.remote_command_event_request import RemoteCommandEventRequest

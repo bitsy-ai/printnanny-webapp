@@ -153,7 +153,7 @@ class AuthApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "DetailResponse",
         }
@@ -292,7 +292,7 @@ class AuthApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "DetailResponse",
         }
@@ -431,7 +431,7 @@ class AuthApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "TokenResponse",
         }
@@ -555,7 +555,7 @@ class AuthApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "DetailResponse",
         }
@@ -679,7 +679,7 @@ class AuthApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "DetailResponse",
         }

@@ -13,7 +13,100 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `device_calibration_update_or_create`
+/// struct for typed successes of method [`device_calibration_update_or_create`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCalibrationUpdateOrCreateSuccess {
+    Status200(crate::models::DeviceCalibration),
+    Status201(crate::models::DeviceCalibration),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`device_calibrations_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCalibrationsListSuccess {
+    Status200(crate::models::PaginatedDeviceCalibrationList),
+    Status201(crate::models::PaginatedDeviceCalibrationList),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`device_calibrations_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCalibrationsPartialUpdateSuccess {
+    Status200(crate::models::DeviceCalibration),
+    Status201(crate::models::DeviceCalibration),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`device_calibrations_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCalibrationsRetrieveSuccess {
+    Status200(crate::models::DeviceCalibration),
+    Status201(crate::models::DeviceCalibration),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`device_calibrations_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCalibrationsUpdateSuccess {
+    Status200(crate::models::DeviceCalibration),
+    Status201(crate::models::DeviceCalibration),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`experiment_device_configs_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ExperimentDeviceConfigsListSuccess {
+    Status200(crate::models::PaginatedExperimentDeviceConfigList),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`experiment_device_configs_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ExperimentDeviceConfigsRetrieveSuccess {
+    Status200(crate::models::ExperimentDeviceConfig),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`experiments_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ExperimentsListSuccess {
+    Status200(crate::models::PaginatedExperimentList),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`experiments_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ExperimentsRetrieveSuccess {
+    Status200(crate::models::Experiment),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`model_artifacts_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ModelArtifactsListSuccess {
+    Status200(crate::models::PaginatedModelArtifactList),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`model_artifacts_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ModelArtifactsRetrieveSuccess {
+    Status200(crate::models::ModelArtifact),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`device_calibration_update_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeviceCalibrationUpdateOrCreateError {
@@ -21,7 +114,7 @@ pub enum DeviceCalibrationUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `device_calibrations_list`
+/// struct for typed errors of method [`device_calibrations_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeviceCalibrationsListError {
@@ -29,7 +122,7 @@ pub enum DeviceCalibrationsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `device_calibrations_partial_update`
+/// struct for typed errors of method [`device_calibrations_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeviceCalibrationsPartialUpdateError {
@@ -37,7 +130,7 @@ pub enum DeviceCalibrationsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `device_calibrations_retrieve`
+/// struct for typed errors of method [`device_calibrations_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeviceCalibrationsRetrieveError {
@@ -45,7 +138,7 @@ pub enum DeviceCalibrationsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `device_calibrations_update`
+/// struct for typed errors of method [`device_calibrations_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeviceCalibrationsUpdateError {
@@ -53,42 +146,42 @@ pub enum DeviceCalibrationsUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `experiment_device_configs_list`
+/// struct for typed errors of method [`experiment_device_configs_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExperimentDeviceConfigsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `experiment_device_configs_retrieve`
+/// struct for typed errors of method [`experiment_device_configs_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExperimentDeviceConfigsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `experiments_list`
+/// struct for typed errors of method [`experiments_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExperimentsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `experiments_retrieve`
+/// struct for typed errors of method [`experiments_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ExperimentsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `model_artifacts_list`
+/// struct for typed errors of method [`model_artifacts_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ModelArtifactsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `model_artifacts_retrieve`
+/// struct for typed errors of method [`model_artifacts_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ModelArtifactsRetrieveError {
@@ -96,17 +189,18 @@ pub enum ModelArtifactsRetrieveError {
 }
 
 
-pub async fn device_calibration_update_or_create(configuration: &configuration::Configuration, device_calibration_request: crate::models::DeviceCalibrationRequest) -> Result<crate::models::DeviceCalibration, Error<DeviceCalibrationUpdateOrCreateError>> {
+pub async fn device_calibration_update_or_create(configuration: &configuration::Configuration, device_calibration_request: crate::models::DeviceCalibrationRequest) -> Result<ResponseContent<DeviceCalibrationUpdateOrCreateSuccess>, Error<DeviceCalibrationUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/device-calibrations/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.post(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/device-calibrations/update-or-create/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&device_calibration_request);
@@ -118,7 +212,9 @@ pub async fn device_calibration_update_or_create(configuration: &configuration::
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<DeviceCalibrationUpdateOrCreateSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<DeviceCalibrationUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -126,20 +222,21 @@ pub async fn device_calibration_update_or_create(configuration: &configuration::
     }
 }
 
-pub async fn device_calibrations_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedDeviceCalibrationList, Error<DeviceCalibrationsListError>> {
+pub async fn device_calibrations_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<DeviceCalibrationsListSuccess>, Error<DeviceCalibrationsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/device-calibrations/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/device-calibrations/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -150,7 +247,9 @@ pub async fn device_calibrations_list(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<DeviceCalibrationsListSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<DeviceCalibrationsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -158,17 +257,18 @@ pub async fn device_calibrations_list(configuration: &configuration::Configurati
     }
 }
 
-pub async fn device_calibrations_partial_update(configuration: &configuration::Configuration, id: i32, patched_device_calibration_request: Option<crate::models::PatchedDeviceCalibrationRequest>) -> Result<crate::models::DeviceCalibration, Error<DeviceCalibrationsPartialUpdateError>> {
+pub async fn device_calibrations_partial_update(configuration: &configuration::Configuration, id: i32, patched_device_calibration_request: Option<crate::models::PatchedDeviceCalibrationRequest>) -> Result<ResponseContent<DeviceCalibrationsPartialUpdateSuccess>, Error<DeviceCalibrationsPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_device_calibration_request);
@@ -180,7 +280,9 @@ pub async fn device_calibrations_partial_update(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<DeviceCalibrationsPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<DeviceCalibrationsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -188,17 +290,18 @@ pub async fn device_calibrations_partial_update(configuration: &configuration::C
     }
 }
 
-pub async fn device_calibrations_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::DeviceCalibration, Error<DeviceCalibrationsRetrieveError>> {
+pub async fn device_calibrations_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<DeviceCalibrationsRetrieveSuccess>, Error<DeviceCalibrationsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -209,7 +312,9 @@ pub async fn device_calibrations_retrieve(configuration: &configuration::Configu
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<DeviceCalibrationsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<DeviceCalibrationsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -217,17 +322,18 @@ pub async fn device_calibrations_retrieve(configuration: &configuration::Configu
     }
 }
 
-pub async fn device_calibrations_update(configuration: &configuration::Configuration, id: i32, device_calibration_request: crate::models::DeviceCalibrationRequest) -> Result<crate::models::DeviceCalibration, Error<DeviceCalibrationsUpdateError>> {
+pub async fn device_calibrations_update(configuration: &configuration::Configuration, id: i32, device_calibration_request: crate::models::DeviceCalibrationRequest) -> Result<ResponseContent<DeviceCalibrationsUpdateSuccess>, Error<DeviceCalibrationsUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/device-calibrations/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&device_calibration_request);
@@ -239,7 +345,9 @@ pub async fn device_calibrations_update(configuration: &configuration::Configura
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<DeviceCalibrationsUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<DeviceCalibrationsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -247,20 +355,21 @@ pub async fn device_calibrations_update(configuration: &configuration::Configura
     }
 }
 
-pub async fn experiment_device_configs_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedExperimentDeviceConfigList, Error<ExperimentDeviceConfigsListError>> {
+pub async fn experiment_device_configs_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<ExperimentDeviceConfigsListSuccess>, Error<ExperimentDeviceConfigsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/experiment-device-configs/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/experiment-device-configs/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -271,7 +380,9 @@ pub async fn experiment_device_configs_list(configuration: &configuration::Confi
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ExperimentDeviceConfigsListSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ExperimentDeviceConfigsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -279,17 +390,18 @@ pub async fn experiment_device_configs_list(configuration: &configuration::Confi
     }
 }
 
-pub async fn experiment_device_configs_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::ExperimentDeviceConfig, Error<ExperimentDeviceConfigsRetrieveError>> {
+pub async fn experiment_device_configs_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<ExperimentDeviceConfigsRetrieveSuccess>, Error<ExperimentDeviceConfigsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/experiment-device-configs/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/experiment-device-configs/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -300,7 +412,9 @@ pub async fn experiment_device_configs_retrieve(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ExperimentDeviceConfigsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ExperimentDeviceConfigsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -308,20 +422,21 @@ pub async fn experiment_device_configs_retrieve(configuration: &configuration::C
     }
 }
 
-pub async fn experiments_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedExperimentList, Error<ExperimentsListError>> {
+pub async fn experiments_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<ExperimentsListSuccess>, Error<ExperimentsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/experiments/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/experiments/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -332,7 +447,9 @@ pub async fn experiments_list(configuration: &configuration::Configuration, page
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ExperimentsListSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ExperimentsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -340,17 +457,18 @@ pub async fn experiments_list(configuration: &configuration::Configuration, page
     }
 }
 
-pub async fn experiments_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Experiment, Error<ExperimentsRetrieveError>> {
+pub async fn experiments_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<ExperimentsRetrieveSuccess>, Error<ExperimentsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/experiments/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/experiments/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -361,7 +479,9 @@ pub async fn experiments_retrieve(configuration: &configuration::Configuration, 
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ExperimentsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ExperimentsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -369,20 +489,21 @@ pub async fn experiments_retrieve(configuration: &configuration::Configuration, 
     }
 }
 
-pub async fn model_artifacts_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedModelArtifactList, Error<ModelArtifactsListError>> {
+pub async fn model_artifacts_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<ModelArtifactsListSuccess>, Error<ModelArtifactsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/model-artifacts/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/model-artifacts/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -393,7 +514,9 @@ pub async fn model_artifacts_list(configuration: &configuration::Configuration, 
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ModelArtifactsListSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ModelArtifactsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -401,17 +524,18 @@ pub async fn model_artifacts_list(configuration: &configuration::Configuration, 
     }
 }
 
-pub async fn model_artifacts_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::ModelArtifact, Error<ModelArtifactsRetrieveError>> {
+pub async fn model_artifacts_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<ModelArtifactsRetrieveSuccess>, Error<ModelArtifactsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/model-artifacts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/model-artifacts/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -422,7 +546,9 @@ pub async fn model_artifacts_retrieve(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<ModelArtifactsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<ModelArtifactsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

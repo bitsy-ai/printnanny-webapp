@@ -11,6 +11,8 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
+from .choices import ApplianceReleaseChannel, PrinterSoftware
+
 from print_nanny_webapp.devices.services import (
     delete_cloudiot_device,
     generate_keypair,
@@ -28,6 +30,83 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
+
+
+class Appliance(SafeDeleteModel):
+    """ """
+
+    class Meta:
+        unique_together = ("user", "hostname")
+
+    _safedelete_policy = SOFT_DELETE
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="appliances"
+    )
+    hostname = models.CharField(max_length=255)
+
+
+class CloudIoTDevice(SafeDeleteModel):
+    """
+    Instance of cloudiot.projects.locations.registries.devices#Device
+    https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
+    """
+
+    def pre_softdelete(self):
+        return delete_cloudiot_device(self.numId)
+
+    numId = models.BigIntegerField(primary_key=True)
+    name = models.CharField(max_length=255)
+    id = models.CharField(max_length=255)
+
+    appliance = models.OneToOneField(
+        Appliance,
+        on_delete=models.CASCADE,
+        related_name="cloudiot_device",
+        db_index=True,
+    )
+
+
+class AppliancePKI(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+    public_key = models.TextField()
+    public_key_checksum = models.CharField(max_length=255)
+    private_key_checksum = models.CharField(max_length=255)
+    fingerprint = models.CharField(max_length=255)
+    appliance = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="pki", db_index=True
+    )
+
+
+class AnsibleFacts(SafeDeleteModel):
+    appliance = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
+    )
+    # platform info
+    os_version = models.CharField(max_length=255)
+    os = models.CharField(max_length=255)
+    kernel_version = models.CharField(max_length=255)
+    # hardware info
+    # /proc/cpuinfo HARDWARE
+    hardware = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo REVISION
+    revision = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo MODEL
+    model = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo SERIAL
+    serial = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo MAX PROCESSOR
+    cores = models.IntegerField()
+    ram = models.BigIntegerField()
+    cpu_flags = ArrayField(models.CharField(max_length=255))
+
+    release_channel = models.CharField(
+        max_length=8,
+        choices=ApplianceReleaseChannel.choices,
+        default=ApplianceReleaseChannel.MAIN,
+    )
+    json = models.JSONField()
 
 
 class DeviceManager(SafeDeleteManager):
@@ -141,11 +220,6 @@ class Device(SafeDeleteModel):
     ram = models.BigIntegerField()
     cpu_flags = ArrayField(models.CharField(max_length=255))
 
-    # TODO enable front-end views in release v0.8 go-live
-    # @property
-    # def manage_url(self):
-    #     reverse("dashboard:devices:detail", kwargs={"pk": self.id})
-
     @property
     def cloudiot_device_configs(self):
         """pa
@@ -193,93 +267,76 @@ class CameraController(SafeDeleteModel):
     )
 
 
-class PrinterController(PolymorphicModel, SafeDeleteModel):
+# class PrinterController(PolymorphicModel, SafeDeleteModel):
 
-    _safedelete_policy = SOFT_DELETE
+#     _safedelete_policy = SOFT_DELETE
 
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
-    )
-    device = models.ForeignKey(
-        Device, on_delete=models.CASCADE, related_name="printer_controllers"
-    )
-    cli_version = models.CharField(max_length=255)
-
-
-class OctoprintController(PrinterController):
-
-    python_version = models.CharField(max_length=255)
-    pip_version = models.CharField(max_length=255)
-    virtualenv = models.CharField(max_length=255, null=True)
-    octoprint_version = models.CharField(max_length=255)
-    plugin_version = models.CharField(max_length=255)
+#     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+#     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+#     user = models.ForeignKey(
+#         UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
+#     )
+#     appliance = models.ForeignKey(
+#         Device, on_delete=models.CASCADE, related_name="printer_controllers"
+#     )
+#     software = models.CharField(max_length=12, choices=PrinterSoftware.choices)
 
 
-# TODO
-# class RepetierController(PrinterController):
-#     pass
+# class PrinterProfile(SafeDeleteModel):
+#     class Meta:
+#         unique_together = (
+#             "user",
+#             "name",
+#         )
+#         abstract = True
 
-# TODO
-# class MainsailController(PrinterController):
-#     pass
-
-
-class PrinterProfile(PolymorphicModel, SafeDeleteModel):
-    class Meta:
-        unique_together = (
-            "user",
-            "name",
-        )
-
-    _safedelete_policy = SOFT_DELETE
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    name = models.CharField(max_length=255)
-    user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, related_name="printer_profiles"
-    )
-    controller = models.ForeignKey(
-        PrinterController, on_delete=models.CASCADE, related_name="printer_profiles"
-    )
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+#     _safedelete_policy = SOFT_DELETE
+#     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+#     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+#     name = models.CharField(max_length=255)
+#     user = models.ForeignKey(
+#         UserModel, on_delete=models.CASCADE, related_name="printer_profiles"
+#     )
+#     controller = models.ForeignKey(
+#         PrinterController, on_delete=models.CASCADE, related_name="printer_profiles"
+#     )
+#     device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
 
-class OctoprintPrinterProfile(PrinterProfile):
-    _safedelete_policy = SOFT_DELETE
+# class OctoprintPrinterProfile(PrinterProfile):
+#     _safedelete_policy = SOFT_DELETE
 
-    octoprint_controller = models.ForeignKey(
-        OctoprintController, on_delete=models.CASCADE, db_index=True
-    )
+#     printer_controller = models.ForeignKey(
+#         PrinterController, on_delete=models.CASCADE, db_index=True
+#     )
 
-    axes_e_inverted = models.BooleanField(null=True)
-    axes_e_speed = models.IntegerField(null=True)
+#     axes_e_inverted = models.BooleanField(null=True)
+#     axes_e_speed = models.IntegerField(null=True)
 
-    axes_x_speed = models.IntegerField(null=True)
-    axes_x_inverted = models.BooleanField(null=True)
+#     axes_x_speed = models.IntegerField(null=True)
+#     axes_x_inverted = models.BooleanField(null=True)
 
-    axes_y_inverted = models.BooleanField(null=True)
-    axes_y_speed = models.IntegerField(null=True)
+#     axes_y_inverted = models.BooleanField(null=True)
+#     axes_y_speed = models.IntegerField(null=True)
 
-    axes_z_inverted = models.BooleanField(null=True)
-    axes_z_speed = models.IntegerField(null=True)
+#     axes_z_inverted = models.BooleanField(null=True)
+#     axes_z_speed = models.IntegerField(null=True)
 
-    extruder_count = models.IntegerField(null=True)
-    extruder_nozzle_diameter = models.FloatField(null=True)
-    extruder_shared_nozzle = models.BooleanField(null=True)
+#     extruder_count = models.IntegerField(null=True)
+#     extruder_nozzle_diameter = models.FloatField(null=True)
+#     extruder_shared_nozzle = models.BooleanField(null=True)
 
-    heated_bed = models.BooleanField(null=True)
-    heated_chamber = models.BooleanField(null=True)
+#     heated_bed = models.BooleanField(null=True)
+#     heated_chamber = models.BooleanField(null=True)
 
-    model = models.CharField(max_length=255, null=True, blank=True)
+#     model = models.CharField(max_length=255, null=True, blank=True)
 
-    volume_custom_box = models.JSONField(default=dict)
-    volume_depth = models.FloatField(null=True)
-    volume_formfactor = models.CharField(null=True, max_length=255)
-    volume_height = models.FloatField(null=True)
-    volume_origin = models.CharField(null=True, max_length=255)
-    volume_width = models.FloatField(null=True)
+#     volume_custom_box = models.JSONField(default=dict)
+#     volume_depth = models.FloatField(null=True)
+#     volume_formfactor = models.CharField(null=True, max_length=255)
+#     volume_height = models.FloatField(null=True)
+#     volume_origin = models.CharField(null=True, max_length=255)
+#     volume_width = models.FloatField(null=True)
 
 
 # TODO

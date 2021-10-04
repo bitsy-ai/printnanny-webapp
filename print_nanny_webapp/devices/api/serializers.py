@@ -5,16 +5,95 @@ from drf_spectacular.utils import extend_schema_field
 from drf_spectacular.types import OpenApiTypes
 
 from print_nanny_webapp.devices.models import (
+    Appliance,
     CameraController,
+    CloudIoTDevice,
     Device,
-    PrinterController,
-    OctoprintController,
-    PrinterProfile,
-    OctoprintPrinterProfile,
+    AppliancePKI,
+    AnsibleFacts,
+    # PrinterController,
+    # PrinterProfile,
+    # OctoprintPrinterProfile,
 )
 from print_nanny_webapp.devices.services import CACerts
 
 
+##
+# v1 Appliance Identity Provisioning (distributed via rpi-imager)
+##
+class CloudIoTDeviceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CloudIoTDevice
+        fields = "__all__"
+
+
+class AppliancePKISerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AppliancePKI
+        fields = "__all__"
+
+
+class AnsibleFactsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AppliancePKI
+        fields = "__all__"
+
+
+class ApplianceSerializer(serializers.ModelSerializer):
+    pki = AppliancePKISerializer()
+    ansible_facts = AnsibleFactsSerializer()
+
+    class Meta:
+        model = Appliance
+        fields = "__all__"
+
+
+class CreateAppliancePKISerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AppliancePKI
+        fields = (
+            "public_key",
+            "public_key_checksum",
+            "private_key_checksum",
+            "fingerprint",
+        )
+
+
+class CreateAnsibleFactsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnsibleFacts
+        fields = (
+            "os_version",
+            "os",
+            "kernel_version",
+            "hardware",
+            "revision",
+            "model",
+            "serial",
+            "cores",
+            "ram",
+            "cpu_flags",
+            "release_channel",
+            "json",
+        )
+
+
+class CreateApplianceSerializer(serializers.ModelSerializer):
+    pki = CreateAppliancePKISerializer()
+    ansible_facts = CreateAnsibleFactsSerializer()
+
+    class Meta:
+        model = Appliance
+        fields = (
+            "ansible_facts",
+            "hostname",
+            "pki",
+        )
+
+
+##
+# v0 Device Identity Provisioning (distributed as OctoPrint plugin)
+##
 class DeviceIdentitySerializer(serializers.ModelSerializer):
 
     ca_certs = serializers.SerializerMethodField()
@@ -138,74 +217,3 @@ class DeviceSerializer(serializers.ModelSerializer):
         return Device.objects.update_or_create(
             user=user, name=name, defaults=validated_data
         )
-
-
-class PrinterControllerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrinterController
-        read_only_fields = ("user", "polymorphic_ctype")
-        exclude = ("deleted",)
-
-
-class OctoprintControllerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OctoprintController
-        read_only_fields = ("user", "polymorphic_ctype")
-        exclude = ("deleted",)
-
-
-class PrinterControllerPolymorphicSerializer(PolymorphicSerializer):
-    model_serializer_mapping = {
-        PrinterController: PrinterControllerSerializer,
-        OctoprintController: OctoprintControllerSerializer,
-    }
-
-    def to_representation(self, instance):
-        if isinstance(instance, Mapping):
-            resource_type = self._get_resource_type_from_mapping(instance)
-            serializer = self._get_serializer_from_resource_type(resource_type)
-        else:
-            resource_type = self.to_resource_type(instance)
-            serializer = self._get_serializer_from_model_or_instance(instance)
-
-        ret = serializer.to_representation(instance)
-        return ret
-
-
-class PrinterProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrinterProfile
-        read_only_fields = ("user", "polymorphic_ctype")
-        exclude = ("deleted",)
-
-
-class OctoprintPrinterProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OctoprintPrinterProfile
-        read_only_fields = ("user", "polymorphic_ctype")
-        exclude = ("deleted",)
-
-
-# class PrinterProfilePolymorphicSerializer(PolymorphicSerializer):
-#     model_serializer_mapping = {
-#         PrinterProfile: PrinterProfileSerializer,
-#         OctoprintPrinterProfile: OctoprintPrinterProfileSerializer,
-#     }
-
-#     def to_representation(self, instance):
-#         if isinstance(instance, Mapping):
-#             resource_type = self._get_resource_type_from_mapping(instance)
-#             serializer = self._get_serializer_from_resource_type(resource_type)
-#         else:
-#             resource_type = self.to_resource_type(instance)
-#             serializer = self._get_serializer_from_model_or_instance(instance)
-
-#         ret = serializer.to_representation(instance)
-#         return ret
-
-
-class CameraControllerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CameraController
-        read_only_fields = ("user",)
-        exclude = ("deleted",)

@@ -241,8 +241,6 @@ rust-client: clean-rust-client
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
 		-t /local/client-templates/rust
-	sed -i "s/Box::new(file)/None/g" clients/rust/src/models/octoprint_job.rs
-	sed -i "s/Box::new(file)/None/g" clients/rust/src/models/octoprint_job_request.rs
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
@@ -296,7 +294,7 @@ python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 rust-client-release: rust-client
-	git add -A && git commit -m "0.8.19 client codegen ✨"
+	git add -A && git commit -m "0.8.21 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release

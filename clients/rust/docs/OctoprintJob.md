@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file** | Option<[**crate::models::OctoprintFile**](OctoprintFile.md)> |  | 
+**file** | Option<[**crate::models::OctoprintFile**](OctoprintFile.md)> |  | [optional]
 **estimated_print_time** | Option<**f32**> |  | [optional]
 **average_print_time** | Option<**f32**> |  | [optional]
 **last_print_time** | Option<**f32**> |  | [optional]

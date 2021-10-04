@@ -130,8 +130,6 @@ class ExperimentDeviceConfig(object):
         :param experiment: The experiment of this ExperimentDeviceConfig.  # noqa: E501
         :type experiment: Nested
         """
-        if self.local_vars_configuration.client_side_validation and experiment is None:  # noqa: E501
-            raise ValueError("Invalid value for `experiment`, must not be `None`")  # noqa: E501
 
         self._experiment = experiment
 
@@ -153,8 +151,6 @@ class ExperimentDeviceConfig(object):
         :param artifact: The artifact of this ExperimentDeviceConfig.  # noqa: E501
         :type artifact: Nested
         """
-        if self.local_vars_configuration.client_side_validation and artifact is None:  # noqa: E501
-            raise ValueError("Invalid value for `artifact`, must not be `None`")  # noqa: E501
 
         self._artifact = artifact
 

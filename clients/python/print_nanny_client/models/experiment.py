@@ -220,8 +220,6 @@ class Experiment(object):
         :param control: The control of this Experiment.  # noqa: E501
         :type control: Nested
         """
-        if self.local_vars_configuration.client_side_validation and control is None:  # noqa: E501
-            raise ValueError("Invalid value for `control`, must not be `None`")  # noqa: E501
 
         self._control = control
 

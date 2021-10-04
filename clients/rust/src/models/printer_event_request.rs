@@ -13,6 +13,8 @@
 pub struct PrinterEventRequest {
     #[serde(rename = "ts", skip_serializing_if = "Option::is_none")]
     pub ts: Option<f32>,
+    #[serde(rename = "event_source", skip_serializing_if = "Option::is_none")]
+    pub event_source: Option<Box<crate::models::EventSourceEnum>>,
     #[serde(rename = "event_type")]
     pub event_type: crate::models::EventType0c4Enum,
     #[serde(rename = "octoprint_environment")]
@@ -41,6 +43,7 @@ impl PrinterEventRequest {
     pub fn new(event_type: crate::models::EventType0c4Enum, octoprint_environment: crate::models::OctoprintEnvironmentRequest, octoprint_printer_data: crate::models::OctoprintPrinterDataRequest, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, printer_state: crate::models::PrinterStateEnum, octoprint_device: i32) -> PrinterEventRequest {
         PrinterEventRequest {
             ts: None,
+            event_source: None,
             event_type,
             octoprint_environment: Box::new(octoprint_environment),
             octoprint_printer_data: Box::new(octoprint_printer_data),

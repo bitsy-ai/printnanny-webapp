@@ -13,8 +13,6 @@
 pub struct PatchedAlertRequest {
     #[serde(rename = "octoprint_device", skip_serializing_if = "Option::is_none")]
     pub octoprint_device: Option<i32>,
-    #[serde(rename = "alert_method", skip_serializing_if = "Option::is_none")]
-    pub alert_method: Option<crate::models::AlertMethodEnum>,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
     pub event_type: Option<Box<crate::models::AlertEventTypeEnum>>,
     #[serde(rename = "seen", skip_serializing_if = "Option::is_none")]
@@ -27,7 +25,6 @@ impl PatchedAlertRequest {
     pub fn new() -> PatchedAlertRequest {
         PatchedAlertRequest {
             octoprint_device: None,
-            alert_method: None,
             event_type: None,
             seen: None,
             sent: None,

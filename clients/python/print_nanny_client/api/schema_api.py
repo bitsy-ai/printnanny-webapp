@@ -145,7 +145,7 @@ class SchemaApi(object):
 
         # Authentication setting
         auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
-        
+
         response_types_map = {
             200: "dict(str, object)",
         }

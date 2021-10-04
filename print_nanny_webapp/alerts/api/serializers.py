@@ -80,7 +80,6 @@ class AlertSerializer(serializers.ModelSerializer):
             "manage_device_url",
             "user",
             "octoprint_device",
-            "alert_method",
             "event_type",
             "seen",
             "sent",
@@ -88,7 +87,10 @@ class AlertSerializer(serializers.ModelSerializer):
             "updated_dt",
             "message",
         ]
-        read_only_fields = ("user",)
+        read_only_fields = (
+            "user",
+            "alert_method",
+        )
 
 
 class AlertBulkRequestSerializer(serializers.Serializer):

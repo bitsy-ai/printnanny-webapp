@@ -37,23 +37,27 @@ class TestNested(unittest.TestCase):
         if include_optional :
             return Nested(
                 id = 56, 
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                active = True, 
-                name = '', 
-                hypothesis = '', 
-                notion_url = '', 
-                control = 56, 
-                treatments = [
+                password = '', 
+                is_superuser = True, 
+                is_staff = True, 
+                is_active = True, 
+                date_joined = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                last_login = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                first_name = '', 
+                last_name = '', 
+                email = '', 
+                groups = [
+                    56
+                    ], 
+                user_permissions = [
                     56
                     ]
             )
         else :
             return Nested(
                 id = 56,
-                created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                name = '',
-                hypothesis = '',
-                control = 56,
+                password = '',
+                email = '',
         )
 
     def testNested(self):

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**metadata_retrieve**](PartnersGeeks3dApi.md#metadata_retrieve) | **get** /api/partners/3d-geeks/{id}/ | 
+[**metadata_retrieve**](PartnersGeeks3dApi.md#metadata_retrieve) | **GET** /api/partners/3d-geeks/{id}/ | 
 
 
 

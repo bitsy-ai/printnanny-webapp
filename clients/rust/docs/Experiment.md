@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **active** | Option<**bool**> |  | [optional]
 **name** | **String** |  | 
 **hypothesis** | **String** |  | 
-**control** | [**crate::models::Nested**](Nested.md) |  | [readonly]
-**treatments** | [**Vec<crate::models::Nested>**](Nested.md) |  | [readonly]
+**control** | **i32** |  | 
+**treatments** | Option<**Vec<i32>**> |  | [optional]
 **notion_url** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

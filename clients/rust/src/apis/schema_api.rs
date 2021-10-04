@@ -13,7 +13,15 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `schema_retrieve`
+/// struct for typed successes of method [`schema_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SchemaRetrieveSuccess {
+    Status200(::std::collections::HashMap<String, serde_json::Value>),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`schema_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SchemaRetrieveError {
@@ -22,20 +30,21 @@ pub enum SchemaRetrieveError {
 
 
 /// OpenApi3 schema for this API. Format can be selected via content negotiation.  - YAML: application/vnd.oai.openapi - JSON: application/vnd.oai.openapi+json
-pub async fn schema_retrieve(configuration: &configuration::Configuration, lang: Option<&str>) -> Result<::std::collections::HashMap<String, serde_json::Value>, Error<SchemaRetrieveError>> {
+pub async fn schema_retrieve(configuration: &configuration::Configuration, lang: Option<&str>) -> Result<ResponseContent<SchemaRetrieveSuccess>, Error<SchemaRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/schema/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/schema/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = lang {
         local_var_req_builder = local_var_req_builder.query(&[("lang", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -46,7 +55,9 @@ pub async fn schema_retrieve(configuration: &configuration::Configuration, lang:
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<SchemaRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<SchemaRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

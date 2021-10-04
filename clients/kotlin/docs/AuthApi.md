@@ -54,8 +54,8 @@ Name | Type | Description  | Notes
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 
@@ -106,8 +106,8 @@ Name | Type | Description  | Notes
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 
@@ -158,8 +158,8 @@ Name | Type | Description  | Notes
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 
@@ -210,8 +210,8 @@ Name | Type | Description  | Notes
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 
@@ -258,8 +258,8 @@ This endpoint does not need any parameter.
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 
@@ -306,8 +306,8 @@ This endpoint does not need any parameter.
 
 
 Configure cookieAuth:
-    ApiClient.apiKey["Session"] = ""
-    ApiClient.apiKeyPrefix["Session"] = ""
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
 Configure tokenAuth:
     ApiClient.accessToken = ""
 

@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**auth_email_create**](AuthApi.md#auth_email_create) | **post** /auth/email/ | 
-[**auth_mobile_create**](AuthApi.md#auth_mobile_create) | **post** /auth/mobile/ | 
-[**auth_token_create**](AuthApi.md#auth_token_create) | **post** /auth/token/ | 
-[**auth_verify_create**](AuthApi.md#auth_verify_create) | **post** /auth/verify/ | 
-[**auth_verify_email_create**](AuthApi.md#auth_verify_email_create) | **post** /auth/verify/email/ | 
-[**auth_verify_mobile_create**](AuthApi.md#auth_verify_mobile_create) | **post** /auth/verify/mobile/ | 
+[**auth_email_create**](AuthApi.md#auth_email_create) | **POST** /auth/email/ | 
+[**auth_mobile_create**](AuthApi.md#auth_mobile_create) | **POST** /auth/mobile/ | 
+[**auth_token_create**](AuthApi.md#auth_token_create) | **POST** /auth/token/ | 
+[**auth_verify_create**](AuthApi.md#auth_verify_create) | **POST** /auth/verify/ | 
+[**auth_verify_email_create**](AuthApi.md#auth_verify_email_create) | **POST** /auth/verify/email/ | 
+[**auth_verify_mobile_create**](AuthApi.md#auth_verify_mobile_create) | **POST** /auth/verify/mobile/ | 
 
 
 

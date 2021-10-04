@@ -13,49 +13,108 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `alerts_list`
+/// struct for typed successes of method [`alerts_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsListSuccess {
+    Status200(crate::models::PaginatedAlertList),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_partial_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsPartialUpdateSuccess {
+    Status200(crate::models::Alert),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_recent`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsRecentSuccess {
+    Status200(crate::models::AlertBulkResponse),
+    Status202(crate::models::AlertBulkResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_retrieve`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsRetrieveSuccess {
+    Status200(crate::models::Alert),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_seen`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsSeenSuccess {
+    Status200(crate::models::AlertBulkResponse),
+    Status202(crate::models::AlertBulkResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_unread`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsUnreadSuccess {
+    Status200(crate::models::AlertBulkResponse),
+    Status202(crate::models::AlertBulkResponse),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed successes of method [`alerts_update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AlertsUpdateSuccess {
+    Status200(crate::models::Alert),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`alerts_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_partial_update`
+/// struct for typed errors of method [`alerts_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_recent`
+/// struct for typed errors of method [`alerts_recent`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsRecentError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_retrieve`
+/// struct for typed errors of method [`alerts_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_seen`
+/// struct for typed errors of method [`alerts_seen`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsSeenError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_unread`
+/// struct for typed errors of method [`alerts_unread`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsUnreadError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `alerts_update`
+/// struct for typed errors of method [`alerts_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AlertsUpdateError {
@@ -63,20 +122,21 @@ pub enum AlertsUpdateError {
 }
 
 
-pub async fn alerts_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedAlertList, Error<AlertsListError>> {
+pub async fn alerts_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<AlertsListSuccess>, Error<AlertsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -87,7 +147,9 @@ pub async fn alerts_list(configuration: &configuration::Configuration, page: Opt
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsListSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -95,17 +157,18 @@ pub async fn alerts_list(configuration: &configuration::Configuration, page: Opt
     }
 }
 
-pub async fn alerts_partial_update(configuration: &configuration::Configuration, id: i32, patched_alert_request: Option<crate::models::PatchedAlertRequest>) -> Result<crate::models::Alert, Error<AlertsPartialUpdateError>> {
+pub async fn alerts_partial_update(configuration: &configuration::Configuration, id: i32, patched_alert_request: Option<crate::models::PatchedAlertRequest>) -> Result<ResponseContent<AlertsPartialUpdateSuccess>, Error<AlertsPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_alert_request);
@@ -117,7 +180,9 @@ pub async fn alerts_partial_update(configuration: &configuration::Configuration,
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -125,17 +190,18 @@ pub async fn alerts_partial_update(configuration: &configuration::Configuration,
     }
 }
 
-pub async fn alerts_recent(configuration: &configuration::Configuration, ) -> Result<crate::models::AlertBulkResponse, Error<AlertsRecentError>> {
+pub async fn alerts_recent(configuration: &configuration::Configuration, ) -> Result<ResponseContent<AlertsRecentSuccess>, Error<AlertsRecentError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/recent/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/recent/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -146,7 +212,9 @@ pub async fn alerts_recent(configuration: &configuration::Configuration, ) -> Re
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsRecentSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsRecentError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -154,17 +222,18 @@ pub async fn alerts_recent(configuration: &configuration::Configuration, ) -> Re
     }
 }
 
-pub async fn alerts_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Alert, Error<AlertsRetrieveError>> {
+pub async fn alerts_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<AlertsRetrieveSuccess>, Error<AlertsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -175,7 +244,9 @@ pub async fn alerts_retrieve(configuration: &configuration::Configuration, id: i
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -183,17 +254,18 @@ pub async fn alerts_retrieve(configuration: &configuration::Configuration, id: i
     }
 }
 
-pub async fn alerts_seen(configuration: &configuration::Configuration, patched_alert_bulk_request_request: Option<crate::models::PatchedAlertBulkRequestRequest>) -> Result<crate::models::AlertBulkResponse, Error<AlertsSeenError>> {
+pub async fn alerts_seen(configuration: &configuration::Configuration, patched_alert_bulk_request_request: Option<crate::models::PatchedAlertBulkRequestRequest>) -> Result<ResponseContent<AlertsSeenSuccess>, Error<AlertsSeenError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/seen/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.patch(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/seen/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_alert_bulk_request_request);
@@ -205,7 +277,9 @@ pub async fn alerts_seen(configuration: &configuration::Configuration, patched_a
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsSeenSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsSeenError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -213,17 +287,18 @@ pub async fn alerts_seen(configuration: &configuration::Configuration, patched_a
     }
 }
 
-pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Result<crate::models::AlertBulkResponse, Error<AlertsUnreadError>> {
+pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Result<ResponseContent<AlertsUnreadSuccess>, Error<AlertsUnreadError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/unread/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/unread/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -234,7 +309,9 @@ pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Re
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsUnreadSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsUnreadError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -242,17 +319,18 @@ pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Re
     }
 }
 
-pub async fn alerts_update(configuration: &configuration::Configuration, id: i32, alert_request: crate::models::AlertRequest) -> Result<crate::models::Alert, Error<AlertsUpdateError>> {
+pub async fn alerts_update(configuration: &configuration::Configuration, id: i32, alert_request: Option<crate::models::AlertRequest>) -> Result<ResponseContent<AlertsUpdateSuccess>, Error<AlertsUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/alerts/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.put(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/alerts/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&alert_request);
@@ -264,7 +342,9 @@ pub async fn alerts_update(configuration: &configuration::Configuration, id: i32
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
+        let local_var_entity: Option<AlertsUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
+        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Ok(local_var_result)
     } else {
         let local_var_entity: Option<AlertsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

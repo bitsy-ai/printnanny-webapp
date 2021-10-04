@@ -45,7 +45,7 @@ class TelemetryEvent(PolymorphicModel):
     objects = TelemetryEventManager()
 
     event_type = models.CharField(
-        max_length=255, db_index=True, choices=TelemetryEventType.choices
+        max_length=255, db_index=True, blank=True, choices=TelemetryEventType.choices
     )
     ts = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(
