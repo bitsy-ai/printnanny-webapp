@@ -59,8 +59,12 @@ class CloudIoTDevice(SafeDeleteModel):
     numId = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     id = models.CharField(max_length=255)
+
     appliance = models.OneToOneField(
-        Appliance, on_delete=models.CASCADE, related_name="cloudiot_device"
+        Appliance,
+        on_delete=models.CASCADE,
+        related_name="cloudiot_device",
+        db_index=True,
     )
 
 
@@ -71,13 +75,13 @@ class AppliancePKI(SafeDeleteModel):
     private_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
     appliance = models.OneToOneField(
-        Appliance, on_delete=models.CASCADE, related_name="pki"
+        Appliance, on_delete=models.CASCADE, related_name="pki", db_index=True
     )
 
 
-class ApplianceAnsibleFacts(SafeDeleteModel):
+class AnsibleFacts(SafeDeleteModel):
     appliance = models.OneToOneField(
-        Appliance, on_delete=models.CASCADE, related_name="ansible_facts"
+        Appliance, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
     )
     # platform info
     os_version = models.CharField(max_length=255)
