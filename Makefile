@@ -294,7 +294,7 @@ python-client-release: dist ## package and upload a release
 	cd clients/python && twine upload dist/* && cd -
 
 rust-client-release: rust-client
-	git add -A && git commit -m "0.8.21 client codegen ✨"
+	git add -A && git commit -m "0.8.22 client codegen ✨"
 	cd clients/rust && cargo publish
 
 clients-release: python-client-release ts-client kotlin-client rust-client-release
