@@ -11,6 +11,8 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
+from .choices import ApplianceReleaseChannel, PrinterSoftware
+
 from print_nanny_webapp.devices.services import (
     delete_cloudiot_device,
     generate_keypair,
@@ -28,6 +30,94 @@ def pre_softdelete_cloudiot_device(instance=None, **kwargs):
 
 
 pre_softdelete.connect(pre_softdelete_cloudiot_device)
+
+
+class ApplianceManager(SafeDeleteManager):
+    pass
+
+
+class Appliance(SafeDeleteModel):
+    """ """
+
+    objects = ApplianceManager()
+
+    class Meta:
+        unique_together = ("user", "hostname")
+
+    def pre_softdelete(self):
+        return delete_cloudiot_device(self.cloudiot_device.numId)
+
+    _safedelete_policy = SOFT_DELETE
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="appliances"
+    )
+    hostname = models.CharField(max_length=255)
+
+
+class CloudIoTDevice(SafeDeleteModel):
+    """
+    Instance of cloudiot.projects.locations.registries.devices#Device
+    https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries.devices#Device
+    """
+
+    numId = models.BigIntegerField(primary_key=True)
+    name = models.CharField(max_length=255)
+    id = models.CharField(max_length=255)
+    appliance = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="cloudiot_device"
+    )
+
+
+class AppliancePKI(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+    pubkey = models.TextField()
+    fingerprint = models.CharField(max_length=255)
+    appliance = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="pki"
+    )
+
+
+class ApplianceAnsibleFacts(SafeDeleteModel):
+    appliance = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="ansible_facts"
+    )
+    # platform info
+    os_version = models.CharField(max_length=255)
+    os = models.CharField(max_length=255)
+    kernel_version = models.CharField(max_length=255)
+    # hardware info
+    # /proc/cpuinfo HARDWARE
+    hardware = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo REVISION
+    revision = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo MODEL
+    model = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo SERIAL
+    serial = models.CharField(max_length=255, null=True)
+    # /proc/cpuinfo MAX PROCESSOR
+    cores = models.IntegerField()
+    ram = models.BigIntegerField()
+    cpu_flags = ArrayField(models.CharField(max_length=255))
+
+    json = models.JSONField()
+
+
+class ApplianceUserSettings(SafeDeleteModel):
+    """
+    User-facing configuration for a Print Nanny appliance
+    """
+
+    hostname = models.CharField(max_length=255)
+    appliance = user = models.OneToOneField(
+        Appliance, on_delete=models.CASCADE, related_name="user_settings"
+    )
+    release_channel = models.TextField(
+        max_length=8, choices=ApplianceReleaseChannel.choices
+    )
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
 
 
 class DeviceManager(SafeDeleteManager):
@@ -141,11 +231,6 @@ class Device(SafeDeleteModel):
     ram = models.BigIntegerField()
     cpu_flags = ArrayField(models.CharField(max_length=255))
 
-    # TODO enable front-end views in release v0.8 go-live
-    # @property
-    # def manage_url(self):
-    #     reverse("dashboard:devices:detail", kwargs={"pk": self.id})
-
     @property
     def cloudiot_device_configs(self):
         """pa
@@ -202,28 +287,10 @@ class PrinterController(PolymorphicModel, SafeDeleteModel):
     user = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
     )
-    device = models.ForeignKey(
+    appliance = models.ForeignKey(
         Device, on_delete=models.CASCADE, related_name="printer_controllers"
     )
-    cli_version = models.CharField(max_length=255)
-
-
-class OctoprintController(PrinterController):
-
-    python_version = models.CharField(max_length=255)
-    pip_version = models.CharField(max_length=255)
-    virtualenv = models.CharField(max_length=255, null=True)
-    octoprint_version = models.CharField(max_length=255)
-    plugin_version = models.CharField(max_length=255)
-
-
-# TODO
-# class RepetierController(PrinterController):
-#     pass
-
-# TODO
-# class MainsailController(PrinterController):
-#     pass
+    software = models.CharField(max_length=12, choices=PrinterSoftware.choices)
 
 
 class PrinterProfile(PolymorphicModel, SafeDeleteModel):
@@ -232,6 +299,7 @@ class PrinterProfile(PolymorphicModel, SafeDeleteModel):
             "user",
             "name",
         )
+        abstract = True
 
     _safedelete_policy = SOFT_DELETE
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -249,8 +317,8 @@ class PrinterProfile(PolymorphicModel, SafeDeleteModel):
 class OctoprintPrinterProfile(PrinterProfile):
     _safedelete_policy = SOFT_DELETE
 
-    octoprint_controller = models.ForeignKey(
-        OctoprintController, on_delete=models.CASCADE, db_index=True
+    printer_controller = models.ForeignKey(
+        PrinterController, on_delete=models.CASCADE, db_index=True
     )
 
     axes_e_inverted = models.BooleanField(null=True)
