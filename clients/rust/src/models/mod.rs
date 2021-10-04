@@ -58,8 +58,6 @@ pub mod mobile_auth_request;
 pub use self::mobile_auth_request::MobileAuthRequest;
 pub mod model_artifact;
 pub use self::model_artifact::ModelArtifact;
-pub mod nested;
-pub use self::nested::Nested;
 pub mod octo_print_device;
 pub use self::octo_print_device::OctoPrintDevice;
 pub mod octo_print_device_key;

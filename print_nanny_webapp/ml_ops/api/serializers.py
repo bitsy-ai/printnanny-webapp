@@ -55,7 +55,6 @@ class ExperimentDeviceConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExperimentDeviceConfig
         fields = ["id", "created_dt", "experiment", "artifact"]
-        depth = 1
 
 
 class ExperimentSerializer(serializers.ModelSerializer):
@@ -71,4 +70,3 @@ class ExperimentSerializer(serializers.ModelSerializer):
             "treatments",
             "notion_url",
         ]
-        depth = 1

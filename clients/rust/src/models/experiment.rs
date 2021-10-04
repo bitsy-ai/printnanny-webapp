@@ -22,23 +22,23 @@ pub struct Experiment {
     #[serde(rename = "hypothesis")]
     pub hypothesis: String,
     #[serde(rename = "control")]
-    pub control: Option<Box<crate::models::Nested>>,
-    #[serde(rename = "treatments")]
-    pub treatments: Vec<crate::models::Nested>,
+    pub control: i32,
+    #[serde(rename = "treatments", skip_serializing_if = "Option::is_none")]
+    pub treatments: Option<Vec<i32>>,
     #[serde(rename = "notion_url", skip_serializing_if = "Option::is_none")]
     pub notion_url: Option<String>,
 }
 
 impl Experiment {
-    pub fn new(id: i32, created_dt: String, name: String, hypothesis: String, control: Option<crate::models::Nested>, treatments: Vec<crate::models::Nested>) -> Experiment {
+    pub fn new(id: i32, created_dt: String, name: String, hypothesis: String, control: i32) -> Experiment {
         Experiment {
             id,
             created_dt,
             active: None,
             name,
             hypothesis,
-            control: Box::new(control),
-            treatments,
+            control,
+            treatments: None,
             notion_url: None,
         }
     }

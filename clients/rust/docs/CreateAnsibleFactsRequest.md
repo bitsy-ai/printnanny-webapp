@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **cores** | **i32** |  | 
 **ram** | **i64** |  | 
 **cpu_flags** | **Vec<String>** |  | 
-**release_channel** | [**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md) |  | 
+**release_channel** | Option<[**crate::models::ReleaseChannelEnum**](ReleaseChannelEnum.md)> |  | [optional]
 **json** | [**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

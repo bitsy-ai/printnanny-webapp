@@ -31,14 +31,14 @@ pub struct CreateAnsibleFactsRequest {
     pub ram: i64,
     #[serde(rename = "cpu_flags")]
     pub cpu_flags: Vec<String>,
-    #[serde(rename = "release_channel")]
-    pub release_channel: crate::models::ReleaseChannelEnum,
+    #[serde(rename = "release_channel", skip_serializing_if = "Option::is_none")]
+    pub release_channel: Option<crate::models::ReleaseChannelEnum>,
     #[serde(rename = "json")]
     pub json: ::std::collections::HashMap<String, serde_json::Value>,
 }
 
 impl CreateAnsibleFactsRequest {
-    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, release_channel: crate::models::ReleaseChannelEnum, json: ::std::collections::HashMap<String, serde_json::Value>) -> CreateAnsibleFactsRequest {
+    pub fn new(os_version: String, os: String, kernel_version: String, cores: i32, ram: i64, cpu_flags: Vec<String>, json: ::std::collections::HashMap<String, serde_json::Value>) -> CreateAnsibleFactsRequest {
         CreateAnsibleFactsRequest {
             os_version,
             os,
@@ -50,7 +50,7 @@ impl CreateAnsibleFactsRequest {
             cores,
             ram,
             cpu_flags,
-            release_channel,
+            release_channel: None,
             json,
         }
     }

@@ -135,7 +135,6 @@ Class | Method | HTTP request | Description
  - [GcodeFile](docs/GcodeFile.md)
  - [MobileAuthRequest](docs/MobileAuthRequest.md)
  - [ModelArtifact](docs/ModelArtifact.md)
- - [Nested](docs/Nested.md)
  - [OctoPrintDevice](docs/OctoPrintDevice.md)
  - [OctoPrintDeviceKey](docs/OctoPrintDeviceKey.md)
  - [OctoPrintDeviceRequest](docs/OctoPrintDeviceRequest.md)
