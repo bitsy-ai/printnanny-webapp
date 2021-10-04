@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RemoteControlCommandRequest {
     #[serde(rename = "command")]
     pub command: crate::models::CommandEnum,

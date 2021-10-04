@@ -13,35 +13,35 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `users_list`
+/// struct for typed errors of method [`users_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UsersListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `users_me_retrieve`
+/// struct for typed errors of method [`users_me_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UsersMeRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `users_partial_update`
+/// struct for typed errors of method [`users_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UsersPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `users_retrieve`
+/// struct for typed errors of method [`users_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UsersRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `users_update`
+/// struct for typed errors of method [`users_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UsersUpdateError {
@@ -50,19 +50,20 @@ pub enum UsersUpdateError {
 
 
 pub async fn users_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedUserList, Error<UsersListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/users/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/users/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -82,16 +83,17 @@ pub async fn users_list(configuration: &configuration::Configuration, page: Opti
 }
 
 pub async fn users_me_retrieve(configuration: &configuration::Configuration, ) -> Result<crate::models::User, Error<UsersMeRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/users/me/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/users/me/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -111,16 +113,17 @@ pub async fn users_me_retrieve(configuration: &configuration::Configuration, ) -
 }
 
 pub async fn users_partial_update(configuration: &configuration::Configuration, id: i32, patched_user_request: Option<crate::models::PatchedUserRequest>) -> Result<crate::models::User, Error<UsersPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/users/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/users/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_user_request);
@@ -141,16 +144,17 @@ pub async fn users_partial_update(configuration: &configuration::Configuration, 
 }
 
 pub async fn users_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::User, Error<UsersRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/users/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/users/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -170,16 +174,17 @@ pub async fn users_retrieve(configuration: &configuration::Configuration, id: i3
 }
 
 pub async fn users_update(configuration: &configuration::Configuration, id: i32, user_request: crate::models::UserRequest) -> Result<crate::models::User, Error<UsersUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/users/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/users/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&user_request);

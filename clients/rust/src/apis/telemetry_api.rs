@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `octoprint_events_create`
+/// struct for typed errors of method [`octoprint_events_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintEventsCreateError {
@@ -21,63 +21,63 @@ pub enum OctoprintEventsCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_events_list`
+/// struct for typed errors of method [`octoprint_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_events_retrieve`
+/// struct for typed errors of method [`octoprint_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_job_events_list`
+/// struct for typed errors of method [`print_job_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintJobEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_job_events_retrieve`
+/// struct for typed errors of method [`print_job_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintJobEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_nanny_plugin_events_list`
+/// struct for typed errors of method [`print_nanny_plugin_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintNannyPluginEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_nanny_plugin_events_retrieve`
+/// struct for typed errors of method [`print_nanny_plugin_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintNannyPluginEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `remote_command_events_list`
+/// struct for typed errors of method [`remote_command_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoteCommandEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `remote_command_events_retrieve`
+/// struct for typed errors of method [`remote_command_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoteCommandEventsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `telemetry_events_create`
+/// struct for typed errors of method [`telemetry_events_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TelemetryEventsCreateError {
@@ -85,14 +85,14 @@ pub enum TelemetryEventsCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `telemetry_events_list`
+/// struct for typed errors of method [`telemetry_events_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TelemetryEventsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `telemetry_events_retrieve`
+/// struct for typed errors of method [`telemetry_events_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TelemetryEventsRetrieveError {
@@ -101,16 +101,17 @@ pub enum TelemetryEventsRetrieveError {
 
 
 pub async fn octoprint_events_create(configuration: &configuration::Configuration, octo_print_event_request: crate::models::OctoPrintEventRequest) -> Result<crate::models::OctoPrintEvent, Error<OctoprintEventsCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&octo_print_event_request);
@@ -131,19 +132,20 @@ pub async fn octoprint_events_create(configuration: &configuration::Configuratio
 }
 
 pub async fn octoprint_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintEventList, Error<OctoprintEventsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -163,16 +165,17 @@ pub async fn octoprint_events_list(configuration: &configuration::Configuration,
 }
 
 pub async fn octoprint_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintEvent, Error<OctoprintEventsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-events/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -192,19 +195,20 @@ pub async fn octoprint_events_retrieve(configuration: &configuration::Configurat
 }
 
 pub async fn print_job_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintJobEventList, Error<PrintJobEventsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-job-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-job-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -224,16 +228,17 @@ pub async fn print_job_events_list(configuration: &configuration::Configuration,
 }
 
 pub async fn print_job_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintJobEvent, Error<PrintJobEventsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-job-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-job-events/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -253,19 +258,20 @@ pub async fn print_job_events_retrieve(configuration: &configuration::Configurat
 }
 
 pub async fn print_nanny_plugin_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintNannyPluginEventList, Error<PrintNannyPluginEventsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -285,16 +291,17 @@ pub async fn print_nanny_plugin_events_list(configuration: &configuration::Confi
 }
 
 pub async fn print_nanny_plugin_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrintNannyPluginEvent, Error<PrintNannyPluginEventsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-nanny-plugin-events/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -314,19 +321,20 @@ pub async fn print_nanny_plugin_events_retrieve(configuration: &configuration::C
 }
 
 pub async fn remote_command_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteCommandEventList, Error<RemoteCommandEventsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/remote-command-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/remote-command-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -346,16 +354,17 @@ pub async fn remote_command_events_list(configuration: &configuration::Configura
 }
 
 pub async fn remote_command_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteCommandEvent, Error<RemoteCommandEventsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/remote-command-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/remote-command-events/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -375,16 +384,17 @@ pub async fn remote_command_events_retrieve(configuration: &configuration::Confi
 }
 
 pub async fn telemetry_events_create(configuration: &configuration::Configuration, telemetry_event_polymorphic_request: Option<crate::models::TelemetryEventPolymorphicRequest>) -> Result<crate::models::TelemetryEventPolymorphic, Error<TelemetryEventsCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/telemetry-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/telemetry-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&telemetry_event_polymorphic_request);
@@ -405,19 +415,20 @@ pub async fn telemetry_events_create(configuration: &configuration::Configuratio
 }
 
 pub async fn telemetry_events_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedTelemetryEventPolymorphicList, Error<TelemetryEventsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/telemetry-events/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/telemetry-events/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -437,16 +448,17 @@ pub async fn telemetry_events_list(configuration: &configuration::Configuration,
 }
 
 pub async fn telemetry_events_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::TelemetryEventPolymorphic, Error<TelemetryEventsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/telemetry-events/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/telemetry-events/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 

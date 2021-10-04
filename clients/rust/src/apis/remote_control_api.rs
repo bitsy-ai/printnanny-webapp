@@ -13,35 +13,35 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `commands_list`
+/// struct for typed errors of method [`commands_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CommandsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `commands_partial_update`
+/// struct for typed errors of method [`commands_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CommandsPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `commands_retrieve`
+/// struct for typed errors of method [`commands_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CommandsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `commands_update`
+/// struct for typed errors of method [`commands_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CommandsUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_create`
+/// struct for typed errors of method [`gcode_files_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesCreateError {
@@ -49,35 +49,35 @@ pub enum GcodeFilesCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_list`
+/// struct for typed errors of method [`gcode_files_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_partial_update`
+/// struct for typed errors of method [`gcode_files_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_retrieve`
+/// struct for typed errors of method [`gcode_files_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_update`
+/// struct for typed errors of method [`gcode_files_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `gcode_files_update_or_create`
+/// struct for typed errors of method [`gcode_files_update_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GcodeFilesUpdateOrCreateError {
@@ -85,42 +85,42 @@ pub enum GcodeFilesUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_create`
+/// struct for typed errors of method [`octoprint_devices_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_list`
+/// struct for typed errors of method [`octoprint_devices_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_partial_update`
+/// struct for typed errors of method [`octoprint_devices_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_retrieve`
+/// struct for typed errors of method [`octoprint_devices_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_update`
+/// struct for typed errors of method [`octoprint_devices_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `octoprint_devices_update_or_create`
+/// struct for typed errors of method [`octoprint_devices_update_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum OctoprintDevicesUpdateOrCreateError {
@@ -128,7 +128,7 @@ pub enum OctoprintDevicesUpdateOrCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_session_partial_update`
+/// struct for typed errors of method [`print_session_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintSessionPartialUpdateError {
@@ -136,7 +136,7 @@ pub enum PrintSessionPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_session_update`
+/// struct for typed errors of method [`print_session_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintSessionUpdateError {
@@ -144,7 +144,7 @@ pub enum PrintSessionUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_sessions_create`
+/// struct for typed errors of method [`print_sessions_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintSessionsCreateError {
@@ -152,21 +152,21 @@ pub enum PrintSessionsCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_sessions_list`
+/// struct for typed errors of method [`print_sessions_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintSessionsListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `print_sessions_retrieve`
+/// struct for typed errors of method [`print_sessions_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrintSessionsRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_create`
+/// struct for typed errors of method [`printer_profiles_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesCreateError {
@@ -174,35 +174,35 @@ pub enum PrinterProfilesCreateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_list`
+/// struct for typed errors of method [`printer_profiles_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_partial_update`
+/// struct for typed errors of method [`printer_profiles_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_retrieve`
+/// struct for typed errors of method [`printer_profiles_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_update`
+/// struct for typed errors of method [`printer_profiles_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `printer_profiles_update_or_create`
+/// struct for typed errors of method [`printer_profiles_update_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PrinterProfilesUpdateOrCreateError {
@@ -211,19 +211,20 @@ pub enum PrinterProfilesUpdateOrCreateError {
 
 
 pub async fn commands_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteControlCommandList, Error<CommandsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/commands/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/commands/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -243,16 +244,17 @@ pub async fn commands_list(configuration: &configuration::Configuration, page: O
 }
 
 pub async fn commands_partial_update(configuration: &configuration::Configuration, id: i32, patched_remote_control_command_request: Option<crate::models::PatchedRemoteControlCommandRequest>) -> Result<crate::models::RemoteControlCommand, Error<CommandsPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/commands/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_remote_control_command_request);
@@ -273,16 +275,17 @@ pub async fn commands_partial_update(configuration: &configuration::Configuratio
 }
 
 pub async fn commands_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteControlCommand, Error<CommandsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/commands/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -302,16 +305,17 @@ pub async fn commands_retrieve(configuration: &configuration::Configuration, id:
 }
 
 pub async fn commands_update(configuration: &configuration::Configuration, id: i32, remote_control_command_request: crate::models::RemoteControlCommandRequest) -> Result<crate::models::RemoteControlCommand, Error<CommandsUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/commands/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/commands/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&remote_control_command_request);
@@ -332,16 +336,17 @@ pub async fn commands_update(configuration: &configuration::Configuration, id: i
 }
 
 pub async fn gcode_files_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     let mut local_var_form = reqwest::multipart::Form::new();
@@ -367,19 +372,20 @@ pub async fn gcode_files_create(configuration: &configuration::Configuration, na
 }
 
 pub async fn gcode_files_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedGcodeFileList, Error<GcodeFilesListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -399,16 +405,17 @@ pub async fn gcode_files_list(configuration: &configuration::Configuration, page
 }
 
 pub async fn gcode_files_partial_update(configuration: &configuration::Configuration, id: &str, name: Option<&str>, file: Option<std::path::PathBuf>, file_hash: Option<&str>, octoprint_device: Option<&str>) -> Result<crate::models::GcodeFile, Error<GcodeFilesPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     let mut local_var_form = reqwest::multipart::Form::new();
@@ -440,16 +447,17 @@ pub async fn gcode_files_partial_update(configuration: &configuration::Configura
 }
 
 pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -469,16 +477,17 @@ pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, 
 }
 
 pub async fn gcode_files_update(configuration: &configuration::Configuration, id: &str, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", configuration.base_path, id=crate::apis::urlencode(id));
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/{id}/", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     let mut local_var_form = reqwest::multipart::Form::new();
@@ -504,16 +513,17 @@ pub async fn gcode_files_update(configuration: &configuration::Configuration, id
 }
 
 pub async fn gcode_files_update_or_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/gcode-files/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/gcode-files/update-or-create/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     let mut local_var_form = reqwest::multipart::Form::new();
@@ -539,16 +549,17 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
 }
 
 pub async fn octoprint_devices_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&octo_print_device_request);
@@ -569,19 +580,20 @@ pub async fn octoprint_devices_create(configuration: &configuration::Configurati
 }
 
 pub async fn octoprint_devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintDeviceList, Error<OctoprintDevicesListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -601,16 +613,17 @@ pub async fn octoprint_devices_list(configuration: &configuration::Configuration
 }
 
 pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_octo_print_device_request);
@@ -631,16 +644,17 @@ pub async fn octoprint_devices_partial_update(configuration: &configuration::Con
 }
 
 pub async fn octoprint_devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -660,16 +674,17 @@ pub async fn octoprint_devices_retrieve(configuration: &configuration::Configura
 }
 
 pub async fn octoprint_devices_update(configuration: &configuration::Configuration, id: i32, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&octo_print_device_request);
@@ -690,16 +705,17 @@ pub async fn octoprint_devices_update(configuration: &configuration::Configurati
 }
 
 pub async fn octoprint_devices_update_or_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/octoprint-devices/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/octoprint-devices/update-or-create/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&octo_print_device_request);
@@ -720,16 +736,17 @@ pub async fn octoprint_devices_update_or_create(configuration: &configuration::C
 }
 
 pub async fn print_session_partial_update(configuration: &configuration::Configuration, session: &str, patched_print_session_request: Option<crate::models::PatchedPrintSessionRequest>) -> Result<crate::models::PrintSession, Error<PrintSessionPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", local_var_configuration.base_path, session=crate::apis::urlencode(session));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_print_session_request);
@@ -750,16 +767,17 @@ pub async fn print_session_partial_update(configuration: &configuration::Configu
 }
 
 pub async fn print_session_update(configuration: &configuration::Configuration, session: &str, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<PrintSessionUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", local_var_configuration.base_path, session=crate::apis::urlencode(session));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&print_session_request);
@@ -780,16 +798,17 @@ pub async fn print_session_update(configuration: &configuration::Configuration, 
 }
 
 pub async fn print_sessions_create(configuration: &configuration::Configuration, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<PrintSessionsCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-sessions/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&print_session_request);
@@ -810,19 +829,20 @@ pub async fn print_sessions_create(configuration: &configuration::Configuration,
 }
 
 pub async fn print_sessions_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintSessionList, Error<PrintSessionsListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-sessions/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-sessions/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -842,16 +862,17 @@ pub async fn print_sessions_list(configuration: &configuration::Configuration, p
 }
 
 pub async fn print_sessions_retrieve(configuration: &configuration::Configuration, session: &str) -> Result<crate::models::PrintSession, Error<PrintSessionsRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", configuration.base_path, session=crate::apis::urlencode(session));
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/print-sessions/{session}/", local_var_configuration.base_path, session=crate::apis::urlencode(session));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -871,16 +892,17 @@ pub async fn print_sessions_retrieve(configuration: &configuration::Configuratio
 }
 
 pub async fn printer_profiles_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrintSession, Error<PrinterProfilesCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&printer_profile_request);
@@ -901,11 +923,12 @@ pub async fn printer_profiles_create(configuration: &configuration::Configuratio
 }
 
 pub async fn printer_profiles_list(configuration: &configuration::Configuration, name: Option<&str>, page: Option<i32>, user: Option<i32>) -> Result<crate::models::PaginatedPrinterProfileList, Error<PrinterProfilesListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
@@ -916,10 +939,10 @@ pub async fn printer_profiles_list(configuration: &configuration::Configuration,
     if let Some(ref local_var_str) = user {
         local_var_req_builder = local_var_req_builder.query(&[("user", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -939,16 +962,17 @@ pub async fn printer_profiles_list(configuration: &configuration::Configuration,
 }
 
 pub async fn printer_profiles_partial_update(configuration: &configuration::Configuration, id: i32, patched_printer_profile_request: Option<crate::models::PatchedPrinterProfileRequest>) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_printer_profile_request);
@@ -969,16 +993,17 @@ pub async fn printer_profiles_partial_update(configuration: &configuration::Conf
 }
 
 pub async fn printer_profiles_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -998,16 +1023,17 @@ pub async fn printer_profiles_retrieve(configuration: &configuration::Configurat
 }
 
 pub async fn printer_profiles_update(configuration: &configuration::Configuration, id: i32, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&printer_profile_request);
@@ -1028,16 +1054,17 @@ pub async fn printer_profiles_update(configuration: &configuration::Configuratio
 }
 
 pub async fn printer_profiles_update_or_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/printer-profiles/update-or-create/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/printer-profiles/update-or-create/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&printer_profile_request);

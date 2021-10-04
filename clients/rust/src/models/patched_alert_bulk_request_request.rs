@@ -10,7 +10,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PatchedAlertBulkRequestRequest {
     #[serde(rename = "ids", skip_serializing_if = "Option::is_none")]
     pub ids: Option<Vec<i32>>,

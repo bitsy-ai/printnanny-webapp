@@ -13,35 +13,35 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `appliances_list`
+/// struct for typed errors of method [`appliances_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesListError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `appliances_partial_update`
+/// struct for typed errors of method [`appliances_partial_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesPartialUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `appliances_retrieve`
+/// struct for typed errors of method [`appliances_retrieve`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesRetrieveError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `appliances_update`
+/// struct for typed errors of method [`appliances_update`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesUpdateError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `appliances_update_or_create`
+/// struct for typed errors of method [`appliances_update_or_create`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AppliancesUpdateOrCreateError {
@@ -51,19 +51,20 @@ pub enum AppliancesUpdateOrCreateError {
 
 
 pub async fn appliances_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedApplianceList, Error<AppliancesListError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/appliances/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = page {
         local_var_req_builder = local_var_req_builder.query(&[("page", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -83,16 +84,17 @@ pub async fn appliances_list(configuration: &configuration::Configuration, page:
 }
 
 pub async fn appliances_partial_update(configuration: &configuration::Configuration, id: i32, patched_appliance_request: Option<crate::models::PatchedApplianceRequest>) -> Result<crate::models::Appliance, Error<AppliancesPartialUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PATCH(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/appliances/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&patched_appliance_request);
@@ -113,16 +115,17 @@ pub async fn appliances_partial_update(configuration: &configuration::Configurat
 }
 
 pub async fn appliances_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Appliance, Error<AppliancesRetrieveError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.GET(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/appliances/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
 
@@ -142,16 +145,17 @@ pub async fn appliances_retrieve(configuration: &configuration::Configuration, i
 }
 
 pub async fn appliances_update(configuration: &configuration::Configuration, id: i32, appliance_request: crate::models::ApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesUpdateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/{id}/", configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.PUT(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/appliances/{id}/", local_var_configuration.base_path, id=id);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&appliance_request);
@@ -172,16 +176,17 @@ pub async fn appliances_update(configuration: &configuration::Configuration, id:
 }
 
 pub async fn appliances_update_or_create(configuration: &configuration::Configuration, create_appliance_request: crate::models::CreateApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesUpdateOrCreateError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/api/appliances/", configuration.base_path);
-    let mut local_var_req_builder = local_var_client.POST(local_var_uri_str.as_str());
+    let local_var_uri_str = format!("{}/api/appliances/", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_token) = configuration.bearer_access_token {
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
     local_var_req_builder = local_var_req_builder.json(&create_appliance_request);
