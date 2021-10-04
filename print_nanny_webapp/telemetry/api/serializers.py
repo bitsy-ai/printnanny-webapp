@@ -11,6 +11,7 @@ from print_nanny_webapp.telemetry.models import (
     TelemetryEvent,
 )
 from print_nanny_webapp.telemetry.types import (
+    EventSource,
     PrintJobEventType,
     TelemetryEventType,
     PrintNannyPluginEventType,
@@ -109,6 +110,10 @@ class OctoprintPrinterDataSerializer(serializers.Serializer):
 class TelemetryEventSerializer(serializers.ModelSerializer):
 
     ts = serializers.FloatField(required=False)
+    event_source = serializers.ChoiceField(
+        choices=EventSource.choices,
+        default=EventSource.PRINT_NANNY_PLUGIN,
+    )
     event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
