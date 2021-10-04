@@ -28,8 +28,8 @@ import java.io.Serializable
 /**
  * 
  *
- * @param file 
  * @param filament 
+ * @param file 
  * @param estimatedPrintTime 
  * @param averagePrintTime 
  * @param lastPrintTime 
@@ -37,11 +37,11 @@ import java.io.Serializable
 
 data class OctoprintJob (
 
-    @Json(name = "file")
-    val file: OctoprintFile?,
-
     @Json(name = "filament")
     val filament: kotlin.collections.Map<kotlin.String, kotlin.Any>?,
+
+    @Json(name = "file")
+    val file: OctoprintFile? = null,
 
     @Json(name = "estimatedPrintTime")
     val estimatedPrintTime: kotlin.Float? = null,

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **hostname** | **kotlin.String** |  | 
-**user** | [**Nested**](Nested.md) |  |  [readonly]
+**user** | **kotlin.Int** |  | 
 
 
 

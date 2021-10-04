@@ -46,25 +46,9 @@ class TestPaginatedExperimentList(unittest.TestCase):
                         active = True, 
                         name = '', 
                         hypothesis = '', 
-                        control = null, 
+                        control = 56, 
                         treatments = [
-                            print_nanny_client.models.nested.Nested(
-                                id = 56, 
-                                password = '', 
-                                is_superuser = True, 
-                                is_staff = True, 
-                                is_active = True, 
-                                date_joined = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                last_login = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                first_name = '', 
-                                last_name = '', 
-                                email = '', 
-                                groups = [
-                                    56
-                                    ], 
-                                user_permissions = [
-                                    56
-                                    ], )
+                            56
                             ], 
                         notion_url = '', )
                     ]

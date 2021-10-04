@@ -37,14 +37,12 @@ class TestAlertRequest(unittest.TestCase):
         if include_optional :
             return AlertRequest(
                 octoprint_device = 56, 
-                alert_method = 'UI', 
                 event_type = None, 
                 seen = True, 
                 sent = True
             )
         else :
             return AlertRequest(
-                alert_method = 'UI',
         )
 
     def testAlertRequest(self):

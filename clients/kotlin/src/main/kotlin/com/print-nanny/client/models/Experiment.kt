@@ -20,7 +20,6 @@
 
 package com.print-nanny.client.models
 
-import com.print-nanny.client.models.Nested
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -33,8 +32,8 @@ import java.io.Serializable
  * @param name 
  * @param hypothesis 
  * @param control 
- * @param treatments 
  * @param active 
+ * @param treatments 
  * @param notionUrl 
  */
 
@@ -53,13 +52,13 @@ data class Experiment (
     val hypothesis: kotlin.String,
 
     @Json(name = "control")
-    val control: Nested?,
-
-    @Json(name = "treatments")
-    val treatments: kotlin.collections.List<Nested>,
+    val control: kotlin.Int,
 
     @Json(name = "active")
     val active: kotlin.Boolean? = null,
+
+    @Json(name = "treatments")
+    val treatments: kotlin.collections.List<kotlin.Int>? = null,
 
     @Json(name = "notion_url")
     val notionUrl: kotlin.String? = null

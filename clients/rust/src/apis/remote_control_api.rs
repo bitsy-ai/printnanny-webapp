@@ -13,228 +13,6 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed successes of method [`commands_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CommandsListSuccess {
-    Status200(crate::models::PaginatedRemoteControlCommandList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`commands_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CommandsPartialUpdateSuccess {
-    Status200(crate::models::RemoteControlCommand),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`commands_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CommandsRetrieveSuccess {
-    Status200(crate::models::RemoteControlCommand),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`commands_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum CommandsUpdateSuccess {
-    Status200(crate::models::RemoteControlCommand),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesCreateSuccess {
-    Status201(crate::models::GcodeFile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesListSuccess {
-    Status200(crate::models::PaginatedGcodeFileList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesPartialUpdateSuccess {
-    Status200(crate::models::GcodeFile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesRetrieveSuccess {
-    Status200(crate::models::GcodeFile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesUpdateSuccess {
-    Status200(crate::models::GcodeFile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`gcode_files_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GcodeFilesUpdateOrCreateSuccess {
-    Status200(crate::models::GcodeFile),
-    Status201(crate::models::GcodeFile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesCreateSuccess {
-    Status201(crate::models::OctoPrintDevice),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesListSuccess {
-    Status200(crate::models::PaginatedOctoPrintDeviceList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesPartialUpdateSuccess {
-    Status200(crate::models::OctoPrintDevice),
-    Status202(crate::models::OctoPrintDevice),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesRetrieveSuccess {
-    Status200(crate::models::OctoPrintDevice),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesUpdateSuccess {
-    Status200(crate::models::OctoPrintDevice),
-    Status202(crate::models::OctoPrintDevice),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`octoprint_devices_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum OctoprintDevicesUpdateOrCreateSuccess {
-    Status200(crate::models::OctoPrintDevice),
-    Status201(crate::models::OctoPrintDeviceKey),
-    Status202(crate::models::OctoPrintDeviceKey),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`print_session_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrintSessionPartialUpdateSuccess {
-    Status200(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`print_session_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrintSessionUpdateSuccess {
-    Status200(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`print_sessions_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrintSessionsCreateSuccess {
-    Status201(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`print_sessions_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrintSessionsListSuccess {
-    Status200(crate::models::PaginatedPrintSessionList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`print_sessions_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrintSessionsRetrieveSuccess {
-    Status200(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesCreateSuccess {
-    Status201(crate::models::PrintSession),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesListSuccess {
-    Status200(crate::models::PaginatedPrinterProfileList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesPartialUpdateSuccess {
-    Status200(crate::models::PrinterProfile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesRetrieveSuccess {
-    Status200(crate::models::PrinterProfile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesUpdateSuccess {
-    Status200(crate::models::PrinterProfile),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`printer_profiles_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PrinterProfilesUpdateOrCreateSuccess {
-    Status200(crate::models::PrinterProfile),
-    Status201(crate::models::PrinterProfile),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`commands_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -432,7 +210,7 @@ pub enum PrinterProfilesUpdateOrCreateError {
 }
 
 
-pub async fn commands_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<CommandsListSuccess>, Error<CommandsListError>> {
+pub async fn commands_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedRemoteControlCommandList, Error<CommandsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -457,9 +235,7 @@ pub async fn commands_list(configuration: &configuration::Configuration, page: O
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<CommandsListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CommandsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -467,7 +243,7 @@ pub async fn commands_list(configuration: &configuration::Configuration, page: O
     }
 }
 
-pub async fn commands_partial_update(configuration: &configuration::Configuration, id: i32, patched_remote_control_command_request: Option<crate::models::PatchedRemoteControlCommandRequest>) -> Result<ResponseContent<CommandsPartialUpdateSuccess>, Error<CommandsPartialUpdateError>> {
+pub async fn commands_partial_update(configuration: &configuration::Configuration, id: i32, patched_remote_control_command_request: Option<crate::models::PatchedRemoteControlCommandRequest>) -> Result<crate::models::RemoteControlCommand, Error<CommandsPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -490,9 +266,7 @@ pub async fn commands_partial_update(configuration: &configuration::Configuratio
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<CommandsPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CommandsPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -500,7 +274,7 @@ pub async fn commands_partial_update(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn commands_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<CommandsRetrieveSuccess>, Error<CommandsRetrieveError>> {
+pub async fn commands_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::RemoteControlCommand, Error<CommandsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -522,9 +296,7 @@ pub async fn commands_retrieve(configuration: &configuration::Configuration, id:
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<CommandsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CommandsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -532,7 +304,7 @@ pub async fn commands_retrieve(configuration: &configuration::Configuration, id:
     }
 }
 
-pub async fn commands_update(configuration: &configuration::Configuration, id: i32, remote_control_command_request: crate::models::RemoteControlCommandRequest) -> Result<ResponseContent<CommandsUpdateSuccess>, Error<CommandsUpdateError>> {
+pub async fn commands_update(configuration: &configuration::Configuration, id: i32, remote_control_command_request: crate::models::RemoteControlCommandRequest) -> Result<crate::models::RemoteControlCommand, Error<CommandsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -555,9 +327,7 @@ pub async fn commands_update(configuration: &configuration::Configuration, id: i
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<CommandsUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CommandsUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -565,7 +335,7 @@ pub async fn commands_update(configuration: &configuration::Configuration, id: i
     }
 }
 
-pub async fn gcode_files_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<ResponseContent<GcodeFilesCreateSuccess>, Error<GcodeFilesCreateError>> {
+pub async fn gcode_files_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -593,9 +363,7 @@ pub async fn gcode_files_create(configuration: &configuration::Configuration, na
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -603,7 +371,7 @@ pub async fn gcode_files_create(configuration: &configuration::Configuration, na
     }
 }
 
-pub async fn gcode_files_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<GcodeFilesListSuccess>, Error<GcodeFilesListError>> {
+pub async fn gcode_files_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedGcodeFileList, Error<GcodeFilesListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -628,9 +396,7 @@ pub async fn gcode_files_list(configuration: &configuration::Configuration, page
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -638,7 +404,7 @@ pub async fn gcode_files_list(configuration: &configuration::Configuration, page
     }
 }
 
-pub async fn gcode_files_partial_update(configuration: &configuration::Configuration, id: &str, name: Option<&str>, file: Option<std::path::PathBuf>, file_hash: Option<&str>, octoprint_device: Option<&str>) -> Result<ResponseContent<GcodeFilesPartialUpdateSuccess>, Error<GcodeFilesPartialUpdateError>> {
+pub async fn gcode_files_partial_update(configuration: &configuration::Configuration, id: &str, name: Option<&str>, file: Option<std::path::PathBuf>, file_hash: Option<&str>, octoprint_device: Option<&str>) -> Result<crate::models::GcodeFile, Error<GcodeFilesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -672,9 +438,7 @@ pub async fn gcode_files_partial_update(configuration: &configuration::Configura
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -682,7 +446,7 @@ pub async fn gcode_files_partial_update(configuration: &configuration::Configura
     }
 }
 
-pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<ResponseContent<GcodeFilesRetrieveSuccess>, Error<GcodeFilesRetrieveError>> {
+pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -704,9 +468,7 @@ pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, 
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -714,7 +476,7 @@ pub async fn gcode_files_retrieve(configuration: &configuration::Configuration, 
     }
 }
 
-pub async fn gcode_files_update(configuration: &configuration::Configuration, id: &str, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<ResponseContent<GcodeFilesUpdateSuccess>, Error<GcodeFilesUpdateError>> {
+pub async fn gcode_files_update(configuration: &configuration::Configuration, id: &str, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -742,9 +504,7 @@ pub async fn gcode_files_update(configuration: &configuration::Configuration, id
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -752,7 +512,7 @@ pub async fn gcode_files_update(configuration: &configuration::Configuration, id
     }
 }
 
-pub async fn gcode_files_update_or_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<ResponseContent<GcodeFilesUpdateOrCreateSuccess>, Error<GcodeFilesUpdateOrCreateError>> {
+pub async fn gcode_files_update_or_create(configuration: &configuration::Configuration, name: &str, file: std::path::PathBuf, file_hash: &str, octoprint_device: &str) -> Result<crate::models::GcodeFile, Error<GcodeFilesUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -780,9 +540,7 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<GcodeFilesUpdateOrCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GcodeFilesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -790,7 +548,7 @@ pub async fn gcode_files_update_or_create(configuration: &configuration::Configu
     }
 }
 
-pub async fn octoprint_devices_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<ResponseContent<OctoprintDevicesCreateSuccess>, Error<OctoprintDevicesCreateError>> {
+pub async fn octoprint_devices_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -813,9 +571,7 @@ pub async fn octoprint_devices_create(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -823,7 +579,7 @@ pub async fn octoprint_devices_create(configuration: &configuration::Configurati
     }
 }
 
-pub async fn octoprint_devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<OctoprintDevicesListSuccess>, Error<OctoprintDevicesListError>> {
+pub async fn octoprint_devices_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedOctoPrintDeviceList, Error<OctoprintDevicesListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -848,9 +604,7 @@ pub async fn octoprint_devices_list(configuration: &configuration::Configuration
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -858,7 +612,7 @@ pub async fn octoprint_devices_list(configuration: &configuration::Configuration
     }
 }
 
-pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<ResponseContent<OctoprintDevicesPartialUpdateSuccess>, Error<OctoprintDevicesPartialUpdateError>> {
+pub async fn octoprint_devices_partial_update(configuration: &configuration::Configuration, id: i32, patched_octo_print_device_request: Option<crate::models::PatchedOctoPrintDeviceRequest>) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -881,9 +635,7 @@ pub async fn octoprint_devices_partial_update(configuration: &configuration::Con
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -891,7 +643,7 @@ pub async fn octoprint_devices_partial_update(configuration: &configuration::Con
     }
 }
 
-pub async fn octoprint_devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<OctoprintDevicesRetrieveSuccess>, Error<OctoprintDevicesRetrieveError>> {
+pub async fn octoprint_devices_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -913,9 +665,7 @@ pub async fn octoprint_devices_retrieve(configuration: &configuration::Configura
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -923,7 +673,7 @@ pub async fn octoprint_devices_retrieve(configuration: &configuration::Configura
     }
 }
 
-pub async fn octoprint_devices_update(configuration: &configuration::Configuration, id: i32, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<ResponseContent<OctoprintDevicesUpdateSuccess>, Error<OctoprintDevicesUpdateError>> {
+pub async fn octoprint_devices_update(configuration: &configuration::Configuration, id: i32, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -946,9 +696,7 @@ pub async fn octoprint_devices_update(configuration: &configuration::Configurati
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -956,7 +704,7 @@ pub async fn octoprint_devices_update(configuration: &configuration::Configurati
     }
 }
 
-pub async fn octoprint_devices_update_or_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<ResponseContent<OctoprintDevicesUpdateOrCreateSuccess>, Error<OctoprintDevicesUpdateOrCreateError>> {
+pub async fn octoprint_devices_update_or_create(configuration: &configuration::Configuration, octo_print_device_request: crate::models::OctoPrintDeviceRequest) -> Result<crate::models::OctoPrintDevice, Error<OctoprintDevicesUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -979,9 +727,7 @@ pub async fn octoprint_devices_update_or_create(configuration: &configuration::C
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<OctoprintDevicesUpdateOrCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<OctoprintDevicesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -989,7 +735,7 @@ pub async fn octoprint_devices_update_or_create(configuration: &configuration::C
     }
 }
 
-pub async fn print_session_partial_update(configuration: &configuration::Configuration, session: &str, patched_print_session_request: Option<crate::models::PatchedPrintSessionRequest>) -> Result<ResponseContent<PrintSessionPartialUpdateSuccess>, Error<PrintSessionPartialUpdateError>> {
+pub async fn print_session_partial_update(configuration: &configuration::Configuration, session: &str, patched_print_session_request: Option<crate::models::PatchedPrintSessionRequest>) -> Result<crate::models::PrintSession, Error<PrintSessionPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1012,9 +758,7 @@ pub async fn print_session_partial_update(configuration: &configuration::Configu
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrintSessionPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrintSessionPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1022,7 +766,7 @@ pub async fn print_session_partial_update(configuration: &configuration::Configu
     }
 }
 
-pub async fn print_session_update(configuration: &configuration::Configuration, session: &str, print_session_request: crate::models::PrintSessionRequest) -> Result<ResponseContent<PrintSessionUpdateSuccess>, Error<PrintSessionUpdateError>> {
+pub async fn print_session_update(configuration: &configuration::Configuration, session: &str, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<PrintSessionUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1045,9 +789,7 @@ pub async fn print_session_update(configuration: &configuration::Configuration, 
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrintSessionUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrintSessionUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1055,7 +797,7 @@ pub async fn print_session_update(configuration: &configuration::Configuration, 
     }
 }
 
-pub async fn print_sessions_create(configuration: &configuration::Configuration, print_session_request: crate::models::PrintSessionRequest) -> Result<ResponseContent<PrintSessionsCreateSuccess>, Error<PrintSessionsCreateError>> {
+pub async fn print_sessions_create(configuration: &configuration::Configuration, print_session_request: crate::models::PrintSessionRequest) -> Result<crate::models::PrintSession, Error<PrintSessionsCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1078,9 +820,7 @@ pub async fn print_sessions_create(configuration: &configuration::Configuration,
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrintSessionsCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrintSessionsCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1088,7 +828,7 @@ pub async fn print_sessions_create(configuration: &configuration::Configuration,
     }
 }
 
-pub async fn print_sessions_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<PrintSessionsListSuccess>, Error<PrintSessionsListError>> {
+pub async fn print_sessions_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedPrintSessionList, Error<PrintSessionsListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1113,9 +853,7 @@ pub async fn print_sessions_list(configuration: &configuration::Configuration, p
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrintSessionsListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrintSessionsListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1123,7 +861,7 @@ pub async fn print_sessions_list(configuration: &configuration::Configuration, p
     }
 }
 
-pub async fn print_sessions_retrieve(configuration: &configuration::Configuration, session: &str) -> Result<ResponseContent<PrintSessionsRetrieveSuccess>, Error<PrintSessionsRetrieveError>> {
+pub async fn print_sessions_retrieve(configuration: &configuration::Configuration, session: &str) -> Result<crate::models::PrintSession, Error<PrintSessionsRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1145,9 +883,7 @@ pub async fn print_sessions_retrieve(configuration: &configuration::Configuratio
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrintSessionsRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrintSessionsRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1155,7 +891,7 @@ pub async fn print_sessions_retrieve(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn printer_profiles_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<ResponseContent<PrinterProfilesCreateSuccess>, Error<PrinterProfilesCreateError>> {
+pub async fn printer_profiles_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrintSession, Error<PrinterProfilesCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1178,9 +914,7 @@ pub async fn printer_profiles_create(configuration: &configuration::Configuratio
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1188,7 +922,7 @@ pub async fn printer_profiles_create(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn printer_profiles_list(configuration: &configuration::Configuration, name: Option<&str>, page: Option<i32>, user: Option<i32>) -> Result<ResponseContent<PrinterProfilesListSuccess>, Error<PrinterProfilesListError>> {
+pub async fn printer_profiles_list(configuration: &configuration::Configuration, name: Option<&str>, page: Option<i32>, user: Option<i32>) -> Result<crate::models::PaginatedPrinterProfileList, Error<PrinterProfilesListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1219,9 +953,7 @@ pub async fn printer_profiles_list(configuration: &configuration::Configuration,
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1229,7 +961,7 @@ pub async fn printer_profiles_list(configuration: &configuration::Configuration,
     }
 }
 
-pub async fn printer_profiles_partial_update(configuration: &configuration::Configuration, id: i32, patched_printer_profile_request: Option<crate::models::PatchedPrinterProfileRequest>) -> Result<ResponseContent<PrinterProfilesPartialUpdateSuccess>, Error<PrinterProfilesPartialUpdateError>> {
+pub async fn printer_profiles_partial_update(configuration: &configuration::Configuration, id: i32, patched_printer_profile_request: Option<crate::models::PatchedPrinterProfileRequest>) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1252,9 +984,7 @@ pub async fn printer_profiles_partial_update(configuration: &configuration::Conf
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1262,7 +992,7 @@ pub async fn printer_profiles_partial_update(configuration: &configuration::Conf
     }
 }
 
-pub async fn printer_profiles_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<PrinterProfilesRetrieveSuccess>, Error<PrinterProfilesRetrieveError>> {
+pub async fn printer_profiles_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1284,9 +1014,7 @@ pub async fn printer_profiles_retrieve(configuration: &configuration::Configurat
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1294,7 +1022,7 @@ pub async fn printer_profiles_retrieve(configuration: &configuration::Configurat
     }
 }
 
-pub async fn printer_profiles_update(configuration: &configuration::Configuration, id: i32, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<ResponseContent<PrinterProfilesUpdateSuccess>, Error<PrinterProfilesUpdateError>> {
+pub async fn printer_profiles_update(configuration: &configuration::Configuration, id: i32, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1317,9 +1045,7 @@ pub async fn printer_profiles_update(configuration: &configuration::Configuratio
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -1327,7 +1053,7 @@ pub async fn printer_profiles_update(configuration: &configuration::Configuratio
     }
 }
 
-pub async fn printer_profiles_update_or_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<ResponseContent<PrinterProfilesUpdateOrCreateSuccess>, Error<PrinterProfilesUpdateOrCreateError>> {
+pub async fn printer_profiles_update_or_create(configuration: &configuration::Configuration, printer_profile_request: crate::models::PrinterProfileRequest) -> Result<crate::models::PrinterProfile, Error<PrinterProfilesUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1350,9 +1076,7 @@ pub async fn printer_profiles_update_or_create(configuration: &configuration::Co
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<PrinterProfilesUpdateOrCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrinterProfilesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

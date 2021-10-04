@@ -712,7 +712,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **alerts_update**
-> Alert alerts_update(id, alert_request)
+> Alert alerts_update(id, alert_request=alert_request)
 
 
 
@@ -752,10 +752,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert message.
-alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
+alert_request = print_nanny_client.AlertRequest() # AlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_update(id, alert_request)
+        api_response = api_instance.alerts_update(id, alert_request=alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -795,10 +795,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = print_nanny_client.AlertsApi(api_client)
     id = 56 # int | A unique integer value identifying this alert message.
-alert_request = print_nanny_client.AlertRequest() # AlertRequest | 
+alert_request = print_nanny_client.AlertRequest() # AlertRequest |  (optional)
 
     try:
-        api_response = api_instance.alerts_update(id, alert_request)
+        api_response = api_instance.alerts_update(id, alert_request=alert_request)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling AlertsApi->alerts_update: %s\n" % e)
@@ -809,7 +809,7 @@ alert_request = print_nanny_client.AlertRequest() # AlertRequest |
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this alert message. | 
- **alert_request** | [**AlertRequest**](AlertRequest.md)|  | 
+ **alert_request** | [**AlertRequest**](AlertRequest.md)|  | [optional] 
 
 ### Return type
 

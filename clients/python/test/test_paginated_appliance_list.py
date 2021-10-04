@@ -62,7 +62,7 @@ class TestPaginatedApplianceList(unittest.TestCase):
                         created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         updated_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         hostname = '', 
-                        user = null, )
+                        user = 56, )
                     ]
             )
         else :

@@ -20,6 +20,7 @@
 
 package com.print-nanny.client.models
 
+import com.print-nanny.client.models.EventSourceEnum
 import com.print-nanny.client.models.OctoPrintEventRequest
 import com.print-nanny.client.models.OctoprintEnvironmentRequest
 import com.print-nanny.client.models.OctoprintPrinterDataRequest
@@ -46,6 +47,7 @@ import java.io.Serializable
  * @param octoprintDevice 
  * @param printerState 
  * @param ts 
+ * @param eventSource 
  * @param eventData 
  * @param temperature 
  * @param printSession 
@@ -74,6 +76,8 @@ interface TelemetryEventPolymorphicRequest : Serializable {
     val printerState: PrinterStateEnum
     @Json(name = "ts")
     val ts: kotlin.Float?
+    @Json(name = "event_source")
+    val eventSource: EventSourceEnum?
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>?
     @Json(name = "temperature")

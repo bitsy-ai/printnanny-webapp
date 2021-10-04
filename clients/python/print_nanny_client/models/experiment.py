@@ -41,8 +41,8 @@ class Experiment(object):
         'active': 'bool',
         'name': 'str',
         'hypothesis': 'str',
-        'control': 'Nested',
-        'treatments': 'list[Nested]',
+        'control': 'int',
+        'treatments': 'list[int]',
         'notion_url': 'str'
     }
 
@@ -80,7 +80,8 @@ class Experiment(object):
         self.name = name
         self.hypothesis = hypothesis
         self.control = control
-        self.treatments = treatments
+        if treatments is not None:
+            self.treatments = treatments
         self.notion_url = notion_url
 
     @property
@@ -208,7 +209,7 @@ class Experiment(object):
 
 
         :return: The control of this Experiment.  # noqa: E501
-        :rtype: Nested
+        :rtype: int
         """
         return self._control
 
@@ -218,8 +219,10 @@ class Experiment(object):
 
 
         :param control: The control of this Experiment.  # noqa: E501
-        :type control: Nested
+        :type control: int
         """
+        if self.local_vars_configuration.client_side_validation and control is None:  # noqa: E501
+            raise ValueError("Invalid value for `control`, must not be `None`")  # noqa: E501
 
         self._control = control
 
@@ -229,7 +232,7 @@ class Experiment(object):
 
 
         :return: The treatments of this Experiment.  # noqa: E501
-        :rtype: list[Nested]
+        :rtype: list[int]
         """
         return self._treatments
 
@@ -239,10 +242,8 @@ class Experiment(object):
 
 
         :param treatments: The treatments of this Experiment.  # noqa: E501
-        :type treatments: list[Nested]
+        :type treatments: list[int]
         """
-        if self.local_vars_configuration.client_side_validation and treatments is None:  # noqa: E501
-            raise ValueError("Invalid value for `treatments`, must not be `None`")  # noqa: E501
 
         self._treatments = treatments
 

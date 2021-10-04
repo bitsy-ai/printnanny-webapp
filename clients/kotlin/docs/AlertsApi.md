@@ -339,7 +339,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this alert message. |
- **alertRequest** | [**AlertRequest**](AlertRequest.md)|  |
+ **alertRequest** | [**AlertRequest**](AlertRequest.md)|  | [optional]
 
 ### Return type
 

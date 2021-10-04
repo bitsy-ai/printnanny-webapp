@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "0.8.20"
+__version__ = "0.8.22"
 
 # import apis into sdk package
 from print_nanny_client.api.alerts_api import AlertsApi
@@ -42,7 +42,6 @@ from print_nanny_client.exceptions import ApiException
 from print_nanny_client.models.alert import Alert
 from print_nanny_client.models.alert_bulk_response import AlertBulkResponse
 from print_nanny_client.models.alert_event_type_enum import AlertEventTypeEnum
-from print_nanny_client.models.alert_method_enum import AlertMethodEnum
 from print_nanny_client.models.alert_request import AlertRequest
 from print_nanny_client.models.ansible_facts import AnsibleFacts
 from print_nanny_client.models.ansible_facts_request import AnsibleFactsRequest
@@ -70,8 +69,6 @@ from print_nanny_client.models.experiment_device_config import ExperimentDeviceC
 from print_nanny_client.models.gcode_file import GcodeFile
 from print_nanny_client.models.mobile_auth_request import MobileAuthRequest
 from print_nanny_client.models.model_artifact import ModelArtifact
-from print_nanny_client.models.nested import Nested
-from print_nanny_client.models.nested_request import NestedRequest
 from print_nanny_client.models.octo_print_device import OctoPrintDevice
 from print_nanny_client.models.octo_print_device_key import OctoPrintDeviceKey
 from print_nanny_client.models.octo_print_device_request import OctoPrintDeviceRequest

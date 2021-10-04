@@ -13,48 +13,6 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed successes of method [`appliances_list`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesListSuccess {
-    Status200(crate::models::PaginatedApplianceList),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`appliances_partial_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesPartialUpdateSuccess {
-    Status200(crate::models::Appliance),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`appliances_retrieve`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesRetrieveSuccess {
-    Status200(crate::models::Appliance),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`appliances_update`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesUpdateSuccess {
-    Status200(crate::models::Appliance),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed successes of method [`appliances_update_or_create`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum AppliancesUpdateOrCreateSuccess {
-    Status200(crate::models::Appliance),
-    Status201(crate::models::Appliance),
-    Status202(crate::models::Appliance),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`appliances_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -92,7 +50,7 @@ pub enum AppliancesUpdateOrCreateError {
 }
 
 
-pub async fn appliances_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<ResponseContent<AppliancesListSuccess>, Error<AppliancesListError>> {
+pub async fn appliances_list(configuration: &configuration::Configuration, page: Option<i32>) -> Result<crate::models::PaginatedApplianceList, Error<AppliancesListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -117,9 +75,7 @@ pub async fn appliances_list(configuration: &configuration::Configuration, page:
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<AppliancesListSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesListError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -127,7 +83,7 @@ pub async fn appliances_list(configuration: &configuration::Configuration, page:
     }
 }
 
-pub async fn appliances_partial_update(configuration: &configuration::Configuration, id: i32, patched_appliance_request: Option<crate::models::PatchedApplianceRequest>) -> Result<ResponseContent<AppliancesPartialUpdateSuccess>, Error<AppliancesPartialUpdateError>> {
+pub async fn appliances_partial_update(configuration: &configuration::Configuration, id: i32, patched_appliance_request: Option<crate::models::PatchedApplianceRequest>) -> Result<crate::models::Appliance, Error<AppliancesPartialUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -150,9 +106,7 @@ pub async fn appliances_partial_update(configuration: &configuration::Configurat
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<AppliancesPartialUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesPartialUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -160,7 +114,7 @@ pub async fn appliances_partial_update(configuration: &configuration::Configurat
     }
 }
 
-pub async fn appliances_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<ResponseContent<AppliancesRetrieveSuccess>, Error<AppliancesRetrieveError>> {
+pub async fn appliances_retrieve(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Appliance, Error<AppliancesRetrieveError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -182,9 +136,7 @@ pub async fn appliances_retrieve(configuration: &configuration::Configuration, i
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<AppliancesRetrieveSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesRetrieveError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -192,7 +144,7 @@ pub async fn appliances_retrieve(configuration: &configuration::Configuration, i
     }
 }
 
-pub async fn appliances_update(configuration: &configuration::Configuration, id: i32, appliance_request: crate::models::ApplianceRequest) -> Result<ResponseContent<AppliancesUpdateSuccess>, Error<AppliancesUpdateError>> {
+pub async fn appliances_update(configuration: &configuration::Configuration, id: i32, appliance_request: crate::models::ApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -215,9 +167,7 @@ pub async fn appliances_update(configuration: &configuration::Configuration, id:
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<AppliancesUpdateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesUpdateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
@@ -225,7 +175,7 @@ pub async fn appliances_update(configuration: &configuration::Configuration, id:
     }
 }
 
-pub async fn appliances_update_or_create(configuration: &configuration::Configuration, create_appliance_request: crate::models::CreateApplianceRequest) -> Result<ResponseContent<AppliancesUpdateOrCreateSuccess>, Error<AppliancesUpdateOrCreateError>> {
+pub async fn appliances_update_or_create(configuration: &configuration::Configuration, create_appliance_request: crate::models::CreateApplianceRequest) -> Result<crate::models::Appliance, Error<AppliancesUpdateOrCreateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -248,9 +198,7 @@ pub async fn appliances_update_or_create(configuration: &configuration::Configur
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        let local_var_entity: Option<AppliancesUpdateOrCreateSuccess> = serde_json::from_str(&local_var_content).ok();
-        let local_var_result = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
-        Ok(local_var_result)
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AppliancesUpdateOrCreateError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };

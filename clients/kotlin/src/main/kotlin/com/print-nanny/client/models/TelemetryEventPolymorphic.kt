@@ -42,7 +42,6 @@ import java.io.Serializable
  * @param eventType 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
- * @param eventSource 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
@@ -51,6 +50,7 @@ import java.io.Serializable
  * @param user 
  * @param printerState 
  * @param ts 
+ * @param eventSource 
  * @param eventData 
  * @param temperature 
  * @param printSession 
@@ -69,8 +69,6 @@ interface TelemetryEventPolymorphic : Serializable {
     val octoprintEnvironment: OctoprintEnvironment
     @Json(name = "octoprint_printer_data")
     val octoprintPrinterData: OctoprintPrinterData
-    @Json(name = "event_source")
-    val eventSource: EventSourceEnum?
     @Json(name = "print_nanny_plugin_version")
     val printNannyPluginVersion: kotlin.String
     @Json(name = "print_nanny_client_version")
@@ -87,6 +85,8 @@ interface TelemetryEventPolymorphic : Serializable {
     val printerState: PrinterStateEnum
     @Json(name = "ts")
     val ts: kotlin.Float?
+    @Json(name = "event_source")
+    val eventSource: EventSourceEnum?
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>?
     @Json(name = "temperature")

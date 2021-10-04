@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **octoprint_device** | **int** |  | [optional] 
-**alert_method** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | [optional] 
 **event_type** | [**AlertEventTypeEnum**](AlertEventTypeEnum.md) |  | [optional] 
 **seen** | **bool** |  | [optional] 
 **sent** | **bool** |  | [optional] 

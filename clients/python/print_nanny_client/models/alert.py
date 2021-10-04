@@ -45,7 +45,6 @@ class Alert(object):
         'manage_device_url': 'str',
         'user': 'int',
         'octoprint_device': 'int',
-        'alert_method': 'AlertMethodEnum',
         'event_type': 'AlertEventTypeEnum',
         'seen': 'bool',
         'sent': 'bool',
@@ -64,7 +63,6 @@ class Alert(object):
         'manage_device_url': 'manage_device_url',
         'user': 'user',
         'octoprint_device': 'octoprint_device',
-        'alert_method': 'alert_method',
         'event_type': 'event_type',
         'seen': 'seen',
         'sent': 'sent',
@@ -73,7 +71,7 @@ class Alert(object):
         'message': 'message'
     }
 
-    def __init__(self, id=None, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, alert_method=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, message=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, time=None, gcode_file=None, print_progress=None, time_elapsed=None, time_remaining=None, manage_device_url=None, user=None, octoprint_device=None, event_type=None, seen=None, sent=None, created_dt=None, updated_dt=None, message=None, local_vars_configuration=None):  # noqa: E501
         """Alert - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -88,7 +86,6 @@ class Alert(object):
         self._manage_device_url = None
         self._user = None
         self._octoprint_device = None
-        self._alert_method = None
         self._event_type = None
         self._seen = None
         self._sent = None
@@ -106,7 +103,6 @@ class Alert(object):
         self.manage_device_url = manage_device_url
         self.user = user
         self.octoprint_device = octoprint_device
-        self.alert_method = alert_method
         self.event_type = event_type
         if seen is not None:
             self.seen = seen
@@ -318,29 +314,6 @@ class Alert(object):
         """
 
         self._octoprint_device = octoprint_device
-
-    @property
-    def alert_method(self):
-        """Gets the alert_method of this Alert.  # noqa: E501
-
-
-        :return: The alert_method of this Alert.  # noqa: E501
-        :rtype: AlertMethodEnum
-        """
-        return self._alert_method
-
-    @alert_method.setter
-    def alert_method(self, alert_method):
-        """Sets the alert_method of this Alert.
-
-
-        :param alert_method: The alert_method of this Alert.  # noqa: E501
-        :type alert_method: AlertMethodEnum
-        """
-        if self.local_vars_configuration.client_side_validation and alert_method is None:  # noqa: E501
-            raise ValueError("Invalid value for `alert_method`, must not be `None`")  # noqa: E501
-
-        self._alert_method = alert_method
 
     @property
     def event_type(self):

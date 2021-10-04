@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **timeRemaining** | **kotlin.String** |  |  [readonly]
 **manageDeviceUrl** | **kotlin.String** |  |  [readonly]
 **user** | **kotlin.Int** |  |  [readonly]
-**alertMethod** | [**AlertMethodEnum**](AlertMethodEnum.md) |  | 
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **message** | **kotlin.String** |  |  [readonly]

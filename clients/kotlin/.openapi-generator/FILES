@@ -4,7 +4,6 @@ build.gradle
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
-docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleFacts.md
@@ -36,8 +35,6 @@ docs/GcodeFile.md
 docs/MlOpsApi.md
 docs/MobileAuthRequest.md
 docs/ModelArtifact.md
-docs/Nested.md
-docs/NestedRequest.md
 docs/OctoPrintDevice.md
 docs/OctoPrintDeviceKey.md
 docs/OctoPrintDeviceRequest.md
@@ -161,7 +158,6 @@ src/main/kotlin/com/print-nanny/client/infrastructure/UUIDAdapter.kt
 src/main/kotlin/com/print-nanny/client/models/Alert.kt
 src/main/kotlin/com/print-nanny/client/models/AlertBulkResponse.kt
 src/main/kotlin/com/print-nanny/client/models/AlertEventTypeEnum.kt
-src/main/kotlin/com/print-nanny/client/models/AlertMethodEnum.kt
 src/main/kotlin/com/print-nanny/client/models/AlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleFacts.kt
 src/main/kotlin/com/print-nanny/client/models/AnsibleFactsRequest.kt
@@ -189,8 +185,6 @@ src/main/kotlin/com/print-nanny/client/models/ExperimentDeviceConfig.kt
 src/main/kotlin/com/print-nanny/client/models/GcodeFile.kt
 src/main/kotlin/com/print-nanny/client/models/MobileAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/ModelArtifact.kt
-src/main/kotlin/com/print-nanny/client/models/Nested.kt
-src/main/kotlin/com/print-nanny/client/models/NestedRequest.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDevice.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceKey.kt
 src/main/kotlin/com/print-nanny/client/models/OctoPrintDeviceRequest.kt

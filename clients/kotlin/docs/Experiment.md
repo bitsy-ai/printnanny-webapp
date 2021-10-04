@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **name** | **kotlin.String** |  | 
 **hypothesis** | **kotlin.String** |  | 
-**control** | [**Nested**](Nested.md) |  |  [readonly]
-**treatments** | [**kotlin.collections.List&lt;Nested&gt;**](Nested.md) |  |  [readonly]
+**control** | **kotlin.Int** |  | 
 **active** | **kotlin.Boolean** |  |  [optional]
+**treatments** | **kotlin.collections.List&lt;kotlin.Int&gt;** |  |  [optional]
 **notionUrl** | **kotlin.String** |  |  [optional]
 
 

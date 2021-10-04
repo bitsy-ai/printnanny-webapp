@@ -34,12 +34,12 @@ import java.io.Serializable
  * @param cores 
  * @param ram 
  * @param cpuFlags 
- * @param releaseChannel 
  * @param json 
  * @param hardware 
  * @param revision 
  * @param model 
  * @param serial 
+ * @param releaseChannel 
  */
 
 data class CreateAnsibleFactsRequest (
@@ -62,9 +62,6 @@ data class CreateAnsibleFactsRequest (
     @Json(name = "cpu_flags")
     val cpuFlags: kotlin.collections.List<kotlin.String>,
 
-    @Json(name = "release_channel")
-    val releaseChannel: ReleaseChannelEnum,
-
     @Json(name = "json")
     val json: kotlin.collections.Map<kotlin.String, kotlin.Any>,
 
@@ -78,7 +75,10 @@ data class CreateAnsibleFactsRequest (
     val model: kotlin.String? = null,
 
     @Json(name = "serial")
-    val serial: kotlin.String? = null
+    val serial: kotlin.String? = null,
+
+    @Json(name = "release_channel")
+    val releaseChannel: ReleaseChannelEnum? = null
 
 ) : Serializable {
     companion object {

@@ -48,7 +48,8 @@ class TestPatchedApplianceRequest(unittest.TestCase):
                     private_key_checksum = '', 
                     fingerprint = '', 
                     appliance = 56, ), 
-                hostname = ''
+                hostname = '', 
+                user = 56
             )
         else :
             return PatchedApplianceRequest(

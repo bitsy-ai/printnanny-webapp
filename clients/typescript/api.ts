@@ -83,12 +83,6 @@ export interface Alert {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertMethodEnum}
-     * @memberof Alert
-     */
-    'alert_method': AlertMethodEnum;
-    /**
-     * 
      * @type {AlertEventTypeEnum}
      * @memberof Alert
      */
@@ -169,19 +163,6 @@ export enum AlertEventTypeEnum {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export enum AlertMethodEnum {
-    Ui = 'UI',
-    Email = 'EMAIL',
-    Discord = 'DISCORD',
-    Partner3Dgeeks = 'PARTNER_3DGEEKS'
-}
-
-/**
- * 
- * @export
  * @interface AlertRequest
  */
 export interface AlertRequest {
@@ -191,12 +172,6 @@ export interface AlertRequest {
      * @memberof AlertRequest
      */
     'octoprint_device'?: number | null;
-    /**
-     * 
-     * @type {AlertMethodEnum}
-     * @memberof AlertRequest
-     */
-    'alert_method': AlertMethodEnum;
     /**
      * 
      * @type {AlertEventTypeEnum}
@@ -352,10 +327,10 @@ export interface Appliance {
     'hostname': string;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof Appliance
      */
-    'user': Nested;
+    'user': number;
 }
 /**
  * 
@@ -467,6 +442,12 @@ export interface ApplianceRequest {
      * @memberof ApplianceRequest
      */
     'hostname': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApplianceRequest
+     */
+    'user': number;
 }
 /**
  * 
@@ -644,7 +625,7 @@ export interface CreateAnsibleFactsRequest {
      * @type {ReleaseChannelEnum}
      * @memberof CreateAnsibleFactsRequest
      */
-    'release_channel': ReleaseChannelEnum;
+    'release_channel'?: ReleaseChannelEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -926,16 +907,16 @@ export interface Experiment {
     'hypothesis': string;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof Experiment
      */
-    'control': Nested;
+    'control': number;
     /**
      * 
-     * @type {Array<Nested>}
+     * @type {Array<number>}
      * @memberof Experiment
      */
-    'treatments': Array<Nested>;
+    'treatments'?: Array<number>;
     /**
      * 
      * @type {string}
@@ -963,16 +944,16 @@ export interface ExperimentDeviceConfig {
     'created_dt': string;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    'experiment': Nested;
+    'experiment': number;
     /**
      * 
-     * @type {Nested}
+     * @type {number}
      * @memberof ExperimentDeviceConfig
      */
-    'artifact': Nested;
+    'artifact': number;
 }
 /**
  * 
@@ -1090,158 +1071,6 @@ export interface ModelArtifact {
      * @memberof ModelArtifact
      */
     'url': string;
-}
-/**
- * 
- * @export
- * @interface Nested
- */
-export interface Nested {
-    /**
-     * 
-     * @type {number}
-     * @memberof Nested
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'password': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_superuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_staff'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Nested
-     */
-    'is_active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'date_joined'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'last_login'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'last_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Nested
-     */
-    'email': string;
-    /**
-     * The groups this user belongs to. A user will get all permissions granted to each of their groups.
-     * @type {Array<number>}
-     * @memberof Nested
-     */
-    'groups'?: Array<number>;
-    /**
-     * Specific permissions for this user.
-     * @type {Array<number>}
-     * @memberof Nested
-     */
-    'user_permissions'?: Array<number>;
-}
-/**
- * 
- * @export
- * @interface NestedRequest
- */
-export interface NestedRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'password': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_superuser'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_staff'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof NestedRequest
-     */
-    'is_active'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'date_joined'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'last_login'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'first_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'last_name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof NestedRequest
-     */
-    'email': string;
-    /**
-     * The groups this user belongs to. A user will get all permissions granted to each of their groups.
-     * @type {Array<number>}
-     * @memberof NestedRequest
-     */
-    'groups'?: Array<number>;
-    /**
-     * Specific permissions for this user.
-     * @type {Array<number>}
-     * @memberof NestedRequest
-     */
-    'user_permissions'?: Array<number>;
 }
 /**
  * 
@@ -1740,6 +1569,12 @@ export interface OctoPrintEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof OctoPrintEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
@@ -1756,12 +1591,6 @@ export interface OctoPrintEvent {
      * @memberof OctoPrintEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof OctoPrintEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -1876,6 +1705,12 @@ export interface OctoPrintEventRequest {
      * @memberof OctoPrintEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof OctoPrintEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {OctoPrintEventEventTypeEnum}
@@ -2146,7 +1981,7 @@ export interface OctoprintJob {
      * @type {OctoprintFile}
      * @memberof OctoprintJob
      */
-    'file': OctoprintFile | null;
+    'file'?: OctoprintFile | null;
     /**
      * 
      * @type {number}
@@ -2183,7 +2018,7 @@ export interface OctoprintJobRequest {
      * @type {OctoprintFileRequest}
      * @memberof OctoprintJobRequest
      */
-    'file': OctoprintFileRequest | null;
+    'file'?: OctoprintFileRequest | null;
     /**
      * 
      * @type {number}
@@ -3379,12 +3214,6 @@ export interface PatchedAlertRequest {
     'octoprint_device'?: number | null;
     /**
      * 
-     * @type {AlertMethodEnum}
-     * @memberof PatchedAlertRequest
-     */
-    'alert_method'?: AlertMethodEnum;
-    /**
-     * 
      * @type {AlertEventTypeEnum}
      * @memberof PatchedAlertRequest
      */
@@ -3426,6 +3255,12 @@ export interface PatchedApplianceRequest {
      * @memberof PatchedApplianceRequest
      */
     'hostname'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedApplianceRequest
+     */
+    'user'?: number;
 }
 /**
  * 
@@ -3879,6 +3714,12 @@ export interface PrintJobEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof PrintJobEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {EventTypeD9eEnum}
      * @memberof PrintJobEvent
      */
@@ -3895,12 +3736,6 @@ export interface PrintJobEvent {
      * @memberof PrintJobEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof PrintJobEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -3968,6 +3803,12 @@ export interface PrintJobEventRequest {
      * @memberof PrintJobEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof PrintJobEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {EventTypeD9eEnum}
@@ -4065,6 +3906,12 @@ export interface PrintNannyPluginEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof PrintNannyPluginEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEvent
      */
@@ -4081,12 +3928,6 @@ export interface PrintNannyPluginEvent {
      * @memberof PrintNannyPluginEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof PrintNannyPluginEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4182,6 +4023,12 @@ export interface PrintNannyPluginEventRequest {
      * @memberof PrintNannyPluginEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof PrintNannyPluginEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {PrintNannyPluginEventEventTypeEnum}
@@ -4463,6 +4310,12 @@ export interface PrinterEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof PrinterEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {EventType0c4Enum}
      * @memberof PrinterEvent
      */
@@ -4479,12 +4332,6 @@ export interface PrinterEvent {
      * @memberof PrinterEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof PrinterEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -4558,6 +4405,12 @@ export interface PrinterEventRequest {
      * @memberof PrinterEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof PrinterEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {EventType0c4Enum}
@@ -4992,6 +4845,12 @@ export interface RemoteCommandEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof RemoteCommandEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEvent
      */
@@ -5008,12 +4867,6 @@ export interface RemoteCommandEvent {
      * @memberof RemoteCommandEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof RemoteCommandEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -5093,6 +4946,12 @@ export interface RemoteCommandEventRequest {
      * @memberof RemoteCommandEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof RemoteCommandEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {RemoteCommandEventEventTypeEnum}
@@ -5296,6 +5155,12 @@ export interface TelemetryEvent {
     'ts'?: number;
     /**
      * 
+     * @type {EventSourceEnum}
+     * @memberof TelemetryEvent
+     */
+    'event_source'?: EventSourceEnum;
+    /**
+     * 
      * @type {TelemetryEventEventTypeEnum}
      * @memberof TelemetryEvent
      */
@@ -5312,12 +5177,6 @@ export interface TelemetryEvent {
      * @memberof TelemetryEvent
      */
     'octoprint_printer_data': OctoprintPrinterData;
-    /**
-     * 
-     * @type {EventSourceEnum}
-     * @memberof TelemetryEvent
-     */
-    'event_source': EventSourceEnum;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -5478,6 +5337,12 @@ export interface TelemetryEventRequest {
      * @memberof TelemetryEventRequest
      */
     'ts'?: number;
+    /**
+     * 
+     * @type {EventSourceEnum}
+     * @memberof TelemetryEventRequest
+     */
+    'event_source'?: EventSourceEnum;
     /**
      * 
      * @type {TelemetryEventEventTypeEnum}
@@ -5831,15 +5696,13 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} id A unique integer value identifying this alert message.
-         * @param {AlertRequest} alertRequest 
+         * @param {AlertRequest} [alertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsUpdate: async (id: number, alertRequest: AlertRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        alertsUpdate: async (id: number, alertRequest?: AlertRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('alertsUpdate', 'id', id)
-            // verify required parameter 'alertRequest' is not null or undefined
-            assertParamExists('alertsUpdate', 'alertRequest', alertRequest)
             const localVarPath = `/api/alerts/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -5945,11 +5808,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} id A unique integer value identifying this alert message.
-         * @param {AlertRequest} alertRequest 
+         * @param {AlertRequest} [alertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async alertsUpdate(id: number, alertRequest: AlertRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
+        async alertsUpdate(id: number, alertRequest?: AlertRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Alert>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.alertsUpdate(id, alertRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -6019,11 +5882,11 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
         /**
          * 
          * @param {number} id A unique integer value identifying this alert message.
-         * @param {AlertRequest} alertRequest 
+         * @param {AlertRequest} [alertRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        alertsUpdate(id: number, alertRequest: AlertRequest, options?: any): AxiosPromise<Alert> {
+        alertsUpdate(id: number, alertRequest?: AlertRequest, options?: any): AxiosPromise<Alert> {
             return localVarFp.alertsUpdate(id, alertRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -6091,12 +5954,12 @@ export interface AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this alert message.
-     * @param {AlertRequest} alertRequest 
+     * @param {AlertRequest} [alertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApiInterface
      */
-    alertsUpdate(id: number, alertRequest: AlertRequest, options?: AxiosRequestConfig): AxiosPromise<Alert>;
+    alertsUpdate(id: number, alertRequest?: AlertRequest, options?: AxiosRequestConfig): AxiosPromise<Alert>;
 
 }
 
@@ -6175,12 +6038,12 @@ export class AlertsApi extends BaseAPI implements AlertsApiInterface {
     /**
      * 
      * @param {number} id A unique integer value identifying this alert message.
-     * @param {AlertRequest} alertRequest 
+     * @param {AlertRequest} [alertRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public alertsUpdate(id: number, alertRequest: AlertRequest, options?: AxiosRequestConfig) {
+    public alertsUpdate(id: number, alertRequest?: AlertRequest, options?: AxiosRequestConfig) {
         return AlertsApiFp(this.configuration).alertsUpdate(id, alertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -43,6 +43,7 @@ class TestPaginatedPrintJobEventList(unittest.TestCase):
                     print_nanny_client.models.print_job_event.PrintJobEvent(
                         id = 56, 
                         ts = 1.337, 
+                        event_source = null, 
                         event_type = 'PrintCancelled', 
                         octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                             os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
@@ -98,7 +99,6 @@ class TestPaginatedPrintJobEventList(unittest.TestCase):
                             offsets = {
                                 'key' : null
                                 }, ), 
-                        event_source = null, 
                         event_data = {
                             'key' : null
                             }, 

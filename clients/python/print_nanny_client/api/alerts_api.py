@@ -822,18 +822,18 @@ class AlertsApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def alerts_update(self, id, alert_request, **kwargs):  # noqa: E501
+    def alerts_update(self, id, **kwargs):  # noqa: E501
         """alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alerts_update(id, alert_request, async_req=True)
+        >>> thread = api.alerts_update(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param alert_request: (required)
+        :param alert_request:
         :type alert_request: AlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -851,20 +851,20 @@ class AlertsApi(object):
         :rtype: Alert
         """
         kwargs['_return_http_data_only'] = True
-        return self.alerts_update_with_http_info(id, alert_request, **kwargs)  # noqa: E501
+        return self.alerts_update_with_http_info(id, **kwargs)  # noqa: E501
 
-    def alerts_update_with_http_info(self, id, alert_request, **kwargs):  # noqa: E501
+    def alerts_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """alerts_update  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.alerts_update_with_http_info(id, alert_request, async_req=True)
+        >>> thread = api.alerts_update_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
         :param id: A unique integer value identifying this alert message. (required)
         :type id: int
-        :param alert_request: (required)
+        :param alert_request:
         :type alert_request: AlertRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -917,10 +917,6 @@ class AlertsApi(object):
         if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
                                                         local_var_params['id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `id` when calling `alerts_update`")  # noqa: E501
-        # verify the required parameter 'alert_request' is set
-        if self.api_client.client_side_validation and ('alert_request' not in local_var_params or  # noqa: E501
-                                                        local_var_params['alert_request'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `alert_request` when calling `alerts_update`")  # noqa: E501
 
         collection_formats = {}
 

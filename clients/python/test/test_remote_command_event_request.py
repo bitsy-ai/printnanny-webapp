@@ -37,6 +37,7 @@ class TestRemoteCommandEventRequest(unittest.TestCase):
         if include_optional :
             return RemoteCommandEventRequest(
                 ts = 1.337, 
+                event_source = None, 
                 event_type = 'remote_command_received', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(

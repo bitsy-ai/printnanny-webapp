@@ -95,7 +95,8 @@ class CreateAnsibleFactsRequest(object):
         self.cores = cores
         self.ram = ram
         self.cpu_flags = cpu_flags
-        self.release_channel = release_channel
+        if release_channel is not None:
+            self.release_channel = release_channel
         self.json = json
 
     @property
@@ -371,8 +372,6 @@ class CreateAnsibleFactsRequest(object):
         :param release_channel: The release_channel of this CreateAnsibleFactsRequest.  # noqa: E501
         :type release_channel: ReleaseChannelEnum
         """
-        if self.local_vars_configuration.client_side_validation and release_channel is None:  # noqa: E501
-            raise ValueError("Invalid value for `release_channel`, must not be `None`")  # noqa: E501
 
         self._release_channel = release_channel
 

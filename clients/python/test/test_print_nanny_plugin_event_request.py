@@ -37,6 +37,7 @@ class TestPrintNannyPluginEventRequest(unittest.TestCase):
         if include_optional :
             return PrintNannyPluginEventRequest(
                 ts = 1.337, 
+                event_source = None, 
                 event_type = 'plugin_octoprint_nanny_monitoring_start', 
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
