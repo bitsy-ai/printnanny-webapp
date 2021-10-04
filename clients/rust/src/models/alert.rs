@@ -29,8 +29,6 @@ pub struct Alert {
     pub user: i32,
     #[serde(rename = "octoprint_device", skip_serializing_if = "Option::is_none")]
     pub octoprint_device: Option<i32>,
-    #[serde(rename = "alert_method")]
-    pub alert_method: crate::models::AlertMethodEnum,
     #[serde(rename = "event_type", skip_serializing_if = "Option::is_none")]
     pub event_type: Option<Box<crate::models::AlertEventTypeEnum>>,
     #[serde(rename = "seen", skip_serializing_if = "Option::is_none")]
@@ -46,7 +44,7 @@ pub struct Alert {
 }
 
 impl Alert {
-    pub fn new(id: i32, time: String, gcode_file: String, print_progress: String, time_elapsed: String, time_remaining: String, manage_device_url: Option<String>, user: i32, alert_method: crate::models::AlertMethodEnum, created_dt: String, updated_dt: String, message: String) -> Alert {
+    pub fn new(id: i32, time: String, gcode_file: String, print_progress: String, time_elapsed: String, time_remaining: String, manage_device_url: Option<String>, user: i32, created_dt: String, updated_dt: String, message: String) -> Alert {
         Alert {
             id,
             time,
@@ -57,7 +55,6 @@ impl Alert {
             manage_device_url,
             user,
             octoprint_device: None,
-            alert_method,
             event_type: None,
             seen: None,
             sent: None,

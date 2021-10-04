@@ -188,7 +188,7 @@ This endpoint does not need any parameter.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this alert message. | [required] |
-**alert_request** | [**AlertRequest**](AlertRequest.md) |  | [required] |
+**alert_request** | Option<[**AlertRequest**](AlertRequest.md)> |  |  |
 
 ### Return type
 

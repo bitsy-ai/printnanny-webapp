@@ -248,7 +248,7 @@ pub async fn alerts_unread(configuration: &configuration::Configuration, ) -> Re
     }
 }
 
-pub async fn alerts_update(configuration: &configuration::Configuration, id: i32, alert_request: crate::models::AlertRequest) -> Result<crate::models::Alert, Error<AlertsUpdateError>> {
+pub async fn alerts_update(configuration: &configuration::Configuration, id: i32, alert_request: Option<crate::models::AlertRequest>) -> Result<crate::models::Alert, Error<AlertsUpdateError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

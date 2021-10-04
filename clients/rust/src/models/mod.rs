@@ -4,8 +4,6 @@ pub mod alert_bulk_response;
 pub use self::alert_bulk_response::AlertBulkResponse;
 pub mod alert_event_type_enum;
 pub use self::alert_event_type_enum::AlertEventTypeEnum;
-pub mod alert_method_enum;
-pub use self::alert_method_enum::AlertMethodEnum;
 pub mod alert_request;
 pub use self::alert_request::AlertRequest;
 pub mod ansible_facts;

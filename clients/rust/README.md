@@ -108,7 +108,6 @@ Class | Method | HTTP request | Description
  - [Alert](docs/Alert.md)
  - [AlertBulkResponse](docs/AlertBulkResponse.md)
  - [AlertEventTypeEnum](docs/AlertEventTypeEnum.md)
- - [AlertMethodEnum](docs/AlertMethodEnum.md)
  - [AlertRequest](docs/AlertRequest.md)
  - [AnsibleFacts](docs/AnsibleFacts.md)
  - [AnsibleFactsRequest](docs/AnsibleFactsRequest.md)

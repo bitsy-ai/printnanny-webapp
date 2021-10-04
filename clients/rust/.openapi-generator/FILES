@@ -6,7 +6,6 @@ README.md
 docs/Alert.md
 docs/AlertBulkResponse.md
 docs/AlertEventTypeEnum.md
-docs/AlertMethodEnum.md
 docs/AlertRequest.md
 docs/AlertsApi.md
 docs/AnsibleFacts.md
@@ -146,7 +145,6 @@ src/lib.rs
 src/models/alert.rs
 src/models/alert_bulk_response.rs
 src/models/alert_event_type_enum.rs
-src/models/alert_method_enum.rs
 src/models/alert_request.rs
 src/models/ansible_facts.rs
 src/models/ansible_facts_request.rs
