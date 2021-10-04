@@ -138,12 +138,20 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
 
 
 class OctoPrintEventSerializer(TelemetryEventSerializer):
-    event_type = serializers.ChoiceField(choices=OctoprintEventType.choices)
+
+    event_type = serializers.ChoiceField(
+        choices=OctoprintEventType.choices
+    )
 
     class Meta:
         model = OctoPrintEvent
         fields = "__all__"
-        read_only_fields = ("id", "user", "event_source", "polymorphic_ctype")
+        read_only_fields = (
+            "id", 
+            "user", 
+            "event_source", 
+            "polymorphic_ctype"
+        )
 
 
 class PrintNannyPluginEventSerializer(TelemetryEventSerializer):

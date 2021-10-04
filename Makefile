@@ -240,6 +240,7 @@ rust-client: clean-rust-client
 		-g rust \
 		-o /local/clients/rust \
 		-c /local/clients/rust.yaml \
+		-t /local/client-templates/rust
 
 clean-python-client: ## remove build artifacts
 	rm -fr build/
