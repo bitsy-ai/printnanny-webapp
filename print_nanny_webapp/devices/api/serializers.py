@@ -45,7 +45,6 @@ class ApplianceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appliance
-        depth = 1
         fields = "__all__"
 
 

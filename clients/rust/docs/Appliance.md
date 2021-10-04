@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **created_dt** | **String** |  | [readonly]
 **updated_dt** | **String** |  | [readonly]
 **hostname** | **String** |  | 
-**user** | Option<[**crate::models::Nested**](Nested.md)> |  | [readonly]
+**user** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

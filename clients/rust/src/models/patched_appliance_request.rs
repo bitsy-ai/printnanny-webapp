@@ -17,6 +17,8 @@ pub struct PatchedApplianceRequest {
     pub ansible_facts: Option<Box<crate::models::AnsibleFactsRequest>>,
     #[serde(rename = "hostname", skip_serializing_if = "Option::is_none")]
     pub hostname: Option<String>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<i32>,
 }
 
 impl PatchedApplianceRequest {
@@ -25,6 +27,7 @@ impl PatchedApplianceRequest {
             pki: None,
             ansible_facts: None,
             hostname: None,
+            user: None,
         }
     }
 }

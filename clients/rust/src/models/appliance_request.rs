@@ -17,14 +17,17 @@ pub struct ApplianceRequest {
     pub ansible_facts: Box<crate::models::AnsibleFactsRequest>,
     #[serde(rename = "hostname")]
     pub hostname: String,
+    #[serde(rename = "user")]
+    pub user: i32,
 }
 
 impl ApplianceRequest {
-    pub fn new(pki: crate::models::AppliancePkiRequest, ansible_facts: crate::models::AnsibleFactsRequest, hostname: String) -> ApplianceRequest {
+    pub fn new(pki: crate::models::AppliancePkiRequest, ansible_facts: crate::models::AnsibleFactsRequest, hostname: String, user: i32) -> ApplianceRequest {
         ApplianceRequest {
             pki: Box::new(pki),
             ansible_facts: Box::new(ansible_facts),
             hostname,
+            user,
         }
     }
 }

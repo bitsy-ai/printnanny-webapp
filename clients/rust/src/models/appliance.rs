@@ -26,11 +26,11 @@ pub struct Appliance {
     #[serde(rename = "hostname")]
     pub hostname: String,
     #[serde(rename = "user")]
-    pub user: Option<Box<crate::models::Nested>>,
+    pub user: i32,
 }
 
 impl Appliance {
-    pub fn new(id: i32, pki: crate::models::AppliancePki, ansible_facts: crate::models::AnsibleFacts, deleted: String, created_dt: String, updated_dt: String, hostname: String, user: Option<crate::models::Nested>) -> Appliance {
+    pub fn new(id: i32, pki: crate::models::AppliancePki, ansible_facts: crate::models::AnsibleFacts, deleted: String, created_dt: String, updated_dt: String, hostname: String, user: i32) -> Appliance {
         Appliance {
             id,
             pki: Box::new(pki),
@@ -39,7 +39,7 @@ impl Appliance {
             created_dt,
             updated_dt,
             hostname,
-            user: Box::new(user),
+            user,
         }
     }
 }

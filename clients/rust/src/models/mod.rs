@@ -60,8 +60,6 @@ pub mod model_artifact;
 pub use self::model_artifact::ModelArtifact;
 pub mod nested;
 pub use self::nested::Nested;
-pub mod nested_request;
-pub use self::nested_request::NestedRequest;
 pub mod octo_print_device;
 pub use self::octo_print_device::OctoPrintDevice;
 pub mod octo_print_device_key;
