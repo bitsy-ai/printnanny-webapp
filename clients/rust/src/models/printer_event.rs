@@ -33,8 +33,8 @@ pub struct PrinterEvent {
     pub print_nanny_client_version: String,
     #[serde(rename = "octoprint_version")]
     pub octoprint_version: String,
-    #[serde(rename = "printer_state")]
-    pub printer_state: crate::models::PrinterStateEnum,
+    #[serde(rename = "printer_state", skip_serializing_if = "Option::is_none")]
+    pub printer_state: Option<crate::models::PrinterStateEnum>,
     #[serde(rename = "polymorphic_ctype")]
     pub polymorphic_ctype: i32,
     #[serde(rename = "octoprint_device")]
@@ -46,7 +46,7 @@ pub struct PrinterEvent {
 }
 
 impl PrinterEvent {
-    pub fn new(id: i32, event_type: crate::models::EventType0c4Enum, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, printer_state: crate::models::PrinterStateEnum, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrinterEvent {
+    pub fn new(id: i32, event_type: crate::models::EventType0c4Enum, octoprint_environment: crate::models::OctoprintEnvironment, octoprint_printer_data: crate::models::OctoprintPrinterData, print_nanny_plugin_version: String, print_nanny_client_version: String, octoprint_version: String, polymorphic_ctype: i32, octoprint_device: i32, user: i32) -> PrinterEvent {
         PrinterEvent {
             id,
             ts: None,
@@ -59,7 +59,7 @@ impl PrinterEvent {
             print_nanny_plugin_version,
             print_nanny_client_version,
             octoprint_version,
-            printer_state,
+            printer_state: None,
             polymorphic_ctype,
             octoprint_device,
             user,

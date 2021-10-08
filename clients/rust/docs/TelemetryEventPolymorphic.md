@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **octoprint_device** | **i32** |  | 
 **user** | **i32** |  | [readonly]
 **print_session** | Option<**i32**> |  | [optional]
-**printer_state** | [**crate::models::PrinterStateEnum**](PrinterStateEnum.md) |  | 
+**printer_state** | Option<[**crate::models::PrinterStateEnum**](PrinterStateEnum.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

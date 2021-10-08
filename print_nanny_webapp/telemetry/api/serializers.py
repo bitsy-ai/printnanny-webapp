@@ -114,7 +114,10 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
         choices=EventSource.choices,
         default=EventSource.PRINT_NANNY_PLUGIN,
     )
-    event_type = serializers.ChoiceField(choices=TelemetryEventType.choices)
+    event_type = serializers.ChoiceField(
+        choices=TelemetryEventType.choices,
+        default=TelemetryEventType.CONNECT_TEST_NOOP
+    )
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
 

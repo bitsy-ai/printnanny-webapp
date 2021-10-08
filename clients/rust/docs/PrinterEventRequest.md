@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **print_nanny_plugin_version** | **String** |  | 
 **print_nanny_client_version** | **String** |  | 
 **octoprint_version** | **String** |  | 
-**printer_state** | [**crate::models::PrinterStateEnum**](PrinterStateEnum.md) |  | 
+**printer_state** | Option<[**crate::models::PrinterStateEnum**](PrinterStateEnum.md)> |  | [optional]
 **octoprint_device** | **i32** |  | 
 **print_session** | Option<**i32**> |  | [optional]
 
