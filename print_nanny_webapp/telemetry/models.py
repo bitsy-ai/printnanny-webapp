@@ -151,8 +151,9 @@ class PrinterEvent(TelemetryEvent):
     }
     event_codes = [x.value for x in PrinterEventType.__members__.values()]
     printer_state = models.CharField(
-        max_length=36, choices=PrinterEventType.choices,
-        default=PrinterEventType.DISCONNECTED
+        max_length=36,
+        choices=PrinterEventType.choices,
+        default=PrinterEventType.DISCONNECTED,
     )
 
     @property

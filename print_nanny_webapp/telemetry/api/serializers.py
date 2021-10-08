@@ -115,8 +115,7 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
         default=EventSource.PRINT_NANNY_PLUGIN,
     )
     event_type = serializers.ChoiceField(
-        choices=TelemetryEventType.choices,
-        default=TelemetryEventType.CONNECT_TEST_NOOP
+        choices=TelemetryEventType.choices, default=TelemetryEventType.CONNECT_TEST_NOOP
     )
     octoprint_environment = OctoprintEnvironmentSerializer()
     octoprint_printer_data = OctoprintPrinterDataSerializer()
@@ -128,7 +127,9 @@ class TelemetryEventSerializer(serializers.ModelSerializer):
 
 
 class PrinterEventSerializer(TelemetryEventSerializer):
-    event_type = serializers.ChoiceField(choices=PrinterEventType.choices)
+    event_type = serializers.ChoiceField(
+        choices=PrinterEventType.choices, default=PrinterEventType.DISCONNECTED
+    )
 
     class Meta:
         model = PrinterEvent
@@ -165,7 +166,10 @@ class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
 
 
 class RemoteCommandEventSerializer(TelemetryEventSerializer):
-    event_type = serializers.ChoiceField(choices=RemoteCommandEventType.choices)
+    event_type = serializers.ChoiceField(
+        choices=RemoteCommandEventType.choices,
+        default=RemoteCommandEvent.REMOTE_COMMAND_FAILED,
+    )
 
     class Meta:
         model = RemoteCommandEvent
