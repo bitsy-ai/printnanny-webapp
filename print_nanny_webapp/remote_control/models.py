@@ -477,7 +477,9 @@ class RemoteControlCommand(models.Model):
         Command.PRINT_RESUME: "info",
     }
     created_dt = models.DateTimeField(auto_now_add=True)
-    command = models.CharField(max_length=255, choices=Command.choices)
+    command = models.CharField(
+        max_length=255, choices=Command.choices, default=Command.PONG
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     device = models.ForeignKey(
         OctoPrintDevice, on_delete=models.CASCADE, related_name="commands"
