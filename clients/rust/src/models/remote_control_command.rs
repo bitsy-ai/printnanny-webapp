@@ -15,8 +15,8 @@ pub struct RemoteControlCommand {
     pub id: i32,
     #[serde(rename = "created_dt")]
     pub created_dt: String,
-    #[serde(rename = "command")]
-    pub command: crate::models::CommandEnum,
+    #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
+    pub command: Option<crate::models::CommandEnum>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]
@@ -36,11 +36,11 @@ pub struct RemoteControlCommand {
 }
 
 impl RemoteControlCommand {
-    pub fn new(id: i32, created_dt: String, command: crate::models::CommandEnum, user: i32, device: i32, url: String, octoprint_event_type: String) -> RemoteControlCommand {
+    pub fn new(id: i32, created_dt: String, user: i32, device: i32, url: String, octoprint_event_type: String) -> RemoteControlCommand {
         RemoteControlCommand {
             id,
             created_dt,
-            command,
+            command: None,
             user,
             device,
             received: None,

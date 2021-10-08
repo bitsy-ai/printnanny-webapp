@@ -30,11 +30,11 @@ import java.io.Serializable
  *
  * @param id 
  * @param createdDt 
- * @param command 
  * @param user 
  * @param device 
  * @param url 
  * @param octoprintEventType 
+ * @param command 
  * @param received 
  * @param success 
  * @param iotcoreResponse 
@@ -49,9 +49,6 @@ data class RemoteControlCommand (
     @Json(name = "created_dt")
     val createdDt: java.time.OffsetDateTime,
 
-    @Json(name = "command")
-    val command: CommandEnum,
-
     @Json(name = "user")
     val user: kotlin.Int,
 
@@ -63,6 +60,9 @@ data class RemoteControlCommand (
 
     @Json(name = "octoprint_event_type")
     val octoprintEventType: kotlin.String,
+
+    @Json(name = "command")
+    val command: CommandEnum? = null,
 
     @Json(name = "received")
     val received: kotlin.Boolean? = null,

@@ -56,7 +56,6 @@ class TestRemoteControlCommand(unittest.TestCase):
             return RemoteControlCommand(
                 id = 56,
                 created_dt = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                command = 'monitoring_stop',
                 user = 56,
                 device = 56,
                 url = '',

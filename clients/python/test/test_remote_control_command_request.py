@@ -50,7 +50,6 @@ class TestRemoteControlCommandRequest(unittest.TestCase):
             )
         else :
             return RemoteControlCommandRequest(
-                command = 'monitoring_stop',
                 user = 56,
                 device = 56,
         )

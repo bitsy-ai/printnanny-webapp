@@ -42,6 +42,8 @@
 
     * `pluginOctoprintNannyConnectTestMqttPongSuccess` (value: `"plugin_octoprint_nanny_connect_test_mqtt_pong_success"`)
 
+    * `connectTestNoop` (value: `"connect_test_noop"`)
+
     * `clientAuthed` (value: `"ClientAuthed"`)
 
     * `clientClosed` (value: `"ClientClosed"`)

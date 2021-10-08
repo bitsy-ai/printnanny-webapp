@@ -84,7 +84,8 @@ class RemoteControlCommand(object):
 
         self.id = id
         self.created_dt = created_dt
-        self.command = command
+        if command is not None:
+            self.command = command
         self.user = user
         self.device = device
         if received is not None:
@@ -161,8 +162,6 @@ class RemoteControlCommand(object):
         :param command: The command of this RemoteControlCommand.  # noqa: E501
         :type command: CommandEnum
         """
-        if self.local_vars_configuration.client_side_validation and command is None:  # noqa: E501
-            raise ValueError("Invalid value for `command`, must not be `None`")  # noqa: E501
 
         self._command = command
 

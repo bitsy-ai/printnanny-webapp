@@ -5036,7 +5036,7 @@ export interface RemoteControlCommand {
      * @type {CommandEnum}
      * @memberof RemoteControlCommand
      */
-    'command': CommandEnum;
+    'command'?: CommandEnum;
     /**
      * 
      * @type {number}
@@ -5097,7 +5097,7 @@ export interface RemoteControlCommandRequest {
      * @type {CommandEnum}
      * @memberof RemoteControlCommandRequest
      */
-    'command': CommandEnum;
+    'command'?: CommandEnum;
     /**
      * 
      * @type {number}
@@ -5258,6 +5258,7 @@ export enum TelemetryEventEventTypeEnum {
     PluginOctoprintNannyConnectTestMqttPong = 'plugin_octoprint_nanny_connect_test_mqtt_pong',
     PluginOctoprintNannyConnectTestMqttPongFailed = 'plugin_octoprint_nanny_connect_test_mqtt_pong_failed',
     PluginOctoprintNannyConnectTestMqttPongSuccess = 'plugin_octoprint_nanny_connect_test_mqtt_pong_success',
+    ConnectTestNoop = 'connect_test_noop',
     ClientAuthed = 'ClientAuthed',
     ClientClosed = 'ClientClosed',
     ClientDeauthed = 'ClientDeauthed',
