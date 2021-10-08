@@ -139,8 +139,7 @@ class PrinterEventSerializer(TelemetryEventSerializer):
 
 class PrintJobEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
-        choices=PrintJobEventType.choices,
-        default=PrintJobEventType.PRINT_STARTED
+        choices=PrintJobEventType.choices, default=PrintJobEventType.PRINT_STARTED
     )
 
     class Meta:
@@ -152,8 +151,7 @@ class PrintJobEventSerializer(TelemetryEventSerializer):
 class OctoPrintEventSerializer(TelemetryEventSerializer):
 
     event_type = serializers.ChoiceField(
-        choices=OctoprintEventType.choices,
-        default=OctoprintEventType.STARTUP
+        choices=OctoprintEventType.choices, default=OctoprintEventType.STARTUP
     )
 
     class Meta:
@@ -165,7 +163,7 @@ class OctoPrintEventSerializer(TelemetryEventSerializer):
 class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=PrintNannyPluginEventType.choices,
-        default=PrintNannyPluginEventType.MONITORING_START
+        default=PrintNannyPluginEventType.MONITORING_START,
     )
 
     class Meta:
