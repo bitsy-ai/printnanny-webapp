@@ -10,7 +10,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AlertBulkResponse {
     #[serde(rename = "received")]
     pub received: i32,

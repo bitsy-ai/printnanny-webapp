@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PatchedApplianceRequest {
     #[serde(rename = "pki", skip_serializing_if = "Option::is_none")]
     pub pki: Option<Box<crate::models::AppliancePkiRequest>>,

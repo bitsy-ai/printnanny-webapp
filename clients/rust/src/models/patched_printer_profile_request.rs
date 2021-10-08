@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PatchedPrinterProfileRequest {
     #[serde(rename = "octoprint_device", skip_serializing_if = "Option::is_none")]
     pub octoprint_device: Option<i32>,

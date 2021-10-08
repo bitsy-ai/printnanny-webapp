@@ -1,7 +1,11 @@
 [package]
 name = "print-nanny-client"
 version = "0.8.25"
-authors = ["OpenAPI Generator team and contributors"]
+authors = ["Leigh Johnson <leigh@bitsy.ai>"]
+description = "Official Print Nanny Rust API Client"
+homepage = "https://print-nanny.com"
+repository = "https://github.com/bitsy-ai/octoprint-nanny-webapp"
+license = "AGPL-3.0"
 edition = "2018"
 
 [dependencies]
