@@ -14,12 +14,12 @@ Name | Type | Description | Notes
 **polymorphicCtype** | **kotlin.Int** |  |  [readonly]
 **octoprintDevice** | **kotlin.Int** |  | 
 **user** | **kotlin.Int** |  |  [readonly]
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **ts** | **kotlin.Float** |  |  [optional]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 
 

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **octoprint_device** | **int** |  | 
 **user** | **int** |  | [readonly] 
 **print_session** | **int** |  | [optional] 
-**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
+**printer_state** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

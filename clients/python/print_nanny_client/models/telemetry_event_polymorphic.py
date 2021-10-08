@@ -117,7 +117,8 @@ class TelemetryEventPolymorphic(object):
         self.octoprint_device = octoprint_device
         self.user = user
         self.print_session = print_session
-        self.printer_state = printer_state
+        if printer_state is not None:
+            self.printer_state = printer_state
 
     @property
     def id(self):
@@ -481,8 +482,6 @@ class TelemetryEventPolymorphic(object):
         :param printer_state: The printer_state of this TelemetryEventPolymorphic.  # noqa: E501
         :type printer_state: PrinterStateEnum
         """
-        if self.local_vars_configuration.client_side_validation and printer_state is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_state`, must not be `None`")  # noqa: E501
 
         self._printer_state = printer_state
 

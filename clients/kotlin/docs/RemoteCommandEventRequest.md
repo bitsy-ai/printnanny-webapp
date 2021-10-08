@@ -4,7 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**eventType** | [**RemoteCommandEventEventTypeEnum**](RemoteCommandEventEventTypeEnum.md) |  | 
 **octoprintEnvironment** | [**OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprintPrinterData** | [**OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
 **printNannyPluginVersion** | **kotlin.String** |  | 
@@ -13,6 +12,7 @@ Name | Type | Description | Notes
 **octoprintDevice** | **kotlin.Int** |  | 
 **ts** | **kotlin.Float** |  |  [optional]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]
+**eventType** | [**RemoteCommandEventEventTypeEnum**](RemoteCommandEventEventTypeEnum.md) |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]

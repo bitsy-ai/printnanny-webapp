@@ -4319,7 +4319,7 @@ export interface PrinterEvent {
      * @type {EventType0c4Enum}
      * @memberof PrinterEvent
      */
-    'event_type': EventType0c4Enum;
+    'event_type'?: EventType0c4Enum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -4367,7 +4367,7 @@ export interface PrinterEvent {
      * @type {PrinterStateEnum}
      * @memberof PrinterEvent
      */
-    'printer_state': PrinterStateEnum;
+    'printer_state'?: PrinterStateEnum;
     /**
      * 
      * @type {number}
@@ -4416,7 +4416,7 @@ export interface PrinterEventRequest {
      * @type {EventType0c4Enum}
      * @memberof PrinterEventRequest
      */
-    'event_type': EventType0c4Enum;
+    'event_type'?: EventType0c4Enum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -4464,7 +4464,7 @@ export interface PrinterEventRequest {
      * @type {PrinterStateEnum}
      * @memberof PrinterEventRequest
      */
-    'printer_state': PrinterStateEnum;
+    'printer_state'?: PrinterStateEnum;
     /**
      * 
      * @type {number}
@@ -4854,7 +4854,7 @@ export interface RemoteCommandEvent {
      * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEvent
      */
-    'event_type': RemoteCommandEventEventTypeEnum;
+    'event_type'?: RemoteCommandEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -4957,7 +4957,7 @@ export interface RemoteCommandEventRequest {
      * @type {RemoteCommandEventEventTypeEnum}
      * @memberof RemoteCommandEventRequest
      */
-    'event_type': RemoteCommandEventEventTypeEnum;
+    'event_type'?: RemoteCommandEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -5164,7 +5164,7 @@ export interface TelemetryEvent {
      * @type {TelemetryEventEventTypeEnum}
      * @memberof TelemetryEvent
      */
-    'event_type': TelemetryEventEventTypeEnum;
+    'event_type'?: TelemetryEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -5349,7 +5349,7 @@ export interface TelemetryEventRequest {
      * @type {TelemetryEventEventTypeEnum}
      * @memberof TelemetryEventRequest
      */
-    'event_type': TelemetryEventEventTypeEnum;
+    'event_type'?: TelemetryEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}

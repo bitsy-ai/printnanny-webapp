@@ -168,7 +168,7 @@ class PrintNannyPluginEventSerializer(TelemetryEventSerializer):
 class RemoteCommandEventSerializer(TelemetryEventSerializer):
     event_type = serializers.ChoiceField(
         choices=RemoteCommandEventType.choices,
-        default=RemoteCommandEvent.REMOTE_COMMAND_FAILED,
+        default=RemoteCommandEventType.REMOTE_COMMAND_FAILED,
     )
 
     class Meta:

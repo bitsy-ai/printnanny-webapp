@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **printNannyClientVersion** | **kotlin.String** |  | 
 **octoprintVersion** | **kotlin.String** |  | 
 **octoprintDevice** | **kotlin.Int** |  | 
-**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  | 
 **ts** | **kotlin.Float** |  |  [optional]
 **eventSource** | [**EventSourceEnum**](EventSourceEnum.md) |  |  [optional]
 **eventData** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **temperature** | [**kotlin.collections.Map&lt;kotlin.String, kotlin.Any&gt;**](kotlin.Any.md) |  |  [optional]
 **printSession** | **kotlin.Int** |  |  [optional]
+**printerState** | [**PrinterStateEnum**](PrinterStateEnum.md) |  |  [optional]
 
 
 

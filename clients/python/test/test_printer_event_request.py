@@ -38,7 +38,7 @@ class TestPrinterEventRequest(unittest.TestCase):
             return PrinterEventRequest(
                 ts = 1.337, 
                 event_source = None, 
-                event_type = 'Operational', 
+                event_type = None, 
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
                         id = '', 
@@ -108,7 +108,6 @@ class TestPrinterEventRequest(unittest.TestCase):
             )
         else :
             return PrinterEventRequest(
-                event_type = 'Operational',
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
                         id = '', 
@@ -166,7 +165,6 @@ class TestPrinterEventRequest(unittest.TestCase):
                 print_nanny_plugin_version = '',
                 print_nanny_client_version = '',
                 octoprint_version = '',
-                printer_state = 'Operational',
                 octoprint_device = 56,
         )
 

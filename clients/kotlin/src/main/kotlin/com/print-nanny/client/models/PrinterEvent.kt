@@ -33,20 +33,20 @@ import java.io.Serializable
  * 
  *
  * @param id 
- * @param eventType 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
  * @param printNannyClientVersion 
  * @param octoprintVersion 
- * @param printerState 
  * @param polymorphicCtype 
  * @param octoprintDevice 
  * @param user 
  * @param ts 
  * @param eventSource 
+ * @param eventType 
  * @param eventData 
  * @param temperature 
+ * @param printerState 
  * @param printSession 
  */
 
@@ -54,9 +54,6 @@ data class PrinterEvent (
 
     @Json(name = "id")
     val id: kotlin.Int,
-
-    @Json(name = "event_type")
-    val eventType: EventType0c4Enum,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment,
@@ -73,9 +70,6 @@ data class PrinterEvent (
     @Json(name = "octoprint_version")
     val octoprintVersion: kotlin.String,
 
-    @Json(name = "printer_state")
-    val printerState: PrinterStateEnum,
-
     @Json(name = "polymorphic_ctype")
     val polymorphicCtype: kotlin.Int,
 
@@ -91,11 +85,17 @@ data class PrinterEvent (
     @Json(name = "event_source")
     val eventSource: EventSourceEnum? = null,
 
+    @Json(name = "event_type")
+    val eventType: EventType0c4Enum? = null,
+
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
 
     @Json(name = "temperature")
     val temperature: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
+
+    @Json(name = "printer_state")
+    val printerState: PrinterStateEnum? = null,
 
     @Json(name = "print_session")
     val printSession: kotlin.Int? = null

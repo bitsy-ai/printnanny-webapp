@@ -31,7 +31,6 @@ import java.io.Serializable
 /**
  * 
  *
- * @param eventType 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
@@ -40,15 +39,13 @@ import java.io.Serializable
  * @param octoprintDevice 
  * @param ts 
  * @param eventSource 
+ * @param eventType 
  * @param eventData 
  * @param temperature 
  * @param printSession 
  */
 
 data class RemoteCommandEventRequest (
-
-    @Json(name = "event_type")
-    val eventType: RemoteCommandEventEventTypeEnum,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironmentRequest,
@@ -73,6 +70,9 @@ data class RemoteCommandEventRequest (
 
     @Json(name = "event_source")
     val eventSource: EventSourceEnum? = null,
+
+    @Json(name = "event_type")
+    val eventType: RemoteCommandEventEventTypeEnum? = null,
 
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
