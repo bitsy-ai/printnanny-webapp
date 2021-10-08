@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **created_dt** | **String** |  | [readonly]
-**command** | [**crate::models::CommandEnum**](CommandEnum.md) |  | 
+**command** | Option<[**crate::models::CommandEnum**](CommandEnum.md)> |  | [optional]
 **user** | **i32** |  | 
 **device** | **i32** |  | 
 **received** | Option<**bool**> |  | [optional]

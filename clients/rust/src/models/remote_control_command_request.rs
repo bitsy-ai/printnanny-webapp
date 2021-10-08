@@ -11,8 +11,8 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RemoteControlCommandRequest {
-    #[serde(rename = "command")]
-    pub command: crate::models::CommandEnum,
+    #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
+    pub command: Option<crate::models::CommandEnum>,
     #[serde(rename = "user")]
     pub user: i32,
     #[serde(rename = "device")]
@@ -28,9 +28,9 @@ pub struct RemoteControlCommandRequest {
 }
 
 impl RemoteControlCommandRequest {
-    pub fn new(command: crate::models::CommandEnum, user: i32, device: i32) -> RemoteControlCommandRequest {
+    pub fn new(user: i32, device: i32) -> RemoteControlCommandRequest {
         RemoteControlCommandRequest {
-            command,
+            command: None,
             user,
             device,
             received: None,

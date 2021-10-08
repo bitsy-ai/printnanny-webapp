@@ -28,9 +28,9 @@ import java.io.Serializable
 /**
  * 
  *
- * @param command 
  * @param user 
  * @param device 
+ * @param command 
  * @param received 
  * @param success 
  * @param iotcoreResponse 
@@ -39,14 +39,14 @@ import java.io.Serializable
 
 data class RemoteControlCommandRequest (
 
-    @Json(name = "command")
-    val command: CommandEnum,
-
     @Json(name = "user")
     val user: kotlin.Int,
 
     @Json(name = "device")
     val device: kotlin.Int,
+
+    @Json(name = "command")
+    val command: CommandEnum? = null,
 
     @Json(name = "received")
     val received: kotlin.Boolean? = null,

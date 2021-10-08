@@ -4,12 +4,62 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**appliancesCreate**](AppliancesApi.md#appliancesCreate) | **POST** /api/appliances/ | 
 [**appliancesList**](AppliancesApi.md#appliancesList) | **GET** /api/appliances/ | 
 [**appliancesPartialUpdate**](AppliancesApi.md#appliancesPartialUpdate) | **PATCH** /api/appliances/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
-[**appliancesUpdateOrCreate**](AppliancesApi.md#appliancesUpdateOrCreate) | **POST** /api/appliances/ | 
 
+
+<a name="appliancesCreate"></a>
+# **appliancesCreate**
+> Appliance appliancesCreate(createApplianceRequest)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.print-nanny.client.infrastructure.*
+//import com.print-nanny.client.models.*
+
+val apiInstance = AppliancesApi()
+val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
+try {
+    val result : Appliance = apiInstance.appliancesCreate(createApplianceRequest)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling AppliancesApi#appliancesCreate")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling AppliancesApi#appliancesCreate")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createApplianceRequest** | [**CreateApplianceRequest**](CreateApplianceRequest.md)|  |
+
+### Return type
+
+[**Appliance**](Appliance.md)
+
+### Authorization
+
+
+Configure cookieAuth:
+    ApiClient.apiKey["sessionid"] = ""
+    ApiClient.apiKeyPrefix["sessionid"] = ""
+Configure tokenAuth:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
 
 <a name="appliancesList"></a>
 # **appliancesList**
@@ -196,56 +246,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Int**| A unique integer value identifying this appliance. |
  **applianceRequest** | [**ApplianceRequest**](ApplianceRequest.md)|  |
-
-### Return type
-
-[**Appliance**](Appliance.md)
-
-### Authorization
-
-
-Configure cookieAuth:
-    ApiClient.apiKey["sessionid"] = ""
-    ApiClient.apiKeyPrefix["sessionid"] = ""
-Configure tokenAuth:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
- - **Accept**: application/json
-
-<a name="appliancesUpdateOrCreate"></a>
-# **appliancesUpdateOrCreate**
-> Appliance appliancesUpdateOrCreate(createApplianceRequest)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.print-nanny.client.infrastructure.*
-//import com.print-nanny.client.models.*
-
-val apiInstance = AppliancesApi()
-val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
-try {
-    val result : Appliance = apiInstance.appliancesUpdateOrCreate(createApplianceRequest)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesUpdateOrCreate")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesUpdateOrCreate")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createApplianceRequest** | [**CreateApplianceRequest**](CreateApplianceRequest.md)|  |
 
 ### Return type
 

@@ -49,6 +49,59 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * 
     * 
+    * @param createApplianceRequest  
+    * @return Appliance
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCreate(createApplianceRequest: CreateApplianceRequest) : Appliance {
+        val localVariableConfig = appliancesCreateRequestConfig(createApplianceRequest = createApplianceRequest)
+
+        val localVarResponse = request<CreateApplianceRequest, Appliance>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Appliance
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCreate
+    *
+    * @param createApplianceRequest  
+    * @return RequestConfig
+    */
+    fun appliancesCreateRequestConfig(createApplianceRequest: CreateApplianceRequest) : RequestConfig<CreateApplianceRequest> {
+        val localVariableBody = createApplianceRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/appliances/",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
     * @param page A page number within the paginated result set. (optional)
     * @return PaginatedApplianceList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -261,59 +314,6 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
         return RequestConfig(
             method = RequestMethod.PUT,
             path = "/api/appliances/{id}/".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-    }
-
-    /**
-    * 
-    * 
-    * @param createApplianceRequest  
-    * @return Appliance
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest) : Appliance {
-        val localVariableConfig = appliancesUpdateOrCreateRequestConfig(createApplianceRequest = createApplianceRequest)
-
-        val localVarResponse = request<CreateApplianceRequest, Appliance>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as Appliance
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation appliancesUpdateOrCreate
-    *
-    * @param createApplianceRequest  
-    * @return RequestConfig
-    */
-    fun appliancesUpdateOrCreateRequestConfig(createApplianceRequest: CreateApplianceRequest) : RequestConfig<CreateApplianceRequest> {
-        val localVariableBody = createApplianceRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/api/appliances/",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

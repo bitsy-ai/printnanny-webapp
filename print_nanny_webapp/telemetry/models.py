@@ -45,8 +45,12 @@ class TelemetryEvent(PolymorphicModel):
     objects = TelemetryEventManager()
 
     event_type = models.CharField(
-        max_length=255, db_index=True, blank=True, choices=TelemetryEventType.choices
+        max_length=255,
+        db_index=True,
+        choices=TelemetryEventType.choices,
+        default=TelemetryEventType.CONNECT_TEST_NOOP,
     )
+
     ts = models.DateTimeField(auto_now_add=True, db_index=True)
     event_source = models.CharField(
         max_length=36,
@@ -146,7 +150,11 @@ class PrinterEvent(TelemetryEvent):
         "Finishing": "text-warning",
     }
     event_codes = [x.value for x in PrinterEventType.__members__.values()]
-    printer_state = models.CharField(max_length=36, choices=PrinterEventType.choices)
+    printer_state = models.CharField(
+        max_length=36,
+        choices=PrinterEventType.choices,
+        default=PrinterEventType.DISCONNECTED,
+    )
 
     @property
     def css_class(self):

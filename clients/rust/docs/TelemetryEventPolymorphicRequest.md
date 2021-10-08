@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts** | Option<**f32**> |  | [optional]
 **event_source** | Option<[**crate::models::EventSourceEnum**](EventSourceEnum.md)> |  | [optional]
-**event_type** | [**crate::models::PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md) |  | 
+**event_type** | Option<[**crate::models::PrintNannyPluginEventEventTypeEnum**](PrintNannyPluginEventEventTypeEnum.md)> |  | [optional]
 **octoprint_environment** | [**crate::models::OctoprintEnvironmentRequest**](OctoprintEnvironmentRequest.md) |  | 
 **octoprint_printer_data** | [**crate::models::OctoprintPrinterDataRequest**](OctoprintPrinterDataRequest.md) |  | 
 **event_data** | Option<[**::std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **octoprint_version** | **String** |  | 
 **octoprint_device** | **i32** |  | 
 **print_session** | Option<**i32**> |  | [optional]
-**printer_state** | [**crate::models::PrinterStateEnum**](PrinterStateEnum.md) |  | 
+**printer_state** | Option<[**crate::models::PrinterStateEnum**](PrinterStateEnum.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -110,7 +110,8 @@ class PrinterEvent(object):
         self.print_nanny_plugin_version = print_nanny_plugin_version
         self.print_nanny_client_version = print_nanny_client_version
         self.octoprint_version = octoprint_version
-        self.printer_state = printer_state
+        if printer_state is not None:
+            self.printer_state = printer_state
         self.polymorphic_ctype = polymorphic_ctype
         self.octoprint_device = octoprint_device
         self.user = user
@@ -199,8 +200,6 @@ class PrinterEvent(object):
         :param event_type: The event_type of this PrinterEvent.  # noqa: E501
         :type event_type: EventType0c4Enum
         """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
 
@@ -388,8 +387,6 @@ class PrinterEvent(object):
         :param printer_state: The printer_state of this PrinterEvent.  # noqa: E501
         :type printer_state: PrinterStateEnum
         """
-        if self.local_vars_configuration.client_side_validation and printer_state is None:  # noqa: E501
-            raise ValueError("Invalid value for `printer_state`, must not be `None`")  # noqa: E501
 
         self._printer_state = printer_state
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
-**command** | [**CommandEnum**](CommandEnum.md) |  | 
+**command** | [**CommandEnum**](CommandEnum.md) |  | [optional] 
 **user** | **int** |  | 
 **device** | **int** |  | 
 **received** | **bool** |  | [optional] 

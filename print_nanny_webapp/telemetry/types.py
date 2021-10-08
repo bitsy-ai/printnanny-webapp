@@ -114,6 +114,8 @@ class TelemetryEventType(models.TextChoices):
         "Test connection to REST API success",
     )
 
+    CONNECT_TEST_NOOP = ("connect_test_noop", "A no-op test event without side effects")
+
     ##
     # Source: OctoprintEventType
     ##

@@ -48,6 +48,8 @@ pub enum TelemetryEventEventTypeEnum {
     PluginOctoprintNannyConnectTestMqttPongFailed,
     #[serde(rename = "plugin_octoprint_nanny_connect_test_mqtt_pong_success")]
     PluginOctoprintNannyConnectTestMqttPongSuccess,
+    #[serde(rename = "connect_test_noop")]
+    ConnectTestNoop,
     #[serde(rename = "ClientAuthed")]
     ClientAuthed,
     #[serde(rename = "ClientClosed")]
@@ -179,6 +181,7 @@ impl ToString for TelemetryEventEventTypeEnum {
             Self::PluginOctoprintNannyConnectTestMqttPong => String::from("plugin_octoprint_nanny_connect_test_mqtt_pong"),
             Self::PluginOctoprintNannyConnectTestMqttPongFailed => String::from("plugin_octoprint_nanny_connect_test_mqtt_pong_failed"),
             Self::PluginOctoprintNannyConnectTestMqttPongSuccess => String::from("plugin_octoprint_nanny_connect_test_mqtt_pong_success"),
+            Self::ConnectTestNoop => String::from("connect_test_noop"),
             Self::ClientAuthed => String::from("ClientAuthed"),
             Self::ClientClosed => String::from("ClientClosed"),
             Self::ClientDeauthed => String::from("ClientDeauthed"),
