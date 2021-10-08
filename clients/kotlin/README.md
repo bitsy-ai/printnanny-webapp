@@ -42,11 +42,11 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
+*AppliancesApi* | [**appliancesCreate**](docs/AppliancesApi.md#appliancescreate) | **POST** /api/appliances/ | 
 *AppliancesApi* | [**appliancesList**](docs/AppliancesApi.md#applianceslist) | **GET** /api/appliances/ | 
 *AppliancesApi* | [**appliancesPartialUpdate**](docs/AppliancesApi.md#appliancespartialupdate) | **PATCH** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
-*AppliancesApi* | [**appliancesUpdateOrCreate**](docs/AppliancesApi.md#appliancesupdateorcreate) | **POST** /api/appliances/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
 *AuthApi* | [**authMobileCreate**](docs/AuthApi.md#authmobilecreate) | **POST** /auth/mobile/ | 
 *AuthApi* | [**authTokenCreate**](docs/AuthApi.md#authtokencreate) | **POST** /auth/token/ | 

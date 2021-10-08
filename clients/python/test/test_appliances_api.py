@@ -28,6 +28,12 @@ class TestAppliancesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_appliances_create(self):
+        """Test case for appliances_create
+
+        """
+        pass
+
     def test_appliances_list(self):
         """Test case for appliances_list
 
@@ -48,12 +54,6 @@ class TestAppliancesApi(unittest.TestCase):
 
     def test_appliances_update(self):
         """Test case for appliances_update
-
-        """
-        pass
-
-    def test_appliances_update_or_create(self):
-        """Test case for appliances_update_or_create
 
         """
         pass

@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CreateApplianceRequest {
     #[serde(rename = "ansible_facts")]
     pub ansible_facts: Box<crate::models::CreateAnsibleFactsRequest>,
