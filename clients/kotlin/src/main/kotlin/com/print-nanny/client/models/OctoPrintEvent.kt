@@ -32,7 +32,6 @@ import java.io.Serializable
  * 
  *
  * @param id 
- * @param eventType 
  * @param octoprintEnvironment 
  * @param octoprintPrinterData 
  * @param printNannyPluginVersion 
@@ -43,6 +42,7 @@ import java.io.Serializable
  * @param user 
  * @param ts 
  * @param eventSource 
+ * @param eventType 
  * @param eventData 
  * @param temperature 
  * @param printSession 
@@ -52,9 +52,6 @@ data class OctoPrintEvent (
 
     @Json(name = "id")
     val id: kotlin.Int,
-
-    @Json(name = "event_type")
-    val eventType: OctoPrintEventEventTypeEnum,
 
     @Json(name = "octoprint_environment")
     val octoprintEnvironment: OctoprintEnvironment,
@@ -85,6 +82,9 @@ data class OctoPrintEvent (
 
     @Json(name = "event_source")
     val eventSource: EventSourceEnum? = null,
+
+    @Json(name = "event_type")
+    val eventType: OctoPrintEventEventTypeEnum? = null,
 
     @Json(name = "event_data")
     val eventData: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,

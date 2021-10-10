@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **pki** | [**AppliancePKI**](AppliancePKI.md) |  | 
 **ansible_facts** | [**AnsibleFacts**](AnsibleFacts.md) |  | 
+**cameras** | [**Camera**](Camera.md) |  | 
+**printer_controllers** | [**PrinterController**](PrinterController.md) |  | 
 **deleted** | **datetime** |  | [readonly] 
 **created_dt** | **datetime** |  | [readonly] 
 **updated_dt** | **datetime** |  | [readonly] 

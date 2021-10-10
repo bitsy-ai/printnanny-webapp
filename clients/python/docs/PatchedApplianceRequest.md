@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki** | [**AppliancePKIRequest**](AppliancePKIRequest.md) |  | [optional] 
 **ansible_facts** | [**AnsibleFactsRequest**](AnsibleFactsRequest.md) |  | [optional] 
+**cameras** | [**CameraRequest**](CameraRequest.md) |  | [optional] 
+**printer_controllers** | [**PrinterControllerRequest**](PrinterControllerRequest.md) |  | [optional] 
 **hostname** | **str** |  | [optional] 
 **user** | **int** |  | [optional] 
 

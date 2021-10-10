@@ -17,6 +17,10 @@ pub struct Appliance {
     pub pki: Box<crate::models::AppliancePki>,
     #[serde(rename = "ansible_facts")]
     pub ansible_facts: Box<crate::models::AnsibleFacts>,
+    #[serde(rename = "cameras")]
+    pub cameras: Box<crate::models::Camera>,
+    #[serde(rename = "printer_controllers")]
+    pub printer_controllers: Box<crate::models::PrinterController>,
     #[serde(rename = "deleted")]
     pub deleted: String,
     #[serde(rename = "created_dt")]
@@ -30,11 +34,13 @@ pub struct Appliance {
 }
 
 impl Appliance {
-    pub fn new(id: i32, pki: crate::models::AppliancePki, ansible_facts: crate::models::AnsibleFacts, deleted: String, created_dt: String, updated_dt: String, hostname: String, user: i32) -> Appliance {
+    pub fn new(id: i32, pki: crate::models::AppliancePki, ansible_facts: crate::models::AnsibleFacts, cameras: crate::models::Camera, printer_controllers: crate::models::PrinterController, deleted: String, created_dt: String, updated_dt: String, hostname: String, user: i32) -> Appliance {
         Appliance {
             id,
             pki: Box::new(pki),
             ansible_facts: Box::new(ansible_facts),
+            cameras: Box::new(cameras),
+            printer_controllers: Box::new(printer_controllers),
             deleted,
             created_dt,
             updated_dt,

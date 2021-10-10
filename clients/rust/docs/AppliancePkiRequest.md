@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **public_key** | **String** |  | 
 **public_key_checksum** | **String** |  | 
-**private_key_checksum** | **String** |  | 
 **fingerprint** | **String** |  | 
 **appliance** | **i32** |  | 
 

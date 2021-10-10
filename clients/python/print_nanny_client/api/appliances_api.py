@@ -36,9 +36,759 @@ class AppliancesApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def appliances_cameras_create(self, appliance_id, camera_request, **kwargs):  # noqa: E501
+        """appliances_cameras_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_create(appliance_id, camera_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param camera_request: (required)
+        :type camera_request: CameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: Camera
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_cameras_create_with_http_info(appliance_id, camera_request, **kwargs)  # noqa: E501
+
+    def appliances_cameras_create_with_http_info(self, appliance_id, camera_request, **kwargs):  # noqa: E501
+        """appliances_cameras_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_create_with_http_info(appliance_id, camera_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param camera_request: (required)
+        :type camera_request: CameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(Camera, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'camera_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_cameras_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_cameras_create`")  # noqa: E501
+        # verify the required parameter 'camera_request' is set
+        if self.api_client.client_side_validation and ('camera_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['camera_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `camera_request` when calling `appliances_cameras_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'camera_request' in local_var_params:
+            body_params = local_var_params['camera_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            400: "Camera",
+            200: "Camera",
+            201: "Camera",
+            202: "Camera",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/cameras/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_cameras_list(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_cameras_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_list(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PaginatedCameraList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_cameras_list_with_http_info(appliance_id, **kwargs)  # noqa: E501
+
+    def appliances_cameras_list_with_http_info(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_cameras_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_list_with_http_info(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PaginatedCameraList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'page'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_cameras_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_cameras_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+            query_params.append(('page', local_var_params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PaginatedCameraList",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/cameras/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_cameras_partial_update(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_cameras_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_partial_update(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param patched_camera_request:
+        :type patched_camera_request: PatchedCameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: Camera
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_cameras_partial_update_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
+
+    def appliances_cameras_partial_update_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_cameras_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_partial_update_with_http_info(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param patched_camera_request:
+        :type patched_camera_request: PatchedCameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(Camera, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id',
+            'patched_camera_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_cameras_partial_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_cameras_partial_update`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_cameras_partial_update`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'patched_camera_request' in local_var_params:
+            body_params = local_var_params['patched_camera_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "Camera",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/cameras/{id}/', 'PATCH',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_cameras_retrieve(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_cameras_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_retrieve(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: Camera
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_cameras_retrieve_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
+
+    def appliances_cameras_retrieve_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_cameras_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_retrieve_with_http_info(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(Camera, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_cameras_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_cameras_retrieve`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_cameras_retrieve`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "Camera",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/cameras/{id}/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_cameras_update(self, appliance_id, id, camera_request, **kwargs):  # noqa: E501
+        """appliances_cameras_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_update(appliance_id, id, camera_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param camera_request: (required)
+        :type camera_request: CameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: Camera
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_cameras_update_with_http_info(appliance_id, id, camera_request, **kwargs)  # noqa: E501
+
+    def appliances_cameras_update_with_http_info(self, appliance_id, id, camera_request, **kwargs):  # noqa: E501
+        """appliances_cameras_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_cameras_update_with_http_info(appliance_id, id, camera_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this camera. (required)
+        :type id: int
+        :param camera_request: (required)
+        :type camera_request: CameraRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(Camera, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id',
+            'camera_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_cameras_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_cameras_update`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_cameras_update`")  # noqa: E501
+        # verify the required parameter 'camera_request' is set
+        if self.api_client.client_side_validation and ('camera_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['camera_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `camera_request` when calling `appliances_cameras_update`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'camera_request' in local_var_params:
+            body_params = local_var_params['camera_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "Camera",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/cameras/{id}/', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def appliances_create(self, create_appliance_request, **kwargs):  # noqa: E501
         """appliances_create  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -68,6 +818,7 @@ class AppliancesApi(object):
     def appliances_create_with_http_info(self, create_appliance_request, **kwargs):  # noqa: E501
         """appliances_create  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -179,6 +930,7 @@ class AppliancesApi(object):
     def appliances_list(self, **kwargs):  # noqa: E501
         """appliances_list  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -208,6 +960,7 @@ class AppliancesApi(object):
     def appliances_list_with_http_info(self, **kwargs):  # noqa: E501
         """appliances_list  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -308,6 +1061,7 @@ class AppliancesApi(object):
     def appliances_partial_update(self, id, **kwargs):  # noqa: E501
         """appliances_partial_update  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -339,6 +1093,7 @@ class AppliancesApi(object):
     def appliances_partial_update_with_http_info(self, id, **kwargs):  # noqa: E501
         """appliances_partial_update  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -449,9 +1204,759 @@ class AppliancesApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
+    def appliances_printer_controllers_create(self, appliance_id, printer_controller_request, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_create(appliance_id, printer_controller_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param printer_controller_request: (required)
+        :type printer_controller_request: PrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrinterController
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_printer_controllers_create_with_http_info(appliance_id, printer_controller_request, **kwargs)  # noqa: E501
+
+    def appliances_printer_controllers_create_with_http_info(self, appliance_id, printer_controller_request, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_create_with_http_info(appliance_id, printer_controller_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param printer_controller_request: (required)
+        :type printer_controller_request: PrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrinterController, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'printer_controller_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_printer_controllers_create" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_printer_controllers_create`")  # noqa: E501
+        # verify the required parameter 'printer_controller_request' is set
+        if self.api_client.client_side_validation and ('printer_controller_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['printer_controller_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `printer_controller_request` when calling `appliances_printer_controllers_create`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'printer_controller_request' in local_var_params:
+            body_params = local_var_params['printer_controller_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            400: "PrinterController",
+            200: "PrinterController",
+            201: "PrinterController",
+            202: "PrinterController",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/printer-controllers/', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_printer_controllers_list(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_list(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PaginatedPrinterControllerList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_printer_controllers_list_with_http_info(appliance_id, **kwargs)  # noqa: E501
+
+    def appliances_printer_controllers_list_with_http_info(self, appliance_id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_list  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_list_with_http_info(appliance_id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param page: A page number within the paginated result set.
+        :type page: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PaginatedPrinterControllerList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'page'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_printer_controllers_list" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_printer_controllers_list`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+
+        query_params = []
+        if 'page' in local_var_params and local_var_params['page'] is not None:  # noqa: E501
+            query_params.append(('page', local_var_params['page']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PaginatedPrinterControllerList",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/printer-controllers/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_printer_controllers_partial_update(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_partial_update(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param patched_printer_controller_request:
+        :type patched_printer_controller_request: PatchedPrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrinterController
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_printer_controllers_partial_update_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
+
+    def appliances_printer_controllers_partial_update_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_partial_update_with_http_info(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param patched_printer_controller_request:
+        :type patched_printer_controller_request: PatchedPrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrinterController, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id',
+            'patched_printer_controller_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_printer_controllers_partial_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_printer_controllers_partial_update`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_printer_controllers_partial_update`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'patched_printer_controller_request' in local_var_params:
+            body_params = local_var_params['patched_printer_controller_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PrinterController",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/printer-controllers/{id}/', 'PATCH',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_printer_controllers_retrieve(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_retrieve(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrinterController
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_printer_controllers_retrieve_with_http_info(appliance_id, id, **kwargs)  # noqa: E501
+
+    def appliances_printer_controllers_retrieve_with_http_info(self, appliance_id, id, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_retrieve  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_retrieve_with_http_info(appliance_id, id, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrinterController, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_printer_controllers_retrieve" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_printer_controllers_retrieve`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_printer_controllers_retrieve`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PrinterController",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/printer-controllers/{id}/', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def appliances_printer_controllers_update(self, appliance_id, id, printer_controller_request, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_update(appliance_id, id, printer_controller_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param printer_controller_request: (required)
+        :type printer_controller_request: PrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PrinterController
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.appliances_printer_controllers_update_with_http_info(appliance_id, id, printer_controller_request, **kwargs)  # noqa: E501
+
+    def appliances_printer_controllers_update_with_http_info(self, appliance_id, id, printer_controller_request, **kwargs):  # noqa: E501
+        """appliances_printer_controllers_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.appliances_printer_controllers_update_with_http_info(appliance_id, id, printer_controller_request, async_req=True)
+        >>> result = thread.get()
+
+        :param appliance_id: (required)
+        :type appliance_id: int
+        :param id: A unique integer value identifying this printer controller. (required)
+        :type id: int
+        :param printer_controller_request: (required)
+        :type printer_controller_request: PrinterControllerRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PrinterController, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'appliance_id',
+            'id',
+            'printer_controller_request'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method appliances_printer_controllers_update" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'appliance_id' is set
+        if self.api_client.client_side_validation and ('appliance_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['appliance_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `appliance_id` when calling `appliances_printer_controllers_update`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if self.api_client.client_side_validation and ('id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `id` when calling `appliances_printer_controllers_update`")  # noqa: E501
+        # verify the required parameter 'printer_controller_request' is set
+        if self.api_client.client_side_validation and ('printer_controller_request' not in local_var_params or  # noqa: E501
+                                                        local_var_params['printer_controller_request'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `printer_controller_request` when calling `appliances_printer_controllers_update`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'appliance_id' in local_var_params:
+            path_params['appliance_id'] = local_var_params['appliance_id']  # noqa: E501
+        if 'id' in local_var_params:
+            path_params['id'] = local_var_params['id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'printer_controller_request' in local_var_params:
+            body_params = local_var_params['printer_controller_request']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['cookieAuth', 'tokenAuth']  # noqa: E501
+
+        response_types_map = {
+            200: "PrinterController",
+        }
+
+        return self.api_client.call_api(
+            '/api/appliances/{appliance_id}/printer-controllers/{id}/', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
     def appliances_retrieve(self, id, **kwargs):  # noqa: E501
         """appliances_retrieve  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -481,6 +1986,7 @@ class AppliancesApi(object):
     def appliances_retrieve_with_http_info(self, id, **kwargs):  # noqa: E501
         """appliances_retrieve  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -585,6 +2091,7 @@ class AppliancesApi(object):
     def appliances_update(self, id, appliance_request, **kwargs):  # noqa: E501
         """appliances_update  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -616,6 +2123,7 @@ class AppliancesApi(object):
     def appliances_update_with_http_info(self, id, appliance_request, **kwargs):  # noqa: E501
         """appliances_update  # noqa: E501
 
+        All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

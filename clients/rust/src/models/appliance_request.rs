@@ -15,6 +15,10 @@ pub struct ApplianceRequest {
     pub pki: Box<crate::models::AppliancePkiRequest>,
     #[serde(rename = "ansible_facts")]
     pub ansible_facts: Box<crate::models::AnsibleFactsRequest>,
+    #[serde(rename = "cameras")]
+    pub cameras: Box<crate::models::CameraRequest>,
+    #[serde(rename = "printer_controllers")]
+    pub printer_controllers: Box<crate::models::PrinterControllerRequest>,
     #[serde(rename = "hostname")]
     pub hostname: String,
     #[serde(rename = "user")]
@@ -22,10 +26,12 @@ pub struct ApplianceRequest {
 }
 
 impl ApplianceRequest {
-    pub fn new(pki: crate::models::AppliancePkiRequest, ansible_facts: crate::models::AnsibleFactsRequest, hostname: String, user: i32) -> ApplianceRequest {
+    pub fn new(pki: crate::models::AppliancePkiRequest, ansible_facts: crate::models::AnsibleFactsRequest, cameras: crate::models::CameraRequest, printer_controllers: crate::models::PrinterControllerRequest, hostname: String, user: i32) -> ApplianceRequest {
         ApplianceRequest {
             pki: Box::new(pki),
             ansible_facts: Box::new(ansible_facts),
+            cameras: Box::new(cameras),
+            printer_controllers: Box::new(printer_controllers),
             hostname,
             user,
         }

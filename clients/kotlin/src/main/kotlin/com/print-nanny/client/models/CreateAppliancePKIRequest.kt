@@ -29,7 +29,6 @@ import java.io.Serializable
  *
  * @param publicKey 
  * @param publicKeyChecksum 
- * @param privateKeyChecksum 
  * @param fingerprint 
  */
 
@@ -40,9 +39,6 @@ data class CreateAppliancePKIRequest (
 
     @Json(name = "public_key_checksum")
     val publicKeyChecksum: kotlin.String,
-
-    @Json(name = "private_key_checksum")
-    val privateKeyChecksum: kotlin.String,
 
     @Json(name = "fingerprint")
     val fingerprint: kotlin.String

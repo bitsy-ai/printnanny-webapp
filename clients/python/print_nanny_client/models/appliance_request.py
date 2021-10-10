@@ -38,6 +38,8 @@ class ApplianceRequest(object):
     openapi_types = {
         'pki': 'AppliancePKIRequest',
         'ansible_facts': 'AnsibleFactsRequest',
+        'cameras': 'CameraRequest',
+        'printer_controllers': 'PrinterControllerRequest',
         'hostname': 'str',
         'user': 'int'
     }
@@ -45,11 +47,13 @@ class ApplianceRequest(object):
     attribute_map = {
         'pki': 'pki',
         'ansible_facts': 'ansible_facts',
+        'cameras': 'cameras',
+        'printer_controllers': 'printer_controllers',
         'hostname': 'hostname',
         'user': 'user'
     }
 
-    def __init__(self, pki=None, ansible_facts=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
         """ApplianceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -57,12 +61,16 @@ class ApplianceRequest(object):
 
         self._pki = None
         self._ansible_facts = None
+        self._cameras = None
+        self._printer_controllers = None
         self._hostname = None
         self._user = None
         self.discriminator = None
 
         self.pki = pki
         self.ansible_facts = ansible_facts
+        self.cameras = cameras
+        self.printer_controllers = printer_controllers
         self.hostname = hostname
         self.user = user
 
@@ -111,6 +119,52 @@ class ApplianceRequest(object):
             raise ValueError("Invalid value for `ansible_facts`, must not be `None`")  # noqa: E501
 
         self._ansible_facts = ansible_facts
+
+    @property
+    def cameras(self):
+        """Gets the cameras of this ApplianceRequest.  # noqa: E501
+
+
+        :return: The cameras of this ApplianceRequest.  # noqa: E501
+        :rtype: CameraRequest
+        """
+        return self._cameras
+
+    @cameras.setter
+    def cameras(self, cameras):
+        """Sets the cameras of this ApplianceRequest.
+
+
+        :param cameras: The cameras of this ApplianceRequest.  # noqa: E501
+        :type cameras: CameraRequest
+        """
+        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
+
+        self._cameras = cameras
+
+    @property
+    def printer_controllers(self):
+        """Gets the printer_controllers of this ApplianceRequest.  # noqa: E501
+
+
+        :return: The printer_controllers of this ApplianceRequest.  # noqa: E501
+        :rtype: PrinterControllerRequest
+        """
+        return self._printer_controllers
+
+    @printer_controllers.setter
+    def printer_controllers(self, printer_controllers):
+        """Sets the printer_controllers of this ApplianceRequest.
+
+
+        :param printer_controllers: The printer_controllers of this ApplianceRequest.  # noqa: E501
+        :type printer_controllers: PrinterControllerRequest
+        """
+        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
+
+        self._printer_controllers = printer_controllers
 
     @property
     def hostname(self):

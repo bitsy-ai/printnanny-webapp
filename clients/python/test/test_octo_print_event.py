@@ -39,7 +39,7 @@ class TestOctoPrintEvent(unittest.TestCase):
                 id = 56, 
                 ts = 1.337, 
                 event_source = None, 
-                event_type = 'ClientAuthed', 
+                event_type = None, 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
@@ -111,7 +111,6 @@ class TestOctoPrintEvent(unittest.TestCase):
         else :
             return OctoPrintEvent(
                 id = 56,
-                event_type = 'ClientAuthed',
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 

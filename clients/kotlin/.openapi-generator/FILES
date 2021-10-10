@@ -18,6 +18,10 @@ docs/AuthApi.md
 docs/CallbackTokenAuthRequest.md
 docs/CallbackTokenVerification.md
 docs/CallbackTokenVerificationRequest.md
+docs/Camera.md
+docs/CameraRequest.md
+docs/CameraSourceTypeEnum.md
+docs/CameraTypeEnum.md
 docs/CommandEnum.md
 docs/CreateAnsibleFactsRequest.md
 docs/CreateAppliancePKIRequest.md
@@ -65,6 +69,7 @@ docs/OctoprintPython.md
 docs/OctoprintPythonRequest.md
 docs/PaginatedAlertList.md
 docs/PaginatedApplianceList.md
+docs/PaginatedCameraList.md
 docs/PaginatedDeviceCalibrationList.md
 docs/PaginatedExperimentDeviceConfigList.md
 docs/PaginatedExperimentList.md
@@ -75,6 +80,7 @@ docs/PaginatedOctoPrintEventList.md
 docs/PaginatedPrintJobEventList.md
 docs/PaginatedPrintNannyPluginEventList.md
 docs/PaginatedPrintSessionList.md
+docs/PaginatedPrinterControllerList.md
 docs/PaginatedPrinterProfileList.md
 docs/PaginatedRemoteCommandEventList.md
 docs/PaginatedRemoteControlCommandList.md
@@ -87,9 +93,11 @@ docs/PartnersGeeks3dApi.md
 docs/PatchedAlertBulkRequestRequest.md
 docs/PatchedAlertRequest.md
 docs/PatchedApplianceRequest.md
+docs/PatchedCameraRequest.md
 docs/PatchedDeviceCalibrationRequest.md
 docs/PatchedOctoPrintDeviceRequest.md
 docs/PatchedPrintSessionRequest.md
+docs/PatchedPrinterControllerRequest.md
 docs/PatchedPrinterProfileRequest.md
 docs/PatchedRemoteControlCommandRequest.md
 docs/PatchedUserRequest.md
@@ -101,6 +109,8 @@ docs/PrintNannyPluginEventEventTypeEnum.md
 docs/PrintNannyPluginEventRequest.md
 docs/PrintSession.md
 docs/PrintSessionRequest.md
+docs/PrinterController.md
+docs/PrinterControllerRequest.md
 docs/PrinterEvent.md
 docs/PrinterEventRequest.md
 docs/PrinterProfile.md
@@ -114,6 +124,7 @@ docs/RemoteControlApi.md
 docs/RemoteControlCommand.md
 docs/RemoteControlCommandRequest.md
 docs/SchemaApi.md
+docs/SoftwareEnum.md
 docs/TelemetryApi.md
 docs/TelemetryEvent.md
 docs/TelemetryEventEventTypeEnum.md
@@ -169,6 +180,10 @@ src/main/kotlin/com/print-nanny/client/models/ArtifactTypesEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenAuthRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerification.kt
 src/main/kotlin/com/print-nanny/client/models/CallbackTokenVerificationRequest.kt
+src/main/kotlin/com/print-nanny/client/models/Camera.kt
+src/main/kotlin/com/print-nanny/client/models/CameraRequest.kt
+src/main/kotlin/com/print-nanny/client/models/CameraSourceTypeEnum.kt
+src/main/kotlin/com/print-nanny/client/models/CameraTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CommandEnum.kt
 src/main/kotlin/com/print-nanny/client/models/CreateAnsibleFactsRequest.kt
 src/main/kotlin/com/print-nanny/client/models/CreateAppliancePKIRequest.kt
@@ -215,6 +230,7 @@ src/main/kotlin/com/print-nanny/client/models/OctoprintPython.kt
 src/main/kotlin/com/print-nanny/client/models/OctoprintPythonRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedAlertList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedApplianceList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedCameraList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedDeviceCalibrationList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentDeviceConfigList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedExperimentList.kt
@@ -225,6 +241,7 @@ src/main/kotlin/com/print-nanny/client/models/PaginatedOctoPrintEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintJobEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintNannyPluginEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrintSessionList.kt
+src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterControllerList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedPrinterProfileList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteCommandEventList.kt
 src/main/kotlin/com/print-nanny/client/models/PaginatedRemoteControlCommandList.kt
@@ -235,9 +252,11 @@ src/main/kotlin/com/print-nanny/client/models/Partner3DGeeksMetadata.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertBulkRequestRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedAlertRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedApplianceRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedCameraRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedDeviceCalibrationRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedOctoPrintDeviceRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrintSessionRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PatchedPrinterControllerRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedPrinterProfileRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedRemoteControlCommandRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PatchedUserRequest.kt
@@ -249,6 +268,8 @@ src/main/kotlin/com/print-nanny/client/models/PrintNannyPluginEventEventTypeEnum
 src/main/kotlin/com/print-nanny/client/models/PrintNannyPluginEventRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrintSession.kt
 src/main/kotlin/com/print-nanny/client/models/PrintSessionRequest.kt
+src/main/kotlin/com/print-nanny/client/models/PrinterController.kt
+src/main/kotlin/com/print-nanny/client/models/PrinterControllerRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterEvent.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterEventRequest.kt
 src/main/kotlin/com/print-nanny/client/models/PrinterProfile.kt
@@ -260,6 +281,7 @@ src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteCommandEventRequest.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommand.kt
 src/main/kotlin/com/print-nanny/client/models/RemoteControlCommandRequest.kt
+src/main/kotlin/com/print-nanny/client/models/SoftwareEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEvent.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventEventTypeEnum.kt
 src/main/kotlin/com/print-nanny/client/models/TelemetryEventPolymorphic.kt

@@ -44,7 +44,7 @@ class TestPaginatedPrintNannyPluginEventList(unittest.TestCase):
                         id = 56, 
                         ts = 1.337, 
                         event_source = null, 
-                        event_type = 'plugin_octoprint_nanny_monitoring_start', 
+                        event_type = null, 
                         octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                             os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                                 id = '', 

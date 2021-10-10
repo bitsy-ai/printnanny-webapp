@@ -28,6 +28,36 @@ class TestAppliancesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_appliances_cameras_create(self):
+        """Test case for appliances_cameras_create
+
+        """
+        pass
+
+    def test_appliances_cameras_list(self):
+        """Test case for appliances_cameras_list
+
+        """
+        pass
+
+    def test_appliances_cameras_partial_update(self):
+        """Test case for appliances_cameras_partial_update
+
+        """
+        pass
+
+    def test_appliances_cameras_retrieve(self):
+        """Test case for appliances_cameras_retrieve
+
+        """
+        pass
+
+    def test_appliances_cameras_update(self):
+        """Test case for appliances_cameras_update
+
+        """
+        pass
+
     def test_appliances_create(self):
         """Test case for appliances_create
 
@@ -42,6 +72,36 @@ class TestAppliancesApi(unittest.TestCase):
 
     def test_appliances_partial_update(self):
         """Test case for appliances_partial_update
+
+        """
+        pass
+
+    def test_appliances_printer_controllers_create(self):
+        """Test case for appliances_printer_controllers_create
+
+        """
+        pass
+
+    def test_appliances_printer_controllers_list(self):
+        """Test case for appliances_printer_controllers_list
+
+        """
+        pass
+
+    def test_appliances_printer_controllers_partial_update(self):
+        """Test case for appliances_printer_controllers_partial_update
+
+        """
+        pass
+
+    def test_appliances_printer_controllers_retrieve(self):
+        """Test case for appliances_printer_controllers_retrieve
+
+        """
+        pass
+
+    def test_appliances_printer_controllers_update(self):
+        """Test case for appliances_printer_controllers_update
 
         """
         pass

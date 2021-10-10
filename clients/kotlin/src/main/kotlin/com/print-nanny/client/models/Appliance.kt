@@ -22,6 +22,8 @@ package com.print-nanny.client.models
 
 import com.print-nanny.client.models.AnsibleFacts
 import com.print-nanny.client.models.AppliancePKI
+import com.print-nanny.client.models.Camera
+import com.print-nanny.client.models.PrinterController
 
 import com.squareup.moshi.Json
 import java.io.Serializable
@@ -32,6 +34,8 @@ import java.io.Serializable
  * @param id 
  * @param pki 
  * @param ansibleFacts 
+ * @param cameras 
+ * @param printerControllers 
  * @param deleted 
  * @param createdDt 
  * @param updatedDt 
@@ -49,6 +53,12 @@ data class Appliance (
 
     @Json(name = "ansible_facts")
     val ansibleFacts: AnsibleFacts,
+
+    @Json(name = "cameras")
+    val cameras: Camera,
+
+    @Json(name = "printer_controllers")
+    val printerControllers: PrinterController,
 
     @Json(name = "deleted")
     val deleted: java.time.OffsetDateTime,

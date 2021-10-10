@@ -22,9 +22,17 @@ package com.print-nanny.client.apis
 
 import com.print-nanny.client.models.Appliance
 import com.print-nanny.client.models.ApplianceRequest
+import com.print-nanny.client.models.Camera
+import com.print-nanny.client.models.CameraRequest
 import com.print-nanny.client.models.CreateApplianceRequest
 import com.print-nanny.client.models.PaginatedApplianceList
+import com.print-nanny.client.models.PaginatedCameraList
+import com.print-nanny.client.models.PaginatedPrinterControllerList
 import com.print-nanny.client.models.PatchedApplianceRequest
+import com.print-nanny.client.models.PatchedCameraRequest
+import com.print-nanny.client.models.PatchedPrinterControllerRequest
+import com.print-nanny.client.models.PrinterController
+import com.print-nanny.client.models.PrinterControllerRequest
 
 import com.print-nanny.client.infrastructure.ApiClient
 import com.print-nanny.client.infrastructure.ClientException
@@ -49,6 +57,290 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * 
     * 
+    * @param applianceId  
+    * @param cameraRequest  
+    * @return Camera
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCamerasCreate(applianceId: kotlin.Int, cameraRequest: CameraRequest) : Camera {
+        val localVariableConfig = appliancesCamerasCreateRequestConfig(applianceId = applianceId, cameraRequest = cameraRequest)
+
+        val localVarResponse = request<CameraRequest, Camera>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Camera
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCamerasCreate
+    *
+    * @param applianceId  
+    * @param cameraRequest  
+    * @return RequestConfig
+    */
+    fun appliancesCamerasCreateRequestConfig(applianceId: kotlin.Int, cameraRequest: CameraRequest) : RequestConfig<CameraRequest> {
+        val localVariableBody = cameraRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/appliances/{appliance_id}/cameras/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedCameraList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCamerasList(applianceId: kotlin.Int, page: kotlin.Int?) : PaginatedCameraList {
+        val localVariableConfig = appliancesCamerasListRequestConfig(applianceId = applianceId, page = page)
+
+        val localVarResponse = request<Unit, PaginatedCameraList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedCameraList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCamerasList
+    *
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun appliancesCamerasListRequestConfig(applianceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/cameras/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @param patchedCameraRequest  (optional)
+    * @return Camera
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCamerasPartialUpdate(applianceId: kotlin.Int, id: kotlin.Int, patchedCameraRequest: PatchedCameraRequest?) : Camera {
+        val localVariableConfig = appliancesCamerasPartialUpdateRequestConfig(applianceId = applianceId, id = id, patchedCameraRequest = patchedCameraRequest)
+
+        val localVarResponse = request<PatchedCameraRequest, Camera>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Camera
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCamerasPartialUpdate
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @param patchedCameraRequest  (optional)
+    * @return RequestConfig
+    */
+    fun appliancesCamerasPartialUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, patchedCameraRequest: PatchedCameraRequest?) : RequestConfig<PatchedCameraRequest> {
+        val localVariableBody = patchedCameraRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/appliances/{appliance_id}/cameras/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @return Camera
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCamerasRetrieve(applianceId: kotlin.Int, id: kotlin.Int) : Camera {
+        val localVariableConfig = appliancesCamerasRetrieveRequestConfig(applianceId = applianceId, id = id)
+
+        val localVarResponse = request<Unit, Camera>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Camera
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCamerasRetrieve
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @return RequestConfig
+    */
+    fun appliancesCamerasRetrieveRequestConfig(applianceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/cameras/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @param cameraRequest  
+    * @return Camera
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesCamerasUpdate(applianceId: kotlin.Int, id: kotlin.Int, cameraRequest: CameraRequest) : Camera {
+        val localVariableConfig = appliancesCamerasUpdateRequestConfig(applianceId = applianceId, id = id, cameraRequest = cameraRequest)
+
+        val localVarResponse = request<CameraRequest, Camera>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as Camera
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesCamerasUpdate
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this camera. 
+    * @param cameraRequest  
+    * @return RequestConfig
+    */
+    fun appliancesCamerasUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, cameraRequest: CameraRequest) : RequestConfig<CameraRequest> {
+        val localVariableBody = cameraRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/appliances/{appliance_id}/cameras/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param createApplianceRequest  
     * @return Appliance
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -101,7 +393,7 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
 
     /**
     * 
-    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param page A page number within the paginated result set. (optional)
     * @return PaginatedApplianceList
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -159,7 +451,7 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
 
     /**
     * 
-    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param id A unique integer value identifying this appliance. 
     * @param patchedApplianceRequest  (optional)
     * @return Appliance
@@ -215,6 +507,290 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     /**
     * 
     * 
+    * @param applianceId  
+    * @param printerControllerRequest  
+    * @return PrinterController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesPrinterControllersCreate(applianceId: kotlin.Int, printerControllerRequest: PrinterControllerRequest) : PrinterController {
+        val localVariableConfig = appliancesPrinterControllersCreateRequestConfig(applianceId = applianceId, printerControllerRequest = printerControllerRequest)
+
+        val localVarResponse = request<PrinterControllerRequest, PrinterController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesPrinterControllersCreate
+    *
+    * @param applianceId  
+    * @param printerControllerRequest  
+    * @return RequestConfig
+    */
+    fun appliancesPrinterControllersCreateRequestConfig(applianceId: kotlin.Int, printerControllerRequest: PrinterControllerRequest) : RequestConfig<PrinterControllerRequest> {
+        val localVariableBody = printerControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/api/appliances/{appliance_id}/printer-controllers/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return PaginatedPrinterControllerList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesPrinterControllersList(applianceId: kotlin.Int, page: kotlin.Int?) : PaginatedPrinterControllerList {
+        val localVariableConfig = appliancesPrinterControllersListRequestConfig(applianceId = applianceId, page = page)
+
+        val localVarResponse = request<Unit, PaginatedPrinterControllerList>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PaginatedPrinterControllerList
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesPrinterControllersList
+    *
+    * @param applianceId  
+    * @param page A page number within the paginated result set. (optional)
+    * @return RequestConfig
+    */
+    fun appliancesPrinterControllersListRequestConfig(applianceId: kotlin.Int, page: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (page != null) {
+                    put("page", listOf(page.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/printer-controllers/".replace("{"+"appliance_id"+"}", "$applianceId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @param patchedPrinterControllerRequest  (optional)
+    * @return PrinterController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesPrinterControllersPartialUpdate(applianceId: kotlin.Int, id: kotlin.Int, patchedPrinterControllerRequest: PatchedPrinterControllerRequest?) : PrinterController {
+        val localVariableConfig = appliancesPrinterControllersPartialUpdateRequestConfig(applianceId = applianceId, id = id, patchedPrinterControllerRequest = patchedPrinterControllerRequest)
+
+        val localVarResponse = request<PatchedPrinterControllerRequest, PrinterController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesPrinterControllersPartialUpdate
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @param patchedPrinterControllerRequest  (optional)
+    * @return RequestConfig
+    */
+    fun appliancesPrinterControllersPartialUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, patchedPrinterControllerRequest: PatchedPrinterControllerRequest?) : RequestConfig<PatchedPrinterControllerRequest> {
+        val localVariableBody = patchedPrinterControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/api/appliances/{appliance_id}/printer-controllers/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @return PrinterController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesPrinterControllersRetrieve(applianceId: kotlin.Int, id: kotlin.Int) : PrinterController {
+        val localVariableConfig = appliancesPrinterControllersRetrieveRequestConfig(applianceId = applianceId, id = id)
+
+        val localVarResponse = request<Unit, PrinterController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesPrinterControllersRetrieve
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @return RequestConfig
+    */
+    fun appliancesPrinterControllersRetrieveRequestConfig(applianceId: kotlin.Int, id: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/api/appliances/{appliance_id}/printer-controllers/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @param printerControllerRequest  
+    * @return PrinterController
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun appliancesPrinterControllersUpdate(applianceId: kotlin.Int, id: kotlin.Int, printerControllerRequest: PrinterControllerRequest) : PrinterController {
+        val localVariableConfig = appliancesPrinterControllersUpdateRequestConfig(applianceId = applianceId, id = id, printerControllerRequest = printerControllerRequest)
+
+        val localVarResponse = request<PrinterControllerRequest, PrinterController>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as PrinterController
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation appliancesPrinterControllersUpdate
+    *
+    * @param applianceId  
+    * @param id A unique integer value identifying this printer controller. 
+    * @param printerControllerRequest  
+    * @return RequestConfig
+    */
+    fun appliancesPrinterControllersUpdateRequestConfig(applianceId: kotlin.Int, id: kotlin.Int, printerControllerRequest: PrinterControllerRequest) : RequestConfig<PrinterControllerRequest> {
+        val localVariableBody = printerControllerRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/api/appliances/{appliance_id}/printer-controllers/{id}/".replace("{"+"appliance_id"+"}", "$applianceId").replace("{"+"id"+"}", "$id"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param id A unique integer value identifying this appliance. 
     * @return Appliance
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -267,7 +843,7 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
 
     /**
     * 
-    * 
+    * All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cpu&gt;.img
     * @param id A unique integer value identifying this appliance. 
     * @param applianceRequest  
     * @return Appliance

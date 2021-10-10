@@ -38,7 +38,6 @@ class TestAnsibleFactsRequest(unittest.TestCase):
             return AnsibleFactsRequest(
                 public_key = '', 
                 public_key_checksum = '', 
-                private_key_checksum = '', 
                 fingerprint = '', 
                 appliance = 56
             )
@@ -46,7 +45,6 @@ class TestAnsibleFactsRequest(unittest.TestCase):
             return AnsibleFactsRequest(
                 public_key = '',
                 public_key_checksum = '',
-                private_key_checksum = '',
                 fingerprint = '',
                 appliance = 56,
         )

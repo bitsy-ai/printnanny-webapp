@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **publicKey** | **kotlin.String** |  | 
 **publicKeyChecksum** | **kotlin.String** |  | 
-**privateKeyChecksum** | **kotlin.String** |  | 
 **fingerprint** | **kotlin.String** |  | 
 **appliance** | **kotlin.Int** |  | 
 

@@ -38,14 +38,12 @@ class TestCreateAppliancePKIRequest(unittest.TestCase):
             return CreateAppliancePKIRequest(
                 public_key = '', 
                 public_key_checksum = '', 
-                private_key_checksum = '', 
                 fingerprint = ''
             )
         else :
             return CreateAppliancePKIRequest(
                 public_key = '',
                 public_key_checksum = '',
-                private_key_checksum = '',
                 fingerprint = '',
         )
 

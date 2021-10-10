@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **deleted** | **String** |  | [readonly]
 **public_key** | **String** |  | 
 **public_key_checksum** | **String** |  | 
-**private_key_checksum** | **String** |  | 
 **fingerprint** | **String** |  | 
 **appliance** | **i32** |  | 
 

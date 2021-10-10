@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki** | Option<[**crate::models::AppliancePkiRequest**](AppliancePKIRequest.md)> |  | [optional]
 **ansible_facts** | Option<[**crate::models::AnsibleFactsRequest**](AnsibleFactsRequest.md)> |  | [optional]
+**cameras** | Option<[**crate::models::CameraRequest**](CameraRequest.md)> |  | [optional]
+**printer_controllers** | Option<[**crate::models::PrinterControllerRequest**](PrinterControllerRequest.md)> |  | [optional]
 **hostname** | Option<**String**> |  | [optional]
 **user** | Option<**i32**> |  | [optional]
 

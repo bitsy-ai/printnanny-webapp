@@ -160,8 +160,6 @@ class PrintJobEventRequest(object):
         :param event_type: The event_type of this PrintJobEventRequest.  # noqa: E501
         :type event_type: EventTypeD9eEnum
         """
-        if self.local_vars_configuration.client_side_validation and event_type is None:  # noqa: E501
-            raise ValueError("Invalid value for `event_type`, must not be `None`")  # noqa: E501
 
         self._event_type = event_type
 

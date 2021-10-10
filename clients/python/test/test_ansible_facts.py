@@ -40,7 +40,6 @@ class TestAnsibleFacts(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 public_key = '', 
                 public_key_checksum = '', 
-                private_key_checksum = '', 
                 fingerprint = '', 
                 appliance = 56
             )
@@ -50,7 +49,6 @@ class TestAnsibleFacts(unittest.TestCase):
                 deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 public_key = '',
                 public_key_checksum = '',
-                private_key_checksum = '',
                 fingerprint = '',
                 appliance = 56,
         )

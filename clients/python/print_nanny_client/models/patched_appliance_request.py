@@ -38,6 +38,8 @@ class PatchedApplianceRequest(object):
     openapi_types = {
         'pki': 'AppliancePKIRequest',
         'ansible_facts': 'AnsibleFactsRequest',
+        'cameras': 'CameraRequest',
+        'printer_controllers': 'PrinterControllerRequest',
         'hostname': 'str',
         'user': 'int'
     }
@@ -45,11 +47,13 @@ class PatchedApplianceRequest(object):
     attribute_map = {
         'pki': 'pki',
         'ansible_facts': 'ansible_facts',
+        'cameras': 'cameras',
+        'printer_controllers': 'printer_controllers',
         'hostname': 'hostname',
         'user': 'user'
     }
 
-    def __init__(self, pki=None, ansible_facts=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
         """PatchedApplianceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -57,6 +61,8 @@ class PatchedApplianceRequest(object):
 
         self._pki = None
         self._ansible_facts = None
+        self._cameras = None
+        self._printer_controllers = None
         self._hostname = None
         self._user = None
         self.discriminator = None
@@ -65,6 +71,10 @@ class PatchedApplianceRequest(object):
             self.pki = pki
         if ansible_facts is not None:
             self.ansible_facts = ansible_facts
+        if cameras is not None:
+            self.cameras = cameras
+        if printer_controllers is not None:
+            self.printer_controllers = printer_controllers
         if hostname is not None:
             self.hostname = hostname
         if user is not None:
@@ -111,6 +121,48 @@ class PatchedApplianceRequest(object):
         """
 
         self._ansible_facts = ansible_facts
+
+    @property
+    def cameras(self):
+        """Gets the cameras of this PatchedApplianceRequest.  # noqa: E501
+
+
+        :return: The cameras of this PatchedApplianceRequest.  # noqa: E501
+        :rtype: CameraRequest
+        """
+        return self._cameras
+
+    @cameras.setter
+    def cameras(self, cameras):
+        """Sets the cameras of this PatchedApplianceRequest.
+
+
+        :param cameras: The cameras of this PatchedApplianceRequest.  # noqa: E501
+        :type cameras: CameraRequest
+        """
+
+        self._cameras = cameras
+
+    @property
+    def printer_controllers(self):
+        """Gets the printer_controllers of this PatchedApplianceRequest.  # noqa: E501
+
+
+        :return: The printer_controllers of this PatchedApplianceRequest.  # noqa: E501
+        :rtype: PrinterControllerRequest
+        """
+        return self._printer_controllers
+
+    @printer_controllers.setter
+    def printer_controllers(self, printer_controllers):
+        """Sets the printer_controllers of this PatchedApplianceRequest.
+
+
+        :param printer_controllers: The printer_controllers of this PatchedApplianceRequest.  # noqa: E501
+        :type printer_controllers: PrinterControllerRequest
+        """
+
+        self._printer_controllers = printer_controllers
 
     @property
     def hostname(self):
