@@ -11,7 +11,7 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 from safedelete.managers import SafeDeleteManager
 from safedelete.signals import pre_softdelete
 
-from .choices import ApplianceReleaseChannel, PrinterSoftware
+from .choices import ApplianceReleaseChannel, PrinterSoftwareType
 
 from print_nanny_webapp.devices.services import (
     delete_cloudiot_device,
@@ -72,7 +72,6 @@ class AppliancePKI(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
     public_key = models.TextField()
     public_key_checksum = models.CharField(max_length=255)
-    private_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
     appliance = models.OneToOneField(
         Appliance, on_delete=models.CASCADE, related_name="pki", db_index=True
@@ -80,6 +79,8 @@ class AppliancePKI(SafeDeleteModel):
 
 
 class AnsibleFacts(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
     appliance = models.OneToOneField(
         Appliance, on_delete=models.CASCADE, related_name="ansible_facts", db_index=True
     )
@@ -109,135 +110,9 @@ class AnsibleFacts(SafeDeleteModel):
     json = models.JSONField()
 
 
-class DeviceManager(SafeDeleteManager):
-    def update_or_create(self, defaults=None, **kwargs):
-        name = kwargs.get("name")
-        logger.info(f"Creating keypair for device serial={name}")
-
-        keypair = generate_keypair()
-
-        name = kwargs["name"]
-        user_id = kwargs["user"].id
-        serial = kwargs.get("serial", "Raspberry Pi Hardware not detected")
-        cloudiot_device_name = f"{name}-{user_id}"
-        cloudiot_device_dict, device_path = update_or_create_cloudiot_device(
-            name=cloudiot_device_name,
-            serial=serial,
-            user_id=user_id,
-            metadata=kwargs,
-            fingerprint=keypair["fingerprint"],
-            public_key_content=keypair["public_key_content"].strip(),
-        )
-
-        logger.info(f"iot create_device() succeeded {cloudiot_device_dict}")
-
-        cloudiot_device_num_id = cloudiot_device_dict.get("numId")
-
-        always_update = dict(
-            public_key=keypair["public_key_content"],
-            fingerprint=keypair["fingerprint"],
-            cloudiot_device_num_id=cloudiot_device_num_id,
-            cloudiot_device_name=cloudiot_device_name,
-            cloudiot_device_path=device_path,
-        )
-
-        defaults.update(always_update)
-
-        device, created = super().update_or_create(defaults=defaults, **kwargs)
-
-        for key, value in always_update.items():
-            setattr(device, key, value)
-        logging.info(f"Device created: {created} with id={device.id}")
-        device.private_key = keypair["private_key_content"]
-        device.private_key_checksum = keypair["private_key_checksum"]
-        device.public_key_checksum = keypair["public_key_checksum"]
-        device.ca_certs = keypair["ca_certs"]
-        device.save()
-
-        from print_nanny_webapp.ml_ops.models import (
-            Experiment,
-            ExperimentDeviceConfig,
-        )
-
-        active_experiment = Experiment.objects.filter(active=True).first()
-        if active_experiment is not None:
-            experiment_device_config = ExperimentDeviceConfig.objects.create(
-                octoprint_device=device,
-                experiment=active_experiment,
-            )
-
-        return device, created
-
-
-class Device(SafeDeleteModel):
-    """
-    1-1 relationship with Cloud Iot Device (GCP)
-    1-many relationship with PrinterController models
-    System-level information
-    """
-
-    objects = DeviceManager()
-
-    class Meta:
-        unique_together = ("user", "name")
-
-    def pre_softdelete(self):
-        return delete_cloudiot_device(self.cloudiot_device_num_id)
-
+class Camera(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-    user = models.ForeignKey(
-        UserModel, on_delete=models.CASCADE, related_name="devices"
-    )
-    name = models.CharField(max_length=255)
-    # PKI
-    public_key = models.TextField()
-    fingerprint = models.CharField(max_length=255)
-
-    # GCP cloudiot API params
-    cloudiot_device_name = models.CharField(max_length=255)
-    cloudiot_device_path = models.CharField(max_length=255)
-    cloudiot_device_num_id = models.BigIntegerField()
-
-    # platform info
-    os_version = models.CharField(max_length=255)
-    os = models.CharField(max_length=255)
-    kernel_version = models.CharField(max_length=255)
-
-    # hardware info
-    # /proc/cpuinfo HARDWARE
-    hardware = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo REVISION
-    revision = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo MODEL
-    model = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo SERIAL
-    serial = models.CharField(max_length=255, null=True)
-    # /proc/cpuinfo MAX PROCESSOR
-    cores = models.IntegerField()
-    ram = models.BigIntegerField()
-    cpu_flags = ArrayField(models.CharField(max_length=255))
-
-    @property
-    def cloudiot_device_configs(self):
-        """pa
-        Lists the last 10 device configurations
-        """
-        client = cloudiot_v1.DeviceManagerClient()
-        device_path = client.device_path(
-            settings.GCP_PROJECT_ID,
-            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY_REGION,
-            settings.GCP_CLOUD_IOT_DEVICE_REGISTRY,
-            self.cloudiot_device_name,
-        )
-        device_configs = client.list_device_config_versions(name=device_path)
-        configs_dict = MessageToDict(device_configs._pb)
-        return configs_dict
-
-
-class CameraController(SafeDeleteModel):
     class Meta:
         unique_together = ("user", "name")
 
@@ -258,7 +133,9 @@ class CameraController(SafeDeleteModel):
     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    appliance = models.ForeignKey(
+        Appliance, on_delete=models.CASCADE, related_name="cameras"
+    )
     name = models.CharField(max_length=255)
     camera_type = models.CharField(max_length=255, choices=CameraType.choices)
     camera_source = models.CharField(max_length=255)
@@ -267,19 +144,19 @@ class CameraController(SafeDeleteModel):
     )
 
 
-# class PrinterController(PolymorphicModel, SafeDeleteModel):
+class PrinterController(PolymorphicModel, SafeDeleteModel):
 
-#     _safedelete_policy = SOFT_DELETE
+    _safedelete_policy = SOFT_DELETE
 
-#     created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
-#     updated_dt = models.DateTimeField(db_index=True, auto_now=True)
-#     user = models.ForeignKey(
-#         UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
-#     )
-#     appliance = models.ForeignKey(
-#         Device, on_delete=models.CASCADE, related_name="printer_controllers"
-#     )
-#     software = models.CharField(max_length=12, choices=PrinterSoftware.choices)
+    created_dt = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_dt = models.DateTimeField(db_index=True, auto_now=True)
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, related_name="printer_controllers"
+    )
+    appliance = models.ForeignKey(
+        Appliance, on_delete=models.CASCADE, related_name="printer_controllers"
+    )
+    software = models.CharField(max_length=12, choices=PrinterSoftwareType.choices)
 
 
 # class PrinterProfile(SafeDeleteModel):

@@ -17,10 +17,8 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     ApplianceSerializer,
     CreateApplianceSerializer,
-    DeviceSerializer,
-    DeviceIdentitySerializer,
 )
-from ..models import CameraController, Device, Appliance
+from ..models import Camera, Appliance
 
 logger = logging.getLogger(__name__)
 
@@ -70,7 +68,7 @@ class ApplianceViewSet(
 
 
 # @extend_schema(tags=["devices"])
-# class CameraControllerViewSet(
+# class CameraViewSet(
 #     GenericViewSet,
 #     CreateModelMixin,
 #     ListModelMixin,
@@ -78,8 +76,8 @@ class ApplianceViewSet(
 #     UpdateModelMixin,
 # ):
 
-#     serializer_class = CameraControllerSerializer
-#     queryset = CameraController.objects.all()
+#     serializer_class = CameraSerializer
+#     queryset = Camera.objects.all()
 #     lookup_field = "id"
 
 #     def perform_create(self, serializer):

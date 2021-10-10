@@ -1,5 +1,3 @@
-from print_nanny_webapp.devices.models import CameraController
-from django.conf import settings
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
