@@ -18,8 +18,9 @@ from .serializers import (
     ApplianceSerializer,
     CreateApplianceSerializer,
     CameraSerializer,
+    PrinterControllerSerializer,
 )
-from ..models import Camera, Appliance
+from ..models import Camera, Appliance, PrinterController
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +35,11 @@ class ApplianceViewSet(
     RetrieveModelMixin,
     UpdateModelMixin,
 ):
+    """
+    All-in-one Print Nanny installation
+    via print-nanny-main-<platform>-<cpu>.img
+    """
+
     serializer_class = ApplianceSerializer
     queryset = Appliance.objects.all()
     lookup_field = "id"
@@ -69,6 +75,30 @@ class CameraViewSet(
             200: CameraSerializer,
             201: CameraSerializer,
             202: CameraSerializer,
+        },
+    )
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        return super().create(request, *args, **kwargs)
+
+
+class PrinterControllerViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = PrinterControllerSerializer
+    queryset = PrinterController.objects.all()
+    lookup_field = "id"
+
+    @extend_schema(
+        request=PrinterControllerSerializer,
+        responses={
+            400: PrinterControllerSerializer,
+            200: PrinterControllerSerializer,
+            201: PrinterControllerSerializer,
+            202: PrinterControllerSerializer,
         },
     )
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:

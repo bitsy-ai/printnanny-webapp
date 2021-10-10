@@ -10,7 +10,7 @@ from print_nanny_webapp.devices.models import (
     CloudIoTDevice,
     AppliancePKI,
     AnsibleFacts,
-    # PrinterController,
+    PrinterController,
     # PrinterProfile,
     # OctoprintPrinterProfile,
 )
@@ -20,6 +20,12 @@ from print_nanny_webapp.devices.services import CACerts
 class CameraSerializer(serializers.ModelSerializer):
     class Meta:
         model = Camera
+        fields = "__all__"
+
+
+class PrinterControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrinterController
         fields = "__all__"
 
 
@@ -48,6 +54,7 @@ class ApplianceSerializer(serializers.ModelSerializer):
     pki = AppliancePKISerializer()
     ansible_facts = AnsibleFactsSerializer()
     cameras = CameraSerializer()
+    printer_controllers = PrinterControllerSerializer()
 
     class Meta:
         model = Appliance
