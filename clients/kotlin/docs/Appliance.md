@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **id** | **kotlin.Int** |  |  [readonly]
 **pki** | [**AppliancePKI**](AppliancePKI.md) |  | 
 **ansibleFacts** | [**AnsibleFacts**](AnsibleFacts.md) |  | 
+**cameras** | [**Camera**](Camera.md) |  | 
+**printerControllers** | [**PrinterController**](PrinterController.md) |  | 
 **deleted** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **createdDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]
 **updatedDt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  |  [readonly]

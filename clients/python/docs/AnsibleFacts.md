@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **deleted** | **datetime** |  | [readonly] 
 **public_key** | **str** |  | 
 **public_key_checksum** | **str** |  | 
-**private_key_checksum** | **str** |  | 
 **fingerprint** | **str** |  | 
 **appliance** | **int** |  | 
 

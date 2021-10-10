@@ -19,8 +19,6 @@ pub struct AppliancePki {
     pub public_key: String,
     #[serde(rename = "public_key_checksum")]
     pub public_key_checksum: String,
-    #[serde(rename = "private_key_checksum")]
-    pub private_key_checksum: String,
     #[serde(rename = "fingerprint")]
     pub fingerprint: String,
     #[serde(rename = "appliance")]
@@ -28,13 +26,12 @@ pub struct AppliancePki {
 }
 
 impl AppliancePki {
-    pub fn new(id: i32, deleted: String, public_key: String, public_key_checksum: String, private_key_checksum: String, fingerprint: String, appliance: i32) -> AppliancePki {
+    pub fn new(id: i32, deleted: String, public_key: String, public_key_checksum: String, fingerprint: String, appliance: i32) -> AppliancePki {
         AppliancePki {
             id,
             deleted,
             public_key,
             public_key_checksum,
-            private_key_checksum,
             fingerprint,
             appliance,
         }

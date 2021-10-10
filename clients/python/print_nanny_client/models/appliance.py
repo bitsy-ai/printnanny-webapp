@@ -39,6 +39,8 @@ class Appliance(object):
         'id': 'int',
         'pki': 'AppliancePKI',
         'ansible_facts': 'AnsibleFacts',
+        'cameras': 'Camera',
+        'printer_controllers': 'PrinterController',
         'deleted': 'datetime',
         'created_dt': 'datetime',
         'updated_dt': 'datetime',
@@ -50,6 +52,8 @@ class Appliance(object):
         'id': 'id',
         'pki': 'pki',
         'ansible_facts': 'ansible_facts',
+        'cameras': 'cameras',
+        'printer_controllers': 'printer_controllers',
         'deleted': 'deleted',
         'created_dt': 'created_dt',
         'updated_dt': 'updated_dt',
@@ -57,7 +61,7 @@ class Appliance(object):
         'user': 'user'
     }
 
-    def __init__(self, id=None, pki=None, ansible_facts=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, pki=None, ansible_facts=None, cameras=None, printer_controllers=None, deleted=None, created_dt=None, updated_dt=None, hostname=None, user=None, local_vars_configuration=None):  # noqa: E501
         """Appliance - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -66,6 +70,8 @@ class Appliance(object):
         self._id = None
         self._pki = None
         self._ansible_facts = None
+        self._cameras = None
+        self._printer_controllers = None
         self._deleted = None
         self._created_dt = None
         self._updated_dt = None
@@ -76,6 +82,8 @@ class Appliance(object):
         self.id = id
         self.pki = pki
         self.ansible_facts = ansible_facts
+        self.cameras = cameras
+        self.printer_controllers = printer_controllers
         self.deleted = deleted
         self.created_dt = created_dt
         self.updated_dt = updated_dt
@@ -150,6 +158,52 @@ class Appliance(object):
             raise ValueError("Invalid value for `ansible_facts`, must not be `None`")  # noqa: E501
 
         self._ansible_facts = ansible_facts
+
+    @property
+    def cameras(self):
+        """Gets the cameras of this Appliance.  # noqa: E501
+
+
+        :return: The cameras of this Appliance.  # noqa: E501
+        :rtype: Camera
+        """
+        return self._cameras
+
+    @cameras.setter
+    def cameras(self, cameras):
+        """Sets the cameras of this Appliance.
+
+
+        :param cameras: The cameras of this Appliance.  # noqa: E501
+        :type cameras: Camera
+        """
+        if self.local_vars_configuration.client_side_validation and cameras is None:  # noqa: E501
+            raise ValueError("Invalid value for `cameras`, must not be `None`")  # noqa: E501
+
+        self._cameras = cameras
+
+    @property
+    def printer_controllers(self):
+        """Gets the printer_controllers of this Appliance.  # noqa: E501
+
+
+        :return: The printer_controllers of this Appliance.  # noqa: E501
+        :rtype: PrinterController
+        """
+        return self._printer_controllers
+
+    @printer_controllers.setter
+    def printer_controllers(self, printer_controllers):
+        """Sets the printer_controllers of this Appliance.
+
+
+        :param printer_controllers: The printer_controllers of this Appliance.  # noqa: E501
+        :type printer_controllers: PrinterController
+        """
+        if self.local_vars_configuration.client_side_validation and printer_controllers is None:  # noqa: E501
+            raise ValueError("Invalid value for `printer_controllers`, must not be `None`")  # noqa: E501
+
+        self._printer_controllers = printer_controllers
 
     @property
     def deleted(self):

@@ -1,10 +1,11 @@
-from print_nanny_webapp.devices.models import CameraController
-from django.conf import settings
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedSimpleRouter
+from print_nanny_webapp.devices.api.serializers import PrinterControllerSerializer
 
 from print_nanny_webapp.devices.api.views import (
-    ApplianceViewSet
+    ApplianceViewSet,
+    CameraViewSet,
+    PrinterControllerViewSet
 )
 from print_nanny_webapp.ml_ops.api.views import (
     ModelArtifactViewSet, ExperimentDeviceConfigViewSet, DeviceCalibrationViewSet, ExperimentViewSet
@@ -39,7 +40,8 @@ router.register("alerts", AlertViewSet)
 router.register("appliances", ApplianceViewSet)
 
 appliances_router = NestedSimpleRouter(router, r'appliances', lookup='appliance')
-# devices_router.register(r'appliances', ApplianceViewSet, basename='appliances')
+appliances_router.register(r'cameras', CameraViewSet, basename='cameras')
+appliances_router.register(r'printer-controllers', PrinterControllerViewSet, basename='printer-controllers')
 
 router.register("telemetry-events", TelemetryEventViewSet, basename="telemetry-events")
 router.register("remote-command-events", RemoteCommandEventViewSet, basename="remote-command-events")

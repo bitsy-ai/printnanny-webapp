@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **public_key** | **str** |  | 
 **public_key_checksum** | **str** |  | 
-**private_key_checksum** | **str** |  | 
 **fingerprint** | **str** |  | 
 **appliance** | **int** |  | 
 

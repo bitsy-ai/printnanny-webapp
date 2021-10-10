@@ -39,7 +39,7 @@ class TestPrintNannyPluginEvent(unittest.TestCase):
                 id = 56, 
                 ts = 1.337, 
                 event_source = None, 
-                event_type = 'plugin_octoprint_nanny_monitoring_start', 
+                event_type = None, 
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 
@@ -111,7 +111,6 @@ class TestPrintNannyPluginEvent(unittest.TestCase):
         else :
             return PrintNannyPluginEvent(
                 id = 56,
-                event_type = 'plugin_octoprint_nanny_monitoring_start',
                 octoprint_environment = print_nanny_client.models.octoprint_environment.OctoprintEnvironment(
                     os = print_nanny_client.models.octoprint_platform.OctoprintPlatform(
                         id = '', 

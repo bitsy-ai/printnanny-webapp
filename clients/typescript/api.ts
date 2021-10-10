@@ -226,12 +226,6 @@ export interface AnsibleFacts {
      * @type {string}
      * @memberof AnsibleFacts
      */
-    'private_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFacts
-     */
     'fingerprint': string;
     /**
      * 
@@ -258,12 +252,6 @@ export interface AnsibleFactsRequest {
      * @memberof AnsibleFactsRequest
      */
     'public_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AnsibleFactsRequest
-     */
-    'private_key_checksum': string;
     /**
      * 
      * @type {string}
@@ -301,6 +289,18 @@ export interface Appliance {
      * @memberof Appliance
      */
     'ansible_facts': AnsibleFacts;
+    /**
+     * 
+     * @type {Camera}
+     * @memberof Appliance
+     */
+    'cameras': Camera;
+    /**
+     * 
+     * @type {PrinterController}
+     * @memberof Appliance
+     */
+    'printer_controllers': PrinterController;
     /**
      * 
      * @type {string}
@@ -367,12 +367,6 @@ export interface AppliancePKI {
      * @type {string}
      * @memberof AppliancePKI
      */
-    'private_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKI
-     */
     'fingerprint': string;
     /**
      * 
@@ -404,12 +398,6 @@ export interface AppliancePKIRequest {
      * @type {string}
      * @memberof AppliancePKIRequest
      */
-    'private_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AppliancePKIRequest
-     */
     'fingerprint': string;
     /**
      * 
@@ -436,6 +424,18 @@ export interface ApplianceRequest {
      * @memberof ApplianceRequest
      */
     'ansible_facts': AnsibleFactsRequest;
+    /**
+     * 
+     * @type {CameraRequest}
+     * @memberof ApplianceRequest
+     */
+    'cameras': CameraRequest;
+    /**
+     * 
+     * @type {PrinterControllerRequest}
+     * @memberof ApplianceRequest
+     */
+    'printer_controllers': PrinterControllerRequest;
     /**
      * 
      * @type {string}
@@ -537,6 +537,139 @@ export interface CallbackTokenVerificationRequest {
      */
     'token': string;
 }
+/**
+ * 
+ * @export
+ * @interface Camera
+ */
+export interface Camera {
+    /**
+     * 
+     * @type {number}
+     * @memberof Camera
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'name': string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof Camera
+     */
+    'camera_type': CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof Camera
+     */
+    'camera_source': string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof Camera
+     */
+    'camera_source_type': CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof Camera
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Camera
+     */
+    'appliance': number;
+}
+/**
+ * 
+ * @export
+ * @interface CameraRequest
+ */
+export interface CameraRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof CameraRequest
+     */
+    'camera_type': CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CameraRequest
+     */
+    'camera_source': string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof CameraRequest
+     */
+    'camera_source_type': CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CameraRequest
+     */
+    'appliance': number;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum CameraSourceTypeEnum {
+    MjpgStreamer = 'MJPG Streamer',
+    Gstreamer = 'Gstreamer'
+}
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum CameraTypeEnum {
+    RaspberryPiCameraModule = 'Raspberry Pi Camera Module',
+    RaspberryPiUsbCamera = 'Raspberry Pi USB Camera',
+    GenericRtspRtmpIpCamera = 'Generic RTSP/RTMP IP Camera'
+}
+
 /**
  * 
  * @export
@@ -651,12 +784,6 @@ export interface CreateAppliancePKIRequest {
      * @memberof CreateAppliancePKIRequest
      */
     'public_key_checksum': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAppliancePKIRequest
-     */
-    'private_key_checksum': string;
     /**
      * 
      * @type {string}
@@ -1578,7 +1705,7 @@ export interface OctoPrintEvent {
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEvent
      */
-    'event_type': OctoPrintEventEventTypeEnum;
+    'event_type'?: OctoPrintEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -1716,7 +1843,7 @@ export interface OctoPrintEventRequest {
      * @type {OctoPrintEventEventTypeEnum}
      * @memberof OctoPrintEventRequest
      */
-    'event_type': OctoPrintEventEventTypeEnum;
+    'event_type'?: OctoPrintEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -2615,6 +2742,37 @@ export interface PaginatedApplianceList {
 /**
  * 
  * @export
+ * @interface PaginatedCameraList
+ */
+export interface PaginatedCameraList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedCameraList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCameraList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedCameraList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<Camera>}
+     * @memberof PaginatedCameraList
+     */
+    'results'?: Array<Camera>;
+}
+/**
+ * 
+ * @export
  * @interface PaginatedDeviceCalibrationList
  */
 export interface PaginatedDeviceCalibrationList {
@@ -2921,6 +3079,37 @@ export interface PaginatedPrintSessionList {
      * @memberof PaginatedPrintSessionList
      */
     'results'?: Array<PrintSession>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedPrinterControllerList
+ */
+export interface PaginatedPrinterControllerList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedPrinterControllerList
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrinterControllerList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedPrinterControllerList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<PrinterController>}
+     * @memberof PaginatedPrinterControllerList
+     */
+    'results'?: Array<PrinterController>;
 }
 /**
  * 
@@ -3251,6 +3440,18 @@ export interface PatchedApplianceRequest {
     'ansible_facts'?: AnsibleFactsRequest;
     /**
      * 
+     * @type {CameraRequest}
+     * @memberof PatchedApplianceRequest
+     */
+    'cameras'?: CameraRequest;
+    /**
+     * 
+     * @type {PrinterControllerRequest}
+     * @memberof PatchedApplianceRequest
+     */
+    'printer_controllers'?: PrinterControllerRequest;
+    /**
+     * 
      * @type {string}
      * @memberof PatchedApplianceRequest
      */
@@ -3261,6 +3462,49 @@ export interface PatchedApplianceRequest {
      * @memberof PatchedApplianceRequest
      */
     'user'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedCameraRequest
+ */
+export interface PatchedCameraRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCameraRequest
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {CameraTypeEnum}
+     * @memberof PatchedCameraRequest
+     */
+    'camera_type'?: CameraTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedCameraRequest
+     */
+    'camera_source'?: string;
+    /**
+     * 
+     * @type {CameraSourceTypeEnum}
+     * @memberof PatchedCameraRequest
+     */
+    'camera_source_type'?: CameraSourceTypeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCameraRequest
+     */
+    'user'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedCameraRequest
+     */
+    'appliance'?: number;
 }
 /**
  * 
@@ -3486,6 +3730,31 @@ export interface PatchedPrintSessionRequest {
      * @memberof PatchedPrintSessionRequest
      */
     'print_job_status'?: PrintJobStatusEnum | null;
+}
+/**
+ * 
+ * @export
+ * @interface PatchedPrinterControllerRequest
+ */
+export interface PatchedPrinterControllerRequest {
+    /**
+     * 
+     * @type {SoftwareEnum}
+     * @memberof PatchedPrinterControllerRequest
+     */
+    'software'?: SoftwareEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterControllerRequest
+     */
+    'user'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedPrinterControllerRequest
+     */
+    'appliance'?: number;
 }
 /**
  * 
@@ -3723,7 +3992,7 @@ export interface PrintJobEvent {
      * @type {EventTypeD9eEnum}
      * @memberof PrintJobEvent
      */
-    'event_type': EventTypeD9eEnum;
+    'event_type'?: EventTypeD9eEnum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -3814,7 +4083,7 @@ export interface PrintJobEventRequest {
      * @type {EventTypeD9eEnum}
      * @memberof PrintJobEventRequest
      */
-    'event_type': EventTypeD9eEnum;
+    'event_type'?: EventTypeD9eEnum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -3915,7 +4184,7 @@ export interface PrintNannyPluginEvent {
      * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEvent
      */
-    'event_type': PrintNannyPluginEventEventTypeEnum;
+    'event_type'?: PrintNannyPluginEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironment}
@@ -4034,7 +4303,7 @@ export interface PrintNannyPluginEventRequest {
      * @type {PrintNannyPluginEventEventTypeEnum}
      * @memberof PrintNannyPluginEventRequest
      */
-    'event_type': PrintNannyPluginEventEventTypeEnum;
+    'event_type'?: PrintNannyPluginEventEventTypeEnum;
     /**
      * 
      * @type {OctoprintEnvironmentRequest}
@@ -4289,6 +4558,86 @@ export interface PrintSessionRequest {
      * @memberof PrintSessionRequest
      */
     'print_job_status'?: PrintJobStatusEnum | null;
+}
+/**
+ * 
+ * @export
+ * @interface PrinterController
+ */
+export interface PrinterController {
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterController
+     */
+    'deleted': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterController
+     */
+    'created_dt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrinterController
+     */
+    'updated_dt': string;
+    /**
+     * 
+     * @type {SoftwareEnum}
+     * @memberof PrinterController
+     */
+    'software': SoftwareEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'polymorphic_ctype': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterController
+     */
+    'appliance': number;
+}
+/**
+ * 
+ * @export
+ * @interface PrinterControllerRequest
+ */
+export interface PrinterControllerRequest {
+    /**
+     * 
+     * @type {SoftwareEnum}
+     * @memberof PrinterControllerRequest
+     */
+    'software': SoftwareEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterControllerRequest
+     */
+    'user': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PrinterControllerRequest
+     */
+    'appliance': number;
 }
 /**
  * 
@@ -5135,6 +5484,16 @@ export interface RemoteControlCommandRequest {
      */
     'metadata'?: { [key: string]: any; };
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum SoftwareEnum {
+    OctoPrint = 'OctoPrint'
+}
+
 /**
  * 
  * @export
@@ -6058,6 +6417,234 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * 
+         * @param {number} applianceId 
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasCreate: async (applianceId: number, cameraRequest: CameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCamerasCreate', 'applianceId', applianceId)
+            // verify required parameter 'cameraRequest' is not null or undefined
+            assertParamExists('appliancesCamerasCreate', 'cameraRequest', cameraRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/cameras/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCamerasList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/cameras/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {PatchedCameraRequest} [patchedCameraRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasPartialUpdate: async (applianceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCamerasPartialUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCamerasPartialUpdate', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/cameras/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedCameraRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCamerasRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCamerasRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/cameras/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasUpdate: async (applianceId: number, id: number, cameraRequest: CameraRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesCamerasUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesCamerasUpdate', 'id', id)
+            // verify required parameter 'cameraRequest' is not null or undefined
+            assertParamExists('appliancesCamerasUpdate', 'cameraRequest', cameraRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/cameras/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(cameraRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {CreateApplianceRequest} createApplianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6098,7 +6685,7 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6138,7 +6725,7 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {PatchedApplianceRequest} [patchedApplianceRequest] 
          * @param {*} [options] Override http request option.
@@ -6182,6 +6769,234 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @param {number} applianceId 
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersCreate: async (applianceId: number, printerControllerRequest: PrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPrinterControllersCreate', 'applianceId', applianceId)
+            // verify required parameter 'printerControllerRequest' is not null or undefined
+            assertParamExists('appliancesPrinterControllersCreate', 'printerControllerRequest', printerControllerRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printerControllerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersList: async (applianceId: number, page?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPrinterControllersList', 'applianceId', applianceId)
+            const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersPartialUpdate: async (applianceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPrinterControllersPartialUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPrinterControllersPartialUpdate', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchedPrinterControllerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersRetrieve: async (applianceId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPrinterControllersRetrieve', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPrinterControllersRetrieve', 'id', id)
+            const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersUpdate: async (applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'applianceId' is not null or undefined
+            assertParamExists('appliancesPrinterControllersUpdate', 'applianceId', applianceId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('appliancesPrinterControllersUpdate', 'id', id)
+            // verify required parameter 'printerControllerRequest' is not null or undefined
+            assertParamExists('appliancesPrinterControllersUpdate', 'printerControllerRequest', printerControllerRequest)
+            const localVarPath = `/api/appliances/{appliance_id}/printer-controllers/{id}/`
+                .replace(`{${"appliance_id"}}`, encodeURIComponent(String(applianceId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+            // authentication tokenAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(printerControllerRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6220,7 +7035,7 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -6276,6 +7091,63 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {number} applianceId 
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCamerasCreate(applianceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCamerasCreate(applianceId, cameraRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCamerasList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedCameraList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCamerasList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {PatchedCameraRequest} [patchedCameraRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCamerasPartialUpdate(applianceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCamerasPartialUpdate(applianceId, id, patchedCameraRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCamerasRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCamerasRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesCamerasUpdate(applianceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Camera>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesCamerasUpdate(applianceId, id, cameraRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {CreateApplianceRequest} createApplianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6285,7 +7157,7 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6295,7 +7167,7 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {PatchedApplianceRequest} [patchedApplianceRequest] 
          * @param {*} [options] Override http request option.
@@ -6307,6 +7179,63 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} applianceId 
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPrinterControllersList(applianceId: number, page?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedPrinterControllerList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersList(applianceId, page, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPrinterControllersPartialUpdate(applianceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersPartialUpdate(applianceId, id, patchedPrinterControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPrinterControllersRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersRetrieve(applianceId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrinterController>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6316,7 +7245,7 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -6338,6 +7267,58 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * 
+         * @param {number} applianceId 
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasCreate(applianceId: number, cameraRequest: CameraRequest, options?: any): AxiosPromise<Camera> {
+            return localVarFp.appliancesCamerasCreate(applianceId, cameraRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedCameraList> {
+            return localVarFp.appliancesCamerasList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {PatchedCameraRequest} [patchedCameraRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasPartialUpdate(applianceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: any): AxiosPromise<Camera> {
+            return localVarFp.appliancesCamerasPartialUpdate(applianceId, id, patchedCameraRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<Camera> {
+            return localVarFp.appliancesCamerasRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this camera.
+         * @param {CameraRequest} cameraRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesCamerasUpdate(applianceId: number, id: number, cameraRequest: CameraRequest, options?: any): AxiosPromise<Camera> {
+            return localVarFp.appliancesCamerasUpdate(applianceId, id, cameraRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {CreateApplianceRequest} createApplianceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6346,7 +7327,7 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.appliancesCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} [page] A page number within the paginated result set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6355,7 +7336,7 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.appliancesList(page, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {PatchedApplianceRequest} [patchedApplianceRequest] 
          * @param {*} [options] Override http request option.
@@ -6366,6 +7347,58 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @param {number} applianceId 
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} [page] A page number within the paginated result set.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersList(applianceId: number, page?: number, options?: any): AxiosPromise<PaginatedPrinterControllerList> {
+            return localVarFp.appliancesPrinterControllersList(applianceId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersPartialUpdate(applianceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersPartialUpdate(applianceId, id, patchedPrinterControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersRetrieve(applianceId: number, id: number, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersRetrieve(applianceId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} applianceId 
+         * @param {number} id A unique integer value identifying this printer controller.
+         * @param {PrinterControllerRequest} printerControllerRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: any): AxiosPromise<PrinterController> {
+            return localVarFp.appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6374,7 +7407,7 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.appliancesRetrieve(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
+         * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
          * @param {number} id A unique integer value identifying this appliance.
          * @param {ApplianceRequest} applianceRequest 
          * @param {*} [options] Override http request option.
@@ -6394,6 +7427,58 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
 export interface AppliancesApiInterface {
     /**
      * 
+     * @param {number} applianceId 
+     * @param {CameraRequest} cameraRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCamerasCreate(applianceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCamerasList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedCameraList>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {PatchedCameraRequest} [patchedCameraRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCamerasPartialUpdate(applianceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCamerasRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<Camera>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {CameraRequest} cameraRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesCamerasUpdate(applianceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig): AxiosPromise<Camera>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {CreateApplianceRequest} createApplianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6402,7 +7487,7 @@ export interface AppliancesApiInterface {
     appliancesCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6411,7 +7496,7 @@ export interface AppliancesApiInterface {
     appliancesList(page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedApplianceList>;
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {PatchedApplianceRequest} [patchedApplianceRequest] 
      * @param {*} [options] Override http request option.
@@ -6422,6 +7507,58 @@ export interface AppliancesApiInterface {
 
     /**
      * 
+     * @param {number} applianceId 
+     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPrinterControllersList(applianceId: number, page?: number, options?: AxiosRequestConfig): AxiosPromise<PaginatedPrinterControllerList>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPrinterControllersPartialUpdate(applianceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPrinterControllersRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApiInterface
+     */
+    appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig): AxiosPromise<PrinterController>;
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6430,7 +7567,7 @@ export interface AppliancesApiInterface {
     appliancesRetrieve(id: number, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.
@@ -6450,6 +7587,68 @@ export interface AppliancesApiInterface {
 export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     /**
      * 
+     * @param {number} applianceId 
+     * @param {CameraRequest} cameraRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCamerasCreate(applianceId: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCamerasCreate(applianceId, cameraRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCamerasList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCamerasList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {PatchedCameraRequest} [patchedCameraRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCamerasPartialUpdate(applianceId: number, id: number, patchedCameraRequest?: PatchedCameraRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCamerasPartialUpdate(applianceId, id, patchedCameraRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCamerasRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCamerasRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this camera.
+     * @param {CameraRequest} cameraRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesCamerasUpdate(applianceId: number, id: number, cameraRequest: CameraRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesCamerasUpdate(applianceId, id, cameraRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {CreateApplianceRequest} createApplianceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6460,7 +7659,7 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     }
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} [page] A page number within the paginated result set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6471,7 +7670,7 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     }
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {PatchedApplianceRequest} [patchedApplianceRequest] 
      * @param {*} [options] Override http request option.
@@ -6484,6 +7683,68 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
 
     /**
      * 
+     * @param {number} applianceId 
+     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPrinterControllersCreate(applianceId: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersCreate(applianceId, printerControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} [page] A page number within the paginated result set.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPrinterControllersList(applianceId: number, page?: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersList(applianceId, page, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {PatchedPrinterControllerRequest} [patchedPrinterControllerRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPrinterControllersPartialUpdate(applianceId: number, id: number, patchedPrinterControllerRequest?: PatchedPrinterControllerRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersPartialUpdate(applianceId, id, patchedPrinterControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPrinterControllersRetrieve(applianceId: number, id: number, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersRetrieve(applianceId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} applianceId 
+     * @param {number} id A unique integer value identifying this printer controller.
+     * @param {PrinterControllerRequest} printerControllerRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AppliancesApi
+     */
+    public appliancesPrinterControllersUpdate(applianceId: number, id: number, printerControllerRequest: PrinterControllerRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesPrinterControllersUpdate(applianceId, id, printerControllerRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6494,7 +7755,7 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
     }
 
     /**
-     * 
+     * All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
      * @param {number} id A unique integer value identifying this appliance.
      * @param {ApplianceRequest} applianceRequest 
      * @param {*} [options] Override http request option.

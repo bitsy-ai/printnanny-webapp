@@ -57,7 +57,6 @@ class TestCreateApplianceRequest(unittest.TestCase):
                 pki = print_nanny_client.models.create_appliance_pki_request.CreateAppliancePKIRequest(
                     public_key = '', 
                     public_key_checksum = '', 
-                    private_key_checksum = '', 
                     fingerprint = '', )
             )
         else :
@@ -83,7 +82,6 @@ class TestCreateApplianceRequest(unittest.TestCase):
                 pki = print_nanny_client.models.create_appliance_pki_request.CreateAppliancePKIRequest(
                     public_key = '', 
                     public_key_checksum = '', 
-                    private_key_checksum = '', 
                     fingerprint = '', ),
         )
 

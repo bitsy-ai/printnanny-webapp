@@ -6,7 +6,7 @@ class ApplianceReleaseChannel(models.TextChoices):
     DEVEL = "devel", "Unstable developer release channel"
 
 
-class PrinterSoftware(models.TextChoices):
+class PrinterSoftwareType(models.TextChoices):
     OCTOPRINT = "OctoPrint", "OctoPrint printer controller"
     # TODO re-enable as setup teaser + add 400 response if submitted
     # REPETIER = "Repetier", "Repetier printer controller"

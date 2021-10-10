@@ -38,7 +38,7 @@ class TestPrintJobEventRequest(unittest.TestCase):
             return PrintJobEventRequest(
                 ts = 1.337, 
                 event_source = None, 
-                event_type = 'PrintCancelled', 
+                event_type = None, 
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
                         id = '', 
@@ -107,7 +107,6 @@ class TestPrintJobEventRequest(unittest.TestCase):
             )
         else :
             return PrintJobEventRequest(
-                event_type = 'PrintCancelled',
                 octoprint_environment = print_nanny_client.models.octoprint_environment_request.OctoprintEnvironmentRequest(
                     os = print_nanny_client.models.octoprint_platform_request.OctoprintPlatformRequest(
                         id = '', 

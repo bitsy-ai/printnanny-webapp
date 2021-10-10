@@ -42,9 +42,19 @@ Class | Method | HTTP request | Description
 *AlertsApi* | [**alertsSeen**](docs/AlertsApi.md#alertsseen) | **PATCH** /api/alerts/seen/ | 
 *AlertsApi* | [**alertsUnread**](docs/AlertsApi.md#alertsunread) | **GET** /api/alerts/unread/ | 
 *AlertsApi* | [**alertsUpdate**](docs/AlertsApi.md#alertsupdate) | **PUT** /api/alerts/{id}/ | 
+*AppliancesApi* | [**appliancesCamerasCreate**](docs/AppliancesApi.md#appliancescamerascreate) | **POST** /api/appliances/{appliance_id}/cameras/ | 
+*AppliancesApi* | [**appliancesCamerasList**](docs/AppliancesApi.md#appliancescameraslist) | **GET** /api/appliances/{appliance_id}/cameras/ | 
+*AppliancesApi* | [**appliancesCamerasPartialUpdate**](docs/AppliancesApi.md#appliancescameraspartialupdate) | **PATCH** /api/appliances/{appliance_id}/cameras/{id}/ | 
+*AppliancesApi* | [**appliancesCamerasRetrieve**](docs/AppliancesApi.md#appliancescamerasretrieve) | **GET** /api/appliances/{appliance_id}/cameras/{id}/ | 
+*AppliancesApi* | [**appliancesCamerasUpdate**](docs/AppliancesApi.md#appliancescamerasupdate) | **PUT** /api/appliances/{appliance_id}/cameras/{id}/ | 
 *AppliancesApi* | [**appliancesCreate**](docs/AppliancesApi.md#appliancescreate) | **POST** /api/appliances/ | 
 *AppliancesApi* | [**appliancesList**](docs/AppliancesApi.md#applianceslist) | **GET** /api/appliances/ | 
 *AppliancesApi* | [**appliancesPartialUpdate**](docs/AppliancesApi.md#appliancespartialupdate) | **PATCH** /api/appliances/{id}/ | 
+*AppliancesApi* | [**appliancesPrinterControllersCreate**](docs/AppliancesApi.md#appliancesprintercontrollerscreate) | **POST** /api/appliances/{appliance_id}/printer-controllers/ | 
+*AppliancesApi* | [**appliancesPrinterControllersList**](docs/AppliancesApi.md#appliancesprintercontrollerslist) | **GET** /api/appliances/{appliance_id}/printer-controllers/ | 
+*AppliancesApi* | [**appliancesPrinterControllersPartialUpdate**](docs/AppliancesApi.md#appliancesprintercontrollerspartialupdate) | **PATCH** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
+*AppliancesApi* | [**appliancesPrinterControllersRetrieve**](docs/AppliancesApi.md#appliancesprintercontrollersretrieve) | **GET** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
+*AppliancesApi* | [**appliancesPrinterControllersUpdate**](docs/AppliancesApi.md#appliancesprintercontrollersupdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 *AppliancesApi* | [**appliancesRetrieve**](docs/AppliancesApi.md#appliancesretrieve) | **GET** /api/appliances/{id}/ | 
 *AppliancesApi* | [**appliancesUpdate**](docs/AppliancesApi.md#appliancesupdate) | **PUT** /api/appliances/{id}/ | 
 *AuthApi* | [**authEmailCreate**](docs/AuthApi.md#authemailcreate) | **POST** /auth/email/ | 
@@ -130,6 +140,10 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.CallbackTokenAuthRequest](docs/CallbackTokenAuthRequest.md)
  - [com.print-nanny.client.models.CallbackTokenVerification](docs/CallbackTokenVerification.md)
  - [com.print-nanny.client.models.CallbackTokenVerificationRequest](docs/CallbackTokenVerificationRequest.md)
+ - [com.print-nanny.client.models.Camera](docs/Camera.md)
+ - [com.print-nanny.client.models.CameraRequest](docs/CameraRequest.md)
+ - [com.print-nanny.client.models.CameraSourceTypeEnum](docs/CameraSourceTypeEnum.md)
+ - [com.print-nanny.client.models.CameraTypeEnum](docs/CameraTypeEnum.md)
  - [com.print-nanny.client.models.CommandEnum](docs/CommandEnum.md)
  - [com.print-nanny.client.models.CreateAnsibleFactsRequest](docs/CreateAnsibleFactsRequest.md)
  - [com.print-nanny.client.models.CreateAppliancePKIRequest](docs/CreateAppliancePKIRequest.md)
@@ -176,6 +190,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.OctoprintPythonRequest](docs/OctoprintPythonRequest.md)
  - [com.print-nanny.client.models.PaginatedAlertList](docs/PaginatedAlertList.md)
  - [com.print-nanny.client.models.PaginatedApplianceList](docs/PaginatedApplianceList.md)
+ - [com.print-nanny.client.models.PaginatedCameraList](docs/PaginatedCameraList.md)
  - [com.print-nanny.client.models.PaginatedDeviceCalibrationList](docs/PaginatedDeviceCalibrationList.md)
  - [com.print-nanny.client.models.PaginatedExperimentDeviceConfigList](docs/PaginatedExperimentDeviceConfigList.md)
  - [com.print-nanny.client.models.PaginatedExperimentList](docs/PaginatedExperimentList.md)
@@ -186,6 +201,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PaginatedPrintJobEventList](docs/PaginatedPrintJobEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintNannyPluginEventList](docs/PaginatedPrintNannyPluginEventList.md)
  - [com.print-nanny.client.models.PaginatedPrintSessionList](docs/PaginatedPrintSessionList.md)
+ - [com.print-nanny.client.models.PaginatedPrinterControllerList](docs/PaginatedPrinterControllerList.md)
  - [com.print-nanny.client.models.PaginatedPrinterProfileList](docs/PaginatedPrinterProfileList.md)
  - [com.print-nanny.client.models.PaginatedRemoteCommandEventList](docs/PaginatedRemoteCommandEventList.md)
  - [com.print-nanny.client.models.PaginatedRemoteControlCommandList](docs/PaginatedRemoteControlCommandList.md)
@@ -196,9 +212,11 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PatchedAlertBulkRequestRequest](docs/PatchedAlertBulkRequestRequest.md)
  - [com.print-nanny.client.models.PatchedAlertRequest](docs/PatchedAlertRequest.md)
  - [com.print-nanny.client.models.PatchedApplianceRequest](docs/PatchedApplianceRequest.md)
+ - [com.print-nanny.client.models.PatchedCameraRequest](docs/PatchedCameraRequest.md)
  - [com.print-nanny.client.models.PatchedDeviceCalibrationRequest](docs/PatchedDeviceCalibrationRequest.md)
  - [com.print-nanny.client.models.PatchedOctoPrintDeviceRequest](docs/PatchedOctoPrintDeviceRequest.md)
  - [com.print-nanny.client.models.PatchedPrintSessionRequest](docs/PatchedPrintSessionRequest.md)
+ - [com.print-nanny.client.models.PatchedPrinterControllerRequest](docs/PatchedPrinterControllerRequest.md)
  - [com.print-nanny.client.models.PatchedPrinterProfileRequest](docs/PatchedPrinterProfileRequest.md)
  - [com.print-nanny.client.models.PatchedRemoteControlCommandRequest](docs/PatchedRemoteControlCommandRequest.md)
  - [com.print-nanny.client.models.PatchedUserRequest](docs/PatchedUserRequest.md)
@@ -210,6 +228,8 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.PrintNannyPluginEventRequest](docs/PrintNannyPluginEventRequest.md)
  - [com.print-nanny.client.models.PrintSession](docs/PrintSession.md)
  - [com.print-nanny.client.models.PrintSessionRequest](docs/PrintSessionRequest.md)
+ - [com.print-nanny.client.models.PrinterController](docs/PrinterController.md)
+ - [com.print-nanny.client.models.PrinterControllerRequest](docs/PrinterControllerRequest.md)
  - [com.print-nanny.client.models.PrinterEvent](docs/PrinterEvent.md)
  - [com.print-nanny.client.models.PrinterEventRequest](docs/PrinterEventRequest.md)
  - [com.print-nanny.client.models.PrinterProfile](docs/PrinterProfile.md)
@@ -221,6 +241,7 @@ Class | Method | HTTP request | Description
  - [com.print-nanny.client.models.RemoteCommandEventRequest](docs/RemoteCommandEventRequest.md)
  - [com.print-nanny.client.models.RemoteControlCommand](docs/RemoteControlCommand.md)
  - [com.print-nanny.client.models.RemoteControlCommandRequest](docs/RemoteControlCommandRequest.md)
+ - [com.print-nanny.client.models.SoftwareEnum](docs/SoftwareEnum.md)
  - [com.print-nanny.client.models.TelemetryEvent](docs/TelemetryEvent.md)
  - [com.print-nanny.client.models.TelemetryEventEventTypeEnum](docs/TelemetryEventEventTypeEnum.md)
  - [com.print-nanny.client.models.TelemetryEventPolymorphic](docs/TelemetryEventPolymorphic.md)
