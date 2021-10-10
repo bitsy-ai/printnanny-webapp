@@ -17,6 +17,12 @@ from print_nanny_webapp.devices.models import (
 from print_nanny_webapp.devices.services import CACerts
 
 
+class CameraSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Camera
+        fields = "__all__"
+
+
 ##
 # v1 Appliance Identity Provisioning (distributed via rpi-imager)
 ##
@@ -41,6 +47,7 @@ class AnsibleFactsSerializer(serializers.ModelSerializer):
 class ApplianceSerializer(serializers.ModelSerializer):
     pki = AppliancePKISerializer()
     ansible_facts = AnsibleFactsSerializer()
+    cameras = CameraSerializer()
 
     class Meta:
         model = Appliance

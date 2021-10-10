@@ -17,6 +17,7 @@ from rest_framework.viewsets import GenericViewSet
 from .serializers import (
     ApplianceSerializer,
     CreateApplianceSerializer,
+    CameraSerializer,
 )
 from ..models import Camera, Appliance
 
@@ -50,35 +51,25 @@ class ApplianceViewSet(
         return super().create(request, *args, **kwargs)
 
 
-# @extend_schema(tags=["devices"])
-# class PrinterProfileViewSet(
-#     GenericViewSet,
-#     CreateModelMixin,
-#     ListModelMixin,
-#     RetrieveModelMixin,
-#     UpdateModelMixin,
-# ):
+class CameraViewSet(
+    GenericViewSet,
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+):
+    serializer_class = CameraSerializer
+    queryset = Camera.objects.all()
+    lookup_field = "id"
 
-#     serializer_class = PrinterProfilePolymorphicSerializer
-#     queryset = PrinterProfile.objects.all()
-#     lookup_field = "id"
-
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
-
-
-# @extend_schema(tags=["devices"])
-# class CameraViewSet(
-#     GenericViewSet,
-#     CreateModelMixin,
-#     ListModelMixin,
-#     RetrieveModelMixin,
-#     UpdateModelMixin,
-# ):
-
-#     serializer_class = CameraSerializer
-#     queryset = Camera.objects.all()
-#     lookup_field = "id"
-
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
+    @extend_schema(
+        request=CameraSerializer,
+        responses={
+            400: CameraSerializer,
+            200: CameraSerializer,
+            201: CameraSerializer,
+            202: CameraSerializer,
+        },
+    )
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        return super().create(request, *args, **kwargs)
