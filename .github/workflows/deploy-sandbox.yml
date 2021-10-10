@@ -81,6 +81,7 @@ jobs:
       # Ignore the failure of a step and avoid terminating the job.
       continue-on-error: true
     - name: Deploy sandbox instance
+      id: deploy
       run: |
         make sandbox-deploy \
         PROJECT="print-nanny-sandbox" \
@@ -88,12 +89,18 @@ jobs:
         PRINT_NANNY_URL="$PRINT_NANNY_URL" \
         OCTOPRINT_URL="$OCTOPRINT_URL" \
         DJANGO_SUPERUSER_EMAIL="$DJANGO_SUPERUSER_EMAIL"
+        echo ::set-output name=printnanny_client_version::"$(cat version.txt)"
+
     - name: Send Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.PRINT_NANNY_DISCORD_DEPLOY_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} to SANDBOX environment'
+        args: |
+            Deployed {{ EVENT_PAYLOAD.repository.full_name }}@{{ GITHUB_SHA }} to SANDBOX environment
+            Client version: ${{ steps.deploy.outputs.printnanny_client_version }}
+            https://pypi.org/project/print-nanny-client/${{ steps.deploy.outputs.printnanny_client_version }}/
+            https://crates.io/crates/print-nanny-client/${{ steps.deploy.outputs.printnanny_client_version }}/
     # - name: Run Cypress tests 
     #   run: |
     #     make cypress-ci \
