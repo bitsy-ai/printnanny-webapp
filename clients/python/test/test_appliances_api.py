@@ -118,6 +118,12 @@ class TestAppliancesApi(unittest.TestCase):
         """
         pass
 
+    def test_appliances_update_or_create(self):
+        """Test case for appliances_update_or_create
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

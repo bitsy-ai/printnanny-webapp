@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**appliances_printer_controllers_update**](AppliancesApi.md#appliances_printer_controllers_update) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{id}/ | 
 [**appliances_update**](AppliancesApi.md#appliances_update) | **PUT** /api/appliances/{id}/ | 
+[**appliances_update_or_create**](AppliancesApi.md#appliances_update_or_create) | **POST** /api/appliances/update-or-create/ | 
 
 
 
@@ -171,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## appliances_create
 
-> crate::models::Appliance appliances_create(create_appliance_request)
+> crate::models::Appliance appliances_create(appliance_request)
 
 
 All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
@@ -181,7 +182,7 @@ All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**create_appliance_request** | [**CreateApplianceRequest**](CreateApplianceRequest.md) |  | [required] |
+**appliance_request** | [**ApplianceRequest**](ApplianceRequest.md) |  | [required] |
 
 ### Return type
 
@@ -451,6 +452,36 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **i32** | A unique integer value identifying this appliance. | [required] |
 **appliance_request** | [**ApplianceRequest**](ApplianceRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::Appliance**](Appliance.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## appliances_update_or_create
+
+> crate::models::Appliance appliances_update_or_create(create_appliance_request)
+
+
+All-in-one Print Nanny installation via print-nanny-main-<platform>-<cpu>.img
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_appliance_request** | [**CreateApplianceRequest**](CreateApplianceRequest.md) |  | [required] |
 
 ### Return type
 

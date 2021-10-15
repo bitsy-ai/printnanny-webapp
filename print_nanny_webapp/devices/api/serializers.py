@@ -101,3 +101,8 @@ class CreateApplianceSerializer(serializers.ModelSerializer):
             "hostname",
             "pki",
         )
+
+    def update_or_create(self, user, hostname, validated_data):
+        return Appliance.objects.update_or_create(
+            user=user, hostname=hostname, defaults=validated_data
+        )
