@@ -36,6 +36,8 @@ class TestAnsibleFactsRequest(unittest.TestCase):
         # model = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest()  # noqa: E501
         if include_optional :
             return AnsibleFactsRequest(
+                public_key_path = '', 
+                private_key_path = '', 
                 public_key = '', 
                 public_key_checksum = '', 
                 fingerprint = '', 
@@ -43,6 +45,8 @@ class TestAnsibleFactsRequest(unittest.TestCase):
             )
         else :
             return AnsibleFactsRequest(
+                public_key_path = '',
+                private_key_path = '',
                 public_key = '',
                 public_key_checksum = '',
                 fingerprint = '',

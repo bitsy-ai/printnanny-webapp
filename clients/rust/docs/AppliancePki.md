@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **i32** |  | [readonly]
 **deleted** | **String** |  | [readonly]
+**public_key_path** | **String** |  | 
+**private_key_path** | **String** |  | 
 **public_key** | **String** |  | 
 **public_key_checksum** | **String** |  | 
 **fingerprint** | **String** |  | 

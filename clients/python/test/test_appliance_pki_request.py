@@ -36,6 +36,8 @@ class TestAppliancePKIRequest(unittest.TestCase):
         # model = print_nanny_client.models.appliance_pki_request.AppliancePKIRequest()  # noqa: E501
         if include_optional :
             return AppliancePKIRequest(
+                public_key_path = '', 
+                private_key_path = '', 
                 public_key = '', 
                 public_key_checksum = '', 
                 fingerprint = '', 
@@ -43,6 +45,8 @@ class TestAppliancePKIRequest(unittest.TestCase):
             )
         else :
             return AppliancePKIRequest(
+                public_key_path = '',
+                private_key_path = '',
                 public_key = '',
                 public_key_checksum = '',
                 fingerprint = '',

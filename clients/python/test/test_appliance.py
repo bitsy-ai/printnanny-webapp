@@ -40,6 +40,8 @@ class TestAppliance(unittest.TestCase):
                 pki = print_nanny_client.models.appliance_pki.AppliancePKI(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
@@ -47,6 +49,8 @@ class TestAppliance(unittest.TestCase):
                 ansible_facts = print_nanny_client.models.ansible_facts.AnsibleFacts(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
@@ -83,6 +87,8 @@ class TestAppliance(unittest.TestCase):
                 pki = print_nanny_client.models.appliance_pki.AppliancePKI(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
@@ -90,6 +96,8 @@ class TestAppliance(unittest.TestCase):
                 ansible_facts = print_nanny_client.models.ansible_facts.AnsibleFacts(
                     id = 56, 
                     deleted = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 

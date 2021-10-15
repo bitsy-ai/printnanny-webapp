@@ -37,11 +37,15 @@ class TestApplianceRequest(unittest.TestCase):
         if include_optional :
             return ApplianceRequest(
                 pki = print_nanny_client.models.appliance_pki_request.AppliancePKIRequest(
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
                     appliance = 56, ), 
                 ansible_facts = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest(
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
@@ -63,11 +67,15 @@ class TestApplianceRequest(unittest.TestCase):
         else :
             return ApplianceRequest(
                 pki = print_nanny_client.models.appliance_pki_request.AppliancePKIRequest(
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
                     appliance = 56, ),
                 ansible_facts = print_nanny_client.models.ansible_facts_request.AnsibleFactsRequest(
+                    public_key_path = '', 
+                    private_key_path = '', 
                     public_key = '', 
                     public_key_checksum = '', 
                     fingerprint = '', 
