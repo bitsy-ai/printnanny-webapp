@@ -118,8 +118,8 @@ class TestAppliancesApi(unittest.TestCase):
         """
         pass
 
-    def test_appliances_update_or_create_create(self):
-        """Test case for appliances_update_or_create_create
+    def test_appliances_update_or_create(self):
+        """Test case for appliances_update_or_create
 
         """
         pass

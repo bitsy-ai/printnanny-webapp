@@ -7085,9 +7085,9 @@ export const AppliancesApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesUpdateOrCreateCreate: async (createApplianceRequest: CreateApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        appliancesUpdateOrCreate: async (createApplianceRequest: CreateApplianceRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'createApplianceRequest' is not null or undefined
-            assertParamExists('appliancesUpdateOrCreateCreate', 'createApplianceRequest', createApplianceRequest)
+            assertParamExists('appliancesUpdateOrCreate', 'createApplianceRequest', createApplianceRequest)
             const localVarPath = `/api/appliances/update-or-create/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -7302,8 +7302,8 @@ export const AppliancesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdateOrCreateCreate(createApplianceRequest, options);
+        async appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Appliance>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appliancesUpdateOrCreate(createApplianceRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -7473,8 +7473,8 @@ export const AppliancesApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: any): AxiosPromise<Appliance> {
-            return localVarFp.appliancesUpdateOrCreateCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
+        appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: any): AxiosPromise<Appliance> {
+            return localVarFp.appliancesUpdateOrCreate(createApplianceRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -7643,7 +7643,7 @@ export interface AppliancesApiInterface {
      * @throws {RequiredError}
      * @memberof AppliancesApiInterface
      */
-    appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
+    appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig): AxiosPromise<Appliance>;
 
 }
 
@@ -7842,8 +7842,8 @@ export class AppliancesApi extends BaseAPI implements AppliancesApiInterface {
      * @throws {RequiredError}
      * @memberof AppliancesApi
      */
-    public appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig) {
-        return AppliancesApiFp(this.configuration).appliancesUpdateOrCreateCreate(createApplianceRequest, options).then((request) => request(this.axios, this.basePath));
+    public appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest, options?: AxiosRequestConfig) {
+        return AppliancesApiFp(this.configuration).appliancesUpdateOrCreate(createApplianceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

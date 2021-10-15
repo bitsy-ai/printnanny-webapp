@@ -907,8 +907,8 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun appliancesUpdateOrCreateCreate(createApplianceRequest: CreateApplianceRequest) : Appliance {
-        val localVariableConfig = appliancesUpdateOrCreateCreateRequestConfig(createApplianceRequest = createApplianceRequest)
+    fun appliancesUpdateOrCreate(createApplianceRequest: CreateApplianceRequest) : Appliance {
+        val localVariableConfig = appliancesUpdateOrCreateRequestConfig(createApplianceRequest = createApplianceRequest)
 
         val localVarResponse = request<CreateApplianceRequest, Appliance>(
             localVariableConfig
@@ -930,12 +930,12 @@ class AppliancesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(baseP
     }
 
     /**
-    * To obtain the request config of the operation appliancesUpdateOrCreateCreate
+    * To obtain the request config of the operation appliancesUpdateOrCreate
     *
     * @param createApplianceRequest  
     * @return RequestConfig
     */
-    fun appliancesUpdateOrCreateCreateRequestConfig(createApplianceRequest: CreateApplianceRequest) : RequestConfig<CreateApplianceRequest> {
+    fun appliancesUpdateOrCreateRequestConfig(createApplianceRequest: CreateApplianceRequest) : RequestConfig<CreateApplianceRequest> {
         val localVariableBody = createApplianceRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

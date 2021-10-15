@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**appliances_printer_controllers_update**](AppliancesApi.md#appliances_printer_controllers_update) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliances_retrieve**](AppliancesApi.md#appliances_retrieve) | **GET** /api/appliances/{id}/ | 
 [**appliances_update**](AppliancesApi.md#appliances_update) | **PUT** /api/appliances/{id}/ | 
-[**appliances_update_or_create_create**](AppliancesApi.md#appliances_update_or_create_create) | **POST** /api/appliances/update-or-create/ | 
+[**appliances_update_or_create**](AppliancesApi.md#appliances_update_or_create) | **POST** /api/appliances/update-or-create/ | 
 
 
 # **appliances_cameras_create**
@@ -1841,8 +1841,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **appliances_update_or_create_create**
-> Appliance appliances_update_or_create_create(create_appliance_request)
+# **appliances_update_or_create**
+> Appliance appliances_update_or_create(create_appliance_request)
 
 
 
@@ -1886,10 +1886,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     create_appliance_request = print_nanny_client.CreateApplianceRequest() # CreateApplianceRequest | 
 
     try:
-        api_response = api_instance.appliances_update_or_create_create(create_appliance_request)
+        api_response = api_instance.appliances_update_or_create(create_appliance_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_update_or_create_create: %s\n" % e)
+        print("Exception when calling AppliancesApi->appliances_update_or_create: %s\n" % e)
 ```
 
 * Bearer Authentication (tokenAuth):
@@ -1928,10 +1928,10 @@ with print_nanny_client.ApiClient(configuration) as api_client:
     create_appliance_request = print_nanny_client.CreateApplianceRequest() # CreateApplianceRequest | 
 
     try:
-        api_response = api_instance.appliances_update_or_create_create(create_appliance_request)
+        api_response = api_instance.appliances_update_or_create(create_appliance_request)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling AppliancesApi->appliances_update_or_create_create: %s\n" % e)
+        print("Exception when calling AppliancesApi->appliances_update_or_create: %s\n" % e)
 ```
 
 ### Parameters

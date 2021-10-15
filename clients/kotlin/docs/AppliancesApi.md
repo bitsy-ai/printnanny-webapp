@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**appliancesPrinterControllersUpdate**](AppliancesApi.md#appliancesPrinterControllersUpdate) | **PUT** /api/appliances/{appliance_id}/printer-controllers/{id}/ | 
 [**appliancesRetrieve**](AppliancesApi.md#appliancesRetrieve) | **GET** /api/appliances/{id}/ | 
 [**appliancesUpdate**](AppliancesApi.md#appliancesUpdate) | **PUT** /api/appliances/{id}/ | 
-[**appliancesUpdateOrCreateCreate**](AppliancesApi.md#appliancesUpdateOrCreateCreate) | **POST** /api/appliances/update-or-create/ | 
+[**appliancesUpdateOrCreate**](AppliancesApi.md#appliancesUpdateOrCreate) | **POST** /api/appliances/update-or-create/ | 
 
 
 <a name="appliancesCamerasCreate"></a>
@@ -814,9 +814,9 @@ Configure tokenAuth:
  - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
-<a name="appliancesUpdateOrCreateCreate"></a>
-# **appliancesUpdateOrCreateCreate**
-> Appliance appliancesUpdateOrCreateCreate(createApplianceRequest)
+<a name="appliancesUpdateOrCreate"></a>
+# **appliancesUpdateOrCreate**
+> Appliance appliancesUpdateOrCreate(createApplianceRequest)
 
 
 
@@ -831,13 +831,13 @@ All-in-one Print Nanny installation via print-nanny-main-&lt;platform&gt;-&lt;cp
 val apiInstance = AppliancesApi()
 val createApplianceRequest : CreateApplianceRequest =  // CreateApplianceRequest | 
 try {
-    val result : Appliance = apiInstance.appliancesUpdateOrCreateCreate(createApplianceRequest)
+    val result : Appliance = apiInstance.appliancesUpdateOrCreate(createApplianceRequest)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling AppliancesApi#appliancesUpdateOrCreateCreate")
+    println("4xx response calling AppliancesApi#appliancesUpdateOrCreate")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling AppliancesApi#appliancesUpdateOrCreateCreate")
+    println("5xx response calling AppliancesApi#appliancesUpdateOrCreate")
     e.printStackTrace()
 }
 ```
