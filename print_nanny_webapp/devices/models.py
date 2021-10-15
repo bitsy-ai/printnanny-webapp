@@ -70,6 +70,8 @@ class CloudIoTDevice(SafeDeleteModel):
 
 class AppliancePKI(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
+    public_key_path = models.CharField(max_length=255)
+    private_key_path = models.CharField(max_length=255)
     public_key = models.TextField()
     public_key_checksum = models.CharField(max_length=255)
     fingerprint = models.CharField(max_length=255)
